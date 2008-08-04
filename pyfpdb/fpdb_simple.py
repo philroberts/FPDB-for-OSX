@@ -1345,7 +1345,10 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
 					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]))
 			else:
-				print "todo: store updated line"
+				print "storing updated hud data line"
+				cursor.execute("""UPDATE HudDataHoldemOmaha
+					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s
+					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[1], row[2], row[3]))
 	else:
 		raise FpdbError("todo")
 #end def store_hands_players_flags(cursor, hands_players_ids, hands_players_flags)
