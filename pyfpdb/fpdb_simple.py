@@ -1246,7 +1246,7 @@ def calculateHudImport(player_ids, category, action_types):
 		for count in range (len(action_types[street][player])):#finally individual actions
 			currentAction=action_types[street][player][count]
 			if currentAction!="bet":
-				pfRaiseCount++
+				pfRaiseCount+=1
 			if (currentAction=="bet" or currentAction=="call"):
 				myVPIP=True
 		if pfRaiseCount>=1:
@@ -1290,15 +1290,64 @@ def calculateHudImport(player_ids, category, action_types):
 	result['otherRaisedRiver']=otherRaisedRiver
 	result['otherRaisedRiverFold']=otherRaisedRiverFold
 	return result
-#end def calculate_hands_players_flags
+#end def calculateHudImport
 
-def store_hands_players_flags(cursor, category, hand_player_ids, hands_players_flags):
+def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-		for i in range (len(hand_player_ids)):
-			cursor.execute("""INSERT INTO hands_players_flags (hand_player_id, folded_on, street0_vpi, street0_raise, street1_raise, street2_raise, street3_raise) VALUES (%s, %s, %s, %s, %s, %s, %s)""", (hand_player_ids[i], hands_players_flags['folded_on'][i], hands_players_flags['street0_vpi'][i], hands_players_flags['street0_raise'][i], hands_players_flags['street1_raise'][i], hands_players_flags['street2_raise'][i], hands_players_flags['street3_raise'][i]))
+		for player in range (len(playerIds)):
+			cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
+			row=cursor.fetchone()
+			print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
+			
+			try: len(row)
+			except TypeError:
+				row=[]
+			
+			if (len(row)==0):
+				print "new huddata row"
+				doInsert=True
+				row=[]
+				row.append(0)#blank for id
+				row.append(gametypeId)
+				row.append(playerIds[player])
+				row.append(len(playerIds))#seats
+				row.append(0)#HDs
+				for i in range(len(hudImportData)):
+					row.append(0)
+			else:
+				doInsert=False
+				newrow=[]
+				for i in range(len(row)):
+					newrow.append(row[i])
+				row=newrow
+
+			row[4]+=1 #HDs
+			if hudImportData['VPIP'][player]: row[5]+=1
+			if hudImportData['PFR'][player]: row[6]+=1
+			if hudImportData['PF3B4B'][player]: row[7]+=1
+			if hudImportData['sawFlop'][player]: row[8]+=1
+			if hudImportData['sawTurn'][player]: row[9]+=1
+			if hudImportData['sawRiver'][player]: row[10]+=1
+			if hudImportData['sawShowdown'][player]: row[11]+=1
+			if hudImportData['raisedFlop'][player]: row[12]+=1
+			if hudImportData['raisedTurn'][player]: row[13]+=1
+			if hudImportData['raisedRiver'][player]: row[14]+=1
+			if hudImportData['otherRaisedFlop'][player]: row[15]+=1
+			if hudImportData['otherRaisedFlopFold'][player]: row[16]+=1
+			if hudImportData['otherRaisedTurn'][player]: row[17]+=1
+			if hudImportData['otherRaisedTurnFold'][player]: row[18]+=1
+			if hudImportData['otherRaisedRiver'][player]: row[19]+=1
+			if hudImportData['otherRaisedRiverFold'][player]: row[20]+=1
+			
+			if doInsert:
+				print "playerid before insert:",row[2]
+				cursor.execute("""INSERT INTO HudDataHoldemOmaha
+					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]))
+			else:
+				print "todo: store updated line"
 	else:
-		for i in range (len(hand_player_ids)):
-			cursor.execute("""INSERT INTO hands_players_flags (hand_player_id, folded_on, street0_vpi, street0_raise, street1_raise, street2_raise, street3_raise, street4_raise) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""", (hand_player_ids[i], hands_players_flags['folded_on'][i], hands_players_flags['street0_vpi'][i], hands_players_flags['street0_raise'][i], hands_players_flags['street1_raise'][i], hands_players_flags['street2_raise'][i], hands_players_flags['street3_raise'][i], hands_players_flags['street4_raise'][i]))
+		raise FpdbError("todo")
 #end def store_hands_players_flags(cursor, hands_players_ids, hands_players_flags)
 
 def store_tourneys(cursor, site_id, site_tourney_no, buyin, fee, knockout, entries, prizepool, start_time):

@@ -17,5 +17,5 @@
 
 rm testdata/*.found.txt
 rm utils/*.pyc
-rm fpdb-python/*.pyc
+rm pyfpdb/*.pyc
 git-add--interactive

@@ -113,7 +113,7 @@ def mainParser(db, cursor, site, category, hand):
 	limit_type=cursor.fetchone()[0] #todo: remove this unnecessary database access
 	fpdb_simple.convert3B4B(site, category, limit_type, actionTypes, actionAmounts)
 	
-	hands_players_flags=fpdb_simple.calculate_hands_players_flags(playerIDs, category, actionTypes)
+	hudImportData=fpdb_simple.calculateHudImport(playerIDs, category, actionTypes)
 	
 	if isTourney:
 		payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)
@@ -128,22 +128,22 @@ def mainParser(db, cursor, site, category, hand):
 					knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
 					siteHandNo, siteID, gametypeID, handStartTime, names, playerIDs, 
 					startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, 
-					actionTypes, actionAmounts, hands_players_flags)
+					actionTypes, actionAmounts, hudImportData)
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			result = fpdb_save_to_db.tourney_stud(cursor, category, siteTourneyNo, buyin, fee, 
 					knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
 					siteHandNo, siteID, gametypeID, handStartTime, names, playerIDs, 
 					startCashes, antes, cardValues, cardSuits, winnings, rakes, 
-					actionTypes, actionAmounts, hands_players_flags)
+					actionTypes, actionAmounts, hudImportData)
 	else:
 		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 			result = fpdb_save_to_db.ring_holdem_omaha(cursor, category, siteHandNo, gametypeID, 
 					handStartTime, names, playerIDs, startCashes, positions, cardValues, 
-					cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, hands_players_flags)
+					cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, hudImportData)
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			result = fpdb_save_to_db.ring_stud(cursor, category, siteHandNo, gametypeID, 
 					handStartTime, names, playerIDs, startCashes, antes, cardValues, 
-					cardSuits, winnings, rakes, actionTypes, actionAmounts, hands_players_flags)
+					cardSuits, winnings, rakes, actionTypes, actionAmounts, hudImportData)
 		else:
 			raise fpdb_simple.FpdbError ("unrecognised category")
 		db.commit()

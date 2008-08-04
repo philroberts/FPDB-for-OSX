@@ -23,7 +23,7 @@ import fpdb_simple
 #stores a stud/razz hand into the database
 def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time, 
 			names, player_ids, start_cashes, antes, card_values, card_suits, 
-			winnings, rakes, action_types, action_amounts, hands_players_flags):
+			winnings, rakes, action_types, action_amounts, hudImportData):
 	fpdb_simple.fillCardArrays(len(names), 7, card_values, card_suits)
 	
 	hands_id=fpdb_simple.storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names)
@@ -31,7 +31,7 @@ def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time,
 	hands_players_ids=fpdb_simple.store_hands_players_stud(cursor, hands_id, player_ids, 
 				start_cashes, antes, card_values, card_suits, winnings, rakes)
 	
-	fpdb_simple.store_hands_players_flags(cursor, category, hands_players_ids, hands_players_flags)
+	fpdb_simple.storeHudData(cursor, category, player_ids, hudImportData)
 	
 	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts)
 	return site_hand_no
@@ -40,7 +40,7 @@ def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time,
 #stores a holdem/omaha hand into the database
 def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time,
 			names, player_ids, start_cashes, positions, card_values, card_suits,
-			board_values, board_suits, winnings, rakes, action_types, action_amounts, hands_players_flags):
+			board_values, board_suits, winnings, rakes, action_types, action_amounts, hudImportData):
 	#fill up the two player card arrays
 	if (category=="holdem"):
 		fpdb_simple.fillCardArrays(len(names), 2, card_values, card_suits)
@@ -56,7 +56,7 @@ def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_ti
 	hands_players_ids=fpdb_simple.store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, 
 				start_cashes, positions, card_values, card_suits, winnings, rakes)
 				
-	fpdb_simple.store_hands_players_flags(cursor, category, hands_players_ids, hands_players_flags)
+	fpdb_simple.storeHudData(cursor, category, gametype_id, player_ids, hudImportData)
 	
 	fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 	
@@ -69,7 +69,7 @@ def tourney_holdem_omaha(cursor, category, site_tourney_no, buyin, fee, knockout
 			    site_hand_no, site_id, gametype_id, hand_start_time, names, player_ids,
 			    start_cashes, positions, card_values, card_suits,
 			    board_values, board_suits, winnings, rakes,
-			    action_types, action_amounts, hands_players_flags):
+			    action_types, action_amounts, hudImportData):
 #stores a tourney stud/razz hand into the database
 	#fill up the two player card arrays
 	if (category=="holdem"):
@@ -90,7 +90,7 @@ def tourney_holdem_omaha(cursor, category, site_tourney_no, buyin, fee, knockout
 	hands_players_ids=fpdb_simple.store_hands_players_holdem_omaha_tourney(cursor, hands_id, player_ids, 
 				start_cashes, positions, card_values, card_suits, winnings, rakes, tourneys_players_ids)
 	
-	fpdb_simple.store_hands_players_flags(cursor, category, hands_players_ids, hands_players_flags)
+	fpdb_simple.storeHudData(cursor, category, player_ids, hudImportData)
 	
 	fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 	
@@ -102,7 +102,7 @@ def tourney_stud(cursor, category, site_tourney_no, buyin, fee, knockout, entrie
 			    tourney_start, payin_amounts, ranks, #end of tourney specific params
 			    site_hand_no, site_id, gametype_id, hand_start_time, names, player_ids,
 			    start_cashes, antes, card_values, card_suits, winnings, rakes,
-			    action_types, action_amounts, hands_players_flags):
+			    action_types, action_amounts, hudImportData):
 #stores a tourney stud/razz hand into the database
 	fpdb_simple.fillCardArrays(len(names), 7, card_values, card_suits)
 	
@@ -115,7 +115,7 @@ def tourney_stud(cursor, category, site_tourney_no, buyin, fee, knockout, entrie
 	hands_players_ids=fpdb_simple.store_hands_players_stud_tourney(cursor, hands_id, player_ids, 
 				start_cashes, antes, card_values, card_suits, winnings, rakes, tourneys_players_ids)
 	
-	fpdb_simple.store_hands_players_flags(cursor, category, hands_players_ids, hands_players_flags)
+	fpdb_simple.storeHudData(cursor, category, player_ids, hudImportData)
 	
 	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts)
 	return site_hand_no

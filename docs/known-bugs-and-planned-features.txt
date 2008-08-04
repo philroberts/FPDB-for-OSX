@@ -3,10 +3,13 @@ todolist (db=database, imp=importer, tv=tableviewer)
 before beta
 ===========
 current speedup attempt todo:
-holdem in fpdb_simple done - now update remaining files, test, then add back postflop and stud functionality
+finish hud store todos in fpdb_simple
+update tv
+test
+add back postflop and stud functionality
 
-import fails on stud/razz
-tv doesnt display street 3-5 in stud/razz i think
+change save_to_db into one method and probably move into parse_logic
+fix load profile
 Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
 find out if i can SQL for the rowcount, rather than select a field and then just take the rowcount. this might bring a significant performance improvement
 make a quick benchmark of mysql and postgresql: import of my whole db, some tableviewer refreshes with and without updated file

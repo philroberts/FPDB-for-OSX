@@ -159,7 +159,7 @@ class fpdb:
 	
 	def dia_load_profile(self, widget, data):
 		"""Dialogue to select a file to load a profile from"""
-		obtain_global_lock()
+		self.obtain_global_lock()
 		chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
 				action=gtk.FILE_CHOOSER_ACTION_OPEN,
 				buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
