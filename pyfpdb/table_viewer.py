@@ -25,6 +25,14 @@ import fpdb_import
 import fpdb_db
 
 class table_viewer (threading.Thread):
+	def hudDivide (self, a, b):
+		if b==0:
+			return "n/a"
+		else:
+			return str(int((a/float(b))*100))
+		return "todo"
+	#end def hudDivide
+	
 	def browse_clicked(self, widget, data):
 		"""runs when user clicks browse on tv tab"""
 		print "start of table_viewer.browser_clicked"
@@ -52,85 +60,26 @@ class table_viewer (threading.Thread):
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
-			tmp=("Name", "Hands", "VPIP", "PFR", "AF", "FF", "AT", "FT", "AR", "FR")
-			streets=(1,2,3)
+			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR")
 		else:
-			tmp=("Name", "Hands", "VPI3", "A3", "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7")
-			streets=(4,5,6,7)#todo: change this once table has been changed
+			raise fpdb_simple.FpdbError("todo reimplement stud")
+			tmp=("Name", "Hands", "VPI3", "A3", "3B4B_3" "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7")
 		arr.append(tmp)
 		
 		#then the data rows
-		for i in range(len(self.player_names)):
+		for player in range(len(self.player_names)):
 			tmp=[]
-			tmp.append(self.player_names[i][0])
+			tmp.append(self.player_names[player][0])
 			
-			self.cursor.execute("""SELECT DISTINCT hands.id FROM hands
-				INNER JOIN hands_players ON hands_players.hand_id = hands.id
-				WHERE hands.gametype_id=%s AND hands_players.player_id=%s""", (self.gametype_id, self.player_ids[i][0]))
-			hand_count=self.cursor.rowcount
-			tmp.append(str(hand_count))
+			self.cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (self.gametype_id, self.player_ids[player][0], len(self.player_names)))
+			row=self.cursor.fetchone()
 			
-			self.cursor.execute("""SELECT DISTINCT hands.id FROM hands_players 
-				INNER JOIN hands_players_flags ON hands_players.id = hands_players_flags.hand_player_id 
-				INNER JOIN hands ON hands_players.hand_id = hands.id
-				WHERE hands.gametype_id=%s AND hands_players.player_id=%s 
-				AND street0_vpi=True""", (self.gametype_id, self.player_ids[i][0]))
-			vpi_count=self.cursor.rowcount
-			vpi_percent=int(vpi_count/float(hand_count)*100)
-			tmp.append(str(vpi_percent))
-			
-			
-			self.cursor.execute("""SELECT DISTINCT hands.id FROM hands_players 
-				INNER JOIN hands_players_flags ON hands_players.id = hands_players_flags.hand_player_id 
-				INNER JOIN hands ON hands_players.hand_id = hands.id
-				WHERE hands.gametype_id=%s AND hands_players.player_id=%s 
-				AND street0_raise=True""", (self.gametype_id, self.player_ids[i][0]))
-			raise_count=self.cursor.rowcount
-			raise_percent=int(raise_count/float(hand_count)*100)
-			tmp.append(str(raise_percent))
-			
-			######start of flop/4th street######
-			hand_count
-			
-			play_counts=[]
-			raise_counts=[]
-			fold_counts=[]
-			self.cursor.execute("""SELECT DISTINCT hands.id FROM hands_players 
-				INNER JOIN hands_players_flags ON hands_players.id = hands_players_flags.hand_player_id 
-				INNER JOIN hands ON hands_players.hand_id = hands.id
-				WHERE hands.gametype_id=%s AND hands_players.player_id=%s 
-				AND folded_on=0""", (self.gametype_id, self.player_ids[i][0]))
-			preflop_fold_count=self.cursor.rowcount
-			last_play_count=hand_count-preflop_fold_count
-			play_counts.append(last_play_count)
-				
-			for street in streets:
-				self.cursor.execute("""SELECT DISTINCT hands.id FROM hands_players 
-					INNER JOIN hands_players_flags ON hands_players.id = hands_players_flags.hand_player_id 
-					INNER JOIN hands ON hands_players.hand_id = hands.id
-					WHERE hands.gametype_id=%s AND hands_players.player_id=%s 
-					AND folded_on="""+str(street), (self.gametype_id, self.player_ids[i][0]))
-				fold_count=self.cursor.rowcount
-				fold_counts.append(fold_count)
-				last_play_count-=fold_count
-				play_counts.append(last_play_count)
-				
-				self.cursor.execute("""SELECT DISTINCT hands.id FROM hands_players 
-					INNER JOIN hands_players_flags ON hands_players.id = hands_players_flags.hand_player_id 
-					INNER JOIN hands ON hands_players.hand_id = hands.id
-					WHERE hands.gametype_id=%s AND hands_players.player_id=%s 
-					AND street"""+str(street)+"_raise=True""", (self.gametype_id, self.player_ids[i][0]))
-				raise_counts.append(self.cursor.rowcount)
-			
-			for street in range (len(streets)):
-				if play_counts[street]>0:
-					raise_percent=int(raise_counts[street]/float(play_counts[street])*100)
-					tmp.append(str(raise_percent))
-					fold_percent=int(fold_counts[street]/float(play_counts[street])*100)
-					tmp.append(str(fold_percent))
-				else:
-					tmp.append("n/a")
-					tmp.append("n/a")
+			tmp.append(str(row[4]))#Hands
+			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
+			tmp.append(self.hudDivide(row[6],row[4])) #PFR
+			tmp.append(self.hudDivide(row[7],row[4])) #PF3B4B
+			tmp.append(self.hudDivide(row[12],row[8])) #AF
+			tmp.append(self.hudDivide(row[15],row[16])) #FF
 			
 			arr.append(tmp)
 		return arr

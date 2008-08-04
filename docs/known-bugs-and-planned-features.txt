@@ -2,12 +2,8 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before beta
 ===========
-current speedup attempt todo:
-finish hud store todos in fpdb_simple
-update tv
-test
-add back postflop and stud functionality
-
+add back postflop and stud functionality to hud and import-HudData
+take into account count of opportunities for 3B/4B PF.
 change save_to_db into one method and probably move into parse_logic
 fix load profile
 Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
