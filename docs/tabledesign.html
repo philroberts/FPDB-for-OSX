@@ -7,42 +7,21 @@
 <BODY LANG="en-GB">
 <P>see commit comments for version info</P>
 <P>Direct suggestions, praise and animal names to steffen@sycamoretest.info</P>
-<p>TODO clean all the crap out of this like i did in HudData</p>
-<P>I decided to be generous on the sizes of the types - if computing
-experience shows one thing then its that it will come back to bite
-you in the ass if you save 2 bits in the wrong place. If performance
-and/or db size are too bad we can still shrink some fields.</P>
-<p>Relationships
-are noted in the comment (need to double check that all are listed)</P>
-<p>If
-you want more comments or if anything is confusing or bad let me
-know.</P>
-<p><BR>
-</P>
-<p>All
-money/cash amounts are stored in cents/pennies/whatever (e.g. $4.27
-would be stored a 427). Chips are stored as-is (e.g. 3675 chips would
-be stored as 3675).</P>
-<p><BR>
-</P>
-<p>Support
-for ringgames in Holdem, Omaha, Razz and Stud complete. Support for
-SnG/MTT is alpha</P>
-<p><BR>
-</P>
-<p>Notes
-on use/editing:</P>
-<p>Any
-change to this must be carried to to the table creation code unless it
-is clearly noted in appropriate places.</P>
-<P>If the code (in particular the importer) and this document disagree then this document is to be considered authorative. Please report such mismatches to steffen@sycamoretest.org or through sourceforge.</P>
+<p>TODO clean all the crap out of this like i did in HudData, line39 onwards</p>
+<P>I decided to be generous on the sizes of the types - if computing experience shows one thing then its that it will come back to bite you in the ass if you save 2 bits in the wrong place. If performance and/or db size are too bad we can still shrink some fields.</P>
+<p>Relationships are noted in the comment (need to double check that all are listed)</P>
+<p>If you want more comments or if anything is confusing or bad let me know.</P>
+<p>All money/cash amounts are stored in cents/pennies/whatever (e.g. $4.27 would be stored a 427). Chips are stored as-is (e.g. 3675 chips would be stored as 3675).</P>
+<p>Support for ringgames in Holdem, Omaha, Razz and Stud complete. Support for SnG/MTT is alpha</P>
+<p>Notes on use/editing:</P>
+<p>Any change to this must be carried to to the table creation code in fpdb_db.py or at least an entry to known bugs is to be made.</P>
+<P>If the code (in particular the importer) and this document disagree then this document is to be considered authorative. Please report such mismatches to steffen@sycamoretest.org or through an assembla ticket.</P>
 <p><b>License</b><br>
 Trademarks of third parties have been used under Fair Use or similar laws.<br>
 Copyright 2008 Steffen Jobbagy-Felso<br>
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 as published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and with no Back-Cover Texts. A copy of the license can be found in fdl-1.2.txt<br>
 The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
-<p>See
-readme.txt for copying</P>
+<p>See readme.txt for copying</P>
 <p><BR>
 </P>
 <p><B>Table
@@ -54,16 +33,9 @@ players</B></P>
 		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
@@ -266,18 +238,12 @@ gametypes</B></P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
+		<TD><P>type</P></TD>
+		<TD><P>char(4)</P></TD>
 		<TD>
-			<P>type</P>
-		</TD>
-		<TD>
-			<P>char(4)</P>
-		</TD>
-		<TD>
-			<p>valid
-			entries:</P>
-			<p>cash
-			- aka ringgames</P>
-			<P>tour - tournament</P>
+			<p>valid entries:</P>
+			<p>ring - ringgames aka cash games</P>
+			<P>tour - tournament incl SnG</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>

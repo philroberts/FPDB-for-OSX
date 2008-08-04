@@ -15,6 +15,8 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+echo "Please note for this to really work you need to work on an empty database"
+
 rm ../testdata/*.found.txt
 ../pyfpdb/fpdb_import.py -p$1 --file=../testdata/ps-holdem-ring-001to003.txt -x
 ../pyfpdb/fpdb_import.py -p$1 --file=../testdata/ps-holdem-ring-001to003.txt -x
@@ -27,6 +29,8 @@ echo "it should've reported first that it stored 3, then that it had 3 duplicate
 ./print_hand.py -p$1 --hand=14519394979 > ../testdata/ps.14519394979.found.txt && colordiff ../testdata/ps.14519394979.found.txt ../testdata/ps.14519394979.expected.txt
 ./print_hand.py -p$1 --hand=14519420999 > ../testdata/ps.14519420999.found.txt && colordiff ../testdata/ps.14519420999.found.txt ../testdata/ps.14519420999.expected.txt
 ./print_hand.py -p$1 --hand=14519433154 > ../testdata/ps.14519433154.found.txt && colordiff ../testdata/ps.14519433154.found.txt ../testdata/ps.14519433154.expected.txt
+
+./PrintPlayerFlags.py -p$1 > ../testdata/ps-flags-3hands.found.txt && colordiff ../testdata/ps-flags-3hands.found.txt ../testdata/ps-flags-3hands.expected.txt
 
 #./print_hand.py -p$1 --site="Full Tilt Poker" --hand=6367428246 > ../testdata/ftp.6367428246.found.txt && colordiff ../testdata/ftp.6367428246.found.txt ../testdata/ftp.6367428246.expected.txt
 

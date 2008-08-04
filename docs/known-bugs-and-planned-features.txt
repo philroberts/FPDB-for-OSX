@@ -1,8 +1,12 @@
 todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
-===========
-add back turn, river and stud functionality to hud and import-HudData
+============
+PrintPlayerFlag
+imp/tv bug: PFR is blatantly crazy
+imp(?) bug: handcount is only about 1/2 of what it should be
+verify at least one PrintPlayerFlags
+and stud functionality to hud and import-HudData
 db+imp+tv WtSD (went to showdown)
 db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
 db+imp+tv WwSF (Won when seen flop - partial taken into account)
@@ -17,12 +21,14 @@ tourney bug: fails with tuple error in recogniseplayerid
 config wizard
 catch index error, type error, file not found error
 update install instructions
+split python requirements, get deep links for windows DL for everything
 implement error file in importer
 remove mysql/myisam support.
 
 
 before beta
 ===========
+file permission script, use games group
 change stud street storage from 3-7 to 0-4 throughout
 make bulk importer display a grand total in the GUI
 change save_to_db into one method and probably move into parse_logic
