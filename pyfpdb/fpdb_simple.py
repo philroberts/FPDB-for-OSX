@@ -1271,9 +1271,34 @@ def calculateHudImport(player_ids, category, action_types):
 						if action_types[3][player][count]=="fold":
 							mySawShowdown=True
 
-		#print "todo: finish boolean recognition"
+		#flop stuff
+		street=1
+		if mySawFlop:
+			for count in range(len(action_types[street][player])):
+				if action_types[street][player][count]=="bet":
+					myRaisedFlop=True
+			
+			for otherPlayer in range (len(player_ids)):
+				if player==otherPlayer or myOtherRaisedFlop:
+					pass
+				else:
+					for countOther in range (len(action_types[street][otherPlayer])):
+						if action_types[street][otherPlayer][countOther]=="bet":
+							myOtherRaisedFlop=True
+							for countOtherFold in range (len(action_types[street][otherPlayer])):
+								if action_types[street][otherPlayer][countOtherFold]=="fold":
+									myOtherRaisedFlopFold=True
 		
+		#turn stuff: todo
+		for count in range(len(action_types[2][player])):
+			if action_types[2][player][count]=="bet":
+				myRaisedTurn=True
 		
+		#river stuff: todo
+		for count in range(len(action_types[3][player])):
+			if action_types[3][player][count]=="bet":
+				myRaisedRiver=True
+
 		
 		#add each value to the appropriate array
 		VPIP.append(myVPIP)
