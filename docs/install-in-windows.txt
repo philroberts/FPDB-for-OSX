@@ -1,0 +1,74 @@
+These instructions are for 32/64bit Windows NT/2k/XP/2k3/Vista/2k8. Well, in principle. I
+made them in XP Pro, if you discover any differences or problems please let me know. If you're still on Win3/95/98/ME then you should switch to GNU/Linux, *BSD or WinXP.
+Also see the other install-in-*.txt files.
+The length of these instructions is due to MS refusal to provide any kind of package management. 
+
+For some packages I've given direct(ish) download links here, for the remainder check requirements.txt.
+
+1a. Install MySQL and do its basic setup
+Download Windows ZIP/Setup.exe from http://dev.mysql.com/downloads/mysql/5.0.html#win32
+Note that there is a link to skip registration/login.
+As of this writing the latest binary version is 5.0.51b whilst the latest version is 5.0.56... Windows.
+- Unzip the archive, execute the setup file
+	At the end make sure you activate that you want to configure it now.
+	Use the advanced/detailed config. Leave everything as default unless stated below, or unless you have reason not to.
+	Make sure to DEACTIVATE TCP/IP networking, unless you want that and know how to secure it
+	Activate "include bin directory in windows PATH"
+	Set a root password. Note that this is not the account/pw that fpdb will use.
+
+Once finished it shold confirm "service started successfully"
+
+2. Install python
+Go to http://www.python.org/download/ and get the latest Windows installer. As of this writing that is 2.5.2. Double click the .msi file to start installation and follow the prompts.
+
+
+3. Install the Python-DBAPI package for MySQL:
+Go to http://sourceforge.net/project/showfiles.php?group_id=22307 and get the latest version of MySQL-python-1.2.2.win32-py2.5.exe
+Double click to install.
+
+
+4. In MySQL create a new database fpdb and a user by the same name. Set a password. I did this in webmin. Then set permissions for that user to: Select | Insert | Update | Delete | Create | Drop
+
+5. Time for GTK+ - here's the instructions from their bundle
+
+To use it, create some empty folder like c:\gtk . Using either
+Windows Explorer's built-in zip file management, or the command-line
+unzip.exe from
+ftp://tug.ctan.org/tex-archive/tools/zip/info-zip/WIN32/unz552xN.exe
+unzip this bundle. (But you presumably already did that, as you are
+reading this file.)
+
+Then add the bin folder to your PATH. Make sure you have no other
+versions of GTK+ in PATH.
+To do that:
+Right click on "My Computer" ("Arbeitsplatz" in German Windows) on the Desktop or in (Windows) Explorer. Select Properties. Then click on the tab Advanced and then you should see Environment Variables. Simply append GTK's bin folder to the existing PATH (make sure to put a ; between the old PATH and GTK's folder to seperate the entries in this list).
+
+6. Install pycairo, pygobject and pygtk with double click.
+
+7. Copy the default.conf from the docs folder to the appropriate folder in your system, e.g. C:\Documents and Settings\Nick\Application Data\fpdb\profiles\default.conf
+
+Now edit the file, in particular you will always have to type in the correct password (insecure, I know) and if you differ from the default setup you may need to change host, database or user.
+
+8. Open a shell (aka command prompt, aka DOS window) and go to the fpdb-python folder and run fpdb.py, e.g.:
+c:
+cd \fpdb\fpdb-python
+python fpdb.py
+
+You can run this by double click, but then any error message would be lost.
+
+When the program started open the menu Database and click "Create or Recreate Tables".
+
+That's it! Now you can use the bulk importer and the table viewer, more's coming. See readme-user.txt
+
+License
+=======
+Trademarks of third parties have been used under Fair Use or similar laws.
+
+Copyright 2008 Steffen Jobbagy-Felso
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.2 as published by the Free Software Foundation; with
+no Invariant Sections, no Front-Cover Texts, and with no Back-Cover
+Texts. A copy of the license can be found in fdl-1.2.txt
+
+The program itself is licensed under AGPLv3, see agpl-3.0.txt

@@ -1,0 +1,45 @@
+Last checked: 3 Aug 2008, git99
+
+These instructions are for Gentoo GNU/Linux, but if you adapt the steps
+installing and starting stuff it should work on any other OS as well.
+
+1. Install everything. Check if anything is already installed and if it is remove it from the command.
+
+For mysql:
+emerge mysql mysql-python pygtk -av
+/etc/init.d/mysql start
+rc-update add mysql default
+
+For postgresql:
+emerge postgresql pygresql pygtk 
+/etc/init.d/postgresql start
+rc-update add postgresql default
+
+
+2. Manual configuration steps
+
+emerge --config mysql
+The --config step will ask you for the mysql root user - set this securely, we will create a seperate account for fpdb
+
+Create a user and a database, the default names are fpdb but you can choose whatever you want to. I did this in webmin, but it will be added to the GUI as well. Then set permissions for that user to: Select | Insert | Update | Delete | Create | Drop
+
+Copy the .conf file from this directory to ~/.fpdb/profiles/default.conf and edit it according to what you configured just now, in particular you will definitely have to put in the password you configured. YES, THIS IS INSECURE.
+
+3. Guided installation steps
+Run the GUI as described in readme-user and click the menu database -> recreate tables
+
+That's it!
+
+
+License
+=======
+Trademarks of third parties have been used under Fair Use or similar laws.
+
+Copyright 2008 Steffen Jobbagy-Felso
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.2 as published by the Free Software Foundation; with
+no Invariant Sections, no Front-Cover Texts, and with no Back-Cover
+Texts. A copy of the license can be found in fdl-1.2.txt
+
+The program itself is licensed under AGPLv3, see agpl-3.0.txt

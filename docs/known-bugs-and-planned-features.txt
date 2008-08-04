@@ -1,0 +1,92 @@
+todolist (db=database, imp=importer, tv=tableviewer)
+
+before beta
+===========
+current speedup attempt todo:
+holdem in fpdb_simple done - now update remaining files, test, then add back postflop and stud functionality
+
+import fails on stud/razz
+tv doesnt display street 3-5 in stud/razz i think
+Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
+find out if i can SQL for the rowcount, rather than select a field and then just take the rowcount. this might bring a significant performance improvement
+make a quick benchmark of mysql and postgresql: import of my whole db, some tableviewer refreshes with and without updated file
+fix tv browse button size
+tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
+tourney bug: fails recognisePlayer
+tourney bug: fails with tuple error in recogniseplayerid
+verify at least 2 or 3 sng hands
+db+imp+tv WtSD (went to showdown)
+db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
+db+imp+tv WwSF (Won when seen flop - partial taken into account)
+db+imp+tv steal blind from btn, co, lmp. fold SB/BB/BI to steal 
+remove unused flags fields
+update install instructions
+setup wizard
+change action_no to be total for this street rather than just for one player
+catch index error, type error, file not found error
+add field for if a game was mixed
+implement error file in importer
+Make tab and enter work as sensible in GUIs and implement Ctrl+Q, Ctrl+X and Alt+F4 for close.
+use profile file for bulk import and table viewer settings and pathes
+fold% also counts rounds where nobody raised
+handle errors properly, in particular wrt to SQL rollback.
+remove mysql/myisam support.
+check that we read sitout correctly in: Full Tilt Poker Game #6150325318: Table Bogside
+setup database, database-user and permission from GUI.
+update prepare-git to check for license header and copyright.
+
+change/expand print_hand to cover everything new and update verified hands' .found file
+
+no rush but before 1.0RC
+========================
+make tv work with ftp e.g. by making importer return site as well (easy)
+make the gui display errors
+log file
+move directory import code from gui to backend
+convert fpdb_import to not require passing "self"
+(tedious general stability improvement for unusual playernames): change all the str.find so they dont accidentially count player names containing the searched phrase. e.g. with rfind.
+Doesn't handle Daylight Saving Time (I don't think at least)
+Need to store if someone goes all-in, particularly for better NL/PL support.
+verify at least 3 hands per category per site per limit_type (when cap then do 2 normal and one 1 capped) incl tv display
+put lines in tv to make it easier to read
+speed up so that refresh takes no more than 10 seks on my P3M-800
+select range of stakes and sng/mtt values and types for tv
+change "for i" to more sensible var name instead of i
+change stud street storage from 3-7 to 0-4 throughout
+in all importer: stop doing if site=="ftp", make class constants for site_id instead
+recognise somewhere if a file is still active and if so keep it open and only read new hands rather than detecting dupes
+gentoo ebuild
+separate all gui and all processing into files that are named accordingly
+ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
+why do we have to reconnect in tv.read_names_clicked?
+HUD for PokerStars
+HTMLify docs
+
+can wait till 1.x
+=================
+finish cleaning tabledesign html code
+It treats fold due to disconnect as voluntary fold which is not ideal
+auto-import
+check for unnecessary db.commit()
+aliases
+Probably PartyPoker for all or most supported games
+repair hands where the seat lines are missing, happens when observing at FTP
+flags for storing the reason for winning (best hi, tie for best low, etc.) to DB. not sure actually if this is such a good idea remember that there can be multiple reasons for the same player in the same hand
+windows integrated installer
+benchmark properly on mysql innodb, mysql myisam, postgresql, sqlite, more?
+rename things like this: ClassName.methodName and variableName. do this on tables too. update codingstyle
+CLI (not ncurses, proper CLI) equivalent for fpdb.py
+optimise/simplify storing by creating the SQL statements depending on hand rather than calling different methods
+
+License
+=======
+Trademarks of third parties have been used under Fair Use or similar laws.
+
+Copyright 2008 Steffen Jobbagy-Felso
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.2 as published by the Free Software Foundation; with
+no Invariant Sections, no Front-Cover Texts, and with no Back-Cover
+Texts. A copy of the license can be found in fdl-1.2.txt
+
+The program itself is licensed under AGPLv3, see agpl-3.0.txt

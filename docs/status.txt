@@ -1,0 +1,72 @@
+For all support please note that the tables will almost certainly be changed without keeping backwards compatibility. Therefore you should keep your history files after import so you can re-import if necessary.
+
+If support for another site/game would encourage you to help with this software please let me know at steffen@sycamoretest.info.
+
+Note for git100 until further notice (not long though): deactivated all import of stud/razz pending update of that code for the new caching tables.
+
+Database
+========
+Holdem, Omaha Hi/HiLo, Razz and Stud Hi/HiLo in NL/PL/FL are supported for ring games and tourneys. Actual storage tables are nearly final. Support/cache tables for improved viewer speed are in heavy flux.
+
+Importer (imp)
+==============
+Ringgames on FTP and PS:
+Holdem, Omaha Hi/HiLo, Razz and Stud Hi/HiLo in NL/PL/FL/CapNL/CapPL: beta
+	This should be pretty much done, I imported 30k hands.
+	Bug reports welcome, please send the hand that caused the error.
+
+Tourney support: on PS alpha, on FTP incomplete, see svn comments.
+
+Mixed Games (e.g. HORSE): alpha
+
+GUI for importer
+================
+alpha
+Most functionality still missing, but thats a backend problem not really a GUI thing.
+
+CLI/automated testing interface
+===============================
+Simple DB Statistics Script -> migrate to GUI
+Simple player stats report script -> migrate to GUI
+Hand printout script -> badly needs updating
+Simple regression testing script done. Need to updating existing data and create (much) more.
+
+Table Viewer (tv)
+=================
+pre-alpha
+Currently the importer fills a flags table, and tv selects an id field from that and does some things to create the data. Thinking of instead or additionally creating a count table that imp would also directly access. Imp would increment the values for each player that tv currently has to select for - implementing this now, as of git100.
+I know tv is rather low on functionality so far, but as soon as I've finished the above update adding more will be easy and quick.
+
+HUD
+===
+?
+
+Packaging
+=========
+Gentoo GNU/Linux: I'll make ebuilds, if you want one now let me know.
+Other free/libre systems (e.g. other GNU/Linux-Distros, *BSD): Let me know what you use (OS/Distribution+version, arch) and I'll make a package.
+Windows/MacOSX: Manual installation of dependencies for now, integrated installer would be nice - volunteers welcome, but I'll do it eventually in any case.
+
+Legal
+=====
+General: This will offer more or less the same kind of functionality as HM and PT so there shouldn't be any problem on any site that allows tracking.
+PS: I have asked them and they said that due to the fast changing nature
+	of pre-release software they don't review that. However, looking at their
+	posted guidelines we're fine
+FTP: I sent them an email and what I described there was ok for them.
+
+A note on viewing/tracking mucked hands. Many people will say this is cheating. I agree. However, I don't make the rules on these sites. The sites that store mucked hands into the history file clearly think that being able to see other people's mucked hands is ok. This software - like HM and PT - merely takes info provided by the poker site and makes it more easily accessible.
+Apparently PS has now turned this off.
+
+License
+=======
+Trademarks of third parties have been used under Fair Use or similar laws.
+
+Copyright 2008 Steffen Jobbagy-Felso
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.2 as published by the Free Software Foundation; with
+no Invariant Sections, no Front-Cover Texts, and with no Back-Cover
+Texts. A copy of the license can be found in fdl-1.2.txt
+
+The program itself is licensed under AGPLv3, see agpl-3.0.txt
