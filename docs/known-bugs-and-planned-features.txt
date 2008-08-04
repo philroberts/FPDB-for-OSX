@@ -2,11 +2,13 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
 ============
-PrintPlayerFlag
-imp/tv bug: PFR is blatantly crazy
-imp(?) bug: handcount is only about 1/2 of what it should be
+PrintPlayerFlag - the actual flags
 verify at least one PrintPlayerFlags
-and stud functionality to hud and import-HudData
+in tv, select from hud table using named fields rather than the current *
+
+tv: add in brackets number of hands on which 3B4B is based
+imp/tv bug: handcount is only about 1/2 of what it should be
+add stud functionality back to imp/tv
 db+imp+tv WtSD (went to showdown)
 db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
 db+imp+tv WwSF (Won when seen flop - partial taken into account)
@@ -24,7 +26,7 @@ update install instructions
 split python requirements, get deep links for windows DL for everything
 implement error file in importer
 remove mysql/myisam support.
-
+ideally HUD
 
 before beta
 ===========
@@ -46,6 +48,7 @@ verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
+HTMLify docs and validate them
 cut down action_types array size to appropriate length
 make tv work with ftp e.g. by making importer return site as well (easy)
 make the gui display errors
@@ -72,6 +75,7 @@ HTMLify docs
 can wait till 1.x
 =================
 finish cleaning tabledesign html code
+rearrange huddata fields
 It treats fold due to disconnect as voluntary fold which is not ideal
 auto-import
 check for unnecessary db.commit()

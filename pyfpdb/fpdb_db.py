@@ -247,7 +247,7 @@ class fpdb_db:
 		HDs INT,
 		VPIP INT,
 		PFR INT,
-		PFOtherRaisedBefore INT,
+		PF3B4BChance INT,
 		PF3B4B INT,
 		sawFlop INT,
 		sawTurn INT,

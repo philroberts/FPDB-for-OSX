@@ -38,27 +38,14 @@ players</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>name</P>
-		</TD>
-		<TD>
-			<P>varchar(32)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>name</P></TD>
+		<TD><P>varchar(32)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>site_id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>references sites.id</P>
-		</TD>
+		<TD><P>site_id</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>references sites.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
@@ -73,16 +60,9 @@ players</B></P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment_ts</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment_ts</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
 <p><BR>
@@ -797,6 +777,11 @@ far less relevant.</P>
 		<TD><P>PFR</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where player raised before flop</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>PF3B4BChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player had chance to 3B or 4B</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>PF3B4B</P></TD>

@@ -25,6 +25,7 @@ import fpdb_util_lib as ful
 parser = OptionParser()
 parser.add_option("-b", "--bigblind", default="2", type="int", help="big blinds in cent")
 parser.add_option("-c", "--cat", "--category", default="holdem", help="Category, e.g. holdem or studhilo")
+parser.add_option("-e", "--seats", default="7", type="int", help="number of active seats")
 parser.add_option("-g", "--gameType", default="ring", help="Whether its a ringgame (ring) or a tournament (tour)")
 parser.add_option("-l", "--limit", "--limitType", default="fl", help="Limit Type, one of: nl, pl, fl, cn, cp")
 parser.add_option("-n", "--name", "--playername", default="Player_1", help="Name of the player to print")
@@ -37,7 +38,7 @@ db = MySQLdb.connect("localhost", "fpdb", options.password, "fpdb")
 cursor = db.cursor()
 print "Connected to MySQL on localhost. Print Player Flags Utility"
 
-
+print ""
 print "Basic Data"
 print "=========="
 print "bigblind:",options.bigblind, "category:",options.cat, "limitType:", options.limit, "name:", options.name, "gameType:", options.gameType, "site:", options.site
@@ -51,11 +52,49 @@ gametypeId=cursor.fetchone()[0]
 cursor.execute("SELECT id FROM players WHERE name=%s", (options.name,))
 playerId=cursor.fetchone()[0]
 
-print "siteId:", siteId, "gametypeId:", gametypeId, "playerId:", playerId
+cursor.execute("SELECT id FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s",(gametypeId, playerId, options.seats))
+hudDataId=cursor.fetchone()[0]
+
+print "siteId:", siteId, "gametypeId:", gametypeId, "playerId:", playerId, "hudDataId:", hudDataId
+
+print ""
+print "HUD Raw Hand Counts"
+print "==================="
+
+cursor.execute ("SELECT HDs, VPIP, PFR, PF3B4BChance, PF3B4B FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "HDs:",fields[0]
+print "VPIP:",fields[1]
+print "PFR:",fields[2]
+print "PF3B4BChance:",fields[3]
+print "PF3B4B:",fields[4]
+print ""
+
+cursor.execute ("SELECT sawFlop, sawTurn, sawRiver, sawShowdown FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "sawFlop:",fields[0]
+print "sawTurn:",fields[1]
+print "sawRiver:",fields[2]
+print "sawShowdown:",fields[3]
+print ""
+
+cursor.execute ("SELECT raisedFlop, raisedTurn, raisedRiver FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "raisedFlop:",fields[0]
+print "raisedTurn:",fields[1]
+print "raisedRiver:",fields[2]
+print ""
+
+cursor.execute ("SELECT otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "otherRaisedFlop:",fields[0]
+print "otherRaisedFlopFold:",fields[1]
+print "otherRaisedTurn:",fields[2]
+print "otherRaisedTurnFold:",fields[3]
+print "otherRaisedRiver:",fields[4]
+print "otherRaisedRiverFold:",fields[5]
 
 
-
-		
 cursor.close()
 db.close()
 sys.exit(0)

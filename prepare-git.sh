@@ -15,7 +15,7 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-rm testdata/*.found.txt
-rm utils/*.pyc
+rm regression-test/*.found.txt
+rm regression-test/*.pyc
 rm pyfpdb/*.pyc
 git-add--interactive

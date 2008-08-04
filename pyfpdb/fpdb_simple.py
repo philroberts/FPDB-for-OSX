@@ -1211,7 +1211,7 @@ def calculateHudImport(player_ids, category, action_types):
 	#setup subarrays of the result dictionary.
 	VPIP=[]
 	PFR=[]
-	PFOtherRaisedBefore=[]
+	PF3B4BChance=[]
 	PF3B4B=[]
 	sawFlop=[]
 	sawTurn=[]
@@ -1230,7 +1230,7 @@ def calculateHudImport(player_ids, category, action_types):
 		#set default values
 		myVPIP=False
 		myPFR=False
-		myPFOtherRaisedBefore=False #todo
+		myPF3B4BChance=False #todo
 		myPF3B4B=False
 		mySawFlop=False #todo
 		mySawTurn=False #todo
@@ -1251,7 +1251,7 @@ def calculateHudImport(player_ids, category, action_types):
 		heroPfRaiseCount=0
 		for count in range (len(action_types[street][player])):#finally individual actions
 			currentAction=action_types[street][player][count]
-			if currentAction!="bet":
+			if currentAction=="bet":
 				heroPfRaiseCount+=1
 			if (currentAction=="bet" or currentAction=="call"):
 				myVPIP=True
@@ -1303,7 +1303,7 @@ def calculateHudImport(player_ids, category, action_types):
 		#add each value to the appropriate array
 		VPIP.append(myVPIP)
 		PFR.append(myPFR)
-		PFOtherRaisedBefore.append(myPFOtherRaisedBefore)
+		PF3B4BChance.append(PF3B4BChance)
 		PF3B4B.append(myPF3B4B)
 		sawFlop.append(mySawFlop)
 		sawTurn.append(mySawTurn)
@@ -1322,7 +1322,7 @@ def calculateHudImport(player_ids, category, action_types):
 	#add each array to the to-be-returned dictionary
 	result={'VPIP':VPIP}
 	result['PFR']=PFR
-	result['PFOtherRaisedBefore']=PFOtherRaisedBefore
+	result['PF3B4BChance']=PF3B4BChance
 	result['PF3B4B']=PF3B4B
 	result['sawFlop']=sawFlop
 	result['sawTurn']=sawTurn
@@ -1372,7 +1372,7 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 			row[4]+=1 #HDs
 			if hudImportData['VPIP'][player]: row[5]+=1
 			if hudImportData['PFR'][player]: row[6]+=1
-			if hudImportData['PFOtherRaisedBefore'][player]: row[7]+=1
+			if hudImportData['PF3B4BChance'][player]: row[7]+=1
 			if hudImportData['PF3B4B'][player]: row[8]+=1
 			if hudImportData['sawFlop'][player]: row[9]+=1
 			if hudImportData['sawTurn'][player]: row[10]+=1
@@ -1391,12 +1391,12 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 			if doInsert:
 				#print "playerid before insert:",row[2]
 				cursor.execute("""INSERT INTO HudDataHoldemOmaha
-					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PFOtherRaisedBefore, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
+					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4BChance, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
 					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21]))
 			else:
 				#print "storing updated hud data line"
 				cursor.execute("""UPDATE HudDataHoldemOmaha
-					SET HDs=%s, VPIP=%s, PFR=%s, PFOtherRaisedBefore=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s
+					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4BChance=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s
 					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[1], row[2], row[3]))
 	else:
 		raise FpdbError("todo")
