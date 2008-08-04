@@ -1208,6 +1208,7 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 
 def calculateHudImport(player_ids, category, action_types):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
+	#setup subarrays of the result dictionary.
 	VPIP=[]
 	PFR=[]
 	PFOtherRaisedBefore=[]
@@ -1226,6 +1227,7 @@ def calculateHudImport(player_ids, category, action_types):
 	otherRaisedRiver=[]
 	otherRaisedRiverFold=[]
 	for player in range (len(player_ids)):
+		#set default values
 		myVPIP=False
 		myPFR=False
 		myPFOtherRaisedBefore=False #todo
@@ -1243,20 +1245,37 @@ def calculateHudImport(player_ids, category, action_types):
 		myOtherRaisedTurnFold=False #todo
 		myOtherRaisedRiver=False #todo
 		myOtherRaisedRiverFold=False #todo
-
+		
+		#calculate preflop values
 		street=0
-		pfRaiseCount=0
+		heroPfRaiseCount=0
 		for count in range (len(action_types[street][player])):#finally individual actions
 			currentAction=action_types[street][player][count]
 			if currentAction!="bet":
-				pfRaiseCount+=1
+				heroPfRaiseCount+=1
 			if (currentAction=="bet" or currentAction=="call"):
 				myVPIP=True
-		if pfRaiseCount>=1:
+		if heroPfRaiseCount>=1:
 			myPFR=True
-		if pfRaiseCount>=2:#todo: this doesnt catch all 3B4B
+		if heroPfRaiseCount>=2:#todo: this doesnt catch all 3B4B
 			myPF3B4B=True
 			
+		#calculate saw* values
+		if (len(action_types[1][player])>0):
+			mySawFlop=True
+			if (len(action_types[2][player])>0):
+				mySawTurn=True
+				if (len(action_types[3][player])>0):
+					mySawRiver=True
+					for count in range (len(action_types[3][player])):
+						if action_types[3][player][count]=="fold":
+							mySawShowdown=True
+
+		#print "todo: finish boolean recognition"
+		
+		
+		
+		#add each value to the appropriate array
 		VPIP.append(myVPIP)
 		PFR.append(myPFR)
 		PFOtherRaisedBefore.append(myPFOtherRaisedBefore)
@@ -1274,7 +1293,8 @@ def calculateHudImport(player_ids, category, action_types):
 		otherRaisedTurnFold.append(myOtherRaisedTurnFold)
 		otherRaisedRiver.append(myOtherRaisedRiver)
 		otherRaisedRiverFold.append(myOtherRaisedRiverFold)
-			
+	
+	#add each array to the to-be-returned dictionary
 	result={'VPIP':VPIP}
 	result['PFR']=PFR
 	result['PFOtherRaisedBefore']=PFOtherRaisedBefore
@@ -1300,14 +1320,14 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 		for player in range (len(playerIds)):
 			cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
 			row=cursor.fetchone()
-			print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
+			#print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
 			
 			try: len(row)
 			except TypeError:
 				row=[]
 			
 			if (len(row)==0):
-				print "new huddata row"
+				#print "new huddata row"
 				doInsert=True
 				row=[]
 				row.append(0)#blank for id
@@ -1344,18 +1364,18 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 			if hudImportData['otherRaisedRiverFold'][player]: row[21]+=1
 			
 			if doInsert:
-				print "playerid before insert:",row[2]
+				#print "playerid before insert:",row[2]
 				cursor.execute("""INSERT INTO HudDataHoldemOmaha
 					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PFOtherRaisedBefore, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
 					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21]))
 			else:
-				print "storing updated hud data line"
+				#print "storing updated hud data line"
 				cursor.execute("""UPDATE HudDataHoldemOmaha
 					SET HDs=%s, VPIP=%s, PFR=%s, PFOtherRaisedBefore=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s
 					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[1], row[2], row[3]))
 	else:
 		raise FpdbError("todo")
-#end def store_hands_players_flags(cursor, hands_players_ids, hands_players_flags)
+#end def storeHudData
 
 def store_tourneys(cursor, site_id, site_tourney_no, buyin, fee, knockout, entries, prizepool, start_time):
 	cursor.execute("SELECT id FROM tourneys WHERE site_tourney_no=%s AND site_id=%s", (site_tourney_no, site_id))

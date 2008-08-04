@@ -1,40 +1,40 @@
 todolist (db=database, imp=importer, tv=tableviewer)
 
-before beta
+before alpha
 ===========
 add back postflop and stud functionality to hud and import-HudData
-take into account count of opportunities for 3B/4B PF.
-change save_to_db into one method and probably move into parse_logic
+change action_no to be total for this street rather than just for one player
+properly read 3B/4B percentage
 fix load profile
-Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
-find out if i can SQL for the rowcount, rather than select a field and then just take the rowcount. this might bring a significant performance improvement
-make a quick benchmark of mysql and postgresql: import of my whole db, some tableviewer refreshes with and without updated file
 fix tv browse button size
 tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
 tourney bug: fails recognisePlayer
 tourney bug: fails with tuple error in recogniseplayerid
-verify at least 2 or 3 sng hands
 db+imp+tv WtSD (went to showdown)
 db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
 db+imp+tv WwSF (Won when seen flop - partial taken into account)
-db+imp+tv steal blind from btn, co, lmp. fold SB/BB/BI to steal 
-remove unused flags fields
-update install instructions
-setup wizard
-change action_no to be total for this street rather than just for one player
+config wizard
 catch index error, type error, file not found error
-add field for if a game was mixed
+update install instructions
 implement error file in importer
+remove mysql/myisam support.
+
+
+before beta
+===========
+make bulk importer display a grand total in the GUI
+change save_to_db into one method and probably move into parse_logic
+Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
+make a quick benchmark of mysql and postgresql: import of my whole db, some tableviewer refreshes with and without updated file
+db+imp+tv steal blind from btn, co, lmp. fold SB/BB/BI to steal 
 Make tab and enter work as sensible in GUIs and implement Ctrl+Q, Ctrl+X and Alt+F4 for close.
 use profile file for bulk import and table viewer settings and pathes
-fold% also counts rounds where nobody raised
 handle errors properly, in particular wrt to SQL rollback.
-remove mysql/myisam support.
 check that we read sitout correctly in: Full Tilt Poker Game #6150325318: Table Bogside
 setup database, database-user and permission from GUI.
 update prepare-git to check for license header and copyright.
-
 change/expand print_hand to cover everything new and update verified hands' .found file
+verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
@@ -42,13 +42,13 @@ make tv work with ftp e.g. by making importer return site as well (easy)
 make the gui display errors
 log file
 move directory import code from gui to backend
-convert fpdb_import to not require passing "self"
+convert fpdb_import to not require passing "self", generally clean the parameter passing
 (tedious general stability improvement for unusual playernames): change all the str.find so they dont accidentially count player names containing the searched phrase. e.g. with rfind.
 Doesn't handle Daylight Saving Time (I don't think at least)
 Need to store if someone goes all-in, particularly for better NL/PL support.
 verify at least 3 hands per category per site per limit_type (when cap then do 2 normal and one 1 capped) incl tv display
 put lines in tv to make it easier to read
-speed up so that refresh takes no more than 10 seks on my P3M-800
+speed up so that refresh after importing my whole DB takes no more than 10 seks on my P3M-800 (a quick run on git5+ indicates this is ok now), or 5 with remote DB
 select range of stakes and sng/mtt values and types for tv
 change "for i" to more sensible var name instead of i
 change stud street storage from 3-7 to 0-4 throughout
