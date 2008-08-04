@@ -77,9 +77,13 @@ class table_viewer (threading.Thread):
 			tmp.append(str(row[4]))#Hands
 			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
 			tmp.append(self.hudDivide(row[6],row[4])) #PFR
-			tmp.append(self.hudDivide(row[7],row[4])) #PF3B4B
-			tmp.append(self.hudDivide(row[12],row[8])) #AF
-			tmp.append(self.hudDivide(row[15],row[16])) #FF
+			tmp.append(self.hudDivide(row[8],row[4])) #PF3B4B
+			tmp.append(self.hudDivide(row[13],row[9])) #AF
+			tmp.append(self.hudDivide(row[16],row[17])) #FF
+			tmp.append(self.hudDivide(row[14],row[10])) #AT
+			tmp.append(self.hudDivide(row[18],row[19])) #FT
+			tmp.append(self.hudDivide(row[15],row[11])) #AR
+			tmp.append(self.hudDivide(row[20],row[21])) #FR
 			
 			arr.append(tmp)
 		return arr

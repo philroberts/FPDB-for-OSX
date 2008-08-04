@@ -82,6 +82,7 @@ class fpdb_db:
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
 		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+		#self.cursor.execute("DROP TABLE IF EXISTS hands_players_flags;")
 		self.cursor.execute("DROP TABLE IF EXISTS autorates;")
 		self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
 		self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
@@ -247,6 +248,7 @@ class fpdb_db:
 		HDs INT,
 		VPIP INT,
 		PFR INT,
+		PFOtherRaisedBefore INT,
 		PF3B4B INT,
 		sawFlop INT,
 		sawTurn INT,

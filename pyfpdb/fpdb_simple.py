@@ -1207,8 +1207,10 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 #end def store_hands_players_stud_tourney
 
 def calculateHudImport(player_ids, category, action_types):
+	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	VPIP=[]
 	PFR=[]
+	PFOtherRaisedBefore=[]
 	PF3B4B=[]
 	sawFlop=[]
 	sawTurn=[]
@@ -1226,20 +1228,21 @@ def calculateHudImport(player_ids, category, action_types):
 	for player in range (len(player_ids)):
 		myVPIP=False
 		myPFR=False
+		myPFOtherRaisedBefore=False #todo
 		myPF3B4B=False
-		mySawFlop=False
-		mySawTurn=False
-		mySawRiver=False
-		mySawShowdown=False
-		myRaisedFlop=False
-		myRaisedTurn=False
-		myRaisedRiver=False
-		myOtherRaisedFlop=False
-		myOtherRaisedFlopFold=False
-		myOtherRaisedTurn=False
-		myOtherRaisedTurnFold=False
-		myOtherRaisedRiver=False
-		myOtherRaisedRiverFold=False
+		mySawFlop=False #todo
+		mySawTurn=False #todo
+		mySawRiver=False #todo
+		mySawShowdown=False #todo
+		myRaisedFlop=False #todo
+		myRaisedTurn=False #todo
+		myRaisedRiver=False #todo
+		myOtherRaisedFlop=False #todo
+		myOtherRaisedFlopFold=False #todo
+		myOtherRaisedTurn=False #todo
+		myOtherRaisedTurnFold=False #todo
+		myOtherRaisedRiver=False #todo
+		myOtherRaisedRiverFold=False #todo
 
 		street=0
 		pfRaiseCount=0
@@ -1254,10 +1257,9 @@ def calculateHudImport(player_ids, category, action_types):
 		if pfRaiseCount>=2:#todo: this doesnt catch all 3B4B
 			myPF3B4B=True
 			
-		#todo: flop, turn, river, SD
-		
 		VPIP.append(myVPIP)
 		PFR.append(myPFR)
+		PFOtherRaisedBefore.append(myPFOtherRaisedBefore)
 		PF3B4B.append(myPF3B4B)
 		sawFlop.append(mySawFlop)
 		sawTurn.append(mySawTurn)
@@ -1275,6 +1277,7 @@ def calculateHudImport(player_ids, category, action_types):
 			
 	result={'VPIP':VPIP}
 	result['PFR']=PFR
+	result['PFOtherRaisedBefore']=PFOtherRaisedBefore
 	result['PF3B4B']=PF3B4B
 	result['sawFlop']=sawFlop
 	result['sawTurn']=sawTurn
@@ -1324,31 +1327,32 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 			row[4]+=1 #HDs
 			if hudImportData['VPIP'][player]: row[5]+=1
 			if hudImportData['PFR'][player]: row[6]+=1
-			if hudImportData['PF3B4B'][player]: row[7]+=1
-			if hudImportData['sawFlop'][player]: row[8]+=1
-			if hudImportData['sawTurn'][player]: row[9]+=1
-			if hudImportData['sawRiver'][player]: row[10]+=1
-			if hudImportData['sawShowdown'][player]: row[11]+=1
-			if hudImportData['raisedFlop'][player]: row[12]+=1
-			if hudImportData['raisedTurn'][player]: row[13]+=1
-			if hudImportData['raisedRiver'][player]: row[14]+=1
-			if hudImportData['otherRaisedFlop'][player]: row[15]+=1
-			if hudImportData['otherRaisedFlopFold'][player]: row[16]+=1
-			if hudImportData['otherRaisedTurn'][player]: row[17]+=1
-			if hudImportData['otherRaisedTurnFold'][player]: row[18]+=1
-			if hudImportData['otherRaisedRiver'][player]: row[19]+=1
-			if hudImportData['otherRaisedRiverFold'][player]: row[20]+=1
+			if hudImportData['PFOtherRaisedBefore'][player]: row[7]+=1
+			if hudImportData['PF3B4B'][player]: row[8]+=1
+			if hudImportData['sawFlop'][player]: row[9]+=1
+			if hudImportData['sawTurn'][player]: row[10]+=1
+			if hudImportData['sawRiver'][player]: row[11]+=1
+			if hudImportData['sawShowdown'][player]: row[12]+=1
+			if hudImportData['raisedFlop'][player]: row[13]+=1
+			if hudImportData['raisedTurn'][player]: row[14]+=1
+			if hudImportData['raisedRiver'][player]: row[15]+=1
+			if hudImportData['otherRaisedFlop'][player]: row[16]+=1
+			if hudImportData['otherRaisedFlopFold'][player]: row[17]+=1
+			if hudImportData['otherRaisedTurn'][player]: row[18]+=1
+			if hudImportData['otherRaisedTurnFold'][player]: row[19]+=1
+			if hudImportData['otherRaisedRiver'][player]: row[20]+=1
+			if hudImportData['otherRaisedRiverFold'][player]: row[21]+=1
 			
 			if doInsert:
 				print "playerid before insert:",row[2]
 				cursor.execute("""INSERT INTO HudDataHoldemOmaha
-					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
-					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]))
+					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PFOtherRaisedBefore, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold)
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21]))
 			else:
 				print "storing updated hud data line"
 				cursor.execute("""UPDATE HudDataHoldemOmaha
-					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s
-					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[1], row[2], row[3]))
+					SET HDs=%s, VPIP=%s, PFR=%s, PFOtherRaisedBefore=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s
+					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[1], row[2], row[3]))
 	else:
 		raise FpdbError("todo")
 #end def store_hands_players_flags(cursor, hands_players_ids, hands_players_flags)
