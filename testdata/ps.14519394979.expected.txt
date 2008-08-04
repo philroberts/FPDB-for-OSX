@@ -1,8 +1,14 @@
 Connected to MySQL on localhost. Print Hand Utility
 options.site: PokerStars site_id: 2
+
+From Table gametypes
+====================
+type: ring   category: holdem   limit_type: fl
+sb: 1   bb: 2   sbet: 2   bbet: 4
+
 From Table hands
 ================
-site_hand_no: 14519394979 hand_start: 2008-01-13 05:22:15 seat_count: 7 category: holdem
+site_hand_no: 14519394979 hand_start: 2008-01-13 05:22:15 seat_count: 7
 Board cards: Qd Th Js 2s 7s
 
 From Table hands_players

@@ -23,7 +23,6 @@ class fpdb_db:
 		"""Simple constructor, doesnt really do anything"""
 		self.db=None
 		self.cursor=None
-		self.MYSQL=1
 		self.MYSQL_INNODB=2
 		self.PGSQL=3
 	#end def __init__
@@ -36,7 +35,7 @@ class fpdb_db:
 		self.user=user
 		self.password=password
 		#print "fpdb_db.connect, password:",password,"/end"
-		if backend==self.MYSQL or backend==self.MYSQL_INNODB:
+		if backend==self.MYSQL_INNODB:
 			import MySQLdb
 			print "fpdb_db.connect, host:", host, "  user:", user, "  passwd:", password, "  db:", database
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)

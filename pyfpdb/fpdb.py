@@ -111,6 +111,7 @@ class fpdb:
 	
 	def dia_database_stats(self, widget, data):
 		print "todo: implement dia_database_stats"
+		#string=fpdb_db.getDbStats(db, cursor)
 	#end def dia_database_stats
 	
 	def dia_delete_db_parts(self, widget, data):
