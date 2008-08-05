@@ -1,51 +1,51 @@
-For all support please note that the tables will almost certainly be changed without keeping backwards compatibility. Therefore you should keep your history files after import so you can re-import if necessary.
+For all support please note that the tables WILL be changed, almost certainly without keeping backwards compatibility. Therefore you should keep your history files after import so you can re-import when necessary. Should you lose history files and need a "database updater" let me know.
 
 If support for another site/game would encourage you to help with this software please let me know at steffen@sycamoretest.info.
 
-Note for git100 until further notice (not long though): deactivated all import of stud/razz pending update of that code for the new caching tables.
+IMPORTANT: git10 and below contain at least one significant bug that cause wrong data to be displayed. I wrote a new query script for testing so I can track this down.
 
-Database
-========
-Holdem, Omaha Hi/HiLo, Razz and Stud Hi/HiLo in NL/PL/FL are supported for ring games and tourneys. Actual storage tables are nearly final. Support/cache tables for improved viewer speed are in heavy flux.
+Holdem/Omaha ring games on PokerStars
+======================================
+Works, quite well tested, works in table viewer and is useful now. Functionality is quite limited so far though. This includes the holdem/omaha parts of HORSE, HOSE and any other mixed game
 
-Importer (imp)
-==============
-Ringgames on FTP and PS:
-Holdem, Omaha Hi/HiLo, Razz and Stud Hi/HiLo in NL/PL/FL/CapNL/CapPL: beta
-	This should be pretty much done, I imported 30k hands.
-	Bug reports welcome, please send the hand that caused the error.
+Stud/Razz ring games on PokerStars
+==================================
+Broken - used to work, hardly tested. Needs to be updated to new infrastructure using a HudData table rather than hands_players_flags. Will fix this shortly.
 
-Tourney support: on PS alpha, on FTP incomplete, see svn comments.
+A note on No Limit and Pot Limit
+================================
+Fpdb fully supports NL/PL, however currently only as far as it does limit games. So it'll tell you how often a player has bet, but not how much. But the mate I'm writing this for doesnt play NL/PL (and neither do I) so volunteers would be most welcome.
 
-Mixed Games (e.g. HORSE): alpha
-
-GUI for importer
+Tournaments/SnGs
 ================
-alpha
-Most functionality still missing, but thats a backend problem not really a GUI thing.
+Broken - used to work, hardly tested. Needs to be updated to new infrastructure.. Not sure when I'll fix this, volunteers welcome :)
+Independent of the current broken state at the moment tourney support would only show information as if a tourney is a ring game - but it's not. If you play tournaments and would like to help improving this let me know, I probably won't bother.
 
-CLI/automated testing interface
-===============================
-Simple DB Statistics Script -> migrate to GUI
-Simple player stats report script -> migrate to GUI
-Hand printout script -> badly needs updating
-Simple regression testing script done. Need to updating existing data and create (much) more.
+Full Tilt Poker
+===============
+Not sure - it should import them, but I believe the table viewer won't work. Should only take minutes to fix this so I'll probably do it soon.
 
-Table Viewer (tv)
-=================
-pre-alpha
-Currently the importer fills a flags table, and tv selects an id field from that and does some things to create the data. Thinking of instead or additionally creating a count table that imp would also directly access. Imp would increment the values for each player that tv currently has to select for - implementing this now, as of git100.
-I know tv is rather low on functionality so far, but as soon as I've finished the above update adding more will be easy and quick.
+Other Sites
+===========
+Patches/Volunteers welcome.
+
+GUI
+===
+Alpha - the infrastructure stands and is fast enough, now "just" need to add more functionality.
 
 HUD
 ===
-?
+Not started - volunteers welcome. I found a *nix utility based on xlib that does half the work for this (most of the other half is already in the table viewer), see http://www.roard.com/docs/cookbook/cbsu19.html. There's also a python implementation of xlib which should run even on Windows.
 
 Packaging
 =========
 Gentoo GNU/Linux: I'll make ebuilds, if you want one now let me know.
-Other free/libre systems (e.g. other GNU/Linux-Distros, *BSD): Let me know what you use (OS/Distribution+version, arch) and I'll make a package.
+Other free/libre systems (e.g. other GNU/Linux-Distros, *BSD, and I'd love to help in getting this to work on any Hurd based system): Let me know what you use (Distribution, version and CPU type) and I'll make a package.
 Windows/MacOSX: Manual installation of dependencies for now, integrated installer would be nice - volunteers welcome, but I'll do it eventually in any case.
+
+Regression Testing
+==================
+The query scripts are done-ish, need to verify more data so it can be used in automated regression testing.
 
 Legal
 =====
@@ -54,9 +54,12 @@ PS: I have asked them and they said that due to the fast changing nature
 	of pre-release software they don't review that. However, looking at their
 	posted guidelines we're fine
 FTP: I sent them an email and what I described there was ok for them.
+I will write them again for "certification" on release of 1.0
+
+To avoid any misunderstandings, PS and FTP obviously do not sponsor, endorse, or support fpdb. They allow using it, that's all. Any problems with fpdb should be reported to us, not the poker site. 
 
 A note on viewing/tracking mucked hands. Many people will say this is cheating. I agree. However, I don't make the rules on these sites. The sites that store mucked hands into the history file clearly think that being able to see other people's mucked hands is ok. This software - like HM and PT - merely takes info provided by the poker site and makes it more easily accessible.
-Apparently PS has now turned this off.
+Apparently PS has now turned this off :)
 
 License
 =======

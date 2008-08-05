@@ -1303,7 +1303,7 @@ def calculateHudImport(player_ids, category, action_types):
 		#add each value to the appropriate array
 		VPIP.append(myVPIP)
 		PFR.append(myPFR)
-		PF3B4BChance.append(PF3B4BChance)
+		PF3B4BChance.append(myPF3B4BChance)
 		PF3B4B.append(myPF3B4B)
 		sawFlop.append(mySawFlop)
 		sawTurn.append(mySawTurn)

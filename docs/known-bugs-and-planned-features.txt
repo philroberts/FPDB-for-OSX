@@ -2,11 +2,8 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
 ============
-PrintPlayerFlag - the actual flags
 verify at least one PrintPlayerFlags
 in tv, select from hud table using named fields rather than the current *
-
-tv: add in brackets number of hands on which 3B4B is based
 imp/tv bug: handcount is only about 1/2 of what it should be
 add stud functionality back to imp/tv
 db+imp+tv WtSD (went to showdown)

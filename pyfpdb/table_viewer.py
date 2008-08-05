@@ -77,7 +77,7 @@ class table_viewer (threading.Thread):
 			tmp.append(str(row[4]))#Hands
 			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
 			tmp.append(self.hudDivide(row[6],row[4])) #PFR
-			tmp.append(self.hudDivide(row[8],row[7])) #PF3B4B
+			tmp.append(self.hudDivide(row[8],row[7])+" ("+str(row[7])+")") #PF3B4B
 			tmp.append(self.hudDivide(row[13],row[9])+" ("+str(row[9])+")") #AF
 			tmp.append(self.hudDivide(row[17],row[16])+" ("+str(row[16])+")") #FF
 			tmp.append(self.hudDivide(row[14],row[10])+" ("+str(row[10])+")") #AT
