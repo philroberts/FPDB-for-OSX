@@ -2,6 +2,7 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
 ============
+colour in tv
 verify at least one PrintPlayerFlags
 in tv, select from hud table using named fields rather than the current *
 imp/tv bug: handcount is only about 1/2 of what it should be

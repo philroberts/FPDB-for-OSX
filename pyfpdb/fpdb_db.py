@@ -37,7 +37,7 @@ class fpdb_db:
 		#print "fpdb_db.connect, password:",password,"/end"
 		if backend==self.MYSQL_INNODB:
 			import MySQLdb
-			print "fpdb_db.connect, host:", host, "  user:", user, "  passwd:", password, "  db:", database
+			#print "fpdb_db.connect, host:", host, "  user:", user, "  passwd:", password, "  db:", database
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
 		elif backend==self.PGSQL:
 			import pgdb
@@ -73,7 +73,7 @@ class fpdb_db:
 	
 	def reconnect(self, due_to_error=False):
 		"""Reconnects the DB"""
-		print "started fpdb_db.reconnect"
+		#print "started fpdb_db.reconnect"
 		self.disconnect(due_to_error)
 		self.connect(self.backend, self.host, self.database, self.user, self.password)
 	#end def disconnect

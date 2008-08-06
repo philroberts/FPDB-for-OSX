@@ -30,7 +30,7 @@ import table_viewer
 class fpdb:
 	def tab_clicked(self, widget, tab_name):
 		"""called when a tab button is clicked to activate that tab"""
-		print "start of tab_clicked"
+		#print "start of tab_clicked"
 		self.display_tab(tab_name)
 	#end def tab_clicked
 		
@@ -42,7 +42,7 @@ class fpdb:
 	
 	def add_tab(self, new_tab, new_tab_name):
 		"""adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
-		print "start of add_tab"
+		#print "start of add_tab"
 		for i in self.tab_names: #todo: check this is valid
 			if i==new_tab_name:
 				raise fpdb_simple.FpdbError("duplicate tab_name not permitted")
@@ -59,11 +59,11 @@ class fpdb:
 	
 	def display_tab(self, new_tab_name):
 		"""displays the indicated tab"""
-		print "start of display_tab, len(self.tab_names):",len(self.tab_names)
+		#print "start of display_tab, len(self.tab_names):",len(self.tab_names)
 		tab_no=-1
 		#if len(self.tab_names)>1:
 		for i in range(len(self.tab_names)):
-			print "display_tab, new_tab_name:",new_tab_name,"  self.tab_names[i]:", self.tab_names[i]
+			#print "display_tab, new_tab_name:",new_tab_name,"  self.tab_names[i]:", self.tab_names[i]
 			if (new_tab_name==self.tab_names[i]):
 				tab_no=i
 				#self.tab_buttons[i].set_active(False)
@@ -309,7 +309,7 @@ class fpdb:
 
 	def tab_bulk_import(self, widget, data):
 		"""opens a tab for bulk importing"""
-		print "start of tab_bulk_import"
+		#print "start of tab_bulk_import"
 		new_import_thread=import_threaded.import_threaded(self.db, self.bulk_import_default_path)
 		self.threads.append(new_import_thread)
 		bulk_tab=new_import_thread.get_vbox()
@@ -318,7 +318,7 @@ class fpdb:
 
 	def tab_main_help(self, widget, data):
 		"""Displays a tab with the main fpdb help screen"""
-		print "start of tab_main_help"
+		#print "start of tab_main_help"
 		mh_tab=gtk.Label("""Welcome to Fpdb
 blabla todo make this read a file for the helptext
 blabla
@@ -328,7 +328,7 @@ blabla""")
 	
 	def tab_table_viewer(self, widget, data):
 		"""opens a table viewer tab"""
-		print "start of tab_table_viewer"
+		#print "start of tab_table_viewer"
 		new_tv_thread=table_viewer.table_viewer(self.db)
 		self.threads.append(new_tv_thread)
 		tv_tab=new_tv_thread.get_vbox()
@@ -343,7 +343,7 @@ blabla""")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB")
+		self.window.set_title("Free Poker DB - version: pre-alpha, git12")
 		self.window.set_border_width(1)
 		self.window.set_size_request(600,400)
 		self.window.set_resizable(True)

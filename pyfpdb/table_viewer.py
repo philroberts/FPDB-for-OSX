@@ -29,13 +29,13 @@ class table_viewer (threading.Thread):
 		if b==0:
 			return "n/a"
 		else:
-			return str(int((a/float(b))*100))
+			return str(int((a/float(b))*100))+"%"
 		return "todo"
 	#end def hudDivide
 	
 	def browse_clicked(self, widget, data):
 		"""runs when user clicks browse on tv tab"""
-		print "start of table_viewer.browser_clicked"
+		#print "start of table_viewer.browser_clicked"
 		current_path=self.filename_tbuffer.get_text(self.filename_tbuffer.get_start_iter(), self.filename_tbuffer.get_end_iter())
 		
 		dia_chooser = gtk.FileChooserDialog(title="Please choose the file for which you want to open the Table Viewer",
@@ -56,7 +56,7 @@ class table_viewer (threading.Thread):
 	
 	def prepare_data(self):
 		"""prepares the data for display by refresh_clicked, returns a 2D array"""
-		print "start of prepare_data"
+		#print "start of prepare_data"
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
@@ -91,7 +91,7 @@ class table_viewer (threading.Thread):
 	
 	def refresh_clicked(self, widget, data):
 		"""runs when user clicks refresh"""
-		if self.debug: print "start of table_viewer.refresh_clicked"
+		#print "start of table_viewer.refresh_clicked"
 		arr=self.prepare_data()
 		
 		try: self.data_table.destroy()
@@ -109,37 +109,37 @@ class table_viewer (threading.Thread):
 
 	def read_names_clicked(self, widget, data):
 		"""runs when user clicks read names"""
-		print "start of table_viewer.read_names_clicked"
-		print "self.last_read_hand:",self.last_read_hand
+		#print "start of table_viewer.read_names_clicked"
+		#print "self.last_read_hand:",self.last_read_hand
 		self.db.reconnect()
 		self.cursor=self.db.cursor
 		self.cursor.execute("""SELECT id FROM hands WHERE site_hand_no=%s""", (self.last_read_hand))
 		hands_id_tmp=self.db.cursor.fetchone()
-		print "tmp:",hands_id_tmp
+		#print "tmp:",hands_id_tmp
 		self.hands_id=hands_id_tmp[0]
 
 		self.db.cursor.execute("SELECT gametype_id FROM hands WHERE id=%s", (self.hands_id, ))
 		self.gametype_id=self.db.cursor.fetchone()[0]
 		self.cursor.execute("SELECT category FROM gametypes WHERE id=%s", (self.gametype_id, ))
 		self.category=self.db.cursor.fetchone()[0]
-		print "self.gametype_id", self.gametype_id,"  category:", self.category, "  self.hands_id:", self.hands_id
+		#print "self.gametype_id", self.gametype_id,"  category:", self.category, "  self.hands_id:", self.hands_id
 		
 		self.db.cursor.execute("""SELECT DISTINCT players.id FROM hands_players
 				INNER JOIN players ON hands_players.player_id=players.id
 				WHERE hand_id=%s""", (self.hands_id, ))
 		self.player_ids=self.db.cursor.fetchall()
-		print "self.player_ids:",self.player_ids
+		#print "self.player_ids:",self.player_ids
 		
 		self.db.cursor.execute("""SELECT DISTINCT players.name FROM hands_players
 				INNER JOIN players ON hands_players.player_id=players.id
 				WHERE hand_id=%s""", (self.hands_id, ))
 		self.player_names=self.db.cursor.fetchall()
-		print "self.player_names:",self.player_names
+		#print "self.player_names:",self.player_names
 	#end def table_viewer.read_names_clicked
 
 	def import_clicked(self, widget, data):
 		"""runs when user clicks import"""
-		print "start of table_viewer.import_clicked"
+		#print "start of table_viewer.import_clicked"
 		self.inputFile=self.filename_tbuffer.get_text(self.filename_tbuffer.get_start_iter(), self.filename_tbuffer.get_end_iter())
 		
 		self.server=self.db.host
@@ -157,7 +157,7 @@ class table_viewer (threading.Thread):
 
 	def all_clicked(self, widget, data):
 		"""runs when user clicks all"""
-		print "start of table_viewer.all_clicked"
+		#print "start of table_viewer.all_clicked"
 		self.import_clicked(widget, data)
 		self.read_names_clicked(widget, data)
 		self.refresh_clicked(widget, data)
@@ -171,7 +171,7 @@ class table_viewer (threading.Thread):
 	def __init__(self, db, debug=True):
 		"""Constructor for table_viewer"""
 		self.debug=debug
-		if self.debug: print "start of table_viewer constructor"
+		#print "start of table_viewer constructor"
 		self.db=db
 		self.cursor=db.cursor
         
