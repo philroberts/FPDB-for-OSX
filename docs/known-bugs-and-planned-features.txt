@@ -2,10 +2,11 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
 ============
-colour in tv
-verify at least one PrintPlayerFlags
-in tv, select from hud table using named fields rather than the current *
-imp/tv bug: handcount is only about 1/2 of what it should be
+verify at least two PrintPlayerFlags (one of them with 10+ hands)
+fix fold % in tv
+optionally show single postflop agg/fold rate
+
+colour in tv, or at least seperation lines
 add stud functionality back to imp/tv
 db+imp+tv WtSD (went to showdown)
 db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
@@ -13,21 +14,22 @@ db+imp+tv WwSF (Won when seen flop - partial taken into account)
 change action_no to be total for this street rather than just for one player
 
 properly read 3B/4B percentage
-fix load profile
 fix tv browse button size
-tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
-tourney bug: fails recognisePlayer
-tourney bug: fails with tuple error in recogniseplayerid
-config wizard
 catch index error, type error, file not found error
-update install instructions
+update install instructions, include how to adapt default config and where to put it
 split python requirements, get deep links for windows DL for everything
 implement error file in importer
-remove mysql/myisam support.
-ideally HUD
 
 before beta
 ===========
+in tv, select from hud table using named fields rather than the current *
+remove remains of mysql/myisam support.
+tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
+tourney bug: fails recognisePlayer
+tourney bug: fails with tuple error in recogniseplayerid
+fix load profile
+HUD
+config wizard
 file permission script, use games group
 change stud street storage from 3-7 to 0-4 throughout
 make bulk importer display a grand total in the GUI
@@ -46,6 +48,7 @@ verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
+move version into seperate file
 HTMLify docs and validate them
 cut down action_types array size to appropriate length
 make tv work with ftp e.g. by making importer return site as well (easy)

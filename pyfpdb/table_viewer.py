@@ -75,7 +75,7 @@ class table_viewer (threading.Thread):
 			if seatCount>=8:
 				minSeats,maxSeats=7,10
 			elif seatCount==7:
-				minSeats,maxSeats=6,9
+				minSeats,maxSeats=6,10
 			elif seatCount==6 or seatCount==5:
 				minSeats,maxSeats=seatCount-1,seatCount+1
 			elif seatCount==4:

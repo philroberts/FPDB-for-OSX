@@ -1,0 +1,30 @@
+Connected to MySQL on localhost. Print Player Flags Utility
+
+Basic Data
+==========
+bigblind: 2 category: holdem limitType: fl name: Player_1 gameType: ring site: PokerStars
+siteId: 2 gametypeId: 1 playerId: 1 hudDataId: 1
+
+HUD Raw Hand Counts
+===================
+HDs: 3
+VPIP: 1
+PFR: 0
+PF3B4BChance: 1
+PF3B4B: 0
+
+sawFlop: 1
+sawTurn: 1
+sawRiver: 1
+sawShowdown: 0
+
+raisedFlop: 0
+raisedTurn: 0
+raisedRiver: 0
+
+otherRaisedFlop: 1
+otherRaisedFlopFold: 0
+otherRaisedTurn: 1
+otherRaisedTurnFold: 0
+otherRaisedRiver: 1
+otherRaisedRiverFold: 1
