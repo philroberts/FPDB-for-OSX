@@ -86,6 +86,7 @@ benchmark properly on mysql innodb, mysql myisam, postgresql, sqlite, more?
 rename things like this: ClassName.methodName and variableName. do this on tables too. update codingstyle
 CLI (not ncurses, proper CLI) equivalent for fpdb.py
 optimise/simplify storing by creating the SQL statements depending on hand rather than calling different methods
+make range of activeSeats configurable for tv/hud
 
 License
 =======

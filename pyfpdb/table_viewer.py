@@ -71,8 +71,36 @@ class table_viewer (threading.Thread):
 			tmp=[]
 			tmp.append(self.player_names[player][0])
 			
-			self.cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (self.gametype_id, self.player_ids[player][0], len(self.player_names)))
-			row=self.cursor.fetchone()
+			seatCount=len(self.player_names)
+			if seatCount>=8:
+				minSeats,maxSeats=7,10
+			elif seatCount==7:
+				minSeats,maxSeats=6,9
+			elif seatCount==6 or seatCount==5:
+				minSeats,maxSeats=seatCount-1,seatCount+1
+			elif seatCount==4:
+				minSeats,maxSeats=4,5
+			elif seatCount==2 or seatCount==3:
+				minSeats,maxSeats=seatCount,seatCount
+			else:
+				fpdb_simple.FpdbError("invalid seatCount")
+			
+			self.cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats>=%s AND activeSeats<=%s", (self.gametype_id, self.player_ids[player][0], minSeats, maxSeats))
+			rows=self.cursor.fetchall()
+			
+			row=[]
+			for field_no in range(len(rows[0])):
+				row.append(rows[0][field_no])
+			
+			for row_no in range(len(rows)):
+				if row_no==0:
+					pass
+				else:
+					for field_no in range(len(rows[row_no])):
+						if field_no<=3:
+							pass
+						else:
+							row[field_no]+=rows[row_no][field_no]
 			
 			tmp.append(str(row[4]))#Hands
 			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
