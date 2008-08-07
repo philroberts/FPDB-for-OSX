@@ -132,8 +132,20 @@ class table_viewer (threading.Thread):
 		
 		for row in range(len(arr)):
 			for column in range (len(arr[row])):
+				eventBox=gtk.EventBox()
 				new_label=gtk.Label(arr[row][column])
-				self.data_table.attach(child=new_label, left_attach=column, right_attach=column+1, top_attach=row, bottom_attach=row+1)
+				if row%2==0: #
+					bg_col="white"
+					if column==0 or (column>=5 and column<=10):
+						bg_col="lightgrey"
+				else:
+					bg_col="lightgrey"
+					if column==0 or (column>=5 and column<=10):
+						bg_col="grey"
+				eventBox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bg_col))
+				eventBox.add(new_label)
+				self.data_table.attach(child=eventBox, left_attach=column, right_attach=column+1, top_attach=row, bottom_attach=row+1)
+				eventBox.show()
 				new_label.show()
 	#end def table_viewer.refresh_clicked
 

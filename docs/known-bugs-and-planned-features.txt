@@ -5,6 +5,7 @@ before alpha
 fix default pathes up to sensible ones
 catch index error, type error, file not found error
 update install instructions, include how to adapt default config and where to put it
+add instructions how to reimport
 split python requirements, get deep links for windows DL for everything
 GUI license info
 
@@ -16,7 +17,6 @@ add fpdb version string into db to detect outdated db format.
 before beta
 ===========
 optionally show single postflop agg/fold rate
-seperation lines for tv
 auto-import
 implement error file in importer
 change to use different colours according to classification.
