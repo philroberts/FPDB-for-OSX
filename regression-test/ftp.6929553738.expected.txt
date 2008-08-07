@@ -1,3 +1,5 @@
+This file is outdated!
+
 Connected to MySQL on localhost. Print Hand Utility
 options.site: Full Tilt Poker site_id: 1
 From Table hands

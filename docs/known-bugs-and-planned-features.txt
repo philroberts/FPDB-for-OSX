@@ -2,17 +2,16 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
 ============
-verify PrintPlayerFlags for one player on at least 10 hands
 fix default pathes up to sensible ones
 catch index error, type error, file not found error
 update install instructions, include how to adapt default config and where to put it
 split python requirements, get deep links for windows DL for everything
 GUI license info
 
-db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
-db+imp+tv WwSF (Won when seen flop - partial taken into account)
 change action_no to be total for this street rather than just for one player. change .expected.txt files accordingly.
 calculate 3B/4B percentage (depends on above, currently its useless)
+update regression testing to take into account everything new
+add fpdb version string into db to detect outdated db format.
 
 before beta
 ===========

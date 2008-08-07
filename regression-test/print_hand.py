@@ -159,7 +159,7 @@ for i in range (len(hands_players)):
 	hands_actions=cursor.fetchall()
 	for j in range (len(hands_actions)):
 		line=hands_actions[j][2:]
-		printstr="player_name:"+player_names[i]+" actionCount:"+str(j)
+		printstr="player_name:"+player_names[i]
 		printstr+=" street:"+ful.street_int2String(category, line[0])+" streetActionNo:"+str(line[1])+" action:"+line[2]
 		printstr+=" amount:"+str(line[3])
 		print printstr

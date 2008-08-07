@@ -93,6 +93,12 @@ print "otherRaisedTurn:",fields[2]
 print "otherRaisedTurnFold:",fields[3]
 print "otherRaisedRiver:",fields[4]
 print "otherRaisedRiverFold:",fields[5]
+print ""
+
+cursor.execute ("SELECT wonWhenSeenFlop, wonAtSD FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "wonWhenSeenFlop:",fields[0]
+print "wonAtSD:",fields[1]
 
 
 cursor.close()

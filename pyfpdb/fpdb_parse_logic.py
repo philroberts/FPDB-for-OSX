@@ -113,7 +113,10 @@ def mainParser(db, cursor, site, category, hand):
 	limit_type=cursor.fetchone()[0] #todo: remove this unnecessary database access
 	fpdb_simple.convert3B4B(site, category, limit_type, actionTypes, actionAmounts)
 	
-	hudImportData=fpdb_simple.calculateHudImport(playerIDs, category, actionTypes)
+	totalWinnings=0
+	for i in range(len(winnings)):
+		totalWinnings+=winnings[i]
+	hudImportData=fpdb_simple.calculateHudImport(playerIDs, category, actionTypes, winnings, totalWinnings)
 	
 	if isTourney:
 		payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)

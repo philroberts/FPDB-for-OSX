@@ -343,9 +343,9 @@ blabla""")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: pre-alpha, git16")
+		self.window.set_title("Free Poker DB - version: pre-alpha, git17")
 		self.window.set_border_width(1)
-		self.window.set_size_request(750,400)
+		self.window.set_size_request(800,400)
 		self.window.set_resizable(True)
 		
 		self.menu_items = (

@@ -269,52 +269,25 @@ gametypes</B></P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>small_blind</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
+		<TD><P>small_blind</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>big_blind</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>big_blind</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>small_bet</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>small_bet</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>big_bet</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>big_bet</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
 <p><BR>
@@ -746,7 +719,7 @@ far less relevant.</P>
 	<TR VALIGN=TOP>
 		<TD><P>id</P></TD>
 		<TD><P>bigint</P></TD>
-		<TD><P></P></TD>
+		<TD><P><br></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>gametypeId</P></TD>
@@ -852,6 +825,17 @@ far less relevant.</P>
 		<TD><P>otherRaisedRiverFold</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where someone else raised River and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonWhenSeenFlop</P></TD>
+		<TD><P>float</P></TD>
+		<TD><P>How many hands the player won after seeing the flop - this can be a "partial win" if the pot is split.<br>
+			To be completely clear, this stores a hand count, NOT a money amount.</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonAtSD</P></TD>
+		<TD><P>float</P></TD>
+		<TD><P>As wonPostFlop, but for showdown.</P></TD>
 	</TR>
 </TABLE>
 <P></P>

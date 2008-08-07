@@ -59,7 +59,7 @@ class table_viewer (threading.Thread):
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
-			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR", "SD/F")
+			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR", "SD/F", "W$wSF", "W$@SD")
 		else:
 			raise fpdb_simple.FpdbError("reimplement stud")
 			tmp=("Name", "Hands", "VPI3", "A3", "3B4B_3" "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7", "SD/4")
@@ -112,6 +112,8 @@ class table_viewer (threading.Thread):
 			tmp.append(self.hudDivide(row[15],row[11])+" ("+str(row[11])+")") #AR
 			tmp.append(self.hudDivide(row[21],row[20])+" ("+str(row[20])+")") #FR
 			tmp.append(self.hudDivide(row[12],row[9])+" ("+str(row[9])+")") #SD/F
+			tmp.append(self.hudDivide(row[22],row[9])+" ("+str(row[9])+")") #W$wSF
+			tmp.append(self.hudDivide(row[23],row[12])+" ("+str(row[12])+")") #W$@SD
 			
 			arr.append(tmp)
 		return arr

@@ -261,7 +261,9 @@ class fpdb_db:
 		otherRaisedTurn INT,
 		otherRaisedTurnFold INT,
 		otherRaisedRiver INT,
-		otherRaisedRiverFold INT)""")
+		otherRaisedRiverFold INT,
+		wonWhenSeenFlop FLOAT,
+		wonAtSD FLOAT)""")
 		
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
