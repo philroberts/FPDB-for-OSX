@@ -211,18 +211,18 @@ class table_viewer (threading.Thread):
 		self.settings_hbox.show()
 		
 		self.filename_label = gtk.Label("Path of history file")
-		self.settings_hbox.add(self.filename_label)
+		self.settings_hbox.pack_start(self.filename_label, False, False)
 		self.filename_label.show()
 		
 		self.filename_tbuffer=gtk.TextBuffer()
 		self.filename_tbuffer.set_text("/home/sycamore/ps-history/HH20080726 Meliboea - $0.10-$0.20 - Limit Hold'em.txt")
 		self.filename_tview=gtk.TextView(self.filename_tbuffer)
-		self.settings_hbox.add(self.filename_tview)
+		self.settings_hbox.pack_start(self.filename_tview, True, True, padding=5)
 		self.filename_tview.show()
 		
 		self.browse_button=gtk.Button("Browse...")
 		self.browse_button.connect("clicked", self.browse_clicked, "Browse clicked")
-		self.settings_hbox.add(self.browse_button)
+		self.settings_hbox.pack_start(self.browse_button, False, False)
  		self.browse_button.show()
 		
 

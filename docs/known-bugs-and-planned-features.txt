@@ -3,24 +3,23 @@ todolist (db=database, imp=importer, tv=tableviewer)
 before alpha
 ============
 verify PrintPlayerFlags for one player on at least 10 hands
-fix tv browse button size
-optionally show single postflop agg/fold rate
-seperation lines for tv
 fix default pathes up to sensible ones
 catch index error, type error, file not found error
 update install instructions, include how to adapt default config and where to put it
 split python requirements, get deep links for windows DL for everything
-license info
+GUI license info
 
 db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
 db+imp+tv WwSF (Won when seen flop - partial taken into account)
 change action_no to be total for this street rather than just for one player. change .expected.txt files accordingly.
 calculate 3B/4B percentage (depends on above, currently its useless)
-auto-import
-implement error file in importer
 
 before beta
 ===========
+optionally show single postflop agg/fold rate
+seperation lines for tv
+auto-import
+implement error file in importer
 change to use different colours according to classification.
 add stud, razz and tourney back to imp/tv but with less seperate codepathes
 in tv, select from hud table using named fields rather than the current *
