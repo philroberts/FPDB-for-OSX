@@ -30,7 +30,6 @@ class table_viewer (threading.Thread):
 			return "n/a"
 		else:
 			return str(int((a/float(b))*100))+"%"
-		return "todo"
 	#end def hudDivide
 	
 	def browse_clicked(self, widget, data):
@@ -60,10 +59,10 @@ class table_viewer (threading.Thread):
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
-			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR")
+			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR", "SD/F")
 		else:
-			raise fpdb_simple.FpdbError("todo reimplement stud")
-			tmp=("Name", "Hands", "VPI3", "A3", "3B4B_3" "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7")
+			raise fpdb_simple.FpdbError("reimplement stud")
+			tmp=("Name", "Hands", "VPI3", "A3", "3B4B_3" "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7", "SD/4")
 		arr.append(tmp)
 		
 		#then the data rows
@@ -112,6 +111,7 @@ class table_viewer (threading.Thread):
 			tmp.append(self.hudDivide(row[19],row[18])+" ("+str(row[18])+")") #FT
 			tmp.append(self.hudDivide(row[15],row[11])+" ("+str(row[11])+")") #AR
 			tmp.append(self.hudDivide(row[21],row[20])+" ("+str(row[20])+")") #FR
+			tmp.append(self.hudDivide(row[12],row[9])+" ("+str(row[9])+")") #SD/F
 			
 			arr.append(tmp)
 		return arr

@@ -1230,21 +1230,21 @@ def calculateHudImport(player_ids, category, action_types):
 		#set default values
 		myVPIP=False
 		myPFR=False
-		myPF3B4BChance=False #todo
+		myPF3B4BChance=False
 		myPF3B4B=False
-		mySawFlop=False #todo
-		mySawTurn=False #todo
-		mySawRiver=False #todo
-		mySawShowdown=False #todo
-		myRaisedFlop=False #todo
-		myRaisedTurn=False #todo
-		myRaisedRiver=False #todo
-		myOtherRaisedFlop=False #todo
-		myOtherRaisedFlopFold=False #todo
-		myOtherRaisedTurn=False #todo
-		myOtherRaisedTurnFold=False #todo
-		myOtherRaisedRiver=False #todo
-		myOtherRaisedRiverFold=False #todo
+		mySawFlop=False
+		mySawTurn=False
+		mySawRiver=False
+		mySawShowdown=False
+		myRaisedFlop=False
+		myRaisedTurn=False
+		myRaisedRiver=False
+		myOtherRaisedFlop=False
+		myOtherRaisedFlopFold=False
+		myOtherRaisedTurn=False
+		myOtherRaisedTurnFold=False
+		myOtherRaisedRiver=False
+		myOtherRaisedRiverFold=False
 		
 		#calculate preflop values
 		street=0
@@ -1257,7 +1257,7 @@ def calculateHudImport(player_ids, category, action_types):
 				myVPIP=True
 		if heroPfRaiseCount>=1:
 			myPFR=True
-		if heroPfRaiseCount>=2:#todo: this doesnt catch all 3B4B
+		if heroPfRaiseCount>=2:
 			myPF3B4B=True
 			
 		#calculate saw* values
@@ -1267,9 +1267,10 @@ def calculateHudImport(player_ids, category, action_types):
 				mySawTurn=True
 				if (len(action_types[3][player])>0):
 					mySawRiver=True
+					mySawShowdown=True
 					for count in range (len(action_types[3][player])):
 						if action_types[3][player][count]=="fold":
-							mySawShowdown=True
+							mySawShowdown=False
 
 		#flop stuff
 		street=1
@@ -1285,21 +1286,46 @@ def calculateHudImport(player_ids, category, action_types):
 					for countOther in range (len(action_types[street][otherPlayer])):
 						if action_types[street][otherPlayer][countOther]=="bet":
 							myOtherRaisedFlop=True
-							for countOtherFold in range (len(action_types[street][otherPlayer])):
-								if action_types[street][otherPlayer][countOtherFold]=="fold":
+							for countOtherFold in range (len(action_types[street][player])):
+								if action_types[street][player][countOtherFold]=="fold":
 									myOtherRaisedFlopFold=True
 		
-		#turn stuff: todo
-		for count in range(len(action_types[2][player])):
-			if action_types[2][player][count]=="bet":
-				myRaisedTurn=True
+		#turn stuff - copy of flop with different vars
+		street=2
+		if mySawTurn:
+			for count in range(len(action_types[street][player])):
+				if action_types[street][player][count]=="bet":
+					myRaisedTurn=True
+			
+			for otherPlayer in range (len(player_ids)):
+				if player==otherPlayer or myOtherRaisedTurn:
+					pass
+				else:
+					for countOther in range (len(action_types[street][otherPlayer])):
+						if action_types[street][otherPlayer][countOther]=="bet":
+							myOtherRaisedTurn=True
+							for countOtherFold in range (len(action_types[street][player])):
+								if action_types[street][player][countOtherFold]=="fold":
+									myOtherRaisedTurnFold=True
 		
-		#river stuff: todo
-		for count in range(len(action_types[3][player])):
-			if action_types[3][player][count]=="bet":
-				myRaisedRiver=True
+		#turn stuff - copy of flop with different vars
+		street=3
+		if mySawRiver:
+			for count in range(len(action_types[street][player])):
+				if action_types[street][player][count]=="bet":
+					myRaisedRiver=True
+			
+			for otherPlayer in range (len(player_ids)):
+				if player==otherPlayer or myOtherRaisedRiver:
+					pass
+				else:
+					for countOther in range (len(action_types[street][otherPlayer])):
+						if action_types[street][otherPlayer][countOther]=="bet":
+							myOtherRaisedRiver=True
+							for countOtherFold in range (len(action_types[street][player])):
+								if action_types[street][player][countOtherFold]=="fold":
+									myOtherRaisedRiverFold=True
 
-		
 		#add each value to the appropriate array
 		VPIP.append(myVPIP)
 		PFR.append(myPFR)

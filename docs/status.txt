@@ -18,16 +18,16 @@ Fpdb fully supports NL/PL, however currently only as far as it does limit games.
 
 Tournaments/SnGs
 ================
-Broken - used to work, hardly tested. Needs to be updated to new infrastructure.. Not sure when I'll fix this, volunteers welcome :)
-Independent of the current broken state at the moment tourney support would only show information as if a tourney is a ring game - but it's not. If you play tournaments and would like to help improving this let me know, I probably won't bother.
+Broken - used to work, hardly tested. Needs to be updated to new infrastructure.. Will probably fix this quite soon.
+Independent of the current brokenness the tourney support would only show information as if a tourney is a ring game - but it's not. If you play tournaments and would like to help improving this let me know, I probably won't bother.
 
 Full Tilt Poker
 ===============
-Not sure - it should import them, but I believe the table viewer won't work. Should only take minutes to fix this so I'll probably do it soon.
+Not sure - it should import them, but I believe the table viewer won't work. Would be easy to fix though, volunteers welcome
 
 Other Sites
 ===========
-Patches/Volunteers welcome.
+Patches/Volunteers welcome. Should be quite easy.
 
 GUI
 ===

@@ -2,26 +2,27 @@ todolist (db=database, imp=importer, tv=tableviewer)
 
 before alpha
 ============
-verify at least two PrintPlayerFlags (one of them with 10+ hands)
-fix fold % in tv
-optionally show single postflop agg/fold rate
-
-colour in tv, or at least seperation lines
-add stud functionality back to imp/tv
-db+imp+tv WtSD (went to showdown)
-db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
-db+imp+tv WwSF (Won when seen flop - partial taken into account)
-change action_no to be total for this street rather than just for one player
-
-properly read 3B/4B percentage
+verify PrintPlayerFlags for one player on at least 10 hands
 fix tv browse button size
+optionally show single postflop agg/fold rate
+seperation lines for tv
+fix default pathes up to sensible ones
 catch index error, type error, file not found error
 update install instructions, include how to adapt default config and where to put it
 split python requirements, get deep links for windows DL for everything
+license info
+
+db+imp+tv W$SD (won $ when seeing showdown - partial win counts partially here)
+db+imp+tv WwSF (Won when seen flop - partial taken into account)
+change action_no to be total for this street rather than just for one player. change .expected.txt files accordingly.
+calculate 3B/4B percentage (depends on above, currently its useless)
+auto-import
 implement error file in importer
 
 before beta
 ===========
+change to use different colours according to classification.
+add stud, razz and tourney back to imp/tv but with less seperate codepathes
 in tv, select from hud table using named fields rather than the current *
 remove remains of mysql/myisam support.
 tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
@@ -37,21 +38,21 @@ change save_to_db into one method and probably move into parse_logic
 Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
 make a quick benchmark of mysql and postgresql: import of my whole db, some tableviewer refreshes with and without updated file
 db+imp+tv steal blind from btn, co, lmp. fold SB/BB/BI to steal 
+db+imp+tv cb/2nd/3rd barrel, fold to them.
 Make tab and enter work as sensible in GUIs and implement Ctrl+Q, Ctrl+X and Alt+F4 for close.
 use profile file for bulk import and table viewer settings and pathes
 handle errors properly, in particular wrt to SQL rollback.
 check that we read sitout correctly in: Full Tilt Poker Game #6150325318: Table Bogside
 setup database, database-user and permission from GUI.
 update prepare-git to check for license header and copyright.
-change/expand print_hand to cover everything new and update verified hands' .found file
 verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
 move version into seperate file
+make option to use "traditional" labels, e.g. WtSD instead of SD/F
 HTMLify docs and validate them
 cut down action_types array size to appropriate length
-make tv work with ftp e.g. by making importer return site as well (easy)
 make the gui display errors
 log file
 move directory import code from gui to backend
@@ -61,24 +62,23 @@ Doesn't handle Daylight Saving Time (I don't think at least)
 Need to store if someone goes all-in, particularly for better NL/PL support.
 verify at least 3 hands per category per site per limit_type (when cap then do 2 normal and one 1 capped) incl tv display
 put lines in tv to make it easier to read
-speed up so that refresh after importing my whole DB takes no more than 10 seks on my P3M-800 (a quick run on git5+ indicates this is ok now), or 5 with remote DB
+ensure that refresh still takes no more than 10 seks on my P3M-800 (a quick run on git15 indicates this is ok now), or 5 with remote DB
 select range of stakes and sng/mtt values and types for tv
 change "for i" to more sensible var name instead of i
-in all importer: stop doing if site=="ftp", make class constants for site_id instead
 recognise somewhere if a file is still active and if so keep it open and only read new hands rather than detecting dupes
 gentoo ebuild
 separate all gui and all processing into files that are named accordingly
 ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
 why do we have to reconnect in tv.read_names_clicked?
-HUD for PokerStars
-HTMLify docs
 
 can wait till 1.x
 =================
+positional stats in HUD
+return full ftp functionality
+in all importer: stop doing if site=="ftp", make class constants for site_id instead
 finish cleaning tabledesign html code
 rearrange huddata fields
 It treats fold due to disconnect as voluntary fold which is not ideal
-auto-import
 check for unnecessary db.commit()
 aliases
 Probably PartyPoker for all or most supported games
