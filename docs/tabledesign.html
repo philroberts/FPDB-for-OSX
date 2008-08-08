@@ -840,131 +840,61 @@ far less relevant.</P>
 </TABLE>
 <P></P>
 <P><B>Table hands_actions</B></P>
-<p>Did
-separate this into an extra table because it makes SELECTing across
-different streets so much easier. Also the space saving will be very
-large.</P>
+<p>Did separate this into an extra table because it makes SELECTing across different streets so much easier. Also the space saving will be very large.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field Name</P></TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>hand_player_id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P>references
-			hands_players.id</P>
-		</TD>
+		<TD><P>hand_player_id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P>references hands_players.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>street</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<p>street
-			number, 0-3 (preflop, flop, turn, river) for holdem/omaha or 0-4
-			for razz/stud</P>
-			<P>-1 for seen showdown</P>
-		</TD>
+		<TD><P>street</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><p>street number, 0-3 (preflop, flop, turn, river) for holdem/omaha or 0-4 for razz/stud</P><P>-1 for seen showdown</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>action_no</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>action number, 1-4</P>
-		</TD>
+		<TD><P>action_no</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>action number, this is counted from zero for each street but across all players (e.g. in a heads up where the SB calls and the BB raises and the SB calls again would have numbers 0 and 1 for blinds, 2 and 4 for call and 3 for bet)<br>
+			Note that the blinds are counted as an action, so if the SB stays in the hand it'll always be action #0</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>action</P>
-		</TD>
-		<TD>
-			<P>char(5)</P>
-		</TD>
-		<TD>
-			<p>bet
-			stands for bring in, complete, bet, double bet, raise and double
-			raise, since they all - technically - do the same thing. unbet is
-			used for when an uncalled bet is returned.</P>
-			<P>Other valid values: blind
-			call check fold</P>
-		</TD>
+		<TD><P>action</P></TD>
+		<TD><P>char(5)</P></TD>
+		<TD><P>Bet stands for bring in, complete, bet, double bet, raise and double raise, since they all - technically - do the same thing. Unbet is used for when an uncalled bet is returned.</P>
+			<P>Other valid values: blind call check fold</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>amount</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>amount put into the middle
-			for this action</P>
-		</TD>
+		<TD><P>amount</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>amount put into the middle for this action</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment</P>
-		</TD>
-		<TD>
-			<P>text</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment</P></TD>
+		<TD><P>text</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment_ts</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment_ts</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
+<p><BR></P>
 <p><B>Tournament Tables</B></P>
 <p><BR></P>
 <p><B>Table tourneys</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
 		<TD>
 			<P>Field name</P>

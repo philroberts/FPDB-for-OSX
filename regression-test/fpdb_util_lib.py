@@ -64,11 +64,11 @@ def street_int2String(category, street):
 		if street==0:
 			return "Preflop"
 		elif street==1:
-			return "Flop"
+			return "Flop   "
 		elif street==2:
-			return "Turn"
+			return "Turn   "
 		elif street==3:
-			return "River"
+			return "River  "
 		else:
 			print "TODO: raise error, fpdb_util_lib.py street_int2String invalid street no"
 			sys.exit(1)

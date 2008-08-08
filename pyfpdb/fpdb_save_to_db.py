@@ -40,7 +40,7 @@ def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time,
 #stores a holdem/omaha hand into the database
 def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time,
 			names, player_ids, start_cashes, positions, card_values, card_suits,
-			board_values, board_suits, winnings, rakes, action_types, action_amounts, hudImportData):
+			board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData):
 	#fill up the two player card arrays
 	if (category=="holdem"):
 		fpdb_simple.fillCardArrays(len(names), 2, card_values, card_suits)
@@ -60,7 +60,7 @@ def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_ti
 	
 	fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 	
-	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts)
+	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts, actionNos)
 	return site_hand_no
 #end def ring_holdem_omaha
 

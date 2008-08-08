@@ -18,4 +18,5 @@
 rm regression-test/*.found.txt
 rm regression-test/*.pyc
 rm pyfpdb/*.pyc
+
 git-add--interactive

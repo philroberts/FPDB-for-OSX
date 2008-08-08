@@ -9,14 +9,14 @@ add instructions how to reimport
 split python requirements, get deep links for windows DL for everything
 GUI license info
 
-change action_no to be total for this street rather than just for one player. change .expected.txt files accordingly.
-calculate 3B/4B percentage (depends on above, currently its useless)
-update regression testing to take into account everything new
-add fpdb version string into db to detect outdated db format.
+calculate 3B/4B percentage
+add fpdb version string into db to detect outdated db format and importer bugs
+update regression testing to take into account everything new, make sure it passes all tests
 
 before beta
 ===========
 optionally show single postflop agg/fold rate
+change definition of bet to exclude bring in?
 auto-import
 implement error file in importer
 change to use different colours according to classification.
@@ -30,7 +30,7 @@ fix load profile
 HUD
 config wizard
 file permission script, use games group
-change stud street storage from 3-7 to 0-4 throughout
+change stud street storage from 3-7 to 0-4 throughout (possibly best way is to just shrink the holding array in fpdb_simple.createArrays
 make bulk importer display a grand total in the GUI
 change save_to_db into one method and probably move into parse_logic
 Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
@@ -47,6 +47,7 @@ verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
+In many places there are unnecessary database accesses or it regenerates information it already had before or just generally does things in obscenely inefficient ways. It's great to have a total of 3 CPUs with a combined 5.6GHz working for you isn't it... ;) In any case, these should be optimised to leave more power for other things, such as dropping to lower power states 
 move version into seperate file
 make option to use "traditional" labels, e.g. WtSD instead of SD/F
 HTMLify docs and validate them

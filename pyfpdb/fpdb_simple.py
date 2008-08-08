@@ -199,7 +199,7 @@ def convertCardValuesBoard(arr):
 #end def convertCardValuesBoard
 
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
-def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, action_amounts):
+def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, action_amounts, actionNos):
 	for i in range(seats):#create second dimension arrays
 		tmp=[]
 		card_values.append(tmp)
@@ -208,19 +208,26 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
 		antes.append(0)
 		winnings.append(0)
 		rakes.append(0)
-
-	for i in range (8): 
-		#build the first dimension array, for streets 
-		#todo: 0-2 will of course be left empty, get rid of this nicely using consts
+	
+	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+		streetCount=4
+	else:
+		streetCount=8
+	
+	for i in range(streetCount): #build the first dimension array, for streets 
 		tmp=[]
 		action_types.append(tmp)
 		tmp=[]
 		action_amounts.append(tmp)
+		tmp=[]
+		actionNos.append(tmp)
 		for j in range (seats): #second dimension arrays: players
 			tmp=[]
 			action_types[i].append(tmp)
 			tmp=[]
 			action_amounts[i].append(tmp)
+			tmp=[]
+			actionNos[i].append(tmp)
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		pass
 	elif (category=="razz" or category=="studhi" or category=="studhilo"):#need to fill card arrays.
@@ -555,8 +562,7 @@ def parseActionAmount(line, atype, site):
 #doesnt return anything, simply changes the passed arrays action_types and
 #	action_amounts. For stud this expects numeric streets (3-7), for
 #	holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(line, street, names, action_types, action_amounts, site):
-	#print "parseActionLine, line:",line
+def parseActionLine(site, line, street, names, action_types, action_amounts, actionNos):
 	#this only applies to stud
 	if (street<3):
 		text="invalid street ("+str(street)+") for line: "+line
@@ -571,12 +577,19 @@ def parseActionLine(line, street, names, action_types, action_amounts, site):
 	elif (street=="river"):
 		street=3
 	
+	nextActionNo=0
+	for player in range(len(actionNos[street])):
+		for count in range(len(actionNos[street][player])):
+			if actionNos[street][player][count]>=nextActionNo:
+				nextActionNo=actionNos[street][player][count]+1
+		
 	atype=parseActionType(line)
 	playerno=recognisePlayerNo(line, names, atype)
 	amount=parseActionAmount(line, atype, site)
 	
 	action_types[street][playerno].append(atype)
 	action_amounts[street][playerno].append(amount)
+	actionNos[street][playerno].append(nextActionNo)
 #end def parseActionLine
 
 #returns the action type code (see table design) of the given action line
@@ -1066,12 +1079,14 @@ def splitRake(winnings, rakes, totalRake):
 				rakes[i]=totalRake*winPortion
 #end def splitRake
 
-def storeActions(cursor, hands_players_ids, action_types, action_amounts):
+def storeActions(cursor, hands_players_ids, action_types, action_amounts, actionNos):
 #stores into table hands_actions
+	#print "start of storeActions, actionNos:",actionNos
+	#print "                  action_amounts:",action_amounts
 	for i in range (len(action_types)): #iterate through streets
 		for j in range (len(action_types[i])): #iterate through names
 			for k in range (len(action_types[i][j])):  #iterate through individual actions of that player on that street
-				cursor.execute ("INSERT INTO hands_actions (hand_player_id, street, action_no, action, amount) VALUES (%s, %s, %s, %s, %s)", (hands_players_ids[j], i, k, action_types[i][j][k], action_amounts[i][j][k]))
+				cursor.execute ("INSERT INTO hands_actions (hand_player_id, street, action_no, action, amount) VALUES (%s, %s, %s, %s, %s)", (hands_players_ids[j], i, actionNos[i][j][k], action_types[i][j][k], action_amounts[i][j][k]))
 #end def storeActions
 
 def store_board_cards(cursor, hands_id, board_values, board_suits):

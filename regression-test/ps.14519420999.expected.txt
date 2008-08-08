@@ -23,24 +23,24 @@ player_name:Player_7 player_startcash:135 position:3 off Btn cards:8d 5d winning
 
 From Table hands_actions
 ========================
-player_name:Player_1 actionCount:0 street:Preflop streetActionNo:0 action:fold amount:0
-player_name:Player_2 actionCount:0 street:Preflop streetActionNo:0 action:call amount:2
-player_name:Player_2 actionCount:1 street:Flop streetActionNo:0 action:call amount:2
-player_name:Player_2 actionCount:2 street:Turn streetActionNo:0 action:bet amount:8
-player_name:Player_2 actionCount:3 street:River streetActionNo:0 action:bet amount:4
-player_name:Player_3 actionCount:0 street:Preflop streetActionNo:0 action:fold amount:0
-player_name:Player_4 actionCount:0 street:Preflop streetActionNo:0 action:blind amount:1
-player_name:Player_4 actionCount:1 street:Preflop streetActionNo:1 action:call amount:1
-player_name:Player_4 actionCount:2 street:Flop streetActionNo:0 action:check amount:0
-player_name:Player_4 actionCount:3 street:Flop streetActionNo:1 action:call amount:2
-player_name:Player_4 actionCount:4 street:Turn streetActionNo:0 action:check amount:0
-player_name:Player_4 actionCount:5 street:Turn streetActionNo:1 action:fold amount:0
-player_name:Player_5 actionCount:0 street:Preflop streetActionNo:0 action:blind amount:2
-player_name:Player_5 actionCount:1 street:Preflop streetActionNo:1 action:check amount:0
-player_name:Player_5 actionCount:2 street:Flop streetActionNo:0 action:bet amount:2
-player_name:Player_5 actionCount:3 street:Turn streetActionNo:0 action:bet amount:4
-player_name:Player_5 actionCount:4 street:Turn streetActionNo:1 action:call amount:4
-player_name:Player_5 actionCount:5 street:River streetActionNo:0 action:check amount:0
-player_name:Player_5 actionCount:6 street:River streetActionNo:1 action:call amount:4
-player_name:Player_6 actionCount:0 street:Preflop streetActionNo:0 action:fold amount:0
-player_name:Player_7 actionCount:0 street:Preflop streetActionNo:0 action:fold amount:0
+player_name:Player_1 street:Preflop streetActionNo:4 action:fold amount:0
+player_name:Player_2 street:Preflop streetActionNo:5 action:call amount:2
+player_name:Player_2 street:Flop    streetActionNo:2 action:call amount:2
+player_name:Player_2 street:Turn    streetActionNo:2 action:bet amount:8
+player_name:Player_2 street:River   streetActionNo:1 action:bet amount:4
+player_name:Player_3 street:Preflop streetActionNo:6 action:fold amount:0
+player_name:Player_4 street:Preflop streetActionNo:0 action:blind amount:1
+player_name:Player_4 street:Preflop streetActionNo:7 action:call amount:1
+player_name:Player_4 street:Flop    streetActionNo:0 action:check amount:0
+player_name:Player_4 street:Flop    streetActionNo:3 action:call amount:2
+player_name:Player_4 street:Turn    streetActionNo:0 action:check amount:0
+player_name:Player_4 street:Turn    streetActionNo:3 action:fold amount:0
+player_name:Player_5 street:Preflop streetActionNo:1 action:blind amount:2
+player_name:Player_5 street:Preflop streetActionNo:8 action:check amount:0
+player_name:Player_5 street:Flop    streetActionNo:1 action:bet amount:2
+player_name:Player_5 street:Turn    streetActionNo:1 action:bet amount:4
+player_name:Player_5 street:Turn    streetActionNo:4 action:call amount:4
+player_name:Player_5 street:River   streetActionNo:0 action:check amount:0
+player_name:Player_5 street:River   streetActionNo:2 action:call amount:4
+player_name:Player_6 street:Preflop streetActionNo:2 action:fold amount:0
+player_name:Player_7 street:Preflop streetActionNo:3 action:fold amount:0
