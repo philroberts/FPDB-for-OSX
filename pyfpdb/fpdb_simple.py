@@ -199,7 +199,7 @@ def convertCardValuesBoard(arr):
 #end def convertCardValuesBoard
 
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
-def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, action_amounts, actionNos):
+def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, action_amounts, actionNos, actionTypeByNo):
 	for i in range(seats):#create second dimension arrays
 		tmp=[]
 		card_values.append(tmp)
@@ -212,7 +212,7 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		streetCount=4
 	else:
-		streetCount=8
+		streetCount=5
 	
 	for i in range(streetCount): #build the first dimension array, for streets 
 		tmp=[]
@@ -221,6 +221,8 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
 		action_amounts.append(tmp)
 		tmp=[]
 		actionNos.append(tmp)
+		tmp=[]
+		actionTypeByNo.append(tmp)
 		for j in range (seats): #second dimension arrays: players
 			tmp=[]
 			action_types[i].append(tmp)
@@ -562,7 +564,7 @@ def parseActionAmount(line, atype, site):
 #doesnt return anything, simply changes the passed arrays action_types and
 #	action_amounts. For stud this expects numeric streets (3-7), for
 #	holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(site, line, street, names, action_types, action_amounts, actionNos):
+def parseActionLine(site, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
 	#this only applies to stud
 	if (street<3):
 		text="invalid street ("+str(street)+") for line: "+line
@@ -590,6 +592,8 @@ def parseActionLine(site, line, street, names, action_types, action_amounts, act
 	action_types[street][playerno].append(atype)
 	action_amounts[street][playerno].append(amount)
 	actionNos[street][playerno].append(nextActionNo)
+	tmp=(playerIDs[playerno], atype)
+	actionTypeByNo[street].append(tmp)
 #end def parseActionLine
 
 #returns the action type code (see table design) of the given action line
@@ -1221,7 +1225,7 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 	return result
 #end def store_hands_players_stud_tourney
 
-def calculateHudImport(player_ids, category, action_types, winnings, totalWinnings):
+def calculateHudImport(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	#setup subarrays of the result dictionary.
 	VPIP=[]
@@ -1243,6 +1247,12 @@ def calculateHudImport(player_ids, category, action_types, winnings, totalWinnin
 	otherRaisedRiverFold=[]
 	wonWhenSeenFlop=[]
 	wonAtSD=[]
+	
+	firstPfRaise=-1
+	for i in range(len(actionTypeByNo[0])):
+		if actionTypeByNo[0][i][1]=="bet":
+			firstPfRaise=i
+			break
 	
 	for player in range (len(player_ids)):
 		#set default values
@@ -1266,20 +1276,31 @@ def calculateHudImport(player_ids, category, action_types, winnings, totalWinnin
 		myWonWhenSeenFlop=0.0
 		myWonAtSD=0.0
 		
-		#calculate preflop values
+		#calculate VPIP and PFR
 		street=0
 		heroPfRaiseCount=0
 		for count in range (len(action_types[street][player])):#finally individual actions
 			currentAction=action_types[street][player][count]
 			if currentAction=="bet":
-				heroPfRaiseCount+=1
+				myPFR=True
 			if (currentAction=="bet" or currentAction=="call"):
 				myVPIP=True
-		if heroPfRaiseCount>=1:
-			myPFR=True
-		if heroPfRaiseCount>=2:
-			myPF3B4B=True
-			
+		
+		#PF3B4BChance and PF3B4B
+		pfFold=-1
+		pfRaise=-1
+		if firstPfRaise!=-1:
+			for i in range(len(actionTypeByNo[0])):
+				if actionTypeByNo[0][i][0]==player_ids[player]:
+					if actionTypeByNo[0][i][1]=="bet" and pfRaise==-1 and i>firstPfRaise:
+						pfRaise=i
+					if actionTypeByNo[0][i][1]=="fold" and pfFold==-1:
+						pfFold=i
+			if pfFold==-1 or pfFold>firstPfRaise:
+				myPF3B4BChance=True
+				if pfRaise>firstPfRaise:
+					myPF3B4B=True
+		
 		#calculate saw* values
 		if (len(action_types[1][player])>0):
 			mySawFlop=True

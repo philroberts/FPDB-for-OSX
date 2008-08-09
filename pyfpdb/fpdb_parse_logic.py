@@ -27,8 +27,7 @@ def mainParser(db, cursor, site, category, hand):
 	lineTypes=[] #char, valid values: header, name, cards, action, win, rake, ignore
 	lineStreets=[] #char, valid values: (predeal, preflop, flop, turn, river)
 
-	cardValues, cardSuits, boardValues, boardSuits=[],[],[],[]
-	antes, actionTypes, actionAmounts, actionNos, seatLines, winnings, rakes=[], [],[],[],[],[],[]
+	cardValues, cardSuits, boardValues, boardSuits, antes, actionTypes, actionAmounts, actionNos, actionTypeByNo, seatLines, winnings, rakes=[], [],[],[],[],[],[],[],[],[],[],[]
 
 	#part 1: read hand no and check for duplicate
 	siteHandNo=fpdb_simple.parseSiteHandNo(hand[0])
@@ -60,8 +59,8 @@ def mainParser(db, cursor, site, category, hand):
 	playerIDs = fpdb_simple.recognisePlayerIDs(cursor, names, siteID)
 	startCashes=fpdb_simple.parseCashes(seatLines, site)
 	
-	fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, actionAmounts, actionNos)
-		
+	fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, actionAmounts, actionNos, actionTypeByNo)
+	
 	#3b read positions
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		positions = fpdb_simple.parsePositions (hand, names)
@@ -71,7 +70,7 @@ def mainParser(db, cursor, site, category, hand):
 		if (lineTypes[i]=="cards"):
 			fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
 		elif (lineTypes[i]=="action"):
-			fpdb_simple.parseActionLine (site, hand[i], lineStreets[i], names, actionTypes, actionAmounts, actionNos)
+			fpdb_simple.parseActionLine (site, hand[i], lineStreets[i], playerIDs, names, actionTypes, actionAmounts, actionNos, actionTypeByNo)
 		elif (lineTypes[i]=="win"):
 			fpdb_simple.parseWinLine (hand[i], site, names, winnings, isTourney)
 		elif (lineTypes[i]=="rake"):
@@ -102,7 +101,7 @@ def mainParser(db, cursor, site, category, hand):
 	totalWinnings=0
 	for i in range(len(winnings)):
 		totalWinnings+=winnings[i]
-	hudImportData=fpdb_simple.calculateHudImport(playerIDs, category, actionTypes, winnings, totalWinnings)
+	hudImportData=fpdb_simple.calculateHudImport(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings)
 	
 	if isTourney:
 		raise fpdb_simple.FpdbError ("tourneys are currently broken")
