@@ -10,7 +10,8 @@ What to do?
 - There's a list of various bugs, deficiencies and important missing features in known_bugs_and_planned_features.txt.
 - In the main GUI there's various menu points marked with todo - all of these will have to be done eventually.
 
-If you want to take a look at coding-style.txt and git-instructions.txt or feel free to send patches or even just changed file in whatever code layout or naming convention you like best. I will, of course, still give you full credit.
+If you want to take a look at coding-style.txt.
+Ideally use git (see git-instructions.txt for some commands) and let me know where to pull from, alternatively feel free to send patches or even just changed file in whatever code layout or naming convention you like best. I will, of course, still give you full credit.
 
 Contact/Communication
 =====================
@@ -18,16 +19,17 @@ Please see readme-overview
 
 Dependencies
 ============
-Since all real OS' have easy built in handling for dependencies feel free to add requirements on new libraries etc. Unfortunately due to the reality of the online poker market (namely the complete absence of clients for free/libre systems) it doesn't make sense to write this without supporting Windows so all dependencies must have a source-compatible Windows version. Please ensure to list any new deps in requirements.txt or let me know.
+Since all real OSs have easy built in handling for dependencies feel free to add requirements on new libraries etc. Unfortunately due to the reality of the online poker market (namely the complete absence of clients for free/libre systems) it doesn't make sense to write this without supporting Windows so all dependencies must have a source-compatible Windows version. Please ensure to list any new deps in requirements.txt or let me know.
 
 Code/File/Class Structure
 =========================
 Basically the code runs like this
 
 fpdb.py	-> bulk importer tab (import_threaded.py) -> fpdb_import.py -> fpdb_parse_logic.py -> fpdb_save_to_db.py
-		-> table viewer tab (table_viewer.py)
+or
+fpdb.py	-> table viewer tab (table_viewer.py) (todo: -> libTableViewer)
 		
-All files can call the simple methods that I just collected in fpdb_simple.py, in essence to reduce the other files mostly to high-level calls that direct the execution flow.
+All files call the simple methods that I just collected in fpdb_simple.py, to abstract the other files off the nitty gritty details as I was learning python.
 I'm currently working on (amongst other things) integrating everything into the fpdb.py GUI with a view to allow easy creation of a CLI client, too.
 
 Also see filelist.txt.
@@ -48,7 +50,7 @@ Preferred: Where possible simple text-based formats, e.g. plain text (with Unix 
 
 Also good: Other free and open formats, e.g. ODF. 
 
-Not good: Any format that doesn't have full documentation freely and publicly available with a full license for anyone to implement it. Sadly, Microsoft has chosen not fulfil these requirements for ISO MS OOXML to become a truly open standard.
+Not good: Any format that doesn't have full documentation freely and publicly available with a proper license for anyone to implement it. Sadly, Microsoft has chosen not fulfil these requirements for ISO MS OOXML to become a truly open standard.
 
 License (of this file)
 =======

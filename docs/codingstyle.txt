@@ -1,6 +1,6 @@
 This is just a loose collection of things so far, but might as well make a start :)
 
-A word on wrapping: Please avoid making manual line breaks, the computer can and therefore should do it. Whether people use a phone or a 40" super-uber-HD screen, they should be allowed to use as much of it as they wish to.
+A word on wrapping: Please avoid making manual line breaks, the computer can and therefore should do it. Whether people use a phone or a 40" super-uber-HD screen, they should be allowed to use as much of it as they wish/can. Incidentially, if anyone knows how to activate line wrap in Eclipse I'd really appreciate if you let me know.
 
 Comments (or prints) with todo are things that are missing, bugs, or just messy code.
 	
@@ -10,6 +10,8 @@ After every def (ie. at the end of the method) there should be a comment includi
 If you don't mind make names in java style, ie.:
 Classes, files or tables like this: MyClassName
 Methods and variables like this: myMethodName
+
+I'll eventually change all my code to that style, too.
 
 License
 =======

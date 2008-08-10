@@ -34,10 +34,8 @@ class fpdb_db:
 		self.database=database
 		self.user=user
 		self.password=password
-		#print "fpdb_db.connect, password:",password,"/end"
 		if backend==self.MYSQL_INNODB:
 			import MySQLdb
-			#print "fpdb_db.connect, host:", host, "  user:", user, "  passwd:", password, "  db:", database
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
 		elif backend==self.PGSQL:
 			import pgdb
@@ -45,6 +43,13 @@ class fpdb_db:
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
+		#try:
+		#	self.cursor.execute("SELECT * FROM settings")
+		#	settings=self.cursor.fetchone()
+		#	if settings[0]!=21:
+		#		print "outdated database version - please recreate tables"
+		#except:# _mysql_exceptions.ProgrammingError:
+		#	print "failed to read settings table - please recreate tables"
 	#end def connect
 
 	def create_table(self, string):
@@ -80,8 +85,9 @@ class fpdb_db:
 	
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
+		self.cursor.execute("DROP TABLE IF EXISTS settings;")
+		
 		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-		#self.cursor.execute("DROP TABLE IF EXISTS hands_players_flags;")
 		self.cursor.execute("DROP TABLE IF EXISTS autorates;")
 		self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
 		self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
@@ -112,6 +118,9 @@ class fpdb_db:
 	def recreate_tables(self):
 		"""(Re-)creates the tables of the current DB"""
 		self.drop_tables()
+		
+		self.create_table("""settings (
+		version SMALLINT)""")
 		
 		self.create_table("""sites (
 		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
@@ -263,8 +272,15 @@ class fpdb_db:
 		otherRaisedRiver INT,
 		otherRaisedRiverFold INT,
 		wonWhenSeenFlop FLOAT,
-		wonAtSD FLOAT)""")
+		wonAtSD FLOAT,
+		stealAttemptChance INT,
+		stealAttempted INT,
+		foldBbToStealChance INT,
+		foldedBbToSteal INT,
+		foldSbToStealChance INT,
+		foldedSbToSteal INT)""")
 		
+		self.cursor.execute("INSERT INTO settings VALUES (21);")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()

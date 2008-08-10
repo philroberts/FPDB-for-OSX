@@ -1,6 +1,5 @@
-In utility output and HUD
-=========================
-CLI=Command Line Interface (Shell, Terminal, "DOS-window")
+HUD/table viewer
+================
 A3-7=3rd-7th street Complete/Raise percentage
 AF=Flop Bet/Raise percentage
 AT=River Bet/Raise percentage
@@ -9,16 +8,24 @@ F3-7=3rd-7th street Fold percentage
 FF=Flop Fold percentage
 FR=River Fold percentage
 FT=Turn Fold percentage
-FTP=Full Tilt Poker
-GUI=Graphical User Interface (normal interface with buttons and menus)
 HD=Hands
-HUD=Heads-Up Display (shows stats directly in the poker software)
-MTT=Multi Table Tournament
+PF3B4B=Pre Flop 3Bet or 4Bet
 PFR=Pre Flop Raise
-PS=PokerStars
-SnG=Sit and Go
+SD/F=Showdown/Flop=WtSD=How often player went to showdown when he saw the flop
+W$wsF=Won $ when he saw flop
+W$@SD=Won $ at showdown
 VPI3=Voluntary Put In on 3rd Street (ie. call+complete+raise)
 VPIP=Voluntary Put In Preflop (ie. call+raise)
+
+Other
+=====
+CLI=Command Line Interface (Shell, Terminal, "DOS-window")
+FTP=Full Tilt Poker
+GUI=Graphical User Interface (normal interface with buttons and menus)
+HUD=Heads-Up Display (shows stats directly in the poker software)
+PS=PokerStars
+MTT=Multi Table Tournament
+SnG=Sit and Go
 
 License
 =======

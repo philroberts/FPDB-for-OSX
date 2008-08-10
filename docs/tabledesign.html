@@ -22,8 +22,19 @@ Copyright 2008 Steffen Jobbagy-Felso<br>
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 as published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and with no Back-Cover Texts. A copy of the license can be found in fdl-1.2.txt<br>
 The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 <p>See readme.txt for copying</P>
-<p><BR>
-</P>
+<p><B>Table settings</B></P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
+	<TR VALIGN=TOP>
+		<TD><P>Field name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>version</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>the git version of the database (ie. table design changes and major bugfixes require a bump)</P></TD>
+	</TR>
+</TABLE>
 <p><B>Table
 players</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
@@ -48,16 +59,9 @@ players</B></P>
 		<TD><P>references sites.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment</P>
-		</TD>
-		<TD>
-			<P>text</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment</P></TD>
+		<TD><P>text</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>comment_ts</P></TD>
@@ -65,75 +69,35 @@ players</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
+<p><BR></P>
 <p><B>Table
 autorates</B></P>
-<p>An
-autorating is a computer-&quot;recognised&quot; label/category for a
-player. Examples could include &quot;Calling Station&quot; if a
-player has &lt;20% each for aggression and folding postflop. Or
-&quot;Tight-Aggressive/Aggressive&quot; for players with &lt;20%
-VPIP, &gt;10% PFR and &gt;40% postflop aggression.</P>
+<p>An autorating is a computer-&quot;recognised&quot; label/category for a player. Examples could include &quot;Calling Station&quot; if a player has &lt;20% each for aggression and folding postflop. Or &quot;Tight-Aggressive/Aggressive&quot; for players with &lt;20% VPIP, &gt;10% PFR and &gt;40% postflop aggression.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>player_id</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>references players.id</P>
-		</TD>
+		<TD><P>player_id</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>references players.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>gametype_id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>references gametypes.id</P>
-		</TD>
+		<TD><P>gametype_id</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>references gametypes.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>description</P>
-		</TD>
-		<TD>
-			<P>varchar(50)</P>
-		</TD>
-		<TD>
-			<P>autorating description</P>
-		</TD>
+		<TD><P>description</P></TD>
+		<TD><P>varchar(50)</P></TD>
+		<TD><P>autorating description</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
@@ -143,8 +107,7 @@ VPIP, &gt;10% PFR and &gt;40% postflop aggression.</P>
 			<P>char(8)</P>
 		</TD>
 		<TD>
-			<P>short description e.g. for
-			display in HUD</P>
+			<P>short description e.g. for display in HUD</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -166,23 +129,13 @@ VPIP, &gt;10% PFR and &gt;40% postflop aggression.</P>
 			<P>int</P>
 		</TD>
 		<TD>
-			<P>number of hands rating is
-			based on</P>
+			<P>number of hands rating is based on</P>
 		</TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
-<p><BR>
-</P>
-<P STYLE="margin-bottom: 0cm; page-break-before: always"><BR>
-</P>
-<p><B>Table
-gametypes</B></P>
+<p><BR></P>
+<p><B>Table gametypes</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
 		<TD>
 			<P>Field name</P>
@@ -290,70 +243,33 @@ gametypes</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
-<p><B>Table
-sites</B></P>
+<p><BR></P>
+<p><B>Table sites</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>name</P>
-		</TD>
-		<TD>
-			<P>varchar(32)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>name</P></TD>
+		<TD><P>varchar(32)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>currency</P>
-		</TD>
-		<TD>
-			<P>char(3)</P>
-		</TD>
-		<TD>
-			<P>currency code, e.g. USD,
-			GBP, EUR</P>
-		</TD>
+		<TD><P>currency</P></TD>
+		<TD><P>char(3)</P></TD>
+		<TD><P>currency code, e.g. USD, GBP, EUR</P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
-<p><B>Table
-hands</B></P>
+<p><BR></P>
+<p><B>Table hands</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
 		<TD>
 			<P>Field Name</P>
@@ -519,145 +435,24 @@ board_cards</B></P>
 </TABLE>
 <p><BR>
 </P>
-<p><BR>
-</P>
-<P STYLE="margin-bottom: 0cm; line-height: 100%; page-break-before: always">
-<BR>
-</P>
-<p><B>Table
-hands_players</B></P>
-<p>cardX:
-can be 1 through 7, one for each card. In holdem/omaha this stores
-the hole cards so 3-7 or 5-7 are empty</P>
-<p>I
-did not separate this into an extra table because I felt the lost
-space is not sufficiently large. Also the benefit for searching is
-far less relevant.</P>
+<p><B>Table hands_players</B></P>
+<p>cardX: can be 1 through 7, one for each card. In holdem/omaha this stores the hole cards so 3-7 or 5-7 are empty</P>
+<p>I did not separate this into an extra table because I felt the lost space is not sufficiently large. Also the benefit for searching is far less relevant.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
-	<TR VALIGN=TOP>
-		<TD>
-			<P>Field Name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>hand_id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P>references hands_stud.id</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>player_id</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>references players.id</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>player_startcash</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>position</P>
-		</TD>
-		<TD>
-			<P>char(1)</P>
-		</TD>
-		<TD>
-			<p>BB=B,
-			SB=S, Button=0, Cutoff=1, etc.</P>
-			<P>This is used in
-			holdem/omaha only.</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>ante</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>note: for cash this could
-			be boolean, but in tourneys you may enter a hand with less than
-			the full ante</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>cardX_value</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<p>2-10=2-10,
-			J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P>
-			<P>see note above table</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>cardX_suit</P>
-		</TD>
-		<TD>
-			<P>char(1)</P>
-		</TD>
-		<TD>
-			<P>h=hearts, s=spades,
-			d=diamonds, c=clubs, unknown/no card=x</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>winnings</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>winnings in this hand
-			(bets, antes, etc. are NOT deducted, but rake already is)</P>
-		</TD>
-	</TR>
+	<TR VALIGN=TOP><TD><P>Field Name</P></TD><TD><P>Type</P></TD><TD><P>Comment</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>id</P></TD><TD><P>bigint</P></TD><TD><P><BR></P></TD></TR>
+	<TR VALIGN=TOP><TD><P>hand_id</P></TD><TD><P>bigint</P></TD><TD><P>references hands_stud.id</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>player_id</P></TD><TD><P>int</P></TD><TD><P>references players.id</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>player_startcash</P></TD><TD><P>int</P></TD><TD><P><BR></P></TD></TR>
+	<TR VALIGN=TOP><TD><P>position</P></TD><TD><P>char(1)</P></TD>
+		<TD><p>BB=B, SB=S, Button=0, Cutoff=1, etc.</P>
+			<P>This is used in holdem/omaha only.</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>ante</P></TD><TD><P>int</P></TD><TD><P>note: for cash this couldbe boolean, but in tourneys you may enter a hand with less thanthe full ante</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>cardX_value</P></TD><TD><P>smallint</P></TD>
+		<TD><p>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P>
+			<P>see note above table</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>cardX_suit</P></TD><TD><P>char(1)</P></TD><TD><P>h=hearts, s=spades, d=diamonds, c=clubs, unknown/no card=x</P></TD></TR>
+	<TR VALIGN=TOP><TD><P>winnings</P></TD><TD><P>int</P></TD><TD><P>winnings in this hand (bets, antes, etc. are NOT deducted, but rake already is)</P></TD></TR>
 	<TR VALIGN=TOP>
 		<TD>
 			<P>rake</P>
@@ -836,6 +631,36 @@ far less relevant.</P>
 		<TD><P>wonAtSD</P></TD>
 		<TD><P>float</P></TD>
 		<TD><P>As wonWhenSeenFlop, but for showdown.</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>stealAttemptChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player was in CO, BTN or SB and nobody has called yet</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>stealAttempted</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player took a chance per the above condition</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldBbToStealChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Somebody tried to steal BB from player</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldedBbToSteal</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player folded BB to steal attempt</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldSbToStealChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Somebody tried to steal SB from player</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldedSbToSteal</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player folded SB to steal attempt</P></TD>
 	</TR>
 </TABLE>
 <P></P>

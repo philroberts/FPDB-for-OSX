@@ -28,3 +28,13 @@ otherRaisedTurn: 1
 otherRaisedTurnFold: 0
 otherRaisedRiver: 1
 otherRaisedRiverFold: 1
+
+wonWhenSeenFlop: 
+wonAtSD: 
+
+stealAttemptChance: 
+stealAttempted: 
+foldBbToStealChance: 
+foldedBbToSteal: 
+foldSbToStealChance: 
+foldedSbToSteal: 

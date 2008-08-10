@@ -28,7 +28,7 @@ Copy the .conf file from this directory to ~/.fpdb/profiles/default.conf and edi
 3. Guided installation steps
 Run the GUI as described in readme-user and click the menu database -> recreate tables
 
-That's it!
+That's it! Now see readme-user.txt for usage instructions.
 
 
 License

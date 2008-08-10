@@ -17,7 +17,7 @@ At the end of the day this comes down to a question of trust, but unlike Windows
 - Verify the source code yourself.
 - Convince or pay someone to verify the source code for you.
 - Use a personal firewall to completely block fpdb from the Internet
-- (for the uber-paranoid) Get yourself the virtualisation software VirtualBox, set up a VM (virtual machine) to run fpdb but run the poker software on your real PC. Then cut the VM off the Internet, fpdb doesn't need it. If you have a PC made in the last few years this should run fast enough as well. Note that most Windows licenses do NOT permit you to use two Windows installations at once, even if they are on the same PC.
+- (for the uber-paranoid) Get yourself the free virtualisation software VirtualBox, set up a VM (virtual machine) to run fpdb but run the poker software on your real PC. Then cut the VM off the Internet, fpdb doesn't need it. If you have a PC made in the last few years this should run fast enough as well. Note that most Windows licenses do NOT permit you to use two Windows installations at once, even if they are on the same PC.
 
 Installing
 ==========
@@ -42,11 +42,11 @@ its too slow let me know and I'll see what I can do :)
 
 Contact
 =======
-Please contact me directly using one of the below (quickest response will be by jabber/xmpp/google talk) until I have setup Savannah.
-mail: steffen(at)sycamoretest.info
-jabber/xmpp/Google Talk: as above
-ICQ: 7806355
-MSN: steffenjf@gmx.de (don't email that)
+- email steffen@sycamoretest.info
+- jabber/xmpp/google talk to steffen@sycamoretest.info
+- create a ticket in the ticketing system of assembla
+- ICQ 7806355
+- MSN steffenjf@gmx.de (don't email here)
 
 Why Free Software?
 ==================
@@ -58,8 +58,8 @@ With free/libre software (also known as open source software, or short FOSS or F
 (note: the legally binding terms are in the license text, this is merely an amateur summary so normal people don't have to read pages of legalese)
 
 Freedom 0: The freedom to use: To run the program, for any purpose. Free of Charge.
-Freedom 1: The freedom to study and help yourself. This freedom guarantees your right to study and learn from the source code of the program, and to fix it if it is broken. If you're not a programmer yourself the developers will generally be happy to fix it for you. Failing that you can always pay someone from the money you saved on not having to pay for it.
-Freedom 2: The freedom to be a decent human being and help your neighbour: I don't threaten you with criminal charges or jail time if you share with your friends and neighbours, subject to the very modest restrictions of the AGPL3.
+Freedom 1: The freedom to study and help yourself. This freedom guarantees your right to study and learn from the source code of the program, and to fix it if it is broken. If you're not a programmer yourself the developers will generally be happy to fix it for you, often even for free. Failing that you can always pay someone from the money you saved on not having to pay for it.
+Freedom 2: The freedom to be a decent human being and help your neighbour: I don't threaten you with lawsuits or jail time if you share with your friends and neighbours, subject to the very modest restrictions of the AGPL3.
 Freedom 3: The freedom to improve the program and release your improvements to the public (or parts thereof) so that the whole community benefits. Note that you are PERMITTED, but not REQUIRED to distribute your changes. If you do distribute your changes you must do so under the terms of the AGPL3 however.
 
 Note that this is the license - I retain full copyright over my code, including the right to change the license for future versions. I do not intend to do this however. In any case, any version I released under AGPL3 remains available under that license forever, or more accurately until my copyright expires at which point it goes into the public domain.

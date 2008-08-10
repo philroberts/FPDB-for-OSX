@@ -13,17 +13,18 @@ As of this writing the latest binary version is 5.0.51b whilst the latest versio
 	At the end make sure you activate that you want to configure it now.
 	Use the advanced/detailed config. Leave everything as default unless stated below, or unless you have reason not to.
 	Make sure to DEACTIVATE TCP/IP networking, unless you want that and know how to secure it
-	Activate "include bin directory in windows PATH"
 	Set a root password. Note that this is not the account/pw that fpdb will use.
 
 Once finished it shold confirm "service started successfully"
+
+Then configure a user and create a database.
 
 2. Install python
 Go to http://www.python.org/download/ and get the latest Windows installer. As of this writing that is 2.5.2. Double click the .msi file to start installation and follow the prompts.
 
 
 3. Install the Python-DBAPI package for MySQL:
-Go to http://sourceforge.net/project/showfiles.php?group_id=22307 and get the latest version of MySQL-python-1.2.2.win32-py2.5.exe
+Go to http://sourceforge.net/project/showfiles.php?group_id=22307 and get the latest version of MySQL-python-*.win32-py2.5.exe
 Double click to install.
 
 
@@ -49,13 +50,7 @@ Right click on "My Computer" ("Arbeitsplatz" in German Windows) on the Desktop o
 
 Now edit the file, in particular you will always have to type in the correct password (insecure, I know) and if you differ from the default setup you may need to change host, database or user.
 
-8. Open a shell (aka command prompt, aka DOS window) and go to the fpdb-python folder and run fpdb.py, e.g.:
-c:
-cd \fpdb\fpdb-python
-python fpdb.py
-
-You can run this by double click, but then any error message would be lost.
-
+8. Double click fpdb.py in the pyfpdb folder of where you downloaded/unpacked it to.
 When the program started open the menu Database and click "Create or Recreate Tables".
 
 That's it! Now you can use the bulk importer and the table viewer, more's coming. See readme-user.txt

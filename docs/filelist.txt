@@ -1,13 +1,13 @@
-todo: update filelist.txt
+This is partially outdated
 
 File list
 =========
 .:
 docs/					Documentation files
-importer/				Directory with the importer (in python)
+pyfpdb/					The main program (in python)
 setup/					Directory with files for setting up this program
-testdata/				Directory with test data
-utils/					A good abbreviation for "all the crap that doesn't fit in anywhere else"
+regression-test/		Directory with test data, query scripts (in python) and the regression test script (in bash)
+utils/					A couple of things that will migrate to the main prog soon
 viewer/					Directory with the GUI (in Java)
 
 ./docs:
@@ -20,12 +20,13 @@ filelist.txt			This file
 howto-import.txt		Instructions on how to run the importer
 install-in-gentoo.txt	Installation instructions for Gentoo GNU/Linux
 install-in-windows.txt	Installation instructions for Windows
-readme.txt				This file
-status.txt				Details of support for poker sites
-tabledesign.odt			The table design master (OpenDocument file, MS Office needs plugin)
-tabledesign.html		Table design copy (HTML file)
+readme-dev.txt			Some notes, pointers and such for developers or anyone else interested in changing fpdb
+readme-overview.txt		Some general info about this program - read that first
+readme-user.txt			Instructions on how to use fpdb
+status.txt				Details of support for poker types and sites
+tabledesign.html		Table design with comments
 
-./importer:
+./pyfpdb:
 fpdb.py					The main GUI. This is what the user will start and use to access the other things.
 fpdb_import.py			Main import program. Calls methods in the other files.
 						Takes one hand history file as input. This is the file

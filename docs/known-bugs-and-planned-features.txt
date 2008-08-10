@@ -3,27 +3,32 @@ todolist (db=database, imp=importer, tv=tableviewer)
 before alpha
 ============
 fix default pathes up to sensible ones
-catch index error, type error, file not found error
-update install instructions, include how to adapt default config and where to put it
-add instructions how to reimport
-split python requirements, get deep links for windows DL for everything
+get deep links for windows DL for everything
 GUI license info
-
-add fpdb version string into db to detect outdated db format and importer bugs
 update regression testing to take into account everything new, make sure it passes all tests
-implement error file in importer
 
 next
 ====
-ST, CB, 2B, 3B, fold to these
-optionally show single postflop agg/fold rate
+3B/4B might not be recognised nor counted as chance if someone raised after player called.
+fill steal fields correctly, add to tester and tv
+CB, 2nd/3rd Barrel, fold to these
+
+separate all gui and all processing into files that are named accordingly
+ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
+figure out what slowed it down so much between git19 and git21 (8/9aug)
 auto-import
+why do we have to reconnect in tv.read_names_clicked?
+implement error file in importer
+catch index error, type error, file not found error
+finish updating filelist
+optionally show single postflop agg/fold rate
 use different colours according to classification.
-add stud, razz and tourney back to imp/tv but with less seperate codepathes
 table with data for graphs for SD/F, W$wSF, W$@SD
 
 before beta
 ===========
+add stud, razz and tourney back to imp/tv but with less seperate codepathes
+offer not storing db password
 change definition of bet to exclude bring in?
 in tv, select from hud table using named fields rather than the current *
 remove remains of mysql/myisam support.
@@ -49,7 +54,8 @@ verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
-In many places there are unnecessary database accesses or it regenerates information it already had before or just generally does things in obscenely inefficient ways. It's great to have a total of 3 CPUs with a combined 5.6GHz working for you isn't it... ;) In any case, these should be optimised to leave more power for other things, such as dropping to lower power states 
+In many places there are unnecessary database accesses or it regenerates information it already had before or just generally does things in obscenely inefficient ways. Optimise this
+multi-select in bulk importer
 move version into seperate file
 make option to use "traditional" labels, e.g. WtSD instead of SD/F
 HTMLify docs and validate them
@@ -68,9 +74,6 @@ select range of stakes and sng/mtt values and types for tv
 change "for i" to more sensible var name instead of i
 recognise somewhere if a file is still active and if so keep it open and only read new hands rather than detecting dupes
 gentoo ebuild
-separate all gui and all processing into files that are named accordingly
-ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
-why do we have to reconnect in tv.read_names_clicked?
 
 can wait till 1.x
 =================
