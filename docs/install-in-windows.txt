@@ -3,12 +3,17 @@ made them in XP Pro, if you discover any differences or problems please let me k
 Also see the other install-in-*.txt files.
 The length of these instructions is due to MS refusal to provide any kind of package management. 
 
-For some packages I've given direct(ish) download links here, for the remainder check requirements.txt.
+Here are direct download links from 10Aug2008:
+http://dev.mysql.com/get/Downloads/MySQL-5.0/mysql-5.0.67-win32.zip/from/pick#mirrors
+http://www.python.org/ftp/python/2.5.2/python-2.5.2.msi
+http://downloads.sourceforge.net/mysql-python/MySQL-python-1.2.2.win32-py2.5.exe?modtime=1173863337&big_mirror=0
+http://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.12/gtk+-bundle-2.12.11.zip
+http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/1.4/pycairo-1.4.12-1.win32-py2.5.exe
+http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.14/pygobject-2.14.1-1.win32-py2.5.exe
+http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.12/pygtk-2.12.1-2.win32-py2.5.exe
 
 1a. Install MySQL and do its basic setup
-Download Windows ZIP/Setup.exe from http://dev.mysql.com/downloads/mysql/5.0.html#win32
-Note that there is a link to skip registration/login.
-As of this writing the latest binary version is 5.0.51b whilst the latest version is 5.0.56... Windows.
+- Download Windows ZIP/Setup.exe
 - Unzip the archive, execute the setup file
 	At the end make sure you activate that you want to configure it now.
 	Use the advanced/detailed config. Leave everything as default unless stated below, or unless you have reason not to.
@@ -20,12 +25,11 @@ Once finished it shold confirm "service started successfully"
 Then configure a user and create a database.
 
 2. Install python
-Go to http://www.python.org/download/ and get the latest Windows installer. As of this writing that is 2.5.2. Double click the .msi file to start installation and follow the prompts.
+Get the latest Windows installer. As of this writing that is 2.5.2. Double click the .msi file to start installation and follow the prompts.
 
 
 3. Install the Python-DBAPI package for MySQL:
-Go to http://sourceforge.net/project/showfiles.php?group_id=22307 and get the latest version of MySQL-python-*.win32-py2.5.exe
-Double click to install.
+Get the package and double click to install.
 
 
 4. In MySQL create a new database fpdb and a user by the same name. Set a password. I did this in webmin. Then set permissions for that user to: Select | Insert | Update | Delete | Create | Drop
@@ -36,8 +40,7 @@ To use it, create some empty folder like c:\gtk . Using either
 Windows Explorer's built-in zip file management, or the command-line
 unzip.exe from
 ftp://tug.ctan.org/tex-archive/tools/zip/info-zip/WIN32/unz552xN.exe
-unzip this bundle. (But you presumably already did that, as you are
-reading this file.)
+unzip this bundle.
 
 Then add the bin folder to your PATH. Make sure you have no other
 versions of GTK+ in PATH.

@@ -3,13 +3,12 @@ todolist (db=database, imp=importer, tv=tableviewer)
 before alpha
 ============
 fix default pathes up to sensible ones
-get deep links for windows DL for everything
-GUI license info
 update regression testing to take into account everything new, make sure it passes all tests
+3B/4B might not be recognised nor counted as chance if someone raised after player called.
+add  to install the sql commands to create DB etc. 
 
 next
 ====
-3B/4B might not be recognised nor counted as chance if someone raised after player called.
 fill steal fields correctly, add to tester and tv
 CB, 2nd/3rd Barrel, fold to these
 
@@ -21,7 +20,6 @@ why do we have to reconnect in tv.read_names_clicked?
 implement error file in importer
 catch index error, type error, file not found error
 finish updating filelist
-export combinedPostflop from table_viewer.prepareData to profile
 use different colours according to classification.
 table with data for graphs for SD/F, W$wSF, W$@SD
 

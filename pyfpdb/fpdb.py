@@ -241,43 +241,33 @@ class fpdb:
 		self.profile=filename
 		
 		self.bulk_import_default_path="/work/poker-histories/wine-ps/" #/todo: move this to .conf
-		
-		found_backend, found_host, found_database, found_user, found_password=False, False, False, False, False
+		self.settings={'db-host':"localhost", 'db-backend':2, 'db-databaseName':"fpdb", 'db-user':"fpdb"}
+		if (os.sep=="/"):
+			self.settings['os']="linuxmac"
+		else:
+			self.settings['os']="windows"
 		for i in range(len(lines)):
-			if lines[i].startswith("backend="):
-				backend=int(lines[i][8:-1])
-				found_backend=True
-			elif lines[i].startswith("host="):
-				host=lines[i][5:-1]
-				#self.host=host
-				found_host=True
-			elif lines[i].startswith("database="):
-				database=lines[i][9:-1]
-				#self.database=database
-				found_database=True
-			elif lines[i].startswith("user="):
-				user=lines[i][5:-1]
-				found_user=True
-			elif lines[i].startswith("password="):
-				password=lines[i][9:-1]
-				found_password=True
-		
-		if not found_backend:
-			raise fpdb_simple.FpdbError("failed to read backend from settings file:"+filename)
-		elif not found_host:
-			raise fpdb_simple.FpdbError("failed to read host from settings file:"+filename)
-		elif not found_database:
-			raise fpdb_simple.FpdbError("failed to read database from settings file:"+filename)
-		elif not found_user:
-			raise fpdb_simple.FpdbError("failed to read user from settings file:"+filename)
-		elif not found_password:
-			raise fpdb_simple.FpdbError("failed to read password from settings file:"+filename)
+			if lines[i].startswith("db-backend="):
+				self.settings['db-backend']=int(lines[i][11:-1])
+			elif lines[i].startswith("db-host="):
+				self.settings['db-host']=lines[i][8:-1]
+			elif lines[i].startswith("db-databaseName="):
+				self.settings['db-database']=lines[i][16:-1]
+			elif lines[i].startswith("db-user="):
+				self.settings['db-user']=lines[i][8:-1]
+			elif lines[i].startswith("db-password="):
+				self.settings['db-password']=lines[i][12:-1]
+			elif lines[i].startswith("tv-combinedPostflop="):
+				if lines[i].find("True")!=-1:
+					self.settings['tv-combinedPostflop']=True
+				else:
+					self.settings['tv-combinedPostflop']=False
 		
 		if self.db!=None:
 			self.db.disconnect()
 		
 		self.db = fpdb_db.fpdb_db()
-		self.db.connect(backend, host, database, user, password)
+		self.db.connect(self.settings['db-backend'], self.settings['db-host'], self.settings['db-databaseName'], self.settings['db-user'], self.settings['db-password'])
 	#end def load_profile
 	
 	def not_implemented(self):
@@ -320,15 +310,16 @@ class fpdb:
 		"""Displays a tab with the main fpdb help screen"""
 		#print "start of tab_main_help"
 		mh_tab=gtk.Label("""Welcome to Fpdb!
-For howto information please see docs/readme-user.txt
-This program is licensed under the AGPL3, see docs/agpl-3.0.txt""")
+For howto information please see docs"""+os.sep+"""readme-user.txt
+The abbrevations in the table viewer are explained in docs"""+os.sep+"""abbrevations.txt
+This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.add_and_display_tab(mh_tab, "main help")
 	#end def tab_main_help
 	
 	def tab_table_viewer(self, widget, data):
 		"""opens a table viewer tab"""
 		#print "start of tab_table_viewer"
-		new_tv_thread=table_viewer.table_viewer(self.db)
+		new_tv_thread=table_viewer.table_viewer(self.db, self.settings)
 		self.threads.append(new_tv_thread)
 		tv_tab=new_tv_thread.get_vbox()
 		self.add_and_display_tab(tv_tab, "table viewer")

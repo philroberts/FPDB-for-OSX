@@ -57,12 +57,11 @@ class table_viewer (threading.Thread):
 		"""prepares the data for display by refresh_clicked, returns a 2D array"""
 		#print "start of prepare_data"
 		arr=[]
-		combinedPostflop=True #todo: export as option
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
 			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR", "SD/F", "W$wsF", "W$@SD")
-			if (combinedPostflop):
-				tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "F-R Aggr", "F-R Fold", "SD/F", "W$wsF", "W$@SD")
+			if self.settings['tv-combinedPostflop']:
+				tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "Postf A", "Postf F", "SD/F", "W$wsF", "W$@SD")
 		else:
 			raise fpdb_simple.FpdbError("reimplement stud")
 			tmp=("Name", "Hands", "VPI3", "A3", "3B4B_3" "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7", "SD/4")
@@ -108,7 +107,7 @@ class table_viewer (threading.Thread):
 			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
 			tmp.append(self.hudDivide(row[6],row[4])) #PFR
 			tmp.append(self.hudDivide(row[8],row[7])+" ("+str(row[7])+")") #PF3B4B
-			if (combinedPostflop):
+			if self.settings['tv-combinedPostflop']:
 				aggCount=row[13]+row[14]+row[15]
 				handCount=row[9]+row[10]+row[11]
 				foldCount=row[17]+row[19]+row[21]
@@ -222,12 +221,13 @@ class table_viewer (threading.Thread):
 		return self.main_vbox
 	#end def get_vbox
 	
-	def __init__(self, db, debug=True):
+	def __init__(self, db, settings, debug=True):
 		"""Constructor for table_viewer"""
 		self.debug=debug
 		#print "start of table_viewer constructor"
 		self.db=db
 		self.cursor=db.cursor
+		self.settings=settings
         
 		self.main_vbox = gtk.VBox(False, 0)
 		self.main_vbox.show()

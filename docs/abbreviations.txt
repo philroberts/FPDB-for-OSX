@@ -11,6 +11,8 @@ FT=Turn Fold percentage
 HD=Hands
 PF3B4B=Pre Flop 3Bet or 4Bet
 PFR=Pre Flop Raise
+Postf A=Postflop (ie. flop+turn+river) Aggression%
+Postf F=Postflop Fold %
 SD/F=Showdown/Flop=WtSD=How often player went to showdown when he saw the flop
 W$wsF=Won $ when he saw flop
 W$@SD=Won $ at showdown
