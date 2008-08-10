@@ -21,7 +21,7 @@ why do we have to reconnect in tv.read_names_clicked?
 implement error file in importer
 catch index error, type error, file not found error
 finish updating filelist
-optionally show single postflop agg/fold rate
+export combinedPostflop from table_viewer.prepareData to profile
 use different colours according to classification.
 table with data for graphs for SD/F, W$wSF, W$@SD
 

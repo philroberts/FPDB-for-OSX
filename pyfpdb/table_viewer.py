@@ -57,9 +57,12 @@ class table_viewer (threading.Thread):
 		"""prepares the data for display by refresh_clicked, returns a 2D array"""
 		#print "start of prepare_data"
 		arr=[]
+		combinedPostflop=True #todo: export as option
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
 			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "AF", "FF", "AT", "FT", "AR", "FR", "SD/F", "W$wsF", "W$@SD")
+			if (combinedPostflop):
+				tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "F-R Aggr", "F-R Fold", "SD/F", "W$wsF", "W$@SD")
 		else:
 			raise fpdb_simple.FpdbError("reimplement stud")
 			tmp=("Name", "Hands", "VPI3", "A3", "3B4B_3" "A4", "F4", "A5", "F5", "A6", "F6", "A7", "F7", "SD/4")
@@ -105,12 +108,21 @@ class table_viewer (threading.Thread):
 			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
 			tmp.append(self.hudDivide(row[6],row[4])) #PFR
 			tmp.append(self.hudDivide(row[8],row[7])+" ("+str(row[7])+")") #PF3B4B
-			tmp.append(self.hudDivide(row[13],row[9])+" ("+str(row[9])+")") #AF
-			tmp.append(self.hudDivide(row[17],row[16])+" ("+str(row[16])+")") #FF
-			tmp.append(self.hudDivide(row[14],row[10])+" ("+str(row[10])+")") #AT
-			tmp.append(self.hudDivide(row[19],row[18])+" ("+str(row[18])+")") #FT
-			tmp.append(self.hudDivide(row[15],row[11])+" ("+str(row[11])+")") #AR
-			tmp.append(self.hudDivide(row[21],row[20])+" ("+str(row[20])+")") #FR
+			if (combinedPostflop):
+				aggCount=row[13]+row[14]+row[15]
+				handCount=row[9]+row[10]+row[11]
+				foldCount=row[17]+row[19]+row[21]
+				otherRaiseCount=row[16]+row[18]+row[20]
+				tmp.append(self.hudDivide(aggCount,handCount)+" ("+str(handCount)+")") #Agg
+				tmp.append(self.hudDivide(foldCount,otherRaiseCount)+" ("+str(otherRaiseCount)+")") #FF
+			else:
+				tmp.append(self.hudDivide(row[13],row[9])+" ("+str(row[9])+")") #AF
+				tmp.append(self.hudDivide(row[17],row[16])+" ("+str(row[16])+")") #FF
+				tmp.append(self.hudDivide(row[14],row[10])+" ("+str(row[10])+")") #AT
+				tmp.append(self.hudDivide(row[19],row[18])+" ("+str(row[18])+")") #FT
+				tmp.append(self.hudDivide(row[15],row[11])+" ("+str(row[11])+")") #AR
+				tmp.append(self.hudDivide(row[21],row[20])+" ("+str(row[20])+")") #FR
+			
 			tmp.append(self.hudDivide(row[12],row[9])+" ("+str(row[9])+")") #SD/F
 			tmp.append(self.hudDivide(row[22],row[9])+" ("+str(row[9])+")") #W$wSF
 			tmp.append(self.hudDivide(row[23],row[12])+" ("+str(row[12])+")") #W$@SD
