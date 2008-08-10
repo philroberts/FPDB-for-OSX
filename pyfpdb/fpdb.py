@@ -319,10 +319,9 @@ class fpdb:
 	def tab_main_help(self, widget, data):
 		"""Displays a tab with the main fpdb help screen"""
 		#print "start of tab_main_help"
-		mh_tab=gtk.Label("""Welcome to Fpdb
-blabla todo make this read a file for the helptext
-blabla
-blabla""")
+		mh_tab=gtk.Label("""Welcome to Fpdb!
+For howto information please see docs/readme-user.txt
+This program is licensed under the AGPL3, see docs/agpl-3.0.txt""")
 		self.add_and_display_tab(mh_tab, "main help")
 	#end def tab_main_help
 	
@@ -343,7 +342,7 @@ blabla""")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: pre-alpha, git22")
+		self.window.set_title("Free Poker DB - version: pre-alpha, git23")
 		self.window.set_border_width(1)
 		self.window.set_size_request(950,400)
 		self.window.set_resizable(True)
