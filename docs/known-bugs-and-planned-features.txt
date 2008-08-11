@@ -3,6 +3,7 @@ todolist (db=database, imp=importer, tv=tableviewer)
 before alpha
 ============
 test everything actually works in windows too
+expand instructions for profile file
 verify link in release notes
 
 next
