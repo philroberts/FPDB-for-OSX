@@ -34,6 +34,7 @@ class fpdb_db:
 		self.database=database
 		self.user=user
 		self.password=password
+		#print "fpdb_db.connect, database:",database
 		if backend==self.MYSQL_INNODB:
 			import MySQLdb
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)

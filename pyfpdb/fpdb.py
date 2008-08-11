@@ -259,7 +259,7 @@ class fpdb:
 			elif lines[i].startswith("db-host="):
 				self.settings['db-host']=lines[i][8:-1]
 			elif lines[i].startswith("db-databaseName="):
-				self.settings['db-database']=lines[i][16:-1]
+				self.settings['db-databaseName']=lines[i][16:-1]
 			elif lines[i].startswith("db-user="):
 				self.settings['db-user']=lines[i][8:-1]
 			elif lines[i].startswith("db-password="):
@@ -280,6 +280,7 @@ class fpdb:
 			self.db.disconnect()
 		
 		self.db = fpdb_db.fpdb_db()
+		#print "end of fpdb.load_profile, databaseName:",self.settings['db-databaseName']
 		self.db.connect(self.settings['db-backend'], self.settings['db-host'], self.settings['db-databaseName'], self.settings['db-user'], self.settings['db-password'])
 	#end def load_profile
 	
@@ -346,7 +347,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: pre-alpha, git25")
+		self.window.set_title("Free Poker DB - version: pre-alpha, git26")
 		self.window.set_border_width(1)
 		self.window.set_size_request(950,400)
 		self.window.set_resizable(True)

@@ -5,17 +5,15 @@
 	<TITLE>Free Poker DB Tabledesign</TITLE>
 </HEAD>
 <BODY LANG="en-GB">
-<P>see commit comments for version info</P>
-<P>Direct suggestions, praise and animal names to steffen@sycamoretest.info</P>
-<p>TODO clean all the crap out of this like i did in HudData, line39 onwards</p>
+<P>See commit comments for version info, see status.txt for status.</P>
+<P>Direct suggestions, praise and animal names to steffen@sycamoretest.info or check readme-overview.txt for more contacts</P>
 <P>I decided to be generous on the sizes of the types - if computing experience shows one thing then its that it will come back to bite you in the ass if you save 2 bits in the wrong place. If performance and/or db size are too bad we can still shrink some fields.</P>
 <p>Relationships are noted in the comment (need to double check that all are listed)</P>
 <p>If you want more comments or if anything is confusing or bad let me know.</P>
 <p>All money/cash amounts are stored in cents/pennies/whatever (e.g. $4.27 would be stored a 427). Chips are stored as-is (e.g. 3675 chips would be stored as 3675).</P>
-<p>Support for ringgames in Holdem, Omaha, Razz and Stud complete. Support for SnG/MTT is alpha</P>
 <p>Notes on use/editing:</P>
 <p>Any change to this must be carried to to the table creation code in fpdb_db.py or at least an entry to known bugs is to be made.</P>
-<P>If the code (in particular the importer) and this document disagree then this document is to be considered authorative. Please report such mismatches to steffen@sycamoretest.org or through an assembla ticket.</P>
+<P>If the code (in particular the importer) and this document disagree then this document is to be considered authorative.</P>
 <p><b>License</b><br>
 Trademarks of third parties have been used under Fair Use or similar laws.<br>
 Copyright 2008 Steffen Jobbagy-Felso<br>
@@ -100,126 +98,65 @@ autorates</B></P>
 		<TD><P>autorating description</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>short_desc</P>
-		</TD>
-		<TD>
-			<P>char(8)</P>
-		</TD>
-		<TD>
-			<P>short description e.g. for display in HUD</P>
-		</TD>
+		<TD><P>short_desc</P></TD>
+		<TD><P>char(8)</P></TD>
+		<TD><P>short description e.g. for display in HUD</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>rating_time</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P>timestamp of rating</P>
-		</TD>
+		<TD><P>rating_time</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P>timestamp of rating</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>hand_count</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>number of hands rating is based on</P>
-		</TD>
+		<TD><P>hand_count</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands rating is based on</P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>
 <p><B>Table gametypes</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>site_id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>references sites.id</P>
-		</TD>
+		<TD><P>site_id</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>references sites.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>type</P></TD>
 		<TD><P>char(4)</P></TD>
-		<TD>
-			<p>valid entries:</P>
-			<p>ring - ringgames aka cash games</P>
-			<P>tour - tournament incl SnG</P>
-		</TD>
+		<TD><p>valid entries:<br>
+			ring - ringgames aka cash games<br>
+			tour - tournament incl SnG</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>category</P>
-		</TD>
-		<TD>
-			<P>varchar(9)</P>
-		</TD>
-		<TD>
-			<p>valid
-			entries:</P>
-			<p>holdem=Texas
-			Hold'em</P>
-			<p>omahahi=Omaha
-			High only</P>
-			<p>omahahilo=Omaha
-			8 or better</P>
-			<p>razz=Razz</P>
-			<p>studhi=7
-			Card Stud High only</P>
-			<P>studhl=7 Card Stud 8 or
-			better</P>
-		</TD>
+		<TD><P>category</P></TD>
+		<TD><P>varchar(9)</P></TD>
+		<TD><p>valid entries:<br>
+			holdem=Texas Hold'em<br>
+			omahahi=Omaha High only<br>
+			omahahilo=Omaha 8 or better<br>
+			razz=Razz<br>
+			studhi=7 Card Stud High only<br>
+			studhl=7 Card Stud 8 orbetter</p></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>limit_type</P>
-		</TD>
-		<TD>
-			<P>char(2)</P>
-		</TD>
-		<TD>
-			<p>nl=No
-			Limit</P>
-			<p>cn=Cap
-			No Limit</P>
-			<p>pl=Pot
-			Limit</P>
-			<p>cp=Cap
-			Pot Limit</P>
-			<P>fl=Fixed Limit</P>
-		</TD>
+		<TD><P>limit_type</P></TD>
+		<TD><P>char(2)</P></TD>
+		<TD><p>nl=No Limit<br>
+			cn=Cap No Limit<br>
+			pl=Pot Limit<br>
+			cp=Cap Pot Limit<br>
+			fl=Fixed Limit</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>small_blind</P></TD>
@@ -229,8 +166,7 @@ autorates</B></P>
 	<TR VALIGN=TOP>
 		<TD><P>big_blind</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P><BR></P>
-		</TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>small_bet</P></TD>
@@ -271,109 +207,50 @@ autorates</B></P>
 <p><B>Table hands</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field Name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field Name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>site_hand_no</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P>the site's hand number</P>
-		</TD>
+		<TD><P>site_hand_no</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P>the site's hand number</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>gametype_id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>references gametypes.id</P>
-		</TD>
+		<TD><P>gametype_id</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>references gametypes.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>hand_start</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P>start date&amp;time of the
-			hand</P>
-		</TD>
+		<TD><P>hand_start</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P>start date&amp;time of the hand</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>seats</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>number of used seats (ie.
-			that got dealt cards)</P>
-		</TD>
+		<TD><P>seats</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>number of used seats (ie. that got dealt cards)</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment</P>
-		</TD>
-		<TD>
-			<P>text</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment</P></TD>
+		<TD><P>text</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment_ts</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment_ts</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
-<p><B>Table
-board_cards</B></P>
-<p>cardX
--&gt; can be 1 through 5</P>
+<p><BR></P>
+<p><B>Table board_cards</B></P>
+<p>cardX -&gt; can be 1 through 5</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
 		<TD>
 			<P>Field Name</P>

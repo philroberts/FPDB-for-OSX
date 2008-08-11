@@ -1,7 +1,7 @@
 Hi,
-This document is to serve as a first point of contact for current and prospective developers with:
-a) organisational/legal things
-b) introduction into the code structure
+This document is to serve as a little overview (later: full technical doc) for current and prospective developers with:
+a) introduction into the code structure
+b) organisational/legal things
 
 What to do?
 ===========
@@ -42,7 +42,7 @@ Copyright/Licensing
 ===================
 Copyright by default is handled on a per-file basis. If you send in a patch or make a commit to an existing file it is done on the understanding that you transfer all rights (as far as legally possible in your jurisdiction) to the current copyright holder of that file, unless otherwise stated. If you create a new file please ensure to include a copyright and license statement.
 
-The licenses used by this project are the AGPL3 for code and FDL1.2 for documentation. Why AGPL3? As far as I know it is currently the strongest copyleft license.
+The licenses used by this project are the AGPL3 for code and FDL1.2 for documentation. See readme-overview.txt for reasons and if you wish to use fpdb with different licensing.
 
 Preferred File Formats
 ======================

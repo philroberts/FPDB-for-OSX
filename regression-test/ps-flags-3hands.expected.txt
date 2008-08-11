@@ -29,12 +29,12 @@ otherRaisedTurnFold: 0
 otherRaisedRiver: 1
 otherRaisedRiverFold: 1
 
-wonWhenSeenFlop: 
-wonAtSD: 
+wonWhenSeenFlop: 0.0
+wonAtSD: 0.0
 
-stealAttemptChance: 
-stealAttempted: 
-foldBbToStealChance: 
-foldedBbToSteal: 
-foldSbToStealChance: 
-foldedSbToSteal: 
+stealAttemptChance: not yet implemented
+stealAttempted: not yet implemented
+foldBbToStealChance: not yet implemented
+foldedBbToSteal: not yet implemented
+foldSbToStealChance: not yet implemented
+foldedSbToSteal: not yet implemented

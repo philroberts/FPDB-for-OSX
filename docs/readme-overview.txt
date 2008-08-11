@@ -1,15 +1,19 @@
 Summary
 =======
-A database program to track your online poker games, the behaviour of the other players and your winnings/losses. Supports Holdem, Omaha, Stud and Razz for cash games as well as SnG and MTT tournaments with more possibly coming in the future
+A database program to track your online poker games, the behaviour of the other players and your winnings/losses. Supports Holdem, Omaha, Stud and Razz for cash games as well as SnG and MTT tournaments with more possibly coming in the future. Some of this is not yet working though, please see status.txt and known-bugs-and-planned-features.txt
 
 Contact
 =======
+Please note that this project has two hostings: one at assembla.com which holds are version control "central tree" (irrelevant for users) and everything else at http://sourceforge.net/projects/fpdb/.
+
+The best means of contact are the sourceforge page: Use the bug, feature request or patch functions or just post in the forum.
+
+Alternatively feel free to contact me directly:
+
 mail: steffen(at)sycamoretest.info
 jabber/xmpp/Google Talk: as above
 ICQ: 7806355
 MSN: steffenjf@gmx.de (don't email that)
-
-You can also create tickets on our assembla page at todo get link
 
 But you could send all my hand histories to yourself!
 =====================================================
@@ -40,14 +44,6 @@ As for hardware, my main test machine is a Pentium 3-M 800 with 256 RAM and Gent
 program will have to work on that. If you run an even more ancient machine and
 its too slow let me know and I'll see what I can do :)
 
-Contact
-=======
-- email steffen@sycamoretest.info
-- jabber/xmpp/google talk to steffen@sycamoretest.info
-- create a ticket in the ticketing system of assembla
-- ICQ 7806355
-- MSN steffenjf@gmx.de (don't email here)
-
 Why Free Software?
 ==================
 This program is released under the terms of the free/libre software license AGPL3 as released by the FSF. The AGPL3 protects your rights and those of the wider community. As Richard Stallman, one of the founders of the free software movement, put it: "Free software is a matter of liberty, not price. To understand the concept, you should think of free as in free speech, not as in free beer." (well, it is both really, like the right to vote used to be free)
@@ -70,12 +66,12 @@ Can I get/use this under a different license?
 =============================================
 The short answer: Maybe.
 The long one: As detailed, I fully support what the FSF does and aims to achieve with the GPL. However, I realise that many free software developers don't object to closed source, some don't even object to closed source profiteering of their charity, and I don't think I have any right to go and tell them they're wrong.
-So if anyone wishes to use all or part of my code in another open source project with an AGPL3-incompatible license then let me know and we should be able to come to an agreement.
-If you wish to use all or part of this in closed source let me know how much that is worth to you, I support free software but at the end of the day you can't pay rent with code ;)
+So if anyone wishes to use all or part of my code in another free software/open source project with an AGPL3-incompatible license such as BSD then let me know and we'll figure out a solution that makes everyone happy.
+If you wish to use all or part of this in closed source let me know how much if anything that is worth to you and I'm sure we'll be able to reach an agreement. Note that you are NOT permitted to just use fpdb code in closed source development whether in-house or by an independent software developer, you will NEED an additionally agreement with me to get fpdb under different licensing conditions.
 
 
-Disclaimer, License of this Document
-====================================
+License of this Document
+========================
 The views expressed in this document are those of Steffen Jobbagy-Felso, other members of the fpdb team and external contributors may or may not agree.
 
 Trademarks of third parties have been used under Fair Use or similar laws.
