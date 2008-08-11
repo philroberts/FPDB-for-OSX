@@ -5,7 +5,8 @@ before alpha
 fix default pathes up to sensible ones
 update regression testing to take into account everything new, make sure it passes all tests
 3B/4B might not be recognised nor counted as chance if someone raised after player called.
-add  to install the sql commands to create DB etc. 
+add  to install the sql commands to create DB etc.
+test everything actually works in windows too
 
 next
 ====

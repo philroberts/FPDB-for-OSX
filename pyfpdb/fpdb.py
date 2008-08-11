@@ -240,12 +240,19 @@ class fpdb:
 		print "Opened and read profile file", filename
 		self.profile=filename
 		
-		self.bulk_import_default_path="/work/poker-histories/wine-ps/" #/todo: move this to .conf
 		self.settings={'db-host':"localhost", 'db-backend':2, 'db-databaseName':"fpdb", 'db-user':"fpdb"}
 		if (os.sep=="/"):
 			self.settings['os']="linuxmac"
 		else:
 			self.settings['os']="windows"
+		
+		if self.settings['os']=="windows":
+			self.settings['bulkImport-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
+			self.settings['tv-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
+		else:
+			self.settings['bulkImport-defaultPath'] = os.path.expanduser("~") + "/.wine/drive_c/Program Files/PokerStars/HandHistory/filename.txt"
+			self.settings['tv-defaultPath'] = os.path.expanduser("~")+"/.wine/drive_c/Program Files/PokerStars/HandHistory/filename.txt"
+		
 		for i in range(len(lines)):
 			if lines[i].startswith("db-backend="):
 				self.settings['db-backend']=int(lines[i][11:-1])
@@ -262,6 +269,12 @@ class fpdb:
 					self.settings['tv-combinedPostflop']=True
 				else:
 					self.settings['tv-combinedPostflop']=False
+			elif lines[i].startswith("bulkImport-defaultPath="):
+				if lines[i][23:-1]!="default":
+					self.settings['bulkImport-defaultPath']=lines[i][23:-1]
+			elif lines[i].startswith("tv-defaultPath="):
+				if lines[i][15:-1]!="default":
+					self.settings['tv-defaultPath']=lines[i][15:-1]
 		
 		if self.db!=None:
 			self.db.disconnect()
@@ -300,7 +313,7 @@ class fpdb:
 	def tab_bulk_import(self, widget, data):
 		"""opens a tab for bulk importing"""
 		#print "start of tab_bulk_import"
-		new_import_thread=import_threaded.import_threaded(self.db, self.bulk_import_default_path)
+		new_import_thread=import_threaded.import_threaded(self.db, self.settings['bulkImport-defaultPath'])
 		self.threads.append(new_import_thread)
 		bulk_tab=new_import_thread.get_vbox()
 		self.add_and_display_tab(bulk_tab, "bulk import")
@@ -333,7 +346,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: pre-alpha, git23")
+		self.window.set_title("Free Poker DB - version: pre-alpha, git25")
 		self.window.set_border_width(1)
 		self.window.set_size_request(950,400)
 		self.window.set_resizable(True)
