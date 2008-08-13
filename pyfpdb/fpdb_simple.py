@@ -1495,7 +1495,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		
 		if someoneStole and (positions[player]=='B' or positions[player]=='S') and firstPfRaiserId!=player_ids[player]:
 			street=0
-			for count in range (len(action_types[street][player])):#finally individual actions
+			for count in range (len(action_types[street][player])):#individual actions
 				if positions[player]=='B':
 					myFoldBbToStealChance=True
 					if action_types[street][player][count]=="fold":
@@ -1522,11 +1522,14 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		myContBetChance=False
 		myContBetDone=False
 		
-		#calc CB
+		if PFR[player]:
+			myContBetChance=True
+			if raisedFlop[player]:
+				myContBetDone=True
 				
 		contBetChance.append(myContBetChance)
 		contBetDone.append(myContBetDone)
-	result['contBetChance']=contBetDone
+	result['contBetChance']=contBetChance
 	result['contBetDone']=contBetDone
 	
 	#now 2B
@@ -1536,11 +1539,14 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		mySecondBarrelChance=False
 		mySecondBarrelDone=False
 		
-		#calc 2b
+		if contBetDone[player]:
+			mySecondBarrelChance=True
+			if raisedTurn[player]:
+				mySecondBarrelDone=True
 
 		secondBarrelChance.append(mySecondBarrelChance)
 		secondBarrelDone.append(mySecondBarrelDone)
-	result['secondBarrelChance']=secondBarrelDone
+	result['secondBarrelChance']=secondBarrelChance
 	result['secondBarrelDone']=secondBarrelDone
 	
 	#now 3B
@@ -1550,11 +1556,14 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		myThirdBarrelChance=False
 		myThirdBarrelDone=False
 		
-		#calc 3b
+		if secondBarrelDone[player]:
+			myThirdBarrelChance=True
+			if raisedRiver[player]:
+				myThirdBarrelDone=True
 
 		thirdBarrelChance.append(myThirdBarrelChance)
 		thirdBarrelDone.append(myThirdBarrelDone)
-	result['thirdBarrelChance']=thirdBarrelDone
+	result['thirdBarrelChance']=thirdBarrelChance
 	result['thirdBarrelDone']=thirdBarrelDone
 	
 	return result

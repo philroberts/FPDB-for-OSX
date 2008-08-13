@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/fpdb/fpdb-alpha1-git27.tar.bz2"
 LICENSE="AGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-#note: I would be very surprised if this doesnt work on other architectures, please send me your experiences
+#note: this should work on other architectures too, please send me your experiences
 IUSE=""
 
 RDEPEND="virtual/mysql

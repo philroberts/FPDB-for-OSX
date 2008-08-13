@@ -2,7 +2,7 @@ For all support please note that the tables WILL be changed, almost certainly wi
 
 If support for another site/game would encourage you to help with this software please let me know at steffen@sycamoretest.info.
 
-IMPORTANT: git10 and below contain at least one significant bug that cause wrong data to be displayed. I wrote a new query script for testing so I can track this down.
+IMPORTANT: There appears to be a bug in at least up to git34 in reading WtSD/W$wsF/W$SD
 
 Holdem/Omaha ring games on PokerStars
 ======================================
@@ -18,7 +18,7 @@ Broken - used to work, hardly tested. Needs to be updated to new infrastructure.
 
 Full Tilt Poker
 ===============
-Not sure - it should import them, but I believe the table viewer won't work. Would be easy to fix I think, volunteers welcome. This used to work in a pre-alpha but basically was left behind during updates to the other stuff.
+Might work - used to work and was very well test. It should import them (except HudData), but I believe the table viewer won't work. Would be easy to fix I think, volunteers welcome. This used to work in a pre-alpha but basically was left behind during updates to the other stuff.
 
 Other Sites
 ===========
@@ -41,6 +41,12 @@ Windows/MacOSX: Manual installation of dependencies for now, integrated installe
 Regression Testing
 ==================
 The query scripts are done-ish, need to verify more data so it can be used in automated regression testing.
+
+Database Backends
+=================
+- MySQL InnoDB is the default
+- PostgreSQL should work but I haven't tried it. If it doesn't please let me know.
+- MySQL ISAM won't be supported since it is not transactional
 
 Legal
 =====

@@ -289,7 +289,7 @@ class fpdb_db:
 		thirdBarrelChance INT,
 		thirdBarrelDone INT)""")
 		
-		self.cursor.execute("INSERT INTO settings VALUES (33);")
+		self.cursor.execute("INSERT INTO settings VALUES (34);")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()
