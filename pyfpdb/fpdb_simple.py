@@ -1287,6 +1287,8 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			sbId=player_ids[player]
 		if positions=='B':
 			bbId=player_ids[player]
+			
+	someoneStole=False
 	
 	#run a loop for each player preparing the actual values that will be commited to SQL
 	for player in range (len(player_ids)):
@@ -1312,10 +1314,6 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		myWonAtSD=0.0
 		myStealAttemptChance=False
 		myStealAttempted=False
-		myFoldBbToStealChance=False
-		myFoldedBbToSteal=False
-		myFoldSbToStealChance=False
-		myFoldedSbToSteal=False
 		
 		#calculate VPIP and PFR
 		street=0
@@ -1365,8 +1363,10 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 					myStealAttemptChance=True
 			if positions[player]=='B':
 				pass
-		
-		
+			
+			if myStealAttempted:
+				someoneStole=True
+
 		#calculate saw* values
 		if (len(action_types[1][player])>0):
 			mySawFlop=True
@@ -1462,10 +1462,6 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		wonAtSD.append(myWonAtSD)
 		stealAttemptChance.append(myStealAttemptChance)
 		stealAttempted.append(myStealAttempted)
-		foldBbToStealChance.append(myFoldBbToStealChance)
-		foldedBbToSteal.append(myFoldedBbToSteal)
-		foldSbToStealChance.append(myFoldSbToStealChance)
-		foldedSbToSteal.append(myFoldedSbToSteal)
 	
 	#add each array to the to-be-returned dictionary
 	result={'VPIP':VPIP}
@@ -1489,10 +1485,36 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	result['wonAtSD']=wonAtSD
 	result['stealAttemptChance']=stealAttemptChance
 	result['stealAttempted']=stealAttempted
+	
+	#after having calculated the above we now do second level calculations, so far just steal attempts.
+	for player in range (len(player_ids)):
+		myFoldBbToStealChance=False
+		myFoldedBbToSteal=False
+		myFoldSbToStealChance=False
+		myFoldedSbToSteal=False
+		
+		if someoneStole and (positions[player]=='B' or positions[player]=='S') and firstPfRaiserId!=player_ids[player]:
+			street=0
+			for count in range (len(action_types[street][player])):#finally individual actions
+				if positions[player]=='B':
+					myFoldBbToStealChance=True
+					if action_types[street][player][count]=="fold":
+						myFoldedBbToSteal=True
+				if positions[player]=='S':
+					myFoldSbToStealChance=True
+					if action_types[street][player][count]=="fold":
+						myFoldedSbToSteal=True
+				
+				
+		foldBbToStealChance.append(myFoldBbToStealChance)
+		foldedBbToSteal.append(myFoldedBbToSteal)
+		foldSbToStealChance.append(myFoldSbToStealChance)
+		foldedSbToSteal.append(myFoldedSbToSteal)
 	result['foldBbToStealChance']=foldBbToStealChance
 	result['foldedBbToSteal']=foldedBbToSteal
 	result['foldSbToStealChance']=foldSbToStealChance
 	result['foldedSbToSteal']=foldedSbToSteal
+	
 	return result
 #end def calculateHudImport
 

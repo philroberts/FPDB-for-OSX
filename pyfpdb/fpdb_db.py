@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=28:
+			if settings[0]!=30:
 				print "outdated database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -281,7 +281,7 @@ class fpdb_db:
 		foldSbToStealChance INT,
 		foldedSbToSteal INT)""")
 		
-		self.cursor.execute("INSERT INTO settings VALUES (28);")
+		self.cursor.execute("INSERT INTO settings VALUES (30);")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()
