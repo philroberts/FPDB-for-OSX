@@ -1330,16 +1330,16 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		#PF3B4BChance and PF3B4B
 		pfFold=-1
 		pfRaise=-1
-		if firstPfRaise!=-1:
+		if firstPfRaiseByNo!=-1:
 			for i in range(len(actionTypeByNo[0])):
 				if actionTypeByNo[0][i][0]==player_ids[player]:
-					if actionTypeByNo[0][i][1]=="bet" and pfRaise==-1 and i>firstPfRaise:
+					if actionTypeByNo[0][i][1]=="bet" and pfRaise==-1 and i>firstPfRaiseByNo:
 						pfRaise=i
 					if actionTypeByNo[0][i][1]=="fold" and pfFold==-1:
 						pfFold=i
-			if pfFold==-1 or pfFold>firstPfRaise:
+			if pfFold==-1 or pfFold>firstPfRaiseByNo:
 				myPF3B4BChance=True
-				if pfRaise>firstPfRaise:
+				if pfRaise>firstPfRaiseByNo:
 					myPF3B4B=True
 		
 		#myStealAttemptChance myStealAttempted myFoldBbToStealChance myFoldedBbToSteal myFoldSbToStealChance myFoldedSbToSteal
@@ -1357,13 +1357,13 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 					myStealAttempted=True
 				elif firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
 					myStealAttemptChance=True
-			if positions[player]==S:
+			if positions[player]=='S':
 				if firstPfRaiserId==player_ids[player]:
 					myStealAttemptChance=True
 					myStealAttempted=True
 				elif firstPfRaiserId==bbId or firstPfRaiserId==-1:
 					myStealAttemptChance=True
-			if positions[player]==B:
+			if positions[player]=='B':
 				pass
 		
 		
