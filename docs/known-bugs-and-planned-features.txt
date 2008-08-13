@@ -1,8 +1,8 @@
 todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change.
 
-before alpha2
-=============
+alpha2
+======
 add steal reaction to tv
 CB, 2nd/3rd Barrel, fold to these
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
@@ -14,6 +14,7 @@ expand instructions for profile file, again, the release-creator will cat it.
 delete old mailing list and create fpdb-announce
 finish updating filelist
 return sng support
+update abbreviations.txt
 
 alpha3
 ======
@@ -23,6 +24,7 @@ show database version error in GUI
 
 before beta
 ===========
+optionally combine FB/FS
 separate all gui and all processing into files that are named accordingly
 ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
 figure out what slowed it down so much between git19 and git21 (8/9aug)
