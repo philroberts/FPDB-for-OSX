@@ -12,18 +12,13 @@ Stud/Razz ring games on PokerStars
 ==================================
 Broken - used to work, hardly tested. Needs to be updated to new infrastructure using a HudData table rather than hands_players_flags. Will fix this shortly.
 
-A note on No Limit and Pot Limit
-================================
-Fpdb fully supports NL/PL, however currently only as far as it does limit games. So it'll tell you how often a player has bet, but not how much. But the mate I'm writing this for doesnt play NL/PL (and neither do I) so volunteers would be most welcome.
-
 Tournaments/SnGs
 ================
-Broken - used to work, hardly tested. Needs to be updated to new infrastructure.. Will probably fix this quite soon.
-Independent of the current brokenness the tourney support would only show information as if a tourney is a ring game - but it's not. If you play tournaments and would like to help improving this let me know, I probably won't bother.
+Broken - used to work, hardly tested. Needs to be updated to new infrastructure.. Will probably fix this shortly
 
 Full Tilt Poker
 ===============
-Not sure - it should import them, but I believe the table viewer won't work. Would be easy to fix though, volunteers welcome
+Not sure - it should import them, but I believe the table viewer won't work. Would be easy to fix I think, volunteers welcome. This used to work in a pre-alpha but basically was left behind during updates to the other stuff.
 
 Other Sites
 ===========

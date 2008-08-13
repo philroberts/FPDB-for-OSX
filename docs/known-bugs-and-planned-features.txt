@@ -3,8 +3,7 @@ Everything is subject to change.
 
 alpha2
 ======
-add steal reaction to tv
-CB, 2nd/3rd Barrel, fold to these
+CB, 2nd/3rd Barrel, fold to these -> actually calculate them
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 auto-import
 seperate and improve instructions for update
@@ -15,6 +14,10 @@ delete old mailing list and create fpdb-announce
 finish updating filelist
 return sng support
 update abbreviations.txt
+fix up bg colours in tv
+ebuild symlink doesnt work
+more automation in the ebuild, update install-in-gentoo.txt, set permissions in it
+gentoo ebuild: USE dedicated, USE postgresql, copy docs
 
 alpha3
 ======
@@ -24,7 +27,7 @@ show database version error in GUI
 
 before beta
 ===========
-optionally combine FB/FS
+optionally combine FB/FS and CB/2B/3B 
 separate all gui and all processing into files that are named accordingly
 ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
 figure out what slowed it down so much between git19 and git21 (8/9aug)
@@ -81,7 +84,6 @@ ensure that refresh still takes no more than 10 seks on my P3M-800 (a quick run 
 select range of stakes and sng/mtt values and types for tv
 change "for i" to more sensible var name instead of i
 recognise somewhere if a file is still active and if so keep it open and only read new hands rather than detecting dupes
-gentoo ebuild
 
 can wait till 1.x
 =================

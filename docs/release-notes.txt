@@ -1,4 +1,10 @@
+alpha2
+======
+Main new features:
+Now reads and displays steal attempts and reaction to them
+
 alpha1
+======
 Hi everyone,
 I am proud to announce the first release of my new poker tracking software fpdb (freepokerdb, very imaginative I know ;) ). You may wonder why I bothered when now with HM and PT3 there are at least two excellent packages to choose from.
 
@@ -9,7 +15,7 @@ Four main reasons:
 	You still need to run Windows or wine to run the actual poker client though.
 4. Fpdb won't irritate you with copy prevention measures.
 
-To install it go to https://sourceforge.net/projects/showfiles.php?group_id=226872 and download the zip or tar.bz2, unpack it, and follow the instructions in docs/install-in-* for your operating system (e.g. docs\install-in-windows.txt). Sourceforge lists the release files as source files, not as binary executables - this is correct, python will automagically compile as and when required.
+To install it go to https://sourceforge.net/project/showfiles.php?group_id=226872 and download the zip or tar.bz2, unpack it, and follow the instructions in docs/install-in-* for your operating system (e.g. docs\install-in-windows.txt). Sourceforge lists the release files as source files, not as binary executables - this is correct, python will automagically compile as and when required.
 
 This is alpha1, as the name indicates it is still at a very early stage. The importer and database are nearing completion but the GUI in particular is not very functional yet and the HUD is missing alltogether. 
 

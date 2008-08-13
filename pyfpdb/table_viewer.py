@@ -59,9 +59,12 @@ class table_viewer (threading.Thread):
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
-			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "ST", "FS", "FB", "AF", "FF", "AT", "FT", "AR", "FR", "WtSD", "W$wsF", "W$SD")
+			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "ST", "FS", "FB", "CB", "2B", "3B")
 			if self.settings['tv-combinedPostflop']:
-				tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "ST", "FS", "FB", "Postf A", "Postf F", "WtSD", "W$wsF", "W$SD")
+				tmp+=("Postf A", "Postf F")
+			else:
+				tmp+=("AF", "FF", "AT", "FT", "AR", "FR")
+			tmp+=("WtSD", "W$wsF", "W$SD")
 		else:
 			raise fpdb_simple.FpdbError("reimplement stud")
 		arr.append(tmp)
@@ -106,9 +109,14 @@ class table_viewer (threading.Thread):
 			tmp.append(self.hudDivide(row[5],row[4])) #VPIP
 			tmp.append(self.hudDivide(row[6],row[4])) #PFR
 			tmp.append(self.hudDivide(row[8],row[7])+" ("+str(row[7])+")") #PF3B4B
+			
 			tmp.append(self.hudDivide(row[25],row[24])+" ("+str(row[24])+")") #ST
 			tmp.append(self.hudDivide(row[29],row[28])+" ("+str(row[28])+")") #FS
 			tmp.append(self.hudDivide(row[27],row[26])+" ("+str(row[26])+")") #FB
+			
+			tmp.append(self.hudDivide(row[31],row[30])+" ("+str(row[30])+")") #CB
+			tmp.append(self.hudDivide(row[33],row[32])+" ("+str(row[32])+")") #2B
+			tmp.append(self.hudDivide(row[35],row[34])+" ("+str(row[34])+")") #3B
 			
 			if self.settings['tv-combinedPostflop']:
 				aggCount=row[13]+row[14]+row[15]
