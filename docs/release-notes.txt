@@ -13,7 +13,7 @@ To install it go to https://sourceforge.net/projects/showfiles.php?group_id=2268
 
 This is alpha1, as the name indicates it is still at a very early stage. The importer and database are nearing completion but the GUI in particular is not very functional yet and the HUD is missing alltogether. 
 
-If anyone wishes to help with development that would be very very welcome and I've put a few notes in docs/readme-dev.txt in the download for what you could do. Or just start coding and set me the patches :)
+If anyone wishes to help with development that would be very very welcome and I've put a few notes in docs/readme-dev.txt in the download for what you could do. Or just start coding and send me the patches :)
 If you're not a programmer and you're not interested in learning it you can still help simply by trying it out and sending bug reports and feature requests. To avoid unrealistic expectations I'd like to state that it'll be a long time until fpdb reaches feature parity to established paid-for closed source software.
 
 Feature List (short now, growing fast ;) ):
@@ -45,10 +45,9 @@ Tv takes a history filename and loads the appropriate players' stats and display
 	For all stats it also displays how many hands this particular is based on
 		
 
-If you can live with alpha software please give this a go and send any feedback, feature requests/suggestions, bug reports and animal names to steffen@sycamoretest.info or pick one of the contact methods listed in readme-overview.txt or reply to this post.
-
 IMPORTANT: The database format WILL undergo more changes and at this point I am not planning to write a converter so please keep your history files so you can re-import when necessary. Independent of this you should always keep the original raw files in a safe place with any tracking software. Should you however end up loosing your files somehow let me know and I'll try to help.
 
+Please send any feedback, feature requests/suggestions, bug reports and animal names to steffen@sycamoretest.info, pick one of the contact methods listed in readme-overview.txt, send me a PM here or reply to this post.
 
 
 

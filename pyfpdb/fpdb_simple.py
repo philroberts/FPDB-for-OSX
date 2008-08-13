@@ -1225,7 +1225,7 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 	return result
 #end def store_hands_players_stud_tourney
 
-def calculateHudImport(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings):
+def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	#setup subarrays of the result dictionary.
 	VPIP=[]
@@ -1254,12 +1254,41 @@ def calculateHudImport(player_ids, category, action_types, actionTypeByNo, winni
 	foldSbToStealChance=[]
 	foldedSbToSteal=[]
 	
-	firstPfRaise=-1
+	firstPfRaiseByNo=-1
+	firstPfRaiserId=-1
+	firstPfRaiserNo=-1
+	firstPfCallByNo=-1
+	firstPfCallerId=-1
 	for i in range(len(actionTypeByNo[0])):
 		if actionTypeByNo[0][i][1]=="bet":
-			firstPfRaise=i
+			firstPfRaiseByNo=i
+			firstPfRaiserId=actionTypeByNo[0][i][0]
+			for j in range(len(player_ids)):
+				if player_ids[j]==firstPfRaiserId:
+					firstPfRaiserNo=j
+					break
+			break
+	for i in range(len(actionTypeByNo[0])):
+		if actionTypeByNo[0][i][1]=="call":
+			firstPfCallByNo=i
+			firstPfCallerId=actionTypeByNo[0][i][0]
 			break
 	
+	cutoffId=-1
+	buttonId=-1
+	sbId=-1
+	bbId=-1
+	for player in range(len(positions)):
+		if positions==1:
+			cutoffId=player_ids[player]
+		if positions==0:
+			buttonId=player_ids[player]
+		if positions=='S':
+			sbId=player_ids[player]
+		if positions=='B':
+			bbId=player_ids[player]
+	
+	#run a loop for each player preparing the actual values that will be commited to SQL
 	for player in range (len(player_ids)):
 		#set default values
 		myVPIP=False
@@ -1312,6 +1341,31 @@ def calculateHudImport(player_ids, category, action_types, actionTypeByNo, winni
 				myPF3B4BChance=True
 				if pfRaise>firstPfRaise:
 					myPF3B4B=True
+		
+		#myStealAttemptChance myStealAttempted myFoldBbToStealChance myFoldedBbToSteal myFoldSbToStealChance myFoldedSbToSteal
+		#steal calculations
+		if len(player_ids)>=5: #no point otherwise
+			if positions[player]==1:
+				if firstPfRaiserId==player_ids[player]:
+					myStealAttemptChance=True
+					myStealAttempted=True
+				elif firstPfRaiserId==buttonId or firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+					myStealAttemptChance=True
+			if positions[player]==0:
+				if firstPfRaiserId==player_ids[player]:
+					myStealAttemptChance=True
+					myStealAttempted=True
+				elif firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+					myStealAttemptChance=True
+			if positions[player]==S:
+				if firstPfRaiserId==player_ids[player]:
+					myStealAttemptChance=True
+					myStealAttempted=True
+				elif firstPfRaiserId==bbId or firstPfRaiserId==-1:
+					myStealAttemptChance=True
+			if positions[player]==B:
+				pass
+		
 		
 		#calculate saw* values
 		if (len(action_types[1][player])>0):

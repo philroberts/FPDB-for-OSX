@@ -1,31 +1,35 @@
 todolist (db=database, imp=importer, tv=tableviewer)
+Everything is subject to change.
 
-before alpha
-============
-test everything actually works in windows too
-expand instructions for profile file
-verify link in release notes
-
-next
-====
-3B/4B might not be recognised nor counted as chance if someone raised after player called.
-uncomment version checking
-fill steal fields correctly, add to tester and tv
+before alpha2
+=============
+fill steal reaction fields
+add all steal fields to tester and tv
 CB, 2nd/3rd Barrel, fold to these
-
-separate all gui and all processing into files that are named accordingly
-ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
-figure out what slowed it down so much between git19 and git21 (8/9aug)
+printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 auto-import
-why do we have to reconnect in tv.read_names_clicked?
-implement error file in importer
-catch index error, type error, file not found error
+seperate and improve instructions for update
+verify link in release notes
+split install instructions into OS-specific and OS-independent section. expand release creator to concatenate.
+expand instructions for profile file, again, the release-creator will cat it.
+delete old mailing list and create fpdb-announce
 finish updating filelist
-use different colours according to classification.
-table with data for graphs for SD/F, W$wSF, W$@SD
+return sng support
 
 before beta
 ===========
+SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
+show database version error in GUI
+anonymiser script to generate testdata without making a dozen find&replace all...
+separate all gui and all processing into files that are named accordingly
+ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
+figure out what slowed it down so much between git19 and git21 (8/9aug)
+why do we have to reconnect in tv.read_names_clicked?
+implement error file in importer
+catch index error, type error, file not found error
+use different colours according to classification.
+table with data for graphs for SD/F, W$wSF, W$@SD
+
 add stud, razz and tourney back to imp/tv but with less seperate codepathes
 move prepare-git.sh and create-release.sh to utils
 offer not storing db password

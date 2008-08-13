@@ -32,9 +32,9 @@ otherRaisedRiverFold: 1
 wonWhenSeenFlop: 0.0
 wonAtSD: 0.0
 
-stealAttemptChance: not yet implemented
-stealAttempted: not yet implemented
-foldBbToStealChance: not yet implemented
-foldedBbToSteal: not yet implemented
-foldSbToStealChance: not yet implemented
-foldedSbToSteal: not yet implemented
+stealAttemptChance: 0
+stealAttempted: 0
+foldBbToStealChance: 0
+foldedBbToSteal: 0
+foldSbToStealChance: 0
+foldedSbToSteal: 0

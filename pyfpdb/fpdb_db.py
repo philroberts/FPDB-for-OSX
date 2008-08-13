@@ -44,13 +44,13 @@ class fpdb_db:
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
-		#try:
-		#	self.cursor.execute("SELECT * FROM settings")
-		#	settings=self.cursor.fetchone()
-		#	if settings[0]!=21:
-		#		print "outdated database version - please recreate tables"
-		#except:# _mysql_exceptions.ProgrammingError:
-		#	print "failed to read settings table - please recreate tables"
+		try:
+			self.cursor.execute("SELECT * FROM settings")
+			settings=self.cursor.fetchone()
+			if settings[0]!=28:
+				print "outdated database version - please recreate tables"
+		except:# _mysql_exceptions.ProgrammingError:
+			print "failed to read settings table - please recreate tables"
 	#end def connect
 
 	def create_table(self, string):
@@ -281,7 +281,7 @@ class fpdb_db:
 		foldSbToStealChance INT,
 		foldedSbToSteal INT)""")
 		
-		self.cursor.execute("INSERT INTO settings VALUES (21);")
+		self.cursor.execute("INSERT INTO settings VALUES (28);")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()

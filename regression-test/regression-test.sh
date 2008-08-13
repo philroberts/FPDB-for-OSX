@@ -18,8 +18,8 @@
 echo "Please note for this to really work you need to work on an empty database"
 
 rm *.found.txt
-../pyfpdb/fpdb_import.py -p$1 --file=ps-holdem-ring-001to003.txt -x
-../pyfpdb/fpdb_import.py -p$1 --file=ps-holdem-ring-001to003.txt -x
+../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-3hands.txt -x
+../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-3hands.txt -x
 #../pyfpdb/fpdb_import.py -p$1 --file=ftp-stud-hilo-ring-001.txt -x
 #../pyfpdb/fpdb_import.py -p$1 --file=ftp-omaha-hi-pl-ring-001-005.txt -x
 

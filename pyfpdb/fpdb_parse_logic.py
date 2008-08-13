@@ -101,7 +101,7 @@ def mainParser(db, cursor, site, category, hand):
 	totalWinnings=0
 	for i in range(len(winnings)):
 		totalWinnings+=winnings[i]
-	hudImportData=fpdb_simple.calculateHudImport(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings)
+	hudImportData=fpdb_simple.generateHudData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
 	
 	if isTourney:
 		raise fpdb_simple.FpdbError ("tourneys are currently broken")
