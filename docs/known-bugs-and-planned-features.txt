@@ -3,7 +3,7 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-make HudData tables positional
+fold to CB/2B/3B
 move version into seperate file for fpdb gui and db
 auto-import
 seperate and improve instructions for update
@@ -17,6 +17,7 @@ update abbreviations.txt
 fix up bg colours in tv
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 
+verify positionalness of HudData
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 
 alpha3
@@ -31,6 +32,7 @@ fix bug that sawFlop/Turn/River gets miscalculated if someone is allin - might a
 
 before beta
 ===========
+optionally make tv positional
 gentoo ebuild: USE postgresql
 skins
 optionally combine FB/FS and CB/2B/3B 

@@ -543,6 +543,11 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>int</P></TD>
 		<TD><P>Player used chance to make third barrel bet</P></TD>
 	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>position</P></TD>
+		<TD><P>char(1)</P></TD>
+		<TD><P>Position for which this row applies. In this table this can be B(BB), S(SB), D(Dealer/Button), C(Cutoff), M(Middle - the 3 before cutoff) or E (Early - the 3 before Middle)</P></TD>
+	</TR>
 </TABLE>
 <P></P>
 <P><B>Table HandsActions</B></P>
@@ -622,102 +627,47 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>buyin</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>Buy-in in cents. Without rebuy/add-on</P>
-		</TD>
+		<TD><P>buyin</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Buy-in in cents. Without rebuy/add-on</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>fee</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>fee</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>knockout</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>knockout</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>entries</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>-1 if unknown</P>
-		</TD>
+		<TD><P>entries</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>-1 if unknown</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>prizepool</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<p>Need
-			this as separate field to support rebuy/addon</P>
-			<P>-1 if unknown</P>
-		</TD>
+		<TD><P>prizepool</P></TD>
+		<TD><P>int</P></TD>
+		<TD><p>Need this as separate field to support rebuy/addon</P><P>-1 if unknown</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>startTime</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P>Empty if unknown</P>
-		</TD>
+		<TD><P>startTime</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P>Empty if unknown</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment</P>
-		</TD>
-		<TD>
-			<P>text</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment</P></TD>
+		<TD><P>text</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>commentTs</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>commentTs</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
+<p><BR></P>
 <p><B>Table TourneysPlayers</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
@@ -736,71 +686,34 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>References Tourneys.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>playerId</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>References Players.id</P>
-		</TD>
+		<TD><P>playerId</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>References Players.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>payinAmount</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>Buyin, fee, rebuys and add-ons</P>
-		</TD>
+		<TD><P>payinAmount</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Buyin, fee, rebuys and add-ons</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>rank</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>Finishing rank</P>
-		</TD>
+		<TD><P>rank</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Finishing rank</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>winnings</P>
-		</TD>
-		<TD>
-			<P>signed int</P>
-		</TD>
-		<TD>
-			<P>Winnings (not profit) by this player, -1 if unknown.</P>
-		</TD>
+		<TD><P>winnings</P></TD>
+		<TD><P>signed int</P></TD>
+		<TD><P>Winnings (not profit) by this player, -1 if unknown.</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment</P>
-		</TD>
-		<TD>
-			<P>text</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>comment</P></TD>
+		<TD><P>text</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>commentTs</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P><BR></P>
-		</TD>
+		<TD><P>commentTs</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
 </BODY>

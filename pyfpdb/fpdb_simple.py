@@ -1247,6 +1247,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	wonAtSD=[]
 	stealAttemptChance=[]
 	stealAttempted=[]
+	hudDataPositions=[]
 	
 	firstPfRaiseByNo=-1
 	firstPfRaiserId=-1
@@ -1456,6 +1457,21 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		wonAtSD.append(myWonAtSD)
 		stealAttemptChance.append(myStealAttemptChance)
 		stealAttempted.append(myStealAttempted)
+		pos=positions[player]
+		if pos=='B':
+			hudDataPositions.append('B')
+		elif pos=='S':
+			hudDataPositions.append('S')
+		elif pos==0:
+			hudDataPositions.append('D')
+		elif pos==1:
+			hudDataPositions.append('C')
+		elif pos>=2 and pos<=4:
+			hudDataPositions.append('M')
+		elif pos>=5 and pos<=7:
+			hudDataPositions.append('L')
+		else:
+			raise FpdbError("invalid position")
 	
 	#add each array to the to-be-returned dictionary
 	result={'VPIP':VPIP}
@@ -1564,13 +1580,14 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	result['thirdBarrelChance']=thirdBarrelChance
 	result['thirdBarrelDone']=thirdBarrelDone
 	
+	result['position']=hudDataPositions	
 	return result
 #end def calculateHudImport
 
 def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		for player in range (len(playerIds)):
-			cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
+			cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
 			row=cursor.fetchone()
 			#print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
 			
@@ -1589,6 +1606,7 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 				row.append(0)#HDs
 				for i in range(len(hudImportData)):
 					row.append(0)
+				
 			else:
 				doInsert=False
 				newrow=[]
@@ -1629,17 +1647,18 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 			if hudImportData['secondBarrelDone'][player]: row[33]+=1
 			if hudImportData['thirdBarrelChance'][player]: row[34]+=1
 			if hudImportData['thirdBarrelDone'][player]: row[35]+=1
-				
+			row[36]=hudImportData['position'][player]
+			
 			if doInsert:
 				#print "playerid before insert:",row[2]
 				cursor.execute("""INSERT INTO HudDataHoldemOmaha
-					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4BChance, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold, wonWhenSeenFlop, wonAtSD, stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal, contBetChance, contBetDone, secondBarrelChance, secondBarrelDone, thirdBarrelChance, thirdBarrelDone)
-					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35]))
+					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4BChance, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold, wonWhenSeenFlop, wonAtSD, stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal, contBetChance, contBetDone, secondBarrelChance, secondBarrelDone, thirdBarrelChance, thirdBarrelDone, position)
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36]))
 			else:
 				#print "storing updated hud data line"
 				cursor.execute("""UPDATE HudDataHoldemOmaha
 					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4BChance=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s, wonWhenSeenFlop=%s, wonAtSD=%s, stealAttemptChance=%s, stealAttempted=%s, foldBbToStealChance=%s, foldedBbToSteal=%s, foldSbToStealChance=%s, foldedSbToSteal=%s, contBetChance=%s, contBetDone=%s, secondBarrelChance=%s, secondBarrelDone=%s, thirdBarrelChance=%s, thirdBarrelDone=%s
-					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[1], row[2], row[3]))
+					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[1], row[2], row[3], row[36]))
 	else:
 		raise FpdbError("todo")
 #end def storeHudData

@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=35:
+			if settings[0]!=38:
 				print "outdated database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -111,19 +111,19 @@ class fpdb_db:
 			self.cursor.execute("DROP TABLE IF EXISTS players;")
 			self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
 			self.cursor.execute("DROP TABLE IF EXISTS sites;")
-		else:
-			self.cursor.execute("DROP TABLE IF EXISTS Settings;")
-			self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-			self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
-			self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
-			self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
-			self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
-			self.cursor.execute("DROP TABLE IF EXISTS Hands;")
-			self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
-			self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
-			self.cursor.execute("DROP TABLE IF EXISTS Players;")
-			self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
-			self.cursor.execute("DROP TABLE IF EXISTS Sites;")
+		
+		self.cursor.execute("DROP TABLE IF EXISTS Settings;")
+		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+		self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
+		self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
+		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
+		self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
+		self.cursor.execute("DROP TABLE IF EXISTS Hands;")
+		self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
+		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
+		self.cursor.execute("DROP TABLE IF EXISTS Players;")
+		self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
+		self.cursor.execute("DROP TABLE IF EXISTS Sites;")
 		
 		self.db.commit()
 	#end def drop_tables
@@ -305,9 +305,11 @@ class fpdb_db:
 		secondBarrelChance INT,
 		secondBarrelDone INT,
 		thirdBarrelChance INT,
-		thirdBarrelDone INT)""")
+		thirdBarrelDone INT,
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (35);")
+		position CHAR(1))""")
+		
+		self.cursor.execute("INSERT INTO Settings VALUES (38);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()
