@@ -86,32 +86,45 @@ class fpdb_db:
 	
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
-		#todo: run the below if current db is git34 or lower
-		self.cursor.execute("DROP TABLE IF EXISTS settings;")
-		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-		self.cursor.execute("DROP TABLE IF EXISTS autorates;")
-		self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
-		self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
-		self.cursor.execute("DROP TABLE IF EXISTS hands_players;")
-		self.cursor.execute("DROP TABLE IF EXISTS hands;")
-		self.cursor.execute("DROP TABLE IF EXISTS tourneys_players;")
-		self.cursor.execute("DROP TABLE IF EXISTS tourneys;")
-		self.cursor.execute("DROP TABLE IF EXISTS players;")
-		self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
-		self.cursor.execute("DROP TABLE IF EXISTS sites;")
-
-		self.cursor.execute("DROP TABLE IF EXISTS Settings;")
-		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-		self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
-		self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
-		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
-		self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
-		self.cursor.execute("DROP TABLE IF EXISTS Hands;")
-		self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
-		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
-		self.cursor.execute("DROP TABLE IF EXISTS Players;")
-		self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
-		self.cursor.execute("DROP TABLE IF EXISTS Sites;")
+		oldDbVersion=0
+		try:
+			self.cursor.execute("SELECT * FROM settings") #for alpha1
+			oldDbVersion=self.cursor.fetchone()[0]
+		except:# _mysql_exceptions.ProgrammingError:
+			pass
+		try:
+			self.cursor.execute("SELECT * FROM Settings")
+			oldDbVersion=self.cursor.fetchone()[0]
+		except:# _mysql_exceptions.ProgrammingError:
+			pass
+		
+		if oldDbVersion<=34:
+			self.cursor.execute("DROP TABLE IF EXISTS settings;")
+			self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+			self.cursor.execute("DROP TABLE IF EXISTS autorates;")
+			self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
+			self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
+			self.cursor.execute("DROP TABLE IF EXISTS hands_players;")
+			self.cursor.execute("DROP TABLE IF EXISTS hands;")
+			self.cursor.execute("DROP TABLE IF EXISTS tourneys_players;")
+			self.cursor.execute("DROP TABLE IF EXISTS tourneys;")
+			self.cursor.execute("DROP TABLE IF EXISTS players;")
+			self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
+			self.cursor.execute("DROP TABLE IF EXISTS sites;")
+		else:
+			self.cursor.execute("DROP TABLE IF EXISTS Settings;")
+			self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+			self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
+			self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
+			self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
+			self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
+			self.cursor.execute("DROP TABLE IF EXISTS Hands;")
+			self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
+			self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
+			self.cursor.execute("DROP TABLE IF EXISTS Players;")
+			self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
+			self.cursor.execute("DROP TABLE IF EXISTS Sites;")
+		
 		self.db.commit()
 	#end def drop_tables
 	

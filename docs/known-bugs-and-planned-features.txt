@@ -3,9 +3,8 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-make table drops depending on previous db version
+make HudData tables positional
 move version into seperate file for fpdb gui and db
-printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 auto-import
 seperate and improve instructions for update
 verify link in release notes
@@ -17,6 +16,8 @@ return sng support
 update abbreviations.txt
 fix up bg colours in tv
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
+
+printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 
 alpha3
 ======
@@ -91,7 +92,6 @@ recognise somewhere if a file is still active and if so keep it open and only re
 
 can wait till 1.x
 =================
-positional stats in HUD
 return full ftp functionality
 in all importer: stop doing if site=="ftp", make class constants for site_id instead
 finish cleaning tabledesign html code
