@@ -3,6 +3,7 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
+move version into seperate file for fpdb gui and db
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 auto-import
 seperate and improve instructions for update

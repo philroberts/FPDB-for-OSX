@@ -20,7 +20,7 @@ Copyright 2008 Steffen Jobbagy-Felso<br>
 Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 as published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and with no Back-Cover Texts. A copy of the license can be found in fdl-1.2.txt<br>
 The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 <p>See readme.txt for copying</P>
-<p><B>Table settings</B></P>
+<p><B>Table Settings</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field name</P></TD>
@@ -33,8 +33,7 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>the git version of the database (ie. table design changes and major bugfixes require a bump)</P></TD>
 	</TR>
 </TABLE>
-<p><B>Table
-players</B></P>
+<p><B>Table Players</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field name</P></TD>
@@ -52,9 +51,9 @@ players</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>site_id</P></TD>
+		<TD><P>siteId</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><P>references sites.id</P></TD>
+		<TD><P>references Sites.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>comment</P></TD>
@@ -62,14 +61,13 @@ players</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>comment_ts</P></TD>
+		<TD><P>commentTs</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>
-<p><B>Table
-autorates</B></P>
+<p><B>Table Autorates</B></P>
 <p>An autorating is a computer-&quot;recognised&quot; label/category for a player. Examples could include &quot;Calling Station&quot; if a player has &lt;20% each for aggression and folding postflop. Or &quot;Tight-Aggressive/Aggressive&quot; for players with &lt;20% VPIP, &gt;10% PFR and &gt;40% postflop aggression.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
@@ -83,14 +81,14 @@ autorates</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>player_id</P></TD>
+		<TD><P>playerId</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>references players.id</P></TD>
+		<TD><P>references Players.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>gametype_id</P></TD>
+		<TD><P>gametypeId</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><P>references gametypes.id</P></TD>
+		<TD><P>references Gametypes.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>description</P></TD>
@@ -98,23 +96,23 @@ autorates</B></P>
 		<TD><P>autorating description</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>short_desc</P></TD>
+		<TD><P>shortDesc</P></TD>
 		<TD><P>char(8)</P></TD>
 		<TD><P>short description e.g. for display in HUD</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>rating_time</P></TD>
+		<TD><P>ratingTime</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P>timestamp of rating</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>hand_count</P></TD>
+		<TD><P>handCount</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands rating is based on</P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>
-<p><B>Table gametypes</B></P>
+<p><B>Table Gametypes</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field name</P></TD>
@@ -127,7 +125,7 @@ autorates</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>site_id</P></TD>
+		<TD><P>siteId</P></TD>
 		<TD><P>smallint</P></TD>
 		<TD><P>references sites.id</P></TD>
 	</TR>
@@ -150,7 +148,7 @@ autorates</B></P>
 			studhl=7 Card Stud 8 orbetter</p></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>limit_type</P></TD>
+		<TD><P>limitType</P></TD>
 		<TD><P>char(2)</P></TD>
 		<TD><p>nl=No Limit<br>
 			cn=Cap No Limit<br>
@@ -159,28 +157,28 @@ autorates</B></P>
 			fl=Fixed Limit</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>small_blind</P></TD>
+		<TD><P>smallBlind</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>big_blind</P></TD>
+		<TD><P>bigBlind</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>small_bet</P></TD>
+		<TD><P>smallBet</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>big_bet</P></TD>
+		<TD><P>bigBet</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>
-<p><B>Table sites</B></P>
+<p><B>Table Sites</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field name</P></TD>
@@ -204,7 +202,7 @@ autorates</B></P>
 	</TR>
 </TABLE>
 <p><BR></P>
-<p><B>Table hands</B></P>
+<p><B>Table Hands</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field Name</P></TD>
@@ -217,17 +215,17 @@ autorates</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>site_hand_no</P></TD>
+		<TD><P>siteHandNo</P></TD>
 		<TD><P>bigint</P></TD>
 		<TD><P>the site's hand number</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>gametype_id</P></TD>
+		<TD><P>gametypeId</P></TD>
 		<TD><P>smallint</P></TD>
 		<TD><P>references gametypes.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>hand_start</P></TD>
+		<TD><P>handStart</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P>start date&amp;time of the hand</P></TD>
 	</TR>
@@ -242,145 +240,119 @@ autorates</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>comment_ts</P></TD>
+		<TD><P>commentTs</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>
-<p><B>Table board_cards</B></P>
+<p><B>Table BoardCards</B></P>
 <p>cardX -&gt; can be 1 through 5</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field Name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field Name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>hand_id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P>the site's hand number</P>
-		</TD>
+		<TD><P>handId</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P>the site's hand number</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>cardX_value</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>2-10=2-10, J=11, Q=12,
-			K=13, A=14 (even in razz), unknown/no card=x</P>
-		</TD>
+		<TD><P>cardXValue</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>cardX_suit</P>
-		</TD>
-		<TD>
-			<P>char(1)</P>
-		</TD>
-		<TD>
-			<P>h=hearts, s=spades,
-			d=diamonds, c=clubs, unknown/no card=x</P>
-		</TD>
+		<TD><P>cardXSuit</P></TD>
+		<TD><P>char(1)</P></TD>
+		<TD><P>h=hearts, s=spades, d=diamonds, c=clubs, unknown/no card=x</P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
-<p><B>Table hands_players</B></P>
+<p><BR></P>
+<p><B>Table HandsPlayers</B></P>
 <p>cardX: can be 1 through 7, one for each card. In holdem/omaha this stores the hole cards so 3-7 or 5-7 are empty</P>
 <p>I did not separate this into an extra table because I felt the lost space is not sufficiently large. Also the benefit for searching is far less relevant.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	<TR VALIGN=TOP><TD><P>Field Name</P></TD><TD><P>Type</P></TD><TD><P>Comment</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>id</P></TD><TD><P>bigint</P></TD><TD><P><BR></P></TD></TR>
-	<TR VALIGN=TOP><TD><P>hand_id</P></TD><TD><P>bigint</P></TD><TD><P>references hands_stud.id</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>player_id</P></TD><TD><P>int</P></TD><TD><P>references players.id</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>player_startcash</P></TD><TD><P>int</P></TD><TD><P><BR></P></TD></TR>
-	<TR VALIGN=TOP><TD><P>position</P></TD><TD><P>char(1)</P></TD>
+	<TR VALIGN=TOP>
+		<TD><P>Field Name</P></TD>
+		<TD><P>Type</P></TD><TD>
+		<P>Comment</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>handId</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P>references Hands.id</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>playerId</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>references Players.id</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>startCash</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD></TR>
+	<TR VALIGN=TOP>
+		<TD><P>position</P></TD>
+		<TD><P>char(1)</P></TD>
 		<TD><p>BB=B, SB=S, Button=0, Cutoff=1, etc.</P>
-			<P>This is used in holdem/omaha only.</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>ante</P></TD><TD><P>int</P></TD><TD><P>note: for cash this couldbe boolean, but in tourneys you may enter a hand with less thanthe full ante</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>cardX_value</P></TD><TD><P>smallint</P></TD>
+			<P>This is used in holdem/omaha only.</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>ante</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>note: for cash this could be boolean, but in tourneys you may enter a hand with less than the full ante</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>cardXValue</P></TD>
+		<TD><P>smallint</P></TD>
 		<TD><p>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P>
-			<P>see note above table</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>cardX_suit</P></TD><TD><P>char(1)</P></TD><TD><P>h=hearts, s=spades, d=diamonds, c=clubs, unknown/no card=x</P></TD></TR>
-	<TR VALIGN=TOP><TD><P>winnings</P></TD><TD><P>int</P></TD><TD><P>winnings in this hand (bets, antes, etc. are NOT deducted, but rake already is)</P></TD></TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>rake</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>rake for this player for
-			this hand</P>
-		</TD>
+			<P>see note above table</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment</P>
-		</TD>
-		<TD>
-			<P>text</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>cardXSuit</P></TD>
+		<TD><P>char(1)</P></TD>
+		<TD><P>h=hearts, s=spades, d=diamonds, c=clubs, unknown/no card=x</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>comment_ts</P>
-		</TD>
-		<TD>
-			<P>datetime (in UTC)</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>winnings</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>winnings in this hand (bets, antes, etc. are NOT deducted, but rake already is)</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>tourneys_players_id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P>references
-			tourneys_players.id</P>
-		</TD>
+		<TD><P>rake</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>rake for this player for this hand</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>comment</P></TD>
+		<TD><P>text</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>commentTs</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>tourneysPlayersId</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P>references TourneysPlayers.id</P></TD>
 	</TR>
 </TABLE>
-<p><BR>
-</P>
+<p><BR></P>
 <P><B>Table HudDataHoldemOmaha</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
@@ -573,7 +545,7 @@ autorates</B></P>
 	</TR>
 </TABLE>
 <P></P>
-<P><B>Table hands_actions</B></P>
+<P><B>Table HandsActions</B></P>
 <p>Did separate this into an extra table because it makes SELECTing across different streets so much easier. Also the space saving will be very large.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
@@ -587,9 +559,9 @@ autorates</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>hand_player_id</P></TD>
+		<TD><P>handPlayerId</P></TD>
 		<TD><P>bigint</P></TD>
-		<TD><P>references hands_players.id</P></TD>
+		<TD><P>references HandsPlayers.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>street</P></TD>
@@ -597,7 +569,7 @@ autorates</B></P>
 		<TD><p>street number, 0-3 (preflop, flop, turn, river) for holdem/omaha or 0-4 for razz/stud</P><P>-1 for seen showdown</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>action_no</P></TD>
+		<TD><P>actionNo</P></TD>
 		<TD><P>smallint</P></TD>
 		<TD><P>action number, this is counted from zero for each street but across all players (e.g. in a heads up where the SB calls and the BB raises and the SB calls again would have numbers 0 and 1 for blinds, 2 and 4 for call and 3 for bet)<br>
 			Note that the blinds are counted as an action, so if the SB stays in the hand it'll always be action #0</P></TD>
@@ -619,7 +591,7 @@ autorates</B></P>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>comment_ts</P></TD>
+		<TD><P>commentTs</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
@@ -627,53 +599,27 @@ autorates</B></P>
 <p><BR></P>
 <p><B>Tournament Tables</B></P>
 <p><BR></P>
-<p><B>Table tourneys</B></P>
+<p><B>Table Tourneys</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>id</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>site_id</P>
-		</TD>
-		<TD>
-			<P>smallint</P>
-		</TD>
-		<TD>
-			<P>References sites.id</P>
-		</TD>
+		<TD><P>siteId</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>References Sites.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD>
-			<P>site_tourney_no</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
+		<TD><P>siteTourneyNo</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
@@ -683,8 +629,7 @@ autorates</B></P>
 			<P>int</P>
 		</TD>
 		<TD>
-			<P>Buy-in in cents. Without
-			rebuy/add-on</P>
+			<P>Buy-in in cents. Without rebuy/add-on</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -737,7 +682,7 @@ autorates</B></P>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
-			<P>start_time</P>
+			<P>startTime</P>
 		</TD>
 		<TD>
 			<P>datetime (in UTC)</P>
@@ -760,7 +705,7 @@ autorates</B></P>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
-			<P>comment_ts</P>
+			<P>commentTs</P>
 		</TD>
 		<TD>
 			<P>datetime (in UTC)</P>
@@ -773,67 +718,43 @@ autorates</B></P>
 </TABLE>
 <p><BR>
 </P>
-<p><B>Table
-tourneys_players</B></P>
+<p><B>Table TourneysPlayers</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
-	
-	
-	
 	<TR VALIGN=TOP>
-		<TD>
-			<P>Field Name</P>
-		</TD>
-		<TD>
-			<P>Type</P>
-		</TD>
-		<TD>
-			<P>Comment</P>
-		</TD>
+		<TD><P>Field Name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>id</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>tourneyId</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>References Tourneys.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
-			<P>id</P>
-		</TD>
-		<TD>
-			<P>bigint</P>
-		</TD>
-		<TD>
-			<P><BR>
-			</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>tourney_id</P>
+			<P>playerId</P>
 		</TD>
 		<TD>
 			<P>int</P>
 		</TD>
 		<TD>
-			<P>References tourneys.id</P>
+			<P>References Players.id</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
-			<P>player_id</P>
+			<P>payinAmount</P>
 		</TD>
 		<TD>
 			<P>int</P>
 		</TD>
 		<TD>
-			<P>References players.id</P>
-		</TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD>
-			<P>payin_amount</P>
-		</TD>
-		<TD>
-			<P>int</P>
-		</TD>
-		<TD>
-			<P>Buyin, fee, rebuys and
-			add-ons</P>
+			<P>Buyin, fee, rebuys and add-ons</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -855,8 +776,7 @@ tourneys_players</B></P>
 			<P>signed int</P>
 		</TD>
 		<TD>
-			<P>Winnings (not profit) by
-			this player, -1 if unknown.</P>
+			<P>Winnings (not profit) by this player, -1 if unknown.</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -873,14 +793,13 @@ tourneys_players</B></P>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD>
-			<P>comment_ts</P>
+			<P>commentTs</P>
 		</TD>
 		<TD>
 			<P>datetime (in UTC)</P>
 		</TD>
 		<TD>
-			<P><BR>
-			</P>
+			<P><BR></P>
 		</TD>
 	</TR>
 </TABLE>

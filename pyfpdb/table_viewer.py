@@ -177,26 +177,26 @@ class table_viewer (threading.Thread):
 		#print "self.last_read_hand:",self.last_read_hand
 		self.db.reconnect()
 		self.cursor=self.db.cursor
-		self.cursor.execute("""SELECT id FROM hands WHERE site_hand_no=%s""", (self.last_read_hand))
+		self.cursor.execute("""SELECT id FROM Hands WHERE siteHandNo=%s""", (self.last_read_hand))
 		hands_id_tmp=self.db.cursor.fetchone()
 		#print "tmp:",hands_id_tmp
 		self.hands_id=hands_id_tmp[0]
 
-		self.db.cursor.execute("SELECT gametype_id FROM hands WHERE id=%s", (self.hands_id, ))
+		self.db.cursor.execute("SELECT gametypeId FROM Hands WHERE id=%s", (self.hands_id, ))
 		self.gametype_id=self.db.cursor.fetchone()[0]
-		self.cursor.execute("SELECT category FROM gametypes WHERE id=%s", (self.gametype_id, ))
+		self.cursor.execute("SELECT category FROM Gametypes WHERE id=%s", (self.gametype_id, ))
 		self.category=self.db.cursor.fetchone()[0]
 		#print "self.gametype_id", self.gametype_id,"  category:", self.category, "  self.hands_id:", self.hands_id
 		
-		self.db.cursor.execute("""SELECT DISTINCT players.id FROM hands_players
-				INNER JOIN players ON hands_players.player_id=players.id
-				WHERE hand_id=%s""", (self.hands_id, ))
+		self.db.cursor.execute("""SELECT DISTINCT Players.id FROM HandsPlayers
+				INNER JOIN Players ON HandsPlayers.playerId=Players.id
+				WHERE handId=%s""", (self.hands_id, ))
 		self.player_ids=self.db.cursor.fetchall()
 		#print "self.player_ids:",self.player_ids
 		
-		self.db.cursor.execute("""SELECT DISTINCT players.name FROM hands_players
-				INNER JOIN players ON hands_players.player_id=players.id
-				WHERE hand_id=%s""", (self.hands_id, ))
+		self.db.cursor.execute("""SELECT DISTINCT Players.name FROM HandsPlayers
+				INNER JOIN Players ON HandsPlayers.playerId=Players.id
+				WHERE handId=%s""", (self.hands_id, ))
 		self.player_names=self.db.cursor.fetchall()
 		#print "self.player_names:",self.player_names
 	#end def table_viewer.read_names_clicked

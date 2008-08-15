@@ -94,7 +94,7 @@ def mainParser(db, cursor, site, category, hand):
 		fpdb_simple.convertBlindBet(actionTypes, actionAmounts)
 		fpdb_simple.checkPositions(positions)
 		
-	cursor.execute("SELECT limit_type FROM gametypes WHERE id=%s",(gametypeID, ))
+	cursor.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
 	limit_type=cursor.fetchone()[0]
 	fpdb_simple.convert3B4B(site, category, limit_type, actionTypes, actionAmounts)
 	

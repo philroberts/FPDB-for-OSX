@@ -45,9 +45,9 @@ class fpdb_db:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
 		try:
-			self.cursor.execute("SELECT * FROM settings")
+			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=33:
+			if settings[0]!=35:
 				print "outdated database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -86,30 +86,43 @@ class fpdb_db:
 	
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
-		self.cursor.execute("DROP TABLE IF EXISTS settings;")
-		
+		#todo: run the below if current db is git34 or lower
+		#self.cursor.execute("DROP TABLE IF EXISTS settings;")
+		#self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+		#self.cursor.execute("DROP TABLE IF EXISTS autorates;")
+		#self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
+		#self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
+		#self.cursor.execute("DROP TABLE IF EXISTS hands_players;")
+		#self.cursor.execute("DROP TABLE IF EXISTS hands;")
+		#self.cursor.execute("DROP TABLE IF EXISTS tourneys_players;")
+		#self.cursor.execute("DROP TABLE IF EXISTS tourneys;")
+		#self.cursor.execute("DROP TABLE IF EXISTS players;")
+		#self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
+		#self.cursor.execute("DROP TABLE IF EXISTS sites;")
+
+		self.cursor.execute("DROP TABLE IF EXISTS Settings;")
 		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-		self.cursor.execute("DROP TABLE IF EXISTS autorates;")
-		self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
-		self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
-		self.cursor.execute("DROP TABLE IF EXISTS hands_players;")
-		self.cursor.execute("DROP TABLE IF EXISTS hands;")
-		self.cursor.execute("DROP TABLE IF EXISTS tourneys_players;")
-		self.cursor.execute("DROP TABLE IF EXISTS tourneys;")
-		self.cursor.execute("DROP TABLE IF EXISTS players;")
-		self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
-		self.cursor.execute("DROP TABLE IF EXISTS sites;")
+		self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
+		self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
+		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
+		self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
+		self.cursor.execute("DROP TABLE IF EXISTS Hands;")
+		self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
+		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
+		self.cursor.execute("DROP TABLE IF EXISTS Players;")
+		self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
+		self.cursor.execute("DROP TABLE IF EXISTS Sites;")
 		self.db.commit()
 	#end def drop_tables
 	
 	def get_backend_name(self):
 		"""Returns the name of the currently used backend"""
-		if self.backend==1:
-			return "MySQL normal"
-		elif self.backend==2:
+		if self.backend==2:
 			return "MySQL InnoDB"
 		elif self.backend==3:
 			return "PostgreSQL"
+		else:
+			raise fpdb_simple.FpdbError("invalid backend")
 	#end def get_backend_name
 	
 	def get_db_info(self):
@@ -120,139 +133,131 @@ class fpdb_db:
 		"""(Re-)creates the tables of the current DB"""
 		self.drop_tables()
 		
-		self.create_table("""settings (
+		self.create_table("""Settings (
 		version SMALLINT)""")
 		
-		self.create_table("""sites (
+		self.create_table("""Sites (
 		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		name varchar(32),
 		currency char(3))""")
 		
-		self.create_table("""gametypes (
+		self.create_table("""Gametypes (
 		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		site_id SMALLINT UNSIGNED, FOREIGN KEY (site_id) REFERENCES sites(id),
+		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
 		type char(4),
 		category varchar(9),
-		limit_type char(2),
-		small_blind int,
-		big_blind int,
-		small_bet int,
-		big_bet int)""")
+		limitType char(2),
+		smallBlind int,
+		bigBlind int,
+		smallBet int,
+		bigBet int)""")
 		
-		self.create_table("""players (
+		self.create_table("""Players (
 		id INT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		name VARCHAR(32) CHARACTER SET utf8,
-		site_id SMALLINT UNSIGNED, FOREIGN KEY (site_id) REFERENCES sites(id),
+		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
 		comment text,
-		comment_ts DATETIME)""")
+		commentTs DATETIME)""")
 		
-		self.create_table("""autorates (
+		self.create_table("""Autorates (
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		player_id INT UNSIGNED, FOREIGN KEY (player_id) REFERENCES players(id),
-		gametype_id SMALLINT UNSIGNED, FOREIGN KEY (gametype_id) REFERENCES gametypes(id),
+		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
+		gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
 		description varchar(50),
-		short_desc char(8),
-		rating_time DATETIME,
-		hand_count int)""")
+		shortDesc char(8),
+		ratingTime DATETIME,
+		handCount int)""")
 
-		self.create_table("""hands (
+		self.create_table("""Hands (
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		site_hand_no bigint,
-		gametype_id SMALLINT UNSIGNED, FOREIGN KEY (gametype_id) REFERENCES gametypes(id),
-		hand_start DATETIME,
+		siteHandNo bigint,
+		gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+		handStart DATETIME,
 		seats smallint,
 		comment text,
-		comment_ts DATETIME)""")
+		commentTs DATETIME)""")
 
-		self.create_table("""board_cards (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT,
-		PRIMARY KEY (id),
-		hand_id BIGINT UNSIGNED,
-		FOREIGN KEY (hand_id) REFERENCES hands(id),
-		card1_value smallint,
-		card1_suit char(1),
-		card2_value smallint,
-		card2_suit char(1),
-		card3_value smallint,
-		card3_suit char(1),
-		card4_value smallint,
-		card4_suit char(1),
-		card5_value smallint,
-		card5_suit char(1))""")
+		self.create_table("""BoardCards (
+		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
+		handId BIGINT UNSIGNED, FOREIGN KEY (handId) REFERENCES Hands(id),
+		card1Value smallint,
+		card1Suit char(1),
+		card2Value smallint,
+		card2Suit char(1),
+		card3Value smallint,
+		card3Suit char(1),
+		card4Value smallint,
+		card4Suit char(1),
+		card5Value smallint,
+		card5Suit char(1))""")
 
-		self.create_table("""tourneys (
+		self.create_table("""Tourneys (
 		id INT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		site_id SMALLINT UNSIGNED, FOREIGN KEY (site_id) REFERENCES sites(id),
-		site_tourney_no BIGINT,
+		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
+		siteTourneyNo BIGINT,
 		buyin INT,
 		fee INT,
 		knockout INT,
 		entries INT,
 		prizepool INT,
-		start_time DATETIME,
+		startTime DATETIME,
 		comment TEXT,
-		comment_ts DATETIME)""")
+		commentTs DATETIME)""")
 
-		self.create_table("""tourneys_players (
+		self.create_table("""TourneysPlayers (
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		tourney_id INT UNSIGNED, FOREIGN KEY (tourney_id) REFERENCES tourneys(id),
-		player_id INT UNSIGNED, FOREIGN KEY (player_id) REFERENCES players(id),
-		payin_amount INT,
+		tourneyId INT UNSIGNED, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
+		payinAmount INT,
 		rank INT,
 		winnings INT,
 		comment TEXT,
-		comment_ts DATETIME)""")
+		commentTs DATETIME)""")
 
-		self.create_table("""hands_players (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT,
-		PRIMARY KEY (id),
-		hand_id BIGINT UNSIGNED,
-		FOREIGN KEY (hand_id) REFERENCES hands(id),
-		player_id INT UNSIGNED,
-		FOREIGN KEY (player_id) REFERENCES players(id),
-		player_startcash int,
+		self.create_table("""HandsPlayers (
+		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
+		handId BIGINT UNSIGNED, FOREIGN KEY (handId) REFERENCES Hands(id),
+		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
+		startCash int,
 		position char(1),
 		ante int,
 	
-		card1_value smallint,
-		card1_suit char(1),
-		card2_value smallint,
-		card2_suit char(1),
-		card3_value smallint,
-		card3_suit char(1),
-		card4_value smallint,
-		card4_suit char(1),
-		card5_value smallint,
-		card5_suit char(1),
-		card6_value smallint,
-		card6_suit char(1),
-		card7_value smallint,
-		card7_suit char(1),
+		card1Value smallint,
+		card1Suit char(1),
+		card2Value smallint,
+		card2Suit char(1),
+		card3Value smallint,
+		card3Suit char(1),
+		card4Value smallint,
+		card4Suit char(1),
+		card5Value smallint,
+		card5Suit char(1),
+		card6Value smallint,
+		card6Suit char(1),
+		card7Value smallint,
+		card7Suit char(1),
 	
 		winnings int,
 		rake int,
 		comment text,
-		comment_ts DATETIME,
+		commentTs DATETIME,
 	
-		tourneys_players_id BIGINT UNSIGNED,
-		FOREIGN KEY (tourneys_players_id) REFERENCES tourneys_players(id))""")
+		tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))""")
 
-		self.create_table("""hands_actions (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT,
-		PRIMARY KEY (id),
-		hand_player_id BIGINT UNSIGNED,
-		FOREIGN KEY (hand_player_id) REFERENCES hands_players(id),
+		self.create_table("""HandsActions (
+		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
+		handPlayerId BIGINT UNSIGNED, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
 		street SMALLINT,
-		action_no SMALLINT,
+		actionNo SMALLINT,
 		action CHAR(5),
 		amount INT,
 		comment TEXT,
-		comment_ts DATETIME)""")
+		commentTs DATETIME)""")
 		
 		self.create_table("""HudDataHoldemOmaha (
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES gametypes(id),
-		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES players(id),
+		gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
 		activeSeats SMALLINT,
 		HDs INT,
 		VPIP INT,
@@ -289,9 +294,9 @@ class fpdb_db:
 		thirdBarrelChance INT,
 		thirdBarrelDone INT)""")
 		
-		self.cursor.execute("INSERT INTO settings VALUES (34);")
-		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
-		self.cursor.execute("INSERT INTO sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
+		self.cursor.execute("INSERT INTO Settings VALUES (35);")
+		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
+		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()
 		print "finished recreating tables"
 	#end def recreate_tables
