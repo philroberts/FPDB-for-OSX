@@ -37,10 +37,9 @@ def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time,
 	return site_hand_no
 #end def ring_stud
 
-#stores a holdem/omaha hand into the database
-def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time,
-			names, player_ids, start_cashes, positions, card_values, card_suits,
-			board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData):
+def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time, names, player_ids, start_cashes, positions, card_values, card_suits, board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData):
+	"""stores a holdem/omaha hand into the database"""
+	
 	#fill up the two player card arrays
 	if (category=="holdem"):
 		fpdb_simple.fillCardArrays(len(names), 2, card_values, card_suits)
@@ -64,13 +63,9 @@ def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_ti
 	return site_hand_no
 #end def ring_holdem_omaha
 
-def tourney_holdem_omaha(cursor, category, site_tourney_no, buyin, fee, knockout, entries, prizepool,
-			    tourney_start, payin_amounts, ranks, #end of tourney specific params
-			    site_hand_no, site_id, gametype_id, hand_start_time, names, player_ids,
-			    start_cashes, positions, card_values, card_suits,
-			    board_values, board_suits, winnings, rakes,
-			    action_types, action_amounts, hudImportData):
-#stores a tourney stud/razz hand into the database
+def tourney_holdem_omaha(cursor, category, site_tourney_no, buyin, fee, knockout, entries, prizepool, tourney_start, payin_amounts, ranks, #end of tourney specific params
+			site_hand_no, gametype_id, hand_start_time, names, player_ids, start_cashes, positions, card_values, card_suits, board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData):
+	"""stores a tourney holdem/omaha hand into the database"""
 	#fill up the two player card arrays
 	if (category=="holdem"):
 		fpdb_simple.fillCardArrays(len(names), 2, card_values, card_suits)

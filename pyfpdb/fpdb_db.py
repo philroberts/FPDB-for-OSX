@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=38:
+			if settings[0]!=39:
 				print "outdated database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -119,6 +119,7 @@ class fpdb_db:
 		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
 		self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
 		self.cursor.execute("DROP TABLE IF EXISTS Hands;")
+		self.cursor.execute("DROP TABLE IF EXISTS TourneysGametypes;")
 		self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
 		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
 		self.cursor.execute("DROP TABLE IF EXISTS Players;")
@@ -204,13 +205,18 @@ class fpdb_db:
 		card5Value smallint,
 		card5Suit char(1))""")
 
-		self.create_table("""Tourneys (
+		self.create_table("""TourneysGametypes (
 		id INT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
-		siteTourneyNo BIGINT,
 		buyin INT,
 		fee INT,
 		knockout INT,
+		rebuyOrAddon BOOLEAN)""")
+
+		self.create_table("""Tourneys (
+		id INT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
+		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id),
+		siteTourneyNo BIGINT,
 		entries INT,
 		prizepool INT,
 		startTime DATETIME,
@@ -309,7 +315,7 @@ class fpdb_db:
 		
 		position CHAR(1))""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (38);")
+		self.cursor.execute("INSERT INTO Settings VALUES (39);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()

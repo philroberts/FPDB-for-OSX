@@ -617,28 +617,13 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>siteId</P></TD>
+		<TD><P>tourneyGametypeId</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><P>References Sites.id</P></TD>
+		<TD><P>References TourneyGametypes.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>siteTourneyNo</P></TD>
 		<TD><P>bigint</P></TD>
-		<TD><P><BR></P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>buyin</P></TD>
-		<TD><P>int</P></TD>
-		<TD><P>Buy-in in cents. Without rebuy/add-on</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>fee</P></TD>
-		<TD><P>int</P></TD>
-		<TD><P><BR></P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>knockout</P></TD>
-		<TD><P>int</P></TD>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -665,6 +650,45 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>commentTs</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P><BR></P></TD>
+	</TR>
+</TABLE>
+<p><BR></P>
+<p><B>Table TourneyGametypes</B></P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
+	<TR VALIGN=TOP>
+		<TD><P>Field name</P></TD>
+		<TD><P>Type</P></TD>
+		<TD><P>Comment</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>id</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>siteId</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>References Sites.id</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>buyin</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Buy-in in cents. Without rebuy/add-on</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>fee</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>knockout</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P><BR></P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>rebuyOrAddon</P></TD>
+		<TD><P>boolean</P></TD>
+		<TD><P>Whether rebuys or add-ons are possible</P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>

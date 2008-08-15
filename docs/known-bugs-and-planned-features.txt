@@ -12,7 +12,6 @@ split install instructions into OS-specific and OS-independent section. expand r
 expand instructions for profile file, again, the release-creator will cat it.
 delete old mailing list and create fpdb-announce
 finish updating filelist
-return sng support
 update abbreviations.txt
 fix up bg colours in tv
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
