@@ -245,6 +245,8 @@ class fpdb:
 			self.settings['os']="linuxmac"
 		else:
 			self.settings['os']="windows"
+		self.settings['tv-combinedStealFold']=True
+		self.settings['tv-combined2B3B']=True
 		
 		if self.settings['os']=="windows":
 			self.settings['bulkImport-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
@@ -269,12 +271,26 @@ class fpdb:
 					self.settings['tv-combinedPostflop']=True
 				else:
 					self.settings['tv-combinedPostflop']=False
+			elif lines[i].startswith("tv-combinedStealFold="):
+				if lines[i].find("True")!=-1:
+					self.settings['tv-combinedStealFold']=True
+				else:
+					self.settings['tv-combinedStealFold']=False
+			elif lines[i].startswith("tv-combined2B3B="):
+				if lines[i].find("True")!=-1:
+					self.settings['tv-combined2B3B']=True
+				else:
+					self.settings['tv-combined2B3B']=False
 			elif lines[i].startswith("bulkImport-defaultPath="):
 				if lines[i][23:-1]!="default":
 					self.settings['bulkImport-defaultPath']=lines[i][23:-1]
 			elif lines[i].startswith("tv-defaultPath="):
 				if lines[i][15:-1]!="default":
 					self.settings['tv-defaultPath']=lines[i][15:-1]
+			elif lines[i].startswith("#"):
+				pass #comment - dont parse
+			else:
+				raise fpdb_simple.FpdbError("invalid line in profile file: "+lines[i])
 		
 		if self.db!=None:
 			self.db.disconnect()
@@ -347,9 +363,9 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha1+, git35")
+		self.window.set_title("Free Poker DB - version: alpha1+, git36")
 		self.window.set_border_width(1)
-		self.window.set_size_request(950,400)
+		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
 		
 		self.menu_items = (

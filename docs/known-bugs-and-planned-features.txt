@@ -3,6 +3,7 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
+make table drops depending on previous db version
 move version into seperate file for fpdb gui and db
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 auto-import
@@ -30,6 +31,7 @@ fix bug that sawFlop/Turn/River gets miscalculated if someone is allin - might a
 before beta
 ===========
 gentoo ebuild: USE postgresql
+skins
 optionally combine FB/FS and CB/2B/3B 
 separate all gui and all processing into files that are named accordingly
 ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
