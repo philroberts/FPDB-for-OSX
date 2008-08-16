@@ -24,7 +24,7 @@ Once finished it shold confirm "service started successfully"
 
 1b. MySQL database and user setup
 Now open a shell (aka command prompt aka DOS window):
-Click Start, then Run. In the opening window type "cmd" (without the inverted commas) and then click OK. A windows with a black background should open.
+Click Start, then Run. In the opening window type "cmd" (without the inverted commas) and then click OK. A window with a black background should open.
 
 Type (replacing yourPassword with the root password for MySQL you specified during installation):
 mysql --user=root --password=yourPassword

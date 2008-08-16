@@ -59,7 +59,7 @@ class table_viewer (threading.Thread):
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
-			tmp=("Name", "Hands", "VPIP", "PFR", "PF3B4B", "ST")
+			tmp=("Name", "HDs", "VPIP", "PFR", "PF3B4B", "ST")
 			
 			if self.settings['tv-combinedStealFold']:
 				tmp+=("FSB", )

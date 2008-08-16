@@ -547,6 +547,11 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>position</P></TD>
 		<TD><P>char(1)</P></TD>
 		<TD><P>Position for which this row applies. In this table this can be B(BB), S(SB), D(Dealer/Button), C(Cutoff), M(Middle - the 3 before cutoff) or E (Early - the 3 before Middle)</P></TD>
+	<TR VALIGN=TOP>
+		<TD><P>tourneysGametypeId</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>References TourneysGametypes.id</P></TD>
+	</TR>
 	</TR>
 </TABLE>
 <P></P>
@@ -617,9 +622,9 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>tourneyGametypeId</P></TD>
+		<TD><P>tourneysGametypeId</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><P>References TourneyGametypes.id</P></TD>
+		<TD><P>References TourneysGametypes.id</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>siteTourneyNo</P></TD>

@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=39:
+			if settings[0]!=40:
 				print "outdated database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -119,11 +119,11 @@ class fpdb_db:
 		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
 		self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
 		self.cursor.execute("DROP TABLE IF EXISTS Hands;")
-		self.cursor.execute("DROP TABLE IF EXISTS TourneysGametypes;")
 		self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
 		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
 		self.cursor.execute("DROP TABLE IF EXISTS Players;")
 		self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
+		self.cursor.execute("DROP TABLE IF EXISTS TourneysGametypes;")
 		self.cursor.execute("DROP TABLE IF EXISTS Sites;")
 		
 		self.db.commit()
@@ -206,7 +206,7 @@ class fpdb_db:
 		card5Suit char(1))""")
 
 		self.create_table("""TourneysGametypes (
-		id INT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
+		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
 		buyin INT,
 		fee INT,
@@ -313,9 +313,10 @@ class fpdb_db:
 		thirdBarrelChance INT,
 		thirdBarrelDone INT,
 		
-		position CHAR(1))""")
+		position CHAR(1),
+		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id))""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (39);")
+		self.cursor.execute("INSERT INTO Settings VALUES (40);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.db.commit()
