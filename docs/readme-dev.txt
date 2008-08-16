@@ -15,11 +15,12 @@ Ideally use git (see git-instructions.txt for some commands) and let me know whe
 
 Contact/Communication
 =====================
+If you start working on something please open a bug or feature request at sf to avoid someone else from doing the same
 Please see readme-overview
 
 Dependencies
 ============
-Since all real OSs have easy built in handling for dependencies feel free to add requirements on new libraries etc. Unfortunately due to the reality of the online poker market (namely the complete absence of clients for free/libre systems) it doesn't make sense to write this without supporting Windows so all dependencies must have a source-compatible Windows version. Please ensure to list any new deps in requirements.txt or let me know.
+Please let me know before you add any new dependencies and ensure that they are source-compatible between *nix and Windows
 
 Code/File/Class Structure
 =========================

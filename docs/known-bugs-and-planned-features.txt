@@ -3,8 +3,6 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-fold to CB/2B/3B
-move version into seperate file for fpdb gui and db
 auto-import
 seperate and improve instructions for update
 verify link in release notes
@@ -13,15 +11,16 @@ expand instructions for profile file, again, the release-creator will cat it.
 delete old mailing list and create fpdb-announce
 finish updating filelist
 update abbreviations.txt
-fix up bg colours in tv
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 
-verify positionalness of HudData
-printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 
 alpha3
 ======
-check-raise/call-raise on all streets
+fix up bg colours in tv
+fill the fold to CB/2B/3B cache fields
+verify the totalProfit cache field
+fill the check-/call-raise cache fields
+move version into seperate file for fpdb gui and db
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 table with data for graphs for SD/F, W$wSF, W$@SD
 SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
@@ -29,8 +28,12 @@ show database version error in GUI and use fpdb_db class const for it, add it to
 split hud data generation into separate for loops and make it more efficient
 fix bug that sawFlop/Turn/River gets miscalculated if someone is allin - might as well add all-in recognition for this
 
+verify positionalness of HudData
+printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
+
 before beta
 ===========
+change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands
 optionally make tv positional
 gentoo ebuild: USE postgresql
 skins

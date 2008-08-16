@@ -47,8 +47,8 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=40:
-				print "outdated database version - please recreate tables"
+			if settings[0]!=41:
+				print "outdated or too new database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
 	#end def connect
@@ -314,11 +314,28 @@ class fpdb_db:
 		thirdBarrelDone INT,
 		
 		position CHAR(1),
-		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id))""")
+		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id),
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (40);")
+		foldToContBetChance INT,
+		foldToContBetDone INT,
+		foldToSecondBarrelChance INT,
+		foldToSecondBarrelDone INT,
+		foldToThirdBarrelChance INT,
+		foldToThirdBarrelDone INT,
+		
+		totalProfit INT,
+		
+		flopCheckCallRaiseChance INT,
+		flopCheckCallRaiseDone INT,
+		turnCheckCallRaiseChance INT,
+		turnCheckCallRaiseDone INT,
+		riverCheckCallRaiseChance INT,
+		riverCheckCallRaiseDone INT)""")
+		
+		self.cursor.execute("INSERT INTO Settings VALUES (41);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
+		self.cursor.execute("INSERT INTO TourneysGametypes (id) VALUES (DEFAULT);")
 		self.db.commit()
 		print "finished recreating tables"
 	#end def recreate_tables

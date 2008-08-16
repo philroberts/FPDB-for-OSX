@@ -1581,6 +1581,71 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	result['thirdBarrelDone']=thirdBarrelDone
 	
 	result['position']=hudDataPositions	
+	
+	
+	foldToContBetChance=[]
+	foldToContBetDone=[]
+	foldToSecondBarrelChance=[]
+	foldToSecondBarrelDone=[]
+	foldToThirdBarrelChance=[]
+	foldToThirdBarrelDone=[]
+	
+	totalProfit=[]
+	
+	flopCheckCallRaiseChance=[]
+	flopCheckCallRaiseDone=[]
+	turnCheckCallRaiseChance=[]
+	turnCheckCallRaiseDone=[]
+	riverCheckCallRaiseChance=[]
+	riverCheckCallRaiseDone=[]
+	for player in range (len(player_ids)):
+		myFoldToContBetChance=False
+		myFoldToContBetDone=False
+		myFoldToSecondBarrelChance=False
+		myFoldToSecondBarrelDone=False
+		myFoldToThirdBarrelChance=False
+		myFoldToThirdBarrelDone=False
+		
+		myTotalProfit=0
+		
+		myFlopCheckCallRaiseChance=False
+		myFlopCheckCallRaiseDone=False
+		myTurnCheckCallRaiseChance=False
+		myTurnCheckCallRaiseDone=False
+		myRiverCheckCallRaiseChance=False
+		myRiverCheckCallRaiseDone=False
+		
+		foldToContBetChance.append(myFoldToContBetChance)
+		foldToContBetDone.append(myFoldToContBetDone)
+		foldToSecondBarrelChance.append(myFoldToSecondBarrelChance)
+		foldToSecondBarrelDone.append(myFoldToSecondBarrelDone)
+		foldToThirdBarrelChance.append(myFoldToThirdBarrelChance)
+		foldToThirdBarrelDone.append(myFoldToThirdBarrelDone)
+		
+		totalProfit.append(myTotalProfit)
+		
+		flopCheckCallRaiseChance.append(myFlopCheckCallRaiseChance)
+		flopCheckCallRaiseDone.append(myFlopCheckCallRaiseDone)
+		turnCheckCallRaiseChance.append(myTurnCheckCallRaiseChance)
+		turnCheckCallRaiseDone.append(myTurnCheckCallRaiseDone)
+		riverCheckCallRaiseChance.append(myRiverCheckCallRaiseChance)
+		riverCheckCallRaiseDone.append(myRiverCheckCallRaiseDone)
+	
+	result['foldToContBetChance']=foldToContBetChance
+	result['foldToContBetDone']=foldToContBetDone
+	result['foldToSecondBarrelChance']=foldToSecondBarrelChance
+	result['foldToSecondBarrelDone']=foldToSecondBarrelDone
+	result['foldToThirdBarrelChance']=foldToThirdBarrelChance
+	result['foldToThirdBarrelDone']=foldToThirdBarrelDone
+
+	result['totalProfit']=totalProfit
+
+	result['flopCheckCallRaiseChance']=flopCheckCallRaiseChance
+	result['flopCheckCallRaiseDone']=flopCheckCallRaiseDone
+	result['turnCheckCallRaiseChance']=turnCheckCallRaiseChance
+	result['turnCheckCallRaiseDone']=turnCheckCallRaiseDone
+	result['riverCheckCallRaiseChance']=riverCheckCallRaiseChance
+	result['riverCheckCallRaiseDone']=riverCheckCallRaiseDone
 	return result
 #end def calculateHudImport
 
@@ -1649,16 +1714,32 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 			if hudImportData['thirdBarrelDone'][player]: row[35]+=1
 			row[36]=hudImportData['position'][player]
 			
+			if hudImportData['foldToContBetChance'][player]: row[37]+=1
+			if hudImportData['foldToContBetDone'][player]: row[38]+=1
+			if hudImportData['foldToSecondBarrelChance'][player]: row[39]+=1
+			if hudImportData['foldToSecondBarrelDone'][player]: row[40]+=1
+			if hudImportData['foldToThirdBarrelChance'][player]: row[41]+=1
+			if hudImportData['foldToThirdBarrelDone'][player]: row[42]+=1
+
+			row[43]+=hudImportData['totalProfit'][player]
+
+			if hudImportData['flopCheckCallRaiseChance'][player]: row[44]+=1
+			if hudImportData['flopCheckCallRaiseDone'][player]: row[45]+=1
+			if hudImportData['turnCheckCallRaiseChance'][player]: row[46]+=1
+			if hudImportData['turnCheckCallRaiseDone'][player]: row[47]+=1
+			if hudImportData['riverCheckCallRaiseChance'][player]: row[48]+=1
+			if hudImportData['riverCheckCallRaiseDone'][player]: row[49]+=1
+			
 			if doInsert:
 				#print "playerid before insert:",row[2]
 				cursor.execute("""INSERT INTO HudDataHoldemOmaha
-					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4BChance, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold, wonWhenSeenFlop, wonAtSD, stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal, contBetChance, contBetDone, secondBarrelChance, secondBarrelDone, thirdBarrelChance, thirdBarrelDone, position)
-					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36]))
+					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4BChance, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold, wonWhenSeenFlop, wonAtSD, stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal, contBetChance, contBetDone, secondBarrelChance, secondBarrelDone, thirdBarrelChance, thirdBarrelDone, position, tourneysGametypeId, foldToContBetChance, foldToContBetDone, foldToSecondBarrelChance, foldToSecondBarrelDone, foldToThirdBarrelChance, foldToThirdBarrelDone, totalProfit, flopCheckCallRaiseChance, flopCheckCallRaiseDone, turnCheckCallRaiseChance, turnCheckCallRaiseDone, riverCheckCallRaiseChance, riverCheckCallRaiseDone)
+					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], 1, row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49]))
 			else:
 				#print "storing updated hud data line"
 				cursor.execute("""UPDATE HudDataHoldemOmaha
-					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4BChance=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s, wonWhenSeenFlop=%s, wonAtSD=%s, stealAttemptChance=%s, stealAttempted=%s, foldBbToStealChance=%s, foldedBbToSteal=%s, foldSbToStealChance=%s, foldedSbToSteal=%s, contBetChance=%s, contBetDone=%s, secondBarrelChance=%s, secondBarrelDone=%s, thirdBarrelChance=%s, thirdBarrelDone=%s
-					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[1], row[2], row[3], row[36]))
+					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4BChance=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s, wonWhenSeenFlop=%s, wonAtSD=%s, stealAttemptChance=%s, stealAttempted=%s, foldBbToStealChance=%s, foldedBbToSteal=%s, foldSbToStealChance=%s, foldedSbToSteal=%s, contBetChance=%s, contBetDone=%s, secondBarrelChance=%s, secondBarrelDone=%s, thirdBarrelChance=%s, thirdBarrelDone=%s, tourneysGametypeId=%s, foldToContBetChance=%s, foldToContBetDone=%s, foldToSecondBarrelChance=%s, foldToSecondBarrelDone=%s, foldToThirdBarrelChance=%s, foldToThirdBarrelDone=%s, totalProfit=%s, flopCheckCallRaiseChance=%s, flopCheckCallRaiseDone=%s, turnCheckCallRaiseChance=%s, turnCheckCallRaiseDone=%s, riverCheckCallRaiseChance=%s, riverCheckCallRaiseDone=%s
+					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], 1, row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[1], row[2], row[3], row[36]))
 	else:
 		raise FpdbError("todo")
 #end def storeHudData

@@ -117,6 +117,7 @@ class table_viewer (threading.Thread):
 						if field_no<=3:
 							pass
 						else:
+							#print "in prep data, row_no:",row_no,"field_no:",field_no
 							row[field_no]+=rows[row_no][field_no]
 			
 			tmp.append(str(row[4]))#Hands
@@ -186,6 +187,10 @@ class table_viewer (threading.Thread):
 					bg_col="lightgrey"
 					if column==0 or (column>=5 and column<=10):
 						bg_col="grey"
+				#style = eventBox.get_style()
+				#style.font.height=8
+				#eventBox.set_style(style)
+
 				eventBox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bg_col))
 				eventBox.add(new_label)
 				self.data_table.attach(child=eventBox, left_attach=column, right_attach=column+1, top_attach=row, bottom_attach=row+1)

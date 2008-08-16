@@ -543,16 +543,86 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>int</P></TD>
 		<TD><P>Player used chance to make third barrel bet</P></TD>
 	</TR>
+	
 	<TR VALIGN=TOP>
 		<TD><P>position</P></TD>
 		<TD><P>char(1)</P></TD>
 		<TD><P>Position for which this row applies. In this table this can be B(BB), S(SB), D(Dealer/Button), C(Cutoff), M(Middle - the 3 before cutoff) or E (Early - the 3 before Middle)</P></TD>
+	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>tourneysGametypeId</P></TD>
 		<TD><P>smallint</P></TD>
 		<TD><P>References TourneysGametypes.id</P></TD>
 	</TR>
+
+	<TR VALIGN=TOP>
+		<TD><P>foldToContBetChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to continuation bet</P></TD>
 	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToContBetDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to continuation bet</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToSecondBarrelChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to second barrel bet</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToSecondBarrelDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to second barrel bet</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToThirdBarrelChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to third barrel bet</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToThirdBarrelDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to third barrel bet</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>totalProfit</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>how much money in cents the player made</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>flopCheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on the flop</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>flopCheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on the flop</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>turnCheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on the turn</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>turnCheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on the turn</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>riverCheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on the river</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>riverCheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on the river</P></TD>
+	</TR>
+	
 </TABLE>
 <P></P>
 <P><B>Table HandsActions</B></P>
