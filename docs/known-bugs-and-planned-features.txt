@@ -3,7 +3,8 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-auto-import
+implement gametypes.base/hiLo
+
 seperate and improve instructions for update
 verify link in release notes
 split install instructions into OS-specific and OS-independent section. expand release creator to concatenate.
@@ -16,6 +17,7 @@ ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.
 
 alpha3
 ======
+export settings[hud-defaultInterval] to conf
 fix up bg colours in tv
 fill the fold to CB/2B/3B cache fields
 verify the totalProfit cache field
@@ -33,7 +35,7 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 
 before beta
 ===========
-change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands
+?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?
 optionally make tv positional
 gentoo ebuild: USE postgresql
 skins

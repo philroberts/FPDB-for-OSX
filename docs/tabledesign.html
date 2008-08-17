@@ -137,6 +137,13 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 			tour - tournament incl SnG</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
+		<TD><P>base</P></TD>
+		<TD><P>char(4)</P></TD>
+		<TD><p>The underlying structure. valid entries:<br>
+			hold - Holdem and Omaha<br>
+			stud - Stud and Razz </P></TD>
+	</TR>
+	<TR VALIGN=TOP>
 		<TD><P>category</P></TD>
 		<TD><P>varchar(9)</P></TD>
 		<TD><p>valid entries:<br>
@@ -155,6 +162,14 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 			pl=Pot Limit<br>
 			cp=Cap Pot Limit<br>
 			fl=Fixed Limit</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>hiLo</P></TD>
+		<TD><P>char(1)</P></TD>
+		<TD><p>Whether the game is hi, lo or both. Valid Entries:<br>
+			h - High only<br>
+			l - Low only<br>
+			s - Hi/Lo Split</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>smallBlind</P></TD>

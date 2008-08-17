@@ -24,7 +24,7 @@ import MySQLdb
 import fpdb_import
 import fpdb_db
 
-class table_viewer (threading.Thread):
+class GuiTableViewer (threading.Thread):
 	def hudDivide (self, a, b):
 		if b==0:
 			return "n/a"
@@ -279,7 +279,7 @@ class table_viewer (threading.Thread):
 		self.filename_label.show()
 		
 		self.filename_tbuffer=gtk.TextBuffer()
-		self.filename_tbuffer.set_text(self.settings['tv-defaultPath'])
+		self.filename_tbuffer.set_text(self.settings['hud-defaultPath'])
 		self.filename_tview=gtk.TextView(self.filename_tbuffer)
 		self.settings_hbox.pack_start(self.filename_tview, True, True, padding=5)
 		self.filename_tview.show()

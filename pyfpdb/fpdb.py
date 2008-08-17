@@ -24,8 +24,9 @@ import gtk
 
 import fpdb_db
 import fpdb_simple
-import import_threaded
-import table_viewer
+import GuiBulkImport
+import GuiTableViewer
+import GuiAutoImport
 
 class fpdb:
 	def tab_clicked(self, widget, tab_name):
@@ -250,10 +251,12 @@ class fpdb:
 		
 		if self.settings['os']=="windows":
 			self.settings['bulkImport-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
-			self.settings['tv-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
+			self.settings['hud-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\"
 		else:
 			self.settings['bulkImport-defaultPath'] = os.path.expanduser("~") + "/.wine/drive_c/Program Files/PokerStars/HandHistory/filename.txt"
-			self.settings['tv-defaultPath'] = os.path.expanduser("~")+"/.wine/drive_c/Program Files/PokerStars/HandHistory/filename.txt"
+			self.settings['hud-defaultPath'] = os.path.expanduser("~")+"/.wine/drive_c/Program Files/PokerStars/HandHistory/"
+			
+		self.settings['hud-defaultInterval']=30
 		
 		for i in range(len(lines)):
 			if lines[i].startswith("db-backend="):
@@ -284,9 +287,9 @@ class fpdb:
 			elif lines[i].startswith("bulkImport-defaultPath="):
 				if lines[i][23:-1]!="default":
 					self.settings['bulkImport-defaultPath']=lines[i][23:-1]
-			elif lines[i].startswith("tv-defaultPath="):
+			elif lines[i].startswith("hud-defaultPath="):
 				if lines[i][15:-1]!="default":
-					self.settings['tv-defaultPath']=lines[i][15:-1]
+					self.settings['hud-defaultPath']=lines[i][16:-1]
 			elif lines[i].startswith("#"):
 				pass #comment - dont parse
 			else:
@@ -324,16 +327,20 @@ class fpdb:
 	#end def tab_abbreviations
 	
 	def tab_auto_import(self, widget, data):
-		print "todo: implement tab_auto_import"
+		"""opens the auto import tab"""
+		new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings)
+		self.threads.append(new_aimp_thread)
+		aimp_tab=new_aimp_thread.get_vbox()
+		self.add_and_display_tab(aimp_tab, "Auto Import")
 	#end def tab_auto_import
 
 	def tab_bulk_import(self, widget, data):
 		"""opens a tab for bulk importing"""
 		#print "start of tab_bulk_import"
-		new_import_thread=import_threaded.import_threaded(self.db, self.settings['bulkImport-defaultPath'])
+		new_import_thread=GuiBulkImport.GuiBulkImport(self.db, self.settings['bulkImport-defaultPath'])
 		self.threads.append(new_import_thread)
 		bulk_tab=new_import_thread.get_vbox()
-		self.add_and_display_tab(bulk_tab, "bulk import")
+		self.add_and_display_tab(bulk_tab, "Bulk Import")
 	#end def tab_bulk_import
 
 	def tab_main_help(self, widget, data):
@@ -349,7 +356,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 	def tab_table_viewer(self, widget, data):
 		"""opens a table viewer tab"""
 		#print "start of tab_table_viewer"
-		new_tv_thread=table_viewer.table_viewer(self.db, self.settings)
+		new_tv_thread=GuiTableViewer.GuiTableViewer(self.db, self.settings)
 		self.threads.append(new_tv_thread)
 		tv_tab=new_tv_thread.get_vbox()
 		self.add_and_display_tab(tv_tab, "table viewer")
@@ -363,7 +370,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha1+, git41")
+		self.window.set_title("Free Poker DB - version: alpha1+, p42")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
@@ -376,7 +383,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 				( "/Main/sep1",                             None,         None, 0, "<Separator>" ),
 				( "/Main/_Quit",                            "<control>Q", self.quit, 0, None ),
 				( "/_Import",                               None,         None, 0, "<Branch>" ),
-				( "/Import/_Import Files and Directories",  "<control>I", self.tab_bulk_import, 0, None ),
+				( "/Import/_Bulk Import",  "<control>B", self.tab_bulk_import, 0, None ),
 				( "/Import/_Auto Import (todo)",                   "<control>A", self.tab_auto_import, 0, None ),
 				( "/Import/Auto _Rating (todo)",                   "<control>R", self.not_implemented, 0, None ),
 				( "/_Viewers",                              None,         None, 0, "<Branch>" ),

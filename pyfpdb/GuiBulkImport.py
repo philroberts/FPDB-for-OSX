@@ -23,7 +23,7 @@ pygtk.require('2.0')
 import gtk
 import os #todo: remove this once import_dir is in fpdb_import
 
-class import_threaded (threading.Thread):
+class GuiBulkImport (threading.Thread):
 	def import_dir(self):
 		"""imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 		self.path=self.inputFile
