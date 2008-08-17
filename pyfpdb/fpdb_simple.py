@@ -1246,24 +1246,29 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	#setup subarrays of the result dictionary.
-	VPIP=[]
-	PFR=[]
-	PF3B4BChance=[]
-	PF3B4B=[]
-	sawFlop=[]
-	sawTurn=[]
-	sawRiver=[]
+	street0VPI=[]
+	street0Aggr=[]
+	street0_3B4BChance=[]
+	street0_3B4BDone=[]
+	street1Seen=[]
+	street2Seen=[]
+	street3Seen=[]
+	street4Seen=[]
 	sawShowdown=[]
-	raisedFlop=[]
-	raisedTurn=[]
-	raisedRiver=[]
-	otherRaisedFlop=[]
-	otherRaisedFlopFold=[]
-	otherRaisedTurn=[]
-	otherRaisedTurnFold=[]
-	otherRaisedRiver=[]
-	otherRaisedRiverFold=[]
-	wonWhenSeenFlop=[]
+	street1Aggr=[]
+	street2Aggr=[]
+	street3Aggr=[]
+	street4Aggr=[]
+	otherRaisedStreet1=[]
+	otherRaisedStreet2=[]
+	otherRaisedStreet3=[]
+	otherRaisedStreet4=[]
+	foldToOtherRaisedStreet1=[]
+	foldToOtherRaisedStreet2=[]
+	foldToOtherRaisedStreet3=[]
+	foldToOtherRaisedStreet4=[]
+	wonWhenSeenStreet1=[]
+	
 	wonAtSD=[]
 	stealAttemptChance=[]
 	stealAttempted=[]
@@ -1308,24 +1313,28 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#run a loop for each player preparing the actual values that will be commited to SQL
 	for player in range (len(player_ids)):
 		#set default values
-		myVPIP=False
-		myPFR=False
-		myPF3B4BChance=False
-		myPF3B4B=False
-		mySawFlop=False
-		mySawTurn=False
-		mySawRiver=False
+		myStreet0VPI=False
+		myStreet0Aggr=False
+		myStreet0_3B4BChance=False
+		myStreet0_3B4BDone=False
+		myStreet1Seen=False
+		myStreet2Seen=False
+		myStreet3Seen=False
+		myStreet4Seen=False
 		mySawShowdown=False
-		myRaisedFlop=False
-		myRaisedTurn=False
-		myRaisedRiver=False
-		myOtherRaisedFlop=False
-		myOtherRaisedFlopFold=False
-		myOtherRaisedTurn=False
-		myOtherRaisedTurnFold=False
-		myOtherRaisedRiver=False
-		myOtherRaisedRiverFold=False
-		myWonWhenSeenFlop=0.0
+		myStreet1Aggr=False
+		myStreet2Aggr=False
+		myStreet3Aggr=False
+		myStreet4Aggr=False
+		myOtherRaisedStreet1=False
+		myOtherRaisedStreet2=False
+		myOtherRaisedStreet3=False
+		myOtherRaisedStreet4=False
+		myFoldToOtherRaisedStreet1=False
+		myFoldToOtherRaisedStreet2=False
+		myFoldToOtherRaisedStreet3=False
+		myFoldToOtherRaisedStreet4=False
+		myWonWhenSeenStreet1=0.0
 		myWonAtSD=0.0
 		myStealAttemptChance=False
 		myStealAttempted=False
@@ -1336,9 +1345,9 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		for count in range (len(action_types[street][player])):#finally individual actions
 			currentAction=action_types[street][player][count]
 			if currentAction=="bet":
-				myPFR=True
+				myStreet0Aggr=True
 			if (currentAction=="bet" or currentAction=="call"):
-				myVPIP=True
+				myStreet0VPI=True
 		
 		#PF3B4BChance and PF3B4B
 		pfFold=-1
@@ -1351,11 +1360,10 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 					if actionTypeByNo[0][i][1]=="fold" and pfFold==-1:
 						pfFold=i
 			if pfFold==-1 or pfFold>firstPfRaiseByNo:
-				myPF3B4BChance=True
+				myStreet0_3B4BChance=True
 				if pfRaise>firstPfRaiseByNo:
-					myPF3B4B=True
+					myStreet0_3B4BDone=True
 		
-		#myStealAttemptChance myStealAttempted myFoldBbToStealChance myFoldedBbToSteal myFoldSbToStealChance myFoldedSbToSteal
 		#steal calculations
 		if len(player_ids)>=5: #no point otherwise
 			if positions[player]==1:
@@ -1384,11 +1392,11 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 
 		#calculate saw* values
 		if (len(action_types[1][player])>0):
-			mySawFlop=True
+			myStreet1Seen=True
 			if (len(action_types[2][player])>0):
-				mySawTurn=True
+				myStreet2Seen=True
 				if (len(action_types[3][player])>0):
-					mySawRiver=True
+					myStreet3Seen=True
 					mySawShowdown=True
 					for count in range (len(action_types[3][player])):
 						if action_types[3][player][count]=="fold":
@@ -1396,84 +1404,87 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 
 		#flop stuff
 		street=1
-		if mySawFlop:
+		if myStreet1Seen:
 			for count in range(len(action_types[street][player])):
 				if action_types[street][player][count]=="bet":
-					myRaisedFlop=True
+					myStreet1Aggr=True
 			
 			for otherPlayer in range (len(player_ids)):
-				if player==otherPlayer or myOtherRaisedFlop:
+				if player==otherPlayer:
 					pass
 				else:
 					for countOther in range (len(action_types[street][otherPlayer])):
 						if action_types[street][otherPlayer][countOther]=="bet":
-							myOtherRaisedFlop=True
+							myOtherRaisedStreet1=True
 							for countOtherFold in range (len(action_types[street][player])):
 								if action_types[street][player][countOtherFold]=="fold":
-									myOtherRaisedFlopFold=True
+									myFoldToOtherRaisedStreet1=True
 		
 		#turn stuff - copy of flop with different vars
 		street=2
-		if mySawTurn:
+		if myStreet2Seen:
 			for count in range(len(action_types[street][player])):
 				if action_types[street][player][count]=="bet":
-					myRaisedTurn=True
+					myStreet2Aggr=True
 			
 			for otherPlayer in range (len(player_ids)):
-				if player==otherPlayer or myOtherRaisedTurn:
+				if player==otherPlayer:
 					pass
 				else:
 					for countOther in range (len(action_types[street][otherPlayer])):
 						if action_types[street][otherPlayer][countOther]=="bet":
-							myOtherRaisedTurn=True
+							myOtherRaisedStreet2=True
 							for countOtherFold in range (len(action_types[street][player])):
 								if action_types[street][player][countOtherFold]=="fold":
-									myOtherRaisedTurnFold=True
+									myFoldToOtherRaisedStreet2=True
 		
-		#turn stuff - copy of flop with different vars
+		#river stuff - copy of flop with different vars
 		street=3
-		if mySawRiver:
+		if myStreet3Seen:
 			for count in range(len(action_types[street][player])):
 				if action_types[street][player][count]=="bet":
-					myRaisedRiver=True
+					myStreet3Aggr=True
 			
 			for otherPlayer in range (len(player_ids)):
-				if player==otherPlayer or myOtherRaisedRiver:
+				if player==otherPlayer:
 					pass
 				else:
 					for countOther in range (len(action_types[street][otherPlayer])):
 						if action_types[street][otherPlayer][countOther]=="bet":
-							myOtherRaisedRiver=True
+							myOtherRaisedStreet3=True
 							for countOtherFold in range (len(action_types[street][player])):
 								if action_types[street][player][countOtherFold]=="fold":
-									myOtherRaisedRiverFold=True
+									myFoldToOtherRaisedStreet3=True
 		
 		if winnings[player]!=0:
-			if mySawFlop:
-				myWonWhenSeenFlop=winnings[player]/float(totalWinnings)
-				#print "myWonWhenSeenFlop:",myWonWhenSeenFlop
+			if myStreet1Seen:
+				myWonWhenSeenStreet1=winnings[player]/float(totalWinnings)
 				if mySawShowdown:
-					myWonAtSD=myWonWhenSeenFlop
+					myWonAtSD=myWonWhenSeenStreet1
 		
 		#add each value to the appropriate array
-		VPIP.append(myVPIP)
-		PFR.append(myPFR)
-		PF3B4BChance.append(myPF3B4BChance)
-		PF3B4B.append(myPF3B4B)
-		sawFlop.append(mySawFlop)
-		sawTurn.append(mySawTurn)
-		sawRiver.append(mySawRiver)
+		street0VPI.append(myStreet0VPI)
+		street0Aggr.append(myStreet0Aggr)
+		street0_3B4BChance.append(myStreet0_3B4BChance)
+		street0_3B4BDone.append(myStreet0_3B4BDone)
+		street1Seen.append(myStreet1Seen)
+		street2Seen.append(myStreet2Seen)
+		street3Seen.append(myStreet3Seen)
+		street4Seen.append(myStreet4Seen)
 		sawShowdown.append(mySawShowdown)
-		raisedFlop.append(myRaisedFlop)
-		raisedTurn.append(myRaisedTurn)
-		raisedRiver.append(myRaisedRiver)
-		otherRaisedFlop.append(myOtherRaisedFlop)
-		otherRaisedFlopFold.append(myOtherRaisedFlopFold)
-		otherRaisedTurn.append(myOtherRaisedTurn)
-		otherRaisedTurnFold.append(myOtherRaisedTurnFold)
-		otherRaisedRiver.append(myOtherRaisedRiver)
-		otherRaisedRiverFold.append(myOtherRaisedRiverFold)
-		wonWhenSeenFlop.append(myWonWhenSeenFlop)
+		street1Aggr.append(myStreet1Aggr)
+		street2Aggr.append(myStreet2Aggr)
+		street3Aggr.append(myStreet3Aggr)
+		street4Aggr.append(myStreet4Aggr)
+		otherRaisedStreet1.append(myOtherRaisedStreet1)
+		otherRaisedStreet2.append(myOtherRaisedStreet2)
+		otherRaisedStreet3.append(myOtherRaisedStreet3)
+		otherRaisedStreet4.append(myOtherRaisedStreet4)
+		foldToOtherRaisedStreet1.append(myFoldToOtherRaisedStreet1)
+		foldToOtherRaisedStreet2.append(myFoldToOtherRaisedStreet2)
+		foldToOtherRaisedStreet3.append(myFoldToOtherRaisedStreet3)
+		foldToOtherRaisedStreet4.append(myFoldToOtherRaisedStreet4)
+		wonWhenSeenStreet1.append(myWonWhenSeenStreet1)
 		wonAtSD.append(myWonAtSD)
 		stealAttemptChance.append(myStealAttemptChance)
 		stealAttempted.append(myStealAttempted)
@@ -1494,29 +1505,34 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			raise FpdbError("invalid position")
 	
 	#add each array to the to-be-returned dictionary
-	result={'VPIP':VPIP}
-	result['PFR']=PFR
-	result['PF3B4BChance']=PF3B4BChance
-	result['PF3B4B']=PF3B4B
-	result['sawFlop']=sawFlop
-	result['sawTurn']=sawTurn
-	result['sawRiver']=sawRiver
+	result={'street0VPI':street0VPI}
+	result['street0Aggr']=street0Aggr
+	result['street0_3B4BChance']=street0_3B4BChance
+	result['street0_3B4BDone']=street0_3B4BDone
+	result['street1Seen']=street1Seen
+	result['street2Seen']=street2Seen
+	result['street3Seen']=street3Seen
+	result['street4Seen']=street4Seen
 	result['sawShowdown']=sawShowdown
-	result['raisedFlop']=raisedFlop
-	result['otherRaisedFlop']=otherRaisedFlop
-	result['otherRaisedFlopFold']=otherRaisedFlopFold
-	result['raisedTurn']=raisedTurn
-	result['otherRaisedTurn']=otherRaisedTurn
-	result['otherRaisedTurnFold']=otherRaisedTurnFold
-	result['raisedRiver']=raisedRiver
-	result['otherRaisedRiver']=otherRaisedRiver
-	result['otherRaisedRiverFold']=otherRaisedRiverFold
-	result['wonWhenSeenFlop']=wonWhenSeenFlop
+	
+	result['street1Aggr']=street1Aggr
+	result['otherRaisedStreet1']=otherRaisedStreet1
+	result['foldToOtherRaisedStreet1']=foldToOtherRaisedStreet1
+	result['street2Aggr']=street2Aggr
+	result['otherRaisedStreet2']=otherRaisedStreet2
+	result['foldToOtherRaisedStreet2']=foldToOtherRaisedStreet2
+	result['street3Aggr']=street3Aggr
+	result['otherRaisedStreet3']=otherRaisedStreet3
+	result['foldToOtherRaisedStreet3']=foldToOtherRaisedStreet3
+	result['street4Aggr']=street4Aggr
+	result['otherRaisedStreet4']=otherRaisedStreet4
+	result['foldToOtherRaisedStreet4']=foldToOtherRaisedStreet4
+	result['wonWhenSeenStreet1']=wonWhenSeenStreet1
 	result['wonAtSD']=wonAtSD
 	result['stealAttemptChance']=stealAttemptChance
 	result['stealAttempted']=stealAttempted
 	
-	#after having calculated the above we now do second level calculations, so far just steal attempts.
+	#now the various steal values
 	foldBbToStealChance=[]
 	foldedBbToSteal=[]
 	foldSbToStealChance=[]
@@ -1549,130 +1565,158 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	result['foldSbToStealChance']=foldSbToStealChance
 	result['foldedSbToSteal']=foldedSbToSteal
 	
-	#now CB/2B/3B
-	contBetChance=[]
-	contBetDone=[]
+	#now CB
+	street1CBChance=[]
+	street1CBDone=[]
 	for player in range (len(player_ids)):
-		myContBetChance=False
-		myContBetDone=False
+		myStreet1CBChance=False
+		myStreet1CBDone=False
 		
-		if PFR[player]:
-			myContBetChance=True
-			if raisedFlop[player]:
-				myContBetDone=True
+		if street0VPI[player]:
+			myStreet1CBChance=True
+			if street1Aggr[player]:
+				myStreet1CBDone=True
 				
-		contBetChance.append(myContBetChance)
-		contBetDone.append(myContBetDone)
-	result['contBetChance']=contBetChance
-	result['contBetDone']=contBetDone
+		street1CBChance.append(myStreet1CBChance)
+		street1CBDone.append(myStreet1CBDone)
+	result['street1CBChance']=street1CBChance
+	result['street1CBDone']=street1CBDone
 	
 	#now 2B
-	secondBarrelChance=[]
-	secondBarrelDone=[]
+	street2CBChance=[]
+	street2CBDone=[]
 	for player in range (len(player_ids)):
-		mySecondBarrelChance=False
-		mySecondBarrelDone=False
+		myStreet2CBChance=False
+		myStreet2CBDone=False
 		
-		if contBetDone[player]:
-			mySecondBarrelChance=True
-			if raisedTurn[player]:
-				mySecondBarrelDone=True
+		if street1CBDone[player]:
+			myStreet2CBChance=True
+			if street2Aggr[player]:
+				myStreet2CBDone=True
 
-		secondBarrelChance.append(mySecondBarrelChance)
-		secondBarrelDone.append(mySecondBarrelDone)
-	result['secondBarrelChance']=secondBarrelChance
-	result['secondBarrelDone']=secondBarrelDone
+		street2CBChance.append(myStreet2CBChance)
+		street2CBDone.append(myStreet2CBDone)
+	result['street2CBChance']=street2CBChance
+	result['street2CBDone']=street2CBDone
 	
 	#now 3B
-	thirdBarrelChance=[]
-	thirdBarrelDone=[]
+	street3CBChance=[]
+	street3CBDone=[]
 	for player in range (len(player_ids)):
-		myThirdBarrelChance=False
-		myThirdBarrelDone=False
+		myStreet3CBChance=False
+		myStreet3CBDone=False
 		
-		if secondBarrelDone[player]:
-			myThirdBarrelChance=True
-			if raisedRiver[player]:
-				myThirdBarrelDone=True
+		if street2CBDone[player]:
+			myStreet3CBChance=True
+			if street3Aggr[player]:
+				myStreet3CBDone=True
 
-		thirdBarrelChance.append(myThirdBarrelChance)
-		thirdBarrelDone.append(myThirdBarrelDone)
-	result['thirdBarrelChance']=thirdBarrelChance
-	result['thirdBarrelDone']=thirdBarrelDone
+		street3CBChance.append(myStreet3CBChance)
+		street3CBDone.append(myStreet3CBDone)
+	result['street3CBChance']=street3CBChance
+	result['street3CBDone']=street3CBDone
 	
+	#4B - todo, implement for stud/razz	
+	street4CBChance=[]
+	street4CBDone=[]
+	for player in range (len(player_ids)):
+		myStreet4CBChance=False
+		myStreet4CBDone=False
+		
+		street4CBChance.append(myStreet4CBChance)
+		street4CBDone.append(myStreet4CBDone)
+	result['street4CBChance']=street4CBChance
+	result['street4CBDone']=street4CBDone
+
+
 	result['position']=hudDataPositions	
 	
-	
-	foldToContBetChance=[]
-	foldToContBetDone=[]
-	foldToSecondBarrelChance=[]
-	foldToSecondBarrelDone=[]
-	foldToThirdBarrelChance=[]
-	foldToThirdBarrelDone=[]
+	foldToStreet1CBChance=[]
+	foldToStreet1CBDone=[]
+	foldToStreet2CBChance=[]
+	foldToStreet2CBDone=[]
+	foldToStreet3CBChance=[]
+	foldToStreet3CBDone=[]
+	foldToStreet4CBChance=[]
+	foldToStreet4CBDone=[]
 	
 	totalProfit=[]
 	
-	flopCheckCallRaiseChance=[]
-	flopCheckCallRaiseDone=[]
-	turnCheckCallRaiseChance=[]
-	turnCheckCallRaiseDone=[]
-	riverCheckCallRaiseChance=[]
-	riverCheckCallRaiseDone=[]
+	street1CheckCallRaiseChance=[]
+	street1CheckCallRaiseDone=[]
+	street2CheckCallRaiseChance=[]
+	street2CheckCallRaiseDone=[]
+	street3CheckCallRaiseChance=[]
+	street3CheckCallRaiseDone=[]
+	street4CheckCallRaiseChance=[]
+	street4CheckCallRaiseDone=[]
 	for player in range (len(player_ids)):
-		myFoldToContBetChance=False
-		myFoldToContBetDone=False
-		myFoldToSecondBarrelChance=False
-		myFoldToSecondBarrelDone=False
-		myFoldToThirdBarrelChance=False
-		myFoldToThirdBarrelDone=False
+		myFoldToStreet1CBChance=False
+		myFoldToStreet1CBDone=False
+		myFoldToStreet2CBChance=False
+		myFoldToStreet2CBDone=False
+		myFoldToStreet3CBChance=False
+		myFoldToStreet3CBDone=False
+		myFoldToStreet4CBChance=False
+		myFoldToStreet4CBDone=False
 		
 		myTotalProfit=0
 		
-		myFlopCheckCallRaiseChance=False
-		myFlopCheckCallRaiseDone=False
-		myTurnCheckCallRaiseChance=False
-		myTurnCheckCallRaiseDone=False
-		myRiverCheckCallRaiseChance=False
-		myRiverCheckCallRaiseDone=False
+		myStreet1CheckCallRaiseChance=False
+		myStreet1CheckCallRaiseDone=False
+		myStreet2CheckCallRaiseChance=False
+		myStreet2CheckCallRaiseDone=False
+		myStreet3CheckCallRaiseChance=False
+		myStreet3CheckCallRaiseDone=False
+		myStreet4CheckCallRaiseChance=False
+		myStreet4CheckCallRaiseDone=False
 		
-		foldToContBetChance.append(myFoldToContBetChance)
-		foldToContBetDone.append(myFoldToContBetDone)
-		foldToSecondBarrelChance.append(myFoldToSecondBarrelChance)
-		foldToSecondBarrelDone.append(myFoldToSecondBarrelDone)
-		foldToThirdBarrelChance.append(myFoldToThirdBarrelChance)
-		foldToThirdBarrelDone.append(myFoldToThirdBarrelDone)
+		foldToStreet1CBChance.append(myFoldToStreet1CBChance)
+		foldToStreet1CBDone.append(myFoldToStreet1CBDone)
+		foldToStreet2CBChance.append(myFoldToStreet2CBChance)
+		foldToStreet2CBDone.append(myFoldToStreet2CBDone)
+		foldToStreet3CBChance.append(myFoldToStreet3CBChance)
+		foldToStreet3CBDone.append(myFoldToStreet3CBDone)
+		foldToStreet4CBChance.append(myFoldToStreet4CBChance)
+		foldToStreet4CBDone.append(myFoldToStreet4CBDone)
 		
 		totalProfit.append(myTotalProfit)
 		
-		flopCheckCallRaiseChance.append(myFlopCheckCallRaiseChance)
-		flopCheckCallRaiseDone.append(myFlopCheckCallRaiseDone)
-		turnCheckCallRaiseChance.append(myTurnCheckCallRaiseChance)
-		turnCheckCallRaiseDone.append(myTurnCheckCallRaiseDone)
-		riverCheckCallRaiseChance.append(myRiverCheckCallRaiseChance)
-		riverCheckCallRaiseDone.append(myRiverCheckCallRaiseDone)
+		street1CheckCallRaiseChance.append(myStreet1CheckCallRaiseChance)
+		street1CheckCallRaiseDone.append(myStreet1CheckCallRaiseDone)
+		street2CheckCallRaiseChance.append(myStreet2CheckCallRaiseChance)
+		street2CheckCallRaiseDone.append(myStreet2CheckCallRaiseDone)
+		street3CheckCallRaiseChance.append(myStreet3CheckCallRaiseChance)
+		street3CheckCallRaiseDone.append(myStreet3CheckCallRaiseDone)
+		street4CheckCallRaiseChance.append(myStreet4CheckCallRaiseChance)
+		street4CheckCallRaiseDone.append(myStreet4CheckCallRaiseDone)
 	
-	result['foldToContBetChance']=foldToContBetChance
-	result['foldToContBetDone']=foldToContBetDone
-	result['foldToSecondBarrelChance']=foldToSecondBarrelChance
-	result['foldToSecondBarrelDone']=foldToSecondBarrelDone
-	result['foldToThirdBarrelChance']=foldToThirdBarrelChance
-	result['foldToThirdBarrelDone']=foldToThirdBarrelDone
+	result['foldToStreet1CBChance']=foldToStreet1CBChance
+	result['foldToStreet1CBDone']=foldToStreet1CBDone
+	result['foldToStreet2CBChance']=foldToStreet2CBChance
+	result['foldToStreet2CBDone']=foldToStreet2CBDone
+	result['foldToStreet3CBChance']=foldToStreet3CBChance
+	result['foldToStreet3CBDone']=foldToStreet3CBDone
+	result['foldToStreet4CBChance']=foldToStreet4CBChance
+	result['foldToStreet4CBDone']=foldToStreet4CBDone
 
 	result['totalProfit']=totalProfit
 
-	result['flopCheckCallRaiseChance']=flopCheckCallRaiseChance
-	result['flopCheckCallRaiseDone']=flopCheckCallRaiseDone
-	result['turnCheckCallRaiseChance']=turnCheckCallRaiseChance
-	result['turnCheckCallRaiseDone']=turnCheckCallRaiseDone
-	result['riverCheckCallRaiseChance']=riverCheckCallRaiseChance
-	result['riverCheckCallRaiseDone']=riverCheckCallRaiseDone
+	result['street1CheckCallRaiseChance']=street1CheckCallRaiseChance
+	result['street1CheckCallRaiseDone']=street1CheckCallRaiseDone
+	result['street2CheckCallRaiseChance']=street2CheckCallRaiseChance
+	result['street2CheckCallRaiseDone']=street2CheckCallRaiseDone
+	result['street3CheckCallRaiseChance']=street3CheckCallRaiseChance
+	result['street3CheckCallRaiseDone']=street3CheckCallRaiseDone
+	result['street4CheckCallRaiseChance']=street4CheckCallRaiseChance
+	result['street4CheckCallRaiseDone']=street4CheckCallRaiseDone
 	return result
 #end def calculateHudImport
 
-def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
+def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		for player in range (len(playerIds)):
-			cursor.execute("SELECT * FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
+			cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
 			row=cursor.fetchone()
 			#print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
 			
@@ -1688,8 +1732,7 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 				row.append(gametypeId)
 				row.append(playerIds[player])
 				row.append(len(playerIds))#seats
-				row.append(0)#HDs
-				for i in range(len(hudImportData)):
+				for i in range(len(hudImportData)+2):
 					row.append(0)
 				
 			else:
@@ -1698,71 +1741,122 @@ def storeHudData(cursor, category, gametypeId, playerIds, hudImportData):
 				for i in range(len(row)):
 					newrow.append(row[i])
 				row=newrow
-
-			row[4]+=1 #HDs
-			if hudImportData['VPIP'][player]: row[5]+=1
-			if hudImportData['PFR'][player]: row[6]+=1
-			if hudImportData['PF3B4BChance'][player]: row[7]+=1
-			if hudImportData['PF3B4B'][player]: row[8]+=1
-			if hudImportData['sawFlop'][player]: row[9]+=1
-			if hudImportData['sawTurn'][player]: row[10]+=1
-			if hudImportData['sawRiver'][player]: row[11]+=1
-			if hudImportData['sawShowdown'][player]: row[12]+=1
-			if hudImportData['raisedFlop'][player]: row[13]+=1
-			if hudImportData['raisedTurn'][player]: row[14]+=1
-			if hudImportData['raisedRiver'][player]: row[15]+=1
-			if hudImportData['otherRaisedFlop'][player]: row[16]+=1
-			if hudImportData['otherRaisedFlopFold'][player]: row[17]+=1
-			if hudImportData['otherRaisedTurn'][player]: row[18]+=1
-			if hudImportData['otherRaisedTurnFold'][player]: row[19]+=1
-			if hudImportData['otherRaisedRiver'][player]: row[20]+=1
-			if hudImportData['otherRaisedRiverFold'][player]: row[21]+=1
-			if hudImportData['wonWhenSeenFlop'][player]!=0.0: row[22]+=hudImportData['wonWhenSeenFlop'][player]
-			if hudImportData['wonAtSD'][player]!=0.0: row[23]+=hudImportData['wonAtSD'][player]
-			if hudImportData['stealAttemptChance'][player]: row[24]+=1
-			if hudImportData['stealAttempted'][player]: row[25]+=1
-			if hudImportData['foldBbToStealChance'][player]: row[26]+=1
-			if hudImportData['foldedBbToSteal'][player]: row[27]+=1
-			if hudImportData['foldSbToStealChance'][player]: row[28]+=1
-			if hudImportData['foldedSbToSteal'][player]: row[29]+=1
 			
-			if hudImportData['contBetChance'][player]: row[30]+=1
-			if hudImportData['contBetDone'][player]: row[31]+=1
-			if hudImportData['secondBarrelChance'][player]: row[32]+=1
-			if hudImportData['secondBarrelDone'][player]: row[33]+=1
-			if hudImportData['thirdBarrelChance'][player]: row[34]+=1
-			if hudImportData['thirdBarrelDone'][player]: row[35]+=1
-			row[36]=hudImportData['position'][player]
+			row[4]=hudImportData['position'][player]
+			row[5]=1 #tourneysGametypeId
+			row[6]+=1 #HDs
+			if hudImportData['street0VPI'][player]: row[7]+=1
+			if hudImportData['street0Aggr'][player]: row[8]+=1
+			if hudImportData['street0_3B4BChance'][player]: row[9]+=1
+			if hudImportData['street0_3B4BDone'][player]: row[10]+=1
+			if hudImportData['street1Seen'][player]: row[11]+=1
+			if hudImportData['street2Seen'][player]: row[12]+=1
+			if hudImportData['street3Seen'][player]: row[13]+=1
+			if hudImportData['street4Seen'][player]: row[14]+=1
+			if hudImportData['sawShowdown'][player]: row[15]+=1
+			if hudImportData['street1Aggr'][player]: row[16]+=1
+			if hudImportData['street2Aggr'][player]: row[17]+=1
+			if hudImportData['street3Aggr'][player]: row[18]+=1
+			if hudImportData['street4Aggr'][player]: row[19]+=1
+			if hudImportData['otherRaisedStreet1'][player]: row[20]+=1
+			if hudImportData['otherRaisedStreet2'][player]: row[21]+=1
+			if hudImportData['otherRaisedStreet3'][player]: row[22]+=1
+			if hudImportData['otherRaisedStreet4'][player]: row[23]+=1
+			if hudImportData['foldToOtherRaisedStreet1'][player]: row[24]+=1
+			if hudImportData['foldToOtherRaisedStreet2'][player]: row[25]+=1
+			if hudImportData['foldToOtherRaisedStreet3'][player]: row[26]+=1
+			if hudImportData['foldToOtherRaisedStreet4'][player]: row[27]+=1
+			if hudImportData['wonWhenSeenStreet1'][player]!=0.0: row[28]+=hudImportData['wonWhenSeenStreet1'][player]
+			if hudImportData['wonAtSD'][player]!=0.0: row[29]+=hudImportData['wonAtSD'][player]
+			if hudImportData['stealAttemptChance'][player]: row[30]+=1
+			if hudImportData['stealAttempted'][player]: row[31]+=1
+			if hudImportData['foldBbToStealChance'][player]: row[32]+=1
+			if hudImportData['foldedBbToSteal'][player]: row[33]+=1
+			if hudImportData['foldSbToStealChance'][player]: row[34]+=1
+			if hudImportData['foldedSbToSteal'][player]: row[35]+=1
 			
-			if hudImportData['foldToContBetChance'][player]: row[37]+=1
-			if hudImportData['foldToContBetDone'][player]: row[38]+=1
-			if hudImportData['foldToSecondBarrelChance'][player]: row[39]+=1
-			if hudImportData['foldToSecondBarrelDone'][player]: row[40]+=1
-			if hudImportData['foldToThirdBarrelChance'][player]: row[41]+=1
-			if hudImportData['foldToThirdBarrelDone'][player]: row[42]+=1
+			if hudImportData['street1CBChance'][player]: row[36]+=1
+			if hudImportData['street1CBDone'][player]: row[37]+=1
+			if hudImportData['street2CBChance'][player]: row[38]+=1
+			if hudImportData['street2CBDone'][player]: row[39]+=1
+			if hudImportData['street3CBChance'][player]: row[40]+=1
+			if hudImportData['street3CBDone'][player]: row[41]+=1
+			if hudImportData['street4CBChance'][player]: row[42]+=1
+			if hudImportData['street4CBDone'][player]: row[43]+=1
+			
+			if hudImportData['foldToStreet1CBChance'][player]: row[44]+=1
+			if hudImportData['foldToStreet1CBDone'][player]: row[45]+=1
+			if hudImportData['foldToStreet2CBChance'][player]: row[46]+=1
+			if hudImportData['foldToStreet2CBDone'][player]: row[47]+=1
+			if hudImportData['foldToStreet3CBChance'][player]: row[48]+=1
+			if hudImportData['foldToStreet3CBDone'][player]: row[49]+=1
+			if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
+			if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
 
-			row[43]+=hudImportData['totalProfit'][player]
+			row[52]+=hudImportData['totalProfit'][player]
 
-			if hudImportData['flopCheckCallRaiseChance'][player]: row[44]+=1
-			if hudImportData['flopCheckCallRaiseDone'][player]: row[45]+=1
-			if hudImportData['turnCheckCallRaiseChance'][player]: row[46]+=1
-			if hudImportData['turnCheckCallRaiseDone'][player]: row[47]+=1
-			if hudImportData['riverCheckCallRaiseChance'][player]: row[48]+=1
-			if hudImportData['riverCheckCallRaiseDone'][player]: row[49]+=1
+			if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
+			if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1
+			if hudImportData['street2CheckCallRaiseChance'][player]: row[55]+=1
+			if hudImportData['street2CheckCallRaiseDone'][player]: row[56]+=1
+			if hudImportData['street3CheckCallRaiseChance'][player]: row[57]+=1
+			if hudImportData['street3CheckCallRaiseDone'][player]: row[58]+=1
+			if hudImportData['street4CheckCallRaiseChance'][player]: row[59]+=1
+			if hudImportData['street4CheckCallRaiseDone'][player]: row[60]+=1
 			
 			if doInsert:
 				#print "playerid before insert:",row[2]
-				cursor.execute("""INSERT INTO HudDataHoldemOmaha
-					(gametypeId, playerId, activeSeats, HDs, VPIP, PFR, PF3B4BChance, PF3B4B, sawFlop, sawTurn, sawRiver, sawShowdown, raisedFlop, raisedTurn, raisedRiver, otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold, wonWhenSeenFlop, wonAtSD, stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal, contBetChance, contBetDone, secondBarrelChance, secondBarrelDone, thirdBarrelChance, thirdBarrelDone, position, tourneysGametypeId, foldToContBetChance, foldToContBetDone, foldToSecondBarrelChance, foldToSecondBarrelDone, foldToThirdBarrelChance, foldToThirdBarrelDone, totalProfit, flopCheckCallRaiseChance, flopCheckCallRaiseDone, turnCheckCallRaiseChance, turnCheckCallRaiseDone, riverCheckCallRaiseChance, riverCheckCallRaiseDone)
-					VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], 1, row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49]))
+				cursor.execute("""INSERT INTO HudCache
+					(gametypeId, playerId, activeSeats, position, tourneysGametypeId, 
+					HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+					street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+					street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
+					otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, 
+					foldToOtherRaisedStreet3, foldToOtherRaisedStreet4, wonWhenSeenStreet1, wonAtSD, stealAttemptChance, 
+					stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal, 
+					street1CBChance, street1CBDone, street2CBChance, street2CBDone, street3CBChance, 
+					street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStreet1CBDone, 
+					foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, 
+					foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, 
+					street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
+					VALUES (%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s, 
+					%s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
 			else:
 				#print "storing updated hud data line"
-				cursor.execute("""UPDATE HudDataHoldemOmaha
-					SET HDs=%s, VPIP=%s, PFR=%s, PF3B4BChance=%s, PF3B4B=%s, sawFlop=%s, sawTurn=%s, sawRiver=%s, sawShowdown=%s, raisedFlop=%s, raisedTurn=%s, raisedRiver=%s, otherRaisedFlop=%s, otherRaisedFlopFold=%s, otherRaisedTurn=%s, otherRaisedTurnFold=%s, otherRaisedRiver=%s, otherRaisedRiverFold=%s, wonWhenSeenFlop=%s, wonAtSD=%s, stealAttemptChance=%s, stealAttempted=%s, foldBbToStealChance=%s, foldedBbToSteal=%s, foldSbToStealChance=%s, foldedSbToSteal=%s, contBetChance=%s, contBetDone=%s, secondBarrelChance=%s, secondBarrelDone=%s, thirdBarrelChance=%s, thirdBarrelDone=%s, tourneysGametypeId=%s, foldToContBetChance=%s, foldToContBetDone=%s, foldToSecondBarrelChance=%s, foldToSecondBarrelDone=%s, foldToThirdBarrelChance=%s, foldToThirdBarrelDone=%s, totalProfit=%s, flopCheckCallRaiseChance=%s, flopCheckCallRaiseDone=%s, turnCheckCallRaiseChance=%s, turnCheckCallRaiseDone=%s, riverCheckCallRaiseChance=%s, riverCheckCallRaiseDone=%s
-					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s""", (row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], 1, row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[1], row[2], row[3], row[36]))
+				cursor.execute("""UPDATE HudCache
+					SET HDs=%s, street0VPI=%s, street0Aggr=%s, street0_3B4BChance=%s, street0_3B4BDone=%s, 
+					street1Seen=%s, street2Seen=%s, street3Seen=%s, street4Seen=%s, sawShowdown=%s, 
+					street1Aggr=%s, street2Aggr=%s, street3Aggr=%s, street4Aggr=%s, otherRaisedStreet1=%s, 
+					otherRaisedStreet2=%s, otherRaisedStreet3=%s, otherRaisedStreet4=%s, foldToOtherRaisedStreet1=%s, foldToOtherRaisedStreet2=%s, 
+					foldToOtherRaisedStreet3=%s, foldToOtherRaisedStreet4=%s, wonWhenSeenStreet1=%s, wonAtSD=%s, stealAttemptChance=%s, 
+					stealAttempted=%s, foldBbToStealChance=%s, foldedBbToSteal=%s, foldSbToStealChance=%s, foldedSbToSteal=%s, 
+					street1CBChance=%s, street1CBDone=%s, street2CBChance=%s, street2CBDone=%s, street3CBChance=%s, 
+					street3CBDone=%s, street4CBChance=%s, street4CBDone=%s, foldToStreet1CBChance=%s, foldToStreet1CBDone=%s, 
+					foldToStreet2CBChance=%s, foldToStreet2CBDone=%s, foldToStreet3CBChance=%s, foldToStreet3CBDone=%s, foldToStreet4CBChance=%s, 
+					foldToStreet4CBDone=%s, totalProfit=%s, street1CheckCallRaiseChance=%s, street1CheckCallRaiseDone=%s, street2CheckCallRaiseChance=%s, 
+					street2CheckCallRaiseDone=%s, street3CheckCallRaiseChance=%s, street3CheckCallRaiseDone=%s, street4CheckCallRaiseChance=%s, street4CheckCallRaiseDone=%s
+					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s AND tourneysGametypeId=%s""", (row[6], row[7], row[8], row[9], row[10], 
+					row[11], row[12], row[13], row[14], row[15], 
+					row[16], row[17], row[18], row[19], row[20], 
+					row[21], row[22], row[23], row[24], row[25], 
+					row[26], row[27], row[28], row[29], row[30], 
+					row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], 
+					row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], 
+					row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60], 
+					row[1], row[2], row[3], row[4], row[5]))
 	else:
 		raise FpdbError("todo")
-#end def storeHudData
+#end def storeHudCache
 
 def store_tourneys(cursor, site_id, site_tourney_no, buyin, fee, knockout, entries, prizepool, start_time):
 	cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND siteId=%s", (site_tourney_no, site_id))

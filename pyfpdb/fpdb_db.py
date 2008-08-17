@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=45:
+			if settings[0]!=48:
 				print "outdated or too new database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -112,8 +112,11 @@ class fpdb_db:
 			self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
 			self.cursor.execute("DROP TABLE IF EXISTS sites;")
 		
+		if oldDbVersion>34 and oldDbVersion<=45:
+			self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+		
 		self.cursor.execute("DROP TABLE IF EXISTS Settings;")
-		self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
+		self.cursor.execute("DROP TABLE IF EXISTS HudCache;")
 		self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
 		self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
 		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
@@ -278,30 +281,37 @@ class fpdb_db:
 		comment TEXT,
 		commentTs DATETIME)""")
 		
-		self.create_table("""HudDataHoldemOmaha (
+		self.create_table("""HudCache (
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
 		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
 		activeSeats SMALLINT,
+		position CHAR(1),
+		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id),
+		
 		HDs INT,
-		VPIP INT,
-		PFR INT,
-		PF3B4BChance INT,
-		PF3B4B INT,
-		sawFlop INT,
-		sawTurn INT,
-		sawRiver INT,
+		street0VPI INT,
+		street0Aggr INT,
+		street0_3B4BChance INT,
+		street0_3B4BDone INT,
+		street1Seen INT,
+		street2Seen INT,
+		street3Seen INT,
+		street4Seen INT,
 		sawShowdown INT,
-		raisedFlop INT,
-		raisedTurn INT,
-		raisedRiver INT,
-		otherRaisedFlop INT,
-		otherRaisedFlopFold INT,
-		otherRaisedTurn INT,
-		otherRaisedTurnFold INT,
-		otherRaisedRiver INT,
-		otherRaisedRiverFold INT,
-		wonWhenSeenFlop FLOAT,
+		street1Aggr INT,
+		street2Aggr INT,
+		street3Aggr INT,
+		street4Aggr INT,
+		otherRaisedStreet1 INT,
+		otherRaisedStreet2 INT,
+		otherRaisedStreet3 INT,
+		otherRaisedStreet4 INT,
+		foldToOtherRaisedStreet1 INT,
+		foldToOtherRaisedStreet2 INT,
+		foldToOtherRaisedStreet3 INT,
+		foldToOtherRaisedStreet4 INT,
+		wonWhenSeenStreet1 FLOAT,
 		wonAtSD FLOAT,
 		
 		stealAttemptChance INT,
@@ -311,33 +321,36 @@ class fpdb_db:
 		foldSbToStealChance INT,
 		foldedSbToSteal INT,
 		
-		contBetChance INT,
-		contBetDone INT,
-		secondBarrelChance INT,
-		secondBarrelDone INT,
-		thirdBarrelChance INT,
-		thirdBarrelDone INT,
+		street1CBChance INT,
+		street1CBDone INT,
+		street2CBChance INT,
+		street2CBDone INT,
+		street3CBChance INT,
+		street3CBDone INT,
+		street4CBChance INT,
+		street4CBDone INT,
 		
-		position CHAR(1),
-		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id),
-		
-		foldToContBetChance INT,
-		foldToContBetDone INT,
-		foldToSecondBarrelChance INT,
-		foldToSecondBarrelDone INT,
-		foldToThirdBarrelChance INT,
-		foldToThirdBarrelDone INT,
+		foldToStreet1CBChance INT,
+		foldToStreet1CBDone INT,
+		foldToStreet2CBChance INT,
+		foldToStreet2CBDone INT,
+		foldToStreet3CBChance INT,
+		foldToStreet3CBDone INT,
+		foldToStreet4CBChance INT,
+		foldToStreet4CBDone INT,
 		
 		totalProfit INT,
 		
-		flopCheckCallRaiseChance INT,
-		flopCheckCallRaiseDone INT,
-		turnCheckCallRaiseChance INT,
-		turnCheckCallRaiseDone INT,
-		riverCheckCallRaiseChance INT,
-		riverCheckCallRaiseDone INT)""")
+		street1CheckCallRaiseChance INT,
+		street1CheckCallRaiseDone INT,
+		street2CheckCallRaiseChance INT,
+		street2CheckCallRaiseDone INT,
+		street3CheckCallRaiseChance INT,
+		street3CheckCallRaiseDone INT,
+		street4CheckCallRaiseChance INT,
+		street4CheckCallRaiseDone INT)""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (45);")
+		self.cursor.execute("INSERT INTO Settings VALUES (48);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.cursor.execute("INSERT INTO TourneysGametypes (id) VALUES (DEFAULT);")

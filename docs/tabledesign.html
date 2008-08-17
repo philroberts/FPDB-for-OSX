@@ -383,7 +383,7 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	</TR>
 </TABLE>
 <p><BR></P>
-<P><B>Table HudDataHoldemOmaha</B></P>
+<P><B>Table HudCache</B></P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P><b>Field Name</b></P></TD>
@@ -411,44 +411,60 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>range 2-10</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
+		<TD><P>position</P></TD>
+		<TD><P>char(1)</P></TD>
+		<TD><P>Position for which this row applies. In this table this can be B(BB), S(SB), D(Dealer/Button), C(Cutoff), M(Middle - the 3 before cutoff) or E (Early - the 3 before Middle)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>tourneysGametypeId</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><P>References TourneysGametypes.id</P></TD>
+	</TR>
+
+	<TR VALIGN=TOP>
 		<TD><P>HDs</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands this player played in this gametype with this number of seats</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>VPIP</P></TD>
+		<TD><P>street0VPI</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where player paid to see flop</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>PFR</P></TD>
+		<TD><P>street0Aggr</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where player raised before flop</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>PF3B4BChance</P></TD>
+		<TD><P>street0_3B4BChance</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where player had chance to 3B or 4B</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>PF3B4B</P></TD>
+		<TD><P>street0_3B4BDone</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where player 3bet/4bet before flop</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>sawFlop</P></TD>
+		<TD><P>street1Seen</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player saw flop</P></TD>
+		<TD><P>number of hands where player saw flop/street4</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>sawTurn</P></TD>
+		<TD><P>street2Seen</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player saw turn</P></TD>
+		<TD><P>number of hands where player saw turn/street5</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>sawRiver</P></TD>
+		<TD><P>street3Seen</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player saw river</P></TD>
+		<TD><P>number of hands where player saw river/street6</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Seen</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player saw street7</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>sawShowdown</P></TD>
@@ -456,60 +472,75 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>number of hands where player saw showdown</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>raisedFlop</P></TD>
+		<TD><P>street1Aggr</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player raised flop</P></TD>
+		<TD><P>number of hands where player raised flop/street4</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>raisedTurn</P></TD>
+		<TD><P>street2Aggr</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player raised turn</P></TD>
+		<TD><P>number of hands where player raised turn/street5</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>raisedRiver</P></TD>
+		<TD><P>street3Aggr</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player raised river</P></TD>
+		<TD><P>number of hands where player raised river/street6</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>otherRaisedFlop</P></TD>
+		<TD><P>street4Aggr</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where someone else raised flop</P></TD>
+		<TD><P>number of hands where player raised street7</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>otherRaisedFlopFold</P></TD>
+		<TD><P>otherRaisedStreet1</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where someone else raised flop and the player folded</P></TD>
+		<TD><P>number of hands where someone else raised flop/street4</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>otherRaisedTurn</P></TD>
+		<TD><P>otherRaisedStreet2</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where someone else raised Turn</P></TD>
+		<TD><P>number of hands where someone else raised turn/street5</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>otherRaisedTurnFold</P></TD>
+		<TD><P>otherRaisedStreet3</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where someone else raised Turn and the player folded</P></TD>
+		<TD><P>number of hands where someone else raised river/street6</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>otherRaisedRiver</P></TD>
+		<TD><P>otherRaisedStreet4</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where someone else raised River</P></TD>
+		<TD><P>number of hands where someone else raised street7</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>otherRaisedRiverFold</P></TD>
+		<TD><P>foldToOtherRaisedStreet1</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where someone else raised River and the player folded</P></TD>
+		<TD><P>number of hands where someone else raised flop/street4 and the player folded</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>wonWhenSeenFlop</P></TD>
+		<TD><P>foldToOtherRaisedStreet2</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised Turn/street5 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet3</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised River/street6 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet4</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised street7 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonWhenSeenStreet1</P></TD>
 		<TD><P>float</P></TD>
-		<TD><P>How many hands the player won after seeing the flop - this can be a "partial win" if the pot is split.<br>
+		<TD><P>How many hands the player won after seeing the flop/street4 - this can be a "partial win" if the pot is split.<br>
 			To be completely clear, this stores a hand count, NOT a money amount.</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>wonAtSD</P></TD>
 		<TD><P>float</P></TD>
-		<TD><P>As wonWhenSeenFlop, but for showdown.</P></TD>
+		<TD><P>As wonWhenSeenStreet1, but for showdown.</P></TD>
 	</TR>
 
 	<TR VALIGN=TOP>
@@ -544,76 +575,85 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	</TR>
 
 	<TR VALIGN=TOP>
-		<TD><P>contBetChance</P></TD>
+		<TD><P>street1CBChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player had chance to make continuation bet</P></TD>
+		<TD><P>Player had chance to make continuation bet on flop/street4</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>contBetDone</P></TD>
+		<TD><P>street1CBDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player used chance to make continuation bet</P></TD>
+		<TD><P>Player used chance to make continuation bet on flop/street4</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>secondBarrelChance</P></TD>
+		<TD><P>street2CBChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player had chance to make second barrel bet</P></TD>
+		<TD><P>Player had chance to make continuation bet on turn/street5</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>secondBarrelDone</P></TD>
+		<TD><P>street2CBDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player used chance to make second barrel bet</P></TD>
+		<TD><P>Player used chance to make continuation bet on turn/street5</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>thirdBarrelChance</P></TD>
+		<TD><P>street3CBChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player had chance to make third barrel bet</P></TD>
+		<TD><P>Player had chance to make continuation bet on river/street6</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>thirdBarrelDone</P></TD>
+		<TD><P>street3CBDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player used chance to make third barrel bet</P></TD>
+		<TD><P>Player used chance to make continuation bet on river/street6</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to make continuation bet on street7</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to make continuation bet on street7</P></TD>
 	</TR>
 	
 	<TR VALIGN=TOP>
-		<TD><P>position</P></TD>
-		<TD><P>char(1)</P></TD>
-		<TD><P>Position for which this row applies. In this table this can be B(BB), S(SB), D(Dealer/Button), C(Cutoff), M(Middle - the 3 before cutoff) or E (Early - the 3 before Middle)</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>tourneysGametypeId</P></TD>
-		<TD><P>smallint</P></TD>
-		<TD><P>References TourneysGametypes.id</P></TD>
-	</TR>
-
-	<TR VALIGN=TOP>
-		<TD><P>foldToContBetChance</P></TD>
+		<TD><P>foldToStreet1CBChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player had chance to fold to continuation bet</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>foldToContBetDone</P></TD>
+		<TD><P>foldToStreet1CBDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player used chance to fold to continuation bet</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>foldToSecondBarrelChance</P></TD>
+		<TD><P>foldToStreet2CBChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player had chance to fold to second barrel bet</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>foldToSecondBarrelDone</P></TD>
+		<TD><P>foldToStreet2CBDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player used chance to fold to second barrel bet</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>foldToThirdBarrelChance</P></TD>
+		<TD><P>foldToStreet3CBChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player had chance to fold to third barrel bet</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>foldToThirdBarrelDone</P></TD>
+		<TD><P>foldToStreet3CBDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>Player used chance to fold to third barrel bet</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet4CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet4CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
 	</TR>
 	
 	<TR VALIGN=TOP>
@@ -623,34 +663,44 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	</TR>
 	
 	<TR VALIGN=TOP>
-		<TD><P>flopCheckCallRaiseChance</P></TD>
+		<TD><P>street1CheckCallRaiseChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>How often player had the chance to do a check-raise or a call-raise on the flop</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>flopCheckCallRaiseDone</P></TD>
+		<TD><P>street1CheckCallRaiseDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>How often player used the chance to do a check-raise or a call-raise on the flop</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>turnCheckCallRaiseChance</P></TD>
+		<TD><P>street2CheckCallRaiseChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>How often player had the chance to do a check-raise or a call-raise on the turn</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>turnCheckCallRaiseDone</P></TD>
+		<TD><P>street2CheckCallRaiseDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>How often player used the chance to do a check-raise or a call-raise on the turn</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>riverCheckCallRaiseChance</P></TD>
+		<TD><P>street3CheckCallRaiseChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>How often player had the chance to do a check-raise or a call-raise on the river</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>riverCheckCallRaiseDone</P></TD>
+		<TD><P>street3CheckCallRaiseDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>How often player used the chance to do a check-raise or a call-raise on the river</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
 	</TR>
 	
 </TABLE>

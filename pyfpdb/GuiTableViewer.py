@@ -156,8 +156,8 @@ class GuiTableViewer (threading.Thread):
 				tmp.append(self.hudDivide(row[15],row[11])+" ("+str(row[11])+")") #AR
 				tmp.append(self.hudDivide(row[21],row[20])+" ("+str(row[20])+")") #FR
 			
-			tmp.append(self.hudDivide(row[12],row[9])+" ("+str(row[9])+")") #SD/F
-			tmp.append(self.hudDivide(row[22],row[9])+" ("+str(row[9])+")") #W$wSF
+			tmp.append(self.hudDivide(row[12],row[9])) #WtSD
+			tmp.append(self.hudDivide(row[22],row[9])) #W$wSF
 			tmp.append(self.hudDivide(row[23],row[12])+" ("+str(row[12])+")") #W$@SD
 			
 			arr.append(tmp)

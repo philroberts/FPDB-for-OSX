@@ -54,7 +54,7 @@ def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_ti
 	
 	hands_players_ids=fpdb_simple.store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos)
 				
-	fpdb_simple.storeHudData(cursor, category, gametype_id, player_ids, hudImportData)
+	fpdb_simple.storeHudCache(cursor, category, gametype_id, player_ids, hudImportData)
 	
 	fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 	

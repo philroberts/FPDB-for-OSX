@@ -3,19 +3,21 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
+finish Cache generalisation from line 1814 onwards
+add sf.net logo to webpage
 change tabledesign VALIGN
 seperate and improve instructions for update
-verify link in release notes
 split install instructions into OS-specific and OS-independent section. expand release creator to concatenate.
 expand instructions for profile file, again, the release-creator will cat it.
-delete old mailing list and create fpdb-announce
+add instructions for mailing list to contacts
 finish updating filelist
-update abbreviations.txt
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 add minimal instructions for developing to git-instructions
 
 alpha3
 ======
+make sure totalProfit shows actual profit rather than winnings.
+update abbreviations.txt
 (steffen) finish bringing back tourney
 store raw hand in db
 export settings[hud-defaultInterval] to conf
