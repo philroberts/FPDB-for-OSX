@@ -19,6 +19,8 @@ import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
+import os
+import time
 import fpdb_import
 
 class GuiAutoImport (threading.Thread):
@@ -45,7 +47,19 @@ class GuiAutoImport (threading.Thread):
 
 	def startClicked(self, widget, data):
 		"""runs when user clicks start on auto import tab"""
-		print "implement GuiAutoImport.startClicked"
+		
+		self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
+		for file in os.listdir(self.path):
+			if os.path.isdir(file):
+				print "AutoImport is not recursive - please select the final directory in which the history files are"
+			else:
+				self.inputFile=self.path+os.sep+file
+				fpdb_import.import_file_dict(self)
+		print "GuiBulkImport.import_dir done"
+		
+		interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
+		time.sleep(interval)
+		self.startClicked(widget,data)
 	#end def GuiAutoImport.browseClicked
 
 	def get_vbox(self):
@@ -56,6 +70,15 @@ class GuiAutoImport (threading.Thread):
 	def __init__(self, settings, debug=True):
 		"""Constructor for GuiAutoImport"""
 		self.settings=settings
+		
+		self.server=settings['db-host']
+		self.user=settings['db-user']
+		self.password=settings['db-password']
+		self.database=settings['db-databaseName']
+		self.quiet=False
+		self.failOnError=False
+		self.minPrint=30
+		self.handCount=0
 		
 		self.mainVBox=gtk.VBox(False,1)
 		self.mainVBox.show()

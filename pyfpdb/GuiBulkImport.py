@@ -29,11 +29,11 @@ class GuiBulkImport (threading.Thread):
 		self.path=self.inputFile
 		for file in os.listdir(self.path):
 			if os.path.isdir(file):
-				pass
+				print "BulkImport is not recursive - please select the final directory in which the history files are"
 			else:
 				self.inputFile=self.path+os.sep+file
 				fpdb_import.import_file_dict(self)
-		print "import_dir done"
+		print "GuiBulkImport.import_dir done"
 		
 	def load_clicked(self, widget, data=None):
 		self.inputFile=self.chooser.get_filename()

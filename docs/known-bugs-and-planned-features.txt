@@ -3,8 +3,6 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-implement HandsPlayers.seatNo
-
 change tabledesign VALIGN
 seperate and improve instructions for update
 verify link in release notes
@@ -18,6 +16,7 @@ add minimal instructions for developing to git-instructions
 
 alpha3
 ======
+(steffen) finish bringing back tourney
 store raw hand in db
 export settings[hud-defaultInterval] to conf
 fix up bg colours in tv
@@ -37,6 +36,7 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 
 before beta
 ===========
+stop auto-importer from freezing interface
 maybe remove siteId from gametypes
 ?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?
 rakeback/frequent player points
