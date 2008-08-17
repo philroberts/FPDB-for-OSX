@@ -230,6 +230,11 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P><BR></P></TD>
 	</TR>
 	<TR VALIGN=TOP>
+		<TD><P>tableName</P></TD>
+		<TD><P>varchar(20)</P></TD>
+		<TD><P>The site's name for the current table</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
 		<TD><P>siteHandNo</P></TD>
 		<TD><P>bigint</P></TD>
 		<TD><P>the site's hand number</P></TD>
@@ -243,6 +248,11 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>handStart</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P>start date&amp;time of the hand</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>importTime</P></TD>
+		<TD><P>datetime (in UTC)</P></TD>
+		<TD><P>date&amp;time of import of this hand</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>seats</P></TD>
@@ -322,8 +332,13 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	<TR VALIGN=TOP>
 		<TD><P>position</P></TD>
 		<TD><P>char(1)</P></TD>
-		<TD><p>BB=B, SB=S, Button=0, Cutoff=1, etc.</P>
-			<P>This is used in holdem/omaha only.</P></TD>
+		<TD><p>BB=B, SB=S, Button=0, Cutoff=1, etc.<br>
+			This is used in holdem/omaha only.</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>seatNo</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><p>The seat in which the person was sitting - necessary for HUD</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>ante</P></TD>
@@ -333,8 +348,8 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	<TR VALIGN=TOP>
 		<TD><P>cardXValue</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><p>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P>
-			<P>see note above table</P></TD>
+		<TD><p>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x<br>
+			see note above table</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>cardXSuit</P></TD>

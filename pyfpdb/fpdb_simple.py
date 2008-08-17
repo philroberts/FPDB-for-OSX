@@ -967,22 +967,31 @@ def recogniseGametypeID(cursor, topline, site_id, category, isTourney):#todo: th
 	try:
 		len(result)
 	except TypeError:
-		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+		if category=="holdem" or category=="omahahi" or category=="omahahilo":
 			max_seats=10
+			base="hold"
 		else:
 			max_seats=8
+			base="stud"
+		
+		if category=="holdem" or category=="omahahi" or category=="studhi":
+			hiLo='h'
+		elif category=="razz":
+			hiLo='l'
+		else:
+			hiLo='s'
 		
 		if (limit_type=="fl"):
 			big_blind=small_bet #todo: read this
 			small_blind=big_blind/2 #todo: read this
 			cursor.execute("""INSERT INTO Gametypes
-			(siteId, type, category, limitType, smallBlind, bigBlind, smallBet, bigBet)
-			VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, category, limit_type, small_blind, big_blind, small_bet, big_bet))
+			(siteId, type, base, category, limitType, hiLo, smallBlind, bigBlind, smallBet, bigBet)
+			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, base, category, limit_type, hiLo, small_blind, big_blind, small_bet, big_bet))
 			cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBet=%s AND bigBet=%s", (site_id, type, category, limit_type, small_bet, big_bet))
 		else:
 			cursor.execute("""INSERT INTO Gametypes
 			(siteId, type, category, limitType, smallBlind, bigBlind, smallBet, bigBet)
-			VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, category, limit_type, small_bet, big_bet, 0, 0))#remember, for these bet means blind
+			VALUES (%s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, base, category, limit_type, hiLo, small_bet, big_bet, 0, 0))#remember, for these bet means blind
 			cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
 
 		result=cursor.fetchone()

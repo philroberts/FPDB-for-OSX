@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=41:
+			if settings[0]!=43:
 				print "outdated or too new database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -159,8 +159,10 @@ class fpdb_db:
 		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
 		type char(4),
+		base char(4),
 		category varchar(9),
 		limitType char(2),
+		hiLo char(1),
 		smallBlind int,
 		bigBlind int,
 		smallBet int,
@@ -184,11 +186,13 @@ class fpdb_db:
 
 		self.create_table("""Hands (
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		siteHandNo bigint,
+		tableName VARCHAR(20),
+		siteHandNo BIGINT,
 		gametypeId SMALLINT UNSIGNED, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
 		handStart DATETIME,
-		seats smallint,
-		comment text,
+		importTime DATETIME,
+		seats SMALLINT,
+		comment TEXT,
 		commentTs DATETIME)""")
 
 		self.create_table("""BoardCards (
@@ -237,9 +241,10 @@ class fpdb_db:
 		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		handId BIGINT UNSIGNED, FOREIGN KEY (handId) REFERENCES Hands(id),
 		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
-		startCash int,
-		position char(1),
-		ante int,
+		startCash INT,
+		position CHAR(1),
+		seatNo SMALLINT,
+		ante INT,
 	
 		card1Value smallint,
 		card1Suit char(1),
@@ -332,7 +337,7 @@ class fpdb_db:
 		riverCheckCallRaiseChance INT,
 		riverCheckCallRaiseDone INT)""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (41);")
+		self.cursor.execute("INSERT INTO Settings VALUES (43);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.cursor.execute("INSERT INTO TourneysGametypes (id) VALUES (DEFAULT);")
