@@ -3,7 +3,7 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
- HandsPlayers.seatNo
+implement HandsPlayers.seatNo
 
 change tabledesign VALIGN
 seperate and improve instructions for update
@@ -14,7 +14,7 @@ delete old mailing list and create fpdb-announce
 finish updating filelist
 update abbreviations.txt
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
-
+add minimal instructions for developing to git-instructions
 
 alpha3
 ======

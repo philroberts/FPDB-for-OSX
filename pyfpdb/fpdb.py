@@ -350,7 +350,7 @@ class fpdb:
 For howto information please see docs"""+os.sep+"""readme-user.txt
 The abbrevations in the table viewer are explained in docs"""+os.sep+"""abbrevations.txt
 This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
-		self.add_and_display_tab(mh_tab, "main help")
+		self.add_and_display_tab(mh_tab, "Help")
 	#end def tab_main_help
 	
 	def tab_table_viewer(self, widget, data):
@@ -359,7 +359,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		new_tv_thread=GuiTableViewer.GuiTableViewer(self.db, self.settings)
 		self.threads.append(new_tv_thread)
 		tv_tab=new_tv_thread.get_vbox()
-		self.add_and_display_tab(tv_tab, "table viewer")
+		self.add_and_display_tab(tv_tab, "Table Viewer")
 	#end def tab_table_viewer
 
 	def __init__(self):
@@ -370,7 +370,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha1+, p44")
+		self.window.set_title("Free Poker DB - version: alpha1+, p45")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)

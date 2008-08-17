@@ -57,7 +57,9 @@ def mainParser(db, cursor, site, category, hand):
 			seatLines.append(hand[i])
 	names=fpdb_simple.parseNames(seatLines)
 	playerIDs = fpdb_simple.recognisePlayerIDs(cursor, names, siteID)
-	startCashes=fpdb_simple.parseCashes(seatLines, site)
+	tmp=fpdb_simple.parseCashesAndSeatNos(seatLines, site)
+	startCashes=tmp['startCashes']
+	seatNos=tmp['seatNos']
 	
 	fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, actionAmounts, actionNos, actionTypeByNo)
 	
@@ -118,7 +120,7 @@ def mainParser(db, cursor, site, category, hand):
 		prizepool=-1
 		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
-					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName)
+					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			raise fpdb_simple.FpdbError ("stud/razz are currently broken")
 			result = fpdb_save_to_db.tourney_stud(cursor, category, siteTourneyNo, buyin, fee, 
@@ -128,7 +130,7 @@ def mainParser(db, cursor, site, category, hand):
 					actionTypes, actionAmounts, hudImportData)
 	else:
 		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-			result = fpdb_save_to_db.ring_holdem_omaha(cursor, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName)
+			result = fpdb_save_to_db.ring_holdem_omaha(cursor, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			raise fpdb_simple.FpdbError ("stud/razz are currently broken")
 			result = fpdb_save_to_db.ring_stud(cursor, category, siteHandNo, gametypeID, 

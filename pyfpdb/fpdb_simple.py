@@ -718,24 +718,24 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
 		raise FpdbError ("unrecognised line:"+line)
 #end def parseCardLine
 
-#parses the start cash of each player out of the given lines and returns them as an array
-def parseCashes(lines, site):
-	result = []
+def parseCashesAndSeatNos(lines, site):
+	"""parses the startCashes and seatNos of each player out of the given lines and returns them as a dictionary of two arrays"""
+	cashes = []
+	seatNos = []
 	for i in range (len(lines)):
+		pos2=lines[i].rfind(":")
+		seatNos.append(int(lines[i][5:pos2]))
+		
 		pos1=lines[i].rfind("($")+2
 		if pos1==1: #for tourneys - it's 1 instead of -1 due to adding 2 above
 			pos1=lines[i].rfind("(")+1
-		#print "parseCashes, lines[i]:",lines[i]
-		#print "parseCashes, pos1:",pos1
 		if (site=="ftp"):
 			pos2=lines[i].rfind(")")
 		elif (site=="ps"):
-			#print "in parseCashes, line:", lines[i]
 			pos2=lines[i].find(" in chips")
-		#print "in parseCashes, line:", lines[i], "pos1:",pos1,"pos2:",pos2
-		result.append(float2int(lines[i][pos1:pos2]))
-	return result
-#end def parseCashes
+		cashes.append(float2int(lines[i][pos1:pos2]))
+	return {'startCashes':cashes, 'seatNos':seatNos}
+#end def parseCashesAndSeatNos
 
 #returns the buyin of a tourney in cents
 def parseFee(topline):
@@ -1132,18 +1132,18 @@ def storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableN
 #end def storeHands
 
 def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, 
-				start_cashes, positions, card_values, card_suits, winnings, rakes):
+				start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos):
 	result=[]
 	if (category=="holdem"):
 		for i in range (len(player_ids)):
 			cursor.execute ("""
 			INSERT INTO HandsPlayers 
 			(handId, playerId, startCash, position,
-			card1Value, card1Suit, card2Value, card2Suit, winnings, rake) 
-			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+			card1Value, card1Suit, card2Value, card2Suit, winnings, rake, seatNo) 
+			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
 			(hands_id, player_ids[i], start_cashes[i], positions[i],
 			card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
-			winnings[i], rakes[i]))
+			winnings[i], rakes[i], seatNos[i]))
 			cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
 			result.append(cursor.fetchall()[0][0])
 	elif (category=="omahahi" or category=="omahahilo"):
@@ -1151,12 +1151,12 @@ def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids,
 			cursor.execute ("""INSERT INTO HandsPlayers 
 			(handId, playerId, startCash,	position,
 			card1Value, card1Suit, card2Value, card2Suit,
-			card3Value, card3Suit, card4Value, card4Suit, winnings, rake) 
-			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+			card3Value, card3Suit, card4Value, card4Suit, winnings, rake, seatNo) 
+			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
 			(hands_id, player_ids[i], start_cashes[i], positions[i],
 			card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 			card_values[i][2], card_suits[i][2], card_values[i][3],	card_suits[i][3],
-			winnings[i], rakes[i]))
+			winnings[i], rakes[i], seatNo[i]))
 			cursor.execute("SELECT id FROM hands_players WHERE hand_id=%s AND player_id=%s", (hands_id, player_ids[i]))
 			result.append(cursor.fetchall()[0][0])
 	else:

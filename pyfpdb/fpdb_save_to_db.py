@@ -37,7 +37,7 @@ def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time,
 	return site_hand_no
 #end def ring_stud
 
-def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time, names, player_ids, start_cashes, positions, card_values, card_suits, board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData, maxSeats, tableName):
+def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time, names, player_ids, start_cashes, positions, card_values, card_suits, board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
 	"""stores a holdem/omaha hand into the database"""
 	
 	#fill up the two player card arrays
@@ -52,8 +52,7 @@ def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_ti
 
 	hands_id=fpdb_simple.storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName)
 	
-	hands_players_ids=fpdb_simple.store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, 
-				start_cashes, positions, card_values, card_suits, winnings, rakes)
+	hands_players_ids=fpdb_simple.store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos)
 				
 	fpdb_simple.storeHudData(cursor, category, gametype_id, player_ids, hudImportData)
 	
