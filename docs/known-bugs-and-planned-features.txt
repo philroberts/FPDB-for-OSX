@@ -36,7 +36,6 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 
 before beta
 ===========
-stop auto-importer from freezing interface
 maybe remove siteId from gametypes
 ?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?
 rakeback/frequent player points
