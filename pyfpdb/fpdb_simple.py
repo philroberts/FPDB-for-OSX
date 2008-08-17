@@ -109,6 +109,8 @@ def classifyLines(hand, category, lineTypes, lineStreets):
 			currentStreet=7
 		elif (hand[i].find(" shows [")!=-1):
 			lineTypes.append("cards")
+		elif (hand[i].startswith("Table '")):
+			lineTypes.append("table")
 		else:
 			raise FpdbError("unrecognised linetype in:"+hand[i])
 		lineStreets.append(currentStreet)
@@ -340,8 +342,8 @@ def filterCrap(site, hand):
 			toRemove.append(hand[i])
 		elif (hand[i].find(" is low with [")!=-1):
 			toRemove.append(hand[i])
-		elif (hand[i].find("-max Seat #")!=-1 and hand[i].find(" is the button")!=-1):
-			toRemove.append(hand[i])
+		#elif (hand[i].find("-max Seat #")!=-1 and hand[i].find(" is the button")!=-1):
+		#	toRemove.append(hand[i])
 		elif (hand[i].endswith(" mucks")):
 			toRemove.append(hand[i])
 		elif (hand[i].endswith(": mucks hand")):
@@ -860,7 +862,18 @@ def parseSiteHandNo(topline):
 	pos1=topline.find("#")+1
 	pos2=topline.find(":")
 	return topline[pos1:pos2]
-#end def parseHandSiteNo
+#end def parseSiteHandNo
+
+def parseTableLine(line):
+	"""returns a dictionary with maxSeats and tableName"""
+	pos1=line.find('\'')+1
+	pos2=line.find('\'', pos1)
+	#print "table:",line[pos1:pos2]
+	pos3=pos2+2
+	pos4=line.find("-max")
+	#print "seats:",line[pos3:pos4]
+	return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
+#end def parseTableLine
 
 #returns the hand no assigned by the poker site
 def parseTourneyNo(topline):
@@ -968,10 +981,8 @@ def recogniseGametypeID(cursor, topline, site_id, category, isTourney):#todo: th
 		len(result)
 	except TypeError:
 		if category=="holdem" or category=="omahahi" or category=="omahahilo":
-			max_seats=10
 			base="hold"
 		else:
-			max_seats=8
 			base="stud"
 		
 		if category=="holdem" or category=="omahahi" or category=="studhi":
@@ -1112,9 +1123,9 @@ def store_board_cards(cursor, hands_id, board_values, board_suits):
 	board_values[4], board_suits[4]))
 #end def store_board_cards
 
-def storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names):
+def storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName):
 #stores into table hands
-	cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats) VALUES (%s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names)))
+	cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats, tableName, importTime) VALUES (%s, %s, %s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today()))
 	#todo: find a better way of doing this...
 	cursor.execute("SELECT id FROM Hands WHERE siteHandNo=%s AND gametypeId=%s", (site_hand_no, gametype_id))
 	return cursor.fetchall()[0][0]

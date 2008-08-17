@@ -3,7 +3,7 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-implement hands.tableName/importTime HandsPlayers.seatNo
+ HandsPlayers.seatNo
 
 change tabledesign VALIGN
 seperate and improve instructions for update
