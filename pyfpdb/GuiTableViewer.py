@@ -243,7 +243,7 @@ class GuiTableViewer (threading.Thread):
 		self.minPrint=0
 		self.handCount=0
 		
-		self.last_read_hand=fpdb_import.import_file_dict(self)
+		self.last_read_hand=fpdb_import.import_file_dict(self, self.settings)
 	#end def table_viewer.import_clicked
 
 	def all_clicked(self, widget, data):

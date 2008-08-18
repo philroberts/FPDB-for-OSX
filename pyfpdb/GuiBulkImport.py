@@ -80,14 +80,15 @@ class GuiBulkImport (threading.Thread):
 		print "todo: implement bulk import thread"
 	#end def run
 	
-	def __init__(self, db, initial_path="/work/poker-histories/wine-ps/"):
+	def __init__(self, db, settings):
 		self.db=db
+		self.settings=settings
 		
 		self.vbox=gtk.VBox(False,1)
 		self.vbox.show()
 		
 		self.chooser = gtk.FileChooserWidget()
-		self.chooser.set_filename(initial_path)
+		self.chooser.set_filename(self.settings['bulkImport-defaultPath'])
 		#chooser.set_default_response(gtk.RESPONSE_OK)
 		#self.filesel.ok_button.connect_object("clicked", gtk.Widget.destroy, self.filesel)
 		self.vbox.add(self.chooser)

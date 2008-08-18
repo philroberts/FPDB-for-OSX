@@ -3,6 +3,7 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
+make windows use correct language version of Appdata, e.g. Anwendungdaten
 seperate and improve instructions for update
 update status or make a support matrix table for website
 add instructions for mailing list to contacts
@@ -11,7 +12,6 @@ re-run existing regression tests
 
 alpha3
 ======
-export imp-callFpdbHud to .conf
 make it work with postgres
 expand instructions for profile file
 ftp: read maxSeats
