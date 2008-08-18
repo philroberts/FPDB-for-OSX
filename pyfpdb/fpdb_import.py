@@ -34,9 +34,10 @@ def import_file(server, database, user, password, inputFile):
 	self.user=user
 	self.password=password
 	self.inputFile=inputFile
-	import_file_dict(self)
+	self.settings={'imp-callFpdbHud':False}
+	import_file_dict(self, settings)
 
-def import_file_dict(options):
+def import_file_dict(options, settings):
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
@@ -99,15 +100,14 @@ def import_file_dict(options):
 					hand=fpdb_simple.filterCrap(site, hand, isTourney)
 			
 					try:
-						if (category=="holdem" or category=="omahahi" or category=="omahahilo" or category=="razz" or category=="studhi" or category=="studhilo"):
-							if (category=="razz" or category=="studhi" or category=="studhilo"):
-								raise fpdb_simple.FpdbError ("stud/razz currently out of order")
-							last_read_hand=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
-							db.commit()
-						else:
-							raise fpdb_simple.FpdbError ("invalid category")
-				
+						if (category=="razz" or category=="studhi" or category=="studhilo"):
+							raise fpdb_simple.FpdbError ("stud/razz currently out of order")
+						last_read_hand=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
+						db.commit()
+						
 						stored+=1
+						if settings['imp-callFpdbHud']:
+							print "call to HUD here"
 						db.commit()
 					except fpdb_simple.DuplicateError:
 						duplicates+=1

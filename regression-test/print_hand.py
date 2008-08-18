@@ -23,7 +23,7 @@ from optparse import OptionParser
 import fpdb_util_lib as ful
 
 parser = OptionParser()
-parser.add_option("-n", "--hand_number", "--hand", type="int",
+parser.add_option("-n", "--handNumber", "--hand", type="int",
 				help="Number of the hand to print")
 parser.add_option("-p", "--password", help="The password for the MySQL user")
 parser.add_option("-s", "--site", default="PokerStars",
@@ -31,52 +31,61 @@ parser.add_option("-s", "--site", default="PokerStars",
 
 (options, sys.argv) = parser.parse_args()
 
-if options.hand_number==None or options.site==None:
+if options.handNumber==None or options.site==None:
 	print "please supply a hand number and site name. TODO: make this work"
 
 db = MySQLdb.connect("localhost", "fpdb", options.password, "fpdb")
 cursor = db.cursor()
 print "Connected to MySQL on localhost. Print Hand Utility"
 
-cursor.execute("SELECT id FROM sites WHERE name=%s", (options.site,))
-site_id=cursor.fetchone()[0]
-print "options.site:",options.site,"site_id:",site_id
+cursor.execute("SELECT id FROM Sites WHERE name=%s", (options.site,))
+siteId=cursor.fetchone()[0]
+print "options.site:",options.site,"siteId:",siteId
 
-cursor.execute("""SELECT hands.* FROM hands INNER JOIN gametypes
-ON hands.gametype_id = gametypes.id WHERE gametypes.site_id=%s AND hands.site_hand_no=%s""",
-(site_id, options.hand_number))
-hands_result=cursor.fetchone()
-gametype_id=hands_result[2]
-site_hand_no=options.hand_number
-hand_id=hands_result[0]
-hand_start=hands_result[3]
-seat_count=hands_result[4]
+print ""
+print "From Table Hands"
+print "================"
+
+cursor.execute("""SELECT Hands.* FROM Hands INNER JOIN Gametypes
+ON Hands.gametypeId = Gametypes.id WHERE Gametypes.siteId=%s AND Hands.siteHandNo=%s""",
+(siteId, options.handNumber))
+handsResult=cursor.fetchone()
+handId=handsResult[0]
+tableName=handsResult[1]
+siteHandNo=options.handNumber
+gametypeId=handsResult[3]
+handStart=handsResult[4]
+#skip importTime
+seats=handsResult[6]
+maxSeats=handsResult[7]
+print "handId:", handId, "  tableName:", tableName, "  siteHandNo:", siteHandNo, "  gametypeId:", gametypeId, "  handStart:", handStart, "  seats:", seats, "  maxSeats:", maxSeats
 
 
 print ""
-print "From Table gametypes"
+print "From Table Gametypes"
 print "===================="
 
-cursor.execute("""SELECT type, category, limit_type FROM gametypes WHERE id=%s""",
-			   (gametype_id, ))
-type_etc=cursor.fetchone()
-type=type_etc[0]
-category=type_etc[1]
-limit_type=type_etc[2]
-print "type:", type, "  category:", category, "  limit_type:", limit_type
+cursor.execute("""SELECT type, base, category, limitType, hiLo FROM Gametypes WHERE id=%s""", (gametypeId, ))
+typeEtc=cursor.fetchone()
+type=typeEtc[0]
+base=typeEtc[1]
+category=typeEtc[2]
+limitType=typeEtc[3]
+hiLo=typeEtc[4]
+print "type:", type, "  base:", base, "  category:", category, "  limitType:", limitType, "  hiLo:", hiLo
 
-gt_string=""
-do_bets=False
-if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-	cursor.execute("SELECT small_blind FROM gametypes WHERE id=%s", (gametype_id, ))
+gtString=""
+doBets=False
+if base=="hold":
+	cursor.execute("SELECT smallBlind FROM Gametypes WHERE id=%s", (gametypeId, ))
 	sb=cursor.fetchone()[0]
-	cursor.execute("SELECT big_blind FROM gametypes WHERE id=%s", (gametype_id, ))
+	cursor.execute("SELECT bigBlind FROM Gametypes WHERE id=%s", (gametypeId, ))
 	bb=cursor.fetchone()[0]
-	gt_string=("sb: "+str(sb)+"   bb: "+str(bb))
-	if (limit_type=="fl"):
-		do_bets=True
-elif (category=="razz" or category=="studhi" or category=="studhilo"):
-	do_bets=True
+	gtString=("sb: "+str(sb)+"   bb: "+str(bb))
+	if (limitType=="fl"):
+		doBets=True
+elif base=="stud":
+	doBets=True
 	
 if do_bets:
 	cursor.execute("SELECT small_bet FROM gametypes WHERE id=%s", (gametype_id, ))

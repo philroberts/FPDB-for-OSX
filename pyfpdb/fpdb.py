@@ -248,6 +248,7 @@ class fpdb:
 			self.settings['os']="windows"
 		self.settings['tv-combinedStealFold']=True
 		self.settings['tv-combined2B3B']=True
+		self.settings['imp-callFpdbHud']=True
 		
 		if self.settings['os']=="windows":
 			self.settings['bulkImport-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
@@ -269,6 +270,11 @@ class fpdb:
 				self.settings['db-user']=lines[i][8:-1]
 			elif lines[i].startswith("db-password="):
 				self.settings['db-password']=lines[i][12:-1]
+			elif lines[i].startswith("imp-callFpdbHud="):
+				if lines[i].find("True")!=-1:
+					self.settings['imp-callFpdbHud']=True
+				else:
+					self.settings['imp-callFpdbHud']=False
 			elif lines[i].startswith("tv-combinedPostflop="):
 				if lines[i].find("True")!=-1:
 					self.settings['tv-combinedPostflop']=True
@@ -370,7 +376,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha1+, p56")
+		self.window.set_title("Free Poker DB - version: alpha1+, p57")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)

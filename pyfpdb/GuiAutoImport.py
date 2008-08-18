@@ -54,7 +54,7 @@ class GuiAutoImport (threading.Thread):
 				print "AutoImport is not recursive - please select the final directory in which the history files are"
 			else:
 				self.inputFile=self.path+os.sep+file
-				fpdb_import.import_file_dict(self)
+				fpdb_import.import_file_dict(self, self.settings)
 		print "GuiBulkImport.import_dir done"
 		
 		interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
