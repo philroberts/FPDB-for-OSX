@@ -1123,9 +1123,9 @@ def store_board_cards(cursor, hands_id, board_values, board_suits):
 	board_values[4], board_suits[4]))
 #end def store_board_cards
 
-def storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName):
+def storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName, maxSeats):
 #stores into table hands
-	cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats, tableName, importTime) VALUES (%s, %s, %s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today()))
+	cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats) VALUES (%s, %s, %s, %s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats))
 	#todo: find a better way of doing this...
 	cursor.execute("SELECT id FROM Hands WHERE siteHandNo=%s AND gametypeId=%s", (site_hand_no, gametype_id))
 	return cursor.fetchall()[0][0]
