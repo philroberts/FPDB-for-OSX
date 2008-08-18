@@ -14,23 +14,35 @@ require SITE_PATH.'sidebar.php';
                 <h1>Git Instructions</h1>
 
 <p>Hi, welcome to my minimal git guide for fpdb devs!<br>
-I'll expand this on request, if you have any questions just send me a mail at steffen(at)sycamoretest.info.<br><br>
+You can use a git version just as user as well of course, but as there are generally hardly tested it is not advised.<br>
+I'll expand this on request, if you have any questions just send me a mail at steffen(at)sycamoretest.info. There's also a bunch of instructions at http://www.assembla.com/spaces/fpdb/trac_git_tool</p>
 
-How to make a local git commit<br>
-==============================<br>
-go to the root of your fpdb directory and type:<br>
+<h2>0. Getting it</h2>
+<p>To get git for gentoo just do emerge git -av<br>
+To get it for Windows go to http://code.google.com/p/msysgit/downloads/list and install it. 
+<h2>1. Cloning the fpdb git tree</h2>
+<p>Just create a new directory (lets say ~/fpdb/ ), go into it and type:<br>
+git clone git://git.assembla.com/fpdb.git</p>
+<h2>2. Making your changes</h2>
+<p>You can use whatever you want to do edit the files. I personally use nedit and occassionally Eclipse.</p>
+<h2>3. Making a (local) commit</h2>
+<p>Unlike in svn you don't need to be online to make your commits. First we need to tell git what to commit, so go to the root of your fpdb directory and type:<br>
 git-add--interactive<br>
-If you added any new files press a and Enter, then type the number of your new file and press Enter twice. If you made any changes to existing files press u and enter. If you want to commit all changes press * and Enter twice. Press q to leave git-add--interactive.<br>
-Then create a file for your commit message (I call it since_last_commit.txt) but don't add this to the repository. In the first line of this file put a summary of your changes. If you wish to you can also add in a revision number. My tree (the "central" or "official" repository) uses the format gitX where X is a running number, e.g. git91 is followed by git92. Then give some details of your changes, try to mention anything non-trivial and definitely any user-visible bug fixes. If the table design has been changed that has to be mentioned in the first line.<br>
+Now press u and enter. It will display a list of all changed files. If you want to commit all files just press * and enter twice to return to the main menu. If you want to commit only certain ones press the number of the file and enter and repeat until you have all the files. Then press enter again to return to the main menu.<br>
+If you added any new files press a and Enter, then type the number of your new file and press Enter twice. Press q to leave git-add--interactive.<br>
+Now create a file for your commit message (I call it since_last_commit.txt) but don't add this to the repository. In the first line of this file put a summary of your changes. Then give some details of your changes, try to mention anything non-trivial and definitely any user-visible bug fixes.<br>
 Then run this:<br>
 git-commit -F since_last_commit.txt <br>
-<br>
-todo: how to pull/push changes to/from me<br>
-todo: git-diff, git-rm, git-mv<br>
-<br>
-License<br>
-=======<br>
-Trademarks of third parties have been used under Fair Use or similar laws.<br>
+<h2>4a. Pushing the changes to your own public git tree</h2>
+<p>Do this OR 4b, not both.<br>
+todo</p>
+<h2>4b. Preparing changeset for emailing/uploading</h2>
+<p>Do this OR 4a, not both.<br>
+todo</p>
+<h2>5. Pulling updates from the main tree</h2>
+<p>todo</p>
+<h2>License</h2>
+<p>Trademarks of third parties have been used under Fair Use or similar laws.<br>
 <br>
 Copyright 2008 Steffen Jobbagy-Felso<br>
 Permission is granted to copy, distribute and/or modify this<br>

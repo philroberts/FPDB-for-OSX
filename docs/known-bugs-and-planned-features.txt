@@ -3,20 +3,19 @@ Everything is subject to change and especially the order will often change. Patc
 
 alpha2 (release by 17Aug)
 ======
-add maxSeats to hands
+change config file to windows line endings
 add sf.net logo to webpage
 change tabledesign VALIGN
 seperate and improve instructions for update
-split install instructions into OS-specific and OS-independent section
 expand instructions for profile file
 add instructions for mailing list to contacts
-finish updating filelist
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
-add minimal instructions for developing to git-instructions
 re-run existing regression tests
 
 alpha3
 ======
+finish updating filelist
+finish todos in git instructions
 make sure totalProfit shows actual profit rather than winnings.
 update abbreviations.txt
 (steffen) finish bringing back tourney
