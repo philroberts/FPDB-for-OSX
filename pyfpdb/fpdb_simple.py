@@ -305,7 +305,7 @@ def filterAnteBlindFold(site,hand):
 #end def filterAnteFold
 
 #removes useless lines as well as trailing spaces
-def filterCrap(site, hand):
+def filterCrap(site, hand, isTourney):
 	#remove one trailing space at end of line
 	for i in range (len(hand)):
 		if (hand[i][-1]==' '):
@@ -317,6 +317,8 @@ def filterCrap(site, hand):
 	for i in range (len(hand)):
 		if (hand[i].startswith("Board [")):
 			toRemove.append(hand[i])
+		elif (hand[i].find(" out of hand ")!=-1):
+			hand[i]=hand[i][:-56]
 		elif (hand[i]=="*** HOLE CARDS ***"):
 			toRemove.append(hand[i])
 		elif (hand[i].endswith("has been disconnected")):
@@ -374,10 +376,6 @@ def filterCrap(site, hand):
 			toRemove.append(hand[i])
 		elif (hand[i].endswith("was removed from the table for failing to post")):
 			toRemove.append(hand[i])
-		elif (hand[i].endswith("is sitting out")):
-			toRemove.append(hand[i])
-		elif (hand[i].endswith(": sits out")):
-			toRemove.append(hand[i])
 		elif (hand[i].find("joins the table at seat ")!=-1):
 			toRemove.append(hand[i])
 		elif (hand[i].endswith(" sits down")):
@@ -401,6 +399,15 @@ def filterCrap(site, hand):
 			toRemove.append(hand[i])
 		elif (hand[i].find(": ")!=-1 and site=="ftp" and hand[i].find("Seat ")==-1 and hand[i].find(": Table")==-1): #filter ftp chat
 			toRemove.append(hand[i])
+		if isTourney:
+			if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
+				toRemove.append(hand[i])
+		else:
+			if (hand[i].endswith(": sits out")):
+				toRemove.append(hand[i])
+			elif (hand[i].endswith(" is sitting out")):
+				toRemove.append(hand[i])
+
 	
 	for i in range (len(toRemove)):
 		#print "removing in filterCr:",toRemove[i]
@@ -733,7 +740,7 @@ def parseCashesAndSeatNos(lines, site):
 	cashes = []
 	seatNos = []
 	for i in range (len(lines)):
-		pos2=lines[i].rfind(":")
+		pos2=lines[i].find(":")
 		seatNos.append(int(lines[i][5:pos2]))
 		
 		pos1=lines[i].rfind("($")+2

@@ -53,15 +53,13 @@ implement error file in importer
 catch index error, type error, file not found error
 use different colours according to classification.
 
-add stud, razz and tourney back to imp/tv but with less seperate codepathes
+add stud, razz  back to imp/tv but with less seperate codepathes
 move prepare-git.sh and create-release.sh to utils
 offer not storing db password
 change definition of bet to exclude bring in?
 in tv, select from hud table using named fields rather than the current *
 remove remains of mysql/myisam support.
 tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
-tourney bug: fails recognisePlayer
-tourney bug: fails with tuple error in recogniseplayerid
 fix GUI's load profile
 HUD
 config wizard

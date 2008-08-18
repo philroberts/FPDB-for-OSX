@@ -93,8 +93,10 @@ def import_file_dict(options):
 				elif (cancelled or damaged):
 					partial+=1
 				else: #normal processing
-					fpdb_simple.filterAnteBlindFold(site,hand)
-					hand=fpdb_simple.filterCrap(site, hand)
+					isTourney=fpdb_simple.isTourney(hand[0])
+					if not isTourney:
+						fpdb_simple.filterAnteBlindFold(site,hand)
+					hand=fpdb_simple.filterCrap(site, hand, isTourney)
 			
 					try:
 						if (category=="holdem" or category=="omahahi" or category=="omahahilo" or category=="razz" or category=="studhi" or category=="studhilo"):
