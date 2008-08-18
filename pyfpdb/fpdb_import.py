@@ -102,12 +102,12 @@ def import_file_dict(options, settings):
 					try:
 						if (category=="razz" or category=="studhi" or category=="studhilo"):
 							raise fpdb_simple.FpdbError ("stud/razz currently out of order")
-						last_read_hand=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
+						handsId=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
 						db.commit()
 						
 						stored+=1
 						if settings['imp-callFpdbHud']:
-							print "call to HUD here"
+							print "call to HUD here. handsId:",handsId
 						db.commit()
 					except fpdb_simple.DuplicateError:
 						duplicates+=1
@@ -156,13 +156,13 @@ def import_file_dict(options, settings):
 			for line_no in range(len(lines)):
 				if lines[line_no].find("Game #")!=-1:
 					final_game_line=lines[line_no]
-			last_read_hand=fpdb_simple.parseSiteHandNo(final_game_line)
+			handsId=fpdb_simple.parseSiteHandNo(final_game_line)
 			#todo: this will cause return of an unstored hand number if the last hadn was error or partial
 		db.commit()
 		inputFile.close()
 		cursor.close()
 		db.close()
-		return last_read_hand
+		return handsId
 
 
 if __name__ == "__main__":

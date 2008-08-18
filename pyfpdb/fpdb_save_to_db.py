@@ -34,7 +34,7 @@ def ring_stud(cursor, category, site_hand_no, gametype_id, hand_start_time,
 	fpdb_simple.storeHudData(cursor, category, player_ids, hudImportData)
 	
 	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts)
-	return site_hand_no
+	return hands_id
 #end def ring_stud
 
 def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_time, names, player_ids, start_cashes, positions, card_values, card_suits, board_values, board_suits, winnings, rakes, action_types, action_amounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
@@ -51,7 +51,7 @@ def ring_holdem_omaha(cursor, category, site_hand_no, gametype_id, hand_start_ti
 	fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 	
 	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts, actionNos)
-	return site_hand_no
+	return hands_id
 #end def ring_holdem_omaha
 
 def tourney_holdem_omaha(cursor, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourney_start, payin_amounts, ranks, tourneyTypeId, siteId, #end of tourney specific params
@@ -72,7 +72,7 @@ def tourney_holdem_omaha(cursor, category, siteTourneyNo, buyin, fee, knockout, 
 	fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 	
 	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts, actionNos)
-	return site_hand_no
+	return hands_id
 #end def tourney_holdem_omaha
 
 def tourney_stud(cursor, category, site_tourney_no, buyin, fee, knockout, entries, prizepool,
@@ -95,6 +95,5 @@ def tourney_stud(cursor, category, site_tourney_no, buyin, fee, knockout, entrie
 	fpdb_simple.storeHudData(cursor, category, player_ids, hudImportData)
 	
 	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, action_amounts)
-	return site_hand_no
+	return hands_id
 #end def tourney_stud
-
