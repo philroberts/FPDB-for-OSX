@@ -12,6 +12,7 @@ re-run existing regression tests
 
 alpha3
 ======
+ftp: read maxSeats
 add sf.net logo to webpage
 separate db table design version and last bugfix in importer
 change tabledesign VALIGN
@@ -56,10 +57,9 @@ use different colours according to classification.
 add stud, razz  back to imp/tv but with less seperate codepathes
 move prepare-git.sh and create-release.sh to utils
 offer not storing db password
-change definition of bet to exclude bring in?
+change definition of bet to exclude bring in
 in tv, select from hud table using named fields rather than the current *
 remove remains of mysql/myisam support.
-tourney bug: sometimes truncuates position on store -> possibly indicates much bigger problem
 fix GUI's load profile
 HUD
 config wizard

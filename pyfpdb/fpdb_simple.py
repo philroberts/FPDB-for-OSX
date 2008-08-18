@@ -19,6 +19,9 @@
 
 import datetime
 
+PS=1
+FTP=2
+
 class DuplicateError(Exception):
 	def __init__(self, value):
 		self.value = value
@@ -881,15 +884,23 @@ def parseSiteHandNo(topline):
 	return topline[pos1:pos2]
 #end def parseSiteHandNo
 
-def parseTableLine(line):
+def parseTableLine(site, line):
 	"""returns a dictionary with maxSeats and tableName"""
-	pos1=line.find('\'')+1
-	pos2=line.find('\'', pos1)
-	#print "table:",line[pos1:pos2]
-	pos3=pos2+2
-	pos4=line.find("-max")
-	#print "seats:",line[pos3:pos4]
-	return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
+	if site=="ps":
+		pos1=line.find('\'')+1
+		pos2=line.find('\'', pos1)
+		#print "table:",line[pos1:pos2]
+		pos3=pos2+2
+		pos4=line.find("-max")
+		#print "seats:",line[pos3:pos4]
+		return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
+	elif site=="ftp":
+		pos1=line.find("Table ")+6
+		pos2=line.find("-")-1
+		#print "table:",line[pos1:pos2]+"end"
+		return {'maxSeats':9, 'tableName':line[pos1:pos2]}
+	else:
+		raise FpdbError("invalid site ID")
 #end def parseTableLine
 
 #returns the hand no assigned by the poker site

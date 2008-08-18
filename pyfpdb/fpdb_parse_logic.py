@@ -90,11 +90,13 @@ def mainParser(db, cursor, site, category, hand):
 		elif (lineTypes[i]=="ante"):
 			fpdb_simple.parseAnteLine(hand[i], site, names, antes)
 		elif (lineTypes[i]=="table"):
-			result=fpdb_simple.parseTableLine(hand[i])
-			maxSeats=result['maxSeats']
-			tableName=result['tableName']
+			tableResult=fpdb_simple.parseTableLine(site, hand[i])
 		else:
 			raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
+	if site=="ftp":
+		tableResult=fpdb_simple.parseTableLine(site, hand[0])
+	maxSeats=tableResult['maxSeats']
+	tableName=tableResult['tableName']
 	
 	#part 5: final preparations, then call fpdb_save_to_db.saveHoldem with
 	#		 the arrays as they are - that file will fill them.
