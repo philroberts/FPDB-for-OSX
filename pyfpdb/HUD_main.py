@@ -79,6 +79,11 @@ def process_new_hand(source, condition):
     return(1)
 
 if __name__== "__main__":
+    
+    if not os.name == 'posix':
+        print "This version of the HUD only works with Linux or compatible.\nHUD exiting."
+        sys.exit()
+
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)
     label = gtk.Label('Fake main window, blah blah, blah\nblah, blah')
