@@ -44,7 +44,11 @@ def mainParser(db, cursor, site, category, hand):
 		fee=fpdb_simple.parseFee(hand[0])
 		entries=-1 #todo: parse this
 		prizepool=-1 #todo: parse this
+		knockout=0
 		tourneyStartTime=handStartTime #todo: read tourney start time
+		rebuyOrAddon=fpdb_simple.isRebuyOrAddon(hand[0])
+
+		tourneyTypeId=fpdb_simple.recogniseTourneyTypeId(cursor, siteID, buyin, fee, knockout, rebuyOrAddon)		
 	fpdb_simple.isAlreadyInDB(cursor, gametypeID, siteHandNo)
 	
 	#part 2: classify lines by type (e.g. cards, action, win, sectionchange) and street
@@ -110,16 +114,13 @@ def mainParser(db, cursor, site, category, hand):
 	hudImportData=fpdb_simple.generateHudData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
 	
 	if isTourney:
-		raise fpdb_simple.FpdbError ("tourneys are currently broken")
-		payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)
 		ranks=[]
 		for i in range (len(names)):
 			ranks.append(0)
-		knockout=0
-		entries=-1
-		prizepool=-1
+		payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)
+		
 		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
+			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
 					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			raise fpdb_simple.FpdbError ("stud/razz are currently broken")

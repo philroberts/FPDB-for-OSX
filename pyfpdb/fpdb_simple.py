@@ -250,12 +250,17 @@ def fill_board_cards(board_values, board_suits):
 		board_suits.append("x")
 #end def fill_board_cards
 
-def fillCardArrays(player_count, card_count, card_values, card_suits):
-#fills up the two card arrays
-	#print "fillCardArrays, player_count:", player_count,"  card_count:",card_count
-	#print "card_values:",card_values
+def fillCardArrays(player_count, category, card_values, card_suits):
+	"""fills up the two card arrays"""
+	if (category=="holdem"):
+		cardCount=2
+	elif (category=="omahahi" or category=="omahahilo"):
+		cardCount=4
+	else:
+		raise fpdb_simple.FpdbError ("invalid category: category")
+	
 	for i in range (player_count):
-		while (len(card_values[i])<card_count):
+		while (len(card_values[i])<cardCount):
 			card_values[i].append(0)
 			card_suits[i].append("x")
 #end def fillCardArrays
@@ -464,6 +469,11 @@ def isAlreadyInDB(cursor, gametypeID, siteHandNo):
 	if (len(result)>=1):
 		raise DuplicateError ("dupl")
 #end isAlreadyInDB
+
+def isRebuyOrAddon(topline):
+	"""isRebuyOrAddon not implemented yet"""
+	return False
+#end def isRebuyOrAddon
 
 #returns whether the passed topline indicates a tournament or not
 def isTourney(topline):
@@ -1010,6 +1020,20 @@ def recogniseGametypeID(cursor, topline, site_id, category, isTourney):#todo: th
 	
 	return result[0]
 #end def recogniseGametypeID
+
+def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
+	cursor.execute ("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
+	result=cursor.fetchone()
+	#print "tried SELECTing gametypes.id, result:",result
+	
+	try:
+		len(result)
+	except TypeError:#this means we need to create a new entry
+		cursor.execute("""INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) VALUES (%s, %s, %s, %s, %s)""", (siteId, buyin, fee, knockout, rebuyOrAddon))
+		cursor.execute("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
+		result=cursor.fetchone()
+	return result[0]
+#end def recogniseTourneyTypeId
 
 #returns the SQL ids of the names given in an array
 def recognisePlayerIDs(cursor, names, site_id):
@@ -1807,7 +1831,7 @@ def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 			if doInsert:
 				#print "playerid before insert:",row[2]
 				cursor.execute("""INSERT INTO HudCache
-					(gametypeId, playerId, activeSeats, position, tourneysGametypeId, 
+					(gametypeId, playerId, activeSeats, position, tourneyTypeId, 
 					HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
 					street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
 					street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
@@ -1845,7 +1869,7 @@ def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 					foldToStreet2CBChance=%s, foldToStreet2CBDone=%s, foldToStreet3CBChance=%s, foldToStreet3CBDone=%s, foldToStreet4CBChance=%s, 
 					foldToStreet4CBDone=%s, totalProfit=%s, street1CheckCallRaiseChance=%s, street1CheckCallRaiseDone=%s, street2CheckCallRaiseChance=%s, 
 					street2CheckCallRaiseDone=%s, street3CheckCallRaiseChance=%s, street3CheckCallRaiseDone=%s, street4CheckCallRaiseChance=%s, street4CheckCallRaiseDone=%s
-					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s AND tourneysGametypeId=%s""", (row[6], row[7], row[8], row[9], row[10], 
+					WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s AND tourneyTypeId=%s""", (row[6], row[7], row[8], row[9], row[10], 
 					row[11], row[12], row[13], row[14], row[15], 
 					row[16], row[17], row[18], row[19], row[20], 
 					row[21], row[22], row[23], row[24], row[25], 
@@ -1900,3 +1924,4 @@ def store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks,
 			#print "created new tourneys_players.id:",tmp
 		result.append(tmp[0])
 	return result
+#end def store_tourneys_players

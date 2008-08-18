@@ -4,8 +4,6 @@ Everything is subject to change and especially the order will often change. Patc
 alpha2 (release by 17Aug)
 ======
 change config file to windows line endings
-add sf.net logo to webpage
-change tabledesign VALIGN
 seperate and improve instructions for update
 expand instructions for profile file
 add instructions for mailing list to contacts
@@ -14,6 +12,8 @@ re-run existing regression tests
 
 alpha3
 ======
+add sf.net logo to webpage
+change tabledesign VALIGN
 finish updating filelist
 finish todos in git instructions
 make sure totalProfit shows actual profit rather than winnings.

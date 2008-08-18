@@ -47,7 +47,7 @@ class fpdb_db:
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=50:
+			if settings[0]!=52:
 				print "outdated or too new database version - please recreate tables"
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
@@ -126,7 +126,9 @@ class fpdb_db:
 		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
 		self.cursor.execute("DROP TABLE IF EXISTS Players;")
 		self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
-		self.cursor.execute("DROP TABLE IF EXISTS TourneysGametypes;")
+		if oldDbVersion>45 and oldDbVersion<=51:
+			self.cursor.execute("DROP TABLE IF EXISTS TourneysGametypes;")		
+		self.cursor.execute("DROP TABLE IF EXISTS TourneyTypes;")
 		self.cursor.execute("DROP TABLE IF EXISTS Sites;")
 		
 		self.db.commit()
@@ -213,7 +215,7 @@ class fpdb_db:
 		card5Value smallint,
 		card5Suit char(1))""")
 
-		self.create_table("""TourneysGametypes (
+		self.create_table("""TourneyTypes (
 		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
 		siteId SMALLINT UNSIGNED, FOREIGN KEY (siteId) REFERENCES Sites(id),
 		buyin INT,
@@ -223,7 +225,7 @@ class fpdb_db:
 
 		self.create_table("""Tourneys (
 		id INT UNSIGNED UNIQUE AUTO_INCREMENT, PRIMARY KEY (id),
-		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id),
+		tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 		siteTourneyNo BIGINT,
 		entries INT,
 		prizepool INT,
@@ -288,7 +290,7 @@ class fpdb_db:
 		playerId INT UNSIGNED, FOREIGN KEY (playerId) REFERENCES Players(id),
 		activeSeats SMALLINT,
 		position CHAR(1),
-		tourneysGametypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneysGametypeId) REFERENCES TourneysGametypes(id),
+		tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 		
 		HDs INT,
 		street0VPI INT,
@@ -351,10 +353,10 @@ class fpdb_db:
 		street4CheckCallRaiseChance INT,
 		street4CheckCallRaiseDone INT)""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (50);")
+		self.cursor.execute("INSERT INTO Settings VALUES (52);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
-		self.cursor.execute("INSERT INTO TourneysGametypes (id) VALUES (DEFAULT);")
+		self.cursor.execute("INSERT INTO TourneyTypes (id) VALUES (DEFAULT);")
 		self.db.commit()
 		print "finished recreating tables"
 	#end def recreate_tables
