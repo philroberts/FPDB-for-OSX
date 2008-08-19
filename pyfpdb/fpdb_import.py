@@ -108,6 +108,8 @@ def import_file_dict(options, settings):
 						stored+=1
 						if settings['imp-callFpdbHud']:
 							print "call to HUD here. handsId:",handsId
+#	pipe the Hands.id out to the HUD
+							options.pipe_to_hud.stdin.write("%s\n" % (handsId))
 						db.commit()
 					except fpdb_simple.DuplicateError:
 						duplicates+=1

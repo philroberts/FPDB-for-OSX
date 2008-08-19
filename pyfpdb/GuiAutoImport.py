@@ -16,9 +16,12 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 import threading
+import subprocess
+
 import pygtk
 pygtk.require('2.0')
 import gtk
+import gobject
 import os
 import time
 import fpdb_import
@@ -45,21 +48,35 @@ class GuiAutoImport (threading.Thread):
 		dia_chooser.destroy()		
 	#end def GuiAutoImport.browseClicked
 
+	def do_import(self):
+		"""Callback for timer to do an import iteration."""
+		fpdb_import.import_file_dict(self, self.settings)
+		return(1)
+
 	def startClicked(self, widget, data):
 		"""runs when user clicks start on auto import tab"""
-		
+
+#	Check to see if we have an open file handle to the HUD and open one if we do not.
+#	bufsize = 1 means unbuffered
+#	We need to close this file handle sometime.
+		try:      #uhhh, I don't this this is the best way to check for the existence of an attr
+			getattr(self, "pipe_to_hud")
+		except AttributeError:
+			cwd = os.getcwd()
+			command = os.path.join(cwd, 'HUD_main.py')
+			self.pipe_to_hud = subprocess.Popen(command, bufsize = 1, stdin = subprocess.PIPE)
+
 		self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
 		for file in os.listdir(self.path):
 			if os.path.isdir(file):
 				print "AutoImport is not recursive - please select the final directory in which the history files are"
 			else:
 				self.inputFile=self.path+os.sep+file
-				fpdb_import.import_file_dict(self, self.settings)
+				self.do_import()
 		print "GuiAutoImport.import_dir done"
 		
 		interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
-		time.sleep(interval)
-		self.startClicked(widget,data)
+		gobject.timeout_add(interval*1000, self.do_import)
 	#end def GuiAutoImport.browseClicked
 
 	def get_vbox(self):
