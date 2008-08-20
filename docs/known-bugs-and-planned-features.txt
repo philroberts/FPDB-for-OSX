@@ -4,6 +4,7 @@ Please also see db-todo.txt
 
 alpha2 (release by 17Aug)
 ======
+W$wsF doesnt work in HUD
 auto import only runs on one file per start
 set hud stats default row1: hands, VPIP, PFR, PF3B/4B, ST row2: Aggr% (postflop), Fold% (postflop), W$sF, WtSD, W$@SD
 make windows use correct language version of Appdata, e.g. Anwendungdaten

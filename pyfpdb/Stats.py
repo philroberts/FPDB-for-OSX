@@ -293,12 +293,12 @@ def three_B_0(stat_dict, player):
 def WMsF(stat_dict, player):
     stat = 0.0
     try:
-        stat = stat_dict[player]['w_w_s_1']/stat_dict[player]['saw_f']
+        stat = stat_dict[player]['w_w_s_1']/stat_dict[player]['saw_1']
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'wf=%3.1f'     % (100*stat) + '%', 
                 'w_w_f=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['w_w_s_1'], stat_dict[player]['saw_f']),
+                '(%d/%d)'      % (stat_dict[player]['w_w_s_1'], stat_dict[player]['saw_1']),
                 '% won$/saw flop/4th'
                 )
     except:
@@ -358,7 +358,7 @@ def a_freq_3(stat_dict, player):
                 '%3.1f'        % (100*stat) + '%', 
                 'a3=%3.1f'     % (100*stat) + '%', 
                 'a_fq_3=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['aggr_1'], stat_dict[player]['saw_1']),
+                '(%d/%d)'      % (stat_dict[player]['aggr_3'], stat_dict[player]['saw_3']),
                 'Aggression Freq river/6th'
                 )
     except:
