@@ -152,67 +152,7 @@ class Sql:
                     WHERE game_id = %s
                 """
                 
-        if game == 'holdem' and type == 'PT3':
-   
-            self.query['get_last_hand'] = "select max(id_hand) from holdem_hand_summary"
-
-            self.query['get_player_id'] = """
-                    select id_player from player, lookup_sites 
-                    where player_name = %(player)s 
-                    and site_name = %(site)s 
-                    and player.id_site = lookup_sites.id_site
-                """
-         
-            self.query['get_stats_from_hand'] = """
-                    select id_player AS player_id, 
-                    count(*) AS n,
-                    sum(CAST (flg_vpip          AS integer)) as vpip,
-                    sum(CAST (flg_p_first_raise AS integer)) as p_first_raise,
-                    sum(CAST (flg_f_saw         AS integer)) as f_saw,
-                    sum(CAST (flg_p_open        AS integer)) as p_open,
-                    sum(CAST (flg_p_limp        AS integer)) as p_limp,
-                    sum(CAST (flg_p_fold        AS integer)) as p_fold,
-                    sum(CAST (flg_p_ccall       AS integer)) as p_ccall,
-                    sum(CAST (flg_f_bet         AS integer)) as f_bet,
-                    sum(CAST (flg_f_first_raise AS integer)) as f_first_raise,
-                    sum(CAST (flg_f_check       AS integer)) as f_check,
-                    sum(CAST (flg_f_check_raise AS integer)) as f_check_raise,
-                    sum(CAST (flg_f_fold        AS integer)) as f_fold,
-                    sum(CAST (flg_f_saw         AS integer)) as f_saw,
-                    sum(CAST (flg_t_bet         AS integer)) as t_bet,
-                    sum(CAST (flg_t_first_raise AS integer)) as t_first_raise,
-                    sum(CAST (flg_t_check       AS integer)) as t_check,
-                    sum(CAST (flg_t_check_raise AS integer)) as t_check_raise,
-                    sum(CAST (flg_t_fold        AS integer)) as t_fold,
-                    sum(CAST (flg_t_saw         AS integer)) as t_saw,
-                    sum(CAST (flg_r_bet         AS integer)) as r_bet,
-                    sum(CAST (flg_r_first_raise AS integer)) as r_first_raise,
-                    sum(CAST (flg_r_check       AS integer)) as r_check,
-                    sum(CAST (flg_r_check_raise AS integer)) as r_check_raise,
-                    sum(CAST (flg_r_fold        AS integer)) as r_fold,
-                    sum(CAST (flg_r_saw         AS integer)) as r_saw,
-                    sum(CAST (flg_sb_steal_fold AS integer)) as sb_steal_fold,
-                    sum(CAST (flg_bb_steal_fold AS integer)) as bb_steal_fold,
-                    sum(CAST (flg_blind_def_opp AS integer)) as blind_def_opp,
-                    sum(CAST (flg_steal_att     AS integer)) as steal_att,
-                    sum(CAST (flg_steal_opp     AS integer)) as steal_opp,
-                    sum(CAST (flg_blind_k       AS integer)) as blind_k,
-                    sum(CAST (flg_showdown      AS integer)) as showdown,
-
-                    sum(CAST (flg_p_squeeze         AS integer)) as p_squeeze,
-                    sum(CAST (flg_p_squeeze_opp     AS integer)) as p_squeeze_opp,
-                    sum(CAST (flg_p_squeeze_def_opp AS integer)) as p_squeeze_def_opp,
-
-                    sum(CAST (flg_f_cbet            AS integer)) as f_cbet,
-                    sum(CAST (flg_f_cbet_opp        AS integer)) as f_cbet_opp,
-                    sum(CAST (flg_f_cbet_def_opp    AS integer)) as f_cbet_def_opp
-                    
-                    from holdem_hand_player_statistics 
-                    where id_hand = %(hand)d and not id_player = %(hero)d
-                    group by id_player
-              """
-
-        if game == 'holdem' and type == 'fpdb':
+        if type == 'fpdb':
    
             self.query['get_last_hand'] = "select max(id) from Hands"
 
@@ -231,6 +171,39 @@ class Sql:
                         sum(sawShowdown)            AS sd,
                         sum(wonAtSD)                AS wmsd,
                         sum(street1Seen)            AS saw_f,
+                        sum(stealAttemptChance)     AS steal_opp,
+                        sum(stealAttempted)         AS steal,
+                        sum(foldedSbToSteal)        AS SBnotDef,
+                        sum(foldedBbToSteal)        AS BBnotDef,
+                        sum(foldBbToStealChance)    AS SBstolen,
+                        sum(foldBbToStealChance)    AS BBstolen,
+                        sum(street0_3B4BChance)     AS TB_opp_0,
+                        sum(street0_3B4BDone)       AS TB_0,
+                        sum(street1Seen)             AS saw_1,
+                        sum(street2Seen)             AS saw_2,
+                        sum(street3Seen)             AS saw_3,
+                        sum(street4Seen)             AS saw_4,
+                        sum(street1Aggr)             AS aggr_1,
+                        sum(street2Aggr)             AS aggr_2,
+                        sum(street3Aggr)             AS aggr_3,
+                        sum(street4Aggr)             AS aggr_4,
+                        sum(otherRaisedStreet1)     AS was_raised_1,
+                        sum(otherRaisedStreet2)     AS was_raised_2,
+                        sum(otherRaisedStreet3)     AS was_raised_3,
+                        sum(otherRaisedStreet4)     AS was_raised_4,
+                        sum(foldToOtherRaisedStreet1)     AS f_freq_1,
+                        sum(foldToOtherRaisedStreet1)     AS f_freq_2,
+                        sum(foldToOtherRaisedStreet1)     AS f_freq_3,
+                        sum(foldToOtherRaisedStreet1)     AS f_freq_4,
+                        sum(wonWhenSeenStreet1)     AS w_w_s_1,
+                        sum(street1CBChance)        AS CB_opp_1,
+                        sum(street2CBChance)        AS CB_opp_2,
+                        sum(street3CBChance)        AS CB_opp_3,
+                        sum(street4CBChance)        AS CB_opp_4,
+                        sum(street1CBDone)        AS CB_1,
+                        sum(street2CBDone)        AS CB_2,
+                        sum(street3CBDone)        AS CB_3,
+                        sum(street4CBDone)        AS CB_4,
                         sum(totalProfit)            AS net
                     FROM HudCache, Hands
                     WHERE HudCache.PlayerId in 

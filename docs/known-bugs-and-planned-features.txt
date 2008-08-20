@@ -1,8 +1,10 @@
 todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change and especially the order will often change. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
+Please also see db-todo.txt
 
 alpha2 (release by 17Aug)
 ======
+auto import only runs on one file per start
 set hud stats row1: hands, VPIP, PFR, PF3B/4B, ST row2: Aggr% (postflop), Fold% (postflop), W$sF, WtSD, W$@SD
 make windows use correct language version of Appdata, e.g. Anwendungdaten
 stop bulk importer from executing HUD hook
@@ -11,6 +13,7 @@ update status or make a support matrix table for website
 add instructions for mailing list to contacts
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 re-run existing regression tests
+move conf file out of profiles folder
 
 alpha3
 ======

@@ -65,7 +65,10 @@ class Hud:
                                                player_id = 'fake',
                                                font = self.font)
 
-        self.stats = [['', '', ''], ['', '', '']]
+        self.stats = []
+        for i in range(0, config.supported_games[self.poker_game].rows + 1):
+            row_list = [''] * config.supported_games[self.poker_game].cols
+            self.stats.append(row_list)
         for stat in config.supported_games[self.poker_game].stats.keys():
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
@@ -78,8 +81,10 @@ class Hud:
     def update(self, hand, db, config):
         stat_dict = db.get_stats_from_hand(hand, 3)
         for s in stat_dict.keys():
-            for r in range(0, 2):
-                for c in range(0, 3):
+#            for r in range(0, 2):
+#                for c in range(0, 3):
+            for r in range(0, config.supported_games[self.poker_game].rows):
+                for c in range(0, config.supported_games[self.poker_game].cols):
                     number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(number[1])
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \

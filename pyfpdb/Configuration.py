@@ -140,7 +140,6 @@ class Mucked:
         self.rows    = node.getAttribute("rows")
         self.cols    = node.getAttribute("cols")
         self.format  = node.getAttribute("stud")
-        print "mw name = " + self.name
 
     def __str__(self):
         temp = 'Mucked = ' + self.name + "\n"

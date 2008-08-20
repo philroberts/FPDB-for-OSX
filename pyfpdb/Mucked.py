@@ -223,8 +223,6 @@ if __name__== "__main__":
         m.update(new_hand_id)
         return(True)
 
-    print "system = %s" % (os.name)
-
     config = Configuration.Config()
     db_connection = Database.Database(config, 'PTrackSv2', 'razz')
    

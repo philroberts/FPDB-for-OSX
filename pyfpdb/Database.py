@@ -40,7 +40,6 @@ import MySQLdb
 
 class Database:
     def __init__(self, c, db_name, game):
-        print "db_name = " + db_name
         if   c.supported_databases[db_name].db_server == 'postgresql':
             self.connection = pgdb.connect(dsn = c.supported_databases[db_name].db_ip,
                                        user = c.supported_databases[db_name].db_user,
