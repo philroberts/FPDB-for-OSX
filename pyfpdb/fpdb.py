@@ -257,7 +257,7 @@ class fpdb:
 			self.settings['bulkImport-defaultPath'] = os.path.expanduser("~") + "/.wine/drive_c/Program Files/PokerStars/HandHistory/filename.txt"
 			self.settings['hud-defaultPath'] = os.path.expanduser("~")+"/.wine/drive_c/Program Files/PokerStars/HandHistory/"
 			
-		self.settings['hud-defaultInterval']=30
+		self.settings['hud-defaultInterval']=10
 		
 		for i in range(len(lines)):
 			if lines[i].startswith("db-backend="):
