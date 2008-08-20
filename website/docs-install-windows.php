@@ -30,7 +30,7 @@ The length of these instructions is due to MS refusal to provide any meaningful 
 - Unzip the archive, execute the setup file<br>
 	At the end make sure you activate that you want to configure it now.<br>
 	Use the advanced/detailed config. Leave everything as default unless stated below, or unless you have reason not to.<br>
-	Make sure to DEACTIVATE TCP/IP networking, unless you want that and know how to secure it<br>
+	Make sure to ACTIVATE TCP/IP networking, but you should block external connections (ie. anything not from localhost) to MySQL unless you're running the DB on a different machine.<br>
 	Set a root password. Note that this is not the account/pw that fpdb will use.<br>
 <br>
 Once finished it shold confirm "service started successfully"<br>
