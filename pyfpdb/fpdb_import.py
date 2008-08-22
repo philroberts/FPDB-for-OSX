@@ -37,7 +37,7 @@ def import_file(server, database, user, password, inputFile):
 	self.settings={'imp-callFpdbHud':False}
 	import_file_dict(self, settings)
 
-def import_file_dict(options, settings):
+def import_file_dict(options, settings, callHud=True):
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
@@ -106,7 +106,7 @@ def import_file_dict(options, settings):
 						db.commit()
 						
 						stored+=1
-						if settings['imp-callFpdbHud']:
+						if settings['imp-callFpdbHud'] and callHud:
 							print "call to HUD here. handsId:",handsId
 #	pipe the Hands.id out to the HUD
 							options.pipe_to_hud.stdin.write("%s\n" % (handsId))
@@ -192,5 +192,6 @@ if __name__ == "__main__":
 					help="If this option is passed it quits when it encounters any error")
 
 	(options, sys.argv) = parser.parse_args()
-
-	import_file_dict(options)
+	
+	settings={'imp-callFpdbHud':False}
+	import_file_dict(options, settings, False)

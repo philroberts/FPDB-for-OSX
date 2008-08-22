@@ -2,9 +2,10 @@ todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change and especially the order will often change. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha2 (release by 17Aug)
+alpha2 (release 22Aug)
 ======
-W$wsF doesnt work in HUD
+make windows not call fpdb hud
+W$wsF doesnt work in HUD (p64 may have made this worse)
 auto import only runs on one file per start
 set hud stats default row1: hands, VPIP, PFR, PF3B/4B, ST row2: Aggr% (postflop), Fold% (postflop), W$sF, WtSD, W$@SD
 make windows use correct language version of Appdata, e.g. Anwendungdaten
@@ -16,8 +17,10 @@ ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.
 re-run existing regression tests
 move conf file out of profiles folder
 
-alpha3
+alpha3 (release by 31Aug)
 ======
+store raw hand in db
+write reimport function using the raw hand field
 make it work with postgres
 expand instructions for profile file
 ftp: read maxSeats
@@ -29,7 +32,6 @@ finish todos in git instructions
 make sure totalProfit shows actual profit rather than winnings.
 update abbreviations.txt
 (steffen) finish bringing back tourney
-store raw hand in db
 export settings[hud-defaultInterval] to conf
 fix up bg colours in tv
 fill the fold to CB/2B/3B cache fields

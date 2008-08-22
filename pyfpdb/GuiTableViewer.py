@@ -201,13 +201,9 @@ class GuiTableViewer (threading.Thread):
 	def read_names_clicked(self, widget, data):
 		"""runs when user clicks read names"""
 		#print "start of table_viewer.read_names_clicked"
-		#print "self.last_read_hand:",self.last_read_hand
 		self.db.reconnect()
 		self.cursor=self.db.cursor
-		self.cursor.execute("""SELECT id FROM Hands WHERE siteHandNo=%s""", (self.last_read_hand))
-		hands_id_tmp=self.db.cursor.fetchone()
-		#print "tmp:",hands_id_tmp
-		self.hands_id=hands_id_tmp[0]
+		self.hands_id=self.last_read_hand_id
 
 		self.db.cursor.execute("SELECT gametypeId FROM Hands WHERE id=%s", (self.hands_id, ))
 		self.gametype_id=self.db.cursor.fetchone()[0]
@@ -243,7 +239,7 @@ class GuiTableViewer (threading.Thread):
 		self.minPrint=0
 		self.handCount=0
 		
-		self.last_read_hand=fpdb_import.import_file_dict(self, self.settings)
+		self.last_read_hand_id=fpdb_import.import_file_dict(self, self.settings, False)
 	#end def table_viewer.import_clicked
 
 	def all_clicked(self, widget, data):

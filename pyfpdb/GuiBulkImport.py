@@ -69,7 +69,7 @@ class GuiBulkImport (threading.Thread):
 		if os.path.isdir(self.inputFile):
 			self.import_dir()
 		else:
-			fpdb_import.import_file_dict(self)
+			fpdb_import.import_file_dict(self, self.settings)
 	
 	def get_vbox(self):
 		"""returns the vbox of this thread"""
