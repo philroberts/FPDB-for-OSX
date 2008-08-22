@@ -87,34 +87,34 @@ if base=="hold":
 elif base=="stud":
 	doBets=True
 	
-if do_bets:
-	cursor.execute("SELECT small_bet FROM gametypes WHERE id=%s", (gametype_id, ))
+if doBets:
+	cursor.execute("SELECT smallBet FROM Gametypes WHERE id=%s", (gametypeId, ))
 	sbet=cursor.fetchone()[0]
-	cursor.execute("SELECT big_bet FROM gametypes WHERE id=%s", (gametype_id, ))
+	cursor.execute("SELECT bigBet FROM Gametypes WHERE id=%s", (gametypeId, ))
 	bbet=cursor.fetchone()[0]
-	gt_string+=("   sbet: "+str(sbet)+"   bbet: "+str(bbet))
-print gt_string
+	gtString+=("   sbet: "+str(sbet)+"   bbet: "+str(bbet))
+print gtString
 
 if type=="ring":
 	pass
 elif type=="tour":
 	#cursor.execute("SELECT tourneys_players_id FROM hands
-	cursor.execute("""SELECT DISTINCT tourneys_players.id
-	FROM hands JOIN hands_players ON hands_players.hand_id=hands.id
-	JOIN tourneys_players ON hands_players.tourneys_players_id=tourneys_players.id
-	WHERE hands.id=%s""", (hand_id,))
-	hands_players_ids=cursor.fetchall()
-	print "dbg hands_players_ids:",hands_players_ids
+	cursor.execute("""SELECT DISTINCT TourneysPlayers.id
+	FROM Hands JOIN HandsPlayers ON HandsPlayers.handId=Hands.id
+	JOIN TourneysPlayers ON HandsPlayers.tourneysPlayersId=TourneysPlayers.id
+	WHERE Hands.id=%s""", (hand_id,))
+	handsPlayersIds=cursor.fetchall()
+	print "dbg hands_players_ids:",handsPlayersIds
 	
 	print ""
-	print "From Table tourneys"
+	print "From Table Tourneys"
 	print "==================="
 	print "TODO"
 	
 	
 	print ""
-	print "From Table tourneys_players"
-	print "==========================="
+	print "From Table TourneysPlayers"
+	print "=========================="
 	print "TODO"
 else:
 	print "invalid type:",type
@@ -122,53 +122,50 @@ else:
 
 
 print ""
-print "From Table hands"
-print "================"
-
-print "site_hand_no:",site_hand_no,"hand_start:",hand_start,"seat_count:",seat_count
-#,"hand_id:",hand_id,"gametype_id:",gametype_id
+print "From Table BoardCards"
+print "====================="
 
 if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-	cursor.execute("""SELECT * FROM board_cards WHERE hand_id=%s""",(hand_id, ))
+	cursor.execute("""SELECT * FROM BoardCards WHERE handId=%s""",(handId, ))
 	bc=cursor.fetchone()
 	print "Board cards:", ful.cards2String(bc[2:])
 
 
 print ""
-print "From Table hands_players"
-print "========================"
-cursor.execute("""SELECT * FROM hands_players WHERE hand_id=%s""",(hand_id, ))
-hands_players=cursor.fetchall()
-player_names=[]
-for i in range (len(hands_players)):
-	line=hands_players[i][2:]
-	player_names.append(ful.id_to_player_name(cursor, line[0]))
-	printstr="player_name:"+player_names[i]+" player_startcash:"+str(line[1])
+print "From Table HandsPlayers"
+print "======================="
+cursor.execute("""SELECT * FROM HandsPlayers WHERE handId=%s""",(handId, ))
+handsPlayers=cursor.fetchall()
+playerNames=[]
+for i in range (len(handsPlayers)):
+	line=handsPlayers[i][2:]
+	playerNames.append(ful.id_to_player_name(cursor, line[0]))
+	printstr="playerName:"+playerNames[i]+" playerStartcash:"+str(line[1])
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		printstr+=" position:"+ful.position2String(line[2])+" cards:"
 		if (category=="holdem"):
-			printstr+=ful.cards2String(line[4:8])
+			printstr+=ful.cards2String(line[5:9])
 		else:
-			printstr+=ful.cards2String(line[4:12])
+			printstr+=ful.cards2String(line[5:13])
 	elif (category=="razz" or category=="studhi" or category=="studhilo"):
 		printstr+=" ante:"+str(line[3])+" cards:"
-		printstr+=ful.cards2String(line[4:18])
+		printstr+=ful.cards2String(line[5:19])
 	else:
 		print "TODO: raise error, print_hand.py"
 		sys.exit(1)
-	printstr+=" winnings:"+str(line[18])+" rake:"+str(line[19])
+	printstr+=" winnings:"+str(line[19])+" rake:"+str(line[20])
 	print printstr
 	
 	
 print ""
-print "From Table hands_actions"
-print "========================"
-for i in range (len(hands_players)):
-	cursor.execute("""SELECT * FROM hands_actions WHERE hand_player_id=%s""",(hands_players[i][0], ))
-	hands_actions=cursor.fetchall()
-	for j in range (len(hands_actions)):
-		line=hands_actions[j][2:]
-		printstr="player_name:"+player_names[i]
+print "From Table HandsActions"
+print "======================="
+for i in range (len(handsPlayers)):
+	cursor.execute("""SELECT * FROM HandsActions WHERE handPlayerId=%s""",(handsPlayers[i][0], ))
+	handsActions=cursor.fetchall()
+	for j in range (len(handsActions)):
+		line=handsActions[j][2:]
+		printstr="playerName:"+playerNames[i]
 		printstr+=" street:"+ful.street_int2String(category, line[0])+" streetActionNo:"+str(line[1])+" action:"+line[2]
 		printstr+=" amount:"+str(line[3])
 		print printstr

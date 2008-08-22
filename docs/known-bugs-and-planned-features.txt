@@ -5,11 +5,12 @@ Please also see db-todo.txt
 alpha2 (release 22Aug)
 ======
 seperate and improve instructions for update
-re-run existing regression tests
+PrintPlayerHudData
 update website for dropping profile subfolder
 
 alpha3 (release by 31Aug)
 ======
+specify NOT NULL on almost all table columns
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 update status or make a support matrix table for website
 add instructions for mailing list to contacts

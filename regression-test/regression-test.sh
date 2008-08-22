@@ -15,7 +15,7 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-echo "Please note for this to really work you need to work on an empty database"
+echo "Please note for this to work you need to work on an empty database, otherwise some info (the id fields) will be off"
 
 rm *.found.txt
 ../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-3hands.txt -x
@@ -26,11 +26,11 @@ rm *.found.txt
 echo "it should've reported first that it stored 3, then that it had 3 duplicates"
 #echo "    then 1 stored, then 5 stored"
 
-./print_hand.py -p$1 --hand=14519394979 > ps.14519394979.found.txt && colordiff ps.14519394979.found.txt ps.14519394979.expected.txt
-./print_hand.py -p$1 --hand=14519420999 > ps.14519420999.found.txt && colordiff ps.14519420999.found.txt ps.14519420999.expected.txt
-./print_hand.py -p$1 --hand=14519433154 > ps.14519433154.found.txt && colordiff ps.14519433154.found.txt ps.14519433154.expected.txt
+./PrintHand.py -p$1 --hand=14519394979 > ps.14519394979.found.txt && colordiff ps.14519394979.found.txt ps.14519394979.expected.txt
+./PrintHand.py -p$1 --hand=14519420999 > ps.14519420999.found.txt && colordiff ps.14519420999.found.txt ps.14519420999.expected.txt
+./PrintHand.py -p$1 --hand=14519433154 > ps.14519433154.found.txt && colordiff ps.14519433154.found.txt ps.14519433154.expected.txt
 
-./PrintPlayerHudData.py -p$1 > ps-flags-3hands.found.txt && colordiff ps-flags-3hands.found.txt ps-flags-3hands.expected.txt
+#./PrintPlayerHudData.py -p$1 > ps-flags-3hands.found.txt && colordiff ps-flags-3hands.found.txt ps-flags-3hands.expected.txt
 
 #./print_hand.py -p$1 --site="Full Tilt Poker" --hand=6367428246 > ftp.6367428246.found.txt && colordiff ftp.6367428246.found.txt ftp.6367428246.expected.txt
 

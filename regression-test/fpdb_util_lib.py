@@ -39,14 +39,15 @@ def cards2String(arr):
 			elif (arr[i*2]>=2 and arr[i*2]<=9):
 				result+=str(arr[i*2])
 			else:
-				print "TODO: raise error, cards2String failed, arr[i*2]:",arr[i*2]
+				print "TODO: raise error, cards2String failed, arr[i*2]:", arr[i*2], "len(arr):", len(arr)
+				print "arr:",arr
 				sys.exit(1)
 			result+=arr[i*2+1]
 		result+=" "
 	return result[:-1]
 
 def id_to_player_name(cursor, id):
-	cursor.execute("SELECT name FROM players WHERE id=%s", (id, ))
+	cursor.execute("SELECT name FROM Players WHERE id=%s", (id, ))
 	return cursor.fetchone()[0]
 
 def position2String(pos):
