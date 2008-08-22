@@ -106,8 +106,8 @@ def import_file_dict(options, settings, callHud=True):
 						db.commit()
 						
 						stored+=1
-						if settings['imp-callFpdbHud'] and callHud:
-							print "call to HUD here. handsId:",handsId
+						if settings['imp-callFpdbHud'] and callHud and os.sep=='/':
+							#print "call to HUD here. handsId:",handsId
 #	pipe the Hands.id out to the HUD
 							options.pipe_to_hud.stdin.write("%s\n" % (handsId))
 						db.commit()

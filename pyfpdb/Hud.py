@@ -147,7 +147,9 @@ class Stat_Window:
         self.window = gtk.Window()
         self.window.set_decorated(0)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
+        self.window.set_keep_above(1)
         self.window.set_title("%s" % seat)
+        self.window.set_property("skip-taskbar-hint", True)
 
         self.grid = gtk.Table(rows = self.game.rows, columns = self.game.cols, homogeneous = False)
         self.window.add(self.grid)
@@ -169,7 +171,6 @@ class Stat_Window:
                 self.label[r][c].modify_font(font)
         self.window.realize
         self.window.move(self.x, self.y)
-        self.window.set_keep_above(1)
         self.window.show_all()
         
 def destroy(*args):             # call back for terminating the main eventloop
@@ -184,7 +185,16 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     tables = Tables.discover(c)
-    db = Database.Database(c, 'PTrackSv2', 'razz')
+    db = Database.Database(c, 'fpdb', 'holdem')
+
+    for attr in dir(Stats):
+        if attr.startswith('__'): continue
+        if attr == 'Configuration' or attr == 'Database': continue
+        if attr == 'GInitiallyUnowned': continue
+#        print Stats.attr.__doc__
+
+    print Stats.vpip.__doc__
+
     
     for t in tables:
         win = Hud(t, 8, c, db)

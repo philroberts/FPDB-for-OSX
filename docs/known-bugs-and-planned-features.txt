@@ -4,23 +4,19 @@ Please also see db-todo.txt
 
 alpha2 (release 22Aug)
 ======
-make windows not call fpdb hud
-W$wsF doesnt work in HUD (p64 may have made this worse)
-auto import only runs on one file per start
-set hud stats default row1: hands, VPIP, PFR, PF3B/4B, ST row2: Aggr% (postflop), Fold% (postflop), W$sF, WtSD, W$@SD
-make windows use correct language version of Appdata, e.g. Anwendungdaten
-stop bulk importer from executing HUD hook
 seperate and improve instructions for update
-update status or make a support matrix table for website
-add instructions for mailing list to contacts
-ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 re-run existing regression tests
-move conf file out of profiles folder
+update website for dropping profile subfolder
 
 alpha3 (release by 31Aug)
 ======
-store raw hand in db
-write reimport function using the raw hand field
+ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
+update status or make a support matrix table for website
+add instructions for mailing list to contacts
+auto import only runs on one file per start
+make windows use correct language version of Appdata, e.g. Anwendungdaten
+make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))
+store raw hand in db and write reimport function using the raw hand field
 make it work with postgres
 expand instructions for profile file
 ftp: read maxSeats

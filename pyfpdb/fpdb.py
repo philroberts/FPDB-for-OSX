@@ -225,7 +225,7 @@ class fpdb:
 			defaultpath+=("Application Data"+os.sep)
 		else:#ie. if real  OS prefix fpdb with a . as it is convention
 			defaultpath+="."
-		defaultpath+=("fpdb"+os.sep+"profiles"+os.sep+"default.conf")
+		defaultpath+=("fpdb"+os.sep+os.sep+"default.conf")
 		
 		if os.path.exists(defaultpath):
 			self.load_profile(defaultpath)
@@ -376,7 +376,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha1+, p65")
+		self.window.set_title("Free Poker DB - version: alpha1+, p66")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
