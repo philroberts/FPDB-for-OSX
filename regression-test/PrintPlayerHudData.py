@@ -29,6 +29,7 @@ parser.add_option("-e", "--seats", default="7", type="int", help="number of acti
 parser.add_option("-g", "--gameType", default="ring", help="Whether its a ringgame (ring) or a tournament (tour)")
 parser.add_option("-l", "--limit", "--limitType", default="fl", help="Limit Type, one of: nl, pl, fl, cn, cp")
 parser.add_option("-n", "--name", "--playername", default="Player_1", help="Name of the player to print")
+parser.add_option("-o", "--position", default="B", help="Position, can be B, S, or a number  between 0 and 7")
 parser.add_option("-p", "--password", help="The password for the MySQL user")
 parser.add_option("-s", "--site", default="PokerStars", help="Name of the site (as written in the history files)")
 
@@ -52,7 +53,7 @@ gametypeId=cursor.fetchone()[0]
 cursor.execute("SELECT id FROM Players WHERE name=%s", (options.name,))
 playerId=cursor.fetchone()[0]
 
-cursor.execute("SELECT id FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s",(gametypeId, playerId, options.seats))
+cursor.execute("SELECT id FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s",(gametypeId, playerId, options.seats, options.position))
 hudDataId=cursor.fetchone()[0]
 
 print "siteId:", siteId, "gametypeId:", gametypeId, "playerId:", playerId, "hudDataId:", hudDataId
@@ -103,6 +104,52 @@ cursor.execute ("SELECT wonWhenSeenStreet1, wonAtSD FROM HudCache WHERE id=%s", 
 fields=cursor.fetchone()
 print "wonWhenSeenStreet1:",fields[0]
 print "wonAtSD:",fields[1]
+
+cursor.execute ("SELECT stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal FROM HudCache WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "stealAttemptChance:",fields[0]
+print "stealAttempted:",fields[1]
+print "foldBbToStealChance:",fields[2]
+print "foldedBbToSteal:",fields[3]
+print "foldSbToStealChance:",fields[4]
+print "foldedSbToSteal:",fields[5]
+
+cursor.execute ("SELECT street1CBChance, street1CBDone, street2CBChance, street2CBDone, street3CBChance, street3CBDone, street4CBChance, street4CBDone FROM HudCache WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "street1CBChance:",fields[0]
+print "street1CBDone:",fields[1]
+print "street2CBChance:",fields[2]
+print "street2CBDone:",fields[3]
+print "street3CBChance:",fields[4]
+print "street3CBDone:",fields[5]
+print "street4CBChance:",fields[6]
+print "street4CBDone:",fields[7]
+
+cursor.execute ("SELECT foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone FROM HudCache WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "foldToStreet1CBChance:",fields[0]
+print "foldToStreet1CBDone:",fields[1]
+print "foldToStreet2CBChance:",fields[2]
+print "foldToStreet2CBDone:",fields[3]
+print "foldToStreet3CBChance:",fields[4]
+print "foldToStreet3CBDone:",fields[5]
+print "foldToStreet4CBChance:",fields[6]
+print "foldToStreet4CBDone:",fields[7]
+
+cursor.execute ("SELECT totalProfit FROM HudCache WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "totalProfit:",fields[0]
+
+cursor.execute ("SELECT street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone FROM HudCache WHERE id=%s", (hudDataId,))
+fields=cursor.fetchone()
+print "street1CheckCallRaiseChance:",fields[0]
+print "street1CheckCallRaiseDone:",fields[1]
+print "street2CheckCallRaiseChance:",fields[2]
+print "street2CheckCallRaiseDone:",fields[3]
+print "street3CheckCallRaiseChance:",fields[4]
+print "street3CheckCallRaiseDone:",fields[5]
+print "street4CheckCallRaiseChance:",fields[6]
+print "street4CheckCallRaiseDone:",fields[7]
 
 
 cursor.close()

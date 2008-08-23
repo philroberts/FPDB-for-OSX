@@ -2,19 +2,16 @@ todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha2 (release 22Aug)
-======
-seperate and improve instructions for update
-update website for dropping profile subfolder
-
 alpha3 (release by 31Aug)
 ======
+update website for dropping profile subfolder and add dedicated update page
+update status or make a support matrix table for website
+add instructions for mailing list to contacts
+
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 update PrintPlayerHudData to take position and all the new fields into account
 specify NOT NULL on almost all table columns
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
-update status or make a support matrix table for website
-add instructions for mailing list to contacts
 auto import only runs on one file per start
 make windows use correct language version of Appdata, e.g. Anwendungdaten
 make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))

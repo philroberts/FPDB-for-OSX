@@ -1,16 +1,18 @@
 alpha2
 ======
 Hi everyone,
-we are proud to announce the second alpha release of fpdb, the free/libre open source poker tracker. The biggest highlight is the HUD for Linux made by Ray (and perhaps Mac, not sure). But for everyone fpdb now also supports PS tournaments (SnG and MTT) and FTP ring games. There is also a new auto-importer though it currently only runs on one file per instance (though you can open multiple instances of fpdb).
+we are proud to announce the second alpha release of fpdb, the free/libre open source poker tracker. The biggest highlight is the HUD for Linux made by Ray (and perhaps Mac, not sure). But for everyone fpdb now also supports PS tournaments (SnG and MTT) and FTP ring games. There is also a new auto-importer though it currently only runs on one file per instance (but you can open multiple instances of fpdb).
 Fpdb also parses alot of new situations into the cache table for the HUD, most of which are already available through the Linux HUD. There have also been a large number of bugfixes for all kinds of things. For full details of the changes see the git commit comments.
 
-The website will be updated shortly but in the meantime please note that the configuration file now resides in ~/.fpdb/default.conf on Linux/Mac and in C:\Documents and Settings\Application Data\fpdb\default.conf on Windows (you have to translate the Documents and Settings, but not the Application data bit). Apart from that just follow the instructions on the site. I will be updating/improving the fpdb ebuild for Gentoo next week, please send me a PM or email if you would like a package for another Linux/BSD.
+You can download fpdb at https://sourceforge.net/project/showfiles.php?group_id=226872
+
+Our website at http://fpdb.sourceforge.net/ will be updated shortly but in the meantime please note that the configuration file now resides in ~/.fpdb/default.conf on Linux/Mac and in C:\Documents and Settings\Application Data\fpdb\default.conf on Windows (on non-English Windows you have to translate the Documents and Settings, but not the Application data bit). Apart from that just follow the instructions on the site. I will be updating/improving the fpdb ebuild for Gentoo next week, please send me a PM or email if you would like a package for another Linux/BSD.
 
 To use the HUD in Linux simply run the auto importer whilst having the table open. You will also have to rename HUD_config.xml.example to HUD_config.xml and edit the database parameters in there in addition to what is written in the install guide.
 
 If you've been using fpdb alpha1 just delete the fpdb folder, follow the installation guide except for installing the dependencies, then run fpdb and run recreate tables. Note that you will have to reimport ALL your history files.
 
-For external devs (in particular Youre Toast): The table design has gone through some changes, though most of it was just renaming to make a consistent naming scheme and to make it more flexible towards stud/razz type games. I do not expect to having to make any future changes to the existing fields but I cannot yet guarantee that. There will be some additional fields in particular in the HudCache table. Please let me know if you need any further fields.
+For external devs (in particular Youre Toast): The table design has gone through some changes, though most of it was just renaming to make a consistent naming scheme and to make it more flexible towards stud/razz type games. I do not expect to having to make any future changes to the existing fields but I cannot yet guarantee that. There will be some additional fields in particular in the HudCache table. Please let me know if you need any further fields. I realise my naming breaks the "database designer's convention" but for this project I feel ignoring this convention for the benefit of consistent naming between Python and SQL is ok.
 
 
 Any questions and comments please post here, send me a PM or email, post a feature request or bug report on sourceforge or use any of the other means of contact listed on our webpage.
@@ -19,6 +21,8 @@ Enjoy,
 The fpdb team
 
 PS: I personally will be away Sun-Tue so I probably won't be responding to anything but feel free to message me anyways, but if you post here or at SF someone else might be able to help.
+
+PPS: If you wanna know EXACTLY how this project is moving along follow the git tree over at [url]http://www.assembla.com/spaces/fpdb/trac_git_tool[/url]
 
 
 alpha1
