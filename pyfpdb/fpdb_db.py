@@ -297,15 +297,18 @@ class fpdb_db:
 		street0Aggr INT,
 		street0_3B4BChance INT,
 		street0_3B4BDone INT,
+		
 		street1Seen INT,
 		street2Seen INT,
 		street3Seen INT,
 		street4Seen INT,
 		sawShowdown INT,
+		
 		street1Aggr INT,
 		street2Aggr INT,
 		street3Aggr INT,
 		street4Aggr INT,
+		
 		otherRaisedStreet1 INT,
 		otherRaisedStreet2 INT,
 		otherRaisedStreet3 INT,

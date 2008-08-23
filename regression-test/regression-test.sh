@@ -30,7 +30,7 @@ echo "it should've reported first that it stored 3, then that it had 3 duplicate
 ./PrintHand.py -p$1 --hand=14519420999 > ps.14519420999.found.txt && colordiff ps.14519420999.found.txt ps.14519420999.expected.txt
 ./PrintHand.py -p$1 --hand=14519433154 > ps.14519433154.found.txt && colordiff ps.14519433154.found.txt ps.14519433154.expected.txt
 
-#./PrintPlayerHudData.py -p$1 > ps-flags-3hands.found.txt && colordiff ps-flags-3hands.found.txt ps-flags-3hands.expected.txt
+./PrintPlayerHudData.py -p$1 > ps-flags-3hands.found.txt && colordiff ps-flags-3hands.found.txt ps-flags-3hands.expected.txt
 
 #./print_hand.py -p$1 --site="Full Tilt Poker" --hand=6367428246 > ftp.6367428246.found.txt && colordiff ftp.6367428246.found.txt ftp.6367428246.expected.txt
 

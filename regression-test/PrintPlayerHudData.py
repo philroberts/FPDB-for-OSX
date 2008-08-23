@@ -43,16 +43,16 @@ print "Basic Data"
 print "=========="
 print "bigblind:",options.bigblind, "category:",options.cat, "limitType:", options.limit, "name:", options.name, "gameType:", options.gameType, "site:", options.site
 
-cursor.execute("SELECT id FROM sites WHERE name=%s", (options.site,))
+cursor.execute("SELECT id FROM Sites WHERE name=%s", (options.site,))
 siteId=cursor.fetchone()[0]
 
-cursor.execute("SELECT id FROM gametypes WHERE big_blind=%s AND category=%s AND site_id=%s AND limit_type=%s AND type=%s", (options.bigblind, options.cat, siteId, options.limit, options.gameType))
+cursor.execute("SELECT id FROM Gametypes WHERE bigBlind=%s AND category=%s AND siteId=%s AND limitType=%s AND type=%s", (options.bigblind, options.cat, siteId, options.limit, options.gameType))
 gametypeId=cursor.fetchone()[0]
 
-cursor.execute("SELECT id FROM players WHERE name=%s", (options.name,))
+cursor.execute("SELECT id FROM Players WHERE name=%s", (options.name,))
 playerId=cursor.fetchone()[0]
 
-cursor.execute("SELECT id FROM HudDataHoldemOmaha WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s",(gametypeId, playerId, options.seats))
+cursor.execute("SELECT id FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s",(gametypeId, playerId, options.seats))
 hudDataId=cursor.fetchone()[0]
 
 print "siteId:", siteId, "gametypeId:", gametypeId, "playerId:", playerId, "hudDataId:", hudDataId
@@ -61,43 +61,47 @@ print ""
 print "HUD Raw Hand Counts"
 print "==================="
 
-cursor.execute ("SELECT HDs, VPIP, PFR, PF3B4BChance, PF3B4B FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+cursor.execute ("SELECT HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone FROM HudCache WHERE id=%s", (hudDataId,))
 fields=cursor.fetchone()
 print "HDs:",fields[0]
-print "VPIP:",fields[1]
-print "PFR:",fields[2]
-print "PF3B4BChance:",fields[3]
-print "PF3B4B:",fields[4]
+print "street0VPI:",fields[1]
+print "street0Aggr:",fields[2]
+print "street0_3B4BChance:",fields[3]
+print "street0_3B4BDone:",fields[4]
 print ""
 
-cursor.execute ("SELECT sawFlop, sawTurn, sawRiver, sawShowdown FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+cursor.execute ("SELECT street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown FROM HudCache WHERE id=%s", (hudDataId,))
 fields=cursor.fetchone()
-print "sawFlop:",fields[0]
-print "sawTurn:",fields[1]
-print "sawRiver:",fields[2]
-print "sawShowdown:",fields[3]
+print "street1Seen:",fields[0]
+print "street2Seen:",fields[1]
+print "street3Seen:",fields[2]
+print "street4Seen:",fields[3]
+print "sawShowdown:",fields[4]
 print ""
 
-cursor.execute ("SELECT raisedFlop, raisedTurn, raisedRiver FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+cursor.execute ("SELECT street1Aggr, street2Aggr, street3Aggr, street4Aggr FROM HudCache WHERE id=%s", (hudDataId,))
 fields=cursor.fetchone()
-print "raisedFlop:",fields[0]
-print "raisedTurn:",fields[1]
-print "raisedRiver:",fields[2]
+print "street1Aggr:",fields[0]
+print "street2Aggr:",fields[1]
+print "street3Aggr:",fields[2]
+print "street4Aggr:",fields[3]
 print ""
 
-cursor.execute ("SELECT otherRaisedFlop, otherRaisedFlopFold, otherRaisedTurn, otherRaisedTurnFold, otherRaisedRiver, otherRaisedRiverFold FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+cursor.execute ("SELECT otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4 FROM HudCache WHERE id=%s", (hudDataId,))
 fields=cursor.fetchone()
-print "otherRaisedFlop:",fields[0]
-print "otherRaisedFlopFold:",fields[1]
-print "otherRaisedTurn:",fields[2]
-print "otherRaisedTurnFold:",fields[3]
-print "otherRaisedRiver:",fields[4]
-print "otherRaisedRiverFold:",fields[5]
+print "otherRaisedStreet1:",fields[0]
+print "otherRaisedStreet2:",fields[1]
+print "otherRaisedStreet3:",fields[2]
+print "otherRaisedStreet4:",fields[3]
+print "foldToOtherRaisedStreet1:",fields[4]
+print "foldToOtherRaisedStreet2:",fields[5]
+print "foldToOtherRaisedStreet3:",fields[6]
+print "foldToOtherRaisedStreet4:",fields[7]
 print ""
 
-cursor.execute ("SELECT wonWhenSeenFlop, wonAtSD FROM HudDataHoldemOmaha WHERE id=%s", (hudDataId,))
+cursor.execute ("SELECT wonWhenSeenStreet1, wonAtSD FROM HudCache WHERE id=%s", (hudDataId,))
 fields=cursor.fetchone()
-print "wonWhenSeenFlop:",fields[0]
+print "wonWhenSeenStreet1:",fields[0]
 print "wonAtSD:",fields[1]
 
 

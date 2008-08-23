@@ -8,28 +8,32 @@ siteId: 2 gametypeId: 1 playerId: 1 hudDataId: 1
 HUD Raw Hand Counts
 ===================
 HDs: 3
-VPIP: 1
-PFR: 0
-PF3B4BChance: 1
-PF3B4B: 0
+street0VPI: 1
+street0Aggr: 0
+street0_3B4BChance: 1
+street0_3B4BDone: 0
 
-sawFlop: 1
-sawTurn: 1
-sawRiver: 1
+street1Seen: 1
+street2Seen: 1
+street3Seen: 1
+street4Seen: 0
 sawShowdown: 0
 
-raisedFlop: 0
-raisedTurn: 0
-raisedRiver: 0
+street1Aggr: 0
+street2Aggr: 0
+street3Aggr: 0
+street4Aggr: 0
 
-otherRaisedFlop: 1
-otherRaisedFlopFold: 0
-otherRaisedTurn: 1
-otherRaisedTurnFold: 0
-otherRaisedRiver: 1
-otherRaisedRiverFold: 1
+otherRaisedStreet1: 1
+otherRaisedStreet2: 1
+otherRaisedStreet3: 1
+otherRaisedStreet4: 0
+foldToOtherRaisedStreet1: 0
+foldToOtherRaisedStreet2: 0
+foldToOtherRaisedStreet3: 1
+foldToOtherRaisedStreet4: 0
 
-wonWhenSeenFlop: 0.0
+wonWhenSeenStreet1: 0.0
 wonAtSD: 0.0
 
 stealAttemptChance: 0

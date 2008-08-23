@@ -1,15 +1,16 @@
 todolist (db=database, imp=importer, tv=tableviewer)
-Everything is subject to change and especially the order will often change. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
+Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
 alpha2 (release 22Aug)
 ======
 seperate and improve instructions for update
-PrintPlayerHudData
 update website for dropping profile subfolder
 
 alpha3 (release by 31Aug)
 ======
+anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
+update PrintPlayerHudData to take position and all the new fields into account
 specify NOT NULL on almost all table columns
 ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 update status or make a support matrix table for website
@@ -35,7 +36,6 @@ fill the fold to CB/2B/3B cache fields
 verify the totalProfit cache field
 fill the check-/call-raise cache fields
 move version into seperate file for fpdb gui and db
-anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 table with data for graphs for SD/F, W$wSF, W$@SD
 SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
 show database version error in GUI and use fpdb_db class const for it, add it to title
