@@ -1608,6 +1608,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#now CB
 	street1CBChance=[]
 	street1CBDone=[]
+	someoneDidStreet1CB=False
 	for player in range (len(player_ids)):
 		myStreet1CBChance=False
 		myStreet1CBDone=False
@@ -1616,6 +1617,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet1CBChance=True
 			if street1Aggr[player]:
 				myStreet1CBDone=True
+				someoneDidStreet1CB=True
 				
 		street1CBChance.append(myStreet1CBChance)
 		street1CBDone.append(myStreet1CBDone)
@@ -1625,6 +1627,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#now 2B
 	street2CBChance=[]
 	street2CBDone=[]
+	someoneDidStreet2CB=False
 	for player in range (len(player_ids)):
 		myStreet2CBChance=False
 		myStreet2CBDone=False
@@ -1633,6 +1636,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet2CBChance=True
 			if street2Aggr[player]:
 				myStreet2CBDone=True
+				someoneDidStreet2CB=True
 
 		street2CBChance.append(myStreet2CBChance)
 		street2CBDone.append(myStreet2CBDone)
@@ -1642,6 +1646,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#now 3B
 	street3CBChance=[]
 	street3CBDone=[]
+	someoneDidStreet3CB=False
 	for player in range (len(player_ids)):
 		myStreet3CBChance=False
 		myStreet3CBDone=False
@@ -1650,18 +1655,26 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet3CBChance=True
 			if street3Aggr[player]:
 				myStreet3CBDone=True
+				someoneDidStreet3CB=True
 
 		street3CBChance.append(myStreet3CBChance)
 		street3CBDone.append(myStreet3CBDone)
 	result['street3CBChance']=street3CBChance
 	result['street3CBDone']=street3CBDone
 	
-	#4B - todo, implement for stud/razz	
+	#and 4B
 	street4CBChance=[]
 	street4CBDone=[]
+	someoneDidStreet4CB=False
 	for player in range (len(player_ids)):
 		myStreet4CBChance=False
 		myStreet4CBDone=False
+		
+		if street3CBDone[player]:
+			myStreet4CBChance=True
+			if street4Aggr[player]:
+				myStreet4CBDone=True
+				someoneDidStreet4CB=True
 		
 		street4CBChance.append(myStreet4CBChance)
 		street4CBDone.append(myStreet4CBDone)
@@ -1680,6 +1693,72 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	foldToStreet4CBChance=[]
 	foldToStreet4CBDone=[]
 	
+	for player in range (len(player_ids)):
+		myFoldToStreet1CBChance=False
+		myFoldToStreet1CBDone=False
+		if someoneDidStreet1CB:
+			if street1CBDone[player]:
+				pass
+			elif street1Seen[player]:
+				myFoldToStreet1CBChance=True
+				if foldToOtherRaisedStreet1[player]:
+					myFoldToStreet1CBDone=True
+		
+		foldToStreet1CBChance.append(myFoldToStreet1CBChance)
+		foldToStreet1CBDone.append(myFoldToStreet1CBDone)
+		
+	for player in range (len(player_ids)):
+		myFoldToStreet2CBChance=False
+		myFoldToStreet2CBDone=False
+		if someoneDidStreet2CB:
+			if street2CBDone[player]:
+				pass
+			elif street2Seen[player]:
+				myFoldToStreet2CBChance=True
+				if foldToOtherRaisedStreet2[player]:
+					myFoldToStreet2CBDone=True
+		
+		foldToStreet2CBChance.append(myFoldToStreet2CBChance)
+		foldToStreet2CBDone.append(myFoldToStreet2CBDone)
+		
+	for player in range (len(player_ids)):
+		myFoldToStreet3CBChance=False
+		myFoldToStreet3CBDone=False
+		if someoneDidStreet3CB:
+			if street3CBDone[player]:
+				pass
+			elif street3Seen[player]:
+				myFoldToStreet3CBChance=True
+				if foldToOtherRaisedStreet3[player]:
+					myFoldToStreet3CBDone=True
+		
+		foldToStreet3CBChance.append(myFoldToStreet3CBChance)
+		foldToStreet3CBDone.append(myFoldToStreet3CBDone)
+		
+	for player in range (len(player_ids)):
+		myFoldToStreet4CBChance=False
+		myFoldToStreet4CBDone=False
+		if someoneDidStreet4CB:
+			if street4CBDone[player]:
+				pass
+			elif street4Seen[player]:
+				myFoldToStreet4CBChance=True
+				if foldToOtherRaisedStreet4[player]:
+					myFoldToStreet4CBDone=True
+		
+		foldToStreet4CBChance.append(myFoldToStreet4CBChance)
+		foldToStreet4CBDone.append(myFoldToStreet4CBDone)
+		
+	result['foldToStreet1CBChance']=foldToStreet1CBChance
+	result['foldToStreet1CBDone']=foldToStreet1CBDone
+	result['foldToStreet2CBChance']=foldToStreet2CBChance
+	result['foldToStreet2CBDone']=foldToStreet2CBDone
+	result['foldToStreet3CBChance']=foldToStreet3CBChance
+	result['foldToStreet3CBDone']=foldToStreet3CBDone
+	result['foldToStreet4CBChance']=foldToStreet4CBChance
+	result['foldToStreet4CBDone']=foldToStreet4CBDone
+
+
 	totalProfit=[]
 	
 	street1CheckCallRaiseChance=[]
@@ -1691,15 +1770,6 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	street4CheckCallRaiseChance=[]
 	street4CheckCallRaiseDone=[]
 	for player in range (len(player_ids)):
-		myFoldToStreet1CBChance=False
-		myFoldToStreet1CBDone=False
-		myFoldToStreet2CBChance=False
-		myFoldToStreet2CBDone=False
-		myFoldToStreet3CBChance=False
-		myFoldToStreet3CBDone=False
-		myFoldToStreet4CBChance=False
-		myFoldToStreet4CBDone=False
-		
 		myTotalProfit=0
 		
 		myStreet1CheckCallRaiseChance=False
@@ -1711,15 +1781,6 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		myStreet4CheckCallRaiseChance=False
 		myStreet4CheckCallRaiseDone=False
 		
-		foldToStreet1CBChance.append(myFoldToStreet1CBChance)
-		foldToStreet1CBDone.append(myFoldToStreet1CBDone)
-		foldToStreet2CBChance.append(myFoldToStreet2CBChance)
-		foldToStreet2CBDone.append(myFoldToStreet2CBDone)
-		foldToStreet3CBChance.append(myFoldToStreet3CBChance)
-		foldToStreet3CBDone.append(myFoldToStreet3CBDone)
-		foldToStreet4CBChance.append(myFoldToStreet4CBChance)
-		foldToStreet4CBDone.append(myFoldToStreet4CBDone)
-		
 		totalProfit.append(myTotalProfit)
 		
 		street1CheckCallRaiseChance.append(myStreet1CheckCallRaiseChance)
@@ -1730,15 +1791,6 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 		street3CheckCallRaiseDone.append(myStreet3CheckCallRaiseDone)
 		street4CheckCallRaiseChance.append(myStreet4CheckCallRaiseChance)
 		street4CheckCallRaiseDone.append(myStreet4CheckCallRaiseDone)
-	
-	result['foldToStreet1CBChance']=foldToStreet1CBChance
-	result['foldToStreet1CBDone']=foldToStreet1CBDone
-	result['foldToStreet2CBChance']=foldToStreet2CBChance
-	result['foldToStreet2CBDone']=foldToStreet2CBDone
-	result['foldToStreet3CBChance']=foldToStreet3CBChance
-	result['foldToStreet3CBDone']=foldToStreet3CBDone
-	result['foldToStreet4CBChance']=foldToStreet4CBChance
-	result['foldToStreet4CBDone']=foldToStreet4CBDone
 
 	result['totalProfit']=totalProfit
 
