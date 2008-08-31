@@ -200,11 +200,26 @@ class fpdb:
 		print "todo: implement dia_save_profile"
 	#end def dia_save_profile
 	
-	def dia_setup_wizard(self, path):
+	def diaSetupWizard(self, path):
 		print "todo: implement setup wizard"
-		print "setup wizard not implemented - please create the default configuration file:", path
+		print "setup wizard not implemented - please create the default configuration file:", path	
+		diaSetupWizard = gtk.Dialog(title="Fatal Error - Config File Missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
+
+		label = gtk.Label("Please copy the config file from the docs folder to:")
+		diaSetupWizard.vbox.add(label)
+		label.show()
+		
+		label = gtk.Label(path)
+		diaSetupWizard.vbox.add(label)
+		label.show()
+		
+		label = gtk.Label("and edit it according to the install documentation at http://fpdb.sourceforge.net")
+		diaSetupWizard.vbox.add(label)
+		label.show()
+
+		response = diaSetupWizard.run()
 		sys.exit(1)
-	#end def dia_setup_wizard
+	#end def diaSetupWizard
 	
 	def get_menu(self, window):
 		"""returns the menu for this program"""
@@ -225,12 +240,12 @@ class fpdb:
 			defaultpath+=("Application Data"+os.sep)
 		else:#ie. if real  OS prefix fpdb with a . as it is convention
 			defaultpath+="."
-		defaultpath+=("fpdb"+os.sep+os.sep+"default.conf")
+		defaultpath+=("fpdb"+os.sep+"default.conf")
 		
 		if os.path.exists(defaultpath):
 			self.load_profile(defaultpath)
 		else:
-			self.dia_setup_wizard(path=defaultpath)
+			self.diaSetupWizard(path=defaultpath)
 	#end def load_default_profile
 	
 	def load_profile(self, filename):
