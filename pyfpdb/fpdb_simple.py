@@ -586,7 +586,7 @@ def parseActionAmount(line, atype, site):
 #doesnt return anything, simply changes the passed arrays action_types and
 #	action_amounts. For stud this expects numeric streets (3-7), for
 #	holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(site, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
+def parseActionLine(site, base, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
 	#this only applies to stud
 	if (street<3):
 		text="invalid street ("+str(street)+") for line: "+line
@@ -1283,7 +1283,7 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 	return result
 #end def store_hands_players_stud_tourney
 
-def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
+def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	#setup subarrays of the result dictionary.
 	street0VPI=[]
@@ -1608,7 +1608,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#now CB
 	street1CBChance=[]
 	street1CBDone=[]
-	someoneDidStreet1CB=False
+	didStreet1CB=[]
 	for player in range (len(player_ids)):
 		myStreet1CBChance=False
 		myStreet1CBDone=False
@@ -1617,7 +1617,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet1CBChance=True
 			if street1Aggr[player]:
 				myStreet1CBDone=True
-				someoneDidStreet1CB=True
+				didStreet1CB.append(player_ids[player])
 				
 		street1CBChance.append(myStreet1CBChance)
 		street1CBDone.append(myStreet1CBDone)
@@ -1627,7 +1627,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#now 2B
 	street2CBChance=[]
 	street2CBDone=[]
-	someoneDidStreet2CB=False
+	didStreet2CB=[]
 	for player in range (len(player_ids)):
 		myStreet2CBChance=False
 		myStreet2CBDone=False
@@ -1636,7 +1636,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet2CBChance=True
 			if street2Aggr[player]:
 				myStreet2CBDone=True
-				someoneDidStreet2CB=True
+				didStreet2CB.append(player_ids[player])
 
 		street2CBChance.append(myStreet2CBChance)
 		street2CBDone.append(myStreet2CBDone)
@@ -1646,7 +1646,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#now 3B
 	street3CBChance=[]
 	street3CBDone=[]
-	someoneDidStreet3CB=False
+	didStreet3CB=[]
 	for player in range (len(player_ids)):
 		myStreet3CBChance=False
 		myStreet3CBDone=False
@@ -1655,7 +1655,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet3CBChance=True
 			if street3Aggr[player]:
 				myStreet3CBDone=True
-				someoneDidStreet3CB=True
+				didStreet3CB.append(player_ids[player])
 
 		street3CBChance.append(myStreet3CBChance)
 		street3CBDone.append(myStreet3CBDone)
@@ -1665,7 +1665,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	#and 4B
 	street4CBChance=[]
 	street4CBDone=[]
-	someoneDidStreet4CB=False
+	didStreet4CB=[]
 	for player in range (len(player_ids)):
 		myStreet4CBChance=False
 		myStreet4CBDone=False
@@ -1674,7 +1674,7 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 			myStreet4CBChance=True
 			if street4Aggr[player]:
 				myStreet4CBDone=True
-				someoneDidStreet4CB=True
+				didStreet4CB.append(player_ids[player])
 		
 		street4CBChance.append(myStreet4CBChance)
 		street4CBDone.append(myStreet4CBDone)
@@ -1696,59 +1696,38 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	for player in range (len(player_ids)):
 		myFoldToStreet1CBChance=False
 		myFoldToStreet1CBDone=False
-		if someoneDidStreet1CB:
-			if street1CBDone[player]:
-				pass
-			elif street1Seen[player]:
-				myFoldToStreet1CBChance=True
-				if foldToOtherRaisedStreet1[player]:
-					myFoldToStreet1CBDone=True
-		
 		foldToStreet1CBChance.append(myFoldToStreet1CBChance)
 		foldToStreet1CBDone.append(myFoldToStreet1CBDone)
-		
-	for player in range (len(player_ids)):
+
 		myFoldToStreet2CBChance=False
 		myFoldToStreet2CBDone=False
-		if someoneDidStreet2CB:
-			if street2CBDone[player]:
-				pass
-			elif street2Seen[player]:
-				myFoldToStreet2CBChance=True
-				if foldToOtherRaisedStreet2[player]:
-					myFoldToStreet2CBDone=True
-		
 		foldToStreet2CBChance.append(myFoldToStreet2CBChance)
 		foldToStreet2CBDone.append(myFoldToStreet2CBDone)
 		
-	for player in range (len(player_ids)):
 		myFoldToStreet3CBChance=False
 		myFoldToStreet3CBDone=False
-		if someoneDidStreet3CB:
-			if street3CBDone[player]:
-				pass
-			elif street3Seen[player]:
-				myFoldToStreet3CBChance=True
-				if foldToOtherRaisedStreet3[player]:
-					myFoldToStreet3CBDone=True
-		
 		foldToStreet3CBChance.append(myFoldToStreet3CBChance)
 		foldToStreet3CBDone.append(myFoldToStreet3CBDone)
 		
-	for player in range (len(player_ids)):
 		myFoldToStreet4CBChance=False
 		myFoldToStreet4CBDone=False
-		if someoneDidStreet4CB:
-			if street4CBDone[player]:
-				pass
-			elif street4Seen[player]:
-				myFoldToStreet4CBChance=True
-				if foldToOtherRaisedStreet4[player]:
-					myFoldToStreet4CBDone=True
-		
 		foldToStreet4CBChance.append(myFoldToStreet4CBChance)
 		foldToStreet4CBDone.append(myFoldToStreet4CBDone)
+	
+	print "actionTypeByNo:", actionTypeByNo
+	
+	if len(didStreet1CB)>=1:
+		generateFoldToCB(1, player_ids, didStreet1CB, street1CBDone, foldToStreet1CBChance, foldToStreet1CBDone, actionTypeByNo)
 		
+		if len(didStreet2CB)>=1:
+			generateFoldToCB(2, player_ids, didStreet2CB, street2CBDone, foldToStreet2CBChance, foldToStreet2CBDone, actionTypeByNo)
+
+			if len(didStreet3CB)>=1:
+				generateFoldToCB(3, player_ids, didStreet3CB, street3CBDone, foldToStreet3CBChance, foldToStreet3CBDone, actionTypeByNo)
+
+				if len(didStreet4CB)>=1:
+					generateFoldToCB(4, player_ids, didStreet4CB, street4CBDone, foldToStreet4CBChance, foldToStreet4CBDone, actionTypeByNo)
+			
 	result['foldToStreet1CBChance']=foldToStreet1CBChance
 	result['foldToStreet1CBDone']=foldToStreet1CBDone
 	result['foldToStreet2CBChance']=foldToStreet2CBChance
@@ -1803,7 +1782,27 @@ def generateHudData(player_ids, category, action_types, actionTypeByNo, winnings
 	result['street4CheckCallRaiseChance']=street4CheckCallRaiseChance
 	result['street4CheckCallRaiseDone']=street4CheckCallRaiseDone
 	return result
-#end def calculateHudImport
+#end def generateHudCacheData
+
+def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetCBChance, foldToStreetCBDone, actionTypeByNo):
+	"""fills the passed foldToStreetCB* arrays appropriately depending on the given street"""
+	print "beginning of generateFoldToCB, street:", street, "len(actionTypeByNo):", len(actionTypeByNo)
+	print "len(actionTypeByNo[street]):",len(actionTypeByNo[street])
+	firstCBReaction=0
+	for action in range(len(actionTypeByNo[street])):
+		if actionTypeByNo[street][action][1]=="bet":
+			for player in didStreetCB:
+				if player==actionTypeByNo[street][action][0] and firstCBReaction==0:
+					firstCBReaction=action+1
+					break
+	
+	for action in actionTypeByNo[street][firstCBReaction:]:
+		for player in range(len(playerIDs)):
+			if playerIDs[player]==action[0]:
+				foldToStreetCBChance[player]=True
+				if action[1]=="fold":
+					foldToStreetCBDone[player]=True
+#end def generateFoldToCB
 
 def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):

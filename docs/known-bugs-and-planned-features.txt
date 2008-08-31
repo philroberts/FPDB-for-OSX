@@ -22,7 +22,6 @@ update abbreviations.txt
 (steffen) finish bringing back tourney
 export settings[hud-defaultInterval] to conf
 fill check-/call-raise cache fields
-fix foldToCB cache fields to catch everything properly
 table with data for graphs for SD/F, W$wSF, W$@SD
 
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt

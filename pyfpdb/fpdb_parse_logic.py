@@ -70,13 +70,16 @@ def mainParser(db, cursor, site, category, hand):
 	#3b read positions
 	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		positions = fpdb_simple.parsePositions (hand, names)
+		base="hold"
+	else:
+		base="stud"
 	
 	#part 4: take appropriate action for each line based on linetype
 	for i in range(len(hand)):
 		if (lineTypes[i]=="cards"):
 			fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
 		elif (lineTypes[i]=="action"):
-			fpdb_simple.parseActionLine (site, hand[i], lineStreets[i], playerIDs, names, actionTypes, actionAmounts, actionNos, actionTypeByNo)
+			fpdb_simple.parseActionLine (site, base, hand[i], lineStreets[i], playerIDs, names, actionTypes, actionAmounts, actionNos, actionTypeByNo)
 		elif (lineTypes[i]=="win"):
 			fpdb_simple.parseWinLine (hand[i], site, names, winnings, isTourney)
 		elif (lineTypes[i]=="rake"):
@@ -113,7 +116,7 @@ def mainParser(db, cursor, site, category, hand):
 	totalWinnings=0
 	for i in range(len(winnings)):
 		totalWinnings+=winnings[i]
-	hudImportData=fpdb_simple.generateHudData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
+	hudImportData=fpdb_simple.generateHudCacheData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
 	
 	if isTourney:
 		ranks=[]
