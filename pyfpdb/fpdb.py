@@ -237,8 +237,8 @@ class fpdb:
 			defaultpath+=(os.sep)
 		
 		if (os.sep=="\\"):#ie. if Windows use application data folder
-			defaultpath+=("Application Data"+os.sep)
-		else:#ie. if real  OS prefix fpdb with a . as it is convention
+			defaultpath=os.environ["APPDATA"]+os.sep
+		else:#ie. if POSIX OS prefix fpdb with a .
 			defaultpath+="."
 		defaultpath+=("fpdb"+os.sep+"default.conf")
 		
