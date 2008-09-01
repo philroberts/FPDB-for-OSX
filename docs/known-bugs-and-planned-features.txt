@@ -6,16 +6,15 @@ alpha3 (release 1Sep?)
 ======
 (fixed by ray) auto import only runs on one file per start
 find correct sf logo link
-hud displayed 0/3 but a 2 digit percentage for W$SD?
 
 show database version error in GUI and use fpdb_db class const for it, add it to title
+update install-in-gentoo.txt and install-in-ubuntu.txt
 
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 specify NOT NULL on almost all table columns
 store raw hand in db and write reimport function using the raw hand field
 make windows use correct language version of Appdata, e.g. Anwendungdaten. http://mail.python.org/pipermail/python-list/2005-September/341702.html
 
-ebuild: symlink doesnt work, USE gtk, more automation, update install-in-gentoo.txt, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, print notice about install-in-gentoo.txt and mysql --config
 ftp: read maxSeats
 make sure totalProfit shows actual profit rather than winnings.
 update abbreviations.txt
@@ -28,6 +27,8 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 
 before beta
 ===========
+ebuild: USE gtk, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, git-ebuild, get it into sunrise
+make hud display W$SD etc as fraction.
 add dedicated update page
 update status or make a support matrix table for website
 separate db table design version and last bugfix in importer
