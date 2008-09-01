@@ -7,13 +7,12 @@ alpha3 (release 1-2Sep?)
 (fixed by ray) auto import only runs on one file per start
 find correct sf logo link
 
-show database version error in GUI and use fpdb_db class const for it, add it to title
+windows integrated installer
 update install-in-gentoo on website
 update ebuild and ubuntu guide for HUD_config.xml
 implement stud HudCache
 implement storeHudCache for stud base
 
-anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 specify NOT NULL on almost all table columns
 store raw hand in db and write reimport function using the raw hand field
 make windows use correct language version of Appdata, e.g. Anwendungdaten. http://mail.python.org/pipermail/python-list/2005-September/341702.html
@@ -28,6 +27,8 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 
 alpha4 (release 8Sep?)
 ======
+change to savannah?
+anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 Everything that didn't make it into alpha3
 Import draw (maybe without HudCache for a start)
 table with data for graphs for SD/F, W$wSF, W$@SD
@@ -49,31 +50,25 @@ move version into seperate file for fpdb gui and db
 SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
 create little test script for people to run to verify successful installation of pydeps
 split hud data generation into separate for loops and make it more efficient
-fix bug that sawFlop/Turn/River gets miscalculated if someone is allin - might as well add all-in recognition for this
+fix bug that sawFlop/Turn/River/CBChance/etc gets miscalculated if someone is allin - might as well add all-in recognition for this
 make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))
 make it work with postgres
 expand instructions for profile file
 maybe remove siteId from gametypes
 ?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?
 rakeback/frequent player points
-gentoo ebuild: USE postgresql
 skins
-optionally combine FB/FS and CB/2B/3B 
 separate all gui and all processing into files that are named accordingly
 ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
-figure out what slowed it down so much between git19 and git21 (8/9aug)
 why do we have to reconnect in tv.read_names_clicked?
 implement error file in importer
 catch index error, type error, file not found error
-use different colours according to classification.
+HUD: use different colours according to classification.
 
 move prepare-git.sh and create-release.sh to utils
 offer not storing db password
 change definition of bet to exclude bring in
-in tv, select from hud table using named fields rather than the current *
-remove remains of mysql/myisam support.
 fix GUI's load profile
-HUD
 config wizard
 file permission script, use games group
 make bulk importer display a grand total in the GUI
@@ -90,42 +85,31 @@ verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
-recognise&handle all-in for CB etc. (mostly useful for NL/PL, in limit I would argue missing a chance due to lack of money is the same as missing it due to sneezing and clicking the wrong button)
+make DB version error offer reimport, recreation and  continue.
 In many places there are unnecessary database accesses or it regenerates information it already had before or just generally does things in obscenely inefficient ways. Optimise this
 multi-select in bulk importer
-make option to use "traditional" labels, e.g. WtSD instead of SD/F
-HTMLify docs and validate them
 cut down action_types array size to appropriate length
 make the gui display errors
 log file
 move directory import code from gui to backend
 convert fpdb_import to not require passing "self", generally clean the parameter passing
-(tedious general stability improvement for unusual playernames): change all the str.find so they dont accidentially count player names containing the searched phrase. e.g. with rfind.
 Doesn't handle Daylight Saving Time (I don't think at least)
-Need to store if someone goes all-in, particularly for better NL/PL support.
-verify at least 3 hands per category per site per limit_type (when cap then do 2 normal and one 1 capped) incl tv display
-put lines in tv to make it easier to read
 ensure that refresh still takes no more than 10 seks on my P3M-800 (a quick run on git15 indicates this is ok now), or 5 with remote DB
-select range of stakes and sng/mtt values and types for tv
-change "for i" to more sensible var name instead of i
+select range of stakes and sng/mtt values and types for hud
 recognise somewhere if a file is still active and if so keep it open and only read new hands rather than detecting dupes
+return full ftp functionality
 
 can wait till 1.x
 =================
-return full ftp functionality
 in all importer: stop doing if site=="ftp", make class constants for site_id instead
-finish cleaning tabledesign html code
-rearrange huddata fields
 It treats fold due to disconnect as voluntary fold which is not ideal
 check for unnecessary db.commit()
 aliases
-Probably PartyPoker for all or most supported games
 repair hands where the seat lines are missing, happens when observing at FTP
 flags for storing the reason for winning (best hi, tie for best low, etc.) to DB. not sure actually if this is such a good idea remember that there can be multiple reasons for the same player in the same hand
-windows integrated installer
 benchmark properly on mysql innodb, postgresql, more?
-rename things like this: ClassName.methodName and variableName. do this on tables too. update codingstyle
-CLI (not ncurses, proper CLI) equivalent for fpdb.py
+rename things like this: ClassName.methodName and variableName. update codingstyle
+CLI (not ncurses, normal CLI) equivalent for fpdb.py
 optimise/simplify storing by creating the SQL statements depending on hand rather than calling different methods
 make range of activeSeats configurable for tv/hud
 

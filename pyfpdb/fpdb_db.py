@@ -44,13 +44,16 @@ class fpdb_db:
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
+		self.wrongDbVersion=False
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
 			settings=self.cursor.fetchone()
-			if settings[0]!=53:
+			if settings[0]!=75:
 				print "outdated or too new database version - please recreate tables"
+				self.wrongDbVersion=True
 		except:# _mysql_exceptions.ProgrammingError:
 			print "failed to read settings table - please recreate tables"
+			self.wrongDbVersion=True
 	#end def connect
 
 	def create_table(self, string):
@@ -356,7 +359,7 @@ class fpdb_db:
 		street4CheckCallRaiseChance INT,
 		street4CheckCallRaiseDone INT)""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (53);")
+		self.cursor.execute("INSERT INTO Settings VALUES (75);")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
 		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
 		self.cursor.execute("INSERT INTO TourneyTypes (id) VALUES (DEFAULT);")

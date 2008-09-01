@@ -322,6 +322,23 @@ class fpdb:
 		self.db = fpdb_db.fpdb_db()
 		#print "end of fpdb.load_profile, databaseName:",self.settings['db-databaseName']
 		self.db.connect(self.settings['db-backend'], self.settings['db-host'], self.settings['db-databaseName'], self.settings['db-user'], self.settings['db-password'])
+		if self.db.wrongDbVersion:
+			diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+
+			label = gtk.Label("An invalid DB version or missing tables have been detected.")
+			diaDbVersionWarning.vbox.add(label)
+			label.show()
+		
+			label = gtk.Label("This error is not necessarily fatal but it is strongly recommended that you recreate the tables by using the Database menu.")
+			diaDbVersionWarning.vbox.add(label)
+			label.show()
+		
+			label = gtk.Label("Not doing this will likely lead to misbehaviour including fpdb crashes, corrupt data etc.")
+			diaDbVersionWarning.vbox.add(label)
+			label.show()
+
+			response = diaDbVersionWarning.run()
+			diaDbVersionWarning.destroy()
 	#end def load_profile
 	
 	def not_implemented(self):
@@ -391,7 +408,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha2+, p72")
+		self.window.set_title("Free Poker DB - version: alpha2+, p75")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
