@@ -97,19 +97,19 @@ def classifyLines(hand, category, lineTypes, lineStreets):
 			currentStreet="river"
 		elif (hand[i].startswith("*** 3")):
 			lineTypes.append("ignore")
-			currentStreet=3
+			currentStreet=0
 		elif (hand[i].startswith("*** 4")):
 			lineTypes.append("ignore")
-			currentStreet=4
+			currentStreet=1
 		elif (hand[i].startswith("*** 5")):
 			lineTypes.append("ignore")
-			currentStreet=5
+			currentStreet=2
 		elif (hand[i].startswith("*** 6")):
 			lineTypes.append("ignore")
-			currentStreet=6
+			currentStreet=3
 		elif (hand[i].startswith("*** 7") or hand[i]=="*** RIVER ***"):
 			lineTypes.append("ignore")
-			currentStreet=7
+			currentStreet=4
 		elif (hand[i].find(" shows [")!=-1):
 			lineTypes.append("cards")
 		elif (hand[i].startswith("Table '")):
@@ -119,10 +119,8 @@ def classifyLines(hand, category, lineTypes, lineStreets):
 		lineStreets.append(currentStreet)
 #end def classifyLines
 
-#calculates the actual bet amounts in the given amount array and changes it accordingly.
 def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
-	#print "convert3B4B: actionTypes:", actionTypes
-	#print "convert3B4B: actionAmounts pre_Convert",actionAmounts
+	"""calculates the actual bet amounts in the given amount array and changes it accordingly."""
 	for i in range (len(actionTypes)):
 		for j in range (len(actionTypes[i])):
 			bets=[]
@@ -253,14 +251,16 @@ def fill_board_cards(board_values, board_suits):
 		board_suits.append("x")
 #end def fill_board_cards
 
-def fillCardArrays(player_count, category, card_values, card_suits):
+def fillCardArrays(player_count, base, category, card_values, card_suits):
 	"""fills up the two card arrays"""
 	if (category=="holdem"):
 		cardCount=2
 	elif (category=="omahahi" or category=="omahahilo"):
 		cardCount=4
+	elif base=="stud":
+		cardCount=7
 	else:
-		raise fpdb_simple.FpdbError ("invalid category: category")
+		raise fpdb_simple.FpdbError ("invalid category:", category)
 	
 	for i in range (player_count):
 		while (len(card_values[i])<cardCount):
@@ -364,8 +364,8 @@ def filterCrap(site, hand, isTourney):
 			toRemove.append(hand[i])
 		elif (hand[i].find(" shows ")!=-1 and hand[i].find("[")==-1):
 			toRemove.append(hand[i])
-		elif (hand[i].startswith("Table '") and hand[i].endswith("-max")):
-			toRemove.append(hand[i])
+		#elif (hand[i].startswith("Table '") and hand[i].endswith("-max")):
+		#	toRemove.append(hand[i])
 		elif (hand[i].startswith("The button is in seat #")):
 			toRemove.append(hand[i])
 		#above is alphabetic, reorder below if bored
@@ -587,11 +587,6 @@ def parseActionAmount(line, atype, site):
 #	action_amounts. For stud this expects numeric streets (3-7), for
 #	holdem/omaha it expects predeal, preflop, flop, turn or river
 def parseActionLine(site, base, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
-	#this only applies to stud
-	if (street<3):
-		text="invalid street ("+str(street)+") for line: "+line
-		raise FpdbError(text)
-	
 	if (street=="predeal" or street=="preflop"):
 		street=0
 	elif (street=="flop"):
@@ -1223,7 +1218,7 @@ def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
 		card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
 		card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
 		card_values[i][6], card_suits[i][6], winnings[i], rakes[i]))
-		cursor.execute("SELECT id FROM hands_players WHERE hand_id=%s AND player_id=%s", (hands_id, player_ids[i]))
+		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
 		result.append(cursor.fetchall()[0][0])
 	return result
 #end def store_hands_players_stud
@@ -1714,8 +1709,6 @@ def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, win
 		foldToStreet4CBChance.append(myFoldToStreet4CBChance)
 		foldToStreet4CBDone.append(myFoldToStreet4CBDone)
 	
-	print "actionTypeByNo:", actionTypeByNo
-	
 	if len(didStreet1CB)>=1:
 		generateFoldToCB(1, player_ids, didStreet1CB, street1CBDone, foldToStreet1CBChance, foldToStreet1CBDone, actionTypeByNo)
 		
@@ -1786,8 +1779,8 @@ def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, win
 
 def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetCBChance, foldToStreetCBDone, actionTypeByNo):
 	"""fills the passed foldToStreetCB* arrays appropriately depending on the given street"""
-	print "beginning of generateFoldToCB, street:", street, "len(actionTypeByNo):", len(actionTypeByNo)
-	print "len(actionTypeByNo[street]):",len(actionTypeByNo[street])
+	#print "beginning of generateFoldToCB, street:", street, "len(actionTypeByNo):", len(actionTypeByNo)
+	#print "len(actionTypeByNo[street]):",len(actionTypeByNo[street])
 	firstCBReaction=0
 	for action in range(len(actionTypeByNo[street])):
 		if actionTypeByNo[street][action][1]=="bet":
@@ -1946,7 +1939,7 @@ def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 					row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60], 
 					row[1], row[2], row[3], row[4], row[5]))
 	else:
-		raise FpdbError("todo")
+		print "todo: implement storeHudCache for stud base"
 #end def storeHudCache
 
 def store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):

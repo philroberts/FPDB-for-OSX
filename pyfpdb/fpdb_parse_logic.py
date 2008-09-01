@@ -22,7 +22,10 @@ import fpdb_save_to_db
 
 #parses a holdem hand
 def mainParser(db, cursor, site, category, hand):
-	#print "hand:",hand
+	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+		base="hold"
+	else:
+		base="stud"
 	#part 0: create the empty arrays
 	lineTypes=[] #char, valid values: header, name, cards, action, win, rake, ignore
 	lineStreets=[] #char, valid values: (predeal, preflop, flop, turn, river)
@@ -53,7 +56,7 @@ def mainParser(db, cursor, site, category, hand):
 	
 	#part 2: classify lines by type (e.g. cards, action, win, sectionchange) and street
 	fpdb_simple.classifyLines(hand, category, lineTypes, lineStreets)
-	
+		
 	#part 3: read basic player info	
 	#3a read player names, startcashes
 	for i in range (len(hand)): #todo: use maxseats+1 here.
@@ -68,11 +71,8 @@ def mainParser(db, cursor, site, category, hand):
 	fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, actionAmounts, actionNos, actionTypeByNo)
 	
 	#3b read positions
-	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+	if base=="hold":
 		positions = fpdb_simple.parsePositions (hand, names)
-		base="hold"
-	else:
-		base="stud"
 	
 	#part 4: take appropriate action for each line based on linetype
 	for i in range(len(hand)):
@@ -104,7 +104,7 @@ def mainParser(db, cursor, site, category, hand):
 	#part 5: final preparations, then call fpdb_save_to_db.saveHoldem with
 	#		 the arrays as they are - that file will fill them.
 	fpdb_simple.convertCardValues(cardValues)
-	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+	if base=="hold":
 		fpdb_simple.convertCardValuesBoard(boardValues)
 		fpdb_simple.convertBlindBet(actionTypes, actionAmounts)
 		fpdb_simple.checkPositions(positions)
@@ -116,7 +116,12 @@ def mainParser(db, cursor, site, category, hand):
 	totalWinnings=0
 	for i in range(len(winnings)):
 		totalWinnings+=winnings[i]
-	hudImportData=fpdb_simple.generateHudCacheData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
+	
+	if base=="hold":
+		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
+	else:
+		print "todo: stud HudCache"
+		hudImportData=None
 	
 	if isTourney:
 		ranks=[]
@@ -124,24 +129,24 @@ def mainParser(db, cursor, site, category, hand):
 			ranks.append(0)
 		payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)
 		
-		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
+		if base=="hold":
+			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
 					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
-		elif (category=="razz" or category=="studhi" or category=="studhilo"):
-			raise fpdb_simple.FpdbError ("stud/razz are currently broken")
-			result = fpdb_save_to_db.tourney_stud(cursor, category, siteTourneyNo, buyin, fee, 
+		elif base=="stud":
+			result = fpdb_save_to_db.tourney_stud(cursor, base, category, siteTourneyNo, buyin, fee, 
 					knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
 					siteHandNo, siteID, gametypeID, handStartTime, names, playerIDs, 
 					startCashes, antes, cardValues, cardSuits, winnings, rakes, 
-					actionTypes, actionAmounts, hudImportData)
+					actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+		else:
+			raise fpdb_simple.FpdbError ("unrecognised category")
 	else:
-		if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-			result = fpdb_save_to_db.ring_holdem_omaha(cursor, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
-		elif (category=="razz" or category=="studhi" or category=="studhilo"):
-			raise fpdb_simple.FpdbError ("stud/razz are currently broken")
-			result = fpdb_save_to_db.ring_stud(cursor, category, siteHandNo, gametypeID, 
+		if base=="hold":
+			result = fpdb_save_to_db.ring_holdem_omaha(cursor, base, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+		elif base=="stud":
+			result = fpdb_save_to_db.ring_stud(cursor, base, category, siteHandNo, gametypeID, 
 					handStartTime, names, playerIDs, startCashes, antes, cardValues, 
-					cardSuits, winnings, rakes, actionTypes, actionAmounts, hudImportData)
+					cardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		else:
 			raise fpdb_simple.FpdbError ("unrecognised category")
 		db.commit()

@@ -100,8 +100,6 @@ def import_file_dict(options, settings, callHud=True):
 					hand=fpdb_simple.filterCrap(site, hand, isTourney)
 			
 					try:
-						if (category=="razz" or category=="studhi" or category=="studhilo"):
-							raise fpdb_simple.FpdbError ("stud/razz currently out of order")
 						handsId=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
 						db.commit()
 						

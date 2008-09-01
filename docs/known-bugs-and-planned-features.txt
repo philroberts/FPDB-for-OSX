@@ -2,13 +2,16 @@ todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha3 (release 1Sep?)
+alpha3 (release 1-2Sep?)
 ======
 (fixed by ray) auto import only runs on one file per start
 find correct sf logo link
 
 show database version error in GUI and use fpdb_db class const for it, add it to title
-update install-in-gentoo.txt and install-in-ubuntu.txt
+update install-in-gentoo on website
+update ebuild and ubuntu guide for HUD_config.xml
+implement stud HudCache
+implement storeHudCache for stud base
 
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 specify NOT NULL on almost all table columns
@@ -18,23 +21,29 @@ make windows use correct language version of Appdata, e.g. Anwendungdaten. http:
 ftp: read maxSeats
 make sure totalProfit shows actual profit rather than winnings.
 update abbreviations.txt
-(steffen) finish bringing back tourney
 export settings[hud-defaultInterval] to conf
 fill check-/call-raise cache fields
-table with data for graphs for SD/F, W$wSF, W$@SD
 
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 
-before beta
-===========
-ebuild: USE gtk, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, git-ebuild, get it into sunrise
-make hud display W$SD etc as fraction.
-add dedicated update page
-update status or make a support matrix table for website
+alpha4 (release 8Sep?)
+======
+Everything that didn't make it into alpha3
+Import draw (maybe without HudCache for a start)
+table with data for graphs for SD/F, W$wSF, W$@SD
 separate db table design version and last bugfix in importer
 change tabledesign VALIGN
 finish updating filelist
 finish todos in git instructions
+debian/ubuntu package
+
+before beta
+===========
+finish bringing back tourney
+ebuild: USE gtk, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, git-ebuild, get it into sunrise
+make hud display W$SD etc as fraction.
+add dedicated update page
+update status or make a support matrix table for website
 fix up bg colours in tv
 move version into seperate file for fpdb gui and db
 SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
@@ -58,7 +67,6 @@ implement error file in importer
 catch index error, type error, file not found error
 use different colours according to classification.
 
-add stud, razz  back to imp/tv but with less seperate codepathes
 move prepare-git.sh and create-release.sh to utils
 offer not storing db password
 change definition of bet to exclude bring in
@@ -68,7 +76,6 @@ fix GUI's load profile
 HUD
 config wizard
 file permission script, use games group
-change stud street storage from 3-7 to 0-4 throughout (possibly best way is to just shrink the holding array in fpdb_simple.createArrays
 make bulk importer display a grand total in the GUI
 change save_to_db into one method and probably move into parse_logic
 Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
