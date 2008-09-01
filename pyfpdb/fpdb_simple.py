@@ -1192,8 +1192,8 @@ def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, sta
 			(hands_id, player_ids[i], start_cashes[i], positions[i],
 			card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 			card_values[i][2], card_suits[i][2], card_values[i][3],	card_suits[i][3],
-			winnings[i], rakes[i], seatNo[i]))
-			cursor.execute("SELECT id FROM hands_players WHERE hand_id=%s AND player_id=%s", (hands_id, player_ids[i]))
+			winnings[i], rakes[i], seatNos[i]))
+			cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
 			result.append(cursor.fetchall()[0][0])
 	else:
 		raise FpdbError("invalid category")

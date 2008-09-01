@@ -13,7 +13,6 @@ update ebuild and ubuntu guide for HUD_config.xml
 implement stud HudCache
 implement storeHudCache for stud base
 
-specify NOT NULL on almost all table columns
 store raw hand in db and write reimport function using the raw hand field
 make windows use correct language version of Appdata, e.g. Anwendungdaten. http://mail.python.org/pipermail/python-list/2005-September/341702.html
 

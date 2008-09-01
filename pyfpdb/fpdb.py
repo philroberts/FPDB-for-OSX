@@ -385,8 +385,7 @@ class fpdb:
 		"""Displays a tab with the main fpdb help screen"""
 		#print "start of tab_main_help"
 		mh_tab=gtk.Label("""Welcome to Fpdb!
-For howto information please see docs"""+os.sep+"""readme-user.txt
-The abbrevations in the table viewer are explained in docs"""+os.sep+"""abbrevations.txt
+For documentation please visit our website at http://fpdb.sourceforge.net/ or check the docs directory in the fpdb folder.
 This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.add_and_display_tab(mh_tab, "Help")
 	#end def tab_main_help
@@ -408,14 +407,14 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha2+, p75")
+		self.window.set_title("Free Poker DB - version: alpha2+, p76")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
 		
 		self.menu_items = (
 				( "/_Main",                                 None,         None, 0, "<Branch>" ),
-				( "/Main/_Load Profile",                    "<control>L", self.dia_load_profile, 0, None ),
+				( "/Main/_Load Profile (broken)",                    "<control>L", self.dia_load_profile, 0, None ),
 				( "/Main/_Edit Profile (todo)",                    "<control>E", self.dia_edit_profile, 0, None ),
 				( "/Main/_Save Profile (todo)",                    None,         self.dia_save_profile, 0, None ),
 				( "/Main/sep1",                             None,         None, 0, "<Separator>" ),
