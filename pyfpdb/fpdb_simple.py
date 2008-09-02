@@ -1201,7 +1201,7 @@ def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, sta
 #end def store_hands_players_holdem_omaha
 
 def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
-			card_values, card_suits, winnings, rakes):
+			card_values, card_suits, winnings, rakes, seatNos):
 #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
 	result=[]
 	for i in range (len(player_ids)):
@@ -1210,14 +1210,14 @@ def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
 		card1Value, card1Suit, card2Value, card2Suit,
 		card3Value, card3Suit, card4Value, card4Suit,
 		card5Value, card5Suit, card6Value, card6Suit,
-		card7Value, card7Suit, winnings, rake) 
-		VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+		card7Value, card7Suit, winnings, rake, seatNo) 
+		VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
 		%s, %s, %s, %s)""",
 		(hands_id, player_ids[i], start_cashes[i], antes[i],
 		card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 		card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
 		card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-		card_values[i][6], card_suits[i][6], winnings[i], rakes[i]))
+		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], seatNos[i]))
 		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
 		result.append(cursor.fetchall()[0][0])
 	return result
@@ -1278,7 +1278,7 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 	return result
 #end def store_hands_players_stud_tourney
 
-def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
+def generateHudCacheData(player_ids, base, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	#setup subarrays of the result dictionary.
 	street0VPI=[]
@@ -1333,15 +1333,16 @@ def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, win
 	buttonId=-1
 	sbId=-1
 	bbId=-1
-	for player in range(len(positions)):
-		if positions==1:
-			cutoffId=player_ids[player]
-		if positions==0:
-			buttonId=player_ids[player]
-		if positions=='S':
-			sbId=player_ids[player]
-		if positions=='B':
-			bbId=player_ids[player]
+	if base=="hold":
+		for player in range(len(positions)):
+			if positions==1:
+				cutoffId=player_ids[player]
+			if positions==0:
+				buttonId=player_ids[player]
+			if positions=='S':
+				sbId=player_ids[player]
+			if positions=='B':
+				bbId=player_ids[player]
 			
 	someoneStole=False
 	
@@ -1400,30 +1401,31 @@ def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, win
 					myStreet0_3B4BDone=True
 		
 		#steal calculations
-		if len(player_ids)>=5: #no point otherwise
-			if positions[player]==1:
-				if firstPfRaiserId==player_ids[player]:
-					myStealAttemptChance=True
-					myStealAttempted=True
-				elif firstPfRaiserId==buttonId or firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
-					myStealAttemptChance=True
-			if positions[player]==0:
-				if firstPfRaiserId==player_ids[player]:
-					myStealAttemptChance=True
-					myStealAttempted=True
-				elif firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
-					myStealAttemptChance=True
-			if positions[player]=='S':
-				if firstPfRaiserId==player_ids[player]:
-					myStealAttemptChance=True
-					myStealAttempted=True
-				elif firstPfRaiserId==bbId or firstPfRaiserId==-1:
-					myStealAttemptChance=True
-			if positions[player]=='B':
-				pass
+		if base=="hold":
+			if len(player_ids)>=5: #no point otherwise
+				if positions[player]==1:
+					if firstPfRaiserId==player_ids[player]:
+						myStealAttemptChance=True
+						myStealAttempted=True
+					elif firstPfRaiserId==buttonId or firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+						myStealAttemptChance=True
+				if positions[player]==0:
+					if firstPfRaiserId==player_ids[player]:
+						myStealAttemptChance=True
+						myStealAttempted=True
+					elif firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+						myStealAttemptChance=True
+				if positions[player]=='S':
+					if firstPfRaiserId==player_ids[player]:
+						myStealAttemptChance=True
+						myStealAttempted=True
+					elif firstPfRaiserId==bbId or firstPfRaiserId==-1:
+						myStealAttemptChance=True
+				if positions[player]=='B':
+					pass
 			
-			if myStealAttempted:
-				someoneStole=True
+				if myStealAttempted:
+					someoneStole=True
 
 		#calculate saw* values
 		if (len(action_types[1][player])>0):
@@ -1523,21 +1525,25 @@ def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, win
 		wonAtSD.append(myWonAtSD)
 		stealAttemptChance.append(myStealAttemptChance)
 		stealAttempted.append(myStealAttempted)
-		pos=positions[player]
-		if pos=='B':
-			hudDataPositions.append('B')
-		elif pos=='S':
-			hudDataPositions.append('S')
-		elif pos==0:
-			hudDataPositions.append('D')
-		elif pos==1:
-			hudDataPositions.append('C')
-		elif pos>=2 and pos<=4:
-			hudDataPositions.append('M')
-		elif pos>=5 and pos<=7:
-			hudDataPositions.append('L')
-		else:
-			raise FpdbError("invalid position")
+		if base=="hold":
+			pos=positions[player]
+			if pos=='B':
+				hudDataPositions.append('B')
+			elif pos=='S':
+				hudDataPositions.append('S')
+			elif pos==0:
+				hudDataPositions.append('D')
+			elif pos==1:
+				hudDataPositions.append('C')
+			elif pos>=2 and pos<=4:
+				hudDataPositions.append('M')
+			elif pos>=5 and pos<=7:
+				hudDataPositions.append('L')
+			else:
+				raise FpdbError("invalid position")
+		elif base=="stud":
+			#todo: stud positions and steals
+			pass
 	
 	#add each array to the to-be-returned dictionary
 	result={'street0VPI':street0VPI}
@@ -1578,17 +1584,18 @@ def generateHudCacheData(player_ids, category, action_types, actionTypeByNo, win
 		myFoldSbToStealChance=False
 		myFoldedSbToSteal=False
 		
-		if someoneStole and (positions[player]=='B' or positions[player]=='S') and firstPfRaiserId!=player_ids[player]:
-			street=0
-			for count in range (len(action_types[street][player])):#individual actions
-				if positions[player]=='B':
-					myFoldBbToStealChance=True
-					if action_types[street][player][count]=="fold":
-						myFoldedBbToSteal=True
-				if positions[player]=='S':
-					myFoldSbToStealChance=True
-					if action_types[street][player][count]=="fold":
-						myFoldedSbToSteal=True
+		if base=="hold":
+			if someoneStole and (positions[player]=='B' or positions[player]=='S') and firstPfRaiserId!=player_ids[player]:
+				street=0
+				for count in range (len(action_types[street][player])):#individual actions
+					if positions[player]=='B':
+						myFoldBbToStealChance=True
+						if action_types[street][player][count]=="fold":
+							myFoldedBbToSteal=True
+					if positions[player]=='S':
+						myFoldSbToStealChance=True
+						if action_types[street][player][count]=="fold":
+							myFoldedSbToSteal=True
 				
 				
 		foldBbToStealChance.append(myFoldBbToStealChance)
@@ -1797,10 +1804,14 @@ def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetC
 					foldToStreetCBDone[player]=True
 #end def generateFoldToCB
 
-def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
-	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
+#	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+		
 		for player in range (len(playerIds)):
-			cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
+			if base=="hold":
+				cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
+			else:
+				cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
 			row=cursor.fetchone()
 			#print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
 			
@@ -1826,7 +1837,10 @@ def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 					newrow.append(row[i])
 				row=newrow
 			
-			row[4]=hudImportData['position'][player]
+			if base=="hold":
+				row[4]=hudImportData['position'][player]
+			else:
+				row[4]=0
 			row[5]=1 #tourneysGametypeId
 			row[6]+=1 #HDs
 			if hudImportData['street0VPI'][player]: row[7]+=1
@@ -1938,8 +1952,8 @@ def storeHudCache(cursor, category, gametypeId, playerIds, hudImportData):
 					row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], 
 					row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60], 
 					row[1], row[2], row[3], row[4], row[5]))
-	else:
-		print "todo: implement storeHudCache for stud base"
+#	else:
+#		print "todo: implement storeHudCache for stud base"
 #end def storeHudCache
 
 def store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):

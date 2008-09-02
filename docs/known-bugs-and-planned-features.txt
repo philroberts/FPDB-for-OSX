@@ -10,8 +10,6 @@ find correct sf logo link
 windows integrated installer
 update install-in-gentoo on website
 update ebuild and ubuntu guide for HUD_config.xml
-implement stud HudCache
-implement storeHudCache for stud base
 
 store raw hand in db and write reimport function using the raw hand field
 ftp: read maxSeats
@@ -25,6 +23,7 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 alpha4 (release 8Sep?)
 ======
 change to savannah?
+implement steal and positions in stud
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 Everything that didn't make it into alpha3
 Import draw (maybe without HudCache for a start)

@@ -407,7 +407,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha2+, p76")
+		self.window.set_title("Free Poker DB - version: alpha2+, p78")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
@@ -417,22 +417,22 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 				( "/Main/_Load Profile (broken)",                    "<control>L", self.dia_load_profile, 0, None ),
 				( "/Main/_Edit Profile (todo)",                    "<control>E", self.dia_edit_profile, 0, None ),
 				( "/Main/_Save Profile (todo)",                    None,         self.dia_save_profile, 0, None ),
-				( "/Main/sep1",                             None,         None, 0, "<Separator>" ),
-				( "/Main/_Quit",                            "<control>Q", self.quit, 0, None ),
-				( "/_Import",                               None,         None, 0, "<Branch>" ),
-				( "/Import/_Bulk Import",  "<control>B", self.tab_bulk_import, 0, None ),
-				( "/Import/_Auto Import (todo)",                   "<control>A", self.tab_auto_import, 0, None ),
-				( "/Import/Auto _Rating (todo)",                   "<control>R", self.not_implemented, 0, None ),
-				( "/_Viewers",                              None,         None, 0, "<Branch>" ),
-				( "/Viewers/_Graphs (todo)",   None,         self.not_implemented, 0, None ),
-				( "/Viewers/H_and Replayer (todo)",   None,         self.not_implemented, 0, None ),
-				( "/Viewers/Player _Details (todo)",   None,         self.not_implemented, 0, None ),
-				( "/Viewers/_Player Stats (tabulated view) (todo)",   None,         self.not_implemented, 0, None ),
-				( "/Viewers/Starting _Hands (todo)",   None,         self.not_implemented, 0, None ),
-				( "/Viewers/_Session Replayer (todo)",   None,         self.not_implemented, 0, None ),
-				( "/Viewers/Poker_table Viewer",            "<control>T", self.tab_table_viewer, 0, None ),
+				("/Main/sep1", None, None, 0, "<Separator>" ),
+				("/Main/_Quit", "<control>Q", self.quit, 0, None ),
+				("/_Import",                               None,         None, 0, "<Branch>" ),
+				("/Import/_Bulk Import",  "<control>B", self.tab_bulk_import, 0, None ),
+				("/Import/_Auto Import and HUD", "<control>A", self.tab_auto_import, 0, None ),
+				("/Import/Auto _Rating (todo)",                   "<control>R", self.not_implemented, 0, None ),
+				("/_Viewers", None, None, 0, "<Branch>" ),
+				("/_Viewers/_Auto Import and HUD", "<control>A", self.tab_auto_import, 0, None ),
+				("/Viewers/_Graphs (todo)",   None,         self.not_implemented, 0, None ),
+				("/Viewers/Hand _Replayer (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/Player _Details (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/_Player Stats (tabulated view) (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/Starting _Hands (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/_Session Replayer (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/Poker_table Viewer", "<control>T", self.tab_table_viewer, 0, None ),
 				#( "/Viewers/Tourney Replayer
-				#( "/H_UD",                                  None,         None, 0, "<Branch>" ),
 				( "/_Database",                             None,         None, 0, "<Branch>" ),
 				( "/Database/Create or Delete _Database (todo)",   None,         self.dia_create_del_database, 0, None ),
 				( "/Database/Create or Delete _User (todo)",       None,         self.dia_create_del_user, 0, None ),

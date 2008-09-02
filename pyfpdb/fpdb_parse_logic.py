@@ -118,10 +118,9 @@ def mainParser(db, cursor, site, category, hand):
 		totalWinnings+=winnings[i]
 	
 	if base=="hold":
-		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
+		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes, actionTypeByNo, winnings, totalWinnings, positions)
 	else:
-		print "todo: stud HudCache"
-		hudImportData=None
+		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes, actionTypeByNo, winnings, totalWinnings, None)
 	
 	if isTourney:
 		ranks=[]
