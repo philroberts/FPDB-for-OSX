@@ -60,7 +60,7 @@ class Sql:
                     FROM game_players 
                     WHERE game_id = %s AND player_id = 3
                 """
-                
+
             self.query['get_cards'] = """
                     select 
                         seat_number, 
@@ -173,10 +173,6 @@ class Sql:
 
             self.query['get_stats_from_hand'] = """
                     SELECT HudCache.playerId             AS player_id, 
-                        HudCache.gametypeId              AS gametypeId,
-                        activeSeats                      AS n_active,
-                        position                         AS position,
-                        HudCache.tourneyTypeId           AS tourneyTypeId,
                         sum(HDs)                         AS n,
                         sum(street0VPI)                  AS vpip,
                         sum(street0Aggr)                 AS pfr,
@@ -241,12 +237,18 @@ class Sql:
                     AND   Hands.gametypeId = HudCache.gametypeId
                     GROUP BY HudCache.PlayerId
                 """
+#                    AND   PlayerId LIKE %s
+#                        HudCache.gametypeId              AS gametypeId,
+#                        activeSeats                      AS n_active,
+#                        position                         AS position,
+#                        HudCache.tourneyTypeId           AS tourneyTypeId,
          
             self.query['get_players_from_hand'] = """
                     SELECT HandsPlayers.playerId, seatNo, name
                     FROM  HandsPlayers INNER JOIN Players ON (HandsPlayers.playerId = Players.id)
                     WHERE handId = %s
                 """
+#                    WHERE handId = %s AND Players.id LIKE %s
 
             self.query['get_table_name'] = """
                     select tableName, maxSeats, category 
@@ -254,6 +256,31 @@ class Sql:
                     where Hands.id = %s
                     and Gametypes.id = Hands.gametypeId
                 """
+
+            self.query['get_cards'] = """
+                    select 
+                        seatNo     AS seat_number, 
+                        name       AS screen_name, 
+                        card1Value, card1Suit,
+                        card2Value, card2Suit,
+                        card3Value, card3Suit,
+                        card4Value, card4Suit,
+                        card5Value, card5Suit,
+                        card6Value, card6Suit,
+                        card7Value, card7Suit
+                    from HandsPlayers, Players 
+                    where handID = %s and HandsPlayers.playerId = Players.id 
+                    order by seatNo
+                """
+
+#            self.query['get_hand_info'] = """
+#                    SELECT 
+#                        game_id, 
+#                        CONCAT(hole_card_1, hole_card_2, hole_card_3, hole_card_4, hole_card_5, hole_card_6, hole_card_7) AS hand,  
+#                        total_won-total_bet AS net
+#                    FROM game_players 
+#                    WHERE game_id = %s AND player_id = 3
+#                """
 
 if __name__== "__main__":
 #    just print the default queries and exit

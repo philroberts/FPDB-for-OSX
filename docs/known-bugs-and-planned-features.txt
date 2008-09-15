@@ -2,9 +2,8 @@ todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha3 (release 1-2Sep?)
+alpha3 (release 15Sep)
 ======
-(fixed by ray) auto import only runs on one file per start
 find correct sf logo link
 
 windows integrated installer
@@ -20,7 +19,7 @@ fill check-/call-raise cache fields
 
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
 
-alpha4 (release 8Sep?)
+alpha4 (release 22-29Sep)
 ======
 change to savannah?
 implement steal and positions in stud
@@ -33,9 +32,25 @@ change tabledesign VALIGN
 finish updating filelist
 finish todos in git instructions
 debian/ubuntu package http://www.debian.org/doc/maint-guide/ch-start.en.html
+howto remote DB
+move all user docs to webpage
 
 before beta
 ===========
+No Full Tilt support in HUD
+No river stats for stud games
+hole/board cards are not correctly stored in the db for stud games
+HORSE (and presumably other mixed games) hand history files not handled correctly
+HUD stat windows are too big on Windows
+HUD task bar entries on Windows won't go away
+Some MTTs won't import (rebuys??)
+Many STTs won't import
+MTT/STT not tested in HUD
+HUD stats not aggregated
+Player names with non-Latin chars throw warnings in HUD
+HUD doesn't start when fpdb is started from the Windows "Start Menu"
+Exiting HUD on Windows doesn't properly clean up stat windows
+
 finish bringing back tourney
 ebuild: USE gtk, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, git-ebuild, get it into sunrise
 make hud display W$SD etc as fraction.
@@ -49,6 +64,7 @@ split hud data generation into separate for loops and make it more efficient
 fix bug that sawFlop/Turn/River/CBChance/etc gets miscalculated if someone is allin - might as well add all-in recognition for this
 make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))
 make it work with postgres
+gentoo ebuild: USE postgresql
 expand instructions for profile file
 maybe remove siteId from gametypes
 ?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?

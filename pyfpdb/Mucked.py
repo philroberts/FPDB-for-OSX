@@ -105,7 +105,8 @@ class MuckedList:
         self.mucked_cards.update(model.get_value(iter, 0))
         
     def update(self, new_hand_id):
-        info_row = self.db_connection.get_hand_info(new_hand_id)
+#        info_row = self.db_connection.get_hand_info(new_hand_id)
+        info_row = ((new_hand_id, "xxxx", 0), )
         iter = self.liststore.append(info_row[0]) 
         sel = self.treeview.get_selection()
         sel.select_iter(iter)
@@ -156,11 +157,15 @@ class MuckedCards:
                 self.grid.attach(self.grid_contents[(c, r)], c, c+1, r, r+1, xpadding = 1, ypadding = 1)
                 
         self.parent.add(self.grid)
-        
+
+    def translate_cards(self, old_cards):
+        pass
+
     def update(self, new_hand_id):
         cards = self.db_connection.get_cards(new_hand_id)
         self.clear()
 
+        cards = self.translate_cards(cards)
         for c in cards.keys():
             self.grid_contents[(1, cards[c]['seat_number'] - 1)].set_text(cards[c]['screen_name'])
 
@@ -224,7 +229,7 @@ if __name__== "__main__":
         return(True)
 
     config = Configuration.Config()
-    db_connection = Database.Database(config, 'PTrackSv2', 'razz')
+    db_connection = Database.Database(config, 'fpdb', '')
    
     main_window = gtk.Window()
     main_window.set_keep_above(True)
@@ -236,4 +241,3 @@ if __name__== "__main__":
     s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand)
     
     gtk.main()
-

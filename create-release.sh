@@ -22,6 +22,8 @@ rm pyfpdb/*.pyc
 mkdir fpdb-$1
 cp -R docs fpdb-$1/
 cp -R pyfpdb fpdb-$1/
+rm fpdb-$1/HUD_config.*
+cp pyfpdb/HUD_config.xml.example fpdb-$1/
 cp -R regression-test fpdb-$1/
 cp -R utils fpdb-$1/
 cd fpdb-$1

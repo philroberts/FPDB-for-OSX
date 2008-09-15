@@ -24,6 +24,7 @@ Create and manage the database objects.
 # postmaster -D /var/lib/pgsql/data
 
 #    Standard Library modules
+import sys
 
 #    pyGTK modules
 
@@ -32,7 +33,7 @@ import Configuration
 import SQL
 
 #    pgdb database module for posgres via DB-API
-#import pgdb
+import psycopg2
 #    pgdb uses pyformat.  is that fixed or an option?
 
 #    mysql bindings
@@ -41,7 +42,7 @@ import MySQLdb
 class Database:
     def __init__(self, c, db_name, game):
         if   c.supported_databases[db_name].db_server == 'postgresql':
-            self.connection = pgdb.connect(dsn = c.supported_databases[db_name].db_ip,
+            self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
                                        user = c.supported_databases[db_name].db_user,
                                        password = c.supported_databases[db_name].db_pass,
                                        database = c.supported_databases[db_name].db_name)
@@ -59,12 +60,12 @@ class Database:
         self.type = c.supported_databases[db_name].db_type
         self.sql = SQL.Sql(game = game, type = self.type)
         
-    def close(self):
-        self.connection.close
+    def close_connection(self):
+        self.connection.close()
         
     def get_table_name(self, hand_id):
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_table_name'], (hand_id))
+        c.execute(self.sql.query['get_table_name'], (hand_id, ))
         row = c.fetchone()
         return row
     
@@ -90,7 +91,21 @@ class Database:
         c.execute(self.sql.query['get_hand_info'], new_hand_id)
         return c.fetchall()
 
+#    def get_cards(self, hand):
+#    this version is for the PTrackSv2 db
+#        c = self.connection.cursor()
+#        c.execute(self.sql.query['get_cards'], hand)
+#        colnames = [desc[0] for desc in c.description]
+#        cards = {}
+#        for row in c.fetchall():
+#            s_dict = {}
+#            for name, val in zip(colnames, row):
+#                s_dict[name] = val
+#            cards[s_dict['seat_number']] = s_dict
+#        return (cards)
+
     def get_cards(self, hand):
+#    this version is for the fpdb db
         c = self.connection.cursor()
         c.execute(self.sql.query['get_cards'], hand)
         colnames = [desc[0] for desc in c.description]
@@ -101,12 +116,14 @@ class Database:
                 s_dict[name] = val
             cards[s_dict['seat_number']] = s_dict
         return (cards)
-                  
-    def get_stats_from_hand(self, hand, hero):
+
+    def get_stats_from_hand(self, hand, player_id = False):
         c = self.connection.cursor()
 
+        if not player_id: player_id = "%"
 #    get the players in the hand and their seats
-        c.execute(self.sql.query['get_players_from_hand'], (hand))
+#        c.execute(self.sql.query['get_players_from_hand'], (hand, player_id))
+        c.execute(self.sql.query['get_players_from_hand'], (hand, ))
         names = {}
         seats = {}
         for row in c.fetchall():
@@ -114,6 +131,7 @@ class Database:
             seats[row[0]] = row[1]
 
 #    now get the stats
+#        c.execute(self.sql.query['get_stats_from_hand'], (hand, hand, player_id))
         c.execute(self.sql.query['get_stats_from_hand'], (hand, hand))
         colnames = [desc[0] for desc in c.description]
         stat_dict = {}
@@ -137,7 +155,8 @@ class Database:
 if __name__=="__main__":
     c = Configuration.Config()
 
-    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
+#    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
+    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
@@ -149,7 +168,16 @@ if __name__=="__main__":
     hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
     print "nutOmatic is id_player = %d" % hero
     
+    stat_dict = db_connection.get_stats_from_hand(h)
+    for p in stat_dict.keys():
+        print p, "  ", stat_dict[p]
+        
+    print "nutOmatics stats:"
     stat_dict = db_connection.get_stats_from_hand(h, hero)
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
-    db_connection.close
+
+    db_connection.close_connection
+
+    print "press enter to continue"
+    sys.stdin.readline()

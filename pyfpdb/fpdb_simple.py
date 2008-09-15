@@ -18,6 +18,7 @@
 #This file contains simple functions for fpdb
 
 import datetime
+import re
 
 PS=1
 FTP=2
@@ -781,8 +782,10 @@ def parseHandStartTime(topline, site):
 		#print "parsehandStartTime, tmp:", tmp
 		pos = tmp.find("-")+2
 		tmp = tmp[pos:]
-		#print "year:", tmp[0:4], "month", tmp[5:7], "day", tmp[8:10], "hour", tmp[13:15], "minute", tmp[16:18], "second", tmp[19:21]
-		result = datetime.datetime(int(tmp[0:4]), int(tmp[5:7]), int(tmp[8:10]), int(tmp[13:15]), int(tmp[16:18]), int(tmp[19:21]))
+		if re.search('\(ET\)', tmp):  # the old datetime format at ps
+			result = datetime.datetime(int(tmp[0:4]), int(tmp[5:7]), int(tmp[8:10]), int(tmp[13:15]), int(tmp[16:18]), int(tmp[19:21]))
+		else:  # new format
+			result = datetime.datetime(int(tmp[0:4]), int(tmp[5:7]), int(tmp[8:10]), int(tmp[11:13]), int(tmp[14:16]), int(tmp[17:19]))
 	else:
 		raise FpdbError("invalid site in parseHandStartTime")
 	
@@ -1951,7 +1954,7 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
 					row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], 
 					row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], 
 					row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60], 
-					row[1], row[2], row[3], row[4], row[5]))
+					row[1], row[2], row[3], str(row[4]), row[5]))
 #	else:
 #		print "todo: implement storeHudCache for stud base"
 #end def storeHudCache

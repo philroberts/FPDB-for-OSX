@@ -26,15 +26,17 @@ Main for FreePokerTools HUD.
 #    to do adjust for preferred seat
 #    to do allow window resizing
 #    to do hud to echo, but ignore non numbers
-#    to do kill a hud
 #    to do no hud window for hero
-#    to do single click to display detailed stats
 #    to do things to add to config.xml
 #    to do     font and size
+#    to do     bg and fg color
+#    to do     opacity
 
 #    Standard Library modules
 import sys
 import os
+import thread
+import Queue
 
 #    pyGTK modules
 import pygtk
@@ -49,19 +51,23 @@ import Hud
 
 #    global dict for keeping the huds
 hud_dict = {}
+
 db_connection = 0;
 config = 0;
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
-    
-def process_new_hand(source, condition):
+
+def process_new_hand(new_hand_id, db_name):
 #    there is a new hand_id to be processed
 #    read the hand_id from stdin and strip whitespace
-    new_hand_id = sys.stdin.readline()
-    new_hand_id = new_hand_id.rstrip()
-    db_connection = Database.Database(config, 'fpdb', 'holdem')
+    global hud_dict
 
+    for h in hud_dict.keys():
+        if hud_dict[h].deleted:
+            del(hud_dict[h])
+
+    db_connection = Database.Database(config, db_name, 'temp')
     (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
 #    if a hud for this table exists, just update it
     if hud_dict.has_key(table_name):
@@ -71,29 +77,61 @@ def process_new_hand(source, condition):
         table_windows = Tables.discover(config)
         for t in table_windows.keys():
             if table_windows[t].name == table_name:
-                hud_dict[table_name] = Hud.Hud(table_windows[t], max, poker_game, config, db_connection)
+                hud_dict[table_name] = Hud.Hud(table_windows[t], max, poker_game, config, db_name)
                 hud_dict[table_name].create(new_hand_id, config)
                 hud_dict[table_name].update(new_hand_id, db_connection, config)
                 break
 #        print "table name \"%s\" not identified, no hud created" % (table_name)
-    return(1)
+    db_connection.close_connection()
+    return(1)  
+
+def check_stdin(db_name):
+    try:
+        hand_no = dataQueue.get(block=False)
+        process_new_hand(hand_no, db_name)
+    except:
+        pass
+
+    return True
+
+def read_stdin(source, condition, db_name):
+    new_hand_id = sys.stdin.readline()
+    process_new_hand(new_hand_id, db_name)
+    return True
+
+def producer():            # This is the thread function
+    while True:
+        hand_no = sys.stdin.readline()  # reads stdin
+        dataQueue.put(hand_no)          # and puts result on the queue
 
 if __name__== "__main__":
-    
-    if not os.name == 'posix':
-        print "This version of the HUD only works with Linux or compatible.\nHUD exiting."
+    print "HUD_main starting"
+
+    try:
+        db_name = sys.argv[1]
+    except:
+        db_name = 'fpdb-p'
+    print "Using db name = ", db_name
+
+    config = Configuration.Config()
+#    db_connection = Database.Database(config, 'fpdb', 'holdem')
+
+    if os.name == 'posix':
+        s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, read_stdin, db_name)
+    elif os.name == 'nt':
+        dataQueue = Queue.Queue()             # shared global. infinite size
+        gobject.threads_init()                # this is required
+        thread.start_new_thread(producer, ()) # starts the thread
+        gobject.timeout_add(1000, check_stdin, db_name)
+    else:
+        print "Sorry your operating system is not supported."
         sys.exit()
 
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)
-    label = gtk.Label('Fake main window, blah blah, blah\nblah, blah')
+    label = gtk.Label('Closing this window will exit from the HUD.')
     main_window.add(label)
+    main_window.set_title("HUD Main Window")
     main_window.show_all()
     
-    config = Configuration.Config()
-    
-    db_connection = Database.Database(config, 'fpdb', 'holdem')
-    
-    s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand)
-
     gtk.main()

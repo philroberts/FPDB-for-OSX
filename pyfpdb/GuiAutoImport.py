@@ -33,12 +33,12 @@ class GuiAutoImport (threading.Thread):
 		current_path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
 		
 		dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
-				action=gtk.FILE_CHOOSER_ACTION_OPEN,
+				action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
 				buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
 		#dia_chooser.set_current_folder(pathname)
 		dia_chooser.set_filename(current_path)
 		#dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
-		
+
 		response = dia_chooser.run()
 		if response == gtk.RESPONSE_OK:
 			#print dia_chooser.get_filename(), 'selected'
@@ -50,8 +50,18 @@ class GuiAutoImport (threading.Thread):
 
 	def do_import(self):
 		"""Callback for timer to do an import iteration."""
-		fpdb_import.import_file_dict(self, self.settings)
-		return(1)
+		for file in os.listdir(self.path):
+			if os.path.isdir(file):
+				print "AutoImport is not recursive - please select the final directory in which the history files are"
+			else:
+				self.inputFile = os.path.join(self.path, file)
+				stat_info = os.stat(self.inputFile)
+				if not self.import_files.has_key(self.inputFile) or stat_info.st_mtime > self.import_files[self.inputFile]:
+				    fpdb_import.import_file_dict(self, self.settings, callHud = True)
+				    self.import_files[self.inputFile] = stat_info.st_mtime
+
+		print "GuiAutoImport.import_dir done"
+		return True
 
 	def startClicked(self, widget, data):
 		"""runs when user clicks start on auto import tab"""
@@ -59,24 +69,48 @@ class GuiAutoImport (threading.Thread):
 #	Check to see if we have an open file handle to the HUD and open one if we do not.
 #	bufsize = 1 means unbuffered
 #	We need to close this file handle sometime.
+
+#	TODO:  Allow for importing from multiple dirs - REB 29AUG2008
+#	As presently written this function does nothing if there is already a pipe open.
+#	That is not correct.  It should open another dir for importing while piping the
+#	results to the same pipe.  This means that self.path should be a a list of dirs
+#	to watch.
 		try:      #uhhh, I don't this this is the best way to check for the existence of an attr
 			getattr(self, "pipe_to_hud")
 		except AttributeError:
-			cwd = os.getcwd()
-			command = os.path.join(cwd, 'HUD_main.py')
-			self.pipe_to_hud = subprocess.Popen(command, bufsize = 1, stdin = subprocess.PIPE)
-
-		self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
-		for file in os.listdir(self.path):
-			if os.path.isdir(file):
-				print "AutoImport is not recursive - please select the final directory in which the history files are"
+			if os.name == 'nt':
+				command = "python HUD_main.py" + " %s" % (self.database)
+				bs = 0    # windows is not happy with line buffing here
+				self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
+											    universal_newlines=True)
 			else:
-				self.inputFile=self.path+os.sep+file
-				self.do_import()
-		print "GuiAutoImport.import_dir done"
+				cwd = os.getcwd()
+				command = os.path.join(cwd, 'HUD_main.py')
+				bs = 1
+				self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
+											    universal_newlines=True)
+#			self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
+#											    universal_newlines=True)
+#			command = command + " %s" % (self.database)
+#			print "command = ", command
+#			self.pipe_to_hud = os.popen(command, 'w')
+			self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
+
+#	Iniitally populate the self.import_files dict, which keeps mtimes for the files watched
+
+			self.import_files = {}
+			for file in os.listdir(self.path):
+				if os.path.isdir(file):
+					pass   # skip subdirs for now
+				else:
+					inputFile = os.path.join(self.path, file)
+					stat_info = os.stat(inputFile)
+					self.import_files[inputFile] = stat_info.st_mtime 
+
+			self.do_import()
 		
-		interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
-		gobject.timeout_add(interval*1000, self.do_import)
+			interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
+			gobject.timeout_add(interval*1000, self.do_import)
 	#end def GuiAutoImport.browseClicked
 
 	def get_vbox(self):
@@ -140,3 +174,22 @@ class GuiAutoImport (threading.Thread):
 		self.mainVBox.add(self.startButton)
  		self.startButton.show()
 	#end of GuiAutoImport.__init__
+if __name__== "__main__":
+    def destroy(*args):             # call back for terminating the main eventloop
+        gtk.main_quit()
+
+    settings = {}
+    settings['db-host'] = "192.168.1.100"
+    settings['db-user'] = "mythtv"
+    settings['db-password'] = "mythtv"
+    settings['db-databaseName'] = "fpdb"
+    settings['hud-defaultInterval'] = 10
+    settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
+    settings['imp-callFpdbHud'] = True
+
+    i = GuiAutoImport(settings)
+    main_window = gtk.Window()
+    main_window.connect("destroy", destroy)
+    main_window.add(i.mainVBox)
+    main_window.show()
+    gtk.main()

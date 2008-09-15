@@ -25,6 +25,7 @@ class fpdb_db:
 		self.cursor=None
 		self.MYSQL_INNODB=2
 		self.PGSQL=3
+		self.SQLITE=4
 	#end def __init__
 	
 	def connect(self, backend, host, database, user, password):
@@ -39,8 +40,10 @@ class fpdb_db:
 			import MySQLdb
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
 		elif backend==self.PGSQL:
-			import pgdb
-			self.db = pgdb.connect(dsn=host+":"+database, user='postgres', password=password)
+#			import pgdb
+#			self.db = pgdb.connect(dsn=host+":"+database, user='postgres', password=password)
+			import psycopg2
+			self.db = psycopg2.connect(host = host, user = user, password = password, database = database)
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
@@ -153,6 +156,24 @@ class fpdb_db:
 	
 	def recreate_tables(self):
 		"""(Re-)creates the tables of the current DB"""
+		
+		if self.backend == 3:
+#	postgresql
+			print "recreating tables in postgres db"
+			schema_file = open('schema.postgres.sql', 'r')
+			schema = schema_file.read()
+			schema_file.close()
+			curse = self.db.cursor()
+#			curse.executemany(schema, [1, 2])
+			for sql in schema.split(';'):
+				sql = sql.rstrip()
+				if sql == '':
+					continue
+				curse.execute(sql)
+			self.db.commit()
+			curse.close()
+			return
+		
 		self.drop_tables()
 		
 		self.create_table("""Settings (

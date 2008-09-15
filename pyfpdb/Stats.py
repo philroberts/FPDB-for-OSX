@@ -43,6 +43,7 @@
 #        6  For each stat you make add a line to the __main__ function to test it.
 
 #    Standard Library modules
+#import sys
 
 #    pyGTK modules
 import pygtk
@@ -54,10 +55,6 @@ import Database
 
 def do_tip(widget, tip):
     widget.set_tooltip_text(tip)
-
-def list_stats():
-            for key in dir():
-                print key
 
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
     return eval("%(stat)s(stat_dict, %(player)d)" % {'stat': stat, 'player': player})
@@ -72,9 +69,7 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
 ########################################### 
 #    functions that return individual stats
 def vpip(stat_dict, player):
-    """
-    Voluntarily put $ in the pot
-    """
+    """    Voluntarily put $ in the pot."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['vpip'])/float(stat_dict[player]['n'])
@@ -94,6 +89,7 @@ def vpip(stat_dict, player):
                     )
 
 def pfr(stat_dict, player):
+    """    Preflop (3rd street) raise."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['pfr'])/float(stat_dict[player]['n'])
@@ -114,6 +110,7 @@ def pfr(stat_dict, player):
                 )
 
 def wtsd(stat_dict, player):
+    """    Went to SD when saw flop/4th."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['sd'])/float(stat_dict[player]['saw_f'])
@@ -134,6 +131,7 @@ def wtsd(stat_dict, player):
                 )
 
 def wmsd(stat_dict, player):
+    """    Won $ at showdown."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['wmsd'])/float(stat_dict[player]['sd'])
@@ -141,7 +139,7 @@ def wmsd(stat_dict, player):
                 '%3.1f'      % (100*stat) + '%', 
                 'w=%3.1f'    % (100*stat) + '%', 
                 'wmsd=%3.1f' % (100*stat) + '%', 
-                '(%d/%d)'    % (stat_dict[player]['wmsd'], stat_dict[player]['sd']),
+                '(%f5.0/%d)'    % (stat_dict[player]['wmsd'], stat_dict[player]['sd']),
                 '% won money at showdown'
                 )
     except:
@@ -154,6 +152,7 @@ def wmsd(stat_dict, player):
                 )
 
 def saw_f(stat_dict, player):
+    """    Saw flop/4th."""
     try:
         num = float(stat_dict[player]['saw_f'])
         den = float(stat_dict[player]['n'])
@@ -178,6 +177,7 @@ def saw_f(stat_dict, player):
             )
 
 def n(stat_dict, player):
+    """    Number of hands played."""
     try:
         return (stat_dict[player]['n'], 
                 '%d'        % (stat_dict[player]['n']), 
@@ -187,15 +187,16 @@ def n(stat_dict, player):
                 'number hands seen'
                 )
     except:
-        return (stat_dict[player][0], 
-                '%d'        % (stat_dict[player][0]), 
-                'n=%d'      % (stat_dict[player][0]), 
-                'n=%d'      % (stat_dict[player][0]), 
-                '(%d)'      % (stat_dict[player][0]),
+        return (0, 
+                '%d'        % (0), 
+                'n=%d'      % (0), 
+                'n=%d'      % (0), 
+                '(%d)'      % (0),
                 'number hands seen'
                 )
     
 def fold_f(stat_dict, player):
+    """    Folded flop/4th."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['fold_2'])/fold(stat_dict[player]['saw_f'])
@@ -216,6 +217,7 @@ def fold_f(stat_dict, player):
                 )
            
 def steal(stat_dict, player):
+    """    Steal %."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['steal'])/float(stat_dict[player]['steal_opp'])
@@ -236,6 +238,7 @@ def steal(stat_dict, player):
                 )
 
 def f_SB_steal(stat_dict, player):
+    """    Folded SB to steal."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['SBnotDef'])/float(stat_dict[player]['SBstolen'])
@@ -256,6 +259,7 @@ def f_SB_steal(stat_dict, player):
                 )
 
 def f_BB_steal(stat_dict, player):
+    """    Folded BB to steal."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['BBnotDef'])/float(stat_dict[player]['BBstolen'])
@@ -276,6 +280,7 @@ def f_BB_steal(stat_dict, player):
                 )
 
 def three_B_0(stat_dict, player):
+    """    Three bet preflop/3rd."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['TB_0'])/float(stat_dict[player]['TB_opp_0'])
@@ -296,6 +301,7 @@ def three_B_0(stat_dict, player):
                 )
 
 def WMsF(stat_dict, player):
+    """    Won $ when saw flop/4th."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['w_w_s_1'])/float(stat_dict[player]['saw_1'])
@@ -316,6 +322,7 @@ def WMsF(stat_dict, player):
                 )
 
 def a_freq_1(stat_dict, player):
+    """    Flop/4th aggression frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['aggr_1'])/float(stat_dict[player]['saw_f'])
@@ -336,6 +343,7 @@ def a_freq_1(stat_dict, player):
                 )
     
 def a_freq_2(stat_dict, player):
+    """    Turn/5th aggression frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['aggr_2'])/float(stat_dict[player]['saw_2'])
@@ -356,6 +364,7 @@ def a_freq_2(stat_dict, player):
                 )
     
 def a_freq_3(stat_dict, player):
+    """    River/6th aggression frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['aggr_3'])/float(stat_dict[player]['saw_3'])
@@ -376,6 +385,7 @@ def a_freq_3(stat_dict, player):
                 )
     
 def a_freq_4(stat_dict, player):
+    """    7th street aggression frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['aggr_4'])/float(stat_dict[player]['saw_4'])
@@ -389,13 +399,14 @@ def a_freq_4(stat_dict, player):
     except:
         return (stat,
                 '%3.1f'        % (0) + '%', 
-                'a1=%3.1f'     % (0) + '%', 
-                'a_fq_1=%3.1f' % (0) + '%', 
+                'a4=%3.1f'     % (0) + '%', 
+                'a_fq_4=%3.1f' % (0) + '%', 
                 '(%d/%d)'      % (0, 0),
                 'Aggression Freq flop/4th'
                 )
     
 def cb_1(stat_dict, player):
+    """    Flop continuation bet."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['CB_1'])/float(stat_dict[player]['CB_opp_1'])
@@ -416,6 +427,7 @@ def cb_1(stat_dict, player):
                 )
     
 def cb_2(stat_dict, player):
+    """    Turn continuation bet."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['CB_2'])/float(stat_dict[player]['CB_opp_2'])
@@ -436,6 +448,7 @@ def cb_2(stat_dict, player):
                 )
     
 def cb_3(stat_dict, player):
+    """    River continuation bet."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['CB_3'])/float(stat_dict[player]['CB_opp_3'])
@@ -456,6 +469,7 @@ def cb_3(stat_dict, player):
                 )
     
 def cb_4(stat_dict, player):
+    """    7th street continuation bet."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['CB_4'])/float(stat_dict[player]['CB_opp_4'])
@@ -476,6 +490,7 @@ def cb_4(stat_dict, player):
                 )
     
 def ffreq_1(stat_dict, player):
+    """    Flop/4th fold frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['f_freq_1'])/float(stat_dict[player]['was_raised_1'])
@@ -496,6 +511,7 @@ def ffreq_1(stat_dict, player):
                 )
     
 def ffreq_2(stat_dict, player):
+    """    Turn/5th fold frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['f_freq_2'])/float(stat_dict[player]['was_raised_2'])
@@ -516,6 +532,7 @@ def ffreq_2(stat_dict, player):
                 )
     
 def ffreq_3(stat_dict, player):
+    """    River/6th fold frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['f_freq_3'])/float(stat_dict[player]['was_raised_3'])
@@ -536,6 +553,7 @@ def ffreq_3(stat_dict, player):
                 )
     
 def ffreq_4(stat_dict, player):
+    """    7th fold frequency."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['f_freq_4'])/float(stat_dict[player]['was_raised_4'])
@@ -559,7 +577,7 @@ if __name__== "__main__":
     c = Configuration.Config()
     db_connection = Database.Database(c, 'fpdb', 'holdem')
     h = db_connection.get_last_hand()
-    stat_dict = db_connection.get_stats_from_hand(h, 0)
+    stat_dict = db_connection.get_stats_from_hand(h)
     
     for player in stat_dict.keys():
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
@@ -587,13 +605,14 @@ if __name__== "__main__":
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_3') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_4') 
 
-#    print "\n\nLegal stats:"
-#    for attr in dir():
-#        if attr.startswith('__'): continue
-#        if attr == 'Configuration' or attr == 'Database': continue
-#        if attr == 'GInitiallyUnowned': continue
-#        print attr.__doc__
-#
-#    print vpip.__doc__
+    print "\n\nLegal stats:"
+    for attr in dir():
+        if attr.startswith('__'): continue
+        if attr in ("Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
+                    "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
+                    "h"): continue
+        print attr, eval("%s.__doc__" % (attr))
+#        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)
+
     db_connection.close
 

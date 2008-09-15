@@ -19,6 +19,7 @@
 
 import sys
 import MySQLdb
+import psycopg2
 #import pgdb
 import math
 import os
@@ -37,7 +38,7 @@ def import_file(server, database, user, password, inputFile):
 	self.settings={'imp-callFpdbHud':False}
 	import_file_dict(self, settings)
 
-def import_file_dict(options, settings, callHud=True):
+def import_file_dict(options, settings, callHud=False):
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
@@ -45,8 +46,16 @@ def import_file_dict(options, settings, callHud=True):
 			inputFile=open(options.inputFile, "rU")
 
 		#connect to DB
-		db = MySQLdb.connect(host = options.server, user = options.user,
+		if options.settings['db-backend'] == 2:
+			db = MySQLdb.connect(host = options.server, user = options.user,
 							passwd = options.password, db = options.database)
+		elif options.settings['db-backend'] == 3:
+			db = psycopg2.connect(host = options.server, user = options.user,
+								  password = options.password, database = options.database)
+		elif options.settings['db-backend'] == 4:
+			pass
+		else:
+			pass
 		cursor = db.cursor()
 		
 		if (not options.quiet):
@@ -104,11 +113,13 @@ def import_file_dict(options, settings, callHud=True):
 						db.commit()
 						
 						stored+=1
-						if settings['imp-callFpdbHud'] and callHud and os.sep=='/':
+						db.commit()
+#						if settings['imp-callFpdbHud'] and callHud and os.sep=='/':
+						if settings['imp-callFpdbHud'] and callHud:
 							#print "call to HUD here. handsId:",handsId
 							#pipe the Hands.id out to the HUD
-							options.pipe_to_hud.stdin.write("%s\n" % (handsId))
-						db.commit()
+#							options.pipe_to_hud.write("%s" % (handsId) + os.linesep)
+							options.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
 					except fpdb_simple.DuplicateError:
 						duplicates+=1
 					except (ValueError), fe:

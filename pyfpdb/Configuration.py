@@ -23,6 +23,7 @@ Handles HUD configuration files.
 ########################################################################
 
 #    Standard Library modules
+import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -38,7 +39,7 @@ class Layout:
         for i in range(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
         
-        return temp
+        return temp + "\n"
 
 class Site:
     def __init__(self, node):
@@ -81,7 +82,7 @@ class Stat:
         pass
     
     def __str__(self):
-        temp = "        stat_name = %s, row = %d, col = %d, tip = %s, click = %s\n" % (self.stat_name, self.row, self.col, self.tip, self.click)
+        temp = "        stat_name = %s, row = %d, col = %d, tip = %s, click = %s, popup = %s\n" % (self.stat_name, self.row, self.col, self.tip, self.click, self.popup)
         return temp
                 
 class Game:
@@ -99,6 +100,7 @@ class Game:
             stat.col       = int( stat_node.getAttribute("col") )
             stat.tip       = stat_node.getAttribute("tip")
             stat.click     = stat_node.getAttribute("click")
+            stat.popup     = stat_node.getAttribute("popup")
             
             self.stats[stat.stat_name] = stat
             
@@ -150,15 +152,31 @@ class Mucked:
             temp = temp + '    ' + key + " = " + value + "\n"
         return temp
 
+class Popup:
+    def __init__(self, node):
+        self.name  = node.getAttribute("pu_name")
+        self.pu_stats     = []
+        for stat_node in node.getElementsByTagName('pu_stat'):
+            self.pu_stats.append(stat_node.getAttribute("pu_stat_name"))
+        
+    def __str__(self):
+        temp = "Popup = " + self.name + "\n"
+        for stat in self.pu_stats:
+            temp = temp + " " + stat
+        return temp + "\n"
+
 class Config:
     def __init__(self, file = 'HUD_config.xml'):
 
         doc = xml.dom.minidom.parse(file)
 
+        self.doc = doc
+        self.file = file
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}
         self.mucked_windows = {}
+        self.popup_windows = {}
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -179,6 +197,47 @@ class Config:
         for mw_node in doc.getElementsByTagName("mw"):
             mw = Mucked(node = mw_node)
             self.mucked_windows[mw.name] = mw
+
+        s_dbs = doc.getElementsByTagName("popup_windows")
+        for pu_node in doc.getElementsByTagName("pu"):
+            pu = Popup(node = pu_node)
+            self.popup_windows[pu.name] = pu
+
+    def get_site_node(self, site):
+        for site_node in self.doc.getElementsByTagName("site"):
+            if site_node.getAttribute("site_name") == site:
+                return site_node
+
+    def get_layout_node(self, site_node, layout):
+        for layout_node in site_node.getElementsByTagName("layout"):
+            if int( layout_node.getAttribute("max") ) == int( layout ):
+                return layout_node
+
+    def get_location_node(self, layout_node, seat):
+        for location_node in layout_node.getElementsByTagName("location"):
+            if int( location_node.getAttribute("seat") ) == int( seat ):
+                return location_node
+
+    def save(self, file = None):
+        if not file == None:
+            f = open(file, 'w')
+            self.doc.writexml(f)
+            f.close()
+        else:
+            shutil.move(self.file, self.file+".backup")
+            f = open(self.file, 'w')
+            self.doc.writexml(f)
+            f.close
+
+    def edit_layout(self, site_name, max, width = None, height = None,
+                    fav_seat = None, locations = None):
+        site_node   = self.get_site_node(site_name)
+        layout_node = self.get_layout_node(site_node, max)
+        for i in range(1, max + 1):
+            location_node = self.get_location_node(layout_node, i)
+            location_node.setAttribute("x", str( locations[i-1][0] ))
+            location_node.setAttribute("y", str( locations[i-1][1] ))
+            self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
 
 if __name__== "__main__":
     c = Config()
@@ -208,3 +267,12 @@ if __name__== "__main__":
         print c.mucked_windows[w]
 
     print "----------- END MUCKED WINDOW FORMATS -----------"
+
+    print "\n----------- POPUP WINDOW FORMATS -----------"
+    for w in c.popup_windows.keys():
+        print c.popup_windows[w]
+
+    print "----------- END MUCKED WINDOW FORMATS -----------"
+
+    c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
+    c.save(file="testout.xml")

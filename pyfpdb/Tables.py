@@ -26,7 +26,13 @@ of Table_Window objects representing the windows found.
 
 #    Standard Library modules
 import os
+import sys
 import re
+
+#    Win32 modules
+
+if os.name == 'nt':
+    import win32gui
 
 #    FreePokerTools modules
 import Configuration
@@ -49,8 +55,24 @@ class Table_Window:
         table.tournament = 0
 
 def discover(c):
+    if os.name == 'posix':
+        tables = discover_posix(c)
+	return tables
+    elif os.name == 'nt':
+        tables = discover_nt(c)
+	return tables
+    elif ox.name == 'mac':
+        tables = discover_mac(c)
+	return tables
+    else: tables = {}
+    
+    return(tables)
+
+def discover_posix(c):
+    """    Poker client table window finder for posix/Linux = XWindows."""
     tables = {}
     for listing in os.popen('xwininfo -root -tree').readlines():
+#    xwininfo -root -tree -id 0xnnnnn    gets the info on a single window
         if re.search('Lobby', listing): continue
         if re.search('Instant Hand History', listing): continue
         if not re.search('Logged In as ', listing): continue
@@ -75,6 +97,68 @@ def discover(c):
                 eval("%s(tw)" % c.supported_sites[s].decoder)
                 tables[tw.name] = tw
     return tables
+#
+#    The discover_xx functions query the system and report on the poker clients 
+#    currently displayed on the screen.  The discover_posix should give you 
+#    some idea how to support other systems.
+#
+#    discover_xx() returns a dict of TableWindow objects--one TableWindow
+#    object for each poker client table on the screen.
+#
+#    Each TableWindow object must have the following attributes correctly populated:
+#    tw.site = the site name, e.g. PokerStars, FullTilt.  This must match the site
+#            name specified in the config file.
+#    tw.number = This is the system id number for the client table window in the 
+#            format that the system presents it.
+#    tw.title = The full title from the window title bar.
+#    tw.width, tw.height = The width and height of the window in pixels.  This is 
+#            the internal width and height, not including the title bar and 
+#            window borders.
+#    tw.x, tw.y = The x, y (horizontal, vertical) location of the window relative 
+#            to the top left of the display screen.  This also does not include the
+#            title bar and window borders.  To put it another way, this is the 
+#            screen location of (0, 0) in the working window.
+
+def win_enum_handler(hwnd, titles):
+    titles[hwnd] = win32gui.GetWindowText(hwnd)
+
+def child_enum_handler(hwnd, children):
+    print hwnd, win32.GetWindowRect(hwnd)
+
+def discover_nt(c):
+    """    Poker client table window finder for Windows."""
+#
+#    I cannot figure out how to get the inside dimensions of the poker table
+#    windows.  So I just assume all borders are 3 thick and all title bars
+#    are 29 high.  No doubt this will be off when used with certain themes.
+#
+    b_width = 3
+    tb_height = 29
+    titles = {}
+    tables = {}
+    win32gui.EnumWindows(win_enum_handler, titles)
+    for hwnd in titles.keys():
+        if re.search('Logged In as', titles[hwnd]) and not re.search('Lobby', titles[hwnd]):
+            tw = Table_Window()
+#            tw.site = c.supported_sites[s].site_name
+            tw.number = hwnd
+            (x, y, width, height) = win32gui.GetWindowRect(hwnd)
+            tw.title  = titles[hwnd]
+            tw.width  = int( width ) - 2*b_width
+            tw.height = int( height ) - b_width - tb_height
+            tw.x      = int( x ) + b_width
+            tw.y      = int( y ) + tb_height
+            eval("%s(tw)" % "pokerstars_decode_table")
+            tw.site = "PokerStars"
+
+		
+            tables[tw.name] = tw
+    return tables
+
+def discover_mac(c):
+    """    Poker client table window finder for Macintosh."""
+    tables = {}
+    return tables
 
 def pokerstars_decode_table(tw):
 #    extract the table name OR the tournament number and table name from the title
@@ -95,18 +179,6 @@ def pokerstars_decode_table(tw):
 
     mo = re.search('(Razz|Stud H/L|Stud|Omaha H/L|Omaha|Hold\'em|5-Card Draw|Triple Draw 2-7 Lowball)', tw.title)
     
-#Traceback (most recent call last):
-#  File "/home/fatray/razz-poker-productio/HUD_main.py", line 41, in process_new_hand
-#    table_windows = Tables.discover(config)
-#  File "/home/fatray/razz-poker-productio/Tables.py", line 58, in discover
-#    eval("%s(tw)" % c.supported_sites[s].decoder)
-#  File "<string>", line 1, in <module>
-#  File "/home/fatray/razz-poker-productio/Tables.py", line 80, in pokerstars_decode_table
-#    tw.game = mo.group(1).lower()
-#AttributeError: 'NoneType' object has no attribute 'group'
-#
-#This problem happens with observed windows!!
-
     tw.game = mo.group(1).lower()
     tw.game = re.sub('\'', '', tw.game)
     tw.game = re.sub('h/l', 'hi/lo', tw.game)
@@ -132,4 +204,8 @@ if __name__=="__main__":
     tables = discover(c)
     
     for t in tables.keys():
+        print "t = ", t
         print tables[t]
+
+    print "press enter to continue"
+    sys.stdin.readline()
