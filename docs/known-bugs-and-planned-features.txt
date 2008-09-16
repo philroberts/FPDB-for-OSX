@@ -2,9 +2,11 @@ todolist (db=database, imp=importer, tv=tableviewer)
 Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha3 (release 15Sep)
+alpha4 (release 22-29Sep)
 ======
+newsletter&mailing list
 find correct sf logo link
+fix HUD config location and update release script accordingly
 
 windows integrated installer
 update install-in-gentoo on website
@@ -18,9 +20,6 @@ export settings[hud-defaultInterval] to conf
 fill check-/call-raise cache fields
 
 printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
-
-alpha4 (release 22-29Sep)
-======
 change to savannah?
 implement steal and positions in stud
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no

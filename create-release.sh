@@ -22,12 +22,15 @@ rm pyfpdb/*.pyc
 mkdir fpdb-$1
 cp -R docs fpdb-$1/
 cp -R pyfpdb fpdb-$1/
-rm fpdb-$1/HUD_config.*
-cp pyfpdb/HUD_config.xml.example fpdb-$1/
+rm fpdb-$1/pyfpdb/HUD_config.*
+cp pyfpdb/HUD_config.xml.example fpdb-$1/pyfpdb/
 cp -R regression-test fpdb-$1/
 cp -R utils fpdb-$1/
+
 cd fpdb-$1
-zip -r ../fpdb-1.0_$1.zip *
-tar -cf - * | bzip2 > ../fpdb-1.0_$1.tar.bz2
+zip -r ../../fpdb-1.0_$1.zip *
+tar -cf - * | bzip2 >> ../../fpdb-1.0_$1.tar.bz2
 cd ..
 rm -r fpdb-$1
+
+echo "Please ensure the files are named fpdb-1.0_alpha*_p*.*"
