@@ -5,6 +5,8 @@ Please also see db-todo.txt
 alpha4 (release 22-29Sep)
 ======
 newsletter&mailing list
+update requirements to include new pgsql interface lib and rename to dependencies.txt
+ebuild: support pgsql
 find correct sf logo link
 fix HUD config location and update release script accordingly
 
@@ -13,7 +15,7 @@ update install-in-gentoo on website
 update ebuild and ubuntu guide for HUD_config.xml
 
 store raw hand in db and write reimport function using the raw hand field
-ftp: read maxSeats
+ftp: read maxSeats rather than making an assumption
 make sure totalProfit shows actual profit rather than winnings.
 update abbreviations.txt
 export settings[hud-defaultInterval] to conf
@@ -23,39 +25,38 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 change to savannah?
 implement steal and positions in stud
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
-Everything that didn't make it into alpha3
 Import draw (maybe without HudCache for a start)
 table with data for graphs for SD/F, W$wSF, W$@SD
 separate db table design version and last bugfix in importer
-change tabledesign VALIGN
+change tabledesign VALIGN and add link to webpage
 finish updating filelist
 finish todos in git instructions
 debian/ubuntu package http://www.debian.org/doc/maint-guide/ch-start.en.html
 howto remote DB
 move all user docs to webpage
+contributor list on webpage
+finish bringing back tourney
+No river stats for stud games
+hole/board cards are not correctly stored in the db for stud games
+HORSE (and presumably other mixed games) hand history files not handled correctly
+Some MTTs won't import (rebuys??)
+Many STTs won't import
 
 before beta
 ===========
 No Full Tilt support in HUD
-No river stats for stud games
-hole/board cards are not correctly stored in the db for stud games
-HORSE (and presumably other mixed games) hand history files not handled correctly
 HUD stat windows are too big on Windows
 HUD task bar entries on Windows won't go away
-Some MTTs won't import (rebuys??)
-Many STTs won't import
 MTT/STT not tested in HUD
 HUD stats not aggregated
 Player names with non-Latin chars throw warnings in HUD
 HUD doesn't start when fpdb is started from the Windows "Start Menu"
 Exiting HUD on Windows doesn't properly clean up stat windows
 
-finish bringing back tourney
 ebuild: USE gtk, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, git-ebuild, get it into sunrise
 make hud display W$SD etc as fraction.
 add dedicated update page
 update status or make a support matrix table for website
-fix up bg colours in tv
 move version into seperate file for fpdb gui and db
 SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
 create little test script for people to run to verify successful installation of pydeps
@@ -63,7 +64,6 @@ split hud data generation into separate for loops and make it more efficient
 fix bug that sawFlop/Turn/River/CBChance/etc gets miscalculated if someone is allin - might as well add all-in recognition for this
 make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))
 make it work with postgres
-gentoo ebuild: USE postgresql
 expand instructions for profile file
 maybe remove siteId from gametypes
 ?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?

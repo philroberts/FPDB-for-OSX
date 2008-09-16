@@ -20,7 +20,23 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
-import MySQLdb
+
+try:
+	import MySQLdb
+except:
+	diaSQLLibMissing = gtk.Dialog(title="Fatal Error - SQL interface library missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
+
+	label = gtk.Label("Please note that the table viewer only works with MySQL, if you use PostgreSQL this error is expected.")
+	diaSQLLibMissing.vbox.add(label)
+	label.show()
+		
+	label = gtk.Label("Since the HUD now runs on all supported plattforms I do not see any point in table viewer anymore, if you disagree please send a message to steffen@sycamoretest.info")
+	diaSQLLibMissing.vbox.add(label)
+	label.show()
+
+	response = diaSQLLibMissing.run()
+	#sys.exit(1)
+	
 import fpdb_import
 import fpdb_db
 

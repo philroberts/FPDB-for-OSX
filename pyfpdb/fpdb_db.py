@@ -35,13 +35,10 @@ class fpdb_db:
 		self.database=database
 		self.user=user
 		self.password=password
-		#print "fpdb_db.connect, database:",database
 		if backend==self.MYSQL_INNODB:
 			import MySQLdb
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
 		elif backend==self.PGSQL:
-#			import pgdb
-#			self.db = pgdb.connect(dsn=host+":"+database, user='postgres', password=password)
 			import psycopg2
 			self.db = psycopg2.connect(host = host, user = user, password = password, database = database)
 		else:

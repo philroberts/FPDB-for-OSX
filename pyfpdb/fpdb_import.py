@@ -18,9 +18,19 @@
 #see status.txt for site/games support info
 
 import sys
-import MySQLdb
-import psycopg2
-#import pgdb
+
+try:
+	import MySQLdb
+	mysqlLibFound=True
+except:
+	pass
+	
+try:
+	import psycopg2
+	pgsqlLibFound=True
+except:
+	pass
+
 import math
 import os
 import datetime
@@ -47,9 +57,13 @@ def import_file_dict(options, settings, callHud=False):
 
 		#connect to DB
 		if options.settings['db-backend'] == 2:
+			if not mysqlLibFound:
+				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
 			db = MySQLdb.connect(host = options.server, user = options.user,
 							passwd = options.password, db = options.database)
 		elif options.settings['db-backend'] == 3:
+			if not pgsqlLibFound:
+				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
 			db = psycopg2.connect(host = options.server, user = options.user,
 								  password = options.password, database = options.database)
 		elif options.settings['db-backend'] == 4:
