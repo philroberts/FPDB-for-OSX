@@ -782,10 +782,12 @@ def parseHandStartTime(topline, site):
 		#print "parsehandStartTime, tmp:", tmp
 		pos = tmp.find("-")+2
 		tmp = tmp[pos:]
-		if re.search('\(ET\)', tmp):  # the old datetime format at ps
-			result = datetime.datetime(int(tmp[0:4]), int(tmp[5:7]), int(tmp[8:10]), int(tmp[13:15]), int(tmp[16:18]), int(tmp[19:21]))
-		else:  # new format
-			result = datetime.datetime(int(tmp[0:4]), int(tmp[5:7]), int(tmp[8:10]), int(tmp[11:13]), int(tmp[14:16]), int(tmp[17:19]))
+		#Need to match either
+		# 2008/09/07 06:23:14 ET or
+		# 2008/08/17 - 01:14:43 (ET)
+		m = re.match('(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]{2}):(?P<MIN>[0-9]{2}):(?P<SEC>[0-9]{2})',tmp)
+		#print "year:", int(m.group('YEAR')), "month", int(m.group('MON')), "day", int(m.group('DAY')), "hour", int(m.group('HR')), "minute", int(m.group('MIN')), "second", int(m.group('SEC'))
+		result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
 	else:
 		raise FpdbError("invalid site in parseHandStartTime")
 	
