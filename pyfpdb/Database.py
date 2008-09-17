@@ -35,8 +35,10 @@ import SQL
 try:
 #    pgdb database module for posgres via DB-API
 	import psycopg2
-#    pgdb uses pyformat.  is that fixed or an option?
+except:
+	pass
 #    mysql bindings
+try:
 	import MySQLdb
 except:
 	pass
