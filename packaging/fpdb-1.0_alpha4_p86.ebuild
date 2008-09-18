@@ -9,8 +9,8 @@ NEED_PYTHON=2.3
 MY_P="fpdb-${PV}"
 DESCRIPTION="A database program to track your online poker games"
 HOMEPAGE="https://sourceforge.net/projects/fpdb/"
-#SRC_URI="mirror://sourceforge/fpdb/${MY_P}.tar.bz2"
-SRC_URI="mirror://sourceforge/fpdb/fpdb-1.0_alpha3-p80.tar.bz2"
+SRC_URI="mirror://sourceforge/fpdb/${MY_P}.tar.bz2"
+#SRC_URI="mirror://sourceforge/fpdb/fpdb-1.0_alpha3-p80.tar.bz2"
 
 LICENSE="AGPL-3"
 SLOT="0"

@@ -884,7 +884,7 @@ def parseSiteHandNo(topline):
 	return topline[pos1:pos2]
 #end def parseSiteHandNo
 
-def parseTableLine(site, line):
+def parseTableLine(site, base, line):
 	"""returns a dictionary with maxSeats and tableName"""
 	if site=="ps":
 		pos1=line.find('\'')+1
@@ -897,8 +897,19 @@ def parseTableLine(site, line):
 	elif site=="ftp":
 		pos1=line.find("Table ")+6
 		pos2=line.find("-")-1
-		#print "table:",line[pos1:pos2]+"end"
-		return {'maxSeats':9, 'tableName':line[pos1:pos2]}
+		if base=="hold":
+			maxSeats=9
+		elif base=="stud":
+			maxSeats=8
+			
+		if line.find("6 max")!=-1:
+			maxSeats=6
+		elif line.find("4 max")!=-1:
+			maxSeats=4
+		elif line.find("heads up")!=-1:
+			maxSeats=2
+			
+		return {'maxSeats':maxSeats, 'tableName':line[pos1:pos2]}
 	else:
 		raise FpdbError("invalid site ID")
 #end def parseTableLine
