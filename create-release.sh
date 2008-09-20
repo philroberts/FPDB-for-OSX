@@ -21,6 +21,7 @@ rm pyfpdb/*.pyc
 
 mkdir fpdb-$1
 cp -R docs fpdb-$1/
+cp -R packaging fpdb-$1/
 cp -R pyfpdb fpdb-$1/
 rm fpdb-$1/pyfpdb/HUD_config.*
 cp pyfpdb/HUD_config.xml.example fpdb-$1/pyfpdb/

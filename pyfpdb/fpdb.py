@@ -27,6 +27,7 @@ import fpdb_simple
 import GuiBulkImport
 import GuiTableViewer
 import GuiAutoImport
+import GuiGraphViewer
 
 class fpdb:
 	def tab_clicked(self, widget, tab_name):
@@ -399,6 +400,15 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.add_and_display_tab(tv_tab, "Table Viewer")
 	#end def tab_table_viewer
 
+	def tabGraphViewer(self, widget, data):
+		"""opens a graph viewer tab"""
+		#print "start of tabGraphViewer"
+		new_gv_thread=GuiGraphViewer.GuiGraphViewer(self.db, self.settings)
+		self.threads.append(new_gv_thread)
+		gv_tab=new_gv_thread.get_vbox()
+		self.add_and_display_tab(gv_tab, "Graphs")
+	#end def tabGraphViewer
+
 	def __init__(self):
 		self.threads=[]
 		self.db=None
@@ -407,7 +417,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha4, p86")
+		self.window.set_title("Free Poker DB - version: alpha4+, p87 or higher")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
@@ -425,7 +435,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 				("/Import/Auto _Rating (todo)",                   "<control>R", self.not_implemented, 0, None ),
 				("/_Viewers", None, None, 0, "<Branch>" ),
 				("/_Viewers/_Auto Import and HUD", "<control>A", self.tab_auto_import, 0, None ),
-				("/Viewers/_Graphs (todo)",   None,         self.not_implemented, 0, None ),
+				("/Viewers/_Graphs", None, self.tabGraphViewer, 0, None ),
 				("/Viewers/Hand _Replayer (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/Player _Details (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/_Player Stats (tabulated view) (todo)", None, self.not_implemented, 0, None ),
