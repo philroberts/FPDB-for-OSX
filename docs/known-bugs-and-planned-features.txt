@@ -3,7 +3,8 @@ Please also see db-todo.txt
 
 alpha4 (release 25Sep-2Oct)
 ======
-graph: using the wrong table fields, update dependencies.txt, select site from drop down
+graph: update dependencies.txt, select site from drop down
+print a "press any key" thing after we print the traceback.  That way it is easy for them to see the error message.
 check we're reading mucked cards from PS
 newsletter&mailing list
 update requirements to include new pgsql interface lib

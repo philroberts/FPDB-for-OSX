@@ -46,14 +46,32 @@ class GuiGraphViewer (threading.Thread):
 #		x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 #		y = [2.7, 2.8, 31.4, 38.1, 58.0, 76.2, 100.5, 130.0, 149.3, 180.0]
 
-		#self.db.reconnect()
+		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers 
+				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+				INNER JOIN Hands ON Hands.id = HandsPlayers.handId
+				WHERE Players.name = %s ORDER BY siteHandNo""", (name, ))
+		winnings = self.db.cursor.fetchall()
+		
+		
+		
+		
+		#print "winnings:",winnings
+		#print ""
+		#print "spent:",spent
+		
+		profit=range(len(winnings))
+		for i in profit:
+			self.cursor.execute("""SELECT SUM(amount) FROM HandsActions
+					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
+					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+					WHERE Players.name = %s AND HandsPlayers.handId = %s""", (name, winnings[i][0]))
+			spent = self.db.cursor.fetchone()
+			
+			profit[i]=(i, winnings[i][1]-spent[0])
+		
 
-		self.cursor.execute("SELECT handId, winnings FROM HandsPlayers INNER JOIN Players ON HandsPlayers.playerId = Players.id WHERE Players.name = %s ORDER BY handId", (name, ))
-
-		self.results = self.db.cursor.fetchall()
-
-#		x=map(lambda x:float(x[0]),self.results)
-		y=map(lambda x:float(x[1]),self.results)
+#		x=map(lambda x:float(x[0]), results)
+		y=map(lambda x:float(x[1]), profit)
 		line = range(len(y))
 
 		for i in range(len(y)):
