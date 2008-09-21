@@ -41,15 +41,27 @@ class GuiGraphViewer (threading.Thread):
 	def showClicked(self, widget, data):
 		name=self.nameTBuffer.get_text(self.nameTBuffer.get_start_iter(), self.nameTBuffer.get_end_iter())
 		
+		site=self.siteTBuffer.get_text(self.siteTBuffer.get_start_iter(), self.siteTBuffer.get_end_iter())
+		
+		if site=="PS":
+			site=1
+		elif site=="FTP":
+			site=2
+		else:
+			print "invalid text in site selection in graph, defaulting to PS"
+			site=1
+		#print "site:", site
+		
 		self.fig = Figure(figsize=(5,4), dpi=100)
 		self.ax = self.fig.add_subplot(111)
 #		x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 #		y = [2.7, 2.8, 31.4, 38.1, 58.0, 76.2, 100.5, 130.0, 149.3, 180.0]
 
-		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers 
+		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers
 				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
 				INNER JOIN Hands ON Hands.id = HandsPlayers.handId
-				WHERE Players.name = %s ORDER BY siteHandNo""", (name, ))
+				WHERE Players.name = %s AND Players.siteId = %s
+				ORDER BY siteHandNo""", (name, site))
 		winnings = self.db.cursor.fetchall()
 		
 		
@@ -64,7 +76,7 @@ class GuiGraphViewer (threading.Thread):
 			self.cursor.execute("""SELECT SUM(amount) FROM HandsActions
 					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
 					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-					WHERE Players.name = %s AND HandsPlayers.handId = %s""", (name, winnings[i][0]))
+					WHERE Players.name = %s AND HandsPlayers.handId = %s AND Players.siteId = %s""", (name, winnings[i][0], site))
 			spent = self.db.cursor.fetchone()
 			
 			profit[i]=(i, winnings[i][1]-spent[0])
@@ -110,9 +122,19 @@ class GuiGraphViewer (threading.Thread):
 		self.settingsHBox.pack_start(self.nameTView)
 		self.nameTView.show()
 		
+		self.siteLabel = gtk.Label("Site (PS or FTP):")
+		self.settingsHBox.pack_start(self.siteLabel)
+		self.siteLabel.show()
+		
+		self.siteTBuffer=gtk.TextBuffer()
+		self.siteTBuffer.set_text("PS")
+		self.siteTView=gtk.TextView(self.siteTBuffer)
+		self.settingsHBox.pack_start(self.siteTView)
+		self.siteTView.show()
+		
 		self.showButton=gtk.Button("Show/Refresh")
 		self.showButton.connect("clicked", self.showClicked, "show clicked")
-		self.settingsHBox.add(self.showButton)
+		self.settingsHBox.pack_start(self.showButton)
  		self.showButton.show()
 		
 	#end of GuiGraphViewer.__init__

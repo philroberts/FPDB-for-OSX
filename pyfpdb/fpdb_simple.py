@@ -983,14 +983,15 @@ def recogniseGametypeID(cursor, topline, site_id, category, isTourney):#todo: th
 	pos1=pos2+2
 	if isTourney:
 		pos1-=1	
-	if (site_id==1): #ftp
+	if (site_id==2): #ftp
 		pos2=topline.find(" ", pos1)
-	elif (site_id==2): #ps
+	elif (site_id==1): #ps
 		pos2=topline.find(")")
 	
 	if pos2<=pos1:
 		pos2=topline.find(")", pos1)
-
+	
+	#pos2-=1
 	
 	if isTourney:
 		big_bet=int(topline[pos1:pos2])
@@ -1121,9 +1122,13 @@ def recogniseSite(line):
 #returns the ID of the given site
 def recogniseSiteID(cursor, site):
 	if (site=="ftp"):
-		cursor.execute("SELECT id FROM Sites WHERE name = ('Full Tilt Poker')")
+		return 2
+		#cursor.execute("SELECT id FROM Sites WHERE name = ('Full Tilt Poker')")
 	elif (site=="ps"):
-		cursor.execute("SELECT id FROM Sites WHERE name = ('PokerStars')")
+		return 1
+		#cursor.execute("SELECT id FROM Sites WHERE name = ('PokerStars')")
+	else:
+		raise FpdbError("invalid site in recogniseSiteID: "+site)
 	return cursor.fetchall()[0][0]
 #end def recogniseSiteID
 

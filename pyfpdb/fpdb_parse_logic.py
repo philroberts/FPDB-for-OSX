@@ -36,6 +36,7 @@ def mainParser(db, cursor, site, category, hand):
 	siteHandNo=fpdb_simple.parseSiteHandNo(hand[0])
 	handStartTime=fpdb_simple.parseHandStartTime(hand[0], site)
 	siteID=fpdb_simple.recogniseSiteID(cursor, site)
+	#print "parse logic, siteID:",siteID,"site:",site
 	
 	isTourney=fpdb_simple.isTourney(hand[0])
 	gametypeID=fpdb_simple.recogniseGametypeID(cursor, hand[0], siteID, category, isTourney)
