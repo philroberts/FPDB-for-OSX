@@ -29,30 +29,43 @@ try:
 except:
 	print "Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib."
 
-try:
-	import MySQLdb
-except:
-	diaSQLLibMissing = gtk.Dialog(title="Fatal Error - SQL interface library missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
-
-	label = gtk.Label("Please note that the table viewer only works with MySQL, if you use PostgreSQL this error is expected.")
-	diaSQLLibMissing.vbox.add(label)
-	label.show()
-		
-	label = gtk.Label("Since the HUD now runs on all supported plattforms I do not see any point in table viewer anymore, if you disagree please send a message to steffen@sycamoretest.info")
-	diaSQLLibMissing.vbox.add(label)
-	label.show()
-
-	response = diaSQLLibMissing.run()
-	#sys.exit(1)
-	
 import fpdb_import
 import fpdb_db
 
 class GuiGraphViewer (threading.Thread):
 	def get_vbox(self):
 		"""returns the vbox of this thread"""
-		return self.main_vbox
+		return self.mainVBox
 	#end def get_vbox
+	
+	def showClicked(self, widget, data):
+		name=self.nameTBuffer.get_text(self.nameTBuffer.get_start_iter(), self.nameTBuffer.get_end_iter())
+		
+		self.fig = Figure(figsize=(5,4), dpi=100)
+		self.ax = self.fig.add_subplot(111)
+#		x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+#		y = [2.7, 2.8, 31.4, 38.1, 58.0, 76.2, 100.5, 130.0, 149.3, 180.0]
+
+		#self.db.reconnect()
+
+		self.cursor.execute("SELECT handId, winnings FROM HandsPlayers INNER JOIN Players ON HandsPlayers.playerId = Players.id WHERE Players.name = %s ORDER BY handId", (name, ))
+
+		self.results = self.db.cursor.fetchall()
+
+#		x=map(lambda x:float(x[0]),self.results)
+		y=map(lambda x:float(x[1]),self.results)
+		line = range(len(y))
+
+		for i in range(len(y)):
+			line[i] = y[i] + line[i-1]
+
+		self.ax.plot(line,)
+
+		self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+		self.mainVBox.pack_start(self.canvas)
+		self.canvas.show()
+
+
 	
 	def __init__(self, db, settings, debug=True):
 		"""Constructor for table_viewer"""
@@ -62,32 +75,26 @@ class GuiGraphViewer (threading.Thread):
 		self.cursor=db.cursor
 		self.settings=settings
         
-		self.main_vbox = gtk.VBox(False, 0)
-		self.main_vbox.show()
+		self.mainVBox = gtk.VBox(False, 0)
+		self.mainVBox.show()
 		
-		self.fig = Figure(figsize=(5,4), dpi=100)
-		self.ax = self.fig.add_subplot(111)
-#		x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-#		y = [2.7, 2.8, 31.4, 38.1, 58.0, 76.2, 100.5, 130.0, 149.3, 180.0]
-
-		self.db.reconnect()
-                self.cursor=self.db.cursor
-
-		self.db.cursor.execute("SELECT handId, winnings FROM HandsPlayers WHERE playerId=1 ORDER BY handId")
-
-		self.results = self.db.cursor.fetchall()
-
-#		x=map(lambda x:float(x[0]),self.results)
-	        y=map(lambda x:float(x[1]),self.results)
-		line = range(len(y))
-
-		for i in range(len(y)):
-			line[i] = y[i] + line[i-1]
-
-		self.ax.plot(line,)
-
-		self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
-		self.main_vbox.pack_start(self.canvas)
-		self.canvas.show()
-
-	#end of table_viewer.__init__
+		self.settingsHBox = gtk.HBox(False, 0)
+		self.mainVBox.pack_start(self.settingsHBox, False, True, 0)
+		self.settingsHBox.show()
+		
+		self.nameLabel = gtk.Label("Name of the player to be graphed:")
+		self.settingsHBox.pack_start(self.nameLabel)
+		self.nameLabel.show()
+		
+		self.nameTBuffer=gtk.TextBuffer()
+		self.nameTBuffer.set_text("name")
+		self.nameTView=gtk.TextView(self.nameTBuffer)
+		self.settingsHBox.pack_start(self.nameTView)
+		self.nameTView.show()
+		
+		self.showButton=gtk.Button("Show/Refresh")
+		self.showButton.connect("clicked", self.showClicked, "show clicked")
+		self.settingsHBox.add(self.showButton)
+ 		self.showButton.show()
+		
+	#end of GuiGraphViewer.__init__

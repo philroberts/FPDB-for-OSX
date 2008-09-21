@@ -3,7 +3,8 @@ Please also see db-todo.txt
 
 alpha4 (release 25Sep-2Oct)
 ======
-graph: fixed player id and using the wrong table fields, update dependencies.txt
+graph: using the wrong table fields, update dependencies.txt, select site from drop down
+check we're reading mucked cards from PS
 newsletter&mailing list
 update requirements to include new pgsql interface lib
 ebuild: support pgsql
