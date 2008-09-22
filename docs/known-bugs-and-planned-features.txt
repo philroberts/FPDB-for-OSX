@@ -3,8 +3,9 @@ Please also see db-todo.txt
 
 alpha4 (release 25Sep-2Oct)
 ======
-graph: update dependencies.txt, select site from drop down, doesnt remove old graph on refresh
+graph: update dependencies.txt, doesnt remove old graph on refresh
 print a "press any key" thing after we print the traceback.  That way it is easy for them to see the error message.
+pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
 reading small blind wrong for PS 25/50ct
 check we're reading mucked cards from PS
 newsletter&mailing list

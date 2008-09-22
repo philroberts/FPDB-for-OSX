@@ -50,12 +50,9 @@ class GuiGraphViewer (threading.Thread):
 		else:
 			print "invalid text in site selection in graph, defaulting to PS"
 			site=1
-		#print "site:", site
 		
 		self.fig = Figure(figsize=(5,4), dpi=100)
 		self.ax = self.fig.add_subplot(111)
-#		x = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-#		y = [2.7, 2.8, 31.4, 38.1, 58.0, 76.2, 100.5, 130.0, 149.3, 180.0]
 
 		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers
 				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
@@ -63,14 +60,7 @@ class GuiGraphViewer (threading.Thread):
 				WHERE Players.name = %s AND Players.siteId = %s
 				ORDER BY siteHandNo""", (name, site))
 		winnings = self.db.cursor.fetchall()
-		
-		
-		
-		
-		#print "winnings:",winnings
-		#print ""
-		#print "spent:",spent
-		
+				
 		profit=range(len(winnings))
 		for i in profit:
 			self.cursor.execute("""SELECT SUM(amount) FROM HandsActions
@@ -78,11 +68,8 @@ class GuiGraphViewer (threading.Thread):
 					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
 					WHERE Players.name = %s AND HandsPlayers.handId = %s AND Players.siteId = %s""", (name, winnings[i][0], site))
 			spent = self.db.cursor.fetchone()
-			
 			profit[i]=(i, winnings[i][1]-spent[0])
-		
 
-#		x=map(lambda x:float(x[0]), results)
 		y=map(lambda x:float(x[1]), profit)
 		line = range(len(y))
 
@@ -94,13 +81,12 @@ class GuiGraphViewer (threading.Thread):
 		self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
 		self.mainVBox.pack_start(self.canvas)
 		self.canvas.show()
+	#end of def showClicked
 
-
-	
 	def __init__(self, db, settings, debug=True):
-		"""Constructor for table_viewer"""
+		"""Constructor for GraphViewer"""
 		self.debug=debug
-		#print "start of table_viewer constructor"
+		#print "start of GraphViewer constructor"
 		self.db=db
 		self.cursor=db.cursor
 		self.settings=settings
@@ -136,5 +122,4 @@ class GuiGraphViewer (threading.Thread):
 		self.showButton.connect("clicked", self.showClicked, "show clicked")
 		self.settingsHBox.pack_start(self.showButton)
  		self.showButton.show()
-		
 	#end of GuiGraphViewer.__init__

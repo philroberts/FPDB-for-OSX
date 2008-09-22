@@ -172,7 +172,7 @@ def pokerstars_decode_table(tw):
         tw.name       = name
     else:
         tw.tournament = None
-        for pattern in [' no all-in', ' fast', ',']:
+        for pattern in [' no all-in', ' fast', ',', ' 50BB min']:
             name = re.sub(pattern, '', name)
         name = re.sub('\s+$', '', name)
         tw.name = name
