@@ -581,6 +581,9 @@ def parseActionAmount(line, atype, site):
 			#print "pos:",pos
 			#print "pos of 20:", line.find("20")
 			amount=int(line[pos:])
+	
+	if atype=="unbet":
+		amount*=-1
 	return amount
 #end def parseActionAmount
 

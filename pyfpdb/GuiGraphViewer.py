@@ -57,7 +57,7 @@ class GuiGraphViewer (threading.Thread):
 		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers
 				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
 				INNER JOIN Hands ON Hands.id = HandsPlayers.handId
-				WHERE Players.name = %s AND Players.siteId = %s
+				WHERE Players.name = %s AND Players.siteId = %s AND tourneysPlayersId is NULL
 				ORDER BY siteHandNo""", (name, site))
 		winnings = self.db.cursor.fetchall()
 				
@@ -66,7 +66,7 @@ class GuiGraphViewer (threading.Thread):
 			self.cursor.execute("""SELECT SUM(amount) FROM HandsActions
 					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
 					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-					WHERE Players.name = %s AND HandsPlayers.handId = %s AND Players.siteId = %s""", (name, winnings[i][0], site))
+					WHERE Players.name = %s AND HandsPlayers.handId = %s AND Players.siteId = %s AND tourneysPlayersId is NULL""", (name, winnings[i][0], site))
 			spent = self.db.cursor.fetchone()
 			profit[i]=(i, winnings[i][1]-spent[0])
 
