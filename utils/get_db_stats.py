@@ -22,61 +22,61 @@ db = MySQLdb.connect("localhost", "fpdb", sys.argv[1], "fpdb")
 cursor = db.cursor()
 print "Connected to MySQL on localhost. Printing summary stats:"
 
-cursor.execute("SELECT id FROM players")
+cursor.execute("SELECT id FROM Players")
 print "Players:",cursor.rowcount
-cursor.execute("SELECT id FROM autorates")
+cursor.execute("SELECT id FROM Autorates")
 print "Autorates:",cursor.rowcount
 
-cursor.execute("SELECT id FROM sites")
+cursor.execute("SELECT id FROM Sites")
 print "Sites:",cursor.rowcount
-cursor.execute("SELECT id FROM gametypes")
+cursor.execute("SELECT id FROM Gametypes")
 print "Gametypes:",cursor.rowcount
 
-cursor.execute("SELECT id FROM hands")
+cursor.execute("SELECT id FROM Hands")
 print "Total Hands:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.type='ring'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.type='ring'")
 print "Hands, Ring:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.type='stt'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.type='stt'")
 print "Hands, STT:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.type='mtt'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.type='mtt'")
 print "Hands, MTT:",cursor.rowcount
 
 print ""
 print "Hands per category and type"
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.limit_type='cn'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.limitType='cn'")
 print "Hands, Cap No Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.limit_type='cp'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.limitType='cp'")
 print "Hands, Cap Pot Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='holdem' AND gametypes.limit_type='nl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='holdem' AND Gametypes.limitType='nl'")
 print "Hands, Holdem No Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='holdem' AND gametypes.limit_type='pl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='holdem' AND Gametypes.limitType='pl'")
 print "Hands, Holdem Pot Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='holdem' AND gametypes.limit_type='fl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='holdem' AND Gametypes.limitType='fl'")
 print "Hands, Holdem Fixed Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='omahahi' AND gametypes.limit_type='nl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='omahahi' AND Gametypes.limitType='nl'")
 print "Hands, Omaha Hi No Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='omahahi' AND gametypes.limit_type='pl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='omahahi' AND Gametypes.limitType='pl'")
 print "Hands, Omaha Hi Pot Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='omahahi' AND gametypes.limit_type='fl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='omahahi' AND Gametypes.limitType='fl'")
 print "Hands, Omaha Hi Fixed Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='omahahilo' AND gametypes.limit_type='nl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='omahahilo' AND Gametypes.limitType='nl'")
 print "Hands, Omaha Hi/Lo No Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='omahahilo' AND gametypes.limit_type='pl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='omahahilo' AND Gametypes.limitType='pl'")
 print "Hands, Omaha Hi/Lo Pot Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='omahahilo' AND gametypes.limit_type='fl'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='omahahilo' AND Gametypes.limitType='fl'")
 print "Hands, Omaha Hi/Lo Fixed Limit:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='razz'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='razz'")
 print "Hands, Razz:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='studhi'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='studhi'")
 print "Hands, Stud Hi:",cursor.rowcount
-cursor.execute("SELECT hands.id FROM hands INNER JOIN gametypes ON hands.gametype_id = gametypes.id WHERE gametypes.category='studhilo'")
+cursor.execute("SELECT Hands.id FROM Hands INNER JOIN Gametypes ON Hands.gametypeId = Gametypes.id WHERE Gametypes.category='studhilo'")
 print "Hands, Stud Hi/Lo:",cursor.rowcount
 print ""
-cursor.execute("SELECT id FROM board_cards")
+cursor.execute("SELECT id FROM BoardCards")
 print "Board_cards:",cursor.rowcount
-cursor.execute("SELECT id FROM hands_players")
+cursor.execute("SELECT id FROM HandsPlayers")
 print "Hands_players:",cursor.rowcount
-cursor.execute("SELECT id FROM hands_actions")
+cursor.execute("SELECT id FROM HandsActions")
 print "Hands_actions:",cursor.rowcount
 
 cursor.close()
