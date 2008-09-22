@@ -76,6 +76,14 @@ def import_file_dict(options, settings, callHud=False):
 			print "Opened file", options.inputFile, "and connected to MySQL on", options.server
 
 		line=inputFile.readline()
+		
+		if line.find("Tournament Summary")!=-1:
+			print "TODO: implement importing tournament summaries"
+			inputFile.close()
+			cursor.close()
+			db.close()
+			return 0
+		
 		site=fpdb_simple.recogniseSite(line)
 		category=fpdb_simple.recogniseCategory(line)
 		inputFile.seek(0)
