@@ -42,7 +42,7 @@ class Table_Window:
 #    __str__ method for testing
         temp = 'TableWindow object\n'
         temp = temp + "    name = %s\n    site = %s\n    number = %s\n    title = %s\n" % (self.name, self.site, self.number, self.title)
-        temp = temp + "    game = %s\n    structure = %s\n    max = %s\n" % (self.game, self.structure, self.max)
+#        temp = temp + "    game = %s\n    structure = %s\n    max = %s\n" % (self.game, self.structure, self.max)
         temp = temp + "    width = %d\n    height = %d\n    x = %d\n    y = %d\n" % (self.width, self.height, self.x, self.y)
         if getattr(self, 'tournament', 0):
             temp = temp + "    tournament = %d\n    table = %d" % (self.tournament, self.table)
@@ -75,9 +75,11 @@ def discover_posix(c):
 #    xwininfo -root -tree -id 0xnnnnn    gets the info on a single window
         if re.search('Lobby', listing): continue
         if re.search('Instant Hand History', listing): continue
-        if not re.search('Logged In as ', listing): continue
+        if not re.search('Logged In as ', listing, re.IGNORECASE): continue
         for s in c.supported_sites.keys():
             if re.search(c.supported_sites[s].table_finder, listing):
+                print "listing = ", listing
+                print "found ", c.supported_sites[s].site_name
                 mo = re.match('\s+([\dxabcdef]+) (.+):.+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
                 if mo.group(2) == '(has no name)': continue
                 if re.match('[\(\)\d\s]+', mo.group(2)): continue  # this is a popup
@@ -90,12 +92,12 @@ def discover_posix(c):
                 tw.x      = int (mo.group(5) )
                 tw.y      = int (mo.group(6) )
                 tw.title  = re.sub('\"', '', tw.title)
-#    this rather ugly hack makes my fake table used for debugging work
-                if tw.title == "PokerStars.py": continue
 
 #    use this eval thingie to call the title bar decoder specified in the config file
                 eval("%s(tw)" % c.supported_sites[s].decoder)
                 tables[tw.name] = tw
+                print "found table named ", tw.name
+                print tw
     return tables
 #
 #    The discover_xx functions query the system and report on the poker clients 
@@ -198,6 +200,18 @@ def pokerstars_decode_table(tw):
         pass
     elif tw.game in ('omaha', 'omaha hi/lo'):
         pass
+
+def fulltilt_decode_table(tw):
+#    extract the table name OR the tournament number and table name from the title
+#    other info in title is redundant with data in the database 
+    title_bits = re.split(' - ', tw.title)
+    name = title_bits[0]
+    tw.tournament = None
+#    for pattern in [r' (6 max)', r' (heads up)', r' (deep)', r' (deep hu)', r' (deep 6)',
+#                    r' (2)', r' (edu)', r' (edu, 6 max)', r' (6)' ]:
+#        name = re.sub(pattern, '', name)
+    (tw.name, trash) = name.split(r' (', 1)
+    tw.name = tw.name.rstrip()
 
 if __name__=="__main__":
     c = Configuration.Config()
