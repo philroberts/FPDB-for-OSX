@@ -39,6 +39,9 @@ class GuiGraphViewer (threading.Thread):
 	#end def get_vbox
 	
 	def showClicked(self, widget, data):
+		try: self.canvas.destroy()
+		except AttributeError: pass
+
 		name=self.nameTBuffer.get_text(self.nameTBuffer.get_start_iter(), self.nameTBuffer.get_end_iter())
 		
 		site=self.siteTBuffer.get_text(self.siteTBuffer.get_start_iter(), self.siteTBuffer.get_end_iter())
