@@ -1,11 +1,9 @@
 <?php
 
-require dirname(__FILE__).'/config.php';
-
 $PAGE_TITLE = 'License';
 
-require SITE_PATH.'header.php';
-require SITE_PATH.'sidebar.php';
+require 'header.php';
+require 'sidebar.php';
 
 ?>
 
@@ -684,6 +682,6 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 
 <?php
 
-require SITE_PATH.'footer.php';
+require 'footer.php';
 
 ?>

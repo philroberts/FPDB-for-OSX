@@ -1,9 +1,7 @@
 <?php
 
-require dirname(__FILE__).'/config.php';
-
-require SITE_PATH.'header.php';
-require SITE_PATH.'sidebar.php';
+require 'header.php';
+require 'sidebar.php';
 
 ?>
 
@@ -24,6 +22,6 @@ MSN: steffenjf(at)gmx.de (don't email that)</p>
 
 <?php
 
-require SITE_PATH.'footer.php';
+require 'footer.php';
 
 ?>

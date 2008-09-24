@@ -1,40 +1,14 @@
-body {
-    margin: 0px;
-    padding: 0px;
-    background-color: #fff;
-    font-family: "Verdana", "Arial", sans-serif;
-    font-size: 13px;
-    text-align: center;
-    color: #333;
-}
+body {margin: 0px; padding: 0px; background-color: #fff; font-family: "Verdana", "Arial", sans-serif; font-size: 13px; color: #333;}
 
-a {
-    text-decoration: none;
-    color: #336984;
-}
+a {text-decoration: none; color: #336984;}
 
-a:hover {
-    color: #e00000;
-}
+a:hover {color: #e00000;}
 
-img {
-    border: 0px;
-}
+img {border: 0px;}
 
-h1 {
-    font-size: 23px;
-}
+h1 {font-size: 23px;}
 
-li {
-    padding: 3px;
-}
-
-
-/* ------------------------------------------------- */
-#wrapper {
-    text-align: left;
-    margin: auto;
-}
+li {padding: 3px;}
 
 
 /* ------------------------------------------------- */
@@ -53,47 +27,26 @@ li {
 
 
 /* ------------------------------------------------- */
-#main {
-    margin-left: 210px;
-    margin-right: 15px;
-}
+#main			{ margin-left: 210px; margin-right: 15px; }
+.winInst div		{ width: 906px; }
+.screenshot		{ background-color: #E8F1F6; padding: 0px; margin: 10px auto; padding: 10px; }
+.screenshot img	{ padding: 2px; border: 1px solid #87aade; }
+.screenshot p		{ margin: 0; }
+#screens		{ float: left; margin: 1em; text-align: center; }
+
+/* ------------------------------------------------- */
+#sidebar {background-color: #E8F1F6; width: 180px; padding: 10px; float: left;}
+
+#sidebar ul {padding: 0px; margin: 0px; list-style-position: inside;}
+
+#sidebar ul li {border-bottom: 1px solid #D1E3EC; padding: 3px;}
+
+#sidebar ul li:hover {background-color: #fff;}
+
+#sidebar a {text-decoration: none;}
+
+dl dt { float: left; width: 200px; font-weight: bold; }
 
 
 /* ------------------------------------------------- */
-#sidebar {
-    background-color: #E8F1F6;
-    width: 180px;
-    padding: 10px;
-    float: left;
-}
-
-#sidebar ul {
-    padding: 0px;
-    margin: 0px;
-    list-style-position: inside;
-}
-
-#sidebar ul li {
-    border-bottom: 1px solid #D1E3EC;
-    padding: 3px;
-}
-
-#sidebar ul li:hover {
-    background-color: #fff;
-}
-
-#sidebar a {
-    text-decoration: none;
-}
-
-
-/* ------------------------------------------------- */
-#footer {
-    text-align: center;
-    margin-top: 20px;
-    background-color: #F6F6FD;
-    padding: 10px;
-    border-top: 3px solid #DADAF6;
-    font-size: 11px;
-    clear: both;
-}
+#footer	{ clear: both; text-align: right; padding: 1em 2em; }

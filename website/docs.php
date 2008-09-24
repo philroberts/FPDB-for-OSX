@@ -1,9 +1,7 @@
 <?php
-
-require dirname(__FILE__).'/config.php';
-
-require SITE_PATH.'header.php';
-require SITE_PATH.'sidebar.php';
+$PAGE_TITLE='Documentation';
+require 'header.php';
+require 'sidebar.php';
 
 ?>
 
@@ -24,7 +22,8 @@ require SITE_PATH.'sidebar.php';
                 </ul>
 
                 <ul>
-                    <li><a href="docs-usage.php">Usage instructions</a></li>
+                    <li><a href="docs-hudHowTo.php">HOW TO Use the HUD</a></li>
+			<li><a href="docs-usage.php">Usage instructions</a></li>
                     <li><a href="docs-abreviations.php">Abreviations</a></li>
                     <li><a href="docs-benchmarks.php">Benchmarks</a></li>
                 </ul>
@@ -33,6 +32,6 @@ require SITE_PATH.'sidebar.php';
 
 <?php
 
-require SITE_PATH.'footer.php';
+require 'footer.php';
 
 ?>

@@ -1,11 +1,9 @@
 <?php
 
-require dirname(__FILE__).'/config.php';
-
 $PAGE_TITLE = 'Features';
 
-require SITE_PATH.'header.php';
-require SITE_PATH.'sidebar.php';
+require 'header.php';
+require 'sidebar.php';
 
 ?>
 
@@ -44,6 +42,6 @@ Tv takes a history filename and loads the appropriate players' stats and display
 
 <?php
 
-require SITE_PATH.'footer.php';
+require 'footer.php';
 
 ?>

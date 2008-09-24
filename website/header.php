@@ -4,15 +4,13 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>fpdb - <?php echo (empty($PAGE_TITLE) ? 'freepokerdb' : $PAGE_TITLE) ?></title>
+        <title>fpdb - The free poker database - <?php echo ($PAGE_TITLE) ?></title>
         <meta name="description" content="Home of fpdb, an open source and free poker tracking software.">
         <meta name="keywords" content="fpdb, freepokerdb, poker, tracking, software">
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-
-        <div id="wrapper">
 
             <div id="header">
                 <div id="logo"><img src="fpdb.png"></div>

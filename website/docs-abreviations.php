@@ -1,11 +1,9 @@
 <?php
 
-require dirname(__FILE__).'/config.php';
-
 $PAGE_TITLE = 'Abreviations';
 
-require SITE_PATH.'header.php';
-require SITE_PATH.'sidebar.php';
+require 'header.php';
+require 'sidebar.php';
 
 ?>
 
@@ -62,6 +60,6 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt<br>
 
 <?php
 
-require SITE_PATH.'footer.php';
+require 'footer.php';
 
 ?>

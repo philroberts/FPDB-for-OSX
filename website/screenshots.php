@@ -1,27 +1,22 @@
 <?php
 
-require dirname(__FILE__).'/config.php';
-
 $PAGE_TITLE = 'Screenshots';
 
-require SITE_PATH.'header.php';
-require SITE_PATH.'sidebar.php';
+require 'header.php';
+require 'sidebar.php';
 
 ?>
 
-            <div id="main">
+<div id="main">	<h1>Screenshots</h1>
 
-                <h1>Screenshots</h1>
-
-                <p>Importing hands:<br><br><a href="<?php echo SITE_URL;?>screenshots/01.png" target="_blank"><img src="<?php echo SITE_URL;?>screenshots/01-thumb.png"></a></p>
-                <br>
-                <p>Table viewer:<br><br><a href="<?php echo SITE_URL;?>screenshots/02.png" target="_blank"><img src="<?php echo SITE_URL;?>screenshots/02-thumb.png"></a></p>
-
+<div id="screens">	<h4>Importing hands:</h4>	<a href="img/fpdbScreenshot1.png" target="_blank">	<img src="img/fpdbScreenshot1Thumb.png">	</a>	</div>
+<div id="screens">	<h4>Table viewer:</h4>	<a href="img/fpdbScreenshot2.png" target="_blank">	<img src="img/fpdbScreenshot2Thumb.png">	</a>	</div>
+<div id="screens">	<h4>HUD:</h4>			<a href="img/screenHud.png" target="_blank">		<img src="img/screenHudThumb.jpg">		</a>	</div>
 
             </div>
 
 <?php
 
-require SITE_PATH.'footer.php';
+require 'footer.php';
 
 ?>
