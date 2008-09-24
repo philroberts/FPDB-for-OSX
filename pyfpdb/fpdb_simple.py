@@ -972,7 +972,7 @@ def recogniseCategory(line):
 #end def recogniseCategory
 
 #returns the int for the gametype_id for the given line
-def recogniseGametypeID(cursor, topline, site_id, category, isTourney):#todo: this method is messy
+def recogniseGametypeID(cursor, topline, smallBlindLine, site_id, category, isTourney):#todo: this method is messy
 	#if (topline.find("HORSE")!=-1):
 	#	raise FpdbError("recogniseGametypeID: HORSE is not yet supported.")
 	
@@ -1043,8 +1043,12 @@ def recogniseGametypeID(cursor, topline, site_id, category, isTourney):#todo: th
 			hiLo='s'
 		
 		if (limit_type=="fl"):
-			big_blind=small_bet #todo: read this
-			small_blind=big_blind/2 #todo: read this
+			big_blind=small_bet
+			if smallBlindLine==topline:
+				raise fpdb_simple.FpdbError("invalid small blind line")
+			else:
+				pos=smallBlindLine.rfind("$")+1
+				small_blind=float2int(smallBlindLine[pos:])
 			cursor.execute("""INSERT INTO Gametypes
 			(siteId, type, base, category, limitType, hiLo, smallBlind, bigBlind, smallBet, bigBet)
 			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, base, category, limit_type, hiLo, small_blind, big_blind, small_bet, big_bet))

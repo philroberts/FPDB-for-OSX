@@ -4,7 +4,6 @@ Please also see db-todo.txt
 alpha4 (release 25Sep-2Oct)
 ======
 pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
-reading small blind wrong for PS 25/50ct
 check we're reading mucked cards from PS
 ebuild: support pgsql
 fix HUD config location and update release script accordingly
@@ -32,9 +31,9 @@ finish todos in git instructions
 debian/ubuntu package http://www.debian.org/doc/maint-guide/ch-start.en.html
 howto remote DB
 move all user docs to webpage
-contributor list on webpage
+(steffen) contributor list on webpage
 finish bringing back tourney
-No river stats for stud games
+No river stats for stud games?
 hole/board cards are not correctly stored in the db for stud games
 HORSE (and presumably other mixed games) hand history files not handled correctly
 Some MTTs won't import (rebuys??)

@@ -39,7 +39,14 @@ def mainParser(db, cursor, site, category, hand):
 	#print "parse logic, siteID:",siteID,"site:",site
 	
 	isTourney=fpdb_simple.isTourney(hand[0])
-	gametypeID=fpdb_simple.recogniseGametypeID(cursor, hand[0], siteID, category, isTourney)
+	smallBlindLine=0
+	for i in range(len(hand)):
+		if hand[i].find("posts small blind")!=-1 or hand[i].find("posts the small blind")!=-1:
+			smallBlindLine=i
+			#print "found small blind line:",smallBlindLine
+			break
+	#print "small blind line:",smallBlindLine
+	gametypeID=fpdb_simple.recogniseGametypeID(cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
 	if isTourney:
 		if site!="ps":
 			raise fpdb_simple.FpdbError("tourneys are only supported on PS right now")
