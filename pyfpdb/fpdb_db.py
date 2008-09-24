@@ -151,6 +151,13 @@ class fpdb_db:
 		return (self.host, self.database, self.user, self.password)
 	#end def get_db_info
 	
+	def fillDefaultData(self):
+		self.cursor.execute("INSERT INTO Settings VALUES (76);")
+		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
+		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
+		self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
+	#end def fillDefaultData
+	
 	def recreate_tables(self):
 		"""(Re-)creates the tables of the current DB"""
 		
@@ -167,6 +174,7 @@ class fpdb_db:
 				if sql == '':
 					continue
 				curse.execute(sql)
+			#self.fillDefaultData()
 			self.db.commit()
 			curse.close()
 			return
@@ -379,10 +387,7 @@ class fpdb_db:
 		street4CheckCallRaiseChance INT NOT NULL,
 		street4CheckCallRaiseDone INT NOT NULL)""")
 		
-		self.cursor.execute("INSERT INTO Settings VALUES (76);")
-		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
-		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
-		self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
+		self.fillDefaultData()
 		self.db.commit()
 		print "finished recreating tables"
 	#end def recreate_tables
