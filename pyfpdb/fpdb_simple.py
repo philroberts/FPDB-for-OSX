@@ -53,7 +53,8 @@ def checkPositions(positions):
 		except TypeError:#->not string->is int->fine
 			pass
 		
-		if (pos!="B" and pos!="S" and pos!=0 and pos!=1 and pos!=2 and pos!=3 and pos!=4 and pos!=5 and pos!=6 and pos!=7):
+		### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
+		if (pos!="B" and pos!="S" and pos!=0 and pos!=1 and pos!=2 and pos!=3 and pos!=4 and pos!=5 and pos!=6 and pos!=7 and pos!=9):
 			raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+str(pos))
 #end def fpdb_simple.checkPositions
 
@@ -857,6 +858,12 @@ def parsePositions (hand, names):
 		positions[arraypos]=distFromBtn
 		arraypos-=1
 		distFromBtn+=1
+
+	### RHH - Changed to set the null seats before BB to "9"
+	i=bb-1
+	while positions[i] < 0:
+		positions[i]=9
+		i-=1
 	
 	arraypos=len(names)-1
 	if (bb!=0 or (bb==0 and sbExists==False)):
@@ -1563,6 +1570,9 @@ def generateHudCacheData(player_ids, base, category, action_types, actionTypeByN
 				hudDataPositions.append('M')
 			elif pos>=5 and pos<=7:
 				hudDataPositions.append('L')
+			### RHH Added this elif to handle being a dead hand before the BB (pos==9)
+			elif pos==9:
+				hudDataPositions.append('X')
 			else:
 				raise FpdbError("invalid position")
 		elif base=="stud":

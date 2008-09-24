@@ -97,6 +97,7 @@ verify at least 2 or 3 sng hands
 
 no rush but before 1.0RC
 ========================
+improve handling of dead hand before BB, see git101/
 make DB version error offer reimport, recreation and  continue.
 In many places there are unnecessary database accesses or it regenerates information it already had before or just generally does things in obscenely inefficient ways. Optimise this
 multi-select in bulk importer
