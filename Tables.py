@@ -140,9 +140,8 @@ def discover_nt(c):
     tables = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles.keys():
-        if re.search('Logged In as', titles[hwnd]) and not re.search('Lobby', titles[hwnd]):
+        if re.search('Logged In as', titles[hwnd], re.IGNORECASE) and not re.search('Lobby', titles[hwnd]):
             tw = Table_Window()
-#            tw.site = c.supported_sites[s].site_name
             tw.number = hwnd
             (x, y, width, height) = win32gui.GetWindowRect(hwnd)
             tw.title  = titles[hwnd]
@@ -150,10 +149,17 @@ def discover_nt(c):
             tw.height = int( height ) - b_width - tb_height
             tw.x      = int( x ) + b_width
             tw.y      = int( y ) + tb_height
-            eval("%s(tw)" % "pokerstars_decode_table")
-            tw.site = "PokerStars"
+            if re.search('Logged In as', titles[hwnd]):
+                tw.site = "PokerStars"
+            elif re.search('Logged In As', titles[hwnd]):
+                tw.site = "Full Tilt"
+            else:
+                tw.site = "Unknown"
 
-		
+            if not tw.site == "Unknown":
+                eval("%s(tw)" % c.supported_sites[s].decoder)
+            else:
+                tw.name = "Unknown"
             tables[tw.name] = tw
     return tables
 
