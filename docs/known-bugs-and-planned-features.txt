@@ -6,15 +6,14 @@ alpha4 (release 25Sep-2Oct)
 pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
 reading small blind wrong for PS 25/50ct
 check we're reading mucked cards from PS
-newsletter&mailing list
 ebuild: support pgsql
 fix HUD config location and update release script accordingly
 
-update website for windows installer
-update install-in-gentoo on website
-update ebuild and ubuntu guide for HUD_config.xml
+(michael) update website for windows installer
+(steffen) update install-in-gentoo on website
+(steffen) update ebuild and ubuntu guide for HUD_config.xml
 
-store raw hand in db and write reimport function using the raw hand field
+(steffen) store raw hand in db and write reimport function using the raw hand field
 make sure totalProfit shows actual profit rather than winnings.
 update abbreviations.txt
 export settings[hud-defaultInterval] to conf
@@ -43,6 +42,7 @@ Many STTs won't import
 
 before beta
 ===========
+validate webpage
 make linux use /etc/fpdb for config first, then ~/.fpdb.
 FTP file with only one partial hand causes error
 No Full Tilt support in HUD
