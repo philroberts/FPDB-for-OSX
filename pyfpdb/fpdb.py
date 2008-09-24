@@ -18,7 +18,7 @@
 import os
 import sys
 
-errorfile = open('error.log', 'w')
+errorfile = open('fpdb-error.log', 'w')
 sys.stderr = errorfile
 
 import pygtk
