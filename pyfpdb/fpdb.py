@@ -18,6 +18,9 @@
 import os
 import sys
 
+errorfile = open('error.log', 'w')
+sys.stderr = errorfile
+
 import pygtk
 pygtk.require('2.0')
 import gtk

@@ -42,7 +42,6 @@ hole/board cards are not correctly stored in the db for stud games
 HORSE (and presumably other mixed games) hand history files not handled correctly
 Some MTTs won't import (rebuys??)
 Many STTs won't import
-redirect stderr: http://diveintopython.org/scripts_and_streams/stdin_stdout_stderr.html
 
 before beta
 ===========
