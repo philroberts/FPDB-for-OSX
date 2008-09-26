@@ -23,6 +23,8 @@ Handles HUD configuration files.
 ########################################################################
 
 #    Standard Library modules
+import os
+import sys
 import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
@@ -166,7 +168,35 @@ class Popup:
         return temp + "\n"
 
 class Config:
-    def __init__(self, file = 'HUD_config.xml'):
+    def __init__(self, file = None):
+
+#    "file" is a path to an xml file with the fpdb/HUD configuration
+#    we check the existence of "file" and try to recover if it doesn't exist
+
+        if not file == None: # configuration file path has been passed
+            if not os.path.exists(file):
+                print "Configuration file %s not found.  Using defaults." % (file)
+                sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
+                file = None
+
+#    if "file" is invalid or None, we look for a HUD_config in the cwd
+        if file == None: # configuration file path not passed or invalid
+            if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
+                file = 'HUD_config.xml'             # so we use it
+            else: # no HUD_config in the cwd, look where it should be in the first place
+#    find the path to the default HUD_config for the current os
+                if os.name == 'posix':
+                    config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'HUD_config.xml')
+                elif os.name == 'nt':
+                    config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'HUD_config.xml')
+                else: config_path = False
+    
+                if config_path and os.path.exists(config_path):
+                    file = config_path
+                else:
+                    print "No HUD_config_xml found.  Exiting"
+                    sys.stderr.write("No HUD_config_xml found.  Exiting")
+                    sys.exit()
 
         doc = xml.dom.minidom.parse(file)
 
