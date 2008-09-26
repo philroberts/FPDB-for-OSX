@@ -20,7 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
-import pokereval
+#import pokereval
 
 try:
 	from matplotlib.figure import Figure
@@ -49,12 +49,12 @@ class GuiGraphViewer (threading.Thread):
 		site=self.siteTBuffer.get_text(self.siteTBuffer.get_start_iter(), self.siteTBuffer.get_end_iter())
 		
 		if site=="PS":
-			site=1
-		elif site=="FTP":
 			site=2
+		elif site=="FTP":
+			site=1
 		else:
 			print "invalid text in site selection in graph, defaulting to PS"
-			site=1
+			site=2
 		
 		self.fig = Figure(figsize=(5,4), dpi=100)
 
