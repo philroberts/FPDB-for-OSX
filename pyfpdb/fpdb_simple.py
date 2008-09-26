@@ -1042,11 +1042,14 @@ def recogniseGametypeID(cursor, topline, smallBlindLine, site_id, category, isTo
 		
 		if (limit_type=="fl"):
 			big_blind=small_bet
-			if smallBlindLine==topline:
-				raise fpdb_simple.FpdbError("invalid small blind line")
+			if base=="hold":
+				if smallBlindLine==topline:
+					raise FpdbError("invalid small blind line")
+				else:
+					pos=smallBlindLine.rfind("$")+1
+					small_blind=float2int(smallBlindLine[pos:])
 			else:
-				pos=smallBlindLine.rfind("$")+1
-				small_blind=float2int(smallBlindLine[pos:])
+				small_blind=0
 			cursor.execute("""INSERT INTO Gametypes
 			(siteId, type, base, category, limitType, hiLo, smallBlind, bigBlind, smallBet, bigBet)
 			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, base, category, limit_type, hiLo, small_blind, big_blind, small_bet, big_bet))
