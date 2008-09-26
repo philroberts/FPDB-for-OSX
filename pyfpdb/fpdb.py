@@ -18,8 +18,8 @@
 import os
 import sys
 
-#errorfile = open('fpdb-error.log', 'w')
-#sys.stderr = errorfile
+errorfile = open('fpdb-error.log', 'w')
+sys.stderr = errorfile
 
 import pygtk
 pygtk.require('2.0')

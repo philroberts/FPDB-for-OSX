@@ -38,6 +38,9 @@ import os
 import thread
 import Queue
 
+errorfile = open('HUD-error.txt', 'w')
+sys.stderr = errorfile
+
 #    pyGTK modules
 import pygtk
 import gtk
@@ -105,13 +108,13 @@ def producer():            # This is the thread function
         dataQueue.put(hand_no)          # and puts result on the queue
 
 if __name__== "__main__":
-    print "HUD_main starting"
+    sys.stderr.write("HUD_main starting\n")
 
     try:
         db_name = sys.argv[1]
     except:
         db_name = 'fpdb-p'
-    print "Using db name = ", db_name
+    sys.stderr.write("Using db name = %s\n" % (db_name))
 
     config = Configuration.Config()
 #    db_connection = Database.Database(config, 'fpdb', 'holdem')
