@@ -20,12 +20,14 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+import pokereval
 
 try:
 	from matplotlib.figure import Figure
 	from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
 	from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
-	from numpy import arange, sin, pi
+	from numpy import arange, cumsum
+	from pylab import *
 except:
 	print "Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib."
 
@@ -55,7 +57,17 @@ class GuiGraphViewer (threading.Thread):
 			site=1
 		
 		self.fig = Figure(figsize=(5,4), dpi=100)
+
+		#Set graph properties
 		self.ax = self.fig.add_subplot(111)
+
+		#
+		self.ax.set_title("Profit graph for ring games")
+
+		#Set axis labels and grid overlay properites
+		self.ax.set_xlabel("Hands", fontsize = 12)
+		self.ax.set_ylabel("$", fontsize = 12)
+		self.ax.grid(color='g', linestyle=':', linewidth=0.2)
 
 		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers
 				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
@@ -74,11 +86,12 @@ class GuiGraphViewer (threading.Thread):
 			profit[i]=(i, winnings[i][1]-spent[0])
 
 		y=map(lambda x:float(x[1]), profit)
-		line = range(len(y))
+		line = cumsum(y)
+		line = line/100
 
-		for i in range(len(y)):
-			line[i] = y[i] + line[i-1]
+		self.ax.annotate ("All Hands, Site %s", (61,25), xytext =(0.1, 0.9) , textcoords ="axes fraction" ,)
 
+		#Now draw plot
 		self.ax.plot(line,)
 
 		self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea

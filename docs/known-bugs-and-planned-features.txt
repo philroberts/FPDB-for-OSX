@@ -1,7 +1,7 @@
 Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha4 (release 25Sep-2Oct)
+alpha5 (release 25Sep-2Oct)
 ======
 pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
 check we're reading mucked cards from PS
@@ -22,8 +22,6 @@ printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring
 change to savannah?
 implement steal and positions in stud
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
-Import draw (maybe without HudCache for a start)
-table with data for graphs for SD/F, W$wSF, W$@SD
 separate db table design version and last bugfix in importer
 change tabledesign VALIGN and add link to webpage
 finish updating filelist
@@ -41,6 +39,8 @@ Many STTs won't import
 
 before beta
 ===========
+Import draw (maybe without HudCache for a start)
+graphs for SD/F, W$wSF, W$@SD
 validate webpage
 make linux use /etc/fpdb for config first, then ~/.fpdb.
 FTP file with only one partial hand causes error
