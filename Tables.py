@@ -73,13 +73,12 @@ def discover_posix(c):
     tables = {}
     for listing in os.popen('xwininfo -root -tree').readlines():
 #    xwininfo -root -tree -id 0xnnnnn    gets the info on a single window
-        if re.search('Lobby', listing): continue
-        if re.search('Instant Hand History', listing): continue
+        if re.search('Lobby', listing):                            continue
+        if re.search('Instant Hand History', listing):             continue
         if not re.search('Logged In as ', listing, re.IGNORECASE): continue
+        if re.search('\"Full Tilt Poker\"', listing):              continue # FTP Lobby
         for s in c.supported_sites.keys():
             if re.search(c.supported_sites[s].table_finder, listing):
-                print "listing = ", listing
-                print "found ", c.supported_sites[s].site_name
                 mo = re.match('\s+([\dxabcdef]+) (.+):.+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
                 if mo.group(2) == '(has no name)': continue
                 if re.match('[\(\)\d\s]+', mo.group(2)): continue  # this is a popup
@@ -96,8 +95,6 @@ def discover_posix(c):
 #    use this eval thingie to call the title bar decoder specified in the config file
                 eval("%s(tw)" % c.supported_sites[s].decoder)
                 tables[tw.name] = tw
-                print "found table named ", tw.name
-                print tw
     return tables
 #
 #    The discover_xx functions query the system and report on the poker clients 
@@ -141,6 +138,8 @@ def discover_nt(c):
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles.keys():
         if re.search('Logged In as', titles[hwnd], re.IGNORECASE) and not re.search('Lobby', titles[hwnd]):
+            if re.search('Full Tilt Poker', titles[hwnd]):
+                continue
             tw = Table_Window()
             tw.number = hwnd
             (x, y, width, height) = win32gui.GetWindowRect(hwnd)
@@ -155,9 +154,9 @@ def discover_nt(c):
                 tw.site = "Full Tilt"
             else:
                 tw.site = "Unknown"
-
+                sys.stderr.write("Found unknown table = %s" % tw.title)
             if not tw.site == "Unknown":
-                eval("%s(tw)" % c.supported_sites[s].decoder)
+                eval("%s(tw)" % c.supported_sites[tw.site].decoder)
             else:
                 tw.name = "Unknown"
             tables[tw.name] = tw
@@ -213,11 +212,12 @@ def fulltilt_decode_table(tw):
     title_bits = re.split(' - ', tw.title)
     name = title_bits[0]
     tw.tournament = None
-#    for pattern in [r' (6 max)', r' (heads up)', r' (deep)', r' (deep hu)', r' (deep 6)',
-#                    r' (2)', r' (edu)', r' (edu, 6 max)', r' (6)' ]:
-#        name = re.sub(pattern, '', name)
-    (tw.name, trash) = name.split(r' (', 1)
-    tw.name = tw.name.rstrip()
+    for pattern in [r' \(6 max\)', r' \(heads up\)', r' \(deep\)',
+                    r' \(deep hu\)', r' \(deep 6\)', r' \(2\)',
+                    r' \(edu\)', r' \(edu, 6 max\)', r' \(6\)' ]:
+        name = re.sub(pattern, '', name)
+#    (tw.name, trash) = name.split(r' (', 1)
+    tw.name = name.rstrip()
 
 if __name__=="__main__":
     c = Configuration.Config()
