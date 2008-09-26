@@ -1,6 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
+# Gentoo had nothing to do with the production of this ebuild, but I'm pre-emptively transferring all copyrights (as far as legally possible under my local jurisdiction) to them.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-util/fpdb/fpdb-1.0_alpha2_p68.ebuild,v 1.0 2008/08/31 23:00:00 steffen@sycamoretest.info Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-util/fpdb/fpdb-1.0_alpha5_p110.ebuild,v 1.0 2008/09/26 steffen@sycamoretest.info Exp $
 
 NEED_PYTHON=2.3
 
@@ -10,7 +11,6 @@ MY_P="fpdb-${PV}"
 DESCRIPTION="A database program to track your online poker games"
 HOMEPAGE="https://sourceforge.net/projects/fpdb/"
 SRC_URI="mirror://sourceforge/fpdb/${MY_P}.tar.bz2"
-#SRC_URI="mirror://sourceforge/fpdb/fpdb-1.0_alpha3-p80.tar.bz2"
 
 LICENSE="AGPL-3"
 SLOT="0"
@@ -21,7 +21,10 @@ IUSE=""
 RDEPEND="virtual/mysql
 	dev-python/mysql-python
 	>=x11-libs/gtk+-2.10
-	dev-python/pygtk"
+	dev-python/pygtk
+	dev-python/numpy
+	dev-python/matplotlib"
+
 DEPEND="${RDEPEND}"
 
 src_install() {
