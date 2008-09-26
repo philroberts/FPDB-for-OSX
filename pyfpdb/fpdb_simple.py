@@ -1045,6 +1045,9 @@ def recogniseGametypeID(cursor, topline, smallBlindLine, site_id, category, isTo
 			if base=="hold":
 				if smallBlindLine==topline:
 					raise FpdbError("invalid small blind line")
+				elif isTourney:
+					pos=smallBlindLine.rfind(" ")+1
+					small_blind=int(smallBlindLine[pos:])
 				else:
 					pos=smallBlindLine.rfind("$")+1
 					small_blind=float2int(smallBlindLine[pos:])
