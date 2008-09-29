@@ -25,6 +25,7 @@ Handles HUD configuration files.
 #    Standard Library modules
 import os
 import sys
+import traceback
 import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
@@ -197,8 +198,14 @@ class Config:
                     print "No HUD_config_xml found.  Exiting"
                     sys.stderr.write("No HUD_config_xml found.  Exiting")
                     sys.exit()
-
-        doc = xml.dom.minidom.parse(file)
+        try:
+            doc = xml.dom.minidom.parse(file)
+        except:
+            print "Error parsing %s.  See error log file." % (file)
+            traceback.print_exc(file=sys.stderr)
+            print "press enter to continue"
+            sys.stdin.readline()
+            sys.exit()
 
         self.doc = doc
         self.file = file
