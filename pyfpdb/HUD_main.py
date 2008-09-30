@@ -101,6 +101,7 @@ def read_stdin(source, condition, db_name):
     new_hand_id = sys.stdin.readline()
     if new_hand_id == "":
         destroy()
+    print "new_hand_id = ", new_hand_id
     process_new_hand(new_hand_id, db_name)
     return True
 
