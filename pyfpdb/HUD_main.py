@@ -99,12 +99,16 @@ def check_stdin(db_name):
 
 def read_stdin(source, condition, db_name):
     new_hand_id = sys.stdin.readline()
+    if new_hand_id == "":
+        destroy()
     process_new_hand(new_hand_id, db_name)
     return True
 
 def producer():            # This is the thread function
     while True:
         hand_no = sys.stdin.readline()  # reads stdin
+        if new_hand_id == "":
+            destroy()
         dataQueue.put(hand_no)          # and puts result on the queue
 
 if __name__== "__main__":
