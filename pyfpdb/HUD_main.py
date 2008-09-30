@@ -117,7 +117,7 @@ if __name__== "__main__":
     try:
         db_name = sys.argv[1]
     except:
-        db_name = 'fpdb-p'
+        db_name = 'fpdb'
     sys.stderr.write("Using db name = %s\n" % (db_name))
 
     config = Configuration.Config()
