@@ -25,6 +25,7 @@ Create and manage the database objects.
 
 #    Standard Library modules
 import sys
+import traceback
 
 #    pyGTK modules
 
@@ -32,30 +33,44 @@ import sys
 import Configuration
 import SQL
 
-#    pgdb database module for posgres via DB-API
-import psycopg2
-#    pgdb uses pyformat.  is that fixed or an option?
-
-#    mysql bindings
-import MySQLdb
-
 class Database:
     def __init__(self, c, db_name, game):
         if   c.supported_databases[db_name].db_server == 'postgresql':
-            self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
+            #    psycopg2 database module for posgres via DB-API
+            import psycopg2
+
+            try:
+                self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
                                        user = c.supported_databases[db_name].db_user,
                                        password = c.supported_databases[db_name].db_pass,
                                        database = c.supported_databases[db_name].db_name)
+            except:
+                print "Error opening database connection %s.  See error log file." % (file)
+                traceback.print_exc(file=sys.stderr)
+                print "press enter to continue"
+                sys.stdin.readline()
+                sys.exit()
 
         elif c.supported_databases[db_name].db_server == 'mysql':
-            self.connection = MySQLdb.connect(host = c.supported_databases[db_name].db_ip,
+            #    mysql bindings
+            import MySQLdb
+            try:
+                self.connection = MySQLdb.connect(host = c.supported_databases[db_name].db_ip,
                                        user = c.supported_databases[db_name].db_user,
                                        passwd = c.supported_databases[db_name].db_pass,
                                        db = c.supported_databases[db_name].db_name)
+            except:
+                print "Error opening database connection %s.  See error log file." % (file)
+                traceback.print_exc(file=sys.stderr)
+                print "press enter to continue"
+                sys.stdin.readline()
+                sys.exit()
 
         else:
-            print "Database not recognized."
-            return(0)
+            print "Database = %s not recognized." % (c.supported_databases[db_name].db_server)
+            sys.stderr.write("Database not recognized, exiting.\n")
+            print "press enter to continue"
+            sys.exit()
 
         self.type = c.supported_databases[db_name].db_type
         self.sql = SQL.Sql(game = game, type = self.type)
@@ -155,8 +170,8 @@ class Database:
 if __name__=="__main__":
     c = Configuration.Config()
 
-#    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
-    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
+    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
+#    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection

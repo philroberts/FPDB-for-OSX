@@ -247,6 +247,8 @@ class Config:
 
     def get_layout_node(self, site_node, layout):
         for layout_node in site_node.getElementsByTagName("layout"):
+            if layout_node.getAttribute("max") == None: 
+                return None
             if int( layout_node.getAttribute("max") ) == int( layout ):
                 return layout_node
 
@@ -268,8 +270,10 @@ class Config:
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
+        print "max = ", max
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
+        if layout_node == None: return
         for i in range(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))
