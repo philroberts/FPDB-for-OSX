@@ -1,7 +1,7 @@
 Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
 Please also see db-todo.txt
 
-alpha5 (release 25Sep-2Oct)
+alpha6 (release 3Oct-10Oct)
 ======
 pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
 check we're reading mucked cards from PS
@@ -39,6 +39,8 @@ Many STTs won't import
 
 before beta
 ===========
+autoimport doesnt seem to work with just one hand in the file
+make Database.py display error if wrong or missing db lib
 Import draw (maybe without HudCache for a start)
 graphs for SD/F, W$wSF, W$@SD
 validate webpage

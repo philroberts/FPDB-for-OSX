@@ -18,8 +18,9 @@
 import os
 import sys
 
-errorfile = open('fpdb-error.log', 'w')
-sys.stderr = errorfile
+errorFile = open('fpdb-error.log', 'w', 0)
+#errorFileObject = os.fdopen(errorFile)#, 'w', int(1))
+sys.stderr = errorFile
 
 import pygtk
 pygtk.require('2.0')
@@ -420,7 +421,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha5, p109")
+		self.window.set_title("Free Poker DB - version: alpha6, p111")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)

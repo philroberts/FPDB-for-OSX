@@ -38,7 +38,7 @@ import os
 import thread
 import Queue
 
-errorfile = open('HUD-error.txt', 'w')
+errorfile = open('HUD-error.txt', 'w', 0)
 sys.stderr = errorfile
 
 #    pyGTK modules

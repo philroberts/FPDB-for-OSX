@@ -33,11 +33,17 @@ import Configuration
 import SQL
 
 #    pgdb database module for posgres via DB-API
-import psycopg2
+try:
+	import psycopg2
 #    pgdb uses pyformat.  is that fixed or an option?
+except:
+	pass
 
+try:
 #    mysql bindings
-import MySQLdb
+	import MySQLdb
+except:
+	pass
 
 class Database:
     def __init__(self, c, db_name, game):
