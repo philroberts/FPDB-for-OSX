@@ -87,7 +87,7 @@ def mainParser(db, cursor, site, category, hand):
 		if (lineTypes[i]=="cards"):
 			fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
 		elif (lineTypes[i]=="action"):
-			fpdb_simple.parseActionLine (site, base, hand[i], lineStreets[i], playerIDs, names, actionTypes, actionAmounts, actionNos, actionTypeByNo)
+			fpdb_simple.parseActionLine (site, base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, actionAmounts, actionNos, actionTypeByNo)
 		elif (lineTypes[i]=="win"):
 			fpdb_simple.parseWinLine (hand[i], site, names, winnings, isTourney)
 		elif (lineTypes[i]=="rake"):
@@ -99,7 +99,7 @@ def mainParser(db, cursor, site, category, hand):
 		elif (lineTypes[i]=="header" or lineTypes[i]=="rake" or lineTypes[i]=="name" or lineTypes[i]=="ignore"):
 			pass
 		elif (lineTypes[i]=="ante"):
-			fpdb_simple.parseAnteLine(hand[i], site, names, antes)
+			fpdb_simple.parseAnteLine(hand[i], site, isTourney, names, antes)
 		elif (lineTypes[i]=="table"):
 			tableResult=fpdb_simple.parseTableLine(site, base, hand[i])
 		else:

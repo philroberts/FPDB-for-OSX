@@ -542,7 +542,7 @@ def isWinLine(line):
 #end def isWinLine
 
 #returns the amount of cash/chips put into the put in the given action line
-def parseActionAmount(line, atype, site):
+def parseActionAmount(line, atype, site, isTourney):
 	if (line.endswith(" and is all-in")):
 		line=line[:-14]
 	elif (line.endswith(", and is all in")):
@@ -573,8 +573,8 @@ def parseActionAmount(line, atype, site):
 		pos=line.find("to $")+4
 		amount=float2int(line[pos:])
 	else:
-		pos=line.rfind("$")+1
-		if pos!=0:
+		if not isTourney:
+			pos=line.rfind("$")+1
 			amount=float2int(line[pos:])
 		else:
 			#print "line:"+line+"EOL"
@@ -591,7 +591,7 @@ def parseActionAmount(line, atype, site):
 #doesnt return anything, simply changes the passed arrays action_types and
 #	action_amounts. For stud this expects numeric streets (3-7), for
 #	holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(site, base, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
+def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
 	if (street=="predeal" or street=="preflop"):
 		street=0
 	elif (street=="flop"):
@@ -609,7 +609,7 @@ def parseActionLine(site, base, line, street, playerIDs, names, action_types, ac
 		
 	atype=parseActionType(line)
 	playerno=recognisePlayerNo(line, names, atype)
-	amount=parseActionAmount(line, atype, site)
+	amount=parseActionAmount(line, atype, site, isTourney)
 	
 	action_types[street][playerno].append(atype)
 	action_amounts[street][playerno].append(amount)
@@ -657,12 +657,12 @@ def parseActionType(line):
 #end def parseActionType
 
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
-def parseAnteLine(line, site, names, antes):
+def parseAnteLine(line, site, isTourney, names, antes):
 	#print "parseAnteLine line: ",line
 	for i in range(len(names)):
 		if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
 			pos=line.rfind("$")+1
-			if pos!=0: #found $, so must be ring
+			if not isTourney:
 				antes[i]+=float2int(line[pos:])
 			else:
 				if line.find("all-in")==-1:
