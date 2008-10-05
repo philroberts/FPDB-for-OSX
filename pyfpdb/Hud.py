@@ -105,8 +105,8 @@ class Hud:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
             new_layout.append(new_loc)
-        print new_layout
-        self.config.edit_layout(self.table.site, self.table.max, locations = new_layout)
+#        print new_layout
+        self.config.edit_layout(self.table.site, self.max, locations = new_layout)
         self.config.save()
 
     def create(self, hand, config):
