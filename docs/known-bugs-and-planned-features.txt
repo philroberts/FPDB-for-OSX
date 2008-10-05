@@ -17,7 +17,7 @@ update abbreviations.txt
 export settings[hud-defaultInterval] to conf
 fill check-/call-raise cache fields
 
-printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
+printplayerflags on ps-lhe-ring-successful-steal-by-cutoff.txt, finish existing regression tests
 change to savannah?
 implement steal and positions in stud
 anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no

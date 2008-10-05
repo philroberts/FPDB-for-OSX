@@ -1583,7 +1583,7 @@ def generateHudCacheData(player_ids, base, category, action_types, actionTypeByN
 			elif pos>=2 and pos<=4:
 				hudDataPositions.append('M')
 			elif pos>=5 and pos<=7:
-				hudDataPositions.append('L')
+				hudDataPositions.append('E')
 			### RHH Added this elif to handle being a dead hand before the BB (pos==9)
 			elif pos==9:
 				hudDataPositions.append('X')
