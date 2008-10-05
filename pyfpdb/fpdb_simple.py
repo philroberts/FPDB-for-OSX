@@ -658,14 +658,20 @@ def parseActionType(line):
 
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, site, names, antes):
+	#print "parseAnteLine line: ",line
 	for i in range(len(names)):
 		if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
 			pos=line.rfind("$")+1
 			if pos!=0: #found $, so must be ring
 				antes[i]+=float2int(line[pos:])
 			else:
-				pos=line.rfind(" ")+1
-				antes[i]+=int(line[pos:])
+				if line.find("all-in")==-1:
+					pos=line.rfind(" ")+1
+					antes[i]+=int(line[pos:])
+				else:
+					pos1=line.rfind("ante")+5
+					pos2=line.find(" ",pos1)
+					antes[i]+=int(line[pos1:pos2])
 #end def parseAntes
 
 #returns the buyin of a tourney in cents
