@@ -938,7 +938,7 @@ def parseWinLine(line, site, names, winnings, isTourney):
 	for i in range(len(names)):
 		if (line.startswith(names[i].encode("latin-1"))): #found a winner
 			if isTourney:
-				pos1=line.rfind("collected ")+11
+				pos1=line.rfind("collected ")+10
 				if (site=="ftp"):
 					pos2=line.find(")", pos1)
 				elif (site=="ps"):
