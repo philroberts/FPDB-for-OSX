@@ -25,6 +25,7 @@ Handles HUD configuration files.
 #    Standard Library modules
 import os
 import sys
+import string
 import traceback
 import shutil
 import xml.dom.minidom
@@ -280,6 +281,24 @@ class Config:
             location_node.setAttribute("y", str( locations[i-1][1] ))
             self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
 
+    def get_db_parameters(self, name = None):
+        if name == None: name = 'fpdb'
+        db = {}
+        try:
+            db['databaseName'] = name
+            db['host'] = self.supported_databases[name].db_ip
+            db['user'] = self.supported_databases[name].db_user
+            db['password'] = self.supported_databases[name].db_pass
+            db['server'] = self.supported_databases[name].db_server
+            if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+                db['backend'] = 2
+            elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+                db['backend'] = 3
+            else: db['backend'] = 0 # this is big trouble
+        except:
+            pass
+        return db
+
 if __name__== "__main__":
     c = Config()
     
@@ -317,3 +336,5 @@ if __name__== "__main__":
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
+    
+    print c.get_db_parameters()
