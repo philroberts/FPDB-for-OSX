@@ -3,6 +3,8 @@ Please also see db-todo.txt
 
 alpha7 (release 11Oct-17Oct)
 ======
+fix bug that sawFlop/Turn/River/CBChance/etc gets miscalculated if someone is allin using the new all-in parsing
+
 (carl i think) pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
 check we're reading mucked cards from PS
 fix HUD config location and update release script accordingly
@@ -18,9 +20,9 @@ export settings[hud-defaultInterval] to conf
 fill check-/call-raise cache fields
 
 printplayerflags on ps-lhe-ring-successful-steal-by-cutoff.txt, finish existing regression tests
+update blackbox testing to include all-in
 change to savannah?
 implement steal and positions in stud
-anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
 separate db table design version and last bugfix in importer
 change tabledesign VALIGN and add link to webpage
 finish updating filelist
@@ -29,14 +31,19 @@ debian/ubuntu package http://www.debian.org/doc/maint-guide/ch-start.en.html
 howto remote DB
 move all user docs to webpage
 (steffen) contributor list on webpage
-stud/razz tourneys, 
+stud/razz tourneys
 No river stats for stud games?
 hole/board cards are not correctly stored in the db for stud games
 HORSE (and presumably other mixed games) hand history files not handled correctly
-rebuy/addon tourney support
+copy stderr rather than redirecting it http://aspn.activestate.com/ASPN/Mail/Message/python-list/3401682
 
 before beta
 ===========
+move any remaining all-in text filters into goesAllInOnThisLine
+find solution for capped in parseActionAmount
+anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
+rebuy/addon tourney support
+convert ante to an action so that it can be all-in
 ebuild: support pgsql
 autoimport doesnt seem to work with just one hand in the file
 make Database.py display error if wrong or missing db lib
@@ -62,7 +69,6 @@ move version into seperate file for fpdb gui and db
 SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
 create little test script for people to run to verify successful installation of pydeps
 split hud data generation into separate for loops and make it more efficient
-fix bug that sawFlop/Turn/River/CBChance/etc gets miscalculated if someone is allin - might as well add all-in recognition for this
 make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))
 make it work with postgres
 expand instructions for profile file

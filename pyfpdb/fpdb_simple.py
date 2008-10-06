@@ -204,7 +204,7 @@ def convertCardValuesBoard(arr):
 #end def convertCardValuesBoard
 
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
-def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, action_amounts, actionNos, actionTypeByNo):
+def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
 	for i in range(seats):#create second dimension arrays
 		tmp=[]
 		card_values.append(tmp)
@@ -223,6 +223,8 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
 		tmp=[]
 		action_types.append(tmp)
 		tmp=[]
+		allIns.append(tmp)
+		tmp=[]
 		action_amounts.append(tmp)
 		tmp=[]
 		actionNos.append(tmp)
@@ -231,6 +233,8 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
 		for j in range (seats): #second dimension arrays: players
 			tmp=[]
 			action_types[i].append(tmp)
+			tmp=[]
+			allIns[i].append(tmp)
 			tmp=[]
 			action_amounts[i].append(tmp)
 			tmp=[]
@@ -543,10 +547,10 @@ def isWinLine(line):
 
 #returns the amount of cash/chips put into the put in the given action line
 def parseActionAmount(line, atype, site, isTourney):
-	if (line.endswith(" and is all-in")):
-		line=line[:-14]
-	elif (line.endswith(", and is all in")):
-		line=line[:-15]
+	#if (line.endswith(" and is all-in")):
+	#	line=line[:-14]
+	#elif (line.endswith(", and is all in")):
+	#	line=line[:-15]
 	
 	if line.endswith(", and is capped"):#ideally we should recognise this as an all-in if category is capXl
 		line=line[:-15]
@@ -591,7 +595,7 @@ def parseActionAmount(line, atype, site, isTourney):
 #doesnt return anything, simply changes the passed arrays action_types and
 #	action_amounts. For stud this expects numeric streets (3-7), for
 #	holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, action_amounts, actionNos, actionTypeByNo):
+def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
 	if (street=="predeal" or street=="preflop"):
 		street=0
 	elif (street=="flop"):
@@ -606,17 +610,31 @@ def parseActionLine(site, base, isTourney, line, street, playerIDs, names, actio
 		for count in range(len(actionNos[street][player])):
 			if actionNos[street][player][count]>=nextActionNo:
 				nextActionNo=actionNos[street][player][count]+1
-		
+				
+	line, allIn=goesAllInOnThisLine(line)
 	atype=parseActionType(line)
 	playerno=recognisePlayerNo(line, names, atype)
 	amount=parseActionAmount(line, atype, site, isTourney)
 	
 	action_types[street][playerno].append(atype)
+	allIns[street][playerno].append(allIn)
 	action_amounts[street][playerno].append(amount)
 	actionNos[street][playerno].append(nextActionNo)
 	tmp=(playerIDs[playerno], atype)
 	actionTypeByNo[street].append(tmp)
 #end def parseActionLine
+
+def goesAllInOnThisLine(line):
+	"""returns whether the player went all-in on this line and removes the all-in text from the line."""
+	isAllIn=False
+	if (line.endswith(" and is all-in")):
+		line=line[:-14]
+		isAllIn=True
+	elif (line.endswith(", and is all in")):
+		line=line[:-15]
+		isAllIn=True
+	return (line, isAllIn)
+#end def goesAllInOnThisLine
 
 #returns the action type code (see table design) of the given action line
 def parseActionType(line):
@@ -1185,14 +1203,14 @@ def splitRake(winnings, rakes, totalRake):
 				rakes[i]=totalRake*winPortion
 #end def splitRake
 
-def storeActions(cursor, hands_players_ids, action_types, action_amounts, actionNos):
+def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, actionNos):
 #stores into table hands_actions
 	#print "start of storeActions, actionNos:",actionNos
 	#print "                  action_amounts:",action_amounts
-	for i in range (len(action_types)): #iterate through streets
-		for j in range (len(action_types[i])): #iterate through names
-			for k in range (len(action_types[i][j])):  #iterate through individual actions of that player on that street
-				cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, amount) VALUES (%s, %s, %s, %s, %s)", (hands_players_ids[j], i, actionNos[i][j][k], action_types[i][j][k], action_amounts[i][j][k]))
+	for i in range (len(actionTypes)): #iterate through streets
+		for j in range (len(actionTypes[i])): #iterate through names
+			for k in range (len(actionTypes[i][j])):  #iterate through individual actions of that player on that street
+				cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
 #end def storeActions
 
 def store_board_cards(cursor, hands_id, board_values, board_suits):

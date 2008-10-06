@@ -29,7 +29,8 @@ try:
 	from numpy import arange, cumsum
 	from pylab import *
 except:
-	print "Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib."
+	print "Failed to load libs for graphing, graphing will not function. Please install numpy and matplotlib if you want to use graphs."
+	print "This is of no consequence for other parts of the program, e.g. import and HUD are NOT affected by this problem."
 
 import fpdb_import
 import fpdb_db

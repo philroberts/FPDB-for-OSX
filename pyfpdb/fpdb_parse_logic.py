@@ -30,7 +30,7 @@ def mainParser(db, cursor, site, category, hand):
 	lineTypes=[] #char, valid values: header, name, cards, action, win, rake, ignore
 	lineStreets=[] #char, valid values: (predeal, preflop, flop, turn, river)
 
-	cardValues, cardSuits, boardValues, boardSuits, antes, actionTypes, actionAmounts, actionNos, actionTypeByNo, seatLines, winnings, rakes=[], [],[],[],[],[],[],[],[],[],[],[]
+	cardValues, cardSuits, boardValues, boardSuits, antes, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo, seatLines, winnings, rakes=[],[],[],[],[],[],[],[],[],[],[],[],[]
 
 	#part 1: read hand no and check for duplicate
 	siteHandNo=fpdb_simple.parseSiteHandNo(hand[0])
@@ -76,7 +76,7 @@ def mainParser(db, cursor, site, category, hand):
 	startCashes=tmp['startCashes']
 	seatNos=tmp['seatNos']
 	
-	fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, actionAmounts, actionNos, actionTypeByNo)
+	fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
 	
 	#3b read positions
 	if base=="hold":
@@ -87,7 +87,7 @@ def mainParser(db, cursor, site, category, hand):
 		if (lineTypes[i]=="cards"):
 			fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
 		elif (lineTypes[i]=="action"):
-			fpdb_simple.parseActionLine (site, base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, actionAmounts, actionNos, actionTypeByNo)
+			fpdb_simple.parseActionLine (site, base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
 		elif (lineTypes[i]=="win"):
 			fpdb_simple.parseWinLine (hand[i], site, names, winnings, isTourney)
 		elif (lineTypes[i]=="rake"):
@@ -138,22 +138,22 @@ def mainParser(db, cursor, site, category, hand):
 		
 		if base=="hold":
 			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
-					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif base=="stud":
 			result = fpdb_save_to_db.tourney_stud(cursor, base, category, siteTourneyNo, buyin, fee, 
 					knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
 					siteHandNo, siteID, gametypeID, handStartTime, names, playerIDs, 
 					startCashes, antes, cardValues, cardSuits, winnings, rakes, 
-					actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+					actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		else:
 			raise fpdb_simple.FpdbError ("unrecognised category")
 	else:
 		if base=="hold":
-			result = fpdb_save_to_db.ring_holdem_omaha(cursor, base, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+			result = fpdb_save_to_db.ring_holdem_omaha(cursor, base, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif base=="stud":
 			result = fpdb_save_to_db.ring_stud(cursor, base, category, siteHandNo, gametypeID, 
 					handStartTime, names, playerIDs, startCashes, antes, cardValues, 
-					cardSuits, winnings, rakes, actionTypes, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+					cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		else:
 			raise fpdb_simple.FpdbError ("unrecognised category")
 		db.commit()

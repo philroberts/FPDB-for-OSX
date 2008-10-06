@@ -19,7 +19,6 @@ import os
 import sys
 
 errorFile = open('fpdb-error.log', 'w', 0)
-#errorFileObject = os.fdopen(errorFile)#, 'w', int(1))
 sys.stderr = errorFile
 
 import pygtk
@@ -347,11 +346,11 @@ class fpdb:
 	#end def load_profile
 	
 	def not_implemented(self):
-		print "todo: called unimplemented menu entry"#remove this once more entries are implemented
+		print "todo: called unimplemented menu entry (users: pls ignore this)"#remove this once more entries are implemented
 	#end def not_implemented
 	
 	def obtain_global_lock(self):
-		print "todo: implement obtain_global_lock"
+		print "todo: implement obtain_global_lock (users: pls ignore this)"
 	#end def obtain_global_lock
 	
 	def quit(self, widget, data):
@@ -421,7 +420,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha6+, p112 or higher")
+		self.window.set_title("Free Poker DB - version: alpha6+, p118 or higher")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)

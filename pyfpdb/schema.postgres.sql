@@ -137,6 +137,7 @@ CREATE TABLE HandsActions (
 		street SMALLINT,
 		actionNo SMALLINT,
 		action CHAR(5),
+		allIn BOOLEAN,
 		amount INT,
 		comment TEXT,
 		commentTs timestamp without time zone);
@@ -211,7 +212,7 @@ CREATE TABLE HudCache (
 		street4CheckCallRaiseChance INT,
 		street4CheckCallRaiseDone INT);
 
-INSERT INTO Settings VALUES (76);
+INSERT INTO Settings VALUES (118);
 INSERT INTO Sites ("name", currency) VALUES ('Full Tilt Poker', 'USD');
 INSERT INTO Sites ("name", currency) VALUES ('PokerStars', 'USD');
 INSERT INTO TourneyTypes (buyin, fee, knockout, rebuyOrAddon) VALUES (0, 0, 0, FALSE);
