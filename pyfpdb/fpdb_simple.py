@@ -1341,7 +1341,7 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 	return result
 #end def store_hands_players_stud_tourney
 
-def generateHudCacheData(player_ids, base, category, action_types, actionTypeByNo, winnings, totalWinnings, positions):
+def generateHudCacheData(player_ids, base, category, action_types, allIns, actionTypeByNo, winnings, totalWinnings, positions):
 	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
 	#setup subarrays of the result dictionary.
 	street0VPI=[]
@@ -1489,14 +1489,28 @@ def generateHudCacheData(player_ids, base, category, action_types, actionTypeByN
 			
 				if myStealAttempted:
 					someoneStole=True
-
+		
+		
 		#calculate saw* values
-		if (len(action_types[1][player])>0):
+		isAllIn=False
+		for i in range(len(allIns[0][player])):
+			if allIns[0][player][i]:
+				isAllIn=True
+		if (len(action_types[1][player])>0 or isAllIn):
 			myStreet1Seen=True
-			if (len(action_types[2][player])>0):
+
+			for i in range(len(allIns[1][player])):
+				if allIns[1][player][i]:
+					isAllIn=True
+			if (len(action_types[2][player])>0 or isAllIn):
 				myStreet2Seen=True
-				if (len(action_types[3][player])>0):
+
+				for i in range(len(allIns[2][player])):
+					if allIns[2][player][i]:
+						isAllIn=True
+				if (len(action_types[3][player])>0 or isAllIn):
 					myStreet3Seen=True
+
 					mySawShowdown=True
 					for count in range (len(action_types[3][player])):
 						if action_types[3][player][count]=="fold":
