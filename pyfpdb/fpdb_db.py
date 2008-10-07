@@ -61,20 +61,6 @@ class fpdb_db:
 			self.wrongDbVersion=True
 	#end def connect
 
-	def create_table(self, string):
-		"""creates a table for the given string
-		The string should the name of the table followed by the column list
-		in brackets as if it were an SQL command. Do NOT include the "CREATE TABLES"
-		bit at the beginning nor the ";" or ENGINE= at the end"""
-		string="CREATE TABLE "+string
-		if (self.backend==self.MYSQL_INNODB):
-			string+=" ENGINE=INNODB"
-		string+=";"
-		#print "create_table, string:", string
-		self.cursor.execute(string)
-		self.db.commit()
-	#end def create_table
-
 	def disconnect(self, due_to_error=False):
 		"""Disconnects the DB"""
 		if due_to_error:
@@ -107,17 +93,18 @@ class fpdb_db:
                 self.cursor.execute(self.sql.query['createHandsActionsTable'])
                 self.cursor.execute(self.sql.query['createHudCacheTable'])
 		self.fillDefaultData()
+                self.db.commit()
 #end def disconnect
 	
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
 
 		if(self.get_backend_name() == 'MySQL InnoDB'):
-			# Query the DB to see what tables exist
-	                self.cursor.execute('SHOW TABLES')
 			#Databases with FOREIGN KEY support need this switched of before you can drop tables
                 	self.drop_referencial_integrity()
 
+			# Query the DB to see what tables exist
+	                self.cursor.execute('SHOW TABLES')
 	                for table in self.cursor:
                 	        self.cursor.execute(self.sql.query['drop_table'] + table[0])
 		elif(self.get_backend_name() == 'PostgreSQL'):
@@ -126,6 +113,8 @@ class fpdb_db:
 		elif(self.get_backend_name() == 'SQLite'):
 			#todo: sqlite version here
 			print "Empty function here"
+
+                self.db.commit()
 	#end def drop_tables
 
 	def drop_referencial_integrity(self):

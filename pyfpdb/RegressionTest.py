@@ -43,8 +43,14 @@ class TestSequenceFunctions(unittest.TestCase):
 
 	def testDatabaseConnection(self):
 		"""Test all supported DBs"""
-		result = self.mysql_db.cursor.execute("SHOW TABLES")
-                self.failUnless(result==13, "Number of tables in database incorrect. Expected 13 got " + str(result))
+		self.result = self.mysql_db.cursor.execute("SHOW TABLES")
+                self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
+
+	def testMySQLRecreateTables(self):
+		"""Test droping then recreating fpdb table schema"""
+		self.mysql_db.recreate_tables()
+		self.result = self.mysql_db.cursor.execute("SHOW TABLES")
+                self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
 
 if __name__ == '__main__':
         unittest.main()
