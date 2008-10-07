@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+import fpdb_simple
 
 try:
 	import MySQLdb
