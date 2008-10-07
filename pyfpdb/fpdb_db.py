@@ -108,9 +108,11 @@ class fpdb_db:
 	                for table in self.cursor:
                 	        self.cursor.execute(self.sql.query['drop_table'] + table[0])
 		elif(self.get_backend_name() == 'PostgreSQL'):
+			self.db.commit()# I have no idea why this makes the query work--REB 07OCT2008
 			self.cursor.execute(self.sql.query['list_tables'])
-	                for table in self.cursor:
-				print table
+			tables = self.cursor.fetchall()
+	                for table in tables:
+                	        self.cursor.execute(self.sql.query['drop_table'] + table[0] + ' cascade') 
 		elif(self.get_backend_name() == 'SQLite'):
 			#todo: sqlite version here
 			print "Empty function here"
@@ -154,8 +156,8 @@ class fpdb_db:
 	
 	def fillDefaultData(self):
 		self.cursor.execute("INSERT INTO Settings VALUES (118);")
-		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"Full Tilt Poker\", 'USD');")
-		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, \"PokerStars\", 'USD');")
+		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
+		self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
 		self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
 	#end def fillDefaultData
 	
