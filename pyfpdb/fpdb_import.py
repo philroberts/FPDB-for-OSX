@@ -56,17 +56,17 @@ def import_file_dict(options, settings, callHud=False):
 			inputFile=open(options.inputFile, "rU")
 
 		#connect to DB
-		if options.settings['db-backend'] == 2:
+		if settings['db-backend'] == 2:
 			if not mysqlLibFound:
 				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
 			db = MySQLdb.connect(host = options.server, user = options.user,
 							passwd = options.password, db = options.database)
-		elif options.settings['db-backend'] == 3:
+		elif settings['db-backend'] == 3:
 			if not pgsqlLibFound:
 				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
 			db = psycopg2.connect(host = options.server, user = options.user,
 								  password = options.password, database = options.database)
-		elif options.settings['db-backend'] == 4:
+		elif settings['db-backend'] == 4:
 			pass
 		else:
 			pass
@@ -224,5 +224,5 @@ if __name__ == "__main__":
 
 	(options, sys.argv) = parser.parse_args()
 	
-	settings={'imp-callFpdbHud':False}
+	settings={'imp-callFpdbHud':False, 'db-backend':2}
 	import_file_dict(options, settings, False)

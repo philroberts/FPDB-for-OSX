@@ -29,7 +29,7 @@ parser.add_option("-e", "--seats", default="7", type="int", help="number of acti
 parser.add_option("-g", "--gameType", default="ring", help="Whether its a ringgame (ring) or a tournament (tour)")
 parser.add_option("-l", "--limit", "--limitType", default="fl", help="Limit Type, one of: nl, pl, fl, cn, cp")
 parser.add_option("-n", "--name", "--playername", default="Player_1", help="Name of the player to print")
-parser.add_option("-o", "--position", default="B", help="Position, can be B, S, or a number  between 0 and 7")
+parser.add_option("-o", "--position", default="B", help="Position, can be B, S, D, C, M or E (see tabledesign.html)")
 parser.add_option("-p", "--password", help="The password for the MySQL user")
 parser.add_option("-s", "--site", default="PokerStars", help="Name of the site (as written in the history files)")
 
@@ -54,6 +54,7 @@ cursor.execute("SELECT id FROM Players WHERE name=%s", (options.name,))
 playerId=cursor.fetchone()[0]
 
 cursor.execute("SELECT id FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s",(gametypeId, playerId, options.seats, options.position))
+#print "debug: gametypeId:", gametypeId, "playerId:", playerId, "options.seats:", options.seats, "options.position:", options.position
 hudDataId=cursor.fetchone()[0]
 
 print "siteId:", siteId, "gametypeId:", gametypeId, "playerId:", playerId, "hudDataId:", hudDataId
