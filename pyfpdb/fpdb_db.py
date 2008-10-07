@@ -17,12 +17,14 @@
 
 import os
 import fpdb_simple
+import FpdbSQLQueries
 
 class fpdb_db:
 	def __init__(self):
 		"""Simple constructor, doesnt really do anything"""
 		self.db=None
 		self.cursor=None
+		self.sql = {}
 		self.MYSQL_INNODB=2
 		self.PGSQL=3
 		self.SQLITE=4
@@ -44,6 +46,8 @@ class fpdb_db:
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
+		# Set up query dictionary as early in the connection process as we can.
+                self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
 		self.wrongDbVersion=False
 		try:
 			self.cursor.execute("SELECT * FROM Settings")
@@ -181,213 +185,19 @@ class fpdb_db:
 		
 		self.drop_tables()
 		
-		self.create_table("""Settings (
-		version SMALLINT NOT NULL)""")
-		
-		self.create_table("""Sites (
-		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		name varchar(32) NOT NULL,
-		currency char(3) NOT NULL)""")
-		
-		self.create_table("""Gametypes (
-		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-		type char(4) NOT NULL,
-		base char(4) NOT NULL,
-		category varchar(9) NOT NULL,
-		limitType char(2) NOT NULL,
-		hiLo char(1) NOT NULL,
-		smallBlind int,
-		bigBlind int,
-		smallBet int NOT NULL,
-		bigBet int NOT NULL)""")
-		#NOT NULL not set for small/bigBlind as they are not existent in all games
-		
-		self.create_table("""Players (
-		id INT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
-		siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-		comment text,
-		commentTs DATETIME)""")
-		
-		self.create_table("""Autorates (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-		gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-		description varchar(50) NOT NULL,
-		shortDesc char(8) NOT NULL,
-		ratingTime DATETIME NOT NULL,
-		handCount int NOT NULL)""")
-
-		self.create_table("""Hands (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		tableName VARCHAR(20) NOT NULL,
-		siteHandNo BIGINT NOT NULL,
-		gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-		handStart DATETIME NOT NULL,
-		importTime DATETIME NOT NULL,
-		seats SMALLINT NOT NULL,
-		maxSeats SMALLINT NOT NULL,
-		comment TEXT,
-		commentTs DATETIME)""")
-
-		self.create_table("""BoardCards (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
-		card1Value smallint NOT NULL,
-		card1Suit char(1) NOT NULL,
-		card2Value smallint NOT NULL,
-		card2Suit char(1) NOT NULL,
-		card3Value smallint NOT NULL,
-		card3Suit char(1) NOT NULL,
-		card4Value smallint NOT NULL,
-		card4Suit char(1) NOT NULL,
-		card5Value smallint NOT NULL,
-		card5Suit char(1) NOT NULL)""")
-
-		self.create_table("""TourneyTypes (
-		id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-		buyin INT NOT NULL,
-		fee INT NOT NULL,
-		knockout INT NOT NULL,
-		rebuyOrAddon BOOLEAN NOT NULL)""")
-
-		self.create_table("""Tourneys (
-		id INT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-		siteTourneyNo BIGINT NOT NULL,
-		entries INT NOT NULL,
-		prizepool INT NOT NULL,
-		startTime DATETIME NOT NULL,
-		comment TEXT,
-		commentTs DATETIME)""")
-
-		self.create_table("""TourneysPlayers (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
-		playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-		payinAmount INT NOT NULL,
-		rank INT NOT NULL,
-		winnings INT NOT NULL,
-		comment TEXT,
-		commentTs DATETIME)""")
-
-		self.create_table("""HandsPlayers (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
-		playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-		startCash INT NOT NULL,
-		position CHAR(1),
-		seatNo SMALLINT NOT NULL,
-		ante INT,
-	
-		card1Value smallint NOT NULL,
-		card1Suit char(1) NOT NULL,
-		card2Value smallint NOT NULL,
-		card2Suit char(1) NOT NULL,
-		card3Value smallint,
-		card3Suit char(1),
-		card4Value smallint,
-		card4Suit char(1),
-		card5Value smallint,
-		card5Suit char(1),
-		card6Value smallint,
-		card6Suit char(1),
-		card7Value smallint,
-		card7Suit char(1),
-	
-		winnings int NOT NULL,
-		rake int NOT NULL,
-		comment text,
-		commentTs DATETIME,
-	
-		tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))""")
-		#NOT NULL not set on cards 3-7 as they dont exist in all games
-
-		self.create_table("""HandsActions (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		handPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
-		street SMALLINT NOT NULL,
-		actionNo SMALLINT NOT NULL,
-		action CHAR(5) NOT NULL,
-		allIn BOOLEAN NOT NULL,
-		amount INT NOT NULL,
-		comment TEXT,
-		commentTs DATETIME)""")
-		
-		self.create_table("""HudCache (
-		id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-		gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-		playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-		activeSeats SMALLINT NOT NULL,
-		position CHAR(1),
-		tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-		
-		HDs INT NOT NULL,
-		street0VPI INT NOT NULL,
-		street0Aggr INT NOT NULL,
-		street0_3B4BChance INT NOT NULL,
-		street0_3B4BDone INT NOT NULL,
-		
-		street1Seen INT NOT NULL,
-		street2Seen INT NOT NULL,
-		street3Seen INT NOT NULL,
-		street4Seen INT NOT NULL,
-		sawShowdown INT NOT NULL,
-		
-		street1Aggr INT NOT NULL,
-		street2Aggr INT NOT NULL,
-		street3Aggr INT NOT NULL,
-		street4Aggr INT NOT NULL,
-		
-		otherRaisedStreet1 INT NOT NULL,
-		otherRaisedStreet2 INT NOT NULL,
-		otherRaisedStreet3 INT NOT NULL,
-		otherRaisedStreet4 INT NOT NULL,
-		foldToOtherRaisedStreet1 INT NOT NULL,
-		foldToOtherRaisedStreet2 INT NOT NULL,
-		foldToOtherRaisedStreet3 INT NOT NULL,
-		foldToOtherRaisedStreet4 INT NOT NULL,
-		wonWhenSeenStreet1 FLOAT NOT NULL,
-		wonAtSD FLOAT NOT NULL,
-		
-		stealAttemptChance INT NOT NULL,
-		stealAttempted INT NOT NULL,
-		foldBbToStealChance INT NOT NULL,
-		foldedBbToSteal INT NOT NULL,
-		foldSbToStealChance INT NOT NULL,
-		foldedSbToSteal INT NOT NULL,
-		
-		street1CBChance INT NOT NULL,
-		street1CBDone INT NOT NULL,
-		street2CBChance INT NOT NULL,
-		street2CBDone INT NOT NULL,
-		street3CBChance INT NOT NULL,
-		street3CBDone INT NOT NULL,
-		street4CBChance INT NOT NULL,
-		street4CBDone INT NOT NULL,
-		
-		foldToStreet1CBChance INT NOT NULL,
-		foldToStreet1CBDone INT NOT NULL,
-		foldToStreet2CBChance INT NOT NULL,
-		foldToStreet2CBDone INT NOT NULL,
-		foldToStreet3CBChance INT NOT NULL,
-		foldToStreet3CBDone INT NOT NULL,
-		foldToStreet4CBChance INT NOT NULL,
-		foldToStreet4CBDone INT NOT NULL,
-		
-		totalProfit INT NOT NULL,
-		
-		street1CheckCallRaiseChance INT NOT NULL,
-		street1CheckCallRaiseDone INT NOT NULL,
-		street2CheckCallRaiseChance INT NOT NULL,
-		street2CheckCallRaiseDone INT NOT NULL,
-		street3CheckCallRaiseChance INT NOT NULL,
-		street3CheckCallRaiseDone INT NOT NULL,
-		street4CheckCallRaiseChance INT NOT NULL,
-		street4CheckCallRaiseDone INT NOT NULL)""")
-		
+		self.cursor.execute(self.sql.query['createSettingsTable'])
+                self.cursor.execute(self.sql.query['createSitesTable'])
+                self.cursor.execute(self.sql.query['createGametypesTable'])
+                self.cursor.execute(self.sql.query['createPlayersTable'])
+                self.cursor.execute(self.sql.query['createAutoratesTable'])
+                self.cursor.execute(self.sql.query['createHandsTable'])
+                self.cursor.execute(self.sql.query['createBoardCardsTable'])
+                self.cursor.execute(self.sql.query['createTourneyTypesTable'])
+                self.cursor.execute(self.sql.query['createTourneysTable'])
+                self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
+                self.cursor.execute(self.sql.query['createHandsPlayersTable'])
+                self.cursor.execute(self.sql.query['createHandsActionsTable'])
+                self.cursor.execute(self.sql.query['createHudCacheTable'])
 		self.fillDefaultData()
 		self.db.commit()
 		print "finished recreating tables"
