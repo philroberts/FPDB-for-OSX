@@ -89,7 +89,24 @@ class fpdb_db:
 		#print "started fpdb_db.reconnect"
 		self.disconnect(due_to_error)
 		self.connect(self.backend, self.host, self.database, self.user, self.password)
-	#end def disconnect
+
+	def create_tables(self):
+		#todo: should detect and fail gracefully if tables already exist.
+		self.cursor.execute(self.sql.query['createSettingsTable'])
+                self.cursor.execute(self.sql.query['createSitesTable'])
+                self.cursor.execute(self.sql.query['createGametypesTable'])
+                self.cursor.execute(self.sql.query['createPlayersTable'])
+                self.cursor.execute(self.sql.query['createAutoratesTable'])
+                self.cursor.execute(self.sql.query['createHandsTable'])
+                self.cursor.execute(self.sql.query['createBoardCardsTable'])
+                self.cursor.execute(self.sql.query['createTourneyTypesTable'])
+                self.cursor.execute(self.sql.query['createTourneysTable'])
+                self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
+                self.cursor.execute(self.sql.query['createHandsPlayersTable'])
+                self.cursor.execute(self.sql.query['createHandsActionsTable'])
+                self.cursor.execute(self.sql.query['createHudCacheTable'])
+		self.fillDefaultData()
+#end def disconnect
 	
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
@@ -165,41 +182,9 @@ class fpdb_db:
 	def recreate_tables(self):
 		"""(Re-)creates the tables of the current DB"""
 		
-		if self.backend == 3:
-#	postgresql
-			print "recreating tables in postgres db"
-			schema_file = open('schema.postgres.sql', 'r')
-			schema = schema_file.read()
-			schema_file.close()
-			curse = self.db.cursor()
-#			curse.executemany(schema, [1, 2])
-			for sql in schema.split(';'):
-				sql = sql.rstrip()
-				if sql == '':
-					continue
-				curse.execute(sql)
-			#self.fillDefaultData()
-			self.db.commit()
-			curse.close()
-			return
-		
 		self.drop_tables()
-		
-		self.cursor.execute(self.sql.query['createSettingsTable'])
-                self.cursor.execute(self.sql.query['createSitesTable'])
-                self.cursor.execute(self.sql.query['createGametypesTable'])
-                self.cursor.execute(self.sql.query['createPlayersTable'])
-                self.cursor.execute(self.sql.query['createAutoratesTable'])
-                self.cursor.execute(self.sql.query['createHandsTable'])
-                self.cursor.execute(self.sql.query['createBoardCardsTable'])
-                self.cursor.execute(self.sql.query['createTourneyTypesTable'])
-                self.cursor.execute(self.sql.query['createTourneysTable'])
-                self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
-                self.cursor.execute(self.sql.query['createHandsPlayersTable'])
-                self.cursor.execute(self.sql.query['createHandsActionsTable'])
-                self.cursor.execute(self.sql.query['createHudCacheTable'])
-		self.fillDefaultData()
+		self.create_tables()
 		self.db.commit()
-		print "finished recreating tables"
+		print "Finished recreating tables"
 	#end def recreate_tables
 #end class fpdb_db
