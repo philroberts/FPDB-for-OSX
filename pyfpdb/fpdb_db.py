@@ -16,6 +16,7 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 import os
+import re
 import fpdb_simple
 import FpdbSQLQueries
 
@@ -110,53 +111,40 @@ class fpdb_db:
 	
 	def drop_tables(self):
 		"""Drops the fpdb tables from the current db"""
-		oldDbVersion=0
-		try:
-			self.cursor.execute("SELECT * FROM settings") #for alpha1
-			oldDbVersion=self.cursor.fetchone()[0]
-		except:# _mysql_exceptions.ProgrammingError:
-			pass
-		try:
-			self.cursor.execute("SELECT * FROM Settings")
-			oldDbVersion=self.cursor.fetchone()[0]
-		except:# _mysql_exceptions.ProgrammingError:
-			pass
-		
-		if oldDbVersion<=34:
-			self.cursor.execute("DROP TABLE IF EXISTS settings;")
-			self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-			self.cursor.execute("DROP TABLE IF EXISTS autorates;")
-			self.cursor.execute("DROP TABLE IF EXISTS board_cards;")
-			self.cursor.execute("DROP TABLE IF EXISTS hands_actions;")
-			self.cursor.execute("DROP TABLE IF EXISTS hands_players;")
-			self.cursor.execute("DROP TABLE IF EXISTS hands;")
-			self.cursor.execute("DROP TABLE IF EXISTS tourneys_players;")
-			self.cursor.execute("DROP TABLE IF EXISTS tourneys;")
-			self.cursor.execute("DROP TABLE IF EXISTS players;")
-			self.cursor.execute("DROP TABLE IF EXISTS gametypes;")
-			self.cursor.execute("DROP TABLE IF EXISTS sites;")
-		
-		if oldDbVersion>34 and oldDbVersion<=45:
-			self.cursor.execute("DROP TABLE IF EXISTS HudDataHoldemOmaha;")
-		
-		self.cursor.execute("DROP TABLE IF EXISTS Settings;")
-		self.cursor.execute("DROP TABLE IF EXISTS HudCache;")
-		self.cursor.execute("DROP TABLE IF EXISTS Autorates;")
-		self.cursor.execute("DROP TABLE IF EXISTS BoardCards;")
-		self.cursor.execute("DROP TABLE IF EXISTS HandsActions;")
-		self.cursor.execute("DROP TABLE IF EXISTS HandsPlayers;")
-		self.cursor.execute("DROP TABLE IF EXISTS Hands;")
-		self.cursor.execute("DROP TABLE IF EXISTS TourneysPlayers;")
-		self.cursor.execute("DROP TABLE IF EXISTS Tourneys;")
-		self.cursor.execute("DROP TABLE IF EXISTS Players;")
-		self.cursor.execute("DROP TABLE IF EXISTS Gametypes;")
-		if oldDbVersion>45 and oldDbVersion<=51:
-			self.cursor.execute("DROP TABLE IF EXISTS TourneysGametypes;")		
-		self.cursor.execute("DROP TABLE IF EXISTS TourneyTypes;")
-		self.cursor.execute("DROP TABLE IF EXISTS Sites;")
-		
-		self.db.commit()
+
+		if(self.get_backend_name() == 'MySQL InnoDB'):
+			# Query the DB to see what tables exist
+	                self.cursor.execute('SHOW TABLES')
+			#Databases with FOREIGN KEY support need this switched of before you can drop tables
+                	self.drop_referencial_integrity()
+
+	                for table in self.cursor:
+                	        self.cursor.execute(self.sql.query['drop_table'] + table[0])
+		elif(self.get_backend_name() == 'PostgreSQL'):
+			#todo: postgres version here
+		elif(self.get_backend_name() == 'SQLite'):
+			#todo: sqlite version here
 	#end def drop_tables
+
+	 def drop_referencial_integrity(self):
+                """Update all tables to remove foreign keys"""
+
+                self.cursor.execute('SHOW TABLES') # todo: move to FpdbSQLQueries
+                result = self.cursor.fetchall()
+
+                for i in range(len(result)):
+                        self.cursor.execute("SHOW CREATE TABLE " + result[i][0])
+                        inner = self.cursor.fetchall()
+
+                        for j in range(len(inner)):
+                        # result[i][0] - Table name
+                        # result[i][1] - CREATE TABLE parameters
+                        #Searching for CONSTRAINT `tablename_ibfk_1`
+                                for m in re.finditer('(ibfk_[0-9]+)', inner[j][1]):
+                                        key = "`" + inner[j][0] + "_" + m.group() + "`"
+                                        self.cursor.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
+                self.db.commit()
+        #end drop_referencial_inegrity
 	
 	def get_backend_name(self):
 		"""Returns the name of the currently used backend"""
