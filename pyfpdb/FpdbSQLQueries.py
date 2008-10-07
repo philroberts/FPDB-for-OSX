@@ -36,6 +36,13 @@ class FpdbSQLQueries:
 #               elif(self.dbname == 'PostgreSQL'):
 #               elif(self.dbname == 'SQLite'):
 
+		##################################################################
+        	# Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
+        	##################################################################
+
+		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
+			self.query['drop_table'] = """DROP TABLE IF EXISTS """
+
 if __name__== "__main__":
         from optparse import OptionParser
 
