@@ -122,27 +122,29 @@ class fpdb_db:
                 	        self.cursor.execute(self.sql.query['drop_table'] + table[0])
 		elif(self.get_backend_name() == 'PostgreSQL'):
 			#todo: postgres version here
+			print "Empty function here"
 		elif(self.get_backend_name() == 'SQLite'):
 			#todo: sqlite version here
+			print "Empty function here"
 	#end def drop_tables
 
-	 def drop_referencial_integrity(self):
-                """Update all tables to remove foreign keys"""
+	def drop_referencial_integrity(self):
+		"""Update all tables to remove foreign keys"""
 
-                self.cursor.execute('SHOW TABLES') # todo: move to FpdbSQLQueries
-                result = self.cursor.fetchall()
+		self.cursor.execute('SHOW TABLES') # todo: move to FpdbSQLQueries
+		result = self.cursor.fetchall()
 
-                for i in range(len(result)):
-                        self.cursor.execute("SHOW CREATE TABLE " + result[i][0])
-                        inner = self.cursor.fetchall()
+		for i in range(len(result)):
+			self.cursor.execute("SHOW CREATE TABLE " + result[i][0])
+			inner = self.cursor.fetchall()
 
-                        for j in range(len(inner)):
-                        # result[i][0] - Table name
-                        # result[i][1] - CREATE TABLE parameters
-                        #Searching for CONSTRAINT `tablename_ibfk_1`
-                                for m in re.finditer('(ibfk_[0-9]+)', inner[j][1]):
-                                        key = "`" + inner[j][0] + "_" + m.group() + "`"
-                                        self.cursor.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
+			for j in range(len(inner)):
+			# result[i][0] - Table name
+			# result[i][1] - CREATE TABLE parameters
+			#Searching for CONSTRAINT `tablename_ibfk_1`
+				for m in re.finditer('(ibfk_[0-9]+)', inner[j][1]):
+					key = "`" + inner[j][0] + "_" + m.group() + "`"
+					self.cursor.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
                 self.db.commit()
         #end drop_referencial_inegrity
 	
