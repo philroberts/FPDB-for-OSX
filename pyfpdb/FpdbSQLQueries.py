@@ -43,6 +43,536 @@ class FpdbSQLQueries:
 		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
 			self.query['drop_table'] = """DROP TABLE IF EXISTS """
 
+
+		################################
+		# Create Tables
+		################################
+
+
+
+
+		################################
+		# Create Settings
+		################################
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createSettingsTable'] = """CREATE TABLE Settings (
+						                version SMALLINT NOT NULL)
+								ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
+
+		elif(self.dbname == 'SQLite'):
+                        #Probably doesn't work.
+			self.query['createSettingsTable'] = """ """
+
+
+		################################
+		# Create Sites
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createSitesTable'] = """CREATE TABLE Sites (
+						id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						name varchar(32) NOT NULL,
+						currency char(3) NOT NULL)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createSitesTable'] = """CREATE TABLE Sites (
+						id SERIAL UNIQUE, PRIMARY KEY (id),
+						name varchar(32),
+						currency char(3))"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createSitesTable'] = """ """
+
+
+		################################
+		# Create Gametypes
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
+						id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+						type char(4) NOT NULL,
+						base char(4) NOT NULL,
+						category varchar(9) NOT NULL,
+						limitType char(2) NOT NULL,
+						hiLo char(1) NOT NULL,
+						smallBlind int,
+						bigBlind int,
+						smallBet int NOT NULL,
+						bigBet int NOT NULL)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
+						id SERIAL UNIQUE, PRIMARY KEY (id),
+						siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
+						type char(4),
+						base char(4),
+						category varchar(9),
+						limitType char(2),
+						hiLo char(1),
+						smallBlind int,
+						bigBlind int,
+						smallBet int,
+						bigBet int)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createGametypesTable'] = """ """
+
+
+		################################
+		# Create Players
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createPlayersTable'] = """CREATE TABLE Players (
+					        id INT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+					        name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
+					        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+					        comment text,
+					        commentTs DATETIME)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createPlayersTable'] = """CREATE TABLE Players (
+						id SERIAL UNIQUE, PRIMARY KEY (id),
+						name VARCHAR(32),
+						siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
+						comment text,
+						commentTs timestamp without time zone)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createPlayersTable'] = """ """
+
+
+		################################
+		# Create Autorates
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
+					        id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+					        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+					        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+					        description varchar(50) NOT NULL,
+					        shortDesc char(8) NOT NULL,
+					        ratingTime DATETIME NOT NULL,
+					        handCount int NOT NULL)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
+					        id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+					        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+					        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+					        description varchar(50),
+					        shortDesc char(8),
+					        ratingTime timestamp without time zone,
+						handCount int)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createAutoratesTable'] = """ """
+
+
+		################################
+		# Create Hands
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createHandsTable'] = """CREATE TABLE Hands (
+					        id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+					        tableName VARCHAR(20) NOT NULL,
+					        siteHandNo BIGINT NOT NULL,
+					        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+					        handStart DATETIME NOT NULL,
+					        importTime DATETIME NOT NULL,
+					        seats SMALLINT NOT NULL,
+					        maxSeats SMALLINT NOT NULL,
+					        comment TEXT,
+					        commentTs DATETIME)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createHandsTable'] = """CREATE TABLE Hands (
+						id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+						tableName VARCHAR(20),
+						siteHandNo BIGINT,
+						gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+						handStart timestamp without time zone,
+						importTime timestamp without time zone,
+						seats SMALLINT,
+						maxSeats SMALLINT,
+						comment TEXT,
+						commentTs timestamp without time zone)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createHandsTable'] = """ """
+
+
+		################################
+		# Create Gametypes
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
+					        id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+					        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+					        card1Value smallint NOT NULL,
+					        card1Suit char(1) NOT NULL,
+					        card2Value smallint NOT NULL,
+					        card2Suit char(1) NOT NULL,
+					        card3Value smallint NOT NULL,
+					        card3Suit char(1) NOT NULL,
+					        card4Value smallint NOT NULL,
+					        card4Suit char(1) NOT NULL,
+					        card5Value smallint NOT NULL,
+					        card5Suit char(1) NOT NULL)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
+						id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+						handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
+						card1Value smallint,
+						card1Suit char(1),
+						card2Value smallint,
+						card2Suit char(1),
+						card3Value smallint,
+						card3Suit char(1),
+						card4Value smallint,
+						card4Suit char(1),
+						card5Value smallint,
+						card5Suit char(1))"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createBoardCardsTable'] = """ """
+
+
+		################################
+		# Create TourneyTypes
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
+					        id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+					        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+					        buyin INT NOT NULL,
+					        fee INT NOT NULL,
+					        knockout INT NOT NULL,
+					        rebuyOrAddon BOOLEAN NOT NULL)
+						ENGINE=INNODB""" 
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
+						id SERIAL, PRIMARY KEY (id),
+						siteId INT, FOREIGN KEY (siteId) REFERENCES Sites(id),
+						buyin INT,
+						fee INT,
+						knockout INT,
+						rebuyOrAddon BOOLEAN)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createTourneyTypesTable'] = """ """
+
+
+		################################
+		# Create Tourneys
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
+						id INT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+						siteTourneyNo BIGINT NOT NULL,
+						entries INT NOT NULL,
+						prizepool INT NOT NULL,
+						startTime DATETIME NOT NULL,
+						comment TEXT,
+						commentTs DATETIME)
+						ENGINE=INNODB"""
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
+						id SERIAL UNIQUE, PRIMARY KEY (id),
+						tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+						siteTourneyNo BIGINT,
+						entries INT,
+						prizepool INT,
+						startTime timestamp without time zone,
+						comment TEXT,
+						commentTs timestamp without time zone)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createTourneysTable'] = """ """
+
+		################################
+		# Create HandsPlayers
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
+						id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+						playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+						startCash INT NOT NULL,
+						position CHAR(1),
+						seatNo SMALLINT NOT NULL,
+						ante INT,
+					
+						card1Value smallint NOT NULL,
+						card1Suit char(1) NOT NULL,
+						card2Value smallint NOT NULL,
+						card2Suit char(1) NOT NULL,
+						card3Value smallint,
+						card3Suit char(1),
+						card4Value smallint,
+						card4Suit char(1),
+						card5Value smallint,
+						card5Suit char(1),
+						card6Value smallint,
+						card6Suit char(1),
+						card7Value smallint,
+						card7Suit char(1),
+					
+						winnings int NOT NULL,
+						rake int NOT NULL,
+						comment text,
+						commentTs DATETIME,
+					
+						tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
+						ENGINE=INNODB"""
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
+						id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+						handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
+						playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+						startCash INT,
+						position CHAR(1),
+						seatNo SMALLINT,
+						ante INT,
+
+						card1Value smallint,
+						card1Suit char(1),
+						card2Value smallint,
+						card2Suit char(1),
+						card3Value smallint,
+						card3Suit char(1),
+						card4Value smallint,
+						card4Suit char(1),
+						card5Value smallint,
+						card5Suit char(1),
+						card6Value smallint,
+						card6Suit char(1),
+						card7Value smallint,
+						card7Suit char(1),
+
+						winnings int,
+						rake int,
+						comment text,
+						commentTs timestamp without time zone,
+						tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createHandsPlayersTable'] = """ """
+
+
+		################################
+		# Create TourneysPlayers
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
+						id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+						playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+						payinAmount INT NOT NULL,
+						rank INT NOT NULL,
+						winnings INT NOT NULL,
+						comment TEXT,
+						commentTs DATETIME)
+						ENGINE=INNODB"""
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
+						id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+						tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+						playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+						payinAmount INT,
+						rank INT,
+						winnings INT,
+						comment TEXT,
+						commentTs timestamp without time zone)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createTourneysPlayersTable'] = """ """
+
+
+		################################
+		# Create HandsActions
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
+						id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						handPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+						street SMALLINT NOT NULL,
+						actionNo SMALLINT NOT NULL,
+						action CHAR(5) NOT NULL,
+						allIn BOOLEAN NOT NULL,
+						amount INT NOT NULL,
+						comment TEXT,
+						commentTs DATETIME)
+						ENGINE=INNODB"""
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
+						id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+						handPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+						street SMALLINT,
+						actionNo SMALLINT,
+						action CHAR(5),
+						allIn BOOLEAN,
+						amount INT,
+						comment TEXT,
+						commentTs timestamp without time zone)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createHandsActionsTable'] = """ """
+
+
+		################################
+		# Create HudCache
+		################################
+
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
+						id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+						gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+						playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+						activeSeats SMALLINT NOT NULL,
+						position CHAR(1),
+						tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+						
+						HDs INT NOT NULL,
+						street0VPI INT NOT NULL,
+						street0Aggr INT NOT NULL,
+						street0_3B4BChance INT NOT NULL,
+						street0_3B4BDone INT NOT NULL,
+						
+						street1Seen INT NOT NULL,
+						street2Seen INT NOT NULL,
+						street3Seen INT NOT NULL,
+						street4Seen INT NOT NULL,
+						sawShowdown INT NOT NULL,
+						
+						street1Aggr INT NOT NULL,
+						street2Aggr INT NOT NULL,
+						street3Aggr INT NOT NULL,
+						street4Aggr INT NOT NULL,
+						
+						otherRaisedStreet1 INT NOT NULL,
+						otherRaisedStreet2 INT NOT NULL,
+						otherRaisedStreet3 INT NOT NULL,
+						otherRaisedStreet4 INT NOT NULL,
+						foldToOtherRaisedStreet1 INT NOT NULL,
+						foldToOtherRaisedStreet2 INT NOT NULL,
+						foldToOtherRaisedStreet3 INT NOT NULL,
+						foldToOtherRaisedStreet4 INT NOT NULL,
+						wonWhenSeenStreet1 FLOAT NOT NULL,
+						wonAtSD FLOAT NOT NULL,
+						
+						stealAttemptChance INT NOT NULL,
+						stealAttempted INT NOT NULL,
+						foldBbToStealChance INT NOT NULL,
+						foldedBbToSteal INT NOT NULL,
+						foldSbToStealChance INT NOT NULL,
+						foldedSbToSteal INT NOT NULL,
+						
+						street1CBChance INT NOT NULL,
+						street1CBDone INT NOT NULL,
+						street2CBChance INT NOT NULL,
+						street2CBDone INT NOT NULL,
+						street3CBChance INT NOT NULL,
+						street3CBDone INT NOT NULL,
+						street4CBChance INT NOT NULL,
+						street4CBDone INT NOT NULL,
+						
+						foldToStreet1CBChance INT NOT NULL,
+						foldToStreet1CBDone INT NOT NULL,
+						foldToStreet2CBChance INT NOT NULL,
+						foldToStreet2CBDone INT NOT NULL,
+						foldToStreet3CBChance INT NOT NULL,
+						foldToStreet3CBDone INT NOT NULL,
+						foldToStreet4CBChance INT NOT NULL,
+						foldToStreet4CBDone INT NOT NULL,
+						
+						totalProfit INT NOT NULL,
+						
+						street1CheckCallRaiseChance INT NOT NULL,
+						street1CheckCallRaiseDone INT NOT NULL,
+						street2CheckCallRaiseChance INT NOT NULL,
+						street2CheckCallRaiseDone INT NOT NULL,
+						street3CheckCallRaiseChance INT NOT NULL,
+						street3CheckCallRaiseDone INT NOT NULL,
+						street4CheckCallRaiseChance INT NOT NULL,
+						street4CheckCallRaiseDone INT NOT NULL)
+						ENGINE=INNODB"""
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
+						id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+						gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+						playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+						activeSeats SMALLINT,
+						position CHAR(1),
+						tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+
+						HDs INT,
+						street0VPI INT,
+						street0Aggr INT,
+						street0_3B4BChance INT,
+						street0_3B4BDone INT,
+						street1Seen INT,
+						street2Seen INT,
+						street3Seen INT,
+						street4Seen INT,
+						sawShowdown INT,
+						street1Aggr INT,
+						street2Aggr INT,
+						street3Aggr INT,
+						street4Aggr INT,
+						otherRaisedStreet1 INT,
+						otherRaisedStreet2 INT,
+						otherRaisedStreet3 INT,
+						otherRaisedStreet4 INT,
+						foldToOtherRaisedStreet1 INT,
+						foldToOtherRaisedStreet2 INT,
+						foldToOtherRaisedStreet3 INT,
+						foldToOtherRaisedStreet4 INT,
+						wonWhenSeenStreet1 FLOAT,
+						wonAtSD FLOAT,
+
+						stealAttemptChance INT,
+						stealAttempted INT,
+						foldBbToStealChance INT,
+						foldedBbToSteal INT,
+						foldSbToStealChance INT,
+						foldedSbToSteal INT,
+
+						street1CBChance INT,
+						street1CBDone INT,
+						street2CBChance INT,
+						street2CBDone INT,
+						street3CBChance INT,
+						street3CBDone INT,
+						street4CBChance INT,
+						street4CBDone INT,
+
+						foldToStreet1CBChance INT,
+						foldToStreet1CBDone INT,
+						foldToStreet2CBChance INT,
+						foldToStreet2CBDone INT,
+						foldToStreet3CBChance INT,
+						foldToStreet3CBDone INT,
+						foldToStreet4CBChance INT,
+						foldToStreet4CBDone INT,
+
+						totalProfit INT,
+
+						street1CheckCallRaiseChance INT,
+						street1CheckCallRaiseDone INT,
+						street2CheckCallRaiseChance INT,
+						street2CheckCallRaiseDone INT,
+						street3CheckCallRaiseChance INT,
+						street3CheckCallRaiseDone INT,
+						street4CheckCallRaiseChance INT,
+						street4CheckCallRaiseDone INT)"""
+		elif(self.dbname == 'SQLite'):
+			self.query['createHudCacheTable'] = """ """
+
+
 if __name__== "__main__":
         from optparse import OptionParser
 
