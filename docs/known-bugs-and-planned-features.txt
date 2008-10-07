@@ -1,0 +1,139 @@
+Everything is subject to change and the order does not indicate priority. Patches for any of these or other features are very welcome, see readme-overview.txt for contacts.
+Please also see db-todo.txt
+
+alpha5 (release 25Sep-2Oct)
+======
+pgsql recreate doesnt work, and it may not store version field on creation if using sql file with pgadmin.
+check we're reading mucked cards from PS
+ebuild: support pgsql
+fix HUD config location and update release script accordingly
+
+(michael) update website for windows installer
+(steffen) update install-in-gentoo on website
+(steffen) update ebuild and ubuntu guide for HUD_config.xml
+
+(steffen) store raw hand in db and write reimport function using the raw hand field
+make sure totalProfit shows actual profit rather than winnings.
+update abbreviations.txt
+export settings[hud-defaultInterval] to conf
+fill check-/call-raise cache fields
+
+printhand each and the 2/3 relevant printplayerflags respectively on ps-lhe-ring-successful-steal-by-cutoff.txt and ps-lhe-ring-call-3B-preflop-cb-no2b.txt
+change to savannah?
+implement steal and positions in stud
+anonymiser script to generate testdata without making a dozen find&replace all... remember to replace hand no with running no
+separate db table design version and last bugfix in importer
+change tabledesign VALIGN and add link to webpage
+finish updating filelist
+finish todos in git instructions
+debian/ubuntu package http://www.debian.org/doc/maint-guide/ch-start.en.html
+howto remote DB
+move all user docs to webpage
+(steffen) contributor list on webpage
+finish bringing back tourney
+No river stats for stud games?
+hole/board cards are not correctly stored in the db for stud games
+HORSE (and presumably other mixed games) hand history files not handled correctly
+Some MTTs won't import (rebuys??)
+Many STTs won't import
+
+before beta
+===========
+Import draw (maybe without HudCache for a start)
+graphs for SD/F, W$wSF, W$@SD
+validate webpage
+make linux use /etc/fpdb for config first, then ~/.fpdb.
+FTP file with only one partial hand causes error
+No Full Tilt support in HUD
+HUD stat windows are too big on Windows
+HUD task bar entries on Windows won't go away
+MTT/STT not tested in HUD
+HUD stats not aggregated
+Player names with non-Latin chars throw warnings in HUD
+HUD doesn't start when fpdb is started from the Windows "Start Menu"
+Exiting HUD on Windows doesn't properly clean up stat windows
+
+ebuild: USE gtk, set permissions in it, copy docs to correct place, use games eclass or whatever to get games group notice, git-ebuild, get it into sunrise
+make hud display W$SD etc as fraction.
+add dedicated update page
+update status or make a support matrix table for website
+move version into seperate file for fpdb gui and db
+SD/F, W$wsF, W$@SD too low as reported by daedal in 2+2 forum on 12/13aug
+create little test script for people to run to verify successful installation of pydeps
+split hud data generation into separate for loops and make it more efficient
+fix bug that sawFlop/Turn/River/CBChance/etc gets miscalculated if someone is allin - might as well add all-in recognition for this
+make 3 default HUD configs (easy (4-5 fields), advanced (10ish fields), crazy (20 or so))
+make it work with postgres
+expand instructions for profile file
+maybe remove siteId from gametypes
+?change most cache fields to bigint to allow extremely big databases in excess of 2 or 4 million hands per stake and position?
+rakeback/frequent player points
+skins
+separate all gui and all processing into files that are named accordingly
+ensure that there is only one db handle flying around and that its state is handled properly, ie. by the GUI. i think that might be why we have to reconnect the DB in tableviewer.
+why do we have to reconnect in tv.read_names_clicked?
+implement error file in importer
+catch index error, type error, file not found error
+HUD: use different colours according to classification.
+
+move prepare-git.sh and create-release.sh to utils
+offer not storing db password
+change definition of bet to exclude bring in
+fix GUI's load profile
+config wizard
+file permission script, use games group
+make bulk importer display a grand total in the GUI
+change save_to_db into one method and probably move into parse_logic
+Any comment or print with "todo" in it in the sourcecode except what is marked todo in the menu
+make a quick benchmark of mysql and postgresql: import of my whole db, some tableviewer refreshes with and without updated file
+Make tab and enter work as sensible in GUIs and implement Ctrl+Q, Ctrl+X and Alt+F4 for close.
+use profile file for bulk import and table viewer settings and pathes
+handle errors properly, in particular wrt to SQL rollback.
+check that we read sitout correctly in: Full Tilt Poker Game #6150325318: Table Bogside
+setup database, database-user and permission from GUI.
+update prepare-git to check for license header and copyright.
+verify at least 2 or 3 sng hands
+
+no rush but before 1.0RC
+========================
+improve handling of dead hand before BB, see git101/7bd1631
+make DB version error offer reimport, recreation and  continue.
+In many places there are unnecessary database accesses or it regenerates information it already had before or just generally does things in obscenely inefficient ways. Optimise this
+multi-select in bulk importer
+cut down action_types array size to appropriate length
+make the gui display errors
+log file
+move directory import code from gui to backend
+convert fpdb_import to not require passing "self", generally clean the parameter passing
+Doesn't handle Daylight Saving Time (I don't think at least)
+ensure that refresh still takes no more than 10 seks on my P3M-800 (a quick run on git15 indicates this is ok now), or 5 with remote DB
+select range of stakes and sng/mtt values and types for hud
+recognise somewhere if a file is still active and if so keep it open and only read new hands rather than detecting dupes
+return full ftp functionality
+
+can wait till 1.x
+=================
+in all importer: stop doing if site=="ftp", make class constants for site_id instead
+It treats fold due to disconnect as voluntary fold which is not ideal
+check for unnecessary db.commit()
+aliases
+repair hands where the seat lines are missing, happens when observing at FTP
+flags for storing the reason for winning (best hi, tie for best low, etc.) to DB. not sure actually if this is such a good idea remember that there can be multiple reasons for the same player in the same hand
+benchmark properly on mysql innodb, postgresql, more?
+rename things like this: ClassName.methodName and variableName. update codingstyle
+CLI (not ncurses, normal CLI) equivalent for fpdb.py
+optimise/simplify storing by creating the SQL statements depending on hand rather than calling different methods
+make range of activeSeats configurable for tv/hud
+
+License
+=======
+Trademarks of third parties have been used under Fair Use or similar laws.
+
+Copyright 2008 Steffen Jobbagy-Felso
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.2 as published by the Free Software Foundation; with
+no Invariant Sections, no Front-Cover Texts, and with no Back-Cover
+Texts. A copy of the license can be found in fdl-1.2.txt
+
+The program itself is licensed under AGPLv3, see agpl-3.0.txt
