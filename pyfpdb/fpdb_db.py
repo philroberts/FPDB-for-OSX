@@ -104,12 +104,13 @@ class fpdb_db:
                 	self.drop_referencial_integrity()
 
 			# Query the DB to see what tables exist
-	                self.cursor.execute('SHOW TABLES')
+			self.cursor.execute(self.sql.query['list_tables'])
 	                for table in self.cursor:
                 	        self.cursor.execute(self.sql.query['drop_table'] + table[0])
 		elif(self.get_backend_name() == 'PostgreSQL'):
-			#todo: postgres version here
-			print "Empty function here"
+			self.cursor.execute(self.sql.query['list_tables'])
+	                for table in self.cursor:
+				print table
 		elif(self.get_backend_name() == 'SQLite'):
 			#todo: sqlite version here
 			print "Empty function here"
@@ -120,7 +121,7 @@ class fpdb_db:
 	def drop_referencial_integrity(self):
 		"""Update all tables to remove foreign keys"""
 
-		self.cursor.execute('SHOW TABLES') # todo: move to FpdbSQLQueries
+		self.cursor.execute(self.sql.query['list_tables'])
 		result = self.cursor.fetchall()
 
 		for i in range(len(result)):

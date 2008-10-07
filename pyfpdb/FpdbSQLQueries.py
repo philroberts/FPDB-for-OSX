@@ -36,6 +36,17 @@ class FpdbSQLQueries:
 #               elif(self.dbname == 'PostgreSQL'):
 #               elif(self.dbname == 'SQLite'):
 
+
+		################################
+		# List tables
+		################################
+		if(self.dbname == 'MySQL InnoDB'):
+			self.query['list_tables'] = """SHOW TABLES"""
+		elif(self.dbname == 'PostgreSQL'):
+			self.query['list_tables'] = """SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"""
+		elif(self.dbname == 'SQLite'):
+			self.query['list_tables'] = """ """
+
 		##################################################################
         	# Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
         	##################################################################
@@ -47,9 +58,6 @@ class FpdbSQLQueries:
 		################################
 		# Create Tables
 		################################
-
-
-
 
 		################################
 		# Create Settings
