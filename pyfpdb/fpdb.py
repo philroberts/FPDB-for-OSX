@@ -32,6 +32,7 @@ import GuiBulkImport
 import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
+import FpdbSQLQueries
 
 class fpdb:
 	def tab_clicked(self, widget, tab_name):

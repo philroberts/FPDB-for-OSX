@@ -38,17 +38,22 @@ import fpdb_simple
 import fpdb_parse_logic
 from optparse import OptionParser
 
+class Importer:
 
-def import_file(server, database, user, password, inputFile):
-	self.server=server
-	self.database=database
-	self.user=user
-	self.password=password
-	self.inputFile=inputFile
-	self.settings={'imp-callFpdbHud':False}
-	import_file_dict(self, settings)
+	def __init__(self):
+		"""Constructor"""
 
-def import_file_dict(options, settings, callHud=False):
+
+	def import_file(self, server, database, user, password, inputFile):
+		self.server=server
+		self.database=database
+		self.user=user
+		self.password=password
+		self.inputFile=inputFile
+		self.settings={'imp-callFpdbHud':False}
+		self.import_file_dict(self, settings)
+
+	def import_file_dict(self, options, settings, callHud=False):
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
@@ -225,4 +230,4 @@ if __name__ == "__main__":
 	(options, sys.argv) = parser.parse_args()
 	
 	settings={'imp-callFpdbHud':False, 'db-backend':2}
-	import_file_dict(options, settings, False)
+#	import_file_dict(options, settings, False)
