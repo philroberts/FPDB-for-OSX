@@ -580,6 +580,42 @@ class FpdbSQLQueries:
 		elif(self.dbname == 'SQLite'):
 			self.query['createHudCacheTable'] = """ """
 
+		################################
+		# Queries used in GuiGraphViewer
+		################################
+
+
+		# Returns all cash game handIds and the money won(winnings is the final pot)
+		# by the playerId for a single site.
+		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+			self.query['getRingWinningsAllGamesPlayerIdSite'] = """SELECT handId, winnings FROM HandsPlayers 
+					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+					INNER JOIN Hands ON Hands.id = HandsPlayers.handId
+					WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
+					ORDER BY handStart"""
+		elif(self.dbname == 'SQLite'):
+			#Probably doesn't work.
+			self.query['getRingWinningsAllGamesPlayerIdSite'] = """SELECT handId, winnings FROM HandsPlayers
+					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+					INNER JOIN Hands ON Hands.id = HandsPlayers.handId
+					WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
+					ORDER BY handStart"""
+
+		# Returns the profit for a given ring game handId, Total pot - money invested by playerId
+		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+			self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
+					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
+					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+					WHERE Players.name = %s AND HandsPlayers.handId = %s 
+					AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
+		elif(self.dbname == 'SQLite'):
+			#Probably doesn't work.
+			self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
+					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
+					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+					WHERE Players.name = %s AND HandsPlayers.handId = %s 
+					AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
+
 
 if __name__== "__main__":
         from optparse import OptionParser
