@@ -17,7 +17,7 @@ PFR=Pre Flop Raise
 Postf A=Postflop (ie. flop+turn+river) Aggression%
 Postf F=Postflop Fold %
 SD/F=Showdown/Flop=WtSD=How often player went to showdown when he saw the flop
-ST=Steal chance (nobody had entered the pot before the player in question, and the player is in cutoff or button position)
+ST=Steal chance (nobody had entered the pot before the player in question, and the player is in cutoff, button or SB position)
 W$wsF=Won $ when he saw flop
 W$@SD=Won $ at showdown
 VPI3=Voluntary Put In on 3rd Street (ie. call+complete+raise)
