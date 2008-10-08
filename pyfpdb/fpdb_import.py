@@ -42,16 +42,7 @@ class Importer:
 
 	def __init__(self):
 		"""Constructor"""
-
-
-	def import_file(self, server, database, user, password, inputFile):
-		self.server=server
-		self.database=database
-		self.user=user
-		self.password=password
-		self.inputFile=inputFile
 		self.settings={'imp-callFpdbHud':False}
-		self.import_file_dict(self, settings)
 
 	def import_file_dict(self, options, settings, callHud=False):
 		last_read_hand=0
@@ -204,30 +195,4 @@ class Importer:
 
 
 if __name__ == "__main__":
-	failOnError=False
-	quiet=False
-
-	#process CLI parameters
-	parser = OptionParser()
-	parser.add_option("-c", "--handCount", default="0", type="int",
-					help="Number of hands to import (default 0 means unlimited)")
-	parser.add_option("-d", "--database", default="fpdb", help="The MySQL database to use (default fpdb)")
-	parser.add_option("-e", "--errorFile", default="failed.txt", 
-					help="File to store failed hands into. (default: failed.txt) Not implemented.")
-	parser.add_option("-f", "--inputFile", "--file", "--inputfile", default="stdin", 
-					help="The file you want to import (remember to use quotes if necessary)")
-	parser.add_option("-m", "--minPrint", "--status", default="50", type="int",
-					help="How often to print a one-line status report (0 means never, default is 50)")
-	parser.add_option("-p", "--password", help="The password for the MySQL user")
-	parser.add_option("-q", "--quiet", action="store_true",
-					help="If this is passed it doesn't print a total at the end nor the opening line. Note that this purposely does NOT change --minPrint")
-	parser.add_option("-s", "--server", default="localhost",
-					help="Hostname/IP of the MySQL server (default localhost)")
-	parser.add_option("-u", "--user", default="fpdb", help="The MySQL username (default fpdb)")
-	parser.add_option("-x", "--failOnError", action="store_true",
-					help="If this option is passed it quits when it encounters any error")
-
-	(options, sys.argv) = parser.parse_args()
-	
-	settings={'imp-callFpdbHud':False, 'db-backend':2}
-#	import_file_dict(options, settings, False)
+	print "CLI for fpdb_import is currently on vacation please check in later"
