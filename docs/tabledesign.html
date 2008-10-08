@@ -302,7 +302,7 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	<TR VALIGN=TOP>
 		<TD><P>cardXValue</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><P>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P></TD>
+		<TD><P>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x, kept=k (draw only)</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>cardXSuit</P></TD>
@@ -312,7 +312,8 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 </TABLE>
 <p><BR></P>
 <p><B>Table HandsPlayers</B></P>
-<p>cardX: can be 1 through 7, one for each card. In holdem/omaha this stores the hole cards so 3-7 or 5-7 are empty</P>
+<p>cardX: can be 1 through 20, one for each card. In holdem only 1-2 of these are used, in omaha 1-4, in stud/razz 1-7, in single draw games 1-10 is used and in badugi 1-16 (4*4) is used.</P>
+<p>For the draw games: the first 5 (badugi: 4) cards are the initial cards, the next 5 (badugi: 4) are after the first draw. If a player keeps some cards then those cards' spaces are filled with "k", short for "kept". E.g. if a player gets 2-6 spades for his first five cards and decides to throw away the 4 and then gets a 7 of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 4, 5, 6, 7, k, k, k, k</p>
 <p>I did not separate this into an extra table because I felt the lost space is not sufficiently large. Also the benefit for searching is far less relevant.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
