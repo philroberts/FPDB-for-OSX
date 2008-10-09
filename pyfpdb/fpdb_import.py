@@ -124,7 +124,7 @@ class Importer:
 				
 				if (len(hand)<3):
 					pass
-					#todo: the above 2 self.lines are kind of a dirty hack, the mentioned circumstances should be handled elsewhere but that doesnt work with DOS/Win EOL. actually this doesnt work.
+					#todo: the above 2 lines are kind of a dirty hack, the mentioned circumstances should be handled elsewhere but that doesnt work with DOS/Win EOL. actually this doesnt work.
 				elif (hand[0].endswith(" (partial)")): #partial hand - do nothing
 					partial+=1
 				elif (hand[1].find("Seat")==-1 and hand[2].find("Seat")==-1 and hand[3].find("Seat")==-1):#todo: should this be or instead of and?
@@ -153,7 +153,7 @@ class Importer:
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, options.inputFile, hand[0]
+						self.printEmailErrorMessage(errors, options.inputFile, hand[0])
 				
 						if (options.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
@@ -162,7 +162,7 @@ class Importer:
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, options.inputFile, hand[0]
+						self.printEmailErrorMessage(errors, options.inputFile, hand[0])
 
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
