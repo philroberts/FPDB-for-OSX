@@ -37,57 +37,64 @@ import datetime
 import fpdb_simple
 import fpdb_parse_logic
 from optparse import OptionParser
+from time import time
 
+class Importer:
 
-def import_file(server, database, user, password, inputFile):
-	self.server=server
-	self.database=database
-	self.user=user
-	self.password=password
-	self.inputFile=inputFile
-	self.settings={'imp-callFpdbHud':False}
-	import_file_dict(self, settings)
+	def __init__(self):
+		"""Constructor"""
+		self.settings={'imp-callFpdbHud':False}
+		self.db = None
+		self.cursor = None
+		self.options = None
+		self.callHud = False
+		self.lines = None
 
-def import_file_dict(options, settings, callHud=False):
+	def dbConnect(self, options, settings):
+		#connect to DB
+		if settings['db-backend'] == 2:
+			if not mysqlLibFound:
+				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
+			self.db = MySQLdb.connect(host = options.server, user = options.user,
+							passwd = options.password, db = options.database)
+		elif settings['db-backend'] == 3:
+			if not pgsqlLibFound:
+				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
+			self.db = psycopg2.connect(host = options.server, user = options.user,
+								  password = options.password, database = options.database)
+		elif settings['db-backend'] == 4:
+			pass
+		else:
+			pass
+		self.cursor = self.db.cursor()
+
+	def setCallHud(self, value):
+		self.callHud = value
+
+	def import_file_dict(self, options, settings):
+		starttime = time()
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
 		else:
 			inputFile=open(options.inputFile, "rU")
 
-		#connect to DB
-		if settings['db-backend'] == 2:
-			if not mysqlLibFound:
-				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
-			db = MySQLdb.connect(host = options.server, user = options.user,
-							passwd = options.password, db = options.database)
-		elif settings['db-backend'] == 3:
-			if not pgsqlLibFound:
-				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
-			db = psycopg2.connect(host = options.server, user = options.user,
-								  password = options.password, database = options.database)
-		elif settings['db-backend'] == 4:
-			pass
-		else:
-			pass
-		cursor = db.cursor()
-		
-		if (not options.quiet):
-			print "Opened file", options.inputFile, "and connected to MySQL on", options.server
+		self.dbConnect(options,settings)
 
-		line=inputFile.readline()
-		
-		if line.find("Tournament Summary")!=-1:
+		# Read input file into class and close file
+		self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
+		inputFile.close()
+
+		firstline = self.lines[0]
+
+		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
-			inputFile.close()
-			cursor.close()
-			db.close()
+			self.cursor.close()
+			self.db.close()
 			return 0
 		
-		site=fpdb_simple.recogniseSite(line)
-		category=fpdb_simple.recogniseCategory(line)
-		inputFile.seek(0)
-		lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
+		site=fpdb_simple.recogniseSite(firstline)
+		category=fpdb_simple.recogniseCategory(firstline)
 
 		startpos=0
 		stored=0 #counter
@@ -95,10 +102,10 @@ def import_file_dict(options, settings, callHud=False):
 		partial=0 #counter
 		errors=0 #counter
 
-		for i in range (len(lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
-			if (len(lines[i])<2):
+		for i in range (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
+			if (len(self.lines[i])<2):
 				endpos=i
-				hand=lines[startpos:endpos]
+				hand=self.lines[startpos:endpos]
 		
 				if (len(hand[0])<2):
 					hand=hand[1:]
@@ -131,13 +138,13 @@ def import_file_dict(options, settings, callHud=False):
 					hand=fpdb_simple.filterCrap(site, hand, isTourney)
 			
 					try:
-						handsId=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
-						db.commit()
+						handsId=fpdb_parse_logic.mainParser(self.db, self.cursor, site, category, hand)
+						self.db.commit()
 						
 						stored+=1
-						db.commit()
-#						if settings['imp-callFpdbHud'] and callHud and os.sep=='/':
-						if settings['imp-callFpdbHud'] and callHud:
+						self.db.commit()
+#						if settings['imp-callFpdbHud'] and self.callHud and os.sep=='/':
+						if settings['imp-callFpdbHud'] and self.callHud:
 							#print "call to HUD here. handsId:",handsId
 							#pipe the Hands.id out to the HUD
 #							options.pipe_to_hud.write("%s" % (handsId) + os.linesep)
@@ -146,31 +153,24 @@ def import_file_dict(options, settings, callHud=False):
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-						print "Filename:",options.inputFile
-						print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
-						print hand[0]
-					
+						self.printEmailErrorMessage(errors, options.inputFile, hand[0])
+				
 						if (options.failOnError):
-							db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
-							inputFile.close()
-							cursor.close()
-							db.close()
+							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
+							self.cursor.close()
+							self.db.close()
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-						print "Filename:",options.inputFile
-						print "Here is the first line so you can identify it."
-						print hand[0]
+						self.printEmailErrorMessage(errors, options.inputFile, hand[0])
+
 						#fe.printStackTrace() #todo: get stacktrace
-						db.rollback()
+						self.db.rollback()
 						
 						if (options.failOnError):
-							db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
-							inputFile.close()
-							cursor.close()
-							db.close()
+							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
+							self.cursor.close()
+							self.db.close()
 							raise
 					if (options.minPrint!=0):
 						if ((stored+duplicates+partial+errors)%options.minPrint==0):
@@ -180,54 +180,33 @@ def import_file_dict(options, settings, callHud=False):
 						if ((stored+duplicates+partial+errors)>=options.handCount):
 							if (not options.quiet):
 								print "quitting due to reaching the amount of hands to be imported"
-								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors
+								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
 							sys.exit(0)
 				startpos=endpos
-		print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
+		print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", (time() - starttime)
 		
 		if stored==0:
 			if duplicates>0:
-				for line_no in range(len(lines)):
-					if lines[line_no].find("Game #")!=-1:
-						final_game_line=lines[line_no]
+				for line_no in range(len(self.lines)):
+					if self.lines[line_no].find("Game #")!=-1:
+						final_game_line=self.lines[line_no]
 				handsId=fpdb_simple.parseSiteHandNo(final_game_line)
 			else:
 				print "failed to read a single hand from file:", inputFile
 				handsId=0
 			#todo: this will cause return of an unstored hand number if the last hand was error or partial
-		db.commit()
-		inputFile.close()
-		cursor.close()
-		db.close()
+		self.db.commit()
+		self.cursor.close()
+		self.db.close()
 		return handsId
 #end def import_file_dict
 
+	def printEmailErrorMessage(self, errors, filename, line):
+		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
+		print "Filename:",options.inputFile
+		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
+		print hand[0]
+	
 
 if __name__ == "__main__":
-	failOnError=False
-	quiet=False
-
-	#process CLI parameters
-	parser = OptionParser()
-	parser.add_option("-c", "--handCount", default="0", type="int",
-					help="Number of hands to import (default 0 means unlimited)")
-	parser.add_option("-d", "--database", default="fpdb", help="The MySQL database to use (default fpdb)")
-	parser.add_option("-e", "--errorFile", default="failed.txt", 
-					help="File to store failed hands into. (default: failed.txt) Not implemented.")
-	parser.add_option("-f", "--inputFile", "--file", "--inputfile", default="stdin", 
-					help="The file you want to import (remember to use quotes if necessary)")
-	parser.add_option("-m", "--minPrint", "--status", default="50", type="int",
-					help="How often to print a one-line status report (0 means never, default is 50)")
-	parser.add_option("-p", "--password", help="The password for the MySQL user")
-	parser.add_option("-q", "--quiet", action="store_true",
-					help="If this is passed it doesn't print a total at the end nor the opening line. Note that this purposely does NOT change --minPrint")
-	parser.add_option("-s", "--server", default="localhost",
-					help="Hostname/IP of the MySQL server (default localhost)")
-	parser.add_option("-u", "--user", default="fpdb", help="The MySQL username (default fpdb)")
-	parser.add_option("-x", "--failOnError", action="store_true",
-					help="If this option is passed it quits when it encounters any error")
-
-	(options, sys.argv) = parser.parse_args()
-	
-	settings={'imp-callFpdbHud':False, 'db-backend':2}
-	import_file_dict(options, settings, False)
+	print "CLI for fpdb_import is currently on vacation please check in later"
