@@ -2,7 +2,7 @@ Connected to MySQL on localhost. Print Player Flags Utility
 
 Basic Data
 ==========
-bigblind: 25 category: holdem limitType: fl name: player3 gameType: ring site: PokerStars
+bigBet: 50 category: holdem limitType: fl name: player3 gameType: ring site: PokerStars
 siteId: 2 gametypeId: 2 playerId: 11 hudDataId: 22
 
 HUD Raw Hand Counts

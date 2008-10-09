@@ -23,7 +23,7 @@ from optparse import OptionParser
 import fpdb_util_lib as ful
 
 parser = OptionParser()
-parser.add_option("-b", "--bigblind", default="2", type="int", help="big blinds in cent")
+parser.add_option("-b", "--bigBet", default="4", type="int", help="big bet in cent")
 parser.add_option("-c", "--cat", "--category", default="holdem", help="Category, e.g. holdem or studhilo")
 parser.add_option("-e", "--seats", default="7", type="int", help="number of active seats")
 parser.add_option("-g", "--gameType", default="ring", help="Whether its a ringgame (ring) or a tournament (tour)")
@@ -42,19 +42,19 @@ print "Connected to MySQL on localhost. Print Player Flags Utility"
 print ""
 print "Basic Data"
 print "=========="
-print "bigblind:",options.bigblind, "category:",options.cat, "limitType:", options.limit, "name:", options.name, "gameType:", options.gameType, "site:", options.site
+print "bigBet:",options.bigBet, "category:",options.cat, "limitType:", options.limit, "name:", options.name, "gameType:", options.gameType, "site:", options.site
 
 cursor.execute("SELECT id FROM Sites WHERE name=%s", (options.site,))
 siteId=cursor.fetchone()[0]
 
-cursor.execute("SELECT id FROM Gametypes WHERE bigBlind=%s AND category=%s AND siteId=%s AND limitType=%s AND type=%s", (options.bigblind, options.cat, siteId, options.limit, options.gameType))
+cursor.execute("SELECT id FROM Gametypes WHERE bigBet=%s AND category=%s AND siteId=%s AND limitType=%s AND type=%s", (options.bigBet, options.cat, siteId, options.limit, options.gameType))
 gametypeId=cursor.fetchone()[0]
 
 cursor.execute("SELECT id FROM Players WHERE name=%s", (options.name,))
 playerId=cursor.fetchone()[0]
 
-cursor.execute("SELECT id FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s",(gametypeId, playerId, options.seats, options.position))
 #print "debug: gametypeId:", gametypeId, "playerId:", playerId, "options.seats:", options.seats, "options.position:", options.position
+cursor.execute("SELECT id FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s",(gametypeId, playerId, options.seats, options.position))
 hudDataId=cursor.fetchone()[0]
 
 print "siteId:", siteId, "gametypeId:", gametypeId, "playerId:", playerId, "hudDataId:", hudDataId

@@ -2,22 +2,22 @@ Connected to MySQL on localhost. Print Player Flags Utility
 
 Basic Data
 ==========
-bigBet: 4 category: holdem limitType: fl name: Player_1 gameType: ring site: PokerStars
-siteId: 2 gametypeId: 1 playerId: 1 hudDataId: 8
+bigBet: 20 category: studhilo limitType: fl name: br1an gameType: ring site: PokerStars
+siteId: 2 gametypeId: 3 playerId: 21 hudDataId: 32
 
 HUD Raw Hand Counts
 ===================
-HDs: 2
+HDs: 1
 street0VPI: 0
 street0Aggr: 0
 street0_3B4BChance: 0
 street0_3B4BDone: 0
 
-street1Seen: 0
-street2Seen: 0
-street3Seen: 0
-street4Seen: 0
-sawShowdown: 0
+street1Seen: 1
+street2Seen: 1
+street3Seen: 1
+street4Seen: 1
+sawShowdown: 1
 
 street1Aggr: 0
 street2Aggr: 0
@@ -25,9 +25,9 @@ street3Aggr: 0
 street4Aggr: 0
 
 otherRaisedStreet1: 0
-otherRaisedStreet2: 0
+otherRaisedStreet2: 1
 otherRaisedStreet3: 0
-otherRaisedStreet4: 0
+otherRaisedStreet4: 1
 foldToOtherRaisedStreet1: 0
 foldToOtherRaisedStreet2: 0
 foldToOtherRaisedStreet3: 0
@@ -57,12 +57,12 @@ foldToStreet3CBChance: 0
 foldToStreet3CBDone: 0
 foldToStreet4CBChance: 0
 foldToStreet4CBDone: 0
-totalProfit: 0
+totalProfit: -0.47
 street1CheckCallRaiseChance: 0
 street1CheckCallRaiseDone: 0
 street2CheckCallRaiseChance: 0
 street2CheckCallRaiseDone: 0
 street3CheckCallRaiseChance: 0
 street3CheckCallRaiseDone: 0
-street4CheckCallRaiseChance: 0
+street4CheckCallRaiseChance: 1
 street4CheckCallRaiseDone: 0

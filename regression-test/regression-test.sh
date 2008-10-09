@@ -33,12 +33,13 @@ echo "it should've reported first that it stored 3, then that it had 3 duplicate
 
 ../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-call-3B-preflop-cb-no2b.txt -x
 echo "it should've now reported another successful store of 1 hand"
-./PrintPlayerHudData.py -p$1 -nplayer3 -oE -e10 -b25 > ps-flags-CBflop.found.txt && colordiff ps-flags-CBflop.found.txt ps-flags-CBflop.expected.txt
+./PrintPlayerHudData.py -p$1 -nplayer3 -oE -e10 -b50 > ps-flags-CBflop.found.txt && colordiff ps-flags-CBflop.found.txt ps-flags-CBflop.expected.txt
 
 
 ../pyfpdb/fpdb_import.py -p$1 --file=ps-studhilo-ring-showdown.txt -x
 echo "it should've now reported another successful store of 1 hand"
 ./PrintHand.py -p$1 --hand=15043388146 > ps.15043388146.found.txt && colordiff ps.15043388146.found.txt ps.15043388146.expected.txt
+./PrintPlayerHudData.py -p$1 -nbr1an -o0 -e6 -b20 -cstudhilo> ps-flags-studhilo.found.txt && colordiff ps-flags-studhilo.found.txt ps-flags-studhilo.expected.txt
 
 
 echo "if everything was printed as expected this worked"

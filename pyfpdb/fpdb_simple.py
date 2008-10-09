@@ -1526,10 +1526,26 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 				if (len(action_types[3][player])>0 or isAllIn):
 					myStreet3Seen=True
 
-					mySawShowdown=True
-					for count in range (len(action_types[3][player])):
-						if action_types[3][player][count]=="fold":
-							mySawShowdown=False
+					print "base:", base
+					if base=="hold":
+						mySawShowdown=True
+						for count in range (len(action_types[3][player])):
+							if action_types[3][player][count]=="fold":
+								mySawShowdown=False
+					else:
+						print "in else"
+						for i in range(len(allIns[3][player])):
+							if allIns[3][player][i]:
+								isAllIn=True
+						if (len(action_types[4][player])>0 or isAllIn):
+							print "in if"
+							myStreet4Seen=True
+
+							mySawShowdown=True
+							for count in range (len(action_types[4][player])):
+								if action_types[4][player][count]=="fold":
+									mySawShowdown=False
+						
 
 		#flop stuff
 		street=1
@@ -1584,6 +1600,24 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 							for countOtherFold in range (len(action_types[street][player])):
 								if action_types[street][player][countOtherFold]=="fold":
 									myFoldToOtherRaisedStreet3=True
+		
+		#stud river stuff - copy of flop with different vars
+		street=4
+		if myStreet4Seen:
+			for count in range(len(action_types[street][player])):
+				if action_types[street][player][count]=="bet":
+					myStreet4Aggr=True
+			
+			for otherPlayer in range (len(player_ids)):
+				if player==otherPlayer:
+					pass
+				else:
+					for countOther in range (len(action_types[street][otherPlayer])):
+						if action_types[street][otherPlayer][countOther]=="bet":
+							myOtherRaisedStreet4=True
+							for countOtherFold in range (len(action_types[street][player])):
+								if action_types[street][player][countOtherFold]=="fold":
+									myFoldToOtherRaisedStreet4=True
 		
 		if winnings[player]!=0:
 			if myStreet1Seen:
