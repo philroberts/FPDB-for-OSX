@@ -37,6 +37,7 @@ import datetime
 import fpdb_simple
 import fpdb_parse_logic
 from optparse import OptionParser
+from time import time
 
 class Importer:
 
@@ -47,6 +48,7 @@ class Importer:
 		self.cursor = None
 		self.options = None
 		self.callHud = False
+		self.lines = None
 
 	def dbConnect(self, options, settings):
 		#connect to DB
@@ -70,6 +72,7 @@ class Importer:
 		self.callHud = value
 
 	def import_file_dict(self, options, settings):
+		starttime = time()
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
@@ -78,19 +81,20 @@ class Importer:
 
 		self.dbConnect(options,settings)
 
-		line=inputFile.readline()
-		
-		if line.find("Tournament Summary")!=-1:
+		# Read input file into class and close file
+		self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
+		inputFile.close()
+
+		firstline = self.lines[0]
+
+		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
-			inputFile.close()
 			self.cursor.close()
 			self.db.close()
 			return 0
 		
-		site=fpdb_simple.recogniseSite(line)
-		category=fpdb_simple.recogniseCategory(line)
-		inputFile.seek(0)
-		lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
+		site=fpdb_simple.recogniseSite(firstline)
+		category=fpdb_simple.recogniseCategory(firstline)
 
 		startpos=0
 		stored=0 #counter
@@ -98,10 +102,10 @@ class Importer:
 		partial=0 #counter
 		errors=0 #counter
 
-		for i in range (len(lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
-			if (len(lines[i])<2):
+		for i in range (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
+			if (len(self.lines[i])<2):
 				endpos=i
-				hand=lines[startpos:endpos]
+				hand=self.lines[startpos:endpos]
 		
 				if (len(hand[0])<2):
 					hand=hand[1:]
@@ -120,7 +124,7 @@ class Importer:
 				
 				if (len(hand)<3):
 					pass
-					#todo: the above 2 lines are kind of a dirty hack, the mentioned circumstances should be handled elsewhere but that doesnt work with DOS/Win EOL. actually this doesnt work.
+					#todo: the above 2 self.lines are kind of a dirty hack, the mentioned circumstances should be handled elsewhere but that doesnt work with DOS/Win EOL. actually this doesnt work.
 				elif (hand[0].endswith(" (partial)")): #partial hand - do nothing
 					partial+=1
 				elif (hand[1].find("Seat")==-1 and hand[2].find("Seat")==-1 and hand[3].find("Seat")==-1):#todo: should this be or instead of and?
@@ -156,7 +160,6 @@ class Importer:
 					
 						if (options.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
-							inputFile.close()
 							self.cursor.close()
 							self.db.close()
 							raise
@@ -171,7 +174,6 @@ class Importer:
 						
 						if (options.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
-							inputFile.close()
 							self.cursor.close()
 							self.db.close()
 							raise
@@ -183,23 +185,22 @@ class Importer:
 						if ((stored+duplicates+partial+errors)>=options.handCount):
 							if (not options.quiet):
 								print "quitting due to reaching the amount of hands to be imported"
-								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors
+								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
 							sys.exit(0)
 				startpos=endpos
-		print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
+		print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", (time() - starttime)
 		
 		if stored==0:
 			if duplicates>0:
-				for line_no in range(len(lines)):
-					if lines[line_no].find("Game #")!=-1:
-						final_game_line=lines[line_no]
+				for line_no in range(len(self.lines)):
+					if self.lines[line_no].find("Game #")!=-1:
+						final_game_line=self.lines[line_no]
 				handsId=fpdb_simple.parseSiteHandNo(final_game_line)
 			else:
 				print "failed to read a single hand from file:", inputFile
 				handsId=0
 			#todo: this will cause return of an unstored hand number if the last hand was error or partial
 		self.db.commit()
-		inputFile.close()
 		self.cursor.close()
 		self.db.close()
 		return handsId
