@@ -153,11 +153,8 @@ class Importer:
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-						print "Filename:",options.inputFile
-						print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
-						print hand[0]
-					
+						self.printEmailErrorMessage(errors, options.inputFile, hand[0]
+				
 						if (options.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
 							self.cursor.close()
@@ -165,10 +162,8 @@ class Importer:
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-						print "Filename:",options.inputFile
-						print "Here is the first line so you can identify it."
-						print hand[0]
+						self.printEmailErrorMessage(errors, options.inputFile, hand[0]
+
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
 						
@@ -206,6 +201,12 @@ class Importer:
 		return handsId
 #end def import_file_dict
 
+	def printEmailErrorMessage(self, errors, filename, line):
+		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
+		print "Filename:",options.inputFile
+		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
+		print hand[0]
+	
 
 if __name__ == "__main__":
 	print "CLI for fpdb_import is currently on vacation please check in later"
