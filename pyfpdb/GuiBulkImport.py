@@ -32,7 +32,7 @@ class GuiBulkImport (threading.Thread):
 				print "BulkImport is not recursive - please select the final directory in which the history files are"
 			else:
 				self.inputFile=self.path+os.sep+file
-				self.importer.import_file_dict(self, self.settings, False)
+				self.importer.import_file_dict(self, self.settings)
 		print "GuiBulkImport.import_dir done"
 		
 	def load_clicked(self, widget, data=None):
@@ -69,7 +69,7 @@ class GuiBulkImport (threading.Thread):
 		if os.path.isdir(self.inputFile):
 			self.import_dir()
 		else:
-			self.importer.import_file_dict(self, self.settings, False)
+			self.importer.import_file_dict(self, self.settings)
 	
 	def get_vbox(self):
 		"""returns the vbox of this thread"""

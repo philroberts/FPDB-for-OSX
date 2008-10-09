@@ -57,7 +57,7 @@ class GuiAutoImport (threading.Thread):
 				self.inputFile = os.path.join(self.path, file)
 				stat_info = os.stat(self.inputFile)
 				if not self.import_files.has_key(self.inputFile) or stat_info.st_mtime > self.import_files[self.inputFile]:
-				    self.importer.import_file_dict(self, self.settings, callHud = True)
+				    self.importer.import_file_dict(self, self.settings)
 				    self.import_files[self.inputFile] = stat_info.st_mtime
 
 		print "GuiAutoImport.import_dir done"
@@ -122,6 +122,7 @@ class GuiAutoImport (threading.Thread):
 		"""Constructor for GuiAutoImport"""
 		self.settings=settings
 		self.importer = fpdb_import.Importer()
+		self.importer.setCallHud(True)
 		
 		self.server=settings['db-host']
 		self.user=settings['db-user']

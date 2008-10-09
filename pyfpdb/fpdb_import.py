@@ -46,6 +46,7 @@ class Importer:
 		self.db = None
 		self.cursor = None
 		self.options = None
+		self.callHud = False
 
 	def dbConnect(self, options, settings):
 		#connect to DB
@@ -65,7 +66,10 @@ class Importer:
 			pass
 		self.cursor = self.db.cursor()
 
-	def import_file_dict(self, options, settings, callHud=False):
+	def setCallHud(self, value):
+		self.callHud = value
+
+	def import_file_dict(self, options, settings):
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
@@ -135,8 +139,8 @@ class Importer:
 						
 						stored+=1
 						self.db.commit()
-#						if settings['imp-callFpdbHud'] and callHud and os.sep=='/':
-						if settings['imp-callFpdbHud'] and callHud:
+#						if settings['imp-callFpdbHud'] and self.callHud and os.sep=='/':
+						if settings['imp-callFpdbHud'] and self.callHud:
 							#print "call to HUD here. handsId:",handsId
 							#pipe the Hands.id out to the HUD
 #							options.pipe_to_hud.write("%s" % (handsId) + os.linesep)
