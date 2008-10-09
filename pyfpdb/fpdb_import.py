@@ -43,6 +43,27 @@ class Importer:
 	def __init__(self):
 		"""Constructor"""
 		self.settings={'imp-callFpdbHud':False}
+		self.db = None
+		self.cursor = None
+		self.options = None
+
+	def dbConnect(self, options, settings):
+		#connect to DB
+		if settings['db-backend'] == 2:
+			if not mysqlLibFound:
+				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
+			self.db = MySQLdb.connect(host = options.server, user = options.user,
+							passwd = options.password, db = options.database)
+		elif settings['db-backend'] == 3:
+			if not pgsqlLibFound:
+				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
+			self.db = psycopg2.connect(host = options.server, user = options.user,
+								  password = options.password, database = options.database)
+		elif settings['db-backend'] == 4:
+			pass
+		else:
+			pass
+		self.cursor = self.db.cursor()
 
 	def import_file_dict(self, options, settings, callHud=False):
 		last_read_hand=0
@@ -51,33 +72,15 @@ class Importer:
 		else:
 			inputFile=open(options.inputFile, "rU")
 
-		#connect to DB
-		if settings['db-backend'] == 2:
-			if not mysqlLibFound:
-				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
-			db = MySQLdb.connect(host = options.server, user = options.user,
-							passwd = options.password, db = options.database)
-		elif settings['db-backend'] == 3:
-			if not pgsqlLibFound:
-				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
-			db = psycopg2.connect(host = options.server, user = options.user,
-								  password = options.password, database = options.database)
-		elif settings['db-backend'] == 4:
-			pass
-		else:
-			pass
-		cursor = db.cursor()
-		
-		if (not options.quiet):
-			print "Opened file", options.inputFile, "and connected to MySQL on", options.server
+		self.dbConnect(options,settings)
 
 		line=inputFile.readline()
 		
 		if line.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
 			inputFile.close()
-			cursor.close()
-			db.close()
+			self.cursor.close()
+			self.db.close()
 			return 0
 		
 		site=fpdb_simple.recogniseSite(line)
@@ -127,11 +130,11 @@ class Importer:
 					hand=fpdb_simple.filterCrap(site, hand, isTourney)
 			
 					try:
-						handsId=fpdb_parse_logic.mainParser(db, cursor, site, category, hand)
-						db.commit()
+						handsId=fpdb_parse_logic.mainParser(self.db, self.cursor, site, category, hand)
+						self.db.commit()
 						
 						stored+=1
-						db.commit()
+						self.db.commit()
 #						if settings['imp-callFpdbHud'] and callHud and os.sep=='/':
 						if settings['imp-callFpdbHud'] and callHud:
 							#print "call to HUD here. handsId:",handsId
@@ -148,10 +151,10 @@ class Importer:
 						print hand[0]
 					
 						if (options.failOnError):
-							db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
+							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
 							inputFile.close()
-							cursor.close()
-							db.close()
+							self.cursor.close()
+							self.db.close()
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
@@ -160,13 +163,13 @@ class Importer:
 						print "Here is the first line so you can identify it."
 						print hand[0]
 						#fe.printStackTrace() #todo: get stacktrace
-						db.rollback()
+						self.db.rollback()
 						
 						if (options.failOnError):
-							db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
+							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
 							inputFile.close()
-							cursor.close()
-							db.close()
+							self.cursor.close()
+							self.db.close()
 							raise
 					if (options.minPrint!=0):
 						if ((stored+duplicates+partial+errors)%options.minPrint==0):
@@ -191,10 +194,10 @@ class Importer:
 				print "failed to read a single hand from file:", inputFile
 				handsId=0
 			#todo: this will cause return of an unstored hand number if the last hand was error or partial
-		db.commit()
+		self.db.commit()
 		inputFile.close()
-		cursor.close()
-		db.close()
+		self.cursor.close()
+		self.db.close()
 		return handsId
 #end def import_file_dict
 
