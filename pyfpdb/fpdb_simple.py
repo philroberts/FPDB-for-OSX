@@ -1334,24 +1334,24 @@ def store_hands_players_holdem_omaha_tourney(cursor, category, hands_id, player_
 #end def store_hands_players_holdem_omaha_tourney
 
 def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
-			antes, card_values, card_suits, winnings, rakes, tourneys_players_ids):
+			antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
 #stores hands_players for tourney stud/razz hands
 	result=[]
 	for i in range (len(player_ids)):
 		cursor.execute ("""INSERT INTO HandsPlayers 
-		(hand_id, player_id, player_startcash,	ante,
-		card1_value, card1_suit, card2_value, card2_suit,
-		card3_value, card3_suit, card4_value, card4_suit,
-		card5_value, card5_suit, card6_value, card6_suit,
-		card7_value, card7_suit, winnings, rake, tourneys_players_id) 
+		(handId, playerId, startCash,	ante,
+		card1Value, card1Suit, card2Value, card2Suit,
+		card3Value, card3Suit, card4Value, card4Suit,
+		card5Value, card5Suit, card6Value, card6Suit,
+		card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo) 
 		VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-		%s, %s, %s, %s, %s)""",
+		%s, %s, %s, %s, %s, %s)""",
 		(hands_id, player_ids[i], start_cashes[i], antes[i],
 		card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 		card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
 		card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i]))
-		cursor.execute("SELECT id FROM hands_players WHERE hand_id=%s AND player_id=%s", (hands_id, player_ids[i]))
+		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
+		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
 		result.append(cursor.fetchall()[0][0])
 	return result
 #end def store_hands_players_stud_tourney
@@ -1526,19 +1526,19 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 				if (len(action_types[3][player])>0 or isAllIn):
 					myStreet3Seen=True
 
-					print "base:", base
+					#print "base:", base
 					if base=="hold":
 						mySawShowdown=True
 						for count in range (len(action_types[3][player])):
 							if action_types[3][player][count]=="fold":
 								mySawShowdown=False
 					else:
-						print "in else"
+						#print "in else"
 						for i in range(len(allIns[3][player])):
 							if allIns[3][player][i]:
 								isAllIn=True
 						if (len(action_types[4][player])>0 or isAllIn):
-							print "in if"
+							#print "in if"
 							myStreet4Seen=True
 
 							mySawShowdown=True
