@@ -86,6 +86,10 @@ def mainParser(db, cursor, site, category, hand):
 	for i in range(len(hand)):
 		if (lineTypes[i]=="cards"):
 			fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
+			#if category=="studhilo":
+			#	print "hand[i]:", hand[i]
+			#	print "cardValues:", cardValues
+			#	print "cardSuits:", cardSuits
 		elif (lineTypes[i]=="action"):
 			fpdb_simple.parseActionLine (site, base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
 		elif (lineTypes[i]=="win"):
@@ -108,8 +112,9 @@ def mainParser(db, cursor, site, category, hand):
 		tableResult=fpdb_simple.parseTableLine(site, base, hand[0])
 	maxSeats=tableResult['maxSeats']
 	tableName=tableResult['tableName']
+	#print "before part5, antes:", antes
 	
-	#part 5: final preparations, then call fpdb_save_to_db.saveHoldem with
+	#part 5: final preparations, then call fpdb_save_to_db.* with
 	#		 the arrays as they are - that file will fill them.
 	fpdb_simple.convertCardValues(cardValues)
 	if base=="hold":
@@ -140,11 +145,8 @@ def mainParser(db, cursor, site, category, hand):
 			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
 					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif base=="stud":
-			result = fpdb_save_to_db.tourney_stud(cursor, base, category, siteTourneyNo, buyin, fee, 
-					knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, 
-					siteHandNo, siteID, gametypeID, handStartTime, names, playerIDs, 
-					startCashes, antes, cardValues, cardSuits, winnings, rakes, 
-					actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+			result = fpdb_save_to_db.tourney_stud(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
+					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, antes, cardValues, cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		else:
 			raise fpdb_simple.FpdbError ("unrecognised category")
 	else:

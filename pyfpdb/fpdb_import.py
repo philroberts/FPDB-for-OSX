@@ -181,17 +181,22 @@ class Importer:
 				startpos=endpos
 		print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
 		
-		if stored==0 and duplicates>0:
-			for line_no in range(len(lines)):
-				if lines[line_no].find("Game #")!=-1:
-					final_game_line=lines[line_no]
-			handsId=fpdb_simple.parseSiteHandNo(final_game_line)
-			#todo: this will cause return of an unstored hand number if the last hadn was error or partial
+		if stored==0:
+			if duplicates>0:
+				for line_no in range(len(lines)):
+					if lines[line_no].find("Game #")!=-1:
+						final_game_line=lines[line_no]
+				handsId=fpdb_simple.parseSiteHandNo(final_game_line)
+			else:
+				print "failed to read a single hand from file:", inputFile
+				handsId=0
+			#todo: this will cause return of an unstored hand number if the last hand was error or partial
 		db.commit()
 		inputFile.close()
 		cursor.close()
 		db.close()
 		return handsId
+#end def import_file_dict
 
 
 if __name__ == "__main__":
