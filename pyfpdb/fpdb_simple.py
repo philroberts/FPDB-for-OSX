@@ -730,18 +730,31 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
 					raise FpdbError("read too many/too few holecards in parseCardLine")
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			if (line.find("shows")==-1):
-				cardValues[playerNo][street-1]=line[pos:pos+1]
-				cardSuits[playerNo][street-1]=line[pos+1:pos+2]
+				#print "parseCardLine(in stud if), street:", street
+				if line[pos+2]=="]": #-> not (hero and 3rd street)
+					cardValues[playerNo][street+2]=line[pos:pos+1]
+					cardSuits[playerNo][street+2]=line[pos+1:pos+2]
+				else:
+					#print "hero card1:", line[pos:pos+2], "hero card2:", line[pos+3:pos+5], "hero card3:", line[pos+6:pos+8], 
+					cardValues[playerNo][street]=line[pos:pos+1]
+					cardSuits[playerNo][street]=line[pos+1:pos+2]
+					cardValues[playerNo][street+1]=line[pos+3:pos+4]
+					cardSuits[playerNo][street+1]=line[pos+4:pos+5]
+					cardValues[playerNo][street+2]=line[pos+6:pos+7]
+					cardSuits[playerNo][street+2]=line[pos+7:pos+8]
 			else:
+				print "parseCardLine(in stud else), street:", street
 				cardValues[playerNo][0]=line[pos:pos+1]
 				cardSuits[playerNo][0]=line[pos+1:pos+2]
 				pos+=3
 				cardValues[playerNo][1]=line[pos:pos+1]
 				cardSuits[playerNo][1]=line[pos+1:pos+2]
-				if street==7:
-					pos+=15
+				if street==4:
+					pos=pos=line.rfind("]")-2
 					cardValues[playerNo][6]=line[pos:pos+1]
 					cardSuits[playerNo][6]=line[pos+1:pos+2]
+					print "cardValues:", cardValues
+					print "cardSuits:", cardSuits
 		else:
 			print "line:",line,"street:",street
 			raise FpdbError("invalid category")

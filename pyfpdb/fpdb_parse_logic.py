@@ -86,6 +86,10 @@ def mainParser(db, cursor, site, category, hand):
 	for i in range(len(hand)):
 		if (lineTypes[i]=="cards"):
 			fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
+			#if category=="studhilo":
+			#	print "hand[i]:", hand[i]
+			#	print "cardValues:", cardValues
+			#	print "cardSuits:", cardSuits
 		elif (lineTypes[i]=="action"):
 			fpdb_simple.parseActionLine (site, base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
 		elif (lineTypes[i]=="win"):
