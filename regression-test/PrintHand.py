@@ -148,7 +148,7 @@ for i in range (len(handsPlayers)):
 		else:
 			printstr+=ful.cards2String(line[5:13])
 	elif (category=="razz" or category=="studhi" or category=="studhilo"):
-		printstr+=" ante:"+str(line[3])+" cards:"
+		printstr+=" ante:"+str(line[4])+" cards:"
 		printstr+=ful.cards2String(line[5:19])
 	else:
 		print "TODO: raise error, print_hand.py"
@@ -167,7 +167,7 @@ for i in range (len(handsPlayers)):
 		line=handsActions[j][2:]
 		printstr="playerName:"+playerNames[i]
 		printstr+=" street:"+ful.street_int2String(category, line[0])+" streetActionNo:"+str(line[1])+" action:"+line[2]
-		printstr+=" amount:"+str(line[3])
+		printstr+=" amount:"+str(line[4])
 		print printstr
 		
 cursor.close()

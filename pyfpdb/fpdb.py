@@ -421,7 +421,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha6+, p118 or higher")
+		self.window.set_title("Free Poker DB - version: alpha6+, p124 or higher")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
@@ -445,7 +445,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 				("/Viewers/_Player Stats (tabulated view) (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/Starting _Hands (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/_Session Replayer (todo)", None, self.not_implemented, 0, None ),
-				("/Viewers/Poker_table Viewer (obselete)", "<control>T", self.tab_table_viewer, 0, None ),
+				("/Viewers/Poker_table Viewer (mostly obselete)", "<control>T", self.tab_table_viewer, 0, None ),
 				#( "/Viewers/Tourney Replayer
 				( "/_Database",                             None,         None, 0, "<Branch>" ),
 				( "/Database/Create or Delete _Database (todo)",   None,         self.dia_create_del_database, 0, None ),

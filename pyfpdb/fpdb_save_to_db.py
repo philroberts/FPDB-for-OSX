@@ -26,6 +26,7 @@ def ring_stud(cursor, base, category, site_hand_no, gametype_id, hand_start_time
 	
 	hands_id=fpdb_simple.storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName, maxSeats)
 	
+	#print "before calling store_hands_players_stud, antes:", antes
 	hands_players_ids=fpdb_simple.store_hands_players_stud(cursor, hands_id, player_ids, 
 				start_cashes, antes, card_values, card_suits, winnings, rakes, seatNos)
 	
@@ -73,25 +74,21 @@ def tourney_holdem_omaha(cursor, base, category, siteTourneyNo, buyin, fee, knoc
 	return hands_id
 #end def tourney_holdem_omaha
 
-def tourney_stud(cursor, base, category, site_tourney_no, buyin, fee, knockout, entries, prizepool,
-			    tourney_start, payin_amounts, ranks, #end of tourney specific params
-			    site_hand_no, site_id, gametype_id, hand_start_time, names, player_ids,
-			    start_cashes, antes, card_values, card_suits, winnings, rakes,
-			    action_types, allIns, action_amounts, hudImportData):
+def tourney_stud(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteId,
+					siteHandNo, gametypeId, handStartTime, names, playerIds, startCashes, antes, cardValues, cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
 #stores a tourney stud/razz hand into the database
-	fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+	fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
 	
-	tourney_id=fpdb_simple.store_tourneys(cursor, site_id, site_tourney_no, buyin, fee, knockout, entries, prizepool, tourney_start)
+	tourney_id=fpdb_simple.store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, tourneyStartTime)
 	
-	tourneys_players_ids=fpdb_simple.store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks, winnings)
+	tourneys_players_ids=fpdb_simple.store_tourneys_players(cursor, tourney_id, playerIds, payin_amounts, ranks, winnings)
 	
-	hands_id=fpdb_simple.storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names)
+	hands_id=fpdb_simple.storeHands(cursor, siteHandNo, gametypeId, handStartTime, names, tableName, maxSeats)
 	
-	hands_players_ids=fpdb_simple.store_hands_players_stud_tourney(cursor, hands_id, player_ids, 
-				start_cashes, antes, card_values, card_suits, winnings, rakes, tourneys_players_ids)
+	hands_players_ids=fpdb_simple.store_hands_players_stud_tourney(cursor, hands_id, playerIds, startCashes, antes, cardValues, cardSuits, winnings, rakes, seatNos, tourneys_players_ids)
 	
-	fpdb_simple.storeHudData(cursor, base, category, player_ids, hudImportData)
+	fpdb_simple.storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData)
 	
-	fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts)
+	fpdb_simple.storeActions(cursor, hands_players_ids, actionTypes, allIns, actionAmounts, actionNos)
 	return hands_id
 #end def tourney_stud

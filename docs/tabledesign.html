@@ -141,7 +141,8 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 		<TD><P>char(4)</P></TD>
 		<TD><p>The underlying structure. valid entries:<br>
 			hold - Holdem and Omaha<br>
-			stud - Stud and Razz </P></TD>
+			stud - Stud and Razz<br>
+			draw - (incl Badugi)</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>category</P></TD>
@@ -152,7 +153,11 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 			omahahilo=Omaha 8 or better<br>
 			razz=Razz<br>
 			studhi=7 Card Stud High only<br>
-			studhl=7 Card Stud 8 orbetter</p></TD>
+			studhilo=7 Card Stud 8 or better<br>
+			fivedraw=Five Card Draw<br>
+			27_1draw=2-7 Single Draw<br>
+			27_3draw=2-7 Tripple Draw<br>
+			badugi=Badugi</p></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>limitType</P></TD>
@@ -297,7 +302,7 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 	<TR VALIGN=TOP>
 		<TD><P>cardXValue</P></TD>
 		<TD><P>smallint</P></TD>
-		<TD><P>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x</P></TD>
+		<TD><P>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x, kept=k (draw only)</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>cardXSuit</P></TD>
@@ -307,7 +312,11 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 </TABLE>
 <p><BR></P>
 <p><B>Table HandsPlayers</B></P>
-<p>cardX: can be 1 through 7, one for each card. In holdem/omaha this stores the hole cards so 3-7 or 5-7 are empty</P>
+<p>cardX: can be 1 through 20, one for each card. In holdem only 1-2 of these are used, in omaha 1-4, in stud/razz 1-7, in single draw games 1-10 is used and in badugi 1-16 (4*4) is used.</P>
+<p>For the draw games: the first 5 (badugi: 4) cards are the initial cards, the next 5 (badugi: 4) are after the first draw. If a player keeps some cards then those cards' spaces are filled with "k", short for "kept".<br>
+Example 1: If a player gets 2-6 spades for his first five cards and decides to throw away the 4 and then gets a 7 of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 4, 5, 6, k, k, 7, k, k<br>
+Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and decides to throw away the 2 and the 3 and then gets a Q and K of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 5, 8, J, Q, K, k, k, k<br>
+Note that it will k in the space of which card was there previously, so in example 2 where the player kept the last 3 cards, the last 3 fields of the first draw (ie. card8-10Value) are replaced with k.</p>
 <p>I did not separate this into an extra table because I felt the lost space is not sufficiently large. Also the benefit for searching is far less relevant.</P>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>

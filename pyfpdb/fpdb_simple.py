@@ -579,6 +579,7 @@ def parseActionAmount(line, atype, site, isTourney):
 	else:
 		if not isTourney:
 			pos=line.rfind("$")+1
+			#print "parseActionAmount, line:", line, "line[pos:]:", line[pos:]
 			amount=float2int(line[pos:])
 		else:
 			#print "line:"+line+"EOL"
@@ -676,7 +677,6 @@ def parseActionType(line):
 
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, site, isTourney, names, antes):
-	#print "parseAnteLine line: ",line
 	for i in range(len(names)):
 		if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
 			pos=line.rfind("$")+1
@@ -690,6 +690,7 @@ def parseAnteLine(line, site, isTourney, names, antes):
 					pos1=line.rfind("ante")+5
 					pos2=line.find(" ",pos1)
 					antes[i]+=int(line[pos1:pos2])
+		#print "parseAnteLine line: ", line, "antes[i]", antes[i], "antes", antes
 #end def parseAntes
 
 #returns the buyin of a tourney in cents
@@ -730,18 +731,31 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
 					raise FpdbError("read too many/too few holecards in parseCardLine")
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
 			if (line.find("shows")==-1):
-				cardValues[playerNo][street-1]=line[pos:pos+1]
-				cardSuits[playerNo][street-1]=line[pos+1:pos+2]
+				#print "parseCardLine(in stud if), street:", street
+				if line[pos+2]=="]": #-> not (hero and 3rd street)
+					cardValues[playerNo][street+2]=line[pos:pos+1]
+					cardSuits[playerNo][street+2]=line[pos+1:pos+2]
+				else:
+					#print "hero card1:", line[pos:pos+2], "hero card2:", line[pos+3:pos+5], "hero card3:", line[pos+6:pos+8], 
+					cardValues[playerNo][street]=line[pos:pos+1]
+					cardSuits[playerNo][street]=line[pos+1:pos+2]
+					cardValues[playerNo][street+1]=line[pos+3:pos+4]
+					cardSuits[playerNo][street+1]=line[pos+4:pos+5]
+					cardValues[playerNo][street+2]=line[pos+6:pos+7]
+					cardSuits[playerNo][street+2]=line[pos+7:pos+8]
 			else:
+				#print "parseCardLine(in stud else), street:", street
 				cardValues[playerNo][0]=line[pos:pos+1]
 				cardSuits[playerNo][0]=line[pos+1:pos+2]
 				pos+=3
 				cardValues[playerNo][1]=line[pos:pos+1]
 				cardSuits[playerNo][1]=line[pos+1:pos+2]
-				if street==7:
-					pos+=15
+				if street==4:
+					pos=pos=line.rfind("]")-2
 					cardValues[playerNo][6]=line[pos:pos+1]
 					cardSuits[playerNo][6]=line[pos+1:pos+2]
+					#print "cardValues:", cardValues
+					#print "cardSuits:", cardSuits
 		else:
 			print "line:",line,"street:",street
 			raise FpdbError("invalid category")
@@ -1267,6 +1281,7 @@ def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
 			card_values, card_suits, winnings, rakes, seatNos):
 #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
 	result=[]
+	#print "before inserts in store_hands_players_stud, antes:", antes
 	for i in range (len(player_ids)):
 		cursor.execute ("""INSERT INTO HandsPlayers 
 		(handId, playerId, startCash, ante,
@@ -1319,24 +1334,24 @@ def store_hands_players_holdem_omaha_tourney(cursor, category, hands_id, player_
 #end def store_hands_players_holdem_omaha_tourney
 
 def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
-			antes, card_values, card_suits, winnings, rakes, tourneys_players_ids):
+			antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
 #stores hands_players for tourney stud/razz hands
 	result=[]
 	for i in range (len(player_ids)):
 		cursor.execute ("""INSERT INTO HandsPlayers 
-		(hand_id, player_id, player_startcash,	ante,
-		card1_value, card1_suit, card2_value, card2_suit,
-		card3_value, card3_suit, card4_value, card4_suit,
-		card5_value, card5_suit, card6_value, card6_suit,
-		card7_value, card7_suit, winnings, rake, tourneys_players_id) 
+		(handId, playerId, startCash,	ante,
+		card1Value, card1Suit, card2Value, card2Suit,
+		card3Value, card3Suit, card4Value, card4Suit,
+		card5Value, card5Suit, card6Value, card6Suit,
+		card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo) 
 		VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-		%s, %s, %s, %s, %s)""",
+		%s, %s, %s, %s, %s, %s)""",
 		(hands_id, player_ids[i], start_cashes[i], antes[i],
 		card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 		card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
 		card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i]))
-		cursor.execute("SELECT id FROM hands_players WHERE hand_id=%s AND player_id=%s", (hands_id, player_ids[i]))
+		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
+		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
 		result.append(cursor.fetchall()[0][0])
 	return result
 #end def store_hands_players_stud_tourney
@@ -1511,10 +1526,26 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 				if (len(action_types[3][player])>0 or isAllIn):
 					myStreet3Seen=True
 
-					mySawShowdown=True
-					for count in range (len(action_types[3][player])):
-						if action_types[3][player][count]=="fold":
-							mySawShowdown=False
+					#print "base:", base
+					if base=="hold":
+						mySawShowdown=True
+						for count in range (len(action_types[3][player])):
+							if action_types[3][player][count]=="fold":
+								mySawShowdown=False
+					else:
+						#print "in else"
+						for i in range(len(allIns[3][player])):
+							if allIns[3][player][i]:
+								isAllIn=True
+						if (len(action_types[4][player])>0 or isAllIn):
+							#print "in if"
+							myStreet4Seen=True
+
+							mySawShowdown=True
+							for count in range (len(action_types[4][player])):
+								if action_types[4][player][count]=="fold":
+									mySawShowdown=False
+						
 
 		#flop stuff
 		street=1
@@ -1569,6 +1600,24 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 							for countOtherFold in range (len(action_types[street][player])):
 								if action_types[street][player][countOtherFold]=="fold":
 									myFoldToOtherRaisedStreet3=True
+		
+		#stud river stuff - copy of flop with different vars
+		street=4
+		if myStreet4Seen:
+			for count in range(len(action_types[street][player])):
+				if action_types[street][player][count]=="bet":
+					myStreet4Aggr=True
+			
+			for otherPlayer in range (len(player_ids)):
+				if player==otherPlayer:
+					pass
+				else:
+					for countOther in range (len(action_types[street][otherPlayer])):
+						if action_types[street][otherPlayer][countOther]=="bet":
+							myOtherRaisedStreet4=True
+							for countOtherFold in range (len(action_types[street][player])):
+								if action_types[street][player][countOtherFold]=="fold":
+									myFoldToOtherRaisedStreet4=True
 		
 		if winnings[player]!=0:
 			if myStreet1Seen:
