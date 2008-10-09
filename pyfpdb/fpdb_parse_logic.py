@@ -112,6 +112,7 @@ def mainParser(db, cursor, site, category, hand):
 		tableResult=fpdb_simple.parseTableLine(site, base, hand[0])
 	maxSeats=tableResult['maxSeats']
 	tableName=tableResult['tableName']
+	#print "before part5, antes:", antes
 	
 	#part 5: final preparations, then call fpdb_save_to_db.saveHoldem with
 	#		 the arrays as they are - that file will fill them.

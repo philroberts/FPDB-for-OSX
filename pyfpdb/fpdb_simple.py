@@ -579,6 +579,7 @@ def parseActionAmount(line, atype, site, isTourney):
 	else:
 		if not isTourney:
 			pos=line.rfind("$")+1
+			#print "parseActionAmount, line:", line, "line[pos:]:", line[pos:]
 			amount=float2int(line[pos:])
 		else:
 			#print "line:"+line+"EOL"
@@ -676,7 +677,6 @@ def parseActionType(line):
 
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, site, isTourney, names, antes):
-	#print "parseAnteLine line: ",line
 	for i in range(len(names)):
 		if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
 			pos=line.rfind("$")+1
@@ -690,6 +690,7 @@ def parseAnteLine(line, site, isTourney, names, antes):
 					pos1=line.rfind("ante")+5
 					pos2=line.find(" ",pos1)
 					antes[i]+=int(line[pos1:pos2])
+		#print "parseAnteLine line: ", line, "antes[i]", antes[i], "antes", antes
 #end def parseAntes
 
 #returns the buyin of a tourney in cents
@@ -743,7 +744,7 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
 					cardValues[playerNo][street+2]=line[pos+6:pos+7]
 					cardSuits[playerNo][street+2]=line[pos+7:pos+8]
 			else:
-				print "parseCardLine(in stud else), street:", street
+				#print "parseCardLine(in stud else), street:", street
 				cardValues[playerNo][0]=line[pos:pos+1]
 				cardSuits[playerNo][0]=line[pos+1:pos+2]
 				pos+=3
@@ -753,8 +754,8 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
 					pos=pos=line.rfind("]")-2
 					cardValues[playerNo][6]=line[pos:pos+1]
 					cardSuits[playerNo][6]=line[pos+1:pos+2]
-					print "cardValues:", cardValues
-					print "cardSuits:", cardSuits
+					#print "cardValues:", cardValues
+					#print "cardSuits:", cardSuits
 		else:
 			print "line:",line,"street:",street
 			raise FpdbError("invalid category")
@@ -1280,6 +1281,7 @@ def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
 			card_values, card_suits, winnings, rakes, seatNos):
 #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
 	result=[]
+	#print "before inserts in store_hands_players_stud, antes:", antes
 	for i in range (len(player_ids)):
 		cursor.execute ("""INSERT INTO HandsPlayers 
 		(handId, playerId, startCash, ante,

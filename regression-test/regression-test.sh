@@ -20,22 +20,25 @@ echo "Please note for this to work you need to work on an empty database, otherw
 rm *.found.txt
 ../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-3hands.txt -x
 ../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-3hands.txt -x
-../pyfpdb/fpdb_import.py -p$1 --file=ps-studhilo-ring-showdown.txt -x
 
 echo "it should've reported first that it stored 3, then that it had 3 duplicates"
-echo "    then 1 stored"
 
-#./PrintHand.py -p$1 --hand=14519394979 > ps.14519394979.found.txt && colordiff ps.14519394979.found.txt ps.14519394979.expected.txt
-#./PrintHand.py -p$1 --hand=14519420999 > ps.14519420999.found.txt && colordiff ps.14519420999.found.txt ps.14519420999.expected.txt
-#./PrintHand.py -p$1 --hand=14519433154 > ps.14519433154.found.txt && colordiff ps.14519433154.found.txt ps.14519433154.expected.txt
-./PrintHand.py -p$1 --hand=15043388146 > ps.15043388146.found.txt && colordiff ps.15043388146.found.txt ps.15043388146.expected.txt
+./PrintHand.py -p$1 --hand=14519394979 > ps.14519394979.found.txt && colordiff ps.14519394979.found.txt ps.14519394979.expected.txt
+./PrintHand.py -p$1 --hand=14519420999 > ps.14519420999.found.txt && colordiff ps.14519420999.found.txt ps.14519420999.expected.txt
+./PrintHand.py -p$1 --hand=14519433154 > ps.14519433154.found.txt && colordiff ps.14519433154.found.txt ps.14519433154.expected.txt
 
-#./PrintPlayerHudData.py -p$1 -oM > ps-flags-M-2hands.found.txt && colordiff ps-flags-M-2hands.found.txt ps-flags-M-2hands.expected.txt
-#./PrintPlayerHudData.py -p$1 -nPlayer_5 -oB > ps-flags-B-1hands.found.txt && colordiff ps-flags-B-1hands.found.txt ps-flags-B-1hands.expected.txt
+./PrintPlayerHudData.py -p$1 -oM > ps-flags-M-2hands.found.txt && colordiff ps-flags-M-2hands.found.txt ps-flags-M-2hands.expected.txt
+./PrintPlayerHudData.py -p$1 -nPlayer_5 -oB > ps-flags-B-1hands.found.txt && colordiff ps-flags-B-1hands.found.txt ps-flags-B-1hands.expected.txt
 
 
 ../pyfpdb/fpdb_import.py -p$1 --file=ps-lhe-ring-call-3B-preflop-cb-no2b.txt -x
 echo "it should've now reported another successful store of 1 hand"
-#./PrintPlayerHudData.py -p$1 -nplayer3 -oE -e10 -b25 > ps-flags-CBflop.found.txt && colordiff ps-flags-CBflop.found.txt ps-flags-CBflop.expected.txt
+./PrintPlayerHudData.py -p$1 -nplayer3 -oE -e10 -b25 > ps-flags-CBflop.found.txt && colordiff ps-flags-CBflop.found.txt ps-flags-CBflop.expected.txt
+
+
+../pyfpdb/fpdb_import.py -p$1 --file=ps-studhilo-ring-showdown.txt -x
+echo "it should've now reported another successful store of 1 hand"
+./PrintHand.py -p$1 --hand=15043388146 > ps.15043388146.found.txt && colordiff ps.15043388146.found.txt ps.15043388146.expected.txt
+
 
 echo "if everything was printed as expected this worked"

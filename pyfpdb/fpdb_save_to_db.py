@@ -26,6 +26,7 @@ def ring_stud(cursor, base, category, site_hand_no, gametype_id, hand_start_time
 	
 	hands_id=fpdb_simple.storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName, maxSeats)
 	
+	#print "before calling store_hands_players_stud, antes:", antes
 	hands_players_ids=fpdb_simple.store_hands_players_stud(cursor, hands_id, player_ids, 
 				start_cashes, antes, card_values, card_suits, winnings, rakes, seatNos)
 	
