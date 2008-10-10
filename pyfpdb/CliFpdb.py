@@ -30,19 +30,7 @@ except:
 import fpdb_import
 import fpdb_db
 
-
-#	def __init__(self, db, settings, debug=True):
-#		"""Constructor for table_viewer"""
-#		self.debug=debug
-#		#print "start of table_viewer constructor"
-#		self.db=db
-#		self.cursor=db.cursor
-#		self.settings=settings
-
 if __name__ == "__main__":
-	failOnError=False
-	quiet=False
-
 	#process CLI parameters
 	parser = OptionParser()
 	parser.add_option("-c", "--handCount", default="0", type="int",
@@ -66,18 +54,5 @@ if __name__ == "__main__":
 	(options, sys.argv) = parser.parse_args()
 	
 	settings={'imp-callFpdbHud':False, 'db-backend':2}
-
-	#self.inputFile=options.inputFile
-		
-	#self.server=options.server
-	#self.database=options.database
-	#self.user=options.user
-	#self.password=options.password
-
-	#self.quiet=False
-	#self.failOnError=False
-	#self.minPrint=0
-	#self.handCount=0
 	importer = fpdb_import.Importer()
-		
 	importer.import_file_dict(options, settings)
