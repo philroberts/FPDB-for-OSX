@@ -69,30 +69,12 @@ class GuiGraphViewer (threading.Thread):
 		self.ax.set_xlabel("Hands", fontsize = 12)
 		self.ax.set_ylabel("$", fontsize = 12)
 		self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-
-		self.cursor.execute("""SELECT handId, winnings FROM HandsPlayers
-				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-				INNER JOIN Hands ON Hands.id = HandsPlayers.handId
-				WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
-				ORDER BY siteHandNo""", (name, site))
-		winnings = self.db.cursor.fetchall()
-				
-		profit=range(len(winnings))
-		for i in profit:
-			self.cursor.execute("""SELECT SUM(amount) FROM HandsActions
-					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
-					INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-					WHERE Players.name = %s AND HandsPlayers.handId = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)""", (name, winnings[i][0], site))
-			spent = self.db.cursor.fetchone()
-			profit[i]=(i, winnings[i][1]-spent[0])
-
-		y=map(lambda x:float(x[1]), profit)
-		line = cumsum(y)
-		line = line/100
-
 		self.ax.annotate ("All Hands, Site %s", (61,25), xytext =(0.1, 0.9) , textcoords ="axes fraction" ,)
 
-		#Now draw plot
+		#Get graph data from DB
+		line = self.getRingProfitGraph(name, site)
+
+		#Draw plot
 		self.ax.plot(line,)
 
 		self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
@@ -100,13 +82,29 @@ class GuiGraphViewer (threading.Thread):
 		self.canvas.show()
 	#end of def showClicked
 
-	def __init__(self, db, settings, debug=True):
+	def getRingProfitGraph(self, name, site):
+                self.cursor.execute(self.sql.query['getRingWinningsAllGamesPlayerIdSite'], (name, site))
+                winnings = self.db.cursor.fetchall()
+
+                profit=range(len(winnings))
+                for i in profit:
+                        self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
+                        spent = self.db.cursor.fetchone()
+                        profit[i]=(i, winnings[i][1]-spent[0])
+
+                y=map(lambda x:float(x[1]), profit)
+                line = cumsum(y)
+                return line/100
+        #end of def getRingProfitGraph
+
+	def __init__(self, db, settings, querylist, debug=True):
 		"""Constructor for GraphViewer"""
 		self.debug=debug
 		#print "start of GraphViewer constructor"
 		self.db=db
 		self.cursor=db.cursor
 		self.settings=settings
+		self.sql=querylist
         
 		self.mainVBox = gtk.VBox(False, 0)
 		self.mainVBox.show()
