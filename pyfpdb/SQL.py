@@ -257,6 +257,14 @@ class Sql:
                     and Gametypes.id = Hands.gametypeId
                 """
 
+            self.query['get_actual_seat'] = """
+                    select seatNo
+                    from HandsPlayers
+                    where HandsPlayers.handId = %s
+                    and   HandsPlayers.playerId  = (select Players.id from Players
+                                                    where Players.name = %s)
+                """
+
             self.query['get_cards'] = """
                     select 
                         seatNo     AS seat_number, 
