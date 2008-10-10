@@ -135,6 +135,32 @@
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	
     </supported_games>
+    <popup_windows>
+    	<pu pu_name="default">
+            <pu_stat pu_stat_name="n"> </pu_stat>
+            <pu_stat pu_stat_name="vpip"> </pu_stat>
+    	    <pu_stat pu_stat_name="pfr"> </pu_stat>
+            <pu_stat pu_stat_name="three_B_0"> </pu_stat>
+            <pu_stat pu_stat_name="steal"> </pu_stat>
+            <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
+            <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>
+            <pu_stat pu_stat_name="wmsd"> </pu_stat>
+            <pu_stat pu_stat_name="wtsd"> </pu_stat>
+            <pu_stat pu_stat_name="WMsF"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_1"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_2"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_3"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_4"> </pu_stat>
+            <pu_stat pu_stat_name="cb_1"> </pu_stat>
+            <pu_stat pu_stat_name="cb_2"> </pu_stat>
+            <pu_stat pu_stat_name="cb_3"> </pu_stat>
+            <pu_stat pu_stat_name="cb_4"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_1"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_2"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_3"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_4"> </pu_stat>
+    	</pu>
+    </popup_windows>
     <supported_databases>
     	<database db_name="fpdb"         db_server="mysql"      db_ip="localhost" db_user="fpdb"   db_pass="YOUR MYSQL PASSWORD" db_type="fpdb">    </database>
     </supported_databases>
