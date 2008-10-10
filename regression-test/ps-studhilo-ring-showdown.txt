@@ -65,3 +65,66 @@ Seat 8: willowdale showed [3s 4d 5s 4s Ad 5h 2c] and won ($1.02) with HI: a stra
 
 
 
+PokerStars Game #20711747191:  Razz Limit ($1/$2) - 2008/09/26 14:36:50 ET 
+Table 'Siwa III' 8-max 
+Seat 2: dainmat ($63.15 in chips)  
+Seat 3: fnJ's ($30.75 in chips)  
+Seat 4: ambythegreat ($24.90 in chips)  
+Seat 5: jt studd ($39.90 in chips)  
+Seat 6: KyleHruby ($11.55 in chips)  
+Seat 7: nutOmatic ($71.30 in chips)  
+dainmat: posts the ante $0.10 
+fnJ's: posts the ante $0.10 
+ambythegreat: posts the ante $0.10 
+jt studd: posts the ante $0.10 
+KyleHruby: posts the ante $0.10 
+nutOmatic: posts the ante $0.10 
+*** 3rd STREET *** 
+Dealt to dainmat [Ts] 
+Dealt to fnJ's [3s] 
+Dealt to ambythegreat [5h] 
+Dealt to jt studd [Ad] 
+Dealt to KyleHruby [As] 
+Dealt to nutOmatic [6d Kd Th] 
+dainmat: brings in for $0.50 
+fnJ's: calls $0.50 
+ambythegreat: raises $0.50 to $1 
+garnishgut joins the table at seat #1  
+jt studd: folds  
+KyleHruby: folds  
+nutOmatic: folds  
+dainmat: folds  
+fnJ's: calls $0.50 
+*** 4th STREET *** 
+Dealt to fnJ's [3s] [6h] 
+Dealt to ambythegreat [5h] [4c] 
+ambythegreat: bets $1 
+fnJ's: calls $1 
+*** 5th STREET *** 
+Dealt to fnJ's [3s 6h] [2h] 
+Dealt to ambythegreat [5h 4c] [Kh] 
+fnJ's: bets $2 
+ambythegreat: calls $2 
+*** 6th STREET *** 
+Dealt to fnJ's [3s 6h 2h] [2c] 
+Dealt to ambythegreat [5h 4c Kh] [5s] 
+fnJ's: bets $2 
+ambythegreat: calls $2 
+*** RIVER *** 
+fnJ's: bets $2 
+ambythegreat: calls $2 
+*** SHOW DOWN *** 
+fnJ's: shows [9d 5c 3s 6h 2h 2c 4h] (Lo: 6,5,4,3,2) 
+ambythegreat: mucks hand  
+fnJ's collected $16.35 from pot 
+*** SUMMARY *** 
+Total pot $17.10 | Rake $0.75  
+Seat 2: dainmat folded on the 3rd Street 
+Seat 3: fnJ's showed [9d 5c 3s 6h 2h 2c 4h] and won ($16.35) with Lo: 6,5,4,3,2 
+Seat 4: ambythegreat mucked [6s 7h 5h 4c Kh 5s Jc] 
+Seat 5: jt studd folded on the 3rd Street (didn't bet) 
+Seat 6: KyleHruby folded on the 3rd Street (didn't bet) 
+Seat 7: nutOmatic folded on the 3rd Street (didn't bet) 
+
+
+

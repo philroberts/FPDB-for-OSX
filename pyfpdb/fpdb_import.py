@@ -36,7 +36,6 @@ import os
 import datetime
 import fpdb_simple
 import fpdb_parse_logic
-from optparse import OptionParser
 from time import time
 
 class Importer:
@@ -72,6 +71,7 @@ class Importer:
 		self.callHud = value
 
 	def import_file_dict(self, options, settings):
+		self.options=options
 		starttime = time()
 		last_read_hand=0
 		if (options.inputFile=="stdin"):
@@ -136,7 +136,8 @@ class Importer:
 					if not isTourney:
 						fpdb_simple.filterAnteBlindFold(site,hand)
 					hand=fpdb_simple.filterCrap(site, hand, isTourney)
-			
+					self.hand=hand
+					
 					try:
 						handsId=fpdb_parse_logic.mainParser(self.db, self.cursor, site, category, hand)
 						self.db.commit()
@@ -203,9 +204,9 @@ class Importer:
 
 	def printEmailErrorMessage(self, errors, filename, line):
 		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-		print "Filename:",options.inputFile
+		print "Filename:", self.options.inputFile
 		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
-		print hand[0]
+		print self.hand[0]
 	
 
 if __name__ == "__main__":
