@@ -49,8 +49,11 @@ class Importer:
 		self.callHud = False
 		self.lines = None
 		self.pos_in_file = {} # dict to remember how far we have read in the file
+		#Set defaults
 		if not self.settings.has_key('imp-callFpdbHud'):
 			self.settings['imp-callFpdbHud'] = False
+		if not self.settings.has_key('minPrint'):
+			self.settings['minPrint'] = 30
 		self.dbConnect()
 
 	def dbConnect(self):
@@ -76,6 +79,9 @@ class Importer:
 
 	def addImportFile(self, filename):
 		self.caller.inputFile = filename
+
+	def setMinPrint(self, value):
+		self.settings['minPrint'] = int(value)
 
 	def import_file_dict(self):
 		starttime = time()
@@ -163,7 +169,7 @@ class Importer:
 						self.printEmailErrorMessage(errors, self.caller.inputFile, hand[0])
 				
 						if (self.caller.failOnError):
-							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
+							self.db.commit() #dont remove this, in case hand processing was cancelled.
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
@@ -173,10 +179,10 @@ class Importer:
 						self.db.rollback()
 						
 						if (self.caller.failOnError):
-							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
+							self.db.commit() #dont remove this, in case hand processing was cancelled.
 							raise
-					if (self.caller.minPrint!=0):
-						if ((stored+duplicates+partial+errors)%self.caller.minPrint==0):
+					if (self.settings['minPrint']!=0):
+						if ((stored+duplicates+partial+errors)%self.settings['minPrint']==0):
 							print "stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
 			
 					if (self.caller.handCount!=0):

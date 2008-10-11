@@ -48,9 +48,9 @@ class GuiBulkImport (threading.Thread):
 		
 		self.minPrint=self.min_print_tbuffer.get_text(self.min_print_tbuffer.get_start_iter(), self.min_print_tbuffer.get_end_iter())
 		if (self.minPrint=="never" or self.minPrint=="Never"):
-			self.minPrint=0
+			self.importer.setMinPrint(0)
 		else:
-			self.minPrint=int(self.minPrint)
+			self.importer.setMinPrint=int(self.minPrint)
 		
 		self.quiet=self.info_tbuffer.get_text(self.info_tbuffer.get_start_iter(), self.info_tbuffer.get_end_iter())
 		if (self.quiet=="yes"):
