@@ -40,9 +40,9 @@ class GuiBulkImport (threading.Thread):
 		
 		self.handCount=self.hand_count_tbuffer.get_text(self.hand_count_tbuffer.get_start_iter(), self.hand_count_tbuffer.get_end_iter())
 		if (self.handCount=="unlimited" or self.handCount=="Unlimited"):
-			self.handCount=0
+			self.importer.setHandCount(0)
 		else:
-			self.handCount=int(self.handCount)
+			self.importer.setHandCount(int(self.handCount))
 
 		self.errorFile="failed.txt"
 		
@@ -54,15 +54,15 @@ class GuiBulkImport (threading.Thread):
 		
 		self.quiet=self.info_tbuffer.get_text(self.info_tbuffer.get_start_iter(), self.info_tbuffer.get_end_iter())
 		if (self.quiet=="yes"):
-			self.quiet=False
+			self.importer.setQuiet(False)
 		else:
-			self.quiet=True
+			self.importer.setQuiet(True)
 			
 		self.failOnError=self.fail_error_tbuffer.get_text(self.fail_error_tbuffer.get_start_iter(), self.fail_error_tbuffer.get_end_iter())
 		if (self.failOnError=="no"):
-			self.failOnError=False
+			self.importer.setFailOnError(False)
 		else:
-			self.failOnError=True
+			self.importer.setFailOnError(True)
 		
 		if os.path.isdir(self.inputFile):
 			self.import_dir()

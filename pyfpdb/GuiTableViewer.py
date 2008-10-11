@@ -251,11 +251,11 @@ class GuiTableViewer (threading.Thread):
 		self.user=self.db.user
 		self.password=self.db.password
 
-		self.quiet=False
-		self.failOnError=False
-		self.handCount=0
 		self.importer = fpdb_import.Importer(self, self.settings)
 		self.importer.setMinPrint(0)
+		self.importer.setQuiet(False)
+		self.importer.setFailOnError(False)
+		self.importer.setHandCount(0)
 		
 		self.last_read_hand_id=self.importer.import_file_dict()
 	#end def table_viewer.import_clicked

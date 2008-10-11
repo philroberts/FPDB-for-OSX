@@ -124,14 +124,14 @@ class GuiAutoImport (threading.Thread):
 		self.importer = fpdb_import.Importer(self,self.settings)
 		self.importer.setCallHud(True)
 		self.importer.setMinPrint(30)
+		self.importer.setQuiet(False)
+		self.importer.setFailOnError(False)
+		self.importer.setHandCount(0)
 		
 		self.server=settings['db-host']
 		self.user=settings['db-user']
 		self.password=settings['db-password']
 		self.database=settings['db-databaseName']
-		self.quiet=False
-		self.failOnError=False
-		self.handCount=0
 		
 		self.mainVBox=gtk.VBox(False,1)
 		self.mainVBox.show()

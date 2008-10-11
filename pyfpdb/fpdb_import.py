@@ -83,6 +83,15 @@ class Importer:
 	def setMinPrint(self, value):
 		self.settings['minPrint'] = int(value)
 
+	def setHandCount(self, value):
+		self.settings['handCount'] = int(value)
+
+	def setQuiet(self, value):
+		self.settings['quiet'] = value
+
+	def setFailOnError(self, value):
+		self.settings['failOnError'] = value
+
 	def import_file_dict(self):
 		starttime = time()
 		last_read_hand=0
@@ -168,7 +177,7 @@ class Importer:
 						errors+=1
 						self.printEmailErrorMessage(errors, self.caller.inputFile, hand[0])
 				
-						if (self.caller.failOnError):
+						if (self.settings['failOnError']):
 							self.db.commit() #dont remove this, in case hand processing was cancelled.
 							raise
 					except (fpdb_simple.FpdbError), fe:
@@ -178,16 +187,16 @@ class Importer:
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
 						
-						if (self.caller.failOnError):
+						if (self.settings['failOnError']):
 							self.db.commit() #dont remove this, in case hand processing was cancelled.
 							raise
 					if (self.settings['minPrint']!=0):
 						if ((stored+duplicates+partial+errors)%self.settings['minPrint']==0):
 							print "stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
 			
-					if (self.caller.handCount!=0):
-						if ((stored+duplicates+partial+errors)>=self.caller.handCount):
-							if (not self.caller.quiet):
+					if (self.settings['handCount']!=0):
+						if ((stored+duplicates+partial+errors)>=self.settings['handCount']):
+							if (not self.settings['quiet']):
 								print "quitting due to reaching the amount of hands to be imported"
 								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
 							sys.exit(0)
