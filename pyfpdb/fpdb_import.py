@@ -40,10 +40,10 @@ from time import time
 
 class Importer:
 
-	def __init__(self, options, settings):
+	def __init__(self, caller, settings):
 		"""Constructor"""
 		self.settings=settings
-		self.options=options
+		self.caller=caller
 		self.db = None
 		self.cursor = None
 		self.callHud = False
@@ -75,23 +75,23 @@ class Importer:
 		self.callHud = value
 
 	def addImportFile(self, filename):
-		self.options.inputFile = filename
+		self.caller.inputFile = filename
 
 	def import_file_dict(self):
 		starttime = time()
 		last_read_hand=0
 		loc = 0
-		if (self.options.inputFile=="stdin"):
+		if (self.caller.inputFile=="stdin"):
 			inputFile=sys.stdin
 		else:
-			inputFile=open(self.options.inputFile, "rU")
-			try: loc = self.pos_in_file[self.options.inputFile]
+			inputFile=open(self.caller.inputFile, "rU")
+			try: loc = self.pos_in_file[self.caller.inputFile]
 			except: pass
 
 		# Read input file into class and close file
 		inputFile.seek(loc)
 		self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
-		self.pos_in_file[self.options.inputFile] = inputFile.tell()
+		self.pos_in_file[self.caller.inputFile] = inputFile.tell()
 		inputFile.close()
 
 		firstline = self.lines[0]
@@ -155,33 +155,33 @@ class Importer:
 						if self.settings['imp-callFpdbHud'] and self.callHud:
 							#print "call to HUD here. handsId:",handsId
 							#pipe the Hands.id out to the HUD
-							self.options.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+							self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
 					except fpdb_simple.DuplicateError:
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, self.options.inputFile, hand[0])
+						self.printEmailErrorMessage(errors, self.caller.inputFile, hand[0])
 				
-						if (self.options.failOnError):
+						if (self.caller.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, self.options.inputFile, hand[0])
+						self.printEmailErrorMessage(errors, self.caller.inputFile, hand[0])
 
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
 						
-						if (self.options.failOnError):
+						if (self.caller.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
 							raise
-					if (self.options.minPrint!=0):
-						if ((stored+duplicates+partial+errors)%sielf.options.minPrint==0):
+					if (self.caller.minPrint!=0):
+						if ((stored+duplicates+partial+errors)%self.caller.minPrint==0):
 							print "stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
 			
-					if (self.options.handCount!=0):
-						if ((stored+duplicates+partial+errors)>=self.options.handCount):
-							if (not self.options.quiet):
+					if (self.caller.handCount!=0):
+						if ((stored+duplicates+partial+errors)>=self.caller.handCount):
+							if (not self.caller.quiet):
 								print "quitting due to reaching the amount of hands to be imported"
 								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
 							sys.exit(0)
@@ -204,7 +204,7 @@ class Importer:
 
 	def printEmailErrorMessage(self, errors, filename, line):
 		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-		print "Filename:", self.options.inputFile
+		print "Filename:", self.caller.inputFile
 		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
 		print self.hand[0]
 	
