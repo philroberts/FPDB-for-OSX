@@ -40,29 +40,32 @@ from time import time
 
 class Importer:
 
-	def __init__(self):
+	def __init__(self, options, settings):
 		"""Constructor"""
-		self.settings={'imp-callFpdbHud':False}
+		self.settings=settings
+		self.options=options
 		self.db = None
 		self.cursor = None
-		self.options = None
 		self.callHud = False
 		self.lines = None
 		self.pos_in_file = {} # dict to remember how far we have read in the file
+		if not self.settings.has_key('imp-callFpdbHud'):
+			self.settings['imp-callFpdbHud'] = False
+		self.dbConnect()
 
-	def dbConnect(self, options, settings):
+	def dbConnect(self):
 		#connect to DB
-		if settings['db-backend'] == 2:
+		if self.settings['db-backend'] == 2:
 			if not mysqlLibFound:
 				raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
-			self.db = MySQLdb.connect(host = options.server, user = options.user,
-							passwd = options.password, db = options.database)
-		elif settings['db-backend'] == 3:
+			self.db = MySQLdb.connect(self.settings['db-host'], self.settings['db-user'],
+							self.settings['db-password'], self.settings['db-databaseName'])
+		elif self.settings['db-backend'] == 3:
 			if not pgsqlLibFound:
 				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
-			self.db = psycopg2.connect(host = options.server, user = options.user,
-								  password = options.password, database = options.database)
-		elif settings['db-backend'] == 4:
+			self.db = psycopg2.connect(self.settings['db-host'], self.settings['db-user'],
+							self.settings['db-password'], self.settings['db-databaseName'])
+		elif self.settings['db-backend'] == 4:
 			pass
 		else:
 			pass
@@ -71,32 +74,30 @@ class Importer:
 	def setCallHud(self, value):
 		self.callHud = value
 
-	def import_file_dict(self, options, settings):
-		self.options=options
+	def addImportFile(self, filename):
+		self.options.inputFile = filename
+
+	def import_file_dict(self):
 		starttime = time()
 		last_read_hand=0
 		loc = 0
-		if (options.inputFile=="stdin"):
+		if (self.options.inputFile=="stdin"):
 			inputFile=sys.stdin
 		else:
-			inputFile=open(options.inputFile, "rU")
-			try: loc = self.pos_in_file[options.inputFile]
+			inputFile=open(self.options.inputFile, "rU")
+			try: loc = self.pos_in_file[self.options.inputFile]
 			except: pass
-
-		self.dbConnect(options,settings)
 
 		# Read input file into class and close file
 		inputFile.seek(loc)
 		self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
-		self.pos_in_file[options.inputFile] = inputFile.tell()
+		self.pos_in_file[self.options.inputFile] = inputFile.tell()
 		inputFile.close()
 
 		firstline = self.lines[0]
 
 		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
-			self.cursor.close()
-			self.db.close()
 			return 0
 		
 		site=fpdb_simple.recogniseSite(firstline)
@@ -151,41 +152,36 @@ class Importer:
 						stored+=1
 						self.db.commit()
 #						if settings['imp-callFpdbHud'] and self.callHud and os.sep=='/':
-						if settings['imp-callFpdbHud'] and self.callHud:
+						if self.settings['imp-callFpdbHud'] and self.callHud:
 							#print "call to HUD here. handsId:",handsId
 							#pipe the Hands.id out to the HUD
-#							options.pipe_to_hud.write("%s" % (handsId) + os.linesep)
-							options.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+							self.options.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
 					except fpdb_simple.DuplicateError:
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, options.inputFile, hand[0])
+						self.printEmailErrorMessage(errors, self.options.inputFile, hand[0])
 				
-						if (options.failOnError):
+						if (self.options.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
-							self.cursor.close()
-							self.db.close()
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, options.inputFile, hand[0])
+						self.printEmailErrorMessage(errors, self.options.inputFile, hand[0])
 
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
 						
-						if (options.failOnError):
+						if (self.options.failOnError):
 							self.db.commit() #dont remove this, in case hand processing was cancelled this ties up any open ends.
-							self.cursor.close()
-							self.db.close()
 							raise
-					if (options.minPrint!=0):
-						if ((stored+duplicates+partial+errors)%options.minPrint==0):
+					if (self.options.minPrint!=0):
+						if ((stored+duplicates+partial+errors)%sielf.options.minPrint==0):
 							print "stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
 			
-					if (options.handCount!=0):
-						if ((stored+duplicates+partial+errors)>=options.handCount):
-							if (not options.quiet):
+					if (self.options.handCount!=0):
+						if ((stored+duplicates+partial+errors)>=self.options.handCount):
+							if (not self.options.quiet):
 								print "quitting due to reaching the amount of hands to be imported"
 								print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
 							sys.exit(0)
@@ -203,8 +199,6 @@ class Importer:
 				handsId=0
 			#todo: this will cause return of an unstored hand number if the last hand was error or partial
 		self.db.commit()
-		self.cursor.close()
-		self.db.close()
 		return handsId
 #end def import_file_dict
 
