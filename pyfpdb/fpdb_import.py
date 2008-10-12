@@ -46,6 +46,9 @@ class Importer:
 		self.caller=caller
 		self.db = None
 		self.cursor = None
+		self.filelist = []
+		self.queued = []
+		self.updated = 0		#Time last import was run, used as mtime reference
 		self.callHud = False
 		self.lines = None
 		self.pos_in_file = {} # dict to remember how far we have read in the file
@@ -74,11 +77,9 @@ class Importer:
 			pass
 		self.cursor = self.db.cursor()
 
+	#Set functions
 	def setCallHud(self, value):
 		self.callHud = value
-
-	def addImportFile(self, filename):
-		self.caller.inputFile = filename
 
 	def setMinPrint(self, value):
 		self.settings['minPrint'] = int(value)
@@ -92,21 +93,62 @@ class Importer:
 	def setFailOnError(self, value):
 		self.settings['failOnError'] = value
 
-	def import_file_dict(self):
+	def setWatchTime(self):
+		self.updated = time()
+
+	def clearFileList(self):
+		self.filelist = []
+
+	#Add an individual file to filelist
+	def addImportFile(self, filename):
+		#todo: test it is a valid file
+		self.filelist = self.filelist + [filename]
+		print "Filelist in addImportFile: ", self.filelist
+		#Remove duplicates
+		set(filelist)
+
+	#Add a directory of files to filelist
+	def addImportDirectory(self,dir):
+		#todo: test it is a valid directory
+		for file in os.listdir(dir):
+			if os.path.isdir(file):
+				print "BulkImport is not recursive - please select the final directory in which the history files are"
+			else:
+				blah = [dir+os.sep+file]
+				self.filelist = self.filelist + [dir+os.sep+file]
+		#Remove duplicates
+		set(self.filelist)
+
+	#Run full import on filelist
+	def runImport(self):
+		for file in self.filelist:
+			print "Importing file: ", file
+			self.import_file_dict(file)
+
+	#Run import on updated files, then store latest update time.
+	def runUpdated(self):
+		for file in self.filelist:
+			stat_info = os.stat(file)
+			if stat_info.st_mtime > self.updated:
+				self.import_file_dict(file)
+		self.updated = time()
+
+	# This is now an internal function that should not be called directly.
+	def import_file_dict(self, file):
 		starttime = time()
 		last_read_hand=0
 		loc = 0
-		if (self.caller.inputFile=="stdin"):
+		if (file=="stdin"):
 			inputFile=sys.stdin
 		else:
-			inputFile=open(self.caller.inputFile, "rU")
-			try: loc = self.pos_in_file[self.caller.inputFile]
+			inputFile=open(file, "rU")
+			try: loc = self.pos_in_file[file]
 			except: pass
 
 		# Read input file into class and close file
 		inputFile.seek(loc)
 		self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
-		self.pos_in_file[self.caller.inputFile] = inputFile.tell()
+		self.pos_in_file[file] = inputFile.tell()
 		inputFile.close()
 
 		firstline = self.lines[0]
@@ -175,14 +217,14 @@ class Importer:
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, self.caller.inputFile, hand[0])
+						self.printEmailErrorMessage(errors, file, hand[0])
 				
 						if (self.settings['failOnError']):
 							self.db.commit() #dont remove this, in case hand processing was cancelled.
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, self.caller.inputFile, hand[0])
+						self.printEmailErrorMessage(errors, file, hand[0])
 
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
@@ -219,7 +261,7 @@ class Importer:
 
 	def printEmailErrorMessage(self, errors, filename, line):
 		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-		print "Filename:", self.caller.inputFile
+		print "Filename:", filename
 		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
 		print self.hand[0]
 	

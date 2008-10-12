@@ -27,12 +27,8 @@ class GuiBulkImport (threading.Thread):
 	def import_dir(self):
 		"""imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 		self.path=self.inputFile
-		for file in os.listdir(self.path):
-			if os.path.isdir(file):
-				print "BulkImport is not recursive - please select the final directory in which the history files are"
-			else:
-				self.inputFile=self.path+os.sep+file
-				self.importer.import_file_dict()
+		self.importer.addImportDirectory(self.path)
+		self.importer.runImport()
 		print "GuiBulkImport.import_dir done"
 		
 	def load_clicked(self, widget, data=None):
@@ -67,7 +63,9 @@ class GuiBulkImport (threading.Thread):
 		if os.path.isdir(self.inputFile):
 			self.import_dir()
 		else:
-			self.importer.import_file_dict()
+			self.importer.addImportFile()
+			self.importer.runImport()
+			self.importer.clearFileList()
 	
 	def get_vbox(self):
 		"""returns the vbox of this thread"""
