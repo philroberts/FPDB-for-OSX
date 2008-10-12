@@ -88,7 +88,7 @@ class GuiAutoImport (threading.Thread):
 			self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
 
 #	Add directory to importer object and set the initial mtime reference.
-			self.importer.addImportDirectory(self.path)
+			self.importer.addImportDirectory(self.path, True)
 			self.do_import()
 		
 			interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))

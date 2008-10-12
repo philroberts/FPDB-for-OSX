@@ -119,7 +119,7 @@ class Importer:
 			if os.path.isdir(file):
 				print "BulkImport is not recursive - please select the final directory in which the history files are"
 			else:
-				self.filelist = self.filelist + [dir+os.sep+file]
+				self.filelist = self.filelist + [os.path.join(dir, file)]
 		#Remove duplicates
 		set(self.filelist)
 
@@ -137,6 +137,7 @@ class Importer:
 		for dir in self.dirlist:
 			for file in os.listdir(dir):
 				self.filelist = self.filelist + [dir+os.sep+file]
+			set(filelist)
 
 		for file in self.filelist:
 			stat_info = os.stat(file)
