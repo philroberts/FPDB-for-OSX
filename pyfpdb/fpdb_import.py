@@ -47,7 +47,8 @@ class Importer:
 		self.db = None
 		self.cursor = None
 		self.filelist = []
-		self.queued = []
+		self.dirlist = []
+		self.monitor = False
 		self.updated = 0		#Time last import was run, used as mtime reference
 		self.callHud = False
 		self.lines = None
@@ -108,13 +109,16 @@ class Importer:
 		set(filelist)
 
 	#Add a directory of files to filelist
-	def addImportDirectory(self,dir):
+	def addImportDirectory(self,dir,monitor = False):
 		#todo: test it is a valid directory
+		if monitor == True:
+			self.monitor = True
+			self.dirlist = self.dirlist + [dir]
+
 		for file in os.listdir(dir):
 			if os.path.isdir(file):
 				print "BulkImport is not recursive - please select the final directory in which the history files are"
 			else:
-				blah = [dir+os.sep+file]
 				self.filelist = self.filelist + [dir+os.sep+file]
 		#Remove duplicates
 		set(self.filelist)
@@ -127,6 +131,13 @@ class Importer:
 
 	#Run import on updated files, then store latest update time.
 	def runUpdated(self):
+		#Check for new files in directory
+		#todo: make efficient - always checks for new file, should be able to use mtime of directory
+		# ^^ May not work on windows
+		for dir in self.dirlist:
+			for file in os.listdir(dir):
+				self.filelist = self.filelist + [dir+os.sep+file]
+
 		for file in self.filelist:
 			stat_info = os.stat(file)
 			if stat_info.st_mtime > self.updated:
