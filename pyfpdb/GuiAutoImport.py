@@ -89,7 +89,6 @@ class GuiAutoImport (threading.Thread):
 
 #	Add directory to importer object and set the initial mtime reference.
 			self.importer.addImportDirectory(self.path)
-			self.importer.setWatchTime()
 			self.do_import()
 		
 			interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
@@ -110,6 +109,7 @@ class GuiAutoImport (threading.Thread):
 		self.importer.setQuiet(False)
 		self.importer.setFailOnError(False)
 		self.importer.setHandCount(0)
+		self.importer.setWatchTime()
 		
 		self.server=settings['db-host']
 		self.user=settings['db-user']

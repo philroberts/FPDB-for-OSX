@@ -130,6 +130,7 @@ class Importer:
 		for file in self.filelist:
 			stat_info = os.stat(file)
 			if stat_info.st_mtime > self.updated:
+		#		print "File: " + str(file) + " mtime: " + str(stat_info.st_mtime) + " update: " + str(self.updated)
 				self.import_file_dict(file)
 		self.updated = time()
 
