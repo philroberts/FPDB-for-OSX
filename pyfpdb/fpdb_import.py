@@ -104,9 +104,8 @@ class Importer:
 	def addImportFile(self, filename):
 		#todo: test it is a valid file
 		self.filelist = self.filelist + [filename]
-		print "Filelist in addImportFile: ", self.filelist
 		#Remove duplicates
-		set(filelist)
+		self.filelist = list(set(self.filelist))
 
 	#Add a directory of files to filelist
 	def addImportDirectory(self,dir,monitor = False):
@@ -121,12 +120,11 @@ class Importer:
 			else:
 				self.filelist = self.filelist + [os.path.join(dir, file)]
 		#Remove duplicates
-		set(self.filelist)
+		self.filelist = list(set(self.filelist))
 
 	#Run full import on filelist
 	def runImport(self):
 		for file in self.filelist:
-			print "Importing file: ", file
 			self.import_file_dict(file)
 
 	#Run import on updated files, then store latest update time.
@@ -137,12 +135,12 @@ class Importer:
 		for dir in self.dirlist:
 			for file in os.listdir(dir):
 				self.filelist = self.filelist + [dir+os.sep+file]
-			set(filelist)
+
+		self.filelist = list(set(self.filelist))
 
 		for file in self.filelist:
 			stat_info = os.stat(file)
 			if stat_info.st_mtime > self.updated:
-		#		print "File: " + str(file) + " mtime: " + str(stat_info.st_mtime) + " update: " + str(self.updated)
 				self.import_file_dict(file)
 		self.updated = time()
 
