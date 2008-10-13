@@ -54,5 +54,12 @@ if __name__ == "__main__":
 	(options, sys.argv) = parser.parse_args()
 	
 	settings={'imp-callFpdbHud':False, 'db-backend':2}
-	importer = fpdb_import.Importer(options,settings)
-	importer.import_file_dict()
+	settings['db-host']=options.server
+	settings['db-user']=options.user
+	settings['db-password']=options.password
+	settings['db-databaseName']=options.database
+	settings['handCount']=options.handCount
+
+	importer = fpdb_import.Importer(options, settings)
+	importer.addImportFile(options.inputFile)
+	importer.runImport()
