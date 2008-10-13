@@ -109,14 +109,35 @@ class Hud:
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
         self.config.save()
 
+    def adj_seats(self, hand, config):
+        adj = range(0, self.max + 1) # default seat adjustments = no adjustment
+#    does the user have a fav_seat?
+        try:
+            if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
+                fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
+                db_connection = Database.Database(config, self.db_name, 'temp')
+                actual_seat = db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
+                db_connection.close_connection()
+                for i in range(0, self.max + 1):
+                    j = actual_seat + i
+                    if j > self.max: j = j - self.max
+                    adj[j] = fav_seat + i
+                    if adj[j] > self.max: adj[j] = adj[j] - self.max
+        except:
+            pass
+        return adj
+
     def create(self, hand, config):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+
+        adj = self.adj_seats(hand, config)
+#    create the stat windows
         for i in range(1, self.max + 1):
-            (x, y) = config.supported_sites[self.table.site].layout[self.max].location[i]
+            (x, y) = config.supported_sites[self.table.site].layout[self.max].location[adj[i]]
             self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table, 

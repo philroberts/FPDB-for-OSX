@@ -106,6 +106,12 @@ class Database:
         c.execute(self.sql.query['get_hand_info'], new_hand_id)
         return c.fetchall()
 
+    def get_actual_seat(self, hand_id, name):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_actual_seat'], (hand_id, name))
+        row = c.fetchone()
+        return row[0]
+
 #    def get_cards(self, hand):
 #    this version is for the PTrackSv2 db
 #        c = self.connection.cursor()

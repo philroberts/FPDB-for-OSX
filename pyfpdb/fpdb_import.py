@@ -48,6 +48,7 @@ class Importer:
 		self.options = None
 		self.callHud = False
 		self.lines = None
+		self.pos_in_file = {} # dict to remember how far we have read in the file
 
 	def dbConnect(self, options, settings):
 		#connect to DB
@@ -74,15 +75,20 @@ class Importer:
 		self.options=options
 		starttime = time()
 		last_read_hand=0
+		loc = 0
 		if (options.inputFile=="stdin"):
 			inputFile=sys.stdin
 		else:
 			inputFile=open(options.inputFile, "rU")
+			try: loc = self.pos_in_file[options.inputFile]
+			except: pass
 
 		self.dbConnect(options,settings)
 
 		# Read input file into class and close file
+		inputFile.seek(loc)
 		self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
+		self.pos_in_file[options.inputFile] = inputFile.tell()
 		inputFile.close()
 
 		firstline = self.lines[0]
