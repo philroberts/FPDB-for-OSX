@@ -25,39 +25,43 @@ import os
 import sys
 
 import fpdb_db
+import fpdb_import
 import FpdbSQLQueries
 
 import unittest
 
 class TestSequenceFunctions(unittest.TestCase):
 
-        def setUp(self):
-                """Configure MySQL settings/database and establish connection"""
-                self.mysql_settings={ 'db-host':"localhost", 'db-backend':2, 'db-databaseName':"fpdbtest", 'db-user':"fpdb", 'db-password':"fpdb"}
-                self.mysql_db = fpdb_db.fpdb_db()
-                self.mysql_db.connect(self.mysql_settings['db-backend'], self.mysql_settings['db-host'],
-                                      self.mysql_settings['db-databaseName'], self.mysql_settings['db-user'],
-                                      self.mysql_settings['db-password'])
-                self.mysqldict = FpdbSQLQueries.FpdbSQLQueries('MySQL InnoDB')
+	def setUp(self):
+		"""Configure MySQL settings/database and establish connection"""
+		self.mysql_settings={ 'db-host':"localhost", 
+					'db-backend':2, 
+					'db-databaseName':"fpdbtest", 
+					'db-user':"fpdb", 
+					'db-password':"fpdb"}
+		self.mysql_db = fpdb_db.fpdb_db()
+		self.mysql_db.connect(self.mysql_settings['db-backend'], self.mysql_settings['db-host'],
+					self.mysql_settings['db-databaseName'], self.mysql_settings['db-user'],
+					self.mysql_settings['db-password'])
+		self.mysqldict = FpdbSQLQueries.FpdbSQLQueries('MySQL InnoDB')
+		self.mysqlimporter = fpdb_import.Importer(self, self.mysql_settings)
 
-                """Configure Postgres settings/database and establish connection"""
-                self.pg_settings={ 'db-host':"localhost", 'db-backend':3, 'db-databaseName':"fpdbtest", 'db-user':"fpdb", 'db-password':"fpdb"}
-                self.pg_db = fpdb_db.fpdb_db()
-                self.pg_db.connect(self.pg_settings['db-backend'], self.pg_settings['db-host'],
-                                      self.pg_settings['db-databaseName'], self.pg_settings['db-user'],
-                                      self.pg_settings['db-password'])
-                self.pgdict = FpdbSQLQueries.FpdbSQLQueries('PostgreSQL')
+#		"""Configure Postgres settings/database and establish connection"""
+#		self.pg_settings={ 'db-host':"localhost", 'db-backend':3, 'db-databaseName':"fpdbtest", 'db-user':"fpdb", 'db-password':"fpdb"}
+#		self.pg_db = fpdb_db.fpdb_db()
+#		self.pg_db.connect(self.pg_settings['db-backend'], self.pg_settings['db-host'],
+#					self.pg_settings['db-databaseName'], self.pg_settings['db-user'],
+#					self.pg_settings['db-password'])
+#		self.pgdict = FpdbSQLQueries.FpdbSQLQueries('PostgreSQL')
 
 
 	def testDatabaseConnection(self):
 		"""Test all supported DBs"""
 		self.result = self.mysql_db.cursor.execute(self.mysqldict.query['list_tables'])
-                self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
-
-		print self.pgdict.query['list_tables']
-
-		self.result = self.pg_db.cursor.execute(self.pgdict.query['list_tables'])
 		self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
+
+#		self.result = self.pg_db.cursor.execute(self.pgdict.query['list_tables'])
+#		self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
 
 	def testMySQLRecreateTables(self):
 		"""Test droping then recreating fpdb table schema"""
@@ -65,11 +69,18 @@ class TestSequenceFunctions(unittest.TestCase):
 		self.result = self.mysql_db.cursor.execute("SHOW TABLES")
 		self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
 
-	def testPostgresSQLRecreateTables(self):
-		"""Test droping then recreating fpdb table schema"""
-		self.pg_db.recreate_tables()
-		self.result = self.pg_db.cursor.execute(self.pgdict.query['list_tables'])
-		self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
+	def testImportHandHistoryFiles(self):
+		"""Test import of single HH file"""
+		self.mysqlimporter.addImportFile("regression-test-files/hand-histories/ps-lhe-ring-3hands.txt")
+		self.mysqlimporter.runImport()
+		self.mysqlimporter.addImportDirectory("regression-test-files/hand-histories")
+		self.mysqlimporter.runImport()
+
+#	def testPostgresSQLRecreateTables(self):
+#		"""Test droping then recreating fpdb table schema"""
+#		self.pg_db.recreate_tables()
+#		self.result = self.pg_db.cursor.execute(self.pgdict.query['list_tables'])
+#		self.failUnless(self.result==13, "Number of tables in database incorrect. Expected 13 got " + str(self.result))
 
 if __name__ == '__main__':
         unittest.main()

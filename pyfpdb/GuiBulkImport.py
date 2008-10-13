@@ -27,12 +27,8 @@ class GuiBulkImport (threading.Thread):
 	def import_dir(self):
 		"""imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 		self.path=self.inputFile
-		for file in os.listdir(self.path):
-			if os.path.isdir(file):
-				print "BulkImport is not recursive - please select the final directory in which the history files are"
-			else:
-				self.inputFile=self.path+os.sep+file
-				self.importer.import_file_dict(self, self.settings)
+		self.importer.addImportDirectory(self.path)
+		self.importer.runImport()
 		print "GuiBulkImport.import_dir done"
 		
 	def load_clicked(self, widget, data=None):
@@ -40,36 +36,36 @@ class GuiBulkImport (threading.Thread):
 		
 		self.handCount=self.hand_count_tbuffer.get_text(self.hand_count_tbuffer.get_start_iter(), self.hand_count_tbuffer.get_end_iter())
 		if (self.handCount=="unlimited" or self.handCount=="Unlimited"):
-			self.handCount=0
+			self.importer.setHandCount(0)
 		else:
-			self.handCount=int(self.handCount)
+			self.importer.setHandCount(int(self.handCount))
 
 		self.errorFile="failed.txt"
 		
 		self.minPrint=self.min_print_tbuffer.get_text(self.min_print_tbuffer.get_start_iter(), self.min_print_tbuffer.get_end_iter())
 		if (self.minPrint=="never" or self.minPrint=="Never"):
-			self.minPrint=0
+			self.importer.setMinPrint(0)
 		else:
-			self.minPrint=int(self.minPrint)
+			self.importer.setMinPrint=int(self.minPrint)
 		
 		self.quiet=self.info_tbuffer.get_text(self.info_tbuffer.get_start_iter(), self.info_tbuffer.get_end_iter())
 		if (self.quiet=="yes"):
-			self.quiet=False
+			self.importer.setQuiet(False)
 		else:
-			self.quiet=True
+			self.importer.setQuiet(True)
 			
 		self.failOnError=self.fail_error_tbuffer.get_text(self.fail_error_tbuffer.get_start_iter(), self.fail_error_tbuffer.get_end_iter())
 		if (self.failOnError=="no"):
-			self.failOnError=False
+			self.importer.setFailOnError(False)
 		else:
-			self.failOnError=True
-		
-		self.server, self.database, self.user, self.password=self.db.get_db_info()
+			self.importer.setFailOnError(True)
 		
 		if os.path.isdir(self.inputFile):
 			self.import_dir()
 		else:
-			self.importer.import_file_dict(self, self.settings)
+			self.importer.addImportFile()
+			self.importer.runImport()
+			self.importer.clearFileList()
 	
 	def get_vbox(self):
 		"""returns the vbox of this thread"""
@@ -83,7 +79,7 @@ class GuiBulkImport (threading.Thread):
 	def __init__(self, db, settings):
 		self.db=db
 		self.settings=settings
-		self.importer = fpdb_import.Importer()
+		self.importer = fpdb_import.Importer(self,self.settings)
 		
 		self.vbox=gtk.VBox(False,1)
 		self.vbox.show()
