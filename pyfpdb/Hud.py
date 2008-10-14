@@ -52,6 +52,7 @@ class Hud:
         self.max           = max
         self.db_name       = db_name
         self.deleted       = False
+        self.stacked       = True
 
         self.stat_windows = {}
         self.popup_windows = {}
@@ -63,7 +64,10 @@ class Hud:
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
         self.main_window.set_keep_above(1)
         self.main_window.set_title(table.name)
+
         self.main_window.connect("destroy", self.kill_hud)
+        if self.stacked:
+            self.main_window.connect("window-state-event", self.on_window_event)
 
         self.ebox = gtk.EventBox()
         self.label = gtk.Label("Close this window to\nkill the HUD for\n %s" % (table.name))
@@ -92,6 +96,15 @@ class Hud:
             widget.popup(None, None, None, event.button, event.time)
             return True
         return False
+
+    def on_window_event(self, widget, event):
+
+        if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
+            for sw in self.stat_windows.keys():
+                self.stat_windows[sw].window.iconify()
+        else:
+            for sw in self.stat_windows:
+                self.stat_windows[sw].window.deiconify()
 
     def kill_hud(self, args):
         for k in self.stat_windows.keys():
@@ -160,9 +173,9 @@ class Hud:
 #        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
 #        self.mucked_window.show_all() 
             
-    def update(self, hand, db, config):
+    def update(self, hand, db, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
-        stat_dict = db.get_stats_from_hand(hand)
+#        stat_dict = db.get_stats_from_hand(hand)
         for s in stat_dict.keys():
             self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
             for r in range(0, config.supported_games[self.poker_game].rows):
