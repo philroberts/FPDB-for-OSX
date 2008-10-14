@@ -51,8 +51,10 @@ class GuiGraphViewer (threading.Thread):
 		
 		if site=="PS":
 			site=2
+			sitename="PokerStars: "
 		elif site=="FTP":
 			site=1
+			sitename="Full Tilt: "
 		else:
 			print "invalid text in site selection in graph, defaulting to PS"
 			site=2
@@ -69,7 +71,9 @@ class GuiGraphViewer (threading.Thread):
 		self.ax.set_xlabel("Hands", fontsize = 12)
 		self.ax.set_ylabel("$", fontsize = 12)
 		self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-		self.ax.annotate ("All Hands, Site %s", (61,25), xytext =(0.1, 0.9) , textcoords ="axes fraction" ,)
+		text = "All Hands, " + sitename + str(name)
+
+		self.ax.annotate (text, (61,25), xytext =(0.1, 0.9) , textcoords ="axes fraction" ,)
 
 		#Get graph data from DB
 		line = self.getRingProfitGraph(name, site)
