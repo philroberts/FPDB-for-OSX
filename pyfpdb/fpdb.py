@@ -355,7 +355,8 @@ class fpdb:
 	#end def not_implemented
 	
 	def obtain_global_lock(self):
-		print "todo: implement obtain_global_lock (users: pls ignore this)"
+		#print "todo: implement obtain_global_lock (users: pls ignore this)"
+		pass
 	#end def obtain_global_lock
 	
 	def quit(self, widget, data):
@@ -425,7 +426,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha6+, p124 or higher")
+		self.window.set_title("Free Poker DB - version: alpha6+, p131 or higher")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)

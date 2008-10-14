@@ -50,16 +50,7 @@ class GuiAutoImport (threading.Thread):
 
 	def do_import(self):
 		"""Callback for timer to do an import iteration."""
-		for file in os.listdir(self.path):
-			if os.path.isdir(file):
-				print "AutoImport is not recursive - please select the final directory in which the history files are"
-			else:
-				self.inputFile = os.path.join(self.path, file)
-				stat_info = os.stat(self.inputFile)
-				if not self.import_files.has_key(self.inputFile) or stat_info.st_mtime > self.import_files[self.inputFile]:
-				    self.importer.import_file_dict(self, self.settings)
-				    self.import_files[self.inputFile] = stat_info.st_mtime
-
+		self.importer.runUpdated()
 		print "GuiAutoImport.import_dir done"
 		return True
 
@@ -96,17 +87,8 @@ class GuiAutoImport (threading.Thread):
 #			self.pipe_to_hud = os.popen(command, 'w')
 			self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
 
-#	Iniitally populate the self.import_files dict, which keeps mtimes for the files watched
-
-			self.import_files = {}
-			for file in os.listdir(self.path):
-				if os.path.isdir(file):
-					pass   # skip subdirs for now
-				else:
-					inputFile = os.path.join(self.path, file)
-					stat_info = os.stat(inputFile)
-					self.import_files[inputFile] = stat_info.st_mtime 
-
+#	Add directory to importer object and set the initial mtime reference.
+			self.importer.addImportDirectory(self.path, True)
 			self.do_import()
 		
 			interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
@@ -121,17 +103,18 @@ class GuiAutoImport (threading.Thread):
 	def __init__(self, settings, debug=True):
 		"""Constructor for GuiAutoImport"""
 		self.settings=settings
-		self.importer = fpdb_import.Importer()
+		self.importer = fpdb_import.Importer(self,self.settings)
 		self.importer.setCallHud(True)
+		self.importer.setMinPrint(30)
+		self.importer.setQuiet(False)
+		self.importer.setFailOnError(False)
+		self.importer.setHandCount(0)
+		self.importer.setWatchTime()
 		
 		self.server=settings['db-host']
 		self.user=settings['db-user']
 		self.password=settings['db-password']
 		self.database=settings['db-databaseName']
-		self.quiet=False
-		self.failOnError=False
-		self.minPrint=30
-		self.handCount=0
 		
 		self.mainVBox=gtk.VBox(False,1)
 		self.mainVBox.show()
