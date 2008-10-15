@@ -63,7 +63,7 @@ class GuiBulkImport (threading.Thread):
 		if os.path.isdir(self.inputFile):
 			self.import_dir()
 		else:
-			self.importer.addImportFile()
+			self.importer.addImportFile(self.inputFile)
 			self.importer.runImport()
 			self.importer.clearFileList()
 	
