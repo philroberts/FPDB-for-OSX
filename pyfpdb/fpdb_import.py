@@ -267,6 +267,7 @@ class Importer:
 				handsId=0
 			#todo: this will cause return of an unstored hand number if the last hand was error or partial
 		self.db.commit()
+		self.handsId=handsId
 		return handsId
 #end def import_file_dict
 
