@@ -34,6 +34,7 @@ except:
 import math
 import os
 import datetime
+import re
 import fpdb_simple
 import fpdb_parse_logic
 from time import time
@@ -52,6 +53,7 @@ class Importer:
 		self.updated = 0		#Time last import was run, used as mtime reference
 		self.callHud = False
 		self.lines = None
+		self.faobs = None		#File as one big string
 		self.pos_in_file = {} # dict to remember how far we have read in the file
 		#Set defaults
 		if not self.settings.has_key('imp-callFpdbHud'):
@@ -166,6 +168,8 @@ class Importer:
 
 		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
+			self.faobs = readfile(inputFile)
+			self.parseTourneyHistory()
 			return 0
 		
 		site=fpdb_simple.recogniseSite(firstline)
@@ -269,6 +273,12 @@ class Importer:
 		self.db.commit()
 		return handsId
 #end def import_file_dict
+
+	def parseTourneyHistory(self):
+		print "Tourney history parser stub"
+		#Find tournament boundaries.
+		#print self.foabs
+		
 
 	def printEmailErrorMessage(self, errors, filename, line):
 		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
