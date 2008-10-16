@@ -50,7 +50,7 @@ class Importer:
 		self.filelist = []
 		self.dirlist = []
 		self.monitor = False
-		self.updated = 0		#Time last import was run, used as mtime reference
+		self.updated = {}		#Time last import was run {file:mtime}
 		self.callHud = False
 		self.lines = None
 		self.faobs = None		#File as one big string
@@ -96,8 +96,8 @@ class Importer:
 	def setFailOnError(self, value):
 		self.settings['failOnError'] = value
 
-	def setWatchTime(self):
-		self.updated = time()
+#	def setWatchTime(self):
+#		self.updated = time()
 
 	def clearFileList(self):
 		self.filelist = []
@@ -142,9 +142,15 @@ class Importer:
 
 		for file in self.filelist:
 			stat_info = os.stat(file)
-			if stat_info.st_mtime > self.updated:
-				self.import_file_dict(file)
-		self.updated = time()
+			try: 
+				lastupdate = self.updated[file]
+#				print "Is " + str(stat_info.st_mtime) + " > " + str(lastupdate)
+				if stat_info.st_mtime > lastupdate:
+					self.import_file_dict(file)
+					self.updated[file] = time()
+			except:
+#				print "Adding " + str(file) + " at approx " + str(time())
+				self.updated[file] = time()
 
 	# This is now an internal function that should not be called directly.
 	def import_file_dict(self, file):
