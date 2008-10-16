@@ -59,6 +59,7 @@ if __name__ == "__main__":
 	settings['db-password']=options.password
 	settings['db-databaseName']=options.database
 	settings['handCount']=options.handCount
+	settings['failOnError']=options.failOnError
 
 	importer = fpdb_import.Importer(options, settings)
 	importer.addImportFile(options.inputFile)

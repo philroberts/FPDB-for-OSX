@@ -220,7 +220,7 @@ class GuiTableViewer (threading.Thread):
 		#print "start of table_viewer.read_names_clicked"
 		self.db.reconnect()
 		self.cursor=self.db.cursor
-		self.hands_id=self.last_read_hand_id
+		#self.hands_id=self.last_read_hand_id
 
 		self.db.cursor.execute("SELECT gametypeId FROM Hands WHERE id=%s", (self.hands_id, ))
 		self.gametype_id=self.db.cursor.fetchone()[0]
@@ -257,7 +257,9 @@ class GuiTableViewer (threading.Thread):
 		self.importer.setFailOnError(False)
 		self.importer.setHandCount(0)
 		
-		self.last_read_hand_id=self.importer.import_file_dict()
+		self.importer.addImportFile(self.inputFile)
+		self.importer.runImport()
+		self.hands_id=self.importer.handsId
 	#end def table_viewer.import_clicked
 
 	def all_clicked(self, widget, data):
