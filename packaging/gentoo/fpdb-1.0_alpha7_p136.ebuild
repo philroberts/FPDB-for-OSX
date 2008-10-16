@@ -1,7 +1,7 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Gentoo had nothing to do with the production of this ebuild, but I'm pre-emptively transferring all copyrights (as far as legally possible under my local jurisdiction) to them.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-util/fpdb/fpdb-1.0_alpha5_p110.ebuild,v 1.0 2008/09/26 steffen@sycamoretest.info Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-util/fpdb/fpdb-1.0_alpha7_p136.ebuild,v 1.0 2008/10/15 steffen@sycamoretest.info Exp $
 
 NEED_PYTHON=2.3
 

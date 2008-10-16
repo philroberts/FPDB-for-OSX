@@ -109,7 +109,7 @@ class GuiAutoImport (threading.Thread):
 		self.importer.setQuiet(False)
 		self.importer.setFailOnError(False)
 		self.importer.setHandCount(0)
-		self.importer.setWatchTime()
+#		self.importer.setWatchTime()
 		
 		self.server=settings['db-host']
 		self.user=settings['db-user']

@@ -315,8 +315,10 @@ def filterAnteBlindFold(site,hand):
 
 #removes useless lines as well as trailing spaces
 def filterCrap(site, hand, isTourney):
-	#remove one trailing space at end of line
+	#remove two trailing spaces at end of line
 	for i in range (len(hand)):
+		if (hand[i][-1]==' '):
+			hand[i]=hand[i][:-1]
 		if (hand[i][-1]==' '):
 			hand[i]=hand[i][:-1]
 			
