@@ -36,6 +36,7 @@ Main for FreePokerTools HUD.
 import sys
 import os
 import thread
+import time
 
 errorfile = open('HUD-error.txt', 'w', 0)
 sys.stderr = errorfile
@@ -91,6 +92,7 @@ def producer():            # This is the thread function
 
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
+        print "hand = ", new_hand_id
         if new_hand_id == "":           # blank line means quit
             destroy()
 
@@ -98,9 +100,10 @@ def producer():            # This is the thread function
         for h in hud_dict.keys():
             if hud_dict[h].deleted:
                 del(hud_dict[h])
-    
+        print "getting table name"
         (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
+        print "table = %s,   max = %s,   game = %s" % (table_name, max, poker_game)
 
 #    if a hud for this table exists, just update it
         if hud_dict.has_key(table_name):
@@ -108,8 +111,10 @@ def producer():            # This is the thread function
 #        otherwise create a new hud
         else:
             table_windows = Tables.discover(config)
+            print "searching for %s" % (table_name)
             for t in table_windows.keys():
                 if table_windows[t].name == table_name:
+                    print "found"
                     create_HUD(new_hand_id, table_windows[t], db_name, table_name, max, poker_game, db_connection, config, stat_dict)
                     break
 
