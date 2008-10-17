@@ -106,7 +106,7 @@ def read_stdin(source, condition, db_name):
 def producer():            # This is the thread function
     while True:
         hand_no = sys.stdin.readline()  # reads stdin
-        if new_hand_id == "":
+        if hand_no == "":
             destroy()
         dataQueue.put(hand_no)          # and puts result on the queue
 
