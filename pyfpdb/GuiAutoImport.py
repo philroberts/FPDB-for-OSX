@@ -87,7 +87,7 @@ class GuiAutoImport (threading.Thread):
 #			self.pipe_to_hud = os.popen(command, 'w')
 			self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
 
-#	Add directory to importer object and set the initial mtime reference.
+#			Add directory to importer object.
 			self.importer.addImportDirectory(self.path, True)
 			self.do_import()
 		
