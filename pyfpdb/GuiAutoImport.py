@@ -91,7 +91,7 @@ class GuiAutoImport (threading.Thread):
 			self.importer.addImportDirectory(self.path, True)
 			self.do_import()
 		
-			interval=int(self.intervalTBuffer.get_text(self.intervalTBuffer.get_start_iter(), self.intervalTBuffer.get_end_iter()))
+			interval=int(self.intervalEntry.get_text())
 			gobject.timeout_add(interval*1000, self.do_import)
 	#end def GuiAutoImport.browseClicked
 
@@ -127,11 +127,10 @@ class GuiAutoImport (threading.Thread):
 		self.settingsHBox.pack_start(self.intervalLabel)
 		self.intervalLabel.show()
 		
-		self.intervalTBuffer=gtk.TextBuffer()
-		self.intervalTBuffer.set_text(str(self.settings['hud-defaultInterval']))
-		self.intervalTView=gtk.TextView(self.intervalTBuffer)
-		self.settingsHBox.pack_start(self.intervalTView)
-		self.intervalTView.show()
+		self.intervalEntry=gtk.Entry()
+		self.intervalEntry.set_text(str(self.settings['hud-defaultInterval']))
+		self.settingsHBox.pack_start(self.intervalEntry)
+		self.intervalEntry.show()
 		
 		
 		self.pathHBox = gtk.HBox(False, 0)
