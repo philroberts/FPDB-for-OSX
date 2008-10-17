@@ -27,10 +27,10 @@ import time
 import fpdb_import
 
 class GuiAutoImport (threading.Thread):
-	def browseClicked(self, widget, data):
+	def starsBrowseClicked(self, widget, data):
 		"""runs when user clicks browse on auto import tab"""
-		#print "start of GuiAutoImport.browseClicked"
-		current_path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
+		#print "start of GuiAutoImport.starsBrowseClicked"
+		current_path=self.starsDirPath.get_text()
 		
 		dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
 				action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
@@ -42,11 +42,32 @@ class GuiAutoImport (threading.Thread):
 		response = dia_chooser.run()
 		if response == gtk.RESPONSE_OK:
 			#print dia_chooser.get_filename(), 'selected'
-			self.pathTBuffer.set_text(dia_chooser.get_filename())
+			self.starsDirPath.set_text(dia_chooser.get_filename())
 		elif response == gtk.RESPONSE_CANCEL:
 			print 'Closed, no files selected'
 		dia_chooser.destroy()		
-	#end def GuiAutoImport.browseClicked
+	#end def GuiAutoImport.starsBrowseClicked
+
+	def tiltBrowseClicked(self, widget, data):
+		"""runs when user clicks browse on auto import tab"""
+		#print "start of GuiAutoImport.tiltBrowseClicked"
+		current_path=self.tiltDirPath.get_text()
+
+		dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
+				action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+				buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+		#dia_chooser.set_current_folder(pathname)
+		dia_chooser.set_filename(current_path)
+		#dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+
+		response = dia_chooser.run()
+		if response == gtk.RESPONSE_OK:
+			#print dia_chooser.get_filename(), 'selected'
+			self.tiltDirPath.set_text(dia_chooser.get_filename())
+		elif response == gtk.RESPONSE_CANCEL:
+			print 'Closed, no files selected'
+		dia_chooser.destroy()
+	#end def GuiAutoImport.tiltBrowseClicked
 
 	def do_import(self):
 		"""Callback for timer to do an import iteration."""
@@ -85,15 +106,17 @@ class GuiAutoImport (threading.Thread):
 #			command = command + " %s" % (self.database)
 #			print "command = ", command
 #			self.pipe_to_hud = os.popen(command, 'w')
-			self.path=self.pathTBuffer.get_text(self.pathTBuffer.get_start_iter(), self.pathTBuffer.get_end_iter())
+			self.starspath=self.starsDirPath.get_text()
+			self.tiltpath=self.tiltDirPath.get_text()
 
 #			Add directory to importer object.
-			self.importer.addImportDirectory(self.path, True)
+			self.importer.addImportDirectory(self.starspath, True)
+			self.importer.addImportDirectory(self.tiltpath, True)
 			self.do_import()
 		
 			interval=int(self.intervalEntry.get_text())
 			gobject.timeout_add(interval*1000, self.do_import)
-	#end def GuiAutoImport.browseClicked
+	#end def GuiAutoImport.startClicked
 
 	def get_vbox(self):
 		"""returns the vbox of this thread"""
@@ -132,27 +155,38 @@ class GuiAutoImport (threading.Thread):
 		self.settingsHBox.pack_start(self.intervalEntry)
 		self.intervalEntry.show()
 		
-		
 		self.pathHBox = gtk.HBox(False, 0)
 		self.mainVBox.pack_start(self.pathHBox, False, True, 0)
 		self.pathHBox.show()
 		
-		self.pathLabel = gtk.Label("Path to auto-import:")
-		self.pathHBox.pack_start(self.pathLabel, False, False, 0)
-		self.pathLabel.show()
+		self.pathStarsLabel = gtk.Label("Path to PokerStars auto-import:")
+		self.pathHBox.pack_start(self.pathStarsLabel, False, False, 0)
+		self.pathStarsLabel.show()
 		
-		self.pathTBuffer=gtk.TextBuffer()
-		self.pathTBuffer.set_text(self.settings['hud-defaultPath'])
-		self.pathTView=gtk.TextView(self.pathTBuffer)
-		self.pathHBox.pack_start(self.pathTView, False, True, 0)
-		self.pathTView.show()
-		
+		self.starsDirPath=gtk.Entry()
+		self.starsDirPath.set_text(self.settings['hud-defaultPath'])
+		self.pathHBox.pack_start(self.starsDirPath, False, True, 0)
+		self.starsDirPath.show()
+
 		self.browseButton=gtk.Button("Browse...")
-		self.browseButton.connect("clicked", self.browseClicked, "Browse clicked")
-		self.pathHBox.pack_end(self.browseButton, False, False, 0)
+		self.browseButton.connect("clicked", self.starsBrowseClicked, "Browse clicked")
+		self.pathHBox.pack_start(self.browseButton, False, False, 0)
  		self.browseButton.show()
 		
-		
+		self.pathTiltLabel = gtk.Label("Path to Full Tilt auto-import:")
+		self.pathHBox.pack_start(self.pathTiltLabel, False, False, 0)
+		self.pathTiltLabel.show()
+
+		self.tiltDirPath=gtk.Entry()
+		self.tiltDirPath.set_text(self.settings['hud-defaultPath'])
+		self.pathHBox.pack_start(self.tiltDirPath, False, True, 0)
+		self.tiltDirPath.show()
+
+		self.browseButton=gtk.Button("Browse...")
+		self.browseButton.connect("clicked", self.tiltBrowseClicked, "Browse clicked")
+		self.pathHBox.pack_start(self.browseButton, False, False, 0)
+ 		self.browseButton.show()
+
 		self.startButton=gtk.Button("Start Autoimport")
 		self.startButton.connect("clicked", self.startClicked, "start clicked")
 		self.mainVBox.add(self.startButton)
