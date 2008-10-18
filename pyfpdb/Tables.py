@@ -212,9 +212,9 @@ def fulltilt_decode_table(tw):
     title_bits = re.split(' - ', tw.title)
     name = title_bits[0]
     tw.tournament = None
-    for pattern in [r' \(6 max\)', r' \(heads up\)', r' \(deep\)',
-                    r' \(deep hu\)', r' \(deep 6\)', r' \(2\)',
-                    r' \(edu\)', r' \(edu, 6 max\)', r' \(6\)' ]:
+    for pattern in [' (6 max)', ' (heads up)', ' (deep)',
+                    ' (deep hu)', ' (deep 6)', ' (2)',
+                    ' (edu)', ' (edu, 6 max)', ' (6)' ]:
         name = re.sub(pattern, '', name)
 #    (tw.name, trash) = name.split(r' (', 1)
     tw.name = name.rstrip()
