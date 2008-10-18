@@ -84,7 +84,7 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
             return False
         finally:
-            gtk.gkd.threads_leave
+            gtk.gdk.threads_leave
     gobject.idle_add(idle_func)
 
 def read_stdin():            # This is the thread function
