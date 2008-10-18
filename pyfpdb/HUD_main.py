@@ -79,12 +79,12 @@ def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_conn
 def update_HUD(new_hand_id, table_name, config, stat_dict):
     global hud_dict
     def idle_func():
-        gtk.threads_enter()
+        gtk.gdk.threads_enter()
         try:
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
             return False
         finally:
-            gtk.threads_leave
+            gtk.gkd.threads_leave
     gobject.idle_add(idle_func)
 
 def read_stdin():            # This is the thread function

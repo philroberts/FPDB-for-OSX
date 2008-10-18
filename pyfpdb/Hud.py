@@ -52,7 +52,7 @@ class Hud:
         self.max           = max
         self.db_name       = db_name
         self.deleted       = False
-        self.stacked       = True
+        self.stacked       = False
 
         self.stat_windows = {}
         self.popup_windows = {}
