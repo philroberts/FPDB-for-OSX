@@ -70,24 +70,24 @@ def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_conn
         try:
             hud_dict[table_name] = Hud.Hud(table, max, poker_game, config, db_name)
             hud_dict[table_name].create(new_hand_id, config)
-            hud_dict[table_name].update(new_hand_id, db_connection, config, stat_dict)
+            hud_dict[table_name].update(new_hand_id, config, stat_dict)
             return False
         finally:
             gtk.gdk.threads_leave
     gobject.idle_add(idle_func)
 
-def update_HUD(new_hand_id, table_name, db_connection, config, stat_dict):
+def update_HUD(new_hand_id, config, stat_dict):
     global hud_dict
     def idle_func():
         gtk.threads_enter()
         try:
-            hud_dict[table_name].update(new_hand_id, db_connection, config, stat_dict)
+            hud_dict[table_name].update(new_hand_id, config, stat_dict)
             return False
         finally:
             gtk.threads_leave
     gobject.idle_add(idle_func)
 
-def producer():            # This is the thread function
+def read_stdin():            # This is the thread function
     global hud_dict
 
     while True: # wait for a new hand number on stdin
@@ -109,7 +109,7 @@ def producer():            # This is the thread function
 
 #    if a hud for this table exists, just update it
         if hud_dict.has_key(table_name):
-            update_HUD(new_hand_id, table_name, db_connection, config, stat_dict)
+            update_HUD(new_hand_id, config, stat_dict)
 #        otherwise create a new hud
         else:
             table_windows = Tables.discover(config)
@@ -130,7 +130,7 @@ if __name__== "__main__":
     config = Configuration.Config()
 
     gobject.threads_init()                # this is required
-    thread.start_new_thread(producer, ()) # starts the thread
+    thread.start_new_thread(read_stdin, ()) # starts the thread
 
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)

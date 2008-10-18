@@ -99,12 +99,13 @@ class Hud:
 
     def on_window_event(self, widget, event):
 
-        if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
-            for sw in self.stat_windows.keys():
-                self.stat_windows[sw].window.iconify()
-        else:
-            for sw in self.stat_windows:
-                self.stat_windows[sw].window.deiconify()
+        if self.stacked:
+            if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
+                for sw in self.stat_windows.keys():
+                    self.stat_windows[sw].window.iconify()
+            else:
+                for sw in self.stat_windows:
+                    self.stat_windows[sw].window.deiconify()
 
     def kill_hud(self, args):
         for k in self.stat_windows.keys():
@@ -173,9 +174,8 @@ class Hud:
 #        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
 #        self.mucked_window.show_all() 
             
-    def update(self, hand, db, config, stat_dict):
+    def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
-#        stat_dict = db.get_stats_from_hand(hand)
         for s in stat_dict.keys():
             self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
             for r in range(0, config.supported_games[self.poker_game].rows):
