@@ -104,25 +104,27 @@ class Importer:
 
 	#Add an individual file to filelist
 	def addImportFile(self, filename):
-		#todo: test it is a valid file
+		#TODO: test it is a valid file
 		self.filelist = self.filelist + [filename]
 		#Remove duplicates
 		self.filelist = list(set(self.filelist))
 
 	#Add a directory of files to filelist
 	def addImportDirectory(self,dir,monitor = False):
-		#todo: test it is a valid directory
-		if monitor == True:
-			self.monitor = True
-			self.dirlist = self.dirlist + [dir]
+		if os.path.isdir(dir):
+			if monitor == True:
+				self.monitor = True
+				self.dirlist = self.dirlist + [dir]
 
-		for file in os.listdir(dir):
-			if os.path.isdir(file):
-				print "BulkImport is not recursive - please select the final directory in which the history files are"
-			else:
-				self.filelist = self.filelist + [os.path.join(dir, file)]
-		#Remove duplicates
-		self.filelist = list(set(self.filelist))
+			for file in os.listdir(dir):
+				if os.path.isdir(file):
+					print "BulkImport is not recursive - please select the final directory in which the history files are"
+				else:
+					self.filelist = self.filelist + [os.path.join(dir, file)]
+			#Remove duplicates
+			self.filelist = list(set(self.filelist))
+		else:
+			print "Warning: Attempted to add: '" + str(dir) + "' as an import directory"
 
 	#Run full import on filelist
 	def runImport(self):
