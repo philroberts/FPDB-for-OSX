@@ -79,11 +79,9 @@ class Database:
         self.connection.close()
         
     def get_table_name(self, hand_id):
-        print "searching for ", hand_id
         c = self.connection.cursor()
         c.execute(self.sql.query['get_table_name'], (hand_id, ))
         row = c.fetchone()
-        print "found = ", row
         return row
     
     def get_last_hand(self):
