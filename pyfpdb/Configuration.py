@@ -169,6 +169,24 @@ class Popup:
             temp = temp + " " + stat
         return temp + "\n"
 
+class Import:
+    def __init__(self, node):
+        self.interval    = node.getAttribute("interval")
+        self.callFpdbHud = node.getAttribute("callFpdbHud")
+
+    def __str__(self):
+        return "    interval = %s\n    callFpdbHud = %s\n" % (self.interval, self.callFpdbHud)
+
+class Tv:
+    def __init__(self, node):
+        self.combinedStealFold = node.getAttribute("combinedStealFold")
+        self.combined2B3B      = node.getAttribute("combined2B3B")
+        self.combinedPostflop  = node.getAttribute("combinedPostflop")
+
+    def __str__(self):
+        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" % 
+                (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
+
 class Config:
     def __init__(self, file = None):
 
@@ -200,6 +218,7 @@ class Config:
                     sys.stderr.write("No HUD_config_xml found.  Exiting")
                     sys.exit()
         try:
+            print "Reading configuration file %s\n" % (file)
             doc = xml.dom.minidom.parse(file)
         except:
             print "Error parsing %s.  See error log file." % (file)
@@ -221,25 +240,33 @@ class Config:
             site = Site(node = site_node)
             self.supported_sites[site.site_name] = site
 
-        s_games = doc.getElementsByTagName("supported_games")
+#        s_games = doc.getElementsByTagName("supported_games")
         for game_node in doc.getElementsByTagName("game"):
             game = Game(node = game_node)
             self.supported_games[game.game_name] = game
             
-        s_dbs = doc.getElementsByTagName("supported_databases")
+#        s_dbs = doc.getElementsByTagName("supported_databases")
         for db_node in doc.getElementsByTagName("database"):
             db = Database(node = db_node)
             self.supported_databases[db.db_name] = db
 
-        s_dbs = doc.getElementsByTagName("mucked_windows")
+#       s_dbs = doc.getElementsByTagName("mucked_windows")
         for mw_node in doc.getElementsByTagName("mw"):
             mw = Mucked(node = mw_node)
             self.mucked_windows[mw.name] = mw
 
-        s_dbs = doc.getElementsByTagName("popup_windows")
+#        s_dbs = doc.getElementsByTagName("popup_windows")
         for pu_node in doc.getElementsByTagName("pu"):
             pu = Popup(node = pu_node)
             self.popup_windows[pu.name] = pu
+
+        for imp_node in doc.getElementsByTagName("import"):
+            imp = Import(node = imp_node)
+            self.imp = imp
+
+        for tv_node in doc.getElementsByTagName("tv"):
+            tv = Tv(node = tv_node)
+            self.tv = tv
 
     def get_site_node(self, site):
         for site_node in self.doc.getElementsByTagName("site"):
@@ -285,19 +312,51 @@ class Config:
         if name == None: name = 'fpdb'
         db = {}
         try:
-            db['databaseName'] = name
-            db['host'] = self.supported_databases[name].db_ip
-            db['user'] = self.supported_databases[name].db_user
-            db['password'] = self.supported_databases[name].db_pass
-            db['server'] = self.supported_databases[name].db_server
+            db['db-databaseName'] = name
+            db['db-host'] = self.supported_databases[name].db_ip
+            db['db-user'] = self.supported_databases[name].db_user
+            db['db-password'] = self.supported_databases[name].db_pass
+            db['db-server'] = self.supported_databases[name].db_server
             if   string.lower(self.supported_databases[name].db_server) == 'mysql':
-                db['backend'] = 2
+                db['db-backend'] = 2
             elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
-                db['backend'] = 3
-            else: db['backend'] = 0 # this is big trouble
+                db['db-backend'] = 3
+            else: db['db-backend'] = None # this is big trouble
         except:
             pass
         return db
+
+    def get_tv_parameters(self):
+        tv = {}
+        try:
+            tv['combinedStealFold'] = self.tv.combinedStealFold
+            tv['combined2B3B']      = self.tv.combined2B3B
+            tv['combinedPostflop']  = self.tv.combinedPostflop
+        except: # Default tv parameters
+            tv['combinedStealFold'] = True
+            tv['combined2B3B']      = True
+            tv['combinedPostflop']  = True
+        return tv
+    
+    def get_import_parameters(self):
+        imp = {}
+        try:
+            imp['imp-callFpdbHud'] = self.imp.callFpdbHud
+            imp['hud-defaultInterval']    = int(self.imp.interval)
+        except: # Default import parameters
+            imp['imp-callFpdbHud'] = True
+            imp['hud-defaultInterval']    = 10
+        return imp
+
+    def get_default_paths(self, site = "PokerStars"):
+        paths = {}
+        try:
+            paths['hud-defaultPath']        = os.path.expanduser(self.supported_sites[site].HH_path)
+            paths['bulkImport-defaultPath'] = os.path.expanduser(self.supported_sites[site].HH_path)
+        except:
+            paths['hud-defaultPath']        = "default"
+            paths['bulkImport-defaultPath'] = "default"
+        return paths
 
 if __name__== "__main__":
     c = Config()
@@ -305,36 +364,42 @@ if __name__== "__main__":
     print "\n----------- SUPPORTED SITES -----------"
     for s in c.supported_sites.keys():
         print c.supported_sites[s]
-
     print "----------- END SUPPORTED SITES -----------"
 
 
     print "\n----------- SUPPORTED GAMES -----------"
     for game in c.supported_games.keys():
         print c.supported_games[game]
-
     print "----------- END SUPPORTED GAMES -----------"
 
 
     print "\n----------- SUPPORTED DATABASES -----------"
     for db in c.supported_databases.keys():
         print c.supported_databases[db]
-
     print "----------- END SUPPORTED DATABASES -----------"
 
     print "\n----------- MUCKED WINDOW FORMATS -----------"
     for w in c.mucked_windows.keys():
         print c.mucked_windows[w]
-
     print "----------- END MUCKED WINDOW FORMATS -----------"
-
+    
     print "\n----------- POPUP WINDOW FORMATS -----------"
     for w in c.popup_windows.keys():
         print c.popup_windows[w]
-
     print "----------- END MUCKED WINDOW FORMATS -----------"
+
+    print "\n----------- IMPORT -----------"
+    print c.imp
+    print "----------- END IMPORT -----------"
+
+    print "\n----------- TABLE VIEW -----------"
+    print c.tv
+    print "----------- END TABLE VIEW -----------"
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
     
-    print c.get_db_parameters()
+    print "db    = ", c.get_db_parameters()
+    print "tv    = ", c.get_tv_parameters()
+    print "imp   = ", c.get_import_parameters()
+    print "paths = ", c.get_default_paths("PokerStars")
