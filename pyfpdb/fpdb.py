@@ -321,7 +321,7 @@ class fpdb:
 	
 	def tab_auto_import(self, widget, data):
 		"""opens the auto import tab"""
-		new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings)
+		new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config)
 		self.threads.append(new_aimp_thread)
 		aimp_tab=new_aimp_thread.get_vbox()
 		self.add_and_display_tab(aimp_tab, "Auto Import")
@@ -330,7 +330,7 @@ class fpdb:
 	def tab_bulk_import(self, widget, data):
 		"""opens a tab for bulk importing"""
 		#print "start of tab_bulk_import"
-		new_import_thread=GuiBulkImport.GuiBulkImport(self.db, self.settings)
+		new_import_thread=GuiBulkImport.GuiBulkImport(self.db, self.settings, self.config)
 		self.threads.append(new_import_thread)
 		bulk_tab=new_import_thread.get_vbox()
 		self.add_and_display_tab(bulk_tab, "Bulk Import")
