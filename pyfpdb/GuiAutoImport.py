@@ -123,9 +123,10 @@ class GuiAutoImport (threading.Thread):
 		return self.mainVBox
 	#end def get_vbox
 	
-	def __init__(self, settings, debug=True):
+	def __init__(self, settings, config, debug=True):
 		"""Constructor for GuiAutoImport"""
 		self.settings=settings
+		self.config=config
 		self.importer = fpdb_import.Importer(self,self.settings)
 		self.importer.setCallHud(True)
 		self.importer.setMinPrint(30)
@@ -164,7 +165,8 @@ class GuiAutoImport (threading.Thread):
 		self.pathStarsLabel.show()
 		
 		self.starsDirPath=gtk.Entry()
-		self.starsDirPath.set_text(self.settings['hud-defaultPath'])
+		paths = self.config.get_default_paths("PokerStars")
+		self.starsDirPath.set_text(paths['hud-defaultPath'])
 		self.pathHBox.pack_start(self.starsDirPath, False, True, 0)
 		self.starsDirPath.show()
 
@@ -178,7 +180,8 @@ class GuiAutoImport (threading.Thread):
 		self.pathTiltLabel.show()
 
 		self.tiltDirPath=gtk.Entry()
-		self.tiltDirPath.set_text(self.settings['hud-defaultPath'])
+		paths = self.config.get_default_paths("FullTilt")
+		self.tiltDirPath.set_text(paths['hud-defaultPath'])
 		self.pathHBox.pack_start(self.tiltDirPath, False, True, 0)
 		self.tiltDirPath.show()
 

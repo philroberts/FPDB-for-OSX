@@ -52,7 +52,7 @@ class Hud:
         self.max           = max
         self.db_name       = db_name
         self.deleted       = False
-        self.stacked       = False
+        self.stacked       = True
 
         self.stat_windows = {}
         self.popup_windows = {}
@@ -70,7 +70,8 @@ class Hud:
             self.main_window.connect("window-state-event", self.on_window_event)
 
         self.ebox = gtk.EventBox()
-        self.label = gtk.Label("Close this window to\nkill the HUD for\n %s" % (table.name))
+        self.label = gtk.Label("Close this window to\nkill the HUD for\n %s\nMinimizing it hides stats." % 
+                               (table.name))
         self.main_window.add(self.ebox)
         self.ebox.add(self.label)
         self.main_window.move(self.table.x, self.table.y)

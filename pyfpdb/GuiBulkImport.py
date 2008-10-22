@@ -76,9 +76,10 @@ class GuiBulkImport (threading.Thread):
 		print "todo: implement bulk import thread"
 	#end def run
 	
-	def __init__(self, db, settings):
+	def __init__(self, db, settings, config):
 		self.db=db
 		self.settings=settings
+		self.config=config
 		self.importer = fpdb_import.Importer(self,self.settings)
 		
 		self.vbox=gtk.VBox(False,1)
