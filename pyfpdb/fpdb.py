@@ -33,6 +33,7 @@ import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import FpdbSQLQueries
+import Configuration
 
 class fpdb:
 	def tab_clicked(self, widget, tab_name):
@@ -256,71 +257,16 @@ class fpdb:
 	
 	def load_profile(self, filename):
 		"""Loads profile from the provided path name. also see load_default_profile"""
-		self.obtain_global_lock()
-		file=open(filename, "rU")
-		lines=file.readlines()
-		print "Opened and read profile file", filename
-		self.profile=filename
-		
-		self.settings={'db-host':"localhost", 'db-backend':2, 'db-databaseName':"fpdb", 'db-user':"fpdb"}
+		self.settings = {}
 		if (os.sep=="/"):
 			self.settings['os']="linuxmac"
 		else:
 			self.settings['os']="windows"
-		self.settings['tv-combinedStealFold']=True
-		self.settings['tv-combined2B3B']=True
-		self.settings['imp-callFpdbHud']=True
-		
-		if self.settings['os']=="windows":
-			self.settings['bulkImport-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\filename.txt"
-			self.settings['hud-defaultPath']="C:\\Program Files\\PokerStars\\HandHistory\\"
-		else:
-			self.settings['bulkImport-defaultPath'] = os.path.expanduser("~") + "/.wine/drive_c/Program Files/PokerStars/HandHistory/filename.txt"
-			self.settings['hud-defaultPath'] = os.path.expanduser("~")+"/.wine/drive_c/Program Files/PokerStars/HandHistory/"
-			
-		self.settings['hud-defaultInterval']=10
-		
-		for i in range(len(lines)):
-			if lines[i].startswith("db-backend="):
-				self.settings['db-backend']=int(lines[i][11:-1])
-			elif lines[i].startswith("db-host="):
-				self.settings['db-host']=lines[i][8:-1]
-			elif lines[i].startswith("db-databaseName="):
-				self.settings['db-databaseName']=lines[i][16:-1]
-			elif lines[i].startswith("db-user="):
-				self.settings['db-user']=lines[i][8:-1]
-			elif lines[i].startswith("db-password="):
-				self.settings['db-password']=lines[i][12:-1]
-			elif lines[i].startswith("imp-callFpdbHud="):
-				if lines[i].find("True")!=-1:
-					self.settings['imp-callFpdbHud']=True
-				else:
-					self.settings['imp-callFpdbHud']=False
-			elif lines[i].startswith("tv-combinedPostflop="):
-				if lines[i].find("True")!=-1:
-					self.settings['tv-combinedPostflop']=True
-				else:
-					self.settings['tv-combinedPostflop']=False
-			elif lines[i].startswith("tv-combinedStealFold="):
-				if lines[i].find("True")!=-1:
-					self.settings['tv-combinedStealFold']=True
-				else:
-					self.settings['tv-combinedStealFold']=False
-			elif lines[i].startswith("tv-combined2B3B="):
-				if lines[i].find("True")!=-1:
-					self.settings['tv-combined2B3B']=True
-				else:
-					self.settings['tv-combined2B3B']=False
-			elif lines[i].startswith("bulkImport-defaultPath="):
-				if lines[i][23:-1]!="default":
-					self.settings['bulkImport-defaultPath']=lines[i][23:-1]
-			elif lines[i].startswith("hud-defaultPath="):
-				if lines[i][15:-1]!="default":
-					self.settings['hud-defaultPath']=lines[i][16:-1]
-			elif lines[i].startswith("#"):
-				pass #comment - dont parse
-			else:
-				raise fpdb_simple.FpdbError("invalid line in profile file: "+lines[i]+"   if you don't know what to do just remove it from "+filename)
+
+		self.settings.update(self.config.get_db_parameters())
+		self.settings.update(self.config.get_tv_parameters())
+		self.settings.update(self.config.get_import_parameters())
+		self.settings.update(self.config.get_default_paths())
 		
 		if self.db!=None:
 			self.db.disconnect()
@@ -355,8 +301,7 @@ class fpdb:
 	#end def not_implemented
 	
 	def obtain_global_lock(self):
-		#print "todo: implement obtain_global_lock (users: pls ignore this)"
-		pass
+		print "todo: implement obtain_global_lock (users: pls ignore this)"
 	#end def obtain_global_lock
 	
 	def quit(self, widget, data):
@@ -421,12 +366,13 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 	def __init__(self):
 		self.threads=[]
 		self.db=None
+		self.config = Configuration.Config()
 		self.load_default_profile()
 		
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha8, p137")
+		self.window.set_title("Free Poker DB - version: alpha6+, p124 or higher")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
