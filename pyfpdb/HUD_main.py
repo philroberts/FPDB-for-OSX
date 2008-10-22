@@ -134,8 +134,10 @@ if __name__== "__main__":
 
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)
+    eb = gtk.EventBox()
     label = gtk.Label('Closing this window will exit from the HUD.')
-    main_window.add(label)
+    eb.add(label)
+    main_window.add(eb)
     main_window.set_title("HUD Main Window")
     main_window.show_all()
     
