@@ -255,7 +255,7 @@ class fpdb:
 			self.diaSetupWizard(path=defaultpath)
 	#end def load_default_profile
 	
-	def load_profile(self, filename):
+	def load_profile(self):
 		"""Loads profile from the provided path name. also see load_default_profile"""
 		self.settings = {}
 		if (os.sep=="/"):
@@ -367,7 +367,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.threads=[]
 		self.db=None
 		self.config = Configuration.Config()
-		self.load_default_profile()
+		self.load_profile()
+#		self.load_default_profile()
 		
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
