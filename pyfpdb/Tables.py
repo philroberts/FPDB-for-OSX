@@ -61,7 +61,7 @@ def discover(c):
     elif os.name == 'nt':
         tables = discover_nt(c)
 	return tables
-    elif ox.name == 'mac':
+    elif os.name == 'mac':
         tables = discover_mac(c)
 	return tables
     else: tables = {}
