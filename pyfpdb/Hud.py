@@ -23,6 +23,7 @@ Create and manage the hud overlays.
 ########################################################################
 #    Standard Library modules
 import os
+import sys
 
 #    pyGTK modules
 import pygtk
@@ -61,9 +62,10 @@ class Hud:
         self.main_window = gtk.Window()
 #        self.window.set_decorated(0)
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_keep_above(1)
-        self.main_window.set_title(table.name)
+        self.main_window.set_keep_above(True)
+        self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
+        #self.main_window.set_transient_for(parent.get_toplevel())
 
         self.ebox = gtk.EventBox()
         self.label = gtk.Label("Close this window to\nkill the HUD for\n %s" % (table.name))
@@ -136,8 +138,57 @@ class Hud:
 
         adj = self.adj_seats(hand, config)
 #    create the stat windows
-        for i in range(1, self.max + 1):
-            (x, y) = config.supported_sites[self.table.site].layout[self.max].location[adj[i]]
+        for i in range(1, self.max + 1):           
+            # the below IF always appears to be passed as TRUE, I don't know why. If you have an 8-max game, but
+            # your config file doesn't understand 8 max, it's a crash.  It was even a crash when I tried using the
+            # full-fledged exception handling blocks.
+            # - Eric
+            
+            if self.max in config.supported_sites[self.table.site].layout:
+                (x, y) = config.supported_sites[self.table.site].layout[self.max].location[adj[i]]
+            else:
+                if i == 1:
+                    x = 684
+                    y = 61
+                elif i == 2:
+                    x = 689
+                    y = 239
+                elif i == 3:
+                    x = 692
+                    y = 346
+                elif i == 4:
+                    x = 586
+                    y = 393
+                elif i == 5:
+                    x = 421
+                    y = 440
+                elif i == 6:
+                    x = 267
+                    y = 440
+                elif i == 7:
+                    x = 0
+                    y = 361
+                elif i == 8:
+                    x = 0
+                    y = 280
+                elif i == 9:
+                    x = 121
+                    y = 280
+                elif i == 10:
+                    x = 46
+                    y = 30
+                    
+            sys.stderr.write("at location "+str(x)+" "+str(y)+"\n")
+            sys.stderr.write("config:"+str(config)+"\n")
+            gameslist = config.supported_games
+            sys.stderr.write("supported games:"+str(gameslist)+"\n")
+            sys.stderr.write("desired game:"+str(self.poker_game)+"\n")
+            thisgame = gameslist['holdem']
+            sys.stderr.write("this game:"+str(thisgame)+"\n")
+            # the above code looks absolutely completely useless. The below line was freezing the interpreter, so I added the above lines to try and debug
+            # which piece of the below line was causing it to lock up.  Adding the "thisgame = gameslist['holdem']" line fixed it, for some unknown reason.
+            # removing any one of the lines above causes the interpreter to freeze for me on the next statement.  
+            # -eric
             self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table, 
@@ -189,7 +240,15 @@ class Hud:
         
         for w in tl_windows:
             if w[1] == unique_name:
-                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE) 
+#                win32gui.ShowWindow(w[0], win32con.SW_HIDE)
+#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
+#                style |= win32con.WS_EX_TOOLWINDOW
+#                style &= ~win32con.WS_EX_APPWINDOW
+#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
+#                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
+
+                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
+                
 #                notify_id = (w[0],
 #                             0,
 #                             win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP,
@@ -262,6 +321,7 @@ class Stat_Window:
         self.window.set_keep_above(1)
         self.window.set_title("%s" % seat)
         self.window.set_property("skip-taskbar-hint", True)
+        self.window.set_transient_for(parent.main_window)
 
         self.grid = gtk.Table(rows = self.game.rows, columns = self.game.cols, homogeneous = False)
         self.window.add(self.grid)
@@ -328,6 +388,7 @@ class Popup_window:
         self.window.set_title("popup")
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.get_toplevel())
+        
         self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
         
         self.ebox = gtk.EventBox()
@@ -440,7 +501,14 @@ class Popup_window:
         
         for w in tl_windows:
             if w[1] == unique_name:
-                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE) 
+#                win32gui.ShowWindow(w[0], win32con.SW_HIDE)
+#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
+#                style |= win32con.WS_EX_TOOLWINDOW
+#                style &= ~win32con.WS_EX_APPWINDOW
+#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
+#                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
+                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
+
 #                notify_id = (w[0],
 #                             0,
 #                             win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP,
@@ -459,12 +527,16 @@ if __name__== "__main__":
     main_window.show_all()
     
     c = Configuration.Config()
-    tables = Tables.discover(c)
+    #tables = Tables.discover(c)
+    t = Tables.discover_table_by_name(c, "Southend")
+    if t is None:
+        print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
 
-    for t in tables:
-        win = Hud(t, 8, c, db)
+#    for t in tables:
+    win = Hud(t, 10, 'holdem', c, db)
+    win.create(1, c)
 #        t.get_details()
-        win.update(8300, db, c)
+    win.update(8300, db, c)
 
     gtk.main()

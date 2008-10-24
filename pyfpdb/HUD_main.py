@@ -77,14 +77,14 @@ def process_new_hand(new_hand_id, db_name):
         hud_dict[table_name].update(new_hand_id, db_connection, config)
 #    otherwise create a new hud
     else:
-        table_windows = Tables.discover(config)
-        for t in table_windows.keys():
-            if table_windows[t].name == table_name:
-                hud_dict[table_name] = Hud.Hud(table_windows[t], max, poker_game, config, db_name)
-                hud_dict[table_name].create(new_hand_id, config)
-                hud_dict[table_name].update(new_hand_id, db_connection, config)
-                break
-#        print "table name \"%s\" not identified, no hud created" % (table_name)
+        tablewindow = Tables.discover_table_by_name(config, table_name)
+        if tablewindow == None:
+            sys.stderr.write("table name "+table_name+" not found\n")
+        else:
+            hud_dict[table_name] = Hud.Hud(tablewindow, max, poker_game, config, db_name)
+            hud_dict[table_name].create(new_hand_id, config)
+            hud_dict[table_name].update(new_hand_id, db_connection, config)
+        
     db_connection.close_connection()
     return(1)  
 
