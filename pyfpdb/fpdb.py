@@ -339,7 +339,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 	def tabGraphViewer(self, widget, data):
 		"""opens a graph viewer tab"""
 		#print "start of tabGraphViewer"
-		new_gv_thread=GuiGraphViewer.GuiGraphViewer(self.db, self.settings,self.querydict)
+		new_gv_thread=GuiGraphViewer.GuiGraphViewer(self.db, self.settings, self.querydict, self.config)
 		self.threads.append(new_gv_thread)
 		gv_tab=new_gv_thread.get_vbox()
 		self.add_and_display_tab(gv_tab, "Graphs")

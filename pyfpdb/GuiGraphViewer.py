@@ -101,7 +101,7 @@ class GuiGraphViewer (threading.Thread):
                 return line/100
         #end of def getRingProfitGraph
 
-	def __init__(self, db, settings, querylist, debug=True):
+	def __init__(self, db, settings, querylist, config, debug=True):
 		"""Constructor for GraphViewer"""
 		self.debug=debug
 		#print "start of GraphViewer constructor"
@@ -134,6 +134,9 @@ class GuiGraphViewer (threading.Thread):
 		self.siteEntry.set_text("PS")
 		self.settingsHBox.pack_start(self.siteEntry)
 		self.siteEntry.show()
+
+		#Note: Assumes PokerStars is in the config
+		self.nameEntry.set_text(config.supported_sites["PokerStars"].screen_name)
 		
 		self.showButton=gtk.Button("Show/Refresh")
 		self.showButton.connect("clicked", self.showClicked, "show clicked")
