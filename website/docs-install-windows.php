@@ -9,12 +9,17 @@ require 'sidebar.php';
 
 <div id="main">
 
+<h1>Before You Begin</h1>
+<p>Most people should install using the <a href="http://sourceforge.net/project/showfiles.php?group_id=226872">Installer</a>.  These instructions have not been updated recently, but can serve as a guide to someone who knows what he is doing.  Unless you have a special reason for installing manually, you really should be using the installer.</p>
+
+<h1>Vista Users</h1>
+<p>The installer does not install mysql properly on Microsoft Vista installations, due to the UAC.  You should first install mysql using this <a href="http://port25.technet.com/videos/research/MySQL_Windows.pdf">how to (pdf)</a>.  Then run the installer.  The installer will detect the mysql installation and not reintstall.</p>
+
 <h1>Installing in Windows</h1>
 
 <div class="winInst">
-<p>These instructions were made with Windows XP. They should also work with Windows NT / 2000 / 2003 / Vista and 2008. Please report any differences to gmic at users.sourceforge.net.
+<p>These instructions were made with Windows XP. They should also work with Windows NT / 2000 / 2003 and 2008. Please report any differences to gmic at users.sourceforge.net.
 <p>If you're still using Win3/95/98/ME then you should switch to GNU/Linux, *BSD or WinXP.</p>
-<p>An Installer will be made at some point.</p>
 
 <div class="screenshot">
 <img src="img/00.mySqlWebsite1.jpg" alt="windows install guide screenshot" />

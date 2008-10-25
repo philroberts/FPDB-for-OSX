@@ -45,9 +45,9 @@ class GuiGraphViewer (threading.Thread):
 		try: self.canvas.destroy()
 		except AttributeError: pass
 
-		name=self.nameTBuffer.get_text(self.nameTBuffer.get_start_iter(), self.nameTBuffer.get_end_iter())
+		name=self.nameEntry.get_text()
 		
-		site=self.siteTBuffer.get_text(self.siteTBuffer.get_start_iter(), self.siteTBuffer.get_end_iter())
+		site=self.siteEntry.get_text()
 		
 		if site=="PS":
 			site=2
@@ -101,7 +101,7 @@ class GuiGraphViewer (threading.Thread):
                 return line/100
         #end of def getRingProfitGraph
 
-	def __init__(self, db, settings, querylist, debug=True):
+	def __init__(self, db, settings, querylist, config, debug=True):
 		"""Constructor for GraphViewer"""
 		self.debug=debug
 		#print "start of GraphViewer constructor"
@@ -121,21 +121,22 @@ class GuiGraphViewer (threading.Thread):
 		self.settingsHBox.pack_start(self.nameLabel)
 		self.nameLabel.show()
 		
-		self.nameTBuffer=gtk.TextBuffer()
-		self.nameTBuffer.set_text("name")
-		self.nameTView=gtk.TextView(self.nameTBuffer)
-		self.settingsHBox.pack_start(self.nameTView)
-		self.nameTView.show()
+		self.nameEntry=gtk.Entry()
+		self.nameEntry.set_text("name")
+		self.settingsHBox.pack_start(self.nameEntry)
+		self.nameEntry.show()
 		
 		self.siteLabel = gtk.Label("Site (PS or FTP):")
 		self.settingsHBox.pack_start(self.siteLabel)
 		self.siteLabel.show()
 		
-		self.siteTBuffer=gtk.TextBuffer()
-		self.siteTBuffer.set_text("PS")
-		self.siteTView=gtk.TextView(self.siteTBuffer)
-		self.settingsHBox.pack_start(self.siteTView)
-		self.siteTView.show()
+		self.siteEntry=gtk.Entry()
+		self.siteEntry.set_text("PS")
+		self.settingsHBox.pack_start(self.siteEntry)
+		self.siteEntry.show()
+
+		#Note: Assumes PokerStars is in the config
+		self.nameEntry.set_text(config.supported_sites["PokerStars"].screen_name)
 		
 		self.showButton=gtk.Button("Show/Refresh")
 		self.showButton.connect("clicked", self.showClicked, "show clicked")

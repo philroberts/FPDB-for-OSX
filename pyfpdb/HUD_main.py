@@ -36,7 +36,8 @@ Main for FreePokerTools HUD.
 import sys
 import os
 import thread
-import Queue
+import time
+import string
 
 errorfile = open('HUD-error.txt', 'w', 0)
 sys.stderr = errorfile
@@ -61,54 +62,61 @@ config = 0;
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
 
-def process_new_hand(new_hand_id, db_name):
-#    there is a new hand_id to be processed
-#    read the hand_id from stdin and strip whitespace
+def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_connection, config, stat_dict):
+    global hud_dict
+    def idle_func():
+        global hud_dict
+        gtk.gdk.threads_enter()
+        try:
+            hud_dict[table_name] = Hud.Hud(table, max, poker_game, config, db_name)
+            hud_dict[table_name].create(new_hand_id, config)
+            hud_dict[table_name].update(new_hand_id, config, stat_dict)
+            return False
+        finally:
+            gtk.gdk.threads_leave
+    gobject.idle_add(idle_func)
+
+def update_HUD(new_hand_id, table_name, config, stat_dict):
+    global hud_dict
+    def idle_func():
+        gtk.gdk.threads_enter()
+        try:
+            hud_dict[table_name].update(new_hand_id, config, stat_dict)
+            return False
+        finally:
+            gtk.gdk.threads_leave
+    gobject.idle_add(idle_func)
+
+def read_stdin():            # This is the thread function
     global hud_dict
 
-    for h in hud_dict.keys():
-        if hud_dict[h].deleted:
-            del(hud_dict[h])
-
-    db_connection = Database.Database(config, db_name, 'temp')
-    (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
-#    if a hud for this table exists, just update it
-    if hud_dict.has_key(table_name):
-        hud_dict[table_name].update(new_hand_id, db_connection, config)
-#    otherwise create a new hud
-    else:
-        tablewindow = Tables.discover_table_by_name(config, table_name)
-        if tablewindow == None:
-            sys.stderr.write("table name "+table_name+" not found\n")
-        else:
-            hud_dict[table_name] = Hud.Hud(tablewindow, max, poker_game, config, db_name)
-            hud_dict[table_name].create(new_hand_id, config)
-            hud_dict[table_name].update(new_hand_id, db_connection, config)
-        
-    db_connection.close_connection()
-    return(1)  
-
-def check_stdin(db_name):
-    try:
-        hand_no = dataQueue.get(block=False)
-        process_new_hand(hand_no, db_name)
-    except:
-        pass
-    return True
-
-def read_stdin(source, condition, db_name):
-    new_hand_id = sys.stdin.readline()
-    if new_hand_id == "":
-        destroy()
-    process_new_hand(new_hand_id, db_name)
-    return True
-
-def producer():            # This is the thread function
-    while True:
-        hand_no = sys.stdin.readline()  # reads stdin
-        if hand_no == "":
+    while True: # wait for a new hand number on stdin
+        new_hand_id = sys.stdin.readline()
+        new_hand_id = string.rstrip(new_hand_id)
+        if new_hand_id == "":           # blank line means quit
             destroy()
-        dataQueue.put(hand_no)          # and puts result on the queue
+
+#    delete hud_dict entries for any HUD destroyed since last iteration
+        for h in hud_dict.keys():
+            if hud_dict[h].deleted:
+                del(hud_dict[h])
+
+#    connect to the db and get basic info about the new hand
+        db_connection = Database.Database(config, db_name, 'temp')
+        (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
+        stat_dict = db_connection.get_stats_from_hand(new_hand_id)
+        db_connection.close_connection()
+
+#    if a hud for this table exists, just update it
+        if hud_dict.has_key(table_name):
+            update_HUD(new_hand_id, table_name, config, stat_dict)
+#        otherwise create a new hud
+        else:
+            tablewindow = Tables.discover_table_by_name(config, table_name)
+            if tablewindow == None:
+                sys.stderr.write("table name "+table_name+" not found\n")
+            else:
+                create_HUD(new_hand_id, tablewindow, db_name, table_name, max, poker_game, db_connection, config, stat_dict)
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")
@@ -120,24 +128,18 @@ if __name__== "__main__":
     sys.stderr.write("Using db name = %s\n" % (db_name))
 
     config = Configuration.Config()
-#    db_connection = Database.Database(config, 'fpdb', 'holdem')
 
-    if os.name == 'posix':
-        s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, read_stdin, db_name)
-    elif os.name == 'nt':
-        dataQueue = Queue.Queue()             # shared global. infinite size
-        gobject.threads_init()                # this is required
-        thread.start_new_thread(producer, ()) # starts the thread
-        gobject.timeout_add(1000, check_stdin, db_name)
-    else:
-        print "Sorry your operating system is not supported."
-        sys.exit()
+    gobject.threads_init()                # this is required
+    thread.start_new_thread(read_stdin, ()) # starts the thread
 
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)
+    eb = gtk.EventBox()
     label = gtk.Label('Closing this window will exit from the HUD.')
-    main_window.add(label)
+    eb.add(label)
+    main_window.add(eb)
     main_window.set_title("HUD Main Window")
     main_window.show_all()
     
     gtk.main()
+

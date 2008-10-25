@@ -64,7 +64,8 @@ def discover(c):
         tables = discover_nt(c)
     elif os.name == 'mac':
         tables = discover_mac(c)
-    else: tables = {}
+    else:
+        tables = {}
     
     return(tables)
 
@@ -75,7 +76,8 @@ def discover_table_by_name(c, tablename):
         table = discover_nt_by_name(c, tablename)
     elif os.name == 'mac':
         table = discover_mac_by_name(c, tablename)
-    else: table = None
+    else:
+        table = None
     return(table)
 
 def discover_posix(c):
@@ -211,7 +213,7 @@ def discover_nt_by_name(c, tablename):
                 tw.x = int(x) + b_width
                 tw.y = int(y) + tb_height
                 tw.site = c.supported_sites[s].site_name
-                if not tw.site == "Unknown" and not tw.decoder == "Unknown":
+                if not tw.site == "Unknown" and not c.supported_sites[tw.site].decoder == "Unknown":
                     eval("%s(tw)" % c.supported_sites[tw.site].decoder)
                 else:
                     tw.name = tablename
@@ -291,9 +293,9 @@ def fulltilt_decode_table(tw):
     title_bits = re.split(' - ', tw.title)
     name = title_bits[0]
     tw.tournament = None
-    for pattern in [r' \(6 max\)', r' \(heads up\)', r' \(deep\)',
-                    r' \(deep hu\)', r' \(deep 6\)', r' \(2\)',
-                    r' \(edu\)', r' \(edu, 6 max\)', r' \(6\)' ]:
+    for pattern in [' (6 max)', ' (heads up)', ' (deep)',
+                    ' (deep hu)', ' (deep 6)', ' (2)',
+                    ' (edu)', ' (edu, 6 max)', ' (6)' ]:
         name = re.sub(pattern, '', name)
 #    (tw.name, trash) = name.split(r' (', 1)
     tw.name = name.rstrip()
