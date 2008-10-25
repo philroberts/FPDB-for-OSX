@@ -237,26 +237,8 @@ class fpdb:
 		return self.item_factory.get_widget("<main>")
 	#end def get_menu
 	
-	def load_default_profile(self):
-		"""Loads the defaut profile"""
-		defaultpath=os.path.expanduser("~")
-		if not defaultpath.endswith(os.sep):#todo: check if this is needed in *nix, if not delete it
-			defaultpath+=(os.sep)
-		
-		if (os.sep=="\\"):#ie. if Windows use application data folder
-			defaultpath=os.environ["APPDATA"]+os.sep
-		else:#ie. if POSIX OS prefix fpdb with a .
-			defaultpath+="."
-		defaultpath+=("fpdb"+os.sep+"default.conf")
-		
-		if os.path.exists(defaultpath):
-			self.load_profile(defaultpath)
-		else:
-			self.diaSetupWizard(path=defaultpath)
-	#end def load_default_profile
-	
 	def load_profile(self):
-		"""Loads profile from the provided path name. also see load_default_profile"""
+		"""Loads profile from the provided path name."""
 		self.settings = {}
 		if (os.sep=="/"):
 			self.settings['os']="linuxmac"
@@ -368,7 +350,6 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.db=None
 		self.config = Configuration.Config()
 		self.load_profile()
-#		self.load_default_profile()
 		
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
