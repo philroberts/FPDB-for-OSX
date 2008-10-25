@@ -180,7 +180,7 @@ class GuiAutoImport (threading.Thread):
 		self.pathTiltLabel.show()
 
 		self.tiltDirPath=gtk.Entry()
-		paths = self.config.get_default_paths("FullTilt")
+		paths = self.config.get_default_paths("Full Tilt")
 		self.tiltDirPath.set_text(paths['hud-defaultPath'])
 		self.pathHBox.pack_start(self.tiltDirPath, False, True, 0)
 		self.tiltDirPath.show()
