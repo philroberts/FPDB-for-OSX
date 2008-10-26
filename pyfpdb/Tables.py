@@ -114,7 +114,7 @@ def discover_posix_by_name(c, tablename):
     tables = discover_posix(c)
     for t in tables:
         if tables[t].name.find(tablename) > -1:
-            return t
+            return tables[t]
     return None
 
 #
