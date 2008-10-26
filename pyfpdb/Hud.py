@@ -35,6 +35,7 @@ import gobject
 if os.name == 'nt':
     import win32gui
     import win32con
+    import win32api
 
 #    FreePokerTools modules
 import Tables # needed for testing only
@@ -89,7 +90,13 @@ class Hud:
 
         self.main_window.show_all()
 #    set_keep_above(1) for windows
-        if os.name == 'nt': self.topify_window(self.main_window)
+        if os.name == 'nt':
+            self.topify_window(self.main_window)
+
+# set as child of poker table            
+        window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
+        self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
+        self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
 
     def on_button_press(self, widget, event):
         if event.button == 3:
@@ -241,14 +248,20 @@ class Hud:
         
         for w in tl_windows:
             if w[1] == unique_name:
-#                win32gui.ShowWindow(w[0], win32con.SW_HIDE)
-#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
-#                style |= win32con.WS_EX_TOOLWINDOW
-#                style &= ~win32con.WS_EX_APPWINDOW
-#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
-#                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
+                #win32gui.ShowWindow(w[0], win32con.SW_HIDE)
+                #window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
+                #self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
+                #self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
+                #win32gui.ShowWindow(w[0], win32con.SW_SHOW)
+                
+                style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
+                #style |= win32con.WS_EX_TOOLWINDOW
+                #style &= ~win32con.WS_EX_APPWINDOW
+                style |= win32con.WS_CLIPCHILDREN
+                win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
 
-                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
+
+                #win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
                 
 #                notify_id = (w[0],
 #                             0,
@@ -363,16 +376,15 @@ class Stat_Window:
         
         for w in tl_windows:
             if w[1] == unique_name:
-                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE) 
-#                notify_id = (w[0],
-#                             0,
-#                             win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP,
-#                             win32con.WM_USER+20,
-#                             0,
-#                             '')
-#                win32gui.Shell_NotifyIcon(win32gui.NIM_DELETE, notify_id)
-#
-        window.set_title(real_name)
+                
+                #win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE) 
+                
+#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
+#                style |= win32con.WS_EX_TOOLWINDOW
+#                style &= ~win32con.WS_EX_APPWINDOW
+#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
+                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
+                window.set_title(real_name)
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
@@ -529,7 +541,7 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Southend")
+    t = Tables.discover_table_by_name(c, "Corona")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
