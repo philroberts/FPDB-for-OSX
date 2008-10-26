@@ -112,11 +112,11 @@ def read_stdin():            # This is the thread function
             update_HUD(new_hand_id, table_name, config, stat_dict)
 #        otherwise create a new hud
         else:
-            table_windows = Tables.discover(config)
-            for t in table_windows.keys():
-                if table_windows[t].name == table_name:
-                    create_HUD(new_hand_id, table_windows[t], db_name, table_name, max, poker_game, db_connection, config, stat_dict)
-                    break
+            tablewindow = Tables.discover_table_by_name(config, table_name)
+            if tablewindow == None:
+                sys.stderr.write("table name "+table_name+" not found\n")
+            else:
+                create_HUD(new_hand_id, tablewindow, db_name, table_name, max, poker_game, db_connection, config, stat_dict)
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")
@@ -142,3 +142,4 @@ if __name__== "__main__":
     main_window.show_all()
     
     gtk.main()
+
