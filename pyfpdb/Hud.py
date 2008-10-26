@@ -92,6 +92,10 @@ class Hud:
 #    set_keep_above(1) for windows
         if os.name == 'nt':
             self.topify_window(self.main_window)
+        else:
+            window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
+            self.main_window.gdkhandle = gtk.gdk.window_foreign_new(window.window.xid)
+            self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
 
     def on_button_press(self, widget, event):
         if event.button == 3:
@@ -107,6 +111,7 @@ class Hud:
 
     def save_layout(self, *args):
         new_layout = []
+# todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
         for sw in self.stat_windows:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
