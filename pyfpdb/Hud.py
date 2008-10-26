@@ -93,11 +93,6 @@ class Hud:
         if os.name == 'nt':
             self.topify_window(self.main_window)
 
-# set as child of poker table            
-        window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
-        self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-        self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
-
     def on_button_press(self, widget, event):
         if event.button == 3:
             widget.popup(None, None, None, event.button, event.time)
@@ -249,9 +244,9 @@ class Hud:
         for w in tl_windows:
             if w[1] == unique_name:
                 #win32gui.ShowWindow(w[0], win32con.SW_HIDE)
-                #window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
-                #self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-                #self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
+                window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
+                self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
+                self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
                 #win32gui.ShowWindow(w[0], win32con.SW_SHOW)
                 
                 style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
