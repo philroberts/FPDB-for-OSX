@@ -113,7 +113,7 @@ def discover_posix(c):
 def discover_posix_by_name(c, tablename):
     tables = discover_posix(c)
     for t in tables:
-        if t.name.find(tablename) > -1:
+        if tables[t].name.find(tablename) > -1:
             return t
     return None
 
