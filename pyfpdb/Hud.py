@@ -67,11 +67,11 @@ class Hud:
         self.main_window.set_keep_above(True)
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
+        self.main_window.set_decorated(False)
         #self.main_window.set_transient_for(parent.get_toplevel())
 
         self.ebox = gtk.EventBox()
-        self.label = gtk.Label("Close this window to\nkill the HUD for\n %s\nMinimizing it hides stats." % 
-                               (table.name))
+        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
         self.main_window.add(self.ebox)
         self.ebox.add(self.label)
         self.main_window.move(self.table.x, self.table.y)
@@ -93,9 +93,12 @@ class Hud:
         if os.name == 'nt':
             self.topify_window(self.main_window)
         else:
-            window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
-            self.main_window.gdkhandle = gtk.gdk.window_foreign_new(window.window.xid)
-            self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
+            self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)
+            self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid)
+            self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle)
+            #window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)
+            #self.main_window.gdkhandle = gtk.gdk.window_foreign_new(window.window.xid)
+            #self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
 
     def on_button_press(self, widget, event):
         if event.button == 3:
