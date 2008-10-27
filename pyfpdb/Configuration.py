@@ -53,6 +53,12 @@ class Site:
         self.site_path    = node.getAttribute("site_path")
         self.HH_path      = node.getAttribute("HH_path")
         self.decoder      = node.getAttribute("decoder")
+
+        self.hudopacity   = node.getAttribute("hudopacity")
+        if self.hudopacity == "":
+            self.hudopacity = 0.90
+        else:
+            self.hudopacity = float(self.hudopacity)
         
         self.hudbgcolor   = node.getAttribute("bgcolor")
         if self.hudbgcolor == "":

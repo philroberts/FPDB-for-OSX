@@ -341,6 +341,7 @@ class Stat_Window:
 
         self.window = gtk.Window()
         self.window.set_decorated(0)
+        self.window.set_opacity(parent.config.supported_sites[self.table.site].hudopacity)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
         #self.window.set_keep_above(1)
         self.window.set_title("%s" % seat)
