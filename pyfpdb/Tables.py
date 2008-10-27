@@ -96,7 +96,7 @@ def discover_posix(c):
                 if re.match('[\(\)\d\s]+', mo.group(2)): continue  # this is a popup
                 tw = Table_Window()
                 tw.site = c.supported_sites[s].site_name
-                tw.number = mo.group(1)
+                tw.number = int(mo.group(1), 0)
                 tw.title  = mo.group(2)
                 tw.width  = int( mo.group(3) )
                 tw.height = int( mo.group(4) )

@@ -29,7 +29,6 @@ Main for FreePokerTools HUD.
 #    to do no hud window for hero
 #    to do things to add to config.xml
 #    to do     font and size
-#    to do     bg and fg color
 #    to do     opacity
 
 #    Standard Library modules

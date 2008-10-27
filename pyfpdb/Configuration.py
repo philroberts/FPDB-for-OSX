@@ -53,6 +53,14 @@ class Site:
         self.site_path    = node.getAttribute("site_path")
         self.HH_path      = node.getAttribute("HH_path")
         self.decoder      = node.getAttribute("decoder")
+        
+        self.hudbgcolor   = node.getAttribute("bgcolor")
+        if self.hudbgcolor == "":
+            self.hudbgcolor = "#FFFFFF"
+        self.hudfgcolor   = node.getAttribute("fgcolor")
+        if self.hudfgcolor == "":
+            self.hudfgcolor = "#000000"
+        
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):
