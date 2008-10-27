@@ -64,7 +64,7 @@ class Hud:
         self.main_window = gtk.Window()
 #        self.window.set_decorated(0)
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_keep_above(True)
+#        self.main_window.set_keep_above(True)
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
         #self.main_window.set_transient_for(parent.get_toplevel())
@@ -93,9 +93,9 @@ class Hud:
         if os.name == 'nt':
             self.topify_window(self.main_window)
         else:
-            window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
-            self.main_window.gdkhandle = gtk.gdk.window_foreign_new(window.window.xid)
-            self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
+            self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)  # gets a gdk handle for poker client
+            self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid) # gets a gdk handle for the hud table window
+            self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) # 
 
     def on_button_press(self, widget, event):
         if event.button == 3:
@@ -332,7 +332,7 @@ class Stat_Window:
         self.window = gtk.Window()
         self.window.set_decorated(0)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.window.set_keep_above(1)
+#        self.window.set_keep_above(1)
         self.window.set_title("%s" % seat)
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.main_window)
