@@ -59,21 +59,28 @@ class Hud:
         self.stat_windows = {}
         self.popup_windows = {}
         self.font = pango.FontDescription("Sans 8")
-
+        
 #    Set up a main window for this this instance of the HUD
-        self.main_window = gtk.Window()
+        self.main_window = gtk.Window()  
 #        self.window.set_decorated(0)
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
 #        self.main_window.set_keep_above(True)
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
+        self.main_window.set_decorated(False)
         #self.main_window.set_transient_for(parent.get_toplevel())
 
         self.ebox = gtk.EventBox()
-        self.label = gtk.Label("Close this window to\nkill the HUD for\n %s\nMinimizing it hides stats." % 
-                               (table.name))
+        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
+        
+        self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudbgcolor))
+        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudfgcolor))
+        
         self.main_window.add(self.ebox)
         self.ebox.add(self.label)
+        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudbgcolor))
+        self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudfgcolor))
+
         self.main_window.move(self.table.x, self.table.y)
 
 #    A popup window for the main window
@@ -331,7 +338,9 @@ class Stat_Window:
 
         self.window = gtk.Window()
         self.window.set_decorated(0)
+        self.window.set_opacity(parent.config.supported_sites[self.table.site].hudopacity)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
+
 #        self.window.set_keep_above(1)
         self.window.set_title("%s" % seat)
         self.window.set_property("skip-taskbar-hint", True)
@@ -348,9 +357,17 @@ class Stat_Window:
             self.label.append([])
             for c in range(self.game.cols):
                 self.e_box[r].append( gtk.EventBox() )
+                
+                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudbgcolor))
+                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudfgcolor))
+                
                 Stats.do_tip(self.e_box[r][c], 'farts')
                 self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 self.label[r].append( gtk.Label('xxx') )
+                
+                self.label[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudbgcolor))
+                self.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudfgcolor))        
+
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
 #                font = pango.FontDescription("Sans 8")
@@ -541,7 +558,7 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Corona")
+    t = Tables.discover_table_by_name(c, "Chelsea")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
