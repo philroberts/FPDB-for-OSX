@@ -55,16 +55,16 @@ class Hud:
         self.db_name       = db_name
         self.deleted       = False
         self.stacked       = True
+        self.colors = config.get_default_colors(self.table.site)
 
         self.stat_windows = {}
         self.popup_windows = {}
         self.font = pango.FontDescription("Sans 8")
-        
-#    Set up a main window for this this instance of the HUD
-        self.main_window = gtk.Window()  
+
+#	Set up a main window for this this instance of the HUD
+        self.main_window = gtk.Window()
 #        self.window.set_decorated(0)
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-#        self.main_window.set_keep_above(True)
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
@@ -73,13 +73,13 @@ class Hud:
         self.ebox = gtk.EventBox()
         self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
         
-        self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudbgcolor))
-        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudfgcolor))
+        self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
+        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
         
         self.main_window.add(self.ebox)
         self.ebox.add(self.label)
-        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudbgcolor))
-        self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(config.supported_sites[self.table.site].hudfgcolor))
+        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
+        self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
 
         self.main_window.move(self.table.x, self.table.y)
 
@@ -153,58 +153,11 @@ class Hud:
 #    windows via calls to the Stat_Window class
 
         adj = self.adj_seats(hand, config)
+        loc = self.config.get_locations(self.table.site, self.max)
+
 #    create the stat windows
         for i in range(1, self.max + 1):           
-            # the below IF always appears to be passed as TRUE, I don't know why. If you have an 8-max game, but
-            # your config file doesn't understand 8 max, it's a crash.  It was even a crash when I tried using the
-            # full-fledged exception handling blocks.
-            # - Eric
-            
-            if self.max in config.supported_sites[self.table.site].layout:
-                (x, y) = config.supported_sites[self.table.site].layout[self.max].location[adj[i]]
-            else:
-                if i == 1:
-                    x = 684
-                    y = 61
-                elif i == 2:
-                    x = 689
-                    y = 239
-                elif i == 3:
-                    x = 692
-                    y = 346
-                elif i == 4:
-                    x = 586
-                    y = 393
-                elif i == 5:
-                    x = 421
-                    y = 440
-                elif i == 6:
-                    x = 267
-                    y = 440
-                elif i == 7:
-                    x = 0
-                    y = 361
-                elif i == 8:
-                    x = 0
-                    y = 280
-                elif i == 9:
-                    x = 121
-                    y = 280
-                elif i == 10:
-                    x = 46
-                    y = 30
-                    
-            sys.stderr.write("at location "+str(x)+" "+str(y)+"\n")
-            sys.stderr.write("config:"+str(config)+"\n")
-            gameslist = config.supported_games
-            sys.stderr.write("supported games:"+str(gameslist)+"\n")
-            sys.stderr.write("desired game:"+str(self.poker_game)+"\n")
-            thisgame = gameslist['holdem']
-            sys.stderr.write("this game:"+str(thisgame)+"\n")
-            # the above code looks absolutely completely useless. The below line was freezing the interpreter, so I added the above lines to try and debug
-            # which piece of the below line was causing it to lock up.  Adding the "thisgame = gameslist['holdem']" line fixed it, for some unknown reason.
-            # removing any one of the lines above causes the interpreter to freeze for me on the next statement.  
-            # -eric
+            (x, y) = loc[adj[i]]
             self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table, 
@@ -338,10 +291,9 @@ class Stat_Window:
 
         self.window = gtk.Window()
         self.window.set_decorated(0)
-        self.window.set_opacity(parent.config.supported_sites[self.table.site].hudopacity)
+        self.window.set_opacity(parent.colors['hudopacity'])
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
 
-#        self.window.set_keep_above(1)
         self.window.set_title("%s" % seat)
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.main_window)
@@ -358,15 +310,15 @@ class Stat_Window:
             for c in range(self.game.cols):
                 self.e_box[r].append( gtk.EventBox() )
                 
-                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudbgcolor))
-                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudfgcolor))
+                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudbgcolor']))
+                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))
                 
                 Stats.do_tip(self.e_box[r][c], 'farts')
                 self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 self.label[r].append( gtk.Label('xxx') )
                 
-                self.label[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudbgcolor))
-                self.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.config.supported_sites[self.table.site].hudfgcolor))        
+                self.label[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudbgcolor']))
+                self.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))        
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
