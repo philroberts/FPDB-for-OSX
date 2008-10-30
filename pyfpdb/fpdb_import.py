@@ -138,7 +138,7 @@ class Importer:
 		# ^^ May not work on windows
 		for dir in self.dirlist:
 			for file in os.listdir(dir):
-				self.filelist = self.filelist + [dir+os.sep+file]
+				self.filelist = self.filelist + [os.path.join(dir, file)]
 
 		self.filelist = list(set(self.filelist))
 
