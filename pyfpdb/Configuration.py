@@ -364,18 +364,18 @@ class Config:
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        try:
-            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        except:
+        if self.supported_sites[site].hudopacity == "":
             colors['hudopacity'] = 0.90
-        try:
-            colors['hudbgcolor'] = float(self.supported_sites[site].hudbgcolor)
-        except:
+        else:
+            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
+        if self.supported_sites[site].hudbgcolor == "":
             colors['hudbgcolor'] = "#FFFFFF"
-        try:
-            colors['hudfgcolor'] = float(self.supported_sites[site].hudbgcolor)
-        except:
+        else:
+            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
+        if self.supported_sites[site].hudfgcolor == "":
             colors['hudfgcolor'] = "#000000"
+        else:
+            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
         return colors
 
     def get_locations(self, site = "PokerStars", max = "8"):
