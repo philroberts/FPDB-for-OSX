@@ -330,6 +330,8 @@ def filterCrap(site, hand, isTourney):
 			toRemove.append(hand[i])
 		elif (hand[i].find(" out of hand ")!=-1):
 			hand[i]=hand[i][:-56]
+		elif (hand[i].find("($0 in chips)") != -1):
+			toRemove.append(hand[i])			
 		elif (hand[i]=="*** HOLE CARDS ***"):
 			toRemove.append(hand[i])
 		elif (hand[i].endswith("has been disconnected")):
