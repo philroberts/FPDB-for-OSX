@@ -53,19 +53,9 @@ class Site:
         self.site_path    = node.getAttribute("site_path")
         self.HH_path      = node.getAttribute("HH_path")
         self.decoder      = node.getAttribute("decoder")
-
         self.hudopacity   = node.getAttribute("hudopacity")
-        if self.hudopacity == "":
-            self.hudopacity = 0.90
-        else:
-            self.hudopacity = float(self.hudopacity)
-        
         self.hudbgcolor   = node.getAttribute("bgcolor")
-        if self.hudbgcolor == "":
-            self.hudbgcolor = "#FFFFFF"
         self.hudfgcolor   = node.getAttribute("fgcolor")
-        if self.hudfgcolor == "":
-            self.hudfgcolor = "#000000"
         
         self.layout       = {}
         
@@ -88,7 +78,7 @@ class Site:
             if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
+            temp = temp + '    ' + key + " = " + str(value) + "\n"
             
         for layout in self.layout:
             temp = temp + "%s" % self.layout[layout]
@@ -372,6 +362,33 @@ class Config:
             paths['bulkImport-defaultPath'] = "default"
         return paths
 
+    def get_default_colors(self, site = "PokerStars"):
+        colors = {}
+        try:
+            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
+        except:
+            colors['hudopacity'] = 0.90
+        try:
+            colors['hudbgcolor'] = float(self.supported_sites[site].hudbgcolor)
+        except:
+            colors['hudbgcolor'] = "#FFFFFF"
+        try:
+            colors['hudfgcolor'] = float(self.supported_sites[site].hudbgcolor)
+        except:
+            colors['hudfgcolor'] = "#000000"
+        return colors
+
+    def get_locations(self, site = "PokerStars", max = "8"):
+        
+        try:
+            locations = self.supported_sites[site].layout[max].location
+        except:
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+                          (586, 393), (421, 440), (267, 440), (  0, 361),
+                          (  0, 280), (121, 280), ( 46,  30) )
+        return locations
+
+
 if __name__== "__main__":
     c = Config()
     
@@ -403,17 +420,19 @@ if __name__== "__main__":
     print "----------- END MUCKED WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-    print c.imp
+#    print c.imp
     print "----------- END IMPORT -----------"
 
     print "\n----------- TABLE VIEW -----------"
-    print c.tv
+#    print c.tv
     print "----------- END TABLE VIEW -----------"
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
     
-    print "db    = ", c.get_db_parameters()
-    print "tv    = ", c.get_tv_parameters()
-    print "imp   = ", c.get_import_parameters()
-    print "paths = ", c.get_default_paths("PokerStars")
+    print "db     = ", c.get_db_parameters()
+#    print "tv     = ", c.get_tv_parameters()
+#    print "imp    = ", c.get_import_parameters()
+    print "paths  = ", c.get_default_paths("PokerStars")
+    print "colors = ", c.get_default_colors("PokerStars")
+    print "locs   = ", c.get_locations("PokerStars", 8)
