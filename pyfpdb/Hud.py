@@ -102,7 +102,9 @@ class Hud:
         else:
             self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)  # gets a gdk handle for poker client
             self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid) # gets a gdk handle for the hud table window
-            self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) # 
+            self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
+        
+        self.main_window.set_destroy_with_parent(True)
 
     def on_button_press(self, widget, event):
         if event.button == 3:
@@ -186,8 +188,10 @@ class Hud:
             self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
             for r in range(0, config.supported_games[self.poker_game].rows):
                 for c in range(0, config.supported_games[self.poker_game].cols):
+                    this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
-                    self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(number[1])
+                    statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
+                    self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
@@ -266,7 +270,7 @@ class Stat_Window:
         Popup_window(widget, self)
         return False
 
-    def double_click(self, widget, event, *args):
+    def double_click(self, widget, event, *args):            
         self.toggle_decorated(widget)
 
     def toggle_decorated(self, widget):
@@ -291,7 +295,6 @@ class Stat_Window:
 
         self.window = gtk.Window()
         self.window.set_decorated(0)
-        self.window.set_opacity(parent.colors['hudopacity'])
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
 
         self.window.set_title("%s" % seat)
@@ -324,6 +327,8 @@ class Stat_Window:
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
 #                font = pango.FontDescription("Sans 8")
                 self.label[r][c].modify_font(font)
+
+        self.window.set_opacity(parent.colors['hudopacity'])                
         self.window.realize
         self.window.move(self.x, self.y)
         self.window.show_all()

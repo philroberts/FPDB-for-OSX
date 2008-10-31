@@ -58,6 +58,7 @@ def do_tip(widget, tip):
 
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
     return eval("%(stat)s(stat_dict, %(player)d)" % {'stat': stat, 'player': player})
+
 #    OK, for reference the tuple returned by the stat is:
 #    0 - The stat, raw, no formating, eg 0.33333333
 #    1 - formatted stat with appropriate precision and punctuation, eg 33%
@@ -68,6 +69,15 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
 
 ########################################### 
 #    functions that return individual stats
+
+def playername(stat_dict, player):
+    return (stat_dict[player]['screen_name'],
+            stat_dict[player]['screen_name'],
+            stat_dict[player]['screen_name'],
+            stat_dict[player]['screen_name'],
+            stat_dict[player]['screen_name'],
+            stat_dict[player]['screen_name'])
+
 def vpip(stat_dict, player):
     """    Voluntarily put $ in the pot."""
     stat = 0.0
