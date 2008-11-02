@@ -109,6 +109,8 @@ class Game:
             stat.tip       = stat_node.getAttribute("tip")
             stat.click     = stat_node.getAttribute("click")
             stat.popup     = stat_node.getAttribute("popup")
+            stat.hudprefix = stat_node.getAttribute("hudprefix")
+            stat.hudsuffix = stat_node.getAttribute("hudsuffix")
             
             self.stats[stat.stat_name] = stat
             
