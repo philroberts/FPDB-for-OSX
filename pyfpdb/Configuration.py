@@ -205,24 +205,19 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-#    if "file" is invalid or None, we look for a HUD_config in the cwd
         if file == None: # configuration file path not passed or invalid
-            if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
-                file = 'HUD_config.xml'             # so we use it
-            else: # no HUD_config in the cwd, look where it should be in the first place
-#    find the path to the default HUD_config for the current os
-                if os.name == 'posix':
-                    config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'HUD_config.xml')
-                elif os.name == 'nt':
-                    config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'HUD_config.xml')
-                else: config_path = False
-    
-                if config_path and os.path.exists(config_path):
-                    file = config_path
-                else:
-                    print "No HUD_config_xml found.  Exiting"
-                    sys.stderr.write("No HUD_config_xml found.  Exiting")
-                    sys.exit()
+            file = self.find_config() #Look for a config file in the normal places
+
+        if file == None: # no config file in the normal places
+            file = self.find_example_config() #Look for an example file to edit
+            
+        if file == None: # that didn't work either, just die
+            print "No HUD_config_xml found.  Exiting"
+            sys.stderr.write("No HUD_config_xml found.  Exiting")
+            sys.exit()
+
+#    Parse even if there was no real config file found and we are using the example
+#    If using the example, we'll edit it later
         try:
             print "Reading configuration file %s\n" % (file)
             doc = xml.dom.minidom.parse(file)
@@ -273,6 +268,68 @@ class Config:
         for tv_node in doc.getElementsByTagName("tv"):
             tv = Tv(node = tv_node)
             self.tv = tv
+
+        db = self.get_db_parameters('fpdb')
+        if db['db-password'] == 'YOUR MYSQL PASSWORD':
+            df_file = self.find_default_conf()
+            if df_file == None: # this is bad
+                pass
+            else:
+                df_parms = self.read_default_conf(df_file)
+                self.supported_databases['fpdb'].db_pass = df_parms['db-password']
+                self.supported_databases['fpdb'].db_ip   = df_parms['db-host']
+                self.supported_databases['fpdb'].db_user = df_parms['db-user']
+                
+    def find_config(self):
+        if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
+            file = 'HUD_config.xml'             # so we use it
+        else: # no HUD_config in the cwd, look where it should be in the first place
+#    find the path to the default HUD_config for the current os
+            if os.name == 'posix':
+                config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'HUD_config.xml')
+            elif os.name == 'nt':
+                config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'HUD_config.xml')
+            else: config_path = False
+
+            if config_path and os.path.exists(config_path):
+                file = config_path
+            else:
+                file = None
+        return file
+
+    def find_default_conf(self):
+        if os.name == 'posix':
+            config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'default.conf')
+        elif os.name == 'nt':
+            config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'default.conf')
+        else: config_path = False
+
+        if config_path and os.path.exists(config_path):
+            file = config_path
+        else:
+            file = None
+        return file
+
+    def read_default_conf(self, file):
+        parms = {}
+        fh = open(file, "r")
+        for line in fh:
+            line = string.strip(line)
+            (key, value) = line.split('=')
+            parms[key] = value
+        fh.close
+        return parms
+                
+    def find_example_config(self):
+        if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
+            file = 'HUD_config.xml.example'             # so we use it
+            print "No HUD_config.xml found, using HUD_config.xml.example.\n", \
+                "A HUD_config.xml will be written.  You will probably have to edit it."
+            sys.stderr.write("No HUD_config.xml found, using HUD_config.xml.example.\n" + \
+                "A HUD_config.xml will be written.  You will probably have to edit it.")
+        else:
+            file = None
+        return file
 
     def get_site_node(self, site):
         for site_node in self.doc.getElementsByTagName("site"):
