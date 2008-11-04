@@ -147,12 +147,13 @@ class Importer:
 			try: 
 				lastupdate = self.updated[file]
 #				print "Is " + str(stat_info.st_mtime) + " > " + str(lastupdate)
-				if stat_info.st_mtime > lastupdate:
+				#if stat_info.st_mtime > lastupdate:
+				if stat_info.st_size > lastupdate:
 					self.import_file_dict(file)
-					self.updated[file] = time()
+					self.updated[file] = stat_info.st_size
 			except:
 #				print "Adding " + str(file) + " at approx " + str(time())
-				self.updated[file] = time()
+				self.updated[file] = 0
 
 	# This is now an internal function that should not be called directly.
 	def import_file_dict(self, file):
