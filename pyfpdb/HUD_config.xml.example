@@ -2,7 +2,7 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 	<supported_sites>
-	    <site site_name="PokerStars" table_finder="PokerStars" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="" decoder="pokerstars_decode_table">
+	    <site site_name="PokerStars" table_finder="PokerStars" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table">
 	        <layout max="8" width="792" height="546" fav_seat="0">
 	        	<location seat="1" x="684" y="61">  </location>
 	        	<location seat="2" x="689" y="239"> </location>

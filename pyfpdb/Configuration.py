@@ -199,6 +199,7 @@ class Config:
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
+        self.default_config_path = self.get_default_config_path()
         if not file == None: # configuration file path has been passed
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
@@ -210,6 +211,8 @@ class Config:
 
         if file == None: # no config file in the normal places
             file = self.find_example_config() #Look for an example file to edit
+            if not file == None:
+                pass
             
         if file == None: # that didn't work either, just die
             print "No HUD_config_xml found.  Exiting"
@@ -276,26 +279,33 @@ class Config:
                 pass
             else:
                 df_parms = self.read_default_conf(df_file)
-                self.supported_databases['fpdb'].db_pass = df_parms['db-password']
-                self.supported_databases['fpdb'].db_ip   = df_parms['db-host']
-                self.supported_databases['fpdb'].db_user = df_parms['db-user']
+                self.set_db_parameters(db_name = 'fpdb', db_ip = df_parms['db-host'],
+                                       db_user = df_parms['db-user'],
+                                       db_pass = df_parms['db-password'])
+                self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
+
                 
     def find_config(self):
+        """Looks in cwd and in self.default_config_path for a config file."""
         if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
             file = 'HUD_config.xml'             # so we use it
         else: # no HUD_config in the cwd, look where it should be in the first place
-#    find the path to the default HUD_config for the current os
-            if os.name == 'posix':
-                config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'HUD_config.xml')
-            elif os.name == 'nt':
-                config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'HUD_config.xml')
-            else: config_path = False
-
-            if config_path and os.path.exists(config_path):
+            config_path = os.path.join(self.default_config_path, 'HUD_config.xml')
+            if os.path.exists(config_path):
                 file = config_path
             else:
                 file = None
         return file
+
+    def get_default_config_path(self):
+        """Returns the path where the fpdb config file _should_ be stored."""
+        if os.name == 'posix':
+            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
+        elif os.name == 'nt':
+            config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
+        else: config_path = None
+        return config_path
+
 
     def find_default_conf(self):
         if os.name == 'posix':
@@ -335,6 +345,12 @@ class Config:
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
                 return site_node
+
+    def get_db_node(self, db_name):
+        for db_node in self.doc.getElementsByTagName("database"):
+            if db_node.getAttribute("db_name") == db_name:
+                return db_node
+        return None
 
     def get_layout_node(self, site_node, layout):
         for layout_node in site_node.getElementsByTagName("layout"):
@@ -388,6 +404,23 @@ class Config:
         except:
             pass
         return db
+
+    def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
+                          db_pass = None, db_server = None, db_type = None):
+        db_node = self.get_db_node(db_name)
+        if not db_node == None:
+            if not db_ip     == None: db_node.setAttribute("db_ip", db_ip)
+            if not db_user   == None: db_node.setAttribute("db_user", db_user)
+            if not db_pass   == None: db_node.setAttribute("db_pass", db_pass)
+            if not db_server == None: db_node.setAttribute("db_server", db_server)
+            if not db_type   == None: db_node.setAttribute("db_type", db_type)
+        if self.supported_databases.has_key(db_name):
+            if not db_ip     == None: self.supported_databases[db_name].dp_ip     = db_ip
+            if not db_user   == None: self.supported_databases[db_name].dp_user   = db_user
+            if not db_pass   == None: self.supported_databases[db_name].dp_pass   = db_pass
+            if not db_server == None: self.supported_databases[db_name].dp_server = db_server
+            if not db_type   == None: self.supported_databases[db_name].dp_type   = db_type
+        return
 
     def get_tv_parameters(self):
         tv = {}
