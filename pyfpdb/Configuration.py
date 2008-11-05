@@ -56,7 +56,7 @@ class Site:
         self.hudopacity   = node.getAttribute("hudopacity")
         self.hudbgcolor   = node.getAttribute("bgcolor")
         self.hudfgcolor   = node.getAttribute("fgcolor")
-        
+        self.converter    = node.getAttribute("converter")
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):

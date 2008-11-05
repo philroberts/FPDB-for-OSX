@@ -110,7 +110,7 @@ class Importer:
 		self.filelist = list(set(self.filelist))
 
 	#Add a directory of files to filelist
-	def addImportDirectory(self,dir,monitor = False):
+	def addImportDirectory(self,dir,monitor = False, filter = "passthrough"):
 		if os.path.isdir(dir):
 			if monitor == True:
 				self.monitor = True
@@ -146,14 +146,15 @@ class Importer:
 			stat_info = os.stat(file)
 			try: 
 				lastupdate = self.updated[file]
-#				print "Is " + str(stat_info.st_mtime) + " > " + str(lastupdate)
-				#if stat_info.st_mtime > lastupdate:
-				if stat_info.st_size > lastupdate:
+				if stat_info.st_mtime > lastupdate:
 					self.import_file_dict(file)
-					self.updated[file] = stat_info.st_size
+					self.updated[file] = time()
 			except:
-#				print "Adding " + str(file) + " at approx " + str(time())
-				self.updated[file] = 0
+				self.updated[file] = time()
+				# This codepath only runs first time the file is found, if modified in the last
+				# minute run an immediate import.
+				if (time() - stat_info.st_mtime) < 60:
+					self.import_file_dict(file)
 
 	# This is now an internal function that should not be called directly.
 	def import_file_dict(self, file):
