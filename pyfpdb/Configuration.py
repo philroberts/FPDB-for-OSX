@@ -480,7 +480,10 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
-
+    def get_converter(self, site):
+        if not self.supported_sites.has_key(site):
+            return None
+        return self.supported_sites[site].converter
 if __name__== "__main__":
     c = Config()
     
@@ -528,3 +531,4 @@ if __name__== "__main__":
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")
     print "locs   = ", c.get_locations("PokerStars", 8)
+    print "converter = ", c.get_converter("Everleaf")
