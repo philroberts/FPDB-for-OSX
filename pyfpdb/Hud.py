@@ -160,7 +160,10 @@ class Hud:
 #    create the stat windows
         for i in range(1, self.max + 1):           
             (x, y) = loc[adj[i]]
-            self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
+            if self.stat_windows.has_key(i):
+                self.stat_windows[i].relocate(x, y)
+            else:
+                self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table, 
                                                x = x,
@@ -185,7 +188,13 @@ class Hud:
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
         for s in stat_dict.keys():
-            self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+            try:
+                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+            except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
+                self.max = 10
+                self.create(hand, config)
+                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                
             for r in range(0, config.supported_games[self.poker_game].rows):
                 for c in range(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
@@ -283,6 +292,11 @@ class Stat_Window:
         else:
             top.set_decorated(1)
             top.move(x, y)
+            
+    def relocate(self, x, y):
+        self.x = x + self.table.x
+        self.y = y + self.table.y
+        self.window.move(self.x, self.y)
 
     def __init__(self, parent, game, table, seat, x, y, player_id, font):
         self.parent = parent        # Hud object that this stat window belongs to
