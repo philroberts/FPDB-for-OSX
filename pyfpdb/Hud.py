@@ -385,7 +385,7 @@ class Popup_window:
         self.window = gtk.Window()
         self.window.set_decorated(0)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.window.set_keep_above(1)
+#        self.window.set_keep_above(1)
         self.window.set_title("popup")
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.get_toplevel())
