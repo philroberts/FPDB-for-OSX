@@ -110,8 +110,8 @@ class GuiAutoImport (threading.Thread):
 			self.tiltpath=self.tiltDirPath.get_text()
 
 #			Add directory to importer object.
-			self.importer.addImportDirectory(self.starspath, True)
-			self.importer.addImportDirectory(self.tiltpath, True)
+			self.importer.addImportDirectory(self.starspath, True, "PokerStars", "passthrough")
+			self.importer.addImportDirectory(self.tiltpath, True, "FullTilt", "passthrough")
 			self.do_import()
 		
 			interval=int(self.intervalEntry.get_text())
