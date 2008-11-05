@@ -382,7 +382,7 @@ def a_freq_3(stat_dict, player):
                 '%3.1f'        % (100*stat) + '%', 
                 'a3=%3.1f'     % (100*stat) + '%', 
                 'a_fq_3=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['aggr_1'], stat_dict[player]['saw_1']),
+                '(%d/%d)'      % (stat_dict[player]['aggr_3'], stat_dict[player]['saw_3']),
                 'Aggression Freq river/6th'
                 )
     except:
