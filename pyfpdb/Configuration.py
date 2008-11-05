@@ -480,6 +480,51 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
+    def get_site_parameters(self, site):
+        """Returns a dict of the site parameters for the specified site"""
+        if not self.supported_sites.has_key(site):
+            return None
+        parms = {}
+        parms["converter"]    = self.supported_sites[site].converter
+        parms["decoder"]      = self.supported_sites[site].decoder
+        parms["hudbgcolor"]   = self.supported_sites[site].hudbgcolor
+        parms["hudfgcolor"]   = self.supported_sites[site].hudfgcolor
+        parms["hudopacity"]   = self.supported_sites[site].hudopacity
+        parms["screen_name"]  = self.supported_sites[site].screen_name
+        parms["site_path"]    = self.supported_sites[site].site_path
+        parms["table_finder"] = self.supported_sites[site].table_finder
+        parms["HH_path"]      = self.supported_sites[site].HH_path
+        return parms
+
+    def set_site_parameters(self, site_name, converter = None, decoder = None,
+                            hudbgcolor = None, hudfgcolor = None, 
+                            hudopacity = None, screen_name = None,
+                            site_path = None, table_finder = None,
+                            HH_path = None):
+        """Sets the specified site parameters for the specified site."""
+        site_node = self.get_site_node(site_name)
+        if not db_node == None:
+            if not converter      == None: site_node.setAttribute("converter", converter)
+            if not decoder        == None: site_node.setAttribute("decoder", decoder)
+            if not hudbgcolor     == None: site_node.setAttribute("hudbgcolor", hudbgcolor)
+            if not hudfgcolor     == None: site_node.setAttribute("hudfgcolor", hudfgcolor)
+            if not hudopacity     == None: site_node.setAttribute("hudopacity", hudopacity)
+            if not screen_name    == None: site_node.setAttribute("screen_name", screen_name)
+            if not site_path      == None: site_node.setAttribute("site_path", site_path)
+            if not table_finder   == None: site_node.setAttribute("table_finder", table_finder)
+            if not HH_path        == None: site_node.setAttribute("HH_path", HH_path)
+
+        if self.supported_databases.has_key(db_name):
+            if not converter      == None: self.supported_sites[site].converter = converter
+            if not decoder        == None: self.supported_sites[site].decoder = decoder
+            if not hudbgcolor     == None: self.supported_sites[site].hudbgcolor = hudbgcolor
+            if not hudfgcolor     == None: self.supported_sites[site].hudfgcolor = hudfgcolor
+            if not hudopacity     == None: self.supported_sites[site].hudopacity = hudopacity
+            if not screen_name    == None: self.supported_sites[site].screen_name = screen_name
+            if not site_path      == None: self.supported_sites[site].site_path = site_path
+            if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
+            if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
+        return
 
 if __name__== "__main__":
     c = Config()
@@ -528,3 +573,6 @@ if __name__== "__main__":
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")
     print "locs   = ", c.get_locations("PokerStars", 8)
+    for site in c.supported_sites.keys():
+        print "site = ", site,
+        print c.get_site_parameters(site)
