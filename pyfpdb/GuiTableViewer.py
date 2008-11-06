@@ -78,22 +78,13 @@ class GuiTableViewer (threading.Thread):
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
 			tmp=("Name", "HDs", "VPIP", "PFR", "PF3B4B", "ST")
 			
-			if self.settings['tv-combinedStealFold']:
-				tmp+=("FSB", )
-			else:
-				tmp+=("FS", "FB")
+			tmp+=("FS", "FB")
 			
 			tmp+=("CB", )
 			
-			if self.settings['tv-combined2B3B']:
-				tmp+=("23B", )
-			else:
-				tmp+=("2B", "3B")
+			tmp+=("2B", "3B")
 			
-			if self.settings['tv-combinedPostflop']:
-				tmp+=("Postf A", "Postf F")
-			else:
-				tmp+=("AF", "FF", "AT", "FT", "AR", "FR")
+			tmp+=("AF", "FF", "AT", "FT", "AR", "FR")
 			
 			tmp+=("WtSD", "W$wsF", "W$SD")
 		else:
@@ -144,34 +135,20 @@ class GuiTableViewer (threading.Thread):
 			
 			tmp.append(self.hudDivide(row[31],row[30])+" ("+str(row[30])+")") #ST
 			
-			if self.settings['tv-combinedStealFold']:
-				tmp.append(self.hudDivide(row[35]+row[33],row[34]+row[32])+" ("+str(row[34]+row[32])+")") #FSB
-			else:
-				tmp.append(self.hudDivide(row[35],row[34])+" ("+str(row[34])+")") #FS
-				tmp.append(self.hudDivide(row[33],row[32])+" ("+str(row[32])+")") #FB
+			tmp.append(self.hudDivide(row[35],row[34])+" ("+str(row[34])+")") #FS
+			tmp.append(self.hudDivide(row[33],row[32])+" ("+str(row[32])+")") #FB
 			
 			tmp.append(self.hudDivide(row[37],row[36])+" ("+str(row[36])+")") #CB
 			
-			if self.settings['tv-combined2B3B']:
-				tmp.append(self.hudDivide(row[39]+row[41],row[38]+row[40])+" ("+str(row[38]+row[40])+")") #23B
-			else:
-				tmp.append(self.hudDivide(row[39],row[38])+" ("+str(row[38])+")") #2B
-				tmp.append(self.hudDivide(row[41],row[40])+" ("+str(row[40])+")") #3B
+			tmp.append(self.hudDivide(row[39],row[38])+" ("+str(row[38])+")") #2B
+			tmp.append(self.hudDivide(row[41],row[40])+" ("+str(row[40])+")") #3B
 			
-			if self.settings['tv-combinedPostflop']:
-				aggCount=row[16]+row[17]+row[18]
-				handCount=row[11]+row[12]+row[13]
-				foldCount=row[24]+row[25]+row[26]
-				otherRaiseCount=row[20]+row[21]+row[22]
-				tmp.append(self.hudDivide(aggCount,handCount)+" ("+str(handCount)+")") #Agg
-				tmp.append(self.hudDivide(foldCount,otherRaiseCount)+" ("+str(otherRaiseCount)+")") #FF
-			else:
-				tmp.append(self.hudDivide(row[16],row[11])+" ("+str(row[11])+")") #AF
-				tmp.append(self.hudDivide(row[24],row[20])+" ("+str(row[20])+")") #FF
-				tmp.append(self.hudDivide(row[17],row[12])+" ("+str(row[12])+")") #AT
-				tmp.append(self.hudDivide(row[25],row[21])+" ("+str(row[21])+")") #FT
-				tmp.append(self.hudDivide(row[18],row[13])+" ("+str(row[13])+")") #AR
-				tmp.append(self.hudDivide(row[26],row[22])+" ("+str(row[22])+")") #FR
+			tmp.append(self.hudDivide(row[16],row[11])+" ("+str(row[11])+")") #AF
+			tmp.append(self.hudDivide(row[24],row[20])+" ("+str(row[20])+")") #FF
+			tmp.append(self.hudDivide(row[17],row[12])+" ("+str(row[12])+")") #AT
+			tmp.append(self.hudDivide(row[25],row[21])+" ("+str(row[21])+")") #FT
+			tmp.append(self.hudDivide(row[18],row[13])+" ("+str(row[13])+")") #AR
+			tmp.append(self.hudDivide(row[26],row[22])+" ("+str(row[22])+")") #FR
 			
 			tmp.append(self.hudDivide(row[15],row[11])) #WtSD
 			tmp.append(self.hudDivide(row[28],row[11])) #W$wSF
