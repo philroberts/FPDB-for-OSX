@@ -17,10 +17,18 @@
 
 import os
 import sys
+from optparse import OptionParser
 
-print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-errorFile = open('fpdb-error-log.txt', 'w', 0)
-sys.stderr = errorFile
+
+parser = OptionParser()
+parser.add_option("-x", "--errorsToConsole", action="store_true",
+				help="If passed error output will go to the console rather than .")
+(options, sys.argv) = parser.parse_args()
+
+if not options.errorsToConsole:
+	print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
+	errorFile = open('fpdb-error-log.txt', 'w', 0)
+	sys.stderr = errorFile
 
 import pygtk
 pygtk.require('2.0')
