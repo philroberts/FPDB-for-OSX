@@ -16,20 +16,25 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
-import HandHistoryConverter
+from HandHistoryConverter import HandHistoryConverter
 
-class EverleafPoker(HandHistoryConverter): 
-	def __init__:
-		print "Everleaf Poker hand converter loading"
+class Everleaf(HandHistoryConverter):
+	def __init__(self):
+		print "Initialising Everleaf converter class"
+        def readSupportedGames(self):
+		pass
 
-	def readSupportedGames(self):
-		return
-	def determineGameType(self):
-		return
-	def readPlayerStacks(self):
-		return
-	def readBlinds(self):
-		return
-	def readAction(self):
-		return
+        def determineGameType(self):
+		pass
 
+        def readPlayerStacks(self):
+		pass
+
+        def readBlinds(self):
+		pass
+
+        def readAction(self):
+		pass
+
+if __name__ == "__main__":
+	e = Everleaf()

@@ -16,18 +16,20 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 class HandHistoryConverter:
-	def __init__(self, site):
-		print "HandHistoryConverter __init__"
-
+	def __init__(self):
+		pass
+	# Functions to be implemented in the inheriting class
 	def readSupportedGames(self): abstract
 	def determineGameType(self): abstract
 	def readPlayerStacks(self): abstract
 	def readBlinds(self): abstract
 	def readAction(self): abstract
 
+	# Functions not necessary to implement in sub class
 	def readFile(self, filename):
 		"""Read file"""
 
 	def writeStars(self):
 		"""Write out parsed data"""
+
 
