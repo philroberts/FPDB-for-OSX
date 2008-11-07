@@ -93,6 +93,10 @@ class Hud:
         self.menu.append(self.item2)
         self.item2.connect("activate", self.save_layout)
         self.item2.show()
+        self.item3 = gtk.MenuItem('Reposition Stats')
+        self.menu.append(self.item3)
+        self.item3.connect("activate", self.reposition_windows)
+        self.item3.show()
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
@@ -118,6 +122,10 @@ class Hud:
         self.main_window.destroy()
         self.deleted = True
 
+    def reposition_windows(self, args):
+        for w in self.stat_windows:
+                self.stat_windows[w].window.move(self.stat_windows[w].x,
+                                                 self.stat_windows[w].y)
     def save_layout(self, *args):
         new_layout = []
 # todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
@@ -180,7 +188,6 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-
 #        self.mucked_window = gtk.Window()
 #        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
 #        self.mucked_window.show_all() 
