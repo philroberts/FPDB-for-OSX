@@ -47,6 +47,7 @@ class fpdb_db:
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
+		self.cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED')
 		# Set up query dictionary as early in the connection process as we can.
                 self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
 		self.wrongDbVersion=False
