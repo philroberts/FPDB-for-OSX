@@ -59,6 +59,10 @@ class Database:
                                        user = c.supported_databases[db_name].db_user,
                                        passwd = c.supported_databases[db_name].db_pass,
                                        db = c.supported_databases[db_name].db_name)
+                cur_iso = self.connection.cursor() 
+                cur_iso.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED') 
+                cur_iso.close()
+
             except:
                 print "Error opening database connection %s.  See error log file." % (file)
                 traceback.print_exc(file=sys.stderr)

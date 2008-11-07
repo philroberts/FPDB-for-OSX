@@ -2,7 +2,7 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 	<supported_sites>
-	    <site enabled="True" site_name="PokerStars" table_finder="PokerStars" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+	    <site enabled="True" site_name="PokerStars" table_finder="PokerStars.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
 	        <layout max="8" width="792" height="546" fav_seat="0">
 	        	<location seat="1" x="684" y="61">  </location>
 	        	<location seat="2" x="689" y="239"> </location>
@@ -84,39 +84,30 @@
 	        	<location seat="9" x="70" y="53">  </location>
 	        </layout>
 	    </site>
-	    <site enabled="False" site_name="Everleaf" table_finder="Everleaf.exe" screen_name="DO NOT NEED THIS YET" site_path="" HH_path="" decoder="everleaf_decode_table" converter="EverleafToFpdb" supported_games="holdem">
-	        <layout fav_seat="0" height="547" max="8" width="794">
-	        	<location seat="1" x="640" y="64">  </location>
-	        	<location seat="2" x="650" y="230"> </location>
-	        	<location seat="3" x="650" y="385"> </location>
-	        	<location seat="4" x="588" y="425"> </location>
-	        	<location seat="5" x="92" y="425"> </location>
-	        	<location seat="6" x="0" y="373"> </location>
-	        	<location seat="7" x="0" y="223"> </location>
-	        	<location seat="8" x="25" y="50">  </location>
+	    <site enabled="False" site_name="Everleaf" table_finder="Poker.exe" screen_name="DO NOT NEED THIS YET" site_path="" HH_path="" decoder="Unknown" converter="EverleafToFpdb" supported_games="holdem,razz,omahahi,omahahilo,studhi" fgcolor="#48D1CC" bgcolor="#000000">
+		<layout fav_seat="0" height="546" max="6" width="792">
+	        	<location seat="1" x="581" y="109"> </location>
+	        	<location seat="2" x="605" y="287"> </location>
+	        	<location seat="3" x="544" y="423"> </location>
+	        	<location seat="4" x="80" y="393"> </location>
+	        	<location seat="5" x="5" y="284"> </location>
+	        	<location seat="6" x="38" y="108"> </location>
 	        </layout>
-	        <layout fav_seat="0" height="547" max="6" width="794">
-	        	<location seat="1" x="640" y="58"> </location>
-	        	<location seat="2" x="654" y="288"> </location>
-	        	<location seat="3" x="615" y="424"> </location>
-	        	<location seat="4" x="70" y="421"> </location>
-	        	<location seat="5" x="0" y="280"> </location>
-	        	<location seat="6" x="70" y="58"> </location>
+	        <layout fav_seat="0" height="546" max="10" width="792">
+	        	<location seat="1" x="473" y="78">  </location>
+	        	<location seat="2" x="650" y="93"> </location>
+	        	<location seat="3" x="670" y="219"> </location>
+	        	<location seat="4" x="633" y="358"> </location>
+	        	<location seat="5" x="437" y="393"> </location>
+	        	<location seat="6" x="249" y="396"> </location>
+	        	<location seat="7" x="42" y="357"> </location>
+	        	<location seat="8" x="8" y="218">  </location>
+	        	<location seat="9" x="35" y="89">  </location>
+	        	<location seat="10" x="217" y="78">  </location>
 	        </layout>
-	        <layout fav_seat="0" height="547" max="2" width="794">
+	        <layout fav_seat="0" height="546" max="2" width="792">
 	        	<location seat="1" x="651" y="288"> </location>
-	        	<location seat="2" x="10"  y="288"> </location>
-	        </layout>
-	        <layout fav_seat="0" height="547" max="9" width="794">
-	        	<location seat="1" x="634" y="38">  </location>
-	        	<location seat="2" x="667" y="184"> </location>
-	        	<location seat="3" x="667" y="321"> </location>
-	        	<location seat="4" x="667" y="445"> </location>
-	        	<location seat="5" x="337" y="459"> </location>
-	        	<location seat="6" x="0" y="400"> </location>
-	        	<location seat="7" x="0" y="322"> </location>
-	        	<location seat="8" x="0" y="181">  </location>
-	        	<location seat="9" x="70" y="53">  </location>
+	        	<location seat="2" x="10" y="288"> </location>
 	        </layout>
 	    </site>
     </supported_sites>

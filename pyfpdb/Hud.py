@@ -399,6 +399,14 @@ class Popup_window:
 #    need an event box so we can respond to clicks
         self.window.add(self.ebox)
         self.ebox.add(self.lab)
+        
+        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
+        self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))
+        self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
+        self.window.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))
+        self.lab.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
+        self.lab.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))        
+        
         self.window.realize
 
 #    figure out the row, col address of the click that activated the popup
@@ -440,6 +448,9 @@ class Popup_window:
 
         self.lab.set_text(pu_text)        
         self.window.show_all()
+        
+        self.window.set_transient_for(stat_window.main_window)
+
 #    set_keep_above(1) for windows
         if os.name == 'nt': self.topify_window(self.window)
 
