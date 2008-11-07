@@ -47,8 +47,8 @@ class Importer:
 		self.caller=caller
 		self.db = None
 		self.cursor = None
-		self.filelist = []
-		self.dirlist = []
+		self.filelist = {}
+		self.dirlist = {}
 		self.monitor = False
 		self.updated = {}		#Time last import was run {file:mtime}
 		self.callHud = False
@@ -100,29 +100,25 @@ class Importer:
 #		self.updated = time()
 
 	def clearFileList(self):
-		self.filelist = []
+		self.filelist = {}
 
 	#Add an individual file to filelist
-	def addImportFile(self, filename):
+	def addImportFile(self, filename, site = "default", filter = "passthrough"):
 		#TODO: test it is a valid file
-		self.filelist = self.filelist + [filename]
-		#Remove duplicates
-		self.filelist = list(set(self.filelist))
+		self.filelist[filename] = [site] + [filter]
 
 	#Add a directory of files to filelist
-	def addImportDirectory(self,dir,monitor = False):
+	#Only one import directory per site supported.
+	#dirlist is a hash of lists:
+	#dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
+	def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
 		if os.path.isdir(dir):
 			if monitor == True:
 				self.monitor = True
-				self.dirlist = self.dirlist + [dir]
+				self.dirlist[site] = [dir] + [filter]
 
 			for file in os.listdir(dir):
-				if os.path.isdir(file):
-					print "BulkImport is not recursive - please select the final directory in which the history files are"
-				else:
-					self.filelist = self.filelist + [os.path.join(dir, file)]
-			#Remove duplicates
-			self.filelist = list(set(self.filelist))
+				self.addImportFile(os.path.join(dir, file), site, filter)
 		else:
 			print "Warning: Attempted to add: '" + str(dir) + "' as an import directory"
 
@@ -136,23 +132,22 @@ class Importer:
 		#Check for new files in directory
 		#todo: make efficient - always checks for new file, should be able to use mtime of directory
 		# ^^ May not work on windows
-		for dir in self.dirlist:
-			for file in os.listdir(dir):
-				self.filelist = self.filelist + [dir+os.sep+file]
-
-		self.filelist = list(set(self.filelist))
+		for site in self.dirlist:
+			self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
 		for file in self.filelist:
 			stat_info = os.stat(file)
 			try: 
 				lastupdate = self.updated[file]
-#				print "Is " + str(stat_info.st_mtime) + " > " + str(lastupdate)
 				if stat_info.st_mtime > lastupdate:
 					self.import_file_dict(file)
 					self.updated[file] = time()
 			except:
-#				print "Adding " + str(file) + " at approx " + str(time())
 				self.updated[file] = time()
+				# This codepath only runs first time the file is found, if modified in the last
+				# minute run an immediate import.
+				if (time() - stat_info.st_mtime) < 60:
+					self.import_file_dict(file)
 
 	# This is now an internal function that should not be called directly.
 	def import_file_dict(self, file):

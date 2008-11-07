@@ -29,7 +29,6 @@ Main for FreePokerTools HUD.
 #    to do no hud window for hero
 #    to do things to add to config.xml
 #    to do     font and size
-#    to do     bg and fg color
 #    to do     opacity
 
 #    Standard Library modules
@@ -90,6 +89,7 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
 def read_stdin():            # This is the thread function
     global hud_dict
 
+    db_connection = Database.Database(config, db_name, 'temp')
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
         new_hand_id = string.rstrip(new_hand_id)
@@ -102,21 +102,19 @@ def read_stdin():            # This is the thread function
                 del(hud_dict[h])
 
 #    connect to the db and get basic info about the new hand
-        db_connection = Database.Database(config, db_name, 'temp')
         (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
-        db_connection.close_connection()
 
 #    if a hud for this table exists, just update it
         if hud_dict.has_key(table_name):
             update_HUD(new_hand_id, table_name, config, stat_dict)
 #        otherwise create a new hud
         else:
-            table_windows = Tables.discover(config)
-            for t in table_windows.keys():
-                if table_windows[t].name == table_name:
-                    create_HUD(new_hand_id, table_windows[t], db_name, table_name, max, poker_game, db_connection, config, stat_dict)
-                    break
+            tablewindow = Tables.discover_table_by_name(config, table_name)
+            if tablewindow == None:
+                sys.stderr.write("table name "+table_name+" not found\n")
+            else:
+                create_HUD(new_hand_id, tablewindow, db_name, table_name, max, poker_game, db_connection, config, stat_dict)
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")
@@ -142,3 +140,4 @@ if __name__== "__main__":
     main_window.show_all()
     
     gtk.main()
+

@@ -53,6 +53,10 @@ class Site:
         self.site_path    = node.getAttribute("site_path")
         self.HH_path      = node.getAttribute("HH_path")
         self.decoder      = node.getAttribute("decoder")
+        self.hudopacity   = node.getAttribute("hudopacity")
+        self.hudbgcolor   = node.getAttribute("bgcolor")
+        self.hudfgcolor   = node.getAttribute("fgcolor")
+        self.converter    = node.getAttribute("converter")
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):
@@ -74,7 +78,7 @@ class Site:
             if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
+            temp = temp + '    ' + key + " = " + str(value) + "\n"
             
         for layout in self.layout:
             temp = temp + "%s" % self.layout[layout]
@@ -105,6 +109,8 @@ class Game:
             stat.tip       = stat_node.getAttribute("tip")
             stat.click     = stat_node.getAttribute("click")
             stat.popup     = stat_node.getAttribute("popup")
+            stat.hudprefix = stat_node.getAttribute("hudprefix")
+            stat.hudsuffix = stat_node.getAttribute("hudsuffix")
             
             self.stats[stat.stat_name] = stat
             
@@ -193,30 +199,28 @@ class Config:
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
+        self.default_config_path = self.get_default_config_path()
         if not file == None: # configuration file path has been passed
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-#    if "file" is invalid or None, we look for a HUD_config in the cwd
         if file == None: # configuration file path not passed or invalid
-            if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
-                file = 'HUD_config.xml'             # so we use it
-            else: # no HUD_config in the cwd, look where it should be in the first place
-#    find the path to the default HUD_config for the current os
-                if os.name == 'posix':
-                    config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'HUD_config.xml')
-                elif os.name == 'nt':
-                    config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'HUD_config.xml')
-                else: config_path = False
-    
-                if config_path and os.path.exists(config_path):
-                    file = config_path
-                else:
-                    print "No HUD_config_xml found.  Exiting"
-                    sys.stderr.write("No HUD_config_xml found.  Exiting")
-                    sys.exit()
+            file = self.find_config() #Look for a config file in the normal places
+
+        if file == None: # no config file in the normal places
+            file = self.find_example_config() #Look for an example file to edit
+            if not file == None:
+                pass
+            
+        if file == None: # that didn't work either, just die
+            print "No HUD_config_xml found.  Exiting"
+            sys.stderr.write("No HUD_config_xml found.  Exiting")
+            sys.exit()
+
+#    Parse even if there was no real config file found and we are using the example
+#    If using the example, we'll edit it later
         try:
             print "Reading configuration file %s\n" % (file)
             doc = xml.dom.minidom.parse(file)
@@ -268,10 +272,85 @@ class Config:
             tv = Tv(node = tv_node)
             self.tv = tv
 
+        db = self.get_db_parameters('fpdb')
+        if db['db-password'] == 'YOUR MYSQL PASSWORD':
+            df_file = self.find_default_conf()
+            if df_file == None: # this is bad
+                pass
+            else:
+                df_parms = self.read_default_conf(df_file)
+                self.set_db_parameters(db_name = 'fpdb', db_ip = df_parms['db-host'],
+                                       db_user = df_parms['db-user'],
+                                       db_pass = df_parms['db-password'])
+                self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
+
+                
+    def find_config(self):
+        """Looks in cwd and in self.default_config_path for a config file."""
+        if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
+            file = 'HUD_config.xml'             # so we use it
+        else: # no HUD_config in the cwd, look where it should be in the first place
+            config_path = os.path.join(self.default_config_path, 'HUD_config.xml')
+            if os.path.exists(config_path):
+                file = config_path
+            else:
+                file = None
+        return file
+
+    def get_default_config_path(self):
+        """Returns the path where the fpdb config file _should_ be stored."""
+        if os.name == 'posix':
+            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
+        elif os.name == 'nt':
+            config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
+        else: config_path = None
+        return config_path
+
+
+    def find_default_conf(self):
+        if os.name == 'posix':
+            config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'default.conf')
+        elif os.name == 'nt':
+            config_path = os.path.join(os.environ["APPDATA"], 'fpdb', 'default.conf')
+        else: config_path = False
+
+        if config_path and os.path.exists(config_path):
+            file = config_path
+        else:
+            file = None
+        return file
+
+    def read_default_conf(self, file):
+        parms = {}
+        fh = open(file, "r")
+        for line in fh:
+            line = string.strip(line)
+            (key, value) = line.split('=')
+            parms[key] = value
+        fh.close
+        return parms
+                
+    def find_example_config(self):
+        if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
+            file = 'HUD_config.xml.example'             # so we use it
+            print "No HUD_config.xml found, using HUD_config.xml.example.\n", \
+                "A HUD_config.xml will be written.  You will probably have to edit it."
+            sys.stderr.write("No HUD_config.xml found, using HUD_config.xml.example.\n" + \
+                "A HUD_config.xml will be written.  You will probably have to edit it.")
+        else:
+            file = None
+        return file
+
     def get_site_node(self, site):
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
                 return site_node
+
+    def get_db_node(self, db_name):
+        for db_node in self.doc.getElementsByTagName("database"):
+            if db_node.getAttribute("db_name") == db_name:
+                return db_node
+        return None
 
     def get_layout_node(self, site_node, layout):
         for layout_node in site_node.getElementsByTagName("layout"):
@@ -326,6 +405,23 @@ class Config:
             pass
         return db
 
+    def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
+                          db_pass = None, db_server = None, db_type = None):
+        db_node = self.get_db_node(db_name)
+        if not db_node == None:
+            if not db_ip     == None: db_node.setAttribute("db_ip", db_ip)
+            if not db_user   == None: db_node.setAttribute("db_user", db_user)
+            if not db_pass   == None: db_node.setAttribute("db_pass", db_pass)
+            if not db_server == None: db_node.setAttribute("db_server", db_server)
+            if not db_type   == None: db_node.setAttribute("db_type", db_type)
+        if self.supported_databases.has_key(db_name):
+            if not db_ip     == None: self.supported_databases[db_name].dp_ip     = db_ip
+            if not db_user   == None: self.supported_databases[db_name].dp_user   = db_user
+            if not db_pass   == None: self.supported_databases[db_name].dp_pass   = db_pass
+            if not db_server == None: self.supported_databases[db_name].dp_server = db_server
+            if not db_type   == None: self.supported_databases[db_name].dp_type   = db_type
+        return
+
     def get_tv_parameters(self):
         tv = {}
         try:
@@ -358,6 +454,78 @@ class Config:
             paths['bulkImport-defaultPath'] = "default"
         return paths
 
+    def get_default_colors(self, site = "PokerStars"):
+        colors = {}
+        if self.supported_sites[site].hudopacity == "":
+            colors['hudopacity'] = 0.90
+        else:
+            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
+        if self.supported_sites[site].hudbgcolor == "":
+            colors['hudbgcolor'] = "#FFFFFF"
+        else:
+            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
+        if self.supported_sites[site].hudfgcolor == "":
+            colors['hudfgcolor'] = "#000000"
+        else:
+            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
+        return colors
+
+    def get_locations(self, site = "PokerStars", max = "8"):
+        
+        try:
+            locations = self.supported_sites[site].layout[max].location
+        except:
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+                          (586, 393), (421, 440), (267, 440), (  0, 361),
+                          (  0, 280), (121, 280), ( 46,  30) )
+        return locations
+
+    def get_site_parameters(self, site):
+        """Returns a dict of the site parameters for the specified site"""
+        if not self.supported_sites.has_key(site):
+            return None
+        parms = {}
+        parms["converter"]    = self.supported_sites[site].converter
+        parms["decoder"]      = self.supported_sites[site].decoder
+        parms["hudbgcolor"]   = self.supported_sites[site].hudbgcolor
+        parms["hudfgcolor"]   = self.supported_sites[site].hudfgcolor
+        parms["hudopacity"]   = self.supported_sites[site].hudopacity
+        parms["screen_name"]  = self.supported_sites[site].screen_name
+        parms["site_path"]    = self.supported_sites[site].site_path
+        parms["table_finder"] = self.supported_sites[site].table_finder
+        parms["HH_path"]      = self.supported_sites[site].HH_path
+        return parms
+
+    def set_site_parameters(self, site_name, converter = None, decoder = None,
+                            hudbgcolor = None, hudfgcolor = None, 
+                            hudopacity = None, screen_name = None,
+                            site_path = None, table_finder = None,
+                            HH_path = None):
+        """Sets the specified site parameters for the specified site."""
+        site_node = self.get_site_node(site_name)
+        if not db_node == None:
+            if not converter      == None: site_node.setAttribute("converter", converter)
+            if not decoder        == None: site_node.setAttribute("decoder", decoder)
+            if not hudbgcolor     == None: site_node.setAttribute("hudbgcolor", hudbgcolor)
+            if not hudfgcolor     == None: site_node.setAttribute("hudfgcolor", hudfgcolor)
+            if not hudopacity     == None: site_node.setAttribute("hudopacity", hudopacity)
+            if not screen_name    == None: site_node.setAttribute("screen_name", screen_name)
+            if not site_path      == None: site_node.setAttribute("site_path", site_path)
+            if not table_finder   == None: site_node.setAttribute("table_finder", table_finder)
+            if not HH_path        == None: site_node.setAttribute("HH_path", HH_path)
+
+        if self.supported_databases.has_key(db_name):
+            if not converter      == None: self.supported_sites[site].converter = converter
+            if not decoder        == None: self.supported_sites[site].decoder = decoder
+            if not hudbgcolor     == None: self.supported_sites[site].hudbgcolor = hudbgcolor
+            if not hudfgcolor     == None: self.supported_sites[site].hudfgcolor = hudfgcolor
+            if not hudopacity     == None: self.supported_sites[site].hudopacity = hudopacity
+            if not screen_name    == None: self.supported_sites[site].screen_name = screen_name
+            if not site_path      == None: self.supported_sites[site].site_path = site_path
+            if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
+            if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
+        return
+
 if __name__== "__main__":
     c = Config()
     
@@ -389,17 +557,22 @@ if __name__== "__main__":
     print "----------- END MUCKED WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-    print c.imp
+#    print c.imp
     print "----------- END IMPORT -----------"
 
     print "\n----------- TABLE VIEW -----------"
-    print c.tv
+#    print c.tv
     print "----------- END TABLE VIEW -----------"
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
     
-    print "db    = ", c.get_db_parameters()
-    print "tv    = ", c.get_tv_parameters()
-    print "imp   = ", c.get_import_parameters()
-    print "paths = ", c.get_default_paths("PokerStars")
+    print "db     = ", c.get_db_parameters()
+#    print "tv     = ", c.get_tv_parameters()
+#    print "imp    = ", c.get_import_parameters()
+    print "paths  = ", c.get_default_paths("PokerStars")
+    print "colors = ", c.get_default_colors("PokerStars")
+    print "locs   = ", c.get_locations("PokerStars", 8)
+    for site in c.supported_sites.keys():
+        print "site = ", site,
+        print c.get_site_parameters(site)
