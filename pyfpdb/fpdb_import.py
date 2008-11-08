@@ -303,4 +303,4 @@ class Importer:
 	
 
 if __name__ == "__main__":
-	print "CLI for fpdb_import is currently on vacation please check in later"
+	print "CLI for fpdb_import is now available as CliFpdb.py"
