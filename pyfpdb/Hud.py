@@ -349,7 +349,8 @@ class Stat_Window:
 #                font = pango.FontDescription("Sans 8")
                 self.label[r][c].modify_font(font)
 
-        self.window.set_opacity(parent.colors['hudopacity'])                
+        if not os.name == 'nt':  # seems to be a bug in opacity on windows
+            self.window.set_opacity(parent.colors['hudopacity'])                
         self.window.realize
         self.window.move(self.x, self.y)
         self.window.show_all()
