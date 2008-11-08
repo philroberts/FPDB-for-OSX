@@ -178,11 +178,12 @@ class Popup:
 
 class Import:
     def __init__(self, node):
-        self.interval    = node.getAttribute("interval")
-        self.callFpdbHud = node.getAttribute("callFpdbHud")
+        self.interval      = node.getAttribute("interval")
+        self.callFpdbHud   = node.getAttribute("callFpdbHud")
+	self.hhArchiveBase = node.getAttribute("hhArchiveBase")
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n" % (self.interval, self.callFpdbHud)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
 
 class Tv:
     def __init__(self, node):
