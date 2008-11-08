@@ -439,11 +439,13 @@ class Config:
     def get_import_parameters(self):
         imp = {}
         try:
-            imp['imp-callFpdbHud'] = self.imp.callFpdbHud
-            imp['hud-defaultInterval']    = int(self.imp.interval)
-        except: # Default import parameters
-            imp['imp-callFpdbHud'] = True
-            imp['hud-defaultInterval']    = 10
+            imp['callFpdbHud']   = self.callFpdbHud
+            imp['interval']      = self.interval
+            imp['hhArchiveBase'] = self.hhArchiveBase
+        except: # Default params
+            imp['callFpdbHud']   = 10
+            imp['interval']      = True
+            imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
@@ -562,7 +564,9 @@ if __name__== "__main__":
     print "----------- END MUCKED WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-#    print c.imp
+    tmp = c.get_import_parameters()
+    for param in tmp:
+        print "    " + str(param) + ": " + str(tmp[param])
     print "----------- END IMPORT -----------"
 
     print "\n----------- TABLE VIEW -----------"
