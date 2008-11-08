@@ -187,7 +187,7 @@
             <pu_stat pu_stat_name="ffreq_4"> </pu_stat>
     	</pu>
     </popup_windows>
-    <import callFpdbHud = "True" interval = "10" ></import>
+    <import callFpdbHud = "True" interval = "10" hhArchiveBase="~/.fpdb/HandHistories/"></import>
     <tv combinedStealFold = "True" combined2B3B = "True" combinedPostflop = "True"></tv>
 
     <supported_databases>
