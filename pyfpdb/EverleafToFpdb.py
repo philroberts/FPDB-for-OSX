@@ -16,11 +16,16 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import Configuration
 from HandHistoryConverter import HandHistoryConverter
 
 class Everleaf(HandHistoryConverter):
-	def __init__(self):
+	def __init__(self, config, file):
 		print "Initialising Everleaf converter class"
+		HandHistoryConverter.__init__(self, config, file) # Call super class init.
+		self.sitename = "Everleaf"
+		self.setFileType("text")
+
         def readSupportedGames(self):
 		pass
 
@@ -37,4 +42,7 @@ class Everleaf(HandHistoryConverter):
 		pass
 
 if __name__ == "__main__":
-	e = Everleaf()
+	c = Configuration.Config()
+	e = Everleaf(c, "regression-test-files/everleaf/Speed_Kuala.txt")
+	print str(e)
+	
