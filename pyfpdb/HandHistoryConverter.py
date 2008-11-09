@@ -18,6 +18,8 @@
 import Configuration
 import sys
 import traceback
+import os
+import os.path
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -31,7 +33,8 @@ class HandHistoryConverter:
 		self.doc       = None     # For XML based HH files
 		self.file      = file
 		self.hhbase    = self.c.get_import_parameters().get("hhArchiveBase")
-		self.hhdir     = self.hhbase + sitename
+		self.hhbase    = os.path.expanduser(self.hhbase)
+		self.hhdir     = os.path.join(self.hhbase,sitename)
 
 	def __str__(self):
 		tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -48,12 +51,35 @@ class HandHistoryConverter:
 	def readBlinds(self): abstract
 	def readAction(self): abstract
 
+	def sanityCheck(self):
+		sane = False
+		base_w = False
+		#Check if hhbase exists and is writable
+		#Note: Will not try to create the base HH directory
+		if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
+			print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
+		else:
+			#Check if hhdir exists and is writable
+			if not os.path.isdir(self.hhdir):
+				# In first pass, dir may not exist. Attempt to create dir
+				print "Creating directory: '%s'" % (self.hhdir)
+				os.mkdir(self.hhdir)
+				sane = True
+			elif os.access(self.hhdir, os.W_OK):
+				sane = True
+			else:
+				print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
+
+		return sane
 
 	# Functions not necessary to implement in sub class
 	def setFileType(self, filetype = "text"):
 		self.filetype = filetype
 
 	def processFile(self):
+		if not self.sanityCheck():
+			print "Cowardly refusing to continue after failed sanity check"
+			return
 		self.readFile(self.file)
 
 	def readFile(self, filename):
