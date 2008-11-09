@@ -60,7 +60,7 @@ class GuiAutoImport (threading.Thread):
 		self.intervalLabel.show()
 
 		self.intervalEntry=gtk.Entry()
-		self.intervalEntry.set_text(str(self.settings['hud-defaultInterval']))
+		self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
 		self.settingsHBox.pack_start(self.intervalEntry)
 		self.intervalEntry.show()
 
