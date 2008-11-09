@@ -49,7 +49,7 @@ class HandHistoryConverter:
 		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
 		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
 		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-		tmp = tmp + "\tsb/bb:      '%s'\n" % (self.gametype[3], self.gametype[4])
+		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
 		return tmp
 
 	# Functions to be implemented in the inheriting class
@@ -94,7 +94,7 @@ class HandHistoryConverter:
 			print "Cowardly refusing to continue after failed sanity check"
 			return
 		self.readFile(self.file)
-		gametype = self.determineGameType()
+		self.gametype = self.determineGameType()
 
 	def readFile(self, filename):
 		"""Read file"""
@@ -133,3 +133,18 @@ class HandHistoryConverter:
 #
 ##		SUMMARY STUFF
 
+#takes a poker float (including , for thousand seperator and converts it to an int
+	def float2int (self, string):
+		pos=string.find(",")
+		if (pos!=-1): #remove , the thousand seperator
+			string=string[0:pos]+string[pos+1:]
+
+		pos=string.find(".")
+		if (pos!=-1): #remove decimal point
+			string=string[0:pos]+string[pos+1:]
+
+		result = int(string)
+		if pos==-1: #no decimal point - was in full dollars - need to multiply with 100
+			result*=100
+		return result
+#end def float2int

@@ -22,6 +22,7 @@
 import Configuration
 import traceback
 import sys
+import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
 from HandHistoryConverter import HandHistoryConverter
@@ -56,11 +57,29 @@ class CarbonPoker(HandHistoryConverter):
 
 	def readSupportedGames(self): 
 		pass
-	def determineGameType(self): 
-		desc_node = doc.getElementsByTagName("description")
-		type = desc_node.getAttribute("type")
-		stakes = desc_node.getAttribute("stakes")
-		
+	def determineGameType(self):
+		gametype = []
+		desc_node = self.doc.getElementsByTagName("description")
+		#TODO: no examples of non ring type yet
+		gametype = gametype + ["ring"]
+		type = desc_node[0].getAttribute("type")
+		if(type == "Holdem"):
+			gametype = gametype + ["hold"]
+		else:
+			print "Unknown gametype: '%s'" % (type)
+
+		stakes = desc_node[0].getAttribute("stakes")
+		#TODO: no examples of anything except nlhe
+		m = re.match('(?P<LIMIT>No Limit)\s\(\$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\)', stakes)
+
+		if(m.group('LIMIT') == "No Limit"):
+			gametype = gametype + ["nl"]
+
+		gametype = gametype + [self.float2int(m.group('SB'))]
+		gametype = gametype + [self.float2int(m.group('BB'))]
+
+		return gametype
+
 	def readPlayerStacks(self):
 		pass
 	def readBlinds(self):
