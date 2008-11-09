@@ -16,6 +16,7 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 import Configuration
+#import FpdbRegex
 import sys
 import traceback
 import os
@@ -35,6 +36,7 @@ class HandHistoryConverter:
 		self.hhbase    = self.c.get_import_parameters().get("hhArchiveBase")
 		self.hhbase    = os.path.expanduser(self.hhbase)
 		self.hhdir     = os.path.join(self.hhbase,sitename)
+		self.gametype  = []
 #		self.ofile     = os.path.join(self.hhdir,file)
 
 	def __str__(self):
@@ -44,10 +46,19 @@ class HandHistoryConverter:
 		tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
 		tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
 #		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
+		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
+		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
+		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
+		tmp = tmp + "\tsb/bb:      '%s'\n" % (self.gametype[3], self.gametype[4])
 		return tmp
 
 	# Functions to be implemented in the inheriting class
 	def readSupportedGames(self): abstract
+
+	# should return a list
+	#   type  base limit
+	# [ ring, hold, nl   , sb, bb ]
+	# Valid types specified in docs/tabledesign.html in Gametypes
 	def determineGameType(self): abstract
 	def readPlayerStacks(self): abstract
 	def readBlinds(self): abstract
@@ -83,7 +94,7 @@ class HandHistoryConverter:
 			print "Cowardly refusing to continue after failed sanity check"
 			return
 		self.readFile(self.file)
-		self.determineGameType()
+		gametype = self.determineGameType()
 
 	def readFile(self, filename):
 		"""Read file"""
