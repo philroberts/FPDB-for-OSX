@@ -35,6 +35,7 @@ class HandHistoryConverter:
 		self.hhbase    = self.c.get_import_parameters().get("hhArchiveBase")
 		self.hhbase    = os.path.expanduser(self.hhbase)
 		self.hhdir     = os.path.join(self.hhbase,sitename)
+#		self.ofile     = os.path.join(self.hhdir,file)
 
 	def __str__(self):
 		tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -42,6 +43,7 @@ class HandHistoryConverter:
 		tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
 		tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
 		tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
+#		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
 		return tmp
 
 	# Functions to be implemented in the inheriting class
@@ -81,6 +83,7 @@ class HandHistoryConverter:
 			print "Cowardly refusing to continue after failed sanity check"
 			return
 		self.readFile(self.file)
+		self.determineGameType()
 
 	def readFile(self, filename):
 		"""Read file"""
