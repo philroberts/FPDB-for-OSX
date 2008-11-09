@@ -15,21 +15,30 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+import Configuration
+import sys
+import traceback
+import xml.dom.minidom
+from xml.dom.minidom import Node
+
 class HandHistoryConverter:
-	def __init__(self, config, file):
+	def __init__(self, config, file, sitename):
 		print "HandHistory init called"
 		self.c         = config
-		self.sitename  = ""
+		self.sitename  = sitename
 		self.obs       = ""             # One big string
 		self.filetype  = "text"
 		self.doc       = None     # For XML based HH files
 		self.file      = file
 		self.hhbase    = self.c.get_import_parameters().get("hhArchiveBase")
+		self.hhdir     = self.hhbase + sitename
 
 	def __str__(self):
 		tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
-		tmp = tmp + "\thhbase:     %s\n" % (self.hhbase)
-		tmp = tmp + "\tfiletype:   %s\n" % (self.filetype)
+		tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
+		tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
+		tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
+		tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
 		return tmp
 
 	# Functions to be implemented in the inheriting class
@@ -45,14 +54,15 @@ class HandHistoryConverter:
 		self.filetype = filetype
 
 	def processFile(self):
-		self.readFile()
+		self.readFile(self.file)
 
 	def readFile(self, filename):
 		"""Read file"""
+		print "Reading file: '%s'" %(filename)
 		if(self.filetype == "text"):
 			infile=open(filename, "rU")
-			self.obs = readfile(inputFile)
-			inputFile.close()
+			self.obs = infile.read()
+			infile.close()
 		elif(self.filetype == "xml"):
 			try:
 				doc = xml.dom.minidom.parse(filename)

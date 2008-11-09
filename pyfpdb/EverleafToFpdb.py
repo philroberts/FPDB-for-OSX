@@ -22,7 +22,7 @@ from HandHistoryConverter import HandHistoryConverter
 class Everleaf(HandHistoryConverter):
 	def __init__(self, config, file):
 		print "Initialising Everleaf converter class"
-		HandHistoryConverter.__init__(self, config, file) # Call super class init.
+		HandHistoryConverter.__init__(self, config, file, "Everleaf") # Call super class init.
 		self.sitename = "Everleaf"
 		self.setFileType("text")
 
@@ -44,5 +44,6 @@ class Everleaf(HandHistoryConverter):
 if __name__ == "__main__":
 	c = Configuration.Config()
 	e = Everleaf(c, "regression-test-files/everleaf/Speed_Kuala.txt")
+	e.processFile()
 	print str(e)
 	

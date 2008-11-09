@@ -21,6 +21,7 @@
 #    Standard Library modules
 import Configuration
 import traceback
+import sys
 import xml.dom.minidom
 from xml.dom.minidom import Node
 from HandHistoryConverter import HandHistoryConverter
@@ -50,8 +51,7 @@ from HandHistoryConverter import HandHistoryConverter
 class CarbonPoker(HandHistoryConverter): 
 	def __init__(self, config, filename):
 		print "Initialising Carbon Poker converter class"
-		HandHistoryConverter.__init__(self, config, filename) # Call super class init
-		self.sitename = "Carbon"
+		HandHistoryConverter.__init__(self, config, filename, "Carbon") # Call super class init
 		self.setFileType("xml")
 
 	def readSupportedGames(self): 
@@ -68,8 +68,23 @@ class CarbonPoker(HandHistoryConverter):
 	def readAction(self):
 		pass
 
+	# Override read function as xml.minidom barfs on the Carbon layout
+        # This is pretty dodgy
+	def readFile(self, filename):
+		print "Carbon: Reading file: '%s'" %(filename)
+		infile=open(filename, "rU")
+		self.obs = infile.read()
+		infile.close()
+		self.obs = "<CarbonHHFile>\n" + self.obs + "</CarbonHHFile>"
+		try:
+			doc = xml.dom.minidom.parseString(self.obs)
+			self.doc = doc
+		except:
+			traceback.print_exc(file=sys.stderr)
 
 if __name__ == "__main__":
 	c = Configuration.Config()
 	e = CarbonPoker(c, "regression-test-files/carbon-poker/Niagara Falls (15245216).xml") 
+	e.processFile()
 	print str(e)
+
