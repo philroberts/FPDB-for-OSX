@@ -16,7 +16,8 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 import Configuration
-#import FpdbRegex
+import FpdbRegex
+import re
 import sys
 import traceback
 import os
@@ -38,6 +39,7 @@ class HandHistoryConverter:
 		self.hhdir     = os.path.join(self.hhbase,sitename)
 		self.gametype  = []
 #		self.ofile     = os.path.join(self.hhdir,file)
+		self.rexx      = FpdbRegex.FpdbRegex()
 
 	def __str__(self):
 		tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -95,6 +97,13 @@ class HandHistoryConverter:
 			return
 		self.readFile(self.file)
 		self.gametype = self.determineGameType()
+		self.splitFileIntoHands()
+
+	def splitFileIntoHands(self):
+		hands = []
+		list = self.rexx.split_hand_re.split(self.obs)
+		for l in list:
+			hands = hands + [Hand(l)]
 
 	def readFile(self, filename):
 		"""Read file"""
@@ -110,7 +119,7 @@ class HandHistoryConverter:
 			except:
 				traceback.print_exc(file=sys.stderr)
 
-	def writeStars(self):
+	def writeHand(self, file, hand):
 		"""Write out parsed data"""
 #		print sitename + " Game #" + handid + ":  " + gametype + " (" + sb + "/" + bb + " - " + starttime
 #		print "Table '" + tablename + "' " + maxseats + "-max Seat #" + buttonpos + " is the button"
@@ -148,3 +157,23 @@ class HandHistoryConverter:
 			result*=100
 		return result
 #end def float2int
+
+class Hand:
+#    def __init__(self, sitename, gametype, sb, bb, string):
+    def __init__(self, string):
+#	self.sitename = sitename
+#	self.gametype = gametype
+#	self.sb = sb
+#	self.bb = bb
+	self.string = string
+	print string
+
+	self.handid = None
+	self.tablename = "Slartibartfast"
+	self.maxseats = 10
+	self.counted_seats = 0
+	self.buttonpos = 0
+	self.seating = []
+	self.players = []
+	self.action = []
+

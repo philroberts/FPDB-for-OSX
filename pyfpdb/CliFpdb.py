@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 	(options, sys.argv) = parser.parse_args()
 	
-	settings={'imp-callFpdbHud':False, 'db-backend':2}
+	settings={'callFpdbHud':False, 'db-backend':2}
 	settings['db-host']=options.server
 	settings['db-user']=options.user
 	settings['db-password']=options.password

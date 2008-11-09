@@ -41,23 +41,22 @@ from time import time
 
 class Importer:
 
-	def __init__(self, caller, settings):
+	def __init__(self, caller, settings, config):
 		"""Constructor"""
 		self.settings=settings
 		self.caller=caller
+		self.config = config
 		self.db = None
 		self.cursor = None
 		self.filelist = {}
 		self.dirlist = {}
 		self.monitor = False
 		self.updated = {}		#Time last import was run {file:mtime}
-		self.callHud = False
 		self.lines = None
 		self.faobs = None		#File as one big string
 		self.pos_in_file = {} # dict to remember how far we have read in the file
 		#Set defaults
-		if not self.settings.has_key('imp-callFpdbHud'):
-			self.settings['imp-callFpdbHud'] = False
+		self.callHud = self.config.get_import_parameters().get("callFpdbHud")
 		if not self.settings.has_key('minPrint'):
 			self.settings['minPrint'] = 30
 		self.dbConnect()
@@ -237,8 +236,7 @@ class Importer:
 						
 						stored+=1
 						self.db.commit()
-#						if settings['imp-callFpdbHud'] and self.callHud and os.sep=='/':
-						if self.settings['imp-callFpdbHud'] and self.callHud:
+						if self.callHud:
 							#print "call to HUD here. handsId:",handsId
 							#pipe the Hands.id out to the HUD
 							self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)

@@ -443,8 +443,8 @@ class Config:
             imp['interval']      = self.interval
             imp['hhArchiveBase'] = self.hhArchiveBase
         except: # Default params
-            imp['callFpdbHud']   = 10
-            imp['interval']      = True
+            imp['callFpdbHud']   = True
+            imp['interval']      = 10
             imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
         return imp
 
