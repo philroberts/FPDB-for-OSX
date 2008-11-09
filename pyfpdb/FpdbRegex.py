@@ -11,7 +11,6 @@
 
 # Modified for use in fpdb by Carl Gherardi
 
-from errors import *
 import re
 import regex
 
