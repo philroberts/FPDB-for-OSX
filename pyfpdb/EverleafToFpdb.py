@@ -60,7 +60,8 @@ class Everleaf(HandHistoryConverter):
 		self.sitename = "Everleaf"
 		self.setFileType("text")
 		self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
-		self.rexx.setSplitHandRegex('\n\n\n')
+		self.rexx.setSplitHandRegex('\n\n\n\n')
+		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)')
 		self.rexx.compileRegexes()
 
         def readSupportedGames(self):
@@ -75,6 +76,25 @@ class Everleaf(HandHistoryConverter):
 		gametype = gametype + [self.float2int(m.group('BB'))]
 		
 		return gametype
+
+	def readHandInfo(self, hand):
+		m =  self.rexx.hand_info_re.search(hand.string)
+		hand.handid = m.group('HID')
+		hand.tablename = m.group('GAMETYPE')
+# These work, but the info is already in the Hand class - should be usecd for tourneys though.
+#		m.group('SB')
+#		m.group('BB')
+#		m.group('GAMETYPE')
+
+# Believe Everleaf time is GMT/UTC, no transation necessary
+# Stars format (Nov 10 2008): 2008/11/07 12:38:49 UTC [2008/11/07 7:38:49 ET]
+# Not getting it in my HH files yet, so using
+# 2008/11/10 3:58:52 ET
+#TODO: Do conversion from GMT to ET
+#TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
+		hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
+							  int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
+
 
         def readPlayerStacks(self):
 		pass

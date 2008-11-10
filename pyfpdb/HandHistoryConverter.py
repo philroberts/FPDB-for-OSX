@@ -61,6 +61,9 @@ class HandHistoryConverter:
 		self.readFile(self.file)
 		self.gametype = self.determineGameType()
 		self.hands = self.splitFileIntoHands()
+		for hand in self.hands:
+			self.readHandInfo(hand)
+			self.writeHand("output file", hand)
 
 	# Functions to be implemented in the inheriting class
 	def readSupportedGames(self): abstract
@@ -70,6 +73,7 @@ class HandHistoryConverter:
 	# [ ring, hold, nl   , sb, bb ]
 	# Valid types specified in docs/tabledesign.html in Gametypes
 	def determineGameType(self): abstract
+	def readHandInfo(self, hand): abstract
 	def readPlayerStacks(self): abstract
 	def readBlinds(self): abstract
 	def readAction(self): abstract
@@ -102,7 +106,9 @@ class HandHistoryConverter:
 	def splitFileIntoHands(self):
 		hands = []
 		list = self.rexx.split_hand_re.split(self.obs)
+		list.pop() #Last entry is empty
 		for l in list:
+#			print "'" + l + "'"
 			hands = hands + [Hand(self.sitename, self.gametype, l)]
 		return hands
 
@@ -122,8 +128,8 @@ class HandHistoryConverter:
 
 	def writeHand(self, file, hand):
 		"""Write out parsed data"""
-#		print sitename + " Game #" + handid + ":  " + gametype + " (" + sb + "/" + bb + " - " + starttime
-#		print "Table '" + tablename + "' " + maxseats + "-max Seat #" + buttonpos + " is the button"
+		print "%s Game #%s: %s (%d/%d) - %s" %(hand.sitename, hand.handid, "XXXXhand.gametype", hand.sb, hand.bb, hand.starttime)
+		print "Table '%s' %d-max Seat #%s is the button" %(hand.tablename, hand.maxseats, "XXXXhand.buttonpos")
 #
 #		counter = 1
 #		for player in seating:
@@ -132,12 +138,12 @@ class HandHistoryConverter:
 #		print playername + ": posts small blind " + sb
 #		print playername + ": posts big blind " + bb
 #
-#		print "*** HOLE CARDS ***"
+		print "*** HOLE CARDS ***"
 #		print "Dealt to " + hero + " [" + holecards + "]"
 #
 ##		ACTION STUFF
 #
-#		print "*** SUMMARY ***"
+		print "*** SUMMARY ***"
 #		print "Total pot $" + totalpot + " | Rake $" + rake
 #		print "Board [" + boardcards + "]"
 #
@@ -166,7 +172,9 @@ class Hand:
 	self.gametype = gametype
 	self.string = string
 
-	self.handid = None
+	self.handid = 0
+	self.sb = gametype[3]
+	self.bb = gametype[4]
 	self.tablename = "Slartibartfast"
 	self.maxseats = 10
 	self.counted_seats = 0
