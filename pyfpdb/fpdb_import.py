@@ -175,7 +175,11 @@ class Importer:
 		self.pos_in_file[file] = inputFile.tell()
 		inputFile.close()
 
-		firstline = self.lines[0]
+		try:
+			firstline = self.lines[0]
+		except:
+			print "import_fpdb_file", file, site, lines
+			return
 
 		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
