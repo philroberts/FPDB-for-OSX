@@ -73,8 +73,10 @@ class Everleaf(HandHistoryConverter):
 		gametype = ["ring", "hold", "nl"]
 
 		m = self.rexx.game_info_re.search(self.obs)
-		gametype = gametype + [self.float2int(m.group('SB'))]
-		gametype = gametype + [self.float2int(m.group('BB'))]
+		gametype = gametype + [m.group('SB')]
+		gametype = gametype + [m.group('BB')]
+#		gametype = gametype + [self.float2int(m.group('SB'))]
+#		gametype = gametype + [self.float2int(m.group('BB'))]
 		
 		return gametype
 
