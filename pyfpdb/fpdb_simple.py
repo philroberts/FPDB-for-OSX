@@ -830,13 +830,11 @@ def parseHandStartTime(topline, site):
 			pos2 = topline.find("UTC")
 			tmp=topline[pos1:pos2]
 			isUTC=True
-			print "UTC tmp:",tmp
 		else:
 			tmp=topline[-30:]
 			#print "parsehandStartTime, tmp:", tmp
 			pos = tmp.find("-")+2
 			tmp = tmp[pos:]
-			print "ET tmp:",tmp
 		#Need to match either
 		# 2008/09/07 06:23:14 ET or
 		# 2008/08/17 - 01:14:43 (ET)
@@ -849,7 +847,6 @@ def parseHandStartTime(topline, site):
 	if (site=="ftp" or site=="ps") and not isUTC: #these use US ET
 		result+=datetime.timedelta(hours=5)
 	
-	print "parseHandStartTime result:",result
 	return result
 #end def parseHandStartTime
 

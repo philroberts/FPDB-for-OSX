@@ -174,8 +174,8 @@ class Importer:
 
 		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
-			self.faobs = readfile(inputFile)
-			self.parseTourneyHistory()
+			#self.faobs = readfile(inputFile)
+			#self.parseTourneyHistory()
 			return 0
 		
 		site=fpdb_simple.recogniseSite(firstline)
