@@ -140,6 +140,7 @@ class GuiAutoImport (threading.Thread):
 #			Add directories to importer object.
 			for site in self.input_settings:
 				self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
+				print "Adding import directories - Site: " + site + " dir: "+ str(self.input_settings[site][0])
 			self.do_import()
 		
 			interval=int(self.intervalEntry.get_text())
