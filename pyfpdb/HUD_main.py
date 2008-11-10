@@ -37,6 +37,7 @@ import os
 import thread
 import time
 import string
+import re
 
 errorfile = open('HUD-error.txt', 'w', 0)
 sys.stderr = errorfile
@@ -70,9 +71,10 @@ def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_conn
             hud_dict[table_name] = Hud.Hud(table, max, poker_game, config, db_name)
             hud_dict[table_name].create(new_hand_id, config)
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
+            hud_dict[table_name].reposition_windows()
             return False
         finally:
-            gtk.gdk.threads_leave
+            gtk.gdk.threads_leave()
     gobject.idle_add(idle_func)
 
 def update_HUD(new_hand_id, table_name, config, stat_dict):
@@ -83,13 +85,15 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
             return False
         finally:
-            gtk.gdk.threads_leave
+            gtk.gdk.threads_leave()
     gobject.idle_add(idle_func)
 
 def read_stdin():            # This is the thread function
     global hud_dict
 
     db_connection = Database.Database(config, db_name, 'temp')
+#    tourny_finder = re.compile('(\d+) (\d+)')
+
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
         new_hand_id = string.rstrip(new_hand_id)
@@ -101,20 +105,39 @@ def read_stdin():            # This is the thread function
             if hud_dict[h].deleted:
                 del(hud_dict[h])
 
-#    connect to the db and get basic info about the new hand
+#    get basic info about the new hand from the db
         (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
+
+#    find out if this hand is from a tournament
+        is_tournament = False
+#        (t_number, s_number) = (0, 0)
+#        mat_obj = tourny_finder(table_name)
+#        if len(mat_obj.groups) == 2:
+#            is_tournament = True
+#            (t_number, s_number) = mat_obj.group(1, 2)
+            
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
 
-#    if a hud for this table exists, just update it
+#    if a hud for this CASH table exists, just update it
         if hud_dict.has_key(table_name):
             update_HUD(new_hand_id, table_name, config, stat_dict)
+#    if a hud for this TOURNAMENT table exists, just update it
+#        elif hud_dict.has_key(t_number):
+#            update_HUD(new_hand_id, t_number, config, stat_dict)
 #        otherwise create a new hud
         else:
-            tablewindow = Tables.discover_table_by_name(config, table_name)
-            if tablewindow == None:
-                sys.stderr.write("table name "+table_name+" not found\n")
+            if is_tournament:
+                tablewindow = Tables.discover_tournament_table(config, t_number, s_number)
+                if tablewindow == None:
+                    sys.stderr.write("table name "+table_name+" not found\n")
+                else:
+                    create_HUD(new_hand_id, tablewindow, db_name, t_number, max, poker_game, db_connection, config, stat_dict)
             else:
-                create_HUD(new_hand_id, tablewindow, db_name, table_name, max, poker_game, db_connection, config, stat_dict)
+                tablewindow = Tables.discover_table_by_name(config, table_name)
+                if tablewindow == None:
+                    sys.stderr.write("table name "+table_name+" not found\n")
+                else:
+                    create_HUD(new_hand_id, tablewindow, db_name, table_name, max, poker_game, db_connection, config, stat_dict)
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")
