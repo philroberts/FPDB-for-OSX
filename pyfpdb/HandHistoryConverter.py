@@ -129,7 +129,7 @@ class HandHistoryConverter:
 	def writeHand(self, file, hand):
 		"""Write out parsed data"""
 		print "%s Game #%s: %s (%d/%d) - %s" %(hand.sitename, hand.handid, "XXXXhand.gametype", hand.sb, hand.bb, hand.starttime)
-		print "Table '%s' %d-max Seat #%s is the button" %(hand.tablename, hand.maxseats, "XXXXhand.buttonpos")
+		print "Table '%s' %d-max Seat #%s is the button" %(hand.tablename, hand.maxseats, hand.buttonpos)
 #
 #		counter = 1
 #		for player in seating:

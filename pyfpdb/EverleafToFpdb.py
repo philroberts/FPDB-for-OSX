@@ -61,7 +61,7 @@ class Everleaf(HandHistoryConverter):
 		self.setFileType("text")
 		self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
 		self.rexx.setSplitHandRegex('\n\n\n\n')
-		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)')
+		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
 		self.rexx.compileRegexes()
 
         def readSupportedGames(self):
@@ -80,7 +80,7 @@ class Everleaf(HandHistoryConverter):
 	def readHandInfo(self, hand):
 		m =  self.rexx.hand_info_re.search(hand.string)
 		hand.handid = m.group('HID')
-		hand.tablename = m.group('GAMETYPE')
+		hand.tablename = m.group('TABLE')
 # These work, but the info is already in the Hand class - should be usecd for tourneys though.
 #		m.group('SB')
 #		m.group('BB')
@@ -94,7 +94,7 @@ class Everleaf(HandHistoryConverter):
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
 		hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
 							  int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-
+		hand.buttonpos = int(m.group('BUTTON'))
 
         def readPlayerStacks(self):
 		pass
