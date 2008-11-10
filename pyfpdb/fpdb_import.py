@@ -72,8 +72,11 @@ class Importer:
 		elif self.settings['db-backend'] == 3:
 			if not pgsqlLibFound:
 				raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
-			self.db = psycopg2.connect(self.settings['db-host'], self.settings['db-user'],
-							self.settings['db-password'], self.settings['db-databaseName'])
+			print self.settings
+			self.db = psycopg2.connect(host = self.settings['db-host'],
+									   user = self.settings['db-user'],
+									   password = self.settings['db-password'],
+									   database = self.settings['db-databaseName'])
 		elif self.settings['db-backend'] == 4:
 			pass
 		else:
@@ -183,8 +186,8 @@ class Importer:
 
 		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"
-			self.faobs = readfile(inputFile)
-			self.parseTourneyHistory()
+			#self.faobs = readfile(inputFile)
+			#self.parseTourneyHistory()
 			return 0
 		
 		site=fpdb_simple.recogniseSite(firstline)
@@ -304,4 +307,4 @@ class Importer:
 	
 
 if __name__ == "__main__":
-	print "CLI for fpdb_import is currently on vacation please check in later"
+	print "CLI for fpdb_import is now available as CliFpdb.py"

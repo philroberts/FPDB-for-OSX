@@ -817,17 +817,24 @@ def parseHandStartTime(topline, site):
 			topline=topline[0:pos+1]+"0"+topline[pos+1:]
 		counter+=1
 		if counter==10: break
-
+	
+	isUTC=False
 	if site=="ftp":
 		pos = topline.find(" ", len(topline)-26)+1
 		tmp = topline[pos:]
 		#print "year:", tmp[14:18], "month", tmp[19:21], "day", tmp[22:24], "hour", tmp[0:2], "minute", tmp[3:5], "second", tmp[6:8]
 		result = datetime.datetime(int(tmp[14:18]), int(tmp[19:21]), int(tmp[22:24]), int(tmp[0:2]), int(tmp[3:5]), int(tmp[6:8]))
 	elif site=="ps":
-		tmp=topline[-30:]
-		#print "parsehandStartTime, tmp:", tmp
-		pos = tmp.find("-")+2
-		tmp = tmp[pos:]
+		if topline.find("UTC")!=-1:
+			pos1 = topline.find("-")+2
+			pos2 = topline.find("UTC")
+			tmp=topline[pos1:pos2]
+			isUTC=True
+		else:
+			tmp=topline[-30:]
+			#print "parsehandStartTime, tmp:", tmp
+			pos = tmp.find("-")+2
+			tmp = tmp[pos:]
 		#Need to match either
 		# 2008/09/07 06:23:14 ET or
 		# 2008/08/17 - 01:14:43 (ET)
@@ -837,7 +844,7 @@ def parseHandStartTime(topline, site):
 	else:
 		raise FpdbError("invalid site in parseHandStartTime")
 	
-	if site=="ftp" or site=="ps": #these use US ET
+	if (site=="ftp" or site=="ps") and not isUTC: #these use US ET
 		result+=datetime.timedelta(hours=5)
 	
 	return result
