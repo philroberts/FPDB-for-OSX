@@ -27,6 +27,7 @@ import re
 
 class FpdbRegex:
 	def __init__(self):
+		self.__GAME_INFO_REGEX=''
 		self.__SPLIT_HAND_REGEX='\n\n\n'
 		self.__NEW_HAND_REGEX='^.?PokerStars Game #\d+:\s+Hold\'em'
 		self.__HAND_INFO_REGEX='^.*#(\d+):\s+(\S+)\s([\s\S]+)\s\(\$?([.0-9]+)/\$?([.0-9]+)\)\s-\s(\S+)\s-?\s?(\S+)\s\(?(\w+)\)?'
@@ -55,6 +56,7 @@ class FpdbRegex:
 
 	def compileRegexes(self):
 		### Compile the regexes
+		self.game_info_re = re.compile(self.__GAME_INFO_REGEX)
 		self.split_hand_re = re.compile(self.__SPLIT_HAND_REGEX)
 		self.hand_start_re = re.compile(self.__NEW_HAND_REGEX)
 		self.hand_info_re = re.compile(self.__HAND_INFO_REGEX)
@@ -81,6 +83,9 @@ class FpdbRegex:
 		self.showdown_action_re = re.compile(self.__SHOWDOWN_ACTION_REGEX)
 
 	# Set methods for plugins to override
+
+	def setGameInfoRegex(self, string):
+		self.__GAME_INFO_REGEX = string
 
 	def setSplitHandRegex(self, string):
 		self.__SPLIT_HAND_REGEX = string

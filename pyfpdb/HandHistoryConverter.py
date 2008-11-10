@@ -54,6 +54,14 @@ class HandHistoryConverter:
 		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
 		return tmp
 
+	def processFile(self):
+		if not self.sanityCheck():
+			print "Cowardly refusing to continue after failed sanity check"
+			return
+		self.readFile(self.file)
+		self.gametype = self.determineGameType()
+		self.hands = self.splitFileIntoHands()
+
 	# Functions to be implemented in the inheriting class
 	def readSupportedGames(self): abstract
 
@@ -91,19 +99,12 @@ class HandHistoryConverter:
 	def setFileType(self, filetype = "text"):
 		self.filetype = filetype
 
-	def processFile(self):
-		if not self.sanityCheck():
-			print "Cowardly refusing to continue after failed sanity check"
-			return
-		self.readFile(self.file)
-		self.gametype = self.determineGameType()
-		self.splitFileIntoHands()
-
 	def splitFileIntoHands(self):
 		hands = []
 		list = self.rexx.split_hand_re.split(self.obs)
 		for l in list:
-			hands = hands + [Hand(l)]
+			hands = hands + [Hand(self.sitename, self.gametype, l)]
+		return hands
 
 	def readFile(self, filename):
 		"""Read file"""
@@ -160,13 +161,10 @@ class HandHistoryConverter:
 
 class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
-    def __init__(self, string):
-#	self.sitename = sitename
-#	self.gametype = gametype
-#	self.sb = sb
-#	self.bb = bb
+    def __init__(self, sitename, gametype, string):
+	self.sitename = sitename
+	self.gametype = gametype
 	self.string = string
-	print string
 
 	self.handid = None
 	self.tablename = "Slartibartfast"

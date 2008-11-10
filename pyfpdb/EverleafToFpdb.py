@@ -59,14 +59,20 @@ class Everleaf(HandHistoryConverter):
 		HandHistoryConverter.__init__(self, config, file, "Everleaf") # Call super class init.
 		self.sitename = "Everleaf"
 		self.setFileType("text")
-		self.rexx.setSplitHandRegex("\n\n\n")
+		self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
+		self.rexx.setSplitHandRegex('\n\n\n')
 		self.rexx.compileRegexes()
 
         def readSupportedGames(self):
 		pass
 
         def determineGameType(self):
+		# Cheating with this regex, only support nlhe at the moment
 		gametype = ["ring", "hold", "nl"]
+
+		m = self.rexx.game_info_re.search(self.obs)
+		gametype = gametype + [self.float2int(m.group('SB'))]
+		gametype = gametype + [self.float2int(m.group('BB'))]
 		
 		return gametype
 
@@ -83,5 +89,5 @@ if __name__ == "__main__":
 	c = Configuration.Config()
 	e = Everleaf(c, "regression-test-files/everleaf/Speed_Kuala.txt")
 	e.processFile()
-#	print str(e)
+	print str(e)
 	
