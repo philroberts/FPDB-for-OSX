@@ -63,6 +63,7 @@ class HandHistoryConverter:
 		self.hands = self.splitFileIntoHands()
 		for hand in self.hands:
 			self.readHandInfo(hand)
+			self.readPlayerStacks(hand)
 			self.writeHand("output file", hand)
 
 	# Functions to be implemented in the inheriting class
@@ -74,7 +75,7 @@ class HandHistoryConverter:
 	# Valid types specified in docs/tabledesign.html in Gametypes
 	def determineGameType(self): abstract
 	def readHandInfo(self, hand): abstract
-	def readPlayerStacks(self): abstract
+	def readPlayerStacks(self, hand): abstract
 	def readBlinds(self): abstract
 	def readAction(self): abstract
 
@@ -130,11 +131,10 @@ class HandHistoryConverter:
 		"""Write out parsed data"""
 		print "%s Game #%s: %s (%d/%d) - %s" %(hand.sitename, hand.handid, "XXXXhand.gametype", hand.sb, hand.bb, hand.starttime)
 		print "Table '%s' %d-max Seat #%s is the button" %(hand.tablename, hand.maxseats, hand.buttonpos)
-#
-#		counter = 1
-#		for player in seating:
-#			print "Seat " + counter + ": " + playername + "($" + playermoney + " in chips"
-#
+
+		for player in hand.players:
+			print "Seat %s: %s ($%s)" %(player[0], player[1], player[2])
+
 #		print playername + ": posts small blind " + sb
 #		print playername + ": posts big blind " + bb
 #

@@ -62,6 +62,7 @@ class Everleaf(HandHistoryConverter):
 		self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
 		self.rexx.setSplitHandRegex('\n\n\n\n')
 		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
+		self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(  \$ (?P<CASH>[.0-9]+) USD \)')
 		self.rexx.compileRegexes()
 
         def readSupportedGames(self):
@@ -96,8 +97,14 @@ class Everleaf(HandHistoryConverter):
 							  int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
 		hand.buttonpos = int(m.group('BUTTON'))
 
-        def readPlayerStacks(self):
-		pass
+        def readPlayerStacks(self, hand):
+		m = self.rexx.player_info_re.finditer(hand.string)
+		players = []
+
+		for a in m:
+			players = players + [[a.group('SEAT'), a.group('PNAME'), a.group('CASH')]]
+
+		hand.players = players
 
         def readBlinds(self):
 		pass
