@@ -178,11 +178,12 @@ class Popup:
 
 class Import:
     def __init__(self, node):
-        self.interval    = node.getAttribute("interval")
-        self.callFpdbHud = node.getAttribute("callFpdbHud")
+        self.interval      = node.getAttribute("interval")
+        self.callFpdbHud   = node.getAttribute("callFpdbHud")
+	self.hhArchiveBase = node.getAttribute("hhArchiveBase")
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n" % (self.interval, self.callFpdbHud)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
 
 class Tv:
     def __init__(self, node):
@@ -437,11 +438,13 @@ class Config:
     def get_import_parameters(self):
         imp = {}
         try:
-            imp['imp-callFpdbHud'] = self.imp.callFpdbHud
-            imp['hud-defaultInterval']    = int(self.imp.interval)
-        except: # Default import parameters
-            imp['imp-callFpdbHud'] = True
-            imp['hud-defaultInterval']    = 10
+            imp['callFpdbHud']   = self.callFpdbHud
+            imp['interval']      = self.interval
+            imp['hhArchiveBase'] = self.hhArchiveBase
+        except: # Default params
+            imp['callFpdbHud']   = True
+            imp['interval']      = 10
+            imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
@@ -565,7 +568,9 @@ if __name__== "__main__":
     print "----------- END MUCKED WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-#    print c.imp
+    tmp = c.get_import_parameters()
+    for param in tmp:
+        print "    " + str(param) + ": " + str(tmp[param])
     print "----------- END IMPORT -----------"
 
     print "\n----------- TABLE VIEW -----------"

@@ -33,9 +33,14 @@ class GuiAutoImport (threading.Thread):
 		self.settings=settings
 		self.config=config
 
+		imp = self.config.get_import_parameters()
+
+		print "Import parameters"
+		print imp
+
 		self.input_settings = {}
 
-		self.importer = fpdb_import.Importer(self,self.settings)
+		self.importer = fpdb_import.Importer(self,self.settings, self.config)
 		self.importer.setCallHud(True)
 		self.importer.setMinPrint(30)
 		self.importer.setQuiet(False)
@@ -60,7 +65,7 @@ class GuiAutoImport (threading.Thread):
 		self.intervalLabel.show()
 
 		self.intervalEntry=gtk.Entry()
-		self.intervalEntry.set_text(str(self.settings['hud-defaultInterval']))
+		self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
 		self.settingsHBox.pack_start(self.intervalEntry)
 		self.intervalEntry.show()
 
@@ -196,7 +201,7 @@ if __name__== "__main__":
     settings['db-databaseName'] = "fpdb"
     settings['hud-defaultInterval'] = 10
     settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
-    settings['imp-callFpdbHud'] = True
+    settings['callFpdbHud'] = True
 
     i = GuiAutoImport(settings)
     main_window = gtk.Window()

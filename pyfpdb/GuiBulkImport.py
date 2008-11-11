@@ -80,7 +80,7 @@ class GuiBulkImport (threading.Thread):
 		self.db=db
 		self.settings=settings
 		self.config=config
-		self.importer = fpdb_import.Importer(self,self.settings)
+		self.importer = fpdb_import.Importer(self,self.settings, config)
 		
 		self.vbox=gtk.VBox(False,1)
 		self.vbox.show()
