@@ -68,10 +68,12 @@ class Hud:
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
+        self.main_window.set_opacity(self.colors["hudopacity"])
         #self.main_window.set_transient_for(parent.get_toplevel())
 
         self.ebox = gtk.EventBox()
-        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
+#        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
+        self.label = gtk.Label("FPDB Menu (Right Click)\nLeft-drag to move")
         
         self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
@@ -111,6 +113,9 @@ class Hud:
         self.main_window.set_destroy_with_parent(True)
 
     def on_button_press(self, widget, event):
+        if event.button == 1:
+            self.main_window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
+            return True
         if event.button == 3:
             widget.popup(None, None, None, event.button, event.time)
             return True
