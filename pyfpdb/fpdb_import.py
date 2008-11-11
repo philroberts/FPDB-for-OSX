@@ -128,7 +128,7 @@ class Importer:
 	#Run full import on filelist
 	def runImport(self):
 		for file in self.filelist:
-			self.import_file_dict(file)
+			self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
 
 	#Run import on updated files, then store latest update time.
 	def runUpdated(self):
@@ -143,17 +143,25 @@ class Importer:
 			try: 
 				lastupdate = self.updated[file]
 				if stat_info.st_mtime > lastupdate:
-					self.import_file_dict(file)
+					self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
 					self.updated[file] = time()
 			except:
 				self.updated[file] = time()
 				# This codepath only runs first time the file is found, if modified in the last
 				# minute run an immediate import.
 				if (time() - stat_info.st_mtime) < 60:
-					self.import_file_dict(file)
+					self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
 
 	# This is now an internal function that should not be called directly.
-	def import_file_dict(self, file):
+	def import_file_dict(self, file, site, filter):
+		if(filter == "passthrough"):
+			self.import_fpdb_file(file, site)
+		else:
+			#Load filter, and run filtered file though main importer
+			self.import_fpdb_file(file, site)
+
+
+	def import_fpdb_file(self, file, site):
 		starttime = time()
 		last_read_hand=0
 		loc = 0
@@ -170,7 +178,11 @@ class Importer:
 		self.pos_in_file[file] = inputFile.tell()
 		inputFile.close()
 
-		firstline = self.lines[0]
+		try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
+			firstline = self.lines[0]
+		except:
+#			print "import_fpdb_file", file, site, self.lines, "\n"
+			return
 
 		if firstline.find("Tournament Summary")!=-1:
 			print "TODO: implement importing tournament summaries"

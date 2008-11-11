@@ -64,19 +64,22 @@ class GuiGraphViewer (threading.Thread):
 		#Set graph properties
 		self.ax = self.fig.add_subplot(111)
 
-		#
+		#Get graph data from DB
+		line = self.getRingProfitGraph(name, site)
+
 		self.ax.set_title("Profit graph for ring games")
 
 		#Set axis labels and grid overlay properites
 		self.ax.set_xlabel("Hands", fontsize = 12)
 		self.ax.set_ylabel("$", fontsize = 12)
 		self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-		text = "All Hands, " + sitename + str(name)
+		text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
 
-		self.ax.annotate (text, (61,25), xytext =(0.1, 0.9) , textcoords ="axes fraction" ,)
+		self.ax.annotate(text, xy=(10, -10),
+                xycoords='axes points',
+                horizontalalignment='left', verticalalignment='top',
+                fontsize=10)
 
-		#Get graph data from DB
-		line = self.getRingProfitGraph(name, site)
 
 		#Draw plot
 		self.ax.plot(line,)

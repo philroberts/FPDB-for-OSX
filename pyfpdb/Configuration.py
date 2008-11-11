@@ -57,6 +57,7 @@ class Site:
         self.hudbgcolor   = node.getAttribute("bgcolor")
         self.hudfgcolor   = node.getAttribute("fgcolor")
         self.converter    = node.getAttribute("converter")
+        self.enabled      = node.getAttribute("enabled")
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):
@@ -498,13 +499,14 @@ class Config:
         parms["table_finder"] = self.supported_sites[site].table_finder
         parms["HH_path"]      = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
+        parms["enabled"]      = self.supported_sites[site].enabled
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
                             hudbgcolor = None, hudfgcolor = None, 
                             hudopacity = None, screen_name = None,
                             site_path = None, table_finder = None,
-                            HH_path = None):
+                            HH_path = None, enabled = None):
         """Sets the specified site parameters for the specified site."""
         site_node = self.get_site_node(site_name)
         if not db_node == None:
@@ -517,6 +519,7 @@ class Config:
             if not site_path      == None: site_node.setAttribute("site_path", site_path)
             if not table_finder   == None: site_node.setAttribute("table_finder", table_finder)
             if not HH_path        == None: site_node.setAttribute("HH_path", HH_path)
+            if not enabled        == None: site_node.setAttribute("enabled", enabled)
 
         if self.supported_databases.has_key(db_name):
             if not converter      == None: self.supported_sites[site].converter = converter
@@ -528,6 +531,7 @@ class Config:
             if not site_path      == None: self.supported_sites[site].site_path = site_path
             if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
             if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
+            if not enabled        == None: self.supported_sites[site].enabled = enabled
         return
 
 if __name__== "__main__":

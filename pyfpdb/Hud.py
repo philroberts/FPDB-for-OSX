@@ -68,10 +68,12 @@ class Hud:
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
+        self.main_window.set_opacity(self.colors["hudopacity"])
         #self.main_window.set_transient_for(parent.get_toplevel())
 
         self.ebox = gtk.EventBox()
-        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
+#        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
+        self.label = gtk.Label("FPDB Menu (Right Click)\nLeft-drag to move")
         
         self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
@@ -111,18 +113,21 @@ class Hud:
         self.main_window.set_destroy_with_parent(True)
 
     def on_button_press(self, widget, event):
+        if event.button == 1:
+            self.main_window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
+            return True
         if event.button == 3:
             widget.popup(None, None, None, event.button, event.time)
             return True
         return False
 
-    def kill_hud(self, args):
+    def kill_hud(self, *args):
         for k in self.stat_windows.keys():
             self.stat_windows[k].window.destroy()
         self.main_window.destroy()
         self.deleted = True
 
-    def reposition_windows(self, args):
+    def reposition_windows(self, *args):
         for w in self.stat_windows:
                 self.stat_windows[w].window.move(self.stat_windows[w].x,
                                                  self.stat_windows[w].y)
@@ -259,7 +264,8 @@ class Stat_Window:
 #    This handles all callbacks from button presses on the event boxes in 
 #    the stat windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.
-        if event.button == 1:   # left button event
+
+        if event.button == 3:   # right button event
             if event.type == gtk.gdk.BUTTON_PRESS: # left button single click
                 if self.sb_click > 0: return
                 self.sb_click = gobject.timeout_add(250, self.single_click, widget)
@@ -270,12 +276,14 @@ class Stat_Window:
                     self.double_click(widget, event, *args)
 
         if event.button == 2:   # middle button event
-            pass
 #            print "middle button clicked"
-
-        if event.button == 3:   # right button event
             pass
-#            print "right button clicked"
+
+        if event.button == 1:   # left button event
+            if event.state & gtk.gdk.SHIFT_MASK:
+                self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
+            else:
+                self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
     def single_click(self, widget):
 #    Callback from the timeout in the single-click finding part of the
@@ -349,8 +357,9 @@ class Stat_Window:
 #                font = pango.FontDescription("Sans 8")
                 self.label[r][c].modify_font(font)
 
-        if not os.name == 'nt':  # seems to be a bug in opacity on windows
-            self.window.set_opacity(parent.colors['hudopacity'])                
+#        if not os.name == 'nt':  # seems to be a bug in opacity on windows
+        self.window.set_opacity(parent.colors['hudopacity'])
+        
         self.window.realize
         self.window.move(self.x, self.y)
         self.window.show_all()
@@ -457,7 +466,7 @@ class Popup_window:
         self.lab.set_text(pu_text)        
         self.window.show_all()
         
-        self.window.set_transient_for(stat_window.main_window)
+        self.window.set_transient_for(stat_window.window)
 
 #    set_keep_above(1) for windows
         if os.name == 'nt': self.topify_window(self.window)
