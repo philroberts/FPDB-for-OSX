@@ -331,6 +331,7 @@ class fpdb:
 		#print "start of tab_main_help"
 		mh_tab=gtk.Label("""Welcome to Fpdb!
 For documentation please visit our website at http://fpdb.sourceforge.net/ or check the docs directory in the fpdb folder.
+Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml
 This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.add_and_display_tab(mh_tab, "Help")
 	#end def tab_main_help
@@ -362,7 +363,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha8+, p137 or higher")
+		self.window.set_title("Free Poker DB - version: alpha9+, p143 or higher")
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
