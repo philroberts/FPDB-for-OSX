@@ -84,7 +84,7 @@
 	        	<location seat="9" x="70" y="53">  </location>
 	        </layout>
 	    </site>
-	    <site enabled="False" site_name="Everleaf" table_finder="Poker.exe" screen_name="DO NOT NEED THIS YET" site_path="" HH_path="" decoder="Unknown" converter="EverleafToFpdb" supported_games="holdem,razz,omahahi,omahahilo,studhi" fgcolor="#48D1CC" bgcolor="#000000">
+	    <site enabled="False" site_name="Everleaf" table_finder="Poker.exe" screen_name="DO NOT NEED THIS YET" site_path="" HH_path="" decoder="Unknown" converter="EverleafToFpdb" supported_games="holdem,razz,omahahi,omahahilo,studhi" fgcolor="#48D1CC" bgcolor="#000000" opacity="0.75">
 		<layout fav_seat="0" height="546" max="6" width="792">
 	        	<location seat="1" x="581" y="109"> </location>
 	        	<location seat="2" x="605" y="287"> </location>
