@@ -223,6 +223,7 @@ def discover_nt(c):
 
 def discover_nt_by_name(c, tablename):
     """Finds poker client window with the given table name."""
+    titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles.keys():
         if titles[hwnd].find(tablename) == -1: continue
@@ -233,7 +234,7 @@ def discover_nt_by_name(c, tablename):
 
 def discover_nt_tournament(c, tour_number, tab_number):
     """Finds the Windows window handle for the given tournament/table."""
-    search_string = "%s.+%s" % (t_number, s_number)
+    search_string = "%s.+%s" % (tour_number, tab_number)
 
     titles ={}
     win32gui.EnumWindows(win_enum_handler, titles)
@@ -260,12 +261,13 @@ def decode_windows(c, title, hwnd):
     info = {}
     info['number'] = hwnd
     info['title'] = re.sub('\"', '', title)
-    (x, y, w, h) = win32gui.GetWindowRect(hwnd)
+    (x, y, width, height) = win32gui.GetWindowRect(hwnd)
 
     info['x']      = int(x)  + b_width
     info['y']      = int( y ) + tb_height
     info['width']  = int( width ) - 2*b_width
     info['height'] = int( height ) - b_width - tb_height
+    info['exe']    = get_nt_exe(hwnd)
 
     title_bits = re.split(' - ', info['title'])
     info['name'] = title_bits[0]
@@ -427,7 +429,7 @@ if __name__=="__main__":
     c = Configuration.Config()
 
     print discover_table_by_name(c, "Ostara V")
-    print discover_tournament_table(c, "119736621", "1")
+    print discover_tournament_table(c, "118942908", "3")
 
     tables = discover(c)
     for t in tables.keys():

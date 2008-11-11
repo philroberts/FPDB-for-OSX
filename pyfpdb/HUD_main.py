@@ -93,7 +93,6 @@ def read_stdin():            # This is the thread function
 
     db_connection = Database.Database(config, db_name, 'temp')
     tourny_finder = re.compile('(\d+) (\d+)')
-    print tourny_finder
 
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
@@ -115,10 +114,8 @@ def read_stdin():            # This is the thread function
         mat_obj = tourny_finder.search(table_name)
 #        if len(mat_obj.groups) == 2:
         if mat_obj:
-            print "found tournament", 
             is_tournament = True
             (tour_number, tab_number) = mat_obj.group(1, 2)
-            print " number = %s, table = %s" % (tour_number, tab_number) 
             
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
 
@@ -132,7 +129,6 @@ def read_stdin():            # This is the thread function
         else:
             if is_tournament:
                 tablewindow = Tables.discover_tournament_table(config, tour_number, tab_number)
-                print tablewindow
                 if tablewindow == None:
                     sys.stderr.write("tournament %s,  table %s not found\n" % (tour_number, tab_number))
                 else:
