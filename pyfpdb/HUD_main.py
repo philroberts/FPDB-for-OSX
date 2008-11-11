@@ -92,7 +92,8 @@ def read_stdin():            # This is the thread function
     global hud_dict
 
     db_connection = Database.Database(config, db_name, 'temp')
-#    tourny_finder = re.compile('(\d+) (\d+)')
+    tourny_finder = re.compile('(\d+) (\d+)')
+    print tourny_finder
 
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
@@ -110,11 +111,14 @@ def read_stdin():            # This is the thread function
 
 #    find out if this hand is from a tournament
         is_tournament = False
-#        (t_number, s_number) = (0, 0)
-#        mat_obj = tourny_finder(table_name)
+        (tour_number, tab_number) = (0, 0)
+        mat_obj = tourny_finder.search(table_name)
 #        if len(mat_obj.groups) == 2:
-#            is_tournament = True
-#            (t_number, s_number) = mat_obj.group(1, 2)
+        if mat_obj:
+            print "found tournament", 
+            is_tournament = True
+            (tour_number, tab_number) = mat_obj.group(1, 2)
+            print " number = %s, table = %s" % (tour_number, tab_number) 
             
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
 
@@ -122,16 +126,17 @@ def read_stdin():            # This is the thread function
         if hud_dict.has_key(table_name):
             update_HUD(new_hand_id, table_name, config, stat_dict)
 #    if a hud for this TOURNAMENT table exists, just update it
-#        elif hud_dict.has_key(t_number):
-#            update_HUD(new_hand_id, t_number, config, stat_dict)
-#        otherwise create a new hud
+        elif hud_dict.has_key(tour_number):
+            update_HUD(new_hand_id, tour_number, config, stat_dict)
+#    otherwise create a new hud
         else:
             if is_tournament:
-                tablewindow = Tables.discover_tournament_table(config, t_number, s_number)
+                tablewindow = Tables.discover_tournament_table(config, tour_number, tab_number)
+                print tablewindow
                 if tablewindow == None:
-                    sys.stderr.write("table name "+table_name+" not found\n")
+                    sys.stderr.write("tournament %s,  table %s not found\n" % (tour_number, tab_number))
                 else:
-                    create_HUD(new_hand_id, tablewindow, db_name, t_number, max, poker_game, db_connection, config, stat_dict)
+                    create_HUD(new_hand_id, tablewindow, db_name, tour_number, max, poker_game, db_connection, config, stat_dict)
             else:
                 tablewindow = Tables.discover_table_by_name(config, table_name)
                 if tablewindow == None:
