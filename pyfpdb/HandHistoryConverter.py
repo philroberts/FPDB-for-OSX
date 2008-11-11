@@ -64,6 +64,7 @@ class HandHistoryConverter:
 		for hand in self.hands:
 			self.readHandInfo(hand)
 			self.readPlayerStacks(hand)
+			self.readBlinds(hand)
 			self.writeHand("output file", hand)
 
 	# Functions to be implemented in the inheriting class
@@ -74,9 +75,18 @@ class HandHistoryConverter:
 	# [ ring, hold, nl   , sb, bb ]
 	# Valid types specified in docs/tabledesign.html in Gametypes
 	def determineGameType(self): abstract
+
+	#TODO: Comment
 	def readHandInfo(self, hand): abstract
+
+	# Needs to return a list of lists in the format
+	# [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
 	def readPlayerStacks(self, hand): abstract
-	def readBlinds(self): abstract
+
+	#Needs to return a list in the format
+	# ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
+	# addtional players are assumed to post a bb oop
+	def readBlinds(self, hand): abstract
 	def readAction(self): abstract
 
 	def sanityCheck(self):
@@ -135,9 +145,17 @@ class HandHistoryConverter:
 		for player in hand.players:
 			print "Seat %s: %s ($%s)" %(player[0], player[1], player[2])
 
-#		print playername + ": posts small blind " + sb
-#		print playername + ": posts big blind " + bb
-#
+		if(hand.posted[0] == "FpdbNBP"):
+			print "No small blind posted"
+		else:
+			print "%s: posts small blind $%s" %(hand.posted[0], hand.sb)
+
+		#May be more than 1 bb posting
+		print "%s: posts big blind $%s" %(hand.posted[1], hand.bb)
+		if(len(hand.posted) > 2):
+			# Need to loop on all remaining big blinds - lazy
+			print "XXXXXXXXX FIXME XXXXXXXX"
+
 		print "*** HOLE CARDS ***"
 #		print "Dealt to " + hero + " [" + holecards + "]"
 #
@@ -181,5 +199,21 @@ class Hand:
 	self.buttonpos = 0
 	self.seating = []
 	self.players = []
+	self.posted = []
 	self.action = []
 
+    def printHand(self):
+	print self.sitename
+	print self.gametype
+	print self.string
+	print self.handid
+	print self.sb
+	print self.bb
+	print self.tablename
+	print self.maxseats
+	print self.counted_seats
+	print self.buttonpos
+	print self.seating
+	print self.players
+	print self.posted
+	print self.action

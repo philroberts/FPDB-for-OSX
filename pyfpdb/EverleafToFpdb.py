@@ -16,6 +16,7 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import sys
 import Configuration
 from HandHistoryConverter import *
 
@@ -63,6 +64,8 @@ class Everleaf(HandHistoryConverter):
 		self.rexx.setSplitHandRegex('\n\n\n\n')
 		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
 		self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(  \$ (?P<CASH>[.0-9]+) USD \)')
+		self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[')
+		self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[')
 		self.rexx.compileRegexes()
 
         def readSupportedGames(self):
@@ -108,8 +111,15 @@ class Everleaf(HandHistoryConverter):
 
 		hand.players = players
 
-        def readBlinds(self):
-		pass
+        def readBlinds(self, hand):
+		try:
+			m = self.rexx.small_blind_re.search(hand.string)
+			hand.posted = [m.group('PNAME')]
+		except:
+			hand.posted = ["FpdbNBP"]
+		m = self.rexx.big_blind_re.finditer(hand.string)
+		for a in m:
+			hand.posted = hand.posted + [a.group('PNAME')]
 
         def readAction(self):
 		pass
