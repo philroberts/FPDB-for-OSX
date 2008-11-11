@@ -379,7 +379,6 @@ class Config:
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
-        print "max = ", max
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
         if layout_node == None: return
@@ -484,6 +483,10 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
+    def get_supported_sites(self):
+        """Returns the list of supported sites."""
+        return self.supported_sites.keys()
+
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
         if not self.supported_sites.has_key(site):
@@ -498,6 +501,7 @@ class Config:
         parms["site_path"]    = self.supported_sites[site].site_path
         parms["table_finder"] = self.supported_sites[site].table_finder
         parms["HH_path"]      = self.supported_sites[site].HH_path
+        parms["site_name"]    = self.supported_sites[site].site_name
         parms["enabled"]      = self.supported_sites[site].enabled
         return parms
 
