@@ -46,7 +46,7 @@ class FpdbRegex:
 		self.__UNCALLED_BET_REGEX='^Uncalled bet \(\$([.\d]+)\) returned to (.*)'
 		self.__POT_AND_RAKE_REGEX='^Total\spot\s\$([.\d]+).*\|\sRake\s\$([.\d]+)'
 		self.__COLLECT_POT_REGEX='^(.*)\scollected\s\$([.\d]+)\sfrom\s((main|side)\s)?pot'
-		self.__POCKET_CARDS_REGEX='^Dealt\sto\s(.*)\s\[(\S{2})\s(\S{2})\]'
+		self.__HERO_CARDS_REGEX='^Dealt\sto\s(.*)\s\[(\S{2})\s(\S{2})\]'
 		self.__SHOWN_CARDS_REGEX='^(.*):\sshows\s\[(\S{2})\s(\S{2})\]'
 		self.__ACTION_STEP_REGEX='^(.*):\s(bets|checks|raises|calls|folds)((\s\$([.\d]+))?(\sto\s\$([.\d]+))?)?'
 
@@ -74,7 +74,7 @@ class FpdbRegex:
 		self.summary_re = re.compile(self.__SUMMARY_REGEX)
 		self.uncalled_bet_re = re.compile(self.__UNCALLED_BET_REGEX)
 		self.collect_pot_re = re.compile(self.__COLLECT_POT_REGEX)
-		self.pocket_cards_re = re.compile(self.__POCKET_CARDS_REGEX)
+		self.hero_cards_re = re.compile(self.__HERO_CARDS_REGEX)
 		self.cards_shown_re = re.compile(self.__SHOWN_CARDS_REGEX)
 		self.summary_cards_re = re.compile(self.__SUMMARY_CARDS_REGEX)
 		self.summary_cards_extra_re = re.compile(self.__SUMMARY_CARDS_EXTRA_REGEX)
@@ -138,8 +138,8 @@ class FpdbRegex:
 	def setCollectPotRegex(self, string):
 		self.__COLLECT_POT_REGEX = string
 
-	def setPocketCardsRegex(self, string):
-		self.__POCKET_CARDS_REGEX = string
+	def setHeroCardsRegex(self, string):
+		self.__HERO_CARDS_REGEX = string
 
 	def setShownCardsRegex(self, string):
 		self.__SHOWN_CARDS_REGEX = string

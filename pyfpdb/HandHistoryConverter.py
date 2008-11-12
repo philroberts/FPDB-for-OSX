@@ -65,7 +65,11 @@ class HandHistoryConverter:
 			self.readHandInfo(hand)
 			self.readPlayerStacks(hand)
 			self.readBlinds(hand)
-			self.writeHand("output file", hand)
+			self.readHeroCards(hand)
+			if(hand.involved == True):
+				self.writeHand("output file", hand)
+			else:
+				pass #Don't write out observed hands
 
 	# Functions to be implemented in the inheriting class
 	def readSupportedGames(self): abstract
@@ -87,6 +91,7 @@ class HandHistoryConverter:
 	# ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
 	# addtional players are assumed to post a bb oop
 	def readBlinds(self, hand): abstract
+	def readHeroCards(self, hand): abstract
 	def readAction(self): abstract
 
 	def sanityCheck(self):
@@ -157,7 +162,7 @@ class HandHistoryConverter:
 			print "XXXXXXXXX FIXME XXXXXXXX"
 
 		print "*** HOLE CARDS ***"
-#		print "Dealt to " + hero + " [" + holecards + "]"
+		print "Dealt to %s [%s]" %(hand.hero ,hand.holecards)
 #
 ##		ACTION STUFF
 #
@@ -200,6 +205,9 @@ class Hand:
 	self.seating = []
 	self.players = []
 	self.posted = []
+	self.involved = True
+	self.hero = "Hiro"
+	self.holecards = "Xx Xx"
 	self.action = []
 
     def printHand(self):
@@ -217,3 +225,4 @@ class Hand:
 	print self.players
 	print self.posted
 	print self.action
+	print self.involved
