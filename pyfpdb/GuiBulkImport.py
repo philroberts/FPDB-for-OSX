@@ -28,6 +28,7 @@ class GuiBulkImport (threading.Thread):
 		"""imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 		self.path=self.inputFile
 		self.importer.addImportDirectory(self.path)
+		self.importer.setCallHud(False)
 		self.importer.runImport()
 		print "GuiBulkImport.import_dir done"
 		
@@ -64,6 +65,7 @@ class GuiBulkImport (threading.Thread):
 			self.import_dir()
 		else:
 			self.importer.addImportFile(self.inputFile)
+			self.importer.setCallHud(False)
 			self.importer.runImport()
 			self.importer.clearFileList()
 	
