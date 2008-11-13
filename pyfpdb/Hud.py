@@ -194,9 +194,9 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-#        self.mucked_window = gtk.Window()
-#        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
-#        self.mucked_window.show_all() 
+        self.mucked_window = gtk.Window()
+        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
+        self.mucked_window.show_all() 
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
