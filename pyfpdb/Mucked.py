@@ -45,26 +45,28 @@ import Mucked
 import HandHistory
 
 class Mucked:
-    def __init__(self, parent, db_connection):
+    def __init__(self, parent, config, db_name):
 
-        self.parent        = parent    #this is the parent of the mucked cards widget
-        self.db_connection = db_connection
+        self.config  = config
+        self.parent  = parent    #this is the parent of the mucked cards widget
+        self.db_name = db_name
 
         self.vbox = gtk.VBox()
         self.parent.add(self.vbox)
 
-        self.mucked_list   = MuckedList (self.vbox, db_connection)
-        self.mucked_cards  = MuckedCards(self.vbox, db_connection)
+        self.mucked_list   = MuckedList (self.vbox, config, db_name)
+        self.mucked_cards  = MuckedCards(self.vbox, config, db_name)
         self.mucked_list.mucked_cards = self.mucked_cards
 
     def update(self, new_hand_id):
         self.mucked_list.update(new_hand_id)
         
 class MuckedList:
-    def __init__(self, parent, db_connection):
+    def __init__(self, parent, config, db_name):
 
-        self.parent        = parent
-        self.db_connection = db_connection
+        self.parent  = parent
+        self.config  = config
+        self.db_name = db_name
 
 #       set up a scrolled window to hold the listbox
         self.scrolled_window = gtk.ScrolledWindow()
@@ -116,10 +118,11 @@ class MuckedList:
         self.mucked_cards.update(new_hand_id)
 
 class MuckedCards:
-    def __init__(self, parent, db_connection):
+    def __init__(self, parent, config, db_name = 'fpdb'):
 
-        self.parent        = parent    #this is the parent of the mucked cards widget
-        self.db_connection = db_connection
+        self.parent  = parent    #this is the parent of the mucked cards widget
+        self.config  = config
+        self.db_name = db_name
 
         self.card_images = self.get_card_images()
         self.seen_cards = {}
@@ -173,7 +176,8 @@ class MuckedCards:
         return old_cards
 
     def update(self, new_hand_id):
-        cards = self.db_connection.get_cards(new_hand_id)
+        db_connection = Database.Database(self.config, 'fpdb', '')
+        cards = db_connection.get_cards(new_hand_id)
         self.clear()
         cards = self.translate_cards(cards)
         for c in cards.keys():
@@ -185,7 +189,7 @@ class MuckedCards:
                         set_from_pixbuf(self.card_images[self.split_cards(cards[c][i[1]])])
 
         tips = []
-        action = self.db_connection.get_action_from_hand(new_hand_id)
+        action = db_connection.get_action_from_hand(new_hand_id)
         for street in action:
             temp = ''
             for act in street:
@@ -209,6 +213,7 @@ class MuckedCards:
         for round in range(1, len(tips)):
             for r in range(0, self.rows):
                 self.eb[(round_to_col[round], r)].set_tooltip_text(tips[round])
+        db_connection.close_connection()
 
     def split_cards(self, card):
         return (card[0], card[1].upper())
@@ -248,12 +253,12 @@ if __name__== "__main__":
         return(True)
 
     config = Configuration.Config()
-    db_connection = Database.Database(config, 'fpdb', '')
+#    db_connection = Database.Database(config, 'fpdb', '')
     main_window = gtk.Window()
     main_window.set_keep_above(True)
     main_window.connect("destroy", destroy)
 
-    m = Mucked(main_window, db_connection)
+    m = Mucked(main_window, config, 'fpdb')
     main_window.show_all()
     
     s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand)

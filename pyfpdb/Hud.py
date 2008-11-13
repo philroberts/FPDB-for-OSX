@@ -168,7 +168,6 @@ class Hud:
 
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
-        print "adj = ", adj
 
 #    create the stat windows
         for i in range(1, self.max + 1):           
@@ -195,7 +194,7 @@ class Hud:
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
         self.mucked_window = gtk.Window()
-        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
+        self.m = Mucked.Mucked(self.mucked_window, self.config, self.db_name)
         self.mucked_window.show_all() 
             
     def update(self, hand, config, stat_dict):
@@ -217,7 +216,7 @@ class Hud:
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
-#        self.m.update(hand)
+        self.m.update(hand)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
