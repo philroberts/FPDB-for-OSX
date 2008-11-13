@@ -616,6 +616,34 @@ class FpdbSQLQueries:
 					WHERE Players.name = %s AND HandsPlayers.handId = %s 
 					AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
 
+		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+			self.query['getRingProfitAllHandsPlayerIdSite'] = """
+				SELECT hp.handId, hp.winnings, SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+				FROM HandsPlayers hp
+				INNER JOIN Players pl      ON hp.playerId     = pl.id
+				INNER JOIN Hands h         ON h.id            = hp.handId
+				INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+				WHERE pl.name   = %s
+				AND   pl.siteId = %s
+				AND   hp.tourneysPlayersId IS NULL
+				GROUP BY hp.handId, hp.winnings, h.handStart
+				ORDER BY h.handStart"""
+		elif(self.dbname == 'SQLite'):
+		#Probably doesn't work.
+			self.query['getRingProfitAllHandsPlayerIdSite'] = """
+				SELECT hp.handId, hp.winnings, SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+				FROM HandsPlayers hp
+				INNER JOIN Players pl      ON hp.playerId     = pl.id
+				INNER JOIN Hands h         ON h.id            = hp.handId
+				INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+				WHERE pl.name   = %s
+				AND   pl.siteId = %s
+				AND   hp.tourneysPlayersId IS NULL
+				GROUP BY hp.handId, hp.winnings, h.handStart
+				ORDER BY h.handStart"""
+
+
+
 
 if __name__== "__main__":
         from optparse import OptionParser

@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+from time import time
 #import pokereval
 
 try:
@@ -65,7 +66,9 @@ class GuiGraphViewer (threading.Thread):
 		self.ax = self.fig.add_subplot(111)
 
 		#Get graph data from DB
+		starttime = time()
 		line = self.getRingProfitGraph(name, site)
+		print "Graph generated in: %s" %(time() - starttime)
 
 		self.ax.set_title("Profit graph for ring games")
 
@@ -90,7 +93,9 @@ class GuiGraphViewer (threading.Thread):
 	#end of def showClicked
 
 	def getRingProfitGraph(self, name, site):
-                self.cursor.execute(self.sql.query['getRingWinningsAllGamesPlayerIdSite'], (name, site))
+                #self.cursor.execute(self.sql.query['getRingWinningsAllGamesPlayerIdSite'], (name, site))
+		self.cursor.execute(self.sql.query['getRingProfitAllHandsPlayerIdSite'], (name, site))
+		#       returns (HandId,Winnings,Costs,Profit)
                 winnings = self.db.cursor.fetchall()
 
                 profit=range(len(winnings))
@@ -99,7 +104,8 @@ class GuiGraphViewer (threading.Thread):
                         spent = self.db.cursor.fetchone()
                         profit[i]=(i, winnings[i][1]-spent[0])
 
-                y=map(lambda x:float(x[1]), profit)
+#                y=map(lambda x:float(x[1]), profit)
+                y=map(lambda x:float(x[3]), winnings)
                 line = cumsum(y)
                 return line/100
         #end of def getRingProfitGraph
