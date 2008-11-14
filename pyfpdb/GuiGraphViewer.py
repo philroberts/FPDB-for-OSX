@@ -102,12 +102,12 @@ class GuiGraphViewer (threading.Thread):
 
                 profit=range(len(winnings))
                 for i in profit:
-                        self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
-                        spent = self.db.cursor.fetchone()
-						if not spent[0] == None:
-							profit[i]=(i, winnings[i][1]-spent[0])
-						else:
-							profit[i] = (i, 0)
+					self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
+					spent = self.db.cursor.fetchone()
+					if not spent[0] == None:
+						profit[i]=(i, winnings[i][1]-spent[0])
+					else:
+						profit[i] = (i, 0)
 				# todo: this probably adds in flat spots on your graph for hands you were not involved in (ie, observing, sitting out, etc)
 				# and has that counted in your hand totals.  Someone needs to figure out the SQL for totally removing any hand you're not in from the equation entirely
 							
