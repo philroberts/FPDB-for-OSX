@@ -734,7 +734,7 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
 					print "line:",line,"cardValues[playerNo]:",cardValues[playerNo]
 					raise FpdbError("read too many/too few holecards in parseCardLine")
 		elif (category=="razz" or category=="studhi" or category=="studhilo"):
-			if (line.find("shows")==-1):
+			if (line.find("shows")==-1 and line.find("mucked") == -1):
 				#print "parseCardLine(in stud if), street:", street
 				if line[pos+2]=="]": #-> not (hero and 3rd street)
 					cardValues[playerNo][street+2]=line[pos:pos+1]
