@@ -99,7 +99,8 @@ class Everleaf(HandHistoryConverter):
 #		m.group('GAMETYPE')
 
 # Believe Everleaf time is GMT/UTC, no transation necessary
-# Stars format (Nov 10 2008): 2008/11/07 12:38:49 UTC [2008/11/07 7:38:49 ET]
+# Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
+# or                        : 2008/11/07 12:38:49 ET
 # Not getting it in my HH files yet, so using
 # 2008/11/10 3:58:52 ET
 #TODO: Do conversion from GMT to ET
