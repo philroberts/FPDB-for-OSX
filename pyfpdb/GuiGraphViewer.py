@@ -103,11 +103,11 @@ class GuiGraphViewer (threading.Thread):
 		#       returns (HandId,Winnings,Costs,Profit)
                 winnings = self.db.cursor.fetchall()
 
-                profit=range(len(winnings))
-                for i in profit:
-                        self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
-                        spent = self.db.cursor.fetchone()
-                        profit[i]=(i, winnings[i][1]-spent[0])
+#                profit=range(len(winnings))
+#                for i in profit:
+#                        self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
+#                        spent = self.db.cursor.fetchone()
+#                        profit[i]=(i, winnings[i][1]-spent[0])
 
 #                y=map(lambda x:float(x[1]), profit)
                 y=map(lambda x:float(x[3]), winnings)
