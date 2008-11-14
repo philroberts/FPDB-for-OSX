@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+from time import time
 #import pokereval
 
 try:
@@ -67,7 +68,9 @@ class GuiGraphViewer (threading.Thread):
 		self.ax = self.fig.add_subplot(111)
 
 		#Get graph data from DB
+		starttime = time()
 		line = self.getRingProfitGraph(name, site)
+		print "Graph generated in: %s" %(time() - starttime)
 
 		self.ax.set_title("Profit graph for ring games")
 
@@ -92,23 +95,27 @@ class GuiGraphViewer (threading.Thread):
 	#end of def showClicked
 
 	def getRingProfitGraph(self, name, site):
-		self.cursor.execute(self.sql.query['getRingWinningsAllGamesPlayerIdSite'], (name, site))
-		winnings = self.db.cursor.fetchall()
+                #self.cursor.execute(self.sql.query['getRingWinningsAllGamesPlayerIdSite'], (name, site))
+		self.cursor.execute(self.sql.query['getRingProfitAllHandsPlayerIdSite'], (name, site))
+		#       returns (HandId,Winnings,Costs,Profit)
+                winnings = self.db.cursor.fetchall()
 
-		profit=range(len(winnings))
-		for i in profit:
-				self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
-				spent = self.db.cursor.fetchone()
-				if not spent[0] == None:
-					profit[i]=(i, winnings[i][1]-spent[0])
-				else:
-					profit[i] = (i, 0)
+                profit=range(len(winnings))
+                for i in profit:
+                        self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
+                        spent = self.db.cursor.fetchone()
+						if not spent[0] == None:
+							profit[i]=(i, winnings[i][1]-spent[0])
+						else:
+							profit[i] = (i, 0)
 				# todo: this probably adds in flat spots on your graph for hands you were not involved in (ie, observing, sitting out, etc)
 				# and has that counted in your hand totals.  Someone needs to figure out the SQL for totally removing any hand you're not in from the equation entirely
+							
 
-		y=map(lambda x:float(x[1]), profit)
-		line = cumsum(y)
-		return line/100
+#                y=map(lambda x:float(x[1]), profit)
+                y=map(lambda x:float(x[3]), winnings)
+                line = cumsum(y)
+                return line/100
         #end of def getRingProfitGraph
 
 	def __init__(self, db, settings, querylist, config, debug=True):
