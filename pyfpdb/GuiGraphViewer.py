@@ -55,7 +55,7 @@ class GuiGraphViewer (threading.Thread):
 		# What hero names for the selected site?
 		# TODO:
 
-		name = "s0rrow"
+		name = self.heroes[self.sites]
 		
 		if self.sites == "PokerStars":
 			site=2
@@ -126,11 +126,15 @@ class GuiGraphViewer (threading.Thread):
 		pname.set_width_chars(20)
 		hbox.pack_start(pname, False, True, 0)
 		#TODO: Need to connect a callback here
-#		pname.connect("somthing", __set_hero_name, site)
+		pname.connect("changed", self.__set_hero_name, site)
+		#TODO: Look at GtkCompletion - to fill out usernames
 		pname.show()
+
+		self.__set_hero_name(pname, site)
 
 	def __set_hero_name(self, w, site):
 		self.heroes[site] = w.get_text()
+		print "DEBUG: settings heroes[%s]: %s"%(site, self.heroes[site])
 
 	def createSiteLine(self, hbox, site):
                 cb = gtk.CheckButton(site)
@@ -246,6 +250,7 @@ class GuiGraphViewer (threading.Thread):
 		self.conf = config
 
 		self.sites = "PokerStars"
+		self.heroes = {}
 
 		# For use in date ranges.
 		self.start_date = gtk.Entry(max=12)
