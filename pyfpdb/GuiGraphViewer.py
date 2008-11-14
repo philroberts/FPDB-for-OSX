@@ -39,18 +39,21 @@ import fpdb_db
 class GuiGraphViewer (threading.Thread):
 	def get_vbox(self):
 		"""returns the vbox of this thread"""
-		return self.mainVBox
+		return self.mainHBox
 	#end def get_vbox
 	
-	def showClicked(self, widget, data):
+	def generateGraph(self, widget, data):
 		try: self.canvas.destroy()
 		except AttributeError: pass
 
-		name=self.nameEntry.get_text()
+		# Whaich sites are selected?
+		# TODO:
+		# What hero names for the selected site?
+		# TODO:
+
+		name = "s0rrow"
 		
-		site=self.siteEntry.get_text()
-		
-		if site=="PS":
+		if self.sites == "PokerStars":
 			site=2
 			sitename="PokerStars: "
 		elif site=="FTP":
@@ -88,7 +91,7 @@ class GuiGraphViewer (threading.Thread):
 		self.ax.plot(line,)
 
 		self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
-		self.mainVBox.pack_start(self.canvas)
+		self.graphBox.add(self.canvas)
 		self.canvas.show()
 	#end of def showClicked
 
@@ -110,6 +113,125 @@ class GuiGraphViewer (threading.Thread):
                 return line/100
         #end of def getRingProfitGraph
 
+	def createPlayerLine(self, hbox, site, player):
+		label = gtk.Label(site +" id:")
+		hbox.pack_start(label, False, False, 0)
+		label.show()
+
+		pname = gtk.Entry()
+		pname.set_text(player)
+		pname.set_width_chars(20)
+		hbox.pack_start(pname, False, True, 0)
+		#TODO: Need to connect a callback here
+#		pname.connect("somthing", __set_hero_name, site)
+		pname.show()
+
+	def __set_hero_name(self, w, site):
+		self.heroes[site] = w.get_text()
+
+	def createSiteLine(self, hbox, site):
+                cb = gtk.CheckButton(site)
+		cb.connect('clicked', self.__set_site_select, site)
+		hbox.pack_start(cb, False, False, 0)
+                cb.show()
+
+	def __set_site_select(self, w, site):
+		# This doesn't behave as intended - self.site only allows 1 site for the moment.
+		self.sites = site
+		print "self.sites set to %s" %(self.sites)
+
+	def fillPlayerFrame(self, vbox):
+		for site in self.conf.supported_sites.keys():
+			pathHBox = gtk.HBox(False, 0)
+			vbox.pack_start(pathHBox, False, True, 0)
+			pathHBox.show()
+
+			player = self.conf.supported_sites[site].screen_name
+			self.createPlayerLine(pathHBox, site, player)
+
+	def fillSitesFrame(self, vbox):
+		for site in self.conf.supported_sites.keys():
+                        hbox = gtk.HBox(False, 0)
+                        vbox.pack_start(hbox, False, True, 0)
+                        hbox.show()
+			self.createSiteLine(hbox, site)
+
+	def fillDateFrame(self, vbox):
+		# Hat tip to Mika Bostrom - calendar code comes from PokerStats
+		hbox = gtk.HBox()
+		vbox.pack_start(hbox, False, True, 0)
+		hbox.show()
+
+		lbl_start = gtk.Label('From:')
+		lbl_start.show()
+
+		btn_start = gtk.Button()
+		btn_start.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
+		btn_start.connect('clicked', self.__calendar_dialog, self.start_date)
+		btn_start.show()
+
+		hbox.pack_start(lbl_start, expand=False, padding=3)
+		hbox.pack_start(btn_start, expand=False, padding=3)
+		hbox.pack_start(self.start_date, expand=False, padding=2)
+		self.start_date.show()
+
+		#New row for end date
+		hbox = gtk.HBox()
+		vbox.pack_start(hbox, False, True, 0)
+		hbox.show()
+
+	        lbl_end = gtk.Label('  To:')
+		lbl_end.show()
+		btn_end = gtk.Button()
+		btn_end.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
+		btn_end.connect('clicked', self.__calendar_dialog, self.end_date)
+		btn_end.show()
+
+		btn_clear = gtk.Button(label=' Clear Dates ')
+		btn_clear.connect('clicked', self.__clear_dates)
+		btn_clear.show()
+
+		hbox.pack_start(lbl_end, expand=False, padding=3)
+		hbox.pack_start(btn_end, expand=False, padding=3)
+		hbox.pack_start(self.end_date, expand=False, padding=2)
+		self.end_date.show()
+
+		hbox.pack_start(btn_clear, expand=False, padding=15)
+
+	def __calendar_dialog(self, widget, entry):
+		d = gtk.Window(gtk.WINDOW_TOPLEVEL)
+		d.set_title('Pick a date')
+
+		vb = gtk.VBox()
+		cal = gtk.Calendar()
+		vb.pack_start(cal, expand=False, padding=0)
+
+		btn = gtk.Button('Done')
+		btn.connect('clicked', self.__get_date, cal, entry, d)
+
+		vb.pack_start(btn, expand=False, padding=4)
+
+		d.add(vb)
+		d.set_position(gtk.WIN_POS_MOUSE)
+		d.show_all()
+
+	def __clear_dates(self, w):
+		self.start_date.set_text('')
+		self.end_date.set_text('')
+
+	def __get_dates(self):
+		t1 = self.start_date.get_text()
+		t2 = self.end_date.get_text()
+		return (t1, t2)
+
+	def __get_date(self, widget, calendar, entry, win):
+# year and day are correct, month is 0..11
+		(year, month, day) = calendar.get_date()
+		month += 1
+		ds = '%04d-%02d-%02d' % (year, month, day)
+		entry.set_text(ds)
+		win.destroy()
+
 	def __init__(self, db, settings, querylist, config, debug=True):
 		"""Constructor for GraphViewer"""
 		self.debug=debug
@@ -118,37 +240,72 @@ class GuiGraphViewer (threading.Thread):
 		self.cursor=db.cursor
 		self.settings=settings
 		self.sql=querylist
-        
-		self.mainVBox = gtk.VBox(False, 0)
-		self.mainVBox.show()
-		
-		self.settingsHBox = gtk.HBox(False, 0)
-		self.mainVBox.pack_start(self.settingsHBox, False, True, 0)
-		self.settingsHBox.show()
-		
-		self.nameLabel = gtk.Label("Name of the player to be graphed:")
-		self.settingsHBox.pack_start(self.nameLabel)
-		self.nameLabel.show()
-		
-		self.nameEntry=gtk.Entry()
-		self.nameEntry.set_text("name")
-		self.settingsHBox.pack_start(self.nameEntry)
-		self.nameEntry.show()
-		
-		self.siteLabel = gtk.Label("Site (PS or FTP):")
-		self.settingsHBox.pack_start(self.siteLabel)
-		self.siteLabel.show()
-		
-		self.siteEntry=gtk.Entry()
-		self.siteEntry.set_text("PS")
-		self.settingsHBox.pack_start(self.siteEntry)
-		self.siteEntry.show()
+		self.conf = config
 
+		self.sites = "PokerStars"
+
+		# For use in date ranges.
+		self.start_date = gtk.Entry(max=12)
+		self.end_date = gtk.Entry(max=12)
+		self.start_date.set_property('editable', False)
+		self.end_date.set_property('editable', False)
+        
+		self.mainHBox = gtk.HBox(False, 0)
+                self.mainHBox.show()
+
+		self.leftPanelBox = gtk.VBox(False, 0)
+                self.graphBox = gtk.VBox(False, 0)
+
+		self.hpane = gtk.HPaned()
+		self.hpane.pack1(self.leftPanelBox)
+		self.hpane.pack2(self.graphBox)
+		self.hpane.show()
+
+		self.mainHBox.add(self.hpane)
+
+		playerFrame = gtk.Frame("Hero:")
+                playerFrame.set_label_align(0.0, 0.0)
+                playerFrame.show()
+                vbox = gtk.VBox(False, 0)
+                vbox.show()
+
+		self.fillPlayerFrame(vbox)
+                playerFrame.add(vbox)
+
+                sitesFrame = gtk.Frame("Sites:")
+                sitesFrame.set_label_align(0.0, 0.0)
+                sitesFrame.show()
+                vbox = gtk.VBox(False, 0)
+                vbox.show()
+
+		self.fillSitesFrame(vbox)
+                sitesFrame.add(vbox)
+
+                dateFrame = gtk.Frame("Date:")
+                dateFrame.set_label_align(0.0, 0.0)
+                dateFrame.show()
+                vbox = gtk.VBox(False, 0)
+                vbox.show()
+
+		self.fillDateFrame(vbox)
+                dateFrame.add(vbox)
+
+                graphButton=gtk.Button("Generate Graph")
+                graphButton.connect("clicked", self.generateGraph, "cliced data")
+                graphButton.show()
+
+                self.exportButton=gtk.Button("Export to File")
+#@              self.exportButton.connect("clicked", self.exportGraph, "show clicked")
+                self.exportButton.show()
+
+                self.leftPanelBox.add(playerFrame)
+                self.leftPanelBox.add(sitesFrame)
+                self.leftPanelBox.add(dateFrame)
+                self.leftPanelBox.add(graphButton)
+                self.leftPanelBox.add(self.exportButton)
+
+                self.leftPanelBox.show()
+                self.graphBox.show()	
+	
 		#Note: Assumes PokerStars is in the config
-		self.nameEntry.set_text(config.supported_sites["PokerStars"].screen_name)
-		
-		self.showButton=gtk.Button("Show/Refresh")
-		self.showButton.connect("clicked", self.showClicked, "show clicked")
-		self.settingsHBox.pack_start(self.showButton)
- 		self.showButton.show()
-	#end of GuiGraphViewer.__init__
+	#	self.nameEntry.set_text(self.conf.supported_sites["PokerStars"].screen_name)
