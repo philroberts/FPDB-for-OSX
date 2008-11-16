@@ -59,6 +59,7 @@ class Hud:
 
         self.stat_windows = {}
         self.popup_windows = {}
+        self.aux_windows = []
         self.font = pango.FontDescription("Sans 8")
 
 #	Set up a main window for this this instance of the HUD
@@ -193,9 +194,11 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-        self.mucked_window = gtk.Window()
-        self.m = Mucked.Mucked(self.mucked_window, self.config, self.db_name)
-        self.mucked_window.show_all() 
+
+        game_params = config.get_game_parameters(self.poker_game)
+        if not game_params['aux'] == "":
+            aux_params = config.get_aux_parameters(game_params['aux'])
+            self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
@@ -216,7 +219,9 @@ class Hud:
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
-        self.m.update(hand)
+#        for m in self.aux_windows:
+#            m.update_data(hand)
+#            m.update_gui(hand)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
