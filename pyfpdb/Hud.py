@@ -132,13 +132,12 @@ class Hud:
                 self.stat_windows[w].window.move(self.stat_windows[w].x,
                                                  self.stat_windows[w].y)
     def save_layout(self, *args):
-        new_layout = []
+        new_layout = [(0, 0)] * self.max
 # todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
         for sw in self.stat_windows:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
-            new_layout.append(new_loc)
-#        print new_layout
+            new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
         self.config.save()
 
@@ -169,6 +168,7 @@ class Hud:
 
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
+        print "adj = ", adj
 
 #    create the stat windows
         for i in range(1, self.max + 1):           
@@ -182,6 +182,7 @@ class Hud:
                                                x = x,
                                                y = y,
                                                seat = i,
+                                               adj = adj[i], 
                                                player_id = 'fake',
                                                font = self.font)
 
@@ -313,10 +314,12 @@ class Stat_Window:
         self.y = y + self.table.y
         self.window.move(self.x, self.y)
 
-    def __init__(self, parent, game, table, seat, x, y, player_id, font):
+    def __init__(self, parent, game, table, seat, adj, x, y, player_id, font):
         self.parent = parent        # Hud object that this stat window belongs to
         self.game = game            # Configuration object for the curren
         self.table = table          # Table object where this is going
+        self.seat = seat            # seat number of his player
+        self.adj = adj              # the adjusted seat number for this player
         self.x = x + table.x        # table.x and y are the location of the table
         self.y = y + table.y        # x and y are the location relative to table.x & y
         self.player_id = player_id  # looks like this isn't used ;)
