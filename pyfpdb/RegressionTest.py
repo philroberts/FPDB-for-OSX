@@ -49,6 +49,7 @@ class TestSequenceFunctions(unittest.TestCase):
 					self.mysql_settings['db-password'])
 		self.mysqldict = FpdbSQLQueries.FpdbSQLQueries('MySQL InnoDB')
 		self.mysqlimporter = fpdb_import.Importer(self, self.mysql_settings, self.c)
+		self.mysqlimporter.setCallHud(False)
 
 #		"""Configure Postgres settings/database and establish connection"""
 #		self.pg_settings={ 'db-host':"localhost", 'db-backend':3, 'db-databaseName':"fpdbtest", 'db-user':"fpdb", 'db-password':"fpdb"}
