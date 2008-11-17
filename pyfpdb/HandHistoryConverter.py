@@ -64,6 +64,7 @@ class HandHistoryConverter:
 		for hand in self.hands:
 			self.readHandInfo(hand)
 			self.readPlayerStacks(hand)
+			self.markStreets(hand)
 			self.readBlinds(hand)
 			self.readHeroCards(hand)
 			if(hand.involved == True):
@@ -87,12 +88,14 @@ class HandHistoryConverter:
 	# [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
 	def readPlayerStacks(self, hand): abstract
 
+	def markStreets(hand): abstract
+
 	#Needs to return a list in the format
 	# ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
 	# addtional players are assumed to post a bb oop
 	def readBlinds(self, hand): abstract
 	def readHeroCards(self, hand): abstract
-	def readAction(self): abstract
+	def readAction(self, hand, street): abstract
 
 	def sanityCheck(self):
 		sane = False
@@ -167,7 +170,7 @@ class HandHistoryConverter:
 ##		ACTION STUFF
 #
 		print "*** SUMMARY ***"
-#		print "Total pot $" + totalpot + " | Rake $" + rake
+#		print "Total pot $%s | Rake $%s)" %(hand.totalpot  $" + hand.rake)
 #		print "Board [" + boardcards + "]"
 #
 ##		SUMMARY STUFF
@@ -195,6 +198,9 @@ class Hand:
 	self.gametype = gametype
 	self.string = string
 
+	self.streets = {} # Index into string for where street starts { 'RIVER': 49 }
+			  # Value in characters.
+
 	self.handid = 0
 	self.sb = gametype[3]
 	self.bb = gametype[4]
@@ -209,6 +215,8 @@ class Hand:
 	self.hero = "Hiro"
 	self.holecards = "Xx Xx"
 	self.action = []
+	self.totalpot = 0
+	self.rake = 0
 
     def printHand(self):
 	print self.sitename
@@ -226,3 +234,4 @@ class Hand:
 	print self.posted
 	print self.action
 	print self.involved
+	print self.hero

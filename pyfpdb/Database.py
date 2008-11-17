@@ -142,6 +142,16 @@ class Database:
             cards[s_dict['seat_number']] = s_dict
         return (cards)
 
+    def get_action_from_hand(self, hand_no):
+        action = [ [], [], [], [], [] ]
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_action_from_hand'], (hand_no))
+        for row in c.fetchall():
+            street = row[0]
+            act = row[1:]
+            action[street].append(act)
+        return action
+                
     def get_stats_from_hand(self, hand, aggregate = False):
         c = self.connection.cursor()
 

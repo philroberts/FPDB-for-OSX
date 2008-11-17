@@ -159,37 +159,56 @@ class MuckedCards:
         self.parent.add(self.grid)
 
     def translate_cards(self, old_cards):
-        pass
+        ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
+
+        for c in old_cards.keys():
+            for i in range(1, 8):
+                rank = 'card' + str(i) + 'Value'
+                suit = 'card' + str(i) + 'Suit'
+                key = 'hole_card_' + str(i)
+                if old_cards[c][rank] == 0:
+                    old_cards[c][key] = 'xx'
+                else:
+                    old_cards[c][key] = ranks[old_cards[c][rank]] + old_cards[c][suit]
+        return old_cards
 
     def update(self, new_hand_id):
         cards = self.db_connection.get_cards(new_hand_id)
         self.clear()
-
         cards = self.translate_cards(cards)
         for c in cards.keys():
             self.grid_contents[(1, cards[c]['seat_number'] - 1)].set_text(cards[c]['screen_name'])
-
             for i in ((0, 'hole_card_1'), (1, 'hole_card_2'), (2, 'hole_card_3'), (3, 'hole_card_4'), 
                       (4, 'hole_card_5'), (5, 'hole_card_6'), (6, 'hole_card_7')):
-                if not cards[c][i[1]] == "":
+                if not cards[c][i[1]] == "xx":
                     self.seen_cards[(i[0], cards[c]['seat_number'] - 1)]. \
                         set_from_pixbuf(self.card_images[self.split_cards(cards[c][i[1]])])
-                        
-        xml_text = self.db_connection.get_xml(new_hand_id)
-        hh = HandHistory.HandHistory(xml_text, ('BETTING'))
 
-#    action in tool tips for 3rd street cards
-        tip = "%s" % hh.BETTING.rounds[0]
+        tips = []
+        action = self.db_connection.get_action_from_hand(new_hand_id)
+        for street in action:
+            temp = ''
+            for act in street:
+                temp = temp + act[0] + " " + act[1] + "s "
+                if act[2] > 0:
+                    if act[2]%100 > 0:
+                        temp = temp + "%4.2f\n" % (float(act[2])/100)
+                    else:
+                        temp = temp + "%d\n" % (act[2]/100) 
+                else:
+                    temp = temp + "\n"
+            tips.append(temp)
+
+##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
-                self.eb[(c, r)].set_tooltip_text(tip)
+                self.eb[(c, r)].set_tooltip_text(tips[0])
 
 #    action in tools tips for later streets
         round_to_col = (0, 3, 4, 5, 6)
-        for round in range(1, len(hh.BETTING.rounds)):
-            tip = "%s" % hh.BETTING.rounds[round]
+        for round in range(1, len(tips)):
             for r in range(0, self.rows):
-                self.eb[(round_to_col[round], r)].set_tooltip_text(tip)
+                self.eb[(round_to_col[round], r)].set_tooltip_text(tips[round])
 
     def split_cards(self, card):
         return (card[0], card[1].upper())
@@ -230,7 +249,6 @@ if __name__== "__main__":
 
     config = Configuration.Config()
     db_connection = Database.Database(config, 'fpdb', '')
-   
     main_window = gtk.Window()
     main_window.set_keep_above(True)
     main_window.connect("destroy", destroy)
@@ -239,5 +257,4 @@ if __name__== "__main__":
     main_window.show_all()
     
     s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand)
-    
     gtk.main()

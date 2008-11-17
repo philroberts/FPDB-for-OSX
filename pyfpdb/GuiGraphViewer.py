@@ -60,7 +60,7 @@ class GuiGraphViewer (threading.Thread):
 		if self.sites == "PokerStars":
 			site=2
 			sitename="PokerStars: "
-		elif site=="FTP":
+		elif self.sites=="Full Tilt":
 			site=1
 			sitename="Full Tilt: "
 		else:

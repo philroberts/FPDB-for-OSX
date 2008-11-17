@@ -351,15 +351,15 @@ class Sql:
                     order by seatNo
                 """
 
-#            self.query['get_hand_info'] = """
-#                    SELECT 
-#                        game_id, 
-#                        CONCAT(hole_card_1, hole_card_2, hole_card_3, hole_card_4, hole_card_5, hole_card_6, hole_card_7) AS hand,  
-#                        total_won-total_bet AS net
-#                    FROM game_players 
-#                    WHERE game_id = %s AND player_id = 3
-#                """
-
+            self.query['get_action_from_hand'] = """
+                SELECT street, Players.name, HandsActions.action, HandsActions.amount, actionno
+                FROM Players, HandsActions, HandsPlayers
+                WHERE HandsActions.action != 'blind'
+                AND HandsPlayers.handid = %s
+                AND HandsPlayers.playerid = Players.id
+                AND HandsActions.handPlayerId = HandsPlayers.id
+                ORDER BY street, actionno
+            """
 if __name__== "__main__":
 #    just print the default queries and exit
     s = Sql(game = 'razz', type = 'ptracks')
