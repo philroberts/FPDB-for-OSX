@@ -229,6 +229,7 @@ def discover_nt_by_name(c, tablename):
         if titles[hwnd].find(tablename) == -1: continue
         if titles[hwnd].find("History for table:") > -1: continue
         if titles[hwnd].find("HUD:") > -1: continue
+        if titles[hwnd].find("Chat:") > -1: continue
         return decode_windows(c, titles[hwnd], hwnd)
     return False
 
@@ -428,7 +429,7 @@ def discover_mac_by_name(c, tablename):
 if __name__=="__main__":
     c = Configuration.Config()
 
-    print discover_table_by_name(c, "Ostara V")
+    print discover_table_by_name(c, "Howard Lederer")
     print discover_tournament_table(c, "118942908", "3")
 
     tables = discover(c)
