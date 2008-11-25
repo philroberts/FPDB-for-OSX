@@ -221,6 +221,8 @@ class Hud:
                         self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                         
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                    if statstring != "xxx":
+                        self.stat_windows[stat_dict[s]['seat']].window.show_all()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
@@ -377,6 +379,7 @@ class Stat_Window:
         self.window.show_all()
 #    set_keep_above(1) for windows
         if os.name == 'nt': self.topify_window(self.window)
+        self.window.hide()
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
