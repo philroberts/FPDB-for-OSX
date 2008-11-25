@@ -288,6 +288,7 @@ class Stat_Window:
                     self.double_click(widget, event, *args)
 
         if event.button == 2:   # middle button event
+            self.window.hide()
 #            print "middle button clicked"
             pass
 
