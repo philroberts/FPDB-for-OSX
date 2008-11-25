@@ -60,7 +60,7 @@ class Hud:
         self.stat_windows = {}
         self.popup_windows = {}
         self.aux_windows = []
-        self.font = pango.FontDescription("Sans 8")
+        self.font = pango.FontDescription("Sans 7")
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
@@ -215,6 +215,11 @@ class Hud:
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
+                    
+                    if this_stat.hudcolor != "":
+                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                        self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                        
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
@@ -361,7 +366,7 @@ class Stat_Window:
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-#                font = pango.FontDescription("Sans 8")
+                font = pango.FontDescription("Sans 7")
                 self.label[r][c].modify_font(font)
 
 #        if not os.name == 'nt':  # seems to be a bug in opacity on windows
@@ -564,7 +569,7 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Chelsea")
+    t = Tables.discover_table_by_name(c, "Motorway")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')

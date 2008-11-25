@@ -114,6 +114,7 @@ class Game:
             stat.popup     = stat_node.getAttribute("popup")
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
+            stat.hudcolor  = stat_node.getAttribute("hudcolor")
             
             self.stats[stat.stat_name] = stat
             
