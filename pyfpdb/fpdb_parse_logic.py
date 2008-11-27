@@ -42,6 +42,8 @@ def mainParser(db, cursor, site, category, hand):
 	smallBlindLine=0
 	for i in range(len(hand)):
 		if hand[i].find("posts small blind")!=-1 or hand[i].find("posts the small blind")!=-1:
+			if hand[i][-2:] == "$0":
+				continue
 			smallBlindLine=i
 			#print "found small blind line:",smallBlindLine
 			break

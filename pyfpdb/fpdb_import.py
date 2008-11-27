@@ -248,14 +248,14 @@ class Importer:
 						duplicates+=1
 					except (ValueError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, file, hand[0])
+						self.printEmailErrorMessage(errors, file, hand)
 				
 						if (self.settings['failOnError']):
 							self.db.commit() #dont remove this, in case hand processing was cancelled.
 							raise
 					except (fpdb_simple.FpdbError), fe:
 						errors+=1
-						self.printEmailErrorMessage(errors, file, hand[0])
+						self.printEmailErrorMessage(errors, file, hand)
 
 						#fe.printStackTrace() #todo: get stacktrace
 						self.db.rollback()
@@ -302,7 +302,12 @@ class Importer:
 		print "Filename:", filename
 		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
 		print self.hand[0]
-	
+		print "Hand logged to hand-errors.txt"
+		logfile = open('hand-errors.txt', 'a')
+		for s in self.hand:
+			logfile.write(str(s) + "\n")
+		logfile.write("\n")
+		logfile.close()
 
 if __name__ == "__main__":
 	print "CLI for fpdb_import is now available as CliFpdb.py"

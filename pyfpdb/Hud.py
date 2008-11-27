@@ -375,7 +375,7 @@ class Stat_Window:
 #        if not os.name == 'nt':  # seems to be a bug in opacity on windows
         self.window.set_opacity(parent.colors['hudopacity'])
         
-        self.window.realize()
+#        self.window.realize()
         self.window.move(self.x, self.y)
 #        self.window.show_all()
 #    set_keep_above(1) for windows
