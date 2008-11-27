@@ -54,7 +54,8 @@ def checkPositions(positions):
 			pass
 		
 		### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
-		if (pos!="B" and pos!="S" and pos!=0 and pos!=1 and pos!=2 and pos!=3 and pos!=4 and pos!=5 and pos!=6 and pos!=7 and pos!=9):
+		### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
+		if not (pos == "B" or pos == "S" or (pos >= 0 and pos <= 9)):
 			raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+str(pos))
 #end def fpdb_simple.checkPositions
 
@@ -892,6 +893,11 @@ def parsePositions (hand, names):
 		sbExists=False
 	if (bb!=-1):
 		bb=recognisePlayerNo(bb, names, "bet")
+		
+	print "sb = ", sb, "bb = ", bb
+	if bb == sb:
+		sbExists = False
+		sb = -1
 	
 	#write blinds into array
 	if (sbExists):
@@ -928,6 +934,7 @@ def parsePositions (hand, names):
 			print "parsePositions names:",names
 			print "result:",positions
 			raise FpdbError ("failed to read positions")
+	print str(positions), "\n"
 	return positions
 #end def parsePositions
 
@@ -1676,7 +1683,7 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 				hudDataPositions.append('C')
 			elif pos>=2 and pos<=4:
 				hudDataPositions.append('M')
-			elif pos>=5 and pos<=7:
+			elif pos>=5 and pos<=8:
 				hudDataPositions.append('E')
 			### RHH Added this elif to handle being a dead hand before the BB (pos==9)
 			elif pos==9:

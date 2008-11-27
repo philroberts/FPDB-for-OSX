@@ -31,6 +31,7 @@ try:
 except:
 	pass
 
+import traceback
 import math
 import os
 import datetime
@@ -298,6 +299,7 @@ class Importer:
 		
 
 	def printEmailErrorMessage(self, errors, filename, line):
+		traceback.print_exc(file=sys.stderr)
 		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
 		print "Filename:", filename
 		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"

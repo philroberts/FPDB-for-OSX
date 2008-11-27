@@ -440,7 +440,7 @@ class Popup_window:
         self.lab.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
         self.lab.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))        
         
-        self.window.realize
+#        self.window.realize()
 
 #    figure out the row, col address of the click that activated the popup
         row = 0
