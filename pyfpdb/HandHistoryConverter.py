@@ -48,10 +48,10 @@ class HandHistoryConverter:
 		tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
 		tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
 #		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
-		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
+#		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
+#		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
+#		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
+#		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
 		return tmp
 
 	def processFile(self):
@@ -153,6 +153,10 @@ class HandHistoryConverter:
 
 	def writeHand(self, file, hand):
 		"""Write out parsed data"""
+		print "DEBUG: *************************"
+		print "DEBUG: Start of print hand"
+		print "DEBUG: *************************"
+
 		print "%s Game #%s: %s ($%s/$%s) - %s" %(hand.sitename, hand.handid, "XXXXhand.gametype", hand.sb, hand.bb, hand.starttime)
 		print "Table '%s' %d-max Seat #%s is the button" %(hand.tablename, hand.maxseats, hand.buttonpos)
 
@@ -174,12 +178,41 @@ class HandHistoryConverter:
 		print "Dealt to %s [%s]" %(hand.hero ,hand.holecards)
 #
 ##		ACTION STUFF
-#
+#		This is no limit only at the moment
+		
+		for act in hand.actions['PREFLOP']:
+			self.printActionLine(act, 0)
+
+		if 'FLOP' in hand.actions:
+			print "*** FLOP *** [%s]" %("XXXXX Flop cards XXXXXX")
+			for act in hand.actions['FLOP']:
+				self.printActionLine(act, 0)
+
+		if 'TURN' in hand.actions:
+			print "*** TURN *** [%s] [%s]" %("XXXXX Flop cards XXXXXX", "XXXXX Turn Card XXXXX")
+			for act in hand.actions['TURN']:
+				self.printActionLine(act, 0)
+
+		if 'RIVER' in hand.actions:
+			print "*** RIVER *** [%s %s] [%s]" %("XXXXX Flop cards XXXXXX", "XXXXX Turn Card XXXXX", "XXXXX River Card XXXXX")
+			for act in hand.actions['RIVER']:
+				self.printActionLine(act, 0)
+
 		print "*** SUMMARY ***"
+		print "XXXXXXXXXXXX Need sumary info XXXXXXXXXXX"
 #		print "Total pot $%s | Rake $%s)" %(hand.totalpot  $" + hand.rake)
 #		print "Board [" + boardcards + "]"
 #
-##		SUMMARY STUFF
+#		SUMMARY STUFF
+
+
+	def printActionLine(self, act, pot):
+		if act[1] == 'folds' or act[1] == 'checks':
+			print "%s: %s" %(act[0], act[1])
+		if act[1] == 'calls':
+			print "%s: %s $%s" %(act[0], act[1], act[2])
+		if act[1] == 'raises':
+			print "%s: %s $%s to XXXpottotalXXX" %(act[0], act[1], act[2])
 
 #takes a poker float (including , for thousand seperator and converts it to an int
 	def float2int (self, string):
@@ -205,7 +238,7 @@ class Hand:
 	self.string = string
 
 	self.streets = None # A MatchObject using a groupnames to identify streets.
-	self.actions = None
+	self.actions = {}
 
 	self.handid = 0
 	self.sb = gametype[3]

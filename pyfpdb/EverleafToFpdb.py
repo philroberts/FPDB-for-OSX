@@ -154,7 +154,6 @@ class Everleaf(HandHistoryConverter):
 
         def readAction(self, hand, street):
 		m = self.rexx.action_re.finditer(hand.streets.group(street))
-		hand.actions = {}
 		hand.actions[street] = []
 		for action in m:
 			if action.group('ATYPE') == 'raises' or action.group('ATYPE') == 'calls':
