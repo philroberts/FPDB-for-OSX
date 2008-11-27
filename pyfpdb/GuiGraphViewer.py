@@ -24,6 +24,8 @@ from time import time
 #import pokereval
 
 try:
+	import matplotlib
+	matplotlib.use('GTK')
 	from matplotlib.figure import Figure
 	from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
 	from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar

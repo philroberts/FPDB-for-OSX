@@ -83,6 +83,8 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
         gtk.gdk.threads_enter()
         try:
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
+            for m in hud_dict[table_name].aux_windows:
+                m.update_gui(new_hand_id)
             return False
         finally:
             gtk.gdk.threads_leave()
@@ -121,6 +123,9 @@ def read_stdin():            # This is the thread function
 
 #    if a hud for this CASH table exists, just update it
         if hud_dict.has_key(table_name):
+#    update the data for the aux_windows
+            for aw in hud_dict[table_name].aux_windows:
+                aw.update_data(new_hand_id)
             update_HUD(new_hand_id, table_name, config, stat_dict)
 #    if a hud for this TOURNAMENT table exists, just update it
         elif hud_dict.has_key(tour_number):

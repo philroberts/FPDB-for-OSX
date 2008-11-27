@@ -59,7 +59,8 @@ class Hud:
 
         self.stat_windows = {}
         self.popup_windows = {}
-        self.font = pango.FontDescription("Sans 8")
+        self.aux_windows = []
+        self.font = pango.FontDescription("Sans 7")
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
@@ -168,7 +169,6 @@ class Hud:
 
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
-        print "adj = ", adj
 
 #    create the stat windows
         for i in range(1, self.max + 1):           
@@ -194,9 +194,11 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-#        self.mucked_window = gtk.Window()
-#        self.m = Mucked.Mucked(self.mucked_window, self.db_connection)
-#        self.mucked_window.show_all() 
+
+        game_params = config.get_game_parameters(self.poker_game)
+        if not game_params['aux'] == "":
+            aux_params = config.get_aux_parameters(game_params['aux'])
+            self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
@@ -213,11 +215,20 @@ class Hud:
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
+                    
+                    if this_stat.hudcolor != "":
+                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                        self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                        
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                    if statstring != "xxx":
+                        self.stat_windows[stat_dict[s]['seat']].window.show_all()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
-#        self.m.update(hand)
+#        for m in self.aux_windows:
+#            m.update_data(hand)
+#            m.update_gui(hand)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
@@ -277,6 +288,7 @@ class Stat_Window:
                     self.double_click(widget, event, *args)
 
         if event.button == 2:   # middle button event
+            self.window.hide()
 #            print "middle button clicked"
             pass
 
@@ -357,17 +369,18 @@ class Stat_Window:
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-#                font = pango.FontDescription("Sans 8")
+                font = pango.FontDescription("Sans 7")
                 self.label[r][c].modify_font(font)
 
 #        if not os.name == 'nt':  # seems to be a bug in opacity on windows
         self.window.set_opacity(parent.colors['hudopacity'])
         
-        self.window.realize
+#        self.window.realize()
         self.window.move(self.x, self.y)
-        self.window.show_all()
+#        self.window.show_all()
 #    set_keep_above(1) for windows
         if os.name == 'nt': self.topify_window(self.window)
+        self.window.hide()
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
@@ -427,7 +440,7 @@ class Popup_window:
         self.lab.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
         self.lab.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))        
         
-        self.window.realize
+#        self.window.realize()
 
 #    figure out the row, col address of the click that activated the popup
         row = 0
@@ -560,7 +573,7 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Chelsea")
+    t = Tables.discover_table_by_name(c, "Motorway")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')

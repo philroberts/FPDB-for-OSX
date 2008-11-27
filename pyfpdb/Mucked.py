@@ -41,30 +41,47 @@ import Configuration
 import Database
 import Tables
 import Hud
-import Mucked
 import HandHistory
 
-class Mucked:
-    def __init__(self, parent, db_connection):
-
-        self.parent        = parent    #this is the parent of the mucked cards widget
-        self.db_connection = db_connection
+class Aux_Window:
+    def __init__(self, parent, config, db_name):
+        self.config  = config
+        self.parent  = parent    #this is the parent of the mucked cards widget
+        self.db_name = db_name
 
         self.vbox = gtk.VBox()
         self.parent.add(self.vbox)
 
-        self.mucked_list   = MuckedList (self.vbox, db_connection)
-        self.mucked_cards  = MuckedCards(self.vbox, db_connection)
+    def update(self):
+        pass
+
+class Stud_mucked(Aux_Window):
+    def __init__(self, parent, config, db_name):
+
+        self.config  = config
+        self.parent  = parent    #this is the parent of the mucked cards widget
+        self.db_name = db_name
+
+        self.vbox = gtk.VBox()
+        self.parent.add(self.vbox)
+
+        self.mucked_list   = Stud_list(self.vbox, config, db_name)
+        self.mucked_cards  = Stud_cards(self.vbox, config, db_name)
         self.mucked_list.mucked_cards = self.mucked_cards
+        self.parent.show_all()
 
-    def update(self, new_hand_id):
-        self.mucked_list.update(new_hand_id)
+    def update_data(self, new_hand_id):
+        self.mucked_list.update_data(new_hand_id)
         
-class MuckedList:
-    def __init__(self, parent, db_connection):
+    def update_gui(self, new_hand_id):
+        self.mucked_list.update_gui(new_hand_id)
+        
+class Stud_list:
+    def __init__(self, parent, config, db_name):
 
-        self.parent        = parent
-        self.db_connection = db_connection
+        self.parent  = parent
+        self.config  = config
+        self.db_name = db_name
 
 #       set up a scrolled window to hold the listbox
         self.scrolled_window = gtk.ScrolledWindow()
@@ -114,12 +131,26 @@ class MuckedList:
         vadj = self.scrolled_window.get_vadjustment()
         vadj.set_value(vadj.upper)
         self.mucked_cards.update(new_hand_id)
+        
+    def update_data(self, new_hand_id):
+        self.info_row = ((new_hand_id, "xxxx", 0), )
+        self.mucked_cards.update_data(new_hand_id)
 
-class MuckedCards:
-    def __init__(self, parent, db_connection):
+    def update_gui(self, new_hand_id):
+        iter = self.liststore.append(self.info_row[0]) 
+        sel = self.treeview.get_selection()
+        sel.select_iter(iter)
 
-        self.parent        = parent    #this is the parent of the mucked cards widget
-        self.db_connection = db_connection
+        vadj = self.scrolled_window.get_vadjustment()
+        vadj.set_value(vadj.upper)
+        self.mucked_cards.update_gui(new_hand_id)
+
+class Stud_cards:
+    def __init__(self, parent, config, db_name = 'fpdb'):
+
+        self.parent  = parent    #this is the parent of the mucked cards widget
+        self.config  = config
+        self.db_name = db_name
 
         self.card_images = self.get_card_images()
         self.seen_cards = {}
@@ -173,7 +204,8 @@ class MuckedCards:
         return old_cards
 
     def update(self, new_hand_id):
-        cards = self.db_connection.get_cards(new_hand_id)
+        db_connection = Database.Database(self.config, 'fpdb', '')
+        cards = db_connection.get_cards(new_hand_id)
         self.clear()
         cards = self.translate_cards(cards)
         for c in cards.keys():
@@ -185,7 +217,7 @@ class MuckedCards:
                         set_from_pixbuf(self.card_images[self.split_cards(cards[c][i[1]])])
 
         tips = []
-        action = self.db_connection.get_action_from_hand(new_hand_id)
+        action = db_connection.get_action_from_hand(new_hand_id)
         for street in action:
             temp = ''
             for act in street:
@@ -209,6 +241,48 @@ class MuckedCards:
         for round in range(1, len(tips)):
             for r in range(0, self.rows):
                 self.eb[(round_to_col[round], r)].set_tooltip_text(tips[round])
+        db_connection.close_connection()
+
+    def update_data(self, new_hand_id):
+        db_connection = Database.Database(self.config, 'fpdb', '')
+        cards = db_connection.get_cards(new_hand_id)
+        self.clear()
+        self.cards = self.translate_cards(cards)
+
+        self.tips = []
+        action = db_connection.get_action_from_hand(new_hand_id)
+        for street in action:
+            temp = ''
+            for act in street:
+                temp = temp + act[0] + " " + act[1] + "s "
+                if act[2] > 0:
+                    if act[2]%100 > 0:
+                        temp = temp + "%4.2f\n" % (float(act[2])/100)
+                    else:
+                        temp = temp + "%d\n" % (act[2]/100) 
+                else:
+                    temp = temp + "\n"
+            self.tips.append(temp)
+        db_connection.close_connection()
+
+    def update_gui(self, new_hand_id):
+        for c in self.cards.keys():
+            self.grid_contents[(1, self.cards[c]['seat_number'] - 1)].set_text(self.cards[c]['screen_name'])
+            for i in ((0, 'hole_card_1'), (1, 'hole_card_2'), (2, 'hole_card_3'), (3, 'hole_card_4'), 
+                      (4, 'hole_card_5'), (5, 'hole_card_6'), (6, 'hole_card_7')):
+                if not self.cards[c][i[1]] == "xx":
+                    self.seen_cards[(i[0], self.cards[c]['seat_number'] - 1)]. \
+                        set_from_pixbuf(self.card_images[self.split_cards(self.cards[c][i[1]])])
+##    action in tool tips for 3rd street cards
+        for c in (0, 1, 2):
+            for r in range(0, self.rows):
+                self.eb[(c, r)].set_tooltip_text(self.tips[0])
+
+#    action in tools tips for later streets
+        round_to_col = (0, 3, 4, 5, 6)
+        for round in range(1, len(self.tips)):
+            for r in range(0, self.rows):
+                self.eb[(round_to_col[round], r)].set_tooltip_text(self.tips[round])
 
     def split_cards(self, card):
         return (card[0], card[1].upper())
@@ -244,16 +318,18 @@ if __name__== "__main__":
 #    just read it and pass it to update
         new_hand_id = sys.stdin.readline()
         new_hand_id = new_hand_id.rstrip()  # remove trailing whitespace
-        m.update(new_hand_id)
+        m.update_data(new_hand_id)
+        m.update_gui(new_hand_id)
         return(True)
 
     config = Configuration.Config()
-    db_connection = Database.Database(config, 'fpdb', '')
+#    db_connection = Database.Database(config, 'fpdb', '')
     main_window = gtk.Window()
     main_window.set_keep_above(True)
     main_window.connect("destroy", destroy)
 
-    m = Mucked(main_window, db_connection)
+    aux_to_call = "Stud_mucked"
+    m = eval("%s(main_window, config, 'fpdb')" % aux_to_call)
     main_window.show_all()
     
     s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand)

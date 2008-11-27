@@ -58,6 +58,7 @@ class Site:
         self.hudfgcolor   = node.getAttribute("fgcolor")
         self.converter    = node.getAttribute("converter")
         self.enabled      = node.getAttribute("enabled")
+        self.aux_window   = node.getAttribute("aux_window")
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):
@@ -100,6 +101,7 @@ class Game:
         self.db        = node.getAttribute("db")
         self.rows      = int( node.getAttribute("rows") )
         self.cols      = int( node.getAttribute("cols") )
+        self.aux       = node.getAttribute("aux")
 
         self.stats     = {}
         for stat_node in node.getElementsByTagName('stat'):
@@ -112,6 +114,7 @@ class Game:
             stat.popup     = stat_node.getAttribute("popup")
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
+            stat.hudcolor  = stat_node.getAttribute("hudcolor")
             
             self.stats[stat.stat_name] = stat
             
@@ -120,6 +123,7 @@ class Game:
         temp = temp + "    db = %s\n" % self.db
         temp = temp + "    rows = %d\n" % self.rows
         temp = temp + "    cols = %d\n" % self.cols
+        temp = temp + "    aux = %s\n" % self.aux
         
         for stat in self.stats.keys():
             temp = temp + "%s" % self.stats[stat]
@@ -144,18 +148,20 @@ class Database:
             temp = temp + '    ' + key + " = " + value + "\n"
         return temp
 
-class Mucked:
+class Aux_window:
     def __init__(self, node):
-        self.name    = node.getAttribute("mw_name")
-        self.cards   = node.getAttribute("deck")
-        self.card_wd = node.getAttribute("card_wd")
-        self.card_ht = node.getAttribute("card_ht")
-        self.rows    = node.getAttribute("rows")
-        self.cols    = node.getAttribute("cols")
-        self.format  = node.getAttribute("stud")
+        for (name, value) in node.attributes.items():
+            setattr(self, name, value)
+#        self.name    = node.getAttribute("mw_name")
+#        self.cards   = node.getAttribute("deck")
+#        self.card_wd = node.getAttribute("card_wd")
+#        self.card_ht = node.getAttribute("card_ht")
+#        self.rows    = node.getAttribute("rows")
+#        self.cols    = node.getAttribute("cols")
+#        self.format  = node.getAttribute("stud")
 
     def __str__(self):
-        temp = 'Mucked = ' + self.name + "\n"
+        temp = 'Aux = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
             value = getattr(self, key)
@@ -238,7 +244,7 @@ class Config:
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}
-        self.mucked_windows = {}
+        self.aux_windows = {}
         self.popup_windows = {}
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
@@ -257,9 +263,9 @@ class Config:
             self.supported_databases[db.db_name] = db
 
 #       s_dbs = doc.getElementsByTagName("mucked_windows")
-        for mw_node in doc.getElementsByTagName("mw"):
-            mw = Mucked(node = mw_node)
-            self.mucked_windows[mw.name] = mw
+        for aw_node in doc.getElementsByTagName("aw"):
+            aw = Aux_window(node = aw_node)
+            self.aux_windows[aw.name] = aw
 
 #        s_dbs = doc.getElementsByTagName("popup_windows")
         for pu_node in doc.getElementsByTagName("pu"):
@@ -503,6 +509,7 @@ class Config:
         parms["HH_path"]      = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
         parms["enabled"]      = self.supported_sites[site].enabled
+        parms["aux_window"]   = self.supported_sites[site].aux_window
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
@@ -537,6 +544,44 @@ class Config:
             if not enabled        == None: self.supported_sites[site].enabled = enabled
         return
 
+    def get_aux_windows(self):
+        """Gets the list of mucked window formats in the configuration."""
+        mw = []
+        for w in self.aux_windows.keys():
+            mw.append(w)
+        return mw
+
+    def get_aux_parameters(self, name):
+        """Gets a dict of mucked window parameters from the named mw."""
+        param = {}
+        if self.aux_windows.has_key(name):
+            for key in dir(self.aux_windows[name]):
+                if key.startswith('__'): continue
+                value = getattr(self.aux_windows[name], key)
+                if callable(value): continue
+                param[key] = value
+
+            return param
+        return None
+    
+    def get_game_parameters(self, name):
+        """Get the configuration parameters for the named game."""
+        param = {}
+        if self.supported_games.has_key(name):
+            param['game_name'] = self.supported_games[name].game_name
+            param['db']        = self.supported_games[name].db
+            param['rows']      = self.supported_games[name].rows
+            param['cols']      = self.supported_games[name].cols
+            param['aux']       = self.supported_games[name].aux
+        return param
+
+    def get_supported_games(self):
+        """Get the list of supported games."""
+        sg = []
+        for game in c.supported_games.keys():
+            sg.append(c.supported_games[game].game_name)
+        return sg
+
 if __name__== "__main__":
     c = Config()
     
@@ -557,15 +602,15 @@ if __name__== "__main__":
         print c.supported_databases[db]
     print "----------- END SUPPORTED DATABASES -----------"
 
-    print "\n----------- MUCKED WINDOW FORMATS -----------"
-    for w in c.mucked_windows.keys():
-        print c.mucked_windows[w]
-    print "----------- END MUCKED WINDOW FORMATS -----------"
+    print "\n----------- AUX WINDOW FORMATS -----------"
+    for w in c.aux_windows.keys():
+        print c.aux_windows[w]
+    print "----------- END AUX WINDOW FORMATS -----------"
     
     print "\n----------- POPUP WINDOW FORMATS -----------"
     for w in c.popup_windows.keys():
         print c.popup_windows[w]
-    print "----------- END MUCKED WINDOW FORMATS -----------"
+    print "----------- END POPUP WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
     tmp = c.get_import_parameters()
@@ -586,6 +631,12 @@ if __name__== "__main__":
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")
     print "locs   = ", c.get_locations("PokerStars", 8)
+    for mw in c.get_aux_windows():
+        print c.get_aux_parameters(mw)
+            
     for site in c.supported_sites.keys():
         print "site = ", site,
         print c.get_site_parameters(site)
+
+    for game in c.get_supported_games():
+        print c.get_game_parameters(game)
