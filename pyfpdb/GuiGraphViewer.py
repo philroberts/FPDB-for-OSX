@@ -98,18 +98,10 @@ class GuiGraphViewer (threading.Thread):
 	#end of def showClicked
 
 	def getRingProfitGraph(self, name, site):
-                #self.cursor.execute(self.sql.query['getRingWinningsAllGamesPlayerIdSite'], (name, site))
 		self.cursor.execute(self.sql.query['getRingProfitAllHandsPlayerIdSite'], (name, site))
 		#       returns (HandId,Winnings,Costs,Profit)
                 winnings = self.db.cursor.fetchall()
 
-#                profit=range(len(winnings))
-#                for i in profit:
-#                        self.cursor.execute(self.sql.query['getRingProfitFromHandId'], (name, winnings[i][0], site))
-#                        spent = self.db.cursor.fetchone()
-#                        profit[i]=(i, winnings[i][1]-spent[0])
-
-#                y=map(lambda x:float(x[1]), profit)
                 y=map(lambda x:float(x[3]), winnings)
                 line = cumsum(y)
                 return line/100
