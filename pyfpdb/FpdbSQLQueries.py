@@ -618,7 +618,7 @@ class FpdbSQLQueries:
 
 		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
 			self.query['getRingProfitAllHandsPlayerIdSite'] = """
-				SELECT hp.handId, hp.winnings, SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+				SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
 				FROM HandsPlayers hp
 				INNER JOIN Players pl      ON hp.playerId     = pl.id
 				INNER JOIN Hands h         ON h.id            = hp.handId
@@ -631,7 +631,7 @@ class FpdbSQLQueries:
 		elif(self.dbname == 'SQLite'):
 		#Probably doesn't work.
 			self.query['getRingProfitAllHandsPlayerIdSite'] = """
-				SELECT hp.handId, hp.winnings, SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+				SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
 				FROM HandsPlayers hp
 				INNER JOIN Players pl      ON hp.playerId     = pl.id
 				INNER JOIN Hands h         ON h.id            = hp.handId
