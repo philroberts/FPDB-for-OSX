@@ -67,6 +67,11 @@ class HandHistoryConverter:
 			self.markStreets(hand)
 			self.readBlinds(hand)
 			self.readHeroCards(hand)
+
+			# Read action (Note: no guarantee this is in hand order.
+			for street in hand.streets.groupdict():
+				self.readAction(hand, street)
+
 			if(hand.involved == True):
 				self.writeHand("output file", hand)
 			else:
@@ -88,7 +93,8 @@ class HandHistoryConverter:
 	# [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
 	def readPlayerStacks(self, hand): abstract
 
-	def markStreets(hand): abstract
+	# Needs to return a MatchObject with group names identifying the streets into the Hand object
+	def markStreets(self, hand): abstract
 
 	#Needs to return a list in the format
 	# ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
@@ -198,8 +204,8 @@ class Hand:
 	self.gametype = gametype
 	self.string = string
 
-	self.streets = {} # Index into string for where street starts { 'RIVER': 49 }
-			  # Value in characters.
+	self.streets = None # A MatchObject using a groupnames to identify streets.
+	self.actions = None
 
 	self.handid = 0
 	self.sb = gametype[3]

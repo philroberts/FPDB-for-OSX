@@ -74,7 +74,7 @@ class Everleaf(HandHistoryConverter):
 		self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[')
 		self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[')
 		self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLECARDS>.*) \]')
-		self.rexx.setActionStepRegex('^(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)((\s\$([.\d]+))?(\sto\s\$([.\d]+))?)?')
+		self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
 		self.rexx.compileRegexes()
 
         def readSupportedGames(self):
@@ -119,18 +119,12 @@ class Everleaf(HandHistoryConverter):
 
 		hand.players = players
 
-	def markStreets(self, hands):
+	def markStreets(self, hand):
 		# PREFLOP = ** Dealing down cards **
-#		m = re.search('(\*\* Dealing down cards \*\*)(?P<PREFLOP>.*)(\*\* Dealing Flop \*\*)?(?P<FLOP>.*)?(\*\* Dealing Turn \*\*)?(?P<TURN>.*)', hands.string,re.DOTALL)
-		m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\*)?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\*)?(?P<TURN>.*?\*\*)?( Dealing River \*\*)?(?P<RIVER>.*)', hands.string,re.DOTALL)
-		print "DEBUG: Group 1 = %s - %s - %s" %(m.group(1), m.start(1), len(hands.string))
-		print "DEBUG: Group 2 = %s - %s - %s" %(m.group(2), m.start(2), len(hands.string))
-		print "DEBUG: Group 3 = %s - %s - %s" %(m.group(3), m.start(3), len(hands.string))
-		print "DEBUG: Group 4 = %s - %s - %s" %(m.group(4), m.start(4), len(hands.string))
-		print "DEBUG: Group 5 = %s - %s - %s" %(m.group(5), m.start(5), len(hands.string))
-		print "DEBUG: Group 6 = %s - %s - %s" %(m.group(6), m.start(6), len(hands.string))
-		print "DEBUG: Group 7 = %s - %s - %s" %(m.group(7), m.start(7), len(hands.string))
-		print "DEBUG: Group 8 = %s - %s - %s" %(m.group(8), m.start(8), len(hands.string))
+		m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\*)?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\*)?(?P<TURN>.*?\*\*)?( Dealing River \*\*)?(?P<RIVER>.*)', hand.string,re.DOTALL)
+#		for street in m.groupdict():
+#			print "DEBUG: Street: %s\tspan: %s" %(street, str(m.span(street)))
+		hand.streets = m
 
         def readBlinds(self, hand):
 		try:
@@ -159,8 +153,15 @@ class Everleaf(HandHistoryConverter):
 			hand.holecards = hand.holecards.replace('t','T')
 
         def readAction(self, hand, street):
-		m = self.rexx.rexx.action_re.search(hand.obs)
-		print m.groups()
+		m = self.rexx.action_re.finditer(hand.streets.group(street))
+		hand.actions = {}
+		hand.actions[street] = []
+		for action in m:
+			if action.group('ATYPE') == 'raises' or action.group('ATYPE') == 'calls':
+				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE'), action.group('BET')]]
+			else:
+				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
+		print "DEBUG: readAction: %s " %(hand.actions)
 
 
 if __name__ == "__main__":
