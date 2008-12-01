@@ -22,6 +22,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os #todo: remove this once import_dir is in fpdb_import
+from time import time
 
 class GuiBulkImport (threading.Thread):
 	def import_dir(self):
@@ -29,8 +30,9 @@ class GuiBulkImport (threading.Thread):
 		self.path=self.inputFile
 		self.importer.addImportDirectory(self.path)
 		self.importer.setCallHud(False)
+		starttime = time()
 		self.importer.runImport()
-		print "GuiBulkImport.import_dir done"
+		print "GuiBulkImport.import_dir done in %s" %(time() - starttime)
 		
 	def load_clicked(self, widget, data=None):
 		self.inputFile=self.chooser.get_filename()
