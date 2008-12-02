@@ -5,17 +5,17 @@
 Main for FreePokerTools HUD.
 """
 #    Copyright 2008, Ray E. Barker
-#    
+#   
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#   
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#   
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -83,6 +83,8 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
         gtk.gdk.threads_enter()
         try:
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
+            for m in hud_dict[table_name].aux_windows:
+                m.update_gui(new_hand_id)
             return False
         finally:
             gtk.gdk.threads_leave()
@@ -92,7 +94,7 @@ def read_stdin():            # This is the thread function
     global hud_dict
 
     db_connection = Database.Database(config, db_name, 'temp')
-#    tourny_finder = re.compile('(\d+) (\d+)')
+    tourny_finder = re.compile('(\d+) (\d+)')
 
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
@@ -110,28 +112,32 @@ def read_stdin():            # This is the thread function
 
 #    find out if this hand is from a tournament
         is_tournament = False
-#        (t_number, s_number) = (0, 0)
-#        mat_obj = tourny_finder(table_name)
+        (tour_number, tab_number) = (0, 0)
+        mat_obj = tourny_finder.search(table_name)
 #        if len(mat_obj.groups) == 2:
-#            is_tournament = True
-#            (t_number, s_number) = mat_obj.group(1, 2)
-            
+        if mat_obj:
+            is_tournament = True
+            (tour_number, tab_number) = mat_obj.group(1, 2)
+           
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
 
 #    if a hud for this CASH table exists, just update it
         if hud_dict.has_key(table_name):
+#    update the data for the aux_windows
+            for aw in hud_dict[table_name].aux_windows:
+                aw.update_data(new_hand_id)
             update_HUD(new_hand_id, table_name, config, stat_dict)
 #    if a hud for this TOURNAMENT table exists, just update it
-#        elif hud_dict.has_key(t_number):
-#            update_HUD(new_hand_id, t_number, config, stat_dict)
-#        otherwise create a new hud
+        elif hud_dict.has_key(tour_number):
+            update_HUD(new_hand_id, tour_number, config, stat_dict)
+#    otherwise create a new hud
         else:
             if is_tournament:
-                tablewindow = Tables.discover_tournament_table(config, t_number, s_number)
+                tablewindow = Tables.discover_tournament_table(config, tour_number, tab_number)
                 if tablewindow == None:
-                    sys.stderr.write("table name "+table_name+" not found\n")
+                    sys.stderr.write("tournament %s,  table %s not found\n" % (tour_number, tab_number))
                 else:
-                    create_HUD(new_hand_id, tablewindow, db_name, t_number, max, poker_game, db_connection, config, stat_dict)
+                    create_HUD(new_hand_id, tablewindow, db_name, tour_number, max, poker_game, db_connection, config, stat_dict)
             else:
                 tablewindow = Tables.discover_table_by_name(config, table_name)
                 if tablewindow == None:
@@ -161,6 +167,5 @@ if __name__== "__main__":
     main_window.add(eb)
     main_window.set_title("HUD Main Window")
     main_window.show_all()
-    
+   
     gtk.main()
-

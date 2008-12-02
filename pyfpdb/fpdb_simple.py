@@ -484,7 +484,8 @@ def isActionLine(line):
 
 #returns whether this is a duplicate
 def isAlreadyInDB(cursor, gametypeID, siteHandNo):
-	cursor.execute ("SELECT id FROM Hands WHERE gametypeId=%s AND siteHandNo=%s", (gametypeID, siteHandNo))
+	#print "isAlreadyInDB gtid,shand:",gametypeID, siteHandNo
+        cursor.execute ("SELECT id FROM Hands WHERE gametypeId=%s AND siteHandNo=%s", (gametypeID, siteHandNo))
 	result=cursor.fetchall()
 	if (len(result)>=1):
 		raise DuplicateError ("dupl")
@@ -1021,7 +1022,7 @@ def recogniseCategory(line):
 #end def recogniseCategory
 
 #returns the int for the gametype_id for the given line
-def recogniseGametypeID(cursor, topline, smallBlindLine, site_id, category, isTourney):#todo: this method is messy
+def recogniseGametypeID(db, cursor, topline, smallBlindLine, site_id, category, isTourney):#todo: this method is messy
 	#if (topline.find("HORSE")!=-1):
 	#	raise FpdbError("recogniseGametypeID: HORSE is not yet supported.")
 	
@@ -1072,7 +1073,10 @@ def recogniseGametypeID(cursor, topline, smallBlindLine, site_id, category, isTo
 	else:
 		cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
 	result=cursor.fetchone()
-	#print "tried SELECTing gametypes.id, result:",result
+	#print "recgt1 result=",result
+        #ret=result[0]
+        #print "recgt1 ret=",ret
+        #print "tried SELECTing gametypes.id, result:",result
 	
 	try:
 		len(result)
@@ -1105,17 +1109,19 @@ def recogniseGametypeID(cursor, topline, smallBlindLine, site_id, category, isTo
 			cursor.execute("""INSERT INTO Gametypes
 			(siteId, type, base, category, limitType, hiLo, smallBlind, bigBlind, smallBet, bigBet)
 			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, base, category, limit_type, hiLo, small_blind, big_blind, small_bet, big_bet))
-			cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBet=%s AND bigBet=%s", (site_id, type, category, limit_type, small_bet, big_bet))
+			#cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBet=%s AND bigBet=%s", (site_id, type, category, limit_type, small_bet, big_bet))
 		else:
 			cursor.execute("""INSERT INTO Gametypes
 			(siteId, type, base, category, limitType, hiLo, smallBlind, bigBlind, smallBet, bigBet)
 			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", (site_id, type, base, category, limit_type, hiLo, small_bet, big_bet, 0, 0))#remember, for these bet means blind
-			cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
+			#cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
 
-		result=cursor.fetchone()
+		result=(db.insert_id(),)
+		#print "recgt2 result=",result
 		#print "created new gametypes.id:",result
 	
-	return result[0]
+	#print "recgt3: result=", result
+        return result[0]
 #end def recogniseGametypeID
 
 def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
@@ -1248,15 +1254,16 @@ def store_board_cards(cursor, hands_id, board_values, board_suits):
 	board_values[4], board_suits[4]))
 #end def store_board_cards
 
-def storeHands(cursor, site_hand_no, gametype_id, hand_start_time, names, tableName, maxSeats):
+def storeHands(db, cursor, site_hand_no, gametype_id, hand_start_time, names, tableName, maxSeats):
 #stores into table hands
 	cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats) VALUES (%s, %s, %s, %s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats))
 	#todo: find a better way of doing this...
-	cursor.execute("SELECT id FROM Hands WHERE siteHandNo=%s AND gametypeId=%s", (site_hand_no, gametype_id))
-	return cursor.fetchall()[0][0]
+	#cursor.execute("SELECT id FROM Hands WHERE siteHandNo=%s AND gametypeId=%s", (site_hand_no, gametype_id))
+	#return cursor.fetchall()[0][0]
+	return db.insert_id()  # mysql only
 #end def storeHands
 
-def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos):
+def store_hands_players_holdem_omaha(db, cursor, category, hands_id, player_ids, start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos):
 	result=[]
 	if (category=="holdem"):
 		for i in range (len(player_ids)):
@@ -1268,8 +1275,9 @@ def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, sta
 			(hands_id, player_ids[i], start_cashes[i], positions[i],
 			card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 			winnings[i], rakes[i], seatNos[i]))
-			cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
-			result.append(cursor.fetchall()[0][0])
+			#cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
+			#result.append(cursor.fetchall()[0][0])
+			result.append( db.insert_id() )  # mysql only
 	elif (category=="omahahi" or category=="omahahilo"):
 		for i in range (len(player_ids)):
 			cursor.execute ("""INSERT INTO HandsPlayers 
@@ -1281,14 +1289,15 @@ def store_hands_players_holdem_omaha(cursor, category, hands_id, player_ids, sta
 			card_values[i][0], card_suits[i][0], card_values[i][1],	card_suits[i][1],
 			card_values[i][2], card_suits[i][2], card_values[i][3],	card_suits[i][3],
 			winnings[i], rakes[i], seatNos[i]))
-			cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
-			result.append(cursor.fetchall()[0][0])
+			#cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
+			#result.append(cursor.fetchall()[0][0])
+			result.append( db.insert_id() )  # mysql only
 	else:
 		raise FpdbError("invalid category")
 	return result
 #end def store_hands_players_holdem_omaha
 
-def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
+def store_hands_players_stud(db, cursor, hands_id, player_ids, start_cashes, antes,
 			card_values, card_suits, winnings, rakes, seatNos):
 #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
 	result=[]
@@ -1307,12 +1316,14 @@ def store_hands_players_stud(cursor, hands_id, player_ids, start_cashes, antes,
 		card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
 		card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
 		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], seatNos[i]))
-		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
-		result.append(cursor.fetchall()[0][0])
+		#cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
+		#result.append(cursor.fetchall()[0][0])
+		result.append( db.insert_id() )  # mysql only
 	return result
 #end def store_hands_players_stud
 
-def store_hands_players_holdem_omaha_tourney(cursor, category, hands_id, player_ids, start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
+def store_hands_players_holdem_omaha_tourney(db, cursor, category, hands_id, player_ids, 
+          start_cashes, positions, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
 #stores hands_players for tourney holdem/omaha hands
 	result=[]
 	for i in range (len(player_ids)):
@@ -1338,13 +1349,14 @@ def store_hands_players_holdem_omaha_tourney(cursor, category, hands_id, player_
 			winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
 		else:
 			raise FpdbError ("invalid card_values length:"+str(len(card_values[0])))
-		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
-		result.append(cursor.fetchall()[0][0])
+		#cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
+		#result.append(cursor.fetchall()[0][0])
+		result.append( db.insert_id() )  # mysql only
 	
 	return result
 #end def store_hands_players_holdem_omaha_tourney
 
-def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
+def store_hands_players_stud_tourney(db, cursor, hands_id, player_ids, start_cashes,
 			antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
 #stores hands_players for tourney stud/razz hands
 	result=[]
@@ -1362,8 +1374,9 @@ def store_hands_players_stud_tourney(cursor, hands_id, player_ids, start_cashes,
 		card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
 		card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
 		card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
-		cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
-		result.append(cursor.fetchall()[0][0])
+		#cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
+		#result.append(cursor.fetchall()[0][0])
+		result.append( db.insert_id() )  # mysql only
 	return result
 #end def store_hands_players_stud_tourney
 
@@ -1949,9 +1962,9 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
 		
 		for player in range (len(playerIds)):
 			if base=="hold":
-				cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
+				cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
 			else:
-				cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
+				cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
 			row=cursor.fetchone()
 			#print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
 			
@@ -2097,7 +2110,7 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
 #end def storeHudCache
 
 def store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
-	cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId=%s", (siteTourneyNo, tourneyTypeId))
+	cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
 	tmp=cursor.fetchone()
 	#print "tried SELECTing tourneys.id, result:",tmp
 	
@@ -2107,7 +2120,7 @@ def store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, sta
 		cursor.execute("""INSERT INTO Tourneys
 		(tourneyTypeId, siteTourneyNo, entries, prizepool, startTime)
 		VALUES (%s, %s, %s, %s, %s)""", (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
-		cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId=%s", (siteTourneyNo, tourneyTypeId))
+		cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
 		tmp=cursor.fetchone()
 		#print "created new tourneys.id:",tmp
 	return tmp[0]
@@ -2121,7 +2134,7 @@ def store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks,
 	#print "ranks:",ranks
 	#print "winnings:",winnings
 	for i in range (len(player_ids)):
-		cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId=%s", (tourney_id, player_ids[i]))
+		cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s", (tourney_id, player_ids[i]))
 		tmp=cursor.fetchone()
 		#print "tried SELECTing tourneys_players.id:",tmp
 		
@@ -2132,7 +2145,7 @@ def store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks,
 			(tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""",
 			(tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
 			
-			cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId=%s",
+			cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s",
 						   (tourney_id, player_ids[i]))
 			tmp=cursor.fetchone()
 			#print "created new tourneys_players.id:",tmp

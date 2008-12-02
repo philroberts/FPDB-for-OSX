@@ -46,7 +46,7 @@ def mainParser(db, cursor, site, category, hand):
 			#print "found small blind line:",smallBlindLine
 			break
 	#print "small blind line:",smallBlindLine
-	gametypeID=fpdb_simple.recogniseGametypeID(cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
+	gametypeID=fpdb_simple.recogniseGametypeID(db, cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
 	if isTourney:
 		if site!="ps":
 			raise fpdb_simple.FpdbError("tourneys are only supported on PS right now")
@@ -142,18 +142,18 @@ def mainParser(db, cursor, site, category, hand):
 		payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)
 		
 		if base=="hold":
-			result = fpdb_save_to_db.tourney_holdem_omaha(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
+			result = fpdb_save_to_db.tourney_holdem_omaha(db, cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
 					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif base=="stud":
-			result = fpdb_save_to_db.tourney_stud(cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
+			result = fpdb_save_to_db.tourney_stud(db, cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries, prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteID,
 					siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, antes, cardValues, cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		else:
 			raise fpdb_simple.FpdbError ("unrecognised category")
 	else:
 		if base=="hold":
-			result = fpdb_save_to_db.ring_holdem_omaha(cursor, base, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+			result = fpdb_save_to_db.ring_holdem_omaha(db, cursor, base, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		elif base=="stud":
-			result = fpdb_save_to_db.ring_stud(cursor, base, category, siteHandNo, gametypeID, 
+			result = fpdb_save_to_db.ring_stud(db, cursor, base, category, siteHandNo, gametypeID, 
 					handStartTime, names, playerIDs, startCashes, antes, cardValues, 
 					cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
 		else:

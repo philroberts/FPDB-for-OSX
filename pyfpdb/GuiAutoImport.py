@@ -26,175 +26,170 @@ import os
 import time
 import fpdb_import
 
+
 class GuiAutoImport (threading.Thread):
-	def starsBrowseClicked(self, widget, data):
-		"""runs when user clicks browse on auto import tab"""
-		#print "start of GuiAutoImport.starsBrowseClicked"
-		current_path=self.starsDirPath.get_text()
-		
-		dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
-				action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-				buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-		#dia_chooser.set_current_folder(pathname)
-		dia_chooser.set_filename(current_path)
-		#dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+        def __init__(self, settings, config):
+                """Constructor for GuiAutoImport"""
+                self.settings=settings
+                self.config=config
 
-		response = dia_chooser.run()
-		if response == gtk.RESPONSE_OK:
-			#print dia_chooser.get_filename(), 'selected'
-			self.starsDirPath.set_text(dia_chooser.get_filename())
-		elif response == gtk.RESPONSE_CANCEL:
-			print 'Closed, no files selected'
-		dia_chooser.destroy()		
-	#end def GuiAutoImport.starsBrowseClicked
+                imp = self.config.get_import_parameters()
 
-	def tiltBrowseClicked(self, widget, data):
-		"""runs when user clicks browse on auto import tab"""
-		#print "start of GuiAutoImport.tiltBrowseClicked"
-		current_path=self.tiltDirPath.get_text()
+                print "Import parameters"
+                print imp
 
-		dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
-				action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-				buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-		#dia_chooser.set_current_folder(pathname)
-		dia_chooser.set_filename(current_path)
-		#dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+                self.input_settings = {}
 
-		response = dia_chooser.run()
-		if response == gtk.RESPONSE_OK:
-			#print dia_chooser.get_filename(), 'selected'
-			self.tiltDirPath.set_text(dia_chooser.get_filename())
-		elif response == gtk.RESPONSE_CANCEL:
-			print 'Closed, no files selected'
-		dia_chooser.destroy()
-	#end def GuiAutoImport.tiltBrowseClicked
+                self.importer = fpdb_import.Importer(self, self.settings, self.config)
+                self.importer.setCallHud(True)
+                self.importer.setMinPrint(30)
+                self.importer.setQuiet(False)
+                self.importer.setFailOnError(False)
+                self.importer.setHandCount(0)
+#               self.importer.setWatchTime()
+                
+                self.server=settings['db-host']
+                self.user=settings['db-user']
+                self.password=settings['db-password']
+                self.database=settings['db-databaseName']
 
-	def do_import(self):
-		"""Callback for timer to do an import iteration."""
-		self.importer.runUpdated()
-		print "GuiAutoImport.import_dir done"
-		return True
+                self.mainVBox=gtk.VBox(False,1)
+                self.mainVBox.show()
 
-	def startClicked(self, widget, data):
-		"""runs when user clicks start on auto import tab"""
+                self.settingsHBox = gtk.HBox(False, 0)
+                self.mainVBox.pack_start(self.settingsHBox, False, True, 0)
+                self.settingsHBox.show()
 
-#	Check to see if we have an open file handle to the HUD and open one if we do not.
-#	bufsize = 1 means unbuffered
-#	We need to close this file handle sometime.
+                self.intervalLabel = gtk.Label("Time between imports in seconds:")
+                self.settingsHBox.pack_start(self.intervalLabel)
+                self.intervalLabel.show()
 
-#	TODO:  Allow for importing from multiple dirs - REB 29AUG2008
-#	As presently written this function does nothing if there is already a pipe open.
-#	That is not correct.  It should open another dir for importing while piping the
-#	results to the same pipe.  This means that self.path should be a a list of dirs
-#	to watch.
-		try:      #uhhh, I don't this this is the best way to check for the existence of an attr
-			getattr(self, "pipe_to_hud")
-		except AttributeError:
-			if os.name == 'nt':
-				command = "python HUD_main.py" + " %s" % (self.database)
-				bs = 0    # windows is not happy with line buffing here
-				self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
-											    universal_newlines=True)
-			else:
-				cwd = os.getcwd()
-				command = os.path.join(cwd, 'HUD_main.py')
-				bs = 1
-				self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
-											    universal_newlines=True)
-#			self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
-#											    universal_newlines=True)
-#			command = command + " %s" % (self.database)
-#			print "command = ", command
-#			self.pipe_to_hud = os.popen(command, 'w')
-			self.starspath=self.starsDirPath.get_text()
-			self.tiltpath=self.tiltDirPath.get_text()
+                self.intervalEntry=gtk.Entry()
+                self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
+                self.settingsHBox.pack_start(self.intervalEntry)
+                self.intervalEntry.show()
 
-#			Add directory to importer object.
-			self.importer.addImportDirectory(self.starspath, True, "PokerStars", "passthrough")
-			self.importer.addImportDirectory(self.tiltpath, True, "FullTilt", "passthrough")
-			self.do_import()
-		
-			interval=int(self.intervalEntry.get_text())
-			gobject.timeout_add(interval*1000, self.do_import)
-	#end def GuiAutoImport.startClicked
+                self.addSites(self.mainVBox)
 
-	def get_vbox(self):
-		"""returns the vbox of this thread"""
-		return self.mainVBox
-	#end def get_vbox
-	
-	def __init__(self, settings, config, debug=True):
-		"""Constructor for GuiAutoImport"""
-		self.settings=settings
-		self.config=config
-		self.importer = fpdb_import.Importer(self,self.settings)
-		self.importer.setCallHud(True)
-		self.importer.setMinPrint(30)
-		self.importer.setQuiet(False)
-		self.importer.setFailOnError(False)
-		self.importer.setHandCount(0)
-#		self.importer.setWatchTime()
-		
-		self.server=settings['db-host']
-		self.user=settings['db-user']
-		self.password=settings['db-password']
-		self.database=settings['db-databaseName']
-		
-		self.mainVBox=gtk.VBox(False,1)
-		self.mainVBox.show()
-		
-		self.settingsHBox = gtk.HBox(False, 0)
-		self.mainVBox.pack_start(self.settingsHBox, False, True, 0)
-		self.settingsHBox.show()
-		
-		self.intervalLabel = gtk.Label("Interval (ie. break) between imports in seconds:")
-		self.settingsHBox.pack_start(self.intervalLabel)
-		self.intervalLabel.show()
-		
-		self.intervalEntry=gtk.Entry()
-		self.intervalEntry.set_text(str(self.settings['hud-defaultInterval']))
-		self.settingsHBox.pack_start(self.intervalEntry)
-		self.intervalEntry.show()
-		
-		self.pathHBox = gtk.HBox(False, 0)
-		self.mainVBox.pack_start(self.pathHBox, False, True, 0)
-		self.pathHBox.show()
-		
-		self.pathStarsLabel = gtk.Label("Path to PokerStars auto-import:")
-		self.pathHBox.pack_start(self.pathStarsLabel, False, False, 0)
-		self.pathStarsLabel.show()
-		
-		self.starsDirPath=gtk.Entry()
-		paths = self.config.get_default_paths("PokerStars")
-		self.starsDirPath.set_text(paths['hud-defaultPath'])
-		self.pathHBox.pack_start(self.starsDirPath, False, True, 0)
-		self.starsDirPath.show()
+                self.startButton=gtk.Button("Start Autoimport")
+                self.startButton.connect("clicked", self.startClicked, "start clicked")
+                self.mainVBox.add(self.startButton)
+                self.startButton.show()
 
-		self.browseButton=gtk.Button("Browse...")
-		self.browseButton.connect("clicked", self.starsBrowseClicked, "Browse clicked")
-		self.pathHBox.pack_start(self.browseButton, False, False, 0)
- 		self.browseButton.show()
-		
-		self.pathTiltLabel = gtk.Label("Path to Full Tilt auto-import:")
-		self.pathHBox.pack_start(self.pathTiltLabel, False, False, 0)
-		self.pathTiltLabel.show()
 
-		self.tiltDirPath=gtk.Entry()
-		paths = self.config.get_default_paths("Full Tilt")
-		self.tiltDirPath.set_text(paths['hud-defaultPath'])
-		self.pathHBox.pack_start(self.tiltDirPath, False, True, 0)
-		self.tiltDirPath.show()
+        #end of GuiAutoImport.__init__
+        def browseClicked(self, widget, data):
+                """runs when user clicks one of the browse buttons in the auto import tab"""
+                current_path=data[1].get_text()
 
-		self.browseButton=gtk.Button("Browse...")
-		self.browseButton.connect("clicked", self.tiltBrowseClicked, "Browse clicked")
-		self.pathHBox.pack_start(self.browseButton, False, False, 0)
- 		self.browseButton.show()
+                dia_chooser = gtk.FileChooserDialog(title="Please choose the path that you want to auto import",
+                                action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+                                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+                #dia_chooser.set_current_folder(pathname)
+                dia_chooser.set_filename(current_path)
+                #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
 
-		self.startButton=gtk.Button("Start Autoimport")
-		self.startButton.connect("clicked", self.startClicked, "start clicked")
-		self.mainVBox.add(self.startButton)
- 		self.startButton.show()
-	#end of GuiAutoImport.__init__
+                response = dia_chooser.run()
+                if response == gtk.RESPONSE_OK:
+                        #print dia_chooser.get_filename(), 'selected'
+                        data[1].set_text(dia_chooser.get_filename())
+                        self.input_settings[data[0]][0] = dia_chooser.get_filename()
+                elif response == gtk.RESPONSE_CANCEL:
+                        print 'Closed, no files selected'
+                dia_chooser.destroy()
+        #end def GuiAutoImport.browseClicked
+
+        def do_import(self):
+                """Callback for timer to do an import iteration."""
+                self.importer.runUpdated()
+                print "GuiAutoImport.import_dir done"
+                return True
+
+        def startClicked(self, widget, data):
+                """runs when user clicks start on auto import tab"""
+
+#       Check to see if we have an open file handle to the HUD and open one if we do not.
+#       bufsize = 1 means unbuffered
+#       We need to close this file handle sometime.
+
+#       TODO:  Allow for importing from multiple dirs - REB 29AUG2008
+#       As presently written this function does nothing if there is already a pipe open.
+#       That is not correct.  It should open another dir for importing while piping the
+#       results to the same pipe.  This means that self.path should be a a list of dirs
+#       to watch.
+                try:      #uhhh, I don't this this is the best way to check for the existence of an attr
+                        getattr(self, "pipe_to_hud")
+                except AttributeError:
+                        if os.name == 'nt':
+                                command = "python HUD_main.py" + " %s" % (self.database)
+                                bs = 0    # windows is not happy with line buffing here
+                                self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE,
+                                                                                            universal_newlines=True)
+                        else:
+                                cwd = os.getcwd()
+                                command = os.path.join(cwd, 'HUD_main.py')
+                                bs = 1
+                                self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE,
+                                                                                            universal_newlines=True)
+#                       self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE,
+#                                                                                           universal_newlines=True)
+#                       command = command + " %s" % (self.database)
+#                       print "command = ", command
+#                       self.pipe_to_hud = os.popen(command, 'w')
+
+#                       Add directories to importer object.
+                        for site in self.input_settings:
+                                self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
+                                print "Adding import directories - Site: " + site + " dir: "+ str(self.input_settings[site][0])
+                        self.do_import()
+               
+                        interval=int(self.intervalEntry.get_text())
+                        gobject.timeout_add(interval*1000, self.do_import)
+        #end def GuiAutoImport.startClicked
+
+        def get_vbox(self):
+                """returns the vbox of this thread"""
+                return self.mainVBox
+        #end def get_vbox
+
+        #Create the site line given required info and setup callbacks
+        #enabling and disabling sites from this interface not possible
+        #expects a box to layout the line horizontally
+        def createSiteLine(self, hbox, site, iconpath, hhpath, filter_name, active = True):
+                label = gtk.Label(site + " auto-import:")
+                hbox.pack_start(label, False, False, 0)
+                label.show()
+
+                dirPath=gtk.Entry()
+                dirPath.set_text(hhpath)
+                hbox.pack_start(dirPath, False, True, 0)
+                dirPath.show()
+
+                browseButton=gtk.Button("Browse...")
+                browseButton.connect("clicked", self.browseClicked, [site] + [dirPath])
+                hbox.pack_start(browseButton, False, False, 0)
+                browseButton.show()
+
+                label = gtk.Label(site + " filter:")
+                hbox.pack_start(label, False, False, 0)
+                label.show()
+
+                filter=gtk.Entry()
+                filter.set_text(filter_name)
+                hbox.pack_start(filter, False, True, 0)
+                filter.show()
+
+        def addSites(self, vbox):
+                for site in self.config.supported_sites.keys():
+                        pathHBox = gtk.HBox(False, 0)
+                        vbox.pack_start(pathHBox, False, True, 0)
+                        pathHBox.show()
+
+                        paths = self.config.get_default_paths(site)
+                        params = self.config.get_site_parameters(site)
+                        self.createSiteLine(pathHBox, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
+                        self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
+
 if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()
@@ -206,7 +201,7 @@ if __name__== "__main__":
     settings['db-databaseName'] = "fpdb"
     settings['hud-defaultInterval'] = 10
     settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
-    settings['imp-callFpdbHud'] = True
+    settings['callFpdbHud'] = True
 
     i = GuiAutoImport(settings)
     main_window = gtk.Window()

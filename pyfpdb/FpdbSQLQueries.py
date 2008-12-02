@@ -601,7 +601,34 @@ class FpdbSQLQueries:
 					WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
 					ORDER BY handStart"""
 
-		# Returns the profit for a given ring game handId, Total pot - money invested by playerId
+		# Returns the profit for all hands, Total pot - money invested by playerId
+		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+			self.query['getRingProfitAllHandsPlayerIdSite'] = """ 
+                                        SELECT hp.handId, hp.winnings, SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+                                        FROM HandsPlayers hp
+                                        INNER JOIN Players pl      ON hp.playerId     = pl.id
+                                        INNER JOIN Hands h         ON h.id            = hp.handId
+                                        INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+                                        WHERE pl.name   = %s
+                                        AND   pl.siteId = %s
+                                        AND   hp.tourneysPlayersId IS NULL
+                                        group by hp.handId, hp.winnings, h.handStart
+                                        ORDER BY h.handStart"""
+		elif(self.dbname == 'SQLite'):
+			#May not work.
+			self.query['getRingProfitAllHandsPlayerIdSite'] = """ 
+                                        SELECT hp.handId, hp.winnings, SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+                                        FROM HandsPlayers hp
+                                        INNER JOIN Players pl      ON hp.playerId     = pl.id
+                                        INNER JOIN Hands h         ON h.id            = hp.handId
+                                        INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+                                        WHERE pl.name   = %s
+                                        AND   pl.siteId = %s
+                                        AND   hp.tourneysPlayersId IS NULL
+                                        group by hp.handId, hp.winnings, h.handStart
+                                        ORDER BY h.handStart"""
+
+		# Returns the profit for a given ring game handId, Total pot - money invested by playerId - WRONG, returns players costs
 		if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
 			self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
 					INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
