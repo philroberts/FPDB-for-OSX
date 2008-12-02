@@ -261,12 +261,11 @@ def f_SB_steal(stat_dict, player):
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%', 
-                'fSB=%3.1f'     % (0) + '%', 
-                'fSB_s=%3.1f' % (0) + '%', 
-                '(%d/%d)'      % (0, 0),
-                '% folded SB to steal'
-                )
+                'NA',
+                'fSB=NA',
+                'fSB_s=NA',
+                '0/0',
+                '% folded SB to steal')
 
 def f_BB_steal(stat_dict, player):
     """    Folded BB to steal."""
@@ -282,12 +281,11 @@ def f_BB_steal(stat_dict, player):
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%', 
-                'fBB=%3.1f'     % (0) + '%', 
-                'fBB_s=%3.1f' % (0) + '%', 
-                '(%d/%d)'      % (0, 0),
-                '% folded BB to steal'
-                )
+                'NA',
+                'fBB=NA',
+                'fBB_s=NA',
+                '0/0',
+                '% folded BB to steal')
 
 def three_B_0(stat_dict, player):
     """    Three bet preflop/3rd."""
