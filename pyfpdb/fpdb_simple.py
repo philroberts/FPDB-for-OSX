@@ -1241,7 +1241,8 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
 	for i in range (len(actionTypes)): #iterate through streets
 		for j in range (len(actionTypes[i])): #iterate through names
 			for k in range (len(actionTypes[i][j])):  #iterate through individual actions of that player on that street
-				cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
+				cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)"
+                               , (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
 #end def storeActions
 
 def store_board_cards(cursor, hands_id, board_values, board_suits):
@@ -1380,8 +1381,12 @@ def store_hands_players_stud_tourney(db, cursor, hands_id, player_ids, start_cas
 	return result
 #end def store_hands_players_stud_tourney
 
-def generateHudCacheData(player_ids, base, category, action_types, allIns, actionTypeByNo, winnings, totalWinnings, positions):
-	"""calculates data for the HUD during import. IMPORTANT: if you change this method make sure to also change the following storage method and table_viewer.prepare_data if necessary"""
+def generateHudCacheData(player_ids, base, category, action_types, allIns, actionTypeByNo
+                        ,winnings, totalWinnings, positions, actionTypes, actionAmounts):
+	"""calculates data for the HUD during import. IMPORTANT: if you change this method make
+       sure to also change the following storage method and table_viewer.prepare_data if necessary
+    """
+	#print "generateHudCacheData, len(player_ids)=", len(player_ids)
 	#setup subarrays of the result dictionary.
 	street0VPI=[]
 	street0Aggr=[]
@@ -1901,8 +1906,14 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 	street3CheckCallRaiseDone=[]
 	street4CheckCallRaiseChance=[]
 	street4CheckCallRaiseDone=[]
-	for player in range (len(player_ids)):
-		myTotalProfit=0
+	#print "b4 totprof calc, len(playerIds)=", len(player_ids)
+	for pl in range (len(player_ids)):
+		#print "pl=", pl
+		myTotalProfit=winnings[pl]  # still need to deduct costs
+		for i in range (len(actionTypes)): #iterate through streets
+			#for j in range (len(actionTypes[i])): #iterate through names  (using pl loop above)
+				for k in range (len(actionTypes[i][pl])):  #iterate through individual actions of that player on that street
+					myTotalProfit -= actionAmounts[i][pl][k]
 		
 		myStreet1CheckCallRaiseChance=False
 		myStreet1CheckCallRaiseDone=False
@@ -1913,7 +1924,9 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 		myStreet4CheckCallRaiseChance=False
 		myStreet4CheckCallRaiseDone=False
 		
+		#print "myTotalProfit=", myTotalProfit
 		totalProfit.append(myTotalProfit)
+		#print "totalProfit[]=", totalProfit
 		
 		street1CheckCallRaiseChance.append(myStreet1CheckCallRaiseChance)
 		street1CheckCallRaiseDone.append(myStreet1CheckCallRaiseDone)
@@ -1925,6 +1938,7 @@ def generateHudCacheData(player_ids, base, category, action_types, allIns, actio
 		street4CheckCallRaiseDone.append(myStreet4CheckCallRaiseDone)
 
 	result['totalProfit']=totalProfit
+	#print "res[totalProfit]=", result['totalProfit']
 
 	result['street1CheckCallRaiseChance']=street1CheckCallRaiseChance
 	result['street1CheckCallRaiseDone']=street1CheckCallRaiseDone
@@ -1960,6 +1974,8 @@ def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetC
 def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
 #	if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 		
+		#print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
+		#, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
 		for player in range (len(playerIds)):
 			if base=="hold":
 				cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
@@ -2044,7 +2060,10 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
 			if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
 			if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
 
-			row[52]+=hudImportData['totalProfit'][player]
+			#print "player=", player
+			#print "len(totalProfit)=", len(hudImportData['totalProfit'])
+			if hudImportData['totalProfit'][player]:
+				row[52]+=hudImportData['totalProfit'][player]
 
 			if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
 			if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1

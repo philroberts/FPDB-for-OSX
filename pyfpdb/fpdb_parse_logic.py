@@ -131,9 +131,13 @@ def mainParser(db, cursor, site, category, hand):
 		totalWinnings+=winnings[i]
 	
 	if base=="hold":
-		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes, allIns, actionTypeByNo, winnings, totalWinnings, positions)
+		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
+                                     , allIns, actionTypeByNo, winnings, totalWinnings, positions
+                                     , actionTypes, actionAmounts)
 	else:
-		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes, allIns, actionTypeByNo, winnings, totalWinnings, None)
+		hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
+                                     , allIns, actionTypeByNo, winnings, totalWinnings, None
+                                     , actionTypes, actionAmounts)
 	
 	if isTourney:
 		ranks=[]
@@ -151,7 +155,12 @@ def mainParser(db, cursor, site, category, hand):
 			raise fpdb_simple.FpdbError ("unrecognised category")
 	else:
 		if base=="hold":
-			result = fpdb_save_to_db.ring_holdem_omaha(db, cursor, base, category, siteHandNo, gametypeID, handStartTime, names, playerIDs, startCashes, positions, cardValues, cardSuits, boardValues, boardSuits, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, hudImportData, maxSeats, tableName, seatNos)
+			result = fpdb_save_to_db.ring_holdem_omaha(db, cursor, base, category, siteHandNo
+                                                      ,gametypeID, handStartTime, names, playerIDs
+                                                      ,startCashes, positions, cardValues, cardSuits
+                                                      ,boardValues, boardSuits, winnings, rakes
+                                                      ,actionTypes, allIns, actionAmounts, actionNos
+                                                      ,hudImportData, maxSeats, tableName, seatNos)
 		elif base=="stud":
 			result = fpdb_save_to_db.ring_stud(db, cursor, base, category, siteHandNo, gametypeID, 
 					handStartTime, names, playerIDs, startCashes, antes, cardValues, 
