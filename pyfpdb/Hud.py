@@ -92,14 +92,22 @@ class Hud:
         self.menu.append(self.item1)
         self.item1.connect("activate", self.kill_hud)
         self.item1.show()
+        
         self.item2 = gtk.MenuItem('Save Layout')
         self.menu.append(self.item2)
         self.item2.connect("activate", self.save_layout)
         self.item2.show()
+        
         self.item3 = gtk.MenuItem('Reposition Stats')
         self.menu.append(self.item3)
         self.item3.connect("activate", self.reposition_windows)
         self.item3.show()
+        
+        self.item4 = gtk.MenuItem('Debug Stat Windows')
+        self.menu.append(self.item4)
+        self.item4.connect("activate", self.debug_stat_windows)
+        self.item4.show()
+        
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
@@ -132,6 +140,12 @@ class Hud:
         for w in self.stat_windows:
                 self.stat_windows[w].window.move(self.stat_windows[w].x,
                                                  self.stat_windows[w].y)
+
+    def debug_stat_windows(self, *args):
+        print self.table, "\n", self.main_window.window.get_transient_for()
+        for w in self.stat_windows:
+            print self.stat_windows[w].window.window.get_transient_for()
+                
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
 # todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
