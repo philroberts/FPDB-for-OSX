@@ -386,40 +386,11 @@ class Stat_Window:
                 font = pango.FontDescription("Sans 7")
                 self.label[r][c].modify_font(font)
 
-#        if not os.name == 'nt':  # seems to be a bug in opacity on windows
         self.window.set_opacity(parent.colors['hudopacity'])
         
-#        self.window.realize()
         self.window.move(self.x, self.y)
-#        self.window.show_all()
-#    set_keep_above(1) for windows
-        if os.name == 'nt': self.topify_window(self.window)
+                   
         self.window.hide()
-
-    def topify_window(self, window):
-        """Set the specified gtk window to stayontop in MS Windows."""
-
-        def windowEnumerationHandler(hwnd, resultList):
-            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-
-        unique_name = 'unique name for finding this window'
-        real_name = window.get_title()
-        window.set_title(unique_name)
-        tl_windows = []
-        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-        
-        for w in tl_windows:
-            if w[1] == unique_name:
-                
-                #win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE) 
-                
-#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
-#                style |= win32con.WS_EX_TOOLWINDOW
-#                style &= ~win32con.WS_EX_APPWINDOW
-#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
-                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
-                window.set_title(real_name)
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
