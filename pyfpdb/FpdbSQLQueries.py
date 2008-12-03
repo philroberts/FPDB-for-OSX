@@ -579,6 +579,7 @@ class FpdbSQLQueries:
             # FIXME: This query has a different syntax
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX 'siteTourneyNo'('siteTourneyNo')"""
         elif(self.dbname == 'SQLite'):
+            self.query['addHandsIndex'] = """ """
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX 'siteHandNo'('siteHandNo')"""
