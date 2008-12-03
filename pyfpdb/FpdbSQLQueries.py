@@ -642,8 +642,101 @@ class FpdbSQLQueries:
 				GROUP BY hp.handId, hp.winnings, h.handStart
 				ORDER BY h.handStart"""
 
-
-
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['playerStatsByPosition'] = """
+                SELECT stats.gametypeId
+                      ,stats.base
+                      ,stats.limitType
+                      ,stats.name
+                      ,format(stats.bigBlind/100,2) as BigBlind
+                      ,p.name
+                      ,stats.pl_position
+                      ,stats.n
+                      ,stats.vpip
+                      ,stats.pfr
+                      ,stats.saw_f
+                      ,stats.sawsd
+                      ,stats.wtsdwsf
+                      ,stats.wmsd
+                      ,stats.FlAFq
+                      ,stats.TuAFq
+                      ,stats.RvAFq
+                      ,stats.PFAFq
+                      ,hprof2.sum_profit/100 as Net
+                      ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                      # ... any other stats you want to add
+                FROM
+                     (select # stats from hudcache
+                             hc.playerId
+                            ,gt.base
+                            ,upper(gt.limitType)                                             as limitType
+                            ,s.name
+                            ,gt.bigBlind
+                            ,hc.gametypeId
+                            ,case when hc.position = 'B' then -2
+                                  when hc.position = 'S' then -1
+                                  when hc.position = 'D' then  0
+                                  when hc.position = 'C' then  1
+                                  when hc.position = 'M' then  2
+                                  when hc.position = 'E' then  5
+                                  else 9
+                             end                                                             as pl_position
+                            ,sum(HDs)                                                        as n
+                            ,round(100*sum(street0VPI)/sum(HDs))                             as vpip
+                            ,round(100*sum(street0Aggr)/sum(HDs))                            as pfr
+                            ,round(100*sum(street1Seen)/sum(HDs))                            AS saw_f
+                            ,round(100*sum(sawShowdown)/sum(HDs))                            AS sawsd
+                            ,round(100*sum(sawShowdown)/sum(street1Seen))                    AS wtsdwsf
+                            ,round(100*sum(wonAtSD)/sum(sawShowdown))                        AS wmsd
+                            ,round(100*sum(street1Aggr)/sum(street1Seen))                    AS FlAFq
+                            ,round(100*sum(street2Aggr)/sum(street2Seen))                    AS TuAFq
+                            ,round(100*sum(street3Aggr)/sum(street3Seen))                    AS RvAFq
+                            ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                      /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
+                      from Gametypes gt
+                           inner join Sites s     on (s.Id = gt.siteId)
+                           inner join HudCache hc on (hc.gameTypeId = gt.Id)
+                      where gt.limittype = 'nl'
+                      and   hc.playerId in (3)   # always specify player for position stats
+                                                 # use <gametype_test> here
+                                                 # use <activeseats_test> here
+                      group by hc.playerId, hc.gametypeId, pl_position
+                     ) stats
+                inner join
+                     ( select # profit from handsplayers/handsactions
+                              hprof.playerId
+                            , hprof.gameTypeId
+                            , case when hprof.position = 'B' then -2
+                                   when hprof.position = 'S' then -1
+                                   when hprof.position in ('3','4') then 2
+                                   when hprof.position in ('6','7') then 5
+                                   else hprof.position
+                              end                                      as pl_position
+                            , sum(hprof.profit)                        as sum_profit
+                       from
+                           (select hp.playerId, hp.handId, h.gameTypeId, hp.position, hp.winnings
+                                 , SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
+                            from HandsPlayers hp
+                            inner join Hands h         ON (h.id            = hp.handId)
+                            inner join HandsActions ha ON (ha.handPlayerId = hp.id)
+                            where hp.playerId in (3)   # always specify player for position stats
+                                                       # use <gametype_test> here
+                                                       # use <activeseats_test> here
+                            and   hp.tourneysPlayersId IS NULL
+                            group by hp.playerId, hp.handId, h.gameTypeId, hp.position, hp.winnings
+                           ) hprof
+                       group by hprof.playerId, hprof.gameTypeId, pl_position
+                      ) hprof2
+                     on (    hprof2.gameTypeId  = stats.gameTypeId
+                         and hprof2.pl_position = stats.pl_position)
+                inner join Players p on (p.id = stats.playerId)
+                where 1 = 1
+                order by stats.base, stats.limittype, stats.bigBlind, stats.pl_position, BBlPer100 desc
+            """
+		elif(self.dbname == 'PostgreSQL'):
+            self.query = """ """
+		elif(self.dbname == 'SQLite'):
+            self.query = """ """
 
 if __name__== "__main__":
         from optparse import OptionParser
