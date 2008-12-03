@@ -73,14 +73,14 @@ class Everleaf(HandHistoryConverter):
 		self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(  \$ (?P<CASH>[.0-9]+) USD \)')
 		self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[')
 		self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[')
-		self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLECARDS>.*) \]')
+		self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
 		self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
 		self.rexx.compileRegexes()
 
-        def readSupportedGames(self):
+	def readSupportedGames(self):
 		pass
 
-        def determineGameType(self):
+	def determineGameType(self):
 		# Cheating with this regex, only support nlhe at the moment
 		gametype = ["ring", "hold", "nl"]
 
@@ -110,7 +110,7 @@ class Everleaf(HandHistoryConverter):
 							  int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
 		hand.buttonpos = int(m.group('BUTTON'))
 
-        def readPlayerStacks(self, hand):
+	def readPlayerStacks(self, hand):
 		m = self.rexx.player_info_re.finditer(hand.string)
 		players = []
 
@@ -121,12 +121,12 @@ class Everleaf(HandHistoryConverter):
 
 	def markStreets(self, hand):
 		# PREFLOP = ** Dealing down cards **
-		m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\*)?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\*)?(?P<TURN>.*?\*\*)?( Dealing River \*\*)?(?P<RIVER>.*)', hand.string,re.DOTALL)
+		m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
 #		for street in m.groupdict():
 #			print "DEBUG: Street: %s\tspan: %s" %(street, str(m.span(street)))
 		hand.streets = m
 
-        def readBlinds(self, hand):
+	def readBlinds(self, hand):
 		try:
 			m = self.rexx.small_blind_re.search(hand.string)
 			hand.posted = [m.group('PNAME')]
@@ -143,16 +143,9 @@ class Everleaf(HandHistoryConverter):
 			hand.involved = False
 		else:
 			hand.hero = m.group('PNAME')
-			hand.holecards = m.group('HOLECARDS')
-			hand.holecards = hand.holecards.replace(',','')
-			#Must be a better way to do the following tr akqjt AKQJT
-			hand.holecards = hand.holecards.replace('a','A')
-			hand.holecards = hand.holecards.replace('k','K')
-			hand.holecards = hand.holecards.replace('q','Q')
-			hand.holecards = hand.holecards.replace('j','J')
-			hand.holecards = hand.holecards.replace('t','T')
+			hand.addHoleCards(m.group('HOLE1'), m.group('HOLE2'))
 
-        def readAction(self, hand, street):
+	def readAction(self, hand, street):
 		m = self.rexx.action_re.finditer(hand.streets.group(street))
 		hand.actions[street] = []
 		for action in m:
@@ -165,7 +158,7 @@ class Everleaf(HandHistoryConverter):
 
 if __name__ == "__main__":
 	c = Configuration.Config()
-	e = Everleaf(c, "regression-test-files/everleaf/Speed_Kuala.txt")
+	e = Everleaf(c, "Speed_Kuala.txt")
 	e.processFile()
 	print str(e)
 	

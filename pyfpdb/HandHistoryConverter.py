@@ -104,7 +104,7 @@ class HandHistoryConverter:
 	def readAction(self, hand, street): abstract
 
 	def sanityCheck(self):
-		sane = False
+		sane = True
 		base_w = False
 		#Check if hhbase exists and is writable
 		#Note: Will not try to create the base HH directory
@@ -175,7 +175,7 @@ class HandHistoryConverter:
 			print "XXXXXXXXX FIXME XXXXXXXX"
 
 		print "*** HOLE CARDS ***"
-		print "Dealt to %s [%s]" %(hand.hero ,hand.holecards)
+		print "Dealt to %s [%s %s]" %(hand.hero , hand.holecards[0], hand.holecards[1])
 #
 ##		ACTION STUFF
 #		This is no limit only at the moment
@@ -184,17 +184,17 @@ class HandHistoryConverter:
 			self.printActionLine(act, 0)
 
 		if 'FLOP' in hand.actions:
-			print "*** FLOP *** [%s]" %("XXXXX Flop cards XXXXXX")
+			print "*** FLOP *** [%s %s %s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"))
 			for act in hand.actions['FLOP']:
 				self.printActionLine(act, 0)
 
 		if 'TURN' in hand.actions:
-			print "*** TURN *** [%s] [%s]" %("XXXXX Flop cards XXXXXX", "XXXXX Turn Card XXXXX")
+			print "*** TURN *** [%s %s %s] [%s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"), hand.streets.group("TURN1"))
 			for act in hand.actions['TURN']:
 				self.printActionLine(act, 0)
 
 		if 'RIVER' in hand.actions:
-			print "*** RIVER *** [%s %s] [%s]" %("XXXXX Flop cards XXXXXX", "XXXXX Turn Card XXXXX", "XXXXX River Card XXXXX")
+			print "*** RIVER *** [%s %s %s %s] [%s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"), hand.streets.group("TURN1"), hand.streets.group("RIVER1"))
 			for act in hand.actions['RIVER']:
 				self.printActionLine(act, 0)
 
@@ -232,45 +232,59 @@ class HandHistoryConverter:
 
 class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
-    def __init__(self, sitename, gametype, string):
-	self.sitename = sitename
-	self.gametype = gametype
-	self.string = string
 
-	self.streets = None # A MatchObject using a groupnames to identify streets.
-	self.actions = {}
+	ups = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K'}
 
-	self.handid = 0
-	self.sb = gametype[3]
-	self.bb = gametype[4]
-	self.tablename = "Slartibartfast"
-	self.maxseats = 10
-	self.counted_seats = 0
-	self.buttonpos = 0
-	self.seating = []
-	self.players = []
-	self.posted = []
-	self.involved = True
-	self.hero = "Hiro"
-	self.holecards = "Xx Xx"
-	self.action = []
-	self.totalpot = 0
-	self.rake = 0
+	def __init__(self, sitename, gametype, string):
+		self.sitename = sitename
+		self.gametype = gametype
+		self.string = string
+	
+		self.streets = None # A MatchObject using a groupnames to identify streets.
+		self.actions = {}
+	
+		self.handid = 0
+		self.sb = gametype[3]
+		self.bb = gametype[4]
+		self.tablename = "Slartibartfast"
+		self.maxseats = 10
+		self.counted_seats = 0
+		self.buttonpos = 0
+		self.seating = []
+		self.players = []
+		self.posted = []
+		self.involved = True
+		self.hero = "Hiro"
+		self.holecards = "Xx Xx"
+		self.action = []
+		self.totalpot = 0
+		self.rake = 0
 
-    def printHand(self):
-	print self.sitename
-	print self.gametype
-	print self.string
-	print self.handid
-	print self.sb
-	print self.bb
-	print self.tablename
-	print self.maxseats
-	print self.counted_seats
-	print self.buttonpos
-	print self.seating
-	print self.players
-	print self.posted
-	print self.action
-	print self.involved
-	print self.hero
+	def addHoleCards(self,h1,h2,seat=None): # generalise to add hole cards for a specific seat or player
+		self.holecards = [self.card(h1), self.card(h2)]
+
+
+	def card(self,c):
+		"""upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""
+	# don't know how to make this 'static'
+		for k,v in self.ups.items():
+			c = c.replace(k,v)
+		return c
+
+	def printHand(self):
+		print self.sitename
+		print self.gametype
+		print self.string
+		print self.handid
+		print self.sb
+		print self.bb
+		print self.tablename
+		print self.maxseats
+		print self.counted_seats
+		print self.buttonpos
+		print self.seating
+		print self.players
+		print self.posted
+		print self.action
+		print self.involved
+		print self.hero
