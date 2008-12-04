@@ -894,7 +894,7 @@ def parsePositions (hand, names):
 	if (bb!=-1):
 		bb=recognisePlayerNo(bb, names, "bet")
 		
-	print "sb = ", sb, "bb = ", bb
+	#print "sb = ", sb, "bb = ", bb
 	if bb == sb:
 		sbExists = False
 		sb = -1
@@ -934,7 +934,7 @@ def parsePositions (hand, names):
 			print "parsePositions names:",names
 			print "result:",positions
 			raise FpdbError ("failed to read positions")
-	print str(positions), "\n"
+	#print str(positions), "\n"
 	return positions
 #end def parsePositions
 
