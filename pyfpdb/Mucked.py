@@ -170,6 +170,7 @@ class Stud_cards:
         for r in range(0, self.rows):
             self.grid_contents[( 0, r)] = gtk.Label("%d" % (r + 1))
             self.grid_contents[( 1, r)] = gtk.Label("player %d" % (r + 1))
+            self.grid_contents[( 1, r)].set_property("width-chars", 12)
             self.grid_contents[( 4, r)] = gtk.Label("-")
             self.grid_contents[( 9, r)] = gtk.Label("-")
             self.grid_contents[( 2, r)] = self.eb[( 0, r)]
