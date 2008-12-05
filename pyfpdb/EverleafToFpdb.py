@@ -162,7 +162,7 @@ class Everleaf(HandHistoryConverter):
 			# mct: do we need to keep bet distinct from raise?
 			#	hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE'), action.group('BET')]]
 			else:
-				print "DEBUG: unexpected readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+				print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
 				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
 		#print "DEBUG: readAction: %s " %(hand.actions)
 
