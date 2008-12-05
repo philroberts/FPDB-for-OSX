@@ -60,7 +60,6 @@ from HandHistoryConverter import *
 # ** Dealing River ** [ 6c ]
 # smaragdar wins $ 102 USD from main pot with a pair of aces [ ad, ah, qs, 8h, 6c ]
 
-
 class Everleaf(HandHistoryConverter):
 	def __init__(self, config, file):
 		print "Initialising Everleaf converter class"
@@ -71,8 +70,9 @@ class Everleaf(HandHistoryConverter):
 		self.rexx.setSplitHandRegex('\n\n\n\n')
 		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
 		self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(  \$ (?P<CASH>[.0-9]+) USD \)')
-		self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[')
-		self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[')
+		self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[\$? (?P<SB>[.0-9]+)')
+		self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
+		# mct : what about posting small & big blinds simultaneously?
 		self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
 		self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
 		self.rexx.compileRegexes()
@@ -115,9 +115,10 @@ class Everleaf(HandHistoryConverter):
 		players = []
 
 		for a in m:
-			players = players + [[a.group('SEAT'), a.group('PNAME'), a.group('CASH')]]
+			hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
+			#players = players + [[a.group('SEAT'), a.group('PNAME'), a.group('CASH')]]
 
-		hand.players = players
+		#hand.players = players
 
 	def markStreets(self, hand):
 		# PREFLOP = ** Dealing down cards **
@@ -129,12 +130,15 @@ class Everleaf(HandHistoryConverter):
 	def readBlinds(self, hand):
 		try:
 			m = self.rexx.small_blind_re.search(hand.string)
-			hand.posted = [m.group('PNAME')]
+			hand.addBlind(m.group('PNAME'), m.group('SB'))
+			#hand.posted = [m.group('PNAME')]
 		except:
-			hand.posted = ["FpdbNBP"]
+			hand.addBlind(None, 0)
+			#hand.posted = ["FpdbNBP"]
 		m = self.rexx.big_blind_re.finditer(hand.string)
 		for a in m:
-			hand.posted = hand.posted + [a.group('PNAME')]
+			hand.addBlind(a.group('PNAME'), a.group('BB'))
+			#hand.posted = hand.posted + [a.group('PNAME')]
 
 	def readHeroCards(self, hand):
 		m = self.rexx.hero_cards_re.search(hand.string)
@@ -149,11 +153,18 @@ class Everleaf(HandHistoryConverter):
 		m = self.rexx.action_re.finditer(hand.streets.group(street))
 		hand.actions[street] = []
 		for action in m:
-			if action.group('ATYPE') == 'raises' or action.group('ATYPE') == 'calls':
-				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE'), action.group('BET')]]
+			if action.group('ATYPE') == 'raises':
+				hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+			elif action.group('ATYPE') == 'calls':
+				hand.addCall( street, action.group('PNAME'), action.group('BET') )
+			elif action.group('ATYPE') == 'bets':
+				hand.addBet( street, action.group('PNAME'), action.group('BET') )
+			# mct: do we need to keep bet distinct from raise?
+			#	hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE'), action.group('BET')]]
 			else:
+				print "DEBUG: unexpected readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
 				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
-		print "DEBUG: readAction: %s " %(hand.actions)
+		#print "DEBUG: readAction: %s " %(hand.actions)
 
 
 if __name__ == "__main__":

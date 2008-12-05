@@ -23,6 +23,8 @@ import traceback
 import os
 import os.path
 import xml.dom.minidom
+from decimal import Decimal
+import operator
 from xml.dom.minidom import Node
 
 class HandHistoryConverter:
@@ -73,7 +75,8 @@ class HandHistoryConverter:
 				self.readAction(hand, street)
 
 			if(hand.involved == True):
-				self.writeHand("output file", hand)
+				#self.writeHand("output file", hand)
+				hand.printHand()
 			else:
 				pass #Don't write out observed hands
 
@@ -183,6 +186,10 @@ class HandHistoryConverter:
 		for act in hand.actions['PREFLOP']:
 			self.printActionLine(act, 0)
 
+		if 'PREFLOP' in hand.actions:
+			for act in hand.actions['PREFLOP']:
+				print "PF action"
+
 		if 'FLOP' in hand.actions:
 			print "*** FLOP *** [%s %s %s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"))
 			for act in hand.actions['FLOP']:
@@ -208,11 +215,12 @@ class HandHistoryConverter:
 
 	def printActionLine(self, act, pot):
 		if act[1] == 'folds' or act[1] == 'checks':
-			print "%s: %s" %(act[0], act[1])
+			print "%s: %s " %(act[0], act[1])
 		if act[1] == 'calls':
 			print "%s: %s $%s" %(act[0], act[1], act[2])
 		if act[1] == 'raises':
 			print "%s: %s $%s to XXXpottotalXXX" %(act[0], act[1], act[2])
+			
 
 #takes a poker float (including , for thousand seperator and converts it to an int
 	def float2int (self, string):
@@ -233,8 +241,8 @@ class HandHistoryConverter:
 class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
 
-	ups = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K'}
-
+	UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K'}
+	STREETS = ['BLINDS','PREFLOP','FLOP','TURN','RIVER']
 	def __init__(self, sitename, gametype, string):
 		self.sitename = sitename
 		self.gametype = gametype
@@ -257,8 +265,28 @@ class Hand:
 		self.hero = "Hiro"
 		self.holecards = "Xx Xx"
 		self.action = []
-		self.totalpot = 0
+		
 		self.rake = 0
+		
+		self.bets = {}
+		self.lastBet = {}
+		self.orderedBets = {}
+		for street in self.STREETS:
+			self.bets[street] = {}
+			self.lastBet[street] = 0
+			
+	def addPlayer(self, seat, name, chips):
+		"""seat, an int indicating the seat
+		name, the player name
+		chips, the chips the player has at the start of the hand"""
+		#self.players.append(name)
+		self.players.append([seat, name, chips])
+		#self.startChips[name] = chips
+		#self.endChips[name] = chips
+		#self.winners[name] = 0
+		for street in self.STREETS:
+			self.bets[street][name] = [0]
+
 
 	def addHoleCards(self,h1,h2,seat=None): # generalise to add hole cards for a specific seat or player
 		self.holecards = [self.card(h1), self.card(h2)]
@@ -267,24 +295,111 @@ class Hand:
 	def card(self,c):
 		"""upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""
 	# don't know how to make this 'static'
-		for k,v in self.ups.items():
+		for k,v in self.UPS.items():
 			c = c.replace(k,v)
 		return c
 
+	def addBlind(self, player, amount):
+		#self.bets['BLINDS'][player].append(Decimal(amount))
+		self.lastBet['PREFLOP'] = Decimal(amount)
+		self.posted += [player]
+		
+
+	def addCall(self, street, player=None, amount=0):
+		self.bets[street][player].append(Decimal(amount))
+		#self.lastBet[street] = Decimal(amount)
+		self.actions[street] += [[player, 'calls', amount]]
+		
+	def addRaiseTo(self, street, player, amountTo):
+		# amount is the amount raised to, not the amount raised.by
+		committedThisStreet = reduce(operator.add, self.bets[street][player], 0)
+		amountToCall = self.lastBet[street] - committedThisStreet
+		self.lastBet[street] = Decimal(amountTo)
+		amountBy = Decimal(amountTo) - amountToCall
+		self.bets[street][player].append(amountBy)
+		self.actions[street] += [[player, 'raises', amountBy, amountTo]]
+	
+	#def addRaiseTo(self, street, player=None, amountTo=None):
+		#self.amounts[street] += Decimal(amountTo)
+		
+		
+	def addBet(self, street, player=None, amount=0):
+		self.bets[street][name].append(Decimal(amount))
+		self.orderedBets[street].append(Decimal(amount))
+		self.actions[street] += [[player, 'bets', amount]]
+		
+	
+	
 	def printHand(self):
-		print self.sitename
-		print self.gametype
-		print self.string
-		print self.handid
-		print self.sb
-		print self.bb
-		print self.tablename
-		print self.maxseats
-		print self.counted_seats
-		print self.buttonpos
-		print self.seating
-		print self.players
-		print self.posted
-		print self.action
-		print self.involved
-		print self.hero
+		# PokerStars format.
+		print "### DEBUG ###"
+		print "%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, "XXXXhand.gametype", self.sb, self.bb, self.starttime)
+		print "Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos)
+		for player in self.players:
+			print "Seat %s: %s ($%s)" %(player[0], player[1], player[2])
+
+		if(self.posted[0] is None):
+			print "No small blind posted"
+		else:
+			print "%s: posts small blind $%s" %(self.posted[0], self.sb)
+
+		#May be more than 1 bb posting
+		for a in self.posted[1:]:
+			print "%s: posts big blind $%s" %(self.posted[1], self.bb)
+			
+		# What about big & small blinds?
+
+		print "*** HOLE CARDS ***"
+		print "Dealt to %s [%s %s]" %(self.hero , self.holecards[0], self.holecards[1])
+
+		if 'PREFLOP' in self.actions:
+			for act in self.actions['PREFLOP']:
+				self.printActionLine(act)
+
+		if 'FLOP' in self.actions:
+			print "*** FLOP *** [%s %s %s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"))
+			for act in self.actions['FLOP']:
+				self.printActionLine(act)
+
+		if 'TURN' in self.actions:
+			print "*** TURN *** [%s %s %s] [%s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"))
+			for act in self.actions['TURN']:
+				self.printActionLine(act)
+
+		if 'RIVER' in self.actions:
+			print "*** RIVER *** [%s %s %s %s] [%s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
+			for act in self.actions['RIVER']:
+				self.printActionLine(act)
+
+		print "*** SUMMARY ***"
+		print "XXXXXXXXXXXX Need sumary info XXXXXXXXXXX"
+#		print "Total pot $%s | Rake $%s)" %(hand.totalpot  $" + hand.rake)
+#		print "Board [" + boardcards + "]"
+#
+#		SUMMARY STUFF
+
+		
+		#print self.sitename
+		#print self.gametype
+		#print self.string
+		#print self.handid
+		#print self.sb
+		#print self.bb
+		#print self.tablename
+		#print self.maxseats
+		#print self.counted_seats
+		#print self.buttonpos
+		#print self.seating
+		#print self.players
+		#print self.posted
+		#print self.action
+		#print self.involved
+		#print self.hero
+
+	def printActionLine(self, act):
+		if act[1] == 'folds' or act[1] == 'checks':
+			print "%s: %s " %(act[0], act[1])
+		if act[1] == 'calls':
+			print "%s: %s $%s" %(act[0], act[1], act[2])
+		if act[1] == 'raises':
+			print "%s: %s $%s to $%s" %(act[0], act[1], act[2], act[3])
