@@ -58,6 +58,9 @@ from HandHistoryConverter import *
 # smaragdar calls [$ 34.50 USD]
 # ** Dealing Turn ** [ 2d ]
 # ** Dealing River ** [ 6c ]
+# dogge shows [ 9h, 9c ]a pair of nines
+# spicybum shows [ 5d, 6d ]a straight, eight high
+# harrydebeng does not show cards
 # smaragdar wins $ 102 USD from main pot with a pair of aces [ ad, ah, qs, 8h, 6c ]
 
 class Everleaf(HandHistoryConverter):
@@ -116,9 +119,7 @@ class Everleaf(HandHistoryConverter):
 
 		for a in m:
 			hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
-			#players = players + [[a.group('SEAT'), a.group('PNAME'), a.group('CASH')]]
 
-		#hand.players = players
 
 	def markStreets(self, hand):
 		# PREFLOP = ** Dealing down cards **
@@ -159,13 +160,13 @@ class Everleaf(HandHistoryConverter):
 				hand.addCall( street, action.group('PNAME'), action.group('BET') )
 			elif action.group('ATYPE') == 'bets':
 				hand.addBet( street, action.group('PNAME'), action.group('BET') )
-			# mct: do we need to keep bet distinct from raise?
-			#	hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE'), action.group('BET')]]
 			else:
 				print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
 				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
-		#print "DEBUG: readAction: %s " %(hand.actions)
 
+
+	def getRake(self, hand):
+		hand.rake = hand.totalpot * Decimal('0.05') # probably not quite right
 
 if __name__ == "__main__":
 	c = Configuration.Config()

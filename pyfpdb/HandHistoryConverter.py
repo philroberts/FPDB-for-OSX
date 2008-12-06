@@ -74,13 +74,20 @@ class HandHistoryConverter:
 			for street in hand.streets.groupdict():
 				self.readAction(hand, street)
 
+			# finalise it (total the pot)
+			hand.totalPot()
+			self.getRake(hand)
+			
 			if(hand.involved == True):
 				#self.writeHand("output file", hand)
 				hand.printHand()
 			else:
 				pass #Don't write out observed hands
 
-	# Functions to be implemented in the inheriting class
+	#####
+	# These functions are parse actions that may be overridden by the inheriting class
+	#
+	
 	def readSupportedGames(self): abstract
 
 	# should return a list
@@ -89,7 +96,14 @@ class HandHistoryConverter:
 	# Valid types specified in docs/tabledesign.html in Gametypes
 	def determineGameType(self): abstract
 
-	#TODO: Comment
+	# Read any of:
+	# HID		HandID
+	# TABLE		Table name
+	# SB 		small blind
+	# BB		big blind
+	# GAMETYPE	gametype
+	# YEAR MON DAY HR MIN SEC 	datetime
+	# BUTTON	button seat number
 	def readHandInfo(self, hand): abstract
 
 	# Needs to return a list of lists in the format
@@ -97,6 +111,7 @@ class HandHistoryConverter:
 	def readPlayerStacks(self, hand): abstract
 
 	# Needs to return a MatchObject with group names identifying the streets into the Hand object
+	# that is, pulls the chunks of preflop, flop, turn and river text into hand.streets MatchObject.
 	def markStreets(self, hand): abstract
 
 	#Needs to return a list in the format
@@ -105,7 +120,11 @@ class HandHistoryConverter:
 	def readBlinds(self, hand): abstract
 	def readHeroCards(self, hand): abstract
 	def readAction(self, hand, street): abstract
-
+	
+	# Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
+	# so that an inheriting class can calculate it for the specific site if need be.
+	def getRake(self, hand): abstract
+	
 	def sanityCheck(self):
 		sane = True
 		base_w = False
@@ -265,12 +284,11 @@ class Hand:
 		self.hero = "Hiro"
 		self.holecards = "Xx Xx"
 		self.action = []
-		
-		self.rake = 0
+		self.totalpot = None
+		self.rake = None
 		
 		self.bets = {}
 		self.lastBet = {}
-		self.orderedBets = {}
 		for street in self.STREETS:
 			self.bets[street] = {}
 			self.lastBet[street] = 0
@@ -285,7 +303,7 @@ class Hand:
 		#self.endChips[name] = chips
 		#self.winners[name] = 0
 		for street in self.STREETS:
-			self.bets[street][name] = [0]
+			self.bets[street][name] = []
 
 
 	def addHoleCards(self,h1,h2,seat=None): # generalise to add hole cards for a specific seat or player
@@ -300,36 +318,53 @@ class Hand:
 		return c
 
 	def addBlind(self, player, amount):
-		#self.bets['BLINDS'][player].append(Decimal(amount))
+		# if player is None, it's a missing small blind.
+		if player is not None:
+			self.bets['PREFLOP'][player].append(Decimal(amount))
 		self.lastBet['PREFLOP'] = Decimal(amount)
 		self.posted += [player]
 		
 
-	def addCall(self, street, player=None, amount=0):
-		self.bets[street][player].append(Decimal(amount))
-		#self.lastBet[street] = Decimal(amount)
-		self.actions[street] += [[player, 'calls', amount]]
+	def addCall(self, street, player=None, amount=None):
+		# Potentially calculate the amount of the call if not supplied
+		# corner cases include if player would be all in
+		if amount is not None:
+			self.bets[street][player].append(Decimal(amount))
+			#self.lastBet[street] = Decimal(amount)
+			self.actions[street] += [[player, 'calls', amount]]
 		
 	def addRaiseTo(self, street, player, amountTo):
-		# amount is the amount raised to, not the amount raised.by
+		# Given only the amount raised to, the amount of the raise can be calculated by
+		# working out how much this player has already in the pot 
+		#   (which is the sum of self.bets[street][player])
+		# and how much he needs to call to match the previous player 
+		#   (which is tracked by self.lastBet)
 		committedThisStreet = reduce(operator.add, self.bets[street][player], 0)
 		amountToCall = self.lastBet[street] - committedThisStreet
 		self.lastBet[street] = Decimal(amountTo)
 		amountBy = Decimal(amountTo) - amountToCall
-		self.bets[street][player].append(amountBy)
+		self.bets[street][player].append(amountBy+amountToCall)
 		self.actions[street] += [[player, 'raises', amountBy, amountTo]]
-	
-	#def addRaiseTo(self, street, player=None, amountTo=None):
-		#self.amounts[street] += Decimal(amountTo)
-		
 		
 	def addBet(self, street, player=None, amount=0):
 		self.bets[street][name].append(Decimal(amount))
 		self.orderedBets[street].append(Decimal(amount))
 		self.actions[street] += [[player, 'bets', amount]]
 		
-	
-	
+	def totalPot(self):
+		
+		if self.totalpot is None:
+			self.totalpot = 0
+			
+			# player names: 
+			# print [x[1] for x in self.players]
+			for player in [x[1] for x in self.players]:
+				for street in self.STREETS:
+					print street, self.bets[street][player]
+					self.totalpot += reduce(operator.add, self.bets[street][player], 0)
+					
+
+
 	def printHand(self):
 		# PokerStars format.
 		print "### DEBUG ###"
@@ -370,31 +405,18 @@ class Hand:
 			print "*** RIVER *** [%s %s %s %s] [%s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
 			for act in self.actions['RIVER']:
 				self.printActionLine(act)
-
-		print "*** SUMMARY ***"
-		print "XXXXXXXXXXXX Need sumary info XXXXXXXXXXX"
-#		print "Total pot $%s | Rake $%s)" %(hand.totalpot  $" + hand.rake)
-#		print "Board [" + boardcards + "]"
-#
-#		SUMMARY STUFF
-
+				
+				
+		#Some sites don't have a showdown section so we have to figure out if there should be one
+		# The logic for a showdown is: at the end of river action there are at least two players in the hand
+		if 'SHOWDOWN' in self.actions:
+			print "*** SHOW DOWN ***"
+			print "what do they show"
 		
-		#print self.sitename
-		#print self.gametype
-		#print self.string
-		#print self.handid
-		#print self.sb
-		#print self.bb
-		#print self.tablename
-		#print self.maxseats
-		#print self.counted_seats
-		#print self.buttonpos
-		#print self.seating
-		#print self.players
-		#print self.posted
-		#print self.action
-		#print self.involved
-		#print self.hero
+		print "*** SUMMARY ***"
+		print "Total pot $%s | Rake $%s)" % (self.totalpot, self.rake)
+		print "Board [%s %s %s %s %s]" % (self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
+
 
 	def printActionLine(self, act):
 		if act[1] == 'folds' or act[1] == 'checks':
