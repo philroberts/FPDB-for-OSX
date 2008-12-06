@@ -577,7 +577,7 @@ class FpdbSQLQueries:
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
         elif(self.dbname == 'PostgreSQL'):
             # FIXME: This query has a different syntax
-            self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
+            self.query['addTourneyIndex'] = """CREATE INDEX siteTourneyNo ON Tourneys (siteTourneyNo)"""
         elif(self.dbname == 'SQLite'):
             self.query['addHandsIndex'] = """ """
 
@@ -585,7 +585,7 @@ class FpdbSQLQueries:
             self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
         elif(self.dbname == 'PostgreSQL'):
             # FIXME: This query has a different syntax
-            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
+            self.query['addHandsIndex'] = """CREATE INDEX siteHandNo ON Hands (siteHandNo)"""
         elif(self.dbname == 'SQLite'):
             self.query['addHandsIndex'] = """ """
 
@@ -593,9 +593,9 @@ class FpdbSQLQueries:
             self.query['addPlayersIndex'] = """ALTER TABLE Players ADD INDEX name(name)"""
         elif(self.dbname == 'PostgreSQL'):
             # FIXME: This query has a different syntax
-            self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
+            self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
         elif(self.dbname == 'SQLite'):
-            self.query['addHandsIndex'] = """ """
+            self.query['addPlayersIndex'] = """ """
 
     	################################
     	# Queries used in GuiGraphViewer
