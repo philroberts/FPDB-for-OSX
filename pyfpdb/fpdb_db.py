@@ -31,23 +31,33 @@ class fpdb_db:
         self.SQLITE=4
     #end def __init__
     
-    def connect(self, backend, host, database, user, password):
+    def connect(self, backend=None, host=None, database=None,
+                user=None, password=None):
         """Connects a database with the given parameters"""
-        print backend, host, database, user, password
+        if backend is None:
+            raise FpdbError('Database backend not defined')
         self.backend=backend
         self.host=host
-        self.database=database
         self.user=user
         self.password=password
+        self.database=database
         if backend==self.MYSQL_INNODB:
             import MySQLdb
             self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
         elif backend==self.PGSQL:
             import psycopg2
-            self.db = psycopg2.connect(host = host,
+            # If DB connection is made over TCP, then the variables
+            # host, user and password are required
+            if self.host or self.user:
+                self.db = psycopg2.connect(host = host,
                         user = user, 
                         password = password, 
                         database = database)
+            # For local domain-socket connections, only DB name is
+            # needed, and everything else is in fact undefined and/or
+            # flat out wrong
+            else:
+                self.db = psycopg2.connect(database = database)
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
