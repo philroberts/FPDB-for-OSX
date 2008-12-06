@@ -263,7 +263,11 @@ class fpdb:
 		
 		self.db = fpdb_db.fpdb_db()
 		#print "end of fpdb.load_profile, databaseName:",self.settings['db-databaseName']
-		self.db.connect(self.settings['db-backend'], self.settings['db-host'], self.settings['db-databaseName'], self.settings['db-user'], self.settings['db-password'])
+		self.db.connect(self.settings['db-backend'],
+            self.settings['db-host'],
+            self.settings['db-databaseName'],
+            self.settings['db-user'], 
+            self.settings['db-password'])
 		if self.db.wrongDbVersion:
 			diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
