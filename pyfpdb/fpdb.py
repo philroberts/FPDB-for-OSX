@@ -37,6 +37,7 @@ import gtk
 import fpdb_db
 import fpdb_simple
 import GuiBulkImport
+import GuiPlayerStats
 import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
@@ -283,7 +284,7 @@ class fpdb:
 			diaDbVersionWarning.destroy()
 
 		# Database connected to successfully, load queries to pass on to other classes
-                self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
+		self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
 	#end def load_profile
 	
 	def not_implemented(self):
@@ -325,6 +326,13 @@ class fpdb:
 		bulk_tab=new_import_thread.get_vbox()
 		self.add_and_display_tab(bulk_tab, "Bulk Import")
 	#end def tab_bulk_import
+
+	def tab_player_stats(self, widget, data):
+		new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.db, self.config, self.querydict)
+		self.threads.append(new_ps_thread)
+		ps_tab=new_ps_thread.get_vbox()
+		self.add_and_display_tab(ps_tab, "Player Stats")
+
 
 	def tab_main_help(self, widget, data):
 		"""Displays a tab with the main fpdb help screen"""
@@ -384,7 +392,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 				("/Viewers/_Graphs", "<control>G", self.tabGraphViewer, 0, None ),
 				("/Viewers/Hand _Replayer (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/Player _Details (todo)", None, self.not_implemented, 0, None ),
-				("/Viewers/_Player Stats (tabulated view) (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/_Player Stats (tabulated view)", None, self.tab_player_stats, 0, None ),
 				("/Viewers/Starting _Hands (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/_Session Replayer (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/Poker_table Viewer (mostly obselete)", "<control>T", self.tab_table_viewer, 0, None ),
