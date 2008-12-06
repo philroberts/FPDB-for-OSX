@@ -33,34 +33,46 @@ class GuiPlayerStats (threading.Thread):
     def toggleCallback(self, widget, data=None):
         print "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
 
+    def refreshStats(self, widget, data):
+        try: self.stats_table.destroy()
+        except AttributeError: pass
+        self.fillStatsFrame(self.stats_frame)
+
     def fillStatsFrame(self, vbox):
         self.cursor.execute(self.sql.query['playerStats'])
         result = self.db.cursor.fetchall()
-        print result
-        print "Length result: %s" %(len(result))
         cols = 18
         rows = len(result)+1 # +1 for title row
-        table = gtk.Table(rows, cols, False)
-        table.show()
-        vbox.add(table)
+        self.stats_table = gtk.Table(rows, cols, False)
+        self.stats_table.set_col_spacings(4)
+        self.stats_table.show()
+        vbox.add(self.stats_table)
 
         # Create header row
-        titles = ("gametypeId", "base", "limitType", "name", "BigBlind", "n", "vpip", "pfr", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net", "BBlPer100")
+        titles = ("GID", "base", "Style", "Site", "$BB", "Hands", "VPIP", "PFR", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BB/100")
 
         col = 0
         row = 0
         for t in titles:
             l = gtk.Label(titles[col])
             l.show()
-            table.attach(l, col, col+1, row, row+1)
+            self.stats_table.attach(l, col, col+1, row, row+1)
             col +=1 
 
         for row in range(rows-1):
             for col in range(cols):
                 print "result[%s][%s]: %s" %(row-1, col, result[row-1][col])
+                if(row%2 == 0):
+                    bgcolor = "white"
+                else:
+                    bgcolor = "lightgrey"
+                eb = gtk.EventBox()
+                eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
                 l = gtk.Label(result[row-1][col])
+                eb.add(l)
+                self.stats_table.attach(eb, col, col+1, row+1, row+2)
                 l.show()
-                table.attach(l, col, col+1, row+1, row+2)
+                eb.show()
 
 
     def fillPlayerFrame(self, vbox):
@@ -71,12 +83,19 @@ class GuiPlayerStats (threading.Thread):
 
             player = self.conf.supported_sites[site].screen_name
             self.createPlayerLine(hbox, site, player)
+        hbox = gtk.HBox(False, 0)
+        button = gtk.Button("Refresh")
+        button.connect("clicked", self.refreshStats, False)
+        button.show()
+        hbox.add(button)
+        vbox.pack_start(hbox, False, True, 0)
+        hbox.show()
 
     def createPlayerLine(self, hbox, site, player):
         button = gtk.RadioButton(None, site + " id:")
         hbox.pack_start(button, True, True, 0)
         button.connect("toggled", self.toggleCallback, site)
-        button.set_active(True)
+#        button.set_active(True)
         button.show()
 
         pname = gtk.Entry()
@@ -93,7 +112,6 @@ class GuiPlayerStats (threading.Thread):
         print "DEBUG: settings heroes[%s]: %s"%(site, self.heroes[site])
     
     def __init__(self, db, config, querylist, debug=True):
-        """Constructor for table_viewer"""
         self.debug=debug
         self.db=db
         self.cursor=db.cursor
@@ -102,6 +120,8 @@ class GuiPlayerStats (threading.Thread):
         self.sql = querylist
 
         self.heroes = {}
+        self.stat_table = None
+        self.stats_frame = None
         
         self.main_hbox = gtk.HBox(False, 0)
         self.main_hbox.show()
