@@ -117,12 +117,12 @@ class fpdb:
 	
 	def dia_create_del_database(self, widget, data):
 		print "todo: implement dia_create_del_database"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_create_del_database
 	
 	def dia_create_del_user(self, widget, data):
 		print "todo: implement dia_create_del_user"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_create_del_user
 	
 	def dia_database_stats(self, widget, data):
@@ -132,17 +132,17 @@ class fpdb:
 	
 	def dia_delete_db_parts(self, widget, data):
 		print "todo: implement dia_delete_db_parts"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_delete_db_parts
 	
 	def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
 		print "todo: implement dia_edit_profile"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_edit_profile
 
 	def dia_export_db(self, widget, data):
 		print "todo: implement dia_export_db"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_export_db
 	
 	def dia_get_db_root_credentials(self):
@@ -167,7 +167,7 @@ class fpdb:
 	
 	def dia_import_db(self, widget, data):
 		print "todo: implement dia_import_db"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_import_db
 	
 	def dia_licensing(self, widget, data):
