@@ -43,7 +43,10 @@ class fpdb_db:
 			self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
 		elif backend==self.PGSQL:
 			import psycopg2
-			self.db = psycopg2.connect(host = host, user = user, password = password, database = database)
+			self.db = psycopg2.connect(host = host,
+                        user = user, 
+                        password = password, 
+                        database = database)
 		else:
 			raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
 		self.cursor=self.db.cursor()
