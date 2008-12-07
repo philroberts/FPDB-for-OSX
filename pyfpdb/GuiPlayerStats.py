@@ -31,7 +31,9 @@ class GuiPlayerStats (threading.Thread):
         return self.main_hbox
 
     def toggleCallback(self, widget, data=None):
-        print "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+#        print "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+        self.activesite = data
+        print "DEBUG: activesite set to %s" %(self.activesite)
 
     def refreshStats(self, widget, data):
         try: self.stats_table.destroy()
@@ -39,7 +41,14 @@ class GuiPlayerStats (threading.Thread):
         self.fillStatsFrame(self.stats_frame)
 
     def fillStatsFrame(self, vbox):
-        self.cursor.execute(self.sql.query['playerStats'])
+        # Get currently active site and grab playerid
+        tmp = self.sql.query['playerStats']
+
+        result = self.cursor.execute(self.sql.query['getPlayerId'], self.heroes[self.activesite])
+        result = self.db.cursor.fetchall()
+        pid = result[0][0]
+        tmp = tmp.replace("<player_test>", "(" + str(pid) + ")")
+        self.cursor.execute(tmp)
         result = self.db.cursor.fetchall()
         cols = 18
         rows = len(result)+1 # +1 for title row
@@ -61,7 +70,6 @@ class GuiPlayerStats (threading.Thread):
 
         for row in range(rows-1):
             for col in range(cols):
-                print "result[%s][%s]: %s" %(row-1, col, result[row-1][col])
                 if(row%2 == 0):
                     bgcolor = "white"
                 else:
@@ -92,10 +100,15 @@ class GuiPlayerStats (threading.Thread):
         hbox.show()
 
     def createPlayerLine(self, hbox, site, player):
-        button = gtk.RadioButton(None, site + " id:")
+        if(self.buttongroup == None):
+            button = gtk.RadioButton(None, site + " id:")
+            button.set_active(True)
+            self.buttongroup = button
+            self.activesite = site
+        else:
+            button = gtk.RadioButton(self.buttongroup, site + " id:")
         hbox.pack_start(button, True, True, 0)
         button.connect("toggled", self.toggleCallback, site)
-#        button.set_active(True)
         button.show()
 
         pname = gtk.Entry()
@@ -119,6 +132,9 @@ class GuiPlayerStats (threading.Thread):
 
         self.sql = querylist
 
+        self.activesite = None
+        self.buttongroup = None
+
         self.heroes = {}
         self.stat_table = None
         self.stats_frame = None
@@ -138,11 +154,11 @@ class GuiPlayerStats (threading.Thread):
         statsFrame = gtk.Frame("Stats:")
         statsFrame.set_label_align(0.0, 0.0)
         statsFrame.show()
-        vbox = gtk.VBox(False, 0)
-        vbox.show()
+        self.stats_frame = gtk.VBox(False, 0)
+        self.stats_frame.show()
 
-        self.fillStatsFrame(vbox)
-        statsFrame.add(vbox)
+        self.fillStatsFrame(self.stats_frame)
+        statsFrame.add(self.stats_frame)
 
         self.main_hbox.pack_start(playerFrame)
         self.main_hbox.pack_start(statsFrame)

@@ -576,7 +576,6 @@ class FpdbSQLQueries:
         if(self.dbname == 'MySQL InnoDB'):
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
         elif(self.dbname == 'PostgreSQL'):
-            # FIXME: This query has a different syntax
             self.query['addTourneyIndex'] = """CREATE INDEX siteTourneyNo ON Tourneys (siteTourneyNo)"""
         elif(self.dbname == 'SQLite'):
             self.query['addHandsIndex'] = """ """
@@ -584,7 +583,6 @@ class FpdbSQLQueries:
         if(self.dbname == 'MySQL InnoDB'):
             self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
         elif(self.dbname == 'PostgreSQL'):
-            # FIXME: This query has a different syntax
             self.query['addHandsIndex'] = """CREATE INDEX siteHandNo ON Hands (siteHandNo)"""
         elif(self.dbname == 'SQLite'):
             self.query['addHandsIndex'] = """ """
@@ -592,7 +590,6 @@ class FpdbSQLQueries:
         if(self.dbname == 'MySQL InnoDB'):
             self.query['addPlayersIndex'] = """ALTER TABLE Players ADD INDEX name(name)"""
         elif(self.dbname == 'PostgreSQL'):
-            # FIXME: This query has a different syntax
             self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
         elif(self.dbname == 'SQLite'):
             self.query['addPlayersIndex'] = """ """
@@ -632,6 +629,11 @@ class FpdbSQLQueries:
     				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
     				WHERE Players.name = %s AND HandsPlayers.handId = %s 
     				AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
+
+    	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+    		self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
+    	elif(self.dbname == 'SQLite'):
+    		self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
     	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
     		self.query['getRingProfitAllHandsPlayerIdSite'] = """
@@ -702,8 +704,7 @@ class FpdbSQLQueries:
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
-                     where gt.limittype = 'nl'
-                     and   hc.playerId in (3)   # use <player_test> here?
+                     where hc.playerId in <player_test>
                                                 # use <gametype_test> here ?
                      group by hc.gametypeId
                     ) stats
@@ -716,7 +717,7 @@ class FpdbSQLQueries:
                           from HandsPlayers hp
                           inner join Hands h         ON h.id            = hp.handId
                           inner join HandsActions ha ON ha.handPlayerId = hp.id
-                          where hp.playerId in (3)   # use <player_test> here?
+                          where hp.playerId in <player_test>
                                                      # use <gametype_test> here ?
                           and   hp.tourneysPlayersId IS NULL
                           group by hp.handId, h.gameTypeId, hp.position, hp.winnings
