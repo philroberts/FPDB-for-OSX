@@ -289,7 +289,7 @@ class Stud_cards:
 
     def clear(self):
         for r in range(0, self.rows):
-            self.grid_contents[(1, r)].set_text("        ")
+            self.grid_contents[(1, r)].set_text("             ")
             for c in range(0, 7):
                 self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[('B', 'S')])
                 self.eb[(c, r)].set_tooltip_text('')
