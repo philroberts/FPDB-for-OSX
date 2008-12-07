@@ -58,42 +58,45 @@ from HandHistoryConverter import *
 # smaragdar calls [$ 34.50 USD]
 # ** Dealing Turn ** [ 2d ]
 # ** Dealing River ** [ 6c ]
+# dogge shows [ 9h, 9c ]a pair of nines
+# spicybum shows [ 5d, 6d ]a straight, eight high
+# harrydebeng does not show cards
 # smaragdar wins $ 102 USD from main pot with a pair of aces [ ad, ah, qs, 8h, 6c ]
 
 class Everleaf(HandHistoryConverter):
-	def __init__(self, config, file):
-		print "Initialising Everleaf converter class"
-		HandHistoryConverter.__init__(self, config, file, "Everleaf") # Call super class init.
-		self.sitename = "Everleaf"
-		self.setFileType("text")
-		self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
-		self.rexx.setSplitHandRegex('\n\n\n\n')
-		self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
-		self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(  \$ (?P<CASH>[.0-9]+) USD \)')
-		self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[\$? (?P<SB>[.0-9]+)')
-		self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
-		# mct : what about posting small & big blinds simultaneously?
-		self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
-		self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
-		self.rexx.compileRegexes()
+    def __init__(self, config, file):
+        print "Initialising Everleaf converter class"
+        HandHistoryConverter.__init__(self, config, file, "Everleaf") # Call super class init.
+        self.sitename = "Everleaf"
+        self.setFileType("text")
+        self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
+        self.rexx.setSplitHandRegex('\n\n\n\n')
+        self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
+        self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(  \$ (?P<CASH>[.0-9]+) USD \)')
+        self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[\$? (?P<SB>[.0-9]+)')
+        self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
+        # mct : what about posting small & big blinds simultaneously?
+        self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
+        self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
+        self.rexx.compileRegexes()
 
-	def readSupportedGames(self):
-		pass
+    def readSupportedGames(self):
+        pass
 
-	def determineGameType(self):
-		# Cheating with this regex, only support nlhe at the moment
-		gametype = ["ring", "hold", "nl"]
+    def determineGameType(self):
+        # Cheating with this regex, only support nlhe at the moment
+        gametype = ["ring", "hold", "nl"]
 
-		m = self.rexx.game_info_re.search(self.obs)
-		gametype = gametype + [m.group('SB')]
-		gametype = gametype + [m.group('BB')]
-		
-		return gametype
+        m = self.rexx.game_info_re.search(self.obs)
+        gametype = gametype + [m.group('SB')]
+        gametype = gametype + [m.group('BB')]
+        
+        return gametype
 
-	def readHandInfo(self, hand):
-		m =  self.rexx.hand_info_re.search(hand.string)
-		hand.handid = m.group('HID')
-		hand.tablename = m.group('TABLE')
+    def readHandInfo(self, hand):
+        m =  self.rexx.hand_info_re.search(hand.string)
+        hand.handid = m.group('HID')
+        hand.tablename = m.group('TABLE')
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #		m.group('SB')
 #		m.group('BB')
@@ -106,70 +109,68 @@ class Everleaf(HandHistoryConverter):
 # 2008/11/10 3:58:52 ET
 #TODO: Do conversion from GMT to ET
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
-		hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
-							  int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-		hand.buttonpos = int(m.group('BUTTON'))
+        hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
+                            int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
+        hand.buttonpos = int(m.group('BUTTON'))
 
-	def readPlayerStacks(self, hand):
-		m = self.rexx.player_info_re.finditer(hand.string)
-		players = []
+    def readPlayerStacks(self, hand):
+        m = self.rexx.player_info_re.finditer(hand.string)
+        players = []
 
-		for a in m:
-			hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
-			#players = players + [[a.group('SEAT'), a.group('PNAME'), a.group('CASH')]]
+        for a in m:
+            hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
 
-		#hand.players = players
 
-	def markStreets(self, hand):
-		# PREFLOP = ** Dealing down cards **
-		m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
+    def markStreets(self, hand):
+        # PREFLOP = ** Dealing down cards **
+        m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
 #		for street in m.groupdict():
 #			print "DEBUG: Street: %s\tspan: %s" %(street, str(m.span(street)))
-		hand.streets = m
+        hand.streets = m
 
-	def readBlinds(self, hand):
-		try:
-			m = self.rexx.small_blind_re.search(hand.string)
-			hand.addBlind(m.group('PNAME'), m.group('SB'))
-			#hand.posted = [m.group('PNAME')]
-		except:
-			hand.addBlind(None, 0)
-			#hand.posted = ["FpdbNBP"]
-		m = self.rexx.big_blind_re.finditer(hand.string)
-		for a in m:
-			hand.addBlind(a.group('PNAME'), a.group('BB'))
-			#hand.posted = hand.posted + [a.group('PNAME')]
+    def readBlinds(self, hand):
+        try:
+            m = self.rexx.small_blind_re.search(hand.string)
+            hand.addBlind(m.group('PNAME'), m.group('SB'))
+            #hand.posted = [m.group('PNAME')]
+        except:
+            hand.addBlind(None, 0)
+            #hand.posted = ["FpdbNBP"]
+        m = self.rexx.big_blind_re.finditer(hand.string)
+        for a in m:
+            hand.addBlind(a.group('PNAME'), a.group('BB'))
+            #hand.posted = hand.posted + [a.group('PNAME')]
 
-	def readHeroCards(self, hand):
-		m = self.rexx.hero_cards_re.search(hand.string)
-		if(m == None):
-			#Not involved in hand
-			hand.involved = False
-		else:
-			hand.hero = m.group('PNAME')
-			hand.addHoleCards(m.group('HOLE1'), m.group('HOLE2'))
+    def readHeroCards(self, hand):
+        m = self.rexx.hero_cards_re.search(hand.string)
+        if(m == None):
+            #Not involved in hand
+            hand.involved = False
+        else:
+            hand.hero = m.group('PNAME')
+            hand.addHoleCards(m.group('HOLE1'), m.group('HOLE2'))
 
-	def readAction(self, hand, street):
-		m = self.rexx.action_re.finditer(hand.streets.group(street))
-		hand.actions[street] = []
-		for action in m:
-			if action.group('ATYPE') == 'raises':
-				hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-			elif action.group('ATYPE') == 'calls':
-				hand.addCall( street, action.group('PNAME'), action.group('BET') )
-			elif action.group('ATYPE') == 'bets':
-				hand.addBet( street, action.group('PNAME'), action.group('BET') )
-			# mct: do we need to keep bet distinct from raise?
-			#	hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE'), action.group('BET')]]
-			else:
-				print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
-				hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
-		#print "DEBUG: readAction: %s " %(hand.actions)
+    def readAction(self, hand, street):
+        m = self.rexx.action_re.finditer(hand.streets.group(street))
+        hand.actions[street] = []
+        for action in m:
+            if action.group('ATYPE') == 'raises':
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+            else:
+                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
 
+
+    def getRake(self, hand):
+        hand.rake = hand.totalpot * Decimal('0.05') # probably not quite right
 
 if __name__ == "__main__":
-	c = Configuration.Config()
-	e = Everleaf(c, "Speed_Kuala.txt")
-	e.processFile()
-	print str(e)
-	
+    c = Configuration.Config()
+    e = Everleaf(c, "Speed_Kuala.txt")
+    e.processFile()
+    print str(e)
+    
