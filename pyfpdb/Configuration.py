@@ -5,17 +5,17 @@ Handles HUD configuration files.
 """
 #    Copyright 2008, Ray E. Barker
 
-#   
+#    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#   
+#    
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#   
+#    
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -36,13 +36,13 @@ class Layout:
         self.max = int(max)
         self.location = []
         for i in range(self.max + 1): self.location.append(None)
-       
+        
     def __str__(self):
         temp = "    Layout = %d max, width= %d, height = %d, fav_seat = %d\n" % (self.max, self.width, self.height, self.fav_seat)
         temp = temp + "        Locations = "
         for i in range(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
-       
+        
         return temp + "\n"
 
 class Site:
@@ -60,17 +60,17 @@ class Site:
         self.enabled      = node.getAttribute("enabled")
         self.aux_window   = node.getAttribute("aux_window")
         self.layout       = {}
-       
+        
         for layout_node in node.getElementsByTagName('layout'):
             max         = int( layout_node.getAttribute('max') )
             lo = Layout(max)
             lo.fav_seat = int( layout_node.getAttribute('fav_seat') )
             lo.width    = int( layout_node.getAttribute('width') )
             lo.height   = int( layout_node.getAttribute('height') )
-           
+            
             for location_node in layout_node.getElementsByTagName('location'):
                 lo.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
-               
+                
             self.layout[lo.max] = lo
 
     def __str__(self):
@@ -81,20 +81,20 @@ class Site:
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + str(value) + "\n"
-           
+            
         for layout in self.layout:
             temp = temp + "%s" % self.layout[layout]
-           
+            
         return temp
-       
+        
 class Stat:
     def __init__(self):
         pass
-   
+    
     def __str__(self):
         temp = "        stat_name = %s, row = %d, col = %d, tip = %s, click = %s, popup = %s\n" % (self.stat_name, self.row, self.col, self.tip, self.click, self.popup)
         return temp
-               
+                
 class Game:
     def __init__(self, node):
         self.game_name = node.getAttribute("game_name")
@@ -114,19 +114,20 @@ class Game:
             stat.popup     = stat_node.getAttribute("popup")
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
-           
+            stat.hudcolor  = stat_node.getAttribute("hudcolor")
+            
             self.stats[stat.stat_name] = stat
-           
+            
     def __str__(self):
         temp = "Game = " + self.game_name + "\n"
         temp = temp + "    db = %s\n" % self.db
         temp = temp + "    rows = %d\n" % self.rows
         temp = temp + "    cols = %d\n" % self.cols
         temp = temp + "    aux = %s\n" % self.aux
-       
+        
         for stat in self.stats.keys():
             temp = temp + "%s" % self.stats[stat]
-           
+            
         return temp
              
 class Database:
@@ -137,7 +138,7 @@ class Database:
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
-       
+        
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
         for key in dir(self):
@@ -174,7 +175,7 @@ class Popup:
         self.pu_stats     = []
         for stat_node in node.getElementsByTagName('pu_stat'):
             self.pu_stats.append(stat_node.getAttribute("pu_stat_name"))
-       
+        
     def __str__(self):
         temp = "Popup = " + self.name + "\n"
         for stat in self.pu_stats:
@@ -185,7 +186,7 @@ class Import:
     def __init__(self, node):
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
-        self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+	self.hhArchiveBase = node.getAttribute("hhArchiveBase")
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
@@ -197,7 +198,7 @@ class Tv:
         self.combinedPostflop  = node.getAttribute("combinedPostflop")
 
     def __str__(self):
-        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" %
+        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" % 
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
 class Config:
@@ -220,7 +221,7 @@ class Config:
             file = self.find_example_config() #Look for an example file to edit
             if not file == None:
                 pass
-           
+            
         if file == None: # that didn't work either, just die
             print "No HUD_config_xml found.  Exiting"
             sys.stderr.write("No HUD_config_xml found.  Exiting")
@@ -255,7 +256,7 @@ class Config:
         for game_node in doc.getElementsByTagName("game"):
             game = Game(node = game_node)
             self.supported_games[game.game_name] = game
-           
+            
 #        s_dbs = doc.getElementsByTagName("supported_databases")
         for db_node in doc.getElementsByTagName("database"):
             db = Database(node = db_node)
@@ -291,7 +292,7 @@ class Config:
                                        db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
 
-               
+                
     def find_config(self):
         """Looks in cwd and in self.default_config_path for a config file."""
         if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
@@ -336,7 +337,7 @@ class Config:
             parms[key] = value
         fh.close
         return parms
-               
+                
     def find_example_config(self):
         if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
             file = 'HUD_config.xml.example'             # so we use it
@@ -361,7 +362,7 @@ class Config:
 
     def get_layout_node(self, site_node, layout):
         for layout_node in site_node.getElementsByTagName("layout"):
-            if layout_node.getAttribute("max") == None:
+            if layout_node.getAttribute("max") == None: 
                 return None
             if int( layout_node.getAttribute("max") ) == int( layout ):
                 return layout_node
@@ -439,13 +440,13 @@ class Config:
             tv['combined2B3B']      = True
             tv['combinedPostflop']  = True
         return tv
-   
+    
     def get_import_parameters(self):
         imp = {}
         try:
-            imp['callFpdbHud']   = self.callFpdbHud
-            imp['interval']      = self.interval
-            imp['hhArchiveBase'] = self.hhArchiveBase
+            imp['callFpdbHud']   = self.imp.callFpdbHud
+            imp['interval']      = self.imp.interval
+            imp['hhArchiveBase'] = self.imp.hhArchiveBase
         except: # Default params
             imp['callFpdbHud']   = True
             imp['interval']      = 10
@@ -479,11 +480,11 @@ class Config:
         return colors
 
     def get_locations(self, site = "PokerStars", max = "8"):
-       
+        
         try:
             locations = self.supported_sites[site].layout[max].location
         except:
-            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346),
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
                           (586, 393), (421, 440), (267, 440), (  0, 361),
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
@@ -512,7 +513,7 @@ class Config:
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
-                            hudbgcolor = None, hudfgcolor = None,
+                            hudbgcolor = None, hudfgcolor = None, 
                             hudopacity = None, screen_name = None,
                             site_path = None, table_finder = None,
                             HH_path = None, enabled = None):
@@ -562,7 +563,7 @@ class Config:
 
             return param
         return None
-   
+    
     def get_game_parameters(self, name):
         """Get the configuration parameters for the named game."""
         param = {}
@@ -583,7 +584,7 @@ class Config:
 
 if __name__== "__main__":
     c = Config()
-   
+    
     print "\n----------- SUPPORTED SITES -----------"
     for s in c.supported_sites.keys():
         print c.supported_sites[s]
@@ -605,16 +606,14 @@ if __name__== "__main__":
     for w in c.aux_windows.keys():
         print c.aux_windows[w]
     print "----------- END AUX WINDOW FORMATS -----------"
-   
+    
     print "\n----------- POPUP WINDOW FORMATS -----------"
     for w in c.popup_windows.keys():
         print c.popup_windows[w]
     print "----------- END POPUP WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-    tmp = c.get_import_parameters()
-    for param in tmp:
-        print "    " + str(param) + ": " + str(tmp[param])
+    print c.imp
     print "----------- END IMPORT -----------"
 
     print "\n----------- TABLE VIEW -----------"
@@ -623,7 +622,7 @@ if __name__== "__main__":
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
-   
+    
     print "db     = ", c.get_db_parameters()
 #    print "tv     = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
@@ -632,7 +631,7 @@ if __name__== "__main__":
     print "locs   = ", c.get_locations("PokerStars", 8)
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
-           
+            
     for site in c.supported_sites.keys():
         print "site = ", site,
         print c.get_site_parameters(site)

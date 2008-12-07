@@ -5,17 +5,17 @@
 Main for FreePokerTools HUD.
 """
 #    Copyright 2008, Ray E. Barker
-#   
+#    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#   
+#    
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#   
+#    
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -118,7 +118,7 @@ def read_stdin():            # This is the thread function
         if mat_obj:
             is_tournament = True
             (tour_number, tab_number) = mat_obj.group(1, 2)
-           
+            
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
 
 #    if a hud for this CASH table exists, just update it
@@ -167,5 +167,5 @@ if __name__== "__main__":
     main_window.add(eb)
     main_window.set_title("HUD Main Window")
     main_window.show_all()
-   
+    
     gtk.main()

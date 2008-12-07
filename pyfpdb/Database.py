@@ -142,12 +142,27 @@ class Database:
             cards[s_dict['seat_number']] = s_dict
         return (cards)
 
-    def get_stats_from_hand(self, hand, player_id = False):
+    def get_action_from_hand(self, hand_no):
+        action = [ [], [], [], [], [] ]
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_action_from_hand'], (hand_no))
+        for row in c.fetchall():
+            street = row[0]
+            act = row[1:]
+            action[street].append(act)
+        return action
+                
+    def get_stats_from_hand(self, hand, aggregate = False):
         c = self.connection.cursor()
 
-        if not player_id: player_id = "%"
+        if aggregate:
+            query = 'get_stats_from_hand'
+            subs = (hand, hand)
+        else:
+            query = 'get_stats_from_hand_aggregated'
+            subs = (hand, hand, hand)
+
 #    get the players in the hand and their seats
-#        c.execute(self.sql.query['get_players_from_hand'], (hand, player_id))
         c.execute(self.sql.query['get_players_from_hand'], (hand, ))
         names = {}
         seats = {}
@@ -156,8 +171,7 @@ class Database:
             seats[row[0]] = row[1]
 
 #    now get the stats
-#        c.execute(self.sql.query['get_stats_from_hand'], (hand, hand, player_id))
-        c.execute(self.sql.query['get_stats_from_hand'], (hand, hand))
+        c.execute(self.sql.query[query], subs)
         colnames = [desc[0] for desc in c.description]
         stat_dict = {}
         for row in c.fetchall():

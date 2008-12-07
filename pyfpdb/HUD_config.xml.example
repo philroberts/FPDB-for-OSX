@@ -2,7 +2,7 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 	<supported_sites>
-	    <site enabled="True" site_name="PokerStars" table_finder="PokerStars.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+	    <site enabled="True" site_name="PokerStars" table_finder="PokerStars.exe" screen_name="ENTER HERO NAME" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
 	        <layout max="8" width="792" height="546" fav_seat="0">
 	        	<location seat="1" x="684" y="61">  </location>
 	        	<location seat="2" x="689" y="239"> </location>
@@ -49,7 +49,7 @@
 	        	<location seat="2" x="10"  y="288"> </location>
 	        </layout>
 	    </site>
-	    <site enabled="True" site_name="Full Tilt" table_finder="FullTiltPoker.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/Full Tilt Poker/" HH_path="~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/abc/" decoder="fulltilt_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+	    <site enabled="True" site_name="Full Tilt" table_finder="FullTiltPoker.exe" screen_name="ENTER HERO NAME" site_path="~/.wine/drive_c/Program Files/Full Tilt Poker/" HH_path="~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/abc/" decoder="fulltilt_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
 	        <layout fav_seat="0" height="547" max="8" width="794">
 	        	<location seat="1" x="640" y="64">  </location>
 	        	<location seat="2" x="650" y="230"> </location>
@@ -84,7 +84,7 @@
 	        	<location seat="9" x="70" y="53">  </location>
 	        </layout>
 	    </site>
-	    <site enabled="False" site_name="Everleaf" table_finder="Poker.exe" screen_name="DO NOT NEED THIS YET" site_path="" HH_path="" decoder="Unknown" converter="EverleafToFpdb" supported_games="holdem,razz,omahahi,omahahilo,studhi" fgcolor="#48D1CC" bgcolor="#000000">
+	    <site enabled="False" site_name="Everleaf" table_finder="Poker.exe" screen_name="ENTER HERO NAME" site_path="" HH_path="" decoder="Unknown" converter="EverleafToFpdb" supported_games="holdem,razz,omahahi,omahahilo,studhi" fgcolor="#48D1CC" bgcolor="#000000" opacity="0.75">
 		<layout fav_seat="0" height="546" max="6" width="792">
 	        	<location seat="1" x="581" y="109"> </location>
 	        	<location seat="2" x="605" y="287"> </location>
@@ -187,7 +187,7 @@
             <pu_stat pu_stat_name="ffreq_4"> </pu_stat>
     	</pu>
     </popup_windows>
-    <import callFpdbHud = "True" interval = "10" ></import>
+    <import callFpdbHud = "True" interval = "10" hhArchiveBase="~/.fpdb/HandHistories/"></import>
     <tv combinedStealFold = "True" combined2B3B = "True" combinedPostflop = "True"></tv>
 
     <supported_databases>

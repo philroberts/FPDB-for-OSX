@@ -5,17 +5,17 @@ Create and manage the hud overlays.
 """
 #    Copyright 2008, Ray E. Barker
 
-#   
+#    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#   
+#    
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#   
+#    
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -43,10 +43,10 @@ import Configuration
 import Stats
 import Mucked
 import Database
-import HUD_main
+import HUD_main 
 
 class Hud:
-   
+    
     def __init__(self, table, max, poker_game, config, db_name):
         self.table         = table
         self.config        = config
@@ -60,9 +60,9 @@ class Hud:
         self.stat_windows = {}
         self.popup_windows = {}
         self.aux_windows = []
-        self.font = pango.FontDescription("Sans 8")
+        self.font = pango.FontDescription("Sans 7")
 
-#       Set up a main window for this this instance of the HUD
+#	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
 #        self.window.set_decorated(0)
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
@@ -75,10 +75,10 @@ class Hud:
         self.ebox = gtk.EventBox()
 #        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
         self.label = gtk.Label("FPDB Menu (Right Click)\nLeft-drag to move")
-       
+        
         self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
-       
+        
         self.main_window.add(self.ebox)
         self.ebox.add(self.label)
         self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
@@ -92,14 +92,22 @@ class Hud:
         self.menu.append(self.item1)
         self.item1.connect("activate", self.kill_hud)
         self.item1.show()
+        
         self.item2 = gtk.MenuItem('Save Layout')
         self.menu.append(self.item2)
         self.item2.connect("activate", self.save_layout)
         self.item2.show()
+        
         self.item3 = gtk.MenuItem('Reposition Stats')
         self.menu.append(self.item3)
         self.item3.connect("activate", self.reposition_windows)
         self.item3.show()
+        
+        self.item4 = gtk.MenuItem('Debug Stat Windows')
+        self.menu.append(self.item4)
+        self.item4.connect("activate", self.debug_stat_windows)
+        self.item4.show()
+        
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
@@ -132,9 +140,15 @@ class Hud:
         for w in self.stat_windows:
                 self.stat_windows[w].window.move(self.stat_windows[w].x,
                                                  self.stat_windows[w].y)
+
+    def debug_stat_windows(self, *args):
+        print self.table, "\n", self.main_window.window.get_transient_for()
+        for w in self.stat_windows:
+            print self.stat_windows[w].window.window.get_transient_for()
+                
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
-# todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.       
+# todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
         for sw in self.stat_windows:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
@@ -178,11 +192,11 @@ class Hud:
             else:
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
-                                               table = self.table,
+                                               table = self.table, 
                                                x = x,
                                                y = y,
                                                seat = i,
-                                               adj = adj[i],
+                                               adj = adj[i], 
                                                player_id = 'fake',
                                                font = self.font)
 
@@ -199,7 +213,7 @@ class Hud:
         if not game_params['aux'] == "":
             aux_params = config.get_aux_parameters(game_params['aux'])
             self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
-           
+            
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
         for s in stat_dict.keys():
@@ -209,13 +223,20 @@ class Hud:
                 self.max = 10
                 self.create(hand, config)
                 self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
-               
+                
             for r in range(0, config.supported_games[self.poker_game].rows):
                 for c in range(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
+                    
+                    if this_stat.hudcolor != "":
+                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                        self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                        
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                    if statstring != "xxx":
+                        self.stat_windows[stat_dict[s]['seat']].window.show_all()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
@@ -235,7 +256,7 @@ class Hud:
         window.set_title(unique_name)
         tl_windows = []
         win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-       
+        
         for w in tl_windows:
             if w[1] == unique_name:
                 #win32gui.ShowWindow(w[0], win32con.SW_HIDE)
@@ -266,7 +287,7 @@ class Hud:
 class Stat_Window:
 
     def button_press_cb(self, widget, event, *args):
-#    This handles all callbacks from button presses on the event boxes in
+#    This handles all callbacks from button presses on the event boxes in 
 #    the stat windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.
 
@@ -281,6 +302,7 @@ class Stat_Window:
                     self.double_click(widget, event, *args)
 
         if event.button == 2:   # middle button event
+            self.window.hide()
 #            print "middle button clicked"
             pass
 
@@ -292,27 +314,27 @@ class Stat_Window:
 
     def single_click(self, widget):
 #    Callback from the timeout in the single-click finding part of the
-#    button press call back.  This needs to be modified to get all the
+#    button press call back.  This needs to be modified to get all the 
 #    arguments from the call.
 #        print "left button clicked"
         self.sb_click = 0
         Popup_window(widget, self)
         return False
 
-    def double_click(self, widget, event, *args):           
+    def double_click(self, widget, event, *args):            
         self.toggle_decorated(widget)
 
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
         (x, y) = top.get_position()
-                   
+                    
         if top.get_decorated():
             top.set_decorated(0)
             top.move(x, y)
         else:
             top.set_decorated(1)
             top.move(x, y)
-           
+            
     def relocate(self, x, y):
         self.x = x + self.table.x
         self.y = y + self.table.y
@@ -339,7 +361,7 @@ class Stat_Window:
 
         self.grid = gtk.Table(rows = self.game.rows, columns = self.game.cols, homogeneous = False)
         self.window.add(self.grid)
-       
+        
         self.e_box = []
         self.frame = []
         self.label = []
@@ -348,55 +370,27 @@ class Stat_Window:
             self.label.append([])
             for c in range(self.game.cols):
                 self.e_box[r].append( gtk.EventBox() )
-               
+                
                 self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudbgcolor']))
                 self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))
-               
+                
                 Stats.do_tip(self.e_box[r][c], 'farts')
                 self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 self.label[r].append( gtk.Label('xxx') )
-               
+                
                 self.label[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudbgcolor']))
-                self.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))       
+                self.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))        
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-#                font = pango.FontDescription("Sans 8")
+                font = pango.FontDescription("Sans 7")
                 self.label[r][c].modify_font(font)
 
-#        if not os.name == 'nt':  # seems to be a bug in opacity on windows
         self.window.set_opacity(parent.colors['hudopacity'])
-       
-        self.window.realize
+        
         self.window.move(self.x, self.y)
-        self.window.show_all()
-#    set_keep_above(1) for windows
-        if os.name == 'nt': self.topify_window(self.window)
-
-    def topify_window(self, window):
-        """Set the specified gtk window to stayontop in MS Windows."""
-
-        def windowEnumerationHandler(hwnd, resultList):
-            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-
-        unique_name = 'unique name for finding this window'
-        real_name = window.get_title()
-        window.set_title(unique_name)
-        tl_windows = []
-        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-       
-        for w in tl_windows:
-            if w[1] == unique_name:
-               
-                #win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
-                
-#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
-#                style |= win32con.WS_EX_TOOLWINDOW
-#                style &= ~win32con.WS_EX_APPWINDOW
-#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
-                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
-                window.set_title(real_name)
+                   
+        self.window.hide()
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
@@ -413,9 +407,9 @@ class Popup_window:
         self.window.set_title("popup")
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.get_toplevel())
-       
+        
         self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-       
+        
         self.ebox = gtk.EventBox()
         self.ebox.connect("button_press_event", self.button_press_cb)
         self.lab  = gtk.Label("stuff\nstuff\nstuff")
@@ -423,15 +417,15 @@ class Popup_window:
 #    need an event box so we can respond to clicks
         self.window.add(self.ebox)
         self.ebox.add(self.lab)
-       
+        
         self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
         self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))
         self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
         self.window.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))
         self.lab.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
-        self.lab.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))       
-       
-        self.window.realize
+        self.lab.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))        
+        
+#        self.window.realize()
 
 #    figure out the row, col address of the click that activated the popup
         row = 0
@@ -459,7 +453,7 @@ class Popup_window:
 
 #    get a database connection
         db_connection = Database.Database(stat_window.parent.config, stat_window.parent.db_name, 'temp')
-   
+    
 #    calculate the stat_dict and then create the text for the pu
 #        stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand, stat_window.player_id)
         stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand)
@@ -470,16 +464,16 @@ class Popup_window:
             number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
             pu_text += number[3] + "\n"
 
-        self.lab.set_text(pu_text)       
+        self.lab.set_text(pu_text)        
         self.window.show_all()
-       
+        
         self.window.set_transient_for(stat_window.window)
 
 #    set_keep_above(1) for windows
         if os.name == 'nt': self.topify_window(self.window)
 
     def button_press_cb(self, widget, event, *args):
-#    This handles all callbacks from button presses on the event boxes in
+#    This handles all callbacks from button presses on the event boxes in 
 #    the popup windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.  This is the same code as in the Stat_window class
         if event.button == 1:   # left button event
@@ -502,7 +496,7 @@ class Popup_window:
 
     def single_click(self, widget):
 #    Callback from the timeout in the single-click finding part of the
-#    button press call back.  This needs to be modified to get all the
+#    button press call back.  This needs to be modified to get all the 
 #    arguments from the call.
         self.sb_click = 0
         self.window.destroy()
@@ -514,7 +508,7 @@ class Popup_window:
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
         (x, y) = top.get_position()
-                   
+                    
         if top.get_decorated():
             top.set_decorated(0)
             top.move(x, y)
@@ -534,7 +528,7 @@ class Popup_window:
         window.set_title(unique_name)
         tl_windows = []
         win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-       
+        
         for w in tl_windows:
             if w[1] == unique_name:
 #                win32gui.ShowWindow(w[0], win32con.SW_HIDE)
@@ -561,10 +555,10 @@ if __name__== "__main__":
     label = gtk.Label('Fake main window, blah blah, blah\nblah, blah')
     main_window.add(label)
     main_window.show_all()
-   
+    
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Chelsea")
+    t = Tables.discover_table_by_name(c, "Motorway")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')

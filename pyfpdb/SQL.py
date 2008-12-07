@@ -237,18 +237,80 @@ class Sql:
                     GROUP BY HudCache.PlayerId
                 """
 
-#                    FROM HudCache, Hands
-#                    WHERE HudCache.PlayerId in 
-#                        (SELECT PlayerId FROM HandsPlayers 
-#                        WHERE handId = %s)
-#                    AND   Hands.id = %s
-#                    AND   Hands.gametypeId = HudCache.gametypeId
-
-#                    AND   PlayerId LIKE %s
-#                        HudCache.gametypeId              AS gametypeId,
-#                        activeSeats                      AS n_active,
-#                        position                         AS position,
-#                        HudCache.tourneyTypeId           AS tourneyTypeId,
+#    same as above except stats are aggregated for all blind/limit levels
+            self.query['get_stats_from_hand_aggregated'] = """
+                    SELECT HudCache.playerId             AS player_id, 
+                        sum(HDs)                         AS n,
+                        sum(street0VPI)                  AS vpip,
+                        sum(street0Aggr)                 AS pfr,
+                        sum(street0_3B4BChance)          AS TB_opp_0,
+                        sum(street0_3B4BDone)            AS TB_0,
+                        sum(street1Seen)                 AS saw_f,
+                        sum(street1Seen)                 AS saw_1,
+                        sum(street2Seen)                 AS saw_2,
+                        sum(street3Seen)                 AS saw_3,
+                        sum(street4Seen)                 AS saw_4,
+                        sum(sawShowdown)                 AS sd,
+                        sum(street1Aggr)                 AS aggr_1,
+                        sum(street2Aggr)                 AS aggr_2,
+                        sum(street3Aggr)                 AS aggr_3,
+                        sum(street4Aggr)                 AS aggr_4,
+                        sum(otherRaisedStreet1)          AS was_raised_1,
+                        sum(otherRaisedStreet2)          AS was_raised_2,
+                        sum(otherRaisedStreet3)          AS was_raised_3,
+                        sum(otherRaisedStreet4)          AS was_raised_4,
+                        sum(foldToOtherRaisedStreet1)    AS f_freq_1,
+                        sum(foldToOtherRaisedStreet2)    AS f_freq_2,
+                        sum(foldToOtherRaisedStreet3)    AS f_freq_3,
+                        sum(foldToOtherRaisedStreet4)    AS f_freq_4,
+                        sum(wonWhenSeenStreet1)          AS w_w_s_1,
+                        sum(wonAtSD)                     AS wmsd,
+                        sum(stealAttemptChance)          AS steal_opp,
+                        sum(stealAttempted)              AS steal,
+                        sum(foldSbToStealChance)         AS SBstolen,
+                        sum(foldedSbToSteal)             AS SBnotDef,
+                        sum(foldBbToStealChance)         AS BBstolen,
+                        sum(foldedBbToSteal)             AS BBnotDef,
+                        sum(street1CBChance)             AS CB_opp_1,
+                        sum(street1CBDone)               AS CB_1,
+                        sum(street2CBChance)             AS CB_opp_2,
+                        sum(street2CBDone)               AS CB_2,
+                        sum(street3CBChance)             AS CB_opp_3,
+                        sum(street3CBDone)               AS CB_3,
+                        sum(street4CBChance)             AS CB_opp_4,
+                        sum(street4CBDone)               AS CB_4,
+                        sum(foldToStreet1CBChance)       AS f_cb_opp_1,
+                        sum(foldToStreet1CBDone)         AS f_cb_1,
+                        sum(foldToStreet2CBChance)       AS f_cb_opp_2,
+                        sum(foldToStreet2CBDone)         AS f_cb_2,
+                        sum(foldToStreet3CBChance)       AS f_cb_opp_3,
+                        sum(foldToStreet3CBDone)         AS f_cb_3,
+                        sum(foldToStreet4CBChance)       AS f_cb_opp_4,
+                        sum(foldToStreet4CBDone)         AS f_cb_4,
+                        sum(totalProfit)                 AS net,
+                        sum(street1CheckCallRaiseChance) AS ccr_opp_1,
+                        sum(street1CheckCallRaiseDone)   AS ccr_1,
+                        sum(street2CheckCallRaiseChance) AS ccr_opp_2,
+                        sum(street2CheckCallRaiseDone)   AS ccr_2,
+                        sum(street3CheckCallRaiseChance) AS ccr_opp_3,
+                        sum(street3CheckCallRaiseDone)   AS ccr_3,
+                        sum(street4CheckCallRaiseChance) AS ccr_opp_4,
+                        sum(street4CheckCallRaiseDone)   AS ccr_4
+                    FROM HudCache, Hands
+                    WHERE HudCache.PlayerId in 
+                        (SELECT PlayerId FROM HandsPlayers 
+                        WHERE handId = %s)
+                    AND  Hands.id = %s
+                    AND  HudCache.gametypeId in
+                        (SELECT gt1.id from Gametypes gt1, Gametypes gt2, Hands
+                        WHERE  gt1.siteid = gt2.siteid
+                        AND    gt1.type = gt2.type
+                        AND    gt1.category = gt2.category
+                        AND    gt1.limittype = gt2.limittype
+                        AND    gt2.id = Hands.gametypeId
+                        AND    Hands.id = %s)
+                    GROUP BY HudCache.PlayerId
+                """
          
             self.query['get_players_from_hand'] = """
                     SELECT HandsPlayers.playerId, seatNo, name
@@ -288,15 +350,15 @@ class Sql:
                     order by seatNo
                 """
 
-#            self.query['get_hand_info'] = """
-#                    SELECT 
-#                        game_id, 
-#                        CONCAT(hole_card_1, hole_card_2, hole_card_3, hole_card_4, hole_card_5, hole_card_6, hole_card_7) AS hand,  
-#                        total_won-total_bet AS net
-#                    FROM game_players 
-#                    WHERE game_id = %s AND player_id = 3
-#                """
-
+            self.query['get_action_from_hand'] = """
+                SELECT street, Players.name, HandsActions.action, HandsActions.amount, actionno
+                FROM Players, HandsActions, HandsPlayers
+                WHERE HandsActions.action != 'blind'
+                AND HandsPlayers.handid = %s
+                AND HandsPlayers.playerid = Players.id
+                AND HandsActions.handPlayerId = HandsPlayers.id
+                ORDER BY street, actionno
+            """
 if __name__== "__main__":
 #    just print the default queries and exit
     s = Sql(game = 'razz', type = 'ptracks')

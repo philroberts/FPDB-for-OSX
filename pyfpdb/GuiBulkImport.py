@@ -22,14 +22,17 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os #todo: remove this once import_dir is in fpdb_import
+from time import time
 
 class GuiBulkImport (threading.Thread):
 	def import_dir(self):
 		"""imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 		self.path=self.inputFile
 		self.importer.addImportDirectory(self.path)
+		self.importer.setCallHud(False)
+		starttime = time()
 		self.importer.runImport()
-		print "GuiBulkImport.import_dir done"
+		print "GuiBulkImport.import_dir done in %s" %(time() - starttime)
 		
 	def load_clicked(self, widget, data=None):
 		self.inputFile=self.chooser.get_filename()
@@ -64,6 +67,7 @@ class GuiBulkImport (threading.Thread):
 			self.import_dir()
 		else:
 			self.importer.addImportFile(self.inputFile)
+			self.importer.setCallHud(False)
 			self.importer.runImport()
 			self.importer.clearFileList()
 	
@@ -80,7 +84,7 @@ class GuiBulkImport (threading.Thread):
 		self.db=db
 		self.settings=settings
 		self.config=config
-		self.importer = fpdb_import.Importer(self,self.settings)
+		self.importer = fpdb_import.Importer(self,self.settings, config)
 		
 		self.vbox=gtk.VBox(False,1)
 		self.vbox.show()

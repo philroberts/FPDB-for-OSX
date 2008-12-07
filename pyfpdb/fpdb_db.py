@@ -31,26 +31,39 @@ class fpdb_db:
         self.SQLITE=4
     #end def __init__
     
-    def connect(self, backend, host, database, user, password):
+    def connect(self, backend=None, host=None, database=None,
+                user=None, password=None):
         """Connects a database with the given parameters"""
+        if backend is None:
+            raise FpdbError('Database backend not defined')
         self.backend=backend
         self.host=host
-        self.database=database
         self.user=user
         self.password=password
+        self.database=database
         if backend==self.MYSQL_INNODB:
             import MySQLdb
             self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
         elif backend==self.PGSQL:
             import psycopg2
-            self.db = psycopg2.connect(host = host, user = user, password = password, database = database)
+            # If DB connection is made over TCP, then the variables
+            # host, user and password are required
+            if self.host or self.user:
+                self.db = psycopg2.connect(host = host,
+                        user = user, 
+                        password = password, 
+                        database = database)
+            # For local domain-socket connections, only DB name is
+            # needed, and everything else is in fact undefined and/or
+            # flat out wrong
+            else:
+                self.db = psycopg2.connect(database = database)
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
         self.cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED')
-
         # Set up query dictionary as early in the connection process as we can.
-                self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
+        self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
         self.wrongDbVersion=False
         try:
             self.cursor.execute("SELECT * FROM Settings")
@@ -82,23 +95,23 @@ class fpdb_db:
     def create_tables(self):
         #todo: should detect and fail gracefully if tables already exist.
         self.cursor.execute(self.sql.query['createSettingsTable'])
-                self.cursor.execute(self.sql.query['createSitesTable'])
-                self.cursor.execute(self.sql.query['createGametypesTable'])
-                self.cursor.execute(self.sql.query['createPlayersTable'])
-                self.cursor.execute(self.sql.query['createAutoratesTable'])
-                self.cursor.execute(self.sql.query['createHandsTable'])
-                self.cursor.execute(self.sql.query['createBoardCardsTable'])
-                self.cursor.execute(self.sql.query['createTourneyTypesTable'])
-                self.cursor.execute(self.sql.query['createTourneysTable'])
-                self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
-                self.cursor.execute(self.sql.query['createHandsPlayersTable'])
-                self.cursor.execute(self.sql.query['createHandsActionsTable'])
-                self.cursor.execute(self.sql.query['createHudCacheTable'])
-                self.cursor.execute(self.sql.query['addTourneyIndex'])
-                self.cursor.execute(self.sql.query['addHandsIndex'])
-                self.cursor.execute(self.sql.query['addPlayersIndex'])
-                self.fillDefaultData()
-                self.db.commit()
+        self.cursor.execute(self.sql.query['createSitesTable'])
+        self.cursor.execute(self.sql.query['createGametypesTable'])
+        self.cursor.execute(self.sql.query['createPlayersTable'])
+        self.cursor.execute(self.sql.query['createAutoratesTable'])
+        self.cursor.execute(self.sql.query['createHandsTable'])
+        self.cursor.execute(self.sql.query['createBoardCardsTable'])
+        self.cursor.execute(self.sql.query['createTourneyTypesTable'])
+        self.cursor.execute(self.sql.query['createTourneysTable'])
+        self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
+        self.cursor.execute(self.sql.query['createHandsPlayersTable'])
+        self.cursor.execute(self.sql.query['createHandsActionsTable'])
+        self.cursor.execute(self.sql.query['createHudCacheTable'])
+        self.cursor.execute(self.sql.query['addTourneyIndex'])
+        self.cursor.execute(self.sql.query['addHandsIndex'])
+        self.cursor.execute(self.sql.query['addPlayersIndex'])
+        self.fillDefaultData()
+        self.db.commit()
 #end def disconnect
     
     def drop_tables(self):
@@ -106,23 +119,23 @@ class fpdb_db:
 
         if(self.get_backend_name() == 'MySQL InnoDB'):
             #Databases with FOREIGN KEY support need this switched of before you can drop tables
-                    self.drop_referencial_integrity()
+            self.drop_referencial_integrity()
 
             # Query the DB to see what tables exist
             self.cursor.execute(self.sql.query['list_tables'])
-                    for table in self.cursor:
-                            self.cursor.execute(self.sql.query['drop_table'] + table[0])
+            for table in self.cursor:
+                self.cursor.execute(self.sql.query['drop_table'] + table[0])
         elif(self.get_backend_name() == 'PostgreSQL'):
             self.db.commit()# I have no idea why this makes the query work--REB 07OCT2008
             self.cursor.execute(self.sql.query['list_tables'])
             tables = self.cursor.fetchall()
-                    for table in tables:
-                            self.cursor.execute(self.sql.query['drop_table'] + table[0] + ' cascade') 
+            for table in tables:
+                self.cursor.execute(self.sql.query['drop_table'] + table[0] + ' cascade') 
         elif(self.get_backend_name() == 'SQLite'):
             #todo: sqlite version here
             print "Empty function here"
 
-                self.db.commit()
+            self.db.commit()
     #end def drop_tables
 
     def drop_referencial_integrity(self):

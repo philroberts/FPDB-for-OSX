@@ -89,14 +89,14 @@ def vpip(stat_dict, player):
                 'v=%3.1f'    % (100*stat) + '%', 
                 'vpip=%3.1f' % (100*stat) + '%', 
                 '(%d/%d)'    % (stat_dict[player]['vpip'], stat_dict[player]['n']),
-                'vpip'
+                'Voluntarily Put In Pot %'
                 )
     except: return (stat, 
                     '%3.1f'      % (0) + '%', 
-                    'w=%3.1f'    % (0) + '%', 
-                    'wtsd=%3.1f' % (0) + '%', 
+                    'v=%3.1f'    % (0) + '%', 
+                    'vpip=%3.1f' % (0) + '%', 
                     '(%d/%d)'    % (0, 0),
-                    'wtsd'
+                    'Voluntarily Put In Pot %'
                     )
 
 def vpip_0(stat_dict, player):
@@ -129,7 +129,7 @@ def pfr(stat_dict, player):
                 'p=%3.1f'    % (100*stat) + '%', 
                 'pfr=%3.1f'  % (100*stat) + '%', 
                 '(%d/%d)'    % (stat_dict[player]['pfr'], stat_dict[player]['n']),
-                'pfr'
+                'Pre-Flop Raise %'
                 )
     except: 
         return (stat, 
@@ -137,7 +137,7 @@ def pfr(stat_dict, player):
                 'p=%3.1f'    % (0) + '%', 
                 'pfr=%3.1f' % (0) + '%', 
                 '(%d/%d)'    % (0, 0),
-                'pfr'
+                'Pre-Flop Raise %'
                 )
 
 def pfr_0(stat_dict, player):
@@ -214,7 +214,7 @@ def saw_f(stat_dict, player):
             'sf=%3.1f'    % (100*stat) + '%', 
             'saw_f=%3.1f' % (100*stat) + '%', 
             '(%d/%d)'    % (stat_dict[player]['saw_f'], stat_dict[player]['n']),
-            'saw_f'
+            'Flop Seen %'
             )
     except:
         stat = 0.0
@@ -225,7 +225,7 @@ def saw_f(stat_dict, player):
             'sf=%3.1f'    % (stat) + '%', 
             'saw_f=%3.1f' % (stat) + '%', 
             '(%d/%d)'     % (num, den),
-            'saw_f'
+            'Flop Seen %'
             )
 
 def n(stat_dict, player):
@@ -303,12 +303,11 @@ def f_SB_steal(stat_dict, player):
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%', 
-                'fSB=%3.1f'     % (0) + '%', 
-                'fSB_s=%3.1f' % (0) + '%', 
-                '(%d/%d)'      % (0, 0),
-                '% folded SB to steal'
-                )
+                'NA',
+                'fSB=NA',
+                'fSB_s=NA',
+                '0/0',
+                '% folded SB to steal')
 
 def f_BB_steal(stat_dict, player):
     """    Folded BB to steal."""
@@ -324,12 +323,11 @@ def f_BB_steal(stat_dict, player):
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%', 
-                'fBB=%3.1f'     % (0) + '%', 
-                'fBB_s=%3.1f' % (0) + '%', 
-                '(%d/%d)'      % (0, 0),
-                '% folded BB to steal'
-                )
+                'NA',
+                'fBB=NA',
+                'fBB_s=NA',
+                '0/0',
+                '% folded BB to steal')
 
 def three_B_0(stat_dict, player):
     """    Three bet preflop/3rd."""
@@ -454,7 +452,7 @@ def a_freq_4(stat_dict, player):
                 'a4=%3.1f'     % (0) + '%', 
                 'a_fq_4=%3.1f' % (0) + '%', 
                 '(%d/%d)'      % (0, 0),
-                'Aggression Freq flop/4th'
+                'Aggression Freq 7th'
                 )
 
 def a_freq_123(stat_dict, player):
