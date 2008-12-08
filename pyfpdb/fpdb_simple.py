@@ -1074,9 +1074,9 @@ def recogniseGametypeID(db, cursor, topline, smallBlindLine, site_id, category, 
         cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
     result=cursor.fetchone()
     #print "recgt1 result=",result
-        #ret=result[0]
-        #print "recgt1 ret=",ret
-        #print "tried SELECTing gametypes.id, result:",result
+    #ret=result[0]
+    #print "recgt1 ret=",ret
+    #print "tried SELECTing gametypes.id, result:",result
     
     try:
         len(result)
@@ -1121,7 +1121,7 @@ def recogniseGametypeID(db, cursor, topline, smallBlindLine, site_id, category, 
         #print "created new gametypes.id:",result
     
     #print "recgt3: result=", result
-        return result[0]
+    return result[0]
 #end def recogniseGametypeID
 
 def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
