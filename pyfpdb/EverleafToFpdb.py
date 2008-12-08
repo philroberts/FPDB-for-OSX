@@ -66,7 +66,7 @@ from HandHistoryConverter import *
 class Everleaf(HandHistoryConverter):
     def __init__(self, config, file):
         print "Initialising Everleaf converter class"
-        HandHistoryConverter.__init__(self, config, file, "Everleaf") # Call super class init.
+        HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
         self.sitename = "Everleaf"
         self.setFileType("text")
         self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
@@ -78,6 +78,7 @@ class Everleaf(HandHistoryConverter):
         # mct : what about posting small & big blinds simultaneously?
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
         self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
+        self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[ (?P<CARDS>.*) \]')
         self.rexx.compileRegexes()
 
     def readSupportedGames(self):
@@ -118,8 +119,7 @@ class Everleaf(HandHistoryConverter):
         players = []
 
         for a in m:
-            hand.addPlayer(a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
-
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -127,6 +127,17 @@ class Everleaf(HandHistoryConverter):
 #		for street in m.groupdict():
 #			print "DEBUG: Street: %s\tspan: %s" %(street, str(m.span(street)))
         hand.streets = m
+
+    def readCommunityCards(self, hand):
+        # currently regex in wrong place pls fix my brain's fried
+        # what a mess!
+        re_board = re.compile('\*\* Dealing (?P<STREET>.*) \*\* \[ (?P<CARDS>.*) \]')
+        m = re_board.finditer(hand.string)
+        for street in m:
+            #print street.groups()
+            re_card = re.compile('(?P<CARD>[0-9tjqka][schd])') # look that's weird, hole cards have a capital rank but board cards are lower case?
+            cardsmatch = re_card.finditer(street.group('CARDS'))
+            hand.setCommunityCards(street.group('STREET'), [card.group('CARD') for card in cardsmatch])
 
     def readBlinds(self, hand):
         try:
@@ -148,7 +159,7 @@ class Everleaf(HandHistoryConverter):
             hand.involved = False
         else:
             hand.hero = m.group('PNAME')
-            hand.addHoleCards(m.group('HOLE1'), m.group('HOLE2'))
+            hand.addHoleCards([m.group('HOLE1'), m.group('HOLE2')], m.group('PNAME'))
 
     def readAction(self, hand, street):
         m = self.rexx.action_re.finditer(hand.streets.group(street))
@@ -161,9 +172,18 @@ class Everleaf(HandHistoryConverter):
             elif action.group('ATYPE') == 'bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
             else:
-                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                #print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
                 hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
 
+
+    def readShowdownActions(self, hand):
+        for shows in self.rexx.showdown_action_re.finditer(hand.string):
+            print shows.groups()
+            re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
+            cards = [card.group('CARD') for card in re_card.finditer(shows.group('CARDS'))]
+            print cards
+            hand.addHoleCards(cards, shows.group('PNAME'))
+            
 
     def getRake(self, hand):
         hand.rake = hand.totalpot * Decimal('0.05') # probably not quite right
