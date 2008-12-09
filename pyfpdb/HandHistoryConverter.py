@@ -26,10 +26,13 @@ import xml.dom.minidom
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
+from pokereval import PokerEval
 
 class HandHistoryConverter:
+    eval = PokerEval()
     def __init__(self, config, file, sitename):
         print "HandHistory init called"
+
         self.c         = config
         self.sitename  = sitename
         self.obs       = ""             # One big string
@@ -68,8 +71,9 @@ class HandHistoryConverter:
             self.readPlayerStacks(hand)
             self.markStreets(hand)
             self.readBlinds(hand)
-            self.readHeroCards(hand)
-
+            self.readHeroCards(hand) # want to generalise to draw games
+            self.readCommunityCards(hand) # read community cards
+            self.readShowdownActions(hand)
             # Read action (Note: no guarantee this is in hand order.
             for street in hand.streets.groupdict():
                 self.readAction(hand, street)
@@ -198,10 +202,7 @@ class HandHistoryConverter:
 
         print "*** HOLE CARDS ***"
         print "Dealt to %s [%s %s]" %(hand.hero , hand.holecards[0], hand.holecards[1])
-#
-##		ACTION STUFF
-#		This is no limit only at the moment
-        
+
         for act in hand.actions['PREFLOP']:
             self.printActionLine(act, 0)
 
@@ -226,10 +227,6 @@ class HandHistoryConverter:
 
         print "*** SUMMARY ***"
         print "XXXXXXXXXXXX Need sumary info XXXXXXXXXXX"
-#		print "Total pot $%s | Rake $%s)" %(hand.totalpot  $" + hand.rake)
-#		print "Board [" + boardcards + "]"
-#
-#		SUMMARY STUFF
 
 
     def printActionLine(self, act, pot):
@@ -239,7 +236,7 @@ class HandHistoryConverter:
             print "%s: %s $%s" %(act[0], act[1], act[2])
         if act[1] == 'raises':
             print "%s: %s $%s to XXXpottotalXXX" %(act[0], act[1], act[2])
-            
+
 
 #takes a poker float (including , for thousand seperator and converts it to an int
     def float2int (self, string):
@@ -261,13 +258,13 @@ class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
 
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K'}
-    STREETS = ['BLINDS','PREFLOP','FLOP','TURN','RIVER']
     def __init__(self, sitename, gametype, string):
         self.sitename = sitename
         self.gametype = gametype
         self.string = string
     
         self.streets = None # A MatchObject using a groupnames to identify streets.
+        self.streetList = ['BLINDS','PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
         self.actions = {}
     
         self.handid = 0
@@ -281,15 +278,18 @@ class Hand:
         self.players = []
         self.posted = []
         self.involved = True
+        
         self.hero = "Hiro"
-        self.holecards = "Xx Xx"
+        self.holecards = {} # dict from player names to lists of hole cards
+        self.board = {}     # dict from street names to community cards
+        
         self.action = []
         self.totalpot = None
         self.rake = None
         
         self.bets = {}
         self.lastBet = {}
-        for street in self.STREETS:
+        for street in self.streetList:
             self.bets[street] = {}
             self.lastBet[street] = 0
             
@@ -299,20 +299,36 @@ class Hand:
         chips, the chips the player has at the start of the hand"""
         #self.players.append(name)
         self.players.append([seat, name, chips])
+        self.holecards[name] = []
         #self.startChips[name] = chips
         #self.endChips[name] = chips
         #self.winners[name] = 0
-        for street in self.STREETS:
+        for street in self.streetList:
             self.bets[street][name] = []
 
 
-    def addHoleCards(self,h1,h2,seat=None): # generalise to add hole cards for a specific seat or player
-        self.holecards = [self.card(h1), self.card(h2)]
+    def addHoleCards(self, cards, player=None): # generalise to add hole cards for a specific seat or player
+        for c in cards:
+            self.holecards[player].append(self.card(c))
 
+
+    def discardHoleCards(self, cards, player=None):
+        if seat is None:
+            #raise something
+            pass
+        for card in cards:
+            try:
+                self.holecards[player].remove(card)
+            except ValueError:
+                print "tried to discard a card player apparently didn't have"
+
+    def setCommunityCards(self, street, cards):
+        self.board[street] = [self.card(c) for c in cards]
+        print self.board[street]
 
     def card(self,c):
         """upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""
-    # don't know how to make this 'static'
+        # don't know how to make this 'static'
         for k,v in self.UPS.items():
             c = c.replace(k,v)
         return c
@@ -324,6 +340,13 @@ class Hand:
         self.lastBet['PREFLOP'] = Decimal(amount)
         self.posted += [player]
         
+
+    #def addFold(self, street, player=None):
+        ## Called when a player folds.
+        #self.bets[street][player].append(None)
+
+    #def addCheck(self, street, player=None):
+        #self.bets[street][player].append(0)
 
     def addCall(self, street, player=None, amount=None):
         # Potentially calculate the amount of the call if not supplied
@@ -352,15 +375,16 @@ class Hand:
         self.actions[street] += [[player, 'bets', amount]]
         
     def totalPot(self):
-        
+        """If all bets and blinds have been added, totals up the total pot size
+Known bug: doesn't take into account side pots"""
         if self.totalpot is None:
             self.totalpot = 0
             
             # player names: 
             # print [x[1] for x in self.players]
             for player in [x[1] for x in self.players]:
-                for street in self.STREETS:
-                    print street, self.bets[street][player]
+                for street in self.streetList:
+                    #print street, self.bets[street][player]
                     self.totalpot += reduce(operator.add, self.bets[street][player], 0)
                     
 
@@ -385,7 +409,7 @@ class Hand:
         # What about big & small blinds?
 
         print "*** HOLE CARDS ***"
-        print "Dealt to %s [%s %s]" %(self.hero , self.holecards[0], self.holecards[1])
+        print "Dealt to %s [%s %s]" %(self.hero , self.holecards[self.hero][0], self.holecards[self.hero][1])
 
         if 'PREFLOP' in self.actions:
             for act in self.actions['PREFLOP']:
@@ -416,6 +440,19 @@ class Hand:
         print "*** SUMMARY ***"
         print "Total pot $%s | Rake $%s)" % (self.totalpot, self.rake)
         print "Board [%s %s %s %s %s]" % (self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
+        
+        #print self.board
+        for player in self.players:
+            if self.holecards[player[1]]: # empty list default is false
+                hole = self.holecards[player[1]]
+                #print self.board.values()
+                board = []
+                for s in self.board.values():
+                    board += s
+                playerhand = self.bestHand('hi', board+hole)
+                print "Seat %d: %s showed %s and won/lost with %s" % (player[0], player[1], hole, playerhand)
+            else:
+                print "Seat %d: %s mucked or folded" % (player[0], player[1])
 
 
     def printActionLine(self, act):
@@ -425,3 +462,53 @@ class Hand:
             print "%s: %s $%s" %(act[0], act[1], act[2])
         if act[1] == 'raises':
             print "%s: %s $%s to $%s" %(act[0], act[1], act[2], act[3])
+
+    # going to use pokereval to figure out hands
+    # these functions are copied from pokergame.py
+    # im thinking perhaps its best to use all the functionality of pokergame instead
+    # of reinventing the wheel
+    def bestHand(self, side, cards):
+        #if self.variant == "omaha" or self.variant == "omaha8":
+        #hand = self.serial2player[serial].hand.tolist(True)
+        #board = self.board.tolist(True)
+        #else:
+        #hand = hand.tolist(True) + board.tolist(True)
+        #board = []
+        print cards
+        return HandHistoryConverter.eval.best('hi', cards, [])
+
+    def bestHandValue(self, side, serial):
+        (value, cards) = self.bestHand(side, serial)
+        return value
+
+
+    def readableHandValueLong(self, side, value, cards):
+        cards = self.eval.card2string(cards)
+        if value == "NoPair":
+            if side == "low":
+                if cards[0][0] == '5':
+                    return _("The wheel")
+                else:
+                    return join(map(lambda card: card[0], cards), ", ")
+            else:
+                return _("High card %(card)s") % { 'card' : _(letter2name[cards[0][0]]) }
+        elif value == "OnePair":
+            return _("A pair of %(card)s") % { 'card' : _(letter2names[cards[0][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[2][0]]) }
+        elif value == "TwoPair":
+            return _("Two pairs %(card1)s and %(card2)s") % { 'card1' : _(letter2names[cards[0][0]]), 'card2' : _(letter2names[cards[2][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[4][0]]) }
+        elif value == "Trips":
+            return _("Three of a kind %(card)s") % { 'card' : _(letter2names[cards[0][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[3][0]]) }
+        elif value == "Straight":
+            return _("Straight %(card1)s to %(card2)s") % { 'card1' : _(letter2name[cards[0][0]]), 'card2' : _(letter2name[cards[4][0]]) }
+        elif value == "Flush":
+            return _("Flush %(card)s high") % { 'card' : _(letter2name[cards[0][0]]) }
+        elif value == "FlHouse":
+            return _("%(card1)ss full of %(card2)ss") % { 'card1' : _(letter2name[cards[0][0]]), 'card2' : _(letter2name[cards[3][0]]) }
+        elif value == "Quads":
+            return _("Four of a kind %(card)s") % { 'card' : _(letter2names[cards[0][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[4][0]]) }
+        elif value == "StFlush":
+            if letter2name[cards[0][0]] == 'Ace':
+                return _("Royal flush")
+            else:
+                return _("Straight flush %(card)s high") % { 'card' : _(letter2name[cards[0][0]]) }
+        return value
