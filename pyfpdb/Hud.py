@@ -120,6 +120,19 @@ class Hud:
             self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
         
         self.main_window.set_destroy_with_parent(True)
+        
+    def update_table_position(self):
+        (x, y) = self.main_window.parentgdkhandle.get_origin()
+        if self.table.x != x or self.table.y != y:
+            self.table.x = x
+            self.table.y = y
+            self.main_window.move(x, y)
+            adj = self.adj_seats(self.hand, self.config)
+            loc = self.config.get_locations(self.table.site, self.max)
+            for i in range(1, self.max + 1):           
+                (x, y) = loc[adj[i]]
+                if self.stat_windows.has_key(i):
+                    self.stat_windows[i].relocate(x, y)
 
     def on_button_press(self, widget, event):
         if event.button == 1:
@@ -137,9 +150,7 @@ class Hud:
         self.deleted = True
 
     def reposition_windows(self, *args):
-        for w in self.stat_windows:
-                self.stat_windows[w].window.move(self.stat_windows[w].x,
-                                                 self.stat_windows[w].y)
+        self.update_table_position()
 
     def debug_stat_windows(self, *args):
         print self.table, "\n", self.main_window.window.get_transient_for()
@@ -216,6 +227,7 @@ class Hud:
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
+        self.update_table_position()
         for s in stat_dict.keys():
             try:
                 self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
@@ -260,9 +272,9 @@ class Hud:
         for w in tl_windows:
             if w[1] == unique_name:
                 #win32gui.ShowWindow(w[0], win32con.SW_HIDE)
-                window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
+                self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
                 self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-                self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
+                self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle)
                 #win32gui.ShowWindow(w[0], win32con.SW_SHOW)
                 
                 style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
