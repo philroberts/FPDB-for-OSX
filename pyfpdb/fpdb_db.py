@@ -48,7 +48,8 @@ class fpdb_db:
             import psycopg2
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
-            if self.host or self.user:
+            print "host=%s user=%s pass=%s." % (host, user, password)
+            if self.host and self.user and self.password:
                 self.db = psycopg2.connect(host = host,
                         user = user, 
                         password = password, 

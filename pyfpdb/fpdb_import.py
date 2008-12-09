@@ -75,8 +75,8 @@ class Importer:
             if not pgsqlLibFound:
                 raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
             print self.settings
-            if not self.settings.has_key('db-host') or \
-                        not self.settings.has_key('db-user'):
+            if self.settings.has_key('db-host') and \
+                        self.settings.has_key('db-user'):
                 self.db = psycopg2.connect(host = self.settings['db-host'],
                                        user = self.settings['db-user'],
                                        password = self.settings['db-password'],
@@ -243,7 +243,8 @@ class Importer:
                     self.hand=hand
                     
                     try:
-                        handsId=fpdb_parse_logic.mainParser(self.db, self.cursor, site, category, hand)
+                        handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.db
+                                                           ,self.cursor, site, category, hand)
                         self.db.commit()
                         
                         stored+=1

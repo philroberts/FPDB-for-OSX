@@ -699,7 +699,6 @@ class FpdbSQLQueries:
                            ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
                            ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
                            ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-
                 /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId

@@ -229,12 +229,11 @@ class Sql:
                         sum(street3CheckCallRaiseDone)   AS ccr_3,
                         sum(street4CheckCallRaiseChance) AS ccr_opp_4,
                         sum(street4CheckCallRaiseDone)   AS ccr_4
-                    FROM HudCache, Hands
-                    WHERE HudCache.PlayerId in 
-                        (SELECT PlayerId FROM HandsPlayers 
-                        WHERE handId = %s)
-                    AND   Hands.id = %s
-                    AND   Hands.gametypeId = HudCache.gametypeId
+                    FROM Hands
+                         INNER JOIN HandsPlayers ON (HandsPlayers.handId = %s)
+                         INNER JOIN HudCache ON (    HudCache.PlayerId = HandsPlayers.PlayerId+0
+                                                 AND HudCache.gametypeId+0 = Hands.gametypeId+0)
+                    WHERE Hands.id = %s
                     GROUP BY HudCache.PlayerId
                 """
 
