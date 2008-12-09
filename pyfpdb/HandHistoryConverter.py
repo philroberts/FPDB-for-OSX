@@ -28,6 +28,41 @@ import operator
 from xml.dom.minidom import Node
 from pokereval import PokerEval
 
+#from pokerengine.pokercards import *
+# provides letter2name{}, letter2names{}, visible_card(), not_visible_card(), is_visible(), card_value(), class PokerCards
+# but it's probably not installed so here are the ones we may want:
+letter2name = {
+    'A': 'Ace',
+    'K': 'King',
+    'Q': 'Queen',
+    'J': 'Jack',
+    'T': 'Ten',
+    '9': 'Nine',
+    '8': 'Eight',
+    '7': 'Seven',
+    '6': 'Six',
+    '5': 'Five',
+    '4': 'Four',
+    '3': 'Trey',
+    '2': 'Deuce'
+    }
+
+letter2names = {
+    'A': 'Aces',
+    'K': 'Kings',
+    'Q': 'Queens',
+    'J': 'Jacks',
+    'T': 'Tens',
+    '9': 'Nines',
+    '8': 'Eights',
+    '7': 'Sevens',
+    '6': 'Sixes',
+    '5': 'Fives',
+    '4': 'Fours',
+    '3': 'Treys',
+    '2': 'Deuces'
+    }
+
 class HandHistoryConverter:
     eval = PokerEval()
     def __init__(self, config, file, sitename):
@@ -67,6 +102,7 @@ class HandHistoryConverter:
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
+            print "DEBUG:\n"+hand.string
             self.readHandInfo(hand)
             self.readPlayerStacks(hand)
             self.markStreets(hand)
@@ -76,7 +112,8 @@ class HandHistoryConverter:
             self.readShowdownActions(hand)
             # Read action (Note: no guarantee this is in hand order.
             for street in hand.streets.groupdict():
-                self.readAction(hand, street)
+                if hand.streets.group(street) is not None:
+                    self.readAction(hand, street)
 
             self.readCollectPot(hand)
 
@@ -84,11 +121,12 @@ class HandHistoryConverter:
             hand.totalPot()
             self.getRake(hand)
             
-            if(hand.involved == True):
+            hand.printHand()
+            #if(hand.involved == True):
                 #self.writeHand("output file", hand)
-                hand.printHand()
-            else:
-                pass #Don't write out observed hands
+                #hand.printHand()
+            #else:
+                #pass #Don't write out observed hands
 
     #####
     # These functions are parse actions that may be overridden by the inheriting class
@@ -159,6 +197,7 @@ class HandHistoryConverter:
 
     def splitFileIntoHands(self):
         hands = []
+        self.obs.strip()
         list = self.rexx.split_hand_re.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
@@ -280,6 +319,7 @@ class Hand:
     def addBlind(self, player, amount):
         # if player is None, it's a missing small blind.
         if player is not None:
+            print self.bets
             self.bets['PREFLOP'][player].append(Decimal(amount))
         self.lastBet['PREFLOP'] = Decimal(amount)
         self.posted += [player]
@@ -362,7 +402,8 @@ Known bug: doesn't take into account side pots"""
         # What about big & small blinds?
 
         print "*** HOLE CARDS ***"
-        print "Dealt to %s [%s %s]" %(self.hero , self.holecards[self.hero][0], self.holecards[self.hero][1])
+        if self.involved:
+            print "Dealt to %s [%s %s]" %(self.hero , self.holecards[self.hero][0], self.holecards[self.hero][1])
 
         if 'PREFLOP' in self.actions:
             for act in self.actions['PREFLOP']:
@@ -392,7 +433,11 @@ Known bug: doesn't take into account side pots"""
         
         print "*** SUMMARY ***"
         print "Total pot $%s | Rake $%.2f)" % (self.totalpot, self.rake) # TODO side pots
-        print "Board [%s %s %s %s %s]" % (self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
+        board = []
+        for s in self.board.values():
+            board += s
+        if board:   # sometimes hand ends preflop without a board
+            print "Board [%s]" % (board)
         
         #print self.board
         for player in self.players:
@@ -447,32 +492,33 @@ Known bug: doesn't take into account side pots"""
         return value
 
     # from pokergame.py
+    # got rid of the _ for internationalisation
     def readableHandValueLong(self, side, value, cards):
         if value == "NoPair":
             if side == "low":
                 if cards[0][0] == '5':
-                    return _("The wheel")
+                    return ("The wheel")
                 else:
                     return join(map(lambda card: card[0], cards), ", ")
             else:
-                return _("High card %(card)s") % { 'card' : _(letter2name[cards[0][0]]) }
+                return ("High card %(card)s") % { 'card' : (letter2name[cards[0][0]]) }
         elif value == "OnePair":
-            return _("A pair of %(card)s") % { 'card' : _(letter2names[cards[0][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[2][0]]) }
+            return ("A pair of %(card)s") % { 'card' : (letter2names[cards[0][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[2][0]]) }
         elif value == "TwoPair":
-            return _("Two pairs %(card1)s and %(card2)s") % { 'card1' : _(letter2names[cards[0][0]]), 'card2' : _(letter2names[cards[2][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[4][0]]) }
+            return ("Two pairs %(card1)s and %(card2)s") % { 'card1' : (letter2names[cards[0][0]]), 'card2' : _(letter2names[cards[2][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[4][0]]) }
         elif value == "Trips":
-            return _("Three of a kind %(card)s") % { 'card' : _(letter2names[cards[0][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[3][0]]) }
+            return ("Three of a kind %(card)s") % { 'card' : (letter2names[cards[0][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[3][0]]) }
         elif value == "Straight":
-            return _("Straight %(card1)s to %(card2)s") % { 'card1' : _(letter2name[cards[0][0]]), 'card2' : _(letter2name[cards[4][0]]) }
+            return ("Straight %(card1)s to %(card2)s") % { 'card1' : (letter2name[cards[0][0]]), 'card2' : (letter2name[cards[4][0]]) }
         elif value == "Flush":
-            return _("Flush %(card)s high") % { 'card' : _(letter2name[cards[0][0]]) }
+            return ("Flush %(card)s high") % { 'card' : (letter2name[cards[0][0]]) }
         elif value == "FlHouse":
-            return _("%(card1)ss full of %(card2)ss") % { 'card1' : _(letter2name[cards[0][0]]), 'card2' : _(letter2name[cards[3][0]]) }
+            return ("%(card1)ss full of %(card2)ss") % { 'card1' : (letter2name[cards[0][0]]), 'card2' : (letter2name[cards[3][0]]) }
         elif value == "Quads":
-            return _("Four of a kind %(card)s") % { 'card' : _(letter2names[cards[0][0]]) } + _(", %(card)s kicker") % { 'card' : _(letter2name[cards[4][0]]) }
+            return _("Four of a kind %(card)s") % { 'card' : (letter2names[cards[0][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[4][0]]) }
         elif value == "StFlush":
             if letter2name[cards[0][0]] == 'Ace':
-                return _("Royal flush")
+                return ("Royal flush")
             else:
-                return _("Straight flush %(card)s high") % { 'card' : _(letter2name[cards[0][0]]) }
+                return ("Straight flush %(card)s high") % { 'card' : (letter2name[cards[0][0]]) }
         return value
