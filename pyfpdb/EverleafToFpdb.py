@@ -118,7 +118,7 @@ class Everleaf(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.rexx.player_info_re.finditer(hand.string)
         players = []
-        print "players seen:"
+        print "\nReading stacks - players seen:"
         for a in m:
             print a.group('PNAME')
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))

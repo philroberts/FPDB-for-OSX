@@ -102,7 +102,7 @@ class HandHistoryConverter:
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
-            print "DEBUG:\n"+hand.string
+            print "\nInput:\n"+hand.string
             self.readHandInfo(hand)
             self.readPlayerStacks(hand)
             self.markStreets(hand)
@@ -319,7 +319,6 @@ class Hand:
     def addBlind(self, player, amount):
         # if player is None, it's a missing small blind.
         if player is not None:
-            print self.bets
             self.bets['PREFLOP'][player].append(Decimal(amount))
         self.lastBet['PREFLOP'] = Decimal(amount)
         self.posted += [player]
@@ -384,7 +383,7 @@ Known bug: doesn't take into account side pots"""
 
     def printHand(self):
         # PokerStars format.
-        print "### DEBUG ###"
+        print "### Pseudo stars format ###"
         print "%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, "XXXXhand.gametype", self.sb, self.bb, self.starttime)
         print "Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos)
         for player in self.players:
@@ -450,6 +449,7 @@ Known bug: doesn't take into account side pots"""
             else:
                 print "Seat %d: %s folded (or mucked..)" % (player[0], player[1])
             
+        print
             # TODO:
             # logic for side pots
             # logic for which players get to showdown
