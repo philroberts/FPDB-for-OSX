@@ -279,8 +279,7 @@ class Hand:
     def addPlayer(self, seat, name, chips):
         """seat, an int indicating the seat
         name, the player name
-        chips, the chips the player has at the start of the hand"""
-        #self.players.append(name)
+        chips, the chips the player has at the start of the hand (can be None)"""
         self.players.append([seat, name, chips])
         self.holecards[name] = []
         #self.startChips[name] = chips
@@ -353,7 +352,7 @@ class Hand:
         self.actions[street] += [[player, 'raises', amountBy, amountTo]]
         
     def addBet(self, street, player=None, amount=0):
-        self.bets[street][name].append(Decimal(amount))
+        self.bets[street][player].append(Decimal(amount))
         self.orderedBets[street].append(Decimal(amount))
         self.actions[street] += [[player, 'bets', amount]]
 
