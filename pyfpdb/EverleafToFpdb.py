@@ -79,6 +79,7 @@ class Everleaf(HandHistoryConverter):
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
         self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*) (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
         self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[ (?P<CARDS>.*) \]')
+        self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD.*')
         self.rexx.compileRegexes()
 
     def readSupportedGames(self):
@@ -184,6 +185,12 @@ class Everleaf(HandHistoryConverter):
             print cards
             hand.addHoleCards(cards, shows.group('PNAME'))
             
+    def readCollectPot(self,hand):
+        m = self.rexx.collect_pot_re.search(hand.string)
+        print m.groups()
+        print m.group('PNAME')
+        #for collection in m:
+        hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def getRake(self, hand):
         hand.rake = hand.totalpot * Decimal('0.05') # probably not quite right

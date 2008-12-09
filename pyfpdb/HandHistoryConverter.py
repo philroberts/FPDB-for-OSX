@@ -78,6 +78,8 @@ class HandHistoryConverter:
             for street in hand.streets.groupdict():
                 self.readAction(hand, street)
 
+            self.readCollectPot(hand)
+
             # finalise it (total the pot)
             hand.totalPot()
             self.getRake(hand)
@@ -124,6 +126,7 @@ class HandHistoryConverter:
     def readBlinds(self, hand): abstract
     def readHeroCards(self, hand): abstract
     def readAction(self, hand, street): abstract
+    def readCollectPot(self, hand): abstract
     
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # so that an inheriting class can calculate it for the specific site if need be.
@@ -177,66 +180,6 @@ class HandHistoryConverter:
             except:
                 traceback.print_exc(file=sys.stderr)
 
-    def writeHand(self, file, hand):
-        """Write out parsed data"""
-        print "DEBUG: *************************"
-        print "DEBUG: Start of print hand"
-        print "DEBUG: *************************"
-
-        print "%s Game #%s: %s ($%s/$%s) - %s" %(hand.sitename, hand.handid, "XXXXhand.gametype", hand.sb, hand.bb, hand.starttime)
-        print "Table '%s' %d-max Seat #%s is the button" %(hand.tablename, hand.maxseats, hand.buttonpos)
-
-        for player in hand.players:
-            print "Seat %s: %s ($%s)" %(player[0], player[1], player[2])
-
-        if(hand.posted[0] == "FpdbNBP"):
-            print "No small blind posted"
-        else:
-            print "%s: posts small blind $%s" %(hand.posted[0], hand.sb)
-
-        #May be more than 1 bb posting
-        print "%s: posts big blind $%s" %(hand.posted[1], hand.bb)
-        if(len(hand.posted) > 2):
-            # Need to loop on all remaining big blinds - lazy
-            print "XXXXXXXXX FIXME XXXXXXXX"
-
-        print "*** HOLE CARDS ***"
-        print "Dealt to %s [%s %s]" %(hand.hero , hand.holecards[0], hand.holecards[1])
-
-        for act in hand.actions['PREFLOP']:
-            self.printActionLine(act, 0)
-
-        if 'PREFLOP' in hand.actions:
-            for act in hand.actions['PREFLOP']:
-                print "PF action"
-
-        if 'FLOP' in hand.actions:
-            print "*** FLOP *** [%s %s %s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"))
-            for act in hand.actions['FLOP']:
-                self.printActionLine(act, 0)
-
-        if 'TURN' in hand.actions:
-            print "*** TURN *** [%s %s %s] [%s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"), hand.streets.group("TURN1"))
-            for act in hand.actions['TURN']:
-                self.printActionLine(act, 0)
-
-        if 'RIVER' in hand.actions:
-            print "*** RIVER *** [%s %s %s %s] [%s]" %(hand.streets.group("FLOP1"), hand.streets.group("FLOP2"), hand.streets.group("FLOP3"), hand.streets.group("TURN1"), hand.streets.group("RIVER1"))
-            for act in hand.actions['RIVER']:
-                self.printActionLine(act, 0)
-
-        print "*** SUMMARY ***"
-        print "XXXXXXXXXXXX Need sumary info XXXXXXXXXXX"
-
-
-    def printActionLine(self, act, pot):
-        if act[1] == 'folds' or act[1] == 'checks':
-            print "%s: %s " %(act[0], act[1])
-        if act[1] == 'calls':
-            print "%s: %s $%s" %(act[0], act[1], act[2])
-        if act[1] == 'raises':
-            print "%s: %s $%s to XXXpottotalXXX" %(act[0], act[1], act[2])
-
 
 #takes a poker float (including , for thousand seperator and converts it to an int
     def float2int (self, string):
@@ -282,6 +225,7 @@ class Hand:
         self.hero = "Hiro"
         self.holecards = {} # dict from player names to lists of hole cards
         self.board = {}     # dict from street names to community cards
+        self.collected = {} # dict from player names to amounts collected
         
         self.action = []
         self.totalpot = None
@@ -373,7 +317,16 @@ class Hand:
         self.bets[street][name].append(Decimal(amount))
         self.orderedBets[street].append(Decimal(amount))
         self.actions[street] += [[player, 'bets', amount]]
-        
+
+    def addCollectPot(self,player, pot):
+        if player not in self.collected:
+            self.collected[player] = pot
+        else:
+            # possibly lines like "p collected $ from pot" appear during the showdown
+            # but they are usually unique in the summary.
+            print "%s collected pot more than once; avoidable by reading winnings only from summary lines?"
+
+
     def totalPot(self):
         """If all bets and blinds have been added, totals up the total pot size
 Known bug: doesn't take into account side pots"""
@@ -443,16 +396,29 @@ Known bug: doesn't take into account side pots"""
         
         #print self.board
         for player in self.players:
-            if self.holecards[player[1]]: # empty list default is false
-                hole = self.holecards[player[1]]
-                #print self.board.values()
-                board = []
-                for s in self.board.values():
-                    board += s
-                playerhand = self.bestHand('hi', board+hole)
-                print "Seat %d: %s showed %s and won/lost with %s" % (player[0], player[1], hole, playerhand)
+            if player[1] in self.collected and self.holecards[player[1]]:
+                print "Seat %d: %s showed [%s %s] and won ($%s)" % (player[0], player[1], self.holecards[player[1]][0], self.holecards[player[1]][1], self.collected[player[1]])
+            elif player[1] in self.collected:
+                print "Seat %d: %s collected ($%s)" % (player[0], player[1], self.collected[player[1]])
+            elif self.holecards[player[1]]:
+                print "Seat %d: %s showed [%s %s]" % (player[0], player[1], self.holecards[player[1]][0], self.holecards[player[1]][1])
             else:
-                print "Seat %d: %s mucked or folded" % (player[0], player[1])
+                print "Seat %d: %s folded (or mucked..)" % (player[0], player[1])
+            
+            # TODO:
+            # logic for side pots
+            # logic for which players get to showdown
+            # I'm just not sure we need to do this so heavily.. and if we do, it's probably better to use pokerlib
+            #if self.holecards[player[1]]: # empty list default is false
+                #hole = self.holecards[player[1]]
+                ##board = []
+                ##for s in self.board.values():
+                    ##board += s
+                ##playerhand = self.bestHand('hi', board+hole)
+                ##print "Seat %d: %s showed %s and won/lost with %s" % (player[0], player[1], hole, playerhand)
+                #print "Seat %d: %s showed %s" % (player[0], player[1], hole)
+            #else:
+                #print "Seat %d: %s mucked or folded" % (player[0], player[1])
 
 
     def printActionLine(self, act):
@@ -463,10 +429,8 @@ Known bug: doesn't take into account side pots"""
         if act[1] == 'raises':
             print "%s: %s $%s to $%s" %(act[0], act[1], act[2], act[3])
 
-    # going to use pokereval to figure out hands
+    # going to use pokereval to figure out hands at some point.
     # these functions are copied from pokergame.py
-    # im thinking perhaps its best to use all the functionality of pokergame instead
-    # of reinventing the wheel
     def bestHand(self, side, cards):
         #if self.variant == "omaha" or self.variant == "omaha8":
         #hand = self.serial2player[serial].hand.tolist(True)
@@ -477,13 +441,13 @@ Known bug: doesn't take into account side pots"""
         print cards
         return HandHistoryConverter.eval.best('hi', cards, [])
 
+    # from pokergame.py
     def bestHandValue(self, side, serial):
         (value, cards) = self.bestHand(side, serial)
         return value
 
-
+    # from pokergame.py
     def readableHandValueLong(self, side, value, cards):
-        cards = self.eval.card2string(cards)
         if value == "NoPair":
             if side == "low":
                 if cards[0][0] == '5':
