@@ -224,6 +224,8 @@ class Hud:
         if not game_params['aux'] == "":
             aux_params = config.get_aux_parameters(game_params['aux'])
             self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
+        
+        gobject.timeout_add(0.5, update_table_position)
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
