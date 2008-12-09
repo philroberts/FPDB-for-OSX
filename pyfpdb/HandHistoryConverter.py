@@ -391,7 +391,7 @@ Known bug: doesn't take into account side pots"""
             print "what do they show"
         
         print "*** SUMMARY ***"
-        print "Total pot $%s | Rake $%s)" % (self.totalpot, self.rake)
+        print "Total pot $%s | Rake $%.2f)" % (self.totalpot, self.rake) # TODO side pots
         print "Board [%s %s %s %s %s]" % (self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
         
         #print self.board
