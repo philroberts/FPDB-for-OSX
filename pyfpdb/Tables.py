@@ -248,7 +248,9 @@ def get_nt_exe(hwnd):
     """Finds the name of the executable that the given window handle belongs to."""
     processid = win32process.GetWindowThreadProcessId(hwnd)
     pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
-    return win32process.GetModuleFileNameEx(pshandle, 0)
+    exename = win32process.GetModuleFileNameEx(pshandle, 0)
+    win32api.CloseHandle(pshandle)
+    return exename
 
 def decode_windows(c, title, hwnd):
     """Gets window parameters from the window title and handle--Windows."""

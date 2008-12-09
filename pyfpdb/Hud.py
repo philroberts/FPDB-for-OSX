@@ -307,6 +307,7 @@ class Stat_Window:
             pass
 
         if event.button == 1:   # left button event
+            # TODO: make position saving save sizes as well?
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
