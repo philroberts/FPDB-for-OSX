@@ -83,7 +83,6 @@ class GuiGraphViewer (threading.Thread):
         self.ax.set_xlabel("Hands", fontsize = 12)
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-        #This line will crash if no hands exist in the query.
         text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
 
         self.ax.annotate(text, 
@@ -234,18 +233,6 @@ class GuiGraphViewer (threading.Thread):
         entry.set_text(ds)
         win.destroy()
 
-    def exportGraph (self, widget, data):
-        dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
-                                            action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-
-        response = dia_chooser.run()
-        if response == gtk.RESPONSE_OK:
-            self.exportDir = dia_chooser.get_filename()
-        elif response == gtk.RESPONSE_CANCEL:
-            print 'Closed, no graph exported'
-        dia_chooser.destroy()
-
     def __init__(self, db, settings, querylist, config, debug=True):
         """Constructor for GraphViewer"""
         self.debug=debug
@@ -310,7 +297,7 @@ class GuiGraphViewer (threading.Thread):
         graphButton.show()
 
         self.exportButton=gtk.Button("Export to File")
-        self.exportButton.connect("clicked", self.exportGraph, "show clicked")
+#@      self.exportButton.connect("clicked", self.exportGraph, "show clicked")
         self.exportButton.show()
 
         self.leftPanelBox.add(playerFrame)
