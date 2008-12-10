@@ -29,8 +29,8 @@ cp -R regression-test fpdb-$1/
 cp -R utils fpdb-$1/
 
 cd fpdb-$1
-zip -r ../../fpdb-1.0_$1.zip *
-tar -cf - * | bzip2 >> ../../fpdb-1.0_$1.tar.bz2
+zip -r releases/fpdb-1.0_$1.zip *
+tar -cf - * | bzip2 >> releases/fpdb-1.0_$1.tar.bz2
 cd ..
 rm -r fpdb-$1
 
