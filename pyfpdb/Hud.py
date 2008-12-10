@@ -92,14 +92,22 @@ class Hud:
         self.menu.append(self.item1)
         self.item1.connect("activate", self.kill_hud)
         self.item1.show()
+        
         self.item2 = gtk.MenuItem('Save Layout')
         self.menu.append(self.item2)
         self.item2.connect("activate", self.save_layout)
         self.item2.show()
+        
         self.item3 = gtk.MenuItem('Reposition Stats')
         self.menu.append(self.item3)
         self.item3.connect("activate", self.reposition_windows)
         self.item3.show()
+        
+        self.item4 = gtk.MenuItem('Debug Stat Windows')
+        self.menu.append(self.item4)
+        self.item4.connect("activate", self.debug_stat_windows)
+        self.item4.show()
+        
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
@@ -112,6 +120,19 @@ class Hud:
             self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
         
         self.main_window.set_destroy_with_parent(True)
+        
+    def update_table_position(self):
+        (x, y) = self.main_window.parentgdkhandle.get_origin()
+        if self.table.x != x or self.table.y != y:
+            self.table.x = x
+            self.table.y = y
+            self.main_window.move(x, y)
+            adj = self.adj_seats(self.hand, self.config)
+            loc = self.config.get_locations(self.table.site, self.max)
+            for i in range(1, self.max + 1):           
+                (x, y) = loc[adj[i]]
+                if self.stat_windows.has_key(i):
+                    self.stat_windows[i].relocate(x, y)
 
     def on_button_press(self, widget, event):
         if event.button == 1:
@@ -129,9 +150,13 @@ class Hud:
         self.deleted = True
 
     def reposition_windows(self, *args):
+        self.update_table_position()
+
+    def debug_stat_windows(self, *args):
+        print self.table, "\n", self.main_window.window.get_transient_for()
         for w in self.stat_windows:
-                self.stat_windows[w].window.move(self.stat_windows[w].x,
-                                                 self.stat_windows[w].y)
+            print self.stat_windows[w].window.window.get_transient_for()
+                
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
 # todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
@@ -199,9 +224,12 @@ class Hud:
         if not game_params['aux'] == "":
             aux_params = config.get_aux_parameters(game_params['aux'])
             self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
+        
+        gobject.timeout_add(0.5, self.update_table_position)
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
+        self.update_table_position()
         for s in stat_dict.keys():
             try:
                 self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
@@ -246,9 +274,9 @@ class Hud:
         for w in tl_windows:
             if w[1] == unique_name:
                 #win32gui.ShowWindow(w[0], win32con.SW_HIDE)
-                window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
+                self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
                 self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-                self.main_window.gdkhandle.set_transient_for(window.parentgdkhandle)
+                self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle)
                 #win32gui.ShowWindow(w[0], win32con.SW_SHOW)
                 
                 style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
@@ -293,6 +321,7 @@ class Stat_Window:
             pass
 
         if event.button == 1:   # left button event
+            # TODO: make position saving save sizes as well?
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
@@ -372,40 +401,11 @@ class Stat_Window:
                 font = pango.FontDescription("Sans 7")
                 self.label[r][c].modify_font(font)
 
-#        if not os.name == 'nt':  # seems to be a bug in opacity on windows
         self.window.set_opacity(parent.colors['hudopacity'])
         
-#        self.window.realize()
         self.window.move(self.x, self.y)
-#        self.window.show_all()
-#    set_keep_above(1) for windows
-        if os.name == 'nt': self.topify_window(self.window)
+                   
         self.window.hide()
-
-    def topify_window(self, window):
-        """Set the specified gtk window to stayontop in MS Windows."""
-
-        def windowEnumerationHandler(hwnd, resultList):
-            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-
-        unique_name = 'unique name for finding this window'
-        real_name = window.get_title()
-        window.set_title(unique_name)
-        tl_windows = []
-        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-        
-        for w in tl_windows:
-            if w[1] == unique_name:
-                
-                #win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE) 
-                
-#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
-#                style |= win32con.WS_EX_TOOLWINDOW
-#                style &= ~win32con.WS_EX_APPWINDOW
-#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
-                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
-                window.set_title(real_name)
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
