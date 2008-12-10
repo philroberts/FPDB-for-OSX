@@ -71,6 +71,7 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
 #    functions that return individual stats
 
 def playername(stat_dict, player):
+    """    Player Name."""
     return (stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'],
             stat_dict[player]['screen_name'],
@@ -98,6 +99,26 @@ def vpip(stat_dict, player):
                     'Voluntarily Put In Pot %'
                     )
 
+def vpip_0(stat_dict, player):
+    """    Voluntarily put $ in the pot (no decimals)."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['vpip'])/float(stat_dict[player]['n'])
+        return (stat, 
+                '%2.0f'      % (100*stat) + '%', 
+                'v=%2.0f'    % (100*stat) + '%', 
+                'vpip=%2.0f' % (100*stat) + '%', 
+                '(%d/%d)'    % (stat_dict[player]['vpip'], stat_dict[player]['n']),
+                'vpip'
+                )
+    except: return (stat, 
+                    '%2.0f'      % (0) + '%', 
+                    'w=%2.0f'    % (0) + '%', 
+                    'wtsd=%2.0f' % (0) + '%', 
+                    '(%d/%d)'    % (0, 0),
+                    'wtsd'
+                    )
+
 def pfr(stat_dict, player):
     """    Preflop (3rd street) raise."""
     stat = 0.0
@@ -117,6 +138,27 @@ def pfr(stat_dict, player):
                 'pfr=%3.1f' % (0) + '%', 
                 '(%d/%d)'    % (0, 0),
                 'Pre-Flop Raise %'
+                )
+
+def pfr_0(stat_dict, player):
+    """    Preflop (3rd street) raise (no decimals)."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['pfr'])/float(stat_dict[player]['n'])
+        return (stat, 
+                '%2.0f'      % (100*stat) + '%', 
+                'p=%2.0f'    % (100*stat) + '%', 
+                'pfr=%2.0f'  % (100*stat) + '%', 
+                '(%d/%d)'    % (stat_dict[player]['pfr'], stat_dict[player]['n']),
+                'pfr'
+                )
+    except: 
+        return (stat, 
+                '%2.0f'      % (0) + '%', 
+                'p=%2.0f'    % (0) + '%', 
+                'pfr=%2.0f' % (0) + '%', 
+                '(%d/%d)'    % (0, 0),
+                'pfr'
                 )
 
 def wtsd(stat_dict, player):
@@ -149,7 +191,7 @@ def wmsd(stat_dict, player):
                 '%3.1f'      % (100*stat) + '%', 
                 'w=%3.1f'    % (100*stat) + '%', 
                 'wmsd=%3.1f' % (100*stat) + '%', 
-                '(%f5.0/%d)'    % (stat_dict[player]['wmsd'], stat_dict[player]['sd']),
+                '(%5.1f/%d)'    % (float(stat_dict[player]['wmsd']), stat_dict[player]['sd']),
                 '% won money at showdown'
                 )
     except:
@@ -412,6 +454,61 @@ def a_freq_4(stat_dict, player):
                 '(%d/%d)'      % (0, 0),
                 'Aggression Freq 7th'
                 )
+
+def a_freq_123(stat_dict, player):
+    """    Post-Flop aggression frequency."""
+    stat = 0.0
+    try:
+        stat = float(  stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3']
+                    ) / float(  stat_dict[player]['saw_1'] + stat_dict[player]['saw_2'] + stat_dict[player]['saw_3']);
+        return (stat,
+                '%3.1f'             % (100*stat) + '%', 
+                'afq=%3.1f'         % (100*stat) + '%', 
+                'postf_aggfq=%3.1f' % (100*stat) + '%', 
+                '(%d/%d)'           % (  stat_dict[player]['aggr_1']
+                                       + stat_dict[player]['aggr_2']
+                                       + stat_dict[player]['aggr_3']
+                                      ,  stat_dict[player]['saw_1']
+                                       + stat_dict[player]['saw_2']
+                                       + stat_dict[player]['saw_3']
+                                      ),
+                'Post-Flop Aggression Freq'
+                )
+    except:
+        return (stat,
+                '%2.0f'        % (0) + '%', 
+                'a3=%2.0f'     % (0) + '%', 
+                'a_fq_3=%2.0f' % (0) + '%', 
+                '(%d/%d)'      % (0, 0),
+                'Post-Flop Aggression Freq'
+                )
+
+def a_freq_123_0(stat_dict, player):
+    """    Post-Flop aggression frequency (no decimals)."""
+    stat = 0.0
+    try:
+        stat = float(  stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3']) / float(  stat_dict[player]['saw_1'] + stat_dict[player]['saw_2'] + stat_dict[player]['saw_3']);
+        return (stat,
+                '%2.0f'             % (100*stat) + '%', 
+                'afq=%2.0f'         % (100*stat) + '%', 
+                'postf_aggfq=%2.0f' % (100*stat) + '%', 
+                '(%d/%d)'           % (  stat_dict[player]['aggr_1']
+                                       + stat_dict[player]['aggr_2']
+                                       + stat_dict[player]['aggr_3']
+                                      ,  stat_dict[player]['saw_1']
+                                       + stat_dict[player]['saw_2']
+                                       + stat_dict[player]['saw_3']
+                                      ),
+                'Post-Flop Aggression Freq'
+                )
+    except:
+        return (stat,
+                '%2.0f'        % (0) + '%', 
+                'a3=%2.0f'     % (0) + '%', 
+                'a_fq_3=%2.0f' % (0) + '%', 
+                '(%d/%d)'      % (0, 0),
+                'Post-Flop Aggression Freq'
+                )
     
 def cb_1(stat_dict, player):
     """    Flop continuation bet."""
@@ -589,7 +686,9 @@ if __name__== "__main__":
     
     for player in stat_dict.keys():
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'saw_f') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'n') 
@@ -604,6 +703,8 @@ if __name__== "__main__":
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_2') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_3') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_4') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_123') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_123_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb_1') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb_2') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb_3') 
@@ -611,7 +712,8 @@ if __name__== "__main__":
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_1') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_2') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_3') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_4') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'ffreq_4')
+        print "\n" 
 
     print "\n\nLegal stats:"
     for attr in dir():
@@ -619,8 +721,8 @@ if __name__== "__main__":
         if attr in ("Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
                     "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
                     "h"): continue
-        print attr, eval("%s.__doc__" % (attr))
+        print "%-14s %s" % (attr, eval("%s.__doc__" % (attr)))
 #        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)
 
-    db_connection.close
+    db_connection.close_connection
 

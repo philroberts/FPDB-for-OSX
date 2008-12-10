@@ -37,6 +37,7 @@ import gtk
 import fpdb_db
 import fpdb_simple
 import GuiBulkImport
+import GuiPlayerStats
 import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
@@ -117,12 +118,12 @@ class fpdb:
 	
 	def dia_create_del_database(self, widget, data):
 		print "todo: implement dia_create_del_database"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_create_del_database
 	
 	def dia_create_del_user(self, widget, data):
 		print "todo: implement dia_create_del_user"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_create_del_user
 	
 	def dia_database_stats(self, widget, data):
@@ -132,17 +133,17 @@ class fpdb:
 	
 	def dia_delete_db_parts(self, widget, data):
 		print "todo: implement dia_delete_db_parts"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_delete_db_parts
 	
 	def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
 		print "todo: implement dia_edit_profile"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_edit_profile
 
 	def dia_export_db(self, widget, data):
 		print "todo: implement dia_export_db"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_export_db
 	
 	def dia_get_db_root_credentials(self):
@@ -167,7 +168,7 @@ class fpdb:
 	
 	def dia_import_db(self, widget, data):
 		print "todo: implement dia_import_db"
-		obtain_global_lock()
+		self.obtain_global_lock()
 	#end def dia_import_db
 	
 	def dia_licensing(self, widget, data):
@@ -263,7 +264,11 @@ class fpdb:
 		
 		self.db = fpdb_db.fpdb_db()
 		#print "end of fpdb.load_profile, databaseName:",self.settings['db-databaseName']
-		self.db.connect(self.settings['db-backend'], self.settings['db-host'], self.settings['db-databaseName'], self.settings['db-user'], self.settings['db-password'])
+		self.db.connect(self.settings['db-backend'],
+            self.settings['db-host'],
+            self.settings['db-databaseName'],
+            self.settings['db-user'], 
+            self.settings['db-password'])
 		if self.db.wrongDbVersion:
 			diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
@@ -283,7 +288,7 @@ class fpdb:
 			diaDbVersionWarning.destroy()
 
 		# Database connected to successfully, load queries to pass on to other classes
-                self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
+		self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
 	#end def load_profile
 	
 	def not_implemented(self):
@@ -325,6 +330,13 @@ class fpdb:
 		bulk_tab=new_import_thread.get_vbox()
 		self.add_and_display_tab(bulk_tab, "Bulk Import")
 	#end def tab_bulk_import
+
+	def tab_player_stats(self, widget, data):
+		new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.db, self.config, self.querydict)
+		self.threads.append(new_ps_thread)
+		ps_tab=new_ps_thread.get_vbox()
+		self.add_and_display_tab(ps_tab, "Player Stats")
+
 
 	def tab_main_help(self, widget, data):
 		"""Displays a tab with the main fpdb help screen"""
@@ -384,7 +396,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 				("/Viewers/_Graphs", "<control>G", self.tabGraphViewer, 0, None ),
 				("/Viewers/Hand _Replayer (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/Player _Details (todo)", None, self.not_implemented, 0, None ),
-				("/Viewers/_Player Stats (tabulated view) (todo)", None, self.not_implemented, 0, None ),
+				("/Viewers/_Player Stats (tabulated view)", None, self.tab_player_stats, 0, None ),
 				("/Viewers/Starting _Hands (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/_Session Replayer (todo)", None, self.not_implemented, 0, None ),
 				("/Viewers/Poker_table Viewer (mostly obselete)", "<control>T", self.tab_table_viewer, 0, None ),
