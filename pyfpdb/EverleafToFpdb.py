@@ -118,9 +118,9 @@ class Everleaf(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.rexx.player_info_re.finditer(hand.string)
         players = []
-        print "\nReading stacks - players seen:"
+        #print "\nReading stacks - players seen:"
         for a in m:
-            print a.group('PNAME')
+            #print a.group('PNAME')
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
@@ -129,9 +129,9 @@ class Everleaf(HandHistoryConverter):
         #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
 
         m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
-                       r"(\*\* Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \](?P<FLOP>.+(?=\*\* Dealing Turn \*\*)|.+))?"
-                       r"(\*\* Dealing Turn \*\* \[ (?P<TURN1>\S\S) \](?P<TURN>.+(?=\*\* Dealing River \*\*)|.+))?"
-                       r"(\*\* Dealing River \*\* \[ (?P<RIVER1>\S\S) \](?P<RIVER>.+))?", hand.string,re.DOTALL)
+                       r"(\*\* Dealing Flop \*\* \[ \S\S, \S\S, \S\S \](?P<FLOP>.+(?=\*\* Dealing Turn \*\*)|.+))?"
+                       r"(\*\* Dealing Turn \*\* \[ \S\S \](?P<TURN>.+(?=\*\* Dealing River \*\*)|.+))?"
+                       r"(\*\* Dealing River \*\* \[ \S\S \](?P<RIVER>.+))?", hand.string,re.DOTALL)
         # that wasn't easy.
 
 
@@ -188,15 +188,19 @@ class Everleaf(HandHistoryConverter):
         m = self.rexx.action_re.finditer(hand.streets.group(street))
         hand.actions[street] = []
         for action in m:
-            if action.group('ATYPE') == 'raises':
+            if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'calls':
+            elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'bets':
+            elif action.group('ATYPE') == ': bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' checks':
+                hand.addCheck( street, action.group('PNAME'))
             else:
-                #print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
-                hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
+                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                #hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
 
 
     def readShowdownActions(self, hand):
