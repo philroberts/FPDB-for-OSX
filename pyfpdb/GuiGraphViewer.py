@@ -83,6 +83,7 @@ class GuiGraphViewer (threading.Thread):
         self.ax.set_xlabel("Hands", fontsize = 12)
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
+        #This line will crash if no hands exist in the query. 
         text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
 
         self.ax.annotate(text, 
@@ -309,7 +310,7 @@ class GuiGraphViewer (threading.Thread):
         graphButton.show()
 
         self.exportButton=gtk.Button("Export to File")
-#@      self.exportButton.connect("clicked", self.exportGraph, "show clicked")
+        self.exportButton.connect("clicked", self.exportGraph, "show clicked")
         self.exportButton.show()
 
         self.leftPanelBox.add(playerFrame)
