@@ -431,8 +431,8 @@ def discover_mac_by_name(c, tablename):
 if __name__=="__main__":
     c = Configuration.Config()
 
-    print discover_table_by_name(c, "Howard Lederer")
-    print discover_tournament_table(c, "118942908", "3")
+    print discover_table_by_name(c, "Daddy Nasty")
+#    print discover_tournament_table(c, "118942908", "3")
 
     tables = discover(c)
     for t in tables.keys():
