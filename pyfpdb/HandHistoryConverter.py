@@ -306,7 +306,7 @@ class Hand:
 
     def setCommunityCards(self, street, cards):
         self.board[street] = [self.card(c) for c in cards]
-        print self.board[street]
+        #print self.board[street]
 
     def card(self,c):
         """upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""
@@ -388,7 +388,7 @@ Known bug: doesn't take into account side pots"""
 
     def printHand(self):
         # PokerStars format.
-        print "### Pseudo stars format ###"
+        print "\n### Pseudo stars format ###"
         print "%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, "XXXXhand.gametype", self.sb, self.bb, self.starttime)
         print "Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos)
         for player in self.players:
@@ -414,17 +414,17 @@ Known bug: doesn't take into account side pots"""
                 self.printActionLine(act)
 
         if 'FLOP' in self.actions:
-            print "*** FLOP *** [%s %s %s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"))
+            print "*** FLOP *** [%s]" %( " ".join(self.board['Flop']))
             for act in self.actions['FLOP']:
                 self.printActionLine(act)
 
         if 'TURN' in self.actions:
-            print "*** TURN *** [%s %s %s] [%s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"))
+            print "*** TURN *** [%s] [%s]" %( " ".join(self.board['Flop']), " ".join(self.board['Turn']))
             for act in self.actions['TURN']:
                 self.printActionLine(act)
 
         if 'RIVER' in self.actions:
-            print "*** RIVER *** [%s %s %s %s] [%s]" %(self.streets.group("FLOP1"), self.streets.group("FLOP2"), self.streets.group("FLOP3"), self.streets.group("TURN1"), self.streets.group("RIVER1"))
+            print "*** RIVER *** [%s] [%s]" %(" ".join(self.board['Flop']+self.board['Turn']), " ".join(self.board['River']) )
             for act in self.actions['RIVER']:
                 self.printActionLine(act)
                 
