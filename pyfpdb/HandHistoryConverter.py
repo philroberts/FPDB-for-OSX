@@ -353,8 +353,14 @@ class Hand:
         
     def addBet(self, street, player=None, amount=0):
         self.bets[street][player].append(Decimal(amount))
-        self.orderedBets[street].append(Decimal(amount))
+        #self.orderedBets[street].append(Decimal(amount))
         self.actions[street] += [[player, 'bets', amount]]
+
+    def addFold(self, street, player):
+        self.actions[street] += [[player, 'folds']]
+
+    def addCheck(self, street, player):
+        self.actions[street] += [[player, 'checks']]
 
     def addCollectPot(self,player, pot):
         if player not in self.collected:
@@ -401,7 +407,7 @@ Known bug: doesn't take into account side pots"""
 
         print "*** HOLE CARDS ***"
         if self.involved:
-            print "Dealt to %s [%s %s]" %(self.hero , self.holecards[self.hero][0], self.holecards[self.hero][1])
+            print "Dealt to %s [%s]" %(self.hero , " ".join(self.holecards[self.hero]))
 
         if 'PREFLOP' in self.actions:
             for act in self.actions['PREFLOP']:
@@ -435,18 +441,21 @@ Known bug: doesn't take into account side pots"""
         for s in self.board.values():
             board += s
         if board:   # sometimes hand ends preflop without a board
-            print "Board [%s]" % (board)
+            print "Board [%s]" % (" ".join(board))
         
         #print self.board
         for player in self.players:
-            if player[1] in self.collected and self.holecards[player[1]]:
-                print "Seat %d: %s showed [%s %s] and won ($%s)" % (player[0], player[1], self.holecards[player[1]][0], self.holecards[player[1]][1], self.collected[player[1]])
-            elif player[1] in self.collected:
-                print "Seat %d: %s collected ($%s)" % (player[0], player[1], self.collected[player[1]])
+            seatnum = player[0]
+            name = player[1]
+            if name in self.collected and self.holecards[name]:
+                # TODO: (bug) hero cards will always be 'shown' because they are known to us. Better to explicitly flag those who 'show' their cards.
+                print "Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collected[name])
+            elif name in self.collected:
+                print "Seat %d: %s collected ($%s)" % (seatnum, name, self.collected[name])
             elif self.holecards[player[1]]:
-                print "Seat %d: %s showed [%s %s]" % (player[0], player[1], self.holecards[player[1]][0], self.holecards[player[1]][1])
+                print "Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name]))
             else:
-                print "Seat %d: %s folded (or mucked..)" % (player[0], player[1])
+                print "Seat %d: %s folded or mucked" % (seatnum, name)
             
         print
             # TODO:
@@ -469,6 +478,8 @@ Known bug: doesn't take into account side pots"""
         if act[1] == 'folds' or act[1] == 'checks':
             print "%s: %s " %(act[0], act[1])
         if act[1] == 'calls':
+            print "%s: %s $%s" %(act[0], act[1], act[2])
+        if act[1] == 'bets':
             print "%s: %s $%s" %(act[0], act[1], act[2])
         if act[1] == 'raises':
             print "%s: %s $%s to $%s" %(act[0], act[1], act[2], act[3])

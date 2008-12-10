@@ -188,15 +188,19 @@ class Everleaf(HandHistoryConverter):
         m = self.rexx.action_re.finditer(hand.streets.group(street))
         hand.actions[street] = []
         for action in m:
-            if action.group('ATYPE') == 'raises':
+            if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'calls':
+            elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'bets':
+            elif action.group('ATYPE') == ': bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == ' folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == ' checks':
+                hand.addCheck( street, action.group('PNAME'))
             else:
-                #print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
-                hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
+                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                #hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
 
 
     def readShowdownActions(self, hand):
