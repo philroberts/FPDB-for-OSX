@@ -233,6 +233,18 @@ class GuiGraphViewer (threading.Thread):
         entry.set_text(ds)
         win.destroy()
 
+    def exportGraph (self, widget, data):
+        dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
+                                            action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                                            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+
+        response = dia_chooser.run()
+        if response == gtk.RESPONSE_OK:
+            self.exportDir = dia_chooser.get_filename()
+        elif response == gtk.RESPONSE_CANCEL:
+            print 'Closed, no graph exported'
+        dia_chooser.destroy()
+
     def __init__(self, db, settings, querylist, config, debug=True):
         """Constructor for GraphViewer"""
         self.debug=debug
