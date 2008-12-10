@@ -308,4 +308,3 @@ class GuiGraphViewer (threading.Thread):
 
         self.leftPanelBox.show()
         self.graphBox.show()
-
