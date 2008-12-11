@@ -332,8 +332,7 @@ Note, will automatically uppercase the rank letter.
 """
         try:
             self.checkPlayerExists(player)
-            for c in cards:
-                self.holecards[player].append(self.card(c))
+            self.holecards[player] = set([self.card(c) for c in cards])
         except FpdbParseError, e:
             print "Tried to add holecards for unknown player: %s" % (player,)
 
