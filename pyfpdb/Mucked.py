@@ -170,6 +170,7 @@ class Stud_cards:
         for r in range(0, self.rows):
             self.grid_contents[( 0, r)] = gtk.Label("%d" % (r + 1))
             self.grid_contents[( 1, r)] = gtk.Label("player %d" % (r + 1))
+            self.grid_contents[( 1, r)].set_property("width-chars", 12)
             self.grid_contents[( 4, r)] = gtk.Label("-")
             self.grid_contents[( 9, r)] = gtk.Label("-")
             self.grid_contents[( 2, r)] = self.eb[( 0, r)]
@@ -289,7 +290,7 @@ class Stud_cards:
 
     def clear(self):
         for r in range(0, self.rows):
-            self.grid_contents[(1, r)].set_text("        ")
+            self.grid_contents[(1, r)].set_text("             ")
             for c in range(0, 7):
                 self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[('B', 'S')])
                 self.eb[(c, r)].set_tooltip_text('')

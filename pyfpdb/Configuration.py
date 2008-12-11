@@ -444,9 +444,9 @@ class Config:
     def get_import_parameters(self):
         imp = {}
         try:
-            imp['callFpdbHud']   = self.callFpdbHud
-            imp['interval']      = self.interval
-            imp['hhArchiveBase'] = self.hhArchiveBase
+            imp['callFpdbHud']   = self.imp.callFpdbHud
+            imp['interval']      = self.imp.interval
+            imp['hhArchiveBase'] = self.imp.hhArchiveBase
         except: # Default params
             imp['callFpdbHud']   = True
             imp['interval']      = 10
@@ -613,9 +613,7 @@ if __name__== "__main__":
     print "----------- END POPUP WINDOW FORMATS -----------"
 
     print "\n----------- IMPORT -----------"
-    tmp = c.get_import_parameters()
-    for param in tmp:
-        print "    " + str(param) + ": " + str(tmp[param])
+    print c.imp
     print "----------- END IMPORT -----------"
 
     print "\n----------- TABLE VIEW -----------"
