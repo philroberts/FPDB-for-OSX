@@ -327,6 +327,7 @@ If a player has None chips he won't be added."""
 Assigns observed holecards to a player.
 cards   list of card bigrams e.g. ['2h','jc']
 player  (string) name of player
+hand    
 Note, will automatically uppercase the rank letter.
 """
         try:
@@ -336,12 +337,19 @@ Note, will automatically uppercase the rank letter.
         except FpdbParseError, e:
             print "Tried to add holecards for unknown player: %s" % (player,)
 
-    def addShownCards(self, cards, player):
+    def addShownCards(self, cards, player, holeandboard=None):
         """\
 For when a player shows cards for any reason (for showdown or out of choice).
 """
-        self.shown.add(player)
-        self.addHoleCards(cards,player)
+        if cards is not None:
+            self.shown.add(player)
+            self.addHoleCards(cards,player)
+        elif holeandboard is not None:
+            board = set([c for s in self.board.values() for c in s])
+            #print board
+            #print holeandboard
+            #print holeandboard.difference(board)
+            self.addHoleCards(holeandboard.difference(board),player)
 
 
     def checkPlayerExists(self,player):
