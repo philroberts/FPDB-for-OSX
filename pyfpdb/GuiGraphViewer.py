@@ -83,28 +83,33 @@ class GuiGraphViewer (threading.Thread):
         self.ax.set_xlabel("Hands", fontsize = 12)
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-        #This line will crash if no hands exist in the query.
-        text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
+        if(line == None):
+            #TODO: Do something useful like alert user
+            print "No hands returned by graph query"
+        else:
+            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
 
-        self.ax.annotate(text, 
-                        xy=(10, -10),
-                        xycoords='axes points',
-                        horizontalalignment='left', verticalalignment='top',
-                        fontsize=10)
+            self.ax.annotate(text,
+                             xy=(10, -10),
+                             xycoords='axes points',
+                             horizontalalignment='left', verticalalignment='top',
+                             fontsize=10)
 
+            #Draw plot
+            self.ax.plot(line,)
 
-        #Draw plot
-        self.ax.plot(line,)
-
-        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
-        self.graphBox.add(self.canvas)
-        self.canvas.show()
+            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+            self.graphBox.add(self.canvas)
+            self.canvas.show()
     #end of def showClicked
 
     def getRingProfitGraph(self, name, site):
         self.cursor.execute(self.sql.query['getRingProfitAllHandsPlayerIdSite'], (name, site))
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
+
+        if(winnings == ()):
+            return None
 
         y=map(lambda x:float(x[3]), winnings)
         line = cumsum(y)
