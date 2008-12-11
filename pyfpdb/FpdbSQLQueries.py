@@ -73,13 +73,13 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createSitesTable'] = """CREATE TABLE Sites (
-    					id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					name varchar(32) NOT NULL,
     					currency char(3) NOT NULL)
     					ENGINE=INNODB""" 
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createSitesTable'] = """CREATE TABLE Sites (
-    					id SERIAL UNIQUE, PRIMARY KEY (id),
+    					id SERIAL, PRIMARY KEY (id),
     					name varchar(32),
     					currency char(3))"""
     	elif(self.dbname == 'SQLite'):
@@ -92,7 +92,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
-    					id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
     					type char(4) NOT NULL,
     					base char(4) NOT NULL,
@@ -106,7 +106,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB""" 
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
-    					id SERIAL UNIQUE, PRIMARY KEY (id),
+    					id SERIAL, PRIMARY KEY (id),
     					siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
     					type char(4),
     					base char(4),
@@ -127,7 +127,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createPlayersTable'] = """CREATE TABLE Players (
-    				        id INT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    				        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     				        name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
     				        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
     				        comment text,
@@ -135,7 +135,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB""" 
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createPlayersTable'] = """CREATE TABLE Players (
-    					id SERIAL UNIQUE, PRIMARY KEY (id),
+    					id SERIAL, PRIMARY KEY (id),
     					name VARCHAR(32),
     					siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
     					comment text,
@@ -150,7 +150,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
-    				        id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    				        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     				        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
     				        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
     				        description varchar(50) NOT NULL,
@@ -160,7 +160,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB""" 
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
-    				        id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    				        id BIGSERIAL, PRIMARY KEY (id),
     				        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
     				        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
     				        description varchar(50),
@@ -177,7 +177,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createHandsTable'] = """CREATE TABLE Hands (
-    				        id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    				        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     				        tableName VARCHAR(20) NOT NULL,
     				        siteHandNo BIGINT NOT NULL,
     				        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -190,7 +190,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB""" 
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createHandsTable'] = """CREATE TABLE Hands (
-    					id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    					id BIGSERIAL, PRIMARY KEY (id),
     					tableName VARCHAR(20),
     					siteHandNo BIGINT,
     					gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -210,7 +210,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
-    				        id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    				        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     				        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
     				        card1Value smallint NOT NULL,
     				        card1Suit char(1) NOT NULL,
@@ -225,7 +225,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB""" 
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
-    					id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    					id BIGSERIAL, PRIMARY KEY (id),
     					handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
     					card1Value smallint,
     					card1Suit char(1),
@@ -247,7 +247,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
-    				        id SMALLINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    				        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     				        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
     				        buyin INT NOT NULL,
     				        fee INT NOT NULL,
@@ -272,7 +272,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
-    					id INT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
     					siteTourneyNo BIGINT NOT NULL,
     					entries INT NOT NULL,
@@ -283,7 +283,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB"""
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
-    					id SERIAL UNIQUE, PRIMARY KEY (id),
+    					id SERIAL, PRIMARY KEY (id),
     					tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
     					siteTourneyNo BIGINT,
     					entries INT,
@@ -300,7 +300,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
-    					id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
     					playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
     					startCash INT NOT NULL,
@@ -332,7 +332,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB"""
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
-    					id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    					id BIGSERIAL, PRIMARY KEY (id),
     					handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
     					playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
     					startCash INT,
@@ -370,7 +370,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
-    					id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
     					playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
     					payinAmount INT NOT NULL,
@@ -381,7 +381,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB"""
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
-    					id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    					id BIGSERIAL, PRIMARY KEY (id),
     					tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
     					playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
     					payinAmount INT,
@@ -399,7 +399,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
-    					id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					handPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
     					street SMALLINT NOT NULL,
     					actionNo SMALLINT NOT NULL,
@@ -411,7 +411,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB"""
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
-    					id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    					id BIGSERIAL, PRIMARY KEY (id),
     					handPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
     					street SMALLINT,
     					actionNo SMALLINT,
@@ -430,7 +430,7 @@ class FpdbSQLQueries:
 
     	if(self.dbname == 'MySQL InnoDB'):
     		self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
-    					id BIGINT UNSIGNED UNIQUE AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
     					gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
     					playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
     					activeSeats SMALLINT NOT NULL,
@@ -503,7 +503,7 @@ class FpdbSQLQueries:
     					ENGINE=INNODB"""
     	elif(self.dbname == 'PostgreSQL'):
     		self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
-    					id BIGSERIAL UNIQUE, PRIMARY KEY (id),
+    					id BIGSERIAL, PRIMARY KEY (id),
     					gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
     					playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
     					activeSeats SMALLINT,
@@ -726,7 +726,72 @@ class FpdbSQLQueries:
                     on hprof2.gameTypeId = stats.gameTypeId
                 order by stats.base, stats.limittype, stats.bigBlind"""
         elif(self.dbname == 'PostgreSQL'):
-            self.query['playerStats'] = """ """
+            self.query['playerStats'] = """
+                SELECT stats.gametypeId
+                     ,stats.base
+                     ,stats.limitType
+                     ,stats.name
+                     ,(stats.bigBlind/100) as BigBlind
+                     ,stats.n
+                     ,stats.vpip
+                     ,stats.pfr
+                     ,stats.saw_f
+                     ,stats.sawsd
+                     ,stats.wtsdwsf
+                     ,stats.wmsd
+                     ,stats.FlAFq
+                     ,stats.TuAFq
+                     ,stats.RvAFq
+                     ,stats.PFAFq
+                     ,hprof2.sum_profit/100 as Net
+                     ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                FROM
+                    (select gt.base
+                           ,upper(gt.limitType) as limitType
+                           ,s.name
+                           ,gt.bigBlind
+                           ,hc.gametypeId
+                           ,sum(HDs) as n
+                           ,round(100*sum(street0VPI)/sum(HDs)) as vpip
+                           ,round(100*sum(street0Aggr)/sum(HDs)) as pfr
+                           ,round(100*sum(street1Seen)/sum(HDs)) AS saw_f
+                           ,round(100*sum(sawShowdown)/sum(HDs)) AS sawsd
+                           ,round(100*sum(sawShowdown)/sum(street1Seen)) AS wtsdwsf
+                           ,round(100*sum(wonAtSD)/sum(sawShowdown))     AS wmsd
+                           ,round(100*sum(street1Aggr)/sum(street1Seen)) AS FlAFq
+                           ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
+                           ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
+                           ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
+                     from Gametypes gt
+                          inner join Sites s on s.Id = gt.siteId
+                          inner join HudCache hc on hc.gameTypeId = gt.Id
+                     where hc.playerId in <player_test>
+                     group by gt.base
+                          ,upper(gt.limitType)
+                          ,s.name
+                          ,gt.bigBlind
+                          ,hc.gametypeId
+                    ) stats
+                inner join
+                    ( select hprof.gameTypeId, sum(hprof.profit) as sum_profit
+                      from
+                          (select hp.handId,
+                          h.gameTypeId,
+                          hp.winnings,
+                          SUM(ha.amount) as costs,
+                          hp.winnings - SUM(ha.amount) as profit
+                          from HandsPlayers hp
+                          inner join Hands h         ON h.id            = hp.handId
+                          inner join HandsActions ha ON ha.handPlayerId = hp.id
+                          where hp.playerId in <player_test>
+                          and   hp.tourneysPlayersId IS NULL
+                          group by hp.handId, h.gameTypeId, hp.position, hp.winnings
+                         ) hprof
+                      group by hprof.gameTypeId
+                     ) hprof2
+                    on hprof2.gameTypeId = stats.gameTypeId
+                order by stats.base, stats.limittype, stats.bigBlind"""
         elif(self.dbname == 'SQLite'):
             self.query['playerStats'] = """ """
 
