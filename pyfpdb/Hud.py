@@ -55,6 +55,7 @@ class Hud:
         self.db_name       = db_name
         self.deleted       = False
         self.stacked       = True
+        self.site          = table.site
         self.colors = config.get_default_colors(self.table.site)
 
         self.stat_windows = {}
@@ -226,7 +227,7 @@ class Hud:
         game_params = config.get_game_parameters(self.poker_game)
         if not game_params['aux'] == "":
             aux_params = config.get_aux_parameters(game_params['aux'])
-            self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
+            self.aux_windows.append(eval("%s.%s(gtk.Window(), self, config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
         
         gobject.timeout_add(500, self.update_table_position)
             

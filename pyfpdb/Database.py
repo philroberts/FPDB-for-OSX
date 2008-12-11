@@ -151,7 +151,16 @@ class Database:
             act = row[1:]
             action[street].append(act)
         return action
-                
+
+    def get_winners_from_hand(self, hand):
+        """Returns a hash of winners:amount won, given a hand number."""
+        winners = {}
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_winners_from_hand'], (hand))
+        for row in c.fetchall():
+            winners[row[0]] = row[1]
+        return winners
+
     def get_stats_from_hand(self, hand, aggregate = False):
         c = self.connection.cursor()
 
