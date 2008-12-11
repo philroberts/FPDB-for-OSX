@@ -726,7 +726,72 @@ class FpdbSQLQueries:
                     on hprof2.gameTypeId = stats.gameTypeId
                 order by stats.base, stats.limittype, stats.bigBlind"""
         elif(self.dbname == 'PostgreSQL'):
-            self.query['playerStats'] = """ """
+            self.query['playerStats'] = """
+                SELECT stats.gametypeId
+                     ,stats.base
+                     ,stats.limitType
+                     ,stats.name
+                     ,(stats.bigBlind/100) as BigBlind
+                     ,stats.n
+                     ,stats.vpip
+                     ,stats.pfr
+                     ,stats.saw_f
+                     ,stats.sawsd
+                     ,stats.wtsdwsf
+                     ,stats.wmsd
+                     ,stats.FlAFq
+                     ,stats.TuAFq
+                     ,stats.RvAFq
+                     ,stats.PFAFq
+                     ,hprof2.sum_profit/100 as Net
+                     ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                FROM
+                    (select gt.base
+                           ,upper(gt.limitType) as limitType
+                           ,s.name
+                           ,gt.bigBlind
+                           ,hc.gametypeId
+                           ,sum(HDs) as n
+                           ,round(100*sum(street0VPI)/sum(HDs)) as vpip
+                           ,round(100*sum(street0Aggr)/sum(HDs)) as pfr
+                           ,round(100*sum(street1Seen)/sum(HDs)) AS saw_f
+                           ,round(100*sum(sawShowdown)/sum(HDs)) AS sawsd
+                           ,round(100*sum(sawShowdown)/sum(street1Seen)) AS wtsdwsf
+                           ,round(100*sum(wonAtSD)/sum(sawShowdown))     AS wmsd
+                           ,round(100*sum(street1Aggr)/sum(street1Seen)) AS FlAFq
+                           ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
+                           ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
+                           ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
+                     from Gametypes gt
+                          inner join Sites s on s.Id = gt.siteId
+                          inner join HudCache hc on hc.gameTypeId = gt.Id
+                     where hc.playerId in <player_test>
+                     group by gt.base
+                          ,upper(gt.limitType)
+                          ,s.name
+                          ,gt.bigBlind
+                          ,hc.gametypeId
+                    ) stats
+                inner join
+                    ( select hprof.gameTypeId, sum(hprof.profit) as sum_profit
+                      from
+                          (select hp.handId,
+                          h.gameTypeId,
+                          hp.winnings,
+                          SUM(ha.amount) as costs,
+                          hp.winnings - SUM(ha.amount) as profit
+                          from HandsPlayers hp
+                          inner join Hands h         ON h.id            = hp.handId
+                          inner join HandsActions ha ON ha.handPlayerId = hp.id
+                          where hp.playerId in <player_test>
+                          and   hp.tourneysPlayersId IS NULL
+                          group by hp.handId, h.gameTypeId, hp.position, hp.winnings
+                         ) hprof
+                      group by hprof.gameTypeId
+                     ) hprof2
+                    on hprof2.gameTypeId = stats.gameTypeId
+                order by stats.base, stats.limittype, stats.bigBlind"""
         elif(self.dbname == 'SQLite'):
             self.query['playerStats'] = """ """
 

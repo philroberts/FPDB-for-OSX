@@ -44,7 +44,7 @@ class GuiPlayerStats (threading.Thread):
         # Get currently active site and grab playerid
         tmp = self.sql.query['playerStats']
 
-        result = self.cursor.execute(self.sql.query['getPlayerId'], self.heroes[self.activesite])
+        result = self.cursor.execute(self.sql.query['getPlayerId'], (self.heroes[self.activesite],))
         result = self.db.cursor.fetchall()
         if not result == ():
                 pid = result[0][0]
