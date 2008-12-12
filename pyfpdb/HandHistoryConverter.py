@@ -449,7 +449,27 @@ Known bug: doesn't take into account side pots"""
 Map the tuple self.gametype onto the pokerstars string describing it
 """
         # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
-        return "Hold'em No Limit"
+        gs = {"hold"       : "Hold'em",
+              "omahahi"    : "FIXME",
+              "omahahilo"  : "FIXME",
+              "razz"       : "Razz",
+              "studhi"     : "FIXME",
+              "studhilo"   : "FIXME",
+              "fivedraw"   : "5 Card Draw",
+              "27_1draw"   : "FIXME",
+              "27_3draw"   : "Triple Draw 2-7 Lowball",
+              "badugi"     : "FIXME"
+             }
+        ls = {"nl"  : "No Limit",
+              "pl"  : "Pot Limit",
+              "fl"  : "Limit",
+              "cn"  : "Cap No Limit",
+              "cp"  : "Cap Pot Limit"
+             }
+
+        string = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
+        
+        return string
 
     def printHand(self):
         # PokerStars format.
