@@ -55,6 +55,7 @@ class Hud:
         self.db_name       = db_name
         self.deleted       = False
         self.stacked       = True
+        self.site          = table.site
         self.colors = config.get_default_colors(self.table.site)
 
         self.stat_windows = {}

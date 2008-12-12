@@ -319,6 +319,14 @@ class Sql:
                 """
 #                    WHERE handId = %s AND Players.id LIKE %s
 
+            self.query['get_winners_from_hand'] = """
+                    SELECT name, winnings
+                    FROM HandsPlayers, Players
+                    WHERE winnings > 0
+                        AND Players.id = HandsPlayers.playerId
+                        AND handId = %s;
+                """
+
             self.query['get_table_name'] = """
                     select tableName, maxSeats, category 
                     from Hands,Gametypes 
