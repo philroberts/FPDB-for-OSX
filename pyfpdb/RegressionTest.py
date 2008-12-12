@@ -93,6 +93,7 @@ class TestSequenceFunctions(unittest.TestCase):
     def testTableDetection(self):
         result = Tables.clean_title("French (deep)")
         self.failUnless(result == "French", "French (deep) parsed incorrectly. Expected 'French' got: " + str(result))
+#        result = ("French (deep) - $0.25/$0.50 - No Limit Hold'em - Logged In As xxxx")
 
     def testImportHandHistoryFiles(self):
         """Test import of single HH file"""
