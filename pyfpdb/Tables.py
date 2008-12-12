@@ -291,17 +291,6 @@ def get_site_from_exe(c, exe):
             return params['site_name']
     return None
 
-def clean_title(name):
-    """Clean the little info strings from the table name."""
-#    these strings could go in a config file
-    for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
-                ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
-                ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
-                ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
-        name = re.sub(pattern, '', name)
-    name = name.rstrip()
-    return name
-
 def pokerstars_decode_table(tw):
 #    Extract poker information from the window title.  This is not needed for
 #    fpdb, since all that information is available in the db via new_hand_number.
