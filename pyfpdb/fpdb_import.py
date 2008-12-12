@@ -59,7 +59,11 @@ class Importer:
         #Set defaults
         self.callHud = self.config.get_import_parameters().get("callFpdbHud")
         if not self.settings.has_key('minPrint'):
+            #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
+        if not self.settings.has_key('handCount'):
+            #TODO: Is this value in the xml file?
+            self.settings['handCount'] = 0
         self.dbConnect()
 
     # XXX: Why is this here, when fpdb_db.connect() already does the
