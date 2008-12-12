@@ -30,6 +30,7 @@ import fpdb_db
 import fpdb_import
 import fpdb_simple
 import FpdbSQLQueries
+import Tables
 
 import unittest
 
@@ -88,6 +89,10 @@ class TestSequenceFunctions(unittest.TestCase):
         result = fpdb_simple.parseHandStartTime(previous, "ps")
         self.failUnless(result==datetime.datetime(2008,8,17,6,14,43),
                         "Date incorrect, expected: 2008-08-17 01:14:43 got: " + str(result))
+
+    def testTableDetection(self):
+        result = Tables.clean_title("French (deep)")
+        self.failUnless(result == "French", "French (deep) parsed incorrectly. Expected 'French' got: " + str(result))
 
     def testImportHandHistoryFiles(self):
         """Test import of single HH file"""

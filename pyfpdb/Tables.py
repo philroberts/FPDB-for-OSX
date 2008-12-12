@@ -339,9 +339,9 @@ def fulltilt_decode_table(tw):
 def clean_title(name):
     """Clean the little info strings from the table name."""
 #    these strings could go in a config file
-    for pattern in [' (6 max)', ' (heads up)', ' (deep)',
-                ' (deep hu)', ' (deep 6)', ' (2)',
-                ' (edu)', ' (edu, 6 max)', ' (6)',
+    for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
+                ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
+                ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
                 ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
         name = re.sub(pattern, '', name)
     name = name.rstrip()
