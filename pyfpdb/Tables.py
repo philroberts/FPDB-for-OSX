@@ -291,17 +291,6 @@ def get_site_from_exe(c, exe):
             return params['site_name']
     return None
 
-def clean_title(name):
-    """Clean the little info strings from the table name."""
-#    these strings could go in a config file
-    for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
-                ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
-                ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
-                ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
-        name = re.sub(pattern, '', name)
-    name = name.rstrip()
-    return name
-
 def pokerstars_decode_table(tw):
 #    Extract poker information from the window title.  This is not needed for
 #    fpdb, since all that information is available in the db via new_hand_number.
@@ -374,64 +363,12 @@ def discover_mac_by_name(c, tablename):
     # again, i have no mac to test this on, sorry -eric
     return None
 
-#def discover_nt_by_name(c, tablename):
-#    # this is pretty much identical to the 'search all windows for all poker sites' code, but made to dig just for a specific table name
-#    # it could be implemented a bunch better - and we need to not assume the width/height thing that (steffen?) assumed above, we should
-#    # be able to dig up the window's titlebar handle and get it's information, and such .. but.. for now, i guess this will work.
-#    # - eric
-#    b_width = 3
-#    tb_height = 29
-#    titles = {}
-##    tables = discover_nt(c)
-#    win32gui.EnumWindows(win_enum_handler, titles)
-#    for s in c.supported_sites.keys():
-#        for hwnd in titles.keys():
-#            processid = win32process.GetWindowThreadProcessId(hwnd)
-#            pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
-#            exe = win32process.GetModuleFileNameEx(pshandle, 0)
-#            if exe.find(c.supported_sites[s].table_finder) == -1:
-#                continue
-#            if titles[hwnd].find(tablename) > -1:
-#                if titles[hwnd].find("History for table:") > -1 or titles[hwnd].find("FPDBHUD") > -1:
-#                    continue
-#                tw = Table_Window()
-#                tw.number = hwnd
-#                (x, y, width, height) = win32gui.GetWindowRect(hwnd)
-#                tw.title = titles[hwnd]
-#                tw.width = int(width) - 2 * b_width
-#                tw.height = int(height) - b_width - tb_height
-#                tw.x = int(x) + b_width
-#                tw.y = int(y) + tb_height
-#                tw.site = c.supported_sites[s].site_name
-#                if not tw.site == "Unknown" and not c.supported_sites[tw.site].decoder == "Unknown":
-#                    eval("%s(tw)" % c.supported_sites[tw.site].decoder)
-#                else:
-#                    tw.name = tablename
-#                return tw
-#    
-#    # if we don't find anything by process name, let's search one more time, and call it Unknown ?
-#    for hwnd in titles.keys():
-#        if titles[hwnd].find(tablename) > -1:
-#            if titles[hwnd].find("History for table:") > -1 or titles[hwnd].find("FPDBHUD") > -1:
-#                continue
-#            tw = Table_Window()
-#            tw.number = hwnd
-#            (x, y, width, height) = win32gui.GetWindowRect(hwnd)
-#            tw.title = titles[hwnd]
-#            tw.width = int(width) - 2 * b_width
-#            tw.height = int(height) - b_width - tb_height
-#            tw.x = int(x) + b_width
-#            tw.y = int(y) + tb_height
-#            tw.site = "Unknown"
-#            tw.name = tablename
-#            return tw
-#    
-#    return None
-
+###########################################################################
+#   Main function used for testing
 if __name__=="__main__":
     c = Configuration.Config()
 
-    print discover_table_by_name(c, "Daddy Nasty")
+    print discover_table_by_name(c, "Louie")
 #    print discover_tournament_table(c, "118942908", "3")
 
     tables = discover(c)
