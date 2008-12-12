@@ -361,8 +361,7 @@ class Sql:
             self.query['get_action_from_hand'] = """
                 SELECT street, Players.name, HandsActions.action, HandsActions.amount, actionno
                 FROM Players, HandsActions, HandsPlayers
-                WHERE HandsActions.action != 'blind'
-                AND HandsPlayers.handid = %s
+                WHERE HandsPlayers.handid = %s
                 AND HandsPlayers.playerid = Players.id
                 AND HandsActions.handPlayerId = HandsPlayers.id
                 ORDER BY street, actionno
