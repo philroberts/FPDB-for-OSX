@@ -52,7 +52,7 @@ class GuiPlayerStats (threading.Thread):
                 tmp = tmp.replace("<player_test>", "(" + str(pid) + ")")
                 self.cursor.execute(tmp)
                 result = self.db.cursor.fetchall()
-                cols = 20
+                cols = 16
                 rows = len(result)+1 # +1 for title row
                 self.stats_table = gtk.Table(rows, cols, False)
                 self.stats_table.set_col_spacings(4)
@@ -60,7 +60,7 @@ class GuiPlayerStats (threading.Thread):
                 vbox.add(self.stats_table)
 
                 # Create header row
-                titles = ("GID", "base", "Style", "Site", "$BB", "Hands", "VPIP", "PFR", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BB/100", "$/hand", "Variance")
+                titles = ("Game", "Hands", "VPIP", "PFR", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BB/100", "$/hand", "Variance")
 
                 col = 0
                 row = 0

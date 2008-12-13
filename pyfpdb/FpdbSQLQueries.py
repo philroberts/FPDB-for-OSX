@@ -664,11 +664,15 @@ class FpdbSQLQueries:
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['playerStats'] = """
-                SELECT stats.gametypeId
-                     ,stats.base
-                     ,stats.limitType
-                     ,stats.name
-                     ,format(stats.bigBlind/100,2) as BigBlind
+                SELECT 
+                      concat(upper(stats.limitType), ' '
+                            ,concat(upper(substring(stats.category,1,1)),substring(stats.category,2) ), ' '
+                            ,stats.name, ' $'
+                            ,cast(trim(leading ' ' from
+                                  case when stats.bigBlind < 100 then format(stats.bigBlind/100.0,2)
+                                      else format(stats.bigBlind/100.0,0)
+                                  end ) as char)
+                            )                                                      AS Game
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
@@ -687,6 +691,7 @@ class FpdbSQLQueries:
                 FROM
                     (select # stats from hudcache
                             gt.base
+                           ,gt.category
                            ,upper(gt.limitType) limitType
                            ,s.name
                            ,gt.bigBlind
@@ -719,8 +724,8 @@ class FpdbSQLQueries:
                           (select hp.handId, h.gameTypeId, hp.winnings, SUM(ha.amount)
                 costs, hp.winnings - SUM(ha.amount) profit
                           from HandsPlayers hp
-                          inner join Hands h         ON h.id            = hp.handId
-                          inner join HandsActions ha ON ha.handPlayerId = hp.id
+                          inner join Hands h        ON h.id            = hp.handId
+                          left join HandsActions ha ON ha.handPlayerId = hp.id
                           where hp.playerId in <player_test>
                                                      # use <gametype_test> here ?
                           and   hp.tourneysPlayersId IS NULL
@@ -732,11 +737,13 @@ class FpdbSQLQueries:
                 order by stats.base, stats.limittype, stats.bigBlind"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStats'] = """
-                SELECT stats.gametypeId
-                     ,stats.base
-                     ,stats.limitType
-                     ,stats.name
-                     ,(stats.bigBlind/100) as BigBlind
+                SELECT upper(stats.limitType) || ' '
+                       || initcap(stats.category) || ' '
+                       || stats.name || ' $'
+                       || trim(leading ' ' from
+                          case when stats.bigBlind < 100 then to_char(stats.bigBlind/100.0,'0D00')
+                            else to_char(stats.bigBlind/100.0,'99990')
+                          end )                                                       AS Game
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
@@ -754,6 +761,7 @@ class FpdbSQLQueries:
                      ,hprof2.variance as Variance
                 FROM
                     (select gt.base
+                           ,gt.category
                            ,upper(gt.limitType) as limitType
                            ,s.name
                            ,gt.bigBlind
@@ -775,6 +783,7 @@ class FpdbSQLQueries:
                           inner join HudCache hc on hc.gameTypeId = gt.Id
                      where hc.playerId in <player_test>
                      group by gt.base
+                          ,gt.category
                           ,upper(gt.limitType)
                           ,s.name
                           ,gt.bigBlind
@@ -782,9 +791,9 @@ class FpdbSQLQueries:
                     ) stats
                 inner join
                     ( select
-                             hprof.gameTypeId, sum(hprof.profit) sum_profit,
-                             avg(hprof.profit/100.0) profitperhand,
-                             variance(hprof.profit/100.0) variance
+                             hprof.gameTypeId, sum(hprof.profit) AS sum_profit,
+                             avg(hprof.profit/100.0) AS profitperhand,
+                             variance(hprof.profit/100.0) AS variance
                       from
                           (select hp.handId,
                           h.gameTypeId,
@@ -792,8 +801,8 @@ class FpdbSQLQueries:
                           SUM(ha.amount) as costs,
                           hp.winnings - SUM(ha.amount) as profit
                           from HandsPlayers hp
-                          inner join Hands h         ON h.id            = hp.handId
-                          inner join HandsActions ha ON ha.handPlayerId = hp.id
+                          inner join Hands h        ON h.id            = hp.handId
+                          left join HandsActions ha ON ha.handPlayerId = hp.id
                           where hp.playerId in <player_test>
                           and   hp.tourneysPlayersId IS NULL
                           group by hp.handId, h.gameTypeId, hp.position, hp.winnings
