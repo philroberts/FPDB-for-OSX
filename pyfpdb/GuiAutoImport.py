@@ -40,6 +40,8 @@ class GuiAutoImport (threading.Thread):
 
 		self.input_settings = {}
 
+		self.pipe_to_hud = None
+
 		self.importer = fpdb_import.Importer(self,self.settings, self.config)
 		self.importer.setCallHud(True)
 		self.importer.setMinPrint(30)
@@ -121,9 +123,7 @@ class GuiAutoImport (threading.Thread):
 		if widget.get_active(): # toggled on
 			self.doAutoImportBool = True
 			widget.set_label(u'Stop Autoimport')
-			try:      #uhhh, I don't this this is the best way to check for the existence of an attr
-				getattr(self, "pipe_to_hud")
-			except AttributeError:
+			if self.pipe_to_hud is None:
 				if os.name == 'nt':
 					command = "python HUD_main.py" + " %s" % (self.database)
 					bs = 0    # windows is not happy with line buffing here
@@ -153,6 +153,8 @@ class GuiAutoImport (threading.Thread):
 				self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
 				#TODO: other clean up, such as killing HUD
 				print "Stopping autoimport"
+				self.pipe_to_hud.communicate('\n') # waits for process to terminate
+				self.pipe_to_hud = None
 				widget.set_label(u'Start Autoimport')
 	#end def GuiAutoImport.startClicked
 
