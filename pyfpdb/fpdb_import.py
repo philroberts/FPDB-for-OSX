@@ -36,6 +36,7 @@ import math
 import os
 import datetime
 import re
+import fpdb_db
 import fpdb_simple
 import fpdb_parse_logic
 from time import time
@@ -47,7 +48,7 @@ class Importer:
         self.settings=settings
         self.caller=caller
         self.config = config
-        self.db = None
+        self.fdb = None
         self.cursor = None
         self.filelist = {}
         self.dirlist = {}
@@ -64,35 +65,12 @@ class Importer:
         if not self.settings.has_key('handCount'):
             #TODO: Is this value in the xml file?
             self.settings['handCount'] = 0
-        self.dbConnect()
-
-    # XXX: Why is this here, when fpdb_db.connect() already does the
-    # same?
-    def dbConnect(self):
-        #connect to DB
-        if self.settings['db-backend'] == 2:
-            if not mysqlLibFound:
-                raise fpdb_simple.FpdbError("interface library MySQLdb not found but MySQL selected as backend - please install the library or change the config file")
-            self.db = MySQLdb.connect(self.settings['db-host'], self.settings['db-user'],
-                            self.settings['db-password'], self.settings['db-databaseName'])
-        elif self.settings['db-backend'] == 3:
-            if not pgsqlLibFound:
-                raise fpdb_simple.FpdbError("interface library psycopg2 not found but PostgreSQL selected as backend - please install the library or change the config file")
-            print self.settings
-            if self.settings.has_key('db-host') and \
-                        self.settings.has_key('db-user'):
-                self.db = psycopg2.connect(host = self.settings['db-host'],
-                                       user = self.settings['db-user'],
-                                       password = self.settings['db-password'],
-                                       database = self.settings['db-databaseName'])
-            else:
-                dbname = self.settings['db-databaseName']
-                self.db = psycopg2.connect(database = dbname)
-        elif self.settings['db-backend'] == 4:
-            pass
-        else:
-            pass
-        self.cursor = self.db.cursor()
+        self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
+        self.fdb.connect(self.settings['db-backend'],
+                         self.settings['db-host'],
+                         self.settings['db-databaseName'],
+                         self.settings['db-user'], 
+                         self.settings['db-password'])
 
     #Set functions
     def setCallHud(self, value):
@@ -247,12 +225,11 @@ class Importer:
                     self.hand=hand
                     
                     try:
-                        handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.db
-                                                           ,self.cursor, site, category, hand)
-                        self.db.commit()
+                        handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
+                                                           ,self.fdb.cursor, site, category, hand)
+                        self.fdb.db.commit()
                         
                         stored+=1
-                        self.db.commit()
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
@@ -264,17 +241,17 @@ class Importer:
                         self.printEmailErrorMessage(errors, file, hand)
                 
                         if (self.settings['failOnError']):
-                            self.db.commit() #dont remove this, in case hand processing was cancelled.
+                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
                     except (fpdb_simple.FpdbError), fe:
                         errors+=1
                         self.printEmailErrorMessage(errors, file, hand)
 
                         #fe.printStackTrace() #todo: get stacktrace
-                        self.db.rollback()
+                        self.fdb.db.rollback()
                         
                         if (self.settings['failOnError']):
-                            self.db.commit() #dont remove this, in case hand processing was cancelled.
+                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
                     if (self.settings['minPrint']!=0):
                         if ((stored+duplicates+partial+errors)%self.settings['minPrint']==0):
@@ -299,7 +276,7 @@ class Importer:
                 print "failed to read a single hand from file:", inputFile
                 handsId=0
             #todo: this will cause return of an unstored hand number if the last hand was error or partial
-        self.db.commit()
+        self.fdb.db.commit()
         self.handsId=handsId
         return handsId
 #end def import_file_dict
