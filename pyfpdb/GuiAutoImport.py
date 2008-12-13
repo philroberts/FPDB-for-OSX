@@ -71,7 +71,8 @@ class GuiAutoImport (threading.Thread):
 
 		self.addSites(self.mainVBox)
 
-		self.startButton=gtk.Button("Start Autoimport")
+		self.doAutoImportBool = False
+		self.startButton=gtk.ToggleButton("Start Autoimport")
 		self.startButton.connect("clicked", self.startClicked, "start clicked")
 		self.mainVBox.add(self.startButton)
 		self.startButton.show()
@@ -103,7 +104,7 @@ class GuiAutoImport (threading.Thread):
 		"""Callback for timer to do an import iteration."""
 		self.importer.runUpdated()
 		print "GuiAutoImport.import_dir done"
-		return True
+		return self.doAutoImportBool
 
 	def startClicked(self, widget, data):
 		"""runs when user clicks start on auto import tab"""
@@ -117,34 +118,42 @@ class GuiAutoImport (threading.Thread):
 #	That is not correct.  It should open another dir for importing while piping the
 #	results to the same pipe.  This means that self.path should be a a list of dirs
 #	to watch.
-		try:      #uhhh, I don't this this is the best way to check for the existence of an attr
-			getattr(self, "pipe_to_hud")
-		except AttributeError:
-			if os.name == 'nt':
-				command = "python HUD_main.py" + " %s" % (self.database)
-				bs = 0    # windows is not happy with line buffing here
-				self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
-											    universal_newlines=True)
-			else:
-				cwd = os.getcwd()
-				command = os.path.join(cwd, 'HUD_main.py')
-				bs = 1
-				self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
-											    universal_newlines=True)
-#			self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
-#											    universal_newlines=True)
-#			command = command + " %s" % (self.database)
-#			print "command = ", command
-#			self.pipe_to_hud = os.popen(command, 'w')
+		if widget.get_active(): # toggled on
+			self.doAutoImportBool = True
+			widget.set_label(u'Stop Autoimport')
+			try:      #uhhh, I don't this this is the best way to check for the existence of an attr
+				getattr(self, "pipe_to_hud")
+			except AttributeError:
+				if os.name == 'nt':
+					command = "python HUD_main.py" + " %s" % (self.database)
+					bs = 0    # windows is not happy with line buffing here
+					self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
+													universal_newlines=True)
+				else:
+					cwd = os.getcwd()
+					command = os.path.join(cwd, 'HUD_main.py')
+					bs = 1
+					self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
+													universal_newlines=True)
+	#			self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
+	#											    universal_newlines=True)
+	#			command = command + " %s" % (self.database)
+	#			print "command = ", command
+	#			self.pipe_to_hud = os.popen(command, 'w')
 
-#			Add directories to importer object.
-			for site in self.input_settings:
-				self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
-				print "Adding import directories - Site: " + site + " dir: "+ str(self.input_settings[site][0])
-			self.do_import()
-		
-			interval=int(self.intervalEntry.get_text())
-			gobject.timeout_add(interval*1000, self.do_import)
+	#			Add directories to importer object.
+				for site in self.input_settings:
+					self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
+					print "Adding import directories - Site: " + site + " dir: "+ str(self.input_settings[site][0])
+				self.do_import()
+			
+				interval=int(self.intervalEntry.get_text())
+				gobject.timeout_add(interval*1000, self.do_import)
+		else: # toggled off
+				self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
+				#TODO: other clean up, such as killing HUD
+				print "Stopping autoimport"
+				widget.set_label(u'Start Autoimport')
 	#end def GuiAutoImport.startClicked
 
 	def get_vbox(self):
