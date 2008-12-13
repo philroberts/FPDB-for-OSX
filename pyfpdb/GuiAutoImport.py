@@ -23,6 +23,8 @@ pygtk.require('2.0')
 import gtk
 import gobject
 import os
+import sys
+import inspect
 import time
 import fpdb_import
 
@@ -104,6 +106,10 @@ class GuiAutoImport (threading.Thread):
 		self.importer.runUpdated()
 		print "GuiAutoImport.import_dir done"
 		return True
+	
+	def execution_path(self, filename):
+		"""Join the fpdb path to filename."""
+		return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(1))), filename)
 
 	def startClicked(self, widget, data):
 		"""runs when user clicks start on auto import tab"""
@@ -126,8 +132,7 @@ class GuiAutoImport (threading.Thread):
 				self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
 											    universal_newlines=True)
 			else:
-				cwd = os.getcwd()
-				command = os.path.join(cwd, 'HUD_main.py')
+				command = self.execution_path('HUD_main.py')
 				bs = 1
 				self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
 											    universal_newlines=True)
