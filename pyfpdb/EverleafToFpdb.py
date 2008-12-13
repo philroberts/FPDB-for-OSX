@@ -68,7 +68,7 @@ class Everleaf(HandHistoryConverter):
         print "Initialising Everleaf converter class"
         HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
         self.sitename = "Everleaf"
-        self.setFileType("text")
+        self.setFileType("text", "cp1252")
         self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
         self.rexx.setSplitHandRegex('\n\n+')
         self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
@@ -79,7 +79,7 @@ class Everleaf(HandHistoryConverter):
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
         self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
         self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[ (?P<CARDS>.*) \]')
-        self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD.*')
+        self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD(.*\[ (?P<HAND>.*) \])?')
         self.rexx.compileRegexes()
 
     def readSupportedGames(self):
@@ -118,9 +118,7 @@ class Everleaf(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.rexx.player_info_re.finditer(hand.string)
         players = []
-        #print "\nReading stacks - players seen:"
         for a in m:
-            #print a.group('PNAME')
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
@@ -132,28 +130,11 @@ class Everleaf(HandHistoryConverter):
                        r"(\*\* Dealing Flop \*\* \[ \S\S, \S\S, \S\S \](?P<FLOP>.+(?=\*\* Dealing Turn \*\*)|.+))?"
                        r"(\*\* Dealing Turn \*\* \[ \S\S \](?P<TURN>.+(?=\*\* Dealing River \*\*)|.+))?"
                        r"(\*\* Dealing River \*\* \[ \S\S \](?P<RIVER>.+))?", hand.string,re.DOTALL)
-        # that wasn't easy.
 
-
-        #m1 = re.search(r'(\*\* Dealing down cards \*\*)?(?P<PREFLOP>.*?\n\*\*)',hand.string,re.DOTALL)
-        #m2 = re.search(r'(\*\* Dealing Flop \*\*)?(?P<FLOP>.*\n\*\*)',hand.string,re.DOTALL)
-        #print hand.string
-        #print "m  groups:\n",m.groupdict()
-        #print "m1 groups:\n",m1.groupdict()
-        #print "m2 groups:\n",m2.groupdict()
-        #(\*\* Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \](?P<FLOP>.*?)?)?
-        #(\*\* Dealing Turn \*\* \[ (?P<TURN1>\S\S) \](?P<TURN>.*?))?
-        #(\*\* Dealing River \*\* \[ (?P<RIVER1>\S\S) \](?P<RIVER>.*?))?', hand.string,re.DOTALL)
-        
-        
-        #for street in m.groupdict():
-            #print "DEBUG: Street: %s\tspan: %s" %(street, str(m.span(street)))
         hand.streets = m
-        #sys.exit()
 
     def readCommunityCards(self, hand):
         # currently regex in wrong place pls fix my brain's fried
-        # what a mess!
         re_board = re.compile('\*\* Dealing (?P<STREET>.*) \*\* \[ (?P<CARDS>.*) \]')
         m = re_board.finditer(hand.string)
         for street in m:
@@ -209,11 +190,15 @@ class Everleaf(HandHistoryConverter):
             re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
             cards = [card.group('CARD') for card in re_card.finditer(shows.group('CARDS'))]
             print cards
-            hand.addHoleCards(cards, shows.group('PNAME'))
-            
+            hand.addShownCards(cards, shows.group('PNAME'))
+
     def readCollectPot(self,hand):
         m = self.rexx.collect_pot_re.search(hand.string)
         if m is not None:
+            if m.group('HAND') is not None:
+                re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
+                cards = set([hand.card(card.group('CARD')) for card in re_card.finditer(m.group('HAND'))])
+                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
         else:
             print "WARNING: Unusual, no one collected; can happen if it's folded to big blind with a dead small blind."
@@ -223,7 +208,7 @@ class Everleaf(HandHistoryConverter):
 
 if __name__ == "__main__":
     c = Configuration.Config()
-    e = Everleaf(c, "Speed_Kuala_full.txt")
+    e = Everleaf(c, "regression-test-files/everleaf/Speed_Kuala_full.txt")
     e.processFile()
     print str(e)
     
