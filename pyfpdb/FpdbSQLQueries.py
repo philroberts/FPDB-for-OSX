@@ -681,6 +681,8 @@ class FpdbSQLQueries:
                      ,stats.PFAFq
                      ,hprof2.sum_profit/100 as Net
                      ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                     ,hprof2.profitperhand as Profitperhand
+                     ,hprof2.variance as Variance
                 FROM
                     (select # stats from hudcache
                             gt.base
@@ -709,7 +711,9 @@ class FpdbSQLQueries:
                     ) stats
                 inner join
                     ( select # profit from handsplayers/handsactions
-                             hprof.gameTypeId, sum(hprof.profit) sum_profit
+                             hprof.gameTypeId, sum(hprof.profit) sum_profit,
+                             avg(hprof.profit/100.0) profitperhand,
+                             variance(hprof.profit/100.0) variance
                       from
                           (select hp.handId, h.gameTypeId, hp.winnings, SUM(ha.amount)
                 costs, hp.winnings - SUM(ha.amount) profit
@@ -745,6 +749,8 @@ class FpdbSQLQueries:
                      ,stats.PFAFq
                      ,hprof2.sum_profit/100 as Net
                      ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                     ,hprof2.profitperhand as Profitperhand
+                     ,hprof2.variance as Variance
                 FROM
                     (select gt.base
                            ,upper(gt.limitType) as limitType
@@ -774,7 +780,10 @@ class FpdbSQLQueries:
                           ,hc.gametypeId
                     ) stats
                 inner join
-                    ( select hprof.gameTypeId, sum(hprof.profit) as sum_profit
+                    ( select
+                             hprof.gameTypeId, sum(hprof.profit) sum_profit,
+                             avg(hprof.profit/100.0) profitperhand,
+                             variance(hprof.profit/100.0) variance
                       from
                           (select hp.handId,
                           h.gameTypeId,
