@@ -55,6 +55,7 @@ class Hud:
         self.db_name       = db_name
         self.deleted       = False
         self.stacked       = True
+        self.site          = table.site
         self.colors = config.get_default_colors(self.table.site)
 
         self.stat_windows = {}
@@ -133,6 +134,8 @@ class Hud:
                 (x, y) = loc[adj[i]]
                 if self.stat_windows.has_key(i):
                     self.stat_windows[i].relocate(x, y)
+                    
+        return True
 
     def on_button_press(self, widget, event):
         if event.button == 1:
@@ -151,6 +154,7 @@ class Hud:
 
     def reposition_windows(self, *args):
         self.update_table_position()
+        return True
 
     def debug_stat_windows(self, *args):
         print self.table, "\n", self.main_window.window.get_transient_for()
@@ -225,7 +229,7 @@ class Hud:
             aux_params = config.get_aux_parameters(game_params['aux'])
             self.aux_windows.append(eval("%s.%s(gtk.Window(), config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
         
-        gobject.timeout_add(0.5, self.update_table_position)
+        gobject.timeout_add(500, self.update_table_position)
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later

@@ -46,46 +46,47 @@ class GuiPlayerStats (threading.Thread):
 
         result = self.cursor.execute(self.sql.query['getPlayerId'], (self.heroes[self.activesite],))
         result = self.db.cursor.fetchall()
-        pid = result[0][0]
-        tmp = tmp.replace("<player_test>", "(" + str(pid) + ")")
-        self.cursor.execute(tmp)
-        result = self.db.cursor.fetchall()
-        cols = 14
-        rows = len(result)+1 # +1 for title row
-        self.stats_table = gtk.Table(rows, cols, False)
-        self.stats_table.set_col_spacings(4)
-        self.stats_table.show()
-        vbox.add(self.stats_table)
+        if not result == ():
+                pid = result[0][0]
+                pid = result[0][0]
+                tmp = tmp.replace("<player_test>", "(" + str(pid) + ")")
+                self.cursor.execute(tmp)
+                result = self.db.cursor.fetchall()
+                cols = 14
+                rows = len(result)+1 # +1 for title row
+                self.stats_table = gtk.Table(rows, cols, False)
+                self.stats_table.set_col_spacings(4)
+                self.stats_table.show()
+                vbox.add(self.stats_table)
 
-        # Create header row
-        titles = ("Game", "Hands", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BBl/100")
+                # Create header row
+                titles = ("Game", "Hands", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BBl/100")
 
-        col = 0
-        row = 0
-        for t in titles:
-            l = gtk.Label(titles[col])
-            l.show()
-            self.stats_table.attach(l, col, col+1, row, row+1)
-            col +=1 
+                col = 0
+                row = 0
+                for t in titles:
+                    l = gtk.Label(titles[col])
+                    l.show()
+                    self.stats_table.attach(l, col, col+1, row, row+1)
+                    col +=1 
 
-        for row in range(rows-1):
-            for col in range(cols):
-                if(row%2 == 0):
-                    bgcolor = "white"
-                else:
-                    bgcolor = "lightgrey"
-                eb = gtk.EventBox()
-                eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-                l = gtk.Label(result[row][col])
-                if col == 0:
-                    l.set_alignment(xalign=0.0, yalign=0.5)
-                else:
-                    l.set_alignment(xalign=1.0, yalign=0.5)
-                eb.add(l)
-                self.stats_table.attach(eb, col, col+1, row+1, row+2)
-                l.show()
-                eb.show()
-
+                for row in range(rows-1):
+                    for col in range(cols):
+                        if(row%2 == 0):
+                            bgcolor = "white"
+                        else:
+                            bgcolor = "lightgrey"
+                        eb = gtk.EventBox()
+                        eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
+                        l = gtk.Label(result[row][col])
+                        if col == 0:
+                            l.set_alignment(xalign=0.0, yalign=0.5)
+                        else:
+                            l.set_alignment(xalign=1.0, yalign=0.5)
+                        eb.add(l)
+                        self.stats_table.attach(eb, col, col+1, row+1, row+2)
+                        l.show()
+                        eb.show()
 
     def fillPlayerFrame(self, vbox):
         for site in self.conf.supported_sites.keys():
