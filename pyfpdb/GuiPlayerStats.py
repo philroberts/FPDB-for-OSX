@@ -48,10 +48,11 @@ class GuiPlayerStats (threading.Thread):
         result = self.db.cursor.fetchall()
         if not result == ():
                 pid = result[0][0]
+                pid = result[0][0]
                 tmp = tmp.replace("<player_test>", "(" + str(pid) + ")")
                 self.cursor.execute(tmp)
                 result = self.db.cursor.fetchall()
-                cols = 18
+                cols = 16
                 rows = len(result)+1 # +1 for title row
                 self.stats_table = gtk.Table(rows, cols, False)
                 self.stats_table.set_col_spacings(4)
@@ -59,7 +60,7 @@ class GuiPlayerStats (threading.Thread):
                 vbox.add(self.stats_table)
 
                 # Create header row
-                titles = ("GID", "base", "Style", "Site", "$BB", "Hands", "VPIP", "PFR", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BB/100")
+                titles = ("Game", "Hands", "VPIP", "PFR", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BB/100", "$/hand", "Variance")
 
                 col = 0
                 row = 0
@@ -77,12 +78,15 @@ class GuiPlayerStats (threading.Thread):
                             bgcolor = "lightgrey"
                         eb = gtk.EventBox()
                         eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-                        l = gtk.Label(result[row-1][col])
+                        l = gtk.Label(result[row][col])
+                        if col == 0:
+                            l.set_alignment(xalign=0.0, yalign=0.5)
+                        else:
+                            l.set_alignment(xalign=1.0, yalign=0.5)
                         eb.add(l)
                         self.stats_table.attach(eb, col, col+1, row+1, row+2)
                         l.show()
                         eb.show()
-
 
     def fillPlayerFrame(self, vbox):
         for site in self.conf.supported_sites.keys():

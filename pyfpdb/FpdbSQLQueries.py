@@ -30,548 +30,548 @@ class FpdbSQLQueries:
         self.query = {}
         self.dbname = db
 
-    	################################
-    	# List tables
-    	################################
+        ################################
+        # List tables
+        ################################
         if(self.dbname == 'MySQL InnoDB'):
-    		self.query['list_tables'] = """SHOW TABLES"""
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['list_tables'] = """SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['list_tables'] = """ """
+            self.query['list_tables'] = """SHOW TABLES"""
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['list_tables'] = """SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"""
+        elif(self.dbname == 'SQLite'):
+            self.query['list_tables'] = """ """
 
-    	##################################################################
+        ##################################################################
             # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
             ##################################################################
 
-    	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
-    		self.query['drop_table'] = """DROP TABLE IF EXISTS """
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
+            self.query['drop_table'] = """DROP TABLE IF EXISTS """
 
 
-    	################################
-    	# Create Tables
-    	################################
+        ################################
+        # Create Tables
+        ################################
 
-    	################################
-    	# Create Settings
-    	################################
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createSettingsTable'] = """CREATE TABLE Settings (
-    					                version SMALLINT NOT NULL)
-    							ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
+        ################################
+        # Create Settings
+        ################################
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createSettingsTable'] = """CREATE TABLE Settings (
+                                        version SMALLINT NOT NULL)
+                                ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
 
-    	elif(self.dbname == 'SQLite'):
+        elif(self.dbname == 'SQLite'):
                         #Probably doesn't work.
-    		self.query['createSettingsTable'] = """ """
+            self.query['createSettingsTable'] = """ """
 
 
-    	################################
-    	# Create Sites
-    	################################
+        ################################
+        # Create Sites
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createSitesTable'] = """CREATE TABLE Sites (
-    					id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					name varchar(32) NOT NULL,
-    					currency char(3) NOT NULL)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createSitesTable'] = """CREATE TABLE Sites (
-    					id SERIAL, PRIMARY KEY (id),
-    					name varchar(32),
-    					currency char(3))"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createSitesTable'] = """ """
-
-
-    	################################
-    	# Create Gametypes
-    	################################
-
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
-    					id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-    					type char(4) NOT NULL,
-    					base char(4) NOT NULL,
-    					category varchar(9) NOT NULL,
-    					limitType char(2) NOT NULL,
-    					hiLo char(1) NOT NULL,
-    					smallBlind int,
-    					bigBlind int,
-    					smallBet int NOT NULL,
-    					bigBet int NOT NULL)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
-    					id SERIAL, PRIMARY KEY (id),
-    					siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
-    					type char(4),
-    					base char(4),
-    					category varchar(9),
-    					limitType char(2),
-    					hiLo char(1),
-    					smallBlind int,
-    					bigBlind int,
-    					smallBet int,
-    					bigBet int)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createGametypesTable'] = """ """
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createSitesTable'] = """CREATE TABLE Sites (
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        name varchar(32) NOT NULL,
+                        currency char(3) NOT NULL)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createSitesTable'] = """CREATE TABLE Sites (
+                        id SERIAL, PRIMARY KEY (id),
+                        name varchar(32),
+                        currency char(3))"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createSitesTable'] = """ """
 
 
-    	################################
-    	# Create Players
-    	################################
+        ################################
+        # Create Gametypes
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createPlayersTable'] = """CREATE TABLE Players (
-    				        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    				        name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
-    				        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-    				        comment text,
-    				        commentTs DATETIME)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createPlayersTable'] = """CREATE TABLE Players (
-    					id SERIAL, PRIMARY KEY (id),
-    					name VARCHAR(32),
-    					siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
-    					comment text,
-    					commentTs timestamp without time zone)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createPlayersTable'] = """ """
-
-
-    	################################
-    	# Create Autorates
-    	################################
-
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
-    				        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    				        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-    				        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-    				        description varchar(50) NOT NULL,
-    				        shortDesc char(8) NOT NULL,
-    				        ratingTime DATETIME NOT NULL,
-    				        handCount int NOT NULL)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
-    				        id BIGSERIAL, PRIMARY KEY (id),
-    				        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-    				        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-    				        description varchar(50),
-    				        shortDesc char(8),
-    				        ratingTime timestamp without time zone,
-    					handCount int)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createAutoratesTable'] = """ """
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        type char(4) NOT NULL,
+                        base char(4) NOT NULL,
+                        category varchar(9) NOT NULL,
+                        limitType char(2) NOT NULL,
+                        hiLo char(1) NOT NULL,
+                        smallBlind int,
+                        bigBlind int,
+                        smallBet int NOT NULL,
+                        bigBet int NOT NULL)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
+                        id SERIAL, PRIMARY KEY (id),
+                        siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        type char(4),
+                        base char(4),
+                        category varchar(9),
+                        limitType char(2),
+                        hiLo char(1),
+                        smallBlind int,
+                        bigBlind int,
+                        smallBet int,
+                        bigBet int)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createGametypesTable'] = """ """
 
 
-    	################################
-    	# Create Hands
-    	################################
+        ################################
+        # Create Players
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createHandsTable'] = """CREATE TABLE Hands (
-    				        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    				        tableName VARCHAR(20) NOT NULL,
-    				        siteHandNo BIGINT NOT NULL,
-    				        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-    				        handStart DATETIME NOT NULL,
-    				        importTime DATETIME NOT NULL,
-    				        seats SMALLINT NOT NULL,
-    				        maxSeats SMALLINT NOT NULL,
-    				        comment TEXT,
-    				        commentTs DATETIME)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createHandsTable'] = """CREATE TABLE Hands (
-    					id BIGSERIAL, PRIMARY KEY (id),
-    					tableName VARCHAR(20),
-    					siteHandNo BIGINT,
-    					gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-    					handStart timestamp without time zone,
-    					importTime timestamp without time zone,
-    					seats SMALLINT,
-    					maxSeats SMALLINT,
-    					comment TEXT,
-    					commentTs timestamp without time zone)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createHandsTable'] = """ """
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createPlayersTable'] = """CREATE TABLE Players (
+                            id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                            name VARCHAR(32) CHARACTER SET utf8 NOT NULL,
+                            siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                            comment text,
+                            commentTs DATETIME)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createPlayersTable'] = """CREATE TABLE Players (
+                        id SERIAL, PRIMARY KEY (id),
+                        name VARCHAR(32),
+                        siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        comment text,
+                        commentTs timestamp without time zone)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createPlayersTable'] = """ """
 
 
-    	################################
-    	# Create Gametypes
-    	################################
+        ################################
+        # Create Autorates
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
-    				        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    				        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
-    				        card1Value smallint NOT NULL,
-    				        card1Suit char(1) NOT NULL,
-    				        card2Value smallint NOT NULL,
-    				        card2Suit char(1) NOT NULL,
-    				        card3Value smallint NOT NULL,
-    				        card3Suit char(1) NOT NULL,
-    				        card4Value smallint NOT NULL,
-    				        card4Suit char(1) NOT NULL,
-    				        card5Value smallint NOT NULL,
-    				        card5Suit char(1) NOT NULL)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
-    					id BIGSERIAL, PRIMARY KEY (id),
-    					handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
-    					card1Value smallint,
-    					card1Suit char(1),
-    					card2Value smallint,
-    					card2Suit char(1),
-    					card3Value smallint,
-    					card3Suit char(1),
-    					card4Value smallint,
-    					card4Suit char(1),
-    					card5Value smallint,
-    					card5Suit char(1))"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createBoardCardsTable'] = """ """
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
+                            id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                            playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                            gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            description varchar(50) NOT NULL,
+                            shortDesc char(8) NOT NULL,
+                            ratingTime DATETIME NOT NULL,
+                            handCount int NOT NULL)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
+                            id BIGSERIAL, PRIMARY KEY (id),
+                            playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                            gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            description varchar(50),
+                            shortDesc char(8),
+                            ratingTime timestamp without time zone,
+                        handCount int)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createAutoratesTable'] = """ """
 
 
-    	################################
-    	# Create TourneyTypes
-    	################################
+        ################################
+        # Create Hands
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
-    				        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    				        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-    				        buyin INT NOT NULL,
-    				        fee INT NOT NULL,
-    				        knockout INT NOT NULL,
-    				        rebuyOrAddon BOOLEAN NOT NULL)
-    					ENGINE=INNODB""" 
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
-    					id SERIAL, PRIMARY KEY (id),
-    					siteId INT, FOREIGN KEY (siteId) REFERENCES Sites(id),
-    					buyin INT,
-    					fee INT,
-    					knockout INT,
-    					rebuyOrAddon BOOLEAN)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createTourneyTypesTable'] = """ """
-
-
-    	################################
-    	# Create Tourneys
-    	################################
-
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
-    					id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-    					siteTourneyNo BIGINT NOT NULL,
-    					entries INT NOT NULL,
-    					prizepool INT NOT NULL,
-    					startTime DATETIME NOT NULL,
-    					comment TEXT,
-    					commentTs DATETIME)
-    					ENGINE=INNODB"""
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
-    					id SERIAL, PRIMARY KEY (id),
-    					tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-    					siteTourneyNo BIGINT,
-    					entries INT,
-    					prizepool INT,
-    					startTime timestamp without time zone,
-    					comment TEXT,
-    					commentTs timestamp without time zone)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createTourneysTable'] = """ """
-
-    	################################
-    	# Create HandsPlayers
-    	################################
-
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
-    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
-    					playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-    					startCash INT NOT NULL,
-    					position CHAR(1),
-    					seatNo SMALLINT NOT NULL,
-    					ante INT,
-    				
-    					card1Value smallint NOT NULL,
-    					card1Suit char(1) NOT NULL,
-    					card2Value smallint NOT NULL,
-    					card2Suit char(1) NOT NULL,
-    					card3Value smallint,
-    					card3Suit char(1),
-    					card4Value smallint,
-    					card4Suit char(1),
-    					card5Value smallint,
-    					card5Suit char(1),
-    					card6Value smallint,
-    					card6Suit char(1),
-    					card7Value smallint,
-    					card7Suit char(1),
-    				
-    					winnings int NOT NULL,
-    					rake int NOT NULL,
-    					comment text,
-    					commentTs DATETIME,
-    				
-    					tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
-    					ENGINE=INNODB"""
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
-    					id BIGSERIAL, PRIMARY KEY (id),
-    					handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
-    					playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-    					startCash INT,
-    					position CHAR(1),
-    					seatNo SMALLINT,
-    					ante INT,
-
-    					card1Value smallint,
-    					card1Suit char(1),
-    					card2Value smallint,
-    					card2Suit char(1),
-    					card3Value smallint,
-    					card3Suit char(1),
-    					card4Value smallint,
-    					card4Suit char(1),
-    					card5Value smallint,
-    					card5Suit char(1),
-    					card6Value smallint,
-    					card6Suit char(1),
-    					card7Value smallint,
-    					card7Suit char(1),
-
-    					winnings int,
-    					rake int,
-    					comment text,
-    					commentTs timestamp without time zone,
-    					tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createHandsPlayersTable'] = """ """
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createHandsTable'] = """CREATE TABLE Hands (
+                            id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                            tableName VARCHAR(20) NOT NULL,
+                            siteHandNo BIGINT NOT NULL,
+                            gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            handStart DATETIME NOT NULL,
+                            importTime DATETIME NOT NULL,
+                            seats SMALLINT NOT NULL,
+                            maxSeats SMALLINT NOT NULL,
+                            comment TEXT,
+                            commentTs DATETIME)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createHandsTable'] = """CREATE TABLE Hands (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        tableName VARCHAR(20),
+                        siteHandNo BIGINT,
+                        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        handStart timestamp without time zone,
+                        importTime timestamp without time zone,
+                        seats SMALLINT,
+                        maxSeats SMALLINT,
+                        comment TEXT,
+                        commentTs timestamp without time zone)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createHandsTable'] = """ """
 
 
-    	################################
-    	# Create TourneysPlayers
-    	################################
+        ################################
+        # Create Gametypes
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
-    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
-    					playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-    					payinAmount INT NOT NULL,
-    					rank INT NOT NULL,
-    					winnings INT NOT NULL,
-    					comment TEXT,
-    					commentTs DATETIME)
-    					ENGINE=INNODB"""
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
-    					id BIGSERIAL, PRIMARY KEY (id),
-    					tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
-    					playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-    					payinAmount INT,
-    					rank INT,
-    					winnings INT,
-    					comment TEXT,
-    					commentTs timestamp without time zone)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createTourneysPlayersTable'] = """ """
-
-
-    	################################
-    	# Create HandsActions
-    	################################
-
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
-    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					handPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
-    					street SMALLINT NOT NULL,
-    					actionNo SMALLINT NOT NULL,
-    					action CHAR(5) NOT NULL,
-    					allIn BOOLEAN NOT NULL,
-    					amount INT NOT NULL,
-    					comment TEXT,
-    					commentTs DATETIME)
-    					ENGINE=INNODB"""
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
-    					id BIGSERIAL, PRIMARY KEY (id),
-    					handPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
-    					street SMALLINT,
-    					actionNo SMALLINT,
-    					action CHAR(5),
-    					allIn BOOLEAN,
-    					amount INT,
-    					comment TEXT,
-    					commentTs timestamp without time zone)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createHandsActionsTable'] = """ """
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
+                            id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                            handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                            card1Value smallint NOT NULL,
+                            card1Suit char(1) NOT NULL,
+                            card2Value smallint NOT NULL,
+                            card2Suit char(1) NOT NULL,
+                            card3Value smallint NOT NULL,
+                            card3Suit char(1) NOT NULL,
+                            card4Value smallint NOT NULL,
+                            card4Suit char(1) NOT NULL,
+                            card5Value smallint NOT NULL,
+                            card5Suit char(1) NOT NULL)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createBoardCardsTable'] = """CREATE TABLE BoardCards (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        card1Value smallint,
+                        card1Suit char(1),
+                        card2Value smallint,
+                        card2Suit char(1),
+                        card3Value smallint,
+                        card3Suit char(1),
+                        card4Value smallint,
+                        card4Suit char(1),
+                        card5Value smallint,
+                        card5Suit char(1))"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createBoardCardsTable'] = """ """
 
 
-    	################################
-    	# Create HudCache
-    	################################
+        ################################
+        # Create TourneyTypes
+        ################################
 
-    	if(self.dbname == 'MySQL InnoDB'):
-    		self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
-    					id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-    					gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-    					playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-    					activeSeats SMALLINT NOT NULL,
-    					position CHAR(1),
-    					tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-    					
-    					HDs INT NOT NULL,
-    					street0VPI INT NOT NULL,
-    					street0Aggr INT NOT NULL,
-    					street0_3B4BChance INT NOT NULL,
-    					street0_3B4BDone INT NOT NULL,
-    					
-    					street1Seen INT NOT NULL,
-    					street2Seen INT NOT NULL,
-    					street3Seen INT NOT NULL,
-    					street4Seen INT NOT NULL,
-    					sawShowdown INT NOT NULL,
-    					
-    					street1Aggr INT NOT NULL,
-    					street2Aggr INT NOT NULL,
-    					street3Aggr INT NOT NULL,
-    					street4Aggr INT NOT NULL,
-    					
-    					otherRaisedStreet1 INT NOT NULL,
-    					otherRaisedStreet2 INT NOT NULL,
-    					otherRaisedStreet3 INT NOT NULL,
-    					otherRaisedStreet4 INT NOT NULL,
-    					foldToOtherRaisedStreet1 INT NOT NULL,
-    					foldToOtherRaisedStreet2 INT NOT NULL,
-    					foldToOtherRaisedStreet3 INT NOT NULL,
-    					foldToOtherRaisedStreet4 INT NOT NULL,
-    					wonWhenSeenStreet1 FLOAT NOT NULL,
-    					wonAtSD FLOAT NOT NULL,
-    					
-    					stealAttemptChance INT NOT NULL,
-    					stealAttempted INT NOT NULL,
-    					foldBbToStealChance INT NOT NULL,
-    					foldedBbToSteal INT NOT NULL,
-    					foldSbToStealChance INT NOT NULL,
-    					foldedSbToSteal INT NOT NULL,
-    					
-    					street1CBChance INT NOT NULL,
-    					street1CBDone INT NOT NULL,
-    					street2CBChance INT NOT NULL,
-    					street2CBDone INT NOT NULL,
-    					street3CBChance INT NOT NULL,
-    					street3CBDone INT NOT NULL,
-    					street4CBChance INT NOT NULL,
-    					street4CBDone INT NOT NULL,
-    					
-    					foldToStreet1CBChance INT NOT NULL,
-    					foldToStreet1CBDone INT NOT NULL,
-    					foldToStreet2CBChance INT NOT NULL,
-    					foldToStreet2CBDone INT NOT NULL,
-    					foldToStreet3CBChance INT NOT NULL,
-    					foldToStreet3CBDone INT NOT NULL,
-    					foldToStreet4CBChance INT NOT NULL,
-    					foldToStreet4CBDone INT NOT NULL,
-    					
-    					totalProfit INT NOT NULL,
-    					
-    					street1CheckCallRaiseChance INT NOT NULL,
-    					street1CheckCallRaiseDone INT NOT NULL,
-    					street2CheckCallRaiseChance INT NOT NULL,
-    					street2CheckCallRaiseDone INT NOT NULL,
-    					street3CheckCallRaiseChance INT NOT NULL,
-    					street3CheckCallRaiseDone INT NOT NULL,
-    					street4CheckCallRaiseChance INT NOT NULL,
-    					street4CheckCallRaiseDone INT NOT NULL)
-    					ENGINE=INNODB"""
-    	elif(self.dbname == 'PostgreSQL'):
-    		self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
-    					id BIGSERIAL, PRIMARY KEY (id),
-    					gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-    					playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-    					activeSeats SMALLINT,
-    					position CHAR(1),
-    					tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
+                            id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                            siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                            buyin INT NOT NULL,
+                            fee INT NOT NULL,
+                            knockout INT NOT NULL,
+                            rebuyOrAddon BOOLEAN NOT NULL)
+                        ENGINE=INNODB""" 
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
+                        id SERIAL, PRIMARY KEY (id),
+                        siteId INT, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        buyin INT,
+                        fee INT,
+                        knockout INT,
+                        rebuyOrAddon BOOLEAN)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createTourneyTypesTable'] = """ """
 
-    					HDs INT,
-    					street0VPI INT,
-    					street0Aggr INT,
-    					street0_3B4BChance INT,
-    					street0_3B4BDone INT,
-    					street1Seen INT,
-    					street2Seen INT,
-    					street3Seen INT,
-    					street4Seen INT,
-    					sawShowdown INT,
-    					street1Aggr INT,
-    					street2Aggr INT,
-    					street3Aggr INT,
-    					street4Aggr INT,
-    					otherRaisedStreet1 INT,
-    					otherRaisedStreet2 INT,
-    					otherRaisedStreet3 INT,
-    					otherRaisedStreet4 INT,
-    					foldToOtherRaisedStreet1 INT,
-    					foldToOtherRaisedStreet2 INT,
-    					foldToOtherRaisedStreet3 INT,
-    					foldToOtherRaisedStreet4 INT,
-    					wonWhenSeenStreet1 FLOAT,
-    					wonAtSD FLOAT,
 
-    					stealAttemptChance INT,
-    					stealAttempted INT,
-    					foldBbToStealChance INT,
-    					foldedBbToSteal INT,
-    					foldSbToStealChance INT,
-    					foldedSbToSteal INT,
+        ################################
+        # Create Tourneys
+        ################################
 
-    					street1CBChance INT,
-    					street1CBDone INT,
-    					street2CBChance INT,
-    					street2CBDone INT,
-    					street3CBChance INT,
-    					street3CBDone INT,
-    					street4CBChance INT,
-    					street4CBDone INT,
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
+                        id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        siteTourneyNo BIGINT NOT NULL,
+                        entries INT NOT NULL,
+                        prizepool INT NOT NULL,
+                        startTime DATETIME NOT NULL,
+                        comment TEXT,
+                        commentTs DATETIME)
+                        ENGINE=INNODB"""
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
+                        id SERIAL, PRIMARY KEY (id),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        siteTourneyNo BIGINT,
+                        entries INT,
+                        prizepool INT,
+                        startTime timestamp without time zone,
+                        comment TEXT,
+                        commentTs timestamp without time zone)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createTourneysTable'] = """ """
 
-    					foldToStreet1CBChance INT,
-    					foldToStreet1CBDone INT,
-    					foldToStreet2CBChance INT,
-    					foldToStreet2CBDone INT,
-    					foldToStreet3CBChance INT,
-    					foldToStreet3CBDone INT,
-    					foldToStreet4CBChance INT,
-    					foldToStreet4CBDone INT,
+        ################################
+        # Create HandsPlayers
+        ################################
 
-    					totalProfit INT,
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        handId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startCash INT NOT NULL,
+                        position CHAR(1),
+                        seatNo SMALLINT NOT NULL,
+                        ante INT,
+                    
+                        card1Value smallint NOT NULL,
+                        card1Suit char(1) NOT NULL,
+                        card2Value smallint NOT NULL,
+                        card2Suit char(1) NOT NULL,
+                        card3Value smallint,
+                        card3Suit char(1),
+                        card4Value smallint,
+                        card4Suit char(1),
+                        card5Value smallint,
+                        card5Suit char(1),
+                        card6Value smallint,
+                        card6Suit char(1),
+                        card7Value smallint,
+                        card7Suit char(1),
+                    
+                        winnings int NOT NULL,
+                        rake int NOT NULL,
+                        comment text,
+                        commentTs DATETIME,
+                    
+                        tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
+                        ENGINE=INNODB"""
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startCash INT,
+                        position CHAR(1),
+                        seatNo SMALLINT,
+                        ante INT,
 
-    					street1CheckCallRaiseChance INT,
-    					street1CheckCallRaiseDone INT,
-    					street2CheckCallRaiseChance INT,
-    					street2CheckCallRaiseDone INT,
-    					street3CheckCallRaiseChance INT,
-    					street3CheckCallRaiseDone INT,
-    					street4CheckCallRaiseChance INT,
-    					street4CheckCallRaiseDone INT)"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['createHudCacheTable'] = """ """
+                        card1Value smallint,
+                        card1Suit char(1),
+                        card2Value smallint,
+                        card2Suit char(1),
+                        card3Value smallint,
+                        card3Suit char(1),
+                        card4Value smallint,
+                        card4Suit char(1),
+                        card5Value smallint,
+                        card5Suit char(1),
+                        card6Value smallint,
+                        card6Suit char(1),
+                        card7Value smallint,
+                        card7Suit char(1),
+
+                        winnings int,
+                        rake int,
+                        comment text,
+                        commentTs timestamp without time zone,
+                        tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createHandsPlayersTable'] = """ """
+
+
+        ################################
+        # Create TourneysPlayers
+        ################################
+
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        payinAmount INT NOT NULL,
+                        rank INT NOT NULL,
+                        winnings INT NOT NULL,
+                        comment TEXT,
+                        commentTs DATETIME)
+                        ENGINE=INNODB"""
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        payinAmount INT,
+                        rank INT,
+                        winnings INT,
+                        comment TEXT,
+                        commentTs timestamp without time zone)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createTourneysPlayersTable'] = """ """
+
+
+        ################################
+        # Create HandsActions
+        ################################
+
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        handPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+                        street SMALLINT NOT NULL,
+                        actionNo SMALLINT NOT NULL,
+                        action CHAR(5) NOT NULL,
+                        allIn BOOLEAN NOT NULL,
+                        amount INT NOT NULL,
+                        comment TEXT,
+                        commentTs DATETIME)
+                        ENGINE=INNODB"""
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+                        street SMALLINT,
+                        actionNo SMALLINT,
+                        action CHAR(5),
+                        allIn BOOLEAN,
+                        amount INT,
+                        comment TEXT,
+                        commentTs timestamp without time zone)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createHandsActionsTable'] = """ """
+
+
+        ################################
+        # Create HudCache
+        ################################
+
+        if(self.dbname == 'MySQL InnoDB'):
+            self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        activeSeats SMALLINT NOT NULL,
+                        position CHAR(1),
+                        tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        
+                        HDs INT NOT NULL,
+                        street0VPI INT NOT NULL,
+                        street0Aggr INT NOT NULL,
+                        street0_3B4BChance INT NOT NULL,
+                        street0_3B4BDone INT NOT NULL,
+                        
+                        street1Seen INT NOT NULL,
+                        street2Seen INT NOT NULL,
+                        street3Seen INT NOT NULL,
+                        street4Seen INT NOT NULL,
+                        sawShowdown INT NOT NULL,
+                        
+                        street1Aggr INT NOT NULL,
+                        street2Aggr INT NOT NULL,
+                        street3Aggr INT NOT NULL,
+                        street4Aggr INT NOT NULL,
+                        
+                        otherRaisedStreet1 INT NOT NULL,
+                        otherRaisedStreet2 INT NOT NULL,
+                        otherRaisedStreet3 INT NOT NULL,
+                        otherRaisedStreet4 INT NOT NULL,
+                        foldToOtherRaisedStreet1 INT NOT NULL,
+                        foldToOtherRaisedStreet2 INT NOT NULL,
+                        foldToOtherRaisedStreet3 INT NOT NULL,
+                        foldToOtherRaisedStreet4 INT NOT NULL,
+                        wonWhenSeenStreet1 FLOAT NOT NULL,
+                        wonAtSD FLOAT NOT NULL,
+                        
+                        stealAttemptChance INT NOT NULL,
+                        stealAttempted INT NOT NULL,
+                        foldBbToStealChance INT NOT NULL,
+                        foldedBbToSteal INT NOT NULL,
+                        foldSbToStealChance INT NOT NULL,
+                        foldedSbToSteal INT NOT NULL,
+                        
+                        street1CBChance INT NOT NULL,
+                        street1CBDone INT NOT NULL,
+                        street2CBChance INT NOT NULL,
+                        street2CBDone INT NOT NULL,
+                        street3CBChance INT NOT NULL,
+                        street3CBDone INT NOT NULL,
+                        street4CBChance INT NOT NULL,
+                        street4CBDone INT NOT NULL,
+                        
+                        foldToStreet1CBChance INT NOT NULL,
+                        foldToStreet1CBDone INT NOT NULL,
+                        foldToStreet2CBChance INT NOT NULL,
+                        foldToStreet2CBDone INT NOT NULL,
+                        foldToStreet3CBChance INT NOT NULL,
+                        foldToStreet3CBDone INT NOT NULL,
+                        foldToStreet4CBChance INT NOT NULL,
+                        foldToStreet4CBDone INT NOT NULL,
+                        
+                        totalProfit INT NOT NULL,
+                        
+                        street1CheckCallRaiseChance INT NOT NULL,
+                        street1CheckCallRaiseDone INT NOT NULL,
+                        street2CheckCallRaiseChance INT NOT NULL,
+                        street2CheckCallRaiseDone INT NOT NULL,
+                        street3CheckCallRaiseChance INT NOT NULL,
+                        street3CheckCallRaiseDone INT NOT NULL,
+                        street4CheckCallRaiseChance INT NOT NULL,
+                        street4CheckCallRaiseDone INT NOT NULL)
+                        ENGINE=INNODB"""
+        elif(self.dbname == 'PostgreSQL'):
+            self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        activeSeats SMALLINT,
+                        position CHAR(1),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+
+                        HDs INT,
+                        street0VPI INT,
+                        street0Aggr INT,
+                        street0_3B4BChance INT,
+                        street0_3B4BDone INT,
+                        street1Seen INT,
+                        street2Seen INT,
+                        street3Seen INT,
+                        street4Seen INT,
+                        sawShowdown INT,
+                        street1Aggr INT,
+                        street2Aggr INT,
+                        street3Aggr INT,
+                        street4Aggr INT,
+                        otherRaisedStreet1 INT,
+                        otherRaisedStreet2 INT,
+                        otherRaisedStreet3 INT,
+                        otherRaisedStreet4 INT,
+                        foldToOtherRaisedStreet1 INT,
+                        foldToOtherRaisedStreet2 INT,
+                        foldToOtherRaisedStreet3 INT,
+                        foldToOtherRaisedStreet4 INT,
+                        wonWhenSeenStreet1 FLOAT,
+                        wonAtSD FLOAT,
+
+                        stealAttemptChance INT,
+                        stealAttempted INT,
+                        foldBbToStealChance INT,
+                        foldedBbToSteal INT,
+                        foldSbToStealChance INT,
+                        foldedSbToSteal INT,
+
+                        street1CBChance INT,
+                        street1CBDone INT,
+                        street2CBChance INT,
+                        street2CBDone INT,
+                        street3CBChance INT,
+                        street3CBDone INT,
+                        street4CBChance INT,
+                        street4CBDone INT,
+
+                        foldToStreet1CBChance INT,
+                        foldToStreet1CBDone INT,
+                        foldToStreet2CBChance INT,
+                        foldToStreet2CBDone INT,
+                        foldToStreet3CBChance INT,
+                        foldToStreet3CBDone INT,
+                        foldToStreet4CBChance INT,
+                        foldToStreet4CBDone INT,
+
+                        totalProfit INT,
+
+                        street1CheckCallRaiseChance INT,
+                        street1CheckCallRaiseDone INT,
+                        street2CheckCallRaiseChance INT,
+                        street2CheckCallRaiseDone INT,
+                        street3CheckCallRaiseChance INT,
+                        street3CheckCallRaiseDone INT,
+                        street4CheckCallRaiseChance INT,
+                        street4CheckCallRaiseDone INT)"""
+        elif(self.dbname == 'SQLite'):
+            self.query['createHudCacheTable'] = """ """
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
@@ -594,80 +594,85 @@ class FpdbSQLQueries:
         elif(self.dbname == 'SQLite'):
             self.query['addPlayersIndex'] = """ """
 
-    	################################
-    	# Queries used in GuiGraphViewer
-    	################################
+        ################################
+        # Queries used in GuiGraphViewer
+        ################################
 
 
-    	# Returns all cash game handIds and the money won(winnings is the final pot)
-    	# by the playerId for a single site.
-    	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
-    		self.query['getRingWinningsAllGamesPlayerIdSite'] = """SELECT handId, winnings FROM HandsPlayers 
-    				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-    				INNER JOIN Hands ON Hands.id = HandsPlayers.handId
-    				WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
-    				ORDER BY handStart"""
-    	elif(self.dbname == 'SQLite'):
-    		#Probably doesn't work.
-    		self.query['getRingWinningsAllGamesPlayerIdSite'] = """SELECT handId, winnings FROM HandsPlayers
-    				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-    				INNER JOIN Hands ON Hands.id = HandsPlayers.handId
-    				WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
-    				ORDER BY handStart"""
+        # Returns all cash game handIds and the money won(winnings is the final pot)
+        # by the playerId for a single site.
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+            self.query['getRingWinningsAllGamesPlayerIdSite'] = """SELECT handId, winnings FROM HandsPlayers 
+                    INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+                    INNER JOIN Hands ON Hands.id = HandsPlayers.handId
+                    WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
+                    ORDER BY handStart"""
+        elif(self.dbname == 'SQLite'):
+            #Probably doesn't work.
+            self.query['getRingWinningsAllGamesPlayerIdSite'] = """SELECT handId, winnings FROM HandsPlayers
+                    INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+                    INNER JOIN Hands ON Hands.id = HandsPlayers.handId
+                    WHERE Players.name = %s AND Players.siteId = %s AND (tourneysPlayersId IS NULL)
+                    ORDER BY handStart"""
 
-    	# Returns the profit for a given ring game handId, Total pot - money invested by playerId
-    	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
-    		self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
-    				INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
-    				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-    				WHERE Players.name = %s AND HandsPlayers.handId = %s 
-    				AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
-    	elif(self.dbname == 'SQLite'):
-    		#Probably doesn't work.
-    		self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
-    				INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
-    				INNER JOIN Players ON HandsPlayers.playerId = Players.id 
-    				WHERE Players.name = %s AND HandsPlayers.handId = %s 
-    				AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
+        # Returns the profit for a given ring game handId, Total pot - money invested by playerId
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+            self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
+                    INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
+                    INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+                    WHERE Players.name = %s AND HandsPlayers.handId = %s 
+                    AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
+        elif(self.dbname == 'SQLite'):
+            #Probably doesn't work.
+            self.query['getRingProfitFromHandId'] = """SELECT SUM(amount) FROM HandsActions
+                    INNER JOIN HandsPlayers ON HandsActions.handPlayerId = HandsPlayers.id
+                    INNER JOIN Players ON HandsPlayers.playerId = Players.id 
+                    WHERE Players.name = %s AND HandsPlayers.handId = %s 
+                    AND Players.siteId = %s AND (tourneysPlayersId IS NULL)"""
 
-    	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
-    		self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
-    	elif(self.dbname == 'SQLite'):
-    		self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+            self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
+        elif(self.dbname == 'SQLite'):
+            self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
-    	if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
-    		self.query['getRingProfitAllHandsPlayerIdSite'] = """
-    			SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
-    			FROM HandsPlayers hp
-    			INNER JOIN Players pl      ON hp.playerId     = pl.id
-    			INNER JOIN Hands h         ON h.id            = hp.handId
-    			INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
-    			WHERE pl.name   = %s
-    			AND   pl.siteId = %s
-    			AND   hp.tourneysPlayersId IS NULL
-    			GROUP BY hp.handId, hp.winnings, h.handStart
-    			ORDER BY h.handStart"""
-    	elif(self.dbname == 'SQLite'):
-    	#Probably doesn't work.
-    		self.query['getRingProfitAllHandsPlayerIdSite'] = """
-    			SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
-    			FROM HandsPlayers hp
-    			INNER JOIN Players pl      ON hp.playerId     = pl.id
-    			INNER JOIN Hands h         ON h.id            = hp.handId
-    			INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
-    			WHERE pl.name   = %s
-    			AND   pl.siteId = %s
-    			AND   hp.tourneysPlayersId IS NULL
-    			GROUP BY hp.handId, hp.winnings, h.handStart
-    			ORDER BY h.handStart"""
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+            self.query['getRingProfitAllHandsPlayerIdSite'] = """
+                SELECT hp.handId, hp.winnings, coalesce(hp.ante,0) + SUM(ha.amount)
+                     , hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount))
+                FROM HandsPlayers hp
+                INNER JOIN Players pl      ON hp.playerId     = pl.id
+                INNER JOIN Hands h         ON h.id            = hp.handId
+                INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+                WHERE pl.name   = %s
+                AND   pl.siteId = %s
+                AND   hp.tourneysPlayersId IS NULL
+                GROUP BY hp.handId, hp.winnings, h.handStart, hp.ante
+                ORDER BY h.handStart"""
+        elif(self.dbname == 'SQLite'):
+        #Probably doesn't work.
+            self.query['getRingProfitAllHandsPlayerIdSite'] = """
+                SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
+                FROM HandsPlayers hp
+                INNER JOIN Players pl      ON hp.playerId     = pl.id
+                INNER JOIN Hands h         ON h.id            = hp.handId
+                INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+                WHERE pl.name   = %s
+                AND   pl.siteId = %s
+                AND   hp.tourneysPlayersId IS NULL
+                GROUP BY hp.handId, hp.winnings, h.handStart
+                ORDER BY h.handStart"""
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['playerStats'] = """
-                SELECT stats.gametypeId
-                     ,stats.base
-                     ,stats.limitType
-                     ,stats.name
-                     ,format(stats.bigBlind/100,2) as BigBlind
+                SELECT 
+                      concat(upper(stats.limitType), ' '
+                            ,concat(upper(substring(stats.category,1,1)),substring(stats.category,2) ), ' '
+                            ,stats.name, ' $'
+                            ,cast(trim(leading ' ' from
+                                  case when stats.bigBlind < 100 then format(stats.bigBlind/100.0,2)
+                                      else format(stats.bigBlind/100.0,0)
+                                  end ) as char)
+                            )                                                      AS Game
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
@@ -678,44 +683,77 @@ class FpdbSQLQueries:
                      ,stats.FlAFq
                      ,stats.TuAFq
                      ,stats.RvAFq
-                     ,stats.PFAFq
-                     ,hprof2.sum_profit/100 as Net
-                     ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                     ,stats.PoFAFq
+                     /* if you have handsactions data the next 3 fields should give same answer as
+                        following 3 commented out fields */
+                     ,stats.Net
+                     ,stats.BBper100
+                     ,stats.Profitperhand
+                     /*,format(hprof2.sum_profit/100.0,2)                          AS Net
+                       ,format((hprof2.sum_profit/(stats.bigBlind+0.0)) / (stats.n/100.0),2)
+                                                                                   AS BBlPer100
+                       ,hprof2.profitperhand                                       AS Profitperhand
+                     */
+                     ,hprof2.variance as Variance
                 FROM
-                    (select # stats from hudcache
+                    (select /* stats from hudcache */
                             gt.base
-                           ,upper(gt.limitType) limitType
+                           ,gt.category
+                           ,upper(gt.limitType) as limitType
                            ,s.name
                            ,gt.bigBlind
                            ,hc.gametypeId
-                           ,sum(HDs) as n
-                           ,round(100*sum(street0VPI)/sum(HDs)) as vpip
-                           ,round(100*sum(street0Aggr)/sum(HDs)) as pfr
-                           ,round(100*sum(street1Seen)/sum(HDs)) AS saw_f
-                           ,round(100*sum(sawShowdown)/sum(HDs)) AS sawsd
-                           ,round(100*sum(sawShowdown)/sum(street1Seen)) AS wtsdwsf
-                           ,round(100*sum(wonAtSD)/sum(sawShowdown))     AS wmsd
-                           ,round(100*sum(street1Aggr)/sum(street1Seen)) AS FlAFq
-                           ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
-                           ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
-                           ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-                /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
+                           ,sum(HDs)                                                        AS n
+                           ,format(100.0*sum(street0VPI)/sum(HDs),1)                 AS vpip
+                           ,format(100.0*sum(street0Aggr)/sum(HDs),1)                AS pfr
+                           ,format(100.0*sum(street1Seen)/sum(HDs),1)                AS saw_f
+                           ,format(100.0*sum(sawShowdown)/sum(HDs),1)                AS sawsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else format(100.0*sum(sawShowdown)/sum(street1Seen),1)
+                            end                                                             AS wtsdwsf
+                           ,case when sum(sawShowdown) = 0 then 'oo'
+                                 else format(100.0*sum(wonAtSD)/sum(sawShowdown),1)
+                            end                                                             AS wmsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else format(100.0*sum(street1Aggr)/sum(street1Seen),1)
+                            end                                                             AS FlAFq
+                           ,case when sum(street2Seen) = 0 then 'oo'
+                                 else format(100.0*sum(street2Aggr)/sum(street2Seen),1)
+                            end                                                             AS TuAFq
+                           ,case when sum(street3Seen) = 0 then 'oo'
+                                else format(100.0*sum(street3Aggr)/sum(street3Seen),1)
+                            end                                                             AS RvAFq
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                                else format(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                         /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
+                            end                                                             AS PoFAFq
+                           ,format(sum(totalProfit)/100.0,2)                                AS Net
+                           ,format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
+                                                                                            AS BBper100
+                           ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
                      where hc.playerId in <player_test>
                                                 # use <gametype_test> here ?
-                     group by hc.gametypeId
+                     group by gt.base
+                          ,gt.category
+                          ,upper(gt.limitType)
+                          ,s.name
+                          ,gt.bigBlind
+                          ,hc.gametypeId
                     ) stats
                 inner join
                     ( select # profit from handsplayers/handsactions
-                             hprof.gameTypeId, sum(hprof.profit) sum_profit
+                             hprof.gameTypeId, sum(hprof.profit) sum_profit,
+                             avg(hprof.profit/100.0) profitperhand,
+                             variance(hprof.profit/100.0) variance
                       from
                           (select hp.handId, h.gameTypeId, hp.winnings, SUM(ha.amount)
                 costs, hp.winnings - SUM(ha.amount) profit
                           from HandsPlayers hp
-                          inner join Hands h         ON h.id            = hp.handId
-                          inner join HandsActions ha ON ha.handPlayerId = hp.id
+                          inner join Hands h        ON h.id            = hp.handId
+                          left join HandsActions ha ON ha.handPlayerId = hp.id
                           where hp.playerId in <player_test>
                                                      # use <gametype_test> here ?
                           and   hp.tourneysPlayersId IS NULL
@@ -724,14 +762,16 @@ class FpdbSQLQueries:
                       group by hprof.gameTypeId
                      ) hprof2
                     on hprof2.gameTypeId = stats.gameTypeId
-                order by stats.base, stats.limittype, stats.bigBlind"""
+                order by stats.category, stats.limittype, stats.bigBlind"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStats'] = """
-                SELECT stats.gametypeId
-                     ,stats.base
-                     ,stats.limitType
-                     ,stats.name
-                     ,(stats.bigBlind/100) as BigBlind
+                SELECT upper(stats.limitType) || ' '
+                       || initcap(stats.category) || ' '
+                       || stats.name || ' $'
+                       || trim(leading ' ' from
+                          case when stats.bigBlind < 100 then to_char(stats.bigBlind/100.0,'0D00')
+                            else to_char(stats.bigBlind/100.0,'99990')
+                          end )                                                       AS Game
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
@@ -742,39 +782,69 @@ class FpdbSQLQueries:
                      ,stats.FlAFq
                      ,stats.TuAFq
                      ,stats.RvAFq
-                     ,stats.PFAFq
-                     ,hprof2.sum_profit/100 as Net
-                     ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
+                     ,stats.PoFAFq
+                     /* if you have handsactions data the next 3 fields should give same answer as
+                        following 3 commented out fields */
+                     ,stats.Net
+                     ,stats.BBper100
+                     ,stats.Profitperhand
+                     /*,to_char(hprof2.sum_profit/100.0,'9G999G990D00')               AS Net
+                     ,to_char((hprof2.sum_profit/(stats.bigBlind+0.0)) / (stats.n/100.0), '990D00')
+                                                                                      AS BBper100
+                     ,hprof2.profitperhand                                            AS Profitperhand
+                     */
+                     ,hprof2.variance as Variance
                 FROM
                     (select gt.base
+                           ,gt.category
                            ,upper(gt.limitType) as limitType
                            ,s.name
                            ,gt.bigBlind
                            ,hc.gametypeId
                            ,sum(HDs) as n
-                           ,round(100*sum(street0VPI)/sum(HDs)) as vpip
-                           ,round(100*sum(street0Aggr)/sum(HDs)) as pfr
-                           ,round(100*sum(street1Seen)/sum(HDs)) AS saw_f
-                           ,round(100*sum(sawShowdown)/sum(HDs)) AS sawsd
-                           ,round(100*sum(sawShowdown)/sum(street1Seen)) AS wtsdwsf
-                           ,round(100*sum(wonAtSD)/sum(sawShowdown))     AS wmsd
-                           ,round(100*sum(street1Aggr)/sum(street1Seen)) AS FlAFq
-                           ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
-                           ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
-                           ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-                /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
+                           ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')           AS vpip
+                           ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')          AS pfr
+                           ,to_char(100.0*sum(street1Seen)/sum(HDs),'90D0')          AS saw_f
+                           ,to_char(100.0*sum(sawShowdown)/sum(HDs),'90D0')          AS sawsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else to_char(100.0*sum(sawShowdown)/sum(street1Seen),'90D0')
+                            end                                                             AS wtsdwsf
+                           ,case when sum(sawShowdown) = 0 then 'oo'
+                                 else to_char(100.0*sum(wonAtSD)/sum(sawShowdown),'90D0')
+                            end                                                             AS wmsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else to_char(100.0*sum(street1Aggr)/sum(street1Seen),'90D0')
+                            end                                                             AS FlAFq
+                           ,case when sum(street2Seen) = 0 then 'oo'
+                                 else to_char(100.0*sum(street2Aggr)/sum(street2Seen),'90D0')
+                            end                                                             AS TuAFq
+                           ,case when sum(street3Seen) = 0 then 'oo'
+                                else to_char(100.0*sum(street3Aggr)/sum(street3Seen),'90D0')
+                            end                                                             AS RvAFq
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                                else to_char(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                         /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),'90D0')
+                            end                                                             AS PoFAFq
+                           ,to_char(sum(totalProfit)/100.0,'9G999G990D00')                  AS Net
+                           ,to_char((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0), '990D00')
+                                                                                            AS BBper100
+                           ,to_char(sum(totalProfit) / (sum(HDs)+0.0), '990D0000')          AS Profitperhand
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
                      where hc.playerId in <player_test>
                      group by gt.base
+                          ,gt.category
                           ,upper(gt.limitType)
                           ,s.name
                           ,gt.bigBlind
                           ,hc.gametypeId
                     ) stats
                 inner join
-                    ( select hprof.gameTypeId, sum(hprof.profit) as sum_profit
+                    ( select
+                             hprof.gameTypeId, sum(hprof.profit) AS sum_profit,
+                             avg(hprof.profit/100.0) AS profitperhand,
+                             variance(hprof.profit/100.0) AS variance
                       from
                           (select hp.handId,
                           h.gameTypeId,
@@ -782,8 +852,8 @@ class FpdbSQLQueries:
                           SUM(ha.amount) as costs,
                           hp.winnings - SUM(ha.amount) as profit
                           from HandsPlayers hp
-                          inner join Hands h         ON h.id            = hp.handId
-                          inner join HandsActions ha ON ha.handPlayerId = hp.id
+                          inner join Hands h        ON (h.id            = hp.handId)
+                          left join HandsActions ha ON (ha.handPlayerId = hp.id)
                           where hp.playerId in <player_test>
                           and   hp.tourneysPlayersId IS NULL
                           group by hp.handId, h.gameTypeId, hp.position, hp.winnings
@@ -797,97 +867,104 @@ class FpdbSQLQueries:
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['playerStatsByPosition'] = """
-                SELECT stats.gametypeId
-                      ,stats.base
-                      ,stats.limitType
-                      ,stats.name
-                      ,format(stats.bigBlind/100,2) as BigBlind
-                      ,p.name
-                      ,stats.pl_position
-                      ,stats.n
-                      ,stats.vpip
-                      ,stats.pfr
-                      ,stats.saw_f
-                      ,stats.sawsd
-                      ,stats.wtsdwsf
-                      ,stats.wmsd
-                      ,stats.FlAFq
-                      ,stats.TuAFq
-                      ,stats.RvAFq
-                      ,stats.PFAFq
-                      ,hprof2.sum_profit/100 as Net
-                      ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
-                      # ... any other stats you want to add
-                FROM
-                     (select # stats from hudcache
-                             hc.playerId
-                            ,gt.base
-                            ,upper(gt.limitType)                                             as limitType
-                            ,s.name
-                            ,gt.bigBlind
-                            ,hc.gametypeId
-                            ,case when hc.position = 'B' then -2
-                                  when hc.position = 'S' then -1
-                                  when hc.position = 'D' then  0
-                                  when hc.position = 'C' then  1
-                                  when hc.position = 'M' then  2
-                                  when hc.position = 'E' then  5
-                                  else 9
-                             end                                                             as pl_position
-                            ,sum(HDs)                                                        as n
-                            ,round(100*sum(street0VPI)/sum(HDs))                             as vpip
-                            ,round(100*sum(street0Aggr)/sum(HDs))                            as pfr
-                            ,round(100*sum(street1Seen)/sum(HDs))                            AS saw_f
-                            ,round(100*sum(sawShowdown)/sum(HDs))                            AS sawsd
-                            ,round(100*sum(sawShowdown)/sum(street1Seen))                    AS wtsdwsf
-                            ,round(100*sum(wonAtSD)/sum(sawShowdown))                        AS wmsd
-                            ,round(100*sum(street1Aggr)/sum(street1Seen))                    AS FlAFq
-                            ,round(100*sum(street2Aggr)/sum(street2Seen))                    AS TuAFq
-                            ,round(100*sum(street3Aggr)/sum(street3Seen))                    AS RvAFq
-                            ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-                                      /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
-                      from Gametypes gt
-                           inner join Sites s     on (s.Id = gt.siteId)
-                           inner join HudCache hc on (hc.gameTypeId = gt.Id)
-                      where gt.limittype = 'nl'
-                      and   hc.playerId in (3)   # always specify player for position stats
-                                                 # use <gametype_test> here
-                                                 # use <activeseats_test> here
-                      group by hc.playerId, hc.gametypeId, pl_position
-                     ) stats
-                inner join
-                     ( select # profit from handsplayers/handsactions
-                              hprof.playerId
-                            , hprof.gameTypeId
-                            , case when hprof.position = 'B' then -2
-                                   when hprof.position = 'S' then -1
-                                   when hprof.position in ('3','4') then 2
-                                   when hprof.position in ('6','7') then 5
-                                   else hprof.position
-                              end                                      as pl_position
-                            , sum(hprof.profit)                        as sum_profit
-                       from
-                           (select hp.playerId, hp.handId, h.gameTypeId, hp.position, hp.winnings
-                                 , SUM(ha.amount) costs, hp.winnings - SUM(ha.amount) profit
-                            from HandsPlayers hp
-                            inner join Hands h         ON (h.id            = hp.handId)
-                            inner join HandsActions ha ON (ha.handPlayerId = hp.id)
-                            where hp.playerId in (3)   # always specify player for position stats
-                                                       # use <gametype_test> here
-                                                       # use <activeseats_test> here
-                            and   hp.tourneysPlayersId IS NULL
-                            group by hp.playerId, hp.handId, h.gameTypeId, hp.position, hp.winnings
-                           ) hprof
-                       group by hprof.playerId, hprof.gameTypeId, pl_position
-                      ) hprof2
-                     on (    hprof2.gameTypeId  = stats.gameTypeId
-                         and hprof2.pl_position = stats.pl_position)
-                inner join Players p on (p.id = stats.playerId)
-                where 1 = 1
-                order by stats.base, stats.limittype, stats.bigBlind, stats.pl_position, BBlPer100 desc
-            """
+                select /* stats from hudcache */
+                       hc.position
+                      ,sum(HDs) as n
+                      ,format(round(100.0*sum(street0VPI)/sum(HDs)),1)                 AS vpip
+                      ,format(round(100.0*sum(street0Aggr)/sum(HDs)),1)                AS pfr
+                      ,format(round(100.0*sum(street1Seen)/sum(HDs)),1)                AS saw_f
+                      ,format(round(100.0*sum(sawShowdown)/sum(HDs)),1)                AS sawsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else format(round(100.0*sum(sawShowdown)/sum(street1Seen)),1)
+                       end                                                             AS wtsdwsf
+                      ,case when sum(sawShowdown) = 0 then 'oo'
+                            else format(round(100.0*sum(wonAtSD)/sum(sawShowdown)),1)
+                       end                                                             AS wmsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else format(round(100.0*sum(street1Aggr)/sum(street1Seen)),1)
+                       end                                                             AS FlAFq
+                      ,case when sum(street2Seen) = 0 then 'oo'
+                            else format(round(100.0*sum(street2Aggr)/sum(street2Seen)),1)
+                       end                                                             AS TuAFq
+                      ,case when sum(street3Seen) = 0 then 'oo'
+                           else format(round(100.0*sum(street3Aggr)/sum(street3Seen)),1)
+                       end                                                             AS RvAFq
+                      ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           else format(round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                    /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))),1)
+                       end                                                             AS PoFAFq
+                      ,format(sum(totalProfit)/100.0,2)                                AS Net
+                      ,case when sum(HDs) = 0 then 'oo'
+                            else format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
+                       end                                                             AS BBper100
+                from Gametypes gt
+                     inner join Sites s     on (s.Id = gt.siteId)
+                     inner join HudCache hc on (hc.gameTypeId = gt.Id)
+                     inner join Players p   on (p.id = hc.playerId)
+                where hc.playerId in <player_test>
+                and   gt.type = 'ring'
+                and   gt.id = <gametype_test>        /* must specify gametypeid */
+                /* and   stats.n > 100                  optional stat-based queries */
+                group by hc.position, gt.bigBlind
+                order by case when hc.position = 'B' then -2
+                            when hc.position = 'S' then -1
+                            when hc.position = 'D' then  0
+                            when hc.position = 'C' then  1
+                            when hc.position = 'M' then  2
+                            when hc.position = 'E' then  5
+                            else 9
+                         end
+                """
         elif(self.dbname == 'PostgreSQL'):
-            self.query['playerStatsByPosition'] = """ """
+            self.query['playerStatsByPosition'] = """
+                select /* stats from hudcache */
+                       hc.position                                                     AS pl_position
+                      ,sum(HDs) as n
+                      ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'90D0')           AS vpip
+                      ,to_char(round(100.0*sum(street0Aggr)/sum(HDs)),'90D0')          AS pfr
+                      ,to_char(round(100.0*sum(street1Seen)/sum(HDs)),'90D0')          AS saw_f
+                      ,to_char(round(100.0*sum(sawShowdown)/sum(HDs)),'90D0')          AS sawsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else to_char(round(100.0*sum(sawShowdown)/sum(street1Seen)),'90D0')
+                       end                                                             AS wtsdwsf
+                      ,case when sum(sawShowdown) = 0 then 'oo'
+                            else to_char(round(100.0*sum(wonAtSD)/sum(sawShowdown)),'90D0')
+                       end                                                             AS wmsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else to_char(round(100.0*sum(street1Aggr)/sum(street1Seen)),'90D0')
+                       end                                                             AS FlAFq
+                      ,case when sum(street2Seen) = 0 then 'oo'
+                            else to_char(round(100.0*sum(street2Aggr)/sum(street2Seen)),'90D0')
+                       end                                                             AS TuAFq
+                      ,case when sum(street3Seen) = 0 then 'oo'
+                           else to_char(round(100.0*sum(street3Aggr)/sum(street3Seen)),'90D0')
+                       end                                                             AS RvAFq
+                      ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           else to_char(round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                    /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))),'90D0')
+                       end                                                             AS PoFAFq
+                      ,to_char(sum(totalProfit)/100.0,'9G999G990D00')                  AS Net
+                      ,case when sum(HDs) = 0 then 'oo'
+                            else to_char((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0), '990D00')
+                       end                                                             AS BBper100
+                from Gametypes gt
+                     inner join Sites s     on (s.Id = gt.siteId)
+                     inner join HudCache hc on (hc.gameTypeId = gt.Id)
+                     inner join Players p   on (p.id = hc.playerId)
+                where hc.playerId in <player_test>
+                and   gt.type = 'ring'
+                and   gt.id = <gametype_test>        /* must specify gametypeid */
+                /* and   stats.n > 100                  optional stat-based queries */
+                group by pl_position, gt.bigblind
+                order by case when hc.position = 'B' then -2
+                            when hc.position = 'S' then -1
+                            when hc.position = 'D' then  0
+                            when hc.position = 'C' then  1
+                            when hc.position = 'M' then  2
+                            when hc.position = 'E' then  5
+                            else 9
+                         end
+                """
         elif(self.dbname == 'SQLite'):
             self.query['playerStatsByPosition'] = """ """
 

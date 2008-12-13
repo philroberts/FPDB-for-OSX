@@ -1426,7 +1426,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
 #end def store_hands_players_stud_tourney
  
 def generateHudCacheData(player_ids, base, category, action_types, allIns, actionTypeByNo
-                        ,winnings, totalWinnings, positions, actionTypes, actionAmounts):
+                        ,winnings, totalWinnings, positions, actionTypes, actionAmounts, antes):
     """calculates data for the HUD during import. IMPORTANT: if you change this method make
 sure to also change the following storage method and table_viewer.prepare_data if necessary
 """
@@ -1953,7 +1953,9 @@ sure to also change the following storage method and table_viewer.prepare_data i
     #print "b4 totprof calc, len(playerIds)=", len(player_ids)
     for pl in range (len(player_ids)):
         #print "pl=", pl
-        myTotalProfit=winnings[pl] # still need to deduct costs
+        myTotalProfit=winnings[pl]  # still need to deduct other costs
+        if antes:
+            myTotalProfit=winnings[pl] - antes[pl]
         for i in range (len(actionTypes)): #iterate through streets
             #for j in range (len(actionTypes[i])): #iterate through names (using pl loop above)
                 for k in range (len(actionTypes[i][pl])): #iterate through individual actions of that player on that street
