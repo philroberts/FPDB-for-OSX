@@ -754,10 +754,17 @@ class FpdbSQLQueries:
                      ,stats.FlAFq
                      ,stats.TuAFq
                      ,stats.RvAFq
-                     ,stats.PFAFq
-                     ,hprof2.sum_profit/100 as Net
-                     ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
-                     ,hprof2.profitperhand as Profitperhand
+                     ,stats.PoFAFq
+                     /* if you have handsactions data the next 3 fields should give same answer as
+                        following 3 commented out fields */
+                     ,stats.Net
+                     ,stats.BBper100
+                     ,stats.Profitperhand
+                     /*,to_char(hprof2.sum_profit/100.0,'9G999G990D00')               AS Net
+                     ,to_char((hprof2.sum_profit/(stats.bigBlind+0.0)) / (stats.n/100.0), '990D00')
+                                                                                      AS BBper100
+                     ,hprof2.profitperhand                                            AS Profitperhand
+                     */
                      ,hprof2.variance as Variance
                 FROM
                     (select gt.base
@@ -767,17 +774,33 @@ class FpdbSQLQueries:
                            ,gt.bigBlind
                            ,hc.gametypeId
                            ,sum(HDs) as n
-                           ,round(100*sum(street0VPI)/sum(HDs)) as vpip
-                           ,round(100*sum(street0Aggr)/sum(HDs)) as pfr
-                           ,round(100*sum(street1Seen)/sum(HDs)) AS saw_f
-                           ,round(100*sum(sawShowdown)/sum(HDs)) AS sawsd
-                           ,round(100*sum(sawShowdown)/sum(street1Seen)) AS wtsdwsf
-                           ,round(100*sum(wonAtSD)/sum(sawShowdown))     AS wmsd
-                           ,round(100*sum(street1Aggr)/sum(street1Seen)) AS FlAFq
-                           ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
-                           ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
-                           ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-                /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
+                           ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')           AS vpip
+                           ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')          AS pfr
+                           ,to_char(100.0*sum(street1Seen)/sum(HDs),'90D0')          AS saw_f
+                           ,to_char(100.0*sum(sawShowdown)/sum(HDs),'90D0')          AS sawsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else to_char(100.0*sum(sawShowdown)/sum(street1Seen),'90D0')
+                            end                                                             AS wtsdwsf
+                           ,case when sum(sawShowdown) = 0 then 'oo'
+                                 else to_char(100.0*sum(wonAtSD)/sum(sawShowdown),'90D0')
+                            end                                                             AS wmsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else to_char(100.0*sum(street1Aggr)/sum(street1Seen),'90D0')
+                            end                                                             AS FlAFq
+                           ,case when sum(street2Seen) = 0 then 'oo'
+                                 else to_char(100.0*sum(street2Aggr)/sum(street2Seen),'90D0')
+                            end                                                             AS TuAFq
+                           ,case when sum(street3Seen) = 0 then 'oo'
+                                else to_char(100.0*sum(street3Aggr)/sum(street3Seen),'90D0')
+                            end                                                             AS RvAFq
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                                else to_char(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                         /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),'90D0')
+                            end                                                             AS PoFAFq
+                           ,to_char(sum(totalProfit)/100.0,'9G999G990D00')                  AS Net
+                           ,to_char((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0), '990D00')
+                                                                                            AS BBper100
+                           ,to_char(sum(totalProfit) / (sum(HDs)+0.0), '990D0000')          AS Profitperhand
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
@@ -801,8 +824,8 @@ class FpdbSQLQueries:
                           SUM(ha.amount) as costs,
                           hp.winnings - SUM(ha.amount) as profit
                           from HandsPlayers hp
-                          inner join Hands h        ON h.id            = hp.handId
-                          left join HandsActions ha ON ha.handPlayerId = hp.id
+                          inner join Hands h        ON (h.id            = hp.handId)
+                          left join HandsActions ha ON (ha.handPlayerId = hp.id)
                           where hp.playerId in <player_test>
                           and   hp.tourneysPlayersId IS NULL
                           group by hp.handId, h.gameTypeId, hp.position, hp.winnings
