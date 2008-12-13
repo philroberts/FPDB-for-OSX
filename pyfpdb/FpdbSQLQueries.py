@@ -637,7 +637,8 @@ class FpdbSQLQueries:
 
         if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
-                SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
+                SELECT hp.handId, hp.winnings, coalesce(hp.ante,0) + SUM(ha.amount)
+                     , hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount))
                 FROM HandsPlayers hp
                 INNER JOIN Players pl      ON hp.playerId     = pl.id
                 INNER JOIN Hands h         ON h.id            = hp.handId
@@ -645,7 +646,7 @@ class FpdbSQLQueries:
                 WHERE pl.name   = %s
                 AND   pl.siteId = %s
                 AND   hp.tourneysPlayersId IS NULL
-                GROUP BY hp.handId, hp.winnings, h.handStart
+                GROUP BY hp.handId, hp.winnings, h.handStart, hp.ante
                 ORDER BY h.handStart"""
         elif(self.dbname == 'SQLite'):
         #Probably doesn't work.
@@ -662,72 +663,114 @@ class FpdbSQLQueries:
                 ORDER BY h.handStart"""
 
         if(self.dbname == 'MySQL InnoDB'):
-            self.query['playerStats'] = """
-                SELECT stats.gametypeId
-                     ,stats.base
-                     ,stats.limitType
-                     ,stats.name
-                     ,format(stats.bigBlind/100,2) as BigBlind
-                     ,stats.n
-                     ,stats.vpip
-                     ,stats.pfr
-                     ,stats.saw_f
-                     ,stats.sawsd
-                     ,stats.wtsdwsf
-                     ,stats.wmsd
-                     ,stats.FlAFq
-                     ,stats.TuAFq
-                     ,stats.RvAFq
-                     ,stats.PFAFq
-                     ,hprof2.sum_profit/100 as Net
-                     ,(hprof2.sum_profit/stats.bigBlind)/(stats.n/100) as BBlPer100
-                FROM
-                    (select # stats from hudcache
-                            gt.base
-                           ,upper(gt.limitType) limitType
-                           ,s.name
-                           ,gt.bigBlind
-                           ,hc.gametypeId
-                           ,sum(HDs) as n
-                           ,round(100*sum(street0VPI)/sum(HDs)) as vpip
-                           ,round(100*sum(street0Aggr)/sum(HDs)) as pfr
-                           ,round(100*sum(street1Seen)/sum(HDs)) AS saw_f
-                           ,round(100*sum(sawShowdown)/sum(HDs)) AS sawsd
-                           ,round(100*sum(sawShowdown)/sum(street1Seen)) AS wtsdwsf
-                           ,round(100*sum(wonAtSD)/sum(sawShowdown))     AS wmsd
-                           ,round(100*sum(street1Aggr)/sum(street1Seen)) AS FlAFq
-                           ,round(100*sum(street2Aggr)/sum(street2Seen)) AS TuAFq
-                           ,round(100*sum(street3Aggr)/sum(street3Seen)) AS RvAFq
-                           ,round(100*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-                /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))) AS PFAFq
-                     from Gametypes gt
-                          inner join Sites s on s.Id = gt.siteId
-                          inner join HudCache hc on hc.gameTypeId = gt.Id
-                     where hc.playerId in <player_test>
-                                                # use <gametype_test> here ?
-                     group by hc.gametypeId
-                    ) stats
-                inner join
-                    ( select # profit from handsplayers/handsactions
-                             hprof.gameTypeId, sum(hprof.profit) sum_profit
-                      from
-                          (select hp.handId, h.gameTypeId, hp.winnings, 
-                                  coalesce(hp.ante,0) + SUM(ha.amount) costs,
-                                  hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount)) profit
-                          from HandsPlayers hp
-                          inner join Hands h         ON h.id            = hp.handId
-                          inner join HandsActions ha ON ha.handPlayerId = hp.id
-                          where hp.playerId in <player_test>
-                                                     # use <gametype_test> here ?
-                          and   hp.tourneysPlayersId IS NULL
-                          group by hp.handId, h.gameTypeId, hp.position, hp.winnings
-                         ) hprof
-                      group by hprof.gameTypeId
-                     ) hprof2
-                    on hprof2.gameTypeId = stats.gameTypeId
-                order by stats.base, stats.limittype, stats.bigBlind"""
+            self.query['playerStats'] = """  /* format(stats.bigBlind/100,2) as BigBlind */
+                select /* stats from hudcache */
+                       concat(upper(gt.limitType), ' '
+                             ,concat(upper(substring(gt.category,1,1)),substring(gt.category,2) ), ' '
+                             ,s.name, ' $' /* limittype category site $Bigbl in one field? */
+                             ,cast(trim(leading ' ' from
+                                   case when gt.bigBlind < 100 then format(gt.bigBlind/100.0,2)
+                                       else format(gt.bigBlind/100.0,0)
+                                   end ) as char)
+                             )                                                         AS Game
+                      ,sum(HDs) as n
+                      ,format(round(100.0*sum(street0VPI)/sum(HDs)),1)                 AS vpip
+                      ,format(round(100.0*sum(street0Aggr)/sum(HDs)),1)                AS pfr
+                      ,format(round(100.0*sum(street1Seen)/sum(HDs)),1)                AS saw_f
+                      ,format(round(100.0*sum(sawShowdown)/sum(HDs)),1)                AS sawsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else format(round(100.0*sum(sawShowdown)/sum(street1Seen)),1)
+                       end                                                             AS wtsdwsf
+                      ,case when sum(sawShowdown) = 0 then 'oo'
+                            else format(round(100.0*sum(wonAtSD)/sum(sawShowdown)),1)
+                       end                                                             AS wmsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else format(round(100.0*sum(street1Aggr)/sum(street1Seen)),1)
+                       end                                                             AS FlAFq
+                      ,case when sum(street2Seen) = 0 then 'oo'
+                            else format(round(100.0*sum(street2Aggr)/sum(street2Seen)),1)
+                       end                                                             AS TuAFq
+                      ,case when sum(street3Seen) = 0 then 'oo'
+                           else format(round(100.0*sum(street3Aggr)/sum(street3Seen)),1)
+                       end                                                             AS RvAFq
+                      ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           else format(round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                    /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))),1)
+                       end                                                             AS PoFAFq
+                      ,format(sum(totalProfit)/100.0,2)                                AS Net
+                      ,case when sum(HDs) = 0 then 'oo'
+                            else format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
+                       end                                                             AS BBper100
+                from Gametypes gt
+                     inner join Sites s     on (s.Id = gt.siteId)
+                     inner join HudCache hc on (hc.gameTypeId = gt.Id)
+                     inner join Players p   on (p.id = hc.playerId)
+                where hc.playerId in <player_test>
+                                                /* use <gametype_test> here ? */
+                -- and   stats.n > 100          /* optional stat-based queries */
+                and   gt.type = 'ring'
+                -- and   stats.gametypeId = 5
+                -- and   p.name = 'xyz'         /* could add player_name query here */
+                group by gt.category
+                        ,gt.limitType
+                        ,s.name
+                        ,gt.bigBlind
+                        ,hc.gametypeId
+                order by gt.category, gt.limittype, gt.bigBlind"""
         elif(self.dbname == 'PostgreSQL'):
-            self.query['playerStats'] = """ """
+            self.query['playerStats'] = """
+                select /* stats from hudcache */
+                       upper(gt.limitType) || ' '
+                       || initcap(gt.category) || ' '
+                       || s.name || ' $' /* limittype category site $Bigbl in one field? */
+                       || trim(leading ' ' from
+                          case when gt.bigBlind < 100 then to_char(gt.bigBlind/100.0,'0D00')
+                            else to_char(gt.bigBlind/100.0,'99990')
+                          end )                                                        AS Game
+                      ,sum(HDs) as n
+                      ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'90D0')           AS vpip
+                      ,to_char(round(100.0*sum(street0Aggr)/sum(HDs)),'90D0')          AS pfr
+                      ,to_char(round(100.0*sum(street1Seen)/sum(HDs)),'90D0')          AS saw_f
+                      ,to_char(round(100.0*sum(sawShowdown)/sum(HDs)),'90D0')          AS sawsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else to_char(round(100.0*sum(sawShowdown)/sum(street1Seen)),'90D0')
+                       end                                                             AS wtsdwsf
+                      ,case when sum(sawShowdown) = 0 then 'oo'
+                            else to_char(round(100.0*sum(wonAtSD)/sum(sawShowdown)),'90D0')
+                       end                                                             AS wmsd
+                      ,case when sum(street1Seen) = 0 then 'oo'
+                            else to_char(round(100.0*sum(street1Aggr)/sum(street1Seen)),'90D0')
+                       end                                                             AS FlAFq
+                      ,case when sum(street2Seen) = 0 then 'oo'
+                            else to_char(round(100.0*sum(street2Aggr)/sum(street2Seen)),'90D0')
+                       end                                                             AS TuAFq
+                      ,case when sum(street3Seen) = 0 then 'oo'
+                           else to_char(round(100.0*sum(street3Aggr)/sum(street3Seen)),'90D0')
+                       end                                                             AS RvAFq
+                      ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           else to_char(round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                    /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))),'90D0')
+                       end                                                             AS PoFAFq
+                      ,to_char(sum(totalProfit)/100.0,'9G999G990D00')                  AS Net
+                      ,case when sum(HDs) = 0 then 'oo'
+                            else to_char((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0), '990D00')
+                       end                                                             AS BBper100
+                from Gametypes gt
+                     inner join Sites s     on (s.Id = gt.siteId)
+                     inner join HudCache hc on (hc.gameTypeId = gt.Id)
+                     inner join Players p   on (p.id = hc.playerId)
+                where hc.playerId in <player_test>
+                                                /* use <gametype_test> here ? */
+                -- and   stats.n > 100          /* optional stat-based queries */
+                and   gt.type = 'ring'
+                -- and   stats.gametypeId = 5
+                -- and   p.name = 'xyz'         /* could add player_name query here */
+                group by gt.category
+                        ,gt.limitType
+                        ,s.name
+                        ,gt.bigBlind
+                        ,hc.gametypeId
+                order by gt.category, gt.limittype, gt.bigBlind"""
         elif(self.dbname == 'SQLite'):
             self.query['playerStats'] = """ """
 
