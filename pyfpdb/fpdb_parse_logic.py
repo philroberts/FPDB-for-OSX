@@ -135,11 +135,11 @@ def mainParser(backend, db, cursor, site, category, hand):
     if base=="hold":
         hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
                                      , allIns, actionTypeByNo, winnings, totalWinnings, positions
-                                     , actionTypes, actionAmounts)
+                                     , actionTypes, actionAmounts, None)
     else:
         hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
                                      , allIns, actionTypeByNo, winnings, totalWinnings, None
-                                     , actionTypes, actionAmounts)
+                                     , actionTypes, actionAmounts, antes)
     
     if isTourney:
         ranks=[]
@@ -185,7 +185,7 @@ def mainParser(backend, db, cursor, site, category, hand):
                                      , seatNos)
         else:
             raise fpdb_simple.FpdbError ("unrecognised category")
-        db.commit()
+    db.commit()
     return result
 #end def mainParser
 
