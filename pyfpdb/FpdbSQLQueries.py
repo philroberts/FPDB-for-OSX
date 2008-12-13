@@ -711,8 +711,9 @@ class FpdbSQLQueries:
                     ( select # profit from handsplayers/handsactions
                              hprof.gameTypeId, sum(hprof.profit) sum_profit
                       from
-                          (select hp.handId, h.gameTypeId, hp.winnings, SUM(ha.amount)
-                costs, hp.winnings - SUM(ha.amount) profit
+                          (select hp.handId, h.gameTypeId, hp.winnings, 
+                                  coalesce(hp.ante,0) + SUM(ha.amount) costs,
+                                  hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount)) profit
                           from HandsPlayers hp
                           inner join Hands h         ON h.id            = hp.handId
                           inner join HandsActions ha ON ha.handPlayerId = hp.id
