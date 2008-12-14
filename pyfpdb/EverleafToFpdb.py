@@ -193,18 +193,16 @@ class Everleaf(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        m = self.rexx.collect_pot_re.search(hand.string)
-        if m is not None:
+        for m in self.rexx.collect_pot_re.finditer(hand.string):
             if m.group('HAND') is not None:
                 re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
                 cards = set([hand.card(card.group('CARD')) for card in re_card.finditer(m.group('HAND'))])
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
-        else:
-            print "WARNING: Unusual, no one collected; can happen if it's folded to big blind with a dead small blind."
+
 
     def getRake(self, hand):
-        hand.rake = hand.totalpot * Decimal('0.05') # probably not quite right
+        hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
 
 if __name__ == "__main__":
     c = Configuration.Config()
