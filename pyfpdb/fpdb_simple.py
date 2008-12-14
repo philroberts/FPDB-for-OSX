@@ -1005,7 +1005,15 @@ def parseTableLine(site, base, line):
         elif line.find("heads up")!=-1:
             maxSeats=2
             
-        return {'maxSeats':maxSeats, 'tableName':line[pos1:pos2]}
+        tableName = line[pos1:pos2]
+        for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
+                    ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
+                    ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
+                    ' \(speed\)', 
+                    ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
+            tableName = re.sub(pattern, '', tableName)
+        tableName = tableName.rstrip()            
+        return {'maxSeats':maxSeats, 'tableName':tableName}
     else:
         raise FpdbError("invalid site ID")
 #end def parseTableLine

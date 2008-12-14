@@ -342,6 +342,7 @@ def clean_title(name):
     for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
                 ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
                 ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
+                ' \(speed\)', 
                 ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
         name = re.sub(pattern, '', name)
     name = name.rstrip()
@@ -368,12 +369,12 @@ def discover_mac_by_name(c, tablename):
 if __name__=="__main__":
     c = Configuration.Config()
 
-    print discover_table_by_name(c, "Louie")
+    print discover_table_by_name(c, "Ringe")
 #    print discover_tournament_table(c, "118942908", "3")
 
-    tables = discover(c)
-    for t in tables.keys():
-        print tables[t]
+#    tables = discover(c)
+#    for t in tables.keys():
+#        print tables[t]
 
     print "press enter to continue"
     sys.stdin.readline()
