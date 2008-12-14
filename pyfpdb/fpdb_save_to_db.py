@@ -22,9 +22,9 @@ from time import time
 
 import fpdb_simple
 
-saveActions=False   # set this to False to avoid storing action data
+saveActions=True    # set this to False to avoid storing action data
                     # Pros: speeds up imports
-                    # Cons: no action data is saved, need to keep the hand histories
+                    # Cons: no action data is saved, so you need to keep the hand histories
                     #       variance not available on stats page
 
 #stores a stud/razz hand into the database
