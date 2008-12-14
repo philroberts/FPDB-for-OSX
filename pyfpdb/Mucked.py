@@ -266,7 +266,7 @@ class Stud_cards:
         card_images = {}
         suits = ('S', 'H', 'D', 'C')
         ranks = ('A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'B')
-        pb  = gtk.gdk.pixbuf_new_from_file("54PFozzycards0.png")
+        pb  = gtk.gdk.pixbuf_new_from_file(self.config.execution_path("54PFozzycards0.png"))
         
         for j in range(0, 14):
             for i in range(0, 4):
