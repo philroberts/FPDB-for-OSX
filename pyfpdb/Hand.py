@@ -87,6 +87,8 @@ class Hand:
 
         self.action = []
         self.totalpot = None
+        self.totalcollected = None
+
         self.rake = None
 
         self.bets = {}
@@ -108,6 +110,17 @@ If a player has None chips he won't be added."""
             for street in self.streetList:
                 self.bets[street][name] = []
 
+
+    def addStreets(self, match):
+        # go through m and initialise actions to empty list for each street.
+        if match is not None:
+            self.streets = match
+            for street in match.groupdict():
+                if match.group(street) is not None:
+                    self.actions[street] = []
+
+        else:
+            print "empty markStreets match" # better to raise exception and put process hand in a try block
 
     def addHoleCards(self, cards, player):
         """\
@@ -161,11 +174,16 @@ For when a player shows cards for any reason (for showdown or out of choice).
             c = c.replace(k,v)
         return c
 
-    def addBlind(self, player, amount):
+    def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
         if player is not None:
             self.bets['PREFLOP'][player].append(Decimal(amount))
-        self.lastBet['PREFLOP'] = Decimal(amount)
+            self.actions['PREFLOP'] += [(player, 'posts', blindtype, amount)]
+            if blindtype == 'big blind':
+                self.lastBet['PREFLOP'] = Decimal(amount)            
+            elif blindtype == 'small & big blinds':
+                # extra small blind is 'dead'
+                self.lastBet['PREFLOP'] = Decimal(self.bb)
         self.posted += [player]
 
 
@@ -175,7 +193,7 @@ For when a player shows cards for any reason (for showdown or out of choice).
         if amount is not None:
             self.bets[street][player].append(Decimal(amount))
             #self.lastBet[street] = Decimal(amount)
-            self.actions[street] += [[player, 'calls', amount]]
+            self.actions[street] += [(player, 'calls', amount)]
         
     def addRaiseTo(self, street, player, amountTo):
         """\
@@ -192,21 +210,22 @@ Add a raise on [street] by [player] to [amountTo]
         self.lastBet[street] = Decimal(amountTo)
         amountBy = Decimal(amountTo) - amountToCall
         self.bets[street][player].append(amountBy+amountToCall)
-        self.actions[street] += [[player, 'raises', amountBy, amountTo]]
+        self.actions[street] += [(player, 'raises', amountBy, amountTo, amountToCall)]
         
     def addBet(self, street, player, amount):
         self.checkPlayerExists(player)
         self.bets[street][player].append(Decimal(amount))
-        self.actions[street] += [[player, 'bets', amount]]
+        self.actions[street] += [(player, 'bets', amount)]
+        self.lastBet[street] = Decimal(amount)
 
     def addFold(self, street, player):
         self.checkPlayerExists(player)
         self.folded.add(player)
-        self.actions[street] += [[player, 'folds']]
+        self.actions[street] += [(player, 'folds')]
 
     def addCheck(self, street, player):
         self.checkPlayerExists(player)
-        self.actions[street] += [[player, 'checks']]
+        self.actions[street] += [(player, 'checks')]
 
     def addCollectPot(self,player, pot):
         self.checkPlayerExists(player)
@@ -230,6 +249,51 @@ Known bug: doesn't take into account side pots"""
                 for street in self.streetList:
                     #print street, self.bets[street][player]
                     self.totalpot += reduce(operator.add, self.bets[street][player], 0)
+
+            print "conventional totalpot:", self.totalpot
+            self.totalpot = 0
+
+            print self.actions
+            for street in self.actions:
+                uncalled = 0
+                calls = [0]
+                for act in self.actions[street]:
+                    if act[1] == 'bets': # [name, 'bets', amount]
+                        self.totalpot += Decimal(act[2])
+                        uncalled = Decimal(act[2])  # only the last bet or raise can be uncalled
+                        calls = [0]
+                        print "uncalled: ", uncalled
+                    elif act[1] == 'raises': # [name, 'raises', amountby, amountto, amountcalled]
+                        print "calls %s and raises %s to %s" % (act[4],act[2],act[3])
+                        self.totalpot += Decimal(act[2]) + Decimal(act[4])
+                        calls = [0]
+                        uncalled = Decimal(act[2])
+                        print "uncalled: ", uncalled
+                    elif act[1] == 'calls': # [name, 'calls', amount]
+                        self.totalpot += Decimal(act[2])
+                        calls = calls + [Decimal(act[2])]
+                        print "calls:", calls
+                    if act[1] == ('posts'):
+                        self.totalpot += Decimal(act[3])
+                        uncalled = Decimal(act[3])
+                if uncalled > 0 and max(calls+[0]) < uncalled:
+                    
+                    print "returning some bet, calls:", calls
+                    print "returned: %.2f from %.2f" %  ((uncalled - max(calls)), self.totalpot,)
+                    self.totalpot -= (uncalled - max(calls))
+            print "new totalpot:", self.totalpot
+
+        if self.totalcollected is None:
+            self.totalcollected = 0;
+            for amount in self.collected.values():
+                self.totalcollected += Decimal(amount)
+
+        # TODO: Some sites (Everleaf) don't record uncalled bets. Figure out if a bet is uncalled and subtract it from self.totalcollected.
+        #  remember that portions of bets may be uncalled, so:
+        #  bet followed by no call is an uncalled bet
+        #  bet x followed by call y where y < x has x-y uncalled (and second player all in)
+
+
 
     def getGameTypeAsString(self):
         """\
@@ -309,7 +373,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print "what do they show"
 
         print "*** SUMMARY ***"
-        print "Total pot $%s | Rake $%.2f)" % (self.totalpot, self.rake) # TODO side pots
+        print "Total pot $%s | Rake $%.2f" % (self.totalcollected, self.rake) # TODO: side pots
+
         board = []
         for s in self.board.values():
             board += s

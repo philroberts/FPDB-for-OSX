@@ -116,8 +116,11 @@ class Importer:
 
     #Run full import on filelist
     def runImport(self):
+        fpdb_simple.prepareBulkImport(self.fdb)
         for file in self.filelist:
             self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+        fpdb_simple.afterBulkImport(self.fdb)
+        fpdb_simple.analyzeDB(self.fdb)
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
