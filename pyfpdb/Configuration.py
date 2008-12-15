@@ -25,6 +25,7 @@ Handles HUD configuration files.
 #    Standard Library modules
 import os
 import sys
+import inspect
 import string
 import traceback
 import shutil
@@ -582,6 +583,10 @@ class Config:
             sg.append(c.supported_games[game].game_name)
         return sg
 
+    def execution_path(self, filename):
+        """Join the fpdb path to filename."""
+        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(1))), filename)
+
 if __name__== "__main__":
     c = Config()
     
@@ -638,3 +643,5 @@ if __name__== "__main__":
 
     for game in c.get_supported_games():
         print c.get_game_parameters(game)
+
+    print "start up path = ", c.execution_path("")
