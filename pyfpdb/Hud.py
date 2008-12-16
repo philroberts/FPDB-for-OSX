@@ -129,8 +129,6 @@ class Hud:
             if not win32gui.IsWindow(self.table.number):
                 self.kill_hud()
                 return False
-        else:
-            return False # kill the timer under Unix, and ignore it until we have a way to check the validity of the window.
         
         (x, y) = self.main_window.parentgdkhandle.get_origin()
         if self.table.x != x or self.table.y != y:
@@ -238,7 +236,8 @@ class Hud:
             aux_params = config.get_aux_parameters(game_params['aux'])
             self.aux_windows.append(eval("%s.%s(gtk.Window(), self, config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
         
-        gobject.timeout_add(500, self.update_table_position)
+        if os.name == "nt":
+            gobject.timeout_add(500, self.update_table_position)
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
