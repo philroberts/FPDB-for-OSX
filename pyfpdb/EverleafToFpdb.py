@@ -75,6 +75,7 @@ class Everleaf(HandHistoryConverter):
         self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)')
         self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[\$? (?P<SB>[.0-9]+)')
         self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
+        self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
         # mct : what about posting small & big blinds simultaneously?
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
         self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
@@ -131,7 +132,8 @@ class Everleaf(HandHistoryConverter):
                        r"(\*\* Dealing Turn \*\* \[ \S\S \](?P<TURN>.+(?=\*\* Dealing River \*\*)|.+))?"
                        r"(\*\* Dealing River \*\* \[ \S\S \](?P<RIVER>.+))?", hand.string,re.DOTALL)
 
-        hand.streets = m
+        hand.addStreets(m)
+            
 
     def readCommunityCards(self, hand):
         # currently regex in wrong place pls fix my brain's fried
@@ -146,15 +148,13 @@ class Everleaf(HandHistoryConverter):
     def readBlinds(self, hand):
         try:
             m = self.rexx.small_blind_re.search(hand.string)
-            hand.addBlind(m.group('PNAME'), m.group('SB'))
-            #hand.posted = [m.group('PNAME')]
-        except:
-            hand.addBlind(None, 0)
-            #hand.posted = ["FpdbNBP"]
-        m = self.rexx.big_blind_re.finditer(hand.string)
-        for a in m:
-            hand.addBlind(a.group('PNAME'), a.group('BB'))
-            #hand.posted = hand.posted + [a.group('PNAME')]
+            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+        except: # no small blind
+            hand.addBlind(None, None, None)
+        for a in self.rexx.big_blind_re.finditer(hand.string):
+            hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+        for a in self.rexx.both_blinds_re.finditer(hand.string):
+            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readHeroCards(self, hand):
         m = self.rexx.hero_cards_re.search(hand.string)
@@ -167,7 +167,6 @@ class Everleaf(HandHistoryConverter):
 
     def readAction(self, hand, street):
         m = self.rexx.action_re.finditer(hand.streets.group(street))
-        hand.actions[street] = []
         for action in m:
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
@@ -182,6 +181,7 @@ class Everleaf(HandHistoryConverter):
             else:
                 print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
                 #hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
+        # TODO: Everleaf does not record uncalled bets.
 
 
     def readShowdownActions(self, hand):
@@ -193,18 +193,13 @@ class Everleaf(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        m = self.rexx.collect_pot_re.search(hand.string)
-        if m is not None:
+        for m in self.rexx.collect_pot_re.finditer(hand.string):
             if m.group('HAND') is not None:
                 re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
                 cards = set([hand.card(card.group('CARD')) for card in re_card.finditer(m.group('HAND'))])
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
-        else:
-            print "WARNING: Unusual, no one collected; can happen if it's folded to big blind with a dead small blind."
 
-    def getRake(self, hand):
-        hand.rake = hand.totalpot * Decimal('0.05') # probably not quite right
 
 if __name__ == "__main__":
     c = Configuration.Config()

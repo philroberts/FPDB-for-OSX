@@ -161,7 +161,8 @@ class HandHistoryConverter:
     def readPlayerStacks(self, hand): abstract
 
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
-    # that is, pulls the chunks of preflop, flop, turn and river text into hand.streets MatchObject.
+    # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
+    # blinds are done seperately
     def markStreets(self, hand): abstract
 
     #Needs to return a list in the format
@@ -173,11 +174,13 @@ class HandHistoryConverter:
     def readCollectPot(self, hand): abstract
     
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
-    # so that an inheriting class can calculate it for the specific site if need be.
-    def getRake(self, hand): abstract
+    # an inheriting class can calculate it for the specific site if need be.
+    def getRake(self, hand):
+        hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
+    
     
     def sanityCheck(self):
-        sane = True
+        sane = False
         base_w = False
         #Check if hhbase exists and is writable
         #Note: Will not try to create the base HH directory

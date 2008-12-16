@@ -694,7 +694,7 @@ class FpdbSQLQueries:
                                                                                    AS BBlPer100
                        ,hprof2.profitperhand                                       AS Profitperhand
                      */
-                     ,hprof2.variance as Variance
+                     ,format(hprof2.variance,2)                                    AS Variance
                 FROM
                     (select /* stats from hudcache */
                             gt.base
@@ -793,7 +793,7 @@ class FpdbSQLQueries:
                                                                                       AS BBper100
                      ,hprof2.profitperhand                                            AS Profitperhand
                      */
-                     ,hprof2.variance as Variance
+                     ,round(hprof2.variance,2)                                        AS Variance
                 FROM
                     (select gt.base
                            ,gt.category
@@ -825,10 +825,10 @@ class FpdbSQLQueries:
                                 else to_char(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
                                          /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),'90D0')
                             end                                                             AS PoFAFq
-                           ,to_char(sum(totalProfit)/100.0,'9G999G990D00')                  AS Net
+                           ,round(sum(totalProfit)/100.0,2)                                 AS Net
                            ,to_char((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0), '990D00')
                                                                                             AS BBper100
-                           ,to_char(sum(totalProfit) / (sum(HDs)+0.0), '990D0000')          AS Profitperhand
+                           ,to_char(sum(totalProfit/100.0) / (sum(HDs)+0.0), '990D0000')    AS Profitperhand
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
