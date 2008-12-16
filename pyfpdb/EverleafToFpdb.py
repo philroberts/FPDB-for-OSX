@@ -209,11 +209,10 @@ class Everleaf(HandHistoryConverter):
 
 if __name__ == "__main__":
     c = Configuration.Config()
-    if sys.argv[0] ==  '':
+    if len(sys.argv) ==  1:
         testfile = "regression-test-files/everleaf/Speed_Kuala_full.txt"
     else:
         testfile = sys.argv[1]
-        print "Converting: ", testfile
     e = Everleaf(c, testfile)
     e.processFile()
     print str(e)
