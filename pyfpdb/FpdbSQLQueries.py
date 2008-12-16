@@ -867,53 +867,130 @@ class FpdbSQLQueries:
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['playerStatsByPosition'] = """
-                select /* stats from hudcache */
-                       hc.position
-                      ,sum(HDs) as n
-                      ,format(round(100.0*sum(street0VPI)/sum(HDs)),1)                 AS vpip
-                      ,format(round(100.0*sum(street0Aggr)/sum(HDs)),1)                AS pfr
-                      ,format(round(100.0*sum(street1Seen)/sum(HDs)),1)                AS saw_f
-                      ,format(round(100.0*sum(sawShowdown)/sum(HDs)),1)                AS sawsd
-                      ,case when sum(street1Seen) = 0 then 'oo'
-                            else format(round(100.0*sum(sawShowdown)/sum(street1Seen)),1)
-                       end                                                             AS wtsdwsf
-                      ,case when sum(sawShowdown) = 0 then 'oo'
-                            else format(round(100.0*sum(wonAtSD)/sum(sawShowdown)),1)
-                       end                                                             AS wmsd
-                      ,case when sum(street1Seen) = 0 then 'oo'
-                            else format(round(100.0*sum(street1Aggr)/sum(street1Seen)),1)
-                       end                                                             AS FlAFq
-                      ,case when sum(street2Seen) = 0 then 'oo'
-                            else format(round(100.0*sum(street2Aggr)/sum(street2Seen)),1)
-                       end                                                             AS TuAFq
-                      ,case when sum(street3Seen) = 0 then 'oo'
-                           else format(round(100.0*sum(street3Aggr)/sum(street3Seen)),1)
-                       end                                                             AS RvAFq
-                      ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
-                           else format(round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
-                                    /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))),1)
-                       end                                                             AS PoFAFq
-                      ,format(sum(totalProfit)/100.0,2)                                AS Net
-                      ,case when sum(HDs) = 0 then 'oo'
-                            else format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
-                       end                                                             AS BBper100
-                from Gametypes gt
-                     inner join Sites s     on (s.Id = gt.siteId)
-                     inner join HudCache hc on (hc.gameTypeId = gt.Id)
-                     inner join Players p   on (p.id = hc.playerId)
-                where hc.playerId in <player_test>
-                and   gt.type = 'ring'
-                and   gt.id = <gametype_test>        /* must specify gametypeid */
-                /* and   stats.n > 100                  optional stat-based queries */
-                group by hc.position, gt.bigBlind
-                order by case when hc.position = 'B' then -2
-                            when hc.position = 'S' then -1
-                            when hc.position = 'D' then  0
-                            when hc.position = 'C' then  1
-                            when hc.position = 'M' then  2
-                            when hc.position = 'E' then  5
-                            else 9
-                         end
+                SELECT 
+                      concat(upper(stats.limitType), ' '
+                            ,concat(upper(substring(stats.category,1,1)),substring(stats.category,2) ), ' '
+                            ,stats.name, ' $'
+                            ,cast(trim(leading ' ' from
+                                  case when stats.bigBlind < 100 then format(stats.bigBlind/100.0,2)
+                                      else format(stats.bigBlind/100.0,0)
+                                  end ) as char)
+                            )                                                      AS Game
+                     ,case when stats.PlPosition = -2 then 'BB'
+                           when stats.PlPosition = -1 then 'SB'
+                           when stats.PlPosition =  0 then 'Btn'
+                           when stats.PlPosition =  1 then 'CO'
+                           when stats.PlPosition =  2 then 'MP'
+                           when stats.PlPosition =  5 then 'EP'
+                           else '??'
+                      end                                                          AS PlPosition
+                     ,stats.n
+                     ,stats.vpip
+                     ,stats.pfr
+                     ,stats.saw_f
+                     ,stats.sawsd
+                     ,stats.wtsdwsf
+                     ,stats.wmsd
+                     ,stats.FlAFq
+                     ,stats.TuAFq
+                     ,stats.RvAFq
+                     ,stats.PoFAFq
+                     /* if you have handsactions data the next 3 fields should give same answer as
+                        following 3 commented out fields */
+                     ,stats.Net
+                     ,stats.BBper100
+                     ,stats.Profitperhand
+                     /*,format(hprof2.sum_profit/100.0,2)                          AS Net
+                       ,format((hprof2.sum_profit/(stats.bigBlind+0.0)) / (stats.n/100.0),2)
+                                                                                   AS BBlPer100
+                       ,hprof2.profitperhand                                       AS Profitperhand
+                     */
+                     ,format(hprof2.variance,2)                                    AS Variance
+                FROM
+                    (select /* stats from hudcache */
+                            gt.base
+                           ,gt.category
+                           ,upper(gt.limitType) as limitType
+                           ,s.name
+                           ,gt.bigBlind
+                           ,hc.gametypeId
+                           ,case when hc.position = 'B' then -2
+                                 when hc.position = 'S' then -1
+                                 when hc.position = 'D' then  0
+                                 when hc.position = 'C' then  1
+                                 when hc.position = 'M' then  2
+                                 when hc.position = 'E' then  5
+                                 else 9
+                            end                                                             as PlPosition
+                           ,sum(HDs)                                                        AS n
+                           ,format(100.0*sum(street0VPI)/sum(HDs),1)                 AS vpip
+                           ,format(100.0*sum(street0Aggr)/sum(HDs),1)                AS pfr
+                           ,format(100.0*sum(street1Seen)/sum(HDs),1)                AS saw_f
+                           ,format(100.0*sum(sawShowdown)/sum(HDs),1)                AS sawsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else format(100.0*sum(sawShowdown)/sum(street1Seen),1)
+                            end                                                             AS wtsdwsf
+                           ,case when sum(sawShowdown) = 0 then 'oo'
+                                 else format(100.0*sum(wonAtSD)/sum(sawShowdown),1)
+                            end                                                             AS wmsd
+                           ,case when sum(street1Seen) = 0 then 'oo'
+                                 else format(100.0*sum(street1Aggr)/sum(street1Seen),1)
+                            end                                                             AS FlAFq
+                           ,case when sum(street2Seen) = 0 then 'oo'
+                                 else format(100.0*sum(street2Aggr)/sum(street2Seen),1)
+                            end                                                             AS TuAFq
+                           ,case when sum(street3Seen) = 0 then 'oo'
+                                else format(100.0*sum(street3Aggr)/sum(street3Seen),1)
+                            end                                                             AS RvAFq
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                                else format(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
+                                         /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
+                            end                                                             AS PoFAFq
+                           ,format(sum(totalProfit)/100.0,2)                                AS Net
+                           ,format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
+                                                                                            AS BBper100
+                           ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
+                     from Gametypes gt
+                          inner join Sites s on s.Id = gt.siteId
+                          inner join HudCache hc on hc.gameTypeId = gt.Id
+                     where hc.playerId in <player_test>
+                                                # use <gametype_test> here ?
+                     group by gt.base
+                          ,gt.category
+                          ,upper(gt.limitType)
+                          ,s.name
+                          ,gt.bigBlind
+                          ,hc.gametypeId
+                          ,PlPosition
+                    ) stats
+                inner join
+                    ( select # profit from handsplayers/handsactions
+                             hprof.gameTypeId, 
+                             case when hprof.position = 'B' then -2
+                                  when hprof.position = 'S' then -1
+                                  when hprof.position in ('3','4') then 2
+                                  when hprof.position in ('6','7') then 5
+                                  else hprof.position
+                             end                                      as PlPosition,
+                             sum(hprof.profit) as sum_profit,
+                             avg(hprof.profit/100.0) as profitperhand,
+                             variance(hprof.profit/100.0) as variance
+                      from
+                          (select hp.handId, h.gameTypeId, hp.position, hp.winnings, SUM(ha.amount)
+                costs, hp.winnings - SUM(ha.amount) profit
+                          from HandsPlayers hp
+                          inner join Hands h        ON h.id            = hp.handId
+                          left join HandsActions ha ON ha.handPlayerId = hp.id
+                          where hp.playerId in <player_test>
+                                                     # use <gametype_test> here ?
+                          and   hp.tourneysPlayersId IS NULL
+                          group by hp.handId, h.gameTypeId, hp.position, hp.winnings
+                         ) hprof
+                      group by hprof.gameTypeId, PlPosition
+                     ) hprof2
+                    on (    hprof2.gameTypeId = stats.gameTypeId
+                        and hprof2.PlPosition = stats.PlPosition)
+                order by stats.category, stats.limittype, stats.bigBlind, cast(stats.PlPosition as signed)
                 """
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStatsByPosition'] = """
