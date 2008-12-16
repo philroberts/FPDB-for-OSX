@@ -26,7 +26,6 @@ FTP=2
 MYSQL_INNODB=2
 PGSQL=3
 SQLITE=4
-
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
 #                                            1 - drop during bulk import
@@ -329,6 +328,8 @@ def analyzeDB(fdb):
         fdb.db.set_isolation_level(1)   # go back to normal isolation level
 #end def analyzeDB
 
+
+
 class DuplicateError(Exception):
     def __init__(self, value):
         self.value = value
@@ -340,7 +341,7 @@ class FpdbError(Exception):
         self.value = value
     def __str__(self):
         return repr(self.value)
-    
+ 
 # gets value for last auto-increment key generated
 # returns -1 if a problem occurs
 def getLastInsertId(backend, conn, cursor):
@@ -391,7 +392,7 @@ def checkPositions(positions):
             pass
         
         ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
-        if (pos!="B" and pos!="S" and pos!=0 and pos!=1 and pos!=2 and pos!=3 and pos!=4 and pos!=5 and pos!=6 and pos!=7 and pos!=9):
+        if (pos!="B" and pos!="S" and pos!=0 and pos!=1 and pos!=2 and pos!=3 and pos!=4 and pos!=5 and pos!=6 and pos!=7 and pos != 8 and pos!=9):
             raise FpdbError("invalid position found in checkPositions. i: "+str(i)+" position: "+str(pos))
 #end def fpdb_simple.checkPositions
  
