@@ -119,15 +119,18 @@ class HandHistoryConverter:
             self.markStreets(hand)
             self.readBlinds(hand)
             self.readHeroCards(hand) # want to generalise to draw games
-            self.readCommunityCards(hand) # read community cards
+
             self.readShowdownActions(hand)
             
             # Read actions in street order
             for street in hand.streetList: # go through them in order
                 if hand.streets.group(street) is not None:
+                    self.readCommunityCards(hand, street) # read community cards
                     self.readAction(hand, street)
 
+                    
             self.readCollectPot(hand)
+            self.readShownCards(hand)
 
             # finalise it (total the pot)
             hand.totalPot()
@@ -181,6 +184,7 @@ class HandHistoryConverter:
     def readHeroCards(self, hand): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
+    def readShownCards(self, hand): abstract
     
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # an inheriting class can calculate it for the specific site if need be.

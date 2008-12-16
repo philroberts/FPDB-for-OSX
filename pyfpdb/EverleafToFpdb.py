@@ -128,22 +128,19 @@ class Everleaf(HandHistoryConverter):
         #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
 
         m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
-                       r"(\*\* Dealing Flop \*\* \[ \S\S, \S\S, \S\S \](?P<FLOP>.+(?=\*\* Dealing Turn \*\*)|.+))?"
-                       r"(\*\* Dealing Turn \*\* \[ \S\S \](?P<TURN>.+(?=\*\* Dealing River \*\*)|.+))?"
-                       r"(\*\* Dealing River \*\* \[ \S\S \](?P<RIVER>.+))?", hand.string,re.DOTALL)
+                       r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
+                       r"(\*\* Dealing Turn \*\*(?P<TURN> \[ \S\S \].+(?=\*\* Dealing River \*\*)|.+))?"
+                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.string,re.DOTALL)
 
         hand.addStreets(m)
             
 
-    def readCommunityCards(self, hand):
-        # currently regex in wrong place pls fix my brain's fried
-        re_board = re.compile('\*\* Dealing (?P<STREET>.*) \*\* \[ (?P<CARDS>.*) \]')
-        m = re_board.finditer(hand.string)
-        for street in m:
-            #print street.groups()
-            re_card = re.compile('(?P<CARD>[0-9tjqka][schd])') # look that's weird, hole cards have a capital rank but board cards are lower case?
-            cardsmatch = re_card.finditer(street.group('CARDS'))
-            hand.setCommunityCards(street.group('STREET'), [card.group('CARD') for card in cardsmatch])
+    def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
+        self.rexx.board_re = re.compile(r"\[ (?P<CARDS>.+) \]")
+        print hand.streets.group(street)
+        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+            m = self.rexx.board_re.search(hand.streets.group(street))
+            hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readBlinds(self, hand):
         try:
@@ -184,27 +181,25 @@ class Everleaf(HandHistoryConverter):
                 hand.addCheck( street, action.group('PNAME'))
             else:
                 print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
-                #hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
-        # TODO: Everleaf does not record uncalled bets.
 
 
     def readShowdownActions(self, hand):
         for shows in self.rexx.showdown_action_re.finditer(hand.string):            
             cards = shows.group('CARDS')
             cards = set(cards.split(', '))
-            #re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
-            #cards = set([card.group('CARD') for card in re_card.finditer(shows.group('CARDS'))])
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
         for m in self.rexx.collect_pot_re.finditer(hand.string):
+            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+
+    def readShownCards(self,hand):
+        for m in self.rexx.collect_pot_re.finditer(hand.string):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = set(cards.split(', '))
-                #re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
-                #cards = set([hand.card(card.group('CARD')) for card in re_card.finditer(m.group('HAND'))])
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+
 
 
 if __name__ == "__main__":
