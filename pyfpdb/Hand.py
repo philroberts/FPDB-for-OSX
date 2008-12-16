@@ -294,8 +294,10 @@ Add a raise on [street] by [player] to [amountTo]
                         self.totalpot += Decimal(act[3])
                         if act[2] == 'big blind':
                             # the bb gets called by out-of-blinds posts; but sb+bb only calls bb
-                            calls = calls + [Decimal(act[3])]
-                            uncalled = Decimal(act[3])
+                            if uncalled == Decimal(act[3]): # a bb is already posted
+                                calls = calls + [Decimal(act[3])]
+                            else: # no blind yet posted.
+                                uncalled = Decimal(act[3])
                         elif act[2] == 'small blind':
                             pass
 
@@ -409,8 +411,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         if board:   # sometimes hand ends preflop without a board
             print >>fh, _("Board [%s]" % (" ".join(board)))
 
-
-        for player in self.players:
+        for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             seatnum = player[0]
             name = player[1]
             if name in self.collected and name in self.shown:
