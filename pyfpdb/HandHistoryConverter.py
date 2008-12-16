@@ -115,13 +115,15 @@ class HandHistoryConverter:
             print "\nInput:\n"+hand.string
             self.readHandInfo(hand)
             self.readPlayerStacks(hand)
+            print "DEBUG", hand.stacks
             self.markStreets(hand)
             self.readBlinds(hand)
             self.readHeroCards(hand) # want to generalise to draw games
             self.readCommunityCards(hand) # read community cards
             self.readShowdownActions(hand)
-            # Read action (Note: no guarantee this is in hand order.
-            for street in hand.streets.groupdict():
+            
+            # Read actions in street order
+            for street in hand.streetList: # go through them in order
                 if hand.streets.group(street) is not None:
                     self.readAction(hand, street)
 

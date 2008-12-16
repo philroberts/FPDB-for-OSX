@@ -28,6 +28,7 @@ import codecs
 from decimal import Decimal
 import operator
 from time import time
+from copy import deepcopy
 
 class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
@@ -38,7 +39,7 @@ class Hand:
         self.gametype = gametype
         self.string = string
 
-        self.streetList = ['BLINDS','PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
+        self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
 
         self.handid = 0
         self.sb = gametype[3]
@@ -77,6 +78,8 @@ class Hand:
 
         # dict from player names to lists of hole cards
         self.holecards = {}
+        
+        self.stacks = {}
 
         # dict from player names to amounts collected
         self.collected = {}
@@ -106,6 +109,7 @@ chips   (string) the chips the player has at the start of the hand (can be None)
 If a player has None chips he won't be added."""
         if chips is not None:
             self.players.append([seat, name, chips])
+            self.stacks[name] = Decimal(chips)
             self.holecards[name] = set()
             for street in self.streetList:
                 self.bets[street][name] = []
@@ -176,7 +180,9 @@ Card ranks will be uppercased
         # if player is None, it's a missing small blind.
         if player is not None:
             self.bets['PREFLOP'][player].append(Decimal(amount))
-            self.actions['PREFLOP'] += [(player, 'posts', blindtype, amount)]
+            self.stacks[player] -= Decimal(amount)
+            print "DEBUG %s stack %s" % (player, self.stacks[player])
+            self.actions['PREFLOP'] += [(player, 'posts', blindtype, amount, self.stacks[player]==0)]
             if blindtype == 'big blind':
                 self.lastBet['PREFLOP'] = Decimal(amount)            
             elif blindtype == 'small & big blinds':
@@ -191,7 +197,9 @@ Card ranks will be uppercased
         if amount is not None:
             self.bets[street][player].append(Decimal(amount))
             #self.lastBet[street] = Decimal(amount)
-            self.actions[street] += [(player, 'calls', amount)]
+            self.stacks[player] -= Decimal(amount)
+            self.actions[street] += [(player, 'calls', amount, self.stacks[player]==0)]
+            
         
     def addRaiseTo(self, street, player, amountTo):
         """\
@@ -208,13 +216,19 @@ Add a raise on [street] by [player] to [amountTo]
         self.lastBet[street] = Decimal(amountTo)
         amountBy = Decimal(amountTo) - amountToCall
         self.bets[street][player].append(amountBy+amountToCall)
-        self.actions[street] += [(player, 'raises', amountBy, amountTo, amountToCall)]
+        self.stacks[player] -= (Decimal(amountBy)+Decimal(amountToCall))
+        print "DEBUG %s stack %s" % (player, self.stacks[player])
+        self.actions[street] += [(player, 'raises', amountBy, amountTo, amountToCall, self.stacks[player]==0)]
+        
         
     def addBet(self, street, player, amount):
         self.checkPlayerExists(player)
         self.bets[street][player].append(Decimal(amount))
-        self.actions[street] += [(player, 'bets', amount)]
+        self.stacks[player] -= Decimal(amount)
+        print "DEBUG %s stack %s" % (player, self.stacks[player])
+        self.actions[street] += [(player, 'bets', amount, self.stacks[player]==0)]
         self.lastBet[street] = Decimal(amount)
+        
 
     def addFold(self, street, player):
         self.checkPlayerExists(player)
@@ -246,9 +260,10 @@ Add a raise on [street] by [player] to [amountTo]
                     self.totalpot += reduce(operator.add, self.bets[street][player], 0)
 
             print "conventional totalpot:", self.totalpot
+            
+            
             self.totalpot = 0
-
-            print self.actions
+            
             for street in self.actions:
                 uncalled = 0
                 calls = [0]
@@ -278,6 +293,7 @@ Add a raise on [street] by [player] to [amountTo]
                     self.totalpot -= (uncalled - max(calls))
             print "new totalpot:", self.totalpot
 
+            
         if self.totalcollected is None:
             self.totalcollected = 0;
             for amount in self.collected.values():
@@ -417,15 +433,15 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
     def printActionLine(self, act, fh):
         if act[1] == 'folds':
-            print >>fh, _("%s: folds" %(act[0]))
+            print >>fh, _("%s: folds " %(act[0]))
         elif act[1] == 'checks':
-            print >>fh, _("%s: checks" %(act[0]))
+            print >>fh, _("%s: checks " %(act[0]))
         if act[1] == 'calls':
-            print >>fh, _("%s: calls $%s" %(act[0], act[2]))
+            print >>fh, _("%s: calls $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         if act[1] == 'bets':
-            print >>fh, _("%s: bets $%s" %(act[0], act[2]))
+            print >>fh, _("%s: bets $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         if act[1] == 'raises':
-            print >>fh, _("%s: raises $%s to $%s" %(act[0], act[2], act[3]))
+            print >>fh, _("%s: raises $%s to $%s%s" %(act[0], act[2], act[3], ' and is all-in' if act[5] else ''))
 
     # going to use pokereval to figure out hands at some point.
     # these functions are copied from pokergame.py
