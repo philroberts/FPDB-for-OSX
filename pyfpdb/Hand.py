@@ -27,7 +27,7 @@ import xml.dom.minidom
 import codecs
 from decimal import Decimal
 import operator
-from time import time
+import time
 from copy import deepcopy
 
 class Hand:
@@ -354,7 +354,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # PokerStars format.
         #print "\n### Pseudo stars format ###"
         #print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
-        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
+        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])

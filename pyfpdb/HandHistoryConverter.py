@@ -29,7 +29,8 @@ from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
 from pokereval import PokerEval
-from time import time
+import time
+import datetime
 import gettext
 
 #from pokerengine.pokercards import *
@@ -104,7 +105,7 @@ class HandHistoryConverter:
         return tmp
 
     def processFile(self):
-        starttime = time()
+        starttime = time.time()
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
             return
@@ -143,7 +144,7 @@ class HandHistoryConverter:
             #else:
                 #pass #Don't write out observed hands
 
-        endtime = time()
+        endtime = time.time()
         print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
 
     #####
