@@ -365,17 +365,17 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 self.printActionLine(act, fh)
 
         if 'FLOP' in self.actions:
-            print >>fh, _("*** FLOP *** [%s]" %( " ".join(self.board['Flop'])))
+            print >>fh, _("*** FLOP *** [%s]" %( " ".join(self.board['FLOP'])))
             for act in self.actions['FLOP']:
                 self.printActionLine(act, fh)
 
         if 'TURN' in self.actions:
-            print >>fh, _("*** TURN *** [%s] [%s]" %( " ".join(self.board['Flop']), " ".join(self.board['Turn'])))
+            print >>fh, _("*** TURN *** [%s] [%s]" %( " ".join(self.board['FLOP']), " ".join(self.board['TURN'])))
             for act in self.actions['TURN']:
                 self.printActionLine(act, fh)
 
         if 'RIVER' in self.actions:
-            print >>fh, _("*** RIVER *** [%s] [%s]" %(" ".join(self.board['Flop']+self.board['Turn']), " ".join(self.board['River']) ))
+            print >>fh, _("*** RIVER *** [%s] [%s]" %(" ".join(self.board['FLOP']+self.board['TURN']), " ".join(self.board['RIVER']) ))
             for act in self.actions['RIVER']:
                 self.printActionLine(act, fh)
 
