@@ -115,7 +115,7 @@ class HandHistoryConverter:
             print "\nInput:\n"+hand.string
             self.readHandInfo(hand)
             self.readPlayerStacks(hand)
-            print "DEBUG", hand.stacks
+            print "DEBUG stacks:", hand.stacks
             self.markStreets(hand)
             self.readBlinds(hand)
             self.readHeroCards(hand) # want to generalise to draw games

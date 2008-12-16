@@ -72,19 +72,19 @@ class FullTilt(HandHistoryConverter):
         HandHistoryConverter.__init__(self, config, file, sitename="FullTilt") # Call super class init.
         self.sitename = "FullTilt"
         self.setFileType("text", "cp1252")
-        self.rexx.setGameInfoRegex('.*- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
+        self.rexx.setGameInfoRegex('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) -')
         self.rexx.setSplitHandRegex('\n\n+')
         self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)')
 #        self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
         self.rexx.button_re = re.compile('The button is in seat #(?P<BUTTON>\d+)')
-        self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \((\$(?P<CASH>[.0-9]+)|All-in)\)')
-        self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts the small blind of \$?(?P<SB>[.0-9]+)')
-        self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts the big blind of \$?(?P<BB>[.0-9]+)')
-        self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
+        self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
+        self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*) posts the small blind of \$?(?P<SB>[.0-9]+)')
+        self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
+        self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]')
         self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
         self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[(?P<CARDS>.*)\]')
-        self.rexx.setCollectPotRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\) collected \(\$(?P<POT>[.\d]+)\), mucked')
+        self.rexx.setCollectPotRegex(r"Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*?) (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)")
         self.rexx.shown_cards_re = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\) showed \[(?P<CARDS>.*)\].*')
         self.rexx.sits_out_re = re.compile('(?P<PNAME>.*) sits out')
         self.rexx.compileRegexes()
@@ -141,9 +141,9 @@ class FullTilt(HandHistoryConverter):
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        self.rexx.board_re = re.compile(r"\[(?P<CARDS>.+)\]")
-        print hand.streets.group(street)
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+            self.rexx.board_re = re.compile(r"\[(?P<CARDS>.+)\]")
+            #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             m = self.rexx.board_re.search(hand.streets.group(street))
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
