@@ -76,11 +76,11 @@ class Everleaf(HandHistoryConverter):
         self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[\$? (?P<SB>[.0-9]+)')
         self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
         self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-        # mct : what about posting small & big blinds simultaneously?
-        self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<HOLE1>\S\S), (?P<HOLE2>\S\S) \]')
+        self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
         self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) USD\])?')
         self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[ (?P<CARDS>.*) \]')
-        self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD(.*\[ (?P<HAND>.*) \])?')
+        self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD(.*\[ (?P<CARDS>.*) \])?')
+        self.rexx.sits_out_re = re.compile('(?P<PNAME>.*) sits out')
         self.rexx.compileRegexes()
 
     def readSupportedGames(self):
@@ -163,7 +163,11 @@ class Everleaf(HandHistoryConverter):
             hand.involved = False
         else:
             hand.hero = m.group('PNAME')
-            hand.addHoleCards([m.group('HOLE1'), m.group('HOLE2')], m.group('PNAME'))
+            # "2c, qh" -> set(["2c","qc"])
+            # Also works with Omaha hands.
+            cards = m.group('CARDS')
+            cards = set(cards.split(', '))
+            hand.addHoleCards(cards, m.group('PNAME'))
 
     def readAction(self, hand, street):
         m = self.rexx.action_re.finditer(hand.streets.group(street))
@@ -185,25 +189,31 @@ class Everleaf(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-        for shows in self.rexx.showdown_action_re.finditer(hand.string):
-            print shows.groups()
-            re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
-            cards = [card.group('CARD') for card in re_card.finditer(shows.group('CARDS'))]
-            print cards
+        for shows in self.rexx.showdown_action_re.finditer(hand.string):            
+            cards = shows.group('CARDS')
+            cards = set(cards.split(', '))
+            #re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
+            #cards = set([card.group('CARD') for card in re_card.finditer(shows.group('CARDS'))])
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
         for m in self.rexx.collect_pot_re.finditer(hand.string):
-            if m.group('HAND') is not None:
-                re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
-                cards = set([hand.card(card.group('CARD')) for card in re_card.finditer(m.group('HAND'))])
+            if m.group('CARDS') is not None:
+                cards = m.group('CARDS')
+                cards = set(cards.split(', '))
+                #re_card = re.compile('(?P<CARD>[0-9tjqka][schd])')  # copied from earlier
+                #cards = set([hand.card(card.group('CARD')) for card in re_card.finditer(m.group('HAND'))])
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
 
 if __name__ == "__main__":
     c = Configuration.Config()
-    e = Everleaf(c, "regression-test-files/everleaf/Speed_Kuala_full.txt")
+    if sys.argv[0] ==  '':
+        testfile = "regression-test-files/everleaf/Speed_Kuala_full.txt"
+    else:
+        testfile = sys.argv[1]
+        print "Converting: ", testfile
+    e = Everleaf(c, testfile)
     e.processFile()
     print str(e)
-    

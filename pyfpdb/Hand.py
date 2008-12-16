@@ -106,7 +106,7 @@ chips   (string) the chips the player has at the start of the hand (can be None)
 If a player has None chips he won't be added."""
         if chips is not None:
             self.players.append([seat, name, chips])
-            self.holecards[name] = []
+            self.holecards[name] = set()
             for street in self.streetList:
                 self.bets[street][name] = []
 
@@ -125,29 +125,27 @@ If a player has None chips he won't be added."""
     def addHoleCards(self, cards, player):
         """\
 Assigns observed holecards to a player.
-cards   list of card bigrams e.g. ['2h','jc']
+cards   set of card bigrams e.g. set(['2h','Jc'])     
 player  (string) name of player
-hand    
-Note, will automatically uppercase the rank letter.
 """
         try:
             self.checkPlayerExists(player)
-            self.holecards[player] = set([self.card(c) for c in cards])
+            cards = set([self.card(c) for c in cards])
+            self.holecards[player].update(cards)
         except FpdbParseError, e:
             print "Tried to add holecards for unknown player: %s" % (player,)
 
     def addShownCards(self, cards, player, holeandboard=None):
         """\
 For when a player shows cards for any reason (for showdown or out of choice).
+Card ranks will be uppercased
 """
         if cards is not None:
             self.shown.add(player)
             self.addHoleCards(cards,player)
         elif holeandboard is not None:
+            holeandboard = set([self.card(c) for c in holeandboard])
             board = set([c for s in self.board.values() for c in s])
-            #print board
-            #print holeandboard
-            #print holeandboard.difference(board)
             self.addHoleCards(holeandboard.difference(board),player)
 
 
@@ -232,14 +230,11 @@ Add a raise on [street] by [player] to [amountTo]
         if player not in self.collected:
             self.collected[player] = pot
         else:
-            # possibly lines like "p collected $ from pot" appear during the showdown
-            # but they are usually unique in the summary, so it's best to try to get them from there.
-            print "%s collected pot more than once; avoidable by reading winnings only from summary lines?"
+            print "[WARNING] %s collected pot more than once; avoidable by reading winnings only from summary lines?"
 
 
     def totalPot(self):
-        """If all bets and blinds have been added, totals up the total pot size
-Known bug: doesn't take into account side pots"""
+        """If all bets and blinds have been added, totals up the total pot size"""
         if self.totalpot is None:
             self.totalpot = 0
 
@@ -288,10 +283,6 @@ Known bug: doesn't take into account side pots"""
             for amount in self.collected.values():
                 self.totalcollected += Decimal(amount)
 
-        # TODO: Some sites (Everleaf) don't record uncalled bets. Figure out if a bet is uncalled and subtract it from self.totalcollected.
-        #  remember that portions of bets may be uncalled, so:
-        #  bet followed by no call is an uncalled bet
-        #  bet x followed by call y where y < x has x-y uncalled (and second player all in)
 
 
 
@@ -322,81 +313,89 @@ Map the tuple self.gametype onto the pokerstars string describing it
         
         return string
 
-    def printHand(self):
+    def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print "\n### Pseudo stars format ###"
-        print "%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime)
-        print "Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos)
-        for player in self.players:
-            print "Seat %s: %s ($%s)" %(player[0], player[1], player[2])
+        #print "\n### Pseudo stars format ###"
+        #print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
+        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
+        print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
+        
+        players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
+        print players_who_act_preflop
+        print [x[1] for x in self.players]
+        print [x for x in self.players if x[1] in players_who_act_preflop]
+        for player in [x for x in self.players if x[1] in players_who_act_preflop]:
+            #Only print stacks of players who do something preflop
+            print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
 
         if(self.posted[0] is None):
-            print "No small blind posted"
+            #print >>fh, _("No small blind posted") # PS doesn't say this
+            pass
         else:
-            print "%s: posts small blind $%s" %(self.posted[0], self.sb)
+            print >>fh, _("%s: posts small blind $%s" %(self.posted[0], self.sb))
 
         #May be more than 1 bb posting
         for a in self.posted[1:]:
-            print "%s: posts big blind $%s" %(self.posted[1], self.bb)
+            print >>fh, _("%s: posts big blind $%s" %(self.posted[1], self.bb))
 
-        # What about big & small blinds?
+        # TODO: What about big & small blinds?
 
-        print "*** HOLE CARDS ***"
+        print >>fh, _("*** HOLE CARDS ***")
         if self.involved:
-            print "Dealt to %s [%s]" %(self.hero , " ".join(self.holecards[self.hero]))
+            print >>fh, _("Dealt to %s [%s]" %(self.hero , " ".join(self.holecards[self.hero])))
 
         if 'PREFLOP' in self.actions:
             for act in self.actions['PREFLOP']:
-                self.printActionLine(act)
+                self.printActionLine(act, fh)
 
         if 'FLOP' in self.actions:
-            print "*** FLOP *** [%s]" %( " ".join(self.board['Flop']))
+            print >>fh, _("*** FLOP *** [%s]" %( " ".join(self.board['Flop'])))
             for act in self.actions['FLOP']:
-                self.printActionLine(act)
+                self.printActionLine(act, fh)
 
         if 'TURN' in self.actions:
-            print "*** TURN *** [%s] [%s]" %( " ".join(self.board['Flop']), " ".join(self.board['Turn']))
+            print >>fh, _("*** TURN *** [%s] [%s]" %( " ".join(self.board['Flop']), " ".join(self.board['Turn'])))
             for act in self.actions['TURN']:
-                self.printActionLine(act)
+                self.printActionLine(act, fh)
 
         if 'RIVER' in self.actions:
-            print "*** RIVER *** [%s] [%s]" %(" ".join(self.board['Flop']+self.board['Turn']), " ".join(self.board['River']) )
+            print >>fh, _("*** RIVER *** [%s] [%s]" %(" ".join(self.board['Flop']+self.board['Turn']), " ".join(self.board['River']) ))
             for act in self.actions['RIVER']:
-                self.printActionLine(act)
+                self.printActionLine(act, fh)
 
 
         #Some sites don't have a showdown section so we have to figure out if there should be one
         # The logic for a showdown is: at the end of river action there are at least two players in the hand
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
-            print "*** SHOW DOWN ***"
-            print "what do they show"
+            print >>fh, _("*** SHOW DOWN ***")
+            print >>fh, "DEBUG: what do they show"
 
-        print "*** SUMMARY ***"
-        print "Total pot $%s | Rake $%.2f" % (self.totalcollected, self.rake) # TODO: side pots
+        print >>fh, _("*** SUMMARY ***")
+        print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalcollected, self.rake)) # TODO: side pots
 
         board = []
         for s in self.board.values():
             board += s
         if board:   # sometimes hand ends preflop without a board
-            print "Board [%s]" % (" ".join(board))
+            print >>fh, _("Board [%s]" % (" ".join(board)))
 
 
         for player in self.players:
             seatnum = player[0]
             name = player[1]
             if name in self.collected and self.holecards[name]:
-                print "Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collected[name])
+                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collected[name]))
             elif name in self.collected:
-                print "Seat %d: %s collected ($%s)" % (seatnum, name, self.collected[name])
+                print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collected[name]))
             elif player[1] in self.shown:
-                print "Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name]))
+                print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name])))
             elif player[1] in self.folded:
-                print "Seat %d: %s folded" % (seatnum, name)
+                print >>fh, _("Seat %d: %s folded" % (seatnum, name))
             else:
-                print "Seat %d: %s mucked" % (seatnum, name)
+                print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
 
-        print
+        print >>fh, "\n\n"
             # TODO:
             # logic for side pots
             # logic for which players get to showdown
@@ -411,17 +410,22 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 #print "Seat %d: %s showed %s" % (player[0], player[1], hole)
             #else:
                 #print "Seat %d: %s mucked or folded" % (player[0], player[1])
+        
 
+    def printHand(self):
+        self.writeHand(sys.stdout)
 
-    def printActionLine(self, act):
-        if act[1] == 'folds' or act[1] == 'checks':
-            print "%s: %s " %(act[0], act[1])
+    def printActionLine(self, act, fh):
+        if act[1] == 'folds':
+            print >>fh, _("%s: folds" %(act[0]))
+        elif act[1] == 'checks':
+            print >>fh, _("%s: checks" %(act[0]))
         if act[1] == 'calls':
-            print "%s: %s $%s" %(act[0], act[1], act[2])
+            print >>fh, _("%s: calls $%s" %(act[0], act[2]))
         if act[1] == 'bets':
-            print "%s: %s $%s" %(act[0], act[1], act[2])
+            print >>fh, _("%s: bets $%s" %(act[0], act[2]))
         if act[1] == 'raises':
-            print "%s: %s $%s to $%s" %(act[0], act[1], act[2], act[3])
+            print >>fh, _("%s: raises $%s to $%s" %(act[0], act[2], act[3]))
 
     # going to use pokereval to figure out hands at some point.
     # these functions are copied from pokergame.py

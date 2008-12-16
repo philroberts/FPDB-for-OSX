@@ -30,6 +30,8 @@ import operator
 from xml.dom.minidom import Node
 from pokereval import PokerEval
 from time import time
+import gettext
+
 #from pokerengine.pokercards import *
 # provides letter2name{}, letter2names{}, visible_card(), not_visible_card(), is_visible(), card_value(), class PokerCards
 # but it's probably not installed so here are the ones we may want:
@@ -64,6 +66,11 @@ letter2names = {
     '3': 'Treys',
     '2': 'Deuces'
     }
+
+import gettext
+gettext.install('myapplication')
+
+
 
 class HandHistoryConverter:
     eval = PokerEval()
@@ -124,7 +131,7 @@ class HandHistoryConverter:
             hand.totalPot()
             self.getRake(hand)
 
-            hand.printHand()
+            hand.writeHand(sys.stderr)
             #if(hand.involved == True):
                 #self.writeHand("output file", hand)
                 #hand.printHand()
