@@ -296,9 +296,15 @@ Add a raise on [street] by [player] to [amountTo]
                             # the bb gets called by out-of-blinds posts; but sb+bb only calls bb
                             if uncalled == Decimal(act[3]): # a bb is already posted
                                 calls = calls + [Decimal(act[3])]
+                            elif 0 < uncalled < Decimal(act[3]): # a sb is already posted, btw wow python can do a<b<c.
+                            # treat this as tho called & raised
+                                calls = [0]
+                                uncalled = Decimal(act[3]) - uncalled
                             else: # no blind yet posted.
                                 uncalled = Decimal(act[3])
                         elif act[2] == 'small blind':
+                            uncalled = Decimal(act[3])
+                            calls = [0]
                             pass
 
                 if uncalled > 0 and max(calls+[0]) < uncalled:
