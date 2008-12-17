@@ -47,12 +47,12 @@ import HUD_main
 
 class Hud:
     
-    def __init__(self, table, max, poker_game, config, db_name):
+    def __init__(self, table, max, poker_game, config, db_connection):
         self.table         = table
         self.config        = config
         self.poker_game    = poker_game
         self.max           = max
-        self.db_name       = db_name
+        self.db_connection = db_connection
         self.deleted       = False
         self.stacked       = True
         self.site          = table.site
@@ -133,8 +133,7 @@ class Hud:
             for i in range(1, self.max + 1):           
                 (x, y) = loc[adj[i]]
                 if self.stat_windows.has_key(i):
-                    self.stat_windows[i].relocate(x, y)
-                    
+                    self.stat_windows[i].relocate(x, y)                    
         return True
 
     def on_button_press(self, widget, event):
@@ -177,9 +176,9 @@ class Hud:
         try:
             if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
-                db_connection = Database.Database(config, self.db_name, 'temp')
-                actual_seat = db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
-                db_connection.close_connection()
+#                db_connection = Database.Database(config, self.db_name, 'temp')
+                actual_seat = self.db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
+#                db_connection.close_connection()
                 for i in range(0, self.max + 1):
                     j = actual_seat + i
                     if j > self.max: j = j - self.max
@@ -227,7 +226,7 @@ class Hud:
         game_params = config.get_game_parameters(self.poker_game)
         if not game_params['aux'] == "":
             aux_params = config.get_aux_parameters(game_params['aux'])
-            self.aux_windows.append(eval("%s.%s(gtk.Window(), self, config, 'fpdb')" % (aux_params['module'], aux_params['class'])))
+            self.aux_windows.append(eval("%s.%s(gtk.Window(), self, config, aux_params)" % (aux_params['module'], aux_params['class'])))
         
 #        gobject.timeout_add(500, self.update_table_position)
             
@@ -471,12 +470,12 @@ class Popup_window:
                 break
 
 #    get a database connection
-        db_connection = Database.Database(stat_window.parent.config, stat_window.parent.db_name, 'temp')
+#        db_connection = Database.Database(stat_window.parent.config, stat_window.parent.db_name, 'temp')
     
 #    calculate the stat_dict and then create the text for the pu
 #        stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand, stat_window.player_id)
-        stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand)
-        db_connection.close_connection()
+        stat_dict = self.db_connection.get_stats_from_hand(stat_window.parent.hand)
+#        db_connection.close_connection()
 
         pu_text = ""
         for s in stat_list:
