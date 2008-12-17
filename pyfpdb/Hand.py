@@ -204,25 +204,62 @@ Card ranks will be uppercased
             print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
             self.actions[street] += [(player, 'calls', amount, self.stacks[player]==0)]
             
-        
-    def addRaiseTo(self, street, player, amountTo):
+    def addRaiseBy(self, street, player, amountBy):
         """\
-Add a raise on [street] by [player] to [amountTo]
+Add a raise by amountBy on [street] by [player] 
 """
-        #Given only the amount raised to, the amount of the raise can be calculated by
+        #Given only the amount raised by, the amount of the raise can be calculated by
         # working out how much this player has already in the pot 
         #   (which is the sum of self.bets[street][player])
         # and how much he needs to call to match the previous player 
         #   (which is tracked by self.lastBet)
+        # let Bp = previous bet 
+        #     Bc = amount player has committed so far
+        #     Rb = raise by
+        # then: C = Bp - Bc (amount to call)
+        #      Rt = Bp + Rb (raise to)
+        # 
         self.checkPlayerExists(player)
-        committedThisStreet = reduce(operator.add, self.bets[street][player], 0)
-        amountToCall = self.lastBet[street] - committedThisStreet
-        self.lastBet[street] = Decimal(amountTo)
-        amountBy = Decimal(amountTo) - amountToCall
-        self.bets[street][player].append(amountBy+amountToCall)
-        self.stacks[player] -= (Decimal(amountBy)+Decimal(amountToCall))
-        print "DEBUG %s stack %s" % (player, self.stacks[player])
-        self.actions[street] += [(player, 'raises', amountBy, amountTo, amountToCall, self.stacks[player]==0)]
+        Rb = Decimal(amountBy)
+        Bp = self.lastBet[street]
+        Bc = reduce(operator.add, self.bets[street][player], 0)
+        C = Bp - Bc
+        Rt = Bp + Rb
+        
+        self.bets[street][player].append(C + Rb)
+        self.stacks[player] -= (C + Rb)
+        self.actions[street] += [(player, 'raises', Rb, Rt, C, self.stacks[player]==0)]
+        self.lastBet[street] = Rt
+
+    def addCallandRaise(self, street, player, amount):
+        """\
+For sites which by "raises x" mean "calls and raises putting a total of x in the por". """
+        self.checkPlayerExists(player)
+        CRb = Decimal(amount)
+        Bp = self.lastBet[street]
+        Bc = reduce(operator.add, self.bets[street][player], 0)
+        C = Bp - Bc
+        Rb = CRb - C
+        Rt = Bp + Rb
+        
+        self._addRaise(street, player, C, Rb, Rt)
+        
+    def _addRaise(self, street, player, C, Rb, Rt):
+        self.bets[street][player].append(C + Rb)
+        self.stacks[player] -= (C + Rb)
+        self.actions[street] += [(player, 'raises', Rb, Rt, C, self.stacks[player]==0)]
+        self.lastBet[street] = Rt
+    
+    def addRaiseTo(self, street, player, amountTo):
+        """\
+Add a raise on [street] by [player] to [amountTo]
+"""
+        self.checkPlayerExists(player)
+        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Rt = Decimal(amountTo)
+        C = Bp - Bc
+        Rb = Rt - C
+        self._addRaise(street, player, C, Rb, Rt)
         
         
     def addBet(self, street, player, amount):
