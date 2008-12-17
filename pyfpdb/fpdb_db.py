@@ -30,6 +30,25 @@ class fpdb_db:
         self.PGSQL=3
         self.SQLITE=4
     #end def __init__
+
+    def do_connect(self, config=None):
+        """Connects a database using information in config"""
+        if config is None:
+            raise FpdbError('Configuration not defined')
+
+        self.settings = {}
+        if (os.sep=="/"):
+            self.settings['os']="linuxmac"
+        else:
+            self.settings['os']="windows"
+
+        self.settings.update(config.get_db_parameters())
+        self.connect(self.settings['db-backend'],
+                     self.settings['db-host'],
+                     self.settings['db-databaseName'],
+                     self.settings['db-user'], 
+                     self.settings['db-password'])
+    #end def do_connect
     
     def connect(self, backend=None, host=None, database=None,
                 user=None, password=None):
