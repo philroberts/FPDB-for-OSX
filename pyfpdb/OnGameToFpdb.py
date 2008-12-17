@@ -93,7 +93,7 @@ class OnGame(HandHistoryConverter):
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
         
         #lopllopl checks, Eurolll checks, .Lucchess checks.
-        self.rexx.setActionStepRegex('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( \$(?P<BET>\d*\.?\d*))?[.]?')
+        self.rexx.setActionStepRegex('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( \$(?P<BET>\d*\.?\d*))?( and is all-in)?')
         
         #Uchilka shows [ KC,JD ]
         self.rexx.setShowdownActionRegex('(?P<PNAME>.*) shows \[ (?P<CARDS>.+) \]')
