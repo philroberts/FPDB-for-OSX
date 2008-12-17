@@ -77,7 +77,7 @@ class OnGame(HandHistoryConverter):
         
         #Texas Hold'em $.5-$1 NL (real money), hand #P4-76915775-797
         #Table Kuopio, 20 Sep 2008 11:59 PM
-        self.rexx.setHandInfoRegex(r"Texas Hold'em \$?(?P<SB>[.0-9]+)-\$?(?P<BB>[.0-9]+) NL \(real money\), hand #(?P<HID>[A-Z\d-]+)\nTable\ (?P<TABLE>[ \w]+), (?P<DATETIME>\d\d \w+ \d\d\d\d \d\d:\d\d (AM|PM))")
+        self.rexx.setHandInfoRegex(r"Texas Hold'em \$?(?P<SB>[.0-9]+)-\$?(?P<BB>[.0-9]+) NL \(real money\), hand #(?P<HID>[-A-Z\d]+)\nTable\ (?P<TABLE>[\' \w]+), (?P<DATETIME>\d\d \w+ \d\d\d\d \d\d:\d\d (AM|PM))")
          # SB BB HID TABLE DAY MON YEAR HR12 MIN AMPM
         
         self.rexx.button_re = re.compile('#SUMMARY\nDealer: (?P<BUTTONPNAME>.*)\n')
