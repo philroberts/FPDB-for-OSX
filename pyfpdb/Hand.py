@@ -33,7 +33,7 @@ from copy import deepcopy
 class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
 
-    UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K'}
+    UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     def __init__(self, sitename, gametype, string):
         self.sitename = sitename
         self.gametype = gametype
