@@ -1204,67 +1204,83 @@ def parseNames(lines):
  
 #returns an array with the positions of the respective players
 def parsePositions (hand, names):
-    #prep array
-    positions=[]
-    for i in range(len(names)):
-        positions.append(-1)
-    
-    #find blinds
-    sb,bb=-1,-1
-    for i in range (len(hand)):
-        if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
-            sb=hand[i]
-            #print "sb:",sb
-        if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
-            bb=hand[i]
-            #print "bb:",bb
- 
-    #identify blinds
-    #print "parsePositions before recognising sb/bb. names:",names
-    sbExists=True
-    if (sb!=-1):
-        sb=recognisePlayerNo(sb, names, "bet")
-    else:
-        sbExists=False
-    if (bb!=-1):
-        bb=recognisePlayerNo(bb, names, "bet")
-    
-    #write blinds into array
-    if (sbExists):
-        positions[sb]="S"
-    positions[bb]="B"
-    
-    #fill up rest of array
-    if (sbExists):
-        arraypos=sb-1
-    else:
-        arraypos=bb-1
-    distFromBtn=0
-    while (arraypos>=0 and arraypos != bb):
-        #print "parsePositions first while, arraypos:",arraypos,"positions:",positions
-        positions[arraypos]=distFromBtn
-        arraypos-=1
-        distFromBtn+=1
- 
-    ### RHH - Changed to set the null seats before BB to "9"
-    i=bb-1
-    while positions[i] < 0:
-        positions[i]=9
-        i-=1
-    
-    arraypos=len(names)-1
-    if (bb!=0 or (bb==0 and sbExists==False)):
-        while (arraypos>bb):
-            positions[arraypos]=distFromBtn
-            arraypos-=1
-            distFromBtn+=1
-            
-    for i in range (len(names)):
-        if positions[i]==-1:
-            print "parsePositions names:",names
-            print "result:",positions
-            raise FpdbError ("failed to read positions")
-    return positions
+	#prep array
+	positions=[]
+	for i in range(len(names)):
+		positions.append(-1)
+	
+	#find blinds
+	sb,bb=-1,-1
+	for i in range (len(hand)):
+		if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
+			sb=hand[i]
+			#print "sb:",sb
+		if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
+			bb=hand[i]
+			#print "bb:",bb
+
+	#identify blinds
+	#print "parsePositions before recognising sb/bb. names:",names
+	sbExists=True
+	if (sb!=-1):
+		sb=recognisePlayerNo(sb, names, "bet")
+	else:
+		sbExists=False
+	if (bb!=-1):
+		bb=recognisePlayerNo(bb, names, "bet")
+		
+#	print "sb = ", sb, "bb = ", bb
+	if bb == sb:
+		sbExists = False
+		sb = -1
+	
+	#write blinds into array
+	if (sbExists):
+		positions[sb]="S"
+	positions[bb]="B"
+	
+	
+	#fill up rest of array
+	if (sbExists):
+		arraypos=sb-1
+	else:
+		arraypos=bb-1
+	distFromBtn=0
+	while (arraypos>=0 and arraypos != bb):
+		#print "parsePositions first while, arraypos:",arraypos,"positions:",positions
+		positions[arraypos]=distFromBtn
+		arraypos-=1
+		distFromBtn+=1
+
+	# eric - this takes into account dead seats between blinds
+	if sbExists:
+		i = bb - 1
+		while positions[i] < 0 and i != sb:
+			positions[i] = 9
+			i -= 1
+	### RHH - Changed to set the null seats before BB to "9"			
+	if sbExists:
+		i = sb-1
+	else:
+		i = bb-1
+	while positions[i] < 0:
+		positions[i]=9
+		i-=1
+	
+	arraypos=len(names)-1
+	if (bb!=0 or (bb==0 and sbExists==False) or (bb == 1 and sb != arraypos) ):
+		while (arraypos>bb and arraypos > sb):
+			positions[arraypos]=distFromBtn
+			arraypos-=1
+			distFromBtn+=1
+			
+	for i in range (len(names)):
+		if positions[i]==-1:
+			print "parsePositions names:",names
+			print "result:",positions
+			raise FpdbError ("failed to read positions")
+#	print str(positions), "\n"
+	return positions
 #end def parsePositions
  
 #simply parses the rake amount and returns it as an int
