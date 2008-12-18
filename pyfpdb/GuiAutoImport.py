@@ -104,9 +104,12 @@ class GuiAutoImport (threading.Thread):
 
     def do_import(self):
         """Callback for timer to do an import iteration."""
-        self.importer.runUpdated()
-        print "GuiAutoImport.import_dir done"
-        return self.doAutoImportBool
+        if self.doAutoImportBool:
+            self.importer.runUpdated()
+            print "GuiAutoImport.import_dir done"
+            return True
+        else:
+            return False
 
     def startClicked(self, widget, data):
         """runs when user clicks start on auto import tab"""
@@ -149,12 +152,15 @@ class GuiAutoImport (threading.Thread):
                 interval=int(self.intervalEntry.get_text())
                 gobject.timeout_add(interval*1000, self.do_import)
         else: # toggled off
-                self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
-                #TODO: other clean up, such as killing HUD
-                print "Stopping autoimport"
-                self.pipe_to_hud.communicate('\n') # waits for process to terminate
-                self.pipe_to_hud = None
-                widget.set_label(u'Start Autoimport')
+            self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
+            print "Stopping autoimport"
+            print >>self.pipe_to_hud.stdin, "\n"
+            #self.pipe_to_hud.communicate('\n') # waits for process to terminate
+            self.pipe_to_hud = None
+            self.startButton.set_label(u'Start Autoimport')
+            
+                
+
     #end def GuiAutoImport.startClicked
 
     def get_vbox(self):
