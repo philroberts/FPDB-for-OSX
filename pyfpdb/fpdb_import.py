@@ -284,24 +284,24 @@ class Importer:
         return handsId
 #end def import_file_dict
 
-    def parseTourneyHistory(self):
-        print "Tourney history parser stub"
-        #Find tournament boundaries.
-        #print self.foabs
-        
+	def parseTourneyHistory(self):
+		print "Tourney history parser stub"
+		#Find tournament boundaries.
+		#print self.foabs
+		
 
-    def printEmailErrorMessage(self, errors, filename, line):
-        traceback.print_exc(file=sys.stderr)
-        print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
-        print "Filename:", filename
-        print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
-        print self.hand[0]
-        print "Hand logged to hand-errors.txt"
-        logfile = open('hand-errors.txt', 'a')
-        for s in self.hand:
-            logfile.write(str(s) + "\n")
-        logfile.write("\n")
-        logfile.close()
+	def printEmailErrorMessage(self, errors, filename, line):
+		traceback.print_exc(file=sys.stderr)
+		print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
+		print "Filename:", filename
+		print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
+		print self.hand[0]
+		print "Hand logged to hand-errors.txt"
+		logfile = open('hand-errors.txt', 'a')
+		for s in self.hand:
+			logfile.write(str(s) + "\n")
+		logfile.write("\n")
+		logfile.close()
 
 if __name__ == "__main__":
     print "CLI for fpdb_import is now available as CliFpdb.py"
