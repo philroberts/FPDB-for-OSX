@@ -61,7 +61,13 @@ class Hud:
         self.stat_windows = {}
         self.popup_windows = {}
         self.aux_windows = []
-        self.font = pango.FontDescription("Sans 7")
+        (font, font_size) = config.get_default_font(self.table.site)
+        print "font = ", font, "size = ", font_size
+        if font == None or font_size == None:
+            self.font = pango.FontDescription("Sans 7")
+        else:
+            print "Setting font to ", font + " " + font_size
+            self.font = pango.FontDescription(font + " " + font_size)
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
@@ -401,7 +407,7 @@ class Stat_Window:
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-                font = pango.FontDescription("Sans 7")
+#                font = pango.FontDescription(self.font)
                 self.label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
