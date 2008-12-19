@@ -2062,7 +2062,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 hudDataPositions.append('C')
             elif pos>=2 and pos<=4:
                 hudDataPositions.append('M')
-            elif pos>=5 and pos<=7:
+            elif pos>=5 and pos<=8:
                 hudDataPositions.append('E')
             ### RHH Added this elif to handle being a dead hand before the BB (pos==9)
             elif pos==9:
