@@ -636,6 +636,11 @@ class FpdbSQLQueries:
             self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
         if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+            self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
+        elif(self.dbname == 'SQLite'):
+            self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
+
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
                 SELECT hp.handId, hp.winnings, coalesce(hp.ante,0) + SUM(ha.amount)
                      , hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount))
@@ -643,8 +648,8 @@ class FpdbSQLQueries:
                 INNER JOIN Players pl      ON hp.playerId     = pl.id
                 INNER JOIN Hands h         ON h.id            = hp.handId
                 INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
-                WHERE pl.name   = %s
-                AND   pl.siteId = %s
+                where pl.id in <player_test>
+                AND   pl.siteId in <site_test>
                 AND   hp.tourneysPlayersId IS NULL
                 GROUP BY hp.handId, hp.winnings, h.handStart, hp.ante
                 ORDER BY h.handStart"""
