@@ -29,7 +29,10 @@ from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
 from pokereval import PokerEval
-from time import time
+import time
+import datetime
+import gettext
+
 #from pokerengine.pokercards import *
 # provides letter2name{}, letter2names{}, visible_card(), not_visible_card(), is_visible(), card_value(), class PokerCards
 # but it's probably not installed so here are the ones we may want:
@@ -65,6 +68,11 @@ letter2names = {
     '2': 'Deuces'
     }
 
+import gettext
+gettext.install('myapplication')
+
+
+
 class HandHistoryConverter:
     eval = PokerEval()
     def __init__(self, config, file, sitename):
@@ -97,7 +105,7 @@ class HandHistoryConverter:
         return tmp
 
     def processFile(self):
-        starttime = time()
+        starttime = time.time()
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
             return
@@ -108,30 +116,35 @@ class HandHistoryConverter:
             print "\nInput:\n"+hand.string
             self.readHandInfo(hand)
             self.readPlayerStacks(hand)
+            print "DEBUG stacks:", hand.stacks
             self.markStreets(hand)
             self.readBlinds(hand)
             self.readHeroCards(hand) # want to generalise to draw games
-            self.readCommunityCards(hand) # read community cards
+
             self.readShowdownActions(hand)
-            # Read action (Note: no guarantee this is in hand order.
-            for street in hand.streets.groupdict():
+            
+            # Read actions in street order
+            for street in hand.streetList: # go through them in order
                 if hand.streets.group(street) is not None:
+                    self.readCommunityCards(hand, street) # read community cards
                     self.readAction(hand, street)
 
+                    
             self.readCollectPot(hand)
+            self.readShownCards(hand)
 
             # finalise it (total the pot)
             hand.totalPot()
             self.getRake(hand)
 
-            hand.printHand()
+            hand.writeHand(sys.stderr)
             #if(hand.involved == True):
                 #self.writeHand("output file", hand)
                 #hand.printHand()
             #else:
                 #pass #Don't write out observed hands
 
-        endtime = time()
+        endtime = time.time()
         print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
 
     #####
@@ -172,6 +185,7 @@ class HandHistoryConverter:
     def readHeroCards(self, hand): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
+    def readShownCards(self, hand): abstract
     
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # an inheriting class can calculate it for the specific site if need be.
