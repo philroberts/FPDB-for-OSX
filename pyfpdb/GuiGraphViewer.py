@@ -112,6 +112,12 @@ class GuiGraphViewer (threading.Thread):
     def getRingProfitGraph(self, names, sites):
         tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
+        start_date, end_date = self.__get_dates()
+
+        if start_date == '':
+            start_date = '1970-01-01'
+        if end_date == '':
+            end_date = '2020-12-12'
 
         #Buggered if I can find a way to do this 'nicely' take a list of intergers and longs
         # and turn it into a tuple readale by sql.
@@ -125,6 +131,8 @@ class GuiGraphViewer (threading.Thread):
         #Must be a nicer way to deal with tuples of size 1 ie. (2,) - which makes sql barf
         tmp = tmp.replace("<player_test>", nametest)
         tmp = tmp.replace("<site_test>", sitetest)
+        tmp = tmp.replace("<startdate_test>", start_date)
+        tmp = tmp.replace("<enddate_test>", end_date)
 
 #        print "DEBUG: sql query:"
 #        print tmp

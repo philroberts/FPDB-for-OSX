@@ -650,6 +650,8 @@ class FpdbSQLQueries:
                 INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
                 where pl.id in <player_test>
                 AND   pl.siteId in <site_test>
+                AND   h.handStart > '<startdate_test>'
+                AND   h.handStart < '<enddate_test>'
                 AND   hp.tourneysPlayersId IS NULL
                 GROUP BY hp.handId, hp.winnings, h.handStart, hp.ante
                 ORDER BY h.handStart"""
