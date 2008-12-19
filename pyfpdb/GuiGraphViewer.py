@@ -195,7 +195,7 @@ class GuiGraphViewer (threading.Thread):
             hbox.show()
             self.createSiteLine(hbox, site)
             #Get db site id for filtering later
-            self.cursor.execute(self.sql.query['getSiteId'], (site))
+            self.cursor.execute(self.sql.query['getSiteId'], (site,))
             result = self.db.cursor.fetchall()
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
