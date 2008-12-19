@@ -307,8 +307,13 @@ Add a raise on [street] by [player] to [amountTo]
             
             
             self.totalpot = 0
+            #print "[POT] stack list"
+            #print dict([(player[1], Decimal(player[2])) for player in self.players])
+            players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
+            self.pot = Pot(players_who_act_preflop)
             
-            for street in self.actions:
+            #for street in self.actions:
+            for street in [x for x in self.streetList if x in self.actions]:
                 uncalled = 0
                 calls = [0]
                 for act in self.actions[street]:
@@ -317,18 +322,30 @@ Add a raise on [street] by [player] to [amountTo]
                         uncalled = Decimal(act[2])  # only the last bet or raise can be uncalled
                         calls = [0]
                         print "uncalled: ", uncalled
+                        
+                        self.pot.addMoney(act[0], Decimal(act[2]))
+                        
                     elif act[1] == 'raises': # [name, 'raises', amountby, amountto, amountcalled]
                         print "calls %s and raises %s to %s" % (act[4],act[2],act[3])
                         self.totalpot += Decimal(act[2]) + Decimal(act[4])
                         calls = [0]
                         uncalled = Decimal(act[2])
                         print "uncalled: ", uncalled
+                        
+                        self.pot.addMoney(act[0], Decimal(act[2])+Decimal(act[4]))
+                        
                     elif act[1] == 'calls': # [name, 'calls', amount]
                         self.totalpot += Decimal(act[2])
                         calls = calls + [Decimal(act[2])]
                         print "calls:", calls
+                        
+                        self.pot.addMoney(act[0], Decimal(act[2]))
+                        
                     elif act[1] == 'posts':
                         self.totalpot += Decimal(act[3])
+                        
+                        self.pot.addMoney(act[0], Decimal(act[3]))
+                        
                         if act[2] == 'big blind':
                             # the bb gets called by out-of-blinds posts; but sb+bb only calls bb
                             if uncalled == Decimal(act[3]): # a bb is already posted
@@ -343,14 +360,15 @@ Add a raise on [street] by [player] to [amountTo]
                             uncalled = Decimal(act[3])
                             calls = [0]
                             pass
-
+                    elif act[1] == 'folds':
+                        self.pot.addFold(act[0])
                 if uncalled > 0 and max(calls+[0]) < uncalled:
                     
                     print "DEBUG returning some bet, calls:", calls
                     print "DEBUG returned: %.2f from %.2f" %  ((uncalled - max(calls)), self.totalpot,)
                     self.totalpot -= (uncalled - max(calls))
             print "DEBUG new totalpot:", self.totalpot
-
+            print "DEBUG new Pot.total:", self.pot
             
         if self.totalcollected is None:
             self.totalcollected = 0;
@@ -446,7 +464,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, "DEBUG: what do they show"
 
         print >>fh, _("*** SUMMARY ***")
-        print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
+        print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
+        #print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
 
         board = []
         for s in self.board.values():
@@ -544,3 +563,128 @@ Map the tuple self.gametype onto the pokerstars string describing it
         
         
 class FpdbParseError(Exception): pass
+
+class Pot(object):
+
+    def __init__(self, contenders):
+        self.contenders = contenders
+        self.committed = dict([(player,Decimal(0)) for player in contenders])
+        self.total = Decimal(0)
+        
+    def addFold(self, player):
+        self.contenders.remove(player)
+        
+    def addMoney(self, player, amount):
+        self.committed[player] += amount
+        
+    def __str__(self):
+        self.total = sum(self.committed.values())
+        committed = sorted([ (v,k) for (k,v) in self.committed.items()])
+        lastbet = committed[-1][0] - committed[-2][0]
+        if lastbet > 0: # uncalled
+            returnto = committed[-1][1]
+            #print "returning %f to %s" % (lastbet, returnto)
+            self.total -= lastbet
+            self.committed[returnto] -= lastbet
+        
+        
+        
+        # now: for those contenders still contending..
+        commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
+        
+        pots = []
+        while len(commitsall) > 0:
+            commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
+            v1 = commitslive[0][0]        
+            pots += [sum([min(v,v1) for (v,k) in commitsall])]
+            #print "all: ", commitsall
+            #print "live:", commitslive
+            commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
+
+            
+        #print "[**]", pots
+        
+        # TODO: I think rake gets taken out of the pots.
+        # so it goes:
+        # total pot x. main pot y, side pot z. | rake r
+        # and y+z+r = x
+        # for example:
+        # Total pot $124.30 Main pot $98.90. Side pot $23.40. | Rake $2
+        # so....... that's tricky.
+        if len(pots) == 1:
+            return "Main pot $%.2f" % pots[0]
+        elif len(pots) == 2:
+            return "Main pot $%.2f, side pot $%2.f" % (pots[0],pots[1])
+        elif len(pots) == 3:
+            return "Main pot $%.2f, side pot-1 $%2.f, side pot-2 $.2f" % (pots[0],pots[1],pots[2])
+        else:
+            return "too many pots.. fix me"
+
+        
+    
+    
+    #def addMoney(self, player, amount):
+        #uncalled = max(self.committed.values()) - self.committed[player]
+        
+        #if self.cap:
+            #overflow = self.committed[player] + amount - self.cap
+            #if overflow > 0:
+                #self.total += amount - overflow
+                #self.committed[player] = self.cap
+                #self.sidepot.addMoney(player, overflow)
+            #else:
+                ## because it was capped, we can only be calling here.
+                #self.calls.append(min(uncalled,amount))
+                #self.committed[player] += amount
+                #self.total += amount
+        #else:
+            ## no player is currently all-in.
+            
+            #self.committed[player] += amount
+            #self.total += amount
+            
+            ## is this a new uncalled bet?
+            #r = amount - uncalled
+            #if r > 0:
+                #self.uncalled = (player, r)
+                #self.calls = [0]
+            #else:
+                #self.calls.append(amount + r)
+                
+            ## is this player all-in?
+            #if self.committed[player] == self.stacks[player]:
+                #self.cap = self.stacks[player]
+                #contenders = self.contenders[:]
+                #contenders.remove(player)
+                #sidepotstacks = dict([(player, self.stacks[player]-self.committed[player]) for player in contenders])
+                #self.sidepot = Pot(contenders, sidepotstacks, self.sidepotnum+1)
+            #elif self.committed[player] > self.stacks[player]:
+                #print "ERROR %s problem" % (player,)
+                #print self.committed[player], self.stacks[player]
+                #raise FpdbParseError            
+                
+    #def returnUncalled(self):
+        #print "[POT]"
+        #print "last bet", self.uncalled
+        #print "calls:", self.calls
+        #print
+        #if self.uncalled:
+            #if max(self.calls) < self.uncalled[1]:
+                #self.total -= self.uncalled[1]
+                #print "returned", self.uncalled[0],self.uncalled[1]-max(self.calls), "from", self.uncalled[1]
+         
+         
+    #def __str__(self):
+        #total = self.total
+        #if self.sidepotnum == 0:
+            #return "Main pot $%.2f%s" %(total, self.sidepot or '' )
+        #elif self.sidepotnum > 0:
+            #if self.sidepot:
+                #return ", side pot-%d $%.2f%s" % (self.sidepotnum, total, self.sidepot)
+            #else:
+                #return ", side pot $%.2f." % (total,)
+
+            
+        
+            
+        
