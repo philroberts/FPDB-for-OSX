@@ -50,22 +50,27 @@ class GuiGraphViewer (threading.Thread):
         try: self.canvas.destroy()
         except AttributeError: pass
 
-        # Whaich sites are selected?
-        # TODO:
-        # What hero names for the selected site?
-        # TODO:
+        sitenos = []
+        playerids = []
 
-        name = self.heroes[self.sites]
+        # Which sites are selected?
+        for site in self.sites:
+            if self.sites[site] == True:
+                sitenos.append(self.siteid[site])
+                self.cursor.execute(self.sql.query['getPlayerId'], (self.heroes[site],))
+                result = self.db.cursor.fetchall()
+                if len(result) == 1:
+                    playerids.append(result[0][0])
 
-        if self.sites == "PokerStars":
-            site=2
-            sitename="PokerStars: "
-        elif self.sites=="Full Tilt":
-            site=1
-            sitename="Full Tilt: "
-        else:
-            print "invalid text in site selection in graph, defaulting to PS"
-            site=2
+        if sitenos == []:
+            #Should probably pop up here.
+            print "No sites selected - defaulting to PokerStars"
+            sitenos = [2]
+
+
+        if playerids == []:
+            print "No player ids found"
+            return
 
         self.fig = Figure(figsize=(5,4), dpi=100)
 
@@ -74,7 +79,7 @@ class GuiGraphViewer (threading.Thread):
 
         #Get graph data from DB
         starttime = time()
-        line = self.getRingProfitGraph(name, site)
+        line = self.getRingProfitGraph(playerids, sitenos)
         print "Graph generated in: %s" %(time() - starttime)
 
         self.ax.set_title("Profit graph for ring games")
@@ -87,7 +92,8 @@ class GuiGraphViewer (threading.Thread):
             #TODO: Do something useful like alert user
             print "No hands returned by graph query"
         else:
-            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
+#            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
+            text = "All Hands, " + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
 
             self.ax.annotate(text,
                              xy=(10, -10),
@@ -103,8 +109,34 @@ class GuiGraphViewer (threading.Thread):
             self.canvas.show()
     #end of def showClicked
 
-    def getRingProfitGraph(self, name, site):
-        self.cursor.execute(self.sql.query['getRingProfitAllHandsPlayerIdSite'], (name, site))
+    def getRingProfitGraph(self, names, sites):
+        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
+#        print "DEBUG: getRingProfitGraph"
+        start_date, end_date = self.__get_dates()
+
+        if start_date == '':
+            start_date = '1970-01-01'
+        if end_date == '':
+            end_date = '2020-12-12'
+
+        #Buggered if I can find a way to do this 'nicely' take a list of intergers and longs
+        # and turn it into a tuple readale by sql.
+        # [5L] into (5) not (5,) and [5L, 2829L] into (5, 2829)
+        nametest = str(tuple(names))
+        sitetest = str(tuple(sites))
+        nametest = nametest.replace("L", "")
+        nametest = nametest.replace(",)",")")
+        sitetest = sitetest.replace(",)",")")
+
+        #Must be a nicer way to deal with tuples of size 1 ie. (2,) - which makes sql barf
+        tmp = tmp.replace("<player_test>", nametest)
+        tmp = tmp.replace("<site_test>", sitetest)
+        tmp = tmp.replace("<startdate_test>", start_date)
+        tmp = tmp.replace("<enddate_test>", end_date)
+
+#        print "DEBUG: sql query:"
+#        print tmp
+        self.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
 
@@ -125,7 +157,6 @@ class GuiGraphViewer (threading.Thread):
         pname.set_text(player)
         pname.set_width_chars(20)
         hbox.pack_start(pname, False, True, 0)
-        #TODO: Need to connect a callback here
         pname.connect("changed", self.__set_hero_name, site)
         #TODO: Look at GtkCompletion - to fill out usernames
         pname.show()
@@ -134,7 +165,7 @@ class GuiGraphViewer (threading.Thread):
 
     def __set_hero_name(self, w, site):
         self.heroes[site] = w.get_text()
-        print "DEBUG: settings heroes[%s]: %s"%(site, self.heroes[site])
+#        print "DEBUG: settings heroes[%s]: %s"%(site, self.heroes[site])
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -144,8 +175,9 @@ class GuiGraphViewer (threading.Thread):
 
     def __set_site_select(self, w, site):
         # This doesn't behave as intended - self.site only allows 1 site for the moment.
-        self.sites = site
-        print "self.sites set to %s" %(self.sites)
+        print w.get_active()
+        self.sites[site] = w.get_active()
+        print "self.sites[%s] set to %s" %(site, self.sites[site])
 
     def fillPlayerFrame(self, vbox):
         for site in self.conf.supported_sites.keys():
@@ -162,6 +194,13 @@ class GuiGraphViewer (threading.Thread):
             vbox.pack_start(hbox, False, True, 0)
             hbox.show()
             self.createSiteLine(hbox, site)
+            #Get db site id for filtering later
+            self.cursor.execute(self.sql.query['getSiteId'], (site,))
+            result = self.db.cursor.fetchall()
+            if len(result) == 1:
+                self.siteid[site] = result[0][0]
+            else:
+                print "Either 0 or more than one site matched - EEK"
 
     def fillDateFrame(self, vbox):
         # Hat tip to Mika Bostrom - calendar code comes from PokerStats
@@ -261,7 +300,8 @@ class GuiGraphViewer (threading.Thread):
         self.sql=querylist
         self.conf = config
 
-        self.sites = "PokerStars"
+        self.sites = {}
+        self.siteid = {}
         self.heroes = {}
 
         # For use in date ranges.
