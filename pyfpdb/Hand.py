@@ -54,7 +54,8 @@ class Hand:
         self.posted = []
         self.involved = True
 
-
+        self.pot = Pot()
+        
         #
         # Collections indexed by street names
         #
@@ -111,6 +112,7 @@ If a player has None chips he won't be added."""
             self.players.append([seat, name, chips])
             self.stacks[name] = Decimal(chips)
             self.holecards[name] = set()
+            self.pot.addPlayer(name)
             for street in self.streetList:
                 self.bets[street][name] = []
 
@@ -180,12 +182,24 @@ Card ranks will be uppercased
 
     def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
+        # TODO:
+        # The situation we need to cover are:
+        # Player in small blind posts
+        #   - this is a bet of 1 sb, as yet uncalled.
+        # Player in the big blind posts
+        #   - this is a bet of 1 bb and is the new uncalled
+        # 
+        # If a player posts a big & small blind
+        #
+        
         print "DEBUG addBlind: %s posts %s, %s" % (player, blindtype, amount)
         if player is not None:
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
             #print "DEBUG %s posts, stack %s" % (player, self.stacks[player])
-            self.actions['PREFLOP'] += [(player, 'posts', blindtype, amount, self.stacks[player]==0)]
+            act = (player, 'posts', blindtype, amount, self.stacks[player]==0)
+            self.actions['PREFLOP'].append(act)
+            self.pot.addMoney(player, Decimal(amount))
             if blindtype == 'big blind':
                 self.lastBet['PREFLOP'] = Decimal(amount)            
             elif blindtype == 'small & big blinds':
@@ -202,7 +216,9 @@ Card ranks will be uppercased
             #self.lastBet[street] = Decimal(amount)
             self.stacks[player] -= Decimal(amount)
             print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
-            self.actions[street] += [(player, 'calls', amount, self.stacks[player]==0)]
+            act = (player, 'calls', amount, self.stacks[player]==0)
+            self.actions[street].append(act)
+            self.pot.addMoney(player, Decimal(amount))
             
     def addRaiseBy(self, street, player, amountBy):
         """\
@@ -243,13 +259,7 @@ For sites which by "raises x" mean "calls and raises putting a total of x in the
         Rt = Bp + Rb
         
         self._addRaise(street, player, C, Rb, Rt)
-        
-    def _addRaise(self, street, player, C, Rb, Rt):
-        self.bets[street][player].append(C + Rb)
-        self.stacks[player] -= (C + Rb)
-        self.actions[street] += [(player, 'raises', Rb, Rt, C, self.stacks[player]==0)]
-        self.lastBet[street] = Rt
-    
+
     def addRaiseTo(self, street, player, amountTo):
         """\
 Add a raise on [street] by [player] to [amountTo]
@@ -260,6 +270,15 @@ Add a raise on [street] by [player] to [amountTo]
         C = Bp - Bc
         Rb = Rt - C
         self._addRaise(street, player, C, Rb, Rt)
+
+    def _addRaise(self, street, player, C, Rb, Rt):
+        self.bets[street][player].append(C + Rb)
+        self.stacks[player] -= (C + Rb)
+        act = (player, 'raises', Rb, Rt, C, self.stacks[player]==0)
+        self.actions[street].append(act)
+        self.lastBet[street] = Rt # TODO check this is correct
+        self.pot.addMoney(player, C+Rb)
+    
         
         
     def addBet(self, street, player, amount):
@@ -267,20 +286,24 @@ Add a raise on [street] by [player] to [amountTo]
         self.bets[street][player].append(Decimal(amount))
         self.stacks[player] -= Decimal(amount)
         print "DEBUG %s bets %s, stack %s" % (player, amount, self.stacks[player])
-        self.actions[street] += [(player, 'bets', amount, self.stacks[player]==0)]
+        act = (player, 'bets', amount, self.stacks[player]==0)
+        self.actions[street].append(act)
         self.lastBet[street] = Decimal(amount)
+        self.pot.addMoney(player, Decimal(amount))
         
 
     def addFold(self, street, player):
         print "DEBUG: %s %s folded" % (street, player)
         self.checkPlayerExists(player)
         self.folded.add(player)
-        self.actions[street] += [(player, 'folds')]
+        self.pot.addFold(player)
+        self.actions[street].append((player, 'folds'))
+        
 
     def addCheck(self, street, player):
         print "DEBUG: %s %s checked" % (street, player)
         self.checkPlayerExists(player)
-        self.actions[street] += [(player, 'checks')]
+        self.actions[street].append((player, 'checks'))
 
     def addCollectPot(self,player, pot):
         print "DEBUG: %s collected %s" % (player, pot)
@@ -294,79 +317,75 @@ Add a raise on [street] by [player] to [amountTo]
     def totalPot(self):
         """If all bets and blinds have been added, totals up the total pot size"""
         if self.totalpot is None:
-            self.totalpot = 0
-
-            for player in [x[1] for x in self.players]:
-                for street in self.streetList:
-                    self.totalpot += reduce(operator.add, self.bets[street][player], 0)
-
-            print "DEBUG conventional totalpot:", self.totalpot
+            #players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
+            #print players_who_act_preflop
+            #print self.pot.contenders
+            #self.pot.contenders = self.pot.contenders.intersection(players_who_act_preflop).difference(self.folded)
+            print self.pot.contenders
+            self.pot.end()
+            self.totalpot =self.pot.total
             
-            
-            self.totalpot = 0
-
-            players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
-            self.pot = Pot(players_who_act_preflop)
+            #self.pot = Pot(players_who_act_preflop)
             
             
             # this can now be pruned substantially if Pot is working.
             #for street in self.actions:
-            for street in [x for x in self.streetList if x in self.actions]:
-                uncalled = 0
-                calls = [0]
-                for act in self.actions[street]:
-                    if act[1] == 'bets': # [name, 'bets', amount]
-                        self.totalpot += Decimal(act[2])
-                        uncalled = Decimal(act[2])  # only the last bet or raise can be uncalled
-                        calls = [0]
-                        print "uncalled: ", uncalled
+            #for street in [x for x in self.streetList if x in self.actions]:
+                #uncalled = 0
+                #calls = [0]
+                #for act in self.actions[street]:
+                    #if act[1] == 'bets': # [name, 'bets', amount]
+                        #self.totalpot += Decimal(act[2])
+                        #uncalled = Decimal(act[2])  # only the last bet or raise can be uncalled
+                        #calls = [0]
+                        #print "uncalled: ", uncalled
                         
-                        self.pot.addMoney(act[0], Decimal(act[2]))
                         
-                    elif act[1] == 'raises': # [name, 'raises', amountby, amountto, amountcalled]
-                        print "calls %s and raises %s to %s" % (act[4],act[2],act[3])
-                        self.totalpot += Decimal(act[2]) + Decimal(act[4])
-                        calls = [0]
-                        uncalled = Decimal(act[2])
-                        print "uncalled: ", uncalled
                         
-                        self.pot.addMoney(act[0], Decimal(act[2])+Decimal(act[4]))
+                    #elif act[1] == 'raises': # [name, 'raises', amountby, amountto, amountcalled]
+                        #print "calls %s and raises %s to %s" % (act[4],act[2],act[3])
+                        #self.totalpot += Decimal(act[2]) + Decimal(act[4])
+                        #calls = [0]
+                        #uncalled = Decimal(act[2])
+                        #print "uncalled: ", uncalled
                         
-                    elif act[1] == 'calls': # [name, 'calls', amount]
-                        self.totalpot += Decimal(act[2])
-                        calls = calls + [Decimal(act[2])]
-                        print "calls:", calls
                         
-                        self.pot.addMoney(act[0], Decimal(act[2]))
                         
-                    elif act[1] == 'posts':
-                        self.totalpot += Decimal(act[3])
+                    #elif act[1] == 'calls': # [name, 'calls', amount]
+                        #self.totalpot += Decimal(act[2])
+                        #calls = calls + [Decimal(act[2])]
+                        #print "calls:", calls
                         
-                        self.pot.addMoney(act[0], Decimal(act[3]))
                         
-                        if act[2] == 'big blind':
-                            # the bb gets called by out-of-blinds posts; but sb+bb only calls bb
-                            if uncalled == Decimal(act[3]): # a bb is already posted
-                                calls = calls + [Decimal(act[3])]
-                            elif 0 < uncalled < Decimal(act[3]): # a sb is already posted, btw wow python can do a<b<c.
-                            # treat this as tho called & raised
-                                calls = [0]
-                                uncalled = Decimal(act[3]) - uncalled
-                            else: # no blind yet posted.
-                                uncalled = Decimal(act[3])
-                        elif act[2] == 'small blind':
-                            uncalled = Decimal(act[3])
-                            calls = [0]
-                            pass
-                    elif act[1] == 'folds':
-                        self.pot.addFold(act[0])
-                if uncalled > 0 and max(calls+[0]) < uncalled:
+                        
+                    #elif act[1] == 'posts':
+                        #self.totalpot += Decimal(act[3])
+                        
+
+                        
+                        #if act[2] == 'big blind':
+                            ## the bb gets called by out-of-blinds posts; but sb+bb only calls bb
+                            #if uncalled == Decimal(act[3]): # a bb is already posted
+                                #calls = calls + [Decimal(act[3])]
+                            #elif 0 < uncalled < Decimal(act[3]): # a sb is already posted, btw wow python can do a<b<c.
+                            ## treat this as tho called & raised
+                                #calls = [0]
+                                #uncalled = Decimal(act[3]) - uncalled
+                            #else: # no blind yet posted.
+                                #uncalled = Decimal(act[3])
+                        #elif act[2] == 'small blind':
+                            #uncalled = Decimal(act[3])
+                            #calls = [0]
+                            #pass
+                    #elif act[1] == 'folds':
+                        #self.pot.addFold(act[0])
+                #if uncalled > 0 and max(calls+[0]) < uncalled:
                     
-                    print "DEBUG returning some bet, calls:", calls
-                    print "DEBUG returned: %.2f from %.2f" %  ((uncalled - max(calls)), self.totalpot,)
-                    self.totalpot -= (uncalled - max(calls))
-            print "DEBUG new totalpot:", self.totalpot
-            print "DEBUG new Pot.total:", self.pot
+                    #print "DEBUG returning some bet, calls:", calls
+                    #print "DEBUG returned: %.2f from %.2f" %  ((uncalled - max(calls)), self.totalpot,)
+                    #self.totalpot -= (uncalled - max(calls))
+            #print "DEBUG new totalpot:", self.totalpot
+            #print "DEBUG new Pot.total:", self.pot
             
         if self.totalcollected is None:
             self.totalcollected = 0;
@@ -558,19 +577,30 @@ class FpdbParseError(Exception): pass
 
 class Pot(object):
 
-    def __init__(self, contenders):
-        self.contenders = contenders
-        self.committed = dict([(player,Decimal(0)) for player in contenders])
-        self.total = Decimal(0)
-        
+
+    def __init__(self):
+        self.contenders = set()
+        self.committed = {}
+        #self.committed = dict([(player,Decimal(0)) for player in contenders])
+        self.total = None
+    
+    def addPlayer(self,player):
+        #self.contenders.add(player)
+        self.committed[player] = Decimal(0)
+    
     def addFold(self, player):
-        self.contenders.remove(player)
+        # addFold must be called when a player folds
+        self.contenders.discard(player)
         
     def addMoney(self, player, amount):
+        # addMoney must be called for any actions that put money in the pot, in the order they occur
+        self.contenders.add(player)
         self.committed[player] += amount
-        
-    def __str__(self):
+
+    def end(self):
         self.total = sum(self.committed.values())
+        
+        # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
         lastbet = committed[-1][0] - committed[-2][0]
         if lastbet > 0: # uncalled
@@ -580,36 +610,41 @@ class Pot(object):
             self.committed[returnto] -= lastbet
         
         
-        
-        # now: for those contenders still contending..
+        # Work out side pots
+        #
         commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
         
-        pots = []
+        self.pots = []
         while len(commitsall) > 0:
             commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
             v1 = commitslive[0][0]        
-            pots += [sum([min(v,v1) for (v,k) in commitsall])]
+            self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
             #print "all: ", commitsall
             #print "live:", commitslive
             commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
 
-            
-        #print "[**]", pots
-        
+                
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
         # total pot x. main pot y, side pot z. | rake r
         # and y+z+r = x
         # for example:
         # Total pot $124.30 Main pot $98.90. Side pot $23.40. | Rake $2
-        # so....... that's tricky.
-        if len(pots) == 1: # (only use Total pot)
-            #return "Main pot $%.2f." % pots[0]
+        
+    def __str__(self):
+        if self.total is None:
+            print "call Pot.end() before printing pot total"
+            # NB if I'm sure end() is idempotent, call it here.
+            raise FpdbParseError
+        
+
+        
+        if len(self.pots) == 1: # (only use Total pot)
             return "Total pot $%.2f" % (self.total,)
-        elif len(pots) == 2:
-            return "Total pot $%.2f Main pot $%.2f. Side pot $%2.f." % (self.total, pots[0],pots[1])
-        elif len(pots) == 3:
-            return "Total pot $%.2f Main pot $%.2f. Side pot-1 $%2.f. Side pot-2 $.2f." % (self.total, pots[0],pots[1],pots[2])
+        elif len(self.pots) == 2:
+            return "Total pot $%.2f Main pot $%.2f. Side pot $%2.f." % (self.total, self.pots[0], self.pots[1])
+        elif len(self.pots) == 3:
+            return "Total pot $%.2f Main pot $%.2f. Side pot-1 $%2.2f. Side pot-2 $%.2f." % (self.total, self.pots[0], self.pots[1], self.pots[2])
         else:
-            return "too many pots.. fix me.", pots
+            return "too many pots.. fix me.", self.pots
             
