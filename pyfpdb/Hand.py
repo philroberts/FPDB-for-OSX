@@ -296,22 +296,20 @@ Add a raise on [street] by [player] to [amountTo]
         if self.totalpot is None:
             self.totalpot = 0
 
-            # player names: 
-            # print [x[1] for x in self.players]
             for player in [x[1] for x in self.players]:
                 for street in self.streetList:
-                    #print street, self.bets[street][player]
                     self.totalpot += reduce(operator.add, self.bets[street][player], 0)
 
             print "DEBUG conventional totalpot:", self.totalpot
             
             
             self.totalpot = 0
-            #print "[POT] stack list"
-            #print dict([(player[1], Decimal(player[2])) for player in self.players])
+
             players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
             self.pot = Pot(players_who_act_preflop)
             
+            
+            # this can now be pruned substantially if Pot is working.
             #for street in self.actions:
             for street in [x for x in self.streetList if x in self.actions]:
                 uncalled = 0
@@ -413,9 +411,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
-        #print players_who_act_preflop
-        #print [x[1] for x in self.players]
-        #print [x for x in self.players if x[1] in players_who_act_preflop]
+
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
@@ -524,10 +520,6 @@ Map the tuple self.gametype onto the pokerstars string describing it
     def bestHand(self, side, cards):
         return HandHistoryConverter.eval.best('hi', cards, [])
 
-    # from pokergame.py
-    def bestHandValue(self, side, serial):
-        (value, cards) = self.bestHand(side, serial)
-        return value
 
     # from pokergame.py
     # got rid of the _ for internationalisation
@@ -611,80 +603,13 @@ class Pot(object):
         # for example:
         # Total pot $124.30 Main pot $98.90. Side pot $23.40. | Rake $2
         # so....... that's tricky.
-        if len(pots) == 1:
-            return "Main pot $%.2f" % pots[0]
+        if len(pots) == 1: # (only use Total pot)
+            #return "Main pot $%.2f." % pots[0]
+            return "Total pot $%.2f" % (self.total,)
         elif len(pots) == 2:
-            return "Main pot $%.2f, side pot $%2.f" % (pots[0],pots[1])
+            return "Total pot $%.2f Main pot $%.2f. Side pot $%2.f." % (self.total, pots[0],pots[1])
         elif len(pots) == 3:
-            return "Main pot $%.2f, side pot-1 $%2.f, side pot-2 $.2f" % (pots[0],pots[1],pots[2])
+            return "Total pot $%.2f Main pot $%.2f. Side pot-1 $%2.f. Side pot-2 $.2f." % (self.total, pots[0],pots[1],pots[2])
         else:
-            return "too many pots.. fix me"
-
-        
-    
-    
-    #def addMoney(self, player, amount):
-        #uncalled = max(self.committed.values()) - self.committed[player]
-        
-        #if self.cap:
-            #overflow = self.committed[player] + amount - self.cap
-            #if overflow > 0:
-                #self.total += amount - overflow
-                #self.committed[player] = self.cap
-                #self.sidepot.addMoney(player, overflow)
-            #else:
-                ## because it was capped, we can only be calling here.
-                #self.calls.append(min(uncalled,amount))
-                #self.committed[player] += amount
-                #self.total += amount
-        #else:
-            ## no player is currently all-in.
+            return "too many pots.. fix me.", pots
             
-            #self.committed[player] += amount
-            #self.total += amount
-            
-            ## is this a new uncalled bet?
-            #r = amount - uncalled
-            #if r > 0:
-                #self.uncalled = (player, r)
-                #self.calls = [0]
-            #else:
-                #self.calls.append(amount + r)
-                
-            ## is this player all-in?
-            #if self.committed[player] == self.stacks[player]:
-                #self.cap = self.stacks[player]
-                #contenders = self.contenders[:]
-                #contenders.remove(player)
-                #sidepotstacks = dict([(player, self.stacks[player]-self.committed[player]) for player in contenders])
-                #self.sidepot = Pot(contenders, sidepotstacks, self.sidepotnum+1)
-            #elif self.committed[player] > self.stacks[player]:
-                #print "ERROR %s problem" % (player,)
-                #print self.committed[player], self.stacks[player]
-                #raise FpdbParseError            
-                
-    #def returnUncalled(self):
-        #print "[POT]"
-        #print "last bet", self.uncalled
-        #print "calls:", self.calls
-        #print
-        #if self.uncalled:
-            #if max(self.calls) < self.uncalled[1]:
-                #self.total -= self.uncalled[1]
-                #print "returned", self.uncalled[0],self.uncalled[1]-max(self.calls), "from", self.uncalled[1]
-         
-         
-    #def __str__(self):
-        #total = self.total
-        #if self.sidepotnum == 0:
-            #return "Main pot $%.2f%s" %(total, self.sidepot or '' )
-        #elif self.sidepotnum > 0:
-            #if self.sidepot:
-                #return ", side pot-%d $%.2f%s" % (self.sidepotnum, total, self.sidepot)
-            #else:
-                #return ", side pot $%.2f." % (total,)
-
-            
-        
-            
-        
