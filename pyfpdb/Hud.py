@@ -268,6 +268,7 @@ class Hud:
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     if statstring != "xxx":
                         self.stat_windows[stat_dict[s]['seat']].window.show_all()
+                        self.reposition_windows()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)

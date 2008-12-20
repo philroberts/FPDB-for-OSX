@@ -282,14 +282,12 @@ class Importer:
         self.fdb.db.commit()
         self.handsId=handsId
         return handsId
-#end def import_file_dict
 
     def parseTourneyHistory(self):
         print "Tourney history parser stub"
         #Find tournament boundaries.
         #print self.foabs
         
-
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
         print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
