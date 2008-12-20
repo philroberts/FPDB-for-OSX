@@ -135,7 +135,7 @@ class Hud:
             if not win32gui.IsWindow(self.table.number):
                 self.kill_hud()
                 return False
-        
+
         (x, y) = self.main_window.parentgdkhandle.get_origin()
         if self.table.x != x or self.table.y != y:
             self.table.x = x
@@ -146,7 +146,7 @@ class Hud:
             for i in range(1, self.max + 1):           
                 (x, y) = loc[adj[i]]
                 if self.stat_windows.has_key(i):
-                    self.stat_windows[i].relocate(x, y)                    
+                    self.stat_windows[i].relocate(x, y)
         return True
 
     def on_button_press(self, widget, event):
