@@ -316,77 +316,13 @@ Add a raise on [street] by [player] to [amountTo]
 
     def totalPot(self):
         """If all bets and blinds have been added, totals up the total pot size"""
+        
+        # This gives us the total amount put in the pot
         if self.totalpot is None:
-            #players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
-            #print players_who_act_preflop
-            #print self.pot.contenders
-            #self.pot.contenders = self.pot.contenders.intersection(players_who_act_preflop).difference(self.folded)
-            print self.pot.contenders
             self.pot.end()
-            self.totalpot =self.pot.total
-            
-            #self.pot = Pot(players_who_act_preflop)
-            
-            
-            # this can now be pruned substantially if Pot is working.
-            #for street in self.actions:
-            #for street in [x for x in self.streetList if x in self.actions]:
-                #uncalled = 0
-                #calls = [0]
-                #for act in self.actions[street]:
-                    #if act[1] == 'bets': # [name, 'bets', amount]
-                        #self.totalpot += Decimal(act[2])
-                        #uncalled = Decimal(act[2])  # only the last bet or raise can be uncalled
-                        #calls = [0]
-                        #print "uncalled: ", uncalled
-                        
-                        
-                        
-                    #elif act[1] == 'raises': # [name, 'raises', amountby, amountto, amountcalled]
-                        #print "calls %s and raises %s to %s" % (act[4],act[2],act[3])
-                        #self.totalpot += Decimal(act[2]) + Decimal(act[4])
-                        #calls = [0]
-                        #uncalled = Decimal(act[2])
-                        #print "uncalled: ", uncalled
-                        
-                        
-                        
-                    #elif act[1] == 'calls': # [name, 'calls', amount]
-                        #self.totalpot += Decimal(act[2])
-                        #calls = calls + [Decimal(act[2])]
-                        #print "calls:", calls
-                        
-                        
-                        
-                    #elif act[1] == 'posts':
-                        #self.totalpot += Decimal(act[3])
-                        
+            self.totalpot = self.pot.total
 
-                        
-                        #if act[2] == 'big blind':
-                            ## the bb gets called by out-of-blinds posts; but sb+bb only calls bb
-                            #if uncalled == Decimal(act[3]): # a bb is already posted
-                                #calls = calls + [Decimal(act[3])]
-                            #elif 0 < uncalled < Decimal(act[3]): # a sb is already posted, btw wow python can do a<b<c.
-                            ## treat this as tho called & raised
-                                #calls = [0]
-                                #uncalled = Decimal(act[3]) - uncalled
-                            #else: # no blind yet posted.
-                                #uncalled = Decimal(act[3])
-                        #elif act[2] == 'small blind':
-                            #uncalled = Decimal(act[3])
-                            #calls = [0]
-                            #pass
-                    #elif act[1] == 'folds':
-                        #self.pot.addFold(act[0])
-                #if uncalled > 0 and max(calls+[0]) < uncalled:
-                    
-                    #print "DEBUG returning some bet, calls:", calls
-                    #print "DEBUG returned: %.2f from %.2f" %  ((uncalled - max(calls)), self.totalpot,)
-                    #self.totalpot -= (uncalled - max(calls))
-            #print "DEBUG new totalpot:", self.totalpot
-            #print "DEBUG new Pot.total:", self.pot
-            
+        # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:
             self.totalcollected = 0;
             for amount in self.collected.values():
@@ -581,11 +517,9 @@ class Pot(object):
     def __init__(self):
         self.contenders = set()
         self.committed = {}
-        #self.committed = dict([(player,Decimal(0)) for player in contenders])
         self.total = None
     
     def addPlayer(self,player):
-        #self.contenders.add(player)
         self.committed[player] = Decimal(0)
     
     def addFold(self, player):
@@ -611,7 +545,6 @@ class Pot(object):
         
         
         # Work out side pots
-        #
         commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
         
         self.pots = []
@@ -619,11 +552,8 @@ class Pot(object):
             commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
             v1 = commitslive[0][0]        
             self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
-            #print "all: ", commitsall
-            #print "live:", commitslive
             commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
 
-                
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
         # total pot x. main pot y, side pot z. | rake r
