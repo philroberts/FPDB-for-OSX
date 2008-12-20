@@ -135,7 +135,7 @@ class Hud:
             if not win32gui.IsWindow(self.table.number):
                 self.kill_hud()
                 return False
-        
+
         (x, y) = self.main_window.parentgdkhandle.get_origin()
         if self.table.x != x or self.table.y != y:
             self.table.x = x
