@@ -281,13 +281,7 @@ def steal(stat_dict, player):
                 '% steal attempted'
                 )
     except:
-        return (stat,
-                '%3.1f'        % (0) + '%', 
-                'st=%3.1f'     % (0) + '%', 
-                'steal=%3.1f' % (0) + '%', 
-                '(%d/%d)'      % (0, 0),
-                '% steal attempted'
-                )
+        return (stat, 'NA', 'st=NA', 'steal=NA', '(0/0)', '% steal attempted')
 
 def f_SB_steal(stat_dict, player):
     """    Folded SB to steal."""
@@ -306,7 +300,7 @@ def f_SB_steal(stat_dict, player):
                 'NA',
                 'fSB=NA',
                 'fSB_s=NA',
-                '0/0',
+                '(0/0)',
                 '% folded SB to steal')
 
 def f_BB_steal(stat_dict, player):
@@ -326,7 +320,7 @@ def f_BB_steal(stat_dict, player):
                 'NA',
                 'fBB=NA',
                 'fBB_s=NA',
-                '0/0',
+                '(0/0)',
                 '% folded BB to steal')
 
 def three_B_0(stat_dict, player):
