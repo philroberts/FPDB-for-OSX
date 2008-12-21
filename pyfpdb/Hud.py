@@ -265,7 +265,7 @@ class Hud:
                         self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                         
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
-                    if statstring != "xxx":
+                    if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         self.stat_windows[stat_dict[s]['seat']].window.show_all()
                         self.reposition_windows()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
@@ -331,7 +331,6 @@ class Stat_Window:
 #    Callback from the timeout in the single-click finding part of the
 #    button press call back.  This needs to be modified to get all the 
 #    arguments from the call.
-#        print "left button clicked"
         self.sb_click = 0
         Popup_window(widget, self)
         return False
@@ -398,7 +397,6 @@ class Stat_Window:
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-#                font = pango.FontDescription(self.font)
                 self.label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
@@ -481,8 +479,8 @@ class Popup_window:
         
         self.window.set_transient_for(stat_window.window)
 
-#    set_keep_above(1) for windows
-        if os.name == 'nt': self.topify_window(self.window)
+        if os.name == 'nt':
+            self.topify_window(self.window)
 
     def button_press_cb(self, widget, event, *args):
 #    This handles all callbacks from button presses on the event boxes in 
@@ -500,11 +498,9 @@ class Popup_window:
 
         if event.button == 2:   # middle button event
             pass
-#            print "middle button clicked"
 
         if event.button == 3:   # right button event
             pass
-#            print "right button clicked"
 
     def single_click(self, widget):
 #    Callback from the timeout in the single-click finding part of the
