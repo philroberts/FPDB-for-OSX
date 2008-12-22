@@ -154,8 +154,11 @@ class GuiAutoImport (threading.Thread):
         else: # toggled off
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
             print "Stopping autoimport"
-            print >>self.pipe_to_hud.stdin, "\n"
-            #self.pipe_to_hud.communicate('\n') # waits for process to terminate
+            if self.pipe_to_hud.poll() is not None:
+                print "HUD already terminated"
+            else:
+                #print >>self.pipe_to_hud.stdin, "\n"
+                self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
             self.startButton.set_label(u'Start Autoimport')
             
