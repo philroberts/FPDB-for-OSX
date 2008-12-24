@@ -52,6 +52,7 @@ import Hud
 
 #    global dict for keeping the huds
 hud_dict = {}
+eb = 0 # our former event-box
 
 db_connection = 0;
 config = 0;
@@ -61,11 +62,18 @@ def destroy(*args):             # call back for terminating the main eventloop
 
 def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_connection, config, stat_dict):
     global hud_dict
+    global eb
     def idle_func():
         global hud_dict
+        global eb
         gtk.gdk.threads_enter()
         try:
+            newlabel = gtk.Label(table_name)
+            eb.add(newlabel)
+            newlabel.show()
+
             hud_dict[table_name] = Hud.Hud(table, max, poker_game, config, db_connection)
+            hud_dict[table_name].tablehudlabel = newlabel
             hud_dict[table_name].create(new_hand_id, config)
             for m in hud_dict[table_name].aux_windows:
                 m.update_data(new_hand_id, db_connection)
@@ -92,6 +100,7 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
 
 def read_stdin():            # This is the thread function
     global hud_dict
+    global eb
 
     db_connection = Database.Database(config, db_name, 'temp')
     tourny_finder = re.compile('(\d+) (\d+)')
@@ -105,6 +114,7 @@ def read_stdin():            # This is the thread function
 #    delete hud_dict entries for any HUD destroyed since last iteration
         for h in hud_dict.keys():
             if hud_dict[h].deleted:
+                eb.remove(hud_dict[h].tablehudlabel)
                 del(hud_dict[h])
 
 #    get basic info about the new hand from the db
@@ -162,10 +172,11 @@ if __name__== "__main__":
 
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)
-    eb = gtk.EventBox()
+    eb = gtk.VBox()
     label = gtk.Label('Closing this window will exit from the HUD.')
     eb.add(label)
     main_window.add(eb)
+
     main_window.set_title("HUD Main Window")
     main_window.show_all()
     
