@@ -22,14 +22,11 @@ Main for FreePokerTools HUD.
 
 ########################################################################
 
-#    to do kill window on my seat
-#    to do adjust for preferred seat
 #    to do allow window resizing
 #    to do hud to echo, but ignore non numbers
-#    to do no hud window for hero
+#    to do no stat window for hero
 #    to do things to add to config.xml
 #    to do     font and size
-#    to do     opacity
 
 #    Standard Library modules
 import sys
@@ -68,8 +65,11 @@ def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_conn
         global hud_dict
         gtk.gdk.threads_enter()
         try:
-            hud_dict[table_name] = Hud.Hud(table, max, poker_game, config, db_name)
+            hud_dict[table_name] = Hud.Hud(table, max, poker_game, config, db_connection)
             hud_dict[table_name].create(new_hand_id, config)
+            for m in hud_dict[table_name].aux_windows:
+                m.update_data(new_hand_id, db_connection)
+                m.update_gui(new_hand_id)
             hud_dict[table_name].update(new_hand_id, config, stat_dict)
             hud_dict[table_name].reposition_windows()
             return False
@@ -114,7 +114,6 @@ def read_stdin():            # This is the thread function
         is_tournament = False
         (tour_number, tab_number) = (0, 0)
         mat_obj = tourny_finder.search(table_name)
-#        if len(mat_obj.groups) == 2:
         if mat_obj:
             is_tournament = True
             (tour_number, tab_number) = mat_obj.group(1, 2)
@@ -125,11 +124,13 @@ def read_stdin():            # This is the thread function
         if hud_dict.has_key(table_name):
 #    update the data for the aux_windows
             for aw in hud_dict[table_name].aux_windows:
-                aw.update_data(new_hand_id)
+                aw.update_data(new_hand_id, db_connection)
             update_HUD(new_hand_id, table_name, config, stat_dict)
+
 #    if a hud for this TOURNAMENT table exists, just update it
         elif hud_dict.has_key(tour_number):
             update_HUD(new_hand_id, tour_number, config, stat_dict)
+
 #    otherwise create a new hud
         else:
             if is_tournament:

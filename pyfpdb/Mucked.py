@@ -36,14 +36,13 @@ import Configuration
 import Database
 
 class Aux_Window:
-    def __init__(self, parent, hud, config, db_name):
+    def __init__(self, container, hud, params, config):
         self.config  = hud
         self.config  = config
-        self.parent  = parent
-        self.db_name = db_name
+        self.container  = container
 
         self.vbox = gtk.VBox()
-        self.parent.add(self.vbox)
+        self.container.add(self.vbox)
 
     def update_data(self):
         pass
@@ -52,40 +51,49 @@ class Aux_Window:
         pass
 
 class Stud_mucked(Aux_Window):
-    def __init__(self, parent, hud, config, db_name):
+    def __init__(self, container, hud, config, params):
 
         self.hud     = hud       # hud object that this aux window supports
         self.config  = config    # configuration object for this aux window to use
-        self.parent  = parent    # parent container for this aux window widget
-        self.db_name = db_name   # database for this aux window to use
+        self.container  = container    # parent container for this aux window widget
+        self.params  = params    # hash aux params from config
+
+        try:
+            site_params = self.config.get_site_parameters(self.hud.site)
+            self.hero = site_params['screen_name']
+        except:
+            self.hero = ''
 
         self.vbox = gtk.VBox()
-        self.parent.add(self.vbox)
+        self.container.add(self.vbox)
 
-        self.mucked_list   = Stud_list(self.vbox, config, db_name)
-        self.mucked_cards  = Stud_cards(self.vbox, config, db_name)
+        self.mucked_list   = Stud_list(self.vbox, self, params, config, self.hero)
+        self.mucked_cards  = Stud_cards(self.vbox, self, params, config)
         self.mucked_list.mucked_cards = self.mucked_cards
-        self.parent.show_all()
+        self.container.show_all()
 
-    def update_data(self, new_hand_id):
-        self.mucked_cards.update_data(new_hand_id)
-        self.mucked_list.update_data(new_hand_id)
+    def update_data(self, new_hand_id, db_connection):
+        self.mucked_cards.update_data(new_hand_id, db_connection)
+        self.mucked_list.update_data(new_hand_id, db_connection)
         
     def update_gui(self, new_hand_id):
         self.mucked_cards.update_gui(new_hand_id)
         self.mucked_list.update_gui(new_hand_id)
         
 class Stud_list:
-    def __init__(self, parent, config, db_name):
+    def __init__(self, container, parent, params, config, hero):
 
-        self.parent  = parent
+        self.container  = container
+        self.parent     = parent
+        self.params  = params
         self.config  = config
-        self.db_name = db_name
+        self.hero    = hero
+#        self.db_name = db_name
 
 #       set up a scrolled window to hold the listbox
         self.scrolled_window = gtk.ScrolledWindow()
         self.scrolled_window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
-        self.parent.add(self.scrolled_window)
+        self.container.add(self.scrolled_window)
 
 #       create a ListStore to use as the model
         self.liststore = gtk.ListStore(str, str, str, str)
@@ -123,17 +131,17 @@ class Stud_list:
         self.scrolled_window.add_with_viewport(self.treeview)
 
     def activated_event(self, path, column, data=None):
-        sel = self.treeview.get_selection()
-        (model, iter)  = sel.get_selected()
-        self.mucked_cards.update_data(model.get_value(iter, 0))
-        self.mucked_cards.update_gui(model.get_value(iter, 0))
+        pass
+#        sel = self.treeview.get_selection()
+#        (model, iter)  = sel.get_selected()
+#        self.mucked_cards.update_data(model.get_value(iter, 0))
+#        self.mucked_cards.update_gui(model.get_value(iter, 0))
         
-    def update_data(self, new_hand_id):
+    def update_data(self, new_hand_id, db_connection):
         """Updates the data needed for the list box."""
 
-        db_connection = Database.Database(self.config, 'fpdb', '')
+#        db_connection = Database.Database(self.config, 'fpdb', '')
         self.winners = db_connection.get_winners_from_hand(new_hand_id)
-        db_connection.close_connection()
         pot = 0
         winners = ''
         for player in self.winners.keys():
@@ -143,8 +151,22 @@ class Stud_list:
             winners = winners + player
         pot_dec = "%.2f" % (float(pot)/100)
 
-        self.info_row = ((new_hand_id, "xxxx", pot_dec, winners), )
+        hero_cards = self.get_hero_cards(self.parent.hero, self.parent.mucked_cards.cards)
+        self.info_row = ((new_hand_id, hero_cards, pot_dec, winners), )
 
+    def get_hero_cards(self, hero, cards):
+        """Formats the hero cards for inclusion in the tree."""
+        trans = ('0', 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
+        if hero == '':
+            return "xxxxxx"
+        else:
+            for k in cards.keys():
+                if cards[k]['screen_name'] == hero:
+                    return   trans[cards[k]['card1Value']] + cards[k]['card1Suit'] \
+                           + trans[cards[k]['card2Value']] + cards[k]['card2Suit'] \
+                           + trans[cards[k]['card3Value']] + cards[k]['card3Suit']
+        return "xxxxxx"
+            
     def update_gui(self, new_hand_id):
         iter = self.liststore.append(self.info_row[0]) 
         sel = self.treeview.get_selection()
@@ -154,11 +176,13 @@ class Stud_list:
         vadj.set_value(vadj.upper)
 
 class Stud_cards:
-    def __init__(self, parent, config, db_name = 'fpdb'):
+    def __init__(self, container, parent, params, config):
 
-        self.parent  = parent    #this is the parent of the mucked cards widget
+        self.container = container    #this is the parent container of the mucked cards widget
+        self.parent    = parent
+        self.params  = params
         self.config  = config
-        self.db_name = db_name
+#        self.db_name = db_name
 
         self.card_images = self.get_card_images()
         self.seen_cards = {}
@@ -196,7 +220,7 @@ class Stud_cards:
             for r in range(0, self.rows):
                 self.grid.attach(self.grid_contents[(c, r)], c, c+1, r, r+1, xpadding = 1, ypadding = 1)
                 
-        self.parent.add(self.grid)
+        self.container.add(self.grid)
 
     def translate_cards(self, old_cards):
         ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
@@ -212,10 +236,9 @@ class Stud_cards:
                     old_cards[c][key] = ranks[old_cards[c][rank]] + old_cards[c][suit]
         return old_cards
 
-    def update_data(self, new_hand_id):
-        db_connection = Database.Database(self.config, 'fpdb', '')
+    def update_data(self, new_hand_id, db_connection):
+#        db_connection = Database.Database(self.config, 'fpdb', '')
         cards = db_connection.get_cards(new_hand_id)
-        self.clear()
         self.cards = self.translate_cards(cards)
 
         self.tips = []
@@ -232,9 +255,9 @@ class Stud_cards:
                 else:
                     temp = temp + "\n"
             self.tips.append(temp)
-        db_connection.close_connection()
 
     def update_gui(self, new_hand_id):
+        self.clear()
         for c in self.cards.keys():
             self.grid_contents[(1, self.cards[c]['seat_number'] - 1)].set_text(self.cards[c]['screen_name'])
             for i in ((0, 'hole_card_1'), (1, 'hole_card_2'), (2, 'hole_card_3'), (3, 'hole_card_4'), 
@@ -262,11 +285,12 @@ class Stud_cards:
             for c in range(0, 7):
                 self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[('B', 'S')])
                 self.eb[(c, r)].set_tooltip_text('')
+
     def get_card_images(self):
         card_images = {}
         suits = ('S', 'H', 'D', 'C')
         ranks = ('A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'B')
-        pb  = gtk.gdk.pixbuf_new_from_file(self.config.execution_path("54PFozzycards0.png"))
+        pb  = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(self.params['deck']))
         
         for j in range(0, 14):
             for i in range(0, 4):
@@ -282,24 +306,24 @@ if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()             # used only for testing
 
-    def process_new_hand(source, condition):  #callback from stdin watch -- testing only
+    def process_new_hand(source, condition, db_connection):  #callback from stdin watch -- testing only
 #    there is a new hand_id to be processed
 #    just read it and pass it to update
         new_hand_id = sys.stdin.readline()
         new_hand_id = new_hand_id.rstrip()  # remove trailing whitespace
-        m.update_data(new_hand_id)
+        m.update_data(new_hand_id, db_connection)
         m.update_gui(new_hand_id)
         return(True)
 
     config = Configuration.Config()
-#    db_connection = Database.Database(config, 'fpdb', '')
+    db_connection = Database.Database(config, 'fpdb', '')
     main_window = gtk.Window()
     main_window.set_keep_above(True)
     main_window.connect("destroy", destroy)
 
-    aux_to_call = "Stud_mucked"
-    m = eval("%s(main_window, None, config, 'fpdb')" % aux_to_call)
-    main_window.show_all()
+    aux_to_call = "stud_mucked"
+    aux_params = config.get_aux_parameters(aux_to_call)
+    m = eval("%s(main_window, None, config, aux_params)" % aux_params['class'])
     
-    s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand)
+    s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand, db_connection)
     gtk.main()

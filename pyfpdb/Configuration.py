@@ -60,6 +60,8 @@ class Site:
         self.converter    = node.getAttribute("converter")
         self.enabled      = node.getAttribute("enabled")
         self.aux_window   = node.getAttribute("aux_window")
+        self.font         = node.getAttribute("font")
+        self.font_size    = node.getAttribute("font_size")
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):
@@ -479,6 +481,19 @@ class Config:
         else:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
         return colors
+    
+    def get_default_font(self, site = 'PokerStars'):
+        (font, font_size) = ("Sans", "8")
+        if self.supported_sites[site].font == "":
+            font = "Sans"
+        else:
+            font = self.supported_sites[site].font
+
+        if self.supported_sites[site].font_size == "":
+            font_size = "8"
+        else:
+            font_size = self.supported_sites[site].font_size
+        return (font, font_size)
 
     def get_locations(self, site = "PokerStars", max = "8"):
         
@@ -511,13 +526,16 @@ class Config:
         parms["site_name"]    = self.supported_sites[site].site_name
         parms["enabled"]      = self.supported_sites[site].enabled
         parms["aux_window"]   = self.supported_sites[site].aux_window
+        parms["font"]         = self.supported_sites[site].font
+        parms["font_size"]    = self.supported_sites[site].font_size
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
                             hudbgcolor = None, hudfgcolor = None, 
                             hudopacity = None, screen_name = None,
                             site_path = None, table_finder = None,
-                            HH_path = None, enabled = None):
+                            HH_path = None, enabled = None,
+                            font = None, font_size = None):
         """Sets the specified site parameters for the specified site."""
         site_node = self.get_site_node(site_name)
         if not db_node == None:
@@ -531,18 +549,20 @@ class Config:
             if not table_finder   == None: site_node.setAttribute("table_finder", table_finder)
             if not HH_path        == None: site_node.setAttribute("HH_path", HH_path)
             if not enabled        == None: site_node.setAttribute("enabled", enabled)
+            if not font           == None: site_node.setAttribute("font", font)
+            if not font_size      == None: site_node.setAttribute("font_size", font_size)
 
-        if self.supported_databases.has_key(db_name):
-            if not converter      == None: self.supported_sites[site].converter = converter
-            if not decoder        == None: self.supported_sites[site].decoder = decoder
-            if not hudbgcolor     == None: self.supported_sites[site].hudbgcolor = hudbgcolor
-            if not hudfgcolor     == None: self.supported_sites[site].hudfgcolor = hudfgcolor
-            if not hudopacity     == None: self.supported_sites[site].hudopacity = hudopacity
-            if not screen_name    == None: self.supported_sites[site].screen_name = screen_name
-            if not site_path      == None: self.supported_sites[site].site_path = site_path
-            if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
-            if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
-            if not enabled        == None: self.supported_sites[site].enabled = enabled
+#        if self.supported_databases.has_key(db_name):
+#            if not converter      == None: self.supported_sites[site].converter = converter
+#            if not decoder        == None: self.supported_sites[site].decoder = decoder
+#            if not hudbgcolor     == None: self.supported_sites[site].hudbgcolor = hudbgcolor
+#            if not hudfgcolor     == None: self.supported_sites[site].hudfgcolor = hudfgcolor
+#            if not hudopacity     == None: self.supported_sites[site].hudopacity = hudopacity
+#            if not screen_name    == None: self.supported_sites[site].screen_name = screen_name
+#            if not site_path      == None: self.supported_sites[site].site_path = site_path
+#            if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
+#            if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
+#            if not enabled        == None: self.supported_sites[site].enabled = enabled
         return
 
     def get_aux_windows(self):
@@ -640,6 +660,7 @@ if __name__== "__main__":
     for site in c.supported_sites.keys():
         print "site = ", site,
         print c.get_site_parameters(site)
+        print c.get_default_font(site)
 
     for game in c.get_supported_games():
         print c.get_game_parameters(game)

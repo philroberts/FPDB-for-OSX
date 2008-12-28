@@ -1170,14 +1170,16 @@ def parseHandStartTime(topline, site):
             tmp=topline[pos1:pos2]
             isUTC=True
         else:
-            tmp=topline[-30:]
+            tmp=topline
             #print "parsehandStartTime, tmp:", tmp
             pos = tmp.find("-")+2
             tmp = tmp[pos:]
         #Need to match either
         # 2008/09/07 06:23:14 ET or
-        # 2008/08/17 - 01:14:43 (ET)
-        m = re.match('(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]{2}):(?P<MIN>[0-9]{2}):(?P<SEC>[0-9]{2})',tmp)
+        # 2008/08/17 - 01:14:43 (ET) or
+        # 2008/11/12 9:33:31 CET [2008/11/12 3:33:31 ET]
+        rexx = '(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)'
+        m = re.search(rexx,tmp)
         #print "year:", int(m.group('YEAR')), "month", int(m.group('MON')), "day", int(m.group('DAY')), "hour", int(m.group('HR')), "minute", int(m.group('MIN')), "second", int(m.group('SEC'))
         result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
     else:
