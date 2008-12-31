@@ -152,7 +152,7 @@ def discover_posix_by_name(c, tablename):
             info = decode_xwininfo(c, listing)
             if not info['name'] == tablename:            continue
             return info
-    return False
+    return None
 
 def discover_posix_tournament(c, t_number, s_number):
     """Finds the X window for a client, given tournament and table nos."""
@@ -160,7 +160,7 @@ def discover_posix_tournament(c, t_number, s_number):
     for listing in os.popen('xwininfo -root -tree').readlines():
         if re.search(search_string, listing):
             return decode_xwininfo(c, listing)
-    return False
+    return None
 
 def decode_xwininfo(c, info_string):
     """Gets window parameters from xwinifo string--XWindows."""
@@ -231,7 +231,7 @@ def discover_nt_by_name(c, tablename):
         if titles[hwnd].find("HUD:") > -1: continue
         if titles[hwnd].find("Chat:") > -1: continue
         return decode_windows(c, titles[hwnd], hwnd)
-    return False
+    return None
 
 def discover_nt_tournament(c, tour_number, tab_number):
     """Finds the Windows window handle for the given tournament/table."""
@@ -242,7 +242,7 @@ def discover_nt_tournament(c, tour_number, tab_number):
     for hwnd in titles.keys():
         if re.search(search_string, titles[hwnd]):
             return decode_windows(c, titles[hwnd], hwnd)
-    return False
+    return None
 
 def get_nt_exe(hwnd):
     """Finds the name of the executable that the given window handle belongs to."""
