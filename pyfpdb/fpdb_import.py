@@ -66,11 +66,7 @@ class Importer:
             #TODO: Is this value in the xml file?
             self.settings['handCount'] = 0
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
-        self.fdb.connect(self.settings['db-backend'],
-                         self.settings['db-host'],
-                         self.settings['db-databaseName'],
-                         self.settings['db-user'], 
-                         self.settings['db-password'])
+        self.fdb.do_connect(self.config)
 
     #Set functions
     def setCallHud(self, value):
