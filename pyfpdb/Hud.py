@@ -129,6 +129,13 @@ class Hud:
         self.main_window.set_destroy_with_parent(True)
         
     def update_table_position(self):
+#        self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)
+#        if self.main_window.parentgdkhandle == None:
+        if os.name == 'nt':
+            if not win32gui.IsWindow(self.table.number):
+                self.kill_hud()
+                return False
+
         (x, y) = self.main_window.parentgdkhandle.get_origin()
         if self.table.x != x or self.table.y != y:
             self.table.x = x
@@ -139,7 +146,8 @@ class Hud:
             for i in range(1, self.max + 1):           
                 (x, y) = loc[adj[i]]
                 if self.stat_windows.has_key(i):
-                    self.stat_windows[i].relocate(x, y)                    
+                    self.stat_windows[i].relocate(x, y)
+
         return True
 
     def on_button_press(self, widget, event):
@@ -234,7 +242,8 @@ class Hud:
             aux_params = config.get_aux_parameters(game_params['aux'])
             self.aux_windows.append(eval("%s.%s(gtk.Window(), self, config, aux_params)" % (aux_params['module'], aux_params['class'])))
         
-#        gobject.timeout_add(500, self.update_table_position)
+        if os.name == "nt":
+            gobject.timeout_add(500, self.update_table_position)
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later

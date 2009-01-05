@@ -61,7 +61,7 @@
 	        </layout>
 	    </site>
 	    <site enabled="True"
-	    site_name="Full Tilt"
+	    site_name="Full Tilt Poker"
 	    table_finder="FullTiltPoker.exe"
 	    screen_name="ENTER HERO NAME"
 	    site_path=""

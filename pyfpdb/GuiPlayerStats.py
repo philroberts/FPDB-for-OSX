@@ -60,7 +60,7 @@ class GuiPlayerStats (threading.Thread):
                 vbox.add(self.stats_table)
 
                 # Create header row
-                titles = ("Game", "Hands", "VPIP", "PFR", "saw_f", "sawsd", "wtsdwsf", "wmsd", "FlAFq", "TuAFq", "RvAFq", "PFAFq", "Net($)", "BB/100", "$/hand", "Variance")
+                titles = ("Game", "Hands", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
 
                 col = 0
                 row = 0
@@ -71,14 +71,17 @@ class GuiPlayerStats (threading.Thread):
                     col +=1 
 
                 for row in range(rows-1):
+                    if(row%2 == 0):
+                        bgcolor = "white"
+                    else:
+                        bgcolor = "lightgrey"
                     for col in range(cols):
-                        if(row%2 == 0):
-                            bgcolor = "white"
-                        else:
-                            bgcolor = "lightgrey"
                         eb = gtk.EventBox()
                         eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-                        l = gtk.Label(result[row][col])
+                        if result[row][col]:
+                            l = gtk.Label(result[row][col])
+                        else:
+                            l = gtk.Label(' ')
                         if col == 0:
                             l.set_alignment(xalign=0.0, yalign=0.5)
                         else:
@@ -127,7 +130,6 @@ class GuiPlayerStats (threading.Thread):
 
     def __set_hero_name(self, w, site):
         self.heroes[site] = w.get_text()
-        print "DEBUG: settings heroes[%s]: %s"%(site, self.heroes[site])
     
     def __init__(self, db, config, querylist, debug=True):
         self.debug=debug

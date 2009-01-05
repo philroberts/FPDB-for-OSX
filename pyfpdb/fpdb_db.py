@@ -108,9 +108,9 @@ class fpdb_db:
         self.cursor.execute(self.sql.query['createHandsPlayersTable'])
         self.cursor.execute(self.sql.query['createHandsActionsTable'])
         self.cursor.execute(self.sql.query['createHudCacheTable'])
-        self.cursor.execute(self.sql.query['addTourneyIndex'])
-        self.cursor.execute(self.sql.query['addHandsIndex'])
-        self.cursor.execute(self.sql.query['addPlayersIndex'])
+        #self.cursor.execute(self.sql.query['addTourneyIndex'])
+        #self.cursor.execute(self.sql.query['addHandsIndex'])
+        #self.cursor.execute(self.sql.query['addPlayersIndex'])
         self.fillDefaultData()
         self.db.commit()
 #end def disconnect
@@ -177,6 +177,7 @@ class fpdb_db:
         self.cursor.execute("INSERT INTO Settings VALUES (118);")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
     #end def fillDefaultData
     
@@ -185,6 +186,7 @@ class fpdb_db:
         
         self.drop_tables()
         self.create_tables()
+        fpdb_simple.createAllIndexes(self)
         self.db.commit()
         print "Finished recreating tables"
     #end def recreate_tables
