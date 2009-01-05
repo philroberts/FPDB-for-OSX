@@ -329,6 +329,307 @@ def analyzeDB(fdb):
 #end def analyzeDB
 
 
+# Data Structures for index and foreign key creation
+# drop_code is an int with possible values:  0 - don't drop for bulk import
+#                                            1 - drop during bulk import
+# db differences: 
+# - note that mysql automatically creates indexes on constrained columns when
+#   foreign keys are created, while postgres does not. Hence the much longer list
+#   of indexes is required for postgres.
+# all primary keys are left on all the time
+#
+#             table     column           drop_code
+
+indexes = [
+            [ ] # no db with index 0
+          , [ ] # no db with index 1
+          , [ # indexes for mysql (list index 2)
+              {'tab':'Players',  'col':'name',          'drop':0}
+            , {'tab':'Hands',    'col':'siteHandNo',    'drop':0}
+            , {'tab':'Tourneys', 'col':'siteTourneyNo', 'drop':0}
+            ]
+          , [ # indexes for postgres (list index 3)
+              {'tab':'Boardcards',      'col':'handId',            'drop':0}
+            , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
+            , {'tab':'Hands',           'col':'gametypeId',        'drop':1}
+            , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
+            , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
+            , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
+            , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
+            , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
+            , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
+            , {'tab':'HudCache',        'col':'playerId',          'drop':0}
+            , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
+            , {'tab':'Players',         'col':'siteId',            'drop':1}
+            , {'tab':'Players',         'col':'name',              'drop':0}
+            , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
+            , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
+            , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
+            , {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}
+            , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+            ]
+          ]
+
+foreignKeys = [
+                [ ] # no db with index 0
+              , [ ] # no db with index 1
+              , [ # foreign keys for mysql
+                  {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                ]
+              , [ # foreign keys for postgres
+                  {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                ]
+              ]
+
+
+# MySQL Notes:
+#    "FOREIGN KEY (handId) REFERENCES Hands(id)" - requires index on Hands.id
+#                                                - creates index handId on <thistable>.handId
+# alter table t drop foreign key fk
+# alter table t add foreign key (fkcol) references tab(rcol)
+# alter table t add constraint c foreign key (fkcol) references tab(rcol)
+# (fkcol is used for foreigh key name)
+
+# mysql to list indexes:
+#   SELECT table_name, index_name, non_unique, column_name 
+#   FROM INFORMATION_SCHEMA.STATISTICS
+#     WHERE table_name = 'tbl_name'
+#     AND table_schema = 'db_name'
+#   ORDER BY table_name, index_name, seq_in_index
+#
+# ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)
+# ALTER TABLE tab DROP INDEX idx
+
+# mysql to list fks:
+#   SELECT constraint_name, table_name, column_name, referenced_table_name, referenced_column_name
+#   FROM information_schema.KEY_COLUMN_USAGE
+#   WHERE REFERENCED_TABLE_SCHEMA = (your schema name here)
+#   AND REFERENCED_TABLE_NAME is not null
+#   ORDER BY TABLE_NAME, COLUMN_NAME;
+
+# this may indicate missing object
+# _mysql_exceptions.OperationalError: (1025, "Error on rename of '.\\fpdb\\hands' to '.\\fpdb\\#sql2-7f0-1b' (errno: 152)")
+
+
+# PG notes:
+
+#  To add a foreign key constraint to a table:
+#  ALTER TABLE tab ADD CONSTRAINT c FOREIGN KEY (col) REFERENCES t2(col2) MATCH FULL;
+#  ALTER TABLE tab DROP CONSTRAINT zipchk
+#
+#  Note: index names must be unique across a schema
+#  CREATE INDEX idx ON tab(col)
+#  DROP INDEX idx
+
+def prepareBulkImport(fdb):
+    """Drop some indexes/foreign keys to prepare for bulk import. 
+       Currently keeping the standalone indexes as needed to import quickly"""
+    # fdb is a fpdb_db object including backend, db, cursor, sql variables
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(0)   # allow table/index operations to work
+    for fk in foreignKeys[fdb.backend]:
+        if fk['drop'] == 1:
+            if fdb.backend == MYSQL_INNODB:
+                fdb.cursor.execute("SELECT constraint_name " +
+                                   "FROM information_schema.KEY_COLUMN_USAGE " +
+                                   #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                                   "WHERE 1=1 " +
+                                   "AND table_name = %s AND column_name = %s " + 
+                                   "AND referenced_table_name = %s " +
+                                   "AND referenced_column_name = %s ",
+                                   (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                cons = fdb.cursor.fetchone()
+                print "preparebulk: cons=", cons
+                if cons:
+                    print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
+                    try:
+                        fdb.cursor.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
+                    except:
+                        pass
+            elif fdb.backend == PGSQL:
+                print "dropping pg fk", fk['fktab'], fk['fkcol']
+                try:
+                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
+                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
+                except:
+                    pass
+            else:
+                print "Only MySQL and Postgres supported so far"
+                return -1
+    
+    for idx in indexes[fdb.backend]:
+        if idx['drop'] == 1:
+            if fdb.backend == MYSQL_INNODB:
+                print "dropping mysql index ", idx['tab'], idx['col']
+                try:
+                    fdb.cursor.execute( "alter table %s drop index %s", (idx['tab'],idx['col']) )
+                except:
+                    pass
+            elif fdb.backend == PGSQL:
+                print "dropping pg index ", idx['tab'], idx['col']
+                # mod to use tab_col for index name?
+                try:
+                    fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
+                except:
+                    pass
+            else:
+                print "Only MySQL and Postgres supported so far"
+                return -1
+
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(1)   # go back to normal isolation level
+    fdb.db.commit() # seems to clear up errors if there were any in postgres
+#end def prepareBulkImport
+
+def afterBulkImport(fdb):
+    """Re-create any dropped indexes/foreign keys after bulk import"""
+    # fdb is a fpdb_db object including backend, db, cursor, sql variables
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(0)   # allow table/index operations to work
+    for fk in foreignKeys[fdb.backend]:
+        if fk['drop'] == 1:
+            if fdb.backend == MYSQL_INNODB:
+                fdb.cursor.execute("SELECT constraint_name " +
+                                   "FROM information_schema.KEY_COLUMN_USAGE " +
+                                   #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                                   "WHERE 1=1 " +
+                                   "AND table_name = %s AND column_name = %s " + 
+                                   "AND referenced_table_name = %s " +
+                                   "AND referenced_column_name = %s ",
+                                   (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                cons = fdb.cursor.fetchone()
+                print "afterbulk: cons=", cons
+                if cons:
+                    pass
+                else:
+                    print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                    try:
+                        fdb.cursor.execute("alter table " + fk['fktab'] + " add foreign key (" 
+                                           + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
+                                           + fk['rcol'] + ")")
+                    except:
+                        pass
+            elif fdb.backend == PGSQL:
+                print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                try:
+                    fdb.cursor.execute("alter table " + fk['fktab'] + " add constraint "
+                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
+                                       + " foreign key (" + fk['fkcol']
+                                       + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
+                except:
+                    pass
+            else:
+                print "Only MySQL and Postgres supported so far"
+                return -1
+    
+    for idx in indexes[fdb.backend]:
+        if idx['drop'] == 1:
+            if fdb.backend == MYSQL_INNODB:
+                print "creating mysql index ", idx['tab'], idx['col']
+                try:
+                    fdb.cursor.execute( "alter table %s add index %s(%s)"
+                                      , (idx['tab'],idx['col'],idx['col']) )
+                except:
+                    pass
+            elif fdb.backend == PGSQL:
+                # mod to use tab_col for index name?
+                print "creating pg index ", idx['tab'], idx['col']
+                try:
+                    print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                    fdb.cursor.execute( "create index %s_%s_idx on %s(%s)"
+                                      % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+                except:
+                    print "   ERROR! :-("
+                    pass
+            else:
+                print "Only MySQL and Postgres supported so far"
+                return -1
+
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(1)   # go back to normal isolation level
+    fdb.db.commit()   # seems to clear up errors if there were any in postgres
+#end def afterBulkImport
+
+def createAllIndexes(fdb):
+    """Create new indexes"""
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(0)   # allow table/index operations to work
+    for idx in indexes[fdb.backend]:
+        if fdb.backend == MYSQL_INNODB:
+            print "creating mysql index ", idx['tab'], idx['col']
+            try:
+                fdb.cursor.execute( "alter table %s add index %s(%s)"
+                                  , (idx['tab'],idx['col'],idx['col']) )
+            except:
+                pass
+        elif fdb.backend == PGSQL:
+            # mod to use tab_col for index name?
+            print "creating pg index ", idx['tab'], idx['col']
+            try:
+                print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                fdb.cursor.execute( "create index %s_%s_idx on %s(%s)"
+                                  % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+            except:
+                print "   ERROR! :-("
+                pass
+        else:
+            print "Only MySQL and Postgres supported so far"
+            return -1
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(1)   # go back to normal isolation level
+#end def createAllIndexes
+
+def dropAllIndexes(fdb):
+    """Drop all standalone indexes (i.e. not including primary keys or foreign keys)
+       using list of indexes in indexes data structure"""
+    # maybe upgrade to use data dictionary?? (but take care to exclude PK and FK)
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(0)   # allow table/index operations to work
+    for idx in indexes[fdb.backend]:
+        if fdb.backend == MYSQL_INNODB:
+            print "dropping mysql index ", idx['tab'], idx['col']
+            try:
+                fdb.cursor.execute( "alter table %s drop index %s"
+                                  , (idx['tab'],idx['col']) )
+            except:
+                pass
+        elif fdb.backend == PGSQL:
+            print "dropping pg index ", idx['tab'], idx['col']
+            # mod to use tab_col for index name?
+            try:
+                fdb.cursor.execute( "drop index %s_%s_idx"
+                                  % (idx['tab'],idx['col']) )
+            except:
+                pass
+        else:
+            print "Only MySQL and Postgres supported so far"
+            return -1
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(1)   # go back to normal isolation level
+#end def dropAllIndexes
+
+def analyzeDB(fdb):
+    """Do whatever the DB can offer to update index/table statistics"""
+    if fdb.backend == PGSQL:
+        fdb.db.set_isolation_level(0)   # allow vacuum to work
+        try:
+            fdb.cursor.execute("vacuum analyze")
+        except:
+            print "Error during vacuum"
+        fdb.db.set_isolation_level(1)   # go back to normal isolation level
+#end def analyzeDB
 
 class DuplicateError(Exception):
     def __init__(self, value):
@@ -341,7 +642,7 @@ class FpdbError(Exception):
         self.value = value
     def __str__(self):
         return repr(self.value)
- 
+    
 # gets value for last auto-increment key generated
 # returns -1 if a problem occurs
 def getLastInsertId(backend, conn, cursor):
@@ -382,18 +683,19 @@ def calcPayin(count, buyin, fee):
 #end def calcPayin
  
 def checkPositions(positions):
-    """verifies that these positions are valid"""
-    for i in range (len(positions)):
-        pos=positions[i]
-        try:#todo: use type recognition instead of error
-            if (len(pos)!=1):
-                raise FpdbError("invalid position found in checkPositions. i: "+str(i)+" position: "+pos) #dont need to str() here
-        except TypeError:#->not string->is int->fine
-            pass
-        
-        ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
-        if (pos!="B" and pos!="S" and pos!=0 and pos!=1 and pos!=2 and pos!=3 and pos!=4 and pos!=5 and pos!=6 and pos!=7 and pos != 8 and pos!=9):
-            raise FpdbError("invalid position found in checkPositions. i: "+str(i)+" position: "+str(pos))
+	"""verifies that these positions are valid"""
+	for i in range (len(positions)):
+		pos=positions[i]
+		try:#todo: use type recognition instead of error
+			if (len(pos)!=1):
+				raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+pos) #dont need to str() here
+		except TypeError:#->not string->is int->fine
+			pass
+		
+		### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
+		### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
+		if not (pos == "B" or pos == "S" or (pos >= 0 and pos <= 9)):
+			raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+str(pos))
 #end def fpdb_simple.checkPositions
  
 #classifies each line for further processing in later code. Manipulates the passed arrays.
@@ -1207,67 +1509,83 @@ def parseNames(lines):
  
 #returns an array with the positions of the respective players
 def parsePositions (hand, names):
-    #prep array
-    positions=[]
-    for i in range(len(names)):
-        positions.append(-1)
-    
-    #find blinds
-    sb,bb=-1,-1
-    for i in range (len(hand)):
-        if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
-            sb=hand[i]
-            #print "sb:",sb
-        if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
-            bb=hand[i]
-            #print "bb:",bb
- 
-    #identify blinds
-    #print "parsePositions before recognising sb/bb. names:",names
-    sbExists=True
-    if (sb!=-1):
-        sb=recognisePlayerNo(sb, names, "bet")
-    else:
-        sbExists=False
-    if (bb!=-1):
-        bb=recognisePlayerNo(bb, names, "bet")
-    
-    #write blinds into array
-    if (sbExists):
-        positions[sb]="S"
-    positions[bb]="B"
-    
-    #fill up rest of array
-    if (sbExists):
-        arraypos=sb-1
-    else:
-        arraypos=bb-1
-    distFromBtn=0
-    while (arraypos>=0 and arraypos != bb):
-        #print "parsePositions first while, arraypos:",arraypos,"positions:",positions
-        positions[arraypos]=distFromBtn
-        arraypos-=1
-        distFromBtn+=1
- 
-    ### RHH - Changed to set the null seats before BB to "9"
-    i=bb-1
-    while positions[i] < 0:
-        positions[i]=9
-        i-=1
-    
-    arraypos=len(names)-1
-    if (bb!=0 or (bb==0 and sbExists==False)):
-        while (arraypos>bb):
-            positions[arraypos]=distFromBtn
-            arraypos-=1
-            distFromBtn+=1
-            
-    for i in range (len(names)):
-        if positions[i]==-1:
-            print "parsePositions names:",names
-            print "result:",positions
-            raise FpdbError ("failed to read positions")
-    return positions
+	#prep array
+	positions=[]
+	for i in range(len(names)):
+		positions.append(-1)
+	
+	#find blinds
+	sb,bb=-1,-1
+	for i in range (len(hand)):
+		if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
+			sb=hand[i]
+			#print "sb:",sb
+		if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
+			bb=hand[i]
+			#print "bb:",bb
+
+	#identify blinds
+	#print "parsePositions before recognising sb/bb. names:",names
+	sbExists=True
+	if (sb!=-1):
+		sb=recognisePlayerNo(sb, names, "bet")
+	else:
+		sbExists=False
+	if (bb!=-1):
+		bb=recognisePlayerNo(bb, names, "bet")
+		
+#	print "sb = ", sb, "bb = ", bb
+	if bb == sb:
+		sbExists = False
+		sb = -1
+	
+	#write blinds into array
+	if (sbExists):
+		positions[sb]="S"
+	positions[bb]="B"
+	
+	
+	#fill up rest of array
+	if (sbExists):
+		arraypos=sb-1
+	else:
+		arraypos=bb-1
+	distFromBtn=0
+	while (arraypos>=0 and arraypos != bb):
+		#print "parsePositions first while, arraypos:",arraypos,"positions:",positions
+		positions[arraypos]=distFromBtn
+		arraypos-=1
+		distFromBtn+=1
+
+	# eric - this takes into account dead seats between blinds
+	if sbExists:
+		i = bb - 1
+		while positions[i] < 0 and i != sb:
+			positions[i] = 9
+			i -= 1
+	### RHH - Changed to set the null seats before BB to "9"			
+	if sbExists:
+		i = sb-1
+	else:
+		i = bb-1
+	while positions[i] < 0:
+		positions[i]=9
+		i-=1
+	
+	arraypos=len(names)-1
+	if (bb!=0 or (bb==0 and sbExists==False) or (bb == 1 and sb != arraypos) ):
+		while (arraypos>bb and arraypos > sb):
+			positions[arraypos]=distFromBtn
+			arraypos-=1
+			distFromBtn+=1
+			
+	for i in range (len(names)):
+		if positions[i]==-1:
+			print "parsePositions names:",names
+			print "result:",positions
+			raise FpdbError ("failed to read positions")
+#	print str(positions), "\n"
+	return positions
 #end def parsePositions
  
 #simply parses the rake amount and returns it as an int
@@ -2048,7 +2366,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 hudDataPositions.append('C')
             elif pos>=2 and pos<=4:
                 hudDataPositions.append('M')
-            elif pos>=5 and pos<=7:
+            elif pos>=5 and pos<=8:
                 hudDataPositions.append('E')
             ### RHH Added this elif to handle being a dead hand before the BB (pos==9)
             elif pos==9:

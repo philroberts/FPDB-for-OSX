@@ -68,28 +68,31 @@ class Hud:
         else:
             print "Setting font to ", font + " " + font_size
             self.font = pango.FontDescription(font + " " + font_size)
+            
+        # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
-#        self.window.set_decorated(0)
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
         self.main_window.set_title(table.name + " FPDBHUD")
         self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
-        #self.main_window.set_transient_for(parent.get_toplevel())
 
         self.ebox = gtk.EventBox()
-#        self.label = gtk.Label("Right click to close HUD for %s\nor Save Stat Positions." % (table.name))
         self.label = gtk.Label("FPDB Menu (Right Click)\nLeft-drag to move")
         
-        self.label.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
-        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+        self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
+        self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
+        
+        self.label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
+        self.label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
         
         self.main_window.add(self.ebox)
         self.ebox.add(self.label)
-        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudbgcolor']))
-        self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+        
+        self.ebox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
+        self.ebox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
 
         self.main_window.move(self.table.x, self.table.y)
 
@@ -118,24 +121,21 @@ class Hud:
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
-#    set_keep_above(1) for windows
+
         if os.name == 'nt':
             self.topify_window(self.main_window)
         else:
             self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)  # gets a gdk handle for poker client
             self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid) # gets a gdk handle for the hud table window
             self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
-        
-        self.main_window.set_destroy_with_parent(True)
-        
+               
     def update_table_position(self):
-#        self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)
-#        if self.main_window.parentgdkhandle == None:
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
                 self.kill_hud()
                 return False
-
+        # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
+        
         (x, y) = self.main_window.parentgdkhandle.get_origin()
         if self.table.x != x or self.table.y != y:
             self.table.x = x
@@ -146,8 +146,7 @@ class Hud:
             for i in range(1, self.max + 1):           
                 (x, y) = loc[adj[i]]
                 if self.stat_windows.has_key(i):
-                    self.stat_windows[i].relocate(x, y)
-
+                    self.stat_windows[i].relocate(x, y)                    
         return True
 
     def on_button_press(self, widget, event):
@@ -176,7 +175,6 @@ class Hud:
                 
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
-# todo: have the hud track the poker table's window position regularly, don't forget to update table.x and table.y.        
         for sw in self.stat_windows:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
@@ -267,8 +265,9 @@ class Hud:
                         self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                         
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
-                    if statstring != "xxx":
+                    if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         self.stat_windows[stat_dict[s]['seat']].window.show_all()
+                        self.reposition_windows()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
@@ -291,29 +290,13 @@ class Hud:
         
         for w in tl_windows:
             if w[1] == unique_name:
-                #win32gui.ShowWindow(w[0], win32con.SW_HIDE)
                 self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
                 self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
                 self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle)
-                #win32gui.ShowWindow(w[0], win32con.SW_SHOW)
                 
                 style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
-                #style |= win32con.WS_EX_TOOLWINDOW
-                #style &= ~win32con.WS_EX_APPWINDOW
                 style |= win32con.WS_CLIPCHILDREN
                 win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
-
-
-                #win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
-                
-#                notify_id = (w[0],
-#                             0,
-#                             win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP,
-#                             win32con.WM_USER+20,
-#                             0,
-#                             '')
-#                win32gui.Shell_NotifyIcon(win32gui.NIM_DELETE, notify_id)
-#
         window.set_title(real_name)
 
 class Stat_Window:
@@ -335,7 +318,6 @@ class Stat_Window:
 
         if event.button == 2:   # middle button event
             self.window.hide()
-#            print "middle button clicked"
             pass
 
         if event.button == 1:   # left button event
@@ -349,7 +331,6 @@ class Stat_Window:
 #    Callback from the timeout in the single-click finding part of the
 #    button press call back.  This needs to be modified to get all the 
 #    arguments from the call.
-#        print "left button clicked"
         self.sb_click = 0
         Popup_window(widget, self)
         return False
@@ -404,19 +385,18 @@ class Stat_Window:
             for c in range(self.game.cols):
                 self.e_box[r].append( gtk.EventBox() )
                 
-                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudbgcolor']))
-                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))
+                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
                 
                 Stats.do_tip(self.e_box[r][c], 'farts')
                 self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 self.label[r].append( gtk.Label('xxx') )
                 
-                self.label[r][c].modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudbgcolor']))
-                self.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(parent.colors['hudfgcolor']))        
+                self.label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                self.label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
 
                 self.e_box[r][c].add(self.label[r][c])
                 self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-#                font = pango.FontDescription(self.font)
                 self.label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
@@ -436,7 +416,6 @@ class Popup_window:
         self.window = gtk.Window()
         self.window.set_decorated(0)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-#        self.window.set_keep_above(1)
         self.window.set_title("popup")
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.get_toplevel())
@@ -451,15 +430,13 @@ class Popup_window:
         self.window.add(self.ebox)
         self.ebox.add(self.lab)
         
-        self.ebox.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
-        self.ebox.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))
-        self.window.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
-        self.window.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))
-        self.lab.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudbgcolor']))
-        self.lab.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(stat_window.parent.colors['hudfgcolor']))        
+        self.ebox.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
+        self.ebox.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
+        self.window.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
+        self.window.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
+        self.lab.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
+        self.lab.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
         
-#        self.window.realize()
-
 #    figure out the row, col address of the click that activated the popup
         row = 0
         col = 0
@@ -502,8 +479,8 @@ class Popup_window:
         
         self.window.set_transient_for(stat_window.window)
 
-#    set_keep_above(1) for windows
-        if os.name == 'nt': self.topify_window(self.window)
+        if os.name == 'nt':
+            self.topify_window(self.window)
 
     def button_press_cb(self, widget, event, *args):
 #    This handles all callbacks from button presses on the event boxes in 
@@ -521,11 +498,9 @@ class Popup_window:
 
         if event.button == 2:   # middle button event
             pass
-#            print "middle button clicked"
 
         if event.button == 3:   # right button event
             pass
-#            print "right button clicked"
 
     def single_click(self, widget):
 #    Callback from the timeout in the single-click finding part of the
@@ -564,22 +539,8 @@ class Popup_window:
         
         for w in tl_windows:
             if w[1] == unique_name:
-#                win32gui.ShowWindow(w[0], win32con.SW_HIDE)
-#                style = win32gui.GetWindowLong(w[0], win32con.GWL_EXSTYLE)
-#                style |= win32con.WS_EX_TOOLWINDOW
-#                style &= ~win32con.WS_EX_APPWINDOW
-#                win32gui.SetWindowLong(w[0], win32con.GWL_EXSTYLE, style)
-#                win32gui.ShowWindow(w[0], win32con.SW_SHOW)
                 win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
 
-#                notify_id = (w[0],
-#                             0,
-#                             win32gui.NIF_ICON | win32gui.NIF_MESSAGE | win32gui.NIF_TIP,
-#                             win32con.WM_USER+20,
-#                             0,
-#                             '')
-#                win32gui.Shell_NotifyIcon(win32gui.NIM_DELETE, notify_id)
-#
         window.set_title(real_name)
 
 if __name__== "__main__":
