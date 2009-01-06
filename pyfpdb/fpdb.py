@@ -62,7 +62,8 @@ class fpdb:
 		#print "start of add_tab"
 		for i in self.tab_names: #todo: check this is valid
 			if i==new_tab_name:
-				raise fpdb_simple.FpdbError("duplicate tab_name not permitted")
+				return # we depend on this to not create duplicate tabs, there's no reason to raise an error here?
+#				raise fpdb_simple.FpdbError("duplicate tab_name not permitted")
 		
 		self.tabs.append(new_tab)
 		self.tab_names.append(new_tab_name)

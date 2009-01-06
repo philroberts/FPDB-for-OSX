@@ -61,13 +61,15 @@ class Hud:
         self.stat_windows = {}
         self.popup_windows = {}
         self.aux_windows = []
+        
         (font, font_size) = config.get_default_font(self.table.site)
-        print "font = ", font, "size = ", font_size
-        if font == None or font_size == None:
-            self.font = pango.FontDescription("Sans 7")
-        else:
-            print "Setting font to ", font + " " + font_size
-            self.font = pango.FontDescription(font + " " + font_size)
+        if font == None:
+            font = "Sans"
+        if font_size == None:
+            font_size = "8"
+            
+        print "Setting font to ", font + " " + font_size
+        self.font = pango.FontDescription(font + " " + font_size)
             
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
@@ -122,6 +124,9 @@ class Hud:
 
         self.main_window.show_all()
 
+# TODO: fold all uses of this type of 'topify' code into a single function, if the differences between the versions don't
+# create adverse effects?
+
         if os.name == 'nt':
             self.topify_window(self.main_window)
         else:
@@ -143,10 +148,10 @@ class Hud:
             self.main_window.move(x, y)
             adj = self.adj_seats(self.hand, self.config)
             loc = self.config.get_locations(self.table.site, self.max)
-            for i in range(1, self.max + 1):           
+            for i in range(1, self.max + 1):
                 (x, y) = loc[adj[i]]
-                if self.stat_windows.has_key(i):
-                    self.stat_windows[i].relocate(x, y)                    
+                if i in self.stat_windows:
+                    self.stat_windows[i].relocate(x, y)
         return True
 
     def on_button_press(self, widget, event):
@@ -159,13 +164,15 @@ class Hud:
         return False
 
     def kill_hud(self, *args):
-        for k in self.stat_windows.keys():
+        for k in self.stat_windows:
             self.stat_windows[k].window.destroy()
         self.main_window.destroy()
         self.deleted = True
+        HUD_main.HUD_removed(self.table.name)
 
     def reposition_windows(self, *args):
-        self.update_table_position()
+        for w in self.stat_windows:
+            self.stat_windows[w].window.move(self.stat_windows[w].x, self.stat_windows[w].y)
         return True
 
     def debug_stat_windows(self, *args):
@@ -213,7 +220,7 @@ class Hud:
 #    create the stat windows
         for i in range(1, self.max + 1):           
             (x, y) = loc[adj[i]]
-            if self.stat_windows.has_key(i):
+            if i in self.stat_windows:
                 self.stat_windows[i].relocate(x, y)
             else:
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
@@ -230,7 +237,7 @@ class Hud:
         for i in range(0, config.supported_games[self.poker_game].rows + 1):
             row_list = [''] * config.supported_games[self.poker_game].cols
             self.stats.append(row_list)
-        for stat in config.supported_games[self.poker_game].stats.keys():
+        for stat in config.supported_games[self.poker_game].stats:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
@@ -246,7 +253,7 @@ class Hud:
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
         self.update_table_position()
-        for s in stat_dict.keys():
+        for s in stat_dict:
             try:
                 self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
             except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
@@ -267,7 +274,7 @@ class Hud:
                     self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         self.stat_windows[stat_dict[s]['seat']].window.show_all()
-                        self.reposition_windows()
+#                        self.reposition_windows()
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
@@ -449,14 +456,14 @@ class Popup_window:
 
 #    figure out what popup format we're using
         popup_format = "default"
-        for stat in stat_window.game.stats.keys():
+        for stat in stat_window.game.stats:
             if stat_window.game.stats[stat].row == row and stat_window.game.stats[stat].col == col:
                 popup_format = stat_window.game.stats[stat].popup
                 break
 
 #    get the list of stats to be presented from the config
         stat_list = []
-        for w in stat_window.parent.config.popup_windows.keys():
+        for w in stat_window.parent.config.popup_windows:
             if w == popup_format:
                 stat_list = stat_window.parent.config.popup_windows[w].pu_stats
                 break

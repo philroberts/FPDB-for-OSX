@@ -58,15 +58,15 @@ import Configuration
 
 class Table_Window:
     def __init__(self, info = {}):
-        if info.has_key('number'): self.number = info['number']
-        if info.has_key('exe'):    self.exe    = info['exe']
-        if info.has_key('width'):  self.width  = info['width']
-        if info.has_key('height'): self.height = info['height']
-        if info.has_key('x'):      self.x      = info['x']
-        if info.has_key('y'):      self.y      = info['y']
-        if info.has_key('site'):   self.site   = info['site']
-        if info.has_key('title'):  self.title  = info['title']
-        if info.has_key('name'):   self.name   = info['name']
+        if 'number' in info:    self.number = info['number']
+        if 'exe' in info:       self.exe    = info['exe']
+        if 'width' in info:     self.width  = info['width']
+        if 'height' in info:    self.height = info['height']
+        if 'x' in info:         self.x      = info['x']
+        if 'y' in info:         self.y      = info['y']
+        if 'site' in info:      self.site   = info['site']
+        if 'title' in info:     self.title  = info['title']
+        if 'name' in info:      self.name   = info['name']
 
     def __str__(self):
 #    __str__ method for testing
@@ -225,7 +225,7 @@ def discover_nt_by_name(c, tablename):
     """Finds poker client window with the given table name."""
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
-    for hwnd in titles.keys():
+    for hwnd in titles:
         if titles[hwnd].find(tablename) == -1: continue
         if titles[hwnd].find("History for table:") > -1: continue
         if titles[hwnd].find("HUD:") > -1: continue
@@ -239,7 +239,7 @@ def discover_nt_tournament(c, tour_number, tab_number):
 
     titles ={}
     win32gui.EnumWindows(win_enum_handler, titles)
-    for hwnd in titles.keys():
+    for hwnd in titles:
         if re.search(search_string, titles[hwnd]):
             return decode_windows(c, titles[hwnd], hwnd)
     return None

@@ -36,9 +36,6 @@ import time
 import string
 import re
 
-errorfile = open('HUD-error.txt', 'w', 0)
-sys.stderr = errorfile
-
 #    pyGTK modules
 import pygtk
 import gtk
@@ -61,11 +58,11 @@ def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
 
 def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_connection, config, stat_dict):
-    global hud_dict
-    global eb
+    global hud_dict, eb
+    
     def idle_func():
-        global hud_dict
-        global eb
+        global hud_dict, eb
+        
         gtk.gdk.threads_enter()
         try:
             newlabel = gtk.Label(table_name)
@@ -97,10 +94,19 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
         finally:
             gtk.gdk.threads_leave()
     gobject.idle_add(idle_func)
+ 
+def HUD_removed(tablename):
+    global hud_dict, eb
+    
+    if tablename in hud_dict and hud_dict[tablename].deleted:
+        eb.remove(hud_dict[tablename].tablehudlabel)
+        del(hud_dict[tablename])
+        return False
+    
+    return True
 
 def read_stdin():            # This is the thread function
-    global hud_dict
-    global eb
+    global hud_dict, eb
 
     db_connection = Database.Database(config, db_name, 'temp')
     tourny_finder = re.compile('(\d+) (\d+)')
@@ -112,10 +118,9 @@ def read_stdin():            # This is the thread function
             destroy()
 
 #    delete hud_dict entries for any HUD destroyed since last iteration
-        for h in hud_dict.keys():
-            if hud_dict[h].deleted:
-                eb.remove(hud_dict[h].tablehudlabel)
-                del(hud_dict[h])
+#        for h in hud_dict:
+#            HUD_removed(h)
+# removing this function, we shouldn't need it anymore, since the hud should notify us anyway, right?
 
 #    get basic info about the new hand from the db
         (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
@@ -131,14 +136,14 @@ def read_stdin():            # This is the thread function
         stat_dict = db_connection.get_stats_from_hand(new_hand_id)
 
 #    if a hud for this CASH table exists, just update it
-        if hud_dict.has_key(table_name):
+        if table_name in hud_dict:
 #    update the data for the aux_windows
             for aw in hud_dict[table_name].aux_windows:
                 aw.update_data(new_hand_id, db_connection)
             update_HUD(new_hand_id, table_name, config, stat_dict)
 
 #    if a hud for this TOURNAMENT table exists, just update it
-        elif hud_dict.has_key(tour_number):
+        elif tour_number in hud_dict:
             update_HUD(new_hand_id, tour_number, config, stat_dict)
 
 #    otherwise create a new hud
