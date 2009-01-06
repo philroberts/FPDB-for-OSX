@@ -203,6 +203,28 @@ def wmsd(stat_dict, player):
                 '% won money at showdown'
                 )
 
+def profit100_0(stat_dict, player):
+    """    Profit won per 100 hands (no decimal places)."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['net'])/float(stat_dict[player]['n'])
+        return (stat, 
+                '%.0f'        % (100.0*stat), 
+                'p=%.0f'     % (100.0*stat), 
+                'p/100=%.0f'  % (100.0*stat),
+                '%d/%d' % (stat_dict[player]['net'], stat_dict[player]['n']),
+                'profit/100hands'
+                )
+    except:
+            print "exception calcing p/100: 100 * %d / %d" % (stat_dict[player]['net'], stat_dict[player]['n'])
+            return (stat, 
+                    '%.0f'       % (0), 
+                    'p=%.0f'     % (0), 
+                    'p/100=%.0f'  % (0),
+                    '(%d/%d)' % (0, 0),
+                    'profit/100hands'
+                    )
+
 def saw_f(stat_dict, player):
     """    Saw flop/4th."""
     try:
@@ -690,6 +712,7 @@ if __name__== "__main__":
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'profit100_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'saw_f') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'n') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'fold_f') 

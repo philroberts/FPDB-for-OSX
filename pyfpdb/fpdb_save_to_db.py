@@ -22,6 +22,12 @@ from time import time
 
 import fpdb_simple
 
+MYSQL_INNODB=2
+PGSQL=3
+SQLITE=4
+
+fastStoreHudCache=False   # set this to True to test the new storeHudCache routine
+
 saveActions=True    # set this to False to avoid storing action data
                     # Pros: speeds up imports
                     # Cons: no action data is saved, so you need to keep the hand histories
@@ -68,7 +74,11 @@ def ring_holdem_omaha(backend, db, cursor, base, category, site_hand_no, gametyp
                                backend, db, cursor, category, hands_id, player_ids, start_cashes
                              , positions, card_values, card_suits, winnings, rakes, seatNos)
     t4 = time()            
-    fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
+    #print "ring holdem, backend=%d" % backend
+    if fastStoreHudCache:
+        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+    else:
+        fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
     t5 = time()
     fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
     t6 = time()
@@ -100,7 +110,11 @@ def tourney_holdem_omaha(backend, db, cursor, base, category, siteTourneyNo, buy
                       backend, db, cursor, category, hands_id, player_ids, start_cashes, positions
                     , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids)
     
-    fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
+    #print "tourney holdem, backend=%d" % backend
+    if fastStoreHudCache:
+        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+    else:
+        fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
     
     fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
     
