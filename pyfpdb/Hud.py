@@ -62,11 +62,9 @@ class Hud:
         self.popup_windows = {}
         self.aux_windows = []
         (font, font_size) = config.get_default_font(self.table.site)
-        print "font = ", font, "size = ", font_size
         if font == None or font_size == None:
             self.font = pango.FontDescription("Sans 7")
         else:
-            print "Setting font to ", font + " " + font_size
             self.font = pango.FontDescription(font + " " + font_size)
             
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
@@ -96,7 +94,7 @@ class Hud:
 
         self.main_window.move(self.table.x, self.table.y)
 
-#    A popup window for the main window
+#    A popup menu for the main window
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
@@ -165,7 +163,14 @@ class Hud:
         self.deleted = True
 
     def reposition_windows(self, *args):
-        self.update_table_position()
+#        self.update_table_position()
+        self.main_window.move(self.table.x, self.table.y)
+        adj = self.adj_seats(self.hand, self.config)
+        loc = self.config.get_locations(self.table.site, self.max)
+        for i in range(1, self.max + 1):           
+            (x, y) = loc[adj[i]]
+            if self.stat_windows.has_key(i):
+                self.stat_windows[i].relocate(x, y)                    
         return True
 
     def debug_stat_windows(self, *args):
@@ -245,7 +250,9 @@ class Hud:
             
     def update(self, hand, config, stat_dict):
         self.hand = hand   # this is the last hand, so it is available later
+        self.stat_dict = stat_dict  # so this is available for popups, etc
         self.update_table_position()
+        self.stat_dict = stat_dict
         for s in stat_dict.keys():
             try:
                 self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
@@ -307,18 +314,10 @@ class Stat_Window:
 #    and double-clicks.
 
         if event.button == 3:   # right button event
-            if event.type == gtk.gdk.BUTTON_PRESS: # left button single click
-                if self.sb_click > 0: return
-                self.sb_click = gobject.timeout_add(250, self.single_click, widget)
-            elif event.type == gtk.gdk._2BUTTON_PRESS: # left button double click
-                if self.sb_click > 0:
-                    gobject.source_remove(self.sb_click)
-                    self.sb_click = 0
-                    self.double_click(widget, event, *args)
+            Popup_window(widget, self)
 
         if event.button == 2:   # middle button event
             self.window.hide()
-            pass
 
         if event.button == 1:   # left button event
             # TODO: make position saving save sizes as well?
@@ -326,28 +325,6 @@ class Stat_Window:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
                 self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-
-    def single_click(self, widget):
-#    Callback from the timeout in the single-click finding part of the
-#    button press call back.  This needs to be modified to get all the 
-#    arguments from the call.
-        self.sb_click = 0
-        Popup_window(widget, self)
-        return False
-
-    def double_click(self, widget, event, *args):            
-        self.toggle_decorated(widget)
-
-    def toggle_decorated(self, widget):
-        top = widget.get_toplevel()
-        (x, y) = top.get_position()
-                    
-        if top.get_decorated():
-            top.set_decorated(0)
-            top.move(x, y)
-        else:
-            top.set_decorated(1)
-            top.move(x, y)
             
     def relocate(self, x, y):
         self.x = x + self.table.x
@@ -388,7 +365,7 @@ class Stat_Window:
                 self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
                 
-                Stats.do_tip(self.e_box[r][c], 'farts')
+                Stats.do_tip(self.e_box[r][c], 'stuff')
                 self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 self.label[r].append( gtk.Label('xxx') )
                 
@@ -466,9 +443,9 @@ class Popup_window:
     
 #    calculate the stat_dict and then create the text for the pu
 #        stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand, stat_window.player_id)
-        stat_dict = self.db_connection.get_stats_from_hand(stat_window.parent.hand)
+#        stat_dict = self.db_connection.get_stats_from_hand(stat_window.parent.hand)
 #        db_connection.close_connection()
-
+        stat_dict = stat_window.parent.stat_dict
         pu_text = ""
         for s in stat_list:
             number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
@@ -487,31 +464,13 @@ class Popup_window:
 #    the popup windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.  This is the same code as in the Stat_window class
         if event.button == 1:   # left button event
-            if event.type == gtk.gdk.BUTTON_PRESS: # left button single click
-                if self.sb_click > 0: return
-                self.sb_click = gobject.timeout_add(250, self.single_click, widget)
-            elif event.type == gtk.gdk._2BUTTON_PRESS: # left button double click
-                if self.sb_click > 0:
-                    gobject.source_remove(self.sb_click)
-                    self.sb_click = 0
-                    self.double_click(widget, event, *args)
+            pass
 
         if event.button == 2:   # middle button event
             pass
 
         if event.button == 3:   # right button event
-            pass
-
-    def single_click(self, widget):
-#    Callback from the timeout in the single-click finding part of the
-#    button press call back.  This needs to be modified to get all the 
-#    arguments from the call.
-        self.sb_click = 0
-        self.window.destroy()
-        return False
-
-    def double_click(self, widget, event, *args):
-        self.toggle_decorated(widget)
+            self.window.destroy()
 
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
