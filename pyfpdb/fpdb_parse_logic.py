@@ -41,7 +41,7 @@ def mainParser(backend, db, cursor, site, category, hand):
     isTourney=fpdb_simple.isTourney(hand[0])
     smallBlindLine=0
     for i in range(len(hand)):
-        if hand[i].find("posts small blind")!=-1 or hand[i].find("posts the small blind")!=-1:
+        if 'posts small blind' in hand[i] or 'posts the small blind' in hand[i]:
             if hand[i][-2:] == "$0":
                 continue
             smallBlindLine=i
