@@ -129,12 +129,14 @@ def discover_posix(c):
 #    xwininfo -root -tree -id 0xnnnnn    gets the info on a single window
         for s in c.get_supported_sites():
             params = c.get_site_parameters(s)
+            
+# TODO: We need to make a list of phrases, shared between the WIndows and Unix code!!!!!!       
             if re.search(params['table_finder'], listing):
-                if re.search('Lobby', listing):                continue
-                if re.search('Instant Hand History', listing): continue
-                if re.search('\"Full Tilt Poker\"', listing):  continue # FTP Lobby
-                if re.search('History for table:', listing):   continue
-                if re.search('has no name', listing):          continue
+                if 'Lobby' in listing:   continue
+                if 'Instant Hand History' in listing: continue
+                if '\"Full Tilt Poker\"' in listing: continue
+                if 'History for table:' in listing: continue
+                if 'has no name' in listing: continue:
                 info = decode_xwininfo(c, listing)
                 if info['site'] == None:                       continue
                 if info['title'] == info['exe']:               continue
@@ -147,8 +149,8 @@ def discover_posix(c):
 def discover_posix_by_name(c, tablename):
     """Find an XWindows poker client of the given name."""
     for listing in os.popen('xwininfo -root -tree').readlines():
-        if re.search(tablename, listing):
-            if re.search('History for table:', listing): continue
+        if tablename in listing:
+            if 'History for table:' in listing: continue
             info = decode_xwininfo(c, listing)
             if not info['name'] == tablename:            continue
             return info
@@ -195,9 +197,9 @@ def discover_nt(c):
     titles = {}
     tables = {}
     win32gui.EnumWindows(win_enum_handler, titles)
-    for hwnd in titles.keys():
-        if re.search('Logged In as', titles[hwnd], re.IGNORECASE) and not re.search('Lobby', titles[hwnd]):
-            if re.search('Full Tilt Poker', titles[hwnd]):
+    for hwnd in titles:
+        if 'Logged In as' in titles[hwnd] and not 'Lobby' in titles[hwnd]:
+            if 'Full Tilt Poker' in titles[hwnd]:
                 continue
             tw = Table_Window()
             tw.number = hwnd
@@ -207,9 +209,11 @@ def discover_nt(c):
             tw.height = int( height ) - b_width - tb_height
             tw.x      = int( x ) + b_width
             tw.y      = int( y ) + tb_height
-            if re.search('Logged In as', titles[hwnd]):
+            
+# TODO: Isn't the site being determined by the EXE name it belongs to? is this section of code even useful? cleaning it anyway
+            if 'Logged In as' in titles[hwnd]:
                 tw.site = "PokerStars"
-            elif re.search('Logged In As', titles[hwnd]): #wait, what??!
+            elif 'Logged In As' in titles[hwnd]:
                 tw.site = "Full Tilt"
             else:
                 tw.site = "Unknown"
@@ -226,10 +230,10 @@ def discover_nt_by_name(c, tablename):
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
-        if titles[hwnd].find(tablename) == -1: continue
-        if titles[hwnd].find("History for table:") > -1: continue
-        if titles[hwnd].find("HUD:") > -1: continue
-        if titles[hwnd].find("Chat:") > -1: continue
+        if not tablename in titles[hwnd]: continue
+        if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
+        if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
+        if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
         return decode_windows(c, titles[hwnd], hwnd)
     return None
 
