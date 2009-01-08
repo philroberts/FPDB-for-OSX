@@ -136,7 +136,7 @@ def discover_posix(c):
                 if 'Instant Hand History' in listing: continue
                 if '\"Full Tilt Poker\"' in listing: continue
                 if 'History for table:' in listing: continue
-                if 'has no name' in listing: continue:
+                if 'has no name' in listing: continue
                 info = decode_xwininfo(c, listing)
                 if info['site'] == None:                       continue
                 if info['title'] == info['exe']:               continue
