@@ -116,6 +116,7 @@ def read_stdin():            # This is the thread function
         new_hand_id = string.rstrip(new_hand_id)
         if new_hand_id == "":           # blank line means quit
             destroy()
+            break # this thread is not always killed immediately with gtk.main_quit()
 
 #    delete hud_dict entries for any HUD destroyed since last iteration
 #        for h in hud_dict:

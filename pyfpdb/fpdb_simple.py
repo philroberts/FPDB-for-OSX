@@ -2804,6 +2804,175 @@ WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s AND tourn
 # print "todo: implement storeHudCache for stud base"
 #end def storeHudCache
  
+def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudImportData):
+        """Modified version aiming for more speed ..."""
+# if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+        
+        #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
+        #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
+        for player in range (len(playerIds)):
+            
+            # Set up a clean row
+            row=[]
+            row.append(0)#blank for id
+            row.append(gametypeId)
+            row.append(playerIds[player])
+            row.append(len(playerIds))#seats
+            for i in range(len(hudImportData)+2):
+                row.append(0)
+                
+            if base=="hold":
+                row[4]=hudImportData['position'][player]
+            else:
+                row[4]=0
+            row[5]=1 #tourneysGametypeId
+            row[6]+=1 #HDs
+            if hudImportData['street0VPI'][player]: row[7]+=1
+            if hudImportData['street0Aggr'][player]: row[8]+=1
+            if hudImportData['street0_3B4BChance'][player]: row[9]+=1
+            if hudImportData['street0_3B4BDone'][player]: row[10]+=1
+            if hudImportData['street1Seen'][player]: row[11]+=1
+            if hudImportData['street2Seen'][player]: row[12]+=1
+            if hudImportData['street3Seen'][player]: row[13]+=1
+            if hudImportData['street4Seen'][player]: row[14]+=1
+            if hudImportData['sawShowdown'][player]: row[15]+=1
+            if hudImportData['street1Aggr'][player]: row[16]+=1
+            if hudImportData['street2Aggr'][player]: row[17]+=1
+            if hudImportData['street3Aggr'][player]: row[18]+=1
+            if hudImportData['street4Aggr'][player]: row[19]+=1
+            if hudImportData['otherRaisedStreet1'][player]: row[20]+=1
+            if hudImportData['otherRaisedStreet2'][player]: row[21]+=1
+            if hudImportData['otherRaisedStreet3'][player]: row[22]+=1
+            if hudImportData['otherRaisedStreet4'][player]: row[23]+=1
+            if hudImportData['foldToOtherRaisedStreet1'][player]: row[24]+=1
+            if hudImportData['foldToOtherRaisedStreet2'][player]: row[25]+=1
+            if hudImportData['foldToOtherRaisedStreet3'][player]: row[26]+=1
+            if hudImportData['foldToOtherRaisedStreet4'][player]: row[27]+=1
+            if hudImportData['wonWhenSeenStreet1'][player]!=0.0: row[28]+=hudImportData['wonWhenSeenStreet1'][player]
+            if hudImportData['wonAtSD'][player]!=0.0: row[29]+=hudImportData['wonAtSD'][player]
+            if hudImportData['stealAttemptChance'][player]: row[30]+=1
+            if hudImportData['stealAttempted'][player]: row[31]+=1
+            if hudImportData['foldBbToStealChance'][player]: row[32]+=1
+            if hudImportData['foldedBbToSteal'][player]: row[33]+=1
+            if hudImportData['foldSbToStealChance'][player]: row[34]+=1
+            if hudImportData['foldedSbToSteal'][player]: row[35]+=1
+            
+            if hudImportData['street1CBChance'][player]: row[36]+=1
+            if hudImportData['street1CBDone'][player]: row[37]+=1
+            if hudImportData['street2CBChance'][player]: row[38]+=1
+            if hudImportData['street2CBDone'][player]: row[39]+=1
+            if hudImportData['street3CBChance'][player]: row[40]+=1
+            if hudImportData['street3CBDone'][player]: row[41]+=1
+            if hudImportData['street4CBChance'][player]: row[42]+=1
+            if hudImportData['street4CBDone'][player]: row[43]+=1
+            
+            if hudImportData['foldToStreet1CBChance'][player]: row[44]+=1
+            if hudImportData['foldToStreet1CBDone'][player]: row[45]+=1
+            if hudImportData['foldToStreet2CBChance'][player]: row[46]+=1
+            if hudImportData['foldToStreet2CBDone'][player]: row[47]+=1
+            if hudImportData['foldToStreet3CBChance'][player]: row[48]+=1
+            if hudImportData['foldToStreet3CBDone'][player]: row[49]+=1
+            if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
+            if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
+ 
+            #print "player=", player
+            #print "len(totalProfit)=", len(hudImportData['totalProfit'])
+            if hudImportData['totalProfit'][player]:
+                row[52]+=hudImportData['totalProfit'][player]
+ 
+            if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
+            if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1
+            if hudImportData['street2CheckCallRaiseChance'][player]: row[55]+=1
+            if hudImportData['street2CheckCallRaiseDone'][player]: row[56]+=1
+            if hudImportData['street3CheckCallRaiseChance'][player]: row[57]+=1
+            if hudImportData['street3CheckCallRaiseDone'][player]: row[58]+=1
+            if hudImportData['street4CheckCallRaiseChance'][player]: row[59]+=1
+            if hudImportData['street4CheckCallRaiseDone'][player]: row[60]+=1
+            
+            # Try to do the update first:
+            num = cursor.execute("""UPDATE HudCache
+SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
+    street0_3B4BChance=%s, street0_3B4BDone=%s,
+    street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
+    street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
+    street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,
+    street4Aggr=street4Aggr+%s, otherRaisedStreet1=otherRaisedStreet1+%s,
+    otherRaisedStreet2=otherRaisedStreet2+%s, otherRaisedStreet3=otherRaisedStreet3+%s,
+    otherRaisedStreet4=otherRaisedStreet4+%s,
+    foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s, foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
+    foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s, foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
+    wonWhenSeenStreet1=wonWhenSeenStreet1+%s, wonAtSD=wonAtSD+%s, stealAttemptChance=stealAttemptChance+%s,
+    stealAttempted=stealAttempted+%s, foldBbToStealChance=foldBbToStealChance+%s,
+    foldedBbToSteal=foldedBbToSteal+%s,
+    foldSbToStealChance=foldSbToStealChance+%s, foldedSbToSteal=foldedSbToSteal+%s,
+    street1CBChance=street1CBChance+%s, street1CBDone=street1CBDone+%s, street2CBChance=street2CBChance+%s,
+    street2CBDone=street2CBDone+%s, street3CBChance=street3CBChance+%s,
+    street3CBDone=street3CBDone+%s, street4CBChance=street4CBChance+%s, street4CBDone=street4CBDone+%s,
+    foldToStreet1CBChance=foldToStreet1CBChance+%s, foldToStreet1CBDone=foldToStreet1CBDone+%s,
+    foldToStreet2CBChance=foldToStreet2CBChance+%s, foldToStreet2CBDone=foldToStreet2CBDone+%s,
+    foldToStreet3CBChance=foldToStreet3CBChance+%s,
+    foldToStreet3CBDone=foldToStreet3CBDone+%s, foldToStreet4CBChance=foldToStreet4CBChance+%s,
+    foldToStreet4CBDone=foldToStreet4CBDone+%s, totalProfit=totalProfit+%s,
+    street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
+    street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s, street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
+    street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s, street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
+    street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s, street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
+    street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
+WHERE gametypeId+0=%s 
+AND   playerId=%s 
+AND   activeSeats=%s 
+AND   position=%s 
+AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
+                            row[11], row[12], row[13], row[14], row[15],
+                            row[16], row[17], row[18], row[19], row[20],
+                            row[21], row[22], row[23], row[24], row[25],
+                            row[26], row[27], row[28], row[29], row[30],
+                            row[31], row[32], row[33], row[34], row[35],
+                            row[36], row[37], row[38], row[39], row[40],
+                            row[41], row[42], row[43], row[44], row[45],
+                            row[46], row[47], row[48], row[49], row[50],
+                            row[51], row[52], row[53], row[54], row[55],
+                            row[56], row[57], row[58], row[59], row[60],
+                            row[1], row[2], row[3], str(row[4]), row[5]))
+            # Test statusmessage to see if update worked, do insert if not
+            #print "storehud2, upd num =", num
+            if (   (backend == PGSQL and cursor.statusmessage != "UPDATE 1")
+                or (backend == MYSQL_INNODB and num == 0) ):
+                #print "playerid before insert:",row[2]," num = ", num
+                cursor.execute("""INSERT INTO HudCache
+(gametypeId, playerId, activeSeats, position, tourneyTypeId,
+HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
+otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,
+foldToOtherRaisedStreet3, foldToOtherRaisedStreet4, wonWhenSeenStreet1, wonAtSD, stealAttemptChance,
+stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+street1CBChance, street1CBDone, street2CBChance, street2CBDone, street3CBChance,
+street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStreet1CBDone,
+foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
+foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
+street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
+VALUES (%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
+                #print "hopefully inserted hud data line: ", cursor.statusmessage
+                # message seems to be "INSERT 0 1"
+            else:
+                #print "updated(2) hud data line"
+                pass
+# else:
+# print "todo: implement storeHudCache for stud base"
+#end def storeHudCache2
+ 
 def store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
     cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
     tmp=cursor.fetchone()
