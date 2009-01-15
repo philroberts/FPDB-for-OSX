@@ -76,7 +76,7 @@ class Hud:
         self.main_window = gtk.Window()
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
         self.main_window.set_title(table.name + " FPDBHUD")
-        self.main_window.connect("destroy", self.kill_hud)
+        self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
 
@@ -101,7 +101,7 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.kill_hud)
+        self.item1.connect("activate", self.kill_hud_menu)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')
@@ -163,11 +163,17 @@ class Hud:
         return False
 
     def kill_hud(self, *args):
+        if self.deleted:
+            return # no killing self twice.
         for k in self.stat_windows:
             self.stat_windows[k].window.destroy()
-        self.main_window.destroy()
         self.deleted = True
+        self.main_window.disconnect(self.main_window.destroyhandler) # so we don't potentially infiniteloop in here, right
+        self.main_window.destroy()
         HUD_main.HUD_removed(self.table.name)
+        
+    def kill_hud_menu(self, *args):
+        self.main_window.destroy()
 
     def reposition_windows(self, *args):
         for w in self.stat_windows:
