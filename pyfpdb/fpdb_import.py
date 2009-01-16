@@ -201,8 +201,13 @@ class Importer:
                     for i in range (len(hand)):
                         if (hand[i].endswith(" has been canceled")): #this is their typo. this is a typo, right?
                             cancelled=True
-                        
-                        seat1=hand[i].find("Seat ") #todo: make this recover by skipping this line
+
+                        #FTP generates lines looking like:
+                        #Seat 1: IOS Seat 2: kashman59 (big blind) showed [8c 9d] and won ($3.25) with a pair of Eights
+                        #ie. Seat X multiple times on the same line in the summary section, when a new player sits down in the
+                        #middle of the hand.
+                        #TODO: Deal with this properly, either fix the file or make the parsing code work with this line.
+                        seat1=hand[i].find("Seat ")
                         if (seat1!=-1):
                             if (hand[i].find("Seat ", seat1+3)!=-1):
                                 damaged=True
@@ -216,6 +221,14 @@ class Importer:
                     partial+=1
                 elif (cancelled or damaged):
                     partial+=1
+                    if damaged:
+                        print """
+                                 DEBUG: Partial hand triggered by a line containing 'Seat X:' twice. This is a
+                                 bug in the FTP software when a player sits down in the middle of a hand.
+                                 Adding a newline after the player name will fix the issue
+                              """
+                        print "File: %s" %(file)
+                        print "Line: %s" %(startpos)
                 else: #normal processing
                     isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
