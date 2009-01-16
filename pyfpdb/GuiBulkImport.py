@@ -31,8 +31,8 @@ class GuiBulkImport (threading.Thread):
 		self.importer.addImportDirectory(self.path)
 		self.importer.setCallHud(False)
 		starttime = time()
-		self.importer.runImport()
-		print "GuiBulkImport.import_dir done in %s" %(time() - starttime)
+		(stored, dups, partial, errs, ttime) = self.importer.runImport()
+		print "GuiBulkImport.import_dir done: Stored: %d Dupllicates: %d Partial: %d Errors: %d in %s" %(stored, dups, partial, errs, time() - starttime)
 		
 	def load_clicked(self, widget, data=None):
 		self.inputFile=self.chooser.get_filename()

@@ -113,10 +113,21 @@ class Importer:
     #Run full import on filelist
     def runImport(self):
         fpdb_simple.prepareBulkImport(self.fdb)
+        totstored = 0
+        totdups = 0
+        totpartial = 0
+        toterrors = 0
+        tottime = 0
         for file in self.filelist:
-            self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            totstored += stored
+            totdups += duplicates
+            totpartial += partial
+            toterrors += errors
+            tottime += ttime
         fpdb_simple.afterBulkImport(self.fdb)
         fpdb_simple.analyzeDB(self.fdb)
+        return (totstored, totdups, totpartial, toterrors, tottime)
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
@@ -143,10 +154,11 @@ class Importer:
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
         if(filter == "passthrough"):
-            self.import_fpdb_file(file, site)
+            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
             #Load filter, and run filtered file though main importer
-            self.import_fpdb_file(file, site)
+            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
+        return (stored, duplicates, partial, errors, ttime)
 
 
     def import_fpdb_file(self, file, site):
@@ -276,7 +288,8 @@ class Importer:
                                 print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
                             sys.exit(0)
                 startpos=endpos
-        print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", (time() - starttime)
+        ttime = time() - starttime
+        print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
         
         if stored==0:
             if duplicates>0:
@@ -290,7 +303,7 @@ class Importer:
             #todo: this will cause return of an unstored hand number if the last hand was error or partial
         self.fdb.db.commit()
         self.handsId=handsId
-        return handsId
+        return (stored, duplicates, partial, errors, ttime)
 
     def parseTourneyHistory(self):
         print "Tourney history parser stub"
