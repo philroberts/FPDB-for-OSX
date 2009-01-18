@@ -113,10 +113,21 @@ class Importer:
     #Run full import on filelist
     def runImport(self):
         fpdb_simple.prepareBulkImport(self.fdb)
+        totstored = 0
+        totdups = 0
+        totpartial = 0
+        toterrors = 0
+        tottime = 0
         for file in self.filelist:
-            self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            totstored += stored
+            totdups += duplicates
+            totpartial += partial
+            toterrors += errors
+            tottime += ttime
         fpdb_simple.afterBulkImport(self.fdb)
         fpdb_simple.analyzeDB(self.fdb)
+        return (totstored, totdups, totpartial, toterrors, tottime)
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
@@ -143,10 +154,11 @@ class Importer:
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
         if(filter == "passthrough"):
-            self.import_fpdb_file(file, site)
+            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
             #Load filter, and run filtered file though main importer
-            self.import_fpdb_file(file, site)
+            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
+        return (stored, duplicates, partial, errors, ttime)
 
 
     def import_fpdb_file(self, file, site):
@@ -201,8 +213,13 @@ class Importer:
                     for i in range (len(hand)):
                         if (hand[i].endswith(" has been canceled")): #this is their typo. this is a typo, right?
                             cancelled=True
-                        
-                        seat1=hand[i].find("Seat ") #todo: make this recover by skipping this line
+
+                        #FTP generates lines looking like:
+                        #Seat 1: IOS Seat 2: kashman59 (big blind) showed [8c 9d] and won ($3.25) with a pair of Eights
+                        #ie. Seat X multiple times on the same line in the summary section, when a new player sits down in the
+                        #middle of the hand.
+                        #TODO: Deal with this properly, either fix the file or make the parsing code work with this line.
+                        seat1=hand[i].find("Seat ")
                         if (seat1!=-1):
                             if (hand[i].find("Seat ", seat1+3)!=-1):
                                 damaged=True
@@ -216,6 +233,14 @@ class Importer:
                     partial+=1
                 elif (cancelled or damaged):
                     partial+=1
+                    if damaged:
+                        print """
+                                 DEBUG: Partial hand triggered by a line containing 'Seat X:' twice. This is a
+                                 bug in the FTP software when a player sits down in the middle of a hand.
+                                 Adding a newline after the player name will fix the issue
+                              """
+                        print "File: %s" %(file)
+                        print "Line: %s" %(startpos)
                 else: #normal processing
                     isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
@@ -263,7 +288,8 @@ class Importer:
                                 print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
                             sys.exit(0)
                 startpos=endpos
-        print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", (time() - starttime)
+        ttime = time() - starttime
+        print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
         
         if stored==0:
             if duplicates>0:
@@ -277,7 +303,7 @@ class Importer:
             #todo: this will cause return of an unstored hand number if the last hand was error or partial
         self.fdb.db.commit()
         self.handsId=handsId
-        return handsId
+        return (stored, duplicates, partial, errors, ttime)
 
     def parseTourneyHistory(self):
         print "Tourney history parser stub"
