@@ -182,7 +182,7 @@ class Importer:
             firstline = self.lines[0]
         except:
 #           print "import_fpdb_file", file, site, self.lines, "\n"
-            return
+            return (0,0,0,1,0)
 
         if firstline.find("Tournament Summary")!=-1:
             print "TODO: implement importing tournament summaries"
