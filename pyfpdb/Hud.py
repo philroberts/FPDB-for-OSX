@@ -365,23 +365,29 @@ class Stat_Window:
 
         self.grid = gtk.Table(rows = self.game.rows, columns = self.game.cols, homogeneous = False)
         self.window.add(self.grid)
+        self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
         
         self.e_box = []
         self.frame = []
         self.label = []
         for r in range(self.game.rows):
+            self.frame.append([])
             self.e_box.append([])
             self.label.append([])
             for c in range(self.game.cols):
+                self.frame[r].append( gtk.Frame() )
                 self.e_box[r].append( gtk.EventBox() )
                 
                 self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
                 
                 Stats.do_tip(self.e_box[r][c], 'stuff')
-                self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+#                self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                self.grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                self.frame[r][c].add(self.e_box[r][c])
                 self.label[r].append( gtk.Label('xxx') )
                 
+                self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
 
