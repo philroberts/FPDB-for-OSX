@@ -167,6 +167,11 @@ class Hud:
             return # no killing self twice.
         for k in self.stat_windows:
             self.stat_windows[k].window.destroy()
+#    also kill any aux windows
+        for m in self.aux_windows:
+            m.destroy()
+            self.aux_windows.remove(m)
+
         self.deleted = True
         self.main_window.disconnect(self.main_window.destroyhandler) # so we don't potentially infiniteloop in here, right
         self.main_window.destroy()
