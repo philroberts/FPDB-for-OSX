@@ -117,14 +117,10 @@ def read_stdin():            # This is the thread function
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
         new_hand_id = string.rstrip(new_hand_id)
+        print "new hand = ", new_hand_id
         if new_hand_id == "":           # blank line means quit
             destroy()
             break # this thread is not always killed immediately with gtk.main_quit()
-
-#    delete hud_dict entries for any HUD destroyed since last iteration
-#        for h in hud_dict:
-#            HUD_removed(h)
-# removing this function, we shouldn't need it anymore, since the hud should notify us anyway, right?
 
 #    get basic info about the new hand from the db
         (table_name, max, poker_game) = db_connection.get_table_name(new_hand_id)
