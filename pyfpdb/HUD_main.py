@@ -65,7 +65,7 @@ def create_HUD(new_hand_id, table, db_name, table_name, max, poker_game, db_conn
         
         gtk.gdk.threads_enter()
         try:
-            newlabel = gtk.Label(table_name)
+            newlabel = gtk.Label(table.site + " - " + table_name)
             eb.add(newlabel)
             newlabel.show()
 
@@ -98,9 +98,12 @@ def update_HUD(new_hand_id, table_name, config, stat_dict):
 def HUD_removed(tablename):
     global hud_dict, eb
     
+    tablename = Tables.clean_title(tablename)
+    # TODO: There's a potential problem here somewhere, that this hacks around .. the table_name as being passed to HUD_create is cleaned,
+    # but the table.name as being passed here is not cleaned. I don't know why. -eric
     if tablename in hud_dict and hud_dict[tablename].deleted:
         eb.remove(hud_dict[tablename].tablehudlabel)
-        del(hud_dict[tablename])
+        del hud_dict[tablename]
         return False
     
     return True

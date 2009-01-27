@@ -35,6 +35,7 @@ if os.name == 'nt':
     import win32process
     import win32api
     import win32con
+    import win32security
 
 #    FreePokerTools modules
 import Configuration
@@ -250,10 +251,23 @@ def discover_nt_tournament(c, tour_number, tab_number):
 
 def get_nt_exe(hwnd):
     """Finds the name of the executable that the given window handle belongs to."""
+    
+    # Request privileges to enable "debug process", so we can later use PROCESS_VM_READ, retardedly required to GetModuleFileNameEx()
+    priv_flags = win32security.TOKEN_ADJUST_PRIVILEGES | win32security.TOKEN_QUERY
+    hToken = win32security.OpenProcessToken (win32api.GetCurrentProcess(), priv_flags)
+    # enable "debug process"
+    privilege_id = win32security.LookupPrivilegeValue (None, win32security.SE_DEBUG_NAME)
+    old_privs = win32security.AdjustTokenPrivileges (hToken, 0, [(privilege_id, win32security.SE_PRIVILEGE_ENABLED)])
+    
+    # Open the process, and query it's filename
     processid = win32process.GetWindowThreadProcessId(hwnd)
     pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
     exename = win32process.GetModuleFileNameEx(pshandle, 0)
+    
+    # clean up
     win32api.CloseHandle(pshandle)
+    win32api.CloseHandle(hToken)
+    
     return exename
 
 def decode_windows(c, title, hwnd):

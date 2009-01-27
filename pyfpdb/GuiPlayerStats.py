@@ -67,7 +67,7 @@ class GuiPlayerStats (threading.Thread):
                 for t in titles:
                     l = gtk.Label(titles[col])
                     l.show()
-                    self.stats_table.attach(l, col, col+1, row, row+1)
+                    self.stats_table.attach(l, col, col+1, row, row+1, yoptions=gtk.SHRINK)
                     col +=1 
 
                 for row in range(rows-1):
@@ -87,7 +87,7 @@ class GuiPlayerStats (threading.Thread):
                         else:
                             l.set_alignment(xalign=1.0, yalign=0.5)
                         eb.add(l)
-                        self.stats_table.attach(eb, col, col+1, row+1, row+2)
+                        self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
                         l.show()
                         eb.show()
         self.fdb.db.commit()
