@@ -117,7 +117,6 @@ def read_stdin():            # This is the thread function
     while True: # wait for a new hand number on stdin
         new_hand_id = sys.stdin.readline()
         new_hand_id = string.rstrip(new_hand_id)
-        print "new hand = ", new_hand_id
         if new_hand_id == "":           # blank line means quit
             destroy()
             break # this thread is not always killed immediately with gtk.main_quit()
