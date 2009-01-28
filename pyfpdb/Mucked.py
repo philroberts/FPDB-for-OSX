@@ -50,6 +50,9 @@ class Aux_Window:
     def update_gui(self):
         pass
 
+    def destroy(self):
+        self.container.destroy()
+
 class Stud_mucked(Aux_Window):
     def __init__(self, container, hud, config, params):
 
