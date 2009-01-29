@@ -1158,6 +1158,8 @@ def parseHandStartTime(topline, site):
     
     isUTC=False
     if site=="ftp":
+        # Full Tilt Sit'n'Go
+        # Full Tilt Poker Game #10311865543: $1 + $0.25 Sit & Go (78057629), Table 1 - 25/50 - No Limit Hold'em - 0:07:45 ET - 2009/01/29
         pos = topline.find(" ", len(topline)-26)+1
         tmp = topline[pos:]
         #print "year:", tmp[14:18], "month", tmp[19:21], "day", tmp[22:24], "hour", tmp[0:2], "minute", tmp[3:5], "second", tmp[6:8]
