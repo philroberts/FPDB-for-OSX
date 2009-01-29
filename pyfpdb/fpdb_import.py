@@ -59,10 +59,10 @@ class Importer:
         self.pos_in_file = {} # dict to remember how far we have read in the file
         #Set defaults
         self.callHud = self.config.get_import_parameters().get("callFpdbHud")
-        if not self.settings.has_key('minPrint'):
+        if 'minPrint' not in self.settings:
             #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
-        if not self.settings.has_key('handCount'):
+        if 'handCount' not in self.settings:
             #TODO: Is this value in the xml file?
             self.settings['handCount'] = 0
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
@@ -108,7 +108,7 @@ class Importer:
             for file in os.listdir(dir):
                 self.addImportFile(os.path.join(dir, file), site, filter)
         else:
-            print "Warning: Attempted to add: '" + str(dir) + "' as an import directory"
+            print "Warning: Attempted to add non-directory: '" + str(dir) + "' as an import directory"
 
     #Run full import on filelist
     def runImport(self):
@@ -148,7 +148,7 @@ class Importer:
                 self.updated[file] = time()
                 # This codepath only runs first time the file is found, if modified in the last
                 # minute run an immediate import.
-                if (time() - stat_info.st_mtime) < 60:
+                if (time() - stat_info.st_mtime) < 60: # TODO: figure out a way to dispatch this to the seperate thread so our main window doesn't lock up on initial import
                     self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
 
     # This is now an internal function that should not be called directly.
@@ -156,7 +156,7 @@ class Importer:
         if(filter == "passthrough"):
             (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
-            #Load filter, and run filtered file though main importer
+            # TODO: Load filter, and run filtered file though main importer
             (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         return (stored, duplicates, partial, errors, ttime)
 
@@ -219,10 +219,12 @@ class Importer:
                         #ie. Seat X multiple times on the same line in the summary section, when a new player sits down in the
                         #middle of the hand.
                         #TODO: Deal with this properly, either fix the file or make the parsing code work with this line.
-                        seat1=hand[i].find("Seat ")
-                        if (seat1!=-1):
-                            if (hand[i].find("Seat ", seat1+3)!=-1):
-                                damaged=True
+                        if "Seat" in hand[i]:
+                            mo = re.search(" Seat [0-9]+: ", hand[i])
+                            if mo:
+                                print "mo=", mo, "\nmo.start=", mo.start(),"\nhand[i]=",hand[i]
+                                hand.insert(i+1, hand[i][mo.start()+1:])
+                                hand[i] = hand[i][0:mo.start()]
                 
                 if (len(hand)<3):
                     pass
