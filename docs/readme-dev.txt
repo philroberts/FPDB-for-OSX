@@ -1,3 +1,7 @@
+This file is badly out of date, but I'm going to leave it here for now. :)
+More up-to-date information is on the wiki: http://fpdb.wiki.sourceforge.net/
+REB 30-Jan-2009
+
 Hi,
 This document is to serve as a little overview (later: full technical doc) for current and prospective developers with:
 a) introduction into the code structure

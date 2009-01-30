@@ -1,3 +1,7 @@
+This file is badly out of date, but I'm going to leave it here for now. :)
+More up-to-date information is on the wiki: http://fpdb.wiki.sourceforge.net/
+REB 30-Jan-2009
+
 Before you do this make sure you setup the dependencies, the database, user, tables and config file.
 
 Running it
