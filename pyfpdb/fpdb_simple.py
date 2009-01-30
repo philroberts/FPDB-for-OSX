@@ -1158,8 +1158,12 @@ def parseHandStartTime(topline, site):
     
     isUTC=False
     if site=="ftp":
+        # TODO: Turn this into a regex that matches the following
         # Full Tilt Sit'n'Go
         # Full Tilt Poker Game #10311865543: $1 + $0.25 Sit & Go (78057629), Table 1 - 25/50 - No Limit Hold'em - 0:07:45 ET - 2009/01/29
+        # Cash Game:
+        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
+        # Full Tilt Poker Game #9468383505: Table Bike (deep 6) - $0.05/$0.10 - No Limit Hold'em - 5:09:36 ET - 2008/12/13
         pos = topline.find(" ", len(topline)-26)+1
         tmp = topline[pos:]
         #print "year:", tmp[14:18], "month", tmp[19:21], "day", tmp[22:24], "hour", tmp[0:2], "minute", tmp[3:5], "second", tmp[6:8]
