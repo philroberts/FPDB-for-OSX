@@ -44,6 +44,8 @@ import GuiGraphViewer
 import FpdbSQLQueries
 import Configuration
 
+VERSION = "0.10"
+
 class fpdb:
 	def tab_clicked(self, widget, tab_name):
 		"""called when a tab button is clicked to activate that tab"""
@@ -114,7 +116,8 @@ class fpdb:
 	#end def destroy
 	
 	def dia_about(self, widget, data):
-		print "todo: implement dia_about"
+		print "todo: implement dia_about",
+		print " version = %s, requires database version %s" % (VERSION, "118")
 	#end def dia_about
 	
 	def dia_create_del_database(self, widget, data):
@@ -376,7 +379,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 		self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
 		self.window.connect("delete_event", self.delete_event)
 		self.window.connect("destroy", self.destroy)
-		self.window.set_title("Free Poker DB - version: alpha9+, p143 or higher")
+		self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
 		self.window.set_border_width(1)
 		self.window.set_size_request(1020,400)
 		self.window.set_resizable(True)
