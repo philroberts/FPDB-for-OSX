@@ -15,23 +15,23 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+#get rid of extraneous stuff
 rm regression-test/*.found.txt
 rm regression-test/*.pyc
 rm pyfpdb/*.pyc
 
-mkdir fpdb-$1
-cp -R docs fpdb-$1/
-cp -R packaging fpdb-$1/
-cp -R pyfpdb fpdb-$1/
-#rm fpdb-$1/pyfpdb/HUD_config.*
-cp pyfpdb/HUD_config.xml.example fpdb-$1/pyfpdb/HUD_config.xml
-cp -R regression-test fpdb-$1/
-cp -R utils fpdb-$1/
+# make the fpdb_$1.zip file for windows
+echo "*** making zip file"
+zip -r ../fpdb_$1.zip docs
+zip -r ../fpdb_$1.zip ignore-me_perl6
+zip -r ../fpdb_$1.zip packaging
+zip -r ../fpdb_$1.zip pyfpdb
+zip -r ../fpdb_$1.zip regression-test
+zip -r ../fpdb_$1.zip utils
+zip -r ../fpdb_$1.zip website
 
-cd fpdb-$1
-zip * releases/fpdb_$1 *
-#tar -cf - * | bzip2 >> releases/fpdb_$1.tar.bz2
-#cd ..
-#rm -r fpdb-$1
+# now make the fpdb_$1.tar.bz2 file for linux
+echo "*** making tar.bz2 file"
+tar --recursion -cjf ../fpdb_$1.tar.bz2 *
 
-#echo "Please ensure the files are named fpdb-1.0_alpha*_p*.*"
+
