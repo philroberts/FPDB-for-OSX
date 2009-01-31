@@ -19,4 +19,19 @@ rm regression-test/*.found.txt
 rm regression-test/*.pyc
 rm pyfpdb/*.pyc
 
-#git-add--interactive
+mkdir fpdb-$1
+cp -R docs fpdb-$1/
+cp -R packaging fpdb-$1/
+cp -R pyfpdb fpdb-$1/
+#rm fpdb-$1/pyfpdb/HUD_config.*
+cp pyfpdb/HUD_config.xml.example fpdb-$1/pyfpdb/HUD_config.xml
+cp -R regression-test fpdb-$1/
+cp -R utils fpdb-$1/
+
+cd fpdb-$1
+zip * releases/fpdb_$1 *
+#tar -cf - * | bzip2 >> releases/fpdb_$1.tar.bz2
+#cd ..
+#rm -r fpdb-$1
+
+#echo "Please ensure the files are named fpdb-1.0_alpha*_p*.*"
