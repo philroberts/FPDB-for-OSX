@@ -88,7 +88,7 @@ class HandHistoryConverter:
         self.hhbase    = os.path.expanduser(self.hhbase)
         self.hhdir     = os.path.join(self.hhbase,sitename)
         self.gametype  = []
-#		self.ofile     = os.path.join(self.hhdir,file)
+        self.ofile     = os.path.join(self.hhdir,file)
         self.rexx      = FpdbRegex.FpdbRegex()
 
     def __str__(self):
@@ -110,6 +110,7 @@ class HandHistoryConverter:
             print "Cowardly refusing to continue after failed sanity check"
             return
         self.readFile(self.file)
+        outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
@@ -137,13 +138,14 @@ class HandHistoryConverter:
             hand.totalPot()
             self.getRake(hand)
 
-            hand.writeHand(sys.stderr)
+            hand.writeHand(outfile)
             #if(hand.involved == True):
                 #self.writeHand("output file", hand)
                 #hand.printHand()
             #else:
                 #pass #Don't write out observed hands
 
+        outfile.close()
         endtime = time.time()
         print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
 
@@ -259,3 +261,10 @@ class HandHistoryConverter:
             result*=100
         return result
 #end def float2int
+
+    def getStatus(self):
+        #TODO: Return a status of true if file processed ok
+        return True
+
+    def getProcessedFile(self):
+        return self.ofile

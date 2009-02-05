@@ -39,6 +39,7 @@ import re
 import fpdb_db
 import fpdb_simple
 import fpdb_parse_logic
+import EverleafToFpdb
 from time import time
 
 class Importer:
@@ -156,8 +157,18 @@ class Importer:
         if(filter == "passthrough"):
             (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
-            # TODO: Load filter, and run filtered file though main importer
-            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
+            conv = None
+            # Load filter, process file, pass returned filename to import_fpdb_file
+            if(filter == "EverleafToFpdb"):
+                conv = EverleafToFpdb(self.config, file)
+
+            conv.readSupportedGames() # Should this be done by HHC on init?
+            conv.determineGameType()
+            conv.processFile()
+            if(conv.getStatus()):
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(ofile), site)
+
+        #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
 
