@@ -86,7 +86,7 @@ class Everleaf(HandHistoryConverter):
         self.rexx.compileRegexes()
 
     def readSupportedGames(self):
-        pass
+        return [["ring", "hold", "nl"]]
 
     def determineGameType(self):
         # Cheating with this regex, only support nlhe at the moment

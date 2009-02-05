@@ -151,7 +151,9 @@ class HandHistoryConverter:
 
     #####
     # These functions are parse actions that may be overridden by the inheriting class
-    #
+    # This function should return a list of lists looking like:
+    # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
+    # Showing all supported games limits and types
     
     def readSupportedGames(self): abstract
 
