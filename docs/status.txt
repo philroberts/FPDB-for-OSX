@@ -1,3 +1,7 @@
+This file is badly out of date, but I'm going to leave it here for now. :)
+More up-to-date information is on the wiki: http://fpdb.wiki.sourceforge.net/
+REB 30-Jan-2009
+
 For all support please note that the tables WILL be changed, almost certainly without keeping backwards compatibility. Therefore you should keep your history files after import so you can re-import when necessary. Should you lose history files and need a "database updater" let me know.
 
 If support for another site/game would encourage you to help with this software please let me know at steffen@sycamoretest.info.
