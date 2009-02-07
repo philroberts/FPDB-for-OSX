@@ -17,8 +17,24 @@
 
 #see status.txt for site/games support info
 
-import sys
+#    Standard Library modules
 
+import os  # todo: remove this once import_dir is in fpdb_import
+import sys
+from time import time
+import traceback
+import math
+import datetime
+import re
+
+#    fpdb/FreePokerTools modules
+
+import fpdb_simple
+import fpdb_db
+import fpdb_parse_logic
+import Configuration
+
+#    database interface modules
 try:
     import MySQLdb
     mysqlLibFound=True
@@ -30,16 +46,6 @@ try:
     pgsqlLibFound=True
 except:
     pass
-
-import traceback
-import math
-import os
-import datetime
-import re
-import fpdb_db
-import fpdb_simple
-import fpdb_parse_logic
-from time import time
 
 class Importer:
 
@@ -60,10 +66,8 @@ class Importer:
         #Set defaults
         self.callHud = self.config.get_import_parameters().get("callFpdbHud")
         if 'minPrint' not in self.settings:
-            #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
         if 'handCount' not in self.settings:
-            #TODO: Is this value in the xml file?
             self.settings['handCount'] = 0
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
@@ -84,6 +88,15 @@ class Importer:
     def setFailOnError(self, value):
         self.settings['failOnError'] = value
 
+    def setHandsInDB(self, value):
+        self.settings['handsInDB'] = value
+
+    def setThreads(self, value):
+        self.settings['threads'] = value
+
+    def setDropIndexes(self, value):
+        self.settings['dropIndexes'] = value
+
 #   def setWatchTime(self):
 #       self.updated = time()
 
@@ -92,7 +105,7 @@ class Importer:
 
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
-        #TODO: test it is a valid file
+        #TODO: test it is a valid file -> put that in config!!
         self.filelist[filename] = [site] + [filter]
 
     #Add a directory of files to filelist
@@ -110,14 +123,20 @@ class Importer:
         else:
             print "Warning: Attempted to add non-directory: '" + str(dir) + "' as an import directory"
 
-    #Run full import on filelist
     def runImport(self):
-        fpdb_simple.prepareBulkImport(self.fdb)
+        """"Run full import on self.filelist."""
+        start = datetime.datetime.now()
+        print "started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
+        if self.settings['dropIndexes'] == 'auto':
+            self.settings['dropIndexes'] = self.calculate_auto()
+        if self.settings['dropIndexes'] == 'drop':
+            fpdb_simple.prepareBulkImport(self.fdb)
         totstored = 0
         totdups = 0
         totpartial = 0
         toterrors = 0
         tottime = 0
+#        if threads <= 1: do this bit
         for file in self.filelist:
             (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
             totstored += stored
@@ -125,9 +144,19 @@ class Importer:
             totpartial += partial
             toterrors += errors
             tottime += ttime
-        fpdb_simple.afterBulkImport(self.fdb)
+        if self.settings['dropIndexes'] == 'drop':
+            fpdb_simple.afterBulkImport(self.fdb)
         fpdb_simple.analyzeDB(self.fdb)
         return (totstored, totdups, totpartial, toterrors, tottime)
+#        else: import threaded
+
+    def calculate_auto(self):
+        """An heuristic to determine a reasonable value of drop/don't drop"""
+        if len(self.filelist) == 1:            return "don't drop"      
+        if self.settings['handsInDB'] < 5000:  return "drop"
+        if len(self.filelist) < 50:            return "don't drop"      
+        if self.settings['handsInDB'] > 50000: return "don't drop"
+        return "drop"
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
