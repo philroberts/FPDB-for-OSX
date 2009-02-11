@@ -1,3 +1,8 @@
+This file is badly out of date, but I'm going to leave it here for now. :)
+More up-to-date information is on the wiki: http://fpdb.wiki.sourceforge.net/
+REB 30-Jan-2009
+
+
 Summary
 =======
 A database program to track your online poker games, the behaviour of the other players and your winnings/losses. Supports Holdem, Omaha, Stud and Razz for cash games as well as SnG and MTT tournaments with more possibly coming in the future. Some of this is not yet working though, please see status.txt and known-bugs-and-planned-features.txt
