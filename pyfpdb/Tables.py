@@ -361,7 +361,7 @@ def clean_title(name):
                 ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
                 ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
                 ' \(speed\)', 
-                ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
+                ' no all-in', ' fast', ',', ' 50BB min', '50bb min', '\s+$']:
         name = re.sub(pattern, '', name)
     name = name.rstrip()
     return name

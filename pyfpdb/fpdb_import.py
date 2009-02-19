@@ -33,6 +33,7 @@ import fpdb_simple
 import fpdb_db
 import fpdb_parse_logic
 import Configuration
+import EverleafToFpdb
 
 #    database interface modules
 try:
@@ -66,8 +67,10 @@ class Importer:
         #Set defaults
         self.callHud = self.config.get_import_parameters().get("callFpdbHud")
         if 'minPrint' not in self.settings:
+            #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
         if 'handCount' not in self.settings:
+            #TODO: Is this value in the xml file?
             self.settings['handCount'] = 0
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
@@ -185,8 +188,19 @@ class Importer:
         if(filter == "passthrough"):
             (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
-            # TODO: Load filter, and run filtered file though main importer
-            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
+            conv = None
+            # Load filter, process file, pass returned filename to import_fpdb_file
+            if(filter == "EverleafToFpdb"):
+                conv = EverleafToFpdb(self.config, file)
+
+            supp = conv.readSupportedGames() # Should this be done by HHC on init?
+            gt = conv.determineGameType()
+            # TODO: Check that gt is in supp - error appropriately if not
+            conv.processFile()
+            if(conv.getStatus()):
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(ofile), site)
+
+        #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
 
