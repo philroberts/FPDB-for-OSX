@@ -264,6 +264,7 @@ For sites which by "raises x" mean "calls and raises putting a total of x in the
         """\
 Add a raise on [street] by [player] to [amountTo]
 """
+        #CG - No idea if this function has been test/verified
         self.checkPlayerExists(player)
         Bp = self.lastBet[street]
         Bc = reduce(operator.add, self.bets[street][player], 0)

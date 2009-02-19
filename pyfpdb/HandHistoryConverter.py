@@ -110,6 +110,8 @@ class HandHistoryConverter:
             print "Cowardly refusing to continue after failed sanity check"
             return
         self.readFile(self.file)
+        # Ugh
+        self.obs = self.obs.replace('\r\n', '\n')
         outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
