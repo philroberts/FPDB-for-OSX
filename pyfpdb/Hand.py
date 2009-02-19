@@ -265,6 +265,7 @@ For sites which by "raises x" mean "calls and raises putting a total of x in the
 Add a raise on [street] by [player] to [amountTo]
 """
         self.checkPlayerExists(player)
+        Bp = self.lastBet[street]
         Bc = reduce(operator.add, self.bets[street][player], 0)
         Rt = Decimal(amountTo)
         C = Bp - Bc
