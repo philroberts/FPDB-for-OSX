@@ -59,6 +59,7 @@ class Importer:
         self.cursor = None
         self.filelist = {}
         self.dirlist = {}
+        self.addToDirList = {}
         self.monitor = False
         self.updated = {}       #Time last import was run {file:mtime}
         self.lines = None
@@ -180,18 +181,33 @@ class Importer:
                 self.updated[file] = time()
                 # This codepath only runs first time the file is found, if modified in the last
                 # minute run an immediate import.
-                if (time() - stat_info.st_mtime) < 60: # TODO: figure out a way to dispatch this to the seperate thread so our main window doesn't lock up on initial import
+                if (time() - stat_info.st_mtime) < 60 or os.path.isdir(file): # TODO: figure out a way to dispatch this to the seperate thread so our main window doesn't lock up on initial import
                     self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                    
+        for dir in self.addToDirList:
+            self.addImportDirectory(dir, True, self.addToDirList[dir][0], self.addToDirList[dir][1])
+        
+        self.addToDirList = {}
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
-        if(filter == "passthrough"):
+        if os.path.isdir(file):
+            self.addToDirList[file] = [site] + [filter]
+            return
+        if filter == "passthrough" or filter == "":
             (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
             conv = None
             # Load filter, process file, pass returned filename to import_fpdb_file
-            if(filter == "EverleafToFpdb"):
-                conv = EverleafToFpdb(self.config, file)
+            
+            # TODO: Shouldn't we be able to use some sort of lambda or something to just call a Python object by whatever name we specify? then we don't have to hardcode them,
+            # someone can just create their own python module for it
+            if filter == "EverleafToFpdb":
+                print "converting ", file
+                conv = EverleafToFpdb.Everleaf(self.config, file)
+            else:
+                print "Unknown filter ", filter
+                return
 
             supp = conv.readSupportedGames() # Should this be done by HHC on init?
             gt = conv.determineGameType()

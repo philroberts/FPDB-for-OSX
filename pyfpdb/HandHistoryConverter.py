@@ -28,7 +28,7 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
-from pokereval import PokerEval
+# from pokereval import PokerEval
 import time
 import datetime
 import gettext
@@ -74,7 +74,7 @@ gettext.install('myapplication')
 
 
 class HandHistoryConverter:
-    eval = PokerEval()
+#    eval = PokerEval()
     def __init__(self, config, file, sitename):
         print "HandHistory init called"
         self.c         = config
