@@ -189,7 +189,7 @@ class Import:
     def __init__(self, node):
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
-	self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.hhArchiveBase = node.getAttribute("hhArchiveBase")
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
