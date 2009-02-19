@@ -110,11 +110,14 @@ class HandHistoryConverter:
             print "Cowardly refusing to continue after failed sanity check"
             return
         self.readFile(self.file)
+        if self.obs == "" or self.obs == None:
+            print "Did not read anything from file."
+            return
         outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
-            print "\nInput:\n"+hand.string
+#            print "\nInput:\n"+hand.string
             self.readHandInfo(hand)
             self.readPlayerStacks(hand)
             print "DEBUG stacks:", hand.stacks
