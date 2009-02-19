@@ -113,6 +113,8 @@ class HandHistoryConverter:
         if self.obs == "" or self.obs == None:
             print "Did not read anything from file."
             return
+        # Ugh
+        self.obs = self.obs.replace('\r\n', '\n')
         outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
@@ -240,7 +242,7 @@ class HandHistoryConverter:
         """Read file"""
         print "Reading file: '%s'" %(filename)
         if(self.filetype == "text"):
-            infile=codecs.open(filename, "rU", self.codepage)
+            infile=codecs.open(filename, "r", self.codepage)
             self.obs = infile.read()
             infile.close()
         elif(self.filetype == "xml"):
