@@ -159,6 +159,7 @@ Card ranks will be uppercased
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
+            print "checkPlayerExists", player, "fail"
             raise FpdbParseError
 
     def discardHoleCards(self, cards, player):
