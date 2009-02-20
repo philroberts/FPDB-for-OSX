@@ -158,7 +158,6 @@ Card ranks will be uppercased
 
 
     def checkPlayerExists(self,player):
-        print "XXXX player: ", player
         if player not in [p[1] for p in self.players]:
             raise FpdbParseError
 
