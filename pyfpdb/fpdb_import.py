@@ -218,6 +218,10 @@ class Importer:
             conv.processFile()
             if(conv.getStatus()):
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(), site)
+            else:
+                # conversion didn't work
+                # TODO: appropriate response?
+                return (0, 0, 0, 1, 0)
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
