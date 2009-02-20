@@ -78,7 +78,7 @@ class Everleaf(HandHistoryConverter):
         self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
         self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
         self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
-        self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE>: bets| checks|: raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?')
+        self.rexx.setActionStepRegex('.*\n(?P<PNAME>[^: ]*)(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?')
         self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[ (?P<CARDS>.*) \]')
         self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?')
         #self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD(.*\[ (?P<CARDS>) \S\S, \S\S, \S\S, \S\S, \S\S \])?')

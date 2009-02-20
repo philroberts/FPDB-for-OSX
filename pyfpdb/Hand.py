@@ -544,11 +544,11 @@ class Pot(object):
             #print "returning %f to %s" % (lastbet, returnto)
             self.total -= lastbet
             self.committed[returnto] -= lastbet
-        
-        
+
+
         # Work out side pots
         commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
-        
+
         self.pots = []
         while len(commitsall) > 0:
             commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
