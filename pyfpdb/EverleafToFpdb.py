@@ -20,6 +20,7 @@
 import sys
 import Configuration
 from HandHistoryConverter import *
+from time import strftime
 
 # Everleaf HH format
 
@@ -77,7 +78,10 @@ class Everleaf(HandHistoryConverter):
         self.re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
         self.re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
         
-        self.ofile     = os.path.join(self.hhdir, file.split("\\")[-2]+"-"+os.path.basename(file))
+        try:
+            self.ofile     = os.path.join(self.hhdir, file.split("\\")[-2]+"-"+os.path.basename(file))
+        except:
+            self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
     def compile_player_regexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
