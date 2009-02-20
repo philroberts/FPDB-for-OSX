@@ -89,7 +89,9 @@ class HandHistoryConverter:
         self.hhdir     = os.path.join(self.hhbase,sitename)
         self.gametype  = []
         self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
+        print self.ofile
         self.rexx      = FpdbRegex.FpdbRegex()
+        self.players   = set()
 
     def __str__(self):
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -116,10 +118,21 @@ class HandHistoryConverter:
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
-            print "\nInput:\n"+hand.string
+            print "\nInput:\n"+hand.string+"\n"
             self.readHandInfo(hand)
+            
             self.readPlayerStacks(hand)
             print "DEBUG stacks:", hand.stacks
+            # at this point we know the player names, they are in hand.players
+            playersThisHand = set([player[1] for player in hand.players])
+            if playersThisHand <= self.players: # x <= y means 'x is subset of y'
+                # we're ok; the regex should already cover them all.
+                pass
+            else:
+                # we need to recompile the player regexs.
+                self.players = playersThisHand
+                self.compile_player_regexs()
+        
             self.markStreets(hand)
             self.readBlinds(hand)
             self.readHeroCards(hand) # want to generalise to draw games
@@ -178,7 +191,11 @@ class HandHistoryConverter:
     # Needs to return a list of lists in the format
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
-
+    
+    # Given 
+    #
+    def compile_player_regexs(self): abstract
+    
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
@@ -228,7 +245,7 @@ class HandHistoryConverter:
     def splitFileIntoHands(self):
         hands = []
         self.obs.strip()
-        list = self.rexx.split_hand_re.split(self.obs)
+        list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
 #			print "'" + l + "'"
@@ -249,22 +266,6 @@ class HandHistoryConverter:
             except:
                 traceback.print_exc(file=sys.stderr)
 
-
-#takes a poker float (including , for thousand seperator and converts it to an int
-    def float2int (self, string):
-        pos=string.find(",")
-        if (pos!=-1): #remove , the thousand seperator
-            string=string[0:pos]+string[pos+1:]
-
-        pos=string.find(".")
-        if (pos!=-1): #remove decimal point
-            string=string[0:pos]+string[pos+1:]
-
-        result = int(string)
-        if pos==-1: #no decimal point - was in full dollars - need to multiply with 100
-            result*=100
-        return result
-#end def float2int
 
     def getStatus(self):
         #TODO: Return a status of true if file processed ok
