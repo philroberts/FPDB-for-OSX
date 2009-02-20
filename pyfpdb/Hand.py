@@ -308,6 +308,13 @@ Add a raise on [street] by [player] to [amountTo]
         self.checkPlayerExists(player)
         self.actions[street].append((player, 'checks'))
 
+# dart1 wins $ 51.09 USD from main pot with a full house, queens full of threes [ Qh, Qc, Qd, 3c, 3s ]
+# dart1 wins $ 41.07 USD from side pot with a full house, queens full of threes [ Qh, Qc, Qd, 3c, 3s ]
+# DEBUG: dart1 collected 51.09
+# DEBUG: dart1 collected 41.07
+# [WARNING] %s collected pot more than once; avoidable by reading winnings only from summary lines?
+# TODO: Should we just add the pots together?? 
+
     def addCollectPot(self,player, pot):
         print "DEBUG: %s collected %s" % (player, pot)
         self.checkPlayerExists(player)
