@@ -205,6 +205,9 @@ class Importer:
             if filter == "EverleafToFpdb":
                 print "converting ", file
                 conv = EverleafToFpdb.Everleaf(self.config, file)
+            elif filter == "FulltiltToFpdb":
+                print "converting ", file
+                conv = FulltiltToFpdb.Fulltilt(self.config, file)
             else:
                 print "Unknown filter ", filter
                 return

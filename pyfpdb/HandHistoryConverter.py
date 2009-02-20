@@ -88,7 +88,7 @@ class HandHistoryConverter:
         self.hhbase    = os.path.expanduser(self.hhbase)
         self.hhdir     = os.path.join(self.hhbase,sitename)
         self.gametype  = []
-        self.ofile     = os.path.join(self.hhdir,file)
+        self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
         self.rexx      = FpdbRegex.FpdbRegex()
 
     def __str__(self):
