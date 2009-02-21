@@ -425,11 +425,14 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, "DEBUG: what do they show"
 
         # Current PS format has the lines:
+        # Uncalled bet ($111.25) returned to s0rrow
         # s0rrow collected $5.15 from side pot
         # stervels: shows [Ks Qs] (two pair, Kings and Queens)
         # stervels collected $45.35 from main pot
         # Immediately before the summary.
         # The current importer uses those lines for importing winning rather than the summary
+        for name in self.pot.returned:
+            print >>fh, _("Uncalled bet ($%s) returned to %s" %(self.pot.returned[name],name))
         for name in self.collected:
             print >>fh, _("%s collected $%s from x pot" %(name, self.collected[name]))
 
@@ -537,6 +540,7 @@ class Pot(object):
         self.contenders = set()
         self.committed = {}
         self.total = None
+        self.returned = {}
     
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
@@ -558,9 +562,10 @@ class Pot(object):
         lastbet = committed[-1][0] - committed[-2][0]
         if lastbet > 0: # uncalled
             returnto = committed[-1][1]
-            #print "returning %f to %s" % (lastbet, returnto)
+            #print "DEBUG: returning %f to %s" % (lastbet, returnto)
             self.total -= lastbet
             self.committed[returnto] -= lastbet
+            self.returned[returnto] = lastbet
 
 
         # Work out side pots
