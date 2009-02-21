@@ -18,7 +18,9 @@
 
 #    Standard Library modules
 import os
+import sys
 from time import time
+from optparse import OptionParser
 
 #    pyGTK modules
 import pygtk
@@ -192,6 +194,12 @@ if __name__ == '__main__':
     def destroy(*args):  # call back for terminating the main eventloop
         gtk.main_quit()
 
+    parser = OptionParser()
+    parser.add_option("-f", "--file", dest="filename", help="Input file in quiet mode", metavar="FILE")
+    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
+
+    (options, sys.argv) = parser.parse_args()
+
     config = Configuration.Config()
     db = fpdb_db.fpdb_db()
 
@@ -204,9 +212,18 @@ if __name__ == '__main__':
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    i = GuiBulkImport(db, settings, config)
-    main_window = gtk.Window()
-    main_window.connect('destroy', destroy)
-    main_window.add(i.vbox)
-    main_window.show()
-    gtk.main()
+    if(options.gui == True):
+        i = GuiBulkImport(db, settings, config)
+        main_window = gtk.Window()
+        main_window.connect('destroy', destroy)
+        main_window.add(i.vbox)
+        main_window.show()
+        gtk.main()
+    else:
+        #Do something useful
+        importer = fpdb_import.Importer(False,settings, config) 
+        importer.setDropIndexes("auto")
+        importer.addImportFile(options.filename)
+        importer.setCallHud(False)
+        importer.runImport()
+        importer.clearFileList()
