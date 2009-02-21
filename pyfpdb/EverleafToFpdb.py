@@ -88,7 +88,7 @@ class Everleaf(HandHistoryConverter):
         print "DEBUG player_re: " + player_re
         self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
-        self.re_PostBoth        = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_HeroCards       = re.compile(r"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
         self.re_Action          = re.compile(r"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?" % player_re, re.MULTILINE)
         self.re_ShowdownAction  = re.compile(r"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
@@ -108,6 +108,8 @@ class Everleaf(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.string)
+        if(m == None):
+            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 # These work, but the info is already in the Hand class - should be used for tourneys though.
@@ -162,7 +164,7 @@ class Everleaf(HandHistoryConverter):
         for a in self.re_PostBB.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.string):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
     def readHeroCards(self, hand):
         m = self.re_HeroCards.search(hand.string)

@@ -191,7 +191,7 @@ Card ranks will be uppercased
         #   - this is a bet of 1 bb and is the new uncalled
         # 
         # If a player posts a big & small blind
-        #
+        #   - FIXME: We dont record this for later printing yet
         
         print "DEBUG addBlind: %s posts %s, %s" % (player, blindtype, amount)
         if player is not None:
@@ -203,10 +203,11 @@ Card ranks will be uppercased
             self.pot.addMoney(player, Decimal(amount))
             if blindtype == 'big blind':
                 self.lastBet['PREFLOP'] = Decimal(amount)            
-            elif blindtype == 'small & big blinds':
+            elif blindtype == 'both':
                 # extra small blind is 'dead'
                 self.lastBet['PREFLOP'] = Decimal(self.bb)
         self.posted += [player]
+        print "DEBUG: self.posted: %s" %(self.posted)
 
 
     def addCall(self, street, player=None, amount=None):
@@ -389,7 +390,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
         #May be more than 1 bb posting
         for a in self.posted[1:]:
-            print >>fh, _("%s: posts big blind $%s" %(self.posted[1], self.bb))
+            print >>fh, _("%s: posts big blind $%s" %(a, self.bb))
 
         # TODO: What about big & small blinds?
 
@@ -599,8 +600,11 @@ class Pot(object):
             return "Total pot $%.2f Main pot $%.2f. Side pot $%2.f." % (self.total, self.pots[0], self.pots[1])
         elif len(self.pots) == 3:
             return "Total pot $%.2f Main pot $%.2f. Side pot-1 $%2.2f. Side pot-2 $%.2f." % (self.total, self.pots[0], self.pots[1], self.pots[2])
+        elif len(self.pots) == 0:
+            # no small blind and walk in bb (hopefully)
+            return "Total pot $%.2f" % (self.total,)
         else:
-            return "maybe no pot.. or too many pots.. no small blind and walk in bb?."
+            return _("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
             # I don't know stars format for a walk in the bb when sb doesn't post.
             # The thing to do here is raise a Hand error like fpdb import does and file it into errors.txt
             
