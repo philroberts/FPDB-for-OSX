@@ -424,6 +424,15 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, _("*** SHOW DOWN ***")
             print >>fh, "DEBUG: what do they show"
 
+        # Current PS format has the lines:
+        # s0rrow collected $5.15 from side pot
+        # stervels: shows [Ks Qs] (two pair, Kings and Queens)
+        # stervels collected $45.35 from main pot
+        # Immediately before the summary.
+        # The current importer uses those lines for importing winning rather than the summary
+        for name in self.collected:
+            print >>fh, _("%s collected $%s from x pot" %(name, self.collected[name]))
+
         print >>fh, _("*** SUMMARY ***")
         print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
         #print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
