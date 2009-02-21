@@ -83,7 +83,8 @@ class Hand:
         self.stacks = {}
 
         # dict from player names to amounts collected
-        self.collected = {}
+        self.collected = []
+        self.collectees = {}
 
         # Sets of players
         self.shown = set()
@@ -319,10 +320,11 @@ Add a raise on [street] by [player] to [amountTo]
     def addCollectPot(self,player, pot):
         print "DEBUG: %s collected %s" % (player, pot)
         self.checkPlayerExists(player)
-        if player not in self.collected:
-            self.collected[player] = pot
+        self.collected = self.collected + [[player, pot]]
+        if player not in self.collectees:
+            self.collectees[player] = Decimal(pot)
         else:
-            print "[WARNING] %s collected pot more than once; avoidable by reading winnings only from summary lines?"
+            self.collectees[player] += Decimal(pot)
 
 
     def totalPot(self):
@@ -336,8 +338,9 @@ Add a raise on [street] by [player] to [amountTo]
         # This gives us the amount collected, i.e. after rake
         if self.totalcollected is None:
             self.totalcollected = 0;
-            for amount in self.collected.values():
-                self.totalcollected += Decimal(amount)
+            #self.collected looks like [[p1,amount][px,amount]]
+            for entry in self.collected:
+                self.totalcollected += Decimal(entry[1])
 
 
 
@@ -432,8 +435,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # The current importer uses those lines for importing winning rather than the summary
         for name in self.pot.returned:
             print >>fh, _("Uncalled bet ($%s) returned to %s" %(self.pot.returned[name],name))
-        for name in self.collected:
-            print >>fh, _("%s collected $%s from x pot" %(name, self.collected[name]))
+        for entry in self.collected:
+            print >>fh, _("%s collected $%s from x pot" %(entry[0], entry[1]))
 
         print >>fh, _("*** SUMMARY ***")
         print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
@@ -448,10 +451,10 @@ Map the tuple self.gametype onto the pokerstars string describing it
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             seatnum = player[0]
             name = player[1]
-            if name in self.collected and name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collected[name]))
-            elif name in self.collected:
-                print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collected[name]))
+            if name in self.collectees and name in self.shown:
+                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collectees[name]))
+            elif name in self.collectees:
+                print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
             elif name in self.shown:
                 print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name])))
             elif name in self.folded:
