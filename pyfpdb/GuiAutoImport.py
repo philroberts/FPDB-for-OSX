@@ -128,12 +128,12 @@ class GuiAutoImport (threading.Thread):
             widget.set_label(u'Stop Autoimport')
             if self.pipe_to_hud is None:
                 if os.name == 'nt':
-                    command = "python HUD_run_me.py" + " %s" % (self.database)
+                    command = "python HUD_main.py" + " %s" % (self.database)
                     bs = 0    # windows is not happy with line buffing here
                     self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
                 else:
-                    command = self.config.execution_path('HUD_run_me.py')
+                    command = self.config.execution_path('HUD_main.py')
                     bs = 1
                     self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)

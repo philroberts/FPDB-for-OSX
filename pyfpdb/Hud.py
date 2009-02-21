@@ -47,7 +47,8 @@ import HUD_main
 
 class Hud:
     
-    def __init__(self, table, max, poker_game, config, db_connection):
+    def __init__(self, parent, table, max, poker_game, config, db_connection):
+        self.parent        = parent
         self.table         = table
         self.config        = config
         self.poker_game    = poker_game
@@ -175,7 +176,7 @@ class Hud:
         self.deleted = True
         self.main_window.disconnect(self.main_window.destroyhandler) # so we don't potentially infiniteloop in here, right
         self.main_window.destroy()
-        HUD_main.HUD_removed(self.table.name)
+        self.parent.HUD_removed(self.table.name)
         
     def kill_hud_menu(self, *args):
         self.main_window.destroy()
