@@ -89,7 +89,6 @@ class HandHistoryConverter:
         self.hhdir     = os.path.join(self.hhbase,sitename)
         self.gametype  = []
         self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
-        print self.ofile
         self.rexx      = FpdbRegex.FpdbRegex()
         self.players   = set()
 
@@ -237,6 +236,10 @@ class HandHistoryConverter:
                 sane = True
             else:
                 print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
+
+        # Make sure input and output files are different or we'll overwrite the source file
+        if(self.ofile == self.file):
+            print "HH Sanity Check: output and input files are the same, check config"
 
         return sane
 
