@@ -206,7 +206,7 @@ Card ranks will be uppercased
             elif blindtype == 'both':
                 # extra small blind is 'dead'
                 self.lastBet['PREFLOP'] = Decimal(self.bb)
-        self.posted += [player]
+        self.posted = self.posted + [[player,blindtype]]
         print "DEBUG: self.posted: %s" %(self.posted)
 
 
@@ -382,17 +382,15 @@ Map the tuple self.gametype onto the pokerstars string describing it
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
 
-        if(self.posted[0] is None):
-            #print >>fh, _("No small blind posted") # PS doesn't say this
-            pass
-        else:
-            print >>fh, _("%s: posts small blind $%s" %(self.posted[0], self.sb))
 
         #May be more than 1 bb posting
-        for a in self.posted[1:]:
-            print >>fh, _("%s: posts big blind $%s" %(a, self.bb))
-
-        # TODO: What about big & small blinds?
+        for a in self.posted:
+            if(a[1] == "small blind"):
+                print >>fh, _("%s: posts small blind $%s" %(a[0], self.sb))
+            if(a[1] == "big blind"):
+                print >>fh, _("%s: posts big blind $%s" %(a[0], self.bb))
+            if(a[1] == "both"):
+                print >>fh, _("%s: posts small & big blinds $%.2f" %(a[0], (Decimal(self.sb) + Decimal(self.bb))))
 
         print >>fh, _("*** HOLE CARDS ***")
         if self.involved:
