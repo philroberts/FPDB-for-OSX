@@ -599,8 +599,11 @@ class Pot(object):
             return "Total pot $%.2f Main pot $%.2f. Side pot $%2.f." % (self.total, self.pots[0], self.pots[1])
         elif len(self.pots) == 3:
             return "Total pot $%.2f Main pot $%.2f. Side pot-1 $%2.2f. Side pot-2 $%.2f." % (self.total, self.pots[0], self.pots[1], self.pots[2])
+        elif len(self.pots) == 0:
+            # no small blind and walk in bb (hopefully)
+            return "Total pot $%.2f" % (self.total,)
         else:
-            return "maybe no pot.. or too many pots.. no small blind and walk in bb?."
+            return _("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
             # I don't know stars format for a walk in the bb when sb doesn't post.
             # The thing to do here is raise a Hand error like fpdb import does and file it into errors.txt
             

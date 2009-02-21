@@ -223,6 +223,7 @@ if __name__ == '__main__':
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config) 
         importer.setDropIndexes("auto")
+        importer.setFailOnError(True)
         importer.addImportFile(options.filename)
         importer.setCallHud(False)
         importer.runImport()

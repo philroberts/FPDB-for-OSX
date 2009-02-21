@@ -108,6 +108,8 @@ class Everleaf(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.string)
+        if(m == None):
+            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 # These work, but the info is already in the Hand class - should be used for tourneys though.
