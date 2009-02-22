@@ -34,6 +34,7 @@ import fpdb_db
 import fpdb_parse_logic
 import Configuration
 import EverleafToFpdb
+import FulltiltToFpdb
 
 #    database interface modules
 try:
@@ -207,7 +208,7 @@ class Importer:
                 conv = EverleafToFpdb.Everleaf(self.config, file)
             elif filter == "FulltiltToFpdb":
                 print "converting ", file
-                conv = FulltiltToFpdb.Fulltilt(self.config, file)
+                conv = FulltiltToFpdb.FullTilt(self.config, file)
             else:
                 print "Unknown filter ", filter
                 return

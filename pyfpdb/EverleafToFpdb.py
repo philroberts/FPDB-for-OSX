@@ -22,48 +22,7 @@ import Configuration
 from HandHistoryConverter import *
 from time import strftime
 
-# Everleaf HH format
-
-# Everleaf Gaming Game #55208539
-# ***** Hand history for game #55208539 *****
-# Blinds $0.50/$1 NL Hold'em - 2008/09/01 - 13:35:01
-# Table Speed Kuala
-# Seat 1 is the button
-# Total number of players: 9
-# Seat 1: BadBeatBox (  $ 98.97 USD )
-# Seat 3: EricBlade (  $ 73.96 USD )
-# Seat 4: randy888 (  $ 196.50 USD )
-# Seat 5: BaronSengir (  $ 182.80 USD )
-# Seat 6: dogge (  $ 186.06 USD )
-# Seat 7: wings ( $ 50 USD )
-# Seat 8: schoffeltje (  $ 282.05 USD )
-# Seat 9: harrydebeng (  $ 109.45 USD )
-# Seat 10: smaragdar (  $ 96.50 USD )
-# EricBlade: posts small blind [$ 0.50 USD]
-# randy888: posts big blind [$ 1 USD]
-# wings: posts big blind [$ 1 USD]
-# ** Dealing down cards **
-# Dealt to EricBlade [ qc, 3c ]
-# BaronSengir folds
-# dogge folds
-# wings raises [$ 2.50 USD]
-# schoffeltje folds
-# harrydebeng calls [$ 3.50 USD]
-# smaragdar raises [$ 15.50 USD]
-# BadBeatBox folds
-# EricBlade folds
-# randy888 folds
-# wings calls [$ 12 USD]
-# harrydebeng folds
-# ** Dealing Flop ** [ qs, 3d, 8h ]
-# wings: bets [$ 34.50 USD]
-# smaragdar calls [$ 34.50 USD]
-# ** Dealing Turn ** [ 2d ]
-# ** Dealing River ** [ 6c ]
-# dogge shows [ 9h, 9c ]a pair of nines
-# spicybum shows [ 5d, 6d ]a straight, eight high
-# harrydebeng does not show cards
-# smaragdar wins $ 102 USD from main pot with a pair of aces [ ad, ah, qs, 8h, 6c ]
+# Class for converting Everleaf HH format.
 
 class Everleaf(HandHistoryConverter):
     def __init__(self, config, file):
@@ -72,7 +31,7 @@ class Everleaf(HandHistoryConverter):
         self.sitename = "Everleaf"
         self.setFileType("text", "cp1252")
         
-        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)")
+        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha))")
         self.re_SplitHands  = re.compile(r"\n\n+")
         self.re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)")
         self.re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
@@ -85,7 +44,7 @@ class Everleaf(HandHistoryConverter):
 
     def compile_player_regexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        print "DEBUG player_re: " + player_re
+        #print "DEBUG player_re: " + player_re
         self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
@@ -96,14 +55,32 @@ class Everleaf(HandHistoryConverter):
         self.re_SitsOut         = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"]]
+        return [["ring", "hold", "nl"]
+                ["ring", "hold", "pl"]
+                ["ring", "omaha", "pl"]
+               ]
 
     def determineGameType(self):
         # Cheating with this regex, only support nlhe at the moment
-        gametype = ["ring", "hold", "nl"]
+        # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
+        # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
+        # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
+        structure = "" # nl, pl, cn, cp, fl
+        game      = ""
+
         m = self.re_GameInfo.search(self.obs)
-        gametype = gametype + [m.group('SB')]
-        gametype = gametype + [m.group('BB')]
+        if m.group('LTYPE') == "NL":
+            structure = "nl"
+        elif m.group('LTYPE') == "PL":
+            structure = "pl"
+
+        if m.group('GAME') == "Hold\'em":
+            game = "hold"
+        if m.group('GAME') == "Omaha":
+            game = "omahahi"
+
+        gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
+
         return gametype
 
     def readHandInfo(self, hand):
@@ -148,8 +125,8 @@ class Everleaf(HandHistoryConverter):
             
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        print "DEBUG " + street + ":"
-        print hand.streets.group(street) + "\n"
+        #print "DEBUG " + street + ":"
+        #print hand.streets.group(street) + "\n"
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             m = self.re_Board.search(hand.streets.group(street))
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
@@ -159,7 +136,7 @@ class Everleaf(HandHistoryConverter):
             m = self.re_PostSB.search(hand.string)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except Exception, e: # no small blind
-            print e
+            #print e
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
