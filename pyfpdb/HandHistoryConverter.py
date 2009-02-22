@@ -114,7 +114,7 @@ class HandHistoryConverter:
         if self.obs == "" or self.obs == None:
             print "Did not read anything from file."
             return
-        # Ugh
+
         self.obs = self.obs.replace('\r\n', '\n')
         outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()

@@ -345,7 +345,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
 """
         # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
         gs = {"hold"       : "Hold'em",
-              "omahahi"    : "FIXME",
+              "omahahi"    : "Omaha",
               "omahahilo"  : "FIXME",
               "razz"       : "Razz",
               "studhi"     : "FIXME",
