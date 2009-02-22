@@ -31,7 +31,7 @@ class Everleaf(HandHistoryConverter):
         self.sitename = "Everleaf"
         self.setFileType("text", "cp1252")
         
-        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)")
+        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha))")
         self.re_SplitHands  = re.compile(r"\n\n+")
         self.re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)")
         self.re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
@@ -55,14 +55,32 @@ class Everleaf(HandHistoryConverter):
         self.re_SitsOut         = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"]]
+        return [["ring", "hold", "nl"]
+                ["ring", "hold", "pl"]
+                ["ring", "omaha", "pl"]
+               ]
 
     def determineGameType(self):
         # Cheating with this regex, only support nlhe at the moment
-        gametype = ["ring", "hold", "nl"]
+        # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
+        # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
+        # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
+        structure = "" # nl, pl, cn, cp, fl
+        game      = ""
+
         m = self.re_GameInfo.search(self.obs)
-        gametype = gametype + [m.group('SB')]
-        gametype = gametype + [m.group('BB')]
+        if m.group('LTYPE') == "NL":
+            structure = "nl"
+        elif m.group('LTYPE') == "PL":
+            structure = "pl"
+
+        if m.group('GAME') == "Hold\'em":
+            game = "hold"
+        if m.group('GAME') == "Omaha":
+            game = "omahahi"
+
+        gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
+
         return gametype
 
     def readHandInfo(self, hand):
