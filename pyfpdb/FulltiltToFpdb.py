@@ -82,7 +82,7 @@ class FullTilt(HandHistoryConverter):
 
     def compile_player_regexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        print "DEBUG player_re: " + player_re
+        #print "DEBUG player_re: " + player_re
         self.re_PostSB           = re.compile('.*\n(?P<PNAME>.*) posts the small blind of \$?(?P<SB>[.0-9]+)')
         self.re_PostBB           = re.compile('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
         self.re_PostBoth         = re.compile('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')

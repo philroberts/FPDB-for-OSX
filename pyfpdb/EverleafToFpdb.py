@@ -85,7 +85,7 @@ class Everleaf(HandHistoryConverter):
 
     def compile_player_regexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        print "DEBUG player_re: " + player_re
+        #print "DEBUG player_re: " + player_re
         self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
@@ -148,8 +148,8 @@ class Everleaf(HandHistoryConverter):
             
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        print "DEBUG " + street + ":"
-        print hand.streets.group(street) + "\n"
+        #print "DEBUG " + street + ":"
+        #print hand.streets.group(street) + "\n"
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             m = self.re_Board.search(hand.streets.group(street))
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
@@ -159,7 +159,7 @@ class Everleaf(HandHistoryConverter):
             m = self.re_PostSB.search(hand.string)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except Exception, e: # no small blind
-            print e
+            #print e
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))

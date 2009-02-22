@@ -98,11 +98,11 @@ class HandHistoryConverter:
         tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
         tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
         tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
-#		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
-#		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-#		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-#		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-#		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
+        tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
+        #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
+        #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
+        #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
+        #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
     def processFile(self):
@@ -120,11 +120,11 @@ class HandHistoryConverter:
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
-#            print "\nInput:\n"+hand.string
+            #print "\nDEBUG: Input:\n"+hand.string
             self.readHandInfo(hand)
             
             self.readPlayerStacks(hand)
-            print "DEBUG stacks:", hand.stacks
+            #print "DEBUG stacks:", hand.stacks
             # at this point we know the player names, they are in hand.players
             playersThisHand = set([player[1] for player in hand.players])
             if playersThisHand <= self.players: # x <= y means 'x is subset of y'
@@ -164,7 +164,7 @@ class HandHistoryConverter:
 
         outfile.close()
         endtime = time.time()
-        print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
+        print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
 
     #####
     # These functions are parse actions that may be overridden by the inheriting class

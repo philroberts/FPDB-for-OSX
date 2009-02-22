@@ -135,7 +135,7 @@ Assigns observed holecards to a player.
 cards   set of card bigrams e.g. set(['2h','Jc'])     
 player  (string) name of player
 """
-        print "DEBUG: addHoleCards", cards,player
+        #print "DEBUG: addHoleCards", cards,player
         try:
             self.checkPlayerExists(player)
             cards = set([self.card(c) for c in cards])
@@ -148,7 +148,7 @@ player  (string) name of player
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
-        print "DEBUG: addShownCards", cards,player,holeandboard
+        #print "DEBUG: addShownCards", cards,player,holeandboard
         if cards is not None:
             self.shown.add(player)
             self.addHoleCards(cards,player)
@@ -194,7 +194,7 @@ Card ranks will be uppercased
         # If a player posts a big & small blind
         #   - FIXME: We dont record this for later printing yet
         
-        print "DEBUG addBlind: %s posts %s, %s" % (player, blindtype, amount)
+        #print "DEBUG addBlind: %s posts %s, %s" % (player, blindtype, amount)
         if player is not None:
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
@@ -208,7 +208,7 @@ Card ranks will be uppercased
                 # extra small blind is 'dead'
                 self.lastBet['PREFLOP'] = Decimal(self.bb)
         self.posted = self.posted + [[player,blindtype]]
-        print "DEBUG: self.posted: %s" %(self.posted)
+        #print "DEBUG: self.posted: %s" %(self.posted)
 
 
     def addCall(self, street, player=None, amount=None):
@@ -218,7 +218,7 @@ Card ranks will be uppercased
             self.bets[street][player].append(Decimal(amount))
             #self.lastBet[street] = Decimal(amount)
             self.stacks[player] -= Decimal(amount)
-            print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
+            #print "DEBUG %s calls %s, stack %s" % (player, amount, self.stacks[player])
             act = (player, 'calls', amount, self.stacks[player]==0)
             self.actions[street].append(act)
             self.pot.addMoney(player, Decimal(amount))
@@ -290,7 +290,7 @@ Add a raise on [street] by [player] to [amountTo]
         self.checkPlayerExists(player)
         self.bets[street][player].append(Decimal(amount))
         self.stacks[player] -= Decimal(amount)
-        print "DEBUG %s bets %s, stack %s" % (player, amount, self.stacks[player])
+        #print "DEBUG %s bets %s, stack %s" % (player, amount, self.stacks[player])
         act = (player, 'bets', amount, self.stacks[player]==0)
         self.actions[street].append(act)
         self.lastBet[street] = Decimal(amount)
@@ -298,7 +298,7 @@ Add a raise on [street] by [player] to [amountTo]
         
 
     def addFold(self, street, player):
-        print "DEBUG: %s %s folded" % (street, player)
+        #print "DEBUG: %s %s folded" % (street, player)
         self.checkPlayerExists(player)
         self.folded.add(player)
         self.pot.addFold(player)
@@ -306,19 +306,13 @@ Add a raise on [street] by [player] to [amountTo]
         
 
     def addCheck(self, street, player):
-        print "DEBUG: %s %s checked" % (street, player)
+        #print "DEBUG: %s %s checked" % (street, player)
         self.checkPlayerExists(player)
         self.actions[street].append((player, 'checks'))
 
-# dart1 wins $ 51.09 USD from main pot with a full house, queens full of threes [ Qh, Qc, Qd, 3c, 3s ]
-# dart1 wins $ 41.07 USD from side pot with a full house, queens full of threes [ Qh, Qc, Qd, 3c, 3s ]
-# DEBUG: dart1 collected 51.09
-# DEBUG: dart1 collected 41.07
-# [WARNING] %s collected pot more than once; avoidable by reading winnings only from summary lines?
-# TODO: Should we just add the pots together?? 
 
     def addCollectPot(self,player, pot):
-        print "DEBUG: %s collected %s" % (player, pot)
+        #print "DEBUG: %s collected %s" % (player, pot)
         self.checkPlayerExists(player)
         self.collected = self.collected + [[player, pot]]
         if player not in self.collectees:
@@ -424,7 +418,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-            print >>fh, "DEBUG: what do they show"
+#            print >>fh, "DEBUG: what do they show"
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
