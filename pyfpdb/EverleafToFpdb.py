@@ -73,6 +73,8 @@ class Everleaf(HandHistoryConverter):
             structure = "nl"
         elif m.group('LTYPE') == "PL":
             structure = "pl"
+        else:
+            structure = "fl" # we don't support it, but there should be how to detect it at least.
 
         if m.group('GAME') == "Hold\'em":
             game = "hold"
