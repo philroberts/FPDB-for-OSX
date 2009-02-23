@@ -35,17 +35,6 @@ import Configuration
 
 class GuiBulkImport():
 
-    def import_dir(self):
-        """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
-
-        self.path = self.inputFile
-        self.importer.addImportDirectory(self.path)
-        self.importer.setCallHud(False)
-        starttime = time()
-        (stored, dups, partial, errs, ttime) = self.importer.runImport()
-        print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
-             % (stored, dups, partial, errs, ttime, stored / ttime)
-
     def load_clicked(self, widget, data=None):
 #    get the dir to import from the chooser
         self.inputFile = self.chooser.get_filename()
@@ -63,17 +52,21 @@ class GuiBulkImport():
             self.importer.setDropIndexes(cb_model[cb_index][0])
         else:
             self.importer.setDropIndexes("auto")
-
+        hhc=self.cbfilter.get_model()[self.cbfilter.get_active()][0]
         self.lab_info.set_text("Importing")
-        if os.path.isdir(self.inputFile):
-            self.import_dir()
-        else:
-            self.importer.addImportFile(self.inputFile)
-            self.importer.setCallHud(False)
-            self.importer.runImport()
-            self.importer.clearFileList()
+        
+        self.importer.addImportFile(self.inputFile,filter=hhc)
+        self.importer.setCallHud(False)
+        starttime = time()
+        (stored, dups, partial, errs, ttime) = self.importer.runImport()
+        print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
+             % (stored, dups, partial, errs, ttime, stored / ttime)
+        self.importer.clearFileList()
 
         self.lab_info.set_text("Import finished")
+
+    def get_vbox(self):
+        return self.vbox
 
     def __init__(self, db, settings, config):
         self.db = db # this is an instance of fpdb_db
@@ -158,6 +151,20 @@ class GuiBulkImport():
         self.cb.set_active(0)
         self.table.attach(self.cb, 4, 5, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
         self.cb.show()
+
+#    label - filter
+        self.lab_filter = gtk.Label("Site filter:")
+        self.table.attach(self.lab_filter, 2, 3, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.lab_filter.show()
+        self.lab_filter.set_justify(gtk.JUSTIFY_RIGHT)
+
+#    ComboBox - filter
+        self.cbfilter = gtk.combo_box_new_text()
+        self.cbfilter.append_text("passthrough")
+        self.cbfilter.append_text("Everleaf")
+        self.cbfilter.set_active(0)
+        self.table.attach(self.cbfilter, 3, 4, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.cbfilter.show()
 
 #    label - info
         self.lab_info = gtk.Label()
