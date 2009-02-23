@@ -52,7 +52,7 @@ class FullTilt(HandHistoryConverter):
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
-                ["ring", "hold", "pl"]
+                ["ring", "hold", "pl"],
                 ["ring", "omaha", "pl"]
                ]
 
