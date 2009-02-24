@@ -28,10 +28,9 @@ class FullTilt(HandHistoryConverter):
         HandHistoryConverter.__init__(self, config, file, sitename="FullTilt") # Call super class init.
         self.sitename = "FullTilt"
         self.setFileType("text", "cp1252")
-
-        self.re_GameInfo    = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<LTYPE>(No|Pot)) Limit (?P<GAME>(Hold\'em|Omaha))')
+        self.re_GameInfo    = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
         self.re_SplitHands  = re.compile(r"\n\n+")
-        self.re_HandInfo    = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
+        self.re_HandInfo    = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
         self.re_Button      = re.compile('The button is in seat #(?P<BUTTON>\d+)')
         self.re_PlayerInfo  = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
         self.re_Board = re.compile(r"\[(?P<CARDS>.+)\]")
@@ -41,6 +40,7 @@ class FullTilt(HandHistoryConverter):
         #print "DEBUG player_re: " + player_re
         self.re_PostSB           = re.compile('.*\n(?P<PNAME>.*) posts the small blind of \$?(?P<SB>[.0-9]+)')
         self.re_PostBB           = re.compile('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
+        self.re_BringIn          = re.compile('.*\n(?P<PNAME>.*) brings in for \$?(?P<BRINGIN>[.0-9]+)')
         self.re_PostBoth         = re.compile('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
         self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]')
         self.re_Action           = re.compile('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
@@ -53,6 +53,7 @@ class FullTilt(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
                 ["ring", "hold", "pl"],
+                ["ring", "razz", "fl"],
                 ["ring", "omaha", "pl"]
                ]
 
@@ -70,11 +71,16 @@ class FullTilt(HandHistoryConverter):
             structure = "nl"
         elif m.group('LTYPE') == "Pot":
             structure = "pl"
+        elif m.group('LTYPE') == "None":
+            structure = "fl"
 
         if m.group('GAME') == "Hold\'em":
             game = "hold"
-        if m.group('GAME') == "Omaha":
+        elif m.group('GAME') == "Omaha":
             game = "omahahi"
+        elif m.group('GAME') == "Razz":
+            game = "razz"
+        
 
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
@@ -85,7 +91,6 @@ class FullTilt(HandHistoryConverter):
         #print m.groups()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #		m.group('SB')
@@ -112,10 +117,13 @@ class FullTilt(HandHistoryConverter):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
 
-        m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
+        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.string,re.DOTALL)
+        elif self.gametype[1] == "razz":
+            m =  re.search("\*\*\*(?P<THIRD>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)", hand.string,re.DOTALL)
 
         hand.addStreets(m)
 
@@ -136,6 +144,19 @@ class FullTilt(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+
+    def readAntes(self, hand):
+        print "DEBUG: reading antes"
+        print "DEBUG: FIXME reading antes"
+
+    def readBringIn(self, hand):
+        print "DEBUG: reading bring in"
+#        print hand.string
+        m = self.re_Button.search(hand.string,re.DOTALL)
+        print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+
+    def readButton(self, hand):
+        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
 
     def readHeroCards(self, hand):
         m = self.re_HeroCards.search(hand.string)
@@ -188,7 +209,7 @@ class FullTilt(HandHistoryConverter):
 if __name__ == "__main__":
     c = Configuration.Config()
     if len(sys.argv) ==  1:
-        testfile = "regression-test-files/fulltilt/FT20081209 CR - tay - $0.05-$0.10 - No Limit Hold'em.txt"
+        testfile = "regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt"
     else:
         testfile = sys.argv[1]
         print "Converting: ", testfile

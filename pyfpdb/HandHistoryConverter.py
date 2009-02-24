@@ -91,6 +91,7 @@ class HandHistoryConverter:
         self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
         self.rexx      = FpdbRegex.FpdbRegex()
         self.players   = set()
+        self.maxseats  = 10
 
     def __str__(self):
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -134,17 +135,28 @@ class HandHistoryConverter:
                 # we need to recompile the player regexs.
                 self.players = playersThisHand
                 self.compile_player_regexs()
-        
-            self.markStreets(hand)
-            self.readBlinds(hand)
-            self.readHeroCards(hand) # want to generalise to draw games
+
+            # Different calls if stud or holdem like
+            if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                self.markStreets(hand)
+                self.readBlinds(hand)
+                self.readButton(hand)
+                self.readHeroCards(hand) # want to generalise to draw games
+            elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+                self.markStreets(hand) # <--- Different streets
+                self.readAntes(hand)
+                self.readBringIn(hand)
 
             self.readShowdownActions(hand)
             
             # Read actions in street order
             for street in hand.streetList: # go through them in order
                 if hand.streets.group(street) is not None:
-                    self.readCommunityCards(hand, street) # read community cards
+                    if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                        self.readCommunityCards(hand, street) # read community cards
+                    elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+                        self.readPlayerCards(hand, street)
+
                     self.readAction(hand, street)
 
                     
@@ -207,6 +219,9 @@ class HandHistoryConverter:
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    def readAntes(self, hand): abstract
+    def readBringIn(self, hand): abstract
+    def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
