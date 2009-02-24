@@ -106,7 +106,8 @@ class GuiAutoImport (threading.Thread):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
             self.importer.runUpdated()
-            print "GuiAutoImport.import_dir done"
+            sys.stdout.write(".")
+            sys.stdout.flush()
             return True
         else:
             return False
