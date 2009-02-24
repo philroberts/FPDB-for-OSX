@@ -67,9 +67,9 @@ class FullTilt(HandHistoryConverter):
 
 
         m = self.re_GameInfo.search(self.obs)
-        if m.group('LTYPE') == "No":
+        if m.group('LTYPE') == "No ":
             structure = "nl"
-        elif m.group('LTYPE') == "Pot":
+        elif m.group('LTYPE') == "Pot ":
             structure = "pl"
         elif m.group('LTYPE') == "None":
             structure = "fl"
@@ -81,7 +81,6 @@ class FullTilt(HandHistoryConverter):
         elif m.group('GAME') == "Razz":
             game = "razz"
         
-
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
         return gametype
@@ -123,8 +122,12 @@ class FullTilt(HandHistoryConverter):
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.string,re.DOTALL)
         elif self.gametype[1] == "razz":
-            m =  re.search("\*\*\*(?P<THIRD>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)", hand.string,re.DOTALL)
-
+            m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
+                           r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.string,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
