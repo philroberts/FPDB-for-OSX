@@ -84,7 +84,7 @@ class HUD_main(object):
     
                 self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
                 self.hud_dict[table_name].tablehudlabel = newlabel
-                self.hud_dict[table_name].create(new_hand_id, self.config)
+                self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict)
                 for m in self.hud_dict[table_name].aux_windows:
                     m.update_data(new_hand_id, self.db_connection)
                     m.update_gui(new_hand_id)
@@ -141,9 +141,15 @@ class HUD_main(object):
                 break # this thread is not always killed immediately with gtk.main_quit()
     
 #    get basic info about the new hand from the db
-            (table_name, max, poker_game) = self.db_connection.get_table_name(new_hand_id)
-            stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
-    
+#    if there is a db error, complain, skip hand, and proceed
+            try:
+                (table_name, max, poker_game) = self.db_connection.get_table_name(new_hand_id)
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
+            except:
+                print "skipping ", new_hand_id
+                sys.stderr.write("Database error in hand %d. Skipping.\n" % int(new_hand_id))
+                continue
+
 #    find out if this hand is from a tournament
             mat_obj = tourny_finder.search(table_name)
             if mat_obj:
@@ -161,7 +167,7 @@ class HUD_main(object):
                     aw.update_data(new_hand_id, self.db_connection)
                 self.update_HUD(new_hand_id, temp_key, self.config, stat_dict)
     
-#    Or create a new hud
+#    Or create a new HUD
             else:
                 if is_tournament:
                     tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
@@ -171,7 +177,7 @@ class HUD_main(object):
                 if tablewindow == None:
                     if is_tournament:
                         table_name = tour_number + " " + tab_number
-                    sys.stderr.write("table name "+table_name+" not found\n")
+                    sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, is_tournament, stat_dict)
 

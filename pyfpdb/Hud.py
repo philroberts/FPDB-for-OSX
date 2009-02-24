@@ -201,31 +201,43 @@ class Hud:
         self.config.save()
 
     def adj_seats(self, hand, config):
+        
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         try:
+            sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
             if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
-#                db_connection = Database.Database(config, self.db_name, 'temp')
-                actual_seat = self.db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
-#                db_connection.close_connection()
+                sys.stderr.write("found fav seat = %d\n" % fav_seat)
+#                actual_seat = self.db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
+                actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
+                sys.stderr.write("found actual seat = %d\n" % actual_seat)
                 for i in range(0, self.max + 1):
                     j = actual_seat + i
                     if j > self.max: j = j - self.max
                     adj[j] = fav_seat + i
                     if adj[j] > self.max: adj[j] = adj[j] - self.max
-        except:
-            pass
+        except Exception, inst:
+            sys.stderr.write("exception in adj!!!\n\n")
+            sys.stderr.write("error is %s" % inst)           # __str__ allows args to printed directly
         return adj
 
-    def create(self, hand, config):
+    def get_actual_seat(self, name):
+        for key in self.stat_dict.keys():
+            if self.stat_dict[key]['screen_name'] == name:
+                return self.stat_dict[key]['seat']
+        sys.stderr.write("Error finding actual seat.\n")
+
+    def create(self, hand, config, stat_dict):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
-
+        self.stat_dict = stat_dict
+        sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
         adj = self.adj_seats(hand, config)
+        sys.stderr.write("adj = %s\n" % adj)
         loc = self.config.get_locations(self.table.site, self.max)
 
 #    create the stat windows
@@ -234,6 +246,7 @@ class Hud:
             if i in self.stat_windows:
                 self.stat_windows[i].relocate(x, y)
             else:
+                sys.stderr.write("actual seat = %d, x = %d, y= %d\n" % (i, x, y))
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table, 
@@ -292,9 +305,6 @@ class Hud:
                     tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
                     Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
-#        for m in self.aux_windows:
-#            m.update_data(hand)
-#            m.update_gui(hand)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
