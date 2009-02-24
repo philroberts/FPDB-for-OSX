@@ -136,14 +136,13 @@ class HandHistoryConverter:
                 self.players = playersThisHand
                 self.compile_player_regexs()
 
+            self.markStreets(hand)
             # Different calls if stud or holdem like
             if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
-                self.markStreets(hand)
                 self.readBlinds(hand)
                 self.readButton(hand)
                 self.readHeroCards(hand) # want to generalise to draw games
             elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
-                self.markStreets(hand) # <--- Different streets
                 self.readAntes(hand)
                 self.readBringIn(hand)
 
