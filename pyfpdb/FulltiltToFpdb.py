@@ -152,7 +152,7 @@ class FullTilt(HandHistoryConverter):
     def readBringIn(self, hand):
         print "DEBUG: reading bring in"
 #        print hand.string
-        m = self.re_Button.search(hand.string,re.DOTALL)
+        m = self.re_BringIn.search(hand.string,re.DOTALL)
         print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readButton(self, hand):
