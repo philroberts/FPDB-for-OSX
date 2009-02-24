@@ -165,19 +165,11 @@ class Database:
         c = self.connection.cursor()
 
         if aggregate:
-            query = 'get_stats_from_hand'
-            subs = (hand, hand)
-        else:
             query = 'get_stats_from_hand_aggregated'
             subs = (hand, hand, hand)
-
-#    get the players in the hand and their seats
-        c.execute(self.sql.query['get_players_from_hand'], (hand, ))
-        names = {}
-        seats = {}
-        for row in c.fetchall():
-            names[row[0]] = row[2]
-            seats[row[0]] = row[1]
+        else:
+            query = 'get_stats_from_hand'
+            subs = (hand, hand)
 
 #    now get the stats
         c.execute(self.sql.query[query], subs)
@@ -187,9 +179,6 @@ class Database:
             t_dict = {}
             for name, val in zip(colnames, row):
                 t_dict[name] = val
-#                print t_dict
-            t_dict['screen_name'] = names[t_dict['player_id']]
-            t_dict['seat']        = seats[t_dict['player_id']]
             stat_dict[t_dict['player_id']] = t_dict
         return stat_dict
             

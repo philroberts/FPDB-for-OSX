@@ -360,7 +360,7 @@ class Importer:
                             sys.exit(0)
                 startpos=endpos
         ttime = time() - starttime
-        print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
+        print "\rTotal stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
         
         if stored==0:
             if duplicates>0:
