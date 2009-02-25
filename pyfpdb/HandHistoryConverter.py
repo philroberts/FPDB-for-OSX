@@ -117,9 +117,12 @@ class HandHistoryConverter:
             return
 
         self.obs = self.obs.replace('\r\n', '\n')
-        outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()
+        if self.gametype == None:
+            print "Unknown game type from file, aborting on this file."
+            return
         self.hands = self.splitFileIntoHands()
+        outfile = open(self.ofile, 'w')        
         for hand in self.hands:
             #print "\nDEBUG: Input:\n"+hand.string
             self.readHandInfo(hand)
