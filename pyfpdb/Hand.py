@@ -221,6 +221,14 @@ Card ranks will be uppercased
         self.posted = self.posted + [[player,blindtype]]
         #print "DEBUG: self.posted: %s" %(self.posted)
 
+    def addBringIn(self, player, ante):
+        if player is not None:
+            self.bets['THIRD'][player].append(Decimal(ante))
+            self.stacks[player] -= Decimal(ante)
+            act = (player, 'bringin', "bringin", ante, self.stacks[player]==0)
+            self.actions['THIRD'].append(act)
+            self.pot.addMoney(player, Decimal(ante))
+
 
     def addCall(self, street, player=None, amount=None):
         # Potentially calculate the amount of the call if not supplied
@@ -513,6 +521,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         if 'THIRD' in self.actions:
             print >>fh, _("*** 3RD STREET ***")
             for act in self.actions['THIRD']:
+                #FIXME: Need some logic here for bringin vs completes
                 self.printActionLine(act, fh)
 
         if 'FOURTH' in self.actions:
