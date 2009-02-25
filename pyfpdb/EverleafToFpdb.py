@@ -25,24 +25,29 @@ from time import strftime
 # Class for converting Everleaf HH format.
 
 class Everleaf(HandHistoryConverter):
+    
+    # Static regexes
+    re_SplitHands  = re.compile(r"\n\n+")
+    re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
+    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
+    re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
+    re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
+    re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
+        
+    
     def __init__(self, config, file):
         print "Initialising Everleaf converter class"
         HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
         self.sitename = "Everleaf"
         self.setFileType("text", "cp1252")
         
-        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
-        self.re_SplitHands  = re.compile(r"\n\n+")
-        self.re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)")
-        self.re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
-        self.re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
-        
+
         try:
             self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
         except:
             self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
-    def compile_player_regexs(self):
+    def compilePlayerRegexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
         #print "DEBUG player_re: " + player_re
         self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
@@ -109,7 +114,6 @@ class Everleaf(HandHistoryConverter):
 #TODO: Do conversion from GMT to ET
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.starttime = time.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
-        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.string)
@@ -152,6 +156,9 @@ class Everleaf(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+
+    def readButton(self, hand):
+        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
 
     def readHeroCards(self, hand):
         m = self.re_HeroCards.search(hand.string)

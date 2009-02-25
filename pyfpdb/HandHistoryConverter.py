@@ -137,7 +137,7 @@ class HandHistoryConverter:
             else:
                 # we need to recompile the player regexs.
                 self.players = playersThisHand
-                self.compile_player_regexs()
+                self.compilePlayerRegexs()
 
             self.markStreets(hand)
             # Different calls if stud or holdem like
@@ -209,9 +209,8 @@ class HandHistoryConverter:
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
     
-    # Given 
-    #
-    def compile_player_regexs(self): abstract
+    def compilePlayerRegexs(self): abstract
+    """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
     
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc

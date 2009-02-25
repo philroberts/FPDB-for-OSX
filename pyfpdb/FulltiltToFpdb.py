@@ -23,19 +23,22 @@ from HandHistoryConverter import *
 # FullTilt HH Format converter
 
 class FullTilt(HandHistoryConverter):
+    
+    # Static regexes
+    re_GameInfo     = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
+    re_SplitHands   = re.compile(r"\n\n+")
+    re_HandInfo     = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
+    re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)')
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
+    re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+
     def __init__(self, config, file):
         print "Initialising FullTilt converter class"
         HandHistoryConverter.__init__(self, config, file, sitename="FullTilt") # Call super class init.
         self.sitename = "FullTilt"
         self.setFileType("text", "cp1252")
-        self.re_GameInfo    = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
-        self.re_SplitHands  = re.compile(r"\n\n+")
-        self.re_HandInfo    = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
-        self.re_Button      = re.compile('The button is in seat #(?P<BUTTON>\d+)')
-        self.re_PlayerInfo  = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
-        self.re_Board = re.compile(r"\[(?P<CARDS>.+)\]")
 
-    def compile_player_regexs(self):
+    def compilePlayerRegexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
         print "DEBUG player_re: " + player_re
         self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
