@@ -421,7 +421,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-#            print >>fh, "DEBUG: what do they show"
+        #TODO: Complete SHOWDOWN
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -437,7 +437,6 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
         print >>fh, _("*** SUMMARY ***")
         print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
-        #print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
 
         board = []
         for s in self.board.values():
