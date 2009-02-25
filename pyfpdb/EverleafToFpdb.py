@@ -31,14 +31,14 @@ class Everleaf(HandHistoryConverter):
         self.sitename = "Everleaf"
         self.setFileType("text", "cp1252")
         
-        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha))")
+        self.re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
         self.re_SplitHands  = re.compile(r"\n\n+")
         self.re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)")
         self.re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
         self.re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
         
         try:
-            self.ofile     = os.path.join(self.hhdir, file.split("\\")[-2]+"-"+os.path.basename(file))
+            self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
         except:
             self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
@@ -69,15 +69,21 @@ class Everleaf(HandHistoryConverter):
         game      = ""
 
         m = self.re_GameInfo.search(self.obs)
+        if m == None:
+            return None
         if m.group('LTYPE') == "NL":
             structure = "nl"
         elif m.group('LTYPE') == "PL":
             structure = "pl"
+        else:
+            structure = "fl" # we don't support it, but there should be how to detect it at least.
 
         if m.group('GAME') == "Hold\'em":
             game = "hold"
-        if m.group('GAME') == "Omaha":
+        elif m.group('GAME') == "Omaha":
             game = "omahahi"
+        elif m.group('GAME') == "7 Card Stud":
+            game = "studhi" # Everleaf currently only does Hi stud
 
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
 
@@ -89,6 +95,7 @@ class Everleaf(HandHistoryConverter):
             print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
+        hand.max_seats = 6 # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #		m.group('SB')
 #		m.group('BB')
@@ -107,9 +114,12 @@ class Everleaf(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.string)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
-
-
+            seatnum = int(a.group('SEAT'))
+            hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
+            if seatnum > 6:
+                hand.max_seats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
+                # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
+            
         
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **

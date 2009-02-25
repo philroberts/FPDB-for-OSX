@@ -365,11 +365,19 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "cp"  : "Cap Pot Limit"
              }
 
+        print "DEBUG: self.gametype: %s" %(self.gametype)
         string = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
         
         return string
 
     def writeHand(self, fh=sys.__stdout__):
+        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+            self.writeHoldemHand(fh)
+        else:
+            self.writeStudHand(fh)
+
+
+    def writeHoldemHand(self, fh=sys.__stdout__):
         # PokerStars format.
         #print "\n### Pseudo stars format ###"
         #print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
@@ -445,6 +453,105 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, _("Board [%s]" % (" ".join(board)))
 
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
+            seatnum = player[0]
+            name = player[1]
+            if name in self.collectees and name in self.shown:
+                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collectees[name]))
+            elif name in self.collectees:
+                print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
+            elif name in self.shown:
+                print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name])))
+            elif name in self.folded:
+                print >>fh, _("Seat %d: %s folded" % (seatnum, name))
+            else:
+                print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
+
+        print >>fh, "\n\n"
+            # TODO:
+            # logic for side pots
+            # logic for which players get to showdown
+            # I'm just not sure we need to do this so heavily.. and if we do, it's probably better to use pokerlib
+            #if self.holecards[player[1]]: # empty list default is false
+                #hole = self.holecards[player[1]]
+                ##board = []
+                ##for s in self.board.values():
+                    ##board += s
+                ##playerhand = self.bestHand('hi', board+hole)
+                ##print "Seat %d: %s showed %s and won/lost with %s" % (player[0], player[1], hole, playerhand)
+                #print "Seat %d: %s showed %s" % (player[0], player[1], hole)
+            #else:
+                #print "Seat %d: %s mucked or folded" % (player[0], player[1])
+
+
+    def writeStudHand(self, fh=sys.__stdout__):
+        # PokerStars format.
+        #print "\n### Pseudo stars format ###"
+        #print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
+        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
+        
+        players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
+
+        for player in [x for x in self.players if x[1] in players_who_post_antes]:
+            #Only print stacks of players who do something preflop
+            print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
+
+
+        if 'THIRD' in self.actions:
+            print >>fh, _("*** 3RD STREET ***")
+            for act in self.actions['THIRD']:
+                self.printActionLine(act, fh)
+
+        if 'FOURTH' in self.actions:
+            print >>fh, _("*** 4TH STREET ***")
+            for act in self.actions['FOURTH']:
+                self.printActionLine(act, fh)
+
+        if 'FIFTH' in self.actions:
+            print >>fh, _("*** 5TH STREET ***")
+            for act in self.actions['FIFTH']:
+                self.printActionLine(act, fh)
+
+        if 'SIXTH' in self.actions:
+            print >>fh, _("*** 6TH STREET ***")
+            for act in self.actions['SIXTH']:
+                self.printActionLine(act, fh)
+
+        if 'SEVENTH' in self.actions:
+            print >>fh, _("*** 7TH STREET ***")
+            for act in self.actions['SEVENTH']:
+                self.printActionLine(act, fh)
+
+        #Some sites don't have a showdown section so we have to figure out if there should be one
+        # The logic for a showdown is: at the end of river action there are at least two players in the hand
+        # we probably don't need a showdown section in pseudo stars format for our filtering purposes
+        if 'SHOWDOWN' in self.actions:
+            print >>fh, _("*** SHOW DOWN ***")
+#            print >>fh, "DEBUG: what do they show"
+
+        # Current PS format has the lines:
+        # Uncalled bet ($111.25) returned to s0rrow
+        # s0rrow collected $5.15 from side pot
+        # stervels: shows [Ks Qs] (two pair, Kings and Queens)
+        # stervels collected $45.35 from main pot
+        # Immediately before the summary.
+        # The current importer uses those lines for importing winning rather than the summary
+        for name in self.pot.returned:
+            print >>fh, _("Uncalled bet ($%s) returned to %s" %(self.pot.returned[name],name))
+        for entry in self.collected:
+            print >>fh, _("%s collected $%s from x pot" %(entry[0], entry[1]))
+
+        print >>fh, _("*** SUMMARY ***")
+        print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
+        #print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
+
+        board = []
+        for s in self.board.values():
+            board += s
+        if board:   # sometimes hand ends preflop without a board
+            print >>fh, _("Board [%s]" % (" ".join(board)))
+
+        for player in [x for x in self.players if x[1] in players_who_post_antes]:
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
