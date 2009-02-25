@@ -150,6 +150,7 @@ class HandHistoryConverter:
             
             # Read actions in street order
             for street in hand.streetList: # go through them in order
+                print "DEBUG: ", street
                 if hand.streets.group(street) is not None:
                     if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
                         self.readCommunityCards(hand, street) # read community cards
@@ -222,6 +223,7 @@ class HandHistoryConverter:
     def readBringIn(self, hand): abstract
     def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
+    def readPlayerCards(self, hand, street): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract

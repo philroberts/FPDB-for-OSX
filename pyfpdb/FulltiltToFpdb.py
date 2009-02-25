@@ -42,7 +42,7 @@ class FullTilt(HandHistoryConverter):
         self.re_PostBB           = re.compile('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
         self.re_BringIn          = re.compile('.*\n(?P<PNAME>.*) brings in for \$?(?P<BRINGIN>[.0-9]+)')
         self.re_PostBoth         = re.compile('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-        self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]')
+        self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]( [(?P<NEWCARD>.*])?')
         self.re_Action           = re.compile('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
         self.re_ShowdownAction   = re.compile('.*\n(?P<PNAME>.*) shows \[(?P<CARDS>.*)\]')
         self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*?) (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)")
@@ -173,6 +173,21 @@ class FullTilt(HandHistoryConverter):
             cards = m.group('CARDS')
             cards = set(cards.split(' '))
             hand.addHoleCards(cards, m.group('PNAME'))
+
+    def readPlayerCards(self, hand, street):
+        #Used for stud hands - borrows the HeroCards regex for now.
+        m = self.re_HeroCards.finditer(hand.streets.group(street))
+        print "DEBUG: razz/stud readPlayerCards"
+        print "DEBUG: STREET: %s", street
+        for player in m:
+            print player.groups()
+            #hand.hero = m.group('PNAME')
+            # "2c, qh" -> set(["2c","qc"])
+            # Also works with Omaha hands.
+            cards = player.group('CARDS')
+            print "DEBUG: PNAME: %s CARDS: %s" %(player.group('PNAME'), player.group('CARDS'))
+            cards = set(cards.split(' '))
+#            hand.addHoleCards(cards, m.group('PNAME'))
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets.group(street))
