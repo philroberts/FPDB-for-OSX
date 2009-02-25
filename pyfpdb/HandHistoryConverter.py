@@ -91,6 +91,7 @@ class HandHistoryConverter:
         self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
         self.rexx      = FpdbRegex.FpdbRegex()
         self.players   = set()
+        self.maxseats  = 10
 
     def __str__(self):
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -98,11 +99,11 @@ class HandHistoryConverter:
         tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
         tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
         tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
-#		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
-#		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-#		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-#		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-#		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
+        tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
+        #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
+        #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
+        #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
+        #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
     def processFile(self):
@@ -114,17 +115,17 @@ class HandHistoryConverter:
         if self.obs == "" or self.obs == None:
             print "Did not read anything from file."
             return
-        # Ugh
+
         self.obs = self.obs.replace('\r\n', '\n')
         outfile = open(self.ofile, 'w')
         self.gametype = self.determineGameType()
         self.hands = self.splitFileIntoHands()
         for hand in self.hands:
-#            print "\nInput:\n"+hand.string
+            #print "\nDEBUG: Input:\n"+hand.string
             self.readHandInfo(hand)
             
             self.readPlayerStacks(hand)
-            print "DEBUG stacks:", hand.stacks
+            #print "DEBUG stacks:", hand.stacks
             # at this point we know the player names, they are in hand.players
             playersThisHand = set([player[1] for player in hand.players])
             if playersThisHand <= self.players: # x <= y means 'x is subset of y'
@@ -134,17 +135,28 @@ class HandHistoryConverter:
                 # we need to recompile the player regexs.
                 self.players = playersThisHand
                 self.compile_player_regexs()
-        
-            self.markStreets(hand)
-            self.readBlinds(hand)
-            self.readHeroCards(hand) # want to generalise to draw games
+
+            # Different calls if stud or holdem like
+            if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                self.markStreets(hand)
+                self.readBlinds(hand)
+                self.readButton(hand)
+                self.readHeroCards(hand) # want to generalise to draw games
+            elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+                self.markStreets(hand) # <--- Different streets
+                self.readAntes(hand)
+                self.readBringIn(hand)
 
             self.readShowdownActions(hand)
             
             # Read actions in street order
             for street in hand.streetList: # go through them in order
                 if hand.streets.group(street) is not None:
-                    self.readCommunityCards(hand, street) # read community cards
+                    if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                        self.readCommunityCards(hand, street) # read community cards
+                    elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+                        self.readPlayerCards(hand, street)
+
                     self.readAction(hand, street)
 
                     
@@ -164,7 +176,7 @@ class HandHistoryConverter:
 
         outfile.close()
         endtime = time.time()
-        print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
+        print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
 
     #####
     # These functions are parse actions that may be overridden by the inheriting class
@@ -207,6 +219,9 @@ class HandHistoryConverter:
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    def readAntes(self, hand): abstract
+    def readBringIn(self, hand): abstract
+    def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract

@@ -20,51 +20,7 @@ import sys
 import Configuration
 from HandHistoryConverter import *
 
-# FullTilt HH Format
-
-#Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
-#Seat 1: rigoise ($15.95)
-#Seat 2: K2dream ($6.70)
-#Seat 4: ravens2216 ($10)
-#Seat 5: rizkouner ($4)
-#Seat 6: Sorrowful ($8.35)
-#rigoise posts the small blind of $0.05
-#K2dream posts the big blind of $0.10
-#5 seconds left to act
-#rizkouner posts $0.10
-#The button is in seat #6
-#*** HOLE CARDS ***
-#Dealt to Sorrowful [8h Qc]
-#ravens2216 folds
-#rizkouner checks
-#Sorrowful has 15 seconds left to act
-#Sorrowful folds
-#rigoise folds
-#K2dream checks
-#*** FLOP *** [9d Kc 5c]
-#K2dream checks
-#rizkouner checks
-#*** TURN *** [9d Kc 5c] [5h]
-#K2dream has 15 seconds left to act
-#K2dream bets $0.20
-#rizkouner calls $0.20
-#*** RIVER *** [9d Kc 5c 5h] [6h]
-#K2dream checks
-#rizkouner has 15 seconds left to act
-#rizkouner bets $0.20
-#K2dream folds
-#Uncalled bet of $0.20 returned to rizkouner
-#rizkouner mucks
-#rizkouner wins the pot ($0.60)
-#*** SUMMARY ***
-#Total pot $0.65 | Rake $0.05
-#Board: [9d Kc 5c 5h 6h]
-#Seat 1: rigoise (small blind) folded before the Flop
-#Seat 2: K2dream (big blind) folded on the River
-#Seat 4: ravens2216 didn't bet (folded)
-#Seat 5: rizkouner collected ($0.60), mucked
-#Seat 6: Sorrowful (button) didn't bet (folded)
-#Seat N: rizkouner (button) showed [Jh Ah] and won ($0.70) with a pair of Threes
+# FullTilt HH Format converter
 
 class FullTilt(HandHistoryConverter):
     def __init__(self, config, file):
@@ -72,42 +28,68 @@ class FullTilt(HandHistoryConverter):
         HandHistoryConverter.__init__(self, config, file, sitename="FullTilt") # Call super class init.
         self.sitename = "FullTilt"
         self.setFileType("text", "cp1252")
-        self.rexx.setGameInfoRegex('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) -')
-        self.rexx.setSplitHandRegex('\n\n+')
-        self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
-#        self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
-        self.rexx.button_re = re.compile('The button is in seat #(?P<BUTTON>\d+)')
-        self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
-        self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*) posts the small blind of \$?(?P<SB>[.0-9]+)')
-        self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
-        self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-        self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]')
-        self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
-        self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[(?P<CARDS>.*)\]')
-        self.rexx.setCollectPotRegex(r"Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*?) (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)")
-        self.rexx.shown_cards_re = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\) showed \[(?P<CARDS>.*)\].*')
-        self.rexx.sits_out_re = re.compile('(?P<PNAME>.*) sits out')
-        self.rexx.compileRegexes()
+        self.re_GameInfo    = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
+        self.re_SplitHands  = re.compile(r"\n\n+")
+        self.re_HandInfo    = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
+        self.re_Button      = re.compile('The button is in seat #(?P<BUTTON>\d+)')
+        self.re_PlayerInfo  = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
+        self.re_Board = re.compile(r"\[(?P<CARDS>.+)\]")
+
+    def compile_player_regexs(self):
+        player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
+        #print "DEBUG player_re: " + player_re
+        self.re_PostSB           = re.compile('.*\n(?P<PNAME>.*) posts the small blind of \$?(?P<SB>[.0-9]+)')
+        self.re_PostBB           = re.compile('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
+        self.re_BringIn          = re.compile('.*\n(?P<PNAME>.*) brings in for \$?(?P<BRINGIN>[.0-9]+)')
+        self.re_PostBoth         = re.compile('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
+        self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]')
+        self.re_Action           = re.compile('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
+        self.re_ShowdownAction   = re.compile('.*\n(?P<PNAME>.*) shows \[(?P<CARDS>.*)\]')
+        self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*?) (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)")
+        self.re_SitsOut          = re.compile('(?P<PNAME>.*) sits out')
+        self.re_ShownCards       = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\) showed \[(?P<CARDS>.*)\].*')
+
 
     def readSupportedGames(self):
-        pass
+        return [["ring", "hold", "nl"], 
+                ["ring", "hold", "pl"],
+                ["ring", "razz", "fl"],
+                ["ring", "omaha", "pl"]
+               ]
 
     def determineGameType(self):
         # Cheating with this regex, only support nlhe at the moment
-        gametype = ["ring", "hold", "nl"]
+        # Full Tilt Poker Game #10777181585: Table Deerfly (deep 6) - $0.01/$0.02 - Pot Limit Omaha Hi - 2:24:44 ET - 2009/02/22
+        # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
+        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
+        structure = "" # nl, pl, cn, cp, fl
+        game      = ""
 
-        m = self.rexx.game_info_re.search(self.obs)
-        gametype = gametype + [m.group('SB')]
-        gametype = gametype + [m.group('BB')]
+
+        m = self.re_GameInfo.search(self.obs)
+        if m.group('LTYPE') == "No ":
+            structure = "nl"
+        elif m.group('LTYPE') == "Pot ":
+            structure = "pl"
+        elif m.group('LTYPE') == "None":
+            structure = "fl"
+
+        if m.group('GAME') == "Hold\'em":
+            game = "hold"
+        elif m.group('GAME') == "Omaha":
+            game = "omahahi"
+        elif m.group('GAME') == "Razz":
+            game = "razz"
+        
+        gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
         return gametype
 
     def readHandInfo(self, hand):
-        m =  self.rexx.hand_info_re.search(hand.string,re.DOTALL)
+        m =  self.re_HandInfo.search(hand.string,re.DOTALL)
         #print m.groups()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.buttonpos = int(self.rexx.button_re.search(hand.string).group('BUTTON'))
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #		m.group('SB')
@@ -125,7 +107,7 @@ class FullTilt(HandHistoryConverter):
 #FIXME:        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
-        m = self.rexx.player_info_re.finditer(hand.string)
+        m = self.re_PlayerInfo.finditer(hand.string)
         players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -134,34 +116,53 @@ class FullTilt(HandHistoryConverter):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
 
-        m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
+        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.string,re.DOTALL)
-
+        elif self.gametype[1] == "razz":
+            m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
+                           r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.string,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            self.rexx.board_re = re.compile(r"\[(?P<CARDS>.+)\]")
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
-            m = self.rexx.board_re.search(hand.streets.group(street))
+            m = self.re_Board.search(hand.streets.group(street))
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
 
     def readBlinds(self, hand):
         try:
-            m = self.rexx.small_blind_re.search(hand.string)
+            m = self.re_PostSB.search(hand.string)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
-        for a in self.rexx.big_blind_re.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.rexx.both_blinds_re.finditer(hand.string):
+        for a in self.re_PostBoth.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
+    def readAntes(self, hand):
+        print "DEBUG: reading antes"
+        print "DEBUG: FIXME reading antes"
+
+    def readBringIn(self, hand):
+        print "DEBUG: reading bring in"
+#        print hand.string
+        m = self.re_BringIn.search(hand.string,re.DOTALL)
+        print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+
+    def readButton(self, hand):
+        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
+
     def readHeroCards(self, hand):
-        m = self.rexx.hero_cards_re.search(hand.string)
+        m = self.re_HeroCards.search(hand.string)
         if(m == None):
             #Not involved in hand
             hand.involved = False
@@ -174,7 +175,7 @@ class FullTilt(HandHistoryConverter):
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readAction(self, hand, street):
-        m = self.rexx.action_re.finditer(hand.streets.group(street))
+        m = self.re_Action.finditer(hand.streets.group(street))
         for action in m:
             if action.group('ATYPE') == ' raises to':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
@@ -191,17 +192,17 @@ class FullTilt(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-        for shows in self.rexx.showdown_action_re.finditer(hand.string):            
+        for shows in self.re_ShowdownAction.finditer(hand.string):
             cards = shows.group('CARDS')
             cards = set(cards.split(' '))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.rexx.collect_pot_re.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.string):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
-        for m in self.rexx.shown_cards_re.finditer(hand.string):
+        for m in self.re_ShownCards.finditer(hand.string):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = set(cards.split(' '))
@@ -211,7 +212,7 @@ class FullTilt(HandHistoryConverter):
 if __name__ == "__main__":
     c = Configuration.Config()
     if len(sys.argv) ==  1:
-        testfile = "regression-test-files/FT20081209 CR - tay - $0.05-$0.10 - No Limit Hold'em.txt"
+        testfile = "regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt"
     else:
         testfile = sys.argv[1]
         print "Converting: ", testfile

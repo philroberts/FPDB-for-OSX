@@ -34,6 +34,7 @@ import fpdb_db
 import fpdb_parse_logic
 import Configuration
 import EverleafToFpdb
+import FulltiltToFpdb
 
 #    database interface modules
 try:
@@ -117,6 +118,8 @@ class Importer:
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
     def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
+        #This should really be using os.walk
+        #http://docs.python.org/library/os.html
         if os.path.isdir(dir):
             if monitor == True:
                 self.monitor = True
@@ -207,7 +210,7 @@ class Importer:
                 conv = EverleafToFpdb.Everleaf(self.config, file)
             elif filter == "FulltiltToFpdb":
                 print "converting ", file
-                conv = FulltiltToFpdb.Fulltilt(self.config, file)
+                conv = FulltiltToFpdb.FullTilt(self.config, file)
             else:
                 print "Unknown filter ", filter
                 return
