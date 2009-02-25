@@ -55,7 +55,7 @@ class GuiBulkImport():
         hhc=self.cbfilter.get_model()[self.cbfilter.get_active()][0]
         self.lab_info.set_text("Importing")
         
-        self.importer.addImportFile(self.inputFile,filter=hhc)
+        self.importer.addBulkImportImportFileOrDir(self.inputFile,filter=hhc)
         self.importer.setCallHud(False)
         starttime = time()
         (stored, dups, partial, errs, ttime) = self.importer.runImport()
