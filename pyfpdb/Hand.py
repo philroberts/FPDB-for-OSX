@@ -42,7 +42,7 @@ class Hand:
         if gametype[1] == "hold" or self.gametype[1] == "omaha":
             self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
         elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
-            self.streetList = ['ANTES','THIRD','FORTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
+            self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
 
         self.handid = 0
         self.sb = gametype[3]

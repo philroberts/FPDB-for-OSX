@@ -173,6 +173,8 @@ class Sql:
 
             self.query['get_stats_from_hand'] = """
                     SELECT HudCache.playerId             AS player_id, 
+                        seatNo                           AS seat,
+                        name                             AS screen_name,
                         sum(HDs)                         AS n,
                         sum(street0VPI)                  AS vpip,
                         sum(street0Aggr)                 AS pfr,
@@ -233,6 +235,7 @@ class Sql:
                          INNER JOIN HandsPlayers ON (HandsPlayers.handId = %s)
                          INNER JOIN HudCache ON (    HudCache.PlayerId = HandsPlayers.PlayerId+0
                                                  AND HudCache.gametypeId+0 = Hands.gametypeId+0)
+                         INNER JOIN Players ON (Players.id = HandsPlayers.PlayerId+0)
                     WHERE Hands.id = %s
                     GROUP BY HudCache.PlayerId
                 """
