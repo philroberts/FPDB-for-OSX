@@ -42,7 +42,7 @@ class FullTilt(HandHistoryConverter):
         self.re_PostBB           = re.compile('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
         self.re_BringIn          = re.compile('.*\n(?P<PNAME>.*) brings in for \$?(?P<BRINGIN>[.0-9]+)')
         self.re_PostBoth         = re.compile('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-        self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]( [(?P<NEWCARD>.*])?')
+        self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]( \[(?P<NEWCARD>.*)\])?')
         self.re_Action           = re.compile('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
         self.re_ShowdownAction   = re.compile('.*\n(?P<PNAME>.*) shows \[(?P<CARDS>.*)\]')
         self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*?) (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)")
@@ -71,7 +71,7 @@ class FullTilt(HandHistoryConverter):
             structure = "nl"
         elif m.group('LTYPE') == "Pot ":
             structure = "pl"
-        elif m.group('LTYPE') == "None":
+        elif m.group('LTYPE') == None:
             structure = "fl"
 
         if m.group('GAME') == "Hold\'em":
@@ -80,7 +80,9 @@ class FullTilt(HandHistoryConverter):
             game = "omahahi"
         elif m.group('GAME') == "Razz":
             game = "razz"
-        
+
+        print m.groups()
+
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
         return gametype
