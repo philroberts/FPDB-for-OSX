@@ -62,6 +62,7 @@ class Site:
         self.aux_window   = node.getAttribute("aux_window")
         self.font         = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
+        self.use_frames    = node.getAttribute("use_frames")
         self.layout       = {}
         
         for layout_node in node.getElementsByTagName('layout'):
@@ -465,6 +466,9 @@ class Config:
             paths['hud-defaultPath']        = "default"
             paths['bulkImport-defaultPath'] = "default"
         return paths
+    
+    def get_frames(self, site = "PokerStars"):
+        return self.supported_sites[site].use_frames == "True"
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
