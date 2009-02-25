@@ -37,17 +37,17 @@ class FullTilt(HandHistoryConverter):
 
     def compile_player_regexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        #print "DEBUG player_re: " + player_re
-        self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)", player_re)
-        self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)", player_re)
-        self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)", player_re)
-        self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)", player_re)
-        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>.*)\]( \[(?P<NEWCARD>.*\])?", player_re)
-        self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?", player_re)
-        self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]", player_re)
-        self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)", player_re)
-        self.re_SitsOut          = re.compile(r"^%s sits out", player_re)
-        self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*", player_re)
+        print "DEBUG player_re: " + player_re
+        self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
+        self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>.*)\]( \[(?P<NEWCARD>.*)\])?" % player_re, re.MULTILINE)
+        self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?" % player_re, re.MULTILINE)
+        self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
+        self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
+        self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
+        self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
 
     def readSupportedGames(self):
