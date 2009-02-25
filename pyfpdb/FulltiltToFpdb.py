@@ -46,7 +46,7 @@ class FullTilt(HandHistoryConverter):
         self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>.*)\]( \[(?P<NEWCARD>.*)\])?" % player_re, re.MULTILINE)
+        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>[AKQJT0-9hcsd ]+)\]( \[(?P<NEWCARD>[AKQJT0-9hcsd ]+)\])?" % player_re, re.MULTILINE)
         self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?" % player_re, re.MULTILINE)
         self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
         self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
@@ -188,7 +188,6 @@ class FullTilt(HandHistoryConverter):
         #Used for stud hands - borrows the HeroCards regex for now.
         m = self.re_HeroCards.finditer(hand.streets.group(street))
         print "DEBUG: razz/stud readPlayerCards"
-        print "DEBUG: STREET: %s", street
         print hand.streets.group(street)
         for player in m:
             print player.groups()
