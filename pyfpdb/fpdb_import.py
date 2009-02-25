@@ -123,7 +123,7 @@ class Importer:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(inputPath, subdir, file), site="default", filter=filter)
+                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site="default", filter=filter)
         else:
             self.addImportFile(inputPath, site="default", filter=filter)
 
