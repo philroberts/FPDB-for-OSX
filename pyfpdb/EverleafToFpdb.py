@@ -38,7 +38,7 @@ class Everleaf(HandHistoryConverter):
         self.re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
         
         try:
-            self.ofile     = os.path.join(self.hhdir, file.split("\\")[-2]+"-"+os.path.basename(file))
+            self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
         except:
             self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
@@ -73,6 +73,8 @@ class Everleaf(HandHistoryConverter):
             structure = "nl"
         elif m.group('LTYPE') == "PL":
             structure = "pl"
+        else:
+            structure = "fl" # we don't support it, but there should be how to detect it at least.
 
         if m.group('GAME') == "Hold\'em":
             game = "hold"
