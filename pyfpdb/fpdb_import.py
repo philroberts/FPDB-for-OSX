@@ -235,8 +235,9 @@ class Importer:
         if (file=="stdin"):
             inputFile=sys.stdin
         else:
-            inputFile=open(file, "rU")
-            try: loc = self.pos_in_file[file]
+            try:
+                inputFile=open(file, "rU")
+                loc = self.pos_in_file[file]
             except: pass
 
         # Read input file into class and close file
