@@ -185,6 +185,14 @@ Card ranks will be uppercased
             c = c.replace(k,v)
         return c
 
+    def addAnte(self, player, ante):
+        if player is not None:
+            self.bets['ANTES'][player].append(Decimal(ante))
+            self.stacks[player] -= Decimal(ante)
+            act = (player, 'posts', "ante", ante, self.stacks[player]==0)
+            self.actions['ANTES'].append(act)
+            self.pot.addMoney(player, Decimal(ante))
+
     def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
         # TODO:
@@ -495,6 +503,11 @@ Map the tuple self.gametype onto the pokerstars string describing it
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
+
+        if 'ANTES' in self.actions:
+            for act in self.actions['ANTES']:
+                print act
+                print >>fh, _("%s: posts the ante $%s" %(act[0], act[3]))
 
 
         if 'THIRD' in self.actions:

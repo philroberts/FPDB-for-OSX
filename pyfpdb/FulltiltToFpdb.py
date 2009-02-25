@@ -43,6 +43,7 @@ class FullTilt(HandHistoryConverter):
         print "DEBUG player_re: " + player_re
         self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
         self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>.*)\]( \[(?P<NEWCARD>.*)\])?" % player_re, re.MULTILINE)
@@ -155,7 +156,10 @@ class FullTilt(HandHistoryConverter):
 
     def readAntes(self, hand):
         print "DEBUG: reading antes"
-        print "DEBUG: FIXME reading antes"
+        m = self.re_Antes.finditer(hand.string)
+        for player in m:
+            print "DEBUG: hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
         print "DEBUG: reading bring in"
@@ -184,13 +188,13 @@ class FullTilt(HandHistoryConverter):
         m = self.re_HeroCards.finditer(hand.streets.group(street))
         print "DEBUG: razz/stud readPlayerCards"
         print "DEBUG: STREET: %s", street
+        print hand.streets.group(street)
         for player in m:
             print player.groups()
             #hand.hero = m.group('PNAME')
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
             cards = player.group('CARDS')
-            print "DEBUG: PNAME: %s CARDS: %s" %(player.group('PNAME'), player.group('CARDS'))
             cards = set(cards.split(' '))
 #            hand.addHoleCards(cards, m.group('PNAME'))
 
