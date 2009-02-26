@@ -190,7 +190,8 @@ class Importer:
             self.addImportDirectory(dir, True, self.addToDirList[dir][0], self.addToDirList[dir][1])
             
         for file in self.removeFromFileList:
-            del self.filelist[file]
+            if file in self.filelist:
+                del self.filelist[file]
         
         self.addToDirList = {}
         self.removeFromFileList = {}
@@ -243,8 +244,8 @@ class Importer:
             if os.path.exists(file):
                 inputFile = open(file, "rU")
             else:
-                self.removeFromFileList['file'] = True
-                return
+                self.removeFromFileList[file] = True
+                return (0, 0, 0, 1, 0)
             try:
                 loc = self.pos_in_file[file]
             except:
