@@ -135,21 +135,21 @@ If a player has None chips he won't be added."""
     def addHoleCards(self, cards, player):
         """\
 Assigns observed holecards to a player.
-cards   set of card bigrams e.g. set(['2h','Jc'])     
+cards   list of card bigrams e.g. ['2h','Jc']
 player  (string) name of player
 """
         #print "DEBUG: addHoleCards", cards,player
         try:
             self.checkPlayerExists(player)
             cards = set([self.card(c) for c in cards])
-            self.holecards[player].update(cards)
+            self.holecards[player].extend(cards)
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
     def addPlayerCards(self, cards, player):
         """\
 Assigns observed cards to a player.
-cards   set of card bigrams e.g. set(['2h','Jc'])     
+cards   list of card bigrams e.g. ['2h','Jc']
 player  (string) name of player
 
 Should probably be merged with addHoleCards
