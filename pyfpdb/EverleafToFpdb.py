@@ -70,6 +70,13 @@ class Everleaf(HandHistoryConverter):
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
         # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
+        
+        # Tourney:
+        # Everleaf Gaming Game #75065769
+        # ***** Hand history for game #75065769 *****
+        # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
+        # Table 2
+
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
