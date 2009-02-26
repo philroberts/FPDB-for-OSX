@@ -18,9 +18,8 @@
 ########################################################################
 
 import sys
-import Configuration
 from HandHistoryConverter import *
-from time import strftime
+
 
 # Class for converting Everleaf HH format.
 
@@ -29,27 +28,27 @@ class Everleaf(HandHistoryConverter):
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
     re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
-    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
+    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)", re.MULTILINE)
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
-        
+    splitstring    = "\n\n\n"
     
-    def __init__(self, config, file):
-        print "Initialising Everleaf converter class"
-        HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
-        self.sitename = "Everleaf"
-        self.setFileType("text", "cp1252")
-        
-
-        try:
-            self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
-        except:
-            self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+    
+    def __init__(self, in_path = '-', out_path = '-', follow = False):
+        """\
+in_path   (default '-' = sys.stdin)
+out_path  (default '-' = sys.stdout)
+follow :  whether to tail -f the input"""
+        super(Everleaf, self).__init__(in_path, out_path, sitename="Everleaf", follow=follow) # Call super class init.
+        logging.info("Initialising Everleaf converter class")
+        self.filetype = "text"
+        self.codepage = "cp1252"
+        self.start()
 
     def compilePlayerRegexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        #print "DEBUG player_re: " + player_re
+        logging.debug("player_re: "+ player_re)
         self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
@@ -65,7 +64,7 @@ class Everleaf(HandHistoryConverter):
                 ["ring", "omaha", "pl"]
                ]
 
-    def determineGameType(self):
+    def determineGameType(self, handtext):
         # Cheating with this regex, only support nlhe at the moment
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
@@ -73,8 +72,9 @@ class Everleaf(HandHistoryConverter):
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
-        m = self.re_GameInfo.search(self.obs)
+        m = self.re_GameInfo.search(handtext)
         if m == None:
+            logging.debug("Gametype didn't match")
             return None
         if m.group('LTYPE') == "NL":
             structure = "nl"
@@ -95,16 +95,14 @@ class Everleaf(HandHistoryConverter):
         return gametype
 
     def readHandInfo(self, hand):
-        m =  self.re_HandInfo.search(hand.string)
+        m = self.re_HandInfo.search(hand.string)
         if(m == None):
-            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
-        hand.handid = m.group('HID')
-        hand.tablename = m.group('TABLE')
-        hand.max_seats = 6 # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
-# These work, but the info is already in the Hand class - should be used for tourneys though.
-#		m.group('SB')
-#		m.group('BB')
-#		m.group('GAMETYPE')
+            logging.info("Didn't match re_HandInfo")
+            logging.info(hand.handtext)
+            return None
+        logging.debug("HID %s" % m.group('HID'))
+        hand.handid =  m.group('HID')
+        hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
 
 # Believe Everleaf time is GMT/UTC, no transation necessary
 # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
@@ -114,6 +112,8 @@ class Everleaf(HandHistoryConverter):
 #TODO: Do conversion from GMT to ET
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.starttime = time.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
+        return
+        #return({'HID': m.group('HID'), 'table':m.group('TABLE'), 'max_seats':6})
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.string)
@@ -139,18 +139,16 @@ class Everleaf(HandHistoryConverter):
             
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        #print "DEBUG " + street + ":"
-        #print hand.streets.group(street) + "\n"
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             m = self.re_Board.search(hand.streets.group(street))
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readBlinds(self, hand):
-        try:
-            m = self.re_PostSB.search(hand.string)
+        m = self.re_PostSB.search(hand.string)
+        if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except Exception, e: # no small blind
-            #print e
+        else:
+            logging.debug("No small blind")
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
@@ -187,7 +185,7 @@ class Everleaf(HandHistoryConverter):
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
 
 
     def readShowdownActions(self, hand):
@@ -210,11 +208,22 @@ class Everleaf(HandHistoryConverter):
 
 
 if __name__ == "__main__":
-    c = Configuration.Config()
-    if len(sys.argv) ==  1:
-        testfile = "regression-test-files/everleaf/Speed_Kuala_full.txt"
-    else:
-        testfile = sys.argv[1]
-    e = Everleaf(c, testfile)
-    e.processFile()
-    print str(e)
+    parser = OptionParser()
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/Speed_Kuala_full.txt")
+    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
+    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-q", "--quiet",
+                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
+    parser.add_option("-v", "--verbose",
+                  action="store_const", const=logging.INFO, dest="verbosity")
+    parser.add_option("--vv",
+                  action="store_const", const=logging.DEBUG, dest="verbosity")
+
+    (options, args) = parser.parse_args()
+
+    LOG_FILENAME = './logging.out'
+    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
+
+    e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow)
+
+    

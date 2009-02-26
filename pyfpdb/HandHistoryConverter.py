@@ -15,12 +15,13 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import Configuration
-import FpdbRegex
 import Hand
 import re
 import sys
+import threading
 import traceback
+import logging
+from optparse import OptionParser
 import os
 import os.path
 import xml.dom.minidom
@@ -73,23 +74,26 @@ gettext.install('myapplication')
 
 
 
-class HandHistoryConverter:
+class HandHistoryConverter(threading.Thread):
 #    eval = PokerEval()
-    def __init__(self, config, file, sitename):
-        print "HandHistory init called"
-        self.c         = config
-        self.sitename  = sitename
-        self.obs       = ""             # One big string
+
+    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
+        super(HandHistoryConverter, self).__init__()
+        logging.info("HandHistory init called")
+        
+        # default filetype and codepage. Subclasses should set these properly.
         self.filetype  = "text"
         self.codepage  = "utf8"
-        self.doc       = None     # For XML based HH files
-        self.file      = file
-        self.hhbase    = self.c.get_import_parameters().get("hhArchiveBase")
-        self.hhbase    = os.path.expanduser(self.hhbase)
-        self.hhdir     = os.path.join(self.hhbase,sitename)
-        self.gametype  = []
-        self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
-        self.rexx      = FpdbRegex.FpdbRegex()
+        
+        self.in_path = in_path
+        self.out_path = out_path
+        if self.out_path == '-':
+            # write to stdout
+            self.out_fh = sys.stdout
+        else:
+            self.out_fh = open(self.out_path, 'a')
+        self.sitename  = sitename
+        self.follow = follow
         self.players   = set()
         self.maxseats  = 10
 
@@ -106,6 +110,85 @@ class HandHistoryConverter:
         #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
+    def run(self):
+        if self.follow:
+            for handtext in self.tailHands():
+                self.processHand(handtext)
+        else:
+            handsList = self.allHands()
+            logging.info("Parsing %d hands" % len(handsList))
+            for handtext in handsList:
+                self.processHand(handtext)
+
+    def tailHands(self):
+        """pseudo-code"""
+        while True:
+            ifile.tell()
+            text = ifile.read()
+            if nomoretext:
+                wait or sleep
+            else:
+                ahand = thenexthandinthetext
+                yield(ahand)
+
+    def allHands(self):
+        """Return a list of handtexts in the file at self.in_path"""
+        self.readFile()
+        self.obs = self.obs.strip()
+        self.obs = self.obs.replace('\r\n', '\n')
+        if self.obs == "" or self.obs == None:
+            logging.info("Read no hands.")
+            return
+        return self.obs.split(self.splitstring)
+        
+    def processHand(self, handtext):
+        gametype = self.determineGameType(handtext)
+        if gametype is None:
+            return
+        hand = Hand.Hand(self.sitename, gametype, handtext)
+        self.readHandInfo(hand)
+        self.readPlayerStacks(hand)
+        playersThisHand = set([player[1] for player in hand.players])
+        if playersThisHand <= self.players: # x <= y means 'x is subset of y'
+            # we're ok; the regex should already cover them all.
+            pass
+        else:
+            # we need to recompile the player regexs.
+            self.players = playersThisHand
+            self.compilePlayerRegexs()
+
+        self.markStreets(hand)
+        # Different calls if stud or holdem like
+        if gametype[1] == "hold" or gametype[1] == "omaha":
+            self.readBlinds(hand)
+            self.readButton(hand)
+            self.readHeroCards(hand) # want to generalise to draw games
+        elif gametype[1] == "razz" or gametype[1] == "stud" or gametype[1] == "stud8":
+            self.readAntes(hand)
+            self.readBringIn(hand)
+
+        self.readShowdownActions(hand)
+        
+        # Read actions in street order
+        for street in hand.streetList: # go through them in order
+            #logging.debug(street)
+            if hand.streets.group(street) is not None:
+                if gametype[1] == "hold" or gametype[1] == "omaha":
+                    self.readCommunityCards(hand, street) # read community cards
+                elif gametype[1] == "razz" or gametype[1] == "stud" or gametype[1] == "stud8":
+                    self.readPlayerCards(hand, street)
+
+                self.readAction(hand, street)
+                
+        self.readCollectPot(hand)
+        self.readShownCards(hand)
+        hand.totalPot() # finalise it (total the pot)
+        self.getRake(hand)
+        
+        hand.writeHand(self.out_fh)
+        
+       
+       
     def processFile(self):
         starttime = time.time()
         if not self.sanityCheck():
@@ -268,7 +351,7 @@ class HandHistoryConverter:
 
     def splitFileIntoHands(self):
         hands = []
-        self.obs.strip()
+        self.obs = self.obs.strip()
         list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
@@ -276,13 +359,19 @@ class HandHistoryConverter:
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 
-    def readFile(self, filename):
-        """Read file"""
-        print "Reading file: '%s'" %(filename)
+    def readFile(self):
+        """Read in_path into self.obs or self.doc"""
+        
         if(self.filetype == "text"):
-            infile=codecs.open(filename, "r", self.codepage)
-            self.obs = infile.read()
-            infile.close()
+            if self.in_path == '-':
+                # read from stdin
+                logging.debug("Reading stdin with %s" % self.codepage)
+                in_fh = codecs.getreader('cp1252')(sys.stdin)
+            else:
+                logging.debug("Opening %s with %s" % (self.in_path, self.codepage))
+                in_fh = codecs.open(self.in_path, 'r', self.codepage)
+            self.obs = in_fh.read()
+            in_fh.close()
         elif(self.filetype == "xml"):
             try:
                 doc = xml.dom.minidom.parse(filename)

@@ -15,12 +15,12 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import Configuration
-import FpdbRegex
+
 import Hand
 import re
 import sys
 import traceback
+import logging
 import os
 import os.path
 import xml.dom.minidom
@@ -34,10 +34,10 @@ class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
 
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
-    def __init__(self, sitename, gametype, string):
+    def __init__(self, sitename, gametype, handtext):
         self.sitename = sitename
         self.gametype = gametype
-        self.string = string
+        self.string = handtext
 
         if gametype[1] == "hold" or self.gametype[1] == "omaha":
             self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
@@ -130,7 +130,7 @@ If a player has None chips he won't be added."""
                     self.actions[street] = []
 
         else:
-            print "empty markStreets match" # better to raise exception and put process hand in a try block
+            logging.error("markstreets didn't match")
 
     def addHoleCards(self, cards, player):
         """\
@@ -151,7 +151,7 @@ player  (string) name of player
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
-        #print "DEBUG: addShownCards", cards,player,holeandboard
+        
         if cards is not None:
             self.shown.add(player)
             self.addHoleCards(cards,player)
@@ -365,7 +365,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "cp"  : "Cap Pot Limit"
              }
 
-        print "DEBUG: self.gametype: %s" %(self.gametype)
+        logging.debug("DEBUG: self.gametype: %s" %(self.gametype))
         string = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
         
         return string
