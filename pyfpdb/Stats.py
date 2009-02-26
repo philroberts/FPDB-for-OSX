@@ -70,6 +70,13 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
 ########################################### 
 #    functions that return individual stats
 
+def totalprofit(stat_dict, player):
+    """     Total Profit."""
+    if stat_dict[player]['net'] != 0:
+        stat = float(stat_dict[player]['net']) / 100
+        return (stat, '$%.2f' % stat, 'tp=$%.2f' % stat, 'totalprofit=$%.2f' % stat, str(stat), 'Total Profit')
+    return ('0', '0', '0', '0', 'Total Profit')
+
 def playername(stat_dict, player):
     """    Player Name."""
     return (stat_dict[player]['screen_name'],
