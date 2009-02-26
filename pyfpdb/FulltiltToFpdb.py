@@ -191,12 +191,12 @@ class FullTilt(HandHistoryConverter):
         print hand.streets.group(street)
         for player in m:
             print player.groups()
-            #hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
-            # Also works with Omaha hands.
             cards = player.group('CARDS')
+            if player.group('NEWCARD') != None:
+                print cards
+                cards = cards + " " + player.group('NEWCARD')
             cards = set(cards.split(' '))
-#            hand.addHoleCards(cards, m.group('PNAME'))
+            hand.addPlayerCards(cards, player.group('PNAME'))
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets.group(street))

@@ -146,6 +146,22 @@ player  (string) name of player
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
+    def addPlayerCards(self, cards, player):
+        """\
+Assigns observed cards to a player.
+cards   set of card bigrams e.g. set(['2h','Jc'])     
+player  (string) name of player
+
+Should probably be merged with addHoleCards
+"""
+        print "DEBUG: addPlayerCards", cards,player
+        try:
+            self.checkPlayerExists(player)
+            cards = set([self.card(c) for c in cards])
+            self.holecards[player].update(cards)
+        except FpdbParseError, e:
+            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+
     def addShownCards(self, cards, player, holeandboard=None):
         """\
 For when a player shows cards for any reason (for showdown or out of choice).
@@ -514,12 +530,12 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
         if 'ANTES' in self.actions:
             for act in self.actions['ANTES']:
-                print act
                 print >>fh, _("%s: posts the ante $%s" %(act[0], act[3]))
-
 
         if 'THIRD' in self.actions:
             print >>fh, _("*** 3RD STREET ***")
+            for player in [x for x in self.players if x[1] in players_who_post_antes]:
+                print >>fh, _("Dealt to ")
             for act in self.actions['THIRD']:
                 #FIXME: Need some logic here for bringin vs completes
                 self.printActionLine(act, fh)
