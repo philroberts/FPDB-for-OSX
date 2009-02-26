@@ -244,7 +244,7 @@ class Importer:
                 inputFile = open(file, "rU")
             else:
                 self.removeFromFileList['file'] = True
-                return
+                return (0, 0, 0, 1, 0)
             try:
                 loc = self.pos_in_file[file]
             except:
