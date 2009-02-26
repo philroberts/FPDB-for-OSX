@@ -40,9 +40,12 @@ class GuiBulkImport():
         self.importer.addImportDirectory(self.path)
         self.importer.setCallHud(False)
         starttime = time()
-        (stored, dups, partial, errs, ttime) = self.importer.runImport()
-        print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
-             % (stored, dups, partial, errs, ttime, stored / ttime)
+        if not self.importer.settings['threads'] > 1:
+            (stored, dups, partial, errs, ttime) = self.importer.runImport()
+            print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
+                 % (stored, dups, partial, errs, ttime, stored / ttime)
+        else:
+            self.importer.RunImportThreaded()
 
     def load_clicked(self, widget, data=None):
 #    get the dir to import from the chooser
@@ -72,6 +75,10 @@ class GuiBulkImport():
             self.importer.clearFileList()
 
         self.lab_info.set_text("Import finished")
+
+    def get_vbox(self):
+        """returns the vbox of this thread"""
+        return self.vbox
 
     def __init__(self, db, settings, config):
         self.db = db # this is an instance of fpdb_db
@@ -115,7 +122,7 @@ class GuiBulkImport():
         self.lab_threads = gtk.Label("Number of threads:")
         self.table.attach(self.lab_threads, 3, 4, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_threads.show()
-        self.lab_threads.set_sensitive(False)
+        self.lab_threads.set_sensitive(True)
         self.lab_threads.set_justify(gtk.JUSTIFY_RIGHT)
 
 #    spin button - threads
@@ -123,7 +130,7 @@ class GuiBulkImport():
         self.spin_threads = gtk.SpinButton(adjustment=threads_adj, climb_rate=0.0, digits=0)
         self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.spin_threads.show()
-        self.spin_threads.set_sensitive(False)
+        self.spin_threads.set_sensitive(True)
 
 #    checkbox - fail on error?
         self.chk_fail = gtk.CheckButton('Fail on error')
