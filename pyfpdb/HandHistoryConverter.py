@@ -365,7 +365,7 @@ class HandHistoryConverter(threading.Thread):
         if(self.filetype == "text"):
             if self.in_path == '-':
                 # read from stdin
-                logging.debug("Reading stdin with %s" % self.codepage)
+                logging.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
                 logging.debug("Opening %s with %s" % (self.in_path, self.codepage))
