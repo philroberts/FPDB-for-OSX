@@ -122,7 +122,7 @@ class GuiBulkImport():
         self.lab_threads = gtk.Label("Number of threads:")
         self.table.attach(self.lab_threads, 3, 4, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_threads.show()
-        self.lab_threads.set_sensitive(True)
+        self.lab_threads.set_sensitive(False)
         self.lab_threads.set_justify(gtk.JUSTIFY_RIGHT)
 
 #    spin button - threads
@@ -130,7 +130,7 @@ class GuiBulkImport():
         self.spin_threads = gtk.SpinButton(adjustment=threads_adj, climb_rate=0.0, digits=0)
         self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.spin_threads.show()
-        self.spin_threads.set_sensitive(True)
+        self.spin_threads.set_sensitive(False)
 
 #    checkbox - fail on error?
         self.chk_fail = gtk.CheckButton('Fail on error')
