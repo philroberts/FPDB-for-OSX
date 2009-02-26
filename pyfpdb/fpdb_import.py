@@ -33,6 +33,8 @@ import fpdb_simple
 import fpdb_db
 import fpdb_parse_logic
 import Configuration
+import EverleafToFpdb
+import FulltiltToFpdb
 
 #    database interface modules
 try:
@@ -58,6 +60,8 @@ class Importer:
         self.cursor = None
         self.filelist = {}
         self.dirlist = {}
+        self.addToDirList = {}
+        self.removeFromFileList = {} # to remove deleted files
         self.monitor = False
         self.updated = {}       #Time last import was run {file:mtime}
         self.lines = None
@@ -66,8 +70,10 @@ class Importer:
         #Set defaults
         self.callHud = self.config.get_import_parameters().get("callFpdbHud")
         if 'minPrint' not in self.settings:
+            #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
         if 'handCount' not in self.settings:
+            #TODO: Is this value in the xml file?
             self.settings['handCount'] = 0
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
@@ -108,11 +114,27 @@ class Importer:
         #TODO: test it is a valid file -> put that in config!!
         self.filelist[filename] = [site] + [filter]
 
+    # Called from GuiBulkImport to add a file or directory.
+    def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
+        """Add a file or directory for bulk import"""
+        # Bulk import never monitors
+        
+        # if directory, add all files in it. Otherwise add single file.
+        # TODO: only add sane files?
+        if os.path.isdir(inputPath):
+            for subdir in os.walk(inputPath):
+                for file in subdir[2]:
+                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site="default", filter=filter)
+        else:
+            self.addImportFile(inputPath, site="default", filter=filter)
+
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
     def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
+        #This should really be using os.walk
+        #http://docs.python.org/library/os.html
         if os.path.isdir(dir):
             if monitor == True:
                 self.monitor = True
@@ -177,16 +199,54 @@ class Importer:
                 self.updated[file] = time()
                 # This codepath only runs first time the file is found, if modified in the last
                 # minute run an immediate import.
-                if (time() - stat_info.st_mtime) < 60: # TODO: figure out a way to dispatch this to the seperate thread so our main window doesn't lock up on initial import
+                if (time() - stat_info.st_mtime) < 60 or os.path.isdir(file): # TODO: figure out a way to dispatch this to the seperate thread so our main window doesn't lock up on initial import
                     self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                    
+        for dir in self.addToDirList:
+            self.addImportDirectory(dir, True, self.addToDirList[dir][0], self.addToDirList[dir][1])
+            
+        for file in self.removeFromFileList:
+            if file in self.filelist:
+                del self.filelist[file]
+        
+        self.addToDirList = {}
+        self.removeFromFileList = {}
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
-        if(filter == "passthrough"):
+        if os.path.isdir(file):
+            self.addToDirList[file] = [site] + [filter]
+            return
+        if filter == "passthrough" or filter == "":
             (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
         else:
-            # TODO: Load filter, and run filtered file though main importer
-            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
+            conv = None
+            # Load filter, process file, pass returned filename to import_fpdb_file
+            
+            # TODO: Shouldn't we be able to use some sort of lambda or something to just call a Python object by whatever name we specify? then we don't have to hardcode them,
+            # someone can just create their own python module for it
+            if filter == "EverleafToFpdb":
+                print "converting ", file
+                conv = EverleafToFpdb.Everleaf(self.config, file)
+            elif filter == "FulltiltToFpdb":
+                print "converting ", file
+                conv = FulltiltToFpdb.FullTilt(self.config, file)
+            else:
+                print "Unknown filter ", filter
+                return
+
+            supp = conv.readSupportedGames() # Should this be done by HHC on init?
+            #gt = conv.determineGameType()
+            # TODO: Check that gt is in supp - error appropriately if not
+            conv.processFile()
+            if(conv.getStatus()):
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(), site)
+            else:
+                # conversion didn't work
+                # TODO: appropriate response?
+                return (0, 0, 0, 1, 0)
+
+        #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
 
@@ -197,9 +257,15 @@ class Importer:
         if (file=="stdin"):
             inputFile=sys.stdin
         else:
-            inputFile=open(file, "rU")
-            try: loc = self.pos_in_file[file]
-            except: pass
+            if os.path.exists(file):
+                inputFile = open(file, "rU")
+            else:
+                self.removeFromFileList[file] = True
+                return (0, 0, 0, 1, 0)
+            try:
+                loc = self.pos_in_file[file]
+            except:
+                pass
 
         # Read input file into class and close file
         inputFile.seek(loc)

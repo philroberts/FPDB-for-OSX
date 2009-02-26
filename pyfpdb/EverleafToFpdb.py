@@ -20,88 +20,94 @@
 import sys
 import Configuration
 from HandHistoryConverter import *
+from time import strftime
 
-# Everleaf HH format
-
-# Everleaf Gaming Game #55208539
-# ***** Hand history for game #55208539 *****
-# Blinds $0.50/$1 NL Hold'em - 2008/09/01 - 13:35:01
-# Table Speed Kuala
-# Seat 1 is the button
-# Total number of players: 9
-# Seat 1: BadBeatBox (  $ 98.97 USD )
-# Seat 3: EricBlade (  $ 73.96 USD )
-# Seat 4: randy888 (  $ 196.50 USD )
-# Seat 5: BaronSengir (  $ 182.80 USD )
-# Seat 6: dogge (  $ 186.06 USD )
-# Seat 7: wings ( $ 50 USD )
-# Seat 8: schoffeltje (  $ 282.05 USD )
-# Seat 9: harrydebeng (  $ 109.45 USD )
-# Seat 10: smaragdar (  $ 96.50 USD )
-# EricBlade: posts small blind [$ 0.50 USD]
-# randy888: posts big blind [$ 1 USD]
-# wings: posts big blind [$ 1 USD]
-# ** Dealing down cards **
-# Dealt to EricBlade [ qc, 3c ]
-# BaronSengir folds
-# dogge folds
-# wings raises [$ 2.50 USD]
-# schoffeltje folds
-# harrydebeng calls [$ 3.50 USD]
-# smaragdar raises [$ 15.50 USD]
-# BadBeatBox folds
-# EricBlade folds
-# randy888 folds
-# wings calls [$ 12 USD]
-# harrydebeng folds
-# ** Dealing Flop ** [ qs, 3d, 8h ]
-# wings: bets [$ 34.50 USD]
-# smaragdar calls [$ 34.50 USD]
-# ** Dealing Turn ** [ 2d ]
-# ** Dealing River ** [ 6c ]
-# dogge shows [ 9h, 9c ]a pair of nines
-# spicybum shows [ 5d, 6d ]a straight, eight high
-# harrydebeng does not show cards
-# smaragdar wins $ 102 USD from main pot with a pair of aces [ ad, ah, qs, 8h, 6c ]
+# Class for converting Everleaf HH format.
 
 class Everleaf(HandHistoryConverter):
+    
+    # Static regexes
+    re_SplitHands  = re.compile(r"\n\n+")
+    re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
+    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
+    re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
+    re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
+    re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
+        
+    
     def __init__(self, config, file):
         print "Initialising Everleaf converter class"
         HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
         self.sitename = "Everleaf"
         self.setFileType("text", "cp1252")
-        self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
-        self.rexx.setSplitHandRegex('\n\n+')
-        self.rexx.setHandInfoRegex('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
-        self.rexx.setPlayerInfoRegex('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)')
-        self.rexx.setPostSbRegex('.*\n(?P<PNAME>.*): posts small blind \[\$? (?P<SB>[.0-9]+)')
-        self.rexx.setPostBbRegex('.*\n(?P<PNAME>.*): posts big blind \[\$? (?P<BB>[.0-9]+)')
-        self.rexx.setPostBothRegex('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-        self.rexx.setHeroCardsRegex('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
-        self.rexx.setActionStepRegex('.*\n(?P<PNAME>.*)(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?')
-        self.rexx.setShowdownActionRegex('.*\n(?P<PNAME>.*) shows \[ (?P<CARDS>.*) \]')
-        self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?')
-        #self.rexx.setCollectPotRegex('.*\n(?P<PNAME>.*) wins \$ (?P<POT>[.\d]+) USD(.*\[ (?P<CARDS>) \S\S, \S\S, \S\S, \S\S, \S\S \])?')
-        self.rexx.sits_out_re = re.compile('(?P<PNAME>.*) sits out')
-        self.rexx.compileRegexes()
+        
+
+        try:
+            self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
+        except:
+            self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+
+    def compilePlayerRegexs(self):
+        player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
+        #print "DEBUG player_re: " + player_re
+        self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_HeroCards       = re.compile(r"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+        self.re_Action          = re.compile(r"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?" % player_re, re.MULTILINE)
+        self.re_ShowdownAction  = re.compile(r"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+        self.re_CollectPot      = re.compile(r"^%s wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+        self.re_SitsOut         = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
-        pass
+        return [["ring", "hold", "nl"],
+                ["ring", "hold", "pl"],
+                ["ring", "omaha", "pl"]
+               ]
 
     def determineGameType(self):
         # Cheating with this regex, only support nlhe at the moment
-        gametype = ["ring", "hold", "nl"]
-
-        m = self.rexx.game_info_re.search(self.obs)
-        gametype = gametype + [m.group('SB')]
-        gametype = gametype + [m.group('BB')]
+        # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
+        # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
+        # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
         
+        # Tourney:
+        # Everleaf Gaming Game #75065769
+        # ***** Hand history for game #75065769 *****
+        # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
+        # Table 2
+
+        structure = "" # nl, pl, cn, cp, fl
+        game      = ""
+
+        m = self.re_GameInfo.search(self.obs)
+        if m == None:
+            return None
+        if m.group('LTYPE') == "NL":
+            structure = "nl"
+        elif m.group('LTYPE') == "PL":
+            structure = "pl"
+        else:
+            structure = "fl" # we don't support it, but there should be how to detect it at least.
+
+        if m.group('GAME') == "Hold\'em":
+            game = "hold"
+        elif m.group('GAME') == "Omaha":
+            game = "omahahi"
+        elif m.group('GAME') == "7 Card Stud":
+            game = "studhi" # Everleaf currently only does Hi stud
+
+        gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
+
         return gametype
 
     def readHandInfo(self, hand):
-        m =  self.rexx.hand_info_re.search(hand.string)
+        m =  self.re_HandInfo.search(hand.string)
+        if(m == None):
+            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
+        hand.max_seats = 6 # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #		m.group('SB')
 #		m.group('BB')
@@ -115,14 +121,17 @@ class Everleaf(HandHistoryConverter):
 #TODO: Do conversion from GMT to ET
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.starttime = time.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
-        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
-        m = self.rexx.player_info_re.finditer(hand.string)
-        players = []
+        m = self.re_PlayerInfo.finditer(hand.string)
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
-
+            seatnum = int(a.group('SEAT'))
+            hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
+            if seatnum > 6:
+                hand.max_seats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
+                # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
+            
+        
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
@@ -137,25 +146,29 @@ class Everleaf(HandHistoryConverter):
             
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        self.rexx.board_re = re.compile(r"\[ (?P<CARDS>.+) \]")
-        print hand.streets.group(street)
+        #print "DEBUG " + street + ":"
+        #print hand.streets.group(street) + "\n"
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            m = self.rexx.board_re.search(hand.streets.group(street))
+            m = self.re_Board.search(hand.streets.group(street))
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readBlinds(self, hand):
         try:
-            m = self.rexx.small_blind_re.search(hand.string)
+            m = self.re_PostSB.search(hand.string)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except: # no small blind
+        except Exception, e: # no small blind
+            #print e
             hand.addBlind(None, None, None)
-        for a in self.rexx.big_blind_re.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.rexx.both_blinds_re.finditer(hand.string):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+        for a in self.re_PostBoth.finditer(hand.string):
+            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
+
+    def readButton(self, hand):
+        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.rexx.hero_cards_re.search(hand.string)
+        m = self.re_HeroCards.search(hand.string)
         if(m == None):
             #Not involved in hand
             hand.involved = False
@@ -168,7 +181,7 @@ class Everleaf(HandHistoryConverter):
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readAction(self, hand, street):
-        m = self.rexx.action_re.finditer(hand.streets.group(street))
+        m = self.re_Action.finditer(hand.streets.group(street))
         for action in m:
             if action.group('ATYPE') == ' raises':
                 hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
@@ -185,17 +198,17 @@ class Everleaf(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-        for shows in self.rexx.showdown_action_re.finditer(hand.string):            
+        for shows in self.re_ShowdownAction.finditer(hand.string):            
             cards = shows.group('CARDS')
             cards = set(cards.split(', '))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.rexx.collect_pot_re.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.string):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
-        for m in self.rexx.collect_pot_re.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.string):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = set(cards.split(', '))

@@ -28,7 +28,7 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
-from pokereval import PokerEval
+# from pokereval import PokerEval
 import time
 import datetime
 import gettext
@@ -74,7 +74,7 @@ gettext.install('myapplication')
 
 
 class HandHistoryConverter:
-    eval = PokerEval()
+#    eval = PokerEval()
     def __init__(self, config, file, sitename):
         print "HandHistory init called"
         self.c         = config
@@ -88,8 +88,10 @@ class HandHistoryConverter:
         self.hhbase    = os.path.expanduser(self.hhbase)
         self.hhdir     = os.path.join(self.hhbase,sitename)
         self.gametype  = []
-#		self.ofile     = os.path.join(self.hhdir,file)
+        self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
         self.rexx      = FpdbRegex.FpdbRegex()
+        self.players   = set()
+        self.maxseats  = 10
 
     def __str__(self):
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
@@ -97,11 +99,11 @@ class HandHistoryConverter:
         tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
         tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
         tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
-#		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
-#		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-#		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-#		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-#		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
+        tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
+        #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
+        #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
+        #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
+        #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
     def processFile(self):
@@ -110,23 +112,54 @@ class HandHistoryConverter:
             print "Cowardly refusing to continue after failed sanity check"
             return
         self.readFile(self.file)
+        if self.obs == "" or self.obs == None:
+            print "Did not read anything from file."
+            return
+
+        self.obs = self.obs.replace('\r\n', '\n')
         self.gametype = self.determineGameType()
+        if self.gametype == None:
+            print "Unknown game type from file, aborting on this file."
+            return
         self.hands = self.splitFileIntoHands()
+        outfile = open(self.ofile, 'w')        
         for hand in self.hands:
-            print "\nInput:\n"+hand.string
+            #print "\nDEBUG: Input:\n"+hand.string
             self.readHandInfo(hand)
+            
             self.readPlayerStacks(hand)
-            print "DEBUG stacks:", hand.stacks
+            #print "DEBUG stacks:", hand.stacks
+            # at this point we know the player names, they are in hand.players
+            playersThisHand = set([player[1] for player in hand.players])
+            if playersThisHand <= self.players: # x <= y means 'x is subset of y'
+                # we're ok; the regex should already cover them all.
+                pass
+            else:
+                # we need to recompile the player regexs.
+                self.players = playersThisHand
+                self.compilePlayerRegexs()
+
             self.markStreets(hand)
-            self.readBlinds(hand)
-            self.readHeroCards(hand) # want to generalise to draw games
+            # Different calls if stud or holdem like
+            if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                self.readBlinds(hand)
+                self.readButton(hand)
+                self.readHeroCards(hand) # want to generalise to draw games
+            elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+                self.readAntes(hand)
+                self.readBringIn(hand)
 
             self.readShowdownActions(hand)
             
             # Read actions in street order
             for street in hand.streetList: # go through them in order
+                print "DEBUG: ", street
                 if hand.streets.group(street) is not None:
-                    self.readCommunityCards(hand, street) # read community cards
+                    if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                        self.readCommunityCards(hand, street) # read community cards
+                    elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+                        self.readPlayerCards(hand, street)
+
                     self.readAction(hand, street)
 
                     
@@ -137,19 +170,22 @@ class HandHistoryConverter:
             hand.totalPot()
             self.getRake(hand)
 
-            hand.writeHand(sys.stderr)
+            hand.writeHand(outfile)
             #if(hand.involved == True):
                 #self.writeHand("output file", hand)
                 #hand.printHand()
             #else:
                 #pass #Don't write out observed hands
 
+        outfile.close()
         endtime = time.time()
-        print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
+        print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
 
     #####
     # These functions are parse actions that may be overridden by the inheriting class
-    #
+    # This function should return a list of lists looking like:
+    # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
+    # Showing all supported games limits and types
     
     def readSupportedGames(self): abstract
 
@@ -172,7 +208,10 @@ class HandHistoryConverter:
     # Needs to return a list of lists in the format
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
-
+    
+    def compilePlayerRegexs(self): abstract
+    """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
+    
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
@@ -182,7 +221,11 @@ class HandHistoryConverter:
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    def readAntes(self, hand): abstract
+    def readBringIn(self, hand): abstract
+    def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
+    def readPlayerCards(self, hand, street): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
@@ -212,6 +255,10 @@ class HandHistoryConverter:
             else:
                 print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
 
+        # Make sure input and output files are different or we'll overwrite the source file
+        if(self.ofile == self.file):
+            print "HH Sanity Check: output and input files are the same, check config"
+
         return sane
 
     # Functions not necessary to implement in sub class
@@ -222,7 +269,7 @@ class HandHistoryConverter:
     def splitFileIntoHands(self):
         hands = []
         self.obs.strip()
-        list = self.rexx.split_hand_re.split(self.obs)
+        list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
 #			print "'" + l + "'"
@@ -233,7 +280,7 @@ class HandHistoryConverter:
         """Read file"""
         print "Reading file: '%s'" %(filename)
         if(self.filetype == "text"):
-            infile=codecs.open(filename, "rU", self.codepage)
+            infile=codecs.open(filename, "r", self.codepage)
             self.obs = infile.read()
             infile.close()
         elif(self.filetype == "xml"):
@@ -244,18 +291,9 @@ class HandHistoryConverter:
                 traceback.print_exc(file=sys.stderr)
 
 
-#takes a poker float (including , for thousand seperator and converts it to an int
-    def float2int (self, string):
-        pos=string.find(",")
-        if (pos!=-1): #remove , the thousand seperator
-            string=string[0:pos]+string[pos+1:]
+    def getStatus(self):
+        #TODO: Return a status of true if file processed ok
+        return True
 
-        pos=string.find(".")
-        if (pos!=-1): #remove decimal point
-            string=string[0:pos]+string[pos+1:]
-
-        result = int(string)
-        if pos==-1: #no decimal point - was in full dollars - need to multiply with 100
-            result*=100
-        return result
-#end def float2int
+    def getProcessedFile(self):
+        return self.ofile

@@ -1158,10 +1158,17 @@ def parseHandStartTime(topline, site):
     
     isUTC=False
     if site=="ftp":
+        # Full Tilt Sit'n'Go
+        # Full Tilt Poker Game #10311865543: $1 + $0.25 Sit & Go (78057629), Table 1 - 25/50 - No Limit Hold'em - 0:07:45 ET - 2009/01/29
+        # Cash Game:
+        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
+        # Full Tilt Poker Game #9468383505: Table Bike (deep 6) - $0.05/$0.10 - No Limit Hold'em - 5:09:36 ET - 2008/12/13
         pos = topline.find(" ", len(topline)-26)+1
         tmp = topline[pos:]
-        #print "year:", tmp[14:18], "month", tmp[19:21], "day", tmp[22:24], "hour", tmp[0:2], "minute", tmp[3:5], "second", tmp[6:8]
-        result = datetime.datetime(int(tmp[14:18]), int(tmp[19:21]), int(tmp[22:24]), int(tmp[0:2]), int(tmp[3:5]), int(tmp[6:8]))
+
+        rexx = '(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+) ET [\- ]+(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})'
+        m = re.search(rexx,tmp)
+        result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
     elif site=="ps":
         if topline.find("UTC")!=-1:
             pos1 = topline.find("-")+2

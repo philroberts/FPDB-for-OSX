@@ -18,7 +18,9 @@
 
 #    Standard Library modules
 import os
+import sys
 from time import time
+from optparse import OptionParser
 
 #    pyGTK modules
 import pygtk
@@ -64,15 +66,16 @@ class GuiBulkImport():
             self.importer.setDropIndexes(cb_model[cb_index][0])
         else:
             self.importer.setDropIndexes("auto")
-
+        hhc=self.cbfilter.get_model()[self.cbfilter.get_active()][0]
         self.lab_info.set_text("Importing")
-        if os.path.isdir(self.inputFile):
-            self.import_dir()
-        else:
-            self.importer.addImportFile(self.inputFile)
-            self.importer.setCallHud(False)
-            self.importer.runImport()
-            self.importer.clearFileList()
+        
+        self.importer.addBulkImportImportFileOrDir(self.inputFile,filter=hhc)
+        self.importer.setCallHud(False)
+        starttime = time()
+        (stored, dups, partial, errs, ttime) = self.importer.runImport()
+        print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
+             % (stored, dups, partial, errs, ttime, stored / ttime)
+        self.importer.clearFileList()
 
         self.lab_info.set_text("Import finished")
 
@@ -164,6 +167,20 @@ class GuiBulkImport():
         self.table.attach(self.cb, 4, 5, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
         self.cb.show()
 
+#    label - filter
+        self.lab_filter = gtk.Label("Site filter:")
+        self.table.attach(self.lab_filter, 2, 3, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.lab_filter.show()
+        self.lab_filter.set_justify(gtk.JUSTIFY_RIGHT)
+
+#    ComboBox - filter
+        self.cbfilter = gtk.combo_box_new_text()
+        self.cbfilter.append_text("passthrough")
+        self.cbfilter.append_text("Everleaf")
+        self.cbfilter.set_active(0)
+        self.table.attach(self.cbfilter, 3, 4, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.cbfilter.show()
+
 #    label - info
         self.lab_info = gtk.Label()
         self.table.attach(self.lab_info, 0, 4, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
@@ -199,6 +216,12 @@ if __name__ == '__main__':
     def destroy(*args):  # call back for terminating the main eventloop
         gtk.main_quit()
 
+    parser = OptionParser()
+    parser.add_option("-f", "--file", dest="filename", help="Input file in quiet mode", metavar="FILE")
+    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
+
+    (options, sys.argv) = parser.parse_args()
+
     config = Configuration.Config()
     db = fpdb_db.fpdb_db()
 
@@ -211,9 +234,19 @@ if __name__ == '__main__':
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    i = GuiBulkImport(db, settings, config)
-    main_window = gtk.Window()
-    main_window.connect('destroy', destroy)
-    main_window.add(i.vbox)
-    main_window.show()
-    gtk.main()
+    if(options.gui == True):
+        i = GuiBulkImport(db, settings, config)
+        main_window = gtk.Window()
+        main_window.connect('destroy', destroy)
+        main_window.add(i.vbox)
+        main_window.show()
+        gtk.main()
+    else:
+        #Do something useful
+        importer = fpdb_import.Importer(False,settings, config) 
+        importer.setDropIndexes("auto")
+        importer.setFailOnError(True)
+        importer.addImportFile(options.filename)
+        importer.setCallHud(False)
+        importer.runImport()
+        importer.clearFileList()
