@@ -228,13 +228,14 @@ class Hud:
                 return self.stat_dict[key]['seat']
         sys.stderr.write("Error finding actual seat.\n")
 
-    def create(self, hand, config, stat_dict):
+    def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
         self.stat_dict = stat_dict
+        self.cards = cards
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
         adj = self.adj_seats(hand, config)
         sys.stderr.write("adj = %s\n" % adj)
@@ -274,37 +275,35 @@ class Hud:
         if os.name == "nt":
             gobject.timeout_add(500, self.update_table_position)
             
-    def update(self, hand, config, stat_dict):
+    def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
-        self.stat_dict = stat_dict  # so this is available for popups, etc
         self.update_table_position()
-        self.stat_dict = stat_dict
 
-        for s in stat_dict:
+        for s in self.stat_dict:
             try:
-                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
             except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
-                self.create(hand, config)
-                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                self.create(hand, config, self.stat_dict, self.cards)
+                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
                 
             for r in range(0, config.supported_games[self.poker_game].rows):
                 for c in range(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-                    number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
+                    number = Stats.do_stat(self.stat_dict, player = self.stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
                     
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                         self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                         
-                    self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                    self.stat_windows[self.stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        self.stat_windows[stat_dict[s]['seat']].window.show_all()
+                        self.stat_windows[self.stat_dict[s]['seat']].window.show_all()
 #                        self.reposition_windows()
-                    tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
+                    tip = self.stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
-                    Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
+                    Stats.do_tip(self.stat_windows[self.stat_dict[s]['seat']].e_box[r][c], tip)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""

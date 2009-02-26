@@ -72,7 +72,7 @@ class HUD_main(object):
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()
     
-    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, is_tournament, stat_dict):
+    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, is_tournament, stat_dict, cards):
         
         def idle_func():
             
@@ -84,18 +84,18 @@ class HUD_main(object):
     
                 self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
                 self.hud_dict[table_name].tablehudlabel = newlabel
-                self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict)
+                self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table_name].aux_windows:
                     m.update_data(new_hand_id, self.db_connection)
                     m.update_gui(new_hand_id)
-                self.hud_dict[table_name].update(new_hand_id, self.config, stat_dict)
+                self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
                 return False
             finally:
                 gtk.gdk.threads_leave()
         gobject.idle_add(idle_func)
     
-    def update_HUD(self, new_hand_id, table_name, config, stat_dict):
+    def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
 #    This is written so that only 1 thread can touch the gui--mainly
 #    for compatibility with Windows. This method dispatches the 
@@ -103,7 +103,7 @@ class HUD_main(object):
         def idle_func():
             gtk.gdk.threads_enter()
             try:
-                self.hud_dict[table_name].update(new_hand_id, config, stat_dict)
+                self.hud_dict[table_name].update(new_hand_id, config)
                 for m in self.hud_dict[table_name].aux_windows:
                     m.update_gui(new_hand_id)
                 return False
@@ -145,6 +145,7 @@ class HUD_main(object):
             try:
                 (table_name, max, poker_game) = self.db_connection.get_table_name(new_hand_id)
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
+                cards = self.db_connection.get_cards(new_hand_id)
             except:
                 print "skipping ", new_hand_id
                 sys.stderr.write("Database error in hand %d. Skipping.\n" % int(new_hand_id))
@@ -163,9 +164,11 @@ class HUD_main(object):
 
 #    Update an existing HUD
             if temp_key in self.hud_dict:
+                self.hud_dict[temp_key].stat_dict = stat_dict
+                self.hud_dict[temp_key].cards = cards
                 for aw in self.hud_dict[temp_key].aux_windows:
                     aw.update_data(new_hand_id, self.db_connection)
-                self.update_HUD(new_hand_id, temp_key, self.config, stat_dict)
+                self.update_HUD(new_hand_id, temp_key, self.config)
     
 #    Or create a new HUD
             else:
@@ -175,11 +178,12 @@ class HUD_main(object):
                     tablewindow = Tables.discover_table_by_name(self.config, table_name)
 
                 if tablewindow == None:
+#    If no client window is found on the screen, complain and continue
                     if is_tournament:
                         table_name = tour_number + " " + tab_number
                     sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
-                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, is_tournament, stat_dict)
+                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, is_tournament, stat_dict, cards)
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")

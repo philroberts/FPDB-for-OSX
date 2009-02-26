@@ -154,7 +154,7 @@ class Stud_list:
             winners = winners + player
         pot_dec = "%.2f" % (float(pot)/100)
 
-        hero_cards = self.get_hero_cards(self.parent.hero, self.parent.mucked_cards.cards)
+        hero_cards = self.get_hero_cards(self.parent.hero, self.parent.hud.cards)
         self.info_row = ((new_hand_id, hero_cards, pot_dec, winners), )
 
     def get_hero_cards(self, hero, cards):
@@ -163,11 +163,10 @@ class Stud_list:
         if hero == '':
             return "xxxxxx"
         else:
-            for k in cards.keys():
-                if cards[k]['screen_name'] == hero:
-                    return   trans[cards[k]['card1Value']] + cards[k]['card1Suit'] \
-                           + trans[cards[k]['card2Value']] + cards[k]['card2Suit'] \
-                           + trans[cards[k]['card3Value']] + cards[k]['card3Suit']
+#    find the hero's seat from the stat_dict
+            for stat in self.parent.hud.stat_dict.itervalues():
+                if stat['screen_name'] == hero:
+                    return self.parent.hud.cards[stat['seat']][0:6]
         return "xxxxxx"
             
     def update_gui(self, new_hand_id):
@@ -225,25 +224,7 @@ class Stud_cards:
                 
         self.container.add(self.grid)
 
-    def translate_cards(self, old_cards):
-        ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
-
-        for c in old_cards.keys():
-            for i in range(1, 8):
-                rank = 'card' + str(i) + 'Value'
-                suit = 'card' + str(i) + 'Suit'
-                key = 'hole_card_' + str(i)
-                if old_cards[c][rank] == 0:
-                    old_cards[c][key] = 'xx'
-                else:
-                    old_cards[c][key] = ranks[old_cards[c][rank]] + old_cards[c][suit]
-        return old_cards
-
     def update_data(self, new_hand_id, db_connection):
-#        db_connection = Database.Database(self.config, 'fpdb', '')
-        cards = db_connection.get_cards(new_hand_id)
-        self.cards = self.translate_cards(cards)
-
         self.tips = []
         action = db_connection.get_action_from_hand(new_hand_id)
         for street in action:
@@ -261,13 +242,13 @@ class Stud_cards:
 
     def update_gui(self, new_hand_id):
         self.clear()
-        for c in self.cards.keys():
-            self.grid_contents[(1, self.cards[c]['seat_number'] - 1)].set_text(self.cards[c]['screen_name'])
-            for i in ((0, 'hole_card_1'), (1, 'hole_card_2'), (2, 'hole_card_3'), (3, 'hole_card_4'), 
-                      (4, 'hole_card_5'), (5, 'hole_card_6'), (6, 'hole_card_7')):
-                if not self.cards[c][i[1]] == "xx":
-                    self.seen_cards[(i[0], self.cards[c]['seat_number'] - 1)]. \
-                        set_from_pixbuf(self.card_images[self.split_cards(self.cards[c][i[1]])])
+        for c, cards in self.parent.hud.cards.iteritems():
+            self.grid_contents[(1, c - 1)].set_text(self.get_screen_name(c))
+            for i in ((0, cards[0:2]), (1, cards[2:4]), (2, cards[4:6]), (3, cards[6:8]), 
+                      (4, cards[8:10]), (5, cards[10:12]), (6, cards[12:14])):
+                if not i[1] == "xx":
+                    self.seen_cards[(i[0], c - 1)]. \
+                        set_from_pixbuf(self.card_images[self.split_cards(i[1])])
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
@@ -278,6 +259,13 @@ class Stud_cards:
         for round in range(1, len(self.tips)):
             for r in range(0, self.rows):
                 self.eb[(round_to_col[round], r)].set_tooltip_text(self.tips[round])
+
+    def get_screen_name(self, seat_no):
+        """Gets and returns the screen name from stat_dict, given seat number."""
+        for k in self.parent.hud.stat_dict.keys():
+            if self.parent.hud.stat_dict[k]['seat'] == seat_no:
+                return self.parent.hud.stat_dict[k]['screen_name']
+        return "No Name"
 
     def split_cards(self, card):
         return (card[0], card[1].upper())
