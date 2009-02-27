@@ -109,9 +109,9 @@ class Everleaf(HandHistoryConverter):
         hand.tablename = m.group('TABLE')
         hand.max_seats = 6 # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
 # These work, but the info is already in the Hand class - should be used for tourneys though.
-#		m.group('SB')
-#		m.group('BB')
-#		m.group('GAMETYPE')
+#       m.group('SB')
+#       m.group('BB')
+#       m.group('GAMETYPE')
 
 # Believe Everleaf time is GMT/UTC, no transation necessary
 # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]

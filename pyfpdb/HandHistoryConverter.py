@@ -71,8 +71,6 @@ letter2names = {
 import gettext
 gettext.install('myapplication')
 
-
-
 class HandHistoryConverter:
 #    eval = PokerEval()
     def __init__(self, config, file, sitename):
@@ -180,8 +178,7 @@ class HandHistoryConverter:
         outfile.close()
         endtime = time.time()
         print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
-
-    #####
+    
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
@@ -196,13 +193,13 @@ class HandHistoryConverter:
     def determineGameType(self): abstract
 
     # Read any of:
-    # HID		HandID
-    # TABLE		Table name
-    # SB 		small blind
-    # BB		big blind
-    # GAMETYPE	gametype
-    # YEAR MON DAY HR MIN SEC 	datetime
-    # BUTTON	button seat number
+    # HID       HandID
+    # TABLE     Table name
+    # SB        small blind
+    # BB        big blind
+    # GAMETYPE  gametype
+    # YEAR MON DAY HR MIN SEC   datetime
+    # BUTTON    button seat number
     def readHandInfo(self, hand): abstract
 
     # Needs to return a list of lists in the format
@@ -272,7 +269,7 @@ class HandHistoryConverter:
         list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
-#			print "'" + l + "'"
+#           print "'" + l + "'"
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 

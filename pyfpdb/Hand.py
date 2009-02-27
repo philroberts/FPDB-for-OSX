@@ -15,38 +15,26 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import Configuration
-import FpdbRegex
-import Hand
 import re
 import sys
 import traceback
 import os
 import os.path
-import xml.dom.minidom
-import codecs
 from decimal import Decimal
 import operator
 import time
 from copy import deepcopy
+from Exceptions import *
 
 class Hand:
-#    def __init__(self, sitename, gametype, sb, bb, string):
-
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     def __init__(self, sitename, gametype, string):
         self.sitename = sitename
         self.gametype = gametype
         self.string = string
-
-        if gametype[1] == "hold" or self.gametype[1] == "omaha":
-            self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
-        elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
-            self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
-
+        
         self.handid = 0
-        self.sb = gametype[3]
-        self.bb = gametype[4]
+        
         self.tablename = "Slartibartfast"
         self.hero = "Hiro"
         self.maxseats = 10
@@ -403,16 +391,34 @@ Map the tuple self.gametype onto the pokerstars string describing it
         return string
 
     def writeHand(self, fh=sys.__stdout__):
-        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
-            self.writeHoldemHand(fh)
-        else:
-            self.writeStudHand(fh)
+        print >>fh, "Override me"
+
+    def printHand(self):
+        self.writeHand(sys.stdout)
+
+    def printActionLine(self, act, fh):
+        if act[1] == 'folds':
+            print >>fh, _("%s: folds " %(act[0]))
+        elif act[1] == 'checks':
+            print >>fh, _("%s: checks " %(act[0]))
+        if act[1] == 'calls':
+            print >>fh, _("%s: calls $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
+        if act[1] == 'bets':
+            print >>fh, _("%s: bets $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
+        if act[1] == 'raises':
+            print >>fh, _("%s: raises $%s to $%s%s" %(act[0], act[2], act[3], ' and is all-in' if act[5] else ''))
 
 
-    def writeHoldemHand(self, fh=sys.__stdout__):
+class HoldemOmahaHand(Hand):
+    def __init__(self, sitename, gametype, string):
+        super(HoldemOmahaHand,self).__init__(sitename, gametype, string)
+        if gametype[1] not in ["hold","omaha"]:
+            pass # or indeed don't pass and complain instead
+        self.sb = gametype[3]
+        self.bb = gametype[4]
+        
+    def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        #print "\n### Pseudo stars format ###"
-        #print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
         print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
@@ -461,7 +467,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-        #TODO: Complete SHOWDOWN
+            #TODO: Complete SHOWDOWN
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -499,26 +505,20 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
-            # TODO:
-            # logic for side pots
-            # logic for which players get to showdown
-            # I'm just not sure we need to do this so heavily.. and if we do, it's probably better to use pokerlib
-            #if self.holecards[player[1]]: # empty list default is false
-                #hole = self.holecards[player[1]]
-                ##board = []
-                ##for s in self.board.values():
-                    ##board += s
-                ##playerhand = self.bestHand('hi', board+hole)
-                ##print "Seat %d: %s showed %s and won/lost with %s" % (player[0], player[1], hole, playerhand)
-                #print "Seat %d: %s showed %s" % (player[0], player[1], hole)
-            #else:
-                #print "Seat %d: %s mucked or folded" % (player[0], player[1])
 
 
+
+class StudHand(Hand):
+    def __init__(self, sitename, gametype, string):
+        super(StudHand,self).__init__(sitename, gametype, string)
+        if gametype[1] not in ["razz","stud","stud8"]:
+            pass # or indeed don't pass and complain instead
+        self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
+        
+        
+    
     def writeStudHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        #print "\n### Pseudo stars format ###"
-        #print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %(self.sitename, self.handid, self.getGameTypeAsString(), self.sb, self.bb, self.starttime))
         print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
@@ -565,7 +565,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-#            print >>fh, "DEBUG: what do they show"
+            # TODO: print showdown lines.
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -604,78 +604,11 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
-            # TODO:
-            # logic for side pots
-            # logic for which players get to showdown
-            # I'm just not sure we need to do this so heavily.. and if we do, it's probably better to use pokerlib
-            #if self.holecards[player[1]]: # empty list default is false
-                #hole = self.holecards[player[1]]
-                ##board = []
-                ##for s in self.board.values():
-                    ##board += s
-                ##playerhand = self.bestHand('hi', board+hole)
-                ##print "Seat %d: %s showed %s and won/lost with %s" % (player[0], player[1], hole, playerhand)
-                #print "Seat %d: %s showed %s" % (player[0], player[1], hole)
-            #else:
-                #print "Seat %d: %s mucked or folded" % (player[0], player[1])
-        
-
-    def printHand(self):
-        self.writeHand(sys.stdout)
-
-    def printActionLine(self, act, fh):
-        if act[1] == 'folds':
-            print >>fh, _("%s: folds " %(act[0]))
-        elif act[1] == 'checks':
-            print >>fh, _("%s: checks " %(act[0]))
-        if act[1] == 'calls':
-            print >>fh, _("%s: calls $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
-        if act[1] == 'bets':
-            print >>fh, _("%s: bets $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
-        if act[1] == 'raises':
-            print >>fh, _("%s: raises $%s to $%s%s" %(act[0], act[2], act[3], ' and is all-in' if act[5] else ''))
-
-    # going to use pokereval to figure out hands at some point.
-    # these functions are copied from pokergame.py
-    def bestHand(self, side, cards):
-        return HandHistoryConverter.eval.best('hi', cards, [])
-
-
-    # from pokergame.py
-    # got rid of the _ for internationalisation
-    def readableHandValueLong(self, side, value, cards):
-        if value == "NoPair":
-            if side == "low":
-                if cards[0][0] == '5':
-                    return ("The wheel")
-                else:
-                    return join(map(lambda card: card[0], cards), ", ")
-            else:
-                return ("High card %(card)s") % { 'card' : (letter2name[cards[0][0]]) }
-        elif value == "OnePair":
-            return ("A pair of %(card)s") % { 'card' : (letter2names[cards[0][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[2][0]]) }
-        elif value == "TwoPair":
-            return ("Two pairs %(card1)s and %(card2)s") % { 'card1' : (letter2names[cards[0][0]]), 'card2' : _(letter2names[cards[2][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[4][0]]) }
-        elif value == "Trips":
-            return ("Three of a kind %(card)s") % { 'card' : (letter2names[cards[0][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[3][0]]) }
-        elif value == "Straight":
-            return ("Straight %(card1)s to %(card2)s") % { 'card1' : (letter2name[cards[0][0]]), 'card2' : (letter2name[cards[4][0]]) }
-        elif value == "Flush":
-            return ("Flush %(card)s high") % { 'card' : (letter2name[cards[0][0]]) }
-        elif value == "FlHouse":
-            return ("%(card1)ss full of %(card2)ss") % { 'card1' : (letter2name[cards[0][0]]), 'card2' : (letter2name[cards[3][0]]) }
-        elif value == "Quads":
-            return _("Four of a kind %(card)s") % { 'card' : (letter2names[cards[0][0]]) } + (", %(card)s kicker") % { 'card' : (letter2name[cards[4][0]]) }
-        elif value == "StFlush":
-            if letter2name[cards[0][0]] == 'Ace':
-                return ("Royal flush")
-            else:
-                return ("Straight flush %(card)s high") % { 'card' : (letter2name[cards[0][0]]) }
-        return value
-        
-        
-class FpdbParseError(Exception): pass
-
+                
+                
+                
+                
+                
 class Pot(object):
 
 
@@ -749,4 +682,3 @@ class Pot(object):
             return _("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
             # I don't know stars format for a walk in the bb when sb doesn't post.
             # The thing to do here is raise a Hand error like fpdb import does and file it into errors.txt
-            
