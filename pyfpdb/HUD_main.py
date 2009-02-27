@@ -29,6 +29,11 @@ Main for FreePokerTools HUD.
 
 #    Standard Library modules
 import sys
+
+#    redirect the stderr
+errorfile = open('HUD-error.txt', 'w', 0)
+sys.stderr = errorfile
+
 import os
 import thread
 import time
