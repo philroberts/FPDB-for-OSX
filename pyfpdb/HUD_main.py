@@ -87,7 +87,6 @@ class HUD_main(object):
                 self.vb.add(newlabel)
                 newlabel.show()
     
-                self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
                 self.hud_dict[table_name].tablehudlabel = newlabel
                 self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table_name].aux_windows:
@@ -98,6 +97,8 @@ class HUD_main(object):
                 return False
             finally:
                 gtk.gdk.threads_leave()
+
+        self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         gobject.idle_add(idle_func)
     
     def update_HUD(self, new_hand_id, table_name, config):

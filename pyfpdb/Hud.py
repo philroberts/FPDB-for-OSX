@@ -48,6 +48,8 @@ import HUD_main
 class Hud:
     
     def __init__(self, parent, table, max, poker_game, config, db_connection):
+#    __init__ is (now) intended to be called from the stdin thread, so it
+#    cannot touch the gui
         self.parent        = parent
         self.table         = table
         self.config        = config
@@ -57,26 +59,28 @@ class Hud:
         self.deleted       = False
         self.stacked       = True
         self.site          = table.site
-        self.colors = config.get_default_colors(self.table.site)
+        self.mw_created    = False
 
-        self.stat_windows = {}
+        self.stat_windows  = {}
         self.popup_windows = {}
-        self.aux_windows = []
+        self.aux_windows   = []
         
         (font, font_size) = config.get_default_font(self.table.site)
+        self.colors        = config.get_default_colors(self.table.site)
+
         if font == None:
             font = "Sans"
         if font_size == None:
             font_size = "8"
-            
-        self.font = pango.FontDescription(font + " " + font_size)
-            
+        self.font = pango.FontDescription(font + " " + font_size)            
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
+
+    def create_mw(self):
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_title(table.name + " FPDBHUD")
+        self.main_window.set_title(self.table.name + " FPDBHUD")
         self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
@@ -123,6 +127,7 @@ class Hud:
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
+        self.mw_created = True
 
 # TODO: fold all uses of this type of 'topify' code into a single function, if the differences between the versions don't
 # create adverse effects?
@@ -234,6 +239,9 @@ class Hud:
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+        if not self.mw_created:
+            self.create_mw()
+            
         self.stat_dict = stat_dict
         self.cards = cards
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
