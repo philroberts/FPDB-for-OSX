@@ -23,36 +23,41 @@ from HandHistoryConverter import *
 # FullTilt HH Format converter
 
 class FullTilt(HandHistoryConverter):
+    
+    # Static regexes
+    re_GameInfo     = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
+    re_SplitHands   = re.compile(r"\n\n+")
+    re_HandInfo     = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
+    re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
+    re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+
     def __init__(self, config, file):
         print "Initialising FullTilt converter class"
         HandHistoryConverter.__init__(self, config, file, sitename="FullTilt") # Call super class init.
         self.sitename = "FullTilt"
         self.setFileType("text", "cp1252")
 
-        self.re_GameInfo    = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<LTYPE>(No|Pot)) Limit (?P<GAME>(Hold\'em|Omaha))')
-        self.re_SplitHands  = re.compile(r"\n\n+")
-        self.re_HandInfo    = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
-        self.re_Button      = re.compile('The button is in seat #(?P<BUTTON>\d+)')
-        self.re_PlayerInfo  = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
-        self.re_Board = re.compile(r"\[(?P<CARDS>.+)\]")
-
-    def compile_player_regexs(self):
+    def compilePlayerRegexs(self):
         player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        #print "DEBUG player_re: " + player_re
-        self.re_PostSB           = re.compile('.*\n(?P<PNAME>.*) posts the small blind of \$?(?P<SB>[.0-9]+)')
-        self.re_PostBB           = re.compile('.*\n(?P<PNAME>.*) posts (the big blind of )?\$?(?P<BB>[.0-9]+)')
-        self.re_PostBoth         = re.compile('.*\n(?P<PNAME>.*) posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-        self.re_HeroCards        = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[(?P<CARDS>.*)\]')
-        self.re_Action           = re.compile('.*\n(?P<PNAME>.*)(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?')
-        self.re_ShowdownAction   = re.compile('.*\n(?P<PNAME>.*) shows \[(?P<CARDS>.*)\]')
-        self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*?) (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)")
-        self.re_SitsOut          = re.compile('(?P<PNAME>.*) sits out')
-        self.re_ShownCards       = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\) showed \[(?P<CARDS>.*)\].*')
+        print "DEBUG player_re: " + player_re
+        self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
+        self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>[AKQJT0-9hcsd ]+)\]( \[(?P<NEWCARD>[AKQJT0-9hcsd ]+)\])?" % player_re, re.MULTILINE)
+        self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?" % player_re, re.MULTILINE)
+        self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
+        self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
+        self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
+        self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
                 ["ring", "hold", "pl"],
+                ["ring", "razz", "fl"],
                 ["ring", "omaha", "pl"]
                ]
 
@@ -66,15 +71,21 @@ class FullTilt(HandHistoryConverter):
 
 
         m = self.re_GameInfo.search(self.obs)
-        if m.group('LTYPE') == "No":
+        if m.group('LTYPE') == "No ":
             structure = "nl"
-        elif m.group('LTYPE') == "Pot":
+        elif m.group('LTYPE') == "Pot ":
             structure = "pl"
+        elif m.group('LTYPE') == None:
+            structure = "fl"
 
         if m.group('GAME') == "Hold\'em":
             game = "hold"
-        if m.group('GAME') == "Omaha":
+        elif m.group('GAME') == "Omaha":
             game = "omahahi"
+        elif m.group('GAME') == "Razz":
+            game = "razz"
+
+        print m.groups()
 
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
@@ -85,7 +96,6 @@ class FullTilt(HandHistoryConverter):
         #print m.groups()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #		m.group('SB')
@@ -112,11 +122,18 @@ class FullTilt(HandHistoryConverter):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
 
-        m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
+        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+            m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.string,re.DOTALL)
-
+        elif self.gametype[1] == "razz":
+            m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
+                           r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
+                           r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.string,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
@@ -137,6 +154,23 @@ class FullTilt(HandHistoryConverter):
         for a in self.re_PostBoth.finditer(hand.string):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
+    def readAntes(self, hand):
+        print "DEBUG: reading antes"
+        m = self.re_Antes.finditer(hand.string)
+        for player in m:
+            print "DEBUG: hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+
+    def readBringIn(self, hand):
+        print "DEBUG: reading bring in"
+#        print hand.string
+        m = self.re_BringIn.search(hand.string,re.DOTALL)
+        print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+        hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+
+    def readButton(self, hand):
+        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
+
     def readHeroCards(self, hand):
         m = self.re_HeroCards.search(hand.string)
         if(m == None):
@@ -149,6 +183,20 @@ class FullTilt(HandHistoryConverter):
             cards = m.group('CARDS')
             cards = set(cards.split(' '))
             hand.addHoleCards(cards, m.group('PNAME'))
+
+    def readPlayerCards(self, hand, street):
+        #Used for stud hands - borrows the HeroCards regex for now.
+        m = self.re_HeroCards.finditer(hand.streets.group(street))
+        print "DEBUG: razz/stud readPlayerCards"
+        print hand.streets.group(street)
+        for player in m:
+            print player.groups()
+            cards = player.group('CARDS')
+            if player.group('NEWCARD') != None:
+                print cards
+                cards = cards + " " + player.group('NEWCARD')
+            cards = set(cards.split(' '))
+            hand.addPlayerCards(cards, player.group('PNAME'))
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets.group(street))
@@ -188,7 +236,7 @@ class FullTilt(HandHistoryConverter):
 if __name__ == "__main__":
     c = Configuration.Config()
     if len(sys.argv) ==  1:
-        testfile = "regression-test-files/fulltilt/FT20081209 CR - tay - $0.05-$0.10 - No Limit Hold'em.txt"
+        testfile = "regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt"
     else:
         testfile = sys.argv[1]
         print "Converting: ", testfile

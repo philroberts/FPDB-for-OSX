@@ -114,11 +114,27 @@ class Importer:
         #TODO: test it is a valid file -> put that in config!!
         self.filelist[filename] = [site] + [filter]
 
+    # Called from GuiBulkImport to add a file or directory.
+    def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
+        """Add a file or directory for bulk import"""
+        # Bulk import never monitors
+        
+        # if directory, add all files in it. Otherwise add single file.
+        # TODO: only add sane files?
+        if os.path.isdir(inputPath):
+            for subdir in os.walk(inputPath):
+                for file in subdir[2]:
+                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site="default", filter=filter)
+        else:
+            self.addImportFile(inputPath, site="default", filter=filter)
+
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
     def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
+        #This should really be using os.walk
+        #http://docs.python.org/library/os.html
         if os.path.isdir(dir):
             if monitor == True:
                 self.monitor = True
@@ -370,7 +386,7 @@ class Importer:
                             sys.exit(0)
                 startpos=endpos
         ttime = time() - starttime
-        print "Total stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
+        print "\rTotal stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
         
         if stored==0:
             if duplicates>0:
