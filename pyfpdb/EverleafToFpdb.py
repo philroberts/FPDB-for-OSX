@@ -177,7 +177,7 @@ class Everleaf(HandHistoryConverter):
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = set(cards.split(', '))
+            cards = cards.split(', ')
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readAction(self, hand, street):
@@ -198,9 +198,10 @@ class Everleaf(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
+        """Reads lines where holecards are reported in a showdown"""
         for shows in self.re_ShowdownAction.finditer(hand.string):            
             cards = shows.group('CARDS')
-            cards = set(cards.split(', '))
+            cards = cards.split(', ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
@@ -208,10 +209,11 @@ class Everleaf(HandHistoryConverter):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
+        """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
         for m in self.re_CollectPot.finditer(hand.string):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(', '))
+                cards = cards.split(', ')
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
 
 

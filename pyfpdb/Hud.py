@@ -48,6 +48,8 @@ import HUD_main
 class Hud:
     
     def __init__(self, parent, table, max, poker_game, config, db_connection):
+#    __init__ is (now) intended to be called from the stdin thread, so it
+#    cannot touch the gui
         self.parent        = parent
         self.table         = table
         self.config        = config
@@ -57,27 +59,29 @@ class Hud:
         self.deleted       = False
         self.stacked       = True
         self.site          = table.site
-        self.colors = config.get_default_colors(self.table.site)
+        self.mw_created    = False
 
-        self.stat_windows = {}
+        self.stat_windows  = {}
         self.popup_windows = {}
-        self.aux_windows = []
+        self.aux_windows   = []
         
         (font, font_size) = config.get_default_font(self.table.site)
+        self.colors        = config.get_default_colors(self.table.site)
+
         if font == None:
             font = "Sans"
         if font_size == None:
             font_size = "8"
-            
-        self.font = pango.FontDescription(font + " " + font_size)
-            
+        self.font = pango.FontDescription(font + " " + font_size)            
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
+
+    def create_mw(self):
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_title(table.name + " FPDBHUD")
-        self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
+        self.main_window.set_title(self.table.name + " FPDBHUD")
+#        self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
 
@@ -102,7 +106,7 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.kill_hud_menu)
+        self.item1.connect("activate", self.parent.kill_hud, self.table.name)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')
@@ -123,6 +127,7 @@ class Hud:
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
+        self.mw_created = True
 
 # TODO: fold all uses of this type of 'topify' code into a single function, if the differences between the versions don't
 # create adverse effects?
@@ -163,23 +168,18 @@ class Hud:
             return True
         return False
 
-    def kill_hud(self, *args):
-        if self.deleted:
-            return # no killing self twice.
-        for k in self.stat_windows:
-            self.stat_windows[k].window.destroy()
+    def kill(self, *args):
+#    kill all stat_windows, popups and aux_windows in this HUD
+#    heap dead, burnt bodies, blood 'n guts, veins between my teeth
+        for s in self.stat_windows.itervalues():
+            for p in s.popups:
+                s.kill_popup(p)
+            s.window.destroy()
+            self.stat_windows = {}
 #    also kill any aux windows
         for m in self.aux_windows:
             m.destroy()
-            self.aux_windows.remove(m)
-
-        self.deleted = True
-        self.main_window.disconnect(self.main_window.destroyhandler) # so we don't potentially infiniteloop in here, right
-        self.main_window.destroy()
-        self.parent.HUD_removed(self.table.name)
-        
-    def kill_hud_menu(self, *args):
-        self.main_window.destroy()
+        self.aux_windows = []
 
     def reposition_windows(self, *args):
         for w in self.stat_windows:
@@ -228,13 +228,17 @@ class Hud:
                 return self.stat_dict[key]['seat']
         sys.stderr.write("Error finding actual seat.\n")
 
-    def create(self, hand, config, stat_dict):
+    def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+        if not self.mw_created:
+            self.create_mw()
+            
         self.stat_dict = stat_dict
+        self.cards = cards
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
         adj = self.adj_seats(hand, config)
         sys.stderr.write("adj = %s\n" % adj)
@@ -274,37 +278,36 @@ class Hud:
         if os.name == "nt":
             gobject.timeout_add(500, self.update_table_position)
             
-    def update(self, hand, config, stat_dict):
+    def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
-        self.stat_dict = stat_dict  # so this is available for popups, etc
-        self.update_table_position()
-        self.stat_dict = stat_dict
+        if os.name == 'nt':
+            self.update_table_position()
 
-        for s in stat_dict:
+        for s in self.stat_dict:
             try:
-                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
             except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
-                self.create(hand, config, stat_dict)
-                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                self.create(hand, config, self.stat_dict, self.cards)
+                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
                 
             for r in range(0, config.supported_games[self.poker_game].rows):
                 for c in range(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-                    number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
+                    number = Stats.do_stat(self.stat_dict, player = self.stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
                     
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
-                        self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                        self.stat_windows[self.stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                         
-                    self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                    self.stat_windows[self.stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        self.stat_windows[stat_dict[s]['seat']].window.show_all()
+                        self.stat_windows[self.stat_dict[s]['seat']].window.show_all()
 #                        self.reposition_windows()
-                    tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
+                    tip = self.stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
-                    Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
+                    Stats.do_tip(self.stat_windows[self.stat_dict[s]['seat']].e_box[r][c], tip)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
@@ -338,7 +341,7 @@ class Stat_Window:
 #    and double-clicks.
 
         if event.button == 3:   # right button event
-            Popup_window(widget, self)
+            self.popups.append(Popup_window(widget, self))
 
         if event.button == 2:   # middle button event
             self.window.hide()
@@ -349,7 +352,11 @@ class Stat_Window:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
                 self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-            
+
+    def kill_popup(self, popup):
+        popup.window.destroy()
+        self.popups.remove(popup)
+
     def relocate(self, x, y):
         self.x = x + self.table.x
         self.y = y + self.table.y
@@ -365,6 +372,7 @@ class Stat_Window:
         self.y = y + table.y        # x and y are the location relative to table.x & y
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
+        self.popups = []            # list of open popups for this stat window
         self.useframes = parent.config.get_frames(parent.site)
 
         self.window = gtk.Window()
@@ -424,6 +432,7 @@ def destroy(*args):             # call back for terminating the main eventloop
 class Popup_window:
     def __init__(self, parent, stat_window):
         self.sb_click = 0
+        self.stat_window = stat_window
 
 #    create the popup window
         self.window = gtk.Window()
@@ -506,7 +515,8 @@ class Popup_window:
             pass
 
         if event.button == 3:   # right button event
-            self.window.destroy()
+            self.stat_window.kill_popup(self)
+#            self.window.destroy()
 
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
