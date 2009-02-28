@@ -81,7 +81,7 @@ class Hud:
         self.main_window = gtk.Window()
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
         self.main_window.set_title(self.table.name + " FPDBHUD")
-        self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
+#        self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
 
@@ -106,7 +106,7 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.kill_hud_menu)
+        self.item1.connect("activate", self.parent.kill_hud, self.table.name)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')
@@ -168,23 +168,18 @@ class Hud:
             return True
         return False
 
-    def kill_hud(self, *args):
-        if self.deleted:
-            return # no killing self twice.
-        for k in self.stat_windows:
-            self.stat_windows[k].window.destroy()
+    def kill(self, *args):
+#    kill all stat_windows, popups and aux_windows in this HUD
+#    heap dead, burnt bodies, blood 'n guts, veins between my teeth
+        for s in self.stat_windows.itervalues():
+            for p in s.popups:
+                s.kill_popup(p)
+            s.window.destroy()
+            self.stat_windows = {}
 #    also kill any aux windows
         for m in self.aux_windows:
             m.destroy()
-            self.aux_windows.remove(m)
-
-        self.deleted = True
-        self.main_window.disconnect(self.main_window.destroyhandler) # so we don't potentially infiniteloop in here, right
-        self.main_window.destroy()
-        self.parent.HUD_removed(self.table.name)
-        
-    def kill_hud_menu(self, *args):
-        self.main_window.destroy()
+        self.aux_windows = []
 
     def reposition_windows(self, *args):
         for w in self.stat_windows:
@@ -285,7 +280,8 @@ class Hud:
             
     def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
-        self.update_table_position()
+        if os.name == 'nt':
+            self.update_table_position()
 
         for s in self.stat_dict:
             try:
@@ -345,7 +341,7 @@ class Stat_Window:
 #    and double-clicks.
 
         if event.button == 3:   # right button event
-            Popup_window(widget, self)
+            self.popups.append(Popup_window(widget, self))
 
         if event.button == 2:   # middle button event
             self.window.hide()
@@ -356,7 +352,11 @@ class Stat_Window:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
                 self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-            
+
+    def kill_popup(self, popup):
+        popup.window.destroy()
+        self.popups.remove(popup)
+
     def relocate(self, x, y):
         self.x = x + self.table.x
         self.y = y + self.table.y
@@ -372,6 +372,7 @@ class Stat_Window:
         self.y = y + table.y        # x and y are the location relative to table.x & y
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
+        self.popups = []            # list of open popups for this stat window
         self.useframes = parent.config.get_frames(parent.site)
 
         self.window = gtk.Window()
@@ -431,6 +432,7 @@ def destroy(*args):             # call back for terminating the main eventloop
 class Popup_window:
     def __init__(self, parent, stat_window):
         self.sb_click = 0
+        self.stat_window = stat_window
 
 #    create the popup window
         self.window = gtk.Window()
@@ -513,7 +515,8 @@ class Popup_window:
             pass
 
         if event.button == 3:   # right button event
-            self.window.destroy()
+            self.stat_window.kill_popup(self)
+#            self.window.destroy()
 
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
