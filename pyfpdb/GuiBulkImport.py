@@ -194,16 +194,10 @@ class GuiBulkImport():
         self.load_button.show()
 
 #    see how many hands are in the db and adjust accordingly
-        db_parms = config.get_db_parameters('fpdb')
-        db.connect(db_parms['db-backend'],
-            db_parms['db-host'],
-            db_parms['db-databaseName'],
-            db_parms['db-user'], 
-            db_parms['db-password'])
-        cursor = db.db.cursor()
-        cursor.execute("Select max(id) from Hands;")
-        row = cursor.fetchone()
-        db.disconnect() # that's all we need this for
+        tcursor = db.db.cursor()
+        tcursor.execute("Select max(id) from Hands;")
+        row = tcursor.fetchone()
+        tcursor.close()
         self.n_hands_in_db = row[0]
         if self.n_hands_in_db == 0:
             self.cb.set_active(2)
