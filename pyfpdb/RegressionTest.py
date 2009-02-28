@@ -133,7 +133,7 @@ Table Jeonju
 Seat 4 is the button
 Total number of players: 5
 """
-        #NLHE 
+        #NLHE
         m = self.everleaf.re_GameInfo.search(cash_nlhe)
         sb = m.group('SB')
         bb = m.group('BB')
