@@ -142,7 +142,7 @@ class Hud:
     def update_table_position(self):
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
-                self.parent.kill_hud(self)
+                self.parent.kill_hud(self, self.table.name)
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         
