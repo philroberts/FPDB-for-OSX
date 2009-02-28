@@ -76,7 +76,14 @@ class HUD_main(object):
 
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()
-    
+
+    def kill_hud(self, event, table):
+#    called by an event in the HUD, to kill this specific HUD
+        self.hud_dict[table].kill()
+        self.hud_dict[table].main_window.destroy()
+        self.vb.remove(self.hud_dict[table].tablehudlabel)
+        del(self.hud_dict[table])
+
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, is_tournament, stat_dict, cards):
         
         def idle_func():
@@ -117,18 +124,6 @@ class HUD_main(object):
                 gtk.gdk.threads_leave()
         gobject.idle_add(idle_func)
      
-    def HUD_removed(self, tablename):
-        
-        tablename = Tables.clean_title(tablename)
-        # TODO: There's a potential problem here somewhere, that this hacks around .. the table_name as being passed to HUD_create is cleaned,
-        # but the table.name as being passed here is not cleaned. I don't know why. -eric
-        if tablename in self.hud_dict and self.hud_dict[tablename].deleted:
-            self.vb.remove(self.hud_dict[tablename].tablehudlabel)
-            del self.hud_dict[tablename]
-            return False
-        
-        return True
-    
     def read_stdin(self):            # This is the thread function
         """Do all the non-gui heavy lifting for the HUD program."""
 
