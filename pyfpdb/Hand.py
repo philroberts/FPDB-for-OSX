@@ -404,11 +404,15 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
     def lookupLimitBetSize(self):
         #Lookup table  for limit games
-        everleaf = { "0.10" : ("0.02", "0.05")
-                    }
-
-        if self.sitename == "Everleaf":
-            return everleaf[self.bb]
+        betlist = {
+            "Everleaf" : {  "0.10" : ("0.02", "0.05"),
+                            "0.20" : ("0.05", "0.10"),
+                            "0.50" : ("0.10", "0.25"),
+                            "1.00" : ("0.25", "0.50")
+                            
+                }
+            }
+        return betlist[self.sitename][self.bb]
 
 
     def writeHand(self, fh=sys.__stdout__):
