@@ -141,7 +141,7 @@ class HandHistoryConverter:
 
             self.markStreets(hand)
             # Different calls if stud or holdem like
-            if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+            if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
                 self.readBlinds(hand)
                 self.readButton(hand)
                 self.readHeroCards(hand) # want to generalise to draw games
@@ -155,7 +155,7 @@ class HandHistoryConverter:
             for street in hand.streetList: # go through them in order
                 print "DEBUG: ", street
                 if hand.streets.group(street) is not None:
-                    if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                    if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
                         self.readCommunityCards(hand, street) # read community cards
                     elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
                         self.readPlayerCards(hand, street)
