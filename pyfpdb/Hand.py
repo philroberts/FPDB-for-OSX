@@ -39,7 +39,7 @@ class Hand:
         self.gametype = gametype
         self.string = string
 
-        if gametype[1] == "hold" or self.gametype[1] == "omaha":
+        if gametype[1] == "hold" or self.gametype[1] == "omahahi":
             self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
         elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
             self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
@@ -403,7 +403,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         return string
 
     def writeHand(self, fh=sys.__stdout__):
-        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+        if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
             self.writeHoldemHand(fh)
         else:
             self.writeStudHand(fh)

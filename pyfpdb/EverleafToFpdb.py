@@ -62,7 +62,7 @@ class Everleaf(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "omaha", "pl"]
+                ["ring", "omahahi", "pl"]
                ]
 
     def determineGameType(self):
@@ -221,7 +221,7 @@ class Everleaf(HandHistoryConverter):
 if __name__ == "__main__":
     c = Configuration.Config()
     if len(sys.argv) ==  1:
-        testfile = "regression-test-files/everleaf/Speed_Kuala_full.txt"
+        testfile = "regression-test-files/everleaf/plo/Naos.txt"
     else:
         testfile = sys.argv[1]
     e = Everleaf(c, testfile)
