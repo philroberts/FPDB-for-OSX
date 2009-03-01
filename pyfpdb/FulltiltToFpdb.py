@@ -28,7 +28,7 @@ class FullTilt(HandHistoryConverter):
     re_GameInfo     = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
     re_SplitHands   = re.compile(r"\n\n+")
     re_HandInfo     = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
-    re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)')
+    re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
@@ -43,9 +43,10 @@ class FullTilt(HandHistoryConverter):
         print "DEBUG player_re: " + player_re
         self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
         self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+        self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
         self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>.*)\]( \[(?P<NEWCARD>.*)\])?" % player_re, re.MULTILINE)
+        self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>[AKQJT0-9hcsd ]+)\]( \[(?P<NEWCARD>[AKQJT0-9hcsd ]+)\])?" % player_re, re.MULTILINE)
         self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?" % player_re, re.MULTILINE)
         self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
         self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
@@ -155,13 +156,17 @@ class FullTilt(HandHistoryConverter):
 
     def readAntes(self, hand):
         print "DEBUG: reading antes"
-        print "DEBUG: FIXME reading antes"
+        m = self.re_Antes.finditer(hand.string)
+        for player in m:
+            print "DEBUG: hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE'))
+            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
         print "DEBUG: reading bring in"
 #        print hand.string
         m = self.re_BringIn.search(hand.string,re.DOTALL)
         print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+        hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
@@ -183,16 +188,15 @@ class FullTilt(HandHistoryConverter):
         #Used for stud hands - borrows the HeroCards regex for now.
         m = self.re_HeroCards.finditer(hand.streets.group(street))
         print "DEBUG: razz/stud readPlayerCards"
-        print "DEBUG: STREET: %s", street
+        print hand.streets.group(street)
         for player in m:
             print player.groups()
-            #hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
-            # Also works with Omaha hands.
             cards = player.group('CARDS')
-            print "DEBUG: PNAME: %s CARDS: %s" %(player.group('PNAME'), player.group('CARDS'))
+            if player.group('NEWCARD') != None:
+                print cards
+                cards = cards + " " + player.group('NEWCARD')
             cards = set(cards.split(' '))
-#            hand.addHoleCards(cards, m.group('PNAME'))
+            hand.addPlayerCards(cards, player.group('PNAME'))
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets.group(street))

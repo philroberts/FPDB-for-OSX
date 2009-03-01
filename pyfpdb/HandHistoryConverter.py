@@ -72,13 +72,10 @@ letter2names = {
 import gettext
 gettext.install('myapplication')
 
-
-
 class HandHistoryConverter(threading.Thread):
-#    eval = PokerEval()
 
     def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
-        super(HandHistoryConverter, self).__init__()
+        threading.Thread.__init__(self)
         logging.info("HandHistory init called")
         
         # default filetype and codepage. Subclasses should set these properly.
@@ -94,7 +91,7 @@ class HandHistoryConverter(threading.Thread):
             self.out_fh = open(self.out_path, 'a')
         self.sitename  = sitename
         self.follow = follow
-        self.players   = set()
+        self.compiledPlayers   = set()
         self.maxseats  = 10
 
     def __str__(self):
@@ -145,45 +142,11 @@ class HandHistoryConverter(threading.Thread):
         gametype = self.determineGameType(handtext)
         if gametype is None:
             return
-        hand = Hand.Hand(self.sitename, gametype, handtext)
-        self.readHandInfo(hand)
-        self.readPlayerStacks(hand)
-        playersThisHand = set([player[1] for player in hand.players])
-        if playersThisHand <= self.players: # x <= y means 'x is subset of y'
-            # we're ok; the regex should already cover them all.
-            pass
-        else:
-            # we need to recompile the player regexs.
-            self.players = playersThisHand
-            self.compilePlayerRegexs()
-
-        self.markStreets(hand)
-        # Different calls if stud or holdem like
-        if gametype[1] == "hold" or gametype[1] == "omaha":
-            self.readBlinds(hand)
-            self.readButton(hand)
-            self.readHeroCards(hand) # want to generalise to draw games
-        elif gametype[1] == "razz" or gametype[1] == "stud" or gametype[1] == "stud8":
-            self.readAntes(hand)
-            self.readBringIn(hand)
-
-        self.readShowdownActions(hand)
         
-        # Read actions in street order
-        for street in hand.streetList: # go through them in order
-            #logging.debug(street)
-            if hand.streets.group(street) is not None:
-                if gametype[1] == "hold" or gametype[1] == "omaha":
-                    self.readCommunityCards(hand, street) # read community cards
-                elif gametype[1] == "razz" or gametype[1] == "stud" or gametype[1] == "stud8":
-                    self.readPlayerCards(hand, street)
-
-                self.readAction(hand, street)
-                
-        self.readCollectPot(hand)
-        self.readShownCards(hand)
-        hand.totalPot() # finalise it (total the pot)
-        self.getRake(hand)
+        if gametype[1] in ("hold", "omaha"):
+            hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
+        elif gametype[1] in ("razz","stud","stud8"):
+            hand = Hand.StudHand(self, self.sitename, gametype, handtext)
         
         hand.writeHand(self.out_fh)
         
@@ -207,7 +170,7 @@ class HandHistoryConverter(threading.Thread):
         self.hands = self.splitFileIntoHands()
         outfile = open(self.ofile, 'w')        
         for hand in self.hands:
-            #print "\nDEBUG: Input:\n"+hand.string
+            #print "\nDEBUG: Input:\n"+hand.handText
             self.readHandInfo(hand)
             
             self.readPlayerStacks(hand)
@@ -263,8 +226,7 @@ class HandHistoryConverter(threading.Thread):
         outfile.close()
         endtime = time.time()
         print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
-
-    #####
+    
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
@@ -279,13 +241,13 @@ class HandHistoryConverter(threading.Thread):
     def determineGameType(self): abstract
 
     # Read any of:
-    # HID		HandID
-    # TABLE		Table name
-    # SB 		small blind
-    # BB		big blind
-    # GAMETYPE	gametype
-    # YEAR MON DAY HR MIN SEC 	datetime
-    # BUTTON	button seat number
+    # HID       HandID
+    # TABLE     Table name
+    # SB        small blind
+    # BB        big blind
+    # GAMETYPE  gametype
+    # YEAR MON DAY HR MIN SEC   datetime
+    # BUTTON    button seat number
     def readHandInfo(self, hand): abstract
 
     # Needs to return a list of lists in the format
@@ -355,7 +317,7 @@ class HandHistoryConverter(threading.Thread):
         list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
-#			print "'" + l + "'"
+#           print "'" + l + "'"
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 

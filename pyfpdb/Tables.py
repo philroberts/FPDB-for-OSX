@@ -390,9 +390,9 @@ if __name__=="__main__":
     print discover_table_by_name(c, "Ringe")
 #    print discover_tournament_table(c, "118942908", "3")
 
-#    tables = discover(c)
-#    for t in tables.keys():
-#        print tables[t]
+    tables = discover(c)
+    for t in tables.keys():
+        print tables[t]
 
     print "press enter to continue"
     sys.stdin.readline()

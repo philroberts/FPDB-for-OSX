@@ -116,31 +116,30 @@ class Database:
         row = c.fetchone()
         return row[0]
 
-#    def get_cards(self, hand):
-#    this version is for the PTrackSv2 db
-#        c = self.connection.cursor()
-#        c.execute(self.sql.query['get_cards'], hand)
-#        colnames = [desc[0] for desc in c.description]
-#        cards = {}
-#        for row in c.fetchall():
-#            s_dict = {}
-#            for name, val in zip(colnames, row):
-#                s_dict[name] = val
-#            cards[s_dict['seat_number']] = s_dict
-#        return (cards)
-
     def get_cards(self, hand):
-#    this version is for the fpdb db
+        """Get and return the cards for each player in the hand."""
+        cards = {} # dict of cards, the key is the seat number example: {1: 'AcQd9hTs5d'}
         c = self.connection.cursor()
         c.execute(self.sql.query['get_cards'], hand)
         colnames = [desc[0] for desc in c.description]
-        cards = {}
         for row in c.fetchall():
             s_dict = {}
             for name, val in zip(colnames, row):
                 s_dict[name] = val
-            cards[s_dict['seat_number']] = s_dict
-        return (cards)
+            cards[s_dict['seat_number']] = (self.convert_cards(s_dict))
+        return cards
+
+    def convert_cards(self, d):
+        ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
+        cards = ""
+        for i in range(1, 8):
+            if d['card' + str(i) + 'Value'] == None:
+                break
+            elif d['card' + str(i) + 'Value'] == 0:
+                cards += "xx"
+            else:
+                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
+        return cards
 
     def get_action_from_hand(self, hand_no):
         action = [ [], [], [], [], [] ]
@@ -214,6 +213,7 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
 
+    print "cards =", db_connection.get_cards(73525)
     db_connection.close_connection
 
     print "press enter to continue"

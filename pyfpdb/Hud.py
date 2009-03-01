@@ -48,6 +48,8 @@ import HUD_main
 class Hud:
     
     def __init__(self, parent, table, max, poker_game, config, db_connection):
+#    __init__ is (now) intended to be called from the stdin thread, so it
+#    cannot touch the gui
         self.parent        = parent
         self.table         = table
         self.config        = config
@@ -57,26 +59,28 @@ class Hud:
         self.deleted       = False
         self.stacked       = True
         self.site          = table.site
-        self.colors = config.get_default_colors(self.table.site)
+        self.mw_created    = False
 
-        self.stat_windows = {}
+        self.stat_windows  = {}
         self.popup_windows = {}
-        self.aux_windows = []
+        self.aux_windows   = []
         
         (font, font_size) = config.get_default_font(self.table.site)
+        self.colors        = config.get_default_colors(self.table.site)
+
         if font == None:
             font = "Sans"
         if font_size == None:
             font_size = "8"
-            
-        self.font = pango.FontDescription(font + " " + font_size)
-            
+        self.font = pango.FontDescription(font + " " + font_size)            
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
+
+    def create_mw(self):
 
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_title(table.name + " FPDBHUD")
+        self.main_window.set_title(self.table.name + " FPDBHUD")
         self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
@@ -123,6 +127,7 @@ class Hud:
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
+        self.mw_created = True
 
 # TODO: fold all uses of this type of 'topify' code into a single function, if the differences between the versions don't
 # create adverse effects?
@@ -228,13 +233,17 @@ class Hud:
                 return self.stat_dict[key]['seat']
         sys.stderr.write("Error finding actual seat.\n")
 
-    def create(self, hand, config, stat_dict):
+    def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"
 #    hand is the hand id of the most recent hand played at this table
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+        if not self.mw_created:
+            self.create_mw()
+            
         self.stat_dict = stat_dict
+        self.cards = cards
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
         adj = self.adj_seats(hand, config)
         sys.stderr.write("adj = %s\n" % adj)
@@ -274,37 +283,35 @@ class Hud:
         if os.name == "nt":
             gobject.timeout_add(500, self.update_table_position)
             
-    def update(self, hand, config, stat_dict):
+    def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
-        self.stat_dict = stat_dict  # so this is available for popups, etc
         self.update_table_position()
-        self.stat_dict = stat_dict
 
-        for s in stat_dict:
+        for s in self.stat_dict:
             try:
-                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
             except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
-                self.create(hand, config)
-                self.stat_windows[stat_dict[s]['seat']].player_id = stat_dict[s]['player_id']
+                self.create(hand, config, self.stat_dict, self.cards)
+                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
                 
             for r in range(0, config.supported_games[self.poker_game].rows):
                 for c in range(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-                    number = Stats.do_stat(stat_dict, player = stat_dict[s]['player_id'], stat = self.stats[r][c])
+                    number = Stats.do_stat(self.stat_dict, player = self.stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
                     
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                         self.stat_windows[stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                         
-                    self.stat_windows[stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                    self.stat_windows[self.stat_dict[s]['seat']].label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        self.stat_windows[stat_dict[s]['seat']].window.show_all()
+                        self.stat_windows[self.stat_dict[s]['seat']].window.show_all()
 #                        self.reposition_windows()
-                    tip = stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
+                    tip = self.stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
                           number[3] + ", " + number[4]
-                    Stats.do_tip(self.stat_windows[stat_dict[s]['seat']].e_box[r][c], tip)
+                    Stats.do_tip(self.stat_windows[self.stat_dict[s]['seat']].e_box[r][c], tip)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
@@ -365,6 +372,7 @@ class Stat_Window:
         self.y = y + table.y        # x and y are the location relative to table.x & y
         self.player_id = player_id  # looks like this isn't used ;)
         self.sb_click = 0           # used to figure out button clicks
+        self.useframes = parent.config.get_frames(parent.site)
 
         self.window = gtk.Window()
         self.window.set_decorated(0)
@@ -382,23 +390,28 @@ class Stat_Window:
         self.frame = []
         self.label = []
         for r in range(self.game.rows):
-            self.frame.append([])
+            if self.useframes:
+                self.frame.append([])
             self.e_box.append([])
             self.label.append([])
             for c in range(self.game.cols):
-                self.frame[r].append( gtk.Frame() )
+                if self.useframes:
+                    self.frame[r].append( gtk.Frame() )
                 self.e_box[r].append( gtk.EventBox() )
                 
                 self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
                 
                 Stats.do_tip(self.e_box[r][c], 'stuff')
-#                self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
-                self.grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
-                self.frame[r][c].add(self.e_box[r][c])
+                if self.useframes:
+                    self.grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                    self.frame[r][c].add(self.e_box[r][c])
+                else:
+                    self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 self.label[r].append( gtk.Label('xxx') )
                 
-                self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                if self.useframes:
+                    self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 self.label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
 

@@ -35,6 +35,20 @@ import Configuration
 
 class GuiBulkImport():
 
+    def import_dir(self):
+        """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
+
+        self.path = self.inputFile
+        self.importer.addImportDirectory(self.path)
+        self.importer.setCallHud(False)
+        starttime = time()
+        if not self.importer.settings['threads'] > 1:
+            (stored, dups, partial, errs, ttime) = self.importer.runImport()
+            print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
+                 % (stored, dups, partial, errs, ttime, stored / ttime)
+        else:
+            self.importer.RunImportThreaded()
+
     def load_clicked(self, widget, data=None):
 #    get the dir to import from the chooser
         self.inputFile = self.chooser.get_filename()
@@ -66,6 +80,7 @@ class GuiBulkImport():
         self.lab_info.set_text("Import finished")
 
     def get_vbox(self):
+        """returns the vbox of this thread"""
         return self.vbox
 
     def __init__(self, db, settings, config):

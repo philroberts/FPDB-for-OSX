@@ -40,23 +40,26 @@ class Everleaf(HandHistoryConverter):
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        super(Everleaf, self).__init__(in_path, out_path, sitename="Everleaf", follow=follow) # Call super class init.
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
         self.start()
 
-    def compilePlayerRegexs(self):
-        player_re = "(?P<PNAME>" + "|".join(map(re.escape, self.players)) + ")"
-        logging.debug("player_re: "+ player_re)
-        self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
-        self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
-        self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-        self.re_HeroCards       = re.compile(r"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-        self.re_Action          = re.compile(r"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?" % player_re, re.MULTILINE)
-        self.re_ShowdownAction  = re.compile(r"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-        self.re_CollectPot      = re.compile(r"^%s wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
-        self.re_SitsOut         = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
+    def compilePlayerRegexs(self,  players):
+        if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
+            # we need to recompile the player regexs.
+            self.compiledPlayers = players
+            player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
+            logging.debug("player_re: "+ player_re)
+            self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_HeroCards       = re.compile(r"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(r"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?" % player_re, re.MULTILINE)
+            self.re_ShowdownAction  = re.compile(r"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(r"^%s wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+            self.re_SitsOut         = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -69,6 +72,13 @@ follow :  whether to tail -f the input"""
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
         # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
+        
+        # Tourney:
+        # Everleaf Gaming Game #75065769
+        # ***** Hand history for game #75065769 *****
+        # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
+        # Table 2
+
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
@@ -95,84 +105,89 @@ follow :  whether to tail -f the input"""
         return gametype
 
     def readHandInfo(self, hand):
-        m = self.re_HandInfo.search(hand.string)
+        m = self.re_HandInfo.search(hand.handText)
         if(m == None):
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handtext)
             return None
-        logging.debug("HID %s" % m.group('HID'))
+        logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
+        hand.tablename = m.group('TABLE')
         hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
 
-# Believe Everleaf time is GMT/UTC, no transation necessary
-# Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
-# or                        : 2008/11/07 12:38:49 ET
-# Not getting it in my HH files yet, so using
-# 2008/11/10 3:58:52 ET
-#TODO: Do conversion from GMT to ET
-#TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
+        # Believe Everleaf time is GMT/UTC, no transation necessary
+        # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
+        # or                        : 2008/11/07 12:38:49 ET
+        # Not getting it in my HH files yet, so using
+        # 2008/11/10 3:58:52 ET
+        #TODO: Do conversion from GMT to ET
+        #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.starttime = time.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
         return
-        #return({'HID': m.group('HID'), 'table':m.group('TABLE'), 'max_seats':6})
 
     def readPlayerStacks(self, hand):
-        m = self.re_PlayerInfo.finditer(hand.string)
+        m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
             if seatnum > 6:
-                hand.max_seats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
+                hand.maxseats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
                 # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
             
         
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
+        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
 
         m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
                        r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
                        r"(\*\* Dealing Turn \*\*(?P<TURN> \[ \S\S \].+(?=\*\* Dealing River \*\*)|.+))?"
-                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.string,re.DOTALL)
+                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.handText,re.DOTALL)
 
         hand.addStreets(m)
             
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            m = self.re_Board.search(hand.streets.group(street))
-            hand.setCommunityCards(street, m.group('CARDS').split(', '))
+        # If this has been called, street is a street which gets dealt community cards by type hand
+        # but it might be worth checking somehow.
+#        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+        m = self.re_Board.search(hand.streets[street])
+        cards = m.group('CARDS')
+        cards = [card.strip() for card in cards.split(',')]
+        hand.setCommunityCards(street, cards)
 
     def readBlinds(self, hand):
-        m = self.re_PostSB.search(hand.string)
+        m = self.re_PostSB.search(hand.handText)
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         else:
             logging.debug("No small blind")
             hand.addBlind(None, None, None)
-        for a in self.re_PostBB.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.re_PostBoth.finditer(hand.string):
+        for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
+        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.string)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
+        m = self.re_HeroCards.search(hand.handText)
+        if m:
             hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
+            # "2c, qh" -> ["2c","qc"]
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = set(cards.split(', '))
+            cards = [card.strip() for card in cards.split(',')]
             hand.addHoleCards(cards, m.group('PNAME'))
+        else:
+            #Not involved in hand
+            hand.involved = False
+            
 
     def readAction(self, hand, street):
-        m = self.re_Action.finditer(hand.streets.group(street))
+        m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             if action.group('ATYPE') == ' raises':
                 hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )
@@ -189,20 +204,22 @@ follow :  whether to tail -f the input"""
 
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.string):            
+        """Reads lines where holecards are reported in a showdown"""
+        for shows in self.re_ShowdownAction.finditer(hand.handText):            
             cards = shows.group('CARDS')
-            cards = set(cards.split(', '))
+            cards = cards.split(', ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.re_CollectPot.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
-        for m in self.re_CollectPot.finditer(hand.string):
+        """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
+        for m in self.re_CollectPot.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(', '))
+                cards = cards.split(', ')
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
 
 

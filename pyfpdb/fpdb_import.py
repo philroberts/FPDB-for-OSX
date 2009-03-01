@@ -61,6 +61,7 @@ class Importer:
         self.filelist = {}
         self.dirlist = {}
         self.addToDirList = {}
+        self.removeFromFileList = {} # to remove deleted files
         self.monitor = False
         self.updated = {}       #Time last import was run {file:mtime}
         self.lines = None
@@ -209,8 +210,13 @@ class Importer:
                     
         for dir in self.addToDirList:
             self.addImportDirectory(dir, True, self.addToDirList[dir][0], self.addToDirList[dir][1])
+            
+        for file in self.removeFromFileList:
+            if file in self.filelist:
+                del self.filelist[file]
         
         self.addToDirList = {}
+        self.removeFromFileList = {}
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
@@ -266,9 +272,15 @@ class Importer:
         if (file=="stdin"):
             inputFile=sys.stdin
         else:
-            inputFile=open(file, "rU")
-            try: loc = self.pos_in_file[file]
-            except: pass
+            if os.path.exists(file):
+                inputFile = open(file, "rU")
+            else:
+                self.removeFromFileList[file] = True
+                return (0, 0, 0, 1, 0)
+            try:
+                loc = self.pos_in_file[file]
+            except:
+                pass
 
         # Read input file into class and close file
         inputFile.seek(loc)
