@@ -181,7 +181,7 @@ class FullTilt(HandHistoryConverter):
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = set(cards.split(' '))
+            cards = cards.split(' ')
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readPlayerCards(self, hand, street):
@@ -195,7 +195,7 @@ class FullTilt(HandHistoryConverter):
             if player.group('NEWCARD') != None:
                 print cards
                 cards = cards + " " + player.group('NEWCARD')
-            cards = set(cards.split(' '))
+            cards = cards.split(' ')
             hand.addPlayerCards(cards, player.group('PNAME'))
 
     def readAction(self, hand, street):
@@ -218,7 +218,7 @@ class FullTilt(HandHistoryConverter):
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.string):
             cards = shows.group('CARDS')
-            cards = set(cards.split(' '))
+            cards = cards.split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
@@ -229,7 +229,7 @@ class FullTilt(HandHistoryConverter):
         for m in self.re_ShownCards.finditer(hand.string):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(' '))
+                cards = cards.split(' ')
                 hand.addShownCards(cards=cards, player=m.group('PNAME'))
 
 

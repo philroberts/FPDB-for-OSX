@@ -62,6 +62,7 @@ class Everleaf(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
                 ["ring", "omahahi", "pl"]
                ]
 
