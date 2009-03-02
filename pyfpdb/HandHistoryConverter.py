@@ -136,7 +136,7 @@ class HandHistoryConverter(threading.Thread):
         if self.obs == "" or self.obs == None:
             logging.info("Read no hands.")
             return
-        return self.obs.split(self.splitstring)
+        return re.split(self.re_SplitHands,  self.obs)
         
     def processHand(self, handtext):
         gametype = self.determineGameType(handtext)

@@ -32,7 +32,6 @@ class Everleaf(HandHistoryConverter):
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
-    splitstring    = "\n\n\n"
     
     
     def __init__(self, in_path = '-', out_path = '-', follow = False):
@@ -67,7 +66,7 @@ follow :  whether to tail -f the input"""
                 ["ring", "omaha", "pl"]
                ]
 
-    def determineGameType(self, handtext):
+    def determineGameType(self, handText):
         # Cheating with this regex, only support nlhe at the moment
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
@@ -82,7 +81,7 @@ follow :  whether to tail -f the input"""
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
-        m = self.re_GameInfo.search(handtext)
+        m = self.re_GameInfo.search(handText)
         if m == None:
             logging.debug("Gametype didn't match")
             return None
