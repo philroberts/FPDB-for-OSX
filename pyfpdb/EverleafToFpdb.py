@@ -28,8 +28,8 @@ class Everleaf(HandHistoryConverter):
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
-    re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
-    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
+    re_GameInfo    = re.compile(r"^(Blinds )?\$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) ((?P<LTYPE>NL|PL) )?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
+    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?\$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
@@ -62,7 +62,8 @@ class Everleaf(HandHistoryConverter):
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
-                ["ring", "omaha", "pl"]
+                ["ring", "hold", "fl"],
+                ["ring", "omahahi", "pl"]
                ]
 
     def determineGameType(self):
@@ -221,7 +222,7 @@ class Everleaf(HandHistoryConverter):
 if __name__ == "__main__":
     c = Configuration.Config()
     if len(sys.argv) ==  1:
-        testfile = "regression-test-files/everleaf/Speed_Kuala_full.txt"
+        testfile = "regression-test-files/everleaf/plo/Naos.txt"
     else:
         testfile = sys.argv[1]
     e = Everleaf(c, testfile)

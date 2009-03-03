@@ -32,7 +32,12 @@ class Hand:
         self.sitename = sitename
         self.gametype = gametype
         self.string = string
-        
+
+        if gametype[1] == "hold" or self.gametype[1] == "omahahi":
+            self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
+        elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
+            self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
+
         self.handid = 0
         
         self.tablename = "Slartibartfast"
@@ -130,7 +135,7 @@ player  (string) name of player
         try:
             self.checkPlayerExists(player)
             cards = set([self.card(c) for c in cards])
-            self.holecards[player].extend(cards)
+            self.holecards[player].update(cards)
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
@@ -390,6 +395,24 @@ Map the tuple self.gametype onto the pokerstars string describing it
         
         return string
 
+    def lookupLimitBetSize(self):
+        #Lookup table  for limit games
+        betlist = {
+            "Everleaf" : {  "0.10" : ("0.02", "0.05"),
+                            "0.20" : ("0.05", "0.10"),
+                            "0.50" : ("0.10", "0.25"),
+                            "1.00" : ("0.25", "0.50")
+                },
+            "FullTilt" : {  "0.10" : ("0.02", "0.05"),
+                            "0.20" : ("0.05", "0.10"),
+                            "1"    : ("0.25", "0.50"),
+                            "2"    : ("0.50", "1"),
+                            "4"    : ("1", "2")
+                }
+            }
+        return betlist[self.sitename][self.bb]
+
+
     def writeHand(self, fh=sys.__stdout__):
         print >>fh, "Override me"
 
@@ -430,13 +453,19 @@ class HoldemOmahaHand(Hand):
 
 
         #May be more than 1 bb posting
+        if self.gametype[2] == "fl":
+            (smallbet, bigbet) = self.lookupLimitBetSize()
+        else:
+            smallbet = self.sb
+            bigbet = self.bb
+
         for a in self.posted:
             if(a[1] == "small blind"):
-                print >>fh, _("%s: posts small blind $%s" %(a[0], self.sb))
+                print >>fh, _("%s: posts small blind $%s" %(a[0], smallbet))
             if(a[1] == "big blind"):
-                print >>fh, _("%s: posts big blind $%s" %(a[0], self.bb))
+                print >>fh, _("%s: posts big blind $%s" %(a[0], bigbet))
             if(a[1] == "both"):
-                print >>fh, _("%s: posts small & big blinds $%.2f" %(a[0], (Decimal(self.sb) + Decimal(self.bb))))
+                print >>fh, _("%s: posts small & big blinds $%.2f" %(a[0], (Decimal(smallbet) + Decimal(bigbet))))
 
         print >>fh, _("*** HOLE CARDS ***")
         if self.involved:
