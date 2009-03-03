@@ -409,7 +409,12 @@ Map the tuple self.gametype onto the pokerstars string describing it
                             "0.20" : ("0.05", "0.10"),
                             "0.50" : ("0.10", "0.25"),
                             "1.00" : ("0.25", "0.50")
-                            
+                },
+            "FullTilt" : {  "0.10" : ("0.02", "0.05"),
+                            "0.20" : ("0.05", "0.10"),
+                            "1"    : ("0.25", "0.50"),
+                            "2"    : ("0.50", "1"),
+                            "4"    : ("1", "2")
                 }
             }
         return betlist[self.sitename][self.bb]
