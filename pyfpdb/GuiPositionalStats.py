@@ -61,7 +61,7 @@ class GuiPositionalStats (threading.Thread):
                 vbox.add(self.stats_table)
 
                 # Create header row
-                titles = ("Game", "Hands", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
+                titles = ("Game", "Position", "#", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
 
                 col = 0
                 row = 0
