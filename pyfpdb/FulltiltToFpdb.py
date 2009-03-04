@@ -66,6 +66,7 @@ class FullTilt(HandHistoryConverter):
         # Full Tilt Poker Game #10777181585: Table Deerfly (deep 6) - $0.01/$0.02 - Pot Limit Omaha Hi - 2:24:44 ET - 2009/02/22
         # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
         # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
+        # Full Tilt Poker Game #10809877615: Table Danville - $0.50/$1 Ante $0.10 - Limit Razz - 21:47:27 ET - 2009/02/23
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
@@ -98,9 +99,9 @@ class FullTilt(HandHistoryConverter):
         hand.tablename = m.group('TABLE')
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 # These work, but the info is already in the Hand class - should be used for tourneys though.
-#		m.group('SB')
-#		m.group('BB')
-#		m.group('GAMETYPE')
+#       m.group('SB')
+#       m.group('BB')
+#       m.group('GAMETYPE')
 
 # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
 # or                        : 2008/11/07 12:38:49 ET

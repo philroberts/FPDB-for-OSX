@@ -33,14 +33,13 @@ class Everleaf(HandHistoryConverter):
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
-        
     
     def __init__(self, config, file):
         print "Initialising Everleaf converter class"
         HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
         self.sitename = "Everleaf"
         self.setFileType("text", "cp1252")
-        
+
 
         try:
             self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
@@ -106,22 +105,19 @@ class Everleaf(HandHistoryConverter):
         m =  self.re_HandInfo.search(hand.string)
         if(m == None):
             print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
-        hand.handid = m.group('HID')
+        hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.max_seats = 6 # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
-# These work, but the info is already in the Hand class - should be used for tourneys though.
-#		m.group('SB')
-#		m.group('BB')
-#		m.group('GAMETYPE')
+        hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
 
-# Believe Everleaf time is GMT/UTC, no transation necessary
-# Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
-# or                        : 2008/11/07 12:38:49 ET
-# Not getting it in my HH files yet, so using
-# 2008/11/10 3:58:52 ET
-#TODO: Do conversion from GMT to ET
-#TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
+        # Believe Everleaf time is GMT/UTC, no transation necessary
+        # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
+        # or                        : 2008/11/07 12:38:49 ET
+        # Not getting it in my HH files yet, so using
+        # 2008/11/10 3:58:52 ET
+        #TODO: Do conversion from GMT to ET
+        #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.starttime = time.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
+        return
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.string)
@@ -129,7 +125,7 @@ class Everleaf(HandHistoryConverter):
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
             if seatnum > 6:
-                hand.max_seats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
+                hand.maxseats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
                 # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
             
         
@@ -144,7 +140,7 @@ class Everleaf(HandHistoryConverter):
                        r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.string,re.DOTALL)
 
         hand.addStreets(m)
-            
+
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
         #print "DEBUG " + street + ":"
@@ -175,7 +171,7 @@ class Everleaf(HandHistoryConverter):
             hand.involved = False
         else:
             hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
+            # "2c, qh" -> ["2c","qc"]
             # Also works with Omaha hands.
             cards = m.group('CARDS')
             cards = cards.split(', ')

@@ -485,7 +485,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-        #TODO: Complete SHOWDOWN
+            #TODO: Complete SHOWDOWN
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -589,7 +589,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-#            print >>fh, "DEBUG: what do they show"
+            # TODO: print showdown lines.
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -773,4 +773,3 @@ class Pot(object):
             return _("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
             # I don't know stars format for a walk in the bb when sb doesn't post.
             # The thing to do here is raise a Hand error like fpdb import does and file it into errors.txt
-            
