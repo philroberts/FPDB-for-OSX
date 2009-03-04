@@ -65,7 +65,7 @@ class Everleaf(HandHistoryConverter):
                 ["ring", "omahahi", "pl"]
                ]
 
-    def determineGameType(self):
+    def determineGameType(self, handText):
         # Cheating with this regex, only support nlhe at the moment
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
@@ -80,7 +80,7 @@ class Everleaf(HandHistoryConverter):
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
-        m = self.re_GameInfo.search(self.obs)
+        m = self.re_GameInfo.search(handText)
         if m == None:
             return None
         if m.group('LTYPE') == "NL":
@@ -102,9 +102,9 @@ class Everleaf(HandHistoryConverter):
         return gametype
 
     def readHandInfo(self, hand):
-        m =  self.re_HandInfo.search(hand.string)
+        m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.string)
+            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.handText)
         hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
@@ -120,7 +120,7 @@ class Everleaf(HandHistoryConverter):
         return
 
     def readPlayerStacks(self, hand):
-        m = self.re_PlayerInfo.finditer(hand.string)
+        m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             seatnum = int(a.group('SEAT'))
             hand.addPlayer(seatnum, a.group('PNAME'), a.group('CASH'))
@@ -132,12 +132,12 @@ class Everleaf(HandHistoryConverter):
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
+        #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
 
         m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
                        r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
                        r"(\*\* Dealing Turn \*\*(?P<TURN> \[ \S\S \].+(?=\*\* Dealing River \*\*)|.+))?"
-                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.string,re.DOTALL)
+                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.handText,re.DOTALL)
 
         hand.addStreets(m)
 
@@ -150,32 +150,31 @@ class Everleaf(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readBlinds(self, hand):
-        try:
-            m = self.re_PostSB.search(hand.string)
+        m = self.re_PostSB.search(hand.handText)
+        if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except Exception, e: # no small blind
-            #print e
+        else:
             hand.addBlind(None, None, None)
-        for a in self.re_PostBB.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.re_PostBoth.finditer(hand.string):
+        for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
+        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.string)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
+        m = self.re_HeroCards.search(hand.handText)
+        if m:
             hand.hero = m.group('PNAME')
             # "2c, qh" -> ["2c","qc"]
             # Also works with Omaha hands.
             cards = m.group('CARDS')
             cards = cards.split(', ')
             hand.addHoleCards(cards, m.group('PNAME'))
+        else:
+            #Not involved in hand
+            hand.involved = False
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets.group(street))
@@ -196,18 +195,18 @@ class Everleaf(HandHistoryConverter):
 
     def readShowdownActions(self, hand):
         """Reads lines where holecards are reported in a showdown"""
-        for shows in self.re_ShowdownAction.finditer(hand.string):            
+        for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.re_CollectPot.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
         """Reads lines where hole & board cards are mixed to form a hand (summary lines)"""
-        for m in self.re_CollectPot.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = cards.split(', ')

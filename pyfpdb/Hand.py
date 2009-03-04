@@ -34,10 +34,10 @@ class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
 
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
-    def __init__(self, sitename, gametype, string):
+    def __init__(self, sitename, gametype, handText):
         self.sitename = sitename
         self.gametype = gametype
-        self.string = string
+        self.handText = handText
 
         if gametype[1] == "hold" or self.gametype[1] == "omahahi":
             self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order

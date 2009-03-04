@@ -124,7 +124,7 @@ class HandHistoryConverter:
         self.hands = self.splitFileIntoHands()
         outfile = open(self.ofile, 'w')        
         for hand in self.hands:
-            #print "\nDEBUG: Input:\n"+hand.string
+            #print "\nDEBUG: Input:\n"+hand.handText
             self.readHandInfo(hand)
             
             self.readPlayerStacks(hand)
@@ -272,7 +272,7 @@ class HandHistoryConverter:
         list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
-#			print "'" + l + "'"
+#           print "'" + l + "'"
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 
