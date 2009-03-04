@@ -21,6 +21,7 @@ import Hand
 import re
 import sys
 import traceback
+import logging
 import os
 import os.path
 import xml.dom.minidom
@@ -74,9 +75,9 @@ gettext.install('myapplication')
 
 
 class HandHistoryConverter:
-#    eval = PokerEval()
+
     def __init__(self, config, file, sitename):
-        print "HandHistory init called"
+        logging.info("HandHistory init called")
         self.c         = config
         self.sitename  = sitename
         self.obs       = ""             # One big string

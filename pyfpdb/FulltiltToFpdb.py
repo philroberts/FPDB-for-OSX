@@ -17,6 +17,7 @@
 ########################################################################
 
 import sys
+import logging
 import Configuration
 from HandHistoryConverter import *
 
@@ -86,7 +87,7 @@ class FullTilt(HandHistoryConverter):
         elif m.group('GAME') == "Razz":
             game = "razz"
 
-        print m.groups()
+        logging.debug("HandInfo: %s", m.groupdict())
 
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
@@ -156,17 +157,15 @@ class FullTilt(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readAntes(self, hand):
-        print "DEBUG: reading antes"
+        logging.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            print "DEBUG: hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE'))
+            logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
-        print "DEBUG: reading bring in"
-#        print hand.string
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
-        print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+        logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
         hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readButton(self, hand):
@@ -191,7 +190,7 @@ class FullTilt(HandHistoryConverter):
         print "DEBUG: razz/stud readPlayerCards"
         print hand.streets.group(street)
         for player in m:
-            print player.groups()
+            logging.debug(player.groupdict())
             cards = player.group('CARDS')
             if player.group('NEWCARD') != None:
                 print cards

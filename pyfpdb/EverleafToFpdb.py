@@ -18,6 +18,7 @@
 ########################################################################
 
 import sys
+import logging
 import Configuration
 from HandHistoryConverter import *
 from time import strftime
@@ -82,6 +83,7 @@ class Everleaf(HandHistoryConverter):
 
         m = self.re_GameInfo.search(handText)
         if m == None:
+            logging.debug("Gametype didn't match")
             return None
         if m.group('LTYPE') == "NL":
             structure = "nl"
@@ -104,7 +106,10 @@ class Everleaf(HandHistoryConverter):
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            print "DEBUG: re_HandInfo.search failed: '%s'" %(hand.handText)
+            logging.info("Didn't match re_HandInfo")
+            logging.info(hand.handtext)
+            return None
+        logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
@@ -154,6 +159,7 @@ class Everleaf(HandHistoryConverter):
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         else:
+            logging.debug("No small blind")
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
@@ -177,6 +183,7 @@ class Everleaf(HandHistoryConverter):
             hand.involved = False
 
     def readAction(self, hand, street):
+        logging.debug("readAction (%s)" % street)
         m = self.re_Action.finditer(hand.streets.group(street))
         for action in m:
             if action.group('ATYPE') == ' raises':
@@ -190,14 +197,16 @@ class Everleaf(HandHistoryConverter):
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
 
 
     def readShowdownActions(self, hand):
         """Reads lines where holecards are reported in a showdown"""
+        logging.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
+            logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
@@ -210,6 +219,8 @@ class Everleaf(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = cards.split(', ')
+                player = m.group('PNAME')
+                logging.debug("readShownCards %s cards=%s" % (player, cards))
                 hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
 
 

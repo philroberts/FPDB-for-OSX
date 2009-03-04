@@ -21,6 +21,7 @@ import Hand
 import re
 import sys
 import traceback
+import logging
 import os
 import os.path
 import xml.dom.minidom
@@ -123,14 +124,13 @@ If a player has None chips he won't be added."""
 
     def addStreets(self, match):
         # go through m and initialise actions to empty list for each street.
-        if match is not None:
+        if match:
             self.streets = match
             for street in match.groupdict():
                 if match.group(street) is not None:
                     self.actions[street] = []
-
         else:
-            print "empty markStreets match" # better to raise exception and put process hand in a try block
+            logging.error("markstreets didn't match")
 
     def addHoleCards(self, cards, player):
         """\
@@ -193,6 +193,7 @@ Card ranks will be uppercased
             print "[ERROR] discardHoleCard tried to discard a card %s didn't have" % (player,)
 
     def setCommunityCards(self, street, cards):
+        logging.debug("setCommunityCards %s %s" %(street,  cards))
         self.board[street] = [self.card(c) for c in cards]
 
     def card(self,c):
@@ -216,12 +217,12 @@ Card ranks will be uppercased
         # Player in small blind posts
         #   - this is a bet of 1 sb, as yet uncalled.
         # Player in the big blind posts
-        #   - this is a bet of 1 bb and is the new uncalled
+        #   - this is a call of 1 bb and is the new uncalled
         # 
         # If a player posts a big & small blind
         #   - FIXME: We dont record this for later printing yet
         
-        #print "DEBUG addBlind: %s posts %s, %s" % (player, blindtype, amount)
+        logging.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
@@ -397,10 +398,10 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "cp"  : "Cap Pot Limit"
              }
 
-        print "DEBUG: self.gametype: %s" %(self.gametype)
-        string = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
+        logging.debug("gametype: %s" %(self.gametype))
+        retstring = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
         
-        return string
+        return retstring
 
     def lookupLimitBetSize(self):
         #Lookup table  for limit games
