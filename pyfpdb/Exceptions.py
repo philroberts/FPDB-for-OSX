@@ -1,0 +1,1 @@
+class FpdbParseError(Exception): pass
