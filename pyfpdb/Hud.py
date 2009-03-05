@@ -85,7 +85,7 @@ class Hud:
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
-        if not game_params['aux'] == "":
+        if not game_params['aux'] == [""]:
             for aux in game_params['aux']:
                 aux_params = config.get_aux_parameters(aux)
                 my_import = importName(aux_params['module'], aux_params['class'])
