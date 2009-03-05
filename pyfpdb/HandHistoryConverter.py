@@ -21,6 +21,7 @@ import Hand
 import re
 import sys
 import traceback
+import logging
 import os
 import os.path
 import xml.dom.minidom
@@ -74,9 +75,9 @@ gettext.install('myapplication')
 
 
 class HandHistoryConverter:
-#    eval = PokerEval()
+
     def __init__(self, config, file, sitename):
-        print "HandHistory init called"
+        logging.info("HandHistory init called")
         self.c         = config
         self.sitename  = sitename
         self.obs       = ""             # One big string
@@ -124,7 +125,7 @@ class HandHistoryConverter:
         self.hands = self.splitFileIntoHands()
         outfile = open(self.ofile, 'w')        
         for hand in self.hands:
-            #print "\nDEBUG: Input:\n"+hand.string
+            #print "\nDEBUG: Input:\n"+hand.handText
             self.readHandInfo(hand)
             
             self.readPlayerStacks(hand)
@@ -141,7 +142,7 @@ class HandHistoryConverter:
 
             self.markStreets(hand)
             # Different calls if stud or holdem like
-            if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+            if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
                 self.readBlinds(hand)
                 self.readButton(hand)
                 self.readHeroCards(hand) # want to generalise to draw games
@@ -155,7 +156,7 @@ class HandHistoryConverter:
             for street in hand.streetList: # go through them in order
                 print "DEBUG: ", street
                 if hand.streets.group(street) is not None:
-                    if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+                    if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
                         self.readCommunityCards(hand, street) # read community cards
                     elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
                         self.readPlayerCards(hand, street)
@@ -272,7 +273,7 @@ class HandHistoryConverter:
         list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
-#			print "'" + l + "'"
+#           print "'" + l + "'"
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 

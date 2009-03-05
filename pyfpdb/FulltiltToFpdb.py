@@ -17,6 +17,7 @@
 ########################################################################
 
 import sys
+import logging
 import Configuration
 from HandHistoryConverter import *
 
@@ -61,16 +62,17 @@ class FullTilt(HandHistoryConverter):
                 ["ring", "omaha", "pl"]
                ]
 
-    def determineGameType(self):
+    def determineGameType(self, handText):
         # Cheating with this regex, only support nlhe at the moment
         # Full Tilt Poker Game #10777181585: Table Deerfly (deep 6) - $0.01/$0.02 - Pot Limit Omaha Hi - 2:24:44 ET - 2009/02/22
         # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
         # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
+        # Full Tilt Poker Game #10809877615: Table Danville - $0.50/$1 Ante $0.10 - Limit Razz - 21:47:27 ET - 2009/02/23
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
 
 
-        m = self.re_GameInfo.search(self.obs)
+        m = self.re_GameInfo.search(handText)
         if m.group('LTYPE') == "No ":
             structure = "nl"
         elif m.group('LTYPE') == "Pot ":
@@ -85,22 +87,22 @@ class FullTilt(HandHistoryConverter):
         elif m.group('GAME') == "Razz":
             game = "razz"
 
-        print m.groups()
+        logging.debug("HandInfo: %s", m.groupdict())
 
         gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
         
         return gametype
 
     def readHandInfo(self, hand):
-        m =  self.re_HandInfo.search(hand.string,re.DOTALL)
+        m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
         #print m.groups()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 # These work, but the info is already in the Hand class - should be used for tourneys though.
-#		m.group('SB')
-#		m.group('BB')
-#		m.group('GAMETYPE')
+#       m.group('SB')
+#       m.group('BB')
+#       m.group('GAMETYPE')
 
 # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
 # or                        : 2008/11/07 12:38:49 ET
@@ -113,7 +115,7 @@ class FullTilt(HandHistoryConverter):
 #FIXME:        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
-        m = self.re_PlayerInfo.finditer(hand.string)
+        m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -126,14 +128,14 @@ class FullTilt(HandHistoryConverter):
             m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
-                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.string,re.DOTALL)
+                       r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
         elif self.gametype[1] == "razz":
             m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
                            r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 5TH STREET \*\*\*(?P<FIFTH>.+(?=\*\*\* 6TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 6TH STREET \*\*\*(?P<SIXTH>.+(?=\*\*\* 7TH STREET \*\*\*)|.+))?"
-                           r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.string,re.DOTALL)
+                           r"(\*\*\* 7TH STREET \*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
@@ -145,34 +147,32 @@ class FullTilt(HandHistoryConverter):
 
     def readBlinds(self, hand):
         try:
-            m = self.re_PostSB.search(hand.string)
+            m = self.re_PostSB.search(hand.handText)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
-        for a in self.re_PostBB.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.re_PostBoth.finditer(hand.string):
+        for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readAntes(self, hand):
-        print "DEBUG: reading antes"
-        m = self.re_Antes.finditer(hand.string)
+        logging.debug("reading antes")
+        m = self.re_Antes.finditer(hand.handText)
         for player in m:
-            print "DEBUG: hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE'))
+            logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
-        print "DEBUG: reading bring in"
-#        print hand.string
-        m = self.re_BringIn.search(hand.string,re.DOTALL)
-        print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+        m = self.re_BringIn.search(hand.handText,re.DOTALL)
+        logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
         hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readButton(self, hand):
-        hand.buttonpos = int(self.re_Button.search(hand.string).group('BUTTON'))
+        hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.string)
+        m = self.re_HeroCards.search(hand.handText)
         if(m == None):
             #Not involved in hand
             hand.involved = False
@@ -181,7 +181,7 @@ class FullTilt(HandHistoryConverter):
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = set(cards.split(' '))
+            cards = cards.split(' ')
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readPlayerCards(self, hand, street):
@@ -190,12 +190,12 @@ class FullTilt(HandHistoryConverter):
         print "DEBUG: razz/stud readPlayerCards"
         print hand.streets.group(street)
         for player in m:
-            print player.groups()
+            logging.debug(player.groupdict())
             cards = player.group('CARDS')
             if player.group('NEWCARD') != None:
                 print cards
                 cards = cards + " " + player.group('NEWCARD')
-            cards = set(cards.split(' '))
+            cards = cards.split(' ')
             hand.addPlayerCards(cards, player.group('PNAME'))
 
     def readAction(self, hand, street):
@@ -216,20 +216,20 @@ class FullTilt(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.string):
+        for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = set(cards.split(' '))
+            cards = cards.split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.re_CollectPot.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
-        for m in self.re_ShownCards.finditer(hand.string):
+        for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(' '))
+                cards = cards.split(' ')
                 hand.addShownCards(cards=cards, player=m.group('PNAME'))
 
 

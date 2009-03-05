@@ -83,6 +83,7 @@ class HUD_main(object):
         self.hud_dict[table].main_window.destroy()
         self.vb.remove(self.hud_dict[table].tablehudlabel)
         del(self.hud_dict[table])
+        self.main_window.resize(1,1)
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, is_tournament, stat_dict, cards):
         
@@ -93,6 +94,7 @@ class HUD_main(object):
                 newlabel = gtk.Label(table.site + " - " + table_name)
                 self.vb.add(newlabel)
                 newlabel.show()
+                self.main_window.resize_children()
     
                 self.hud_dict[table_name].tablehudlabel = newlabel
                 self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)

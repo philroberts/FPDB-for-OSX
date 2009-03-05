@@ -21,6 +21,7 @@ import Hand
 import re
 import sys
 import traceback
+import logging
 import os
 import os.path
 import xml.dom.minidom
@@ -34,12 +35,12 @@ class Hand:
 #    def __init__(self, sitename, gametype, sb, bb, string):
 
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
-    def __init__(self, sitename, gametype, string):
+    def __init__(self, sitename, gametype, handText):
         self.sitename = sitename
         self.gametype = gametype
-        self.string = string
+        self.handText = handText
 
-        if gametype[1] == "hold" or self.gametype[1] == "omaha":
+        if gametype[1] == "hold" or self.gametype[1] == "omahahi":
             self.streetList = ['PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
         elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
             self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
@@ -123,14 +124,13 @@ If a player has None chips he won't be added."""
 
     def addStreets(self, match):
         # go through m and initialise actions to empty list for each street.
-        if match is not None:
+        if match:
             self.streets = match
             for street in match.groupdict():
                 if match.group(street) is not None:
                     self.actions[street] = []
-
         else:
-            print "empty markStreets match" # better to raise exception and put process hand in a try block
+            logging.error("markstreets didn't match")
 
     def addHoleCards(self, cards, player):
         """\
@@ -193,6 +193,7 @@ Card ranks will be uppercased
             print "[ERROR] discardHoleCard tried to discard a card %s didn't have" % (player,)
 
     def setCommunityCards(self, street, cards):
+        logging.debug("setCommunityCards %s %s" %(street,  cards))
         self.board[street] = [self.card(c) for c in cards]
 
     def card(self,c):
@@ -216,12 +217,12 @@ Card ranks will be uppercased
         # Player in small blind posts
         #   - this is a bet of 1 sb, as yet uncalled.
         # Player in the big blind posts
-        #   - this is a bet of 1 bb and is the new uncalled
+        #   - this is a call of 1 bb and is the new uncalled
         # 
         # If a player posts a big & small blind
         #   - FIXME: We dont record this for later printing yet
         
-        #print "DEBUG addBlind: %s posts %s, %s" % (player, blindtype, amount)
+        logging.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
@@ -397,13 +398,31 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "cp"  : "Cap Pot Limit"
              }
 
-        print "DEBUG: self.gametype: %s" %(self.gametype)
-        string = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
+        logging.debug("gametype: %s" %(self.gametype))
+        retstring = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
         
-        return string
+        return retstring
+
+    def lookupLimitBetSize(self):
+        #Lookup table  for limit games
+        betlist = {
+            "Everleaf" : {  "0.10" : ("0.02", "0.05"),
+                            "0.20" : ("0.05", "0.10"),
+                            "0.50" : ("0.10", "0.25"),
+                            "1.00" : ("0.25", "0.50")
+                },
+            "FullTilt" : {  "0.10" : ("0.02", "0.05"),
+                            "0.20" : ("0.05", "0.10"),
+                            "1"    : ("0.25", "0.50"),
+                            "2"    : ("0.50", "1"),
+                            "4"    : ("1", "2")
+                }
+            }
+        return betlist[self.sitename][self.bb]
+
 
     def writeHand(self, fh=sys.__stdout__):
-        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+        if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
             self.writeHoldemHand(fh)
         else:
             self.writeStudHand(fh)
@@ -424,13 +443,19 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
 
         #May be more than 1 bb posting
+        if self.gametype[2] == "fl":
+            (smallbet, bigbet) = self.lookupLimitBetSize()
+        else:
+            smallbet = self.sb
+            bigbet = self.bb
+
         for a in self.posted:
             if(a[1] == "small blind"):
-                print >>fh, _("%s: posts small blind $%s" %(a[0], self.sb))
+                print >>fh, _("%s: posts small blind $%s" %(a[0], smallbet))
             if(a[1] == "big blind"):
-                print >>fh, _("%s: posts big blind $%s" %(a[0], self.bb))
+                print >>fh, _("%s: posts big blind $%s" %(a[0], bigbet))
             if(a[1] == "both"):
-                print >>fh, _("%s: posts small & big blinds $%.2f" %(a[0], (Decimal(self.sb) + Decimal(self.bb))))
+                print >>fh, _("%s: posts small & big blinds $%.2f" %(a[0], (Decimal(smallbet) + Decimal(bigbet))))
 
         print >>fh, _("*** HOLE CARDS ***")
         if self.involved:
@@ -461,7 +486,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-        #TODO: Complete SHOWDOWN
+            #TODO: Complete SHOWDOWN
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -565,7 +590,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
         if 'SHOWDOWN' in self.actions:
             print >>fh, _("*** SHOW DOWN ***")
-#            print >>fh, "DEBUG: what do they show"
+            # TODO: print showdown lines.
 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -749,4 +774,3 @@ class Pot(object):
             return _("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
             # I don't know stars format for a walk in the bb when sb doesn't post.
             # The thing to do here is raise a Hand error like fpdb import does and file it into errors.txt
-            
