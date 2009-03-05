@@ -3,7 +3,7 @@
 
 Create and manage the hud overlays.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009  Ray E. Barker
 
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -45,6 +45,15 @@ import Mucked
 import Database
 import HUD_main 
 
+def importName(module_name, name):
+    """Import a named object 'name' from module 'module_name'."""
+#    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
+    try:
+        module = __import__(module_name, globals(), locals(), [name])
+    except:
+        return None
+    return(getattr(module, name))
+
 class Hud:
     
     def __init__(self, parent, table, max, poker_game, config, db_connection):
@@ -74,6 +83,15 @@ class Hud:
             font_size = "8"
         self.font = pango.FontDescription(font + " " + font_size)            
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
+
+        game_params = config.get_game_parameters(self.poker_game)
+        if not game_params['aux'] == "":
+            for aux in game_params['aux']:
+                aux_params = config.get_aux_parameters(aux)
+                my_import = importName(aux_params['module'], aux_params['class'])
+                if my_import == None:
+                    continue
+                self.aux_windows.append(my_import(self, config, aux_params))
 
     def create_mw(self):
 
@@ -135,7 +153,7 @@ class Hud:
         if os.name == 'nt':
             self.topify_window(self.main_window)
         else:
-            self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(self.table.number)  # gets a gdk handle for poker client
+            self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(int(self.table.number))  # gets a gdk handle for poker client
             self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid) # gets a gdk handle for the hud table window
             self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
                
@@ -269,11 +287,6 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-
-        game_params = config.get_game_parameters(self.poker_game)
-        if not game_params['aux'] == "":
-            aux_params = config.get_aux_parameters(game_params['aux'])
-            self.aux_windows.append(eval("%s.%s(gtk.Window(), self, config, aux_params)" % (aux_params['module'], aux_params['class'])))
         
         if os.name == "nt":
             gobject.timeout_add(500, self.update_table_position)
