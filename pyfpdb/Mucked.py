@@ -3,7 +3,7 @@
 
 Mucked cards display for FreePokerTools HUD.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -36,29 +36,27 @@ import Configuration
 import Database
 
 class Aux_Window:
-    def __init__(self, container, hud, params, config):
+    def __init__(self, hud, params, config):
         self.config  = hud
         self.config  = config
-        self.container  = container
 
-        self.vbox = gtk.VBox()
-        self.container.add(self.vbox)
-
-    def update_data(self):
+    def update_data(self, *parms):
         pass
 
-    def update_gui(self):
+    def update_gui(self, *parms):
+        pass
+
+    def create(self, *parms):
         pass
 
     def destroy(self):
         self.container.destroy()
 
 class Stud_mucked(Aux_Window):
-    def __init__(self, container, hud, config, params):
+    def __init__(self, hud, config, params):
 
         self.hud     = hud       # hud object that this aux window supports
         self.config  = config    # configuration object for this aux window to use
-        self.container  = container    # parent container for this aux window widget
         self.params  = params    # hash aux params from config
 
         try:
@@ -67,12 +65,18 @@ class Stud_mucked(Aux_Window):
         except:
             self.hero = ''
 
+        self.mucked_list   = Stud_list(self, params, config, self.hero)
+        self.mucked_cards  = Stud_cards(self, params, config)
+        self.mucked_list.mucked_cards = self.mucked_cards
+
+    def create(self):
+
+        self.container =gtk.Window() 
         self.vbox = gtk.VBox()
         self.container.add(self.vbox)
 
-        self.mucked_list   = Stud_list(self.vbox, self, params, config, self.hero)
-        self.mucked_cards  = Stud_cards(self.vbox, self, params, config)
-        self.mucked_list.mucked_cards = self.mucked_cards
+        self.mucked_list.create(self.vbox)
+        self.mucked_cards.create(self.vbox)
         self.container.show_all()
 
     def update_data(self, new_hand_id, db_connection):
@@ -84,16 +88,16 @@ class Stud_mucked(Aux_Window):
         self.mucked_list.update_gui(new_hand_id)
         
 class Stud_list:
-    def __init__(self, container, parent, params, config, hero):
+    def __init__(self, parent, params, config, hero):
 
-        self.container  = container
         self.parent     = parent
         self.params  = params
         self.config  = config
         self.hero    = hero
-#        self.db_name = db_name
 
+    def create(self, container):
 #       set up a scrolled window to hold the listbox
+        self.container  = container
         self.scrolled_window = gtk.ScrolledWindow()
         self.scrolled_window.set_policy(gtk.POLICY_NEVER, gtk.POLICY_ALWAYS)
         self.container.add(self.scrolled_window)
@@ -178,9 +182,8 @@ class Stud_list:
         vadj.set_value(vadj.upper)
 
 class Stud_cards:
-    def __init__(self, container, parent, params, config):
+    def __init__(self, parent, params, config):
 
-        self.container = container    #this is the parent container of the mucked cards widget
         self.parent    = parent
         self.params  = params
         self.config  = config
@@ -193,6 +196,9 @@ class Stud_cards:
 
         self.rows = 8
         self.cols = 7
+
+    def create(self, container):
+        self.container  = container
         self.grid = gtk.Table(self.rows, self.cols + 4, homogeneous = False)
 
         for r in range(0, self.rows):
@@ -289,7 +295,6 @@ class Stud_cards:
                 pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
                 card_images[(ranks[j], suits[i])] = temp_pb
         return(card_images)
-
 #   cards are 30 wide x 42 high
 
 if __name__== "__main__":

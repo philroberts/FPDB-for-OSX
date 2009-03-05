@@ -3,7 +3,7 @@
 
 Handles HUD configuration files.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009,  Ray E. Barker
 
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -105,7 +105,12 @@ class Game:
         self.db        = node.getAttribute("db")
         self.rows      = int( node.getAttribute("rows") )
         self.cols      = int( node.getAttribute("cols") )
-        self.aux       = node.getAttribute("aux")
+
+        aux_text = node.getAttribute("aux")
+        aux_list = aux_text.split(',')
+        for i in range(0, len(aux_list)):
+            aux_list[i] = aux_list[i].strip()
+        self.aux = aux_list
 
         self.stats     = {}
         for stat_node in node.getElementsByTagName('stat'):
