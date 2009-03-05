@@ -279,6 +279,8 @@ class GuiGraphViewer (threading.Thread):
         win.destroy()
 
     def exportGraph (self, widget, data):
+        if self.fig is None:
+            return # Might want to disable export button until something has been generated.
         dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
                                             action=gtk.FILE_CHOOSER_ACTION_OPEN,
                                             buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
@@ -359,6 +361,7 @@ class GuiGraphViewer (threading.Thread):
         graphButton.connect("clicked", self.generateGraph, "cliced data")
         graphButton.show()
 
+        self.fig = None
         self.exportButton=gtk.Button("Export to File")
         self.exportButton.connect("clicked", self.exportGraph, "show clicked")
         self.exportButton.show()

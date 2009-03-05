@@ -135,8 +135,8 @@ class GuiAutoImport (threading.Thread):
                     self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
                 else:
-#                    command = os.path.join(os.getcwd(),  'HUD_main.py') #  clearly doesn't work if you run from somewhere else.
-                    command = self.config.execution_path('HUD_main.py') # Hi Ray. Sorry about this, kludging.
+                    command = os.path.join(sys.path[0],  'HUD_main.py')
+                    #command = self.config.execution_path('HUD_main.py') # Hi Ray. Sorry about this, kludging.
                     bs = 1
                     self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
