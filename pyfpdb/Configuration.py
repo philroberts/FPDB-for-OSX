@@ -609,7 +609,7 @@ class Config:
 
     def execution_path(self, filename):
         """Join the fpdb path to filename."""
-        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(1))), filename)
+        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(0))), filename)
 
 if __name__== "__main__":
     c = Config()

@@ -118,7 +118,6 @@ class Importer:
     def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
         """Add a file or directory for bulk import"""
         # Bulk import never monitors
-        
         # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
@@ -133,6 +132,7 @@ class Importer:
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
     def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
+        #gets called by GuiAutoImport.
         #This should really be using os.walk
         #http://docs.python.org/library/os.html
         if os.path.isdir(dir):
@@ -237,12 +237,12 @@ class Importer:
                 hhbase    = os.path.expanduser(hhbase)
                 hhdir     = os.path.join(hhbase,site)
                 try:
-                    ofile     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
+                    out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
                 except:
-                    ofile     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
-                out_fh = open(ofile, 'w') # TODO: seek to previous place in input and append output
-                in_fh = 
-                conv = EverleafToFpdb.Everleaf(in_fh = file, out_fh = out_fh)
+                    out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+                #out_fh = open(ofile, 'w') # TODO: seek to previous place in input and append output
+                conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
+                conv.join()
             elif filter == "FulltiltToFpdb":
                 print "converting ", file
                 conv = FulltiltToFpdb.FullTilt(in_fh = file, out_fh = out_fh)

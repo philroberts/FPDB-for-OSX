@@ -95,6 +95,7 @@ class HandHistoryConverter(threading.Thread):
         self.maxseats  = 10
 
     def __str__(self):
+        #TODO : I got rid of most of the hhdir stuff.
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
         tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
         tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
@@ -143,13 +144,18 @@ class HandHistoryConverter(threading.Thread):
         if gametype is None:
             return
         
+        hand = None
         if gametype[1] in ("hold", "omaha"):
             hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
         elif gametype[1] in ("razz","stud","stud8"):
             hand = Hand.StudHand(self, self.sitename, gametype, handtext)
         
-        hand.writeHand(self.out_fh)
-        
+        if hand:
+            hand.writeHand(self.out_fh)
+        else:
+            logging.info("Unrecognised game type: %s" % gametype[1])
+            # TODO: pity we don't know the HID at this stage. Log the entire hand?
+            # From the log we can deduce that it is the hand after the one before :)
        
        
     def processFile(self):
