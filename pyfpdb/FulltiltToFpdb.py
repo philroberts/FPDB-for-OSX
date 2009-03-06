@@ -185,7 +185,7 @@ follow :  whether to tail -f the input"""
             hand.hero = m.group('PNAME')
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
-            cards = m.group('CARDS')
+            cards = m.group('NEWCARDS')
             cards = [c.strip() for c in cards.split(' ')]
             hand.addHoleCards(cards, m.group('PNAME'))
 

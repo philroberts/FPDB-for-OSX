@@ -46,6 +46,7 @@ follow :  whether to tail -f the input"""
         self.filetype = "text"
         self.codepage = "cp1252"
         self.start()
+        # TODO: It's not clear that init should start the thread.
 
     def compilePlayerRegexs(self,  players):
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'

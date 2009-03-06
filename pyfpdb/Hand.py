@@ -84,6 +84,7 @@ seat    (int) indicating the seat
 name    (string) player name
 chips   (string) the chips the player has at the start of the hand (can be None)
 If a player has None chips he won't be added."""
+        logging.debug("addPlayer: %s %s (%s)" % (seat, name, chips))
         if chips is not None:
             self.players.append([seat, name, chips])
             self.stacks[name] = Decimal(chips)
@@ -112,15 +113,7 @@ If a player has None chips he won't be added."""
             print "checkPlayerExists", player, "fail"
             raise FpdbParseError
 
-    def discardHoleCards(self, cards, player):
-        try:
-            self.checkPlayerExists(player)
-            for card in cards:
-                self.holecards[player].remove(card)
-        except FpdbParseError, e:
-            pass
-        except ValueError:
-            print "[ERROR] discardHoleCard tried to discard a card %s didn't have" % (player,)
+
 
     def setCommunityCards(self, street, cards):
         logging.debug("setCommunityCards %s %s" %(street,  cards))
@@ -306,7 +299,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "omahahi"    : "Omaha",
               "omahahilo"  : "FIXME",
               "razz"       : "Razz",
-              "studhi"     : "FIXME",
+              "studhi"     : "7 Card Stud",
               "studhilo"   : "FIXME",
               "fivedraw"   : "5 Card Draw",
               "27_1draw"   : "FIXME",
@@ -444,7 +437,7 @@ Card ranks will be uppercased
 
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
-            print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
+            print >>fh, _("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
 
 
         #May be more than 1 bb posting
@@ -537,8 +530,21 @@ Card ranks will be uppercased
                 print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
-
-
+        
+class DrawHand(Hand):
+    def __init__(self, hhc, sitename, gametype, handText):
+        if gametype[1] not in ["badugi","5-card-draw"]:
+            pass # or indeed don't pass and complain instead
+    
+    def discardHoleCards(self, cards, player):
+        try:
+            self.checkPlayerExists(player)
+            for card in cards:
+                self.holecards[player].remove(card)
+        except FpdbParseError, e:
+            pass
+        except ValueError:
+            print "[ERROR] discardHoleCard tried to discard a card %s didn't have" % (player,)
 
 class StudHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
