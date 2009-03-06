@@ -88,7 +88,7 @@ class HandHistoryConverter(threading.Thread):
             # write to stdout
             self.out_fh = sys.stdout
         else:
-            self.out_fh = open(self.out_path, 'a')
+            self.out_fh = open(self.out_path, 'a') #TODO: append may be overly conservative.
         self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
@@ -117,6 +117,8 @@ class HandHistoryConverter(threading.Thread):
             logging.info("Parsing %d hands" % len(handsList))
             for handtext in handsList:
                 self.processHand(handtext)
+            if self.out_fh != sys.stdout:
+                self.ouf_fh.close()
 
     def tailHands(self):
         """pseudo-code"""
@@ -141,19 +143,20 @@ class HandHistoryConverter(threading.Thread):
         
     def processHand(self, handtext):
         gametype = self.determineGameType(handtext)
+        logging.debug("gametype %s" % gametype)
         if gametype is None:
             return
         
         hand = None
-        if gametype[1] in ("hold", "omaha"):
+        if gametype['game'] in ("hold", "omaha"):
             hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
-        elif gametype[1] in ("razz","stud","stud8"):
+        elif gametype['game'] in ("razz","stud","stud8"):
             hand = Hand.StudHand(self, self.sitename, gametype, handtext)
         
         if hand:
             hand.writeHand(self.out_fh)
         else:
-            logging.info("Unrecognised game type: %s" % gametype[1])
+            logging.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
        

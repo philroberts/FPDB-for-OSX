@@ -231,7 +231,7 @@ class Importer:
             
             # TODO: Shouldn't we be able to use some sort of lambda or something to just call a Python object by whatever name we specify? then we don't have to hardcode them,
             # someone can just create their own python module for it
-            if filter == "EverleafToFpdb":
+            if filter in ("EverleafToFpdb","Everleaf"):
                 print "converting ", file
                 hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
                 hhbase    = os.path.expanduser(hhbase)

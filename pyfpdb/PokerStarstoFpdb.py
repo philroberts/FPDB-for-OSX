@@ -75,7 +75,7 @@ class PokerStars(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -84,7 +84,8 @@ follow :  whether to tail -f the input"""
         logging.info("Initialising PokerStars converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
-        self.start()
+        if autostart:
+            self.start()
 
         
     def compilePlayerRegexs(self,  players):

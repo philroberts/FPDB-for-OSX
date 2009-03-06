@@ -31,7 +31,7 @@ class FullTilt(HandHistoryConverter):
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -40,7 +40,9 @@ follow :  whether to tail -f the input"""
         logging.info("Initialising FullTilt converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
-        self.start()
+        if autostart:
+            self.start()
+
 
     def compilePlayerRegexs(self,  players):
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'

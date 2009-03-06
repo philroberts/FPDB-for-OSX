@@ -314,7 +314,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
              }
 
         logging.debug("gametype: %s" %(self.gametype))
-        retstring = "%s %s" %(gs[self.gametype[1]], ls[self.gametype[2]])
+        retstring = "%s %s" %(gs[self.gametype['game']], ls[self.gametype['limit']])
         
         return retstring
 
@@ -363,22 +363,22 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
 class HoldemOmahaHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype[1] not in ["hold","omaha"]:
+        if gametype['game'] not in ["hold","omaha"]:
             pass # or indeed don't pass and complain instead
         logging.debug("HoldemOmahaHand")
         self.streetList = ['BLINDSANTES', 'PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
         self.communityStreets = ['FLOP', 'TURN', 'RIVER']
         self.actionStreets = ['PREFLOP','FLOP','TURN','RIVER']
         Hand.__init__(self, sitename, gametype, handText)
-        self.sb = gametype[3]
-        self.bb = gametype[4]
+        self.sb = gametype['sb']
+        self.bb = gametype['bb']
         
         #Populate a HoldemOmahaHand
         #Generally, we call 'read' methods here, which get the info according to the particular filter (hhc) 
         # which then invokes a 'addXXX' callback
         hhc.readHandInfo(self)
         hhc.readPlayerStacks(self)
-        hhc.compilePlayerRegexs(players = set([player[1] for player in self.players]))
+        hhc.compilePlayerRegexs(self)
         hhc.markStreets(self)
         hhc.readBlinds(self)
         hhc.readButton(self)
@@ -441,7 +441,7 @@ Card ranks will be uppercased
 
 
         #May be more than 1 bb posting
-        if self.gametype[2] == "fl":
+        if self.gametype['limit'] == "fl":
             (smallbet, bigbet) = self.lookupLimitBetSize()
         else:
             smallbet = self.sb
@@ -533,7 +533,7 @@ Card ranks will be uppercased
         
 class DrawHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype[1] not in ["badugi","5-card-draw"]:
+        if gametype['game'] not in ["badugi","5-card-draw"]:
             pass # or indeed don't pass and complain instead
     
     def discardHoleCards(self, cards, player):
@@ -548,19 +548,19 @@ class DrawHand(Hand):
 
 class StudHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype[1] not in ["razz","stud","stud8"]:
+        if gametype['game'] not in ["razz","stud","stud8"]:
             pass # or indeed don't pass and complain instead
         self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         Hand.__init__(self, sitename, gametype, handText)
-        self.sb = gametype[3]
-        self.bb = gametype[4]
+        self.sb = gametype['sb']
+        self.bb = gametype['bb']
         #Populate the StudHand
         #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc) 
         # which then invokes a 'addXXX' callback
         hhc.readHandInfo(self)
         hhc.readPlayerStacks(self)
-        hhc.compilePlayerRegexs(players = set([player[1] for player in self.players]))
+        hhc.compilePlayerRegexs(self)
         hhc.markStreets(self)
         hhc.readAntes(self)
         hhc.readBringIn(self)
