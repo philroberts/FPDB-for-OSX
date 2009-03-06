@@ -190,8 +190,7 @@ class Hud:
 #    kill all stat_windows, popups and aux_windows in this HUD
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
-            for p in s.popups:
-                s.kill_popup(p)
+            s.kill_popups()
             s.window.destroy()
             self.stat_windows = {}
 #    also kill any aux windows
@@ -369,6 +368,11 @@ class Stat_Window:
     def kill_popup(self, popup):
         popup.window.destroy()
         self.popups.remove(popup)
+        
+    def kill_popups(self):
+        for x in self.popups:
+            self.popups[x].window.destroy()
+        self.popups = { }
 
     def relocate(self, x, y):
         self.x = x + self.table.x
@@ -557,8 +561,11 @@ class Popup_window:
         
         for w in tl_windows:
             if w[1] == unique_name:
-                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
-
+                window.set_transient_for(self.parent.main_window)               
+                style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
+                style |= win32con.WS_CLIPCHILDREN
+                win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
+                
         window.set_title(real_name)
 
 if __name__== "__main__":
