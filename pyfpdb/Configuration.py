@@ -529,6 +529,16 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
+    def get_aux_locations(self, aux = "mucked", max = "9"):
+        
+        try:
+            locations = self.aux_windows[aux].layout[max].location
+        except:
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+                          (586, 393), (421, 440), (267, 440), (  0, 361),
+                          (  0, 280), (121, 280), ( 46,  30) )
+        return locations
+
     def get_supported_sites(self):
         """Returns the list of supported sites."""
         return self.supported_sites.keys()
@@ -680,6 +690,8 @@ if __name__== "__main__":
     print "locs   = ", c.get_locations("PokerStars", 8)
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
+
+    print "mucked locations =", c.get_aux_locations('mucked', 9)
             
     for site in c.supported_sites.keys():
         print "site = ", site,
