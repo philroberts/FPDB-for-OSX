@@ -179,7 +179,7 @@ class Everleaf(HandHistoryConverter):
             # "2c, qh" -> ["2c","qc"]
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = cards.split(', ')
+            cards = [card.strip() for card in cards.split(',')]
             hand.addHoleCards(cards, m.group('PNAME'))
         else:
             #Not involved in hand
@@ -187,7 +187,7 @@ class Everleaf(HandHistoryConverter):
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
-        m = self.re_Action.finditer(hand.streets.group(street))
+        m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             if action.group('ATYPE') == ' raises':
                 hand.addCallandRaise( street, action.group('PNAME'), action.group('BET') )

@@ -125,14 +125,13 @@ class FullTilt(HandHistoryConverter):
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
-        # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
 
-        if self.gametype[1] == "hold" or self.gametype[1] == "omaha":
+        if hand.gametype[1] in ("hold", "omaha"):
             m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
-        elif self.gametype[1] == "razz":
+        elif hand.gametype[1] == "razz":
             m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
                            r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
@@ -184,7 +183,7 @@ class FullTilt(HandHistoryConverter):
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = cards.split(' ')
+            cards = [c.strip() for c in cards.split(' ')]
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readPlayerCards(self, hand, street):
@@ -202,7 +201,7 @@ class FullTilt(HandHistoryConverter):
             hand.addPlayerCards(cards, player.group('PNAME'))
 
     def readAction(self, hand, street):
-        m = self.re_Action.finditer(hand.streets.group(street))
+        m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             if action.group('ATYPE') == ' raises to':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )

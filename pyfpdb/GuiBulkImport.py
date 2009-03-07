@@ -44,7 +44,7 @@ class GuiBulkImport():
         starttime = time()
         if not self.importer.settings['threads'] > 1:
             (stored, dups, partial, errs, ttime) = self.importer.runImport()
-            print 'GuiBulkImport.import_dir done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
+            print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
                  % (stored, dups, partial, errs, ttime, stored / ttime)
         else:
             self.importer.RunImportThreaded()
