@@ -92,6 +92,7 @@ class HandHistoryConverter:
         self.ofile     = os.path.join(self.hhdir, os.path.basename(file))
         self.rexx      = FpdbRegex.FpdbRegex()
         self.players   = set()
+        self.compiledPlayers = set()
         self.maxseats  = 10
 
     def __str__(self):
@@ -118,7 +119,7 @@ class HandHistoryConverter:
             return
 
         self.obs = self.obs.replace('\r\n', '\n')
-        self.gametype = self.determineGameType()
+        self.gametype = self.determineGameType(self.obs)
         if self.gametype == None:
             print "Unknown game type from file, aborting on this file."
             return
@@ -138,7 +139,7 @@ class HandHistoryConverter:
             else:
                 # we need to recompile the player regexs.
                 self.players = playersThisHand
-                self.compilePlayerRegexs()
+                self.compilePlayerRegexs(playersThisHand)
 
             self.markStreets(hand)
             # Different calls if stud or holdem like
