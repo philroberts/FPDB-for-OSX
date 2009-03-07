@@ -18,7 +18,6 @@
 
 import sys
 import logging
-import Configuration
 from HandHistoryConverter import *
 
 # FullTilt HH Format converter
@@ -33,11 +32,16 @@ class FullTilt(HandHistoryConverter):
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
-    def __init__(self, config, file):
-        print "Initialising FullTilt converter class"
-        HandHistoryConverter.__init__(self, config, file, sitename="FullTilt") # Call super class init.
-        self.sitename = "FullTilt"
-        self.setFileType("text", "cp1252")
+    def __init__(self, in_path = '-', out_path = '-', follow = False):
+        """\
+in_path   (default '-' = sys.stdin)
+out_path  (default '-' = sys.stdout)
+follow :  whether to tail -f the input"""
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="FullTilt", follow=follow)
+        logging.info("Initialising FullTilt converter class")
+        self.filetype = "text"
+        self.codepage = "cp1252"
+        self.start()
 
     def compilePlayerRegexs(self, players):
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -50,7 +54,7 @@ class FullTilt(HandHistoryConverter):
             self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_HeroCards        = re.compile(r"^Dealt to %s \[(?P<CARDS>[AKQJT0-9hcsd ]+)\]( \[(?P<NEWCARD>[AKQJT0-9hcsd ]+)\])?" % player_re, re.MULTILINE)
+            self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
             self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| calls| folds)(\s\$(?P<BET>[.\d]+))?" % player_re, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
@@ -168,6 +172,7 @@ class FullTilt(HandHistoryConverter):
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+
         hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readButton(self, hand):
@@ -186,19 +191,61 @@ class FullTilt(HandHistoryConverter):
             cards = [c.strip() for c in cards.split(' ')]
             hand.addHoleCards(cards, m.group('PNAME'))
 
-    def readPlayerCards(self, hand, street):
-        #Used for stud hands - borrows the HeroCards regex for now.
-        m = self.re_HeroCards.finditer(hand.streets.group(street))
-        print "DEBUG: razz/stud readPlayerCards"
-        print hand.streets.group(street)
+    def readStudPlayerCards(self, hand, street):
+        # This could be the most tricky one to get right.
+        # It looks for cards dealt in 'street',
+        # which may or may not be in the section of the hand designated 'street' by markStreets earlier.
+        # Here's an example at FTP of what 'THIRD' and 'FOURTH' look like to hero PokerAscetic
+        #
+        #"*** 3RD STREET ***
+        #Dealt to BFK23 [Th]
+        #Dealt to cutiepr1nnymaid [8c]
+        #Dealt to PokerAscetic [7c 8s] [3h]
+        #..."
+        #
+        #"*** 4TH STREET ***
+        #Dealt to cutiepr1nnymaid [8c] [2s]
+        #Dealt to PokerAscetic [7c 8s 3h] [5s]
+        #..."
+        #Note that hero's first two holecards are only reported at 3rd street as 'old' cards.
+        logging.debug("readStudPlayerCards")
+        m = self.re_HeroCards.finditer(hand.streets[street])
         for player in m:
             logging.debug(player.groupdict())
-            cards = player.group('CARDS')
-            if player.group('NEWCARD') != None:
-                print cards
-                cards = cards + " " + player.group('NEWCARD')
-            cards = cards.split(' ')
-            hand.addPlayerCards(cards, player.group('PNAME'))
+            (pname,  oldcards,  newcards) = (player.group('PNAME'), player.group('OLDCARDS'), player.group('NEWCARDS'))
+            if oldcards:
+                oldcards = [c.strip() for c in oldcards.split(' ')]
+            if newcards:
+                newcards = [c.strip() for c in newcards.split(' ')]
+            # options here:
+            # (1) we trust the hand will know what to do -- probably check that the old cards match what it already knows, and add the newcards to this street.
+            # (2) we're the experts at this particular history format and we know how we're going to be called (once for each street in Hand.streetList)
+            #     so call addPlayerCards with the appropriate information.
+            # I favour (2) here but I'm afraid it is rather stud7-specific.
+            # in the following, the final list of cards will be in 'newcards' whilst if the first list exists (most of the time it does) it will be in 'oldcards'
+            if street=='ANTES':
+                return
+            elif street=='THIRD':
+                # we'll have observed hero holecards in CARDS and thirdstreet open cards in 'NEWCARDS'
+                # hero: [xx][o]
+                # others: [o]
+                    hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = oldcards,  open = newcards)
+            elif street in ('FOURTH',  'FIFTH',  'SIXTH'):
+                # 4th:
+                # hero: [xxo] [o]
+                # others: [o] [o]
+                # 5th:
+                # hero: [xxoo] [o]
+                # others: [oo] [o]
+                # 6th:
+                # hero: [xxooo] [o]
+                # others:  [ooo] [o]
+                hand.addPlayerCards(player = player.group('PNAME'), street = street, open = newcards)
+                # we may additionally want to check the earlier streets tally with what we have but lets trust it for now.
+            elif street=='SEVENTH' and newcards:
+                # hero: [xxoooo] [x]
+                # others: not reported.
+                hand.addPlayerCards(player = player.group('PNAME'), street = street, closed = newcards)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -236,12 +283,20 @@ class FullTilt(HandHistoryConverter):
 
 
 if __name__ == "__main__":
-    c = Configuration.Config()
-    if len(sys.argv) ==  1:
-        testfile = "regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt"
-    else:
-        testfile = sys.argv[1]
-        print "Converting: ", testfile
-    e = FullTilt(c, testfile)
-    e.processFile()
-    print str(e)
+    parser = OptionParser()
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt")
+    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
+    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-q", "--quiet",
+                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
+    parser.add_option("-v", "--verbose",
+                  action="store_const", const=logging.INFO, dest="verbosity")
+    parser.add_option("--vv",
+                  action="store_const", const=logging.DEBUG, dest="verbosity")
+
+    (options, args) = parser.parse_args()
+
+    LOG_FILENAME = './logging.out'
+    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
+
+    e = FullTilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)

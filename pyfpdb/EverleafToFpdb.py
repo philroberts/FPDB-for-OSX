@@ -19,9 +19,7 @@
 
 import sys
 import logging
-import Configuration
 from HandHistoryConverter import *
-from time import strftime
 
 # Class for converting Everleaf HH format.
 
@@ -35,17 +33,16 @@ class Everleaf(HandHistoryConverter):
     re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
     
-    def __init__(self, config, file):
-        print "Initialising Everleaf converter class"
-        HandHistoryConverter.__init__(self, config, file, sitename="Everleaf") # Call super class init.
-        self.sitename = "Everleaf"
-        self.setFileType("text", "cp1252")
-
-
-        try:
-            self.ofile     = os.path.join(self.hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
-        except:
-            self.ofile     = os.path.join(self.hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+    def __init__(self, in_path = '-', out_path = '-', follow = False):
+        """\
+in_path   (default '-' = sys.stdin)
+out_path  (default '-' = sys.stdout)
+follow :  whether to tail -f the input"""
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
+        logging.info("Initialising Everleaf converter class")
+        self.filetype = "text"
+        self.codepage = "cp1252"
+        self.start()
 
     def compilePlayerRegexs(self,  players):
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -149,13 +146,15 @@ class Everleaf(HandHistoryConverter):
 
         hand.addStreets(m)
 
-
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        #print "DEBUG " + street + ":"
-        #print hand.streets.group(street) + "\n"
-        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            m = self.re_Board.search(hand.streets.group(street))
-            hand.setCommunityCards(street, m.group('CARDS').split(', '))
+        # If this has been called, street is a street which gets dealt community cards by type hand
+        # but it might be worth checking somehow.
+#        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
+        logging.debug("readCommunityCards (%s)" % street)
+        m = self.re_Board.search(hand.streets[street])
+        cards = m.group('CARDS')
+        cards = [card.strip() for card in cards.split(',')]
+        hand.setCommunityCards(street=street, cards=cards)
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
@@ -212,6 +211,7 @@ class Everleaf(HandHistoryConverter):
             logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
+
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
@@ -229,11 +229,21 @@ class Everleaf(HandHistoryConverter):
 
 
 if __name__ == "__main__":
-    c = Configuration.Config()
-    if len(sys.argv) ==  1:
-        testfile = "regression-test-files/everleaf/plo/Naos.txt"
-    else:
-        testfile = sys.argv[1]
-    e = Everleaf(c, testfile)
-    e.processFile()
-    print str(e)
+    parser = OptionParser()
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/Speed_Kuala_full.txt")
+    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
+    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-q", "--quiet",
+                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
+    parser.add_option("-v", "--verbose",
+                  action="store_const", const=logging.INFO, dest="verbosity")
+    parser.add_option("--vv",
+                  action="store_const", const=logging.DEBUG, dest="verbosity")
+
+    (options, args) = parser.parse_args()
+
+    LOG_FILENAME = './logging.out'
+    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
+
+    e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow)
+
