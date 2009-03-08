@@ -4,7 +4,7 @@
 
 Main for FreePokerTools HUD.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@ class HUD_main(object):
                 self.hud_dict[table_name].tablehudlabel = newlabel
                 self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table_name].aux_windows:
-                    m.update_data(new_hand_id, self.db_connection)
+                    m.create()
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
@@ -108,6 +108,10 @@ class HUD_main(object):
                 gtk.gdk.threads_leave()
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[table_name].stat_dict = stat_dict
+        self.hud_dict[table_name].cards = cards
+        for aw in self.hud_dict[table_name].aux_windows:
+            aw.update_data(new_hand_id, self.db_connection)
         gobject.idle_add(idle_func)
     
     def update_HUD(self, new_hand_id, table_name, config):
