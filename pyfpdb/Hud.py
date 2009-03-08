@@ -190,16 +190,14 @@ class Hud:
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
             s.kill_popups()
-            s.window.destroy()
-            self.stat_windows = {}
+            s.window.destroy()    
+        self.stat_windows = {}
 #    also kill any aux windows
-        for m in self.aux_windows:
-            m.destroy()
+        map(lambda m: m.destroy(), self.aux_windows)
         self.aux_windows = []
 
     def reposition_windows(self, *args):
-        for w in self.stat_windows:
-            self.stat_windows[w].window.move(self.stat_windows[w].x, self.stat_windows[w].y)
+        map(lambda x: x.window.move(x.x, x.y), self.stat_windows)
         return True
 
     def debug_stat_windows(self, *args):
@@ -239,7 +237,7 @@ class Hud:
         return adj
 
     def get_actual_seat(self, name):
-        for key in self.stat_dict.keys():
+        for key in self.stat_dict:
             if self.stat_dict[key]['screen_name'] == name:
                 return self.stat_dict[key]['seat']
         sys.stderr.write("Error finding actual seat.\n")
@@ -369,8 +367,7 @@ class Stat_Window:
         self.popups.remove(popup)
         
     def kill_popups(self):
-        for x in self.popups:
-            self.popups[x].window.destroy()
+        map(lambda x: x.window.destroy(), self.popups)
         self.popups = { }
 
     def relocate(self, x, y):
@@ -406,35 +403,38 @@ class Stat_Window:
         self.e_box = []
         self.frame = []
         self.label = []
+        usegtkframes = self.useframes
+        e_box = self.e_box
+        label = self.label
         for r in xrange(self.game.rows):
-            if self.useframes:
+            if usegtkframes:
                 self.frame.append([])
-            self.e_box.append([])
-            self.label.append([])
+            e_box.append([])
+            label.append([])
             for c in xrange(self.game.cols):
-                if self.useframes:
+                if usegtkframes:
                     self.frame[r].append( gtk.Frame() )
-                self.e_box[r].append( gtk.EventBox() )
+                e_box[r].append( gtk.EventBox() )
                 
-                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
+                e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
                 
-                Stats.do_tip(self.e_box[r][c], 'stuff')
-                if self.useframes:
+                Stats.do_tip(e_box[r][c], 'stuff')
+                if usegtkframes:
                     self.grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
-                    self.frame[r][c].add(self.e_box[r][c])
+                    self.frame[r][c].add(e_box[r][c])
                 else:
-                    self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
-                self.label[r].append( gtk.Label('xxx') )
+                    self.grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                label[r].append( gtk.Label('xxx') )
                 
-                if self.useframes:
+                if usegtkframes:
                     self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                self.label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                self.label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
+                label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
 
-                self.e_box[r][c].add(self.label[r][c])
-                self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-                self.label[r][c].modify_font(font)
+                e_box[r][c].add(self.label[r][c])
+                e_box[r][c].connect("button_press_event", self.button_press_cb)
+                label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
         

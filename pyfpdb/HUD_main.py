@@ -123,8 +123,7 @@ class HUD_main(object):
             gtk.gdk.threads_enter()
             try:
                 self.hud_dict[table_name].update(new_hand_id, config)
-                for m in self.hud_dict[table_name].aux_windows:
-                    m.update_gui(new_hand_id)
+                map(lambda aw: aw.update_gui(new_hand_id), self.hud_dict[table_name].aux_windows)
                 return False
             finally:
                 gtk.gdk.threads_leave()
