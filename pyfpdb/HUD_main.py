@@ -140,7 +140,7 @@ class HUD_main(object):
         self.db_connection = Database.Database(self.config, self.db_name, 'temp')
         tourny_finder = re.compile('(\d+) (\d+)')
     
-        while True: # wait for a new hand number on stdin
+        while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
             if new_hand_id == "":           # blank line means quit
@@ -187,7 +187,7 @@ class HUD_main(object):
                 if tablewindow == None:
 #    If no client window is found on the screen, complain and continue
                     if is_tournament:
-                        table_name = tour_number + " " + tab_number
+                        table_name = "%s %s" % (tour_number, tab_number)
                     sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, is_tournament, stat_dict, cards)
