@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-15 -*-
+# -*- coding: utf-8 -*-
 #    Copyright 2008, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -11,7 +11,7 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -27,13 +27,14 @@ class Everleaf(HandHistoryConverter):
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
-    re_GameInfo    = re.compile(r"^(Blinds )?\$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) ((?P<LTYPE>NL|PL) )?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
-    re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?\$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
+    re_GameInfo    = re.compile(u"^(Blinds )?(?P<currency>\$| €|)(?P<sb>[.0-9]+)/(?:\$| €)?(?P<bb>[.0-9]+) (?P<limit>NL|PL|) (?P<game>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
+    re_HandInfo    = re.compile(u".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
-    re_PlayerInfo  = re.compile(r"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)", re.MULTILINE)
+    re_PlayerInfo  = re.compile(u"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
-    
-    def __init__(self, in_path = '-', out_path = '-', follow = False):
+
+
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -42,22 +43,24 @@ follow :  whether to tail -f the input"""
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
-        self.start()
+        if autostart:
+            self.start()
 
-    def compilePlayerRegexs(self,  players):
+    def compilePlayerRegexs(self, hand):
+        players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: "+ player_re)
-            self.re_PostSB          = re.compile(r"^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBB          = re.compile(r"^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBoth        = re.compile(r"^%s: posts both blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_HeroCards       = re.compile(r"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile(r"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?" % player_re, re.MULTILINE)
-            self.re_ShowdownAction  = re.compile(r"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(r"^%s wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
-            self.re_SitsOut         = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
+            self.re_PostSB          = re.compile(u"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBB          = re.compile(u"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile(u"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_HeroCards       = re.compile(u"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(u"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
+            self.re_ShowdownAction  = re.compile(u"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(u"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+            self.re_SitsOut         = re.compile(u"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -67,6 +70,33 @@ follow :  whether to tail -f the input"""
                ]
 
     def determineGameType(self, handText):
+        info = {}
+        
+        m = self.re_GameInfo.search(handText)
+        if not m: 
+            return None
+
+        info.update(m.groupdict())
+        
+        limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
+        games = { 'Hold\'em':'hold', 'Omaha':'omahahi', 'Razz':'razz','7 Card Stud':'studhi' }
+        currencies = { u' €':'EUR', '$':'USD', '':'T$' }
+        for key in info:
+            if key == 'limit':
+                info[key] = limits[info[key]]
+            if key == 'game':
+                info[key] = games[info[key]]
+            if key == 'sb':
+                pass
+            if key == 'bb':
+                pass
+            if key == 'currency':
+                info[key] = currencies[info[key]]
+
+        return info
+
+
+    def determineGameType2(self, handText):
         # Cheating with this regex, only support nlhe at the moment
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
@@ -80,6 +110,7 @@ follow :  whether to tail -f the input"""
 
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
+        currency  = "USD" # USD, EUR
 
         m = self.re_GameInfo.search(handText)
         if m == None:
@@ -99,7 +130,7 @@ follow :  whether to tail -f the input"""
         elif m.group('GAME') == "7 Card Stud":
             game = "studhi" # Everleaf currently only does Hi stud
 
-        gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
+        gametype = ["ring", game, structure, m.group('SB'), m.group('BB'), currency]
 
         return gametype
 
@@ -107,7 +138,7 @@ follow :  whether to tail -f the input"""
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
             logging.info("Didn't match re_HandInfo")
-            logging.info(hand.handtext)
+            logging.info(hand.handText)
             return None
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
@@ -183,6 +214,7 @@ follow :  whether to tail -f the input"""
         else:
             #Not involved in hand
             hand.involved = False
+
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)

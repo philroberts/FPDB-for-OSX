@@ -88,13 +88,14 @@ class HandHistoryConverter(threading.Thread):
             # write to stdout
             self.out_fh = sys.stdout
         else:
-            self.out_fh = open(self.out_path, 'a')
+            self.out_fh = open(self.out_path, 'a') #TODO: append may be overly conservative.
         self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
 
     def __str__(self):
+        #TODO : I got rid of most of the hhdir stuff.
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
         tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
         tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
@@ -116,6 +117,8 @@ class HandHistoryConverter(threading.Thread):
             logging.info("Parsing %d hands" % len(handsList))
             for handtext in handsList:
                 self.processHand(handtext)
+            if self.out_fh != sys.stdout:
+                self.ouf_fh.close()
 
     def tailHands(self):
         """pseudo-code"""
@@ -140,16 +143,22 @@ class HandHistoryConverter(threading.Thread):
         
     def processHand(self, handtext):
         gametype = self.determineGameType(handtext)
+        logging.debug("gametype %s" % gametype)
         if gametype is None:
             return
         
-        if gametype[1] in ("hold", "omaha"):
+        hand = None
+        if gametype['game'] in ("hold", "omaha"):
             hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
-        elif gametype[1] in ("razz","stud","stud8"):
+        elif gametype['game'] in ("razz","stud","stud8"):
             hand = Hand.StudHand(self, self.sitename, gametype, handtext)
         
-        hand.writeHand(self.out_fh)
-        
+        if hand:
+            hand.writeHand(self.out_fh)
+        else:
+            logging.info("Unsupported game type: %s" % gametype)
+            # TODO: pity we don't know the HID at this stage. Log the entire hand?
+            # From the log we can deduce that it is the hand after the one before :)
        
        
     def processFile(self):

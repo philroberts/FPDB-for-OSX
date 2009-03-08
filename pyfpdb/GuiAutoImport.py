@@ -26,7 +26,8 @@ import os
 import sys
 import time
 import fpdb_import
-
+from optparse import OptionParser
+import Configuration
 
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config):
@@ -134,7 +135,8 @@ class GuiAutoImport (threading.Thread):
                     self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
                 else:
-                    command = self.config.execution_path('HUD_main.py')
+                    command = os.path.join(sys.path[0],  'HUD_main.py')
+                    #command = self.config.execution_path('HUD_main.py') # Hi Ray. Sorry about this, kludging.
                     bs = 1
                     self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
@@ -214,18 +216,39 @@ if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()
 
-    settings = {}
-    settings['db-host'] = "192.168.1.100"
-    settings['db-user'] = "mythtv"
-    settings['db-password'] = "mythtv"
-    settings['db-databaseName'] = "fpdb"
-    settings['hud-defaultInterval'] = 10
-    settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
-    settings['callFpdbHud'] = True
+#    settings = {}
+#    settings['db-host'] = "192.168.1.100"
+#    settings['db-user'] = "mythtv"
+#    settings['db-password'] = "mythtv"
+#    settings['db-databaseName'] = "fpdb"
+#    settings['hud-defaultInterval'] = 10
+#    settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
+#    settings['callFpdbHud'] = True
 
-    i = GuiAutoImport(settings)
-    main_window = gtk.Window()
-    main_window.connect("destroy", destroy)
-    main_window.add(i.mainVBox)
-    main_window.show()
-    gtk.main()
+    parser = OptionParser()
+    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
+
+    (options, sys.argv) = parser.parse_args()
+
+    config = Configuration.Config()
+#    db = fpdb_db.fpdb_db()
+
+    settings = {}
+    if os.name == 'nt': settings['os'] = 'windows'
+    else:               settings['os'] = 'linuxmac'
+
+    settings.update(config.get_db_parameters('fpdb'))
+    settings.update(config.get_tv_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+    if(options.gui == True):
+        i = GuiAutoImport(settings, config)
+        main_window = gtk.Window()
+        main_window.connect('destroy', destroy)
+        main_window.add(i.mainVBox)
+        main_window.show()
+        gtk.main()
+    else:
+        pass
+    
