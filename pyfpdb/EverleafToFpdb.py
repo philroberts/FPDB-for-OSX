@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+#
 #    Copyright 2008, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -27,13 +28,11 @@ class Everleaf(HandHistoryConverter):
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
-    re_GameInfo    = re.compile(u"^(Blinds )?(?P<currency>\$| €|)(?P<sb>[.0-9]+)/(?:\$| €)?(?P<bb>[.0-9]+) (?P<limit>NL|PL|) (?P<game>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
-    re_HandInfo    = re.compile(u".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
-#    re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
-    #re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)", re.MULTILINE)
-    re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
-    re_PlayerInfo  = re.compile(u"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
-    re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
+    re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
+    re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)")
+    re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
+    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
+    re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
@@ -72,29 +71,58 @@ follow :  whether to tail -f the input"""
                ]
 
     def determineGameType(self, handText):
-        info = {}
+        """return dict with keys/values:
+    'type'       in ('ring', 'tour')
+    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+    'base'       in ('hold', 'stud', 'draw')
+    'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
+    'hilo'       in ('h','l','s')
+    'smallBlind' int?
+    'bigBlind'   int?
+    'smallBet'
+    'bigBet'
+    'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
+or None if we fail to get the info """
+        #(TODO: which parts are optional/required?)
+    
+        # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
+        # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
+        # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
+        
+        # Tourney:
+        # Everleaf Gaming Game #75065769
+        # ***** Hand history for game #75065769 *****
+        # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
+        # Table 2
+        info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
         if not m: 
             return None
 
-        info.update(m.groupdict())
+        mg = m.groupdict()
         
+        # translations from captured groups to our info strings
         limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
-        games = { 'Hold\'em':'hold', 'Omaha':'omahahi', 'Razz':'razz','7 Card Stud':'studhi' }
+        games = {              # base, category
+                  "Hold'em" : ('hold','holdem'), 
+                    'Omaha' : ('hold','omahahi'), 
+                     'Razz' : ('stud','razz'), 
+              '7 Card Stud' : ('stud','studhi')
+               }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
-        for key in info:
-            if key == 'limit':
-                info[key] = limits[info[key]]
-            if key == 'game':
-                info[key] = games[info[key]]
-            if key == 'sb':
-                pass
-            if key == 'bb':
-                pass
-            if key == 'currency':
-                info[key] = currencies[info[key]]
-
+        if 'LIMIT' in mg:
+            info['limitType'] = limits[mg['LIMIT']]
+        if 'GAME' in mg:
+            (info['base'], info['category']) = games[mg['GAME']]
+        if 'SB' in mg:
+            info['sb'] = mg['SB']
+        if 'BB' in mg:
+            info['bb'] = mg['BB']
+        if 'CURRENCY' in mg:
+            info['currency'] = currencies[mg['CURRENCY']]
+        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        
         return info
 
 

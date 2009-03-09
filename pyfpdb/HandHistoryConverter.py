@@ -109,6 +109,17 @@ class HandHistoryConverter(threading.Thread):
         return tmp
 
     def run(self):
+        for handtext in self.readHands():
+            self.processHand(handText)
+            
+    def readHands(self):
+    """yield a hand at a time from the input specified by in_path.
+If in follow mode, wait for more data to turn up.
+Otherwise, raise the no more things exception..."""
+        while True:
+            where = file.tell()
+            lines = file.readlines(1000)
+            
         if self.follow:
             for handtext in self.tailHands():
                 self.processHand(handtext)
@@ -119,14 +130,43 @@ class HandHistoryConverter(threading.Thread):
                 self.processHand(handtext)
             if self.out_fh != sys.stdout:
                 self.ouf_fh.close()
+                
+    def paragraphs(file, separator=None):
+        if not callable(separator):
+            def separator(line): return line == '\n'
+        paragraph = []
+        for line in file:
+            if separator(line):
+                if paragraph:
+                    yield ''.join(paragraph)
+                    paragraph = []
+            else:
+                paragraph.append(line)
+        if paragraph: yield ''.join(paragraph)
+
+
+def tail_f(file):
+  interval = 1.0
+
+  while True:
+    where = file.tell()
+    lines = file.readlines(1000)
+    if not lines:
+      time.sleep(interval)
+      file.seek(where)
+    else:
+      yield line
+
 
     def tailHands(self):
         """pseudo-code"""
+        interval = 1.0
         while True:
-            ifile.tell()
-            text = ifile.read()
-            if nomoretext:
-                wait or sleep
+            pos = ifile.tell()
+            text = ifile.readlines(1000)
+            if not text:
+                time.sleep(interval)
+                ifile.seek(pos)
             else:
                 ahand = thenexthandinthetext
                 yield(ahand)
@@ -148,11 +188,13 @@ class HandHistoryConverter(threading.Thread):
             return
         
         hand = None
-        if gametype['game'] in ("hold", "omaha"):
+        if gametype['base'] == 'hold':
             hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
-        elif gametype['game'] in ("razz","stud","stud8"):
+        elif gametype['base'] == 'stud':
             hand = Hand.StudHand(self, self.sitename, gametype, handtext)
-        
+        elif gametype['base'] == 'draw':
+            hand = Hand.DrawHand(self, self.sitename, gametype, handtext)
+
         if hand:
             hand.writeHand(self.out_fh)
         else:
@@ -248,6 +290,19 @@ class HandHistoryConverter(threading.Thread):
     # [ ring, hold, nl   , sb, bb ]
     # Valid types specified in docs/tabledesign.html in Gametypes
     def determineGameType(self): abstract
+    """return dict with keys/values:
+    'type'       in ('ring', 'tour')
+    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+    'base'       in ('hold', 'stud', 'draw')
+    'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
+    'hilo'       in ('h','l','s')
+    'smallBlind' int?
+    'bigBlind'   int?
+    'smallBet'
+    'bigBet'
+    'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
+or None if we fail to get the info """
+    #TODO: which parts are optional/required?
 
     # Read any of:
     # HID       HandID
@@ -330,8 +385,8 @@ class HandHistoryConverter(threading.Thread):
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 
-    def readFile(self):
-        """Read in_path into self.obs or self.doc"""
+    def openFile(self):
+        """open in_path according to self.codepage"""
         
         if(self.filetype == "text"):
             if self.in_path == '-':
