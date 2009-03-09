@@ -262,7 +262,7 @@ follow :  whether to tail -f the input"""
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/Speed_Kuala_full.txt")
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/plo/Naos.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
     parser.add_option("-q", "--quiet",
