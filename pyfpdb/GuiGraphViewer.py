@@ -295,6 +295,7 @@ class GuiGraphViewer (threading.Thread):
         dia_chooser.destroy()
         #TODO: Check to see if file exists
         #NOTE: Dangerous - will happily overwrite any file we have write access too
+        #TODO: This asks for a directory but will take a filename and overwrite it.
         self.fig.savefig(self.exportDir, format="png")
 
     def __init__(self, db, settings, querylist, config, debug=True):
