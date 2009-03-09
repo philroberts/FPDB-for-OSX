@@ -36,12 +36,12 @@ class Layout:
     def __init__(self, max):
         self.max = int(max)
         self.location = []
-        for i in range(self.max + 1): self.location.append(None)
+        self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
         
     def __str__(self):
         temp = "    Layout = %d max, width= %d, height = %d, fav_seat = %d\n" % (self.max, self.width, self.height, self.fav_seat)
         temp = temp + "        Locations = "
-        for i in range(1, len(self.location)):
+        for i in xrange(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
         
         return temp + "\n"
@@ -78,16 +78,17 @@ class Site:
             self.layout[lo.max] = lo
 
     def __str__(self):
-        temp = "Site = " + self.site_name + "\n"
+        temp = "Site = %s\n" % self.site_name
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
+            temp = "%s    %s = %s\n" % (temp, key, str(value))
             temp = temp + '    ' + key + " = " + str(value) + "\n"
             
         for layout in self.layout:
-            temp = temp + "%s" % self.layout[layout]
+            temp = "%s%s" % (temp, self.layout[layout])
             
         return temp
         
@@ -128,14 +129,10 @@ class Game:
             self.stats[stat.stat_name] = stat
             
     def __str__(self):
-        temp = "Game = " + self.game_name + "\n"
-        temp = temp + "    db = %s\n" % self.db
-        temp = temp + "    rows = %d\n" % self.rows
-        temp = temp + "    cols = %d\n" % self.cols
-        temp = temp + "    aux = %s\n" % self.aux
+        temp = "Game = %s\n    db = %s\n    rows = %d\n    cols = %d\n    aux = %s\n" % (self.game_name, self.db, self.rows, self.cols, self.aux)
         
         for stat in self.stats.keys():
-            temp = temp + "%s" % self.stats[stat]
+            temp = "%s%s" % (temp, self.stats[stat])
             
         return temp
              
@@ -397,7 +394,7 @@ class Config:
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
         if layout_node == None: return
-        for i in range(1, max + 1):
+        for i in xrange(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
