@@ -111,8 +111,6 @@ def mainParser(backend, db, cursor, site, category, hand):
             tableResult=fpdb_simple.parseTableLine(site, base, hand[i])
         else:
             raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
-    if site=="ftp":
-        tableResult=fpdb_simple.parseTableLine(site, base, hand[0])
     maxSeats=tableResult['maxSeats']
     tableName=tableResult['tableName']
     #print "before part5, antes:", antes

@@ -476,8 +476,6 @@ def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
                         #todo: run correction for below
                         if (site=="ps" and category=="holdem" and limit_type=="nl" and len(bets)==3):
                             fail=False
-                        if (site=="ftp" and category=="omahahi" and limit_type=="pl" and len(bets)==3):
-                            fail=False
                         
                         if fail:
                             print "len(bets)>2 in convert3B4B, i didnt think this is possible. i:",i,"j:",j,"k:",k
@@ -689,18 +687,8 @@ def filterCrap(site, hand, isTourney):
             toRemove.append(hand[i])
         elif (hand[i].endswith("is disconnected")):
             toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling angry")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling confused")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling happy")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling normal")):
-            toRemove.append(hand[i])
         elif (hand[i].find(" is low with [")!=-1):
             toRemove.append(hand[i])
-        #elif (hand[i].find("-max Seat #")!=-1 and hand[i].find(" is the button")!=-1):
-        # toRemove.append(hand[i])
         elif (hand[i].endswith(" mucks")):
             toRemove.append(hand[i])
         elif (hand[i].endswith(": mucks hand")):
@@ -711,8 +699,6 @@ def filterCrap(site, hand, isTourney):
             toRemove.append(hand[i])
         elif (hand[i].find(" shows ")!=-1 and hand[i].find("[")==-1):
             toRemove.append(hand[i])
-        #elif (hand[i].startswith("Table '") and hand[i].endswith("-max")):
-        # toRemove.append(hand[i])
         elif (hand[i].startswith("The button is in seat #")):
             toRemove.append(hand[i])
         #above is alphabetic, reorder below if bored
@@ -746,8 +732,6 @@ def filterCrap(site, hand, isTourney):
             toRemove.append(hand[i])
         #site specific variable position filter
         elif (hand[i].find(" said, \"")!=-1):
-            toRemove.append(hand[i])
-        elif (hand[i].find(": ")!=-1 and site=="ftp" and hand[i].find("Seat ")==-1 and hand[i].find(": Table")==-1): #filter ftp chat
             toRemove.append(hand[i])
         if isTourney:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
@@ -857,14 +841,6 @@ def isWinLine(line):
         return True
     elif (line.find("ties for the low side pot")!=-1):
         return True
-    elif (line.find("ties for the main pot")!=-1): #for ftp tied main pot of split pot
-        return True
-    elif (line.find("ties for the pot")!=-1): #for ftp tie
-        return True
-    elif (line.find("ties for the side pot")!=-1): #for ftp tied split pots
-        return True
-    elif (line.find("wins side pot #")!=-1): #for ftp multi split pots
-        return True
     elif (line.find("wins the low main pot")!=-1):
         return True
     elif (line.find("wins the low pot")!=-1):
@@ -878,8 +854,6 @@ def isWinLine(line):
     elif (line.find("wins the high side pot")!=-1):
         return True
     elif (line.find("wins the main pot")!=-1):
-        return True
-    elif (line.find("wins the side pot")!=-1): #for ftp split pots
         return True
     elif (line.find("collected")!=-1):
         return True
@@ -904,10 +878,6 @@ def parseActionAmount(line, atype, site, isTourney):
         amount=0
     elif (atype=="check"):
         amount=0
-    elif (atype=="unbet" and site=="ftp"):
-        pos1=line.find("$")+1
-        pos2=line.find(" returned to")
-        amount=float2int(line[pos1:pos2])
     elif (atype=="unbet" and site=="ps"):
         #print "ps unbet, line:",line
         pos1=line.find("$")+1
@@ -1129,8 +1099,6 @@ def parseCashesAndSeatNos(lines, site):
         pos1=lines[i].rfind("($")+2
         if pos1==1: #for tourneys - it's 1 instead of -1 due to adding 2 above
             pos1=lines[i].rfind("(")+1
-        if (site=="ftp"):
-            pos2=lines[i].rfind(")")
         elif (site=="ps"):
             pos2=lines[i].find(" in chips")
         cashes.append(float2int(lines[i][pos1:pos2]))
@@ -1157,41 +1125,25 @@ def parseHandStartTime(topline, site):
         if counter==10: break
     
     isUTC=False
-    if site=="ftp":
-        # Full Tilt Sit'n'Go
-        # Full Tilt Poker Game #10311865543: $1 + $0.25 Sit & Go (78057629), Table 1 - 25/50 - No Limit Hold'em - 0:07:45 ET - 2009/01/29
-        # Cash Game:
-        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
-        # Full Tilt Poker Game #9468383505: Table Bike (deep 6) - $0.05/$0.10 - No Limit Hold'em - 5:09:36 ET - 2008/12/13
-        pos = topline.find(" ", len(topline)-26)+1
-        tmp = topline[pos:]
-
-        rexx = '(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+) ET [\- ]+(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})'
-        m = re.search(rexx,tmp)
-        result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-    elif site=="ps":
-        if topline.find("UTC")!=-1:
-            pos1 = topline.find("-")+2
-            pos2 = topline.find("UTC")
-            tmp=topline[pos1:pos2]
-            isUTC=True
-        else:
-            tmp=topline
-            #print "parsehandStartTime, tmp:", tmp
-            pos = tmp.find("-")+2
-            tmp = tmp[pos:]
-        #Need to match either
-        # 2008/09/07 06:23:14 ET or
-        # 2008/08/17 - 01:14:43 (ET) or
-        # 2008/11/12 9:33:31 CET [2008/11/12 3:33:31 ET]
-        rexx = '(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)'
-        m = re.search(rexx,tmp)
-        #print "year:", int(m.group('YEAR')), "month", int(m.group('MON')), "day", int(m.group('DAY')), "hour", int(m.group('HR')), "minute", int(m.group('MIN')), "second", int(m.group('SEC'))
-        result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
+    if topline.find("UTC")!=-1:
+        pos1 = topline.find("-")+2
+        pos2 = topline.find("UTC")
+        tmp=topline[pos1:pos2]
+        isUTC=True
     else:
-        raise FpdbError("invalid site in parseHandStartTime")
+        tmp=topline
+        #print "parsehandStartTime, tmp:", tmp
+        pos = tmp.find("-")+2
+        tmp = tmp[pos:]
+    #Need to match either
+    # 2008/09/07 06:23:14 ET or
+    # 2008/08/17 - 01:14:43 (ET) or
+    # 2008/11/12 9:33:31 CET [2008/11/12 3:33:31 ET]
+    rexx = '(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)'
+    m = re.search(rexx,tmp)
+    result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
     
-    if (site=="ftp" or site=="ps") and not isUTC: #these use US ET
+    if not isUTC: #these use US ET
         result+=datetime.timedelta(hours=5)
     
     return result
@@ -1308,40 +1260,13 @@ def parseSiteHandNo(topline):
  
 def parseTableLine(site, base, line):
     """returns a dictionary with maxSeats and tableName"""
-    if site=="ps":
-        pos1=line.find('\'')+1
-        pos2=line.find('\'', pos1)
-        #print "table:",line[pos1:pos2]
-        pos3=pos2+2
-        pos4=line.find("-max")
-        #print "seats:",line[pos3:pos4]
-        return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
-    elif site=="ftp":
-        pos1=line.find("Table ")+6
-        pos2=line.find("-")-1
-        if base=="hold":
-            maxSeats=9
-        elif base=="stud":
-            maxSeats=8
-            
-        if line.find("6 max")!=-1:
-            maxSeats=6
-        elif line.find("4 max")!=-1:
-            maxSeats=4
-        elif line.find("heads up")!=-1:
-            maxSeats=2
-            
-        tableName = line[pos1:pos2]
-        for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
-                    ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
-                    ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
-                    ' \(speed\)', 
-                    ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
-            tableName = re.sub(pattern, '', tableName)
-        tableName = tableName.rstrip()            
-        return {'maxSeats':maxSeats, 'tableName':tableName}
-    else:
-        raise FpdbError("invalid site ID")
+    pos1=line.find('\'')+1
+    pos2=line.find('\'', pos1)
+    #print "table:",line[pos1:pos2]
+    pos3=pos2+2
+    pos4=line.find("-max")
+    #print "seats:",line[pos3:pos4]
+    return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
 #end def parseTableLine
  
 #returns the hand no assigned by the poker site
@@ -1359,17 +1284,11 @@ def parseWinLine(line, site, names, winnings, isTourney):
         if (line.startswith(names[i].encode("latin-1"))): #found a winner
             if isTourney:
                 pos1=line.rfind("collected ")+10
-                if (site=="ftp"):
-                    pos2=line.find(")", pos1)
-                elif (site=="ps"):
-                    pos2=line.find(" ", pos1)
+                pos2=line.find(" ", pos1)
                 winnings[i]+=int(line[pos1:pos2])
             else:
                 pos1=line.rfind("$")+1
-                if (site=="ftp"):
-                    pos2=line.find(")", pos1)
-                elif (site=="ps"):
-                    pos2=line.find(" ", pos1)
+                pos2=line.find(" ", pos1)
                 winnings[i]+=float2int(line[pos1:pos2])
 #end def parseWinLine
  
@@ -1413,10 +1332,8 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
     pos1=pos2+2
     if isTourney:
         pos1-=1
-    if (site_id==1): #ftp
-        pos2=topline.find(" ", pos1)
-    elif (site_id==2): #ps
-        pos2=topline.find(")")
+    #ps
+    pos2=topline.find(")")
     
     if pos2<=pos1:
         pos2=topline.find(")", pos1)
@@ -1558,6 +1475,7 @@ def recognisePlayerNo(line, names, atype):
  
 #returns the site abbreviation for the given site
 def recogniseSite(line):
+    # TODO: Make site agnostic
     if (line.startswith("Full Tilt Poker")):
         return "ftp"
     elif (line.startswith("PokerStars")):
