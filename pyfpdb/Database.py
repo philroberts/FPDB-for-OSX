@@ -129,13 +129,28 @@ class Database:
             cards[s_dict['seat_number']] = (self.convert_cards(s_dict))
         return cards
 
+    def get_common_cards(self, hand):
+        """Get and return the community cards for the specified hand."""
+        cards = {}
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_common_cards'], hand)
+        colnames = [desc[0] for desc in c.description]
+        for row in c.fetchall():
+            s_dict = {}
+            for name, val in zip(colnames, row):
+                s_dict[name] = val
+            cards['common'] = (self.convert_cards(s_dict))
+        return cards
+
     def convert_cards(self, d):
         ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
         cards = ""
         for i in range(1, 8):
-            if d['card' + str(i) + 'Value'] == None:
+            key = 'card' + str(i) + 'Value'
+            if not d.has_key(key): continue
+            if d[key] == None:
                 break
-            elif d['card' + str(i) + 'Value'] == 0:
+            elif d[key] == 0:
                 cards += "xx"
             else:
                 cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
