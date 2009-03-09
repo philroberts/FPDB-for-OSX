@@ -4,7 +4,7 @@
 
 Main for FreePokerTools HUD.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -83,6 +83,7 @@ class HUD_main(object):
         self.hud_dict[table].main_window.destroy()
         self.vb.remove(self.hud_dict[table].tablehudlabel)
         del(self.hud_dict[table])
+        self.main_window.resize(1,1)
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, is_tournament, stat_dict, cards):
         
@@ -93,11 +94,12 @@ class HUD_main(object):
                 newlabel = gtk.Label(table.site + " - " + table_name)
                 self.vb.add(newlabel)
                 newlabel.show()
+                self.main_window.resize_children()
     
                 self.hud_dict[table_name].tablehudlabel = newlabel
                 self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table_name].aux_windows:
-                    m.update_data(new_hand_id, self.db_connection)
+                    m.create()
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
@@ -106,6 +108,10 @@ class HUD_main(object):
                 gtk.gdk.threads_leave()
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[table_name].stat_dict = stat_dict
+        self.hud_dict[table_name].cards = cards
+        for aw in self.hud_dict[table_name].aux_windows:
+            aw.update_data(new_hand_id, self.db_connection)
         gobject.idle_add(idle_func)
     
     def update_HUD(self, new_hand_id, table_name, config):
@@ -117,8 +123,7 @@ class HUD_main(object):
             gtk.gdk.threads_enter()
             try:
                 self.hud_dict[table_name].update(new_hand_id, config)
-                for m in self.hud_dict[table_name].aux_windows:
-                    m.update_gui(new_hand_id)
+                map(lambda aw: aw.update_gui(new_hand_id), self.hud_dict[table_name].aux_windows)
                 return False
             finally:
                 gtk.gdk.threads_leave()
@@ -134,7 +139,7 @@ class HUD_main(object):
         self.db_connection = Database.Database(self.config, self.db_name, 'temp')
         tourny_finder = re.compile('(\d+) (\d+)')
     
-        while True: # wait for a new hand number on stdin
+        while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
             if new_hand_id == "":           # blank line means quit
@@ -181,7 +186,7 @@ class HUD_main(object):
                 if tablewindow == None:
 #    If no client window is found on the screen, complain and continue
                     if is_tournament:
-                        table_name = tour_number + " " + tab_number
+                        table_name = "%s %s" % (tour_number, tab_number)
                     sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, is_tournament, stat_dict, cards)

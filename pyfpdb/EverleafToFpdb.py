@@ -11,15 +11,15 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
 import sys
+import logging
 from HandHistoryConverter import *
-
 
 # Class for converting Everleaf HH format.
 
@@ -29,13 +29,11 @@ class Everleaf(HandHistoryConverter):
     re_SplitHands  = re.compile(r"\n\n+")
     re_GameInfo    = re.compile(u"^(Blinds )?(?P<currency>\$| €|)(?P<sb>[.0-9]+)/(?:\$| €)?(?P<bb>[.0-9]+) (?P<limit>NL|PL|) (?P<game>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
     re_HandInfo    = re.compile(u".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
-#    re_GameInfo    = re.compile(r".*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<LTYPE>(NL|PL)) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))")
-    #re_HandInfo    = re.compile(r".*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)", re.MULTILINE)
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(u"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(r"\[ (?P<CARDS>.+) \]")
-    
-    
+
+
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
@@ -48,7 +46,7 @@ follow :  whether to tail -f the input"""
         if autostart:
             self.start()
 
-    def compilePlayerRegexs(self,  hand):
+    def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
@@ -113,7 +111,7 @@ follow :  whether to tail -f the input"""
         structure = "" # nl, pl, cn, cp, fl
         game      = ""
         currency  = "USD" # USD, EUR
-        
+
         m = self.re_GameInfo.search(handText)
         if m == None:
             logging.debug("Gametype didn't match")
@@ -178,7 +176,6 @@ follow :  whether to tail -f the input"""
                        r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.handText,re.DOTALL)
 
         hand.addStreets(m)
-                
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
         # If this has been called, street is a street which gets dealt community cards by type hand
@@ -217,7 +214,7 @@ follow :  whether to tail -f the input"""
         else:
             #Not involved in hand
             hand.involved = False
-            
+
 
     def readAction(self, hand, street):
         logging.debug("readAction (%s)" % street)
@@ -265,7 +262,7 @@ follow :  whether to tail -f the input"""
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/Speed_Kuala_full.txt")
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/plo/Naos.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
     parser.add_option("-q", "--quiet",
@@ -282,4 +279,3 @@ if __name__ == "__main__":
 
     e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow)
 
-    

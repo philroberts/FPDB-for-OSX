@@ -172,7 +172,7 @@ class HandHistoryConverter(threading.Thread):
             return
 
         self.obs = self.obs.replace('\r\n', '\n')
-        self.gametype = self.determineGameType()
+        self.gametype = self.determineGameType(self.obs)
         if self.gametype == None:
             print "Unknown game type from file, aborting on this file."
             return
@@ -208,7 +208,7 @@ class HandHistoryConverter(threading.Thread):
             
             # Read actions in street order
             for street in hand.streetList: # go through them in order
-                print "DEBUG: ", street
+#                print "DEBUG: ", street
                 if hand.streets.group(street) is not None:
                     if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
                         self.readCommunityCards(hand, street) # read community cards
@@ -235,7 +235,7 @@ class HandHistoryConverter(threading.Thread):
         outfile.close()
         endtime = time.time()
         print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
-    
+
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
@@ -247,7 +247,7 @@ class HandHistoryConverter(threading.Thread):
     #   type  base limit
     # [ ring, hold, nl   , sb, bb ]
     # Valid types specified in docs/tabledesign.html in Gametypes
-    def determineGameType(self): abstract
+    def determineGameType(self, handText): abstract
 
     # Read any of:
     # HID       HandID
@@ -331,8 +331,8 @@ class HandHistoryConverter(threading.Thread):
         return hands
 
     def readFile(self):
-        """Read in_path into self.obs or self.doc"""
-        
+        """Read in path into self.obs or self.doc"""
+
         if(self.filetype == "text"):
             if self.in_path == '-':
                 # read from stdin

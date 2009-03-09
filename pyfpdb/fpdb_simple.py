@@ -399,59 +399,59 @@ def checkPositions(positions):
 def classifyLines(hand, category, lineTypes, lineStreets):
     currentStreet="predeal"
     done=False #set this to true once we reach the last relevant line (the summary, except rake, is all repeats)
-    for i in range (len(hand)):
-        if (done):
-            if (hand[i].find("[")==-1 or hand[i].find("mucked [")==-1):
+    for i, line in enumerate(hand):
+        if done:
+            if "[" not in line or "mucked [" not in line:
                 lineTypes.append("ignore")
-            else: #it's storing a mucked card
+            else:
                 lineTypes.append("cards")
-        elif (hand[i].startswith("Dealt to")):
+        elif line.startswith("Dealt to"):
             lineTypes.append("cards")
-        elif (i==0):
+        elif i == 0:
             lineTypes.append("header")
-        elif (hand[i].startswith("Seat ") and ((hand[i].find("in chips")!=-1) or (hand[i].find("($")!=-1))):
+        elif line.startswith("Seat ") and ( ("in chips" in line) or "($" in line):
             lineTypes.append("name")
-        elif (isActionLine(hand[i])):
+        elif isActionLine(line):
             lineTypes.append("action")
-            if (hand[i].find(" posts ")!=-1 or hand[i].find(" posts the ")!=-1):#need to set this here so the "action" of posting blinds is registered properly
+            if " posts " in line or " posts the " in line:
                 currentStreet="preflop"
-        elif (isWinLine(hand[i])):
+        elif isWinLine(line):
             lineTypes.append("win")
-        elif (hand[i].startswith("Total pot ") and hand[i].find("Rake")!=-1):
+        elif line.startswith("Total pot ") and "Rake" in line:
             lineTypes.append("rake")
             done=True
-        elif (hand[i]=="*** SHOW DOWN ***" or hand[i]=="*** SUMMARY ***"):
+        elif "*** SHOW DOWN ***" in line or "*** SUMMARY ***" in line:
             lineTypes.append("ignore")
             #print "in classifyLine, showdown or summary"
-        elif (hand[i].find(" antes ")!=-1 or hand[i].find(" posts the ante ")!=-1):
+        elif " antes " in line or " posts the ante " in line:
             lineTypes.append("ante")
-        elif (hand[i].startswith("*** FLOP *** [")):
+        elif line.startswith("*** FLOP *** ["):
             lineTypes.append("cards")
             currentStreet="flop"
-        elif (hand[i].startswith("*** TURN *** [")):
+        elif line.startswith("*** TURN *** ["):
             lineTypes.append("cards")
             currentStreet="turn"
-        elif (hand[i].startswith("*** RIVER *** [")):
+        elif line.startswith("*** RIVER *** ["):            
             lineTypes.append("cards")
             currentStreet="river"
-        elif (hand[i].startswith("*** 3")):
+        elif line.startswith("*** 3"):
             lineTypes.append("ignore")
             currentStreet=0
-        elif (hand[i].startswith("*** 4")):
+        elif line.startswith("*** 4"):
             lineTypes.append("ignore")
             currentStreet=1
-        elif (hand[i].startswith("*** 5")):
+        elif line.startswith("*** 5"):
             lineTypes.append("ignore")
             currentStreet=2
-        elif (hand[i].startswith("*** 6")):
+        elif line.startswith("*** 6"):
             lineTypes.append("ignore")
             currentStreet=3
-        elif (hand[i].startswith("*** 7") or hand[i]=="*** RIVER ***"):
+        elif line.startswith("*** 7") or line == "*** RIVER ***":
             lineTypes.append("ignore")
             currentStreet=4
-        elif (hand[i].find(" shows [")!=-1):
+        elif " shows [" in line:
             lineTypes.append("cards")
-        elif (hand[i].startswith("Table '")):
+        elif line.startswith("Table '"):
             lineTypes.append("table")
         else:
             raise FpdbError("unrecognised linetype in:"+hand[i])

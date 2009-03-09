@@ -17,6 +17,7 @@
 ########################################################################
 
 import sys
+import logging
 from HandHistoryConverter import *
 
 # FullTilt HH Format converter
@@ -30,7 +31,7 @@ class FullTilt(HandHistoryConverter):
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
-    
+
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
@@ -43,8 +44,7 @@ follow :  whether to tail -f the input"""
         if autostart:
             self.start()
 
-
-    def compilePlayerRegexs(self,  players):
+    def compilePlayerRegexs(self, players):
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
             self.compiledPlayers = players
@@ -130,7 +130,7 @@ follow :  whether to tail -f the input"""
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
-        
+
         if hand.gametype[1] in ("hold", "omaha"):
             m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
@@ -172,7 +172,8 @@ follow :  whether to tail -f the input"""
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
-        print "DEBUG: Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN'))
+        logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+        
         hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readButton(self, hand):
@@ -280,7 +281,7 @@ follow :  whether to tail -f the input"""
                 cards = m.group('CARDS')
                 cards = cards.split(' ')
                 hand.addShownCards(cards=cards, player=m.group('PNAME'))
-    
+
 
 if __name__ == "__main__":
     parser = OptionParser()

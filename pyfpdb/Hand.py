@@ -43,9 +43,8 @@ class Hand:
         self.players = []
         self.posted = []
         self.involved = True
-        
-        
-        # Collections indexed by street names        
+
+        # Collections indexed by street names
         self.bets = {}
         self.lastBet = {}
         self.streets = {}
@@ -62,7 +61,7 @@ class Hand:
         # Collections indexed by player names
         self.holecards = {} # dict from player names to dicts by street ... of tuples ... of holecards
         self.stacks = {}
-        self.collected = [] #list of ? 
+        self.collected = [] #list of ?
         self.collectees = {} # dict from player names to amounts collected (?)
 
         # Sets of players
@@ -102,7 +101,6 @@ If a player has None chips he won't be added."""
             logging.debug("markStreets:\n"+ str(self.streets))
         else:
             logging.error("markstreets didn't match")
-    
 
 #def addHoleCards -- to Holdem subclass
 
@@ -141,7 +139,6 @@ If a player has None chips he won't be added."""
         # Player in the big blind posts
         #   - this is a call of 1 sb and a raise to 1 bb
         # 
-
         
         logging.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
@@ -158,7 +155,6 @@ If a player has None chips he won't be added."""
                 self.lastBet['PREFLOP'] = Decimal(self.bb)
         self.posted = self.posted + [[player,blindtype]]
         #print "DEBUG: self.posted: %s" %(self.posted)
-
 
 
 
@@ -395,7 +391,7 @@ class HoldemOmahaHand(Hand):
         hhc.readShownCards(self)
         self.totalPot() # finalise it (total the pot)
         hhc.getRake(self)
-    
+
     def addHoleCards(self, cards, player):
         """\
 Assigns observed holecards to a player.
@@ -692,11 +688,9 @@ closed    likewise, but known only to player
                 print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
-                
-                
-                
-                
-                
+
+
+
 class Pot(object):
 
 

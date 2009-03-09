@@ -3,7 +3,7 @@
 
 Handles HUD configuration files.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009,  Ray E. Barker
 
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -33,15 +33,31 @@ import xml.dom.minidom
 from xml.dom.minidom import Node
 
 class Layout:
-    def __init__(self, max):
-        self.max = int(max)
-        self.location = []
-        for i in range(self.max + 1): self.location.append(None)
+    def __init__(self, node):
+
+        self.max      = int( node.getAttribute('max') )
+        if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
+        self.width    = int( node.getAttribute('width') )
+        self.height   = int( node.getAttribute('height') )
         
+        self.location = []
+        self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
+
+
+        for location_node in node.getElementsByTagName('location'):
+            if location_node.getAttribute('seat') != "":
+                self.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+            elif location_node.getAttribute('common') != "":
+                self.common = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+
     def __str__(self):
-        temp = "    Layout = %d max, width= %d, height = %d, fav_seat = %d\n" % (self.max, self.width, self.height, self.fav_seat)
+        temp = "    Layout = %d max, width= %d, height = %d" % (self.max, self.width, self.height)
+        if hasattr(self, 'fav_seat'): temp = temp + ", fav_seat = %d\n" % self.fav_seat
+        else: temp = temp + "\n"
+        if hasattr(self, "common"):
+            temp = temp + "        Common = (%d, %d)\n" % (self.common[0], self.common[1])
         temp = temp + "        Locations = "
-        for i in range(1, len(self.location)):
+        for i in xrange(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
         
         return temp + "\n"
@@ -64,30 +80,23 @@ class Site:
         self.font_size    = node.getAttribute("font_size")
         self.use_frames    = node.getAttribute("use_frames")
         self.layout       = {}
-        
+
         for layout_node in node.getElementsByTagName('layout'):
-            max         = int( layout_node.getAttribute('max') )
-            lo = Layout(max)
-            lo.fav_seat = int( layout_node.getAttribute('fav_seat') )
-            lo.width    = int( layout_node.getAttribute('width') )
-            lo.height   = int( layout_node.getAttribute('height') )
-            
-            for location_node in layout_node.getElementsByTagName('location'):
-                lo.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
-                
+            lo = Layout(layout_node)
             self.layout[lo.max] = lo
 
     def __str__(self):
-        temp = "Site = " + self.site_name + "\n"
+        temp = "Site = %s\n" % self.site_name
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
+            temp = "%s    %s = %s\n" % (temp, key, str(value))
             temp = temp + '    ' + key + " = " + str(value) + "\n"
             
         for layout in self.layout:
-            temp = temp + "%s" % self.layout[layout]
+            temp = "%s%s" % (temp, self.layout[layout])
             
         return temp
         
@@ -105,7 +114,12 @@ class Game:
         self.db        = node.getAttribute("db")
         self.rows      = int( node.getAttribute("rows") )
         self.cols      = int( node.getAttribute("cols") )
-        self.aux       = node.getAttribute("aux")
+
+        aux_text = node.getAttribute("aux")
+        aux_list = aux_text.split(',')
+        for i in range(0, len(aux_list)):
+            aux_list[i] = aux_list[i].strip()
+        self.aux = aux_list
 
         self.stats     = {}
         for stat_node in node.getElementsByTagName('stat'):
@@ -123,14 +137,10 @@ class Game:
             self.stats[stat.stat_name] = stat
             
     def __str__(self):
-        temp = "Game = " + self.game_name + "\n"
-        temp = temp + "    db = %s\n" % self.db
-        temp = temp + "    rows = %d\n" % self.rows
-        temp = temp + "    cols = %d\n" % self.cols
-        temp = temp + "    aux = %s\n" % self.aux
+        temp = "Game = %s\n    db = %s\n    rows = %d\n    cols = %d\n    aux = %s\n" % (self.game_name, self.db, self.rows, self.cols, self.aux)
         
         for stat in self.stats.keys():
-            temp = temp + "%s" % self.stats[stat]
+            temp = "%s%s" % (temp, self.stats[stat])
             
         return temp
              
@@ -156,21 +166,23 @@ class Aux_window:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
-#        self.name    = node.getAttribute("mw_name")
-#        self.cards   = node.getAttribute("deck")
-#        self.card_wd = node.getAttribute("card_wd")
-#        self.card_ht = node.getAttribute("card_ht")
-#        self.rows    = node.getAttribute("rows")
-#        self.cols    = node.getAttribute("cols")
-#        self.format  = node.getAttribute("stud")
+
+        self.layout = {}
+        for layout_node in node.getElementsByTagName('layout'):
+            lo = Layout(layout_node)
+            self.layout[lo.max] = lo
 
     def __str__(self):
         temp = 'Aux = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
+            if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + value + "\n"
+
+        for layout in self.layout:
+            temp = temp + "%s" % self.layout[layout]
         return temp
 
 class Popup:
@@ -392,7 +404,7 @@ class Config:
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
         if layout_node == None: return
-        for i in range(1, max + 1):
+        for i in xrange(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
@@ -472,37 +484,29 @@ class Config:
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        if self.supported_sites[site].hudopacity == "":
-            colors['hudopacity'] = 0.90
-        else:
-            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if self.supported_sites[site].hudbgcolor == "":
-            colors['hudbgcolor'] = "#FFFFFF"
-        else:
-            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if self.supported_sites[site].hudfgcolor == "":
-            colors['hudfgcolor'] = "#000000"
-        else:
-            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
+        colors['hudopacity'] = float(self.supported_sites[site].hudopacity) if self.supported_sites[site].hudopacity != "" else 0.90
+        colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor if self.supported_sites[site].hudbgcolor != "" else "#FFFFFF"
+        colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor if self.supported_sites[site].hudfgcolor != "" else "#000000"
         return colors
     
     def get_default_font(self, site = 'PokerStars'):
-        (font, font_size) = ("Sans", "8")
-        if self.supported_sites[site].font == "":
-            font = "Sans"
-        else:
-            font = self.supported_sites[site].font
-
-        if self.supported_sites[site].font_size == "":
-            font_size = "8"
-        else:
-            font_size = self.supported_sites[site].font_size
+        font = self.supported_sites[site].font if self.supported_sites[site].font != "" else "Sans"
+        font_size = self.supported_sites[site].font_size if self.supported_sites[site].font != "" else "8"
         return (font, font_size)
 
     def get_locations(self, site = "PokerStars", max = "8"):
-        
         try:
             locations = self.supported_sites[site].layout[max].location
+        except:
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+                          (586, 393), (421, 440), (267, 440), (  0, 361),
+                          (  0, 280), (121, 280), ( 46,  30) )
+        return locations
+
+    def get_aux_locations(self, aux = "mucked", max = "9"):
+        
+        try:
+            locations = self.aux_windows[aux].layout[max].location
         except:
             locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
                           (586, 393), (421, 440), (267, 440), (  0, 361),
@@ -579,7 +583,7 @@ class Config:
     def get_aux_parameters(self, name):
         """Gets a dict of mucked window parameters from the named mw."""
         param = {}
-        if self.aux_windows.has_key(name):
+        if name in self.aux_windows:
             for key in dir(self.aux_windows[name]):
                 if key.startswith('__'): continue
                 value = getattr(self.aux_windows[name], key)
@@ -592,7 +596,7 @@ class Config:
     def get_game_parameters(self, name):
         """Get the configuration parameters for the named game."""
         param = {}
-        if self.supported_games.has_key(name):
+        if name in self.supported_games:
             param['game_name'] = self.supported_games[name].game_name
             param['db']        = self.supported_games[name].db
             param['rows']      = self.supported_games[name].rows
@@ -603,7 +607,7 @@ class Config:
     def get_supported_games(self):
         """Get the list of supported games."""
         sg = []
-        for game in c.supported_games.keys():
+        for game in c.supported_games:
             sg.append(c.supported_games[game].game_name)
         return sg
 
@@ -660,6 +664,8 @@ if __name__== "__main__":
     print "locs   = ", c.get_locations("PokerStars", 8)
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
+
+    print "mucked locations =", c.get_aux_locations('mucked', 9)
             
     for site in c.supported_sites.keys():
         print "site = ", site,

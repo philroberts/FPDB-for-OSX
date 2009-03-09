@@ -46,9 +46,15 @@ class GuiGraphViewer (threading.Thread):
         return self.mainHBox
     #end def get_vbox
 
+    def clearGraphData(self):
+        self.fig.clf()
+        if self.canvas is not None:
+            self.canvas.destroy()
+
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+
     def generateGraph(self, widget, data):
-        try: self.canvas.destroy()
-        except AttributeError: pass
+        self.clearGraphData()
 
         sitenos = []
         playerids = []
@@ -72,7 +78,6 @@ class GuiGraphViewer (threading.Thread):
             print "No player ids found"
             return
 
-        self.fig = Figure(figsize=(5,4), dpi=100)
 
         #Set graph properties
         self.ax = self.fig.add_subplot(111)
@@ -104,7 +109,6 @@ class GuiGraphViewer (threading.Thread):
             #Draw plot
             self.ax.plot(line,)
 
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
             self.graphBox.add(self.canvas)
             self.canvas.show()
     #end of def showClicked
@@ -375,6 +379,9 @@ class GuiGraphViewer (threading.Thread):
 
         self.leftPanelBox.show()
         self.graphBox.show()
+
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        self.canvas = None
 
 #################################
 #
