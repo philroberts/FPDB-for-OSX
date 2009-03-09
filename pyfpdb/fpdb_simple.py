@@ -507,20 +507,7 @@ def convertBlindBet(actionTypes, actionAmounts):
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 #todo: make this use convertCardValuesBoard
 def convertCardValues(arr):
-    for i in range (len(arr)):
-        for j in range (len(arr[i])):
-            if (arr[i][j]=="A"):
-                arr[i][j]=14
-            elif (arr[i][j]=="K"):
-                arr[i][j]=13
-            elif (arr[i][j]=="Q"):
-                arr[i][j]=12
-            elif (arr[i][j]=="J"):
-                arr[i][j]=11
-            elif (arr[i][j]=="T"):
-                arr[i][j]=10
-            else:
-                arr[i][j]=int(arr[i][j])
+    map(convertCardValuesBoard, arr)
 #end def convertCardValues
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
@@ -542,7 +529,7 @@ def convertCardValuesBoard(arr):
  
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
 def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
-    for i in range(seats):#create second dimension arrays
+    for i in xrange(seats):#create second dimension arrays
         tmp=[]
         card_values.append(tmp)
         tmp=[]
@@ -567,7 +554,7 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
         actionNos.append(tmp)
         tmp=[]
         actionTypeByNo.append(tmp)
-        for j in range (seats): #second dimension arrays: players
+        for j in xrange (seats): #second dimension arrays: players
             tmp=[]
             action_types[i].append(tmp)
             tmp=[]
@@ -579,8 +566,8 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
     if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
         pass
     elif (category=="razz" or category=="studhi" or category=="studhilo"):#need to fill card arrays.
-        for i in range(seats):
-            for j in range (7):
+        for i in xrange(seats):
+            for j in xrange (7):
                 card_values[i].append(0)
                 card_suits[i].append("x")
     else:
@@ -605,7 +592,7 @@ def fillCardArrays(player_count, base, category, card_values, card_suits):
     else:
         raise fpdb_simple.FpdbError ("invalid category:", category)
     
-    for i in range (player_count):
+    for i in xrange (player_count):
         while (len(card_values[i])<cardCount):
             card_values[i].append(0)
             card_suits[i].append("x")
@@ -618,16 +605,16 @@ def filterAnteBlindFold(site,hand):
     #todo: in tourneys this should not be removed but
     #print "start of filterAnteBlindFold"
     pre3rd=[]
-    for i in range (len(hand)):
+    for i in xrange (len(hand)):
         if (hand[i].startswith("*** 3") or hand[i].startswith("*** HOLE")):
             pre3rd=hand[0:i]
     
     foldeeName=None
-    for i in range (len(pre3rd)):
+    for i in xrange (len(pre3rd)):
         if (pre3rd[i].endswith("folds") or pre3rd[i].endswith("is sitting out") or pre3rd[i].endswith(" stands up")): #found ante fold or timeout
             pos=pre3rd[i].find (" folds")
             foldeeName=pre3rd[i][0:pos]
-            if pos==-1 and pre3rd[i].find(" in chips)")==-1:
+            if pos == -1 and " in chips)" not in pre3rd[i]:
                 pos=pre3rd[i].find (" is sitting out")
                 foldeeName=pre3rd[i][0:pos]
             if pos==-1:
@@ -653,7 +640,7 @@ def filterAnteBlindFold(site,hand):
 #removes useless lines as well as trailing spaces
 def filterCrap(site, hand, isTourney):
     #remove two trailing spaces at end of line
-    for i in range (len(hand)):
+    for i in xrange (len(hand)):
         if (hand[i][-1]==' '):
             hand[i]=hand[i][:-1]
         if (hand[i][-1]==' '):
@@ -662,7 +649,7 @@ def filterCrap(site, hand, isTourney):
     #print "hand after trailing space removal in filterCrap:",hand
     #general variable position word filter/string filter
     toRemove=[]
-    for i in range (len(hand)):
+    for i in xrange (len(hand)):
         if (hand[i].startswith("Board [")):
             toRemove.append(hand[i])
         elif (hand[i].find(" out of hand ")!=-1):
@@ -759,7 +746,7 @@ def filterCrap(site, hand, isTourney):
                 toRemove.append(hand[i])
  
     
-    for i in range (len(toRemove)):
+    for i in xrange (len(toRemove)):
         #print "removing in filterCr:",toRemove[i]
         hand.remove(toRemove[i])
     
@@ -1122,7 +1109,7 @@ def parseCashesAndSeatNos(lines, site):
     """parses the startCashes and seatNos of each player out of the given lines and returns them as a dictionary of two arrays"""
     cashes = []
     seatNos = []
-    for i in range (len(lines)):
+    for i in xrange (len(lines)):
         pos2=lines[i].find(":")
         seatNos.append(int(lines[i][5:pos2]))
         
@@ -1200,7 +1187,7 @@ def parseHandStartTime(topline, site):
 #parses the names out of the given lines and returns them as an array
 def parseNames(lines):
     result = []
-    for i in range (len(lines)):
+    for i in xrange (len(lines)):
         pos1=lines[i].find(":")+2
         pos2=lines[i].rfind("(")-1
         tmp=lines[i][pos1:pos2]
@@ -1215,12 +1202,12 @@ def parseNames(lines):
 def parsePositions (hand, names):
 	#prep array
 	positions=[]
-	for i in range(len(names)):
+	for i in xrange(len(names)):
 		positions.append(-1)
 	
 	#find blinds
 	sb,bb=-1,-1
-	for i in range (len(hand)):
+	for i in xrange (len(hand)):
 		if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
 			sb=hand[i]
 			#print "sb:",sb
@@ -1283,7 +1270,7 @@ def parsePositions (hand, names):
 			arraypos-=1
 			distFromBtn+=1
 			
-	for i in range (len(names)):
+	for i in xrange (len(names)):
 		if positions[i]==-1:
 			print "parsePositions names:",names
 			print "result:",positions
