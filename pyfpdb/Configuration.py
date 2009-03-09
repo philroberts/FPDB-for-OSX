@@ -477,35 +477,17 @@ class Config:
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        if self.supported_sites[site].hudopacity == "":
-            colors['hudopacity'] = 0.90
-        else:
-            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if self.supported_sites[site].hudbgcolor == "":
-            colors['hudbgcolor'] = "#FFFFFF"
-        else:
-            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if self.supported_sites[site].hudfgcolor == "":
-            colors['hudfgcolor'] = "#000000"
-        else:
-            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
+        colors['hudopacity'] = float(self.supported_sites[site].hudopacity) if self.supported_sites[site].hudopacity != "" else 0.90
+        colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor if self.supported_sites[site].hudbgcolor != "" else "#FFFFFF"
+        colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor if self.supported_sites[site].hudfgcolor != "" else "#000000"
         return colors
     
     def get_default_font(self, site = 'PokerStars'):
-        (font, font_size) = ("Sans", "8")
-        if self.supported_sites[site].font == "":
-            font = "Sans"
-        else:
-            font = self.supported_sites[site].font
-
-        if self.supported_sites[site].font_size == "":
-            font_size = "8"
-        else:
-            font_size = self.supported_sites[site].font_size
+        font = self.supported_sites[site].font if self.supported_sites[site].font != "" else "Sans"
+        font_size = self.supported_sites[site].font_size if self.supported_sites[site].font != "" else "8"
         return (font, font_size)
 
     def get_locations(self, site = "PokerStars", max = "8"):
-        
         try:
             locations = self.supported_sites[site].layout[max].location
         except:
@@ -584,7 +566,7 @@ class Config:
     def get_aux_parameters(self, name):
         """Gets a dict of mucked window parameters from the named mw."""
         param = {}
-        if self.aux_windows.has_key(name):
+        if name in self.aux_windows:
             for key in dir(self.aux_windows[name]):
                 if key.startswith('__'): continue
                 value = getattr(self.aux_windows[name], key)
@@ -597,7 +579,7 @@ class Config:
     def get_game_parameters(self, name):
         """Get the configuration parameters for the named game."""
         param = {}
-        if self.supported_games.has_key(name):
+        if name in self.supported_games:
             param['game_name'] = self.supported_games[name].game_name
             param['db']        = self.supported_games[name].db
             param['rows']      = self.supported_games[name].rows
@@ -608,7 +590,7 @@ class Config:
     def get_supported_games(self):
         """Get the list of supported games."""
         sg = []
-        for game in c.supported_games.keys():
+        for game in c.supported_games:
             sg.append(c.supported_games[game].game_name)
         return sg
 
