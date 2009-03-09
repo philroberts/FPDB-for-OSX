@@ -320,22 +320,22 @@ class Flop_Mucked(Aux_Window):
         adj = self.hud.adj_seats(0, self.config)
         loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
         
-#    make a scratch pixbuf 7 cards wide for creating our images
-        self.scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, 
-                                      7* int(self.params['card_wd']), int(self.params['card_ht']))
-
-#    create the stat windows
-        self.m_windows = {}      # windows to put the card images
+        self.m_windows = {}      # windows to put the card images in
         self.eb = {}             # event boxes so we can interact with the mucked cards
-        self.seen_cards = {}     # pixbufs to stash the cards in
+        self.seen_cards = {}     # image objects to stash the cards in
 
-        for i in range(1, self.hud.max + 1):           
-            (x, y) = loc[adj[i]]
+        for i in (range(1, self.hud.max + 1) + ['common']):           
+            if i == 'common':
+                (x, y) = self.params['layout'][self.hud.max].common
+            else:
+                (x, y) = loc[adj[i]]
             self.m_windows[i] = gtk.Window()
-            self.m_windows[i].set_decorated(0)
+            self.m_windows[i].set_decorated(False)
             self.m_windows[i].set_property("skip-taskbar-hint", True)
             self.m_windows[i].set_transient_for(self.hud.main_window)
+            self.m_windows[i].set_focus_on_map(False)
             self.eb[i] = gtk.EventBox()
+            self.eb[i].connect("button_press_event", self.button_press_cb)
             self.m_windows[i].add(self.eb[i])
             self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[('B', 'H')])
             self.eb[i].add(self.seen_cards[i])
@@ -345,12 +345,17 @@ class Flop_Mucked(Aux_Window):
             self.m_windows[i].hide()
 
     def update_data(self, new_hand_id, db_connection):
-        pass
+        cards = db_connection.get_common_cards(new_hand_id)
+        self.hud.cards['common'] = cards['common']
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
+        pos = {}
+        for i, w in self.m_windows.iteritems():
+            pos[i] = w.get_position()  # I hate this. I don't know why I have to save position and then move back
+        self.hide_mucked_cards()
+        displayed_cards = False
         for (i, cards) in self.hud.cards.iteritems():
-            pos = self.m_windows[i].get_position()  # need this to reposition later
             if self.has_cards(cards):
 #    scratch is a working pixbuf, used to assemble the image
                 scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
@@ -364,15 +369,18 @@ class Flop_Mucked(Aux_Window):
                                             scratch, x, 0)
                     x = x + int(self.params['card_wd'])
                 self.seen_cards[i].set_from_pixbuf(scratch)
-                self.m_windows[i].move(pos[0], pos[1])  # I don't know why I need this
-                self.m_windows[i].show_all()
-                gobject.timeout_add(int(1000*float(self.params['timeout'])), self.hide_mucked_cards)
+#                self.m_windows[i].show_all()
+                self.m_windows[i].move(pos[i][0], pos[i][1])   # here is where I move back
+                self.m_windows[i].present()
+                displayed_cards = True
+
+        if displayed_cards and float(self.params['timeout']) > 0:
+            gobject.timeout_add(int(1000*float(self.params['timeout'])), self.hide_mucked_cards)
 
     def destroy(self):
         """Destroy all of the mucked windows."""
         for w in self.m_windows.values():
             w.destroy()
-
 
     def hide_mucked_cards(self):
         """Hide the mucked card windows."""
@@ -380,6 +388,18 @@ class Flop_Mucked(Aux_Window):
         for w in self.m_windows.values():
             w.hide()
         return False  # this tells the system to NOT run this timeout again
+
+    def button_press_cb(self, widget, event, *args):
+        """Handle button clicks in the event boxes."""
+        if event.button == 3:   # right button event
+            pass
+
+        elif event.button == 2:   # middle button event
+            self.hide_mucked_cards()
+
+        elif event.button == 1:   # left button event
+            window = widget.get_parent()
+            window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
 if __name__== "__main__":
     
