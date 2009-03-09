@@ -22,6 +22,7 @@ import fpdb_save_to_db
 
 #parses a holdem hand
 def mainParser(backend, db, cursor, site, category, hand):
+    category=fpdb_simple.recogniseCategory(hand[0])
     if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
         base="hold"
     else:

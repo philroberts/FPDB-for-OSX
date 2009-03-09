@@ -32,14 +32,30 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+      
 class Layout:
-    def __init__(self, max):
-        self.max = int(max)
+    def __init__(self, node):
+
+        self.max      = int( node.getAttribute('max') )
+        if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
+        self.width    = int( node.getAttribute('width') )
+        self.height   = int( node.getAttribute('height') )
+        
         self.location = []
         self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
-        
+
+        for location_node in node.getElementsByTagName('location'):
+            if location_node.getAttribute('seat') != "":
+                self.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+            elif location_node.getAttribute('common') != "":
+                self.common = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+
     def __str__(self):
-        temp = "    Layout = %d max, width= %d, height = %d, fav_seat = %d\n" % (self.max, self.width, self.height, self.fav_seat)
+        temp = "    Layout = %d max, width= %d, height = %d" % (self.max, self.width, self.height)
+        if hasattr(self, 'fav_seat'): temp = temp + ", fav_seat = %d\n" % self.fav_seat
+        else: temp = temp + "\n"
+        if hasattr(self, "common"):
+            temp = temp + "        Common = (%d, %d)\n" % (self.common[0], self.common[1])
         temp = temp + "        Locations = "
         for i in xrange(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
@@ -64,17 +80,17 @@ class Site:
         self.font_size    = node.getAttribute("font_size")
         self.use_frames    = node.getAttribute("use_frames")
         self.layout       = {}
-        
+
         for layout_node in node.getElementsByTagName('layout'):
             max         = int( layout_node.getAttribute('max') )
             lo = Layout(max)
             lo.fav_seat = int( layout_node.getAttribute('fav_seat') )
             lo.width    = int( layout_node.getAttribute('width') )
             lo.height   = int( layout_node.getAttribute('height') )
-            
+             
             for location_node in layout_node.getElementsByTagName('location'):
                 lo.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
-                
+                 
             self.layout[lo.max] = lo
 
     def __str__(self):
@@ -158,21 +174,23 @@ class Aux_window:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
-#        self.name    = node.getAttribute("mw_name")
-#        self.cards   = node.getAttribute("deck")
-#        self.card_wd = node.getAttribute("card_wd")
-#        self.card_ht = node.getAttribute("card_ht")
-#        self.rows    = node.getAttribute("rows")
-#        self.cols    = node.getAttribute("cols")
-#        self.format  = node.getAttribute("stud")
+
+        self.layout = {}
+        for layout_node in node.getElementsByTagName('layout'):
+            lo = Layout(layout_node)
+            self.layout[lo.max] = lo
 
     def __str__(self):
         temp = 'Aux = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
+            if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + value + "\n"
+
+        for layout in self.layout:
+            temp = temp + "%s" % self.layout[layout]
         return temp
 
 class Popup:
@@ -493,6 +511,16 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
+    def get_aux_locations(self, aux = "mucked", max = "9"):
+        
+        try:
+            locations = self.aux_windows[aux].layout[max].location
+        except:
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+                          (586, 393), (421, 440), (267, 440), (  0, 361),
+                          (  0, 280), (121, 280), ( 46,  30) )
+        return locations
+
     def get_supported_sites(self):
         """Returns the list of supported sites."""
         return self.supported_sites.keys()
@@ -644,6 +672,8 @@ if __name__== "__main__":
     print "locs   = ", c.get_locations("PokerStars", 8)
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
+
+    print "mucked locations =", c.get_aux_locations('mucked', 9)
             
     for site in c.supported_sites.keys():
         print "site = ", site,
