@@ -35,6 +35,9 @@ class GuiPositionalStats (threading.Thread):
         self.activesite = data
         print "DEBUG: activesite set to %s" %(self.activesite)
 
+    def cardCallback(self, widget, data=None):
+        print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+
     def refreshStats(self, widget, data):
         try: self.stats_table.destroy()
         except AttributeError: pass
@@ -110,6 +113,27 @@ class GuiPositionalStats (threading.Thread):
         vbox.pack_start(hbox, False, True, 0)
         hbox.show()
 
+    def fillCardsFrame(self, vbox):
+        hbox1 = gtk.HBox(True,0)
+        hbox1.show()
+        vbox.pack_start(hbox1, True, True, 0)
+
+        cards = [ "A", "K","Q","J","T","9","8","7","6","5","4","3","2" ]
+
+        for j in range(0, len(cards)):
+            hbox1 = gtk.HBox(True,0)
+            hbox1.show()
+            vbox.pack_start(hbox1, True, True, 0)
+            for i in range(0, len(cards)):
+                if i < (j + 1):
+                    suit = "o"
+                else:
+                    suit = "s"
+                button = gtk.ToggleButton("%s%s%s" %(cards[i], cards[j], suit))
+                button.connect("toggled", self.cardCallback, "%s%s%s" %(cards[i], cards[j], suit))
+                hbox1.pack_start(button, True, True, 0)
+                button.show()
+
     def createPlayerLine(self, hbox, site, player):
         if(self.buttongroup == None):
             button = gtk.RadioButton(None, site + " id:")
@@ -163,6 +187,15 @@ class GuiPositionalStats (threading.Thread):
 
         self.fillPlayerFrame(vbox)
         playerFrame.add(vbox)
+
+        cardsFrame = gtk.Frame("Cards:")
+        cardsFrame.set_label_align(0.0, 0.0)
+        cardsFrame.show()
+        vbox = gtk.VBox(False, 0)
+        vbox.show()
+
+        self.fillCardsFrame(vbox)
+        cardsFrame.add(vbox)
 
         statsFrame = gtk.Frame("Stats:")
         statsFrame.set_label_align(0.0, 0.0)
