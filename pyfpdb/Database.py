@@ -132,13 +132,15 @@ class Database:
     def convert_cards(self, d):
         ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
         cards = ""
-        for i in range(1, 8):
-            if d['card' + str(i) + 'Value'] == None:
+        for i in xrange(1, 8):
+            cv = "card%dValue" % i
+            if d[cv] == None:
                 break
-            elif d['card' + str(i) + 'Value'] == 0:
-                cards += "xx"
+            elif d[cv] == 0:
+                cards = "%sxx" % cards
             else:
-                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
+                cs = "card%dSuit" % i
+                cards = "%s%s%s" % (cards, ranks[d[cv]], cs)
         return cards
 
     def get_action_from_hand(self, hand_no):

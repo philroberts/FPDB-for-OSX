@@ -98,8 +98,7 @@ class Hud:
 #	Set up a main window for this this instance of the HUD
         self.main_window = gtk.Window()
         self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_title(self.table.name + " FPDBHUD")
-#        self.main_window.destroyhandler = self.main_window.connect("destroy", self.kill_hud)
+        self.main_window.set_title("%s FPDBHUD" % (self.table.name))
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
 
@@ -171,7 +170,7 @@ class Hud:
             self.main_window.move(x, y)
             adj = self.adj_seats(self.hand, self.config)
             loc = self.config.get_locations(self.table.site, self.max)
-            for i in range(1, self.max + 1):
+            for i in xrange(1, self.max + 1):
                 (x, y) = loc[adj[i]]
                 if i in self.stat_windows:
                     self.stat_windows[i].relocate(x, y)
@@ -190,18 +189,15 @@ class Hud:
 #    kill all stat_windows, popups and aux_windows in this HUD
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
-            for p in s.popups:
-                s.kill_popup(p)
-            s.window.destroy()
-            self.stat_windows = {}
+            s.kill_popups()
+            s.window.destroy()    
+        self.stat_windows = {}
 #    also kill any aux windows
-        for m in self.aux_windows:
-            m.destroy()
+        map(lambda m: m.destroy(), self.aux_windows)
         self.aux_windows = []
 
     def reposition_windows(self, *args):
-        for w in self.stat_windows:
-            self.stat_windows[w].window.move(self.stat_windows[w].x, self.stat_windows[w].y)
+        map(lambda x: x.window.move(x.x, x.y), self.stat_windows)
         return True
 
     def debug_stat_windows(self, *args):
@@ -220,7 +216,7 @@ class Hud:
 
     def adj_seats(self, hand, config):
         
-        adj = range(0, self.max + 1) # default seat adjustments = no adjustment
+        adj = xrange(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         try:
             sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
@@ -230,7 +226,7 @@ class Hud:
 #                actual_seat = self.db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
                 actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
                 sys.stderr.write("found actual seat = %d\n" % actual_seat)
-                for i in range(0, self.max + 1):
+                for i in xrange(0, self.max + 1):
                     j = actual_seat + i
                     if j > self.max: j = j - self.max
                     adj[j] = fav_seat + i
@@ -241,7 +237,7 @@ class Hud:
         return adj
 
     def get_actual_seat(self, name):
-        for key in self.stat_dict.keys():
+        for key in self.stat_dict:
             if self.stat_dict[key]['screen_name'] == name:
                 return self.stat_dict[key]['seat']
         sys.stderr.write("Error finding actual seat.\n")
@@ -263,7 +259,7 @@ class Hud:
         loc = self.config.get_locations(self.table.site, self.max)
 
 #    create the stat windows
-        for i in range(1, self.max + 1):           
+        for i in xrange(1, self.max + 1):           
             (x, y) = loc[adj[i]]
             if i in self.stat_windows:
                 self.stat_windows[i].relocate(x, y)
@@ -280,7 +276,7 @@ class Hud:
                                                font = self.font)
 
         self.stats = []
-        for i in range(0, config.supported_games[self.poker_game].rows + 1):
+        for i in xrange(0, config.supported_games[self.poker_game].rows + 1):
             row_list = [''] * config.supported_games[self.poker_game].cols
             self.stats.append(row_list)
         for stat in config.supported_games[self.poker_game].stats:
@@ -304,8 +300,8 @@ class Hud:
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
                 
-            for r in range(0, config.supported_games[self.poker_game].rows):
-                for c in range(0, config.supported_games[self.poker_game].cols):
+            for r in xrange(0, config.supported_games[self.poker_game].rows):
+                for c in xrange(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(self.stat_dict, player = self.stat_dict[s]['player_id'], stat = self.stats[r][c])
                     statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
@@ -369,6 +365,10 @@ class Stat_Window:
     def kill_popup(self, popup):
         popup.window.destroy()
         self.popups.remove(popup)
+        
+    def kill_popups(self):
+        map(lambda x: x.window.destroy(), self.popups)
+        self.popups = { }
 
     def relocate(self, x, y):
         self.x = x + self.table.x
@@ -403,35 +403,38 @@ class Stat_Window:
         self.e_box = []
         self.frame = []
         self.label = []
-        for r in range(self.game.rows):
-            if self.useframes:
+        usegtkframes = self.useframes
+        e_box = self.e_box
+        label = self.label
+        for r in xrange(self.game.rows):
+            if usegtkframes:
                 self.frame.append([])
-            self.e_box.append([])
-            self.label.append([])
-            for c in range(self.game.cols):
-                if self.useframes:
+            e_box.append([])
+            label.append([])
+            for c in xrange(self.game.cols):
+                if usegtkframes:
                     self.frame[r].append( gtk.Frame() )
-                self.e_box[r].append( gtk.EventBox() )
+                e_box[r].append( gtk.EventBox() )
                 
-                self.e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                self.e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
+                e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
                 
-                Stats.do_tip(self.e_box[r][c], 'stuff')
-                if self.useframes:
+                Stats.do_tip(e_box[r][c], 'stuff')
+                if usegtkframes:
                     self.grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
-                    self.frame[r][c].add(self.e_box[r][c])
+                    self.frame[r][c].add(e_box[r][c])
                 else:
-                    self.grid.attach(self.e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
-                self.label[r].append( gtk.Label('xxx') )
+                    self.grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                label[r].append( gtk.Label('xxx') )
                 
-                if self.useframes:
+                if usegtkframes:
                     self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                self.label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-                self.label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
+                label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
+                label[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
 
-                self.e_box[r][c].add(self.label[r][c])
-                self.e_box[r][c].connect("button_press_event", self.button_press_cb)
-                self.label[r][c].modify_font(font)
+                e_box[r][c].add(self.label[r][c])
+                e_box[r][c].connect("button_press_event", self.button_press_cb)
+                label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
         
@@ -475,8 +478,8 @@ class Popup_window:
 #    figure out the row, col address of the click that activated the popup
         row = 0
         col = 0
-        for r in range(0, stat_window.game.rows):
-            for c in range(0, stat_window.game.cols):
+        for r in xrange(0, stat_window.game.rows):
+            for c in xrange(0, stat_window.game.cols):
                 if stat_window.e_box[r][c] == parent:
                     row = r
                     col = c
@@ -557,8 +560,11 @@ class Popup_window:
         
         for w in tl_windows:
             if w[1] == unique_name:
-                win32gui.SetWindowPos(w[0], win32con.HWND_TOPMOST, 0, 0, 0, 0, win32con.SWP_NOMOVE|win32con.SWP_NOSIZE)
-
+                window.set_transient_for(self.parent.main_window)               
+                style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
+                style |= win32con.WS_CLIPCHILDREN
+                win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
+                
         window.set_title(real_name)
 
 if __name__== "__main__":

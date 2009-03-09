@@ -32,12 +32,6 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
-#class Layout:
-#    def __init__(self, max):
-#        self.max = int(max)
-#        self.location = []
-#        for i in range(self.max + 1): self.location.append(None)
-        
 class Layout:
     def __init__(self, node):
 
@@ -47,7 +41,8 @@ class Layout:
         self.height   = int( node.getAttribute('height') )
         
         self.location = []
-        for i in range(self.max + 1): self.location.append(None)
+        self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
+
 
         for location_node in node.getElementsByTagName('location'):
             if location_node.getAttribute('seat') != "":
@@ -62,7 +57,7 @@ class Layout:
         if hasattr(self, "common"):
             temp = temp + "        Common = (%d, %d)\n" % (self.common[0], self.common[1])
         temp = temp + "        Locations = "
-        for i in range(1, len(self.location)):
+        for i in xrange(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
         
         return temp + "\n"
@@ -91,16 +86,17 @@ class Site:
             self.layout[lo.max] = lo
 
     def __str__(self):
-        temp = "Site = " + self.site_name + "\n"
+        temp = "Site = %s\n" % self.site_name
         for key in dir(self):
             if key.startswith('__'): continue
             if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
+            temp = "%s    %s = %s\n" % (temp, key, str(value))
             temp = temp + '    ' + key + " = " + str(value) + "\n"
             
         for layout in self.layout:
-            temp = temp + "%s" % self.layout[layout]
+            temp = "%s%s" % (temp, self.layout[layout])
             
         return temp
         
@@ -141,14 +137,10 @@ class Game:
             self.stats[stat.stat_name] = stat
             
     def __str__(self):
-        temp = "Game = " + self.game_name + "\n"
-        temp = temp + "    db = %s\n" % self.db
-        temp = temp + "    rows = %d\n" % self.rows
-        temp = temp + "    cols = %d\n" % self.cols
-        temp = temp + "    aux = %s\n" % self.aux
+        temp = "Game = %s\n    db = %s\n    rows = %d\n    cols = %d\n    aux = %s\n" % (self.game_name, self.db, self.rows, self.cols, self.aux)
         
         for stat in self.stats.keys():
-            temp = temp + "%s" % self.stats[stat]
+            temp = "%s%s" % (temp, self.stats[stat])
             
         return temp
              
@@ -412,7 +404,7 @@ class Config:
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
         if layout_node == None: return
-        for i in range(1, max + 1):
+        for i in xrange(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
@@ -492,35 +484,17 @@ class Config:
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        if self.supported_sites[site].hudopacity == "":
-            colors['hudopacity'] = 0.90
-        else:
-            colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if self.supported_sites[site].hudbgcolor == "":
-            colors['hudbgcolor'] = "#FFFFFF"
-        else:
-            colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if self.supported_sites[site].hudfgcolor == "":
-            colors['hudfgcolor'] = "#000000"
-        else:
-            colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
+        colors['hudopacity'] = float(self.supported_sites[site].hudopacity) if self.supported_sites[site].hudopacity != "" else 0.90
+        colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor if self.supported_sites[site].hudbgcolor != "" else "#FFFFFF"
+        colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor if self.supported_sites[site].hudfgcolor != "" else "#000000"
         return colors
     
     def get_default_font(self, site = 'PokerStars'):
-        (font, font_size) = ("Sans", "8")
-        if self.supported_sites[site].font == "":
-            font = "Sans"
-        else:
-            font = self.supported_sites[site].font
-
-        if self.supported_sites[site].font_size == "":
-            font_size = "8"
-        else:
-            font_size = self.supported_sites[site].font_size
+        font = self.supported_sites[site].font if self.supported_sites[site].font != "" else "Sans"
+        font_size = self.supported_sites[site].font_size if self.supported_sites[site].font != "" else "8"
         return (font, font_size)
 
     def get_locations(self, site = "PokerStars", max = "8"):
-        
         try:
             locations = self.supported_sites[site].layout[max].location
         except:
@@ -609,7 +583,7 @@ class Config:
     def get_aux_parameters(self, name):
         """Gets a dict of mucked window parameters from the named mw."""
         param = {}
-        if self.aux_windows.has_key(name):
+        if name in self.aux_windows:
             for key in dir(self.aux_windows[name]):
                 if key.startswith('__'): continue
                 value = getattr(self.aux_windows[name], key)
@@ -622,7 +596,7 @@ class Config:
     def get_game_parameters(self, name):
         """Get the configuration parameters for the named game."""
         param = {}
-        if self.supported_games.has_key(name):
+        if name in self.supported_games:
             param['game_name'] = self.supported_games[name].game_name
             param['db']        = self.supported_games[name].db
             param['rows']      = self.supported_games[name].rows
@@ -633,7 +607,7 @@ class Config:
     def get_supported_games(self):
         """Get the list of supported games."""
         sg = []
-        for game in c.supported_games.keys():
+        for game in c.supported_games:
             sg.append(c.supported_games[game].game_name)
         return sg
 

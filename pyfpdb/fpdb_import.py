@@ -208,8 +208,7 @@ class Importer:
                 #if os.path.isdir(file):
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                     
-        for dir in self.addToDirList:
-            self.addImportDirectory(dir, True, self.addToDirList[dir][0], self.addToDirList[dir][1])
+        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)                       
             
         for file in self.removeFromFileList:
             if file in self.filelist:
@@ -309,7 +308,7 @@ class Importer:
         partial=0 #counter
         errors=0 #counter
 
-        for i in range (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
+        for i in xrange (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
             if (len(self.lines[i])<2):
                 endpos=i
                 hand=self.lines[startpos:endpos]
