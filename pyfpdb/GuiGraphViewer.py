@@ -107,6 +107,7 @@ class GuiGraphViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
             self.graphBox.add(self.canvas)
             self.canvas.show()
+            self.exportButton.set_sensitive(True)
     #end of def showClicked
 
     def getRingProfitGraph(self, names, sites):
@@ -361,6 +362,7 @@ class GuiGraphViewer (threading.Thread):
 
         self.exportButton=gtk.Button("Export to File")
         self.exportButton.connect("clicked", self.exportGraph, "show clicked")
+        self.exportButton.set_sensitive(False)
         self.exportButton.show()
 
         self.leftPanelBox.add(playerFrame)
