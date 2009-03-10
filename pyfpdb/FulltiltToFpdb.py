@@ -182,9 +182,11 @@ follow :  whether to tail -f the input"""
 
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
-        logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
-        
-        hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+        if m:
+            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+        else:
+            logging.warning("No bringin found")
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))

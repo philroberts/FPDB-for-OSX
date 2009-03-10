@@ -618,8 +618,9 @@ closed    likewise, but known only to player
             print >>fh, _("*** 3RD STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
                 print player,  self.holecards[player]
-                (closed,  open) = self.holecards[player]['THIRD']
-                print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(closed) + "]" if closed else " ",  " [" + " ".join(open) + "]" if open else " ")
+                if 'THIRD' in self.holecards[player]:
+                    (closed,  open) = self.holecards[player]['THIRD']
+                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(closed) + "]" if closed else " ",  " [" + " ".join(open) + "]" if open else " ")
             for act in self.actions['THIRD']:
                 #FIXME: Need some logic here for bringin vs completes
                 self.printActionLine(act, fh)
@@ -732,6 +733,8 @@ class Pot(object):
         self.pots = []
         while len(commitsall) > 0:
             commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
+            print "all", commitsall
+            print "live", commitslive
             v1 = commitslive[0][0]        
             self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
             commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]

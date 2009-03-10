@@ -59,6 +59,8 @@ follow :  whether to tail -f the input"""
             self.re_PostSB          = re.compile(ur"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBB          = re.compile(ur"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%s: posts ante \[(?:\$| €|) (?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
@@ -164,12 +166,18 @@ or None if we fail to get the info """
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
-
-        m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
+        if hand.gametype['base'] == 'hold':
+            m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
                        r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
                        r"(\*\* Dealing Turn \*\*(?P<TURN> \[ \S\S \].+(?=\*\* Dealing River \*\*)|.+))?"
                        r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.handText,re.DOTALL)
-
+        elif hand.gametype['base'] == 'stud':
+            m =     re.search(r"(?P<ANTES>.+(?=\*\* Dealing down cards \*\*)|.+)"
+                           r"(\*\* Dealing down cards \*\*(?P<THIRD>.+(?=\*\*\*\* dealing 4th street \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* dealing 4th street \*\*\*\*(?P<FOURTH>.+(?=\*\*\*\* dealing 5th street \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* dealing 5th street \*\*\*\*(?P<FIFTH>.+(?=\*\*\*\* dealing 6th street \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* dealing 6th street \*\*\*\*(?P<SIXTH>.+(?=\*\*\*\* dealing river \*\*\*\*)|.+))?"
+                           r"(\*\*\*\* dealing river \*\*\*\*(?P<SEVENTH>.+))?", hand.handText,re.DOTALL)
         hand.addStreets(m)
 
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
@@ -181,6 +189,21 @@ or None if we fail to get the info """
         cards = m.group('CARDS')
         cards = [card.strip() for card in cards.split(',')]
         hand.setCommunityCards(street=street, cards=cards)
+
+    def readAntes(self, hand):
+        logging.debug("reading antes")
+        m = self.re_Antes.finditer(hand.handText)
+        for player in m:
+            logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+
+    def readBringIn(self, hand):
+        m = self.re_BringIn.search(hand.handText,re.DOTALL)
+        if m:
+            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))        
+            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
+        else:
+            logging.warning("No bringin found.")
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
@@ -209,6 +232,12 @@ or None if we fail to get the info """
         else:
             #Not involved in hand
             hand.involved = False
+
+    def readStudPlayerCards(self, hand, street):
+        # lol. see Plymouth.txt
+        logging.warning("Everleaf readStudPlayerCards is only a stub.")
+        #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
+            #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
 
 
     def readAction(self, hand, street):
