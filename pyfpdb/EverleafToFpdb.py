@@ -27,7 +27,7 @@ class Everleaf(HandHistoryConverter):
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
-    re_GameInfo    = re.compile(u"^(Blinds )?(?P<currency>\$| €|)(?P<sb>[.0-9]+)/(?:\$| €)?(?P<bb>[.0-9]+) (?P<limit>NL|PL|) (?P<game>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
+    re_GameInfo    = re.compile(u"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
     re_HandInfo    = re.compile(u".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[- a-zA-Z]+)")
     re_Button      = re.compile(r"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(u"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
@@ -67,6 +67,7 @@ follow :  whether to tail -f the input"""
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+                ["ring", "studhi", "fl"],
                 ["ring", "omahahi", "pl"]
                ]
 
@@ -83,15 +84,15 @@ follow :  whether to tail -f the input"""
         games = { 'Hold\'em':'hold', 'Omaha':'omahahi', 'Razz':'razz','7 Card Stud':'studhi' }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
         for key in info:
-            if key == 'limit':
+            if key == 'LIMIT':
                 info[key] = limits[info[key]]
-            if key == 'game':
+            if key == 'GAME':
                 info[key] = games[info[key]]
-            if key == 'sb':
+            if key == 'SB':
                 pass
-            if key == 'bb':
+            if key == 'BB':
                 pass
-            if key == 'currency':
+            if key == 'CURRENCY':
                 info[key] = currencies[info[key]]
 
         return info
@@ -263,7 +264,7 @@ follow :  whether to tail -f the input"""
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/plo/Naos.txt")
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/studhi/Plymouth.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
     parser.add_option("-q", "--quiet",

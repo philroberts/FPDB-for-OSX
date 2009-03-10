@@ -544,13 +544,13 @@ class DrawHand(Hand):
 
 class StudHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype['game'] not in ["razz","stud","stud8"]:
+        if gametype['GAME'] not in ["razz","studhi","stud8"]:
             pass # or indeed don't pass and complain instead
         self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         Hand.__init__(self, sitename, gametype, handText)
-        self.sb = gametype['sb']
-        self.bb = gametype['bb']
+        self.sb = gametype['SB']
+        self.bb = gametype['BB']
         #Populate the StudHand
         #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc) 
         # which then invokes a 'addXXX' callback

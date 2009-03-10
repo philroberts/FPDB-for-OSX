@@ -148,9 +148,10 @@ class HandHistoryConverter(threading.Thread):
             return
         
         hand = None
-        if gametype['game'] in ("hold", "omahahi"):
+        if gametype['GAME'] in ("hold", "omahahi"):
+            logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
             hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
-        elif gametype['game'] in ("razz","stud","stud8"):
+        elif gametype['GAME'] in ("razz","studhi","stud8"):
             hand = Hand.StudHand(self, self.sitename, gametype, handtext)
         
         if hand:
