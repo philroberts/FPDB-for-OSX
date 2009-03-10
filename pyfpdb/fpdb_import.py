@@ -354,7 +354,7 @@ class Importer:
                             print "quitting due to reaching the amount of hands to be imported"
                             print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
                         sys.exit(0)
-            startpos=endpos
+                startpos=endpos
         ttime = time() - starttime
         print "\rTotal stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", ttime
         
