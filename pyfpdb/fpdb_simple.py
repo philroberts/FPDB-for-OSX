@@ -381,7 +381,7 @@ def calcPayin(count, buyin, fee):
  
 def checkPositions(positions):
 	"""verifies that these positions are valid"""
-	for i in range (len(positions)):
+	for i in xrange(len(positions)):
 		pos=positions[i]
 		try:#todo: use type recognition instead of error
 			if (len(pos)!=1):
@@ -460,10 +460,10 @@ def classifyLines(hand, category, lineTypes, lineStreets):
  
 def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
     """calculates the actual bet amounts in the given amount array and changes it accordingly."""
-    for i in range (len(actionTypes)):
-        for j in range (len(actionTypes[i])):
+    for i in xrange(len(actionTypes)):
+        for j in xrange(len(actionTypes[i])):
             bets=[]
-            for k in range (len(actionTypes[i][j])):
+            for k in xrange(len(actionTypes[i][j])):
                 if (actionTypes[i][j][k]=="bet"):
                     bets.append((i,j,k))
                     if (len(bets)==2):
@@ -489,10 +489,10 @@ def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
 #Corrects the bet amount if the player had to pay blinds
 def convertBlindBet(actionTypes, actionAmounts):
     i=0#setting street to pre-flop
-    for j in range (len(actionTypes[i])):#playerloop
+    for j in xrange(len(actionTypes[i])):#playerloop
         blinds=[]
         bets=[]
-        for k in range (len(actionTypes[i][j])):
+        for k in xrange(len(actionTypes[i][j])):
             if (actionTypes[i][j][k]=="blind"):
                 blinds.append((i,j,k))
             
@@ -512,7 +512,7 @@ def convertCardValues(arr):
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 def convertCardValuesBoard(arr):
-    for i in range (len(arr)):
+    for i in xrange(len(arr)):
         if (arr[i]=="A"):
             arr[i]=14
         elif (arr[i]=="K"):
@@ -628,12 +628,12 @@ def filterAnteBlindFold(site,hand):
     if foldeeName!=None:
         #print "filterAnteBlindFold, foldeeName:",foldeeName
         toRemove=[]
-        for i in range (len(hand)): #using hand again to filter from all streets, just in case.
+        for i in xrange(len(hand)): #using hand again to filter from all streets, just in case.
             #todo: this will break it if sittin out BB wins a hand
             if (hand[i].find(foldeeName)!=-1):
                 toRemove.append(hand[i])
             
-        for i in range (len(toRemove)):
+        for i in xrange(len(toRemove)):
             hand.remove(toRemove[i])
 #end def filterAnteFold
  
@@ -1502,7 +1502,7 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 #returns the SQL ids of the names given in an array
 def recognisePlayerIDs(cursor, names, site_id):
     result = []
-    for i in range (len(names)):
+    for i in xrange(len(names)):
         cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
         tmp=cursor.fetchall()
         if (len(tmp)==0): #new player
@@ -1518,7 +1518,7 @@ def recognisePlayerIDs(cursor, names, site_id):
 #recognises the name in the given line and returns its array position in the given array
 def recognisePlayerNo(line, names, atype):
     #print "recogniseplayerno, names:",names
-    for i in range (len(names)):
+    for i in xrange(len(names)):
         if (atype=="unbet"):
             if (line.endswith(names[i].encode("latin-1"))):
                 return (i)
@@ -1599,9 +1599,9 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
 #stores into table hands_actions
     #print "start of storeActions, actionNos:",actionNos
     #print " action_amounts:",action_amounts
-    for i in range (len(actionTypes)): #iterate through streets
-        for j in range (len(actionTypes[i])): #iterate through names
-            for k in range (len(actionTypes[i][j])): #iterate through individual actions of that player on that street
+    for i in xrange(len(actionTypes)): #iterate through streets
+        for j in xrange(len(actionTypes[i])): #iterate through names
+            for k in xrange(len(actionTypes[i][j])): #iterate through individual actions of that player on that street
                 cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)"
                                , (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
 #end def storeActions
@@ -1631,7 +1631,7 @@ def store_hands_players_holdem_omaha(backend, conn, cursor, category, hands_id, 
                                     ,positions, card_values, card_suits, winnings, rakes, seatNos):
     result=[]
     if (category=="holdem"):
-        for i in range (len(player_ids)):
+        for i in xrange(len(player_ids)):
             cursor.execute ("""
 INSERT INTO HandsPlayers
 (handId, playerId, startCash, position,
@@ -1644,7 +1644,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
             #result.append(cursor.fetchall()[0][0])
             result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
     elif (category=="omahahi" or category=="omahahilo"):
-        for i in range (len(player_ids)):
+        for i in xrange(len(player_ids)):
             cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, position,
 card1Value, card1Suit, card2Value, card2Suit,
@@ -1667,7 +1667,7 @@ def store_hands_players_stud(backend, conn, cursor, hands_id, player_ids, start_
 #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
     result=[]
     #print "before inserts in store_hands_players_stud, antes:", antes
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, ante,
 card1Value, card1Suit, card2Value, card2Suit,
@@ -1692,7 +1692,7 @@ def store_hands_players_holdem_omaha_tourney(backend, conn, cursor, category, ha
                                             , winnings, rakes, seatNos, tourneys_players_ids):
     #stores hands_players for tourney holdem/omaha hands
     result=[]
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         if len(card_values[0])==2:
             cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, position,
@@ -1726,7 +1726,7 @@ def store_hands_players_stud_tourney(backend, conn, cursor, hands_id, player_ids
             antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
 #stores hands_players for tourney stud/razz hands
     result=[]
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, ante,
 card1Value, card1Suit, card2Value, card2Suit,
@@ -1819,7 +1819,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     someoneStole=False
     
     #run a loop for each player preparing the actual values that will be commited to SQL
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         #set default values
         myStreet0VPI=False
         myStreet0Aggr=False
@@ -1850,7 +1850,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #calculate VPIP and PFR
         street=0
         heroPfRaiseCount=0
-        for count in range (len(action_types[street][player])):#finally individual actions
+        for count in xrange(len(action_types[street][player])):#finally individual actions
             currentAction=action_types[street][player][count]
             if currentAction=="bet":
                 myStreet0Aggr=True
@@ -1923,7 +1923,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
                     #print "base:", base
                     if base=="hold":
                         mySawShowdown=True
-                        for count in range (len(action_types[3][player])):
+                        for count in xrange(len(action_types[3][player])):
                             if action_types[3][player][count]=="fold":
                                 mySawShowdown=False
                     else:
@@ -1936,7 +1936,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
                             myStreet4Seen=True
  
                             mySawShowdown=True
-                            for count in range (len(action_types[4][player])):
+                            for count in xrange(len(action_types[4][player])):
                                 if action_types[4][player][count]=="fold":
                                     mySawShowdown=False
                         
@@ -1948,14 +1948,14 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 if action_types[street][player][count]=="bet":
                     myStreet1Aggr=True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet1=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet1=True
         
@@ -1966,14 +1966,14 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 if action_types[street][player][count]=="bet":
                     myStreet2Aggr=True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet2=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet2=True
         
@@ -1984,14 +1984,14 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 if action_types[street][player][count]=="bet":
                     myStreet3Aggr=True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet3=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet3=True
         
@@ -2002,14 +2002,14 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 if action_types[street][player][count]=="bet":
                     myStreet4Aggr=True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet4=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet4=True
         
@@ -2101,7 +2101,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     foldedBbToSteal=[]
     foldSbToStealChance=[]
     foldedSbToSteal=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myFoldBbToStealChance=False
         myFoldedBbToSteal=False
         myFoldSbToStealChance=False
@@ -2110,7 +2110,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
         if base=="hold":
             if someoneStole and (positions[player]=='B' or positions[player]=='S') and firstPfRaiserId!=player_ids[player]:
                 street=0
-                for count in range (len(action_types[street][player])):#individual actions
+                for count in xrange(len(action_types[street][player])):#individual actions
                     if positions[player]=='B':
                         myFoldBbToStealChance=True
                         if action_types[street][player][count]=="fold":
@@ -2134,7 +2134,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street1CBChance=[]
     street1CBDone=[]
     didStreet1CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet1CBChance=False
         myStreet1CBDone=False
         
@@ -2153,7 +2153,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street2CBChance=[]
     street2CBDone=[]
     didStreet2CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet2CBChance=False
         myStreet2CBDone=False
         
@@ -2172,7 +2172,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street3CBChance=[]
     street3CBDone=[]
     didStreet3CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet3CBChance=False
         myStreet3CBDone=False
         
@@ -2191,7 +2191,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street4CBChance=[]
     street4CBDone=[]
     didStreet4CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet4CBChance=False
         myStreet4CBDone=False
         
@@ -2218,7 +2218,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     foldToStreet4CBChance=[]
     foldToStreet4CBDone=[]
     
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myFoldToStreet1CBChance=False
         myFoldToStreet1CBDone=False
         foldToStreet1CBChance.append(myFoldToStreet1CBChance)
@@ -2272,14 +2272,14 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street4CheckCallRaiseChance=[]
     street4CheckCallRaiseDone=[]
     #print "b4 totprof calc, len(playerIds)=", len(player_ids)
-    for pl in range (len(player_ids)):
+    for pl in xrange(len(player_ids)):
         #print "pl=", pl
         myTotalProfit=winnings[pl]  # still need to deduct other costs
         if antes:
             myTotalProfit=winnings[pl] - antes[pl]
-        for i in range (len(actionTypes)): #iterate through streets
-            #for j in range (len(actionTypes[i])): #iterate through names (using pl loop above)
-                for k in range (len(actionTypes[i][pl])): #iterate through individual actions of that player on that street
+        for i in xrange(len(actionTypes)): #iterate through streets
+            #for j in xrange(len(actionTypes[i])): #iterate through names (using pl loop above)
+                for k in xrange(len(actionTypes[i][pl])): #iterate through individual actions of that player on that street
                     myTotalProfit -= actionAmounts[i][pl][k]
         
         myStreet1CheckCallRaiseChance=False
@@ -2343,7 +2343,7 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
         
         #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
-        for player in range (len(playerIds)):
+        for player in xrange(len(playerIds)):
             if base=="hold":
                 cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
             else:
@@ -2501,7 +2501,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
         
         #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
-        for player in range (len(playerIds)):
+        for player in xrange(len(playerIds)):
             
             # Set up a clean row
             row=[]
@@ -2688,7 +2688,7 @@ def store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks,
     #print "payin_amounts:",payin_amounts
     #print "ranks:",ranks
     #print "winnings:",winnings
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s", (tourney_id, player_ids[i]))
         tmp=cursor.fetchone()
         #print "tried SELECTing tourneys_players.id:",tmp
