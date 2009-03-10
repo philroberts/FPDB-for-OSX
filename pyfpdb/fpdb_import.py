@@ -208,7 +208,7 @@ class Importer:
                 #if os.path.isdir(file):
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                     
-        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)                       
+        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
             
         for file in self.removeFromFileList:
             if file in self.filelist:
@@ -302,58 +302,64 @@ class Importer:
         partial=0 #counter
         errors=0 #counter
 
-        for i in xrange (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
-            if (len(self.lines[i])<2):
+        for i in xrange (len(self.lines)):
+            if (len(self.lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
                 endpos=i
                 hand=self.lines[startpos:endpos]
         
                 if (len(hand[0])<2):
                     hand=hand[1:]
+
         
-                isTourney=fpdb_simple.isTourney(hand[0])
-                if not isTourney:
-                    fpdb_simple.filterAnteBlindFold(site,hand)
-                hand=fpdb_simple.filterCrap(site, hand, isTourney)
-                self.hand=hand
+                if (len(hand)<3):
+                    pass
+                    #TODO: This is ugly - we didn't actually find the start of the
+                    # hand with the outer loop so we test again...
+                else:
+                    isTourney=fpdb_simple.isTourney(hand[0])
+                    if not isTourney:
+                        fpdb_simple.filterAnteBlindFold(site,hand)
+                    hand=fpdb_simple.filterCrap(site, hand, isTourney)
+                    self.hand=hand
+
+                    try:
+                        handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
+                                                                   ,self.fdb.cursor, site, category, hand)
+                        self.fdb.db.commit()
+
+                        stored+=1
+                        if self.callHud:
+                            #print "call to HUD here. handsId:",handsId
+                            #pipe the Hands.id out to the HUD
+                            self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+                    except fpdb_simple.DuplicateError:
+                        duplicates+=1
+                    except (ValueError), fe:
+                        errors+=1
+                        self.printEmailErrorMessage(errors, file, hand)
+
+                        if (self.settings['failOnError']):
+                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
+                            raise
+                    except (fpdb_simple.FpdbError), fe:
+                        errors+=1
+                        self.printEmailErrorMessage(errors, file, hand)
+
+                        self.fdb.db.rollback()
+
+                        if (self.settings['failOnError']):
+                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
+                            raise
+                    if (self.settings['minPrint']!=0):
+                        if ((stored+duplicates+errors)%self.settings['minPrint']==0):
+                            print "stored:", stored, "duplicates:", duplicates, "errors:", errors
                     
-                try:
-                    handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                           ,self.fdb.cursor, site, category, hand)
-                    self.fdb.db.commit()
-                        
-                    stored+=1
-                    if self.callHud:
-                        #print "call to HUD here. handsId:",handsId
-                        #pipe the Hands.id out to the HUD
-                        self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
-                except fpdb_simple.DuplicateError:
-                    duplicates+=1
-                except (ValueError), fe:
-                   errors+=1
-                   self.printEmailErrorMessage(errors, file, hand)
-
-                   if (self.settings['failOnError']):
-                       self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
-                       raise
-                except (fpdb_simple.FpdbError), fe:
-                   errors+=1
-                   self.printEmailErrorMessage(errors, file, hand)
-
-                   self.fdb.db.rollback()
-                        
-                   if (self.settings['failOnError']):
-                       self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
-                       raise
-                if (self.settings['minPrint']!=0):
-                    if ((stored+duplicates+errors)%self.settings['minPrint']==0):
-                        print "stored:", stored, "duplicates:", duplicates, "errors:", errors
-            
-                if (self.settings['handCount']!=0):
-                    if ((stored+duplicates+errors)>=self.settings['handCount']):
-                        if (not self.settings['quiet']):
-                            print "quitting due to reaching the amount of hands to be imported"
-                            print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
-                        sys.exit(0)
+                    if (self.settings['handCount']!=0):
+                        if ((stored+duplicates+errors)>=self.settings['handCount']):
+                            if (not self.settings['quiet']):
+                                print "quitting due to reaching the amount of hands to be imported"
+                                print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
+                            sys.exit(0)
                 startpos=endpos
         ttime = time() - starttime
         print "\rTotal stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", ttime
