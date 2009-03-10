@@ -36,16 +36,19 @@ class Everleaf(HandHistoryConverter):
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
+follow :  whether to tail -f the input
+autostart: whether to run the thread (or you can call start() yourself)
+debugging: if False, pass on partially supported game types. If true, have a go and error..."""
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
         print "DEBUG: __init__"
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
+        self.debugging = debugging
         if autostart:
             self.start()
 
@@ -62,7 +65,7 @@ follow :  whether to tail -f the input"""
             self.re_Antes           = re.compile(ur"^%s: posts ante \[(?:\$| €|) (?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds| complete to)(\s\[?(?:\$| €|)\s?(?P<BET>[.\d]+?)\.?\s?(USD|EUR|)\]?)?" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds| complete to)(\s\[?(?:\$| €|)\s?(?P<BET>\d+\.?\d*)\.?\s?(USD|EUR|)\]?)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
@@ -104,7 +107,7 @@ or None if we fail to get the info """
         m = self.re_GameInfo.search(handText)
         if not m: 
             return None
-
+        
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
@@ -128,6 +131,9 @@ or None if we fail to get the info """
             info['currency'] = currencies[mg['CURRENCY']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
+        if not self.debugging and info['base']=='stud':
+            return None
+            
         return info
 
 
@@ -304,5 +310,5 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow)
+    e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True, debugging=True)
 

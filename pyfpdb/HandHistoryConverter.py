@@ -88,6 +88,8 @@ class HandHistoryConverter(threading.Thread):
             # write to stdout
             self.out_fh = sys.stdout
         else:
+            # TODO: out_path should be sanity checked before opening. Perhaps in fpdb_import?
+            # I'm not sure what we're looking for, although we don't want out_path==in_path!='-'
             self.out_fh = open(self.out_path, 'a') #TODO: append may be overly conservative.
         self.sitename  = sitename
         self.follow = follow
@@ -111,16 +113,24 @@ class HandHistoryConverter(threading.Thread):
     def run(self):
         """process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
-Otherwise, finish at eof..."""
+Otherwise, finish at eof..."""        
+        starttime = time.time()
+        if not self.sanityCheck():
+            print "Cowardly refusing to continue after failed sanity check"
+            return
         if self.follow:
+            numHands = 0
             for handText in self.tailHands():
+                numHands+=1
                 self.processHand(handText)
         else:
             handsList = self.allHandsAsList()
             logging.info("Parsing %d hands" % len(handsList))
             for handText in handsList:
                 self.processHand(handText)
-
+            numHands=  len(handsList)
+        endtime = time.time()
+        print "Processed %d hands in %.3f seconds" % (numHands, endtime - starttime)
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
@@ -180,6 +190,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
 
     def allHandsAsList(self):
         """Return a list of handtexts in the file at self.in_path"""
+        #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
         self.readFile()
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
@@ -209,20 +220,6 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
             logging.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
-       
-       
-    def processFile(self):
-        starttime = time.time()
-        if not self.sanityCheck():
-            print "Cowardly refusing to continue after failed sanity check"
-            return
-        self.readFile(self.file)
-        if self.obs == "" or self.obs == None:
-            print "Did not read anything from file."
-            return
-        ### alala deleted
-        endtime = time.time()
-        print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
 
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
@@ -292,27 +289,34 @@ or None if we fail to get the info """
     
     
     def sanityCheck(self):
+        """Check we aren't going to do some stupid things"""
+        #TODO: the hhbase stuff needs to be in fpdb_import
         sane = False
         base_w = False
-        #Check if hhbase exists and is writable
-        #Note: Will not try to create the base HH directory
-        if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
-            print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
-        else:
-            #Check if hhdir exists and is writable
-            if not os.path.isdir(self.hhdir):
-                # In first pass, dir may not exist. Attempt to create dir
-                print "Creating directory: '%s'" % (self.hhdir)
-                os.mkdir(self.hhdir)
-                sane = True
-            elif os.access(self.hhdir, os.W_OK):
-                sane = True
-            else:
-                print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
+        #~ #Check if hhbase exists and is writable
+        #~ #Note: Will not try to create the base HH directory
+        #~ if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
+            #~ print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
+        #~ else:
+            #~ #Check if hhdir exists and is writable
+            #~ if not os.path.isdir(self.hhdir):
+                #~ # In first pass, dir may not exist. Attempt to create dir
+                #~ print "Creating directory: '%s'" % (self.hhdir)
+                #~ os.mkdir(self.hhdir)
+                #~ sane = True
+            #~ elif os.access(self.hhdir, os.W_OK):
+                #~ sane = True
+            #~ else:
+                #~ print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
 
         # Make sure input and output files are different or we'll overwrite the source file
-        if(self.ofile == self.file):
+        if True: # basically.. I don't know
+            sane = True
+        
+        if(self.in_path != '-' and self.out_path == self.in_path):
             print "HH Sanity Check: output and input files are the same, check config"
+            sane = False
+
 
         return sane
 
@@ -357,4 +361,4 @@ or None if we fail to get the info """
         return True
 
     def getProcessedFile(self):
-        return self.ofile
+        return self.out_path
