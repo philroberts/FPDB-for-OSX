@@ -248,6 +248,7 @@ class Hud:
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+        self.hand = hand  
         if not self.mw_created:
             self.create_mw()
             
