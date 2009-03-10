@@ -291,7 +291,7 @@ Add a raise on [street] by [player] to [amountTo]
 Map the tuple self.gametype onto the pokerstars string describing it
 """
         # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
-        gs = {"hold"       : "Hold'em",
+        gs = {"holdem"       : "Hold'em",
               "omahahi"    : "Omaha",
               "omahahilo"  : "FIXME",
               "razz"       : "Razz",
@@ -310,8 +310,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
              }
 
         logging.debug("gametype: %s" %(self.gametype))
-        retstring = "%s %s" %(gs[self.gametype['game']], ls[self.gametype['limit']])
-        
+        retstring = "%s %s" %(gs[self.gametype['category']], ls[self.gametype['limitType']])
+            
         return retstring
 
     def lookupLimitBetSize(self):
@@ -359,7 +359,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
 class HoldemOmahaHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype['game'] not in ["hold","omaha"]:
+        if gametype['base'] != 'hold':
             pass # or indeed don't pass and complain instead
         logging.debug("HoldemOmahaHand")
         self.streetList = ['BLINDSANTES', 'PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
@@ -437,7 +437,7 @@ Card ranks will be uppercased
 
 
         #May be more than 1 bb posting
-        if self.gametype['limit'] == "fl":
+        if self.gametype['limitType'] == "fl":
             (smallbet, bigbet) = self.lookupLimitBetSize()
         else:
             smallbet = self.sb
@@ -529,7 +529,7 @@ Card ranks will be uppercased
         
 class DrawHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype['game'] not in ["badugi","5-card-draw"]:
+        if gametype['base'] != 'draw':
             pass # or indeed don't pass and complain instead
     
     def discardHoleCards(self, cards, player):
@@ -544,7 +544,7 @@ class DrawHand(Hand):
 
 class StudHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
-        if gametype['game'] not in ["razz","stud","stud8"]:
+        if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
         self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']

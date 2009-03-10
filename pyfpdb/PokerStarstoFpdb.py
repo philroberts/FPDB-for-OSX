@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 #    Copyright 2008, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -67,7 +69,7 @@ from HandHistoryConverter import *
 class PokerStars(HandHistoryConverter):
     
     # Static regexes
-    re_GameInfo     = re.compile('PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud) (?P<LTYPE>No Limit|Limit|Pot Limit),? \(?\$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)', re.MULTILINE)
+    re_GameInfo     = re.compile('PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)', re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -88,7 +90,8 @@ follow :  whether to tail -f the input"""
             self.start()
 
         
-    def compilePlayerRegexs(self,  players):
+    def compilePlayerRegexs(self,  hand):
+        players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
             self.compiledPlayers = players
@@ -111,33 +114,37 @@ follow :  whether to tail -f the input"""
         return []
 
     def determineGameType(self, handText):
-        game = None
-        structure = None
-        sb = None
-        bb = None
-        info = {}
+        info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
-        if m: 
-            info.update(m.groupdict())
-        else:
+        if not m: 
             return None
-            
+
+        mg = m.groupdict()
         
-        ltypes = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
-        gtypes = { 'Hold\'em':'hold', 'Omaha':'omahahi', 'Razz':'razz','7 Card Stud':'studhi' }
-        for key in info:
-            if key == 'LTYPE':
-                structure = ltypes[info[key]]
-            if key == 'GAME':
-                game = gtypes[info[key]]
-            if key == 'SB':
-                sb = info[key]
-            if key == 'BB':
-                bb = info[key]
-            
-        gametype = ["ring", game, structure, sb, bb]
-        return gametype
+        # translations from captured groups to our info strings
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        games = {              # base, category
+                  "Hold'em" : ('hold','holdem'), 
+                 'Omaha Hi' : ('hold','omahahi'), 
+                     'Razz' : ('stud','razz'), 
+              '7 Card Stud' : ('stud','studhi')
+               }
+        currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+        if 'LIMIT' in mg:
+            info['limitType'] = limits[mg['LIMIT']]
+        if 'GAME' in mg:
+            (info['base'], info['category']) = games[mg['GAME']]
+        if 'SB' in mg:
+            info['sb'] = mg['SB']
+        if 'BB' in mg:
+            info['bb'] = mg['BB']
+        if 'CURRENCY' in mg:
+            info['currency'] = currencies[mg['CURRENCY']]
+        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        
+        return info
+
 
     def readHandInfo(self, hand):
         info = {}

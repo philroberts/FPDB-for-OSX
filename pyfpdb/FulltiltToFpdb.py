@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
 #    Copyright 2008, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -25,7 +27,7 @@ from HandHistoryConverter import *
 class FullTilt(HandHistoryConverter):
     
     # Static regexes
-    re_GameInfo     = re.compile('- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LTYPE>(No|Pot)? )?Limit (?P<GAME>(Hold\'em|Omaha|Razz))')
+    re_GameInfo     = re.compile('- (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LIMIT>(No Limit|Pot Limit|Limit))? (?P<GAME>(Hold\'em|Omaha Hi|Razz))')
     re_SplitHands   = re.compile(r"\n\n+")
     re_HandInfo     = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
@@ -44,7 +46,9 @@ follow :  whether to tail -f the input"""
         if autostart:
             self.start()
 
-    def compilePlayerRegexs(self, players):
+
+    def compilePlayerRegexs(self,  hand):
+        players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
             self.compiledPlayers = players
@@ -76,30 +80,36 @@ follow :  whether to tail -f the input"""
         # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
         # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
         # Full Tilt Poker Game #10809877615: Table Danville - $0.50/$1 Ante $0.10 - Limit Razz - 21:47:27 ET - 2009/02/23
-        structure = "" # nl, pl, cn, cp, fl
-        game      = ""
-
-
-        m = self.re_GameInfo.search(handText)
-        if m.group('LTYPE') == "No ":
-            structure = "nl"
-        elif m.group('LTYPE') == "Pot ":
-            structure = "pl"
-        elif m.group('LTYPE') == None:
-            structure = "fl"
-
-        if m.group('GAME') == "Hold\'em":
-            game = "hold"
-        elif m.group('GAME') == "Omaha":
-            game = "omahahi"
-        elif m.group('GAME') == "Razz":
-            game = "razz"
-
-        logging.debug("HandInfo: %s", m.groupdict())
-
-        gametype = ["ring", game, structure, m.group('SB'), m.group('BB')]
+        info = {'type':'ring'}
         
-        return gametype
+        m = self.re_GameInfo.search(handText)
+        if not m: 
+            return None
+
+        mg = m.groupdict()
+        
+        # translations from captured groups to our info strings
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        games = {              # base, category
+                  "Hold'em" : ('hold','holdem'), 
+                 'Omaha Hi' : ('hold','omahahi'), 
+                     'Razz' : ('stud','razz'), 
+              '7 Card Stud' : ('stud','studhi')
+               }
+        currencies = { u' €':'EUR', '$':'USD', '':'T$' }
+        if 'LIMIT' in mg:
+            info['limitType'] = limits[mg['LIMIT']]
+        if 'GAME' in mg:
+            (info['base'], info['category']) = games[mg['GAME']]
+        if 'SB' in mg:
+            info['sb'] = mg['SB']
+        if 'BB' in mg:
+            info['bb'] = mg['BB']
+        if 'CURRENCY' in mg:
+            info['currency'] = currencies[mg['CURRENCY']]
+        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        
+        return info
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
@@ -131,12 +141,12 @@ follow :  whether to tail -f the input"""
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
 
-        if hand.gametype[1] in ("hold", "omaha"):
+        if hand.gametype['base'] == 'hold':
             m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
-        elif hand.gametype[1] == "razz":
+        elif hand.gametype['base'] == "stud": # or should this be gametype['category'] == 'razz'
             m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3RD STREET \*\*\*)|.+)"
                            r"(\*\*\* 3RD STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4TH STREET \*\*\*)|.+))?"
                            r"(\*\*\* 4TH STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5TH STREET \*\*\*)|.+))?"
@@ -148,7 +158,7 @@ follow :  whether to tail -f the input"""
     def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
-            m = self.re_Board.search(hand.streets.group(street))
+            m = self.re_Board.search(hand.streets[street])
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
 

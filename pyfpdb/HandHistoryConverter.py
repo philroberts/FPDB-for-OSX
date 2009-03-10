@@ -73,7 +73,7 @@ import gettext
 gettext.install('myapplication')
 
 class HandHistoryConverter(threading.Thread):
-
+    READ_CHUNK_SIZE = 1000 # bytes to read at a time from file
     def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
         threading.Thread.__init__(self)
         logging.info("HandHistory init called")
@@ -97,11 +97,11 @@ class HandHistoryConverter(threading.Thread):
     def __str__(self):
         #TODO : I got rid of most of the hhdir stuff.
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
-        tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
-        tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
+        #tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
+        #tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
         tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
-        tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
-        tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
+        tmp = tmp + "\tinfile:     '%s'\n" % (self.in_path)
+        tmp = tmp + "\toutfile:    '%s'\n" % (self.out_path)
         #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
         #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
         #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
@@ -109,29 +109,76 @@ class HandHistoryConverter(threading.Thread):
         return tmp
 
     def run(self):
+        """process a hand at a time from the input specified by in_path.
+If in follow mode, wait for more data to turn up.
+Otherwise, finish at eof..."""
         if self.follow:
-            for handtext in self.tailHands():
-                self.processHand(handtext)
+            for handText in self.tailHands():
+                self.processHand(handText)
         else:
-            handsList = self.allHands()
+            handsList = self.allHandsAsList()
             logging.info("Parsing %d hands" % len(handsList))
-            for handtext in handsList:
-                self.processHand(handtext)
-            if self.out_fh != sys.stdout:
-                self.ouf_fh.close()
+            for handText in handsList:
+                self.processHand(handText)
+
 
     def tailHands(self):
-        """pseudo-code"""
-        while True:
-            ifile.tell()
-            text = ifile.read()
-            if nomoretext:
-                wait or sleep
+        """Generator of handTexts from a tailed file:
+Tail the in_path file and yield handTexts separated by re_SplitHands"""
+        if in_path == '-': raise StopIteration
+        interval = 1.0 # seconds to sleep between reads for new data
+        fd = open(filename,'r')
+        data = ''
+        while 1:
+            where = fd.tell()
+            newdata = fd.read(self.READ_CHUNK_SIZE)
+            if not newdata:
+                fd_results = os.fstat(fd.fileno())
+                try:
+                    st_results = os.stat(filename)
+                except OSError:
+                    st_results = fd_results
+                if st_results[1] == fd_results[1]:
+                    time.sleep(interval)
+                    fd.seek(where)
+                else:
+                    print "%s changed inode numbers from %d to %d" % (filename, fd_results[1], st_results[1])
+                    fd = open(filename, 'r')
+                    fd.seek(where)
             else:
-                ahand = thenexthandinthetext
-                yield(ahand)
+                # yield hands
+                data = data + newdata
+                result = self.re_SplitHands.split(data)
+                result = iter(result)
+                # --x       data (- is bit of splitter, x is paragraph)     yield,...,keep
+                # [,--,x]    result of re.split (with group around splitter)
+                # ,x        our output: yield nothing, keep x
+                #
+                # --x--x    [,--,x,--,x]  x,x
+                # -x--x     [-x,--,x]     x,x
+                # x-        [x-]          ,x-
+                # x--       [x,--,]       x,--
+                # x--x      [x,--,x]      x,x
+                # x--x--    [x,--,x,--,]  x,x,--
+                
+                # The length is always odd.
+                # 'odd' indices are always splitters.
+                # 'even' indices are always paragraphs or ''
+                # We want to discard all the ''
+                # We want to discard splitters unless the final item is '' (because the splitter could grow with new data)
+                # We want to yield all paragraphs followed by a splitter, i.e. all even indices except the last.
+                for para in result:
+                    try:
+                        splitter = result.next()
+                    except StopIteration:
+                        splitter = None
+                    if splitter: # para is followed by a splitter
+                        if para: yield para # para not ''
+                    else:
+                        data = para # keep final partial paragraph
 
-    def allHands(self):
+
+    def allHandsAsList(self):
         """Return a list of handtexts in the file at self.in_path"""
         self.readFile()
         self.obs = self.obs.strip()
@@ -141,18 +188,20 @@ class HandHistoryConverter(threading.Thread):
             return
         return re.split(self.re_SplitHands,  self.obs)
         
-    def processHand(self, handtext):
-        gametype = self.determineGameType(handtext)
+    def processHand(self, handText):
+        gametype = self.determineGameType(handText)
         logging.debug("gametype %s" % gametype)
         if gametype is None:
             return
         
         hand = None
-        if gametype['game'] in ("hold", "omaha"):
-            hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)
-        elif gametype['game'] in ("razz","stud","stud8"):
-            hand = Hand.StudHand(self, self.sitename, gametype, handtext)
-        
+        if gametype['base'] == 'hold':
+            hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
+        elif gametype['base'] == 'stud':
+            hand = Hand.StudHand(self, self.sitename, gametype, handText)
+        elif gametype['base'] == 'draw':
+            hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+
         if hand:
             hand.writeHand(self.out_fh)
         else:
@@ -170,69 +219,7 @@ class HandHistoryConverter(threading.Thread):
         if self.obs == "" or self.obs == None:
             print "Did not read anything from file."
             return
-
-        self.obs = self.obs.replace('\r\n', '\n')
-        self.gametype = self.determineGameType(self.obs)
-        if self.gametype == None:
-            print "Unknown game type from file, aborting on this file."
-            return
-        self.hands = self.splitFileIntoHands()
-        outfile = open(self.ofile, 'w')        
-        for hand in self.hands:
-            #print "\nDEBUG: Input:\n"+hand.handText
-            self.readHandInfo(hand)
-            
-            self.readPlayerStacks(hand)
-            #print "DEBUG stacks:", hand.stacks
-            # at this point we know the player names, they are in hand.players
-            playersThisHand = set([player[1] for player in hand.players])
-            if playersThisHand <= self.players: # x <= y means 'x is subset of y'
-                # we're ok; the regex should already cover them all.
-                pass
-            else:
-                # we need to recompile the player regexs.
-                self.players = playersThisHand
-                self.compilePlayerRegexs()
-
-            self.markStreets(hand)
-            # Different calls if stud or holdem like
-            if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
-                self.readBlinds(hand)
-                self.readButton(hand)
-                self.readHeroCards(hand) # want to generalise to draw games
-            elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
-                self.readAntes(hand)
-                self.readBringIn(hand)
-
-            self.readShowdownActions(hand)
-            
-            # Read actions in street order
-            for street in hand.streetList: # go through them in order
-#                print "DEBUG: ", street
-                if hand.streets.group(street) is not None:
-                    if self.gametype[1] == "hold" or self.gametype[1] == "omahahi":
-                        self.readCommunityCards(hand, street) # read community cards
-                    elif self.gametype[1] == "razz" or self.gametype[1] == "stud" or self.gametype[1] == "stud8":
-                        self.readPlayerCards(hand, street)
-
-                    self.readAction(hand, street)
-
-                    
-            self.readCollectPot(hand)
-            self.readShownCards(hand)
-
-            # finalise it (total the pot)
-            hand.totalPot()
-            self.getRake(hand)
-
-            hand.writeHand(outfile)
-            #if(hand.involved == True):
-                #self.writeHand("output file", hand)
-                #hand.printHand()
-            #else:
-                #pass #Don't write out observed hands
-
-        outfile.close()
+        ### alala deleted
         endtime = time.time()
         print "Processed %d hands in %.3f seconds" % (len(self.hands), endtime - starttime)
 
@@ -248,6 +235,19 @@ class HandHistoryConverter(threading.Thread):
     # [ ring, hold, nl   , sb, bb ]
     # Valid types specified in docs/tabledesign.html in Gametypes
     def determineGameType(self, handText): abstract
+    """return dict with keys/values:
+    'type'       in ('ring', 'tour')
+    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+    'base'       in ('hold', 'stud', 'draw')
+    'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
+    'hilo'       in ('h','l','s')
+    'smallBlind' int?
+    'bigBlind'   int?
+    'smallBet'
+    'bigBet'
+    'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
+or None if we fail to get the info """
+    #TODO: which parts are optional/required?
 
     # Read any of:
     # HID       HandID
@@ -331,8 +331,8 @@ class HandHistoryConverter(threading.Thread):
         return hands
 
     def readFile(self):
-        """Read in path into self.obs or self.doc"""
-
+        """open in_path according to self.codepage"""
+        
         if(self.filetype == "text"):
             if self.in_path == '-':
                 # read from stdin
