@@ -293,7 +293,7 @@ class Importer:
 #           print "import_fpdb_file", file, site, self.lines, "\n"
             return (0,0,0,1,0)
 
-        site=fpdb_simple.recogniseSite(firstline)
+        # site=fpdb_simple.recogniseSite(firstline)
         category=fpdb_simple.recogniseCategory(firstline)
 
         startpos=0
@@ -318,13 +318,13 @@ class Importer:
                 else:
                     isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
-                        fpdb_simple.filterAnteBlindFold(site,hand)
-                    hand=fpdb_simple.filterCrap(site, hand, isTourney)
+                        fpdb_simple.filterAnteBlindFold(hand)
+                    hand=fpdb_simple.filterCrap(hand, isTourney)
                     self.hand=hand
 
                     try:
                         handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                                   ,self.fdb.cursor, site, category, hand)
+                                                                   ,self.fdb.cursor, category, hand)
                         self.fdb.db.commit()
 
                         stored+=1

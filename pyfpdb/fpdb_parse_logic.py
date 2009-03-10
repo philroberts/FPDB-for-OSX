@@ -21,7 +21,7 @@ import fpdb_simple
 import fpdb_save_to_db
 
 #parses a holdem hand
-def mainParser(backend, db, cursor, site, category, hand):
+def mainParser(backend, db, cursor, category, hand):
     category=fpdb_simple.recogniseCategory(hand[0])
     if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
         base="hold"
@@ -35,8 +35,8 @@ def mainParser(backend, db, cursor, site, category, hand):
 
     #part 1: read hand no and check for duplicate
     siteHandNo=fpdb_simple.parseSiteHandNo(hand[0])
-    handStartTime=fpdb_simple.parseHandStartTime(hand[0], site)
-    siteID=fpdb_simple.recogniseSiteID(cursor, site)
+    handStartTime=fpdb_simple.parseHandStartTime(hand[0])
+    siteID=fpdb_simple.recogniseSiteID()
     #print "parse logic, siteID:",siteID,"site:",site
     
     isTourney=fpdb_simple.isTourney(hand[0])
@@ -51,8 +51,6 @@ def mainParser(backend, db, cursor, site, category, hand):
     #print "small blind line:",smallBlindLine
     gametypeID=fpdb_simple.recogniseGametypeID(backend, db, cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
     if isTourney:
-        if site!="ps":
-            raise fpdb_simple.FpdbError("tourneys are only supported on PS right now")
         siteTourneyNo=fpdb_simple.parseTourneyNo(hand[0])
         buyin=fpdb_simple.parseBuyin(hand[0])
         fee=fpdb_simple.parseFee(hand[0])
@@ -75,7 +73,7 @@ def mainParser(backend, db, cursor, site, category, hand):
             seatLines.append(hand[i])
     names=fpdb_simple.parseNames(seatLines)
     playerIDs = fpdb_simple.recognisePlayerIDs(cursor, names, siteID)
-    tmp=fpdb_simple.parseCashesAndSeatNos(seatLines, site)
+    tmp=fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes=tmp['startCashes']
     seatNos=tmp['seatNos']
     
@@ -88,15 +86,15 @@ def mainParser(backend, db, cursor, site, category, hand):
     #part 4: take appropriate action for each line based on linetype
     for i in range(len(hand)):
         if (lineTypes[i]=="cards"):
-            fpdb_simple.parseCardLine (site, category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
+            fpdb_simple.parseCardLine (category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
             #if category=="studhilo":
             #    print "hand[i]:", hand[i]
             #    print "cardValues:", cardValues
             #    print "cardSuits:", cardSuits
         elif (lineTypes[i]=="action"):
-            fpdb_simple.parseActionLine (site, base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
+            fpdb_simple.parseActionLine (base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
         elif (lineTypes[i]=="win"):
-            fpdb_simple.parseWinLine (hand[i], site, names, winnings, isTourney)
+            fpdb_simple.parseWinLine (hand[i], names, winnings, isTourney)
         elif (lineTypes[i]=="rake"):
             if isTourney:
                 totalRake=0
@@ -106,9 +104,9 @@ def mainParser(backend, db, cursor, site, category, hand):
         elif (lineTypes[i]=="header" or lineTypes[i]=="rake" or lineTypes[i]=="name" or lineTypes[i]=="ignore"):
             pass
         elif (lineTypes[i]=="ante"):
-            fpdb_simple.parseAnteLine(hand[i], site, isTourney, names, antes)
+            fpdb_simple.parseAnteLine(hand[i], isTourney, names, antes)
         elif (lineTypes[i]=="table"):
-            tableResult=fpdb_simple.parseTableLine(site, base, hand[i])
+            tableResult=fpdb_simple.parseTableLine(base, hand[i])
         else:
             raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
     maxSeats=tableResult['maxSeats']
@@ -125,7 +123,7 @@ def mainParser(backend, db, cursor, site, category, hand):
         
     cursor.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
     limit_type=cursor.fetchone()[0]
-    fpdb_simple.convert3B4B(site, category, limit_type, actionTypes, actionAmounts)
+    fpdb_simple.convert3B4B(category, limit_type, actionTypes, actionAmounts)
     
     totalWinnings=0
     for i in range(len(winnings)):

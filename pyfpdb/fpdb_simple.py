@@ -458,7 +458,7 @@ def classifyLines(hand, category, lineTypes, lineStreets):
         lineStreets.append(currentStreet)
 #end def classifyLines
  
-def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
+def convert3B4B(category, limit_type, actionTypes, actionAmounts):
     """calculates the actual bet amounts in the given amount array and changes it accordingly."""
     for i in range (len(actionTypes)):
         for j in range (len(actionTypes[i])):
@@ -474,7 +474,7 @@ def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
                     elif (len(bets)>2):
                         fail=True
                         #todo: run correction for below
-                        if (site=="ps" and category=="holdem" and limit_type=="nl" and len(bets)==3):
+                        if (limit_type=="nl" or limit_type == "pl"):
                             fail=False
                         
                         if fail:
@@ -611,7 +611,7 @@ def fillCardArrays(player_count, base, category, card_values, card_suits):
  
 #filters out a player that folded before paying ante or blinds. This should be called
 #before calling the actual hand parser. manipulates hand, no return.
-def filterAnteBlindFold(site,hand):
+def filterAnteBlindFold(hand):
     #todo: this'll only get rid of one ante folder, not multiple ones
     #todo: in tourneys this should not be removed but
     #print "start of filterAnteBlindFold"
@@ -649,7 +649,7 @@ def filterAnteBlindFold(site,hand):
 #end def filterAnteFold
  
 #removes useless lines as well as trailing spaces
-def filterCrap(site, hand, isTourney):
+def filterCrap(hand, isTourney):
     #remove two trailing spaces at end of line
     for i in range (len(hand)):
         if (hand[i][-1]==' '):
@@ -714,11 +714,7 @@ def filterCrap(site, hand, isTourney):
             toRemove.append(hand[i])
         elif (hand[i].find("joins the table at seat ")!=-1):
             toRemove.append(hand[i])
-        elif (hand[i].endswith(" sits down")):
-            toRemove.append(hand[i])
         elif (hand[i].endswith("leaves the table")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" stands up")):
             toRemove.append(hand[i])
         elif (hand[i].find("is high with ")!=-1):
             toRemove.append(hand[i])
@@ -862,7 +858,7 @@ def isWinLine(line):
 #end def isWinLine
  
 #returns the amount of cash/chips put into the put in the given action line
-def parseActionAmount(line, atype, site, isTourney):
+def parseActionAmount(line, atype, isTourney):
     #if (line.endswith(" and is all-in")):
     # line=line[:-14]
     #elif (line.endswith(", and is all in")):
@@ -878,14 +874,14 @@ def parseActionAmount(line, atype, site, isTourney):
         amount=0
     elif (atype=="check"):
         amount=0
-    elif (atype=="unbet" and site=="ps"):
+    elif (atype=="unbet"):
         #print "ps unbet, line:",line
         pos1=line.find("$")+1
         if pos1==0:
             pos1=line.find("(")+1
         pos2=line.find(")")
         amount=float2int(line[pos1:pos2])
-    elif (atype=="bet" and site=="ps" and line.find(": raises $")!=-1 and line.find("to $")!=-1):
+    elif (atype=="bet" and line.find(": raises $")!=-1 and line.find("to $")!=-1):
         pos=line.find("to $")+4
         amount=float2int(line[pos:])
     else:
@@ -908,7 +904,7 @@ def parseActionAmount(line, atype, site, isTourney):
 #doesnt return anything, simply changes the passed arrays action_types and
 # action_amounts. For stud this expects numeric streets (3-7), for
 # holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
+def parseActionLine(base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
     if (street=="predeal" or street=="preflop"):
         street=0
     elif (street=="flop"):
@@ -927,7 +923,7 @@ def parseActionLine(site, base, isTourney, line, street, playerIDs, names, actio
     line, allIn=goesAllInOnThisLine(line)
     atype=parseActionType(line)
     playerno=recognisePlayerNo(line, names, atype)
-    amount=parseActionAmount(line, atype, site, isTourney)
+    amount=parseActionAmount(line, atype, isTourney)
     
     action_types[street][playerno].append(atype)
     allIns[street][playerno].append(allIn)
@@ -988,7 +984,7 @@ def parseActionType(line):
 #end def parseActionType
  
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
-def parseAnteLine(line, site, isTourney, names, antes):
+def parseAnteLine(line, isTourney, names, antes):
     for i in range(len(names)):
         if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
             pos=line.rfind("$")+1
@@ -1014,7 +1010,7 @@ def parseBuyin(topline):
  
 #parses a card line and changes the passed arrays accordingly
 #todo: reorganise this messy method
-def parseCardLine(site, category, street, line, names, cardValues, cardSuits, boardValues, boardSuits):
+def parseCardLine(category, street, line, names, cardValues, cardSuits, boardValues, boardSuits):
     if (line.startswith("Dealt to ") or line.find(" shows [")!=-1 or line.find("mucked [")!=-1):
         playerNo=recognisePlayerNo(line, names, "card") #anything but unbet will be ok for that string
  
@@ -1088,7 +1084,7 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
         raise FpdbError ("unrecognised line:"+line)
 #end def parseCardLine
  
-def parseCashesAndSeatNos(lines, site):
+def parseCashesAndSeatNos(lines):
     """parses the startCashes and seatNos of each player out of the given lines and returns them as a dictionary of two arrays"""
     cashes = []
     seatNos = []
@@ -1099,8 +1095,7 @@ def parseCashesAndSeatNos(lines, site):
         pos1=lines[i].rfind("($")+2
         if pos1==1: #for tourneys - it's 1 instead of -1 due to adding 2 above
             pos1=lines[i].rfind("(")+1
-        elif (site=="ps"):
-            pos2=lines[i].find(" in chips")
+        pos2=lines[i].find(" in chips")
         cashes.append(float2int(lines[i][pos1:pos2]))
     return {'startCashes':cashes, 'seatNos':seatNos}
 #end def parseCashesAndSeatNos
@@ -1114,7 +1109,7 @@ def parseFee(topline):
 #end def parsefee
  
 #returns a datetime object with the starttime indicated in the given topline
-def parseHandStartTime(topline, site):
+def parseHandStartTime(topline):
     #convert x:13:35 to 0x:13:35
     counter=0
     while (True):
@@ -1258,7 +1253,7 @@ def parseSiteHandNo(topline):
     return topline[pos1:pos2]
 #end def parseSiteHandNo
  
-def parseTableLine(site, base, line):
+def parseTableLine(base, line):
     """returns a dictionary with maxSeats and tableName"""
     pos1=line.find('\'')+1
     pos2=line.find('\'', pos1)
@@ -1278,7 +1273,7 @@ def parseTourneyNo(topline):
 #end def parseTourneyNo
  
 #parses a win/collect line. manipulates the passed array winnings, no explicit return
-def parseWinLine(line, site, names, winnings, isTourney):
+def parseWinLine(line, names, winnings, isTourney):
     #print "parseWinLine: line:",line
     for i in range(len(names)):
         if (line.startswith(names[i].encode("latin-1"))): #found a winner
@@ -1473,28 +1468,8 @@ def recognisePlayerNo(line, names, atype):
     raise FpdbError ("failed to recognise player in: "+line+" atype:"+atype)
 #end def recognisePlayerNo
  
-#returns the site abbreviation for the given site
-def recogniseSite(line):
-    # TODO: Make site agnostic
-    if (line.startswith("Full Tilt Poker")):
-        return "ftp"
-    elif (line.startswith("PokerStars")):
-        return "ps"
-    else:
-        raise FpdbError("failed to recognise site, line:"+line)
-#end def recogniseSite
- 
-#returns the ID of the given site
-def recogniseSiteID(cursor, site):
-    if (site=="ftp"):
-        return 1
-        #cursor.execute("SELECT id FROM Sites WHERE name = ('Full Tilt Poker')")
-    elif (site=="ps"):
-        return 2
-        #cursor.execute("SELECT id FROM Sites WHERE name = ('PokerStars')")
-    else:
-        raise FpdbError("invalid site in recogniseSiteID: "+site)
-    return cursor.fetchall()[0][0]
+def recogniseSiteID():
+    return 2
 #end def recogniseSiteID
  
 #removes trailing \n from the given array
