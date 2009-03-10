@@ -40,6 +40,7 @@ in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
+        print "DEBUG: __init__"
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"

@@ -361,6 +361,17 @@ class Sql:
                     order by seatNo
                 """
 
+            self.query['get_common_cards'] = """
+                    select 
+                        card1Value, card1Suit, 
+                        card2Value, card2Suit, 
+                        card3Value, card3Suit, 
+                        card4Value, card4Suit, 
+                        card5Value, card5Suit
+                    from BoardCards
+                    where handId = %s
+                """
+
             self.query['get_action_from_hand'] = """
                 SELECT street, Players.name, HandsActions.action, HandsActions.amount, actionno
                 FROM Players, HandsActions, HandsPlayers
