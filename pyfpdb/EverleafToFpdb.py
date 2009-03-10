@@ -30,7 +30,7 @@ class Everleaf(HandHistoryConverter):
     re_SplitHands  = re.compile(r"\n\n+")
     re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+)(?P<LIMIT> NL | PL | )(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
                      #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
-    re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)")
+    re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
@@ -42,6 +42,7 @@ in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
+        print "DEBUG: __init__"
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
@@ -55,19 +56,20 @@ follow :  whether to tail -f the input"""
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: "+ player_re)
-            self.re_PostSB          = re.compile(u"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBB          = re.compile(u"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBoth        = re.compile(u"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_HeroCards       = re.compile(u"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile(u"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
-            self.re_ShowdownAction  = re.compile(u"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(u"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
-            self.re_SitsOut         = re.compile(u"^%s sits out" % player_re, re.MULTILINE)
+            self.re_PostSB          = re.compile(ur"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBB          = re.compile(ur"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
+            self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+            self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+                ["ring", "studhi", "fl"],
                 ["ring", "omahahi", "pl"]
                ]
 
@@ -126,44 +128,6 @@ or None if we fail to get the info """
         
         return info
 
-
-    def determineGameType2(self, handText):
-        # Cheating with this regex, only support nlhe at the moment
-        # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
-        # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
-        # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
-        
-        # Tourney:
-        # Everleaf Gaming Game #75065769
-        # ***** Hand history for game #75065769 *****
-        # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
-        # Table 2
-
-        structure = "" # nl, pl, cn, cp, fl
-        game      = ""
-        currency  = "USD" # USD, EUR
-
-        m = self.re_GameInfo.search(handText)
-        if m == None:
-            logging.debug("Gametype didn't match")
-            return None
-        if m.group('LTYPE') == "NL":
-            structure = "nl"
-        elif m.group('LTYPE') == "PL":
-            structure = "pl"
-        else:
-            structure = "fl" # we don't support it, but there should be how to detect it at least.
-
-        if m.group('GAME') == "Hold\'em":
-            game = "hold"
-        elif m.group('GAME') == "Omaha":
-            game = "omahahi"
-        elif m.group('GAME') == "7 Card Stud":
-            game = "studhi" # Everleaf currently only does Hi stud
-
-        gametype = ["ring", game, structure, m.group('SB'), m.group('BB'), currency]
-
-        return gametype
 
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
@@ -293,7 +257,7 @@ or None if we fail to get the info """
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/plo/Naos.txt")
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/studhi/Plymouth.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
     parser.add_option("-q", "--quiet",

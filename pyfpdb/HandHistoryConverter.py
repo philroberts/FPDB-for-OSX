@@ -196,6 +196,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
         
         hand = None
         if gametype['base'] == 'hold':
+            logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
             hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
         elif gametype['base'] == 'stud':
             hand = Hand.StudHand(self, self.sitename, gametype, handText)
