@@ -378,6 +378,11 @@ class Config:
             if site_node.getAttribute("site_name") == site:
                 return site_node
 
+    def get_aux_node(self, aux):
+        for aux_node in self.doc.getElementsByTagName("aw"):
+            if aux_node.getAttribute("name") == aux:
+                return aux_node
+
     def get_db_node(self, db_name):
         for db_node in self.doc.getElementsByTagName("database"):
             if db_node.getAttribute("db_name") == db_name:
@@ -417,6 +422,16 @@ class Config:
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
             self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
+
+    def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
+        aux_node   = self.get_aux_node(aux_name)
+        layout_node = self.get_layout_node(aux_node, max)
+        if layout_node == None: return
+        for i in range(1, max + 1):
+            location_node = self.get_location_node(layout_node, i)
+            location_node.setAttribute("x", str( locations[i-1][0] ))
+            location_node.setAttribute("y", str( locations[i-1][1] ))
+            self.aux_windows[aux_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
 
     def get_db_parameters(self, name = None):
         if name == None: name = 'fpdb'
@@ -585,18 +600,6 @@ class Config:
             if not enabled        == None: site_node.setAttribute("enabled", enabled)
             if not font           == None: site_node.setAttribute("font", font)
             if not font_size      == None: site_node.setAttribute("font_size", font_size)
-
-#        if self.supported_databases.has_key(db_name):
-#            if not converter      == None: self.supported_sites[site].converter = converter
-#            if not decoder        == None: self.supported_sites[site].decoder = decoder
-#            if not hudbgcolor     == None: self.supported_sites[site].hudbgcolor = hudbgcolor
-#            if not hudfgcolor     == None: self.supported_sites[site].hudfgcolor = hudfgcolor
-#            if not hudopacity     == None: self.supported_sites[site].hudopacity = hudopacity
-#            if not screen_name    == None: self.supported_sites[site].screen_name = screen_name
-#            if not site_path      == None: self.supported_sites[site].site_path = site_path
-#            if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
-#            if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
-#            if not enabled        == None: self.supported_sites[site].enabled = enabled
         return
 
     def get_aux_windows(self):
@@ -692,7 +695,10 @@ if __name__== "__main__":
         print c.get_aux_parameters(mw)
 
     print "mucked locations =", c.get_aux_locations('mucked', 9)
-            
+    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
+                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
+    print "mucked locations =", c.get_aux_locations('mucked', 9)
+
     for site in c.supported_sites.keys():
         print "site = ", site,
         print c.get_site_parameters(site)
