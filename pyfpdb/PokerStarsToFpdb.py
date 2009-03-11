@@ -69,7 +69,7 @@ from HandHistoryConverter import *
 class PokerStars(HandHistoryConverter):
     
     # Static regexes
-    re_GameInfo     = re.compile('PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)', re.MULTILINE)
+    re_GameInfo     = re.compile('PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|Omaha Hi/Lo) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)', re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -126,7 +126,8 @@ follow :  whether to tail -f the input"""
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
-                 'Omaha Hi' : ('hold','omahahi'), 
+                 'Omaha Hi' : ('hold','omahahi'),
+              'Omaha Hi/Lo' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
               '7 Card Stud' : ('stud','studhi')
                }
@@ -186,12 +187,12 @@ follow :  whether to tail -f the input"""
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        if hand.gametype[1] in ("hold", "omaha"):
+        if hand.gametype['base'] in ("hold"):
             m =  re.search(r"\*\*\* HOLE CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
                        r"(\*\*\* FLOP \*\*\*(?P<FLOP> \[\S\S \S\S \S\S\].+(?=\*\*\* TURN \*\*\*)|.+))?"
                        r"(\*\*\* TURN \*\*\* \[\S\S \S\S \S\S] (?P<TURN>\[\S\S\].+(?=\*\*\* RIVER \*\*\*)|.+))?"
                        r"(\*\*\* RIVER \*\*\* \[\S\S \S\S \S\S \S\S] (?P<RIVER>\[\S\S\].+))?", hand.handText,re.DOTALL)
-        elif hand.gametype[1] in ("razz"):
+        elif hand.gametype['base'] in ("stud"):
             m =  re.search(r"(?P<ANTES>.+(?=\*\*\* 3rd STREET \*\*\*)|.+)"
                            r"(\*\*\* 3rd STREET \*\*\*(?P<THIRD>.+(?=\*\*\* 4th STREET \*\*\*)|.+))?"
                            r"(\*\*\* 4th STREET \*\*\*(?P<FOURTH>.+(?=\*\*\* 5th STREET \*\*\*)|.+))?"
