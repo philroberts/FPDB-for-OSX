@@ -430,7 +430,7 @@ Card ranks will be uppercased
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_act_preflop = set([x[0] for x in self.actions['PREFLOP']])
-
+        logging.debug(self.actions['PREFLOP'])
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
