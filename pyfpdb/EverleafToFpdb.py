@@ -44,7 +44,6 @@ follow :  whether to tail -f the input
 autostart: whether to run the thread (or you can call start() yourself)
 debugging: if False, pass on partially supported game types. If true, have a go and error..."""
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
-        print "DEBUG: __init__"
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
