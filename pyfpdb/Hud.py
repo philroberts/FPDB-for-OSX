@@ -155,6 +155,8 @@ class Hud:
             self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(int(self.table.number))  # gets a gdk handle for poker client
             self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid) # gets a gdk handle for the hud table window
             self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
+            
+        self.update_table_position()
                
     def update_table_position(self):
         if os.name == 'nt':
@@ -197,7 +199,8 @@ class Hud:
         self.aux_windows = []
 
     def reposition_windows(self, *args):
-        map(lambda x: x.window.move(x.x, x.y), self.stat_windows)
+        if self.stat_windows and len(self.stat_windows > 0):
+            map(lambda x: x.window.move(x.x, x.y), self.stat_windows)
         return True
 
     def debug_stat_windows(self, *args):
