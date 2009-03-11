@@ -129,6 +129,7 @@ If a player has None chips he won't be added."""
             self.stacks[player] -= Decimal(ante)
             act = (player, 'posts', "ante", ante, self.stacks[player]==0)
             self.actions['ANTES'].append(act)
+            #~ self.lastBet['ANTES'] = Decimal(ante)   
             self.pot.addMoney(player, Decimal(ante))
 
     def addBlind(self, player, blindtype, amount):
@@ -355,6 +356,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, _("%s: bets $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'raises':
             print >>fh, _("%s: raises $%s to $%s%s" %(act[0], act[2], act[3], ' and is all-in' if act[5] else ''))
+        elif act[1] == 'completea':
+            print >>fh, _("%s: completes to $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'posts':
             if(act[2] == "small blind"):
                 print >>fh, _("%s: posts small blind $%s" %(act[0], act[3]))
@@ -362,7 +365,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 print >>fh, _("%s: posts big blind $%s" %(act[0], act[3]))
             elif(act[2] == "both"):
                 print >>fh, _("%s: posts small & big blinds $%s" %(act[0], act[3]))
-
+        elif act[1] == 'bringin':
+            print >>fh, _("%s: brings in for $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
 class HoldemOmahaHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText):
         if gametype['base'] != 'hold':
@@ -596,13 +600,35 @@ closed    likewise, but known only to player
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
+    # TODO: def addComplete(self, player, amount):
+    def addComplete(self, street, player, amountTo):
+        # assert street=='THIRD'
+        #     This needs to be called instead of addRaiseTo, and it needs to take account of self.lastBet['THIRD'] to determine the raise-by size
+        """\
+Add a complete on [street] by [player] to [amountTo]
+"""
+        self.checkPlayerExists(player)
+        Bp = self.lastBet['THIRD']
+        Bc = reduce(operator.add, self.bets[street][player], 0)
+        Rt = Decimal(amountTo)
+        C = Bp - Bc
+        Rb = Rt - C
+        self._addRaise(street, player, C, Rb, Rt)
+        #~ self.bets[street][player].append(C + Rb)
+        #~ self.stacks[player] -= (C + Rb)
+        #~ act = (player, 'raises', Rb, Rt, C, self.stacks[player]==0)
+        #~ self.actions[street].append(act)
+        #~ self.lastBet[street] = Rt # TODO check this is correct
+        #~ self.pot.addMoney(player, C+Rb)
+        
     def addBringIn(self, player, bringin):
         if player is not None:
             logging.debug("Bringin: %s, %s" % (player , bringin))
             self.bets['THIRD'][player].append(Decimal(bringin))
             self.stacks[player] -= Decimal(bringin)
-            act = (player, 'bringin', "bringin", bringin, self.stacks[player]==0)
+            act = (player, 'bringin', bringin, self.stacks[player]==0)
             self.actions['THIRD'].append(act)
+            self.lastBet['THIRD'] = Decimal(bringin)
             self.pot.addMoney(player, Decimal(bringin))
     
     def writeHand(self, fh=sys.__stdout__):
@@ -621,33 +647,88 @@ closed    likewise, but known only to player
                 print >>fh, _("%s: posts the ante $%s" %(act[0], act[3]))
 
         if 'THIRD' in self.actions:
-            print >>fh, _("*** 3RD STREET ***")
+            dealt = 0
+            #~ print >>fh, _("*** 3RD STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
-                print player,  self.holecards[player]
                 if 'THIRD' in self.holecards[player]:
-                    (closed,  open) = self.holecards[player]['THIRD']
-                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(closed) + "]" if closed else " ",  " [" + " ".join(open) + "]" if open else " ")
+                    (open,  closed) = self.holecards[player]['THIRD']
+                    dealt+=1
+                    if dealt==1:
+                        print >>fh, _("*** 3RD STREET ***")
+                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(closed) + "] " if closed else " ", "[" + " ".join(open) + "]" if open else "")
             for act in self.actions['THIRD']:
                 #FIXME: Need some logic here for bringin vs completes
                 self.printActionLine(act, fh)
 
         if 'FOURTH' in self.actions:
-            print >>fh, _("*** 4TH STREET ***")
+            dealt = 0
+            #~ print >>fh, _("*** 4TH STREET ***")
+            for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
+                if 'FOURTH' in self.holecards[player]:
+                    old = []
+                    (o,c) = self.holecards[player]['THIRD']
+                    if o:old.extend(o)
+                    if c:old.extend(c)
+                    new = self.holecards[player]['FOURTH'][0]
+                    dealt+=1
+                    if dealt==1:
+                        print >>fh, _("*** 4TH STREET ***")
+                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(old) + "] " if old else " ", "[" + " ".join(new) + "]" if new else "")
             for act in self.actions['FOURTH']:
                 self.printActionLine(act, fh)
 
         if 'FIFTH' in self.actions:
-            print >>fh, _("*** 5TH STREET ***")
+            dealt = 0
+            #~ print >>fh, _("*** 5TH STREET ***")
+            for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
+                if 'FIFTH' in self.holecards[player]:
+                    old = []
+                    for street in ('THIRD','FOURTH'):
+                        (o,c) = self.holecards[player][street]
+                        if o:old.extend(o)
+                        if c:old.extend(c)
+                    new = self.holecards[player]['FIFTH'][0]
+                    dealt+=1
+                    if dealt==1:
+                        print >>fh, _("*** 5TH STREET ***")
+                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(old) + "] " if old else " ", "[" + " ".join(new) + "]" if new else "")
             for act in self.actions['FIFTH']:
                 self.printActionLine(act, fh)
 
         if 'SIXTH' in self.actions:
-            print >>fh, _("*** 6TH STREET ***")
+            dealt = 0
+            #~ print >>fh, _("*** 6TH STREET ***")
+            for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
+                if 'SIXTH' in self.holecards[player]:
+                    old = []
+                    for street in ('THIRD','FOURTH','FIFTH'):
+                        (o,c) = self.holecards[player][street]
+                        if o:old.extend(o)
+                        if c:old.extend(c)
+                    new = self.holecards[player]['SIXTH'][0]
+                    dealt += 1
+                    if dealt == 1:
+                        print >>fh, _("*** 6TH STREET ***")
+                    print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(old) + "] " if old else " ", "[" + " ".join(new) + "]" if new else "")
             for act in self.actions['SIXTH']:
                 self.printActionLine(act, fh)
 
         if 'SEVENTH' in self.actions:
+            # OK. It's possible that they're all in at an earlier street, but only closed cards are dealt.
+            # Then we have no 'dealt to' lines, no action lines, but still 7th street should appear.
+            # The only way I can see to know whether to print this line is by knowing the state of the hand
+            # i.e. are all but one players folded; is there an allin showdown; and all that.
             print >>fh, _("*** 7TH STREET ***")
+            for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
+                if 'SEVENTH' in self.holecards[player]:
+                    old = []
+                    for street in ('THIRD','FOURTH','FIFTH','SIXTH'):
+                        (o,c) = self.holecards[player][street]
+                        if o:old.extend(o)
+                        if c:old.extend(c)
+                    new = self.holecards[player]['SEVENTH'][0]
+                    if new:
+                        print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(old) + "] " if old else " ", "[" + " ".join(new) + "]" if new else "")
             for act in self.actions['SEVENTH']:
                 self.printActionLine(act, fh)
 
