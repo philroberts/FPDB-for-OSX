@@ -263,7 +263,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' complete to':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET'))
+                hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
                 logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
 
@@ -296,7 +296,7 @@ or None if we fail to get the info """
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/everleaf/studhi/Plymouth.txt")
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
     parser.add_option("-q", "--quiet",
