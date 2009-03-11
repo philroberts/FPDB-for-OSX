@@ -28,7 +28,7 @@ class Everleaf(HandHistoryConverter):
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n+")
-    re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+)(?P<LIMIT> NL | PL | )(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
+    re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
                      #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
     re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
@@ -105,13 +105,13 @@ or None if we fail to get the info """
         info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
-        if not m: 
+        if not m:
             return None
         
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
-        limits = { ' NL ':'nl', ' PL ':'pl', ' ':'fl' }
+        limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
                     'Omaha' : ('hold','omahahi'), 
@@ -132,6 +132,7 @@ or None if we fail to get the info """
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
         if not self.debugging and info['base']=='stud':
+            logging.warning("Not processing Everleaf Stud hand")
             return None
             
         return info

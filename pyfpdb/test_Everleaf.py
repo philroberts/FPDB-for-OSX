@@ -50,4 +50,3 @@ Table Guanajuato""",
         yield checkGameInfo, hhc, header, info
 
 
-
