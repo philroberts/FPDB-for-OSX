@@ -153,7 +153,7 @@ class Database:
                 cards = "%sxx" % cards
             else:
                 cs = "card%dSuit" % i
-                cards = "%s%s%s" % (cards, ranks[d[cv]], cs)
+                cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
         return cards
 
     def get_action_from_hand(self, hand_no):
