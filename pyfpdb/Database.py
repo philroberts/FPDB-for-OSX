@@ -147,9 +147,9 @@ class Database:
         cards = ""
         for i in xrange(1, 8):
             cv = "card%dValue" % i
-            if cv not in d:
+            if cv not in d or d[cv] == None:
                 break
-            elif d[cv] == 0 or d[cv] == None:
+            elif d[cv] == 0:
                 cards = "%sxx" % cards
             else:
                 cs = "card%dSuit" % i
