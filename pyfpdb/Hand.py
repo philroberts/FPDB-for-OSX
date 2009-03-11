@@ -329,7 +329,13 @@ Map the tuple self.gametype onto the pokerstars string describing it
                             "4"    : ("1", "2")
                 }
             }
-        return betlist[self.sitename][self.bb]
+        try: 
+            ret = betlist[self.sitename][self.bb]
+        except:
+            logging.warning("Don't know the small blind/big blind size for %s, big bet size %s." % (self.sitename, self.bb))
+            ret = (Decimal(self.sb)/2,Decimal(self.bb)/2)
+        
+        return ret
 
 
     def writeHand(self, fh=sys.__stdout__):
