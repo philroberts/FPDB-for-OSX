@@ -124,6 +124,7 @@ If a player has None chips he won't be added."""
         return c
 
     def addAnte(self, player, ante):
+        logging.debug("%s %s antes %s" % ('ANTES', player, ante))
         if player is not None:
             self.bets['ANTES'][player].append(Decimal(ante))
             self.stacks[player] -= Decimal(ante)
@@ -160,6 +161,7 @@ If a player has None chips he won't be added."""
 
 
     def addCall(self, street, player=None, amount=None):
+        logging.debug("%s %s calls %s" %(street, player, amount))
         # Potentially calculate the amount of the call if not supplied
         # corner cases include if player would be all in
         if amount is not None:
@@ -193,10 +195,11 @@ Add a raise by amountBy on [street] by [player]
         C = Bp - Bc
         Rt = Bp + Rb
         
-        self.bets[street][player].append(C + Rb)
-        self.stacks[player] -= (C + Rb)
-        self.actions[street] += [(player, 'raises', Rb, Rt, C, self.stacks[player]==0)]
-        self.lastBet[street] = Rt
+        self._addRaise(street, player, C, Rb, Rt)
+        #~ self.bets[street][player].append(C + Rb)
+        #~ self.stacks[player] -= (C + Rb)
+        #~ self.actions[street] += [(player, 'raises', Rb, Rt, C, self.stacks[player]==0)]
+        #~ self.lastBet[street] = Rt
 
     def addCallandRaise(self, street, player, amount):
         """\
@@ -225,6 +228,7 @@ Add a raise on [street] by [player] to [amountTo]
         self._addRaise(street, player, C, Rb, Rt)
 
     def _addRaise(self, street, player, C, Rb, Rt):
+        logging.debug("%s %s raise %s" %(street, player, Rt))
         self.bets[street][player].append(C + Rb)
         self.stacks[player] -= (C + Rb)
         act = (player, 'raises', Rb, Rt, C, self.stacks[player]==0)
@@ -235,6 +239,7 @@ Add a raise on [street] by [player] to [amountTo]
         
         
     def addBet(self, street, player, amount):
+        logging.debug("%s %s bets %s" %(street, player, amount))
         self.checkPlayerExists(player)
         self.bets[street][player].append(Decimal(amount))
         self.stacks[player] -= Decimal(amount)
@@ -246,7 +251,7 @@ Add a raise on [street] by [player] to [amountTo]
         
 
     def addFold(self, street, player):
-        #print "DEBUG: %s %s folded" % (street, player)
+        logging.debug("%s %s folds" % (street, player))
         self.checkPlayerExists(player)
         self.folded.add(player)
         self.pot.addFold(player)
@@ -260,7 +265,7 @@ Add a raise on [street] by [player] to [amountTo]
 
 
     def addCollectPot(self,player, pot):
-        #print "DEBUG: %s collected %s" % (player, pot)
+        logging.debug("%s collected %s" % (player, pot))
         self.checkPlayerExists(player)
         self.collected = self.collected + [[player, pot]]
         if player not in self.collectees:
@@ -607,6 +612,7 @@ closed    likewise, but known only to player
         """\
 Add a complete on [street] by [player] to [amountTo]
 """
+        logging.debug("%s %s completes %s" % (street, player, amountTo))
         self.checkPlayerExists(player)
         Bp = self.lastBet['THIRD']
         Bc = reduce(operator.add, self.bets[street][player], 0)

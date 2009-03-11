@@ -264,7 +264,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' complete to':
-                hand.addCallandRaise( street, action.group('PNAME'), action.group('BET'))
+                hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
                 logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
 
