@@ -149,7 +149,7 @@ class Database:
             cv = "card%dValue" % i
             if cv not in d or d[cv] == None:
                 break
-            elif d[key] == 0:
+            elif d[cv] == 0:
                 cards += "xx"
             else:
                 cs = "card%dSuit" % i
