@@ -152,9 +152,9 @@ class HUD_main(object):
                 (table_name, max, poker_game) = self.db_connection.get_table_name(new_hand_id)
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
                 cards = self.db_connection.get_cards(new_hand_id)
-            except:
-                print "skipping ", new_hand_id
-                sys.stderr.write("Database error in hand %d. Skipping.\n" % int(new_hand_id))
+            except Exception, err:
+                print "db error: skipping ", new_hand_id, err
+                sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
                 continue
 
 #    find out if this hand is from a tournament
