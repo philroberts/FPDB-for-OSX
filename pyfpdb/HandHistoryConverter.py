@@ -90,7 +90,7 @@ class HandHistoryConverter(threading.Thread):
         else:
             # TODO: out_path should be sanity checked before opening. Perhaps in fpdb_import?
             # I'm not sure what we're looking for, although we don't want out_path==in_path!='-'
-            self.out_fh = open(self.out_path, 'a') #TODO: append may be overly conservative.
+            self.out_fh = open(self.out_path, 'w') # doomswitch is now on :|
         self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
