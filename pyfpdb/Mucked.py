@@ -401,6 +401,20 @@ class Flop_Mucked(Aux_Window):
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
+    def save_layout(self, *args):
+        """Save new layout back to the aux element in the config file."""
+#    similar to same method in stat_windows
+        new_layout = [(0, 0)] * self.hud.max
+        for (i, w) in self.m_windows.iteritems():
+            (x, y) = w.get_position()
+            new_loc = (x - self.hud.table.x, y - self.hud.table.y)
+            if i != "common":
+                new_layout[self.hud.stat_windows[int(i)].adj - 1] = new_loc
+            else:
+                pass
+        self.config.edit_layout(self.table.site, self.max, locations = new_layout)
+        self.config.save()
+
 if __name__== "__main__":
     
     def destroy(*args):             # call back for terminating the main eventloop
