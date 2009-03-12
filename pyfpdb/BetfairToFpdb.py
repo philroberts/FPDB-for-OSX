@@ -27,9 +27,9 @@ from HandHistoryConverter import *
 class Betfair(HandHistoryConverter):
 
     # Static regexes
-    re_GameInfo      = re.compile('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
+    re_GameInfo      = re.compile("^(?P<LIMIT>NL|PL|) (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAME>(Texas Hold\'em|Omaha Hi|Razz))", re.MULTILINE)
     re_SplitHands    = re.compile(r'\n\n+')
-    re_HandInfo      = re.compile('.*#(?P<HID>[0-9]+)\n.*\nBlinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')
+    re_HandInfo      = re.compile("\*\*\*\*\* Betfair Poker Hand History for Game (?P<HID>[0-9]+) \*\*\*\*\*\n(?P<LIMIT>NL|PL|) (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>(Texas Hold\'em|Omaha Hi|Razz)) - (?P<DATETIME>[a-zA-Z]+, [a-zA-Z]+ \d+, \d\d:\d\d:\d\d GMT \d\d\d\d)\nTable (?P<TABLE>[ a-zA-Z0-9]+) \d-max \(Real Money\)\nSeat (?P<BUTTON>[0-9]+)", re.MULTILINE)
     re_Button        = re.compile('asdfsadfasdf')
     re_PlayerInfo    = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)')
     re_Board         = re.compile('asdfasdfasdf')
@@ -75,17 +75,18 @@ follow :  whether to tail -f the input"""
 
         m = self.re_GameInfo.search(handText)
         if not m:
+            logging.info('GameInfo regex did not match')
             return None
 
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        limits = { 'NL':'nl', 'PL':'pl', 'Limit':'fl' }
         games = {              # base, category
-                  "Hold'em" : ('hold','holdem'),
-                 'Omaha Hi' : ('hold','omahahi'),
-                     'Razz' : ('stud','razz'),
-              '7 Card Stud' : ('stud','studhi')
+                  "Texas Hold'em" : ('hold','holdem'),
+                       'Omaha Hi' : ('hold','omahahi'),
+                           'Razz' : ('stud','razz'),
+                    '7 Card Stud' : ('stud','studhi')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
         if 'LIMIT' in mg:
@@ -103,10 +104,15 @@ follow :  whether to tail -f the input"""
         return info
 
     def readHandInfo(self, hand):
-        m = elf.re_HandInfo.search(hand.handText,re.DOTALL)
+        m = self.re_HandInfo.search(hand.handText)
+        if(m == None):
+            logging.info("Didn't match re_HandInfo")
+            logging.info(hand.handText)
+            return None
+        logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.starttime = time.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
+        hand.starttime = time.strptime(m.group('DATETIME'), "%A, %B %d, %H:%M:%S GMT %Y")
         #hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
