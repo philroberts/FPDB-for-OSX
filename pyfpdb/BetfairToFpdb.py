@@ -54,15 +54,15 @@ follow :  whether to tail -f the input"""
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: " + player_re)
-            self.re_PostSB          = re.compile("^%s: posts small blind \[\$? (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBB          = re.compile("^%s: posts big blind \[\$? (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostSB          = re.compile("^%s posts small blind \[\$?(?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBB          = re.compile("^%s posts big blind \[\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_Antes           = re.compile("^%s antes asdf sadf sadf" % player_re, re.MULTILINE)
             self.re_BringIn         = re.compile("^%s antes asdf sadf sadf" % player_re, re.MULTILINE)
-            self.re_PostBoth        = re.compile("^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostBoth        = re.compile("^%s posts small \& big blinds \[\$?(?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile("^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile("^%s: (?P<ATYPE>bets|checks|raises|calls|folds)(\s\[\$ (?P<BET>[.\d]+) (USD|EUR)\])?" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile("^%s (?P<ATYPE>bets|checks|raises to|raises|calls|folds)(\s\[\$(?P<BET>[.\d]+)\])?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile("^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile("^%s wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile("^%s wins \$(?P<POT>[.\d]+) (.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile("^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards      = re.compile(r"%s (?P<SEAT>[0-9]+) (?P<CARDS>adsfasdf)" % player_re, re.MULTILINE)
 
@@ -186,18 +186,18 @@ follow :  whether to tail -f the input"""
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            if action.group('ATYPE') == ' raises to':
+            if action.group('ATYPE') == 'raises to':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
 #            elif action.group('ATYPE') == ' completes it to':
 #                hand.addComplete( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' calls':
-#                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' bets':
-#                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-#            elif action.group('ATYPE') == ' folds':
-#                hand.addFold( street, action.group('PNAME'))
-#            elif action.group('ATYPE') == ' checks':
-#                hand.addCheck( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'calls':
+                hand.addCall( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'bets':
+                hand.addBet( street, action.group('PNAME'), action.group('BET') )
+            elif action.group('ATYPE') == 'folds':
+                hand.addFold( street, action.group('PNAME'))
+            elif action.group('ATYPE') == 'checks':
+                hand.addCheck( street, action.group('PNAME'))
             else:
                 print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
 
