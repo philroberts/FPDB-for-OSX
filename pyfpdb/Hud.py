@@ -218,8 +218,9 @@ class Hud:
         self.config.save()
 
     def adj_seats(self, hand, config):
-        
-        adj = xrange(0, self.max + 1) # default seat adjustments = no adjustment
+
+#        Need range here, not xrange -> need the actual list        
+        adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         try:
             sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
