@@ -252,9 +252,8 @@ class Importer:
             supp = conv.readSupportedGames() # Should this be done by HHC on init?
             #gt = conv.determineGameType()
             # TODO: Check that gt is in supp - error appropriately if not
-#            conv.processFile()
             if(conv.getStatus()):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(), site)
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             else:
                 # conversion didn't work
                 # TODO: appropriate response?

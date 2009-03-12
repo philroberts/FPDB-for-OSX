@@ -102,10 +102,6 @@ If a player has None chips he won't be added."""
         else:
             logging.error("markstreets didn't match")
 
-#def addHoleCards -- to Holdem subclass
-
-
-
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
             print "checkPlayerExists", player, "fail"
