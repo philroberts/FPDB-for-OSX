@@ -70,7 +70,7 @@ follow :  whether to tail -f the input"""
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
                 ["ring", "hold", "pl"],
-                ["ring", "razz", "fl"],
+                ["ring", "stud", "fl"],
                 ["ring", "omaha", "pl"]
                ]
 
