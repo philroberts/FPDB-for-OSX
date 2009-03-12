@@ -265,7 +265,7 @@ follow :  whether to tail -f the input"""
         for action in m:
             if action.group('ATYPE') == ' raises to':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-            if action.group('ATYPE') == ' completes it to':
+            elif action.group('ATYPE') == ' completes it to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
@@ -276,7 +276,7 @@ follow :  whether to tail -f the input"""
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
+                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
 
 
     def readShowdownActions(self, hand):
