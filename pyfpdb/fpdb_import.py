@@ -241,7 +241,7 @@ class Importer:
                     out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
                 #out_fh = open(ofile, 'w') # TODO: seek to previous place in input and append output
                 conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
-                conv.join()
+                #~ conv.join()
             elif filter == "FulltiltToFpdb":
                 print "converting ", file
                 conv = FulltiltToFpdb.FullTilt(in_fh = file, out_fh = out_fh)
@@ -252,9 +252,9 @@ class Importer:
             supp = conv.readSupportedGames() # Should this be done by HHC on init?
             #gt = conv.determineGameType()
             # TODO: Check that gt is in supp - error appropriately if not
-#            conv.processFile()
+            #conv.processFile()
             if(conv.getStatus()):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(), site)
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             else:
                 # conversion didn't work
                 # TODO: appropriate response?

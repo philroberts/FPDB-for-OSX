@@ -18,7 +18,6 @@
 import Hand
 import re
 import sys
-import threading
 import traceback
 import logging
 from optparse import OptionParser
@@ -72,10 +71,9 @@ letter2names = {
 import gettext
 gettext.install('myapplication')
 
-class HandHistoryConverter(threading.Thread):
+class HandHistoryConverter():
     READ_CHUNK_SIZE = 1000 # bytes to read at a time from file
     def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
-        threading.Thread.__init__(self)
         logging.info("HandHistory init called")
         
         # default filetype and codepage. Subclasses should set these properly.
@@ -90,7 +88,7 @@ class HandHistoryConverter(threading.Thread):
         else:
             # TODO: out_path should be sanity checked before opening. Perhaps in fpdb_import?
             # I'm not sure what we're looking for, although we don't want out_path==in_path!='-'
-            self.out_fh = open(self.out_path, 'a') #TODO: append may be overly conservative.
+            self.out_fh = open(self.out_path, 'w') # doomswitch is now on :|
         self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
@@ -110,7 +108,7 @@ class HandHistoryConverter(threading.Thread):
         #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
-    def run(self):
+    def start(self):
         """process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
 Otherwise, finish at eof..."""        
@@ -135,9 +133,9 @@ Otherwise, finish at eof..."""
     def tailHands(self):
         """Generator of handTexts from a tailed file:
 Tail the in_path file and yield handTexts separated by re_SplitHands"""
-        if in_path == '-': raise StopIteration
+        if self.in_path == '-': raise StopIteration
         interval = 1.0 # seconds to sleep between reads for new data
-        fd = open(filename,'r')
+        fd = codecs.open(self.in_path,'r', self.codepage)
         data = ''
         while 1:
             where = fd.tell()
@@ -145,15 +143,15 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
             if not newdata:
                 fd_results = os.fstat(fd.fileno())
                 try:
-                    st_results = os.stat(filename)
+                    st_results = os.stat(self.in_path)
                 except OSError:
                     st_results = fd_results
                 if st_results[1] == fd_results[1]:
                     time.sleep(interval)
                     fd.seek(where)
                 else:
-                    print "%s changed inode numbers from %d to %d" % (filename, fd_results[1], st_results[1])
-                    fd = open(filename, 'r')
+                    print "%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1])
+                    fd = codecs.open(self.in_path, 'r', self.codepage)
                     fd.seek(where)
             else:
                 # yield hands
