@@ -200,7 +200,7 @@ class Importer:
                 self.updated[file] = time()
                 # If modified in the last minute run an immediate import.
                 # This codepath only runs first time the file is found.
-                if (time() - stat_info.st_mtime) < 60:
+                if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
                     # TODO attach a HHC thread to the file
                     # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
                     self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
