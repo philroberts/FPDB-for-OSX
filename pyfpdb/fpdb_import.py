@@ -274,7 +274,6 @@ class Importer:
                 loc = self.pos_in_file[file]
             except:
                 pass
-        print "DEBUG: XXXXX in import_fpdb_file"
         # Read input file into class and close file
         inputFile.seek(loc)
         self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
