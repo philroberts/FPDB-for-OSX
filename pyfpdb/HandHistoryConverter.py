@@ -116,6 +116,7 @@ Otherwise, finish at eof..."""
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
             return
+
         if self.follow:
             numHands = 0
             for handText in self.tailHands():
@@ -129,6 +130,9 @@ Otherwise, finish at eof..."""
             numHands=  len(handsList)
         endtime = time.time()
         print "Processed %d hands in %.3f seconds" % (numHands, endtime - starttime)
+        if self.out_fh != sys.stdout:
+            self.out_fh.close()
+
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
