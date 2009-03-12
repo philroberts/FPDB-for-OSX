@@ -146,14 +146,14 @@ class Database:
         ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
         cards = ""
         for i in xrange(1, 8):
-            key = 'card' + str(i) + 'Value'
-            if not d.has_key(key): continue
-            if d[key] == None:
+            cv = "card%dValue" % i
+            if cv not in d or d[cv] == None:
                 break
-            elif d[key] == 0:
+            elif d[cv] == 0:
                 cards += "xx"
             else:
-                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
+                cs = "card%dSuit" % i
+                cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
         return cards
 
     def get_action_from_hand(self, hand_no):
