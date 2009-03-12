@@ -30,9 +30,9 @@ class Betfair(HandHistoryConverter):
     re_GameInfo      = re.compile("^(?P<LIMIT>NL|PL|) (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAME>(Texas Hold\'em|Omaha Hi|Razz))", re.MULTILINE)
     re_SplitHands    = re.compile(r'\n\n+')
     re_HandInfo      = re.compile("\*\*\*\*\* Betfair Poker Hand History for Game (?P<HID>[0-9]+) \*\*\*\*\*\n(?P<LIMIT>NL|PL|) (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAMETYPE>(Texas Hold\'em|Omaha Hi|Razz)) - (?P<DATETIME>[a-zA-Z]+, [a-zA-Z]+ \d+, \d\d:\d\d:\d\d GMT \d\d\d\d)\nTable (?P<TABLE>[ a-zA-Z0-9]+) \d-max \(Real Money\)\nSeat (?P<BUTTON>[0-9]+)", re.MULTILINE)
-    re_Button        = re.compile('asdfsadfasdf')
-    re_PlayerInfo    = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+(\$ (?P<CASH>[.0-9]+) USD|new player|All-in) \)')
-    re_Board         = re.compile('asdfasdfasdf')
+    re_Button        = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
+    re_PlayerInfo    = re.compile("Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*)\s\(\s(\$(?P<CASH>[.0-9]+)) \)")
+    re_Board         = re.compile(ur"\[ (?P<CARDS>.+) \]")
 
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
@@ -64,7 +64,7 @@ follow :  whether to tail -f the input"""
             self.re_ShowdownAction  = re.compile("^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile("^%s wins \$ (?P<POT>[.\d]+) (USD|EUR)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile("^%s sits out" % player_re, re.MULTILINE)
-            self.re_ShownCards      = re.compile(r"asdfasdfa" % player_re, re.MULTILINE)
+            self.re_ShownCards      = re.compile(r"%s (?P<SEAT>[0-9]+) (?P<CARDS>adsfasdf)" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"]
@@ -117,15 +117,18 @@ follow :  whether to tail -f the input"""
 
     def readPlayerStacks(self, hand):
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+
+        #Shouldn't really dip into the Hand object, but i've no idea how to tell the length of iter m
+        if len(hand.players) < 2:
+            logging.info("readPlayerStacks: Less than 2 players found in a hand")
 
     def markStreets(self, hand):
         m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
                        r"(\*\* Dealing Flop \*\*(?P<FLOP> \[ \S\S, \S\S, \S\S \].+(?=\*\* Dealing Turn \*\*)|.+))?"
                        r"(\*\* Dealing Turn \*\*(?P<TURN> \[ \S\S \].+(?=\*\* Dealing River \*\*)|.+))?"
-                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.string,re.DOTALL)
+                       r"(\*\* Dealing River \*\*(?P<RIVER> \[ \S\S \].+))?", hand.handText,re.DOTALL)
 
         hand.addStreets(m)
             
@@ -137,13 +140,13 @@ follow :  whether to tail -f the input"""
 
     def readBlinds(self, hand):
         try:
-            m = self.rexx.small_blind_re.search(hand.string)
+            m = self.re_PostSB.search(hand.handText)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
-        for a in self.rexx.big_blind_re.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.rexx.both_blinds_re.finditer(hand.string):
+        for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readAntes(self, hand):
@@ -164,7 +167,7 @@ follow :  whether to tail -f the input"""
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.rexx.hero_cards_re.search(hand.string)
+        m = self.re_HeroCards.search(hand.handText)
         if(m == None):
             #Not involved in hand
             hand.involved = False
@@ -173,7 +176,7 @@ follow :  whether to tail -f the input"""
             # "2c, qh" -> set(["2c","qc"])
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = [c.strip() for c in cards.split(' ')]
+            cards = [c.strip() for c in cards.split(',')]
             hand.addHoleCards(cards, m.group('PNAME'))
 
     def readStudPlayerCards(self, hand, street):
