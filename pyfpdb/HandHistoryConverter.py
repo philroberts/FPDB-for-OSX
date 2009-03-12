@@ -18,7 +18,6 @@
 import Hand
 import re
 import sys
-import threading
 import traceback
 import logging
 from optparse import OptionParser
@@ -72,10 +71,9 @@ letter2names = {
 import gettext
 gettext.install('myapplication')
 
-class HandHistoryConverter(threading.Thread):
+class HandHistoryConverter():
     READ_CHUNK_SIZE = 1000 # bytes to read at a time from file
     def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
-        threading.Thread.__init__(self)
         logging.info("HandHistory init called")
         
         # default filetype and codepage. Subclasses should set these properly.
@@ -110,7 +108,7 @@ class HandHistoryConverter(threading.Thread):
         #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
-    def run(self):
+    def start(self):
         """process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
 Otherwise, finish at eof..."""        
@@ -118,6 +116,7 @@ Otherwise, finish at eof..."""
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
             return
+
         if self.follow:
             numHands = 0
             for handText in self.tailHands():
@@ -131,13 +130,16 @@ Otherwise, finish at eof..."""
             numHands=  len(handsList)
         endtime = time.time()
         print "Processed %d hands in %.3f seconds" % (numHands, endtime - starttime)
+        if self.out_fh != sys.stdout:
+            self.out_fh.close()
+
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
 Tail the in_path file and yield handTexts separated by re_SplitHands"""
-        if in_path == '-': raise StopIteration
+        if self.in_path == '-': raise StopIteration
         interval = 1.0 # seconds to sleep between reads for new data
-        fd = open(filename,'r')
+        fd = codecs.open(self.in_path,'r', self.codepage)
         data = ''
         while 1:
             where = fd.tell()
@@ -145,15 +147,15 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
             if not newdata:
                 fd_results = os.fstat(fd.fileno())
                 try:
-                    st_results = os.stat(filename)
+                    st_results = os.stat(self.in_path)
                 except OSError:
                     st_results = fd_results
                 if st_results[1] == fd_results[1]:
                     time.sleep(interval)
                     fd.seek(where)
                 else:
-                    print "%s changed inode numbers from %d to %d" % (filename, fd_results[1], st_results[1])
-                    fd = open(filename, 'r')
+                    print "%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1])
+                    fd = codecs.open(self.in_path, 'r', self.codepage)
                     fd.seek(where)
             else:
                 # yield hands
@@ -202,17 +204,24 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         logging.debug("gametype %s" % gametype)
-        if gametype is None:
-            return
-        
+
+        # See if gametype is supported.
+        type = gametype['type']
+        base = gametype['base']
+        limit = gametype['limitType']
+        l = [type] + [base] + [limit]
         hand = None
-        if gametype['base'] == 'hold':
-            logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
-            hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
-        elif gametype['base'] == 'stud':
-            hand = Hand.StudHand(self, self.sitename, gametype, handText)
-        elif gametype['base'] == 'draw':
-            hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+        if l in self.readSupportedGames():
+            hand = None
+            if gametype['base'] == 'hold':
+                logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
+                hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
+            elif gametype['base'] == 'stud':
+                hand = Hand.StudHand(self, self.sitename, gametype, handText)
+            elif gametype['base'] == 'draw':
+                hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+        else:
+            logging.info("Unsupported game type: %s" % gametype)
 
         if hand:
             hand.writeHand(self.out_fh)
@@ -220,6 +229,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
             logging.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
+
 
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:
