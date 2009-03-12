@@ -51,6 +51,7 @@ debugging: if False, pass on partially supported game types. If true, have a go 
         self.debugging = debugging
         if autostart:
             self.start()
+            # otherwise you need to call start yourself.
 
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])

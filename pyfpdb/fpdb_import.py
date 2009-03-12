@@ -241,7 +241,7 @@ class Importer:
                     out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
                 #out_fh = open(ofile, 'w') # TODO: seek to previous place in input and append output
                 conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
-                conv.join()
+                #~ conv.join()
             elif filter == "FulltiltToFpdb":
                 print "converting ", file
                 conv = FulltiltToFpdb.FullTilt(in_fh = file, out_fh = out_fh)
