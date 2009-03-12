@@ -118,7 +118,6 @@ class Importer:
     def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
         """Add a file or directory for bulk import"""
         # Bulk import never monitors
-        
         # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
@@ -133,6 +132,7 @@ class Importer:
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
     def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
+        #gets called by GuiAutoImport.
         #This should really be using os.walk
         #http://docs.python.org/library/os.html
         if os.path.isdir(dir):
@@ -182,9 +182,10 @@ class Importer:
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
-        #Check for new files in directory
+        #Check for new files in monitored directories
         #todo: make efficient - always checks for new file, should be able to use mtime of directory
         # ^^ May not work on windows
+        
         for site in self.dirlist:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
@@ -197,13 +198,17 @@ class Importer:
                     self.updated[file] = time()
             except:
                 self.updated[file] = time()
-                # This codepath only runs first time the file is found, if modified in the last
-                # minute run an immediate import.
-                if (time() - stat_info.st_mtime) < 60 or os.path.isdir(file): # TODO: figure out a way to dispatch this to the seperate thread so our main window doesn't lock up on initial import
+                # If modified in the last minute run an immediate import.
+                # This codepath only runs first time the file is found.
+                if (time() - stat_info.st_mtime) < 60:
+                    # TODO attach a HHC thread to the file
+                    # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
                     self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                # TODO we also test if directory, why?
+                #if os.path.isdir(file):
+                    #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                     
-        for dir in self.addToDirList:
-            self.addImportDirectory(dir, True, self.addToDirList[dir][0], self.addToDirList[dir][1])
+        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)                       
             
         for file in self.removeFromFileList:
             if file in self.filelist:
@@ -225,12 +230,21 @@ class Importer:
             
             # TODO: Shouldn't we be able to use some sort of lambda or something to just call a Python object by whatever name we specify? then we don't have to hardcode them,
             # someone can just create their own python module for it
-            if filter == "EverleafToFpdb":
+            if filter in ("EverleafToFpdb","Everleaf"):
                 print "converting ", file
-                conv = EverleafToFpdb.Everleaf(self.config, file)
+                hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+                hhbase    = os.path.expanduser(hhbase)
+                hhdir     = os.path.join(hhbase,site)
+                try:
+                    out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
+                except:
+                    out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+                #out_fh = open(ofile, 'w') # TODO: seek to previous place in input and append output
+                conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
+                conv.join()
             elif filter == "FulltiltToFpdb":
                 print "converting ", file
-                conv = FulltiltToFpdb.FullTilt(self.config, file)
+                conv = FulltiltToFpdb.FullTilt(in_fh = file, out_fh = out_fh)
             else:
                 print "Unknown filter ", filter
                 return
@@ -294,7 +308,7 @@ class Importer:
         partial=0 #counter
         errors=0 #counter
 
-        for i in range (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
+        for i in xrange (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
             if (len(self.lines[i])<2):
                 endpos=i
                 hand=self.lines[startpos:endpos]

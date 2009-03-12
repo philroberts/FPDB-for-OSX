@@ -145,7 +145,7 @@ class Database:
     def convert_cards(self, d):
         ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
         cards = ""
-        for i in range(1, 8):
+        for i in xrange(1, 8):
             key = 'card' + str(i) + 'Value'
             if not d.has_key(key): continue
             if d[key] == None:
