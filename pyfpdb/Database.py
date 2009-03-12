@@ -158,7 +158,7 @@ class Database:
             if cv not in d or d[cv] == None:
                 break
             elif d[cv] == 0:
-                cards = "%sxx" % cards
+                cards += "xx"
             else:
                 cs = "card%dSuit" % i
                 cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])

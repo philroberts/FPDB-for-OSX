@@ -200,7 +200,7 @@ class Importer:
                 self.updated[file] = time()
                 # If modified in the last minute run an immediate import.
                 # This codepath only runs first time the file is found.
-                if (time() - stat_info.st_mtime) < 60:
+                if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
                     # TODO attach a HHC thread to the file
                     # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
                     self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
@@ -229,32 +229,26 @@ class Importer:
             # Load filter, process file, pass returned filename to import_fpdb_file
             
             # TODO: Shouldn't we be able to use some sort of lambda or something to just call a Python object by whatever name we specify? then we don't have to hardcode them,
+            print "converting %s" % file
+            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+            hhbase    = os.path.expanduser(hhbase)
+            hhdir     = os.path.join(hhbase,site)
+            try:
+                out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
+            except:
+                out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+
             # someone can just create their own python module for it
             if filter in ("EverleafToFpdb","Everleaf"):
-                print "converting ", file
-                hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-                hhbase    = os.path.expanduser(hhbase)
-                hhdir     = os.path.join(hhbase,site)
-                try:
-                    out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
-                except:
-                    out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
-                #out_fh = open(ofile, 'w') # TODO: seek to previous place in input and append output
                 conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
-                conv.join()
             elif filter == "FulltiltToFpdb":
-                print "converting ", file
-                conv = FulltiltToFpdb.FullTilt(in_fh = file, out_fh = out_fh)
+                conv = FulltiltToFpdb.FullTilt(in_path = file, out_path = out_path)
             else:
                 print "Unknown filter ", filter
                 return
 
-            supp = conv.readSupportedGames() # Should this be done by HHC on init?
-            #gt = conv.determineGameType()
-            # TODO: Check that gt is in supp - error appropriately if not
-            conv.processFile()
             if(conv.getStatus()):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(conv.getProcessedFile(), site)
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
@@ -280,7 +274,7 @@ class Importer:
                 loc = self.pos_in_file[file]
             except:
                 pass
-
+        print "DEBUG: XXXXX in import_fpdb_file"
         # Read input file into class and close file
         inputFile.seek(loc)
         self.lines=fpdb_simple.removeTrailingEOL(inputFile.readlines())
@@ -290,7 +284,7 @@ class Importer:
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
         except:
-#           print "import_fpdb_file", file, site, self.lines, "\n"
+            print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
             return (0,0,0,1,0)
 
         if firstline.find("Tournament Summary")!=-1:
