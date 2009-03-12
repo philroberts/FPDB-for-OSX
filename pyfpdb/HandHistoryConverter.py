@@ -202,17 +202,24 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         logging.debug("gametype %s" % gametype)
-        if gametype is None:
-            return
-        
+
+        # See if gametype is supported.
+        type = gametype['type']
+        base = gametype['base']
+        limit = gametype['limitType']
+        l = [type] + [base] + [limit]
         hand = None
-        if gametype['base'] == 'hold':
-            logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
-            hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
-        elif gametype['base'] == 'stud':
-            hand = Hand.StudHand(self, self.sitename, gametype, handText)
-        elif gametype['base'] == 'draw':
-            hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+        if l in self.readSupportedGames():
+            hand = None
+            if gametype['base'] == 'hold':
+                logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
+                hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
+            elif gametype['base'] == 'stud':
+                hand = Hand.StudHand(self, self.sitename, gametype, handText)
+            elif gametype['base'] == 'draw':
+                hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+        else:
+            logging.info("Unsupported game type: %s" % gametype)
 
         if hand:
             hand.writeHand(self.out_fh)
@@ -220,6 +227,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
             logging.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
+
 
     # These functions are parse actions that may be overridden by the inheriting class
     # This function should return a list of lists looking like:

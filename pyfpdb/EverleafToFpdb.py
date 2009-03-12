@@ -133,7 +133,7 @@ or None if we fail to get the info """
         
         if not self.debugging and info['base']=='stud':
             logging.warning("Not processing Everleaf Stud hand")
-            return None
+            #return None
             
         return info
 
