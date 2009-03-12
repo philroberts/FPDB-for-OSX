@@ -46,9 +46,15 @@ class GuiGraphViewer (threading.Thread):
         return self.mainHBox
     #end def get_vbox
 
+    def clearGraphData(self):
+        self.fig.clf()
+        if self.canvas is not None:
+            self.canvas.destroy()
+
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+
     def generateGraph(self, widget, data):
-        try: self.canvas.destroy()
-        except AttributeError: pass
+        self.clearGraphData()
 
         sitenos = []
         playerids = []
@@ -72,7 +78,6 @@ class GuiGraphViewer (threading.Thread):
             print "No player ids found"
             return
 
-        self.fig = Figure(figsize=(5,4), dpi=100)
 
         #Set graph properties
         self.ax = self.fig.add_subplot(111)
@@ -104,7 +109,6 @@ class GuiGraphViewer (threading.Thread):
             #Draw plot
             self.ax.plot(line,)
 
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
             self.graphBox.add(self.canvas)
             self.canvas.show()
             self.exportButton.set_sensitive(True)
@@ -280,6 +284,8 @@ class GuiGraphViewer (threading.Thread):
         win.destroy()
 
     def exportGraph (self, widget, data):
+        if self.fig is None:
+            return # Might want to disable export button until something has been generated.
         dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
                                             action=gtk.FILE_CHOOSER_ACTION_OPEN,
                                             buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
@@ -294,6 +300,7 @@ class GuiGraphViewer (threading.Thread):
         dia_chooser.destroy()
         #TODO: Check to see if file exists
         #NOTE: Dangerous - will happily overwrite any file we have write access too
+        #TODO: This asks for a directory but will take a filename and overwrite it.
         self.fig.savefig(self.exportDir, format="png")
 
     def __init__(self, db, settings, querylist, config, debug=True):
@@ -360,6 +367,7 @@ class GuiGraphViewer (threading.Thread):
         graphButton.connect("clicked", self.generateGraph, "cliced data")
         graphButton.show()
 
+        self.fig = None
         self.exportButton=gtk.Button("Export to File")
         self.exportButton.connect("clicked", self.exportGraph, "show clicked")
         self.exportButton.set_sensitive(False)
@@ -373,6 +381,9 @@ class GuiGraphViewer (threading.Thread):
 
         self.leftPanelBox.show()
         self.graphBox.show()
+
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        self.canvas = None
 
 #################################
 #

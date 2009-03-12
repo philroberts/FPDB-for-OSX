@@ -32,12 +32,6 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
-#class Layout:
-#    def __init__(self, max):
-#        self.max = int(max)
-#        self.location = []
-#        for i in range(self.max + 1): self.location.append(None)
-        
 class Layout:
     def __init__(self, node):
 
@@ -47,7 +41,7 @@ class Layout:
         self.height   = int( node.getAttribute('height') )
         
         self.location = []
-        for i in range(self.max + 1): self.location.append(None)
+        self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
 
         for location_node in node.getElementsByTagName('location'):
             if location_node.getAttribute('seat') != "":
@@ -639,7 +633,7 @@ class Config:
 
     def execution_path(self, filename):
         """Join the fpdb path to filename."""
-        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(1))), filename)
+        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(0))), filename)
 
 if __name__== "__main__":
     c = Config()
