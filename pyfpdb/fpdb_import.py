@@ -208,7 +208,7 @@ class Importer:
                 #if os.path.isdir(file):
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                     
-        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)                       
+        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
             
         for file in self.removeFromFileList:
             if file in self.filelist:
@@ -286,13 +286,7 @@ class Importer:
             print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
             return (0,0,0,1,0)
 
-        if firstline.find("Tournament Summary")!=-1:
-            print "TODO: implement importing tournament summaries"
-            #self.faobs = readfile(inputFile)
-            #self.parseTourneyHistory()
-            return 0
-        
-        site=fpdb_simple.recogniseSite(firstline)
+        # site=fpdb_simple.recogniseSite(firstline)
         category=fpdb_simple.recogniseCategory(firstline)
 
         startpos=0
@@ -301,62 +295,31 @@ class Importer:
         partial=0 #counter
         errors=0 #counter
 
-        for i in xrange (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
-            if (len(self.lines[i])<2):
+        for i in xrange (len(self.lines)):
+            if (len(self.lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
                 endpos=i
                 hand=self.lines[startpos:endpos]
         
                 if (len(hand[0])<2):
                     hand=hand[1:]
-        
-                cancelled=False
-                damaged=False
-                if (site=="ftp"):
-                    for i in range (len(hand)):
-                        if (hand[i].endswith(" has been canceled")): #this is their typo. this is a typo, right?
-                            cancelled=True
 
-                        #FTP generates lines looking like:
-                        #Seat 1: IOS Seat 2: kashman59 (big blind) showed [8c 9d] and won ($3.25) with a pair of Eights
-                        #ie. Seat X multiple times on the same line in the summary section, when a new player sits down in the
-                        #middle of the hand.
-                        #TODO: Deal with this properly, either fix the file or make the parsing code work with this line.
-                        if "Seat" in hand[i]:
-                            mo = re.search(" Seat [0-9]+: ", hand[i])
-                            if mo:
-                                print "mo=", mo, "\nmo.start=", mo.start(),"\nhand[i]=",hand[i]
-                                hand.insert(i+1, hand[i][mo.start()+1:])
-                                hand[i] = hand[i][0:mo.start()]
-                
+        
                 if (len(hand)<3):
                     pass
-                    #todo: the above 2 lines are kind of a dirty hack, the mentioned circumstances should be handled elsewhere but that doesnt work with DOS/Win EOL. actually this doesnt work.
-                elif (hand[0].endswith(" (partial)")): #partial hand - do nothing
-                    partial+=1
-                elif (hand[1].find("Seat")==-1 and hand[2].find("Seat")==-1 and hand[3].find("Seat")==-1):#todo: should this be or instead of and?
-                    partial+=1
-                elif (cancelled or damaged):
-                    partial+=1
-                    if damaged:
-                        print """
-                                 DEBUG: Partial hand triggered by a line containing 'Seat X:' twice. This is a
-                                 bug in the FTP software when a player sits down in the middle of a hand.
-                                 Adding a newline after the player name will fix the issue
-                              """
-                        print "File: %s" %(file)
-                        print "Line: %s" %(startpos)
-                else: #normal processing
+                    #TODO: This is ugly - we didn't actually find the start of the
+                    # hand with the outer loop so we test again...
+                else:
                     isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
-                        fpdb_simple.filterAnteBlindFold(site,hand)
-                    hand=fpdb_simple.filterCrap(site, hand, isTourney)
+                        fpdb_simple.filterAnteBlindFold(hand)
+                    hand=fpdb_simple.filterCrap(hand, isTourney)
                     self.hand=hand
-                    
+
                     try:
                         handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                           ,self.fdb.cursor, site, category, hand)
+                                                                   ,self.fdb.cursor, category, hand)
                         self.fdb.db.commit()
-                        
+
                         stored+=1
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
@@ -367,7 +330,7 @@ class Importer:
                     except (ValueError), fe:
                         errors+=1
                         self.printEmailErrorMessage(errors, file, hand)
-                
+
                         if (self.settings['failOnError']):
                             self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
@@ -375,25 +338,24 @@ class Importer:
                         errors+=1
                         self.printEmailErrorMessage(errors, file, hand)
 
-                        #fe.printStackTrace() #todo: get stacktrace
                         self.fdb.db.rollback()
-                        
+
                         if (self.settings['failOnError']):
                             self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
                     if (self.settings['minPrint']!=0):
-                        if ((stored+duplicates+partial+errors)%self.settings['minPrint']==0):
-                            print "stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
-            
+                        if ((stored+duplicates+errors)%self.settings['minPrint']==0):
+                            print "stored:", stored, "duplicates:", duplicates, "errors:", errors
+                    
                     if (self.settings['handCount']!=0):
-                        if ((stored+duplicates+partial+errors)>=self.settings['handCount']):
+                        if ((stored+duplicates+errors)>=self.settings['handCount']):
                             if (not self.settings['quiet']):
                                 print "quitting due to reaching the amount of hands to be imported"
-                                print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
+                                print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
                             sys.exit(0)
                 startpos=endpos
         ttime = time() - starttime
-        print "\rTotal stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
+        print "\rTotal stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", ttime
         
         if stored==0:
             if duplicates>0:
@@ -404,16 +366,11 @@ class Importer:
             else:
                 print "failed to read a single hand from file:", inputFile
                 handsId=0
-            #todo: this will cause return of an unstored hand number if the last hand was error or partial
+            #todo: this will cause return of an unstored hand number if the last hand was error
         self.fdb.db.commit()
         self.handsId=handsId
         return (stored, duplicates, partial, errors, ttime)
 
-    def parseTourneyHistory(self):
-        print "Tourney history parser stub"
-        #Find tournament boundaries.
-        #print self.foabs
-        
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
         print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
