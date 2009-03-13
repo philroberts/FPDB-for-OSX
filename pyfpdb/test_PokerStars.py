@@ -13,7 +13,10 @@ def testGameInfo():
     {'type':'ring', 'base':"hold", 'category':'holdem', 'limitType':'nl', 'sb':'1', 'bb':'2', 'currency':'USD'}),
          
     (u"PokerStars Game #5999635897:  HORSE (Omaha Hi/Lo Limit, $2/$4) - 2006/08/21 - 13:59:19 (ET)",
-    {'type':'ring', 'base':'hold', 'category':'omahahilo', 'limitType':'fl', 'sb':'2', 'bb':'4','currency':'USD'})
+    {'type':'ring', 'base':'hold', 'category':'omahahilo', 'limitType':'fl', 'sb':'2', 'bb':'4','currency':'USD'}),
+
+    (u"PokerStars Game #25923772706:  Badugi Limit ($0.25/$0.50) - 2009/03/13 16:40:58 ET",
+    {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'})
     )
     for (header, info) in pairs:
         yield checkGameInfo, hhc, header, info
