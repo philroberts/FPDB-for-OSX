@@ -43,16 +43,8 @@ import Configuration
 import Stats
 import Mucked
 import Database
-import HUD_main 
-
-def importName(module_name, name):
-    """Import a named object 'name' from module 'module_name'."""
-#    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
-    try:
-        module = __import__(module_name, globals(), locals(), [name])
-    except:
-        return None
-    return(getattr(module, name))
+import HUD_main
+import Utils
 
 class Hud:
     
@@ -88,7 +80,7 @@ class Hud:
         if not game_params['aux'] == [""]:
             for aux in game_params['aux']:
                 aux_params = config.get_aux_parameters(aux)
-                my_import = importName(aux_params['module'], aux_params['class'])
+                my_import = Utils.importName(aux_params['module'], aux_params['class'])
                 if my_import == None:
                     continue
                 self.aux_windows.append(my_import(self, config, aux_params))
