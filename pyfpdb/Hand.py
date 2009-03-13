@@ -406,7 +406,7 @@ class HoldemOmahaHand(Hand):
         self.totalPot() # finalise it (total the pot)
         hhc.getRake(self)
 
-    def addHoleCards(self, cards, player):
+    def addHoleCards(self, cards, player, shown=False):
         """\
 Assigns observed holecards to a player.
 cards   list of card bigrams e.g. ['2h','Jc']
@@ -416,6 +416,8 @@ player  (string) name of player
         try:
             self.checkPlayerExists(player)
             cardset = set(self.card(c) for c in cards)
+            if shown and len(cardset) > 0:
+                self.shown.add(player)
             if 'PREFLOP' in self.holecards[player]:
                 self.holecards[player]['PREFLOP'].update(cardset)
             else:
@@ -435,7 +437,7 @@ Card ranks will be uppercased
         elif holeandboard is not None:
             holeandboard = set([self.card(c) for c in holeandboard])
             board = set([c for s in self.board.values() for c in s])
-            self.addHoleCards(holeandboard.difference(board),player)
+            self.addHoleCards(holeandboard.difference(board),player,shown=True)
 
 
     def writeHand(self, fh=sys.__stdout__):
