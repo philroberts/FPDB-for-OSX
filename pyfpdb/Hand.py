@@ -534,12 +534,15 @@ Card ranks will be uppercased
                 print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]['PREFLOP']), self.collectees[name]))
             elif name in self.collectees:
                 print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
-            elif name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name]['PREFLOP'])))
+            #~ elif name in self.shown:
+                #~ print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name]['PREFLOP'])))
             elif name in self.folded:
                 print >>fh, _("Seat %d: %s folded" % (seatnum, name))
             else:
-                print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
+                if name in self.shown:
+                    print >>fh, _("Seat %d: %s showed [%s] and lost with..." % (seatnum, name, " ".join(self.holecards[name]['PREFLOP'])))
+                else:
+                    print >>fh, _("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
         
