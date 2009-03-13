@@ -190,24 +190,26 @@ class Importer:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
         for file in self.filelist:
-            stat_info = os.stat(file)
-            try: 
-                lastupdate = self.updated[file]
-                if stat_info.st_mtime > lastupdate:
-                    self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            if os.path.exists(file):            
+                stat_info = os.stat(file)
+                try: 
+                    lastupdate = self.updated[file]
+                    if stat_info.st_mtime > lastupdate:
+                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                        self.updated[file] = time()
+                except:
                     self.updated[file] = time()
-            except:
-                self.updated[file] = time()
-                # If modified in the last minute run an immediate import.
-                # This codepath only runs first time the file is found.
-                if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
-                    # TODO attach a HHC thread to the file
-                    # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
-                    self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                    # If modified in the last minute run an immediate import.
+                    # This codepath only runs first time the file is found.
+                    if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
+                        # TODO attach a HHC thread to the file
+                        # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
+                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                 # TODO we also test if directory, why?
                 #if os.path.isdir(file):
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                    
+            else:
+                removeFromFileList[file] = True
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)                       
             
         for file in self.removeFromFileList:
