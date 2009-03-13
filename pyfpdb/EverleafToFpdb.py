@@ -43,6 +43,7 @@ out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input
 autostart: whether to run the thread (or you can call start() yourself)
 debugging: if False, pass on partially supported game types. If true, have a go and error..."""
+        print "DEBUG: XXXXXXXXXXXXXXX"
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
@@ -130,12 +131,10 @@ or None if we fail to get the info """
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
+            if info['currency'] == 'T$':
+                info['type'] = 'tour'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
-        if not self.debugging and info['base']=='stud':
-            logging.warning("Not processing Everleaf Stud hand")
-            #return None
-            
         return info
 
 
