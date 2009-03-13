@@ -44,7 +44,6 @@ import Stats
 import Mucked
 import Database
 import HUD_main
-import Utils
 
 def importName(module_name, name, params):
     """Import a named object 'name' from module 'module_name'."""
