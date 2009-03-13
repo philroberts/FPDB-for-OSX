@@ -46,6 +46,16 @@ import Database
 import HUD_main
 import Utils
 
+def importName(module_name, name, params):
+    """Import a named object 'name' from module 'module_name'."""
+#    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
+# Modded by Carl G to support additional params
+    try:
+        module = __import__(module_name, globals(), locals(), [name])
+    except:
+        return None
+    return(getattr(module, name))
+
 class Hud:
     
     def __init__(self, parent, table, max, poker_game, config, db_connection):
@@ -80,7 +90,7 @@ class Hud:
         if not game_params['aux'] == [""]:
             for aux in game_params['aux']:
                 aux_params = config.get_aux_parameters(aux)
-                my_import = Utils.importName(aux_params['module'], aux_params['class'])
+                my_import = importName(aux_params['module'], aux_params['class'])
                 if my_import == None:
                     continue
                 self.aux_windows.append(my_import(self, config, aux_params))
