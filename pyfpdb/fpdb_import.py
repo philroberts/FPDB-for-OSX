@@ -226,7 +226,6 @@ class Importer:
             conv = None
             # Load filter, process file, pass returned filename to import_fpdb_file
             
-            # TODO: Shouldn't we be able to use some sort of lambda or something to just call a Python object by whatever name we specify? then we don't have to hardcode them,
             print "converting %s" % file
             hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
             hhbase    = os.path.expanduser(hhbase)
