@@ -29,6 +29,7 @@ from Exceptions import *
 
 class Hand:
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
+    LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
     def __init__(self, sitename, gametype, handText):
         self.sitename = sitename
         self.gametype = gametype
@@ -316,32 +317,6 @@ Map the tuple self.gametype onto the pokerstars string describing it
             
         return retstring
 
-    def lookupLimitBetSize(self):
-        #Lookup table  for limit games
-        betlist = {
-            "Everleaf" : {  "0.10" : ("0.02", "0.05"),
-                            "0.20" : ("0.05", "0.10"),
-                            "0.50" : ("0.10", "0.25"),
-                            "1" : ("0.25", "0.50"),
-                            "2" : ("0.50", "1.00"),
-                            "4" : ("1.00", "2.00"),
-                            "6" : ("1.00", "3.00")
-                },
-            "FullTilt" : {  "0.10" : ("0.02", "0.05"),
-                            "0.20" : ("0.05", "0.10"),
-                            "1"    : ("0.25", "0.50"),
-                            "2"    : ("0.50", "1"),
-                            "4"    : ("1", "2")
-                }
-            }
-        try: 
-            ret = betlist[self.sitename][self.bb]
-        except:
-            logging.warning("Don't know the small blind/big blind size for %s, big bet size %s." % (self.sitename, self.bb))
-            ret = (Decimal(self.sb)/2,Decimal(self.bb)/2)
-        
-        return ret
-
 
     def writeHand(self, fh=sys.__stdout__):
         print >>fh, "Override me"
@@ -450,23 +425,6 @@ Card ranks will be uppercased
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
-
-
-        #May be more than 1 bb posting
-        if self.gametype['limitType'] == "fl":
-            (smallbet, bigbet) = self.lookupLimitBetSize()
-        else:
-            smallbet = self.sb
-            bigbet = self.bb
-
-#        for a in self.posted:
-#            if(a[1] == "small blind"):
-#               print >>fh, _("%s: posts small blind $%s" %(a[0], smallbet))
-#            if(a[1] == "big blind"):
-#                print >>fh, _("%s: posts big blind $%s" %(a[0], bigbet))
-#            if(a[1] == "both"):
-#                print >>fh, _("%s: posts small & big blinds $%.2f" %(a[0], (Decimal(smallbet) + Decimal(bigbet))))
-# I think these can just be actions in 'blindsantes' round
 
         if self.actions['BLINDSANTES']:
             for act in self.actions['BLINDSANTES']:

@@ -33,8 +33,6 @@ import fpdb_simple
 import fpdb_db
 import fpdb_parse_logic
 import Configuration
-import EverleafToFpdb
-import FulltiltToFpdb
 
 #    database interface modules
 try:
@@ -240,24 +238,21 @@ class Importer:
             except:
                 out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
-            # someone can just create their own python module for it
-            if filter in ("EverleafToFpdb","Everleaf"):
-                conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
-            elif filter == "FulltiltToFpdb":
-                conv = FulltiltToFpdb.FullTilt(in_path = file, out_path = out_path)
-            else:
-                print "Unknown filter ", filter
-                return
+            filter_name = filter.replace("ToFpdb", "")
 
-            supp = conv.readSupportedGames() # Should this be done by HHC on init?
-            #gt = conv.determineGameType()
-            # TODO: Check that gt is in supp - error appropriately if not
-            if(conv.getStatus()):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
+            mod = __import__(filter)
+            obj = getattr(mod, filter_name, None)
+            if callable(obj):
+                conv = obj(in_path = file, out_path = out_path)
+                if(conv.getStatus()):
+                    (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
+                else:
+                    # conversion didn't work
+                    # TODO: appropriate response?
+                    return (0, 0, 0, 1, 0)
             else:
-                # conversion didn't work
-                # TODO: appropriate response?
-                return (0, 0, 0, 1, 0)
+                print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
+                return
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
