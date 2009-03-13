@@ -31,7 +31,7 @@ Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
 Table 2
 Seat 1 is the button
 Total number of players: 10""",
-    {'type':'ring', 'base':"hold", 'category':'holdem', 'limitType':'nl', 'sb':'10', 'bb':'20', 'currency':'T$'}),
+    {'type':'tour', 'base':"hold", 'category':'holdem', 'limitType':'nl', 'sb':'10', 'bb':'20', 'currency':'T$'}),
     
     ("""Everleaf Gaming Game #65087798
 ***** Hand history for game #65087798 *****
@@ -43,7 +43,7 @@ Table Plymouth""",
 ***** Hand history for game #65295370 *****
 Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
 Table Guanajuato""",
-    {'type':'ring', 'base':'hold', 'category':'omahahi', 'limitType':'pl', 'sb':'0.50', 'bb':'1','currency':'USD'})
+    {'type':'ring', 'base':'hold', 'category':'omahahi', 'limitType':'pl', 'sb':'0.50', 'bb':'1','currency':'USD'}),
     
     )
     for (header, info) in pairs:
