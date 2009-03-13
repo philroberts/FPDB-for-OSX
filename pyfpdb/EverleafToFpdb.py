@@ -130,12 +130,10 @@ or None if we fail to get the info """
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
+            if info['currency'] == 'T$':
+                info['type'] = 'tour'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
-        if not self.debugging and info['base']=='stud':
-            logging.warning("Not processing Everleaf Stud hand")
-            #return None
-            
         return info
 
 
