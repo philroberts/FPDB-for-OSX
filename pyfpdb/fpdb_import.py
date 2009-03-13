@@ -33,8 +33,6 @@ import fpdb_simple
 import fpdb_db
 import fpdb_parse_logic
 import Configuration
-import EverleafToFpdb
-import FulltiltToFpdb
 
 #    database interface modules
 try:
@@ -238,21 +236,22 @@ class Importer:
             except:
                 out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
-            # someone can just create their own python module for it
-            if filter in ("EverleafToFpdb","Everleaf"):
-                conv = EverleafToFpdb.Everleaf(in_path = file, out_path = out_path)
-            elif filter == "FulltiltToFpdb":
-                conv = FulltiltToFpdb.FullTilt(in_path = file, out_path = out_path)
+            filter_name = filter.replace("ToFpdb", "")
+
+            mod = __import__(filter)
+            obj = getattr(mod, filter_name, None)
+            if callable(obj):
+                conv = obj(in_path = file, out_path = out_path)
+                if(conv.getStatus()):
+                    (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
+                else:
+                    # conversion didn't work
+                    # TODO: appropriate response?
+                    return (0, 0, 0, 1, 0)
             else:
-                print "Unknown filter ", filter
+                print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
                 return
 
-            if(conv.getStatus()):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
-            else:
-                # conversion didn't work
-                # TODO: appropriate response?
-                return (0, 0, 0, 1, 0)
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
