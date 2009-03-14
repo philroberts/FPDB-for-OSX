@@ -77,6 +77,27 @@ class Hand:
         self.rake = None
 
 
+    def insert(self, db):
+        """ Function to insert Hand into database
+Should not commit, and do minimal selects. Callers may want to cache commits
+db: a connected fpdb_db object"""
+        # TODO:
+        # Players - base playerid and siteid tuple
+        # HudCache data to come from DerivedStats class
+        # HandsActions - all actions for all players for all streets - self.actions
+        # BoardCards - ?
+        # Hands - Summary information of hand indexed by handId - gameinfo
+        # HandsPlayers - ? ... Do we fix winnings?
+        # Tourneys ?
+        # TourneysPlayers
+
+        pass
+
+    def select(self, handId):
+        """ Function to create Hand object from database """
+        pass
+
+
     def addPlayer(self, seat, name, chips):
         """\
 Adds a player to the hand, and initialises data structures indexed by player.
