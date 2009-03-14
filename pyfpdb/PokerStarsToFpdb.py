@@ -46,7 +46,7 @@ follow :  whether to tail -f the input"""
         if autostart:
             self.start()
 
-        
+
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
