@@ -7,7 +7,7 @@ def checkGameInfo(hhc, header, info):
     assert hhc.determineGameType(header) == info
 
 def testGameInfo():
-    hhc = FulltiltToFpdb.FullTilt(autostart=False)    
+    hhc = FulltiltToFpdb.Fulltilt(autostart=False)
     pairs = (
     ("Full Tilt Poker Game #10777181585: Table Deerfly (deep 6) - $0.01/$0.02 - Pot Limit Omaha Hi - 2:24:44 ET - 2009/02/22",
             {'type':'ring', 'base':'hold', 'category':'omahahi', 'limitType':'pl', 'sb':'0.01', 'bb':'0.02', 'currency':'USD'}),
