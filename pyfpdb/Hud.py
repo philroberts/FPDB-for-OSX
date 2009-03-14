@@ -43,11 +43,12 @@ import Configuration
 import Stats
 import Mucked
 import Database
-import HUD_main 
+import HUD_main
 
 def importName(module_name, name):
     """Import a named object 'name' from module 'module_name'."""
 #    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
+
     try:
         module = __import__(module_name, globals(), locals(), [name])
     except:

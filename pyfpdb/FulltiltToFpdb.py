@@ -22,9 +22,9 @@ import sys
 import logging
 from HandHistoryConverter import *
 
-# FullTilt HH Format converter
+# Fulltilt HH Format converter
 
-class FullTilt(HandHistoryConverter):
+class Fulltilt(HandHistoryConverter):
     
     # Static regexes
     re_GameInfo     = re.compile('- (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LIMIT>(No Limit|Pot Limit|Limit))? (?P<GAME>(Hold\'em|Omaha Hi|Razz))')
@@ -39,8 +39,8 @@ class FullTilt(HandHistoryConverter):
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="FullTilt", follow=follow)
-        logging.info("Initialising FullTilt converter class")
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Fulltilt", follow=follow)
+        logging.info("Initialising Fulltilt converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
         if autostart:
@@ -314,4 +314,4 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = FullTilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)
+    e = Fulltilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)
