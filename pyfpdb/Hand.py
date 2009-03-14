@@ -151,7 +151,7 @@ If a player has None chips he won't be added."""
             elif blindtype == 'both':
                 # extra small blind is 'dead'
                 self.lastBet['PREFLOP'] = Decimal(self.bb)
-        self.posted = self.posted + [[player,blindtype]]
+            self.posted = self.posted + [[player,blindtype]]
         #print "DEBUG: self.posted: %s" %(self.posted)
 
 
@@ -364,11 +364,11 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, _("%s: completes to $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'posts':
             if(act[2] == "small blind"):
-                print >>fh, _("%s: posts small blind $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts small blind $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "big blind"):
-                print >>fh, _("%s: posts big blind $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts big blind $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "both"):
-                print >>fh, _("%s: posts small & big blinds $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts small & big blinds $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
         elif act[1] == 'bringin':
             print >>fh, _("%s: brings in for $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
 class HoldemOmahaHand(Hand):
