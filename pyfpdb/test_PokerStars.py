@@ -2,6 +2,9 @@
 import PokerStarsToFpdb
 import py
 
+#regression-test-files/stars/badugi/ring-fl-badugi.txt
+#   s0rrow: start $30.00 end: $22.65 total: ($7.35)
+
 
 def checkGameInfo(hhc, header, info):
     assert hhc.determineGameType(header) == info
