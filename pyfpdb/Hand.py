@@ -272,14 +272,6 @@ Add a raise on [street] by [player] to [amountTo]
         self.lastBet[street] = Decimal(amount)
         self.pot.addMoney(player, Decimal(amount))
 
-    def addDiscard(self, street, player, num, cards):
-        self.checkPlayerExists(player)
-        if cards:
-            act = (player, 'discards', num, cards)
-            self.discardDrawHoleCards(cards, player, street)
-        else:
-            act = (player, 'discards', num)
-        self.actions[street].append(act)
 
     def addStandsPat(self, street, player):
         self.checkPlayerExists(player)
@@ -622,9 +614,21 @@ player  (string) name of player
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
+
     def discardDrawHoleCards(self, cards, player, street):
         logging.debug("discardDrawHoleCards '%s' '%s' '%s'" % (cards, player, street))
         self.discards[player][street] = set([cards])
+
+
+    def addDiscard(self, street, player, num, cards):
+        self.checkPlayerExists(player)
+        if cards:
+            act = (player, 'discards', num, cards)
+            self.discardDrawHoleCards(cards, player, street)
+        else:
+            act = (player, 'discards', num)
+        self.actions[street].append(act)
+
 
     def addShownCards(self, cards, player, holeandboard=None):
         """\
@@ -639,6 +643,7 @@ Card ranks will be uppercased
 #            holeandboard = set([self.card(c) for c in holeandboard])
 #            board = set([c for s in self.board.values() for c in s])
 #            self.addHoleCards(holeandboard.difference(board),player,shown=True)
+
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
