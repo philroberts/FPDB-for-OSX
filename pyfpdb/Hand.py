@@ -399,25 +399,28 @@ class HoldemOmahaHand(Hand):
         #Populate a HoldemOmahaHand
         #Generally, we call 'read' methods here, which get the info according to the particular filter (hhc) 
         # which then invokes a 'addXXX' callback
-        hhc.readHandInfo(self)
-        hhc.readPlayerStacks(self)
-        hhc.compilePlayerRegexs(self)
-        hhc.markStreets(self)
-        hhc.readBlinds(self)
-        hhc.readButton(self)
-        hhc.readHeroCards(self)
-        hhc.readShowdownActions(self)
-        # Read actions in street order
-        for street in self.communityStreets:
-            if self.streets[street]:
-                hhc.readCommunityCards(self, street)
-        for street in self.actionStreets:
-            if self.streets[street]:
-                hhc.readAction(self, street)
-        hhc.readCollectPot(self)
-        hhc.readShownCards(self)
-        self.totalPot() # finalise it (total the pot)
-        hhc.getRake(self)
+        if builtFrom == "HHC":
+            hhc.readHandInfo(self)
+            hhc.readPlayerStacks(self)
+            hhc.compilePlayerRegexs(self)
+            hhc.markStreets(self)
+            hhc.readBlinds(self)
+            hhc.readButton(self)
+            hhc.readHeroCards(self)
+            hhc.readShowdownActions(self)
+            # Read actions in street order
+            for street in self.communityStreets:
+                if self.streets[street]:
+                    hhc.readCommunityCards(self, street)
+            for street in self.actionStreets:
+                if self.streets[street]:
+                    hhc.readAction(self, street)
+            hhc.readCollectPot(self)
+            hhc.readShownCards(self)
+            self.totalPot() # finalise it (total the pot)
+            hhc.getRake(self)
+        elif builtFrom == "DB":
+            self.select("dummy") # Will need a handId
 
     def addHoleCards(self, cards, player, shown=False):
         """\
@@ -553,24 +556,26 @@ class DrawHand(Hand):
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         # Populate the draw hand.
-        hhc.readHandInfo(self)
-        hhc.readPlayerStacks(self)
-        hhc.compilePlayerRegexs(self)
-        hhc.markStreets(self)
-        hhc.readBlinds(self)
-        hhc.readButton(self)
-        hhc.readShowdownActions(self)
-        # Read actions in street order
-        for street in self.streetList:
-            if self.streets[street]:
-                # hhc.readCommunityCards(self, street)
-                hhc.readDrawCards(self, street)
-                hhc.readAction(self, street)
-        hhc.readCollectPot(self)
-        hhc.readShownCards(self)
-        self.totalPot() # finalise it (total the pot)
-        hhc.getRake(self)
-
+        if builtFrom == "HHC":
+            hhc.readHandInfo(self)
+            hhc.readPlayerStacks(self)
+            hhc.compilePlayerRegexs(self)
+            hhc.markStreets(self)
+            hhc.readBlinds(self)
+            hhc.readButton(self)
+            hhc.readShowdownActions(self)
+            # Read actions in street order
+            for street in self.streetList:
+                if self.streets[street]:
+                    # hhc.readCommunityCards(self, street)
+                    hhc.readDrawCards(self, street)
+                    hhc.readAction(self, street)
+            hhc.readCollectPot(self)
+            hhc.readShownCards(self)
+            self.totalPot() # finalise it (total the pot)
+            hhc.getRake(self)
+        elif builtFrom == "DB":
+            self.select("dummy") # Will need a handId
 
     # Draw games (at least Badugi has blinds - override default Holdem addBlind
     def addBlind(self, player, blindtype, amount):
@@ -733,24 +738,27 @@ class StudHand(Hand):
         #Populate the StudHand
         #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc) 
         # which then invokes a 'addXXX' callback
-        hhc.readHandInfo(self)
-        hhc.readPlayerStacks(self)
-        hhc.compilePlayerRegexs(self)
-        hhc.markStreets(self)
-        hhc.readAntes(self)
-        hhc.readBringIn(self)
-#        hhc.readShowdownActions(self) # not done yet
-        # Read actions in street order
-        for street in self.streetList:            
-            if self.streets[street]:
-                logging.debug(street)
-                logging.debug(self.streets[street])
-                hhc.readStudPlayerCards(self, street)
-                hhc.readAction(self, street)
-        hhc.readCollectPot(self)
-#        hhc.readShownCards(self) # not done yet
-        self.totalPot() # finalise it (total the pot)
-        hhc.getRake(self)
+        if builtFrom == "HHC":
+            hhc.readHandInfo(self)
+            hhc.readPlayerStacks(self)
+            hhc.compilePlayerRegexs(self)
+            hhc.markStreets(self)
+            hhc.readAntes(self)
+            hhc.readBringIn(self)
+            #hhc.readShowdownActions(self) # not done yet
+            # Read actions in street order
+            for street in self.streetList:
+                if self.streets[street]:
+                    logging.debug(street)
+                    logging.debug(self.streets[street])
+                    hhc.readStudPlayerCards(self, street)
+                    hhc.readAction(self, street)
+            hhc.readCollectPot(self)
+            #hhc.readShownCards(self) # not done yet
+            self.totalPot() # finalise it (total the pot)
+            hhc.getRake(self)
+        elif builtFrom == "DB":
+            self.select("dummy") # Will need a handId
 
     def addPlayerCards(self, player,  street,  open=[],  closed=[]):
         """\
