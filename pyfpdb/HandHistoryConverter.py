@@ -204,12 +204,17 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         logging.debug("gametype %s" % gametype)
-
-        # See if gametype is supported.
-        type = gametype['type']
-        base = gametype['base']
-        limit = gametype['limitType']
-        l = [type] + [base] + [limit]
+        if gametype is None: 
+            l = None
+            gametype = "unmatched"
+            # TODO: not ideal, just trying to not error.
+            # TODO: Need to count failed hands.
+        else:
+            # See if gametype is supported.
+            type = gametype['type']
+            base = gametype['base']
+            limit = gametype['limitType']
+            l = [type] + [base] + [limit]
         hand = None
         if l in self.readSupportedGames():
             hand = None

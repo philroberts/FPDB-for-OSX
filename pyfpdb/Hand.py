@@ -501,10 +501,11 @@ Card ranks will be uppercased
         #Some sites don't have a showdown section so we have to figure out if there should be one
         # The logic for a showdown is: at the end of river action there are at least two players in the hand
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
-        if 'SHOWDOWN' in self.actions:
+        if self.shown:
             print >>fh, _("*** SHOW DOWN ***")
-            #TODO: Complete SHOWDOWN
-
+            for name in self.shown:
+                print >>fh, _("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards[name]['PREFLOP'])))
+                
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
         # s0rrow collected $5.15 from side pot
