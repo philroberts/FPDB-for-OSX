@@ -114,7 +114,12 @@ follow :  whether to tail -f the input"""
     def readHandInfo(self, hand):
         info = {}
         m = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if m: info.update(m.groupdict())
+        if m:
+            info.update(m.groupdict())
+            # TODO: Be less lazy and parse maxseats from the HandInfo regex
+            if m.group('TABLEATTRIBUTES'):
+                m2 = re.search("\s*(\d+)-max", m.group('TABLEATTRIBUTES'))
+                hand.maxseats = int(m2.group(1))
         m = self.re_GameInfo.search(hand.handText)
         if m: info.update(m.groupdict())
         m = self.re_Button.search(hand.handText)
