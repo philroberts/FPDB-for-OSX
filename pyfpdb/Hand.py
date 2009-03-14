@@ -27,11 +27,14 @@ import time
 from copy import deepcopy
 from Exceptions import *
 
+import DerivedStats
+
 class Hand:
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    def __init__(self, sitename, gametype, handText):
+    def __init__(self, sitename, gametype, handText, builtFrom = "HHC"):
         self.sitename = sitename
+        self.stats = DerivedStats.DerivedStats(self)
         self.gametype = gametype
         self.handText = handText
         self.handid = 0
@@ -369,14 +372,14 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
 
 class HoldemOmahaHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText):
+    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
         if gametype['base'] != 'hold':
             pass # or indeed don't pass and complain instead
         logging.debug("HoldemOmahaHand")
         self.streetList = ['BLINDSANTES', 'DEAL', 'PREFLOP','FLOP','TURN','RIVER'] # a list of the observed street names in order
         self.communityStreets = ['FLOP', 'TURN', 'RIVER']
         self.actionStreets = ['PREFLOP','FLOP','TURN','RIVER']
-        Hand.__init__(self, sitename, gametype, handText)
+        Hand.__init__(self, sitename, gametype, handText, builtFrom = "HHC")
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         
@@ -527,7 +530,7 @@ Card ranks will be uppercased
         print >>fh, "\n\n"
         
 class DrawHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText):
+    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
         if gametype['base'] != 'draw':
             pass # or indeed don't pass and complain instead
         self.streetList = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
@@ -693,7 +696,7 @@ Card ranks will be uppercased
 
 
 class StudHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText):
+    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
         self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
