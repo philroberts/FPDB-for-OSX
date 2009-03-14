@@ -336,7 +336,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
         gs = {"holdem"       : "Hold'em",
               "omahahi"    : "Omaha",
-              "omahahilo"  : "FIXME",
+              "omahahilo"  : "Omaha Hi/Lo",
               "razz"       : "Razz",
               "studhi"     : "7 Card Stud",
               "studhilo"   : "FIXME",
@@ -463,7 +463,7 @@ Card ranks will be uppercased
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S ET', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
@@ -642,14 +642,14 @@ Card ranks will be uppercased
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d %H:%M:%S ET', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
 
         players_who_act_ondeal = set(([x[0] for x in self.actions['DEAL']]+[x[0] for x in self.actions['BLINDSANTES']]))
 
         for player in [x for x in self.players if x[1] in players_who_act_ondeal]:
             #Only print stacks of players who do something on deal
-            print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
+            print >>fh, _("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
 
         if 'BLINDSANTES' in self.actions:
             for act in self.actions['BLINDSANTES']:
