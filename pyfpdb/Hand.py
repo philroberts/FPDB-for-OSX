@@ -504,7 +504,15 @@ Card ranks will be uppercased
         if self.shown:
             print >>fh, _("*** SHOW DOWN ***")
             for name in self.shown:
-                print >>fh, _("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards[name]['PREFLOP'])))
+                # TODO: legacy importer can't handle only one holecard here, make sure there are 2 for holdem, 4 for omaha
+                # TOOD: If HoldHand subclass supports more than omahahi, omahahilo, holdem, add them here
+                numOfHoleCardsNeeded = None
+                if self.gametype['category'] in ('omahahi','omahahilo'):
+                    numOfHoleCardsNeeded = 4
+                elif self.gametype['category'] in ('holdem'):
+                    numOfHoleCardsNeeded = 2
+                if len(self.holecards[name]['PREFLOP']) == numOfHoleCardsNeeded:
+                    print >>fh, _("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards[name]['PREFLOP'])))
                 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
