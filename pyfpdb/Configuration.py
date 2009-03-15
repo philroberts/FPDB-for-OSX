@@ -391,9 +391,14 @@ class Config:
                 return layout_node
 
     def get_location_node(self, layout_node, seat):
-        for location_node in layout_node.getElementsByTagName("location"):
-            if int( location_node.getAttribute("seat") ) == int( seat ):
-                return location_node
+        if seat == "common":
+            for location_node in layout_node.getElementsByTagName("location"):
+                if location_node.hasAttribute("common"):
+                    return location_node
+        else:
+            for location_node in layout_node.getElementsByTagName("location"):
+                if int( location_node.getAttribute("seat") ) == int( seat ):
+                    return location_node
 
     def save(self, file = None):
         if not file == None:
@@ -420,12 +425,18 @@ class Config:
     def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
         aux_node   = self.get_aux_node(aux_name)
         layout_node = self.get_layout_node(aux_node, max)
-        if layout_node == None: return
-        for i in range(1, max + 1):
+        if layout_node == None:
+            print "aux node not found"
+            return
+        print "editing locations =", locations
+        for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
-            location_node.setAttribute("x", str( locations[i-1][0] ))
-            location_node.setAttribute("y", str( locations[i-1][1] ))
-            self.aux_windows[aux_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
+            location_node.setAttribute("x", str( locations[i][0] ))
+            location_node.setAttribute("y", str( locations[i][1] ))
+            if i == "common":
+                self.aux_windows[aux_name].layout[max].common = ( locations[i][0], locations[i][1] )
+            else:
+                self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
     def get_db_parameters(self, name = None):
         if name == None: name = 'fpdb'
