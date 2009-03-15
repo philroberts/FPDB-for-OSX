@@ -44,12 +44,11 @@ import Stats
 import Mucked
 import Database
 import HUD_main
-import Utils
 
-def importName(module_name, name, params):
+def importName(module_name, name):
     """Import a named object 'name' from module 'module_name'."""
 #    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
-# Modded by Carl G to support additional params
+
     try:
         module = __import__(module_name, globals(), locals(), [name])
     except:
@@ -220,8 +219,9 @@ class Hud:
         self.config.save()
 
     def adj_seats(self, hand, config):
-        
-        adj = xrange(0, self.max + 1) # default seat adjustments = no adjustment
+
+#        Need range here, not xrange -> need the actual list        
+        adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         try:
             sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
