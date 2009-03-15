@@ -205,9 +205,18 @@ class Import:
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        if node.hasAttribute("saveActions"):
+            self.saveActions = node.getAttribute("saveActions")
+        else:
+            self.saveActions = False
+        if node.hasAttribute("fastStoreHudCache"):
+            self.fastStoreHudCache = node.getAttribute("fastStoreHudCache")
+        else:
+            self.saveActions = False
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
+             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.saveActions)
 
 class Tv:
     def __init__(self, node):
@@ -488,13 +497,17 @@ class Config:
     def get_import_parameters(self):
         imp = {}
         try:
-            imp['callFpdbHud']   = self.imp.callFpdbHud
-            imp['interval']      = self.imp.interval
-            imp['hhArchiveBase'] = self.imp.hhArchiveBase
+            imp['callFpdbHud']       = self.imp.callFpdbHud
+            imp['interval']          = self.imp.interval
+            imp['hhArchiveBase']     = self.imp.hhArchiveBase
+            imp['saveActions']       = self.imp.saveActions
+            imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
         except: # Default params
             imp['callFpdbHud']   = True
             imp['interval']      = 10
             imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
+            imp['saveActions']       = False
+            imp['fastStoreHudCache'] = False
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
@@ -700,9 +713,9 @@ if __name__== "__main__":
         print c.get_aux_parameters(mw)
 
     print "mucked locations =", c.get_aux_locations('mucked', 9)
-    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
-                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
-    print "mucked locations =", c.get_aux_locations('mucked', 9)
+#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
+#                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
+#    print "mucked locations =", c.get_aux_locations('mucked', 9)
 
     for site in c.supported_sites.keys():
         print "site = ", site,
