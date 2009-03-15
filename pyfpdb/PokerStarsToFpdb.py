@@ -24,9 +24,9 @@ from HandHistoryConverter import *
 # PokerStars HH Format
 
 class PokerStars(HandHistoryConverter):
-    
+
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
@@ -80,7 +80,7 @@ follow :  whether to tail -f the input"""
         info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
-        if not m: 
+        if not m:
             return None
 
         mg = m.groupdict()
@@ -89,7 +89,7 @@ follow :  whether to tail -f the input"""
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
-                 'Omaha Hi' : ('hold','omahahi'),
+                    'Omaha' : ('hold','omahahi'),
               'Omaha Hi/Lo' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
               '7 Card Stud' : ('stud','studhi'),
