@@ -213,7 +213,7 @@ if __name__ == '__main__':
     parser = OptionParser()
     parser.add_option("-f", "--file", dest="filename", help="Input file in quiet mode", metavar="FILE")
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
-
+    parser.add_option("-x", "--convert", dest="filtername", help="Conversion filter", default="passthrough")
     (options, sys.argv) = parser.parse_args()
 
     config = Configuration.Config()
@@ -240,7 +240,7 @@ if __name__ == '__main__':
         importer = fpdb_import.Importer(False,settings, config) 
         importer.setDropIndexes("auto")
         importer.setFailOnError(True)
-        importer.addImportFile(options.filename)
+        importer.addImportFile(options.filename, filter=options.filtername)
         importer.setCallHud(False)
         importer.runImport()
         importer.clearFileList()
