@@ -1,6 +1,20 @@
 # -*- coding: utf-8 -*-
 import PokerStarsToFpdb
+from Hand import *
 import py
+
+#regression-test-files/stars/badugi/ring-fl-badugi.txt
+#   s0rrow: start $30.00 end: $22.65 total: ($7.35)
+
+gametype = {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'}
+text = ""
+
+hhc = PokerStarsToFpdb.PokerStars(autostart=False)
+
+h = HoldemOmahaHand(None, "ASite", gametype, text, builtFrom = "Test")
+h.addPlayer("1", "s0rrow", "100000")
+
+hhc.compilePlayerRegexs(h)
 
 
 def checkGameInfo(hhc, header, info):
