@@ -215,7 +215,7 @@ class Stud_cards:
         self.config  = config
 #        self.db_name = db_name
 
-        self.card_images = self.get_card_images()
+        self.card_images = self.parent.get_card_images()
         self.seen_cards = {}
         self.grid_contents = {}
         self.eb = {}
@@ -280,7 +280,7 @@ class Stud_cards:
                       (4, cards[8:10]), (5, cards[10:12]), (6, cards[12:14])):
                 if not i[1] == "xx":
                     self.seen_cards[(i[0], c - 1)]. \
-                        set_from_pixbuf(self.card_images[self.split_cards(i[1])])
+                        set_from_pixbuf(self.card_images[self.parent.split_cards(i[1])])
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
