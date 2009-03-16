@@ -156,12 +156,16 @@ def prepareBulkImport(fdb):
                     except:
                         pass
             elif fdb.backend == PGSQL:
-                print "dropping pg fk", fk['fktab'], fk['fkcol']
-                try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
-                except:
-                    pass
+#    DON'T FORGET TO RECREATE THEM!!
+                print "Index dropping disabled for postgresql."
+#                print "dropping pg fk", fk['fktab'], fk['fkcol']
+#                try:
+#                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
+#                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
+#                    print "alter table " + fk['fktab'] + " drop constraint " \
+#                                         + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
+#                except:
+#                    pass
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -175,12 +179,17 @@ def prepareBulkImport(fdb):
                 except:
                     pass
             elif fdb.backend == PGSQL:
-                print "dropping pg index ", idx['tab'], idx['col']
-                # mod to use tab_col for index name?
-                try:
-                    fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
-                except:
-                    pass
+#    DON'T FORGET TO RECREATE THEM!!
+                print "Index dropping disabled for postgresql."
+#                print "dropping pg index ", idx['tab'], idx['col']
+#                # mod to use tab_col for index name?
+#                try:
+#                    pass
+#                    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+#                    fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
+#                    print "dropped  pg index ", idx['tab'], idx['col']
+#                except:
+#                    pass
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -219,14 +228,19 @@ def afterBulkImport(fdb):
                     except:
                         pass
             elif fdb.backend == PGSQL:
-                print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
-                try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " add constraint "
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
-                                       + " foreign key (" + fk['fkcol']
-                                       + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
-                except:
-                    pass
+                pass
+#                print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+#                try:
+#                    print "alter table " + fk['fktab'] + " add constraint " \
+#                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey' \
+#                                       + " foreign key (" + fk['fkcol'] \
+#                                       + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")"
+#                    fdb.cursor.execute("alter table " + fk['fktab'] + " add constraint "
+#                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
+#                                       + " foreign key (" + fk['fkcol']
+#                                       + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
+#                except:
+#                    pass
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -241,15 +255,16 @@ def afterBulkImport(fdb):
                 except:
                     pass
             elif fdb.backend == PGSQL:
-                # mod to use tab_col for index name?
-                print "creating pg index ", idx['tab'], idx['col']
-                try:
-                    print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                    fdb.cursor.execute( "create index %s_%s_idx on %s(%s)"
-                                      % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
-                except:
-                    print "   ERROR! :-("
-                    pass
+                pass
+#                # mod to use tab_col for index name?
+#                print "creating pg index ", idx['tab'], idx['col']
+#                try:
+#                    print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+#                    fdb.cursor.execute( "create index %s_%s_idx on %s(%s)"
+#                                      % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+#                except:
+#                    print "   ERROR! :-("
+#                    pass
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
