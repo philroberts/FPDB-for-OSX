@@ -83,11 +83,6 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     else:
         fastStoreHudCache = False
 
-    fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-    
-    hands_id=fpdb_simple.storeHands(backend, db, cursor, site_hand_no, gametype_id
-                                   ,hand_start_time, names, tableName, maxSeats)
-    
     t0 = time()
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
     t1 = time()
@@ -136,11 +131,6 @@ def tourney_holdem_omaha(config, backend, db, cursor, base, category, siteTourne
         fastStoreHudCache = False
 
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-    
-    hands_id=fpdb_simple.storeHands(backend, db, cursor, site_hand_no, gametype_id
-                                   ,hand_start_time, names, tableName, maxSeats)
-    
-    fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
     fpdb_simple.fill_board_cards(board_values, board_suits)
     
     tourney_id=fpdb_simple.store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, tourney_start)
@@ -182,11 +172,6 @@ def tourney_stud(config, backend, db, cursor, base, category, siteTourneyNo, buy
         fastStoreHudCache = True
     else:
         fastStoreHudCache = False
-
-    fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-    
-    hands_id=fpdb_simple.storeHands(backend, db, cursor, site_hand_no, gametype_id
-                                   ,hand_start_time, names, tableName, maxSeats)
     
     fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
     
