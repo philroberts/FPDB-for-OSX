@@ -506,8 +506,8 @@ class Config:
             imp['callFpdbHud']   = True
             imp['interval']      = 10
             imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
-            imp['saveActions']       = False
-            imp['fastStoreHudCache'] = False
+            imp['saveActions']       = True
+            imp['fastStoreHudCache'] = True
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
