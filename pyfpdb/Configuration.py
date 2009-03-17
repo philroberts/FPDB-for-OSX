@@ -450,19 +450,26 @@ class Config:
     def get_db_parameters(self, name = None):
         if name == None: name = 'fpdb'
         db = {}
-        try:
-            db['db-databaseName'] = name
-            db['db-host'] = self.supported_databases[name].db_ip
-            db['db-user'] = self.supported_databases[name].db_user
-            db['db-password'] = self.supported_databases[name].db_pass
-            db['db-server'] = self.supported_databases[name].db_server
-            if   string.lower(self.supported_databases[name].db_server) == 'mysql':
-                db['db-backend'] = 2
-            elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
-                db['db-backend'] = 3
-            else: db['db-backend'] = None # this is big trouble
-        except:
-            pass
+        try:    db['db-databaseName'] = name
+        except: pass
+
+        try:    db['db-host'] = self.supported_databases[name].db_ip
+        except: pass
+
+        try:    db['db-user'] = self.supported_databases[name].db_user
+        except: pass
+
+        try:    db['db-password'] = self.supported_databases[name].db_pass
+        except: pass
+
+        try:    db['db-server'] = self.supported_databases[name].db_server
+        except: pass
+
+        if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+            db['db-backend'] = 2
+        elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+            db['db-backend'] = 3
+        else: db['db-backend'] = None # this is big trouble
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
@@ -484,30 +491,32 @@ class Config:
 
     def get_tv_parameters(self):
         tv = {}
-        try:
-            tv['combinedStealFold'] = self.tv.combinedStealFold
-            tv['combined2B3B']      = self.tv.combined2B3B
-            tv['combinedPostflop']  = self.tv.combinedPostflop
-        except: # Default tv parameters
-            tv['combinedStealFold'] = True
-            tv['combined2B3B']      = True
-            tv['combinedPostflop']  = True
+        try:    tv['combinedStealFold'] = self.tv.combinedStealFold
+        except: tv['combinedStealFold'] = True
+
+        try:    tv['combined2B3B']      = self.tv.combined2B3B
+        except: tv['combined2B3B']      = True
+
+        try:    tv['combinedPostflop']  = self.tv.combinedPostflop
+        except: tv['combinedPostflop']  = True
         return tv
     
     def get_import_parameters(self):
         imp = {}
-        try:
-            imp['callFpdbHud']       = self.imp.callFpdbHud
-            imp['interval']          = self.imp.interval
-            imp['hhArchiveBase']     = self.imp.hhArchiveBase
-            imp['saveActions']       = self.imp.saveActions
-            imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
-        except: # Default params
-            imp['callFpdbHud']   = True
-            imp['interval']      = 10
-            imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
-            imp['saveActions']       = True
-            imp['fastStoreHudCache'] = True
+        try:     imp['callFpdbHud']       = self.imp.callFpdbHud
+        except:  imp['callFpdbHud']       = True
+
+        try:     imp['interval']          = self.imp.interval
+        except:  imp['interval']          = 10
+
+        try:     imp['hhArchiveBase']     = self.imp.hhArchiveBase
+        except:  imp['hhArchiveBase']     = "~/.fpdb/HandHistories/"
+
+        try:     imp['saveActions']       = self.imp.saveActions
+        except:  imp['saveActions']       = True
+
+        try:     imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
+        except:  imp['fastStoreHudCache'] = True
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
