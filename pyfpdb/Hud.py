@@ -200,8 +200,8 @@ class Hud:
         self.aux_windows = []
 
     def reposition_windows(self, *args):
-        if self.stat_windows and len(self.stat_windows > 0):
-            map(lambda x: x.window.move(x.x, x.y), self.stat_windows)
+        if self.stat_windows != {} and len(self.stat_windows) > 0:
+            map(lambda x: x.window.move(x.x, x.y), self.stat_windows.itervalues())
         return True
 
     def debug_stat_windows(self, *args):
@@ -216,6 +216,11 @@ class Hud:
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
+#    ask each aux to save its layout back to the config object
+        for aux in self.aux_windows:
+            aux.save_layout()
+#    save the config object back to the file
+        print "saving new xml file"
         self.config.save()
 
     def adj_seats(self, hand, config):
