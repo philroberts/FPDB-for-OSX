@@ -208,7 +208,7 @@ class Import:
         if node.hasAttribute("saveActions"):
             self.saveActions = node.getAttribute("saveActions")
         else:
-            self.saveActions = False
+            self.saveActions = True
         if node.hasAttribute("fastStoreHudCache"):
             self.fastStoreHudCache = node.getAttribute("fastStoreHudCache")
         else:
