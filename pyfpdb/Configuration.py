@@ -212,7 +212,7 @@ class Import:
         if node.hasAttribute("fastStoreHudCache"):
             self.fastStoreHudCache = node.getAttribute("fastStoreHudCache")
         else:
-            self.saveActions = False
+            self.fastStoreHudCache = False
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
