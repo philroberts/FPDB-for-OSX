@@ -21,46 +21,45 @@ import fpdb_simple
 import fpdb_save_to_db
 
 #parses a holdem hand
-def mainParser(backend, db, cursor, category, hand):
-    category=fpdb_simple.recogniseCategory(hand[0])
-    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        base="hold"
-    else:
-        base="stud"
+def mainParser(backend, db, cursor, category, hand, config):
+    category = fpdb_simple.recogniseCategory(hand[0])
+
+    base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
+
     #part 0: create the empty arrays
-    lineTypes=[] #char, valid values: header, name, cards, action, win, rake, ignore
-    lineStreets=[] #char, valid values: (predeal, preflop, flop, turn, river)
+    lineTypes   = [] #char, valid values: header, name, cards, action, win, rake, ignore
+    lineStreets = [] #char, valid values: (predeal, preflop, flop, turn, river)
 
     cardValues, cardSuits, boardValues, boardSuits, antes, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo, seatLines, winnings, rakes=[],[],[],[],[],[],[],[],[],[],[],[],[]
 
     #part 1: read hand no and check for duplicate
-    siteHandNo=fpdb_simple.parseSiteHandNo(hand[0])
-    handStartTime=fpdb_simple.parseHandStartTime(hand[0])
-    siteID=fpdb_simple.recogniseSiteID()
+    siteHandNo      = fpdb_simple.parseSiteHandNo(hand[0])
+    handStartTime   = fpdb_simple.parseHandStartTime(hand[0])
+    siteID          = fpdb_simple.recogniseSiteID()
     #print "parse logic, siteID:",siteID,"site:",site
     
-    isTourney=fpdb_simple.isTourney(hand[0])
-    smallBlindLine=0
-    for i in range(len(hand)):
-        if 'posts small blind' in hand[i] or 'posts the small blind' in hand[i]:
-            if hand[i][-2:] == "$0":
-                continue
-            smallBlindLine=i
-            #print "found small blind line:",smallBlindLine
+    isTourney       = fpdb_simple.isTourney(hand[0])
+    smallBlindLine  = 0
+    for i, line in enumerate(hand):
+        if 'posts small blind' in line or 'posts the small blind' in line:
+            if line[-2:] == "$0": continue
+            smallBlindLine = i
             break
     #print "small blind line:",smallBlindLine
-    gametypeID=fpdb_simple.recogniseGametypeID(backend, db, cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
-    if isTourney:
-        siteTourneyNo=fpdb_simple.parseTourneyNo(hand[0])
-        buyin=fpdb_simple.parseBuyin(hand[0])
-        fee=fpdb_simple.parseFee(hand[0])
-        entries=-1 #todo: parse this
-        prizepool=-1 #todo: parse this
-        knockout=0
-        tourneyStartTime=handStartTime #todo: read tourney start time
-        rebuyOrAddon=fpdb_simple.isRebuyOrAddon(hand[0])
 
-        tourneyTypeId=fpdb_simple.recogniseTourneyTypeId(cursor, siteID, buyin, fee, knockout, rebuyOrAddon)        
+    gametypeID = fpdb_simple.recogniseGametypeID(backend, db, cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
+    if isTourney:
+        siteTourneyNo   = fpdb_simple.parseTourneyNo(hand[0])
+        buyin           = fpdb_simple.parseBuyin(hand[0])
+        fee             = fpdb_simple.parseFee(hand[0])
+        entries         = -1 #todo: parse this
+        prizepool       = -1 #todo: parse this
+        knockout        = 0
+        tourneyStartTime= handStartTime #todo: read tourney start time
+        rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
+
+        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(cursor, siteID, buyin, fee, knockout, rebuyOrAddon)
+
     fpdb_simple.isAlreadyInDB(cursor, gametypeID, siteHandNo)
     
     #part 2: classify lines by type (e.g. cards, action, win, sectionchange) and street
@@ -68,94 +67,90 @@ def mainParser(backend, db, cursor, category, hand):
         
     #part 3: read basic player info    
     #3a read player names, startcashes
-    for i in range (len(hand)): #todo: use maxseats+1 here.
-        if (lineTypes[i]=="name"):
-            seatLines.append(hand[i])
-    names=fpdb_simple.parseNames(seatLines)
-    playerIDs = fpdb_simple.recognisePlayerIDs(cursor, names, siteID)
-    tmp=fpdb_simple.parseCashesAndSeatNos(seatLines)
-    startCashes=tmp['startCashes']
-    seatNos=tmp['seatNos']
+    for i, line in enumerate(hand):
+        if lineTypes[i] == "name":
+            seatLines.append(line)
+
+    names       = fpdb_simple.parseNames(seatLines)
+    playerIDs   = fpdb_simple.recognisePlayerIDs(cursor, names, siteID)
+    tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
+    startCashes = tmp['startCashes']
+    seatNos     = tmp['seatNos']
     
     fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
     
     #3b read positions
-    if base=="hold":
-        positions = fpdb_simple.parsePositions (hand, names)
+    if base == "hold":
+        positions = fpdb_simple.parsePositions(hand, names)
     
     #part 4: take appropriate action for each line based on linetype
-    for i in range(len(hand)):
-        if (lineTypes[i]=="cards"):
-            fpdb_simple.parseCardLine (category, lineStreets[i], hand[i], names, cardValues, cardSuits, boardValues, boardSuits)
+    for i, line in enumerate(hand):
+        if lineTypes[i] == "cards":
+            fpdb_simple.parseCardLine(category, lineStreets[i], line, names, cardValues, cardSuits, boardValues, boardSuits)
             #if category=="studhilo":
             #    print "hand[i]:", hand[i]
             #    print "cardValues:", cardValues
             #    print "cardSuits:", cardSuits
-        elif (lineTypes[i]=="action"):
-            fpdb_simple.parseActionLine (base, isTourney, hand[i], lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
-        elif (lineTypes[i]=="win"):
-            fpdb_simple.parseWinLine (hand[i], names, winnings, isTourney)
-        elif (lineTypes[i]=="rake"):
-            if isTourney:
-                totalRake=0
-            else:
-                totalRake=fpdb_simple.parseRake(hand[i])
+        elif lineTypes[i] == "action":
+            fpdb_simple.parseActionLine(base, isTourney, line, lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
+        elif lineTypes[i] == "win":
+            fpdb_simple.parseWinLine(line, names, winnings, isTourney)
+        elif lineTypes[i] == "rake":
+            totalRake = 0 if isTourney else fpdb_simple.parseRake(line)
             fpdb_simple.splitRake(winnings, rakes, totalRake)
-        elif (lineTypes[i]=="header" or lineTypes[i]=="rake" or lineTypes[i]=="name" or lineTypes[i]=="ignore"):
+        elif lineTypes[i]=="header" or lineTypes[i]=="rake" or lineTypes[i]=="name" or lineTypes[i]=="ignore":
             pass
-        elif (lineTypes[i]=="ante"):
-            fpdb_simple.parseAnteLine(hand[i], isTourney, names, antes)
-        elif (lineTypes[i]=="table"):
-            tableResult=fpdb_simple.parseTableLine(base, hand[i])
+        elif lineTypes[i]=="ante":
+            fpdb_simple.parseAnteLine(line, isTourney, names, antes)
+        elif lineTypes[i]=="table":
+            tableResult=fpdb_simple.parseTableLine(base, line)
         else:
             raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
-    maxSeats=tableResult['maxSeats']
-    tableName=tableResult['tableName']
+
+    maxSeats    = tableResult['maxSeats']
+    tableName   = tableResult['tableName']
     #print "before part5, antes:", antes
     
     #part 5: final preparations, then call fpdb_save_to_db.* with
     #         the arrays as they are - that file will fill them.
     fpdb_simple.convertCardValues(cardValues)
-    if base=="hold":
+    if base == "hold":
         fpdb_simple.convertCardValuesBoard(boardValues)
         fpdb_simple.convertBlindBet(actionTypes, actionAmounts)
         fpdb_simple.checkPositions(positions)
         
     cursor.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
-    limit_type=cursor.fetchone()[0]
+    limit_type = cursor.fetchone()[0]
     fpdb_simple.convert3B4B(category, limit_type, actionTypes, actionAmounts)
     
-    totalWinnings=0
-    for i in range(len(winnings)):
-        totalWinnings+=winnings[i]
+    totalWinnings = sum(winnings)
     
-    if base=="hold":
-        hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
+    # if hold'em, use positions and not antes, if stud do not use positions, use antes
+    if base == "hold":
+        hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
                                      , allIns, actionTypeByNo, winnings, totalWinnings, positions
                                      , actionTypes, actionAmounts, None)
     else:
-        hudImportData=fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
+        hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
                                      , allIns, actionTypeByNo, winnings, totalWinnings, None
                                      , actionTypes, actionAmounts, antes)
-    
+
     if isTourney:
-        ranks=[]
-        for i in range (len(names)):
-            ranks.append(0)
-        payin_amounts=fpdb_simple.calcPayin(len(names), buyin, fee)
+        ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
+        payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
         
-        if base=="hold":
+        if base == "hold":
             result = fpdb_save_to_db.tourney_holdem_omaha(
-                                       backend, db, cursor, base, category, siteTourneyNo, buyin
+                                       config, backend, db, cursor, base, category, siteTourneyNo, buyin
                                      , fee, knockout, entries, prizepool, tourneyStartTime
                                      , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
                                      , gametypeID, handStartTime, names, playerIDs, startCashes
                                      , positions, cardValues, cardSuits, boardValues, boardSuits
                                      , winnings, rakes, actionTypes, allIns, actionAmounts
                                      , actionNos, hudImportData, maxSeats, tableName, seatNos)
-        elif base=="stud":
+        elif base == "stud":
             result = fpdb_save_to_db.tourney_stud(
-                                       backend, db, cursor, base, category, siteTourneyNo
+                                       config, backend, db, cursor, base, category, siteTourneyNo
                                      , buyin, fee, knockout, entries, prizepool, tourneyStartTime
                                      , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
                                      , gametypeID, handStartTime, names, playerIDs, startCashes
@@ -163,19 +158,19 @@ def mainParser(backend, db, cursor, category, hand):
                                      , allIns, actionAmounts, actionNos, hudImportData, maxSeats
                                      , tableName, seatNos)
         else:
-            raise fpdb_simple.FpdbError ("unrecognised category")
+            raise fpdb_simple.FpdbError("unrecognised category")
     else:
-        if base=="hold":
+        if base == "hold":
             result = fpdb_save_to_db.ring_holdem_omaha(
-                                       backend, db, cursor, base, category, siteHandNo
+                                       config, backend, db, cursor, base, category, siteHandNo
                                      , gametypeID, handStartTime, names, playerIDs
                                      , startCashes, positions, cardValues, cardSuits
                                      , boardValues, boardSuits, winnings, rakes
                                      , actionTypes, allIns, actionAmounts, actionNos
                                      , hudImportData, maxSeats, tableName, seatNos)
-        elif base=="stud":
+        elif base == "stud":
             result = fpdb_save_to_db.ring_stud(
-                                       backend, db, cursor, base, category, siteHandNo, gametypeID
+                                       config, backend, db, cursor, base, category, siteHandNo, gametypeID
                                      , handStartTime, names, playerIDs, startCashes, antes
                                      , cardValues, cardSuits, winnings, rakes, actionTypes, allIns
                                      , actionAmounts, actionNos, hudImportData, maxSeats, tableName

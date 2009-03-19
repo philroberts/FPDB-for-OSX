@@ -123,7 +123,7 @@ class HUD_main(object):
             gtk.gdk.threads_enter()
             try:
                 self.hud_dict[table_name].update(new_hand_id, config)
-                map(lambda aw: aw.update_gui(new_hand_id), self.hud_dict[table_name].aux_windows)
+                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
                 return False
             finally:
                 gtk.gdk.threads_leave()
@@ -172,8 +172,7 @@ class HUD_main(object):
             if temp_key in self.hud_dict:
                 self.hud_dict[temp_key].stat_dict = stat_dict
                 self.hud_dict[temp_key].cards = cards
-                for aw in self.hud_dict[temp_key].aux_windows:
-                    aw.update_data(new_hand_id, self.db_connection)
+                [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
                 self.update_HUD(new_hand_id, temp_key, self.config)
     
 #    Or create a new HUD

@@ -51,22 +51,22 @@ class Importer:
 
     def __init__(self, caller, settings, config):
         """Constructor"""
-        self.settings=settings
-        self.caller=caller
-        self.config = config
-        self.fdb = None
-        self.cursor = None
-        self.filelist = {}
-        self.dirlist = {}
+        self.settings   = settings
+        self.caller     = caller
+        self.config     = config
+        self.fdb        = None
+        self.cursor     = None
+        self.filelist   = {}
+        self.dirlist    = {}
         self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
-        self.monitor = False
-        self.updated = {}       #Time last import was run {file:mtime}
-        self.lines = None
-        self.faobs = None       #File as one big string
+        self.monitor    = False
+        self.updated    = {}       #Time last import was run {file:mtime}
+        self.lines      = None
+        self.faobs      = None       #File as one big string
         self.pos_in_file = {} # dict to remember how far we have read in the file
         #Set defaults
-        self.callHud = self.config.get_import_parameters().get("callFpdbHud")
+        self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         if 'minPrint' not in self.settings:
             #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
@@ -188,24 +188,26 @@ class Importer:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
         for file in self.filelist:
-            stat_info = os.stat(file)
-            try: 
-                lastupdate = self.updated[file]
-                if stat_info.st_mtime > lastupdate:
-                    self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            if os.path.exists(file):
+                stat_info = os.stat(file)
+                try: 
+                    lastupdate = self.updated[file]
+                    if stat_info.st_mtime > lastupdate:
+                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                        self.updated[file] = time()
+                except:
                     self.updated[file] = time()
-            except:
-                self.updated[file] = time()
-                # If modified in the last minute run an immediate import.
-                # This codepath only runs first time the file is found.
-                if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
-                    # TODO attach a HHC thread to the file
-                    # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
-                    self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                    # If modified in the last minute run an immediate import.
+                    # This codepath only runs first time the file is found.
+                    if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
+                        # TODO attach a HHC thread to the file
+                        # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
+                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                 # TODO we also test if directory, why?
                 #if os.path.isdir(file):
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                    
+            else:
+                removeFromFileList[file] = True
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
             
         for file in self.removeFromFileList:
@@ -251,7 +253,6 @@ class Importer:
                 print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
                 return
 
-
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
@@ -284,7 +285,13 @@ class Importer:
             print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
             return (0,0,0,1,0)
 
-        # site=fpdb_simple.recogniseSite(firstline)
+        if firstline.find("Tournament Summary")!=-1:
+            print "TODO: implement importing tournament summaries"
+            #self.faobs = readfile(inputFile)
+            #self.parseTourneyHistory()
+            return 0
+
+        site=fpdb_simple.recogniseSite(firstline)
         category=fpdb_simple.recogniseCategory(firstline)
 
         startpos=0
@@ -315,7 +322,7 @@ class Importer:
 
                     try:
                         handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                                   ,self.fdb.cursor, category, hand)
+                                                           ,self.fdb.cursor, site, category, hand, self.config)
                         self.fdb.db.commit()
 
                         stored+=1

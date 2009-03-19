@@ -32,6 +32,13 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+def fix_tf(x):
+    if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
+        return True
+    if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
+        return False
+    return False
+
 class Layout:
     def __init__(self, node):
 
@@ -205,9 +212,18 @@ class Import:
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        if node.hasAttribute("saveActions"):
+            self.saveActions = fix_tf(node.getAttribute("saveActions"))
+        else:
+            self.saveActions = True
+        if node.hasAttribute("fastStoreHudCache"):
+            self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"))
+        else:
+            self.fastStoreHudCache = False
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
+             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.saveActions)
 
 class Tv:
     def __init__(self, node):
@@ -391,9 +407,14 @@ class Config:
                 return layout_node
 
     def get_location_node(self, layout_node, seat):
-        for location_node in layout_node.getElementsByTagName("location"):
-            if int( location_node.getAttribute("seat") ) == int( seat ):
-                return location_node
+        if seat == "common":
+            for location_node in layout_node.getElementsByTagName("location"):
+                if location_node.hasAttribute("common"):
+                    return location_node
+        else:
+            for location_node in layout_node.getElementsByTagName("location"):
+                if int( location_node.getAttribute("seat") ) == int( seat ):
+                    return location_node
 
     def save(self, file = None):
         if not file == None:
@@ -420,29 +441,42 @@ class Config:
     def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
         aux_node   = self.get_aux_node(aux_name)
         layout_node = self.get_layout_node(aux_node, max)
-        if layout_node == None: return
-        for i in range(1, max + 1):
+        if layout_node == None:
+            print "aux node not found"
+            return
+        print "editing locations =", locations
+        for (i, pos) in locations.iteritems():
             location_node = self.get_location_node(layout_node, i)
-            location_node.setAttribute("x", str( locations[i-1][0] ))
-            location_node.setAttribute("y", str( locations[i-1][1] ))
-            self.aux_windows[aux_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
+            location_node.setAttribute("x", str( locations[i][0] ))
+            location_node.setAttribute("y", str( locations[i][1] ))
+            if i == "common":
+                self.aux_windows[aux_name].layout[max].common = ( locations[i][0], locations[i][1] )
+            else:
+                self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
     def get_db_parameters(self, name = None):
         if name == None: name = 'fpdb'
         db = {}
-        try:
-            db['db-databaseName'] = name
-            db['db-host'] = self.supported_databases[name].db_ip
-            db['db-user'] = self.supported_databases[name].db_user
-            db['db-password'] = self.supported_databases[name].db_pass
-            db['db-server'] = self.supported_databases[name].db_server
-            if   string.lower(self.supported_databases[name].db_server) == 'mysql':
-                db['db-backend'] = 2
-            elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
-                db['db-backend'] = 3
-            else: db['db-backend'] = None # this is big trouble
-        except:
-            pass
+        try:    db['db-databaseName'] = name
+        except: pass
+
+        try:    db['db-host'] = self.supported_databases[name].db_ip
+        except: pass
+
+        try:    db['db-user'] = self.supported_databases[name].db_user
+        except: pass
+
+        try:    db['db-password'] = self.supported_databases[name].db_pass
+        except: pass
+
+        try:    db['db-server'] = self.supported_databases[name].db_server
+        except: pass
+
+        if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+            db['db-backend'] = 2
+        elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+            db['db-backend'] = 3
+        else: db['db-backend'] = None # this is big trouble
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
@@ -464,26 +498,32 @@ class Config:
 
     def get_tv_parameters(self):
         tv = {}
-        try:
-            tv['combinedStealFold'] = self.tv.combinedStealFold
-            tv['combined2B3B']      = self.tv.combined2B3B
-            tv['combinedPostflop']  = self.tv.combinedPostflop
-        except: # Default tv parameters
-            tv['combinedStealFold'] = True
-            tv['combined2B3B']      = True
-            tv['combinedPostflop']  = True
+        try:    tv['combinedStealFold'] = self.tv.combinedStealFold
+        except: tv['combinedStealFold'] = True
+
+        try:    tv['combined2B3B']      = self.tv.combined2B3B
+        except: tv['combined2B3B']      = True
+
+        try:    tv['combinedPostflop']  = self.tv.combinedPostflop
+        except: tv['combinedPostflop']  = True
         return tv
     
     def get_import_parameters(self):
         imp = {}
-        try:
-            imp['callFpdbHud']   = self.imp.callFpdbHud
-            imp['interval']      = self.imp.interval
-            imp['hhArchiveBase'] = self.imp.hhArchiveBase
-        except: # Default params
-            imp['callFpdbHud']   = True
-            imp['interval']      = 10
-            imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
+        try:     imp['callFpdbHud']       = self.imp.callFpdbHud
+        except:  imp['callFpdbHud']       = True
+
+        try:     imp['interval']          = self.imp.interval
+        except:  imp['interval']          = 10
+
+        try:     imp['hhArchiveBase']     = self.imp.hhArchiveBase
+        except:  imp['hhArchiveBase']     = "~/.fpdb/HandHistories/"
+
+        try:     imp['saveActions']       = self.imp.saveActions
+        except:  imp['saveActions']       = True
+
+        try:     imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
+        except:  imp['fastStoreHudCache'] = True
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
@@ -689,9 +729,9 @@ if __name__== "__main__":
         print c.get_aux_parameters(mw)
 
     print "mucked locations =", c.get_aux_locations('mucked', 9)
-    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
-                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
-    print "mucked locations =", c.get_aux_locations('mucked', 9)
+#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
+#                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
+#    print "mucked locations =", c.get_aux_locations('mucked', 9)
 
     for site in c.supported_sites.keys():
         print "site = ", site,
