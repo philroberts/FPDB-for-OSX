@@ -49,6 +49,9 @@ class Aux_Window:
     def create(self, *parms):
         pass
 
+    def save_layout(self, *args):
+        pass
+
     def destroy(self):
         self.container.destroy()
 
@@ -312,12 +315,13 @@ class Flop_Mucked(Aux_Window):
     def __init__(self, hud, config, params):
         self.hud     = hud       # hud object that this aux window supports
         self.config  = config    # configuration object for this aux window to use
-        self.params  = params    # hash aux params from config
+        self.params  = params    # dict aux params from config
+        self.positions = {}      # dict of window positions
+        self.displayed_cards = False
         self.card_images = self.get_card_images()
 
     def create(self):
-
-        adj = self.hud.adj_seats(0, self.config)
+        self.adj = self.hud.adj_seats(0, self.config)
         loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
         
         self.m_windows = {}      # windows to put the card images in
@@ -328,7 +332,7 @@ class Flop_Mucked(Aux_Window):
             if i == 'common':
                 (x, y) = self.params['layout'][self.hud.max].common
             else:
-                (x, y) = loc[adj[i]]
+                (x, y) = loc[self.adj[i]]
             self.m_windows[i] = gtk.Window()
             self.m_windows[i].set_decorated(False)
             self.m_windows[i].set_property("skip-taskbar-hint", True)
@@ -340,6 +344,7 @@ class Flop_Mucked(Aux_Window):
             self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[('B', 'H')])
             self.eb[i].add(self.seen_cards[i])
             self.m_windows[i].move(int(x) + self.hud.table.x, int(y) + self.hud.table.y)
+            self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
             self.m_windows[i].set_opacity(float(self.params['opacity']))
             self.m_windows[i].show_all()
             self.m_windows[i].hide()
@@ -350,11 +355,9 @@ class Flop_Mucked(Aux_Window):
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
-        pos = {}
-        for i, w in self.m_windows.iteritems():
-            pos[i] = w.get_position()  # I hate this. I don't know why I have to save position and then move back
-        self.hide_mucked_cards()
-        displayed_cards = False
+        if self.displayed_cards:
+            self.hide_mucked_cards()
+            self.displayed_cards = False
         for (i, cards) in self.hud.cards.iteritems():
             if self.has_cards(cards):
 #    scratch is a working pixbuf, used to assemble the image
@@ -370,11 +373,12 @@ class Flop_Mucked(Aux_Window):
                     x = x + int(self.params['card_wd'])
                 self.seen_cards[i].set_from_pixbuf(scratch)
 #                self.m_windows[i].show_all()
-                self.m_windows[i].move(pos[i][0], pos[i][1])   # here is where I move back
+                self.m_windows[i].resize(1,1)
                 self.m_windows[i].present()
-                displayed_cards = True
+                self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+                self.displayed_cards = True
 
-        if displayed_cards and float(self.params['timeout']) > 0:
+        if self.displayed_cards and float(self.params['timeout']) > 0:
             gobject.timeout_add(int(1000*float(self.params['timeout'])), self.hide_mucked_cards)
 
     def destroy(self):
@@ -385,8 +389,10 @@ class Flop_Mucked(Aux_Window):
     def hide_mucked_cards(self):
         """Hide the mucked card windows."""
 #    this is the callback from the timeout
-        for w in self.m_windows.values():
+        for (i, w) in self.m_windows.iteritems():
+            self.positions[i] = w.get_position()
             w.hide()
+            self.displayed_cards = False
         return False  # this tells the system to NOT run this timeout again
 
     def button_press_cb(self, widget, event, *args):
@@ -403,17 +409,16 @@ class Flop_Mucked(Aux_Window):
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
-#    similar to same method in stat_windows
-        new_layout = [(0, 0)] * self.hud.max
-        for (i, w) in self.m_windows.iteritems():
-            (x, y) = w.get_position()
-            new_loc = (x - self.hud.table.x, y - self.hud.table.y)
-            if i != "common":
-                new_layout[self.hud.stat_windows[int(i)].adj - 1] = new_loc
+        new_locs = {}
+        print "adj =", self.adj
+        for (i, pos) in self.positions.iteritems():
+            if i != 'common':
+                new_locs[self.adj[int(i)]] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
             else:
-                pass
-        self.config.edit_layout(self.table.site, self.max, locations = new_layout)
-        self.config.save()
+                new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
+        print "old locations =", self.params['layout'][self.hud.max]
+        print "saving locations =", new_locs
+        self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
 if __name__== "__main__":
     

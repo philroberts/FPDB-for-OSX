@@ -156,6 +156,7 @@ def prepareBulkImport(fdb):
                     except:
                         pass
             elif fdb.backend == PGSQL:
+#    DON'T FORGET TO RECREATE THEM!!
                 print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
                     fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
@@ -175,10 +176,14 @@ def prepareBulkImport(fdb):
                 except:
                     pass
             elif fdb.backend == PGSQL:
+#    DON'T FORGET TO RECREATE THEM!!
+                print "Index dropping disabled for postgresql."
                 print "dropping pg index ", idx['tab'], idx['col']
                 # mod to use tab_col for index name?
                 try:
+                    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
                     fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
+                    print "dropped  pg index ", idx['tab'], idx['col']
                 except:
                     pass
             else:
@@ -241,6 +246,7 @@ def afterBulkImport(fdb):
                 except:
                     pass
             elif fdb.backend == PGSQL:
+#                pass
                 # mod to use tab_col for index name?
                 print "creating pg index ", idx['tab'], idx['col']
                 try:

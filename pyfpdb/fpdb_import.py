@@ -352,7 +352,7 @@ class Importer:
                     
                     try:
                         handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                           ,self.fdb.cursor, site, category, hand)
+                                                           ,self.fdb.cursor, site, category, hand, self.config)
                         self.fdb.db.commit()
                         
                         stored+=1
