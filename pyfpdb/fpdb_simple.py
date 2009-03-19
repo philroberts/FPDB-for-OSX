@@ -1712,19 +1712,20 @@ sure to also change the following storage method and table_viewer.prepare_data i
     firstPfRaiserNo=-1
     firstPfCallByNo=-1
     firstPfCallerId=-1
-    for i in xrange(len(actionTypeByNo[0])):
-        if actionTypeByNo[0][i][1]=="bet":
-            firstPfRaiseByNo=i
-            firstPfRaiserId=actionTypeByNo[0][i][0]
-            for j in xrange(len(player_ids)):
-                if player_ids[j]==firstPfRaiserId:
-                    firstPfRaiserNo=j
+    
+    for i, action in enumerate(actionTypeByNo[0]):
+        if action[1] == "bet":
+            firstPfRaiseByNo = i
+            firstPfRaiserId = action[0]
+            for j, pid in enumerate(player_ids):
+                if pid == firstPfRaiserId:
+                    firstPfRaiserNo = j
                     break
             break
-    for i in xrange(len(actionTypeByNo[0])):
-        if actionTypeByNo[0][i][1]=="call":
-            firstPfCallByNo=i
-            firstPfCallerId=actionTypeByNo[0][i][0]
+    for i, action in enumerate(actionTypeByNo[0]):
+        if action[1] == "call":
+            firstPfCallByNo = i
+            firstPfCallerId = action[0]
             break
     
     cutoffId=-1
@@ -1732,15 +1733,15 @@ sure to also change the following storage method and table_viewer.prepare_data i
     sbId=-1
     bbId=-1
     if base=="hold":
-        for player in xrange(len(positions)):
-            if positions==1:
-                cutoffId=player_ids[player]
-            if positions==0:
-                buttonId=player_ids[player]
-            if positions=='S':
-                sbId=player_ids[player]
-            if positions=='B':
-                bbId=player_ids[player]
+        for player, pos in enumerate(positions):
+            if pos == 1:
+                cutoffId = player_ids[player]
+            if pos == 0:
+                buttonId = player_ids[player]
+            if pos == 'S':
+                sbId = player_ids[player]
+            if pos == 'B':
+                bbId = player_ids[player]
             
     someoneStole=False
     
