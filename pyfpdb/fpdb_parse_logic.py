@@ -141,8 +141,7 @@ def mainParser(backend, db, cursor, site, category, hand, config):
                                      , actionTypes, actionAmounts, antes)
     
     if isTourney:
-        ranks = []
-        map(lambda x: 0, names) # create an array of 0's equal to the length of names
+        ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
         payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
         
         if base == "hold":

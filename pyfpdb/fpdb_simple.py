@@ -1864,9 +1864,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #flop stuff
         street=1
         if myStreet1Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet1Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet1Aggr = True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1882,9 +1881,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #turn stuff - copy of flop with different vars
         street=2
         if myStreet2Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet2Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet2Aggr = True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1900,9 +1898,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #river stuff - copy of flop with different vars
         street=3
         if myStreet3Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet3Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                    myStreet3Aggr = True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1918,9 +1915,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #stud river stuff - copy of flop with different vars
         street=4
         if myStreet4Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet4Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet4Aggr=True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1933,9 +1929,9 @@ sure to also change the following storage method and table_viewer.prepare_data i
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet4=True
         
-        if winnings[player]!=0:
+        if winnings[player] != 0:
             if myStreet1Seen:
-                myWonWhenSeenStreet1=winnings[player]/float(totalWinnings)
+                myWonWhenSeenStreet1 = winnings[player] / float(totalWinnings)
                 if mySawShowdown:
                     myWonAtSD=myWonWhenSeenStreet1
         
