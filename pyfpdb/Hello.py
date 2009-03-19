@@ -99,3 +99,15 @@ class Hello_plus(Aux_Window):
 #    hands played that was updated in the "update_data()" function.
         self.label.set_text("Hello %s\nYou have played %d hands\n on %s." % (self.hero, self.hands_played, self.site))
 
+class Hello_Menu(Aux_Window):
+    """A 'Hello World' Aux_Window demo."""
+    def create(self):
+#    This demo puts a menu item on the HUD mainwindow.
+        self.item = gtk.MenuItem('Print cards')
+        self.hud.menu.append(self.item)
+        self.item.connect("activate", self.print_cards)
+        self.item.show()
+
+    def print_cards(self, *args):
+#    callback for the menu item
+        print "cards =", self.hud.cards
