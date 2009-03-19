@@ -349,10 +349,6 @@ class Flop_Mucked(Aux_Window):
             self.m_windows[i].show_all()
             self.m_windows[i].hide()
 
-    def update_data(self, new_hand_id, db_connection):
-        cards = db_connection.get_common_cards(new_hand_id)
-        self.hud.cards['common'] = cards['common']
-
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed_cards:
