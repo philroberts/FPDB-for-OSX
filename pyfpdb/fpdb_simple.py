@@ -1777,30 +1777,29 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #calculate VPIP and PFR
         street=0
         heroPfRaiseCount=0
-        for count in xrange(len(action_types[street][player])):#finally individual actions
-            currentAction=action_types[street][player][count]
-            if currentAction=="bet":
-                myStreet0Aggr=True
-            if (currentAction=="bet" or currentAction=="call"):
-                myStreet0VPI=True
+        for currentAction in action_types[street][player]: # finally individual actions
+            if currentAction == "bet":
+                myStreet0Aggr = True
+            if currentAction == "bet" or currentAction == "call":
+                myStreet0VPI = True
         
         #PF3B4BChance and PF3B4B
         pfFold=-1
         pfRaise=-1
-        if firstPfRaiseByNo!=-1:
-            for i in xrange(len(actionTypeByNo[0])):
-                if actionTypeByNo[0][i][0]==player_ids[player]:
-                    if actionTypeByNo[0][i][1]=="bet" and pfRaise==-1 and i>firstPfRaiseByNo:
-                        pfRaise=i
-                    if actionTypeByNo[0][i][1]=="fold" and pfFold==-1:
-                        pfFold=i
-            if pfFold==-1 or pfFold>firstPfRaiseByNo:
-                myStreet0_3B4BChance=True
-                if pfRaise>firstPfRaiseByNo:
-                    myStreet0_3B4BDone=True
+        if firstPfRaiseByNo != -1:
+            for i, actionType in enumerate(actionTypeByNo[0]):
+                if actionType[0] == player_ids[player]:
+                    if actionType[1] == "bet" and pfRaise == -1 and i > firstPfRaiseByNo:
+                        pfRaise = i
+                    if actionType[1] == "fold" and pfFold == -1:
+                        pfFold = i
+            if pfFold == -1 or pfFold > firstPfRaiseByNo:
+                myStreet0_3B4BChance = True
+                if pfRaise > firstPfRaiseByNo:
+                    myStreet0_3B4BDone = True
         
         #steal calculations
-        if base=="hold":
+        if base == "hold":
             if len(player_ids)>=5: #no point otherwise
                 if positions[player]==1:
                     if firstPfRaiserId==player_ids[player]:
@@ -1828,44 +1827,38 @@ sure to also change the following storage method and table_viewer.prepare_data i
         
         
         #calculate saw* values
-        isAllIn=False
-        for i in xrange(len(allIns[0][player])):
-            if allIns[0][player][i]:
-                isAllIn=True
+        isAllIn = False
+        if any(i for i in allIns[0][player]):
+            isAllIn = True
         if (len(action_types[1][player])>0 or isAllIn):
-            myStreet1Seen=True
- 
-            for i in xrange(len(allIns[1][player])):
-                if allIns[1][player][i]:
-                    isAllIn=True
+            myStreet1Seen = True
+            
+            if any(i for i in allIns[1][player]):
+                isAllIn = True
             if (len(action_types[2][player])>0 or isAllIn):
-                myStreet2Seen=True
+                myStreet2Seen = True
  
-                for i in xrange(len(allIns[2][player])):
-                    if allIns[2][player][i]:
-                        isAllIn=True
+                if any(i for i in allIns[2][player]):
+                    isAllIn = True
                 if (len(action_types[3][player])>0 or isAllIn):
-                    myStreet3Seen=True
+                    myStreet3Seen = True
  
                     #print "base:", base
                     if base=="hold":
-                        mySawShowdown=True
-                        for count in xrange(len(action_types[3][player])):
-                            if action_types[3][player][count]=="fold":
-                                mySawShowdown=False
+                        mySawShowdown = True
+                        if any(actiontype == "fold" for actiontype in action_types[3][player]):
+                            mySawShowdown = False
                     else:
                         #print "in else"
-                        for i in xrange(len(allIns[3][player])):
-                            if allIns[3][player][i]:
-                                isAllIn=True
+                        if any(i for i in allIns[3][player]):
+                            isAllIn = True
                         if (len(action_types[4][player])>0 or isAllIn):
                             #print "in if"
-                            myStreet4Seen=True
+                            myStreet4Seen = True
  
-                            mySawShowdown=True
-                            for count in xrange(len(action_types[4][player])):
-                                if action_types[4][player][count]=="fold":
-                                    mySawShowdown=False
+                            mySawShowdown = True
+                            if any(actiontype == "fold" for actiontype in action_types[4][player]):
+                                mySawShowdown = False
                         
  
         #flop stuff
