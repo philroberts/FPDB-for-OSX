@@ -81,23 +81,13 @@ class fpdb:
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
         #print "start of display_tab, len(self.tab_names):",len(self.tab_names)
-        tab_no=-1
-        #if len(self.tab_names)>1:
-        for i in range(len(self.tab_names)):
-            #print "display_tab, new_tab_name:",new_tab_name,"  self.tab_names[i]:", self.tab_names[i]
-            if (new_tab_name==self.tab_names[i]):
-                tab_no=i
-                #self.tab_buttons[i].set_active(False)
-        #else:
-        #    tab_no=0
+        tab_no = -1
+        for i, name in enumerate(self.tab_names):
+            if name == new_tab_name:
+                tab_no = i
+                break
 
-        #current_tab_no=-1
-        for i in range(len(self.tab_names)):
-            if self.current_tab==self.tabs[i]:
-                #self.tab_buttons[i].set_active(False)
-                pass
-
-        if tab_no==-1:
+        if tab_no == -1:
             raise fpdb_simple.FpdbError("invalid tab_no")
         else:
             self.main_vbox.remove(self.current_tab)
@@ -199,12 +189,13 @@ class fpdb:
     def dia_recreate_tables(self, widget, data):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         self.obtain_global_lock()
-        dia_confirm=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+        
+        dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
                 buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-        diastring=("Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted.")
+        diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
         dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
-        response=dia_confirm.run()
+        response = dia_confirm.run()
         dia_confirm.destroy()
         if response == gtk.RESPONSE_YES:
             self.db.recreate_tables()
