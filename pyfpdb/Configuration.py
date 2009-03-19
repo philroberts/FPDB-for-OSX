@@ -32,6 +32,13 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+def fix_tf(x):
+    if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
+        return True
+    if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
+        return False
+    return False
+
 class Layout:
     def __init__(self, node):
 
@@ -206,11 +213,11 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         if node.hasAttribute("saveActions"):
-            self.saveActions = node.getAttribute("saveActions")
+            self.saveActions = fix_tf(node.getAttribute("saveActions"))
         else:
             self.saveActions = True
         if node.hasAttribute("fastStoreHudCache"):
-            self.fastStoreHudCache = node.getAttribute("fastStoreHudCache")
+            self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"))
         else:
             self.fastStoreHudCache = False
 

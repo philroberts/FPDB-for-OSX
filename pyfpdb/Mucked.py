@@ -373,6 +373,7 @@ class Flop_Mucked(Aux_Window):
                     x = x + int(self.params['card_wd'])
                 self.seen_cards[i].set_from_pixbuf(scratch)
 #                self.m_windows[i].show_all()
+                self.m_windows[i].resize(1,1)
                 self.m_windows[i].present()
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
                 self.displayed_cards = True
