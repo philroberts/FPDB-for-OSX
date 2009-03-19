@@ -51,22 +51,22 @@ class Importer:
 
     def __init__(self, caller, settings, config):
         """Constructor"""
-        self.settings=settings
-        self.caller=caller
-        self.config = config
-        self.fdb = None
-        self.cursor = None
-        self.filelist = {}
-        self.dirlist = {}
+        self.settings   = settings
+        self.caller     = caller
+        self.config     = config
+        self.fdb        = None
+        self.cursor     = None
+        self.filelist   = {}
+        self.dirlist    = {}
         self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
-        self.monitor = False
-        self.updated = {}       #Time last import was run {file:mtime}
-        self.lines = None
-        self.faobs = None       #File as one big string
+        self.monitor    = False
+        self.updated    = {}       #Time last import was run {file:mtime}
+        self.lines      = None
+        self.faobs      = None       #File as one big string
         self.pos_in_file = {} # dict to remember how far we have read in the file
         #Set defaults
-        self.callHud = self.config.get_import_parameters().get("callFpdbHud")
+        self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         if 'minPrint' not in self.settings:
             #TODO: Is this value in the xml file?
             self.settings['minPrint'] = 30
