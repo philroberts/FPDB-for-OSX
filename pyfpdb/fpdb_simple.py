@@ -411,20 +411,14 @@ def classifyLines(hand, category, lineTypes, lineStreets):
             lineTypes.append("cards")
         elif i == 0:
             lineTypes.append("header")
+        elif line.startswith("Table '"):
+            lineTypes.append("table")            
         elif line.startswith("Seat ") and ( ("in chips" in line) or "($" in line):
             lineTypes.append("name")
         elif isActionLine(line):
             lineTypes.append("action")
             if " posts " in line or " posts the " in line:
                 currentStreet="preflop"
-        elif isWinLine(line):
-            lineTypes.append("win")
-        elif line.startswith("Total pot ") and "Rake" in line:
-            lineTypes.append("rake")
-            done=True
-        elif "*** SHOW DOWN ***" in line or "*** SUMMARY ***" in line:
-            lineTypes.append("ignore")
-            #print "in classifyLine, showdown or summary"
         elif " antes " in line or " posts the ante " in line:
             lineTypes.append("ante")
         elif line.startswith("*** FLOP *** ["):
@@ -450,11 +444,17 @@ def classifyLines(hand, category, lineTypes, lineStreets):
             currentStreet=3
         elif line.startswith("*** 7") or line == "*** RIVER ***":
             lineTypes.append("ignore")
-            currentStreet=4
+            currentStreet=4                
+        elif isWinLine(line):
+            lineTypes.append("win")
+        elif line.startswith("Total pot ") and "Rake" in line:
+            lineTypes.append("rake")
+            done=True
+        elif "*** SHOW DOWN ***" in line or "*** SUMMARY ***" in line:
+            lineTypes.append("ignore")
+            #print "in classifyLine, showdown or summary"
         elif " shows [" in line:
             lineTypes.append("cards")
-        elif line.startswith("Table '"):
-            lineTypes.append("table")
         else:
             raise FpdbError("unrecognised linetype in:"+hand[i])
         lineStreets.append(currentStreet)
@@ -511,11 +511,11 @@ def convertBlindBet(actionTypes, actionAmounts):
 def convertCardValues(arr):
     map(convertCardValuesBoard, arr)
 #end def convertCardValues
+
+card_map = { "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 def convertCardValuesBoard(arr):
-    # TODO: this could probably be useful in many places, it should be a constant somewhere maybe?
-    card_map = { "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
     for i in xrange(len(arr)):
         arr[i] = card_map[arr[i]]
 #end def convertCardValuesBoard
@@ -523,10 +523,8 @@ def convertCardValuesBoard(arr):
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
 def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
     for i in xrange(seats):#create second dimension arrays
-        tmp=[]
-        card_values.append(tmp)
-        tmp=[]
-        card_suits.append(tmp)
+        card_values.append( [] )
+        card_suits.append( [] )
         antes.append(0)
         winnings.append(0)
         rakes.append(0)
@@ -534,25 +532,16 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
     streetCount = 4 if category == "holdem" or category == "omahahi" or category == "omahahilo" else 5
     
     for i in xrange(streetCount): #build the first dimension array, for streets
-        tmp=[]
-        action_types.append(tmp)
-        tmp=[]
-        allIns.append(tmp)
-        tmp=[]
-        action_amounts.append(tmp)
-        tmp=[]
-        actionNos.append(tmp)
-        tmp=[]
-        actionTypeByNo.append(tmp)
+        action_types.append([])
+        allIns.append([])
+        action_amounts.append([])
+        actionNos.append([])
+        actionTypeByNo.append([])
         for j in xrange (seats): #second dimension arrays: players
-            tmp=[]
-            action_types[i].append(tmp)
-            tmp=[]
-            allIns[i].append(tmp)
-            tmp=[]
-            action_amounts[i].append(tmp)
-            tmp=[]
-            actionNos[i].append(tmp)
+            action_types[i].append([])
+            allIns[i].append([])
+            action_amounts[i].append([])
+            actionNos[i].append([])
 #    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
 #        pass
     if category=="razz" or category=="studhi" or category=="studhilo":#need to fill card arrays.
