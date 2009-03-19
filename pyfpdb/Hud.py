@@ -196,7 +196,7 @@ class Hud:
             s.window.destroy()    
         self.stat_windows = {}
 #    also kill any aux windows
-        map(lambda m: m.destroy(), self.aux_windows)
+        [aux.destroy() for aux in self.aux_windows]
         self.aux_windows = []
 
     def reposition_windows(self, *args):
@@ -217,8 +217,7 @@ class Hud:
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
 #    ask each aux to save its layout back to the config object
-        for aux in self.aux_windows:
-            aux.save_layout()
+        [aux.save_layout() for aux in self.aux_windows]
 #    save the config object back to the file
         print "saving new xml file"
         self.config.save()
@@ -351,6 +350,8 @@ class Hud:
                 style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
                 style |= win32con.WS_CLIPCHILDREN
                 win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
+                break
+            
         window.set_title(real_name)
 
 class Stat_Window:
@@ -575,6 +576,7 @@ class Popup_window:
                 style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
                 style |= win32con.WS_CLIPCHILDREN
                 win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
+                break
                 
         window.set_title(real_name)
 
