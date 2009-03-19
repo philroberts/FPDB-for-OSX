@@ -24,7 +24,7 @@ import fpdb_save_to_db
 def mainParser(backend, db, cursor, site, category, hand, config):
     category = fpdb_simple.recogniseCategory(hand[0])
     
-    base = "hold" if category == "holdem" or category == "omahahi" or ctegory == "omahahilo" else "stud"
+    base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
     
     #part 0: create the empty arrays
     lineTypes   = [] #char, valid values: header, name, cards, action, win, rake, ignore
