@@ -584,36 +584,33 @@ def filterAnteBlindFold(site,hand):
     #todo: in tourneys this should not be removed but
     #print "start of filterAnteBlindFold"
     pre3rd=[]
-    for i in xrange (len(hand)):
-        if hand[i].startswith("*** 3") or hand[i].startswith("*** HOLE"):
+    for i, line in enumerate(hand):
+        if line.startswith("*** 3") or line.startswith("*** HOLE"):
             pre3rd = hand[0:i]
     
     foldeeName=None
-    for i in xrange (len(pre3rd)):
-        if pre3rd[i].endswith("folds") or pre3rd[i].endswith("is sitting out") or pre3rd[i].endswith(" stands up"): #found ante fold or timeout
-            pos = pre3rd[i].find (" folds")
-            foldeeName = pre3rd[i][0:pos]
-            if pos == -1 and " in chips)" not in pre3rd[i]:
-                pos=pre3rd[i].find (" is sitting out")
-                foldeeName=pre3rd[i][0:pos]
+    for line in pre3rd:
+        if line.endswith("folds") or line.endswith("is sitting out") or line.endswith(" stands up"): #found ante fold or timeout
+            pos = line.find(" folds")
+            foldeeName = line[0:pos]
+            if pos == -1 and " in chips)" not in line:
+                pos = line.find(" is sitting out")
+                foldeeName = line[0:pos]
             if pos == -1:
-                pos = pre3rd[i].find (" stands up")
-                foldeeName = pre3rd[i][0:pos]
-            if pos == -1: #this one is for PS tourney
-                pos1=pre3rd[i].find (": ")+2
-                pos2=pre3rd[i].find (" (")
-                foldeeName=pre3rd[i][pos1:pos2]
+                pos = line.find(" stands up")
+                foldeeName = line[0:pos]
+            if pos == -1:
+                pos1 = line.find(": ") + 2
+                pos2 = line.find(" (")
+                foldeeName = line[pos1:pos2]
  
     if foldeeName!=None:
         #print "filterAnteBlindFold, foldeeName:",foldeeName
-        toRemove=[]
-        for i in xrange(len(hand)): #using hand again to filter from all streets, just in case.
-            #todo: this will break it if sittin out BB wins a hand
-            if (hand[i].find(foldeeName)!=-1):
-                toRemove.append(hand[i])
-            
-        for i in xrange(len(toRemove)):
-            hand.remove(toRemove[i])
+        for i, line in enumerate(hand):
+            if foldeeName in line:
+                hand[i] = None
+                
+        hand = [line for line in hand if line]
 #end def filterAnteFold
 
 def stripEOLspaces(str):
@@ -626,7 +623,7 @@ def stripEOLspaces(str):
 #removes useless lines as well as trailing spaces
 def filterCrap(site, hand, isTourney):
     #remove two trailing spaces at end of line
-    hand = map(stripEOLspaces, hand)
+    hand = [stripEOLspaces(line) for line in hand]
             
     #print "hand after trailing space removal in filterCrap:",hand
     #general variable position word filter/string filter
