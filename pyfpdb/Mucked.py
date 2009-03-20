@@ -37,7 +37,7 @@ import Database
 
 class Aux_Window:
     def __init__(self, hud, params, config):
-        self.config  = hud
+        self.hud     = hud
         self.config  = config
 
     def update_data(self, *parms):
