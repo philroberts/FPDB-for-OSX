@@ -25,6 +25,7 @@ Mucked cards display for FreePokerTools HUD.
 
 #    Standard Library modules
 import sys
+import pprint
 
 #    pyGTK modules
 import pygtk
@@ -374,6 +375,9 @@ class Flop_Mucked(Aux_Window):
                 self.m_windows[i].present()
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
                 self.displayed_cards = True
+
+        for stats in self.hud.stat_dict.itervalues():
+            self.eb[stats['seat']].set_tooltip_text(stats['screen_name'])
 
         if self.displayed_cards and float(self.params['timeout']) > 0:
             self.timer_on = True
