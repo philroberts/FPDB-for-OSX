@@ -117,6 +117,9 @@ follow :  whether to tail -f the input"""
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+        if m.group('TABLEATTRIBUTES'):
+            m2 = re.search("(\d+) max", m.group('TABLEATTRIBUTES'))
+            hand.maxseats = int(m2.group(1))
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
 #       m.group('BB')
