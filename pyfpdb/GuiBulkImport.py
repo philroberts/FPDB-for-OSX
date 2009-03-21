@@ -197,8 +197,8 @@ class GuiBulkImport():
         self.load_button.show()
 
 #    see how many hands are in the db and adjust accordingly
-        tcursor = db.db.cursor()
-        tcursor.execute("Select count(1) from Hands;")
+        tcursor = self.importer.fdb.db.cursor()
+        tcursor.execute("Select count(1) from Hands")
         row = tcursor.fetchone()
         tcursor.close()
         self.n_hands_in_db = row[0]
@@ -233,8 +233,8 @@ def main(argv=None):
     (options, sys.argv) = parser.parse_args(args = argv)
 
     config = Configuration.Config()
-    db = fpdb_db.fpdb_db()
-
+    db = None
+    
     settings = {}
     settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'

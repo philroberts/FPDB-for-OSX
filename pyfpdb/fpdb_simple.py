@@ -53,7 +53,7 @@ indexes = [
           , [ # indexes for postgres (list index 3)
               {'tab':'Boardcards',      'col':'handId',            'drop':0}
             , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
-            , {'tab':'Hands',           'col':'gametypeId',        'drop':1}
+            , {'tab':'Hands',           'col':'gametypeId',        'drop':1} # todo :1 by sqlcoder , but this is needed for all duplicate checks. test 0
             , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
             , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
             , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
@@ -164,8 +164,8 @@ def prepareBulkImport(fdb):
 #    DON'T FORGET TO RECREATE THEM!!
                 #print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
+		    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                    fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
 		    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
                 except:
                     print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
