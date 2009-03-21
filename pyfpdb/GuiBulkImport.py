@@ -176,7 +176,10 @@ class GuiBulkImport():
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
         self.cbfilter.append_text("passthrough")
-        self.cbfilter.append_text("Everleaf")
+        self.cbfilter.append_text("BetfairToFpdb")
+        self.cbfilter.append_text("EverleafToFpdb")
+        self.cbfilter.append_text("FulltiltToFpdb")
+        self.cbfilter.append_text("PokerStarsToFpdb")
         self.cbfilter.set_active(0)
         self.table.attach(self.cbfilter, 3, 4, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
         self.cbfilter.show()
