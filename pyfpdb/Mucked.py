@@ -25,6 +25,7 @@ Mucked cards display for FreePokerTools HUD.
 
 #    Standard Library modules
 import sys
+import pprint
 
 #    pyGTK modules
 import pygtk
@@ -37,7 +38,7 @@ import Database
 
 class Aux_Window:
     def __init__(self, hud, params, config):
-        self.config  = hud
+        self.hud     = hud
         self.config  = config
 
     def update_data(self, *parms):
@@ -318,6 +319,7 @@ class Flop_Mucked(Aux_Window):
         self.params  = params    # dict aux params from config
         self.positions = {}      # dict of window positions
         self.displayed_cards = False
+        self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
         self.card_images = self.get_card_images()
 
     def create(self):
@@ -374,34 +376,63 @@ class Flop_Mucked(Aux_Window):
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
                 self.displayed_cards = True
 
+        for stats in self.hud.stat_dict.itervalues():
+            self.eb[stats['seat']].set_tooltip_text(stats['screen_name'])
+
         if self.displayed_cards and float(self.params['timeout']) > 0:
-            gobject.timeout_add(int(1000*float(self.params['timeout'])), self.hide_mucked_cards)
+            self.timer_on = True
+            gobject.timeout_add(int(1000*float(self.params['timeout'])), self.timed_out)
 
     def destroy(self):
         """Destroy all of the mucked windows."""
         for w in self.m_windows.values():
             w.destroy()
 
+    def timed_out(self):
+#    this is the callback from the timeout
+
+#    if timer_on is False the user has cancelled the timer with a click
+#    so just return False to cancel the timer
+        if not self.timer_on:
+            return False
+        else:
+            self.hide_mucked_cards()
+            return False
+
     def hide_mucked_cards(self):
         """Hide the mucked card windows."""
-#    this is the callback from the timeout
         for (i, w) in self.m_windows.iteritems():
             self.positions[i] = w.get_position()
             w.hide()
             self.displayed_cards = False
-        return False  # this tells the system to NOT run this timeout again
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
+
+#    shift-any button exposes all the windows and turns off the timer
+        if event.state & gtk.gdk.SHIFT_MASK:
+            self.timer_on = False
+            self.expose_all()
+
         if event.button == 3:   # right button event
             pass
 
         elif event.button == 2:   # middle button event
-            self.hide_mucked_cards()
+            if self.timer_on == True:
+                self.timer_on = False
+            else:
+                self.timer_on = False
+                self.hide_mucked_cards()
 
         elif event.button == 1:   # left button event
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
+
+    def expose_all(self):
+        for (i, cards) in self.hud.cards.iteritems():
+            self.m_windows[i].present()
+            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+            self.displayed_cards = True
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
