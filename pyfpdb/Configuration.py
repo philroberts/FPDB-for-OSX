@@ -32,12 +32,12 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
-def fix_tf(x):
+def fix_tf(x, default = True):
     if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
         return True
     if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
         return False
-    return False
+    return default
 
 class Layout:
     def __init__(self, node):
@@ -212,18 +212,12 @@ class Import:
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
-        if node.hasAttribute("saveActions"):
-            self.saveActions = fix_tf(node.getAttribute("saveActions"))
-        else:
-            self.saveActions = True
-        if node.hasAttribute("fastStoreHudCache"):
-            self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"))
-        else:
-            self.fastStoreHudCache = False
+        self.saveActions = fix_tf(node.getAttribute("saveActions"), True)
+        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), True)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
-             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.saveActions)
+             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
 class Tv:
     def __init__(self, node):
