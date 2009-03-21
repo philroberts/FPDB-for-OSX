@@ -45,7 +45,7 @@ class GuiAutoImport (threading.Thread):
 
         self.importer = fpdb_import.Importer(self,self.settings, self.config)
         self.importer.setCallHud(True)
-        self.importer.setMinPrint(30)
+        self.importer.setMinPrint(settings['minPrint'])
         self.importer.setQuiet(False)
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
@@ -227,13 +227,15 @@ if __name__== "__main__":
 
     parser = OptionParser()
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
-
+    parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
+                    help="How often to print a one-line status report (0 (default) means never)")
     (options, sys.argv) = parser.parse_args()
 
     config = Configuration.Config()
 #    db = fpdb_db.fpdb_db()
 
     settings = {}
+    settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 

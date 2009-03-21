@@ -115,6 +115,7 @@ class Importer:
     # Called from GuiBulkImport to add a file or directory.
     def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
         """Add a file or directory for bulk import"""
+        
         # Bulk import never monitors
         # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
@@ -124,7 +125,6 @@ class Importer:
                     self.addImportFile(os.path.join(inputPath, subdir[0], file), site="default", filter=filter)
         else:
             self.addImportFile(inputPath, site="default", filter=filter)
-
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
@@ -355,7 +355,6 @@ class Importer:
                     isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
                         fpdb_simple.filterAnteBlindFold(site,hand)
-                    hand=fpdb_simple.filterCrap(site, hand, isTourney)
                     self.hand=hand
                     
                     try:

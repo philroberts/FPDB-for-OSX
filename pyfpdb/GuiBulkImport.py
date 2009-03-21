@@ -204,29 +204,36 @@ class GuiBulkImport():
             self.cb_dropindexes.set_sensitive(False)
             self.lab_drop.set_sensitive(False)
 
-if __name__ == '__main__':
-
+def main(argv=None):
+    """main can also be called in the python interpreter, by supplying the command line as the argument.
+>>>import GuiBulkImport
+>>>GuiBulkImport.main("-f ~/data/hands")"""
+    if argv is None:
+        argv = sys.argv[1:]
+    else:
+        argv = argv.split(" ")
 
     def destroy(*args):  # call back for terminating the main eventloop
         gtk.main_quit()
 
     parser = OptionParser()
-    parser.add_option("-f", "--file", dest="filename", metavar="FILE",
+    parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
                     help="Input file in quiet mode")
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
-                    help="don't start gui")
+                    help="don't start gui; deprecated (just give a filename with -f).")
     parser.add_option("-c", "--convert", dest="filtername", default="passthrough", metavar="FILTER",
                     help="Conversion filter (*passthrough, FullTiltToFpdb, PokerStarsToFpdb, EverleafToFpdb)")
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help="If this option is passed it quits when it encounters any error")
-    #parser.add_option("-m", "--minPrint", "--status", default="0", type="int",
-                    #help="How often to print a one-line status report (0 (default) means never)")
-    (options, sys.argv) = parser.parse_args()
+    parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
+                    help="How often to print a one-line status report (0 (default) means never)")
+    (options, sys.argv) = parser.parse_args(args = argv)
 
     config = Configuration.Config()
     db = fpdb_db.fpdb_db()
 
     settings = {}
+    settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 
@@ -235,7 +242,10 @@ if __name__ == '__main__':
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 
-    if(options.gui == True):
+    if not options.gui:
+        print """-q is deprecated. Just use "-f filename" instead"""
+        # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
+    if not options.filename:
         i = GuiBulkImport(db, settings, config)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
@@ -247,7 +257,12 @@ if __name__ == '__main__':
         importer = fpdb_import.Importer(False,settings, config) 
         importer.setDropIndexes("auto")
         importer.setFailOnError(options.failOnError)
-        importer.addBulkImportImportFileOrDir(options.filename, filter=options.filtername)
+        importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), filter=options.filtername)
         importer.setCallHud(False)
         importer.runImport()
         importer.clearFileList()
+
+
+if __name__ == '__main__':
+    sys.exit(main())
+
