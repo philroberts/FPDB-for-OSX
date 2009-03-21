@@ -122,21 +122,10 @@ follow :  whether to tail -f the input"""
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
-        
-        # attributes
-        # (deep 6)
-        # (6 max)
-        # 
-        # be goodd idea to log those what we don't know idea
         hand.maxseats = 8 # assume 8-max until we see otherwise
-        # stud tables are usually 8-max?
-        # 
-        atts = m.group('ATTRIBUTES')
-        if atts:
-            # TODO: parse these
-            pass
-        
-        
+        if m.group('TABLEATTRIBUTES'):
+            m2 = re.search("(\d+) max", m.group('TABLEATTRIBUTES'))
+            hand.maxseats = int(m2.group(1))
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
 #       m.group('BB')

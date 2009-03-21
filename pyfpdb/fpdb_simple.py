@@ -29,6 +29,8 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
+DBTEST = False
+
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
 #                                            1 - drop during bulk import
@@ -714,7 +716,7 @@ def filterCrap(site, hand, isTourney):
             hand[i] = False
         elif (hand[i].find(": ")!=-1 and site=="ftp" and hand[i].find("Seat ")==-1 and hand[i].find(": Table")==-1): #filter ftp chat
             hand[i] = False
-        if isTourney:
+        if isTourney and not hand[i] == False:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
                 hand[i] = False
         elif hand[i]:
@@ -1511,11 +1513,18 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
 #stores into table hands_actions
     #print "start of storeActions, actionNos:",actionNos
     #print " action_amounts:",action_amounts
+    inserts = []
     for i in xrange(len(actionTypes)): #iterate through streets
         for j in xrange(len(actionTypes[i])): #iterate through names
             for k in xrange(len(actionTypes[i][j])): #iterate through individual actions of that player on that street
-                cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)"
-                               , (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
+                if DBTEST == False:
+                    cursor.execute("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
+                else:
+                    # Add inserts into a list and let 
+                    inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
+
+    if DBTEST == True:
+        cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
