@@ -123,7 +123,7 @@ class HUD_main(object):
             gtk.gdk.threads_enter()
             try:
                 self.hud_dict[table_name].update(new_hand_id, config)
-                map(lambda aw: aw.update_gui(new_hand_id), self.hud_dict[table_name].aux_windows)
+                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
                 return False
             finally:
                 gtk.gdk.threads_leave()
@@ -151,7 +151,9 @@ class HUD_main(object):
             try:
                 (table_name, max, poker_game) = self.db_connection.get_table_name(new_hand_id)
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
-                cards = self.db_connection.get_cards(new_hand_id)
+                cards      = self.db_connection.get_cards(new_hand_id)
+                comm_cards = self.db_connection.get_common_cards(new_hand_id)
+                cards['common'] = comm_cards['common']
             except Exception, err:
                 print "db error: skipping ", new_hand_id, err
                 sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
@@ -172,8 +174,7 @@ class HUD_main(object):
             if temp_key in self.hud_dict:
                 self.hud_dict[temp_key].stat_dict = stat_dict
                 self.hud_dict[temp_key].cards = cards
-                for aw in self.hud_dict[temp_key].aux_windows:
-                    aw.update_data(new_hand_id, self.db_connection)
+                [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
                 self.update_HUD(new_hand_id, temp_key, self.config)
     
 #    Or create a new HUD
