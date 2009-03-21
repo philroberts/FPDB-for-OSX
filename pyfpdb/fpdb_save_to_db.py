@@ -33,7 +33,6 @@ saveActions = True    # set this to False to avoid storing action data
                     # Cons: no action data is saved, so you need to keep the hand histories
                     #       variance not available on stats page
                     #     : No graphs
- 
 #stores a stud/razz hand into the database
 def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametype_id, hand_start_time
              ,names, player_ids, start_cashes, antes, card_values, card_suits, winnings, rakes

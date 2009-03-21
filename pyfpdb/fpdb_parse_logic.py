@@ -60,6 +60,8 @@ def mainParser(backend, db, cursor, siteID, category, hand, config):
 
     fpdb_simple.isAlreadyInDB(cursor, gametypeID, siteHandNo)
     
+    hand=fpdb_simple.filterCrap(site, hand, isTourney)
+    
     #part 2: classify lines by type (e.g. cards, action, win, sectionchange) and street
     fpdb_simple.classifyLines(hand, category, lineTypes, lineStreets)
         
