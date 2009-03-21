@@ -113,10 +113,16 @@ follow :  whether to tail -f the input"""
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
-        #print m.groups()
+
+        if(m == None):
+            logging.info("Didn't match re_HandInfo")
+            logging.info(hand.handText)
+            return None
+        
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+        hand.maxseats = 8 # assume 8-max until we see otherwise
         if m.group('TABLEATTRIBUTES'):
             m2 = re.search("(\d+) max", m.group('TABLEATTRIBUTES'))
             hand.maxseats = int(m2.group(1))
