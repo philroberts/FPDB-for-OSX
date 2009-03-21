@@ -714,7 +714,7 @@ def filterCrap(site, hand, isTourney):
             hand[i] = False
         elif (hand[i].find(": ")!=-1 and site=="ftp" and hand[i].find("Seat ")==-1 and hand[i].find(": Table")==-1): #filter ftp chat
             hand[i] = False
-        if isTourney:
+        if isTourney and not hand[i] == False:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
                 hand[i] = False
         elif hand[i]:
