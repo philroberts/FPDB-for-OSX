@@ -21,7 +21,7 @@ import fpdb_simple
 import fpdb_save_to_db
 
 #parses a holdem hand
-def mainParser(backend, db, cursor, category, hand, config):
+def mainParser(backend, db, cursor, siteID, category, hand, config):
     category = fpdb_simple.recogniseCategory(hand[0])
 
     base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
@@ -35,8 +35,6 @@ def mainParser(backend, db, cursor, category, hand, config):
     #part 1: read hand no and check for duplicate
     siteHandNo      = fpdb_simple.parseSiteHandNo(hand[0])
     handStartTime   = fpdb_simple.parseHandStartTime(hand[0])
-    siteID          = fpdb_simple.recogniseSiteID()
-    #print "parse logic, siteID:",siteID,"site:",site
     
     isTourney       = fpdb_simple.isTourney(hand[0])
     smallBlindLine  = 0

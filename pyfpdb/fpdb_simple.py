@@ -691,14 +691,13 @@ def filterCrap(hand, isTourney):
             hand[i] = False
         elif (hand[i]=="Betting is capped"):
             hand[i] = False
-        #site specific variable position filter
         elif (hand[i].find(" said, \"")!=-1):
             hand[i] = False
+
         if isTourney:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
                 hand[i] = False
-        elif:
-            if (hand[i].endswith(": sits out")):
+            elif (hand[i].endswith(": sits out")):
                 hand[i] = False
             elif (hand[i].endswith(" is sitting out")):
                 hand[i] = False
@@ -1375,9 +1374,6 @@ def recognisePlayerNo(line, names, atype):
     raise FpdbError ("failed to recognise player in: "+line+" atype:"+atype)
 #end def recognisePlayerNo
  
-def recogniseSiteID():
-    return 2
-#end def recogniseSiteID
  
 #removes trailing \n from the given array
 def removeTrailingEOL(arr):

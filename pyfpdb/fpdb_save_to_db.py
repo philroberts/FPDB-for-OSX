@@ -28,11 +28,12 @@ SQLITE          = 4
 
 fastStoreHudCache = True   # set this to True to test the new storeHudCache routine
 
-saveActions = False    # set this to False to avoid storing action data
+saveActions = True    # set this to False to avoid storing action data
                     # Pros: speeds up imports
                     # Cons: no action data is saved, so you need to keep the hand histories
                     #       variance not available on stats page
-
+                    #     : No graphs
+ 
 #stores a stud/razz hand into the database
 def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametype_id, hand_start_time
              ,names, player_ids, start_cashes, antes, card_values, card_suits, winnings, rakes
@@ -41,7 +42,7 @@ def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametyp
 
     import_options = config.get_import_parameters()
     
-    saveActions = True if import_options['saveActions'] == 'True' else False
+    saveActions = False if import_options['saveActions'] == 'False' else True
     fastStoreHudCache = True if import_options['fastStoreHudCache'] == 'True' else False
 
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
@@ -69,8 +70,10 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     """stores a holdem/omaha hand into the database"""
 
     import_options = config.get_import_parameters()
-    saveActions = True if import_options['saveActions'] == 'True' else False
+    saveActions = False if import_options['saveActions'] == 'False' else True
     fastStoreHudCache = True if import_options['fastStoreHudCache'] == 'True' else False
+
+    #print "DEBUG: saveActions: %s fastStoreHudCache: %s" %(saveActions, fastStoreHudCache)
 
     t0 = time()
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)

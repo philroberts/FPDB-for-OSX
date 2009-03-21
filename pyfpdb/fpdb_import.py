@@ -58,13 +58,14 @@ class Importer:
         self.cursor     = None
         self.filelist   = {}
         self.dirlist    = {}
+        self.siteIds    = {}
         self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
         self.monitor    = False
-        self.updated    = {}       #Time last import was run {file:mtime}
+        self.updated    = {}         #Time last import was run {file:mtime}
         self.lines      = None
-        self.faobs      = None       #File as one big string
-        self.pos_in_file = {} # dict to remember how far we have read in the file
+        self.faobs      = None       # File as one big string
+        self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         if 'minPrint' not in self.settings:
@@ -111,6 +112,18 @@ class Importer:
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
         self.filelist[filename] = [site] + [filter]
+        if site not in self.siteIds:
+            # Get id from Sites table in DB
+            self.fdb.cursor.execute(self.fdb.sql.query['getSiteId'], (site,))
+            result = self.fdb.cursor.fetchall()
+            if len(result) == 1:
+                self.siteIds[site] = result[0][0]
+            else:
+                if len(result) == 0:
+                    print "[ERROR] Database ID for %s not found" % site
+                else:
+                    print "[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet" % site
+
 
     # Called from GuiBulkImport to add a file or directory.
     def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
@@ -289,9 +302,8 @@ class Importer:
             print "TODO: implement importing tournament summaries"
             #self.faobs = readfile(inputFile)
             #self.parseTourneyHistory()
-            return 0
+            return (0,0,0,1,0)
 
-        site=fpdb_simple.recogniseSite(firstline)
         category=fpdb_simple.recogniseCategory(firstline)
 
         startpos=0
@@ -322,7 +334,7 @@ class Importer:
 
                     try:
                         handsId=fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                           ,self.fdb.cursor, site, category, hand, self.config)
+                                                           ,self.fdb.cursor, self.siteIds[site], category, hand, self.config)
                         self.fdb.db.commit()
 
                         stored+=1

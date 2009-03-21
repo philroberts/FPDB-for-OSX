@@ -41,8 +41,8 @@ class FpdbSQLQueries:
             self.query['list_tables'] = """ """
 
         ##################################################################
-            # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
-            ##################################################################
+        # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
+        ##################################################################
 
         if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
             self.query['drop_table'] = """DROP TABLE IF EXISTS """
