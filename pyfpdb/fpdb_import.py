@@ -172,7 +172,15 @@ class Importer:
 
     def calculate_auto(self):
         """An heuristic to determine a reasonable value of drop/don't drop"""
-        if len(self.filelist) == 1:            return "don't drop"      
+        if len(self.filelist) == 1:            return "don't drop"
+        if 'handsInDB' not in self.settings:
+            try:
+                tmpcursor = self.fdb.db.cursor()
+                tmpcursor.execute("Select count(1) from Hands;")
+                self.settings['handsInDB'] = tmpcursor.fetchone()[0]
+                tmpcursor.close()
+            except:
+                pass # if this fails we're probably doomed anyway
         if self.settings['handsInDB'] < 5000:  return "drop"
         if len(self.filelist) < 50:            return "don't drop"      
         if self.settings['handsInDB'] > 50000: return "don't drop"

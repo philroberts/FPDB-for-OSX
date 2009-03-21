@@ -60,8 +60,8 @@ class GuiBulkImport():
         self.importer.setFailOnError(self.chk_fail.get_active())
         self.importer.setThreads(int(self.spin_threads.get_text()))
         self.importer.setHandsInDB(self.n_hands_in_db)
-        cb_model = self.cb.get_model()
-        cb_index = self.cb.get_active()
+        cb_model = self.cb_dropindexes.get_model()
+        cb_index = self.cb_dropindexes.get_active()
         if cb_index:
             self.importer.setDropIndexes(cb_model[cb_index][0])
         else:
@@ -159,13 +159,13 @@ class GuiBulkImport():
         self.lab_drop.set_justify(gtk.JUSTIFY_RIGHT)
 
 #    ComboBox - drop indexes
-        self.cb = gtk.combo_box_new_text()
-        self.cb.append_text('auto')
-        self.cb.append_text("don't drop")
-        self.cb.append_text('drop')
-        self.cb.set_active(0)
-        self.table.attach(self.cb, 4, 5, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
-        self.cb.show()
+        self.cb_dropindexes = gtk.combo_box_new_text()
+        self.cb_dropindexes.append_text('auto')
+        self.cb_dropindexes.append_text("don't drop")
+        self.cb_dropindexes.append_text('drop')
+        self.cb_dropindexes.set_active(0)
+        self.table.attach(self.cb_dropindexes, 4, 5, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.cb_dropindexes.show()
 
 #    label - filter
         self.lab_filter = gtk.Label("Site filter:")
@@ -195,13 +195,13 @@ class GuiBulkImport():
 
 #    see how many hands are in the db and adjust accordingly
         tcursor = db.db.cursor()
-        tcursor.execute("Select max(id) from Hands;")
+        tcursor.execute("Select count(1) from Hands;")
         row = tcursor.fetchone()
         tcursor.close()
         self.n_hands_in_db = row[0]
         if self.n_hands_in_db == 0:
-            self.cb.set_active(2)
-            self.cb.set_sensitive(False)
+            self.cb_dropindexes.set_active(2)
+            self.cb_dropindexes.set_sensitive(False)
             self.lab_drop.set_sensitive(False)
 
 if __name__ == '__main__':
@@ -211,9 +211,16 @@ if __name__ == '__main__':
         gtk.main_quit()
 
     parser = OptionParser()
-    parser.add_option("-f", "--file", dest="filename", help="Input file in quiet mode", metavar="FILE")
-    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
-    parser.add_option("-x", "--convert", dest="filtername", help="Conversion filter", default="passthrough")
+    parser.add_option("-f", "--file", dest="filename", metavar="FILE",
+                    help="Input file in quiet mode")
+    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
+                    help="don't start gui")
+    parser.add_option("-c", "--convert", dest="filtername", default="passthrough", metavar="FILTER",
+                    help="Conversion filter (*passthrough, FullTiltToFpdb, PokerStarsToFpdb, EverleafToFpdb)")
+    parser.add_option("-x", "--failOnError", action="store_true", default=False,
+                    help="If this option is passed it quits when it encounters any error")
+    #parser.add_option("-m", "--minPrint", "--status", default="0", type="int",
+                    #help="How often to print a one-line status report (0 (default) means never)")
     (options, sys.argv) = parser.parse_args()
 
     config = Configuration.Config()
@@ -239,8 +246,8 @@ if __name__ == '__main__':
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config) 
         importer.setDropIndexes("auto")
-        importer.setFailOnError(True)
-        importer.addImportFile(options.filename, filter=options.filtername)
+        importer.setFailOnError(options.failOnError)
+        importer.addBulkImportImportFileOrDir(options.filename, filter=options.filtername)
         importer.setCallHud(False)
         importer.runImport()
         importer.clearFileList()
