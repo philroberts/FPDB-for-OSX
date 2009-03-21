@@ -113,10 +113,30 @@ follow :  whether to tail -f the input"""
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
-        #print m.groups()
+
+        if(m == None):
+            logging.info("Didn't match re_HandInfo")
+            logging.info(hand.handText)
+            return None
+        
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+        
+        # attributes
+        # (deep 6)
+        # (6 max)
+        # 
+        # be goodd idea to log those what we don't know idea
+        hand.maxseats = 8 # assume 8-max until we see otherwise
+        # stud tables are usually 8-max?
+        # 
+        atts = m.group('ATTRIBUTES')
+        if atts:
+            # TODO: parse these
+            pass
+        
+        
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
 #       m.group('BB')
