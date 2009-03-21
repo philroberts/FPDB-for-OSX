@@ -54,7 +54,10 @@ class Aux_Window:
         pass
 
     def destroy(self):
-        self.container.destroy()
+        try:
+            self.container.destroy()
+        except:
+            pass
 
 ############################################################################
 #    Some utility routines useful for Aux_Windows
@@ -413,6 +416,7 @@ class Flop_Mucked(Aux_Window):
         if event.state & gtk.gdk.SHIFT_MASK:
             self.timer_on = False
             self.expose_all()
+            return
 
         if event.button == 3:   # right button event
             pass
