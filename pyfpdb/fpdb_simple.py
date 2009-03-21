@@ -157,12 +157,13 @@ def prepareBulkImport(fdb):
                         pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                print "dropping pg fk", fk['fktab'], fk['fkcol']
+                #print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
                     fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
                                        + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
+		    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
                 except:
-                    pass
+                    print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -177,15 +178,15 @@ def prepareBulkImport(fdb):
                     pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                print "Index dropping disabled for postgresql."
-                print "dropping pg index ", idx['tab'], idx['col']
+                #print "Index dropping disabled for postgresql."
+                #print "dropping pg index ", idx['tab'], idx['col']
                 # mod to use tab_col for index name?
                 try:
-                    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
                     fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
-                    print "dropped  pg index ", idx['tab'], idx['col']
+		    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                    #print "dropped  pg index ", idx['tab'], idx['col']
                 except:
-                    pass
+		    print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col']) 
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
