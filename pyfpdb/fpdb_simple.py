@@ -53,7 +53,7 @@ indexes = [
           , [ # indexes for postgres (list index 3)
               {'tab':'Boardcards',      'col':'handId',            'drop':0}
             , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
-            , {'tab':'Hands',           'col':'gametypeId',        'drop':1} # todo :1 by sqlcoder , but this is needed for all duplicate checks. test 0
+            , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
             , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
             , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
             , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
