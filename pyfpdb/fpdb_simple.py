@@ -29,7 +29,6 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
-DBTEST = False
 
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -1518,14 +1517,10 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
     for i in xrange(len(actionTypes)): #iterate through streets
         for j in xrange(len(actionTypes[i])): #iterate through names
             for k in xrange(len(actionTypes[i][j])): #iterate through individual actions of that player on that street
-                if DBTEST == False:
-                    cursor.execute("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
-                else:
-                    # Add inserts into a list and let 
-                    inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
+                # Add inserts into a list and let 
+                inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
 
-    if DBTEST == True:
-        cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
+    cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
