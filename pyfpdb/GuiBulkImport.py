@@ -210,11 +210,9 @@ class GuiBulkImport():
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument.
 >>>import GuiBulkImport
->>>GuiBulkImport.main("-f ~/data/hands")"""
+>>>GuiBulkImport.main(['-f'.'~/data/hands'])"""
     if argv is None:
         argv = sys.argv[1:]
-    else:
-        argv = argv.split(" ")
 
     def destroy(*args):  # call back for terminating the main eventloop
         gtk.main_quit()
