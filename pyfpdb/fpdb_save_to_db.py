@@ -73,7 +73,8 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     saveActions = False if import_options['saveActions'] == 'False' else True
     fastStoreHudCache = False if import_options['fastStoreHudCache'] == 'False' else True
 
-    # print "DEBUG: saveActions = '%s' fastStoreHudCache = '%s'"%(saveActions, fastStoreHudCache)
+#    print "DEBUG: saveActions = '%s' fastStoreHudCache = '%s'"%(saveActions, fastStoreHudCache)
+#    print "DEBUG: import_options = ", import_options
 
     t0 = time()
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
