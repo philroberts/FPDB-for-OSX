@@ -376,7 +376,7 @@ class Flop_Mucked(Aux_Window):
                 self.seen_cards[i].set_from_pixbuf(scratch)
 #                self.m_windows[i].show_all()
                 self.m_windows[i].resize(1,1)
-                self.m_windows[i].present()
+                self.m_windows[i].show()
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
                 self.displayed_cards = True
 
@@ -407,7 +407,7 @@ class Flop_Mucked(Aux_Window):
         """Hide the mucked card windows."""
         for (i, w) in self.m_windows.iteritems():
             w.hide()
-            self.displayed_cards = False
+        self.displayed_cards = False
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
@@ -437,7 +437,7 @@ class Flop_Mucked(Aux_Window):
 
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
-            self.m_windows[i].present()
+            self.m_windows[i].show()
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
             self.displayed_cards = True
 
