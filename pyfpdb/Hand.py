@@ -178,7 +178,7 @@ If a player has None chips he won't be added."""
             elif blindtype == 'both':
                 # extra small blind is 'dead'
                 self.lastBet['PREFLOP'] = Decimal(self.bb)
-        self.posted = self.posted + [[player,blindtype]]
+            self.posted = self.posted + [[player,blindtype]]
         #print "DEBUG: self.posted: %s" %(self.posted)
 
 
@@ -328,7 +328,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
         gs = {"holdem"       : "Hold'em",
               "omahahi"    : "Omaha",
-              "omahahilo"  : "FIXME",
+              "omahahilo"  : "Omaha Hi/Lo",
               "razz"       : "Razz",
               "studhi"     : "7 Card Stud",
               "studhilo"   : "FIXME",
@@ -371,11 +371,11 @@ Map the tuple self.gametype onto the pokerstars string describing it
             print >>fh, _("%s: completes to $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'posts':
             if(act[2] == "small blind"):
-                print >>fh, _("%s: posts small blind $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts small blind $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "big blind"):
-                print >>fh, _("%s: posts big blind $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts big blind $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "both"):
-                print >>fh, _("%s: posts small & big blinds $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts small & big blinds $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
         elif act[1] == 'bringin':
             print >>fh, _("%s: brings in for $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'discards':
@@ -458,7 +458,7 @@ Card ranks will be uppercased
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S ET', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
@@ -501,10 +501,19 @@ Card ranks will be uppercased
         #Some sites don't have a showdown section so we have to figure out if there should be one
         # The logic for a showdown is: at the end of river action there are at least two players in the hand
         # we probably don't need a showdown section in pseudo stars format for our filtering purposes
-        if 'SHOWDOWN' in self.actions:
+        if self.shown:
             print >>fh, _("*** SHOW DOWN ***")
-            #TODO: Complete SHOWDOWN
-
+            for name in self.shown:
+                # TODO: legacy importer can't handle only one holecard here, make sure there are 2 for holdem, 4 for omaha
+                # TOOD: If HoldHand subclass supports more than omahahi, omahahilo, holdem, add them here
+                numOfHoleCardsNeeded = None
+                if self.gametype['category'] in ('omahahi','omahahilo'):
+                    numOfHoleCardsNeeded = 4
+                elif self.gametype['category'] in ('holdem'):
+                    numOfHoleCardsNeeded = 2
+                if len(self.holecards[name]['PREFLOP']) == numOfHoleCardsNeeded:
+                    print >>fh, _("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards[name]['PREFLOP'])))
+                
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
         # s0rrow collected $5.15 from side pot
@@ -652,14 +661,14 @@ Card ranks will be uppercased
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, _("%s Game #%s: %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d %H:%M:%S ET', self.starttime)))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
 
         players_who_act_ondeal = set(([x[0] for x in self.actions['DEAL']]+[x[0] for x in self.actions['BLINDSANTES']]))
 
         for player in [x for x in self.players if x[1] in players_who_act_ondeal]:
             #Only print stacks of players who do something on deal
-            print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
+            print >>fh, _("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
 
         if 'BLINDSANTES' in self.actions:
             for act in self.actions['BLINDSANTES']:

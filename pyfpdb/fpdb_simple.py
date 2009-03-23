@@ -18,14 +18,17 @@
 #This file contains simple functions for fpdb
  
 import datetime
+import time
 import re
  
-PS=1
-FTP=2
+PS  = 1
+FTP = 2
 
-MYSQL_INNODB=2
-PGSQL=3
-SQLITE=4
+# TODO: these constants are also used in fpdb_save_to_db and others, is there a way to do like C #define, and #include ?
+MYSQL_INNODB    = 2
+PGSQL           = 3
+SQLITE          = 4
+
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
 #                                            1 - drop during bulk import
@@ -384,27 +387,20 @@ def calcPayin(count, buyin, fee):
         result.append (buyin+fee)
     return result
 #end def calcPayin
- 
+
 def checkPositions(positions):
-	"""verifies that these positions are valid"""
-	for i in xrange(len(positions)):
-		pos=positions[i]
-		try:#todo: use type recognition instead of error
-			if (len(pos)!=1):
-				raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+pos) #dont need to str() here
-		except TypeError:#->not string->is int->fine
-			pass
-		
-		### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
-		### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
-		if not (pos == "B" or pos == "S" or (pos >= 0 and pos <= 9)):
-			raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+str(pos))
-#end def fpdb_simple.checkPositions
+    """ verify positions are valid """
+    for p in positions:
+        if not (p == "B" or p == "S" or (p >= 0 and p <= 9)):
+            raise FpdbError("invalid position '" + p + "' found in checkPositions")
+ 
+    ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
+    ### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
  
 #classifies each line for further processing in later code. Manipulates the passed arrays.
 def classifyLines(hand, category, lineTypes, lineStreets):
-    currentStreet="predeal"
-    done=False #set this to true once we reach the last relevant line (the summary, except rake, is all repeats)
+    currentStreet = "predeal"
+    done = False #set this to true once we reach the last relevant line (the summary, except rake, is all repeats)
     for i, line in enumerate(hand):
         if done:
             if "[" not in line or "mucked [" not in line:
@@ -415,20 +411,14 @@ def classifyLines(hand, category, lineTypes, lineStreets):
             lineTypes.append("cards")
         elif i == 0:
             lineTypes.append("header")
+        elif line.startswith("Table '"):
+            lineTypes.append("table")            
         elif line.startswith("Seat ") and ( ("in chips" in line) or "($" in line):
             lineTypes.append("name")
         elif isActionLine(line):
             lineTypes.append("action")
             if " posts " in line or " posts the " in line:
                 currentStreet="preflop"
-        elif isWinLine(line):
-            lineTypes.append("win")
-        elif line.startswith("Total pot ") and "Rake" in line:
-            lineTypes.append("rake")
-            done=True
-        elif "*** SHOW DOWN ***" in line or "*** SUMMARY ***" in line:
-            lineTypes.append("ignore")
-            #print "in classifyLine, showdown or summary"
         elif " antes " in line or " posts the ante " in line:
             lineTypes.append("ante")
         elif line.startswith("*** FLOP *** ["):
@@ -454,11 +444,17 @@ def classifyLines(hand, category, lineTypes, lineStreets):
             currentStreet=3
         elif line.startswith("*** 7") or line == "*** RIVER ***":
             lineTypes.append("ignore")
-            currentStreet=4
+            currentStreet=4                
+        elif isWinLine(line):
+            lineTypes.append("win")
+        elif line.startswith("Total pot ") and "Rake" in line:
+            lineTypes.append("rake")
+            done=True
+        elif "*** SHOW DOWN ***" in line or "*** SUMMARY ***" in line:
+            lineTypes.append("ignore")
+            #print "in classifyLine, showdown or summary"
         elif " shows [" in line:
             lineTypes.append("cards")
-        elif line.startswith("Table '"):
-            lineTypes.append("table")
         else:
             raise FpdbError("unrecognised linetype in:"+hand[i])
         lineStreets.append(currentStreet)
@@ -515,69 +511,46 @@ def convertBlindBet(actionTypes, actionAmounts):
 def convertCardValues(arr):
     map(convertCardValuesBoard, arr)
 #end def convertCardValues
+
+card_map = { "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 def convertCardValuesBoard(arr):
     for i in xrange(len(arr)):
-        if (arr[i]=="A"):
-            arr[i]=14
-        elif (arr[i]=="K"):
-            arr[i]=13
-        elif (arr[i]=="Q"):
-            arr[i]=12
-        elif (arr[i]=="J"):
-            arr[i]=11
-        elif (arr[i]=="T"):
-            arr[i]=10
-        else:
-            arr[i]=int(arr[i])
+        arr[i] = card_map[arr[i]]
 #end def convertCardValuesBoard
  
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
 def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
     for i in xrange(seats):#create second dimension arrays
-        tmp=[]
-        card_values.append(tmp)
-        tmp=[]
-        card_suits.append(tmp)
+        card_values.append( [] )
+        card_suits.append( [] )
         antes.append(0)
         winnings.append(0)
         rakes.append(0)
     
-    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        streetCount=4
-    else:
-        streetCount=5
+    streetCount = 4 if category == "holdem" or category == "omahahi" or category == "omahahilo" else 5
     
     for i in xrange(streetCount): #build the first dimension array, for streets
-        tmp=[]
-        action_types.append(tmp)
-        tmp=[]
-        allIns.append(tmp)
-        tmp=[]
-        action_amounts.append(tmp)
-        tmp=[]
-        actionNos.append(tmp)
-        tmp=[]
-        actionTypeByNo.append(tmp)
+        action_types.append([])
+        allIns.append([])
+        action_amounts.append([])
+        actionNos.append([])
+        actionTypeByNo.append([])
         for j in xrange (seats): #second dimension arrays: players
-            tmp=[]
-            action_types[i].append(tmp)
-            tmp=[]
-            allIns[i].append(tmp)
-            tmp=[]
-            action_amounts[i].append(tmp)
-            tmp=[]
-            actionNos[i].append(tmp)
-    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        pass
-    elif (category=="razz" or category=="studhi" or category=="studhilo"):#need to fill card arrays.
+            action_types[i].append([])
+            allIns[i].append([])
+            action_amounts[i].append([])
+            actionNos[i].append([])
+#    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+#        pass
+    if category=="razz" or category=="studhi" or category=="studhilo":#need to fill card arrays.
         for i in xrange(seats):
-            for j in xrange (7):
+            for j in xrange(7):
                 card_values[i].append(0)
                 card_suits[i].append("x")
-    else:
-        raise FpdbError("invalid category")
+#    else:
+#        raise FpdbError("invalid category")
 #end def createArrays
  
 def fill_board_cards(board_values, board_suits):
@@ -590,16 +563,16 @@ def fill_board_cards(board_values, board_suits):
 def fillCardArrays(player_count, base, category, card_values, card_suits):
     """fills up the two card arrays"""
     if (category=="holdem"):
-        cardCount=2
+        cardCount = 2
     elif (category=="omahahi" or category=="omahahilo"):
-        cardCount=4
+        cardCount = 4
     elif base=="stud":
-        cardCount=7
+        cardCount = 7
     else:
-        raise fpdb_simple.FpdbError ("invalid category:", category)
+        raise fpdb_simple.FpdbError("invalid category:", category)
     
-    for i in xrange (player_count):
-        while (len(card_values[i])<cardCount):
+    for i in xrange(player_count):
+        while (len(card_values[i]) < cardCount):
             card_values[i].append(0)
             card_suits[i].append("x")
 #end def fillCardArrays
@@ -611,151 +584,147 @@ def filterAnteBlindFold(site,hand):
     #todo: in tourneys this should not be removed but
     #print "start of filterAnteBlindFold"
     pre3rd=[]
-    for i in xrange (len(hand)):
-        if (hand[i].startswith("*** 3") or hand[i].startswith("*** HOLE")):
-            pre3rd=hand[0:i]
+    for i, line in enumerate(hand):
+        if line.startswith("*** 3") or line.startswith("*** HOLE"):
+            pre3rd = hand[0:i]
     
     foldeeName=None
-    for i in xrange (len(pre3rd)):
-        if (pre3rd[i].endswith("folds") or pre3rd[i].endswith("is sitting out") or pre3rd[i].endswith(" stands up")): #found ante fold or timeout
-            pos=pre3rd[i].find (" folds")
-            foldeeName=pre3rd[i][0:pos]
-            if pos == -1 and " in chips)" not in pre3rd[i]:
-                pos=pre3rd[i].find (" is sitting out")
-                foldeeName=pre3rd[i][0:pos]
-            if pos==-1:
-                pos=pre3rd[i].find (" stands up")
-                foldeeName=pre3rd[i][0:pos]
-            if pos==-1:#this one is for PS tourney
-                pos1=pre3rd[i].find (": ")+2
-                pos2=pre3rd[i].find (" (")
-                foldeeName=pre3rd[i][pos1:pos2]
+    for line in pre3rd:
+        if line.endswith("folds") or line.endswith("is sitting out") or line.endswith(" stands up"): #found ante fold or timeout
+            pos = line.find(" folds")
+            foldeeName = line[0:pos]
+            if pos == -1 and " in chips)" not in line:
+                pos = line.find(" is sitting out")
+                foldeeName = line[0:pos]
+            if pos == -1:
+                pos = line.find(" stands up")
+                foldeeName = line[0:pos]
+            if pos == -1:
+                pos1 = line.find(": ") + 2
+                pos2 = line.find(" (")
+                foldeeName = line[pos1:pos2]
  
     if foldeeName!=None:
         #print "filterAnteBlindFold, foldeeName:",foldeeName
-        toRemove=[]
-        for i in xrange(len(hand)): #using hand again to filter from all streets, just in case.
-            #todo: this will break it if sittin out BB wins a hand
-            if (hand[i].find(foldeeName)!=-1):
-                toRemove.append(hand[i])
-            
-        for i in xrange(len(toRemove)):
-            hand.remove(toRemove[i])
+        for i, line in enumerate(hand):
+            if foldeeName in line:
+                hand[i] = None
+                
+        hand = [line for line in hand if line]
 #end def filterAnteFold
+
+def stripEOLspaces(str):
+    if str[-1] == ' ':
+        str = str[:-1]
+    if str[-1] == ' ':
+        str = str[:-1]
+    return str
  
 #removes useless lines as well as trailing spaces
 def filterCrap(site, hand, isTourney):
     #remove two trailing spaces at end of line
-    for i in xrange (len(hand)):
-        if (hand[i][-1]==' '):
-            hand[i]=hand[i][:-1]
-        if (hand[i][-1]==' '):
-            hand[i]=hand[i][:-1]
+    hand = [stripEOLspaces(line) for line in hand]
             
     #print "hand after trailing space removal in filterCrap:",hand
     #general variable position word filter/string filter
-    toRemove=[]
     for i in xrange (len(hand)):
         if (hand[i].startswith("Board [")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find(" out of hand ")!=-1):
             hand[i]=hand[i][:-56]
         elif (hand[i].find("($0 in chips)") != -1):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i]=="*** HOLE CARDS ***"):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has been disconnected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has requested TIME")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has returned")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("will be allowed to play after the button")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has timed out")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has timed out while disconnected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has timed out while being disconnected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("is connected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("is disconnected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" is feeling angry")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" is feeling confused")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" is feeling happy")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" is feeling normal")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find(" is low with [")!=-1):
-            toRemove.append(hand[i])
+            hand[i] = False
         #elif (hand[i].find("-max Seat #")!=-1 and hand[i].find(" is the button")!=-1):
         # toRemove.append(hand[i])
         elif (hand[i].endswith(" mucks")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(": mucks hand")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i]=="No low hand qualified"):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i]=="Pair on board - a double bet is allowed"):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find(" shows ")!=-1 and hand[i].find("[")==-1):
-            toRemove.append(hand[i])
+            hand[i] = False
         #elif (hand[i].startswith("Table '") and hand[i].endswith("-max")):
         # toRemove.append(hand[i])
         elif (hand[i].startswith("The button is in seat #")):
-            toRemove.append(hand[i])
+            hand[i] = False
         #above is alphabetic, reorder below if bored
         elif (hand[i].startswith("Time has expired")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("has reconnected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("seconds left to act")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("seconds to reconnect")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("was removed from the table for failing to post")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find("joins the table at seat ")!=-1):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" sits down")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("leaves the table")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" stands up")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find("is high with ")!=-1):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("doesn't show hand")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("is being treated as all-in")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find(" adds $")!=-1):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i]=="Betting is capped"):
-            toRemove.append(hand[i])
+            hand[i] = False
         #site specific variable position filter
         elif (hand[i].find(" said, \"")!=-1):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find(": ")!=-1 and site=="ftp" and hand[i].find("Seat ")==-1 and hand[i].find(": Table")==-1): #filter ftp chat
-            toRemove.append(hand[i])
+            hand[i] = False
         if isTourney:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
-                toRemove.append(hand[i])
-        else:
+                hand[i] = False
+        elif hand[i]:
             if (hand[i].endswith(": sits out")):
-                toRemove.append(hand[i])
+                hand[i] = False
             elif (hand[i].endswith(" is sitting out")):
-                toRemove.append(hand[i])
- 
-    
-    for i in xrange (len(toRemove)):
-        #print "removing in filterCr:",toRemove[i]
-        hand.remove(toRemove[i])
-    
+                hand[i] = False
+
+    hand = [line for line in hand if line]  # python docs say this is identical to filter(None, list)
+        
     #print "done with filterCrap, hand:", hand
     return hand
 #end filterCrap
@@ -764,17 +733,22 @@ def filterCrap(site, hand, isTourney):
 def float2int (string):
     pos=string.find(",")
     if (pos!=-1): #remove , the thousand seperator
-        string=string[0:pos]+string[pos+1:]
-        
+        string = "%s%s" % (string[0:pos], string[pos+1:])
+       
     pos=string.find(".")
     if (pos!=-1): #remove decimal point
-        string=string[0:pos]+string[pos+1:]
+        string = "%s%s" % (string[0:pos], string[pos+1:])
     
     result = int(string)
-    if pos==-1: #no decimal point - was in full dollars - need to multiply with 100
+    if pos == -1: #no decimal point - was in full dollars - need to multiply with 100
         result*=100
     return result
 #end def float2int
+
+ActionLines = ( "calls $", ": calls ", "brings in for", "completes it to", "posts small blind",
+                "posts the small blind", "posts big blind", "posts the big blind",
+                "posts small & big blinds", "posts $", "posts a dead", "bets $",
+                ": bets ", "raises")
  
 #returns boolean whether the passed line is an action line
 def isActionLine(line):
@@ -782,34 +756,13 @@ def isActionLine(line):
         return True
     elif (line.endswith("checks")):
         return True
-    elif (line.find("calls $")!=-1 or line.find(": calls ")!=-1):
-        return True
-    elif (line.find("brings in for")!=-1):
-        return True
-    elif (line.find("completes it to")!=-1):
-        return True
-    elif (line.find("posts small blind")!=-1):
-        return True
-    elif (line.find("posts the small blind")!=-1):
-        return True
-    elif (line.find("posts big blind")!=-1):
-        return True
-    elif (line.find("posts the big blind")!=-1):
-        return True
-    elif (line.find("posts small & big blinds")!=-1):
-        return True
-    elif (line.find(" posts $")!=-1): #this reads voluntary blind pay in FTP Holdem
-        return True
-    elif (line.find(" posts a dead ")!=-1): #this reads voluntary blind pay in FTP Holdem
-        return True
-    elif (line.find("bets $")!=-1 or line.find(": bets ")!=-1):
-        return True
-    elif (line.find("raises")!=-1):
-        return True
     elif (line.startswith("Uncalled bet")):
         return True
-    else:
-        return False
+    
+    return len( [ x for x in ActionLines if x in line]) > 0
+#        ret = any(True for searchstr in ActionLines if searchstr in line)
+#        ret = len( [ x for x in ActionLines if line.find(x) > -1] ) > 0
+#        ret = any(searchstr in line for searchstr in ActionLines)
 #end def isActionLine
  
 #returns whether this is a duplicate
@@ -828,56 +781,14 @@ def isRebuyOrAddon(topline):
  
 #returns whether the passed topline indicates a tournament or not
 def isTourney(topline):
-    if (topline.find("Tournament")!=-1):
-        return True
-    else:
-        return False
+    return "Tournament" in topline
 #end def isTourney
  
+WinLines = ( "wins the pot", "ties for the ", "wins side pot", "wins the low main pot", "wins the high main pot",
+             "wins the high pot", "wins the high side pot", "wins the main pot", "wins the side pot", "collected" )
 #returns boolean whether the passed line is a win line
 def isWinLine(line):
-    if (line.find("wins the pot")!=-1):
-        return True
-    elif (line.find("ties for the high pot")!=-1):
-        return True
-    elif (line.find("ties for the high main pot")!=-1):
-        return True
-    elif (line.find("ties for the high side pot")!=-1):
-        return True
-    elif (line.find("ties for the low pot")!=-1):
-        return True
-    elif (line.find("ties for the low main pot")!=-1):
-        return True
-    elif (line.find("ties for the low side pot")!=-1):
-        return True
-    elif (line.find("ties for the main pot")!=-1): #for ftp tied main pot of split pot
-        return True
-    elif (line.find("ties for the pot")!=-1): #for ftp tie
-        return True
-    elif (line.find("ties for the side pot")!=-1): #for ftp tied split pots
-        return True
-    elif (line.find("wins side pot #")!=-1): #for ftp multi split pots
-        return True
-    elif (line.find("wins the low main pot")!=-1):
-        return True
-    elif (line.find("wins the low pot")!=-1):
-        return True
-    elif (line.find("wins the low side pot")!=-1):
-        return True
-    elif (line.find("wins the high main pot")!=-1):
-        return True
-    elif (line.find("wins the high pot")!=-1):
-        return True
-    elif (line.find("wins the high side pot")!=-1):
-        return True
-    elif (line.find("wins the main pot")!=-1):
-        return True
-    elif (line.find("wins the side pot")!=-1): #for ftp split pots
-        return True
-    elif (line.find("collected")!=-1):
-        return True
-    else:
-        return False #not raising error here, any unknown line wouldve been detected in isActionLine already
+    return len( [ x for x in WinLines if x in line ] ) > 0
 #end def isWinLine
  
 #returns the amount of cash/chips put into the put in the given action line
@@ -892,39 +803,36 @@ def parseActionAmount(line, atype, site, isTourney):
     if line.endswith(" and is capped"):
         line=line[:-14]
  
-    
-    if (atype=="fold"):
-        amount=0
-    elif (atype=="check"):
-        amount=0
-    elif (atype=="unbet" and site=="ftp"):
-        pos1=line.find("$")+1
-        pos2=line.find(" returned to")
-        amount=float2int(line[pos1:pos2])
-    elif (atype=="unbet" and site=="ps"):
-        #print "ps unbet, line:",line
-        pos1=line.find("$")+1
-        if pos1==0:
-            pos1=line.find("(")+1
-        pos2=line.find(")")
-        amount=float2int(line[pos1:pos2])
-    elif (atype=="bet" and site=="ps" and line.find(": raises $")!=-1 and line.find("to $")!=-1):
-        pos=line.find("to $")+4
-        amount=float2int(line[pos:])
+    if atype == "fold" or atype == "check":
+        amount = 0
+    elif atype == "unbet":
+        if site == "ftp":
+            pos1 = line.find("$") + 1
+            pos2 = line.find(" returned to")
+            amount = float2int(line[pos1:pos2])
+        elif site == "ps":
+            pos1 = line.find("$") + 1
+            if pos1 == 0:
+                pos1 = line.find("(") + 1
+            pos2 = line.find(")")
+            amount = float2int(line[pos1:pos2])
+    elif atype == "bet" and site == "ps" and line.find(": raises $")!=-1 and line.find("to $")!=-1:
+        pos = line.find("to $")+4
+        amount = float2int(line[pos:])
     else:
         if not isTourney:
-            pos=line.rfind("$")+1
+            pos = line.rfind("$")+1
             #print "parseActionAmount, line:", line, "line[pos:]:", line[pos:]
-            amount=float2int(line[pos:])
+            amount = float2int(line[pos:])
         else:
             #print "line:"+line+"EOL"
-            pos=line.rfind(" ")+1
+            pos = line.rfind(" ")+1
             #print "pos:",pos
             #print "pos of 20:", line.find("20")
-            amount=int(line[pos:])
+            amount = int(line[pos:])
     
-    if atype=="unbet":
-        amount*=-1
+    if atype == "unbet":
+        amount *= -1
     return amount
 #end def parseActionAmount
  
@@ -932,25 +840,25 @@ def parseActionAmount(line, atype, site, isTourney):
 # action_amounts. For stud this expects numeric streets (3-7), for
 # holdem/omaha it expects predeal, preflop, flop, turn or river
 def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
-    if (street=="predeal" or street=="preflop"):
-        street=0
-    elif (street=="flop"):
-        street=1
-    elif (street=="turn"):
-        street=2
-    elif (street=="river"):
-        street=3
+    if street == "predeal" or street == "preflop":
+        street = 0
+    elif street == "flop":
+        street = 1
+    elif street == "turn":
+        street = 2
+    elif street == "river":
+        street = 3
     
-    nextActionNo=0
+    nextActionNo = 0
     for player in xrange(len(actionNos[street])):
         for count in xrange(len(actionNos[street][player])):
             if actionNos[street][player][count]>=nextActionNo:
                 nextActionNo=actionNos[street][player][count]+1
                 
-    line, allIn=goesAllInOnThisLine(line)
-    atype=parseActionType(line)
-    playerno=recognisePlayerNo(line, names, atype)
-    amount=parseActionAmount(line, atype, site, isTourney)
+    (line, allIn) = goesAllInOnThisLine(line)
+    atype = parseActionType(line)
+    playerno = recognisePlayerNo(line, names, atype)
+    amount = parseActionAmount(line, atype, site, isTourney)
     
     action_types[street][playerno].append(atype)
     allIns[street][playerno].append(allIn)
@@ -962,13 +870,13 @@ def parseActionLine(site, base, isTourney, line, street, playerIDs, names, actio
  
 def goesAllInOnThisLine(line):
     """returns whether the player went all-in on this line and removes the all-in text from the line."""
-    isAllIn=False
+    isAllIn = False
     if (line.endswith(" and is all-in")):
-        line=line[:-14]
-        isAllIn=True
+        line = line[:-14]
+        isAllIn = True
     elif (line.endswith(", and is all in")):
-        line=line[:-15]
-        isAllIn=True
+        line = line[:-15]
+        isAllIn = True
     return (line, isAllIn)
 #end def goesAllInOnThisLine
  
@@ -1012,48 +920,48 @@ def parseActionType(line):
  
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, site, isTourney, names, antes):
-    for i in xrange(len(names)):
-        if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
-            pos=line.rfind("$")+1
+    for i, name in enumerate(names):
+        if line.startswith(name.encode("latin-1")):
+            pos = line.rfind("$") + 1
             if not isTourney:
-                antes[i]+=float2int(line[pos:])
+                antes[i] += float2int(line[pos:])
             else:
-                if line.find("all-in")==-1:
-                    pos=line.rfind(" ")+1
-                    antes[i]+=int(line[pos:])
+                if "all-in" not in line:
+                    pos = line.rfind(" ") + 1
+                    antes[i] += int(line[pos:])
                 else:
-                    pos1=line.rfind("ante")+5
-                    pos2=line.find(" ",pos1)
-                    antes[i]+=int(line[pos1:pos2])
+                    pos1 = line.rfind("ante") + 5
+                    pos2 = line.find(" ", pos1)
+                    antes[i] += int(line[pos1:pos2])
         #print "parseAnteLine line: ", line, "antes[i]", antes[i], "antes", antes
 #end def parseAntes
  
 #returns the buyin of a tourney in cents
 def parseBuyin(topline):
-    pos1=topline.find("$")+1
-    pos2=topline.find("+")
+    pos1 = topline.find("$")+1
+    pos2 = topline.find("+")
     return float2int(topline[pos1:pos2])
 #end def parseBuyin
  
 #parses a card line and changes the passed arrays accordingly
 #todo: reorganise this messy method
 def parseCardLine(site, category, street, line, names, cardValues, cardSuits, boardValues, boardSuits):
-    if (line.startswith("Dealt to ") or line.find(" shows [")!=-1 or line.find("mucked [")!=-1):
-        playerNo=recognisePlayerNo(line, names, "card") #anything but unbet will be ok for that string
+    if line.startswith("Dealt to") or " shows [" in line or "mucked [" in line:
+        playerNo = recognisePlayerNo(line, names, "card") #anything but unbet will be ok for that string
  
-        pos=line.rfind("[")+1
-        if (category=="holdem"):
+        pos = line.rfind("[")+1
+        if category == "holdem":
             for i in (pos, pos+3):
                 cardValues[playerNo].append(line[i:i+1])
                 cardSuits[playerNo].append(line[i+1:i+2])
-            if (len(cardValues[playerNo])!=2):
+            if len(cardValues[playerNo]) !=2:
                 if cardValues[playerNo][0]==cardValues[playerNo][2] and cardSuits[playerNo][1]==cardSuits[playerNo][3]: #two tests will do
                     cardValues[playerNo]=cardValues[playerNo][0:2]
                     cardSuits[playerNo]=cardSuits[playerNo][0:2]
                 else:
                     print "line:",line,"cardValues[playerNo]:",cardValues[playerNo]
                     raise FpdbError("read too many/too few holecards in parseCardLine")
-        elif (category=="omahahi" or category=="omahahilo"):
+        elif category == "omahahi" or category == "omahahilo":
             for i in (pos, pos+3, pos+6, pos+9):
                 cardValues[playerNo].append(line[i:i+1])
                 cardSuits[playerNo].append(line[i+1:i+2])
@@ -1064,8 +972,8 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
                 else:
                     print "line:",line,"cardValues[playerNo]:",cardValues[playerNo]
                     raise FpdbError("read too many/too few holecards in parseCardLine")
-        elif (category=="razz" or category=="studhi" or category=="studhilo"):
-            if (line.find("shows")==-1 and line.find("mucked")==-1):
+        elif category=="razz" or category=="studhi" or category=="studhilo":
+            if "shows" not in line and "mucked" not in line:
                 #print "parseCardLine(in stud if), street:", street
                 if line[pos+2]=="]": #-> not (hero and 3rd street)
                     cardValues[playerNo][street+2]=line[pos:pos+1]
@@ -1204,85 +1112,81 @@ def parseNames(lines):
     return result
 #end def parseNames
  
-#returns an array with the positions of the respective players
-def parsePositions (hand, names):
-	#prep array
-	positions=[]
-	for i in xrange(len(names)):
-		positions.append(-1)
-	
-	#find blinds
-	sb,bb=-1,-1
-	for i in xrange (len(hand)):
-		if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
-			sb=hand[i]
-			#print "sb:",sb
-		if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
-			bb=hand[i]
-			#print "bb:",bb
+def parsePositions(hand, names):
+    positions = map(lambda x: -1, names)
 
-	#identify blinds
-	#print "parsePositions before recognising sb/bb. names:",names
-	sbExists=True
-	if (sb!=-1):
-		sb=recognisePlayerNo(sb, names, "bet")
-	else:
-		sbExists=False
-	if (bb!=-1):
-		bb=recognisePlayerNo(bb, names, "bet")
-		
+    #find blinds
+    sb,bb=-1,-1
+    for i in xrange (len(hand)):
+        if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
+            sb=hand[i]
+            #print "sb:",sb
+        if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
+            bb=hand[i]
+            #print "bb:",bb
+
+#identify blinds
+#print "parsePositions before recognising sb/bb. names:",names
+    sbExists=True
+    if (sb!=-1):
+        sb=recognisePlayerNo(sb, names, "bet")
+    else:
+        sbExists=False
+    if (bb!=-1):
+        bb=recognisePlayerNo(bb, names, "bet")
+        
 #	print "sb = ", sb, "bb = ", bb
-	if bb == sb:
-		sbExists = False
-		sb = -1
-	
-	#write blinds into array
-	if (sbExists):
-		positions[sb]="S"
-	positions[bb]="B"
-	
-	
-	#fill up rest of array
-	if (sbExists):
-		arraypos=sb-1
-	else:
-		arraypos=bb-1
-	distFromBtn=0
-	while (arraypos>=0 and arraypos != bb):
-		#print "parsePositions first while, arraypos:",arraypos,"positions:",positions
-		positions[arraypos]=distFromBtn
-		arraypos-=1
-		distFromBtn+=1
+    if bb == sb:
+        sbExists = False
+        sb = -1
 
-	# eric - this takes into account dead seats between blinds
-	if sbExists:
-		i = bb - 1
-		while positions[i] < 0 and i != sb:
-			positions[i] = 9
-			i -= 1
-	### RHH - Changed to set the null seats before BB to "9"			
-	if sbExists:
-		i = sb-1
-	else:
-		i = bb-1
-	while positions[i] < 0:
-		positions[i]=9
-		i-=1
-	
-	arraypos=len(names)-1
-	if (bb!=0 or (bb==0 and sbExists==False) or (bb == 1 and sb != arraypos) ):
-		while (arraypos>bb and arraypos > sb):
-			positions[arraypos]=distFromBtn
-			arraypos-=1
-			distFromBtn+=1
-			
-	for i in xrange (len(names)):
-		if positions[i]==-1:
-			print "parsePositions names:",names
-			print "result:",positions
-			raise FpdbError ("failed to read positions")
+    #write blinds into array
+    if (sbExists):
+        positions[sb]="S"
+    positions[bb]="B"
+
+
+    #fill up rest of array
+    if (sbExists):
+        arraypos=sb-1
+    else:
+        arraypos=bb-1
+    distFromBtn=0
+    while (arraypos>=0 and arraypos != bb):
+        #print "parsePositions first while, arraypos:",arraypos,"positions:",positions
+        positions[arraypos]=distFromBtn
+        arraypos-=1
+        distFromBtn+=1
+
+    # eric - this takes into account dead seats between blinds
+    if sbExists:
+        i = bb - 1
+        while positions[i] < 0 and i != sb:
+            positions[i] = 9
+            i -= 1
+    ### RHH - Changed to set the null seats before BB to "9"			
+    if sbExists:
+        i = sb-1
+    else:
+        i = bb-1
+    while positions[i] < 0:
+        positions[i]=9
+        i-=1
+
+    arraypos=len(names)-1
+    if (bb!=0 or (bb==0 and sbExists==False) or (bb == 1 and sb != arraypos) ):
+        while (arraypos>bb and arraypos > sb):
+            positions[arraypos]=distFromBtn
+            arraypos-=1
+            distFromBtn+=1
+
+    for i in xrange (len(names)):
+        if positions[i]==-1:
+            print "parsePositions names:",names
+            print "result:",positions
+            raise FpdbError ("failed to read positions")
 #	print str(positions), "\n"
-	return positions
+    return positions
 #end def parsePositions
  
 #simply parses the rake amount and returns it as an int
@@ -1368,18 +1272,20 @@ def parseWinLine(line, site, names, winnings, isTourney):
  
 #returns the category (as per database) string for the given line
 def recogniseCategory(line):
-    if (line.find("Razz")!=-1):
+    if "Razz" in line:
         return "razz"
-    elif (line.find("Hold'em")!=-1):
+    elif "Hold'em" in line:
         return "holdem"
-    elif (line.find("Omaha")!=-1 and line.find("Hi/Lo")==-1 and line.find("H/L")==-1):
-        return "omahahi"
-    elif (line.find("Omaha")!=-1 and (line.find("Hi/Lo")!=-1 or line.find("H/L")!=-1)):
-        return "omahahilo"
-    elif (line.find("Stud")!=-1 and line.find("Hi/Lo")==-1 and line.find("H/L")==-1):
-        return "studhi"
-    elif (line.find("Stud")!=-1 and (line.find("Hi/Lo")!=-1 or line.find("H/L")!=-1)):
-        return "studhilo"
+    elif "Omaha" in line:
+        if "Hi/Lo" not in line and "H/L" not in line:
+            return "omahahi"
+        else:
+            return "omahahilo"
+    elif "Stud" in line:
+        if "Hi/Lo" not in line and "H/L" not in line:
+            return "studhi"
+        else:
+            return "studhilo"
     else:
         raise FpdbError("failed to recognise category, line:"+line)
 #end def recogniseCategory
@@ -1792,19 +1698,20 @@ sure to also change the following storage method and table_viewer.prepare_data i
     firstPfRaiserNo=-1
     firstPfCallByNo=-1
     firstPfCallerId=-1
-    for i in xrange(len(actionTypeByNo[0])):
-        if actionTypeByNo[0][i][1]=="bet":
-            firstPfRaiseByNo=i
-            firstPfRaiserId=actionTypeByNo[0][i][0]
-            for j in xrange(len(player_ids)):
-                if player_ids[j]==firstPfRaiserId:
-                    firstPfRaiserNo=j
+    
+    for i, action in enumerate(actionTypeByNo[0]):
+        if action[1] == "bet":
+            firstPfRaiseByNo = i
+            firstPfRaiserId = action[0]
+            for j, pid in enumerate(player_ids):
+                if pid == firstPfRaiserId:
+                    firstPfRaiserNo = j
                     break
             break
-    for i in xrange(len(actionTypeByNo[0])):
-        if actionTypeByNo[0][i][1]=="call":
-            firstPfCallByNo=i
-            firstPfCallerId=actionTypeByNo[0][i][0]
+    for i, action in enumerate(actionTypeByNo[0]):
+        if action[1] == "call":
+            firstPfCallByNo = i
+            firstPfCallerId = action[0]
             break
     
     cutoffId=-1
@@ -1812,15 +1719,15 @@ sure to also change the following storage method and table_viewer.prepare_data i
     sbId=-1
     bbId=-1
     if base=="hold":
-        for player in xrange(len(positions)):
-            if positions==1:
-                cutoffId=player_ids[player]
-            if positions==0:
-                buttonId=player_ids[player]
-            if positions=='S':
-                sbId=player_ids[player]
-            if positions=='B':
-                bbId=player_ids[player]
+        for player, pos in enumerate(positions):
+            if pos == 1:
+                cutoffId = player_ids[player]
+            if pos == 0:
+                buttonId = player_ids[player]
+            if pos == 'S':
+                sbId = player_ids[player]
+            if pos == 'B':
+                bbId = player_ids[player]
             
     someoneStole=False
     
@@ -1856,30 +1763,29 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #calculate VPIP and PFR
         street=0
         heroPfRaiseCount=0
-        for count in xrange(len(action_types[street][player])):#finally individual actions
-            currentAction=action_types[street][player][count]
-            if currentAction=="bet":
-                myStreet0Aggr=True
-            if (currentAction=="bet" or currentAction=="call"):
-                myStreet0VPI=True
+        for currentAction in action_types[street][player]: # finally individual actions
+            if currentAction == "bet":
+                myStreet0Aggr = True
+            if currentAction == "bet" or currentAction == "call":
+                myStreet0VPI = True
         
         #PF3B4BChance and PF3B4B
         pfFold=-1
         pfRaise=-1
-        if firstPfRaiseByNo!=-1:
-            for i in xrange(len(actionTypeByNo[0])):
-                if actionTypeByNo[0][i][0]==player_ids[player]:
-                    if actionTypeByNo[0][i][1]=="bet" and pfRaise==-1 and i>firstPfRaiseByNo:
-                        pfRaise=i
-                    if actionTypeByNo[0][i][1]=="fold" and pfFold==-1:
-                        pfFold=i
-            if pfFold==-1 or pfFold>firstPfRaiseByNo:
-                myStreet0_3B4BChance=True
-                if pfRaise>firstPfRaiseByNo:
-                    myStreet0_3B4BDone=True
+        if firstPfRaiseByNo != -1:
+            for i, actionType in enumerate(actionTypeByNo[0]):
+                if actionType[0] == player_ids[player]:
+                    if actionType[1] == "bet" and pfRaise == -1 and i > firstPfRaiseByNo:
+                        pfRaise = i
+                    if actionType[1] == "fold" and pfFold == -1:
+                        pfFold = i
+            if pfFold == -1 or pfFold > firstPfRaiseByNo:
+                myStreet0_3B4BChance = True
+                if pfRaise > firstPfRaiseByNo:
+                    myStreet0_3B4BDone = True
         
         #steal calculations
-        if base=="hold":
+        if base == "hold":
             if len(player_ids)>=5: #no point otherwise
                 if positions[player]==1:
                     if firstPfRaiserId==player_ids[player]:
@@ -1907,52 +1813,45 @@ sure to also change the following storage method and table_viewer.prepare_data i
         
         
         #calculate saw* values
-        isAllIn=False
-        for i in xrange(len(allIns[0][player])):
-            if allIns[0][player][i]:
-                isAllIn=True
+        isAllIn = False
+        if any(i for i in allIns[0][player]):
+            isAllIn = True
         if (len(action_types[1][player])>0 or isAllIn):
-            myStreet1Seen=True
- 
-            for i in xrange(len(allIns[1][player])):
-                if allIns[1][player][i]:
-                    isAllIn=True
+            myStreet1Seen = True
+            
+            if any(i for i in allIns[1][player]):
+                isAllIn = True
             if (len(action_types[2][player])>0 or isAllIn):
-                myStreet2Seen=True
+                myStreet2Seen = True
  
-                for i in xrange(len(allIns[2][player])):
-                    if allIns[2][player][i]:
-                        isAllIn=True
+                if any(i for i in allIns[2][player]):
+                    isAllIn = True
                 if (len(action_types[3][player])>0 or isAllIn):
-                    myStreet3Seen=True
+                    myStreet3Seen = True
  
                     #print "base:", base
                     if base=="hold":
-                        mySawShowdown=True
-                        for count in xrange(len(action_types[3][player])):
-                            if action_types[3][player][count]=="fold":
-                                mySawShowdown=False
+                        mySawShowdown = True
+                        if any(actiontype == "fold" for actiontype in action_types[3][player]):
+                            mySawShowdown = False
                     else:
                         #print "in else"
-                        for i in xrange(len(allIns[3][player])):
-                            if allIns[3][player][i]:
-                                isAllIn=True
+                        if any(i for i in allIns[3][player]):
+                            isAllIn = True
                         if (len(action_types[4][player])>0 or isAllIn):
                             #print "in if"
-                            myStreet4Seen=True
+                            myStreet4Seen = True
  
-                            mySawShowdown=True
-                            for count in xrange(len(action_types[4][player])):
-                                if action_types[4][player][count]=="fold":
-                                    mySawShowdown=False
+                            mySawShowdown = True
+                            if any(actiontype == "fold" for actiontype in action_types[4][player]):
+                                mySawShowdown = False
                         
  
         #flop stuff
         street=1
         if myStreet1Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet1Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet1Aggr = True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1968,9 +1867,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #turn stuff - copy of flop with different vars
         street=2
         if myStreet2Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet2Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet2Aggr = True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1986,9 +1884,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #river stuff - copy of flop with different vars
         street=3
         if myStreet3Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet3Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                    myStreet3Aggr = True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -2004,9 +1901,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #stud river stuff - copy of flop with different vars
         street=4
         if myStreet4Seen:
-            for count in xrange(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet4Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet4Aggr=True
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -2019,9 +1915,9 @@ sure to also change the following storage method and table_viewer.prepare_data i
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet4=True
         
-        if winnings[player]!=0:
+        if winnings[player] != 0:
             if myStreet1Seen:
-                myWonWhenSeenStreet1=winnings[player]/float(totalWinnings)
+                myWonWhenSeenStreet1 = winnings[player] / float(totalWinnings)
                 if mySawShowdown:
                     myWonAtSD=myWonWhenSeenStreet1
         
