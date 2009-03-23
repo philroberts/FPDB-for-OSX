@@ -4,7 +4,10 @@ from Hand import *
 import py
 
 #regression-test-files/stars/badugi/ring-fl-badugi.txt
-#   s0rrow: start $30.00 end: $22.65 total: ($7.35)
+#   s0rrow: input: $30.00 end: $22.65 total: ($7.35)
+#regression-test-files/stars/plo/PLO-6max.txt
+#   s0rrow: input: $18.35 end: $0 total: ($18.35)
+#   Notes: last hand #25975302416 s0rrow aifp against 2 players
 
 gametype = {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'}
 text = ""
@@ -30,7 +33,10 @@ def testGameInfo():
     {'type':'ring', 'base':'hold', 'category':'omahahilo', 'limitType':'fl', 'sb':'2', 'bb':'4','currency':'USD'}),
 
     (u"PokerStars Game #25923772706:  Badugi Limit ($0.25/$0.50) - 2009/03/13 16:40:58 ET",
-    {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'})
+    {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'}),
+
+    (u"PokerStars Game #25974627364:  Omaha Pot Limit ($0.05/$0.10) - 2009/03/15 0:29:00 ET",
+    {'type':'ring', 'base':'hold', 'category':'omahahi', 'limitType':'pl', 'sb':'0.05', 'bb':'0.10','currency':'USD'})
     )
     for (header, info) in pairs:
         yield checkGameInfo, hhc, header, info
