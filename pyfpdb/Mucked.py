@@ -345,6 +345,7 @@ class Flop_Mucked(Aux_Window):
             self.m_windows[i].set_focus_on_map(False)
             self.eb[i] = gtk.EventBox()
             self.eb[i].connect("button_press_event", self.button_press_cb)
+            self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.m_windows[i].add(self.eb[i])
             self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[('B', 'H')])
             self.eb[i].add(self.seen_cards[i])
@@ -405,7 +406,6 @@ class Flop_Mucked(Aux_Window):
     def hide_mucked_cards(self):
         """Hide the mucked card windows."""
         for (i, w) in self.m_windows.iteritems():
-            self.positions[i] = w.get_position()
             w.hide()
             self.displayed_cards = False
 
@@ -432,6 +432,9 @@ class Flop_Mucked(Aux_Window):
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
+    def configure_event_cb(self, widget, event, i, *args):
+        self.positions[i] = widget.get_position()
+
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
             self.m_windows[i].present()
@@ -447,8 +450,6 @@ class Flop_Mucked(Aux_Window):
                 new_locs[self.adj[int(i)]] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
             else:
                 new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
-        print "old locations =", self.params['layout'][self.hud.max]
-        print "saving locations =", new_locs
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
 if __name__== "__main__":
