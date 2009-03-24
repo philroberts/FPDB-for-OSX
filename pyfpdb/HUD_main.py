@@ -153,7 +153,8 @@ class HUD_main(object):
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
-                cards['common'] = comm_cards['common']
+                if comm_cards != {}: # stud!
+                    cards['common'] = comm_cards['common']
             except Exception, err:
                 print "db error: skipping ", new_hand_id, err
                 sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
