@@ -197,12 +197,12 @@ class Hud:
             s.window.destroy()    
         self.stat_windows = {}
 #    also kill any aux windows
-        [aux.destroy() for aux in self.aux_windows]
+        (aux.destroy() for aux in self.aux_windows)
         self.aux_windows = []
 
     def reposition_windows(self, *args):
         if self.stat_windows != {} and len(self.stat_windows) > 0:
-            map(lambda x: x.window.move(x.x, x.y), self.stat_windows.itervalues())
+            (x.window.move(x.x, x.y) for x in self.stat_windows.itervalues() if type(x) != int)
         return True
 
     def debug_stat_windows(self, *args):
@@ -218,7 +218,7 @@ class Hud:
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
 #    ask each aux to save its layout back to the config object
-        [aux.save_layout() for aux in self.aux_windows]
+        (aux.save_layout() for aux in self.aux_windows)
 #    save the config object back to the file
         print "saving new xml file"
         self.config.save()
@@ -228,9 +228,9 @@ class Hud:
 #        Need range here, not xrange -> need the actual list        
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
-        try:
-            sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
-            if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
+        if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
+            try:
+                sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
                 sys.stderr.write("found fav seat = %d\n" % fav_seat)
 #                actual_seat = self.db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
@@ -238,12 +238,14 @@ class Hud:
                 sys.stderr.write("found actual seat = %d\n" % actual_seat)
                 for i in xrange(0, self.max + 1):
                     j = actual_seat + i
-                    if j > self.max: j = j - self.max
+                    if j > self.max:
+                        j = j - self.max
                     adj[j] = fav_seat + i
-                    if adj[j] > self.max: adj[j] = adj[j] - self.max
-        except Exception, inst:
-            sys.stderr.write("exception in adj!!!\n\n")
-            sys.stderr.write("error is %s" % inst)           # __str__ allows args to printed directly
+                    if adj[j] > self.max:
+                        adj[j] = adj[j] - self.max
+            except Exception, inst:
+                sys.stderr.write("exception in adj!!!\n\n")
+                sys.stderr.write("error is %s" % inst)           # __str__ allows args to printed directly
         return adj
 
     def get_actual_seat(self, name):
@@ -306,29 +308,30 @@ class Hud:
             self.update_table_position()
 
         for s in self.stat_dict:
+            statd = self.stat_dict[s]
             try:
                 self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
             except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
                 self.create(hand, config, self.stat_dict, self.cards)
-                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
+                self.stat_windows[statd['seat']].player_id = statd['player_id']
                 
             for r in xrange(0, config.supported_games[self.poker_game].rows):
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
-                    number = Stats.do_stat(self.stat_dict, player = self.stat_dict[s]['player_id'], stat = self.stats[r][c])
+                    number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r][c])
                     statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
+                    window = self.stat_windows[statd['seat']]
                     
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
-                        self.stat_windows[self.stat_dict[s]['seat']].label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
-                        
-                    self.stat_windows[self.stat_dict[s]['seat']].label[r][c].set_text(statstring)
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                    
+                    window.label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        self.stat_windows[self.stat_dict[s]['seat']].window.show_all()
-#                        self.reposition_windows()
-                    tip = "%s\n%s\n%s, %s" % (self.stat_dict[s]['screen_name'], number[5], number[3], number[4])
-                    Stats.do_tip(self.stat_windows[self.stat_dict[s]['seat']].e_box[r][c], tip)
+                        window.window.show_all()
+                    tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
+                    Stats.do_tip(window.e_box[r][c], tip)
 
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
