@@ -124,8 +124,8 @@ follow :  whether to tail -f the input"""
         hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
         hand.maxseats = 8 # assume 8-max until we see otherwise
         if m.group('TABLEATTRIBUTES'):
-            m2 = re.search("(\d+) max", m.group('TABLEATTRIBUTES'))
-            hand.maxseats = int(m2.group(1))
+            m2 = re.search("(deep )?(\d+)( max)?", m.group('TABLEATTRIBUTES'))
+            hand.maxseats = int(m2.group(2))
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
 #       m.group('BB')
