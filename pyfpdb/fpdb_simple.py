@@ -788,6 +788,7 @@ def isTourney(topline):
 #end def isTourney
  
 WinLines = ( "wins the pot", "ties for the ", "wins side pot", "wins the low main pot", "wins the high main pot",
+             "wins the low",
              "wins the high pot", "wins the high side pot", "wins the main pot", "wins the side pot", "collected" )
 #returns boolean whether the passed line is a win line
 def isWinLine(line):
