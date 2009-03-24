@@ -102,6 +102,7 @@ class Hud:
         self.main_window.set_title("%s FPDBHUD" % (self.table.name))
         self.main_window.set_decorated(False)
         self.main_window.set_opacity(self.colors["hudopacity"])
+        self.main_window.set_focus_on_map(False)
 
         self.ebox = gtk.EventBox()
         self.label = gtk.Label("FPDB Menu (Right Click)\nLeft-drag to move")
@@ -412,6 +413,7 @@ class Stat_Window:
         self.window.set_title("%s" % seat)
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.main_window)
+        self.window.set_focus_on_map(False)
 
         self.grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
         self.window.add(self.grid)
