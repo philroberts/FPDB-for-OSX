@@ -178,7 +178,6 @@ class Importer:
                 tmpcursor = self.fdb.db.cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
-                tmpcursor.close()
             except:
                 pass # if this fails we're probably doomed anyway
         if self.settings['handsInDB'] < 5000:  return "drop"
