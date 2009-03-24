@@ -354,7 +354,7 @@ class Importer:
                 else: #normal processing
                     isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
-                        fpdb_simple.filterAnteBlindFold(site,hand)
+                        hand = fpdb_simple.filterAnteBlindFold(site,hand)
                     self.hand=hand
                     
                     try:
