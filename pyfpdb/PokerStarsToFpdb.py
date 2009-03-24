@@ -27,7 +27,7 @@ class PokerStars(HandHistoryConverter):
 
     # Static regexes
     re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
-    re_SplitHands   = re.compile('\n\n+')
+    re_SplitHands   = re.compile('(\n\n+)')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
@@ -128,7 +128,12 @@ follow :  whether to tail -f the input"""
         logging.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                datetime = info[key].replace(" - "," ") # some are like "2009/02/26 - 15:22:55 ET"
+                datetime = info[key]                
+                #2008/11/16 1:22:47 CET [2008/11/15 19:22:47 ET]                
+                m2 = re.search(r".+\[(.+) ET\]", datetime)
+                if m2: datetime = m2.group(1)
+                #2009/02/26 - 15:22:55 ET
+                datetime = datetime.replace(" - "," ") # some are like "2009/02/26 - 15:22:55 ET"
                 datetime = datetime.replace(" (ET)","") # kludge for now.
                 datetime = datetime.replace(" ET","") # kludge for now.
                 hand.starttime = time.strptime(datetime, "%Y/%m/%d %H:%M:%S")
