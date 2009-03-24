@@ -29,6 +29,7 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
+
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
 #                                            1 - drop during bulk import
@@ -51,7 +52,7 @@ indexes = [
           , [ # indexes for postgres (list index 3)
               {'tab':'Boardcards',      'col':'handId',            'drop':0}
             , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
-            , {'tab':'Hands',           'col':'gametypeId',        'drop':1}
+            , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
             , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
             , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
             , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
@@ -160,12 +161,13 @@ def prepareBulkImport(fdb):
                         pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                print "dropping pg fk", fk['fktab'], fk['fkcol']
+                #print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
+		    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                    fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+		    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
                 except:
-                    pass
+                    print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -180,15 +182,15 @@ def prepareBulkImport(fdb):
                     pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                print "Index dropping disabled for postgresql."
-                print "dropping pg index ", idx['tab'], idx['col']
+                #print "Index dropping disabled for postgresql."
+                #print "dropping pg index ", idx['tab'], idx['col']
                 # mod to use tab_col for index name?
                 try:
-                    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
                     fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
-                    print "dropped  pg index ", idx['tab'], idx['col']
+		    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                    #print "dropped  pg index ", idx['tab'], idx['col']
                 except:
-                    pass
+		    print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col']) 
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -510,7 +512,8 @@ def convertCardValues(arr):
     map(convertCardValuesBoard, arr)
 #end def convertCardValues
 
-card_map = { "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
+# a 0-card is one in a stud game that we did not see or was not shown
+card_map = { "0": 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 def convertCardValuesBoard(arr):
@@ -608,7 +611,7 @@ def filterAnteBlindFold(hand):
             if foldeeName in line:
                 hand[i] = None
                 
-        hand = [line for line in hand if line]
+    return [line for line in hand if line]
 #end def filterAnteFold
 
 def stripEOLspaces(str):
@@ -651,7 +654,7 @@ def filterCrap(hand, isTourney):
         elif (hand[i].endswith("is connected")):
             hand[i] = False
         elif (hand[i].endswith("is disconnected")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].find(" is low with [")!=-1):
             hand[i] = False
         elif (hand[i].endswith(" mucks")):
@@ -694,7 +697,7 @@ def filterCrap(hand, isTourney):
         elif (hand[i].find(" said, \"")!=-1):
             hand[i] = False
 
-        if isTourney:
+        if isTourney and not hand[i] == False:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
                 hand[i] = False
             elif (hand[i].endswith(": sits out")):
@@ -1408,11 +1411,14 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
 #stores into table hands_actions
     #print "start of storeActions, actionNos:",actionNos
     #print " action_amounts:",action_amounts
+    inserts = []
     for i in xrange(len(actionTypes)): #iterate through streets
         for j in xrange(len(actionTypes[i])): #iterate through names
             for k in xrange(len(actionTypes[i][j])): #iterate through individual actions of that player on that street
-                cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)"
-                               , (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
+                # Add inserts into a list and let 
+                inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
+
+    cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
