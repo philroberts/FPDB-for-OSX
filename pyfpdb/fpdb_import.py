@@ -126,18 +126,18 @@ class Importer:
 
 
     # Called from GuiBulkImport to add a file or directory.
-    def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
+    def addBulkImportImportFileOrDir(self, inputPath, site = "PokerStars"):
         """Add a file or directory for bulk import"""
-        
+        filter = self.config.hhcs[site].converter
         # Bulk import never monitors
         # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site="default", filter=filter)
+                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site=site, filter=filter)
         else:
-            self.addImportFile(inputPath, site="default", filter=filter)
+            self.addImportFile(inputPath, site=site, filter=filter)
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
