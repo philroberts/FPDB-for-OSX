@@ -613,7 +613,7 @@ def filterAnteBlindFold(site,hand):
             if foldeeName in line:
                 hand[i] = None
                 
-        hand = [line for line in hand if line]
+    return [line for line in hand if line]
 #end def filterAnteFold
 
 def stripEOLspaces(str):
