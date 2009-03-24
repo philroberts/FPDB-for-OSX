@@ -82,7 +82,7 @@ class Hud:
             font = "Sans"
         if font_size == None:
             font_size = "8"
-        self.font = pango.FontDescription(font + " " + font_size)            
+        self.font = pango.FontDescription("%s %s" % (font, font_size))
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
@@ -173,10 +173,11 @@ class Hud:
             self.main_window.move(x, y)
             adj = self.adj_seats(self.hand, self.config)
             loc = self.config.get_locations(self.table.site, self.max)
-            for i in xrange(1, self.max + 1):
-                (x, y) = loc[adj[i]]
-                if i in self.stat_windows:
-                    self.stat_windows[i].relocate(x, y)
+            for i, w in enumerate(self.stat_windows):
+                if not type(w) == int: # how do we get pure ints in this list??
+                    (x, y) = loc[adj[i]]
+                    w.relocate(x, y)
+                
         return True
 
     def on_button_press(self, widget, event):
@@ -286,10 +287,12 @@ class Hud:
                                                font = self.font)
 
         self.stats = []
-        for i in xrange(0, config.supported_games[self.poker_game].rows + 1):
-            row_list = [''] * config.supported_games[self.poker_game].cols
+        game = config.supported_games[self.poker_game]
+        
+        for i in xrange(0, game.rows + 1):
+            row_list = [''] * game.cols
             self.stats.append(row_list)
-        for stat in config.supported_games[self.poker_game].stats:
+        for stat in game.stats:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
@@ -314,7 +317,7 @@ class Hud:
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(self.stat_dict, player = self.stat_dict[s]['player_id'], stat = self.stats[r][c])
-                    statstring = this_stat.hudprefix + str(number[1]) + this_stat.hudsuffix
+                    statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
                     
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
@@ -324,8 +327,7 @@ class Hud:
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         self.stat_windows[self.stat_dict[s]['seat']].window.show_all()
 #                        self.reposition_windows()
-                    tip = self.stat_dict[s]['screen_name'] + "\n" + number[5] + "\n" + \
-                          number[3] + ", " + number[4]
+                    tip = "%s\n%s\n%s, %s" % (self.stat_dict[s]['screen_name'], number[5], number[3], number[4])
                     Stats.do_tip(self.stat_windows[self.stat_dict[s]['seat']].e_box[r][c], tip)
 
     def topify_window(self, window):
@@ -408,7 +410,7 @@ class Stat_Window:
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_transient_for(parent.main_window)
 
-        self.grid = gtk.Table(rows = self.game.rows, columns = self.game.cols, homogeneous = False)
+        self.grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
         self.window.add(self.grid)
         self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
         
@@ -418,12 +420,12 @@ class Stat_Window:
         usegtkframes = self.useframes
         e_box = self.e_box
         label = self.label
-        for r in xrange(self.game.rows):
+        for r in xrange(game.rows):
             if usegtkframes:
                 self.frame.append([])
             e_box.append([])
             label.append([])
-            for c in xrange(self.game.cols):
+            for c in xrange(game.cols):
                 if usegtkframes:
                     self.frame[r].append( gtk.Frame() )
                 e_box[r].append( gtk.EventBox() )
