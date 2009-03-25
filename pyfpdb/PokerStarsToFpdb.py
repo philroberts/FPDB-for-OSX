@@ -128,9 +128,11 @@ follow :  whether to tail -f the input"""
         logging.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                datetime = info[key].replace(" - "," ") # some are like "2009/02/26 - 15:22:55 ET"
-                datetime = datetime.replace(" (ET)","") # kludge for now.
-                datetime = datetime.replace(" ET","") # kludge for now.
+                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
+                #2008/08/17 - 01:14:43 (ET)
+                #2008/09/07 06:23:14 ET
+                m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
+                datetime = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), m2.group('M'),m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
                 hand.starttime = time.strptime(datetime, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
