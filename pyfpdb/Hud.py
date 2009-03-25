@@ -178,7 +178,6 @@ class Hud:
                 if not type(w) == int: # how do we get pure ints in this list??
                     (x, y) = loc[adj[i]]
                     w.relocate(x, y)
-
         return True
 
     def on_button_press(self, widget, event):

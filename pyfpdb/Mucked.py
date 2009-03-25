@@ -325,7 +325,7 @@ class Flop_Mucked(Aux_Window):
         self.config  = config    # configuration object for this aux window to use
         self.params  = params    # dict aux params from config
         self.positions = {}      # dict of window positions
-        self.rel_positions = {}  # dict of window positions, relative to the table origin
+#        self.rel_positions = {}  # dict of window positions, relative to the table origin
         self.displayed_cards = False
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
         self.card_images = self.get_card_images()
@@ -355,7 +355,7 @@ class Flop_Mucked(Aux_Window):
             self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[('B', 'H')])
             self.eb[i].add(self.seen_cards[i])
             self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
-            self.rel_positions[i] = (int(x), int(y))
+#            self.rel_positions[i] = (int(x), int(y))
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
             self.m_windows[i].set_opacity(float(self.params['opacity']))
             self.m_windows[i].show_all()
@@ -440,7 +440,7 @@ class Flop_Mucked(Aux_Window):
 
     def configure_event_cb(self, widget, event, i, *args):
         self.positions[i] = widget.get_position()
-        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
+#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
 
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
