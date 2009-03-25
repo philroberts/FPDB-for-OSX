@@ -442,13 +442,6 @@ class Flop_Mucked(Aux_Window):
         self.positions[i] = widget.get_position()
         self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
 
-    def relocate(self, x, y):
-        for i, w in self.m_windows.iteritems():
-            self.positions[i] = (x + self.rel_positions[i][0], y + self.rel_positions[i][1])
-            print "x, y =", x, y
-            print "rel_pos =", self.rel_positions
-            w.move(self.positions[i][0], self.positions[i][0]) 
-
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
             self.m_windows[i].show()

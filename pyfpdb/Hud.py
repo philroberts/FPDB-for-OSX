@@ -178,7 +178,6 @@ class Hud:
                 if not type(w) == int: # how do we get pure ints in this list??
                     (x, y) = loc[adj[i]]
                     w.relocate(x, y)
-            [aw.relocate(self.table.x, self.table.y) for aw in self.aux_windows]
 
         return True
 
