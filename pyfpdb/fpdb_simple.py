@@ -882,14 +882,14 @@ ActionTypes = { 'calls':"call", 'brings in for':"blind", 'completes it to':"bet"
                 ' posts a dead ' : "blind", ' posts the small blind of $':"blind", ': posts big blind ':"blind",
                 ' posts the big blind of $':"blind", ': posts small & big blinds $':"blind",
                 ': posts small blind $':"blind",
-                'bets' : "bet", 'raises' : "bet"
+                ' bets' : "bet", ' raises' : "bet"
                }
 def parseActionType(line):
     if (line.startswith("Uncalled bet")):
         return "unbet"
-    elif (line.endswith("folds")):
+    elif (line.endswith(" folds")):
         return "fold"
-    elif (line.endswith("checks")):
+    elif (line.endswith(" checks")):
         return "check"
     else:
         for x in ActionTypes:
@@ -1079,17 +1079,13 @@ def parseHandStartTime(topline, site):
 #end def parseHandStartTime
  
 #parses the names out of the given lines and returns them as an array
+def findName(line):
+    pos1 = line.find(":") + 2
+    pos2 = line.rfind("(") - 1
+    return unicode(line[pos1:pos2], "latin-1")
+
 def parseNames(lines):
-    result = []
-    for i in xrange (len(lines)):
-        pos1=lines[i].find(":")+2
-        pos2=lines[i].rfind("(")-1
-        tmp=lines[i][pos1:pos2]
-        #print "parseNames, tmp original:",tmp
-        tmp=unicode(tmp,"latin-1")
-        #print "parseNames, tmp after unicode latin-1 conversion:",tmp
-        result.append(tmp)
-    return result
+    return [findName(line) for line in lines]
 #end def parseNames
  
 def parsePositions(hand, names):
@@ -1158,7 +1154,7 @@ def parsePositions(hand, names):
             arraypos-=1
             distFromBtn+=1
 
-    if -1 in names:
+    if any(p == -1 for p in positions):
         print "parsePositions names:",names
         print "result:",positions
         raise FpdbError ("failed to read positions")
