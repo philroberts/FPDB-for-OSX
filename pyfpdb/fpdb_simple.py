@@ -384,17 +384,16 @@ def getLastInsertId(backend, conn, cursor):
  
 #returns an array of the total money paid. intending to add rebuys/addons here
 def calcPayin(count, buyin, fee):
-    result=[]
-    for i in xrange(count):
-        result.append (buyin+fee)
-    return result
+    return [buyin + fee for i in xrange(count)]
 #end def calcPayin
 
 def checkPositions(positions):
     """ verify positions are valid """
-    for p in positions:
-        if not (p == "B" or p == "S" or (p >= 0 and p <= 9)):
-            raise FpdbError("invalid position '" + p + "' found in checkPositions")
+    if any(not (p == "B" or p == "S" or (p >= 0 and p <= 9)) for p in positions):
+        raise FpdbError("invalid position '"+p+"' found in checkPositions")
+#    for p in positions:
+#        if not (p == "B" or p == "S" or (p >= 0 and p <= 9)):
+#            raise FpdbError("invalid position '" + p + "' found in checkPositions")
  
     ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
     ### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
