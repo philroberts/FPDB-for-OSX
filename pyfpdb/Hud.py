@@ -176,9 +176,15 @@ class Hud:
             loc = self.config.get_locations(self.table.site, self.max)
             # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
             for i, w in enumerate(self.stat_windows):
-                (x, y) = loc[adj[i]]
-                self.stat_windows[w].relocate(x, y)
-                
+#<<<<<<< HEAD:pyfpdb/Hud.py
+                if not type(w) == int: # how do we get pure ints in this list??
+                    (x, y) = loc[adj[i]]
+                    w.relocate(x, y)
+#=======
+#                (x, y) = loc[adj[i]]
+#                self.stat_windows[w].relocate(x, y)
+#                
+#>>>>>>> 7c0d2eb6c664cfd8122b975e58438cfd158ee398:pyfpdb/Hud.py
         return True
 
     def on_button_press(self, widget, event):
