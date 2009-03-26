@@ -496,12 +496,13 @@ def convertBlindBet(actionTypes, actionAmounts):
         blinds=[]
         bets=[]
         for k in xrange(len(actionTypes[i][j])):
-            if (actionTypes[i][j][k]=="blind"):
+            if actionTypes[i][j][k] == "blind":
                 blinds.append((i,j,k))
             
-            if (len(blinds)>0 and actionTypes[i][j][k]=="bet"):
+            if blinds and actionTypes[i][j][k] == "bet":
+#            if (len(blinds)>0 and actionTypes[i][j][k]=="bet"):
                 bets.append((i,j,k))
-                if (len(bets)==1):
+                if len(bets) == 1:
                     blind_amount=actionAmounts[blinds[0][0]][blinds[0][1]][blinds[0][2]]
                     bet_amount=actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]
                     actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]=bet_amount-blind_amount
@@ -754,8 +755,9 @@ def isActionLine(line):
         return True
     elif (line.startswith("Uncalled bet")):
         return True
-    
-    return len( [ x for x in ActionLines if x in line]) > 0
+ 
+    return any(x for x in ActionLines if x in line)   
+#    return bool([ x for x in ActionLines if x in line])
 #        ret = any(True for searchstr in ActionLines if searchstr in line)
 #        ret = len( [ x for x in ActionLines if line.find(x) > -1] ) > 0
 #        ret = any(searchstr in line for searchstr in ActionLines)
@@ -785,7 +787,7 @@ WinLines = ( "wins the pot", "ties for the ", "wins side pot", "wins the low mai
              "wins the high pot", "wins the high side pot", "wins the main pot", "wins the side pot", "collected" )
 #returns boolean whether the passed line is a win line
 def isWinLine(line):
-    return len( [ x for x in WinLines if x in line ] ) > 0
+    return any(x for x in WinLines if x in line)   
 #end def isWinLine
  
 #returns the amount of cash/chips put into the put in the given action line
@@ -2233,8 +2235,8 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
             try: len(row)
             except TypeError:
                 row=[]
-            
-            if (len(row)==0):
+
+            if not row:            
                 #print "new huddata row"
                 doInsert=True
                 row=[]
@@ -2247,9 +2249,11 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
                 
             else:
                 doInsert=False
+                # This is making a copy of the original list, although i really don't see any reason it's being done?
                 newrow=[]
-                for i in xrange(len(row)):
-                    newrow.append(row[i])
+                newrow.extend(row)
+#                for i in xrange(len(row)):
+#                    newrow.append(row[i])
                 row=newrow
             
             if base=="hold":
