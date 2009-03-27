@@ -23,6 +23,8 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-x", "--errorsToConsole", action="store_true",
                 help="If passed error output will go to the console rather than .")
+parser.add_option("-d", "--databaseName", dest="dbname", default="fpdb",
+                help="Overrides the default database name")
 (options, sys.argv) = parser.parse_args()
 
 if not options.errorsToConsole:
@@ -371,7 +373,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def __init__(self):
         self.threads=[]
         self.db=None
-        self.config = Configuration.Config()
+        self.config = Configuration.Config(dbname=options.dbname)
         self.load_profile()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)

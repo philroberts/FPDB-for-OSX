@@ -219,7 +219,7 @@ def discover_nt(c):
             else:
                 tw.site = "Unknown"
                 sys.stderr.write("Found unknown table = %s" % tw.title)
-            if not tw.site == "Unknown":
+            if tw.site != "Unknown":
                 eval("%s(tw)" % c.supported_sites[tw.site].decoder)
             else:
                 tw.name = "Unknown"

@@ -68,13 +68,13 @@ class GuiGraphViewer (threading.Thread):
                 if len(result) == 1:
                     playerids.append(result[0][0])
 
-        if sitenos == []:
+        if not sitenos:
             #Should probably pop up here.
             print "No sites selected - defaulting to PokerStars"
             sitenos = [2]
 
 
-        if playerids == []:
+        if not playerids:
             print "No player ids found"
             return
 
