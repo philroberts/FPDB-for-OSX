@@ -234,6 +234,7 @@ class Config:
 
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
+        self.dbname = dbname
 
         self.default_config_path = self.get_default_config_path()
         if not file == None: # configuration file path has been passed
@@ -308,7 +309,7 @@ class Config:
             tv = Tv(node = tv_node)
             self.tv = tv
 
-        db = self.get_db_parameters(dbname)
+        db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
             df_file = self.find_default_conf()
             if df_file == None: # this is bad
@@ -448,8 +449,9 @@ class Config:
             else:
                 self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
-    def get_db_parameters(self, name):
+    def get_db_parameters(self):
         db = {}
+        name = self.dbname
         try:    db['db-databaseName'] = name
         except: pass
 
@@ -712,7 +714,7 @@ if __name__== "__main__":
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
     
-    print "db     = ", c.get_db_parameters('fpdb')
+    print "db     = ", c.get_db_parameters()
 #    print "tv     = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
     print "paths  = ", c.get_default_paths("PokerStars")
