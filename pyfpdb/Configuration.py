@@ -213,7 +213,7 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.saveActions = fix_tf(node.getAttribute("saveActions"), True)
-        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), True)
+        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
