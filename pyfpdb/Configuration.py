@@ -48,7 +48,7 @@ class Layout:
         self.height   = int( node.getAttribute('height') )
         
         self.location = []
-        self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
+        self.location = map(lambda x: None, range(self.max+1)) # fill array with max seats+1 empty entries
 
         for location_node in node.getElementsByTagName('location'):
             if location_node.getAttribute('seat') != "":
