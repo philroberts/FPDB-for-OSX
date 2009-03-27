@@ -230,10 +230,11 @@ class Tv:
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
 class Config:
-    def __init__(self, file = None):
+    def __init__(self, file = None, dbname = 'fpdb'):
 
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
+        self.dbname = dbname
 
         self.default_config_path = self.get_default_config_path()
         if file != None: # configuration file path has been passed
@@ -308,7 +309,7 @@ class Config:
             tv = Tv(node = tv_node)
             self.tv = tv
 
-        db = self.get_db_parameters('fpdb')
+        db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
             df_file = self.find_default_conf()
             if df_file == None: # this is bad
@@ -448,9 +449,9 @@ class Config:
             else:
                 self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
-    def get_db_parameters(self, name = None):
-        if name == None: name = 'fpdb'
+    def get_db_parameters(self):
         db = {}
+        name = self.dbname
         try:    db['db-databaseName'] = name
         except: pass
 
