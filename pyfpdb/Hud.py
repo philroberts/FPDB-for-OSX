@@ -174,11 +174,10 @@ class Hud:
             self.main_window.move(x, y)
             adj = self.adj_seats(self.hand, self.config)
             loc = self.config.get_locations(self.table.site, self.max)
-            for i, w in enumerate(self.stat_windows):
-                if not type(w) == int: # how do we get pure ints in this list??
-                    (x, y) = loc[adj[i]]
-                    w.relocate(x, y)
-                
+            # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
+            for i, w in enumerate(self.stat_windows.itervalues()):
+                (x, y) = loc[adj[i]]
+                w.relocate(x, y)
         return True
 
     def on_button_press(self, widget, event):
@@ -415,8 +414,9 @@ class Stat_Window:
         self.window.set_transient_for(parent.main_window)
         self.window.set_focus_on_map(False)
 
-        self.grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
-        self.window.add(self.grid)
+        grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
+        self.grid = grid    
+        self.window.add(grid)
         self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
         
         self.e_box = []
@@ -440,10 +440,10 @@ class Stat_Window:
                 
                 Stats.do_tip(e_box[r][c], 'stuff')
                 if usegtkframes:
-                    self.grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                    grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                     self.frame[r][c].add(e_box[r][c])
                 else:
-                    self.grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                    grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
                 label[r].append( gtk.Label('xxx') )
                 
                 if usegtkframes:

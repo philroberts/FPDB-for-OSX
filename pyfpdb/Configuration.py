@@ -48,7 +48,7 @@ class Layout:
         self.height   = int( node.getAttribute('height') )
         
         self.location = []
-        self.location = map(lambda x: None, range(self.max+1)) # there must be a better way to do this?
+        self.location = map(lambda x: None, range(self.max+1)) # fill array with max seats+1 empty entries
 
         for location_node in node.getElementsByTagName('location'):
             if location_node.getAttribute('seat') != "":
@@ -237,7 +237,7 @@ class Config:
         self.dbname = dbname
 
         self.default_config_path = self.get_default_config_path()
-        if not file == None: # configuration file path has been passed
+        if file != None: # configuration file path has been passed
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
@@ -248,7 +248,7 @@ class Config:
 
         if file == None: # no config file in the normal places
             file = self.find_example_config() #Look for an example file to edit
-            if not file == None:
+            if file != None:
                 pass
             
         if file == None: # that didn't work either, just die
@@ -412,7 +412,7 @@ class Config:
                     return location_node
 
     def save(self, file = None):
-        if not file == None:
+        if file != None:
             f = open(file, 'w')
             self.doc.writexml(f)
             f.close()
@@ -477,18 +477,18 @@ class Config:
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
                           db_pass = None, db_server = None, db_type = None):
         db_node = self.get_db_node(db_name)
-        if not db_node == None:
-            if not db_ip     == None: db_node.setAttribute("db_ip", db_ip)
-            if not db_user   == None: db_node.setAttribute("db_user", db_user)
-            if not db_pass   == None: db_node.setAttribute("db_pass", db_pass)
-            if not db_server == None: db_node.setAttribute("db_server", db_server)
-            if not db_type   == None: db_node.setAttribute("db_type", db_type)
+        if db_node != None:
+            if db_ip     != None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   != None: db_node.setAttribute("db_user", db_user)
+            if db_pass   != None: db_node.setAttribute("db_pass", db_pass)
+            if db_server != None: db_node.setAttribute("db_server", db_server)
+            if db_type   != None: db_node.setAttribute("db_type", db_type)
         if self.supported_databases.has_key(db_name):
-            if not db_ip     == None: self.supported_databases[db_name].dp_ip     = db_ip
-            if not db_user   == None: self.supported_databases[db_name].dp_user   = db_user
-            if not db_pass   == None: self.supported_databases[db_name].dp_pass   = db_pass
-            if not db_server == None: self.supported_databases[db_name].dp_server = db_server
-            if not db_type   == None: self.supported_databases[db_name].dp_type   = db_type
+            if db_ip     != None: self.supported_databases[db_name].dp_ip     = db_ip
+            if db_user   != None: self.supported_databases[db_name].dp_user   = db_user
+            if db_pass   != None: self.supported_databases[db_name].dp_pass   = db_pass
+            if db_server != None: self.supported_databases[db_name].dp_server = db_server
+            if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
         return
 
     def get_tv_parameters(self):
@@ -616,19 +616,19 @@ class Config:
                             font = None, font_size = None):
         """Sets the specified site parameters for the specified site."""
         site_node = self.get_site_node(site_name)
-        if not db_node == None:
-            if not converter      == None: site_node.setAttribute("converter", converter)
-            if not decoder        == None: site_node.setAttribute("decoder", decoder)
-            if not hudbgcolor     == None: site_node.setAttribute("hudbgcolor", hudbgcolor)
-            if not hudfgcolor     == None: site_node.setAttribute("hudfgcolor", hudfgcolor)
-            if not hudopacity     == None: site_node.setAttribute("hudopacity", hudopacity)
-            if not screen_name    == None: site_node.setAttribute("screen_name", screen_name)
-            if not site_path      == None: site_node.setAttribute("site_path", site_path)
-            if not table_finder   == None: site_node.setAttribute("table_finder", table_finder)
-            if not HH_path        == None: site_node.setAttribute("HH_path", HH_path)
-            if not enabled        == None: site_node.setAttribute("enabled", enabled)
-            if not font           == None: site_node.setAttribute("font", font)
-            if not font_size      == None: site_node.setAttribute("font_size", font_size)
+        if db_node != None:
+            if converter      != None: site_node.setAttribute("converter", converter)
+            if decoder        != None: site_node.setAttribute("decoder", decoder)
+            if hudbgcolor     != None: site_node.setAttribute("hudbgcolor", hudbgcolor)
+            if hudfgcolor     != None: site_node.setAttribute("hudfgcolor", hudfgcolor)
+            if hudopacity     != None: site_node.setAttribute("hudopacity", hudopacity)
+            if screen_name    != None: site_node.setAttribute("screen_name", screen_name)
+            if site_path      != None: site_node.setAttribute("site_path", site_path)
+            if table_finder   != None: site_node.setAttribute("table_finder", table_finder)
+            if HH_path        != None: site_node.setAttribute("HH_path", HH_path)
+            if enabled        != None: site_node.setAttribute("enabled", enabled)
+            if font           != None: site_node.setAttribute("font", font)
+            if font_size      != None: site_node.setAttribute("font_size", font_size)
         return
 
     def get_aux_windows(self):
