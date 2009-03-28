@@ -59,7 +59,7 @@ class fpdb_db:
         self.database=database
         if backend==self.MYSQL_INNODB:
             import MySQLdb
-            self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
+            self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
         elif backend==self.PGSQL:
             import psycopg2
             # If DB connection is made over TCP, then the variables
