@@ -220,7 +220,7 @@ def main(argv=None):
                     help="Input file in quiet mode")
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
                     help="don't start gui; deprecated (just give a filename with -f).")
-    parser.add_option("-c", "--convert", dest="filtername", default="passthrough", metavar="FILTER",
+    parser.add_option("-c", "--convert", dest="filtername", default="PokerStars", metavar="FILTER",
                     help="Conversion filter (*Full Tilt Poker, PokerStars, Everleaf)")
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help="If this option is passed it quits when it encounters any error")
