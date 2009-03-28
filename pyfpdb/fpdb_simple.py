@@ -1417,8 +1417,8 @@ def recognisePlayerIDs(cursor, names, site_id):
             q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
             cursor.execute(q2, notfound) # get their new ids
             tmp = dict(cursor.fetchall())
-    for n in tmp: # put them all into the same dict
-        ids[n] = tmp[n]
+            for n in tmp: # put them all into the same dict
+                ids[n] = tmp[n]
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
     return [ids[n] for n in names]
 #end def recognisePlayerIDs
