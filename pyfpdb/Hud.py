@@ -176,7 +176,7 @@ class Hud:
             loc = self.config.get_locations(self.table.site, self.max)
             # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
             for i, w in enumerate(self.stat_windows.itervalues()):
-                (x, y) = loc[adj[i]]
+                (x, y) = loc[adj[i+1]]
                 w.relocate(x, y)
         return True
 
