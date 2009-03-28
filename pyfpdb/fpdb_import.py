@@ -21,7 +21,7 @@
 
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
-from time import time
+from time import time, strftime
 import traceback
 import math
 import datetime

@@ -1407,26 +1407,18 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 #    return result
 
 def recognisePlayerIDs(cursor, names, site_id):
-    names = [n.encode("utf-8") for n in names]
-    namestring = "name=%s"
-    for x in xrange(len(names)-1):
-        namestring += " OR name=%s"
-#    print "names=", names, "\nnamestring=", namestring
-    cursor.execute("SELECT name,id FROM Players WHERE %s" % namestring , names) # get all playerids by the names passed in
+    q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
+    cursor.execute(q, names) # get all playerids by the names passed in
     ids = dict(cursor.fetchall()) # convert to dict
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
-        if notfound: # insert them into database
-            namestring = "name=%s"
-            for x in xrange(len(notfound)-1):
-                namestring += " OR name=%s"
-#            print "namestring=",namestring,"\nnotfound=", notfound
-            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-            cursor.execute("SELECT name,id FROM Players WHERE %s" % namestring, notfound) # get their new ids
-            tmp = dict(cursor.fetchall())
-            for n in tmp: # put them all into the same dict
-                ids[n] = tmp[n]
-#    print "ids=", ids                
+    if notfound: # insert them into database
+        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+        q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
+        cursor.execute(q2, notfound) # get their new ids
+        tmp = dict(cursor.fetchall())
+    for n in tmp: # put them all into the same dict
+        ids[n] = tmp[n]
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
     return [ids[n] for n in names]
 #end def recognisePlayerIDs
