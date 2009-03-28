@@ -236,7 +236,7 @@ def main(argv=None):
     if os.name == 'nt': settings['os'] = 'windows'
     else:               settings['os'] = 'linuxmac'
 
-    settings.update(config.get_db_parameters('fpdb'))
+    settings.update(config.get_db_parameters())
     settings.update(config.get_tv_parameters())
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
