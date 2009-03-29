@@ -73,8 +73,8 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     saveActions = False if import_options['saveActions'] == False else True
     fastStoreHudCache = True if import_options['fastStoreHudCache'] == True else False
 
-    #print "DEBUG: saveActions = '%s' fastStoreHudCache = '%s'"%(saveActions, fastStoreHudCache)
-    #print "DEBUG: import_options = ", import_options
+#   print "DEBUG: saveActions = '%s' fastStoreHudCache = '%s'"%(saveActions, fastStoreHudCache)
+#   print "DEBUG: import_options = ", import_options
 
     t0 = time()
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
@@ -114,8 +114,8 @@ def tourney_holdem_omaha(config, backend, db, cursor, base, category, siteTourne
     """stores a tourney holdem/omaha hand into the database"""
 
     import_options = config.get_import_parameters()
-    saveActions = True if import_options['saveActions'] == 'True' else False
-    fastStoreHudCache = True if import_options['fastStoreHudCache'] == 'True' else False
+    saveActions = True if import_options['saveActions'] == True else False
+    fastStoreHudCache = True if import_options['fastStoreHudCache'] == True else False
 
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
     fpdb_simple.fill_board_cards(board_values, board_suits)
@@ -151,8 +151,8 @@ def tourney_stud(config, backend, db, cursor, base, category, siteTourneyNo, buy
 #stores a tourney stud/razz hand into the database
 
     import_options = config.get_import_parameters()
-    saveActions = True if import_options['saveActions'] == 'True' else False
-    fastStoreHudCache = True if import_options['fastStoreHudCache'] == 'True' else False
+    saveActions = True if import_options['saveActions'] == True else False
+    fastStoreHudCache = True if import_options['fastStoreHudCache'] == True else False
     
     fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
     
