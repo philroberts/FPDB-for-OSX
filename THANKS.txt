@@ -4,7 +4,7 @@ This page is to acknowledge the people developing and contributing to FPDB, be i
 
 Most people have found the project though the software forum at [[http://forumserver.twoplustwo.com/45/software/|2+2]] so most references to 2+2 aliases
 
-Sincere apologies to those not listed. FPDB started life in August 2008, but we only got around to putting together a proper contributers list in April 2009. Private messages and emails have been deleted so we dont have a full history of non-
+Sincere apologies to those not listed. FPDB started life in August 2008, but we only got around to putting together a proper contributers list in April 2009. Private messages and emails have been deleted so we dont have a full history of non-code based contributions
 
 ==**Developers**==
 Active:
