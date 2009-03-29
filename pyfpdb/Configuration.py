@@ -532,7 +532,7 @@ class Config:
         return paths
     
     def get_frames(self, site = "PokerStars"):
-        return self.supported_sites[site].use_frames == "True"
+        return self.supported_sites[site].use_frames == True
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
