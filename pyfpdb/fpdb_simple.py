@@ -163,9 +163,9 @@ def prepareBulkImport(fdb):
 #    DON'T FORGET TO RECREATE THEM!!
                 #print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-		    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
                     fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-		    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
+                    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
                 except:
                     print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
             else:
@@ -1392,6 +1392,20 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 # { playername: id } instead of depending on it's relation to the positions list
 # then this can be reduced in complexity a bit
 
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    for i in xrange(len(names)):
+#        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#        tmp=cursor.fetchall()
+#        if (len(tmp)==0): #new player
+#            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
+#            #print "Number of players rows inserted: %d" % cursor.rowcount
+#            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#            tmp=cursor.fetchall()
+#        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
+#        result.append(tmp[0][0])
+#    return result
+
 def recognisePlayerIDs(cursor, names, site_id):
     q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
     cursor.execute(q, names) # get all playerids by the names passed in
@@ -1405,7 +1419,6 @@ def recognisePlayerIDs(cursor, names, site_id):
             tmp = dict(cursor.fetchall())
             for n in tmp: # put them all into the same dict
                 ids[n] = tmp[n]
-                
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
     return [ids[n] for n in names]
 #end def recognisePlayerIDs
