@@ -39,15 +39,19 @@ import Database
 class Aux_Window:
     def __init__(self, hud, params, config):
         self.hud     = hud
+        self.params  = params
         self.config  = config
 
-    def update_data(self, *parms):
+    def update_data(self, *args):
         pass
 
-    def update_gui(self, *parms):
+    def update_gui(self, *args):
         pass
 
-    def create(self, *parms):
+    def create(self, *args):
+        pass
+
+    def relocate(self, *args):
         pass
 
     def save_layout(self, *args):
@@ -321,6 +325,7 @@ class Flop_Mucked(Aux_Window):
         self.config  = config    # configuration object for this aux window to use
         self.params  = params    # dict aux params from config
         self.positions = {}      # dict of window positions
+#        self.rel_positions = {}  # dict of window positions, relative to the table origin
         self.displayed_cards = False
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
         self.card_images = self.get_card_images()
@@ -345,11 +350,13 @@ class Flop_Mucked(Aux_Window):
             self.m_windows[i].set_focus_on_map(False)
             self.eb[i] = gtk.EventBox()
             self.eb[i].connect("button_press_event", self.button_press_cb)
+            self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.m_windows[i].add(self.eb[i])
             self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[('B', 'H')])
             self.eb[i].add(self.seen_cards[i])
-            self.m_windows[i].move(int(x) + self.hud.table.x, int(y) + self.hud.table.y)
             self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
+#            self.rel_positions[i] = (int(x), int(y))
+            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
             self.m_windows[i].set_opacity(float(self.params['opacity']))
             self.m_windows[i].show_all()
             self.m_windows[i].hide()
@@ -375,7 +382,7 @@ class Flop_Mucked(Aux_Window):
                 self.seen_cards[i].set_from_pixbuf(scratch)
 #                self.m_windows[i].show_all()
                 self.m_windows[i].resize(1,1)
-                self.m_windows[i].present()
+                self.m_windows[i].show()
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
                 self.displayed_cards = True
 
@@ -405,9 +412,8 @@ class Flop_Mucked(Aux_Window):
     def hide_mucked_cards(self):
         """Hide the mucked card windows."""
         for (i, w) in self.m_windows.iteritems():
-            self.positions[i] = w.get_position()
             w.hide()
-            self.displayed_cards = False
+        self.displayed_cards = False
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
@@ -432,9 +438,13 @@ class Flop_Mucked(Aux_Window):
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
+    def configure_event_cb(self, widget, event, i, *args):
+        self.positions[i] = widget.get_position()
+#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
+
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
-            self.m_windows[i].present()
+            self.m_windows[i].show()
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
             self.displayed_cards = True
 
@@ -447,8 +457,6 @@ class Flop_Mucked(Aux_Window):
                 new_locs[self.adj[int(i)]] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
             else:
                 new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
-        print "old locations =", self.params['layout'][self.hud.max]
-        print "saving locations =", new_locs
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
 if __name__== "__main__":

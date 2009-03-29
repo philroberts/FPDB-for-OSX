@@ -91,7 +91,7 @@ class HUD_main(object):
             
             gtk.gdk.threads_enter()
             try:
-                newlabel = gtk.Label(table.site + " - " + table_name)
+                newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
                 self.main_window.resize_children()
@@ -110,8 +110,8 @@ class HUD_main(object):
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table_name].stat_dict = stat_dict
         self.hud_dict[table_name].cards = cards
-        for aw in self.hud_dict[table_name].aux_windows:
-            aw.update_data(new_hand_id, self.db_connection)
+        
+        [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
     
     def update_HUD(self, new_hand_id, table_name, config):
@@ -153,7 +153,8 @@ class HUD_main(object):
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
-                cards['common'] = comm_cards['common']
+                if comm_cards != {}: # stud!
+                    cards['common'] = comm_cards['common']
             except Exception, err:
                 print "db error: skipping ", new_hand_id, err
                 sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))

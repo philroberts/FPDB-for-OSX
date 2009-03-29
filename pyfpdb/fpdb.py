@@ -23,6 +23,8 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("-x", "--errorsToConsole", action="store_true",
                 help="If passed error output will go to the console rather than .")
+parser.add_option("-d", "--databaseName", dest="dbname", default="fpdb",
+                help="Overrides the default database name")
 (options, sys.argv) = parser.parse_args()
 
 if not options.errorsToConsole:
@@ -337,7 +339,7 @@ class fpdb:
         new_ps_thread=GuiPositionalStats.GuiPositionalStats(self.db, self.config, self.querydict)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, "Ppositional Stats")
+        self.add_and_display_tab(ps_tab, "Positional Stats")
 
 
     def tab_main_help(self, widget, data):
@@ -371,7 +373,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def __init__(self):
         self.threads=[]
         self.db=None
-        self.config = Configuration.Config()
+        self.config = Configuration.Config(dbname=options.dbname)
         self.load_profile()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)

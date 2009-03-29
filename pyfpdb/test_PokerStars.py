@@ -35,6 +35,9 @@ def testGameInfo():
     (u"PokerStars Game #25923772706:  Badugi Limit ($0.25/$0.50) - 2009/03/13 16:40:58 ET",
     {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'}),
 
+    (u"PokerStars Game #22073591924:  Hold'em No Limit ($0.50/$1.00) - 2008/11/16 1:22:21 CET [2008/11/15 19:22:21 ET]",
+    {'type':'ring', 'base':'hold', 'category':'holdem', 'limitType':'nl', 'sb':'0.50', 'bb':'1.00','currency':'USD'}),
+
     (u"PokerStars Game #25974627364:  Omaha Pot Limit ($0.05/$0.10) - 2009/03/15 0:29:00 ET",
     {'type':'ring', 'base':'hold', 'category':'omahahi', 'limitType':'pl', 'sb':'0.05', 'bb':'0.10','currency':'USD'})
     )
