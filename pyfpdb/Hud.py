@@ -201,8 +201,9 @@ class Hud:
         self.aux_windows = []
 
     def reposition_windows(self, *args):
-        if self.stat_windows != {} and len(self.stat_windows) > 0:
-            (x.window.move(x.x, x.y) for x in self.stat_windows.itervalues() if type(x) != int)
+        for w in self.stat_windows.itervalues():
+            if type(w) == int: continue
+            w.window.move(w.x, w.y)
         return True
 
     def debug_stat_windows(self, *args):
