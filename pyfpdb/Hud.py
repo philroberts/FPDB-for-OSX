@@ -197,7 +197,8 @@ class Hud:
             s.window.destroy()    
         self.stat_windows = {}
 #    also kill any aux windows
-        (aux.destroy() for aux in self.aux_windows)
+        for aux in self.aux_windows:
+            aux.destroy()
         self.aux_windows = []
 
     def reposition_windows(self, *args):
