@@ -202,13 +202,14 @@ class GuiAutoImport (threading.Thread):
         filter.show()
 
     def addSites(self, vbox):
-        for site in self.config.supported_sites.keys():
+        the_sites = self.config.get_supported_sites()
+        for site in the_sites:
             pathHBox = gtk.HBox(False, 0)
             vbox.pack_start(pathHBox, False, True, 0)
             pathHBox.show()
-
-            paths = self.config.get_default_paths(site)
+    
             params = self.config.get_site_parameters(site)
+            paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
             self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
 
