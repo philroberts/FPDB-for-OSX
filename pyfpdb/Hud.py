@@ -203,7 +203,10 @@ class Hud:
 
     def reposition_windows(self, *args):
         for w in self.stat_windows.itervalues():
-            if type(w) == int: continue
+            if type(w) == int:
+                print "in reposition, w =", w
+                continue
+            print "in reposition, w =", w, w.x, w.y
             w.window.move(w.x, w.y)
         return True
 
