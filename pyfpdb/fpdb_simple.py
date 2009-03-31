@@ -883,7 +883,7 @@ def goesAllInOnThisLine(line):
 ActionTypes = { 'calls':"call", 'brings in for':"blind", 'completes it to':"bet", ' posts $':"blind",
                 ' posts a dead ' : "blind", ' posts the small blind of $':"blind", ': posts big blind ':"blind",
                 ' posts the big blind of $':"blind", ': posts small & big blinds $':"blind",
-                ': posts small blind $':"blind",
+                ': posts small blind $':"blind", ': posts small blind ':"blind",
                 ' bets' : "bet", ' raises' : "bet"
                }
 def parseActionType(line):
