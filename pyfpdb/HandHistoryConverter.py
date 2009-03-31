@@ -202,7 +202,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
         if self.obs == "" or self.obs == None:
             logging.info("Read no hands.")
             return
-        return re.split(self.re_SplitHands,  self.obs)
+        return re.split(self.re_TailSplitHands,  self.obs)
         
     def processHand(self, handText):
         gametype = self.determineGameType(handText)

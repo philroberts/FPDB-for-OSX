@@ -28,7 +28,8 @@ class Fulltilt(HandHistoryConverter):
     
     # Static regexes
     re_GameInfo     = re.compile('- (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<LIMIT>(No Limit|Pot Limit|Limit))? (?P<GAME>(Hold\'em|Omaha Hi|Razz))')
-    re_SplitHands   = re.compile(r"(\n\n+)")
+    re_SplitHands   = re.compile(r"\n\n+")
+    re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[- a-zA-Z]+) (\((?P<TABLEATTRIBUTES>.+)\) )?- \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (Ante \$(?P<ANTE>[.0-9]+) )?- (?P<GAMETYPE>[a-zA-Z\' ]+) - (?P<DATETIME>.*)')
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
