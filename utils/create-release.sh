@@ -23,12 +23,8 @@ rm pyfpdb/*.pyc
 # make the fpdb_$1.zip file for windows
 echo "*** making zip file"
 zip -r ../fpdb_$1.zip docs
-zip -r ../fpdb_$1.zip ignore-me_perl6
 zip -r ../fpdb_$1.zip packaging
 zip -r ../fpdb_$1.zip pyfpdb
-zip -r ../fpdb_$1.zip regression-test
-zip -r ../fpdb_$1.zip utils
-zip -r ../fpdb_$1.zip website
 
 # now make the fpdb_$1.tar.bz2 file for linux
 echo "*** making tar.bz2 file"
