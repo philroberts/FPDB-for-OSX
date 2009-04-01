@@ -46,7 +46,7 @@ def testGameInfo():
 
 
 def testHandInfo():
-    text = u""""PokerStars Game #20461877044:  Hold'em No Limit ($1/$2) - 2008/09/16 18:58:01 ET"""
+    text = u"""PokerStars Game #20461877044:  Hold'em No Limit ($1/$2) - 2008/09/16 18:58:01 ET"""
     hhc = PokerStarsToFpdb.PokerStars(autostart=False)
     h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
     hhc.readHandInfo(h)
