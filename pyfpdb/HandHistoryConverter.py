@@ -112,7 +112,9 @@ class HandHistoryConverter():
     def start(self):
         """process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
-Otherwise, finish at eof..."""        
+Otherwise, finish at eof...
+
+"""        
         starttime = time.time()
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
@@ -137,7 +139,11 @@ Otherwise, finish at eof..."""
 
     def tailHands(self):
         """Generator of handTexts from a tailed file:
-Tail the in_path file and yield handTexts separated by re_SplitHands"""
+Tail the in_path file and yield handTexts separated by re_SplitHands.
+This requires a regex that greedily groups and matches the 'splitter' between hands,
+which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
+
+"""
         if self.in_path == '-': raise StopIteration
         interval = 1.0 # seconds to sleep between reads for new data
         fd = codecs.open(self.in_path,'r', self.codepage)
@@ -161,7 +167,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
             else:
                 # yield hands
                 data = data + newdata
-                result = self.re_SplitHands.split(data)
+                result = self.re_TailSplitHands.split(data)
                 result = iter(result)
                 data = ''
                 # --x       data (- is bit of splitter, x is paragraph)     yield,...,keep
@@ -202,7 +208,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
         if self.obs == "" or self.obs == None:
             logging.info("Read no hands.")
             return
-        return re.split(self.re_TailSplitHands,  self.obs)
+        return re.split(self.re_SplitHands,  self.obs)
         
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
