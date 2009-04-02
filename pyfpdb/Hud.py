@@ -529,11 +529,15 @@ class Popup_window:
 #        db_connection.close_connection()
         stat_dict = stat_window.parent.stat_dict
         pu_text = ""
+        mo_text = ""
         for s in stat_list:
             number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
+            mo_text += number[5] + " " + number[4] + "\n"
             pu_text += number[3] + "\n"
+            
 
-        self.lab.set_text(pu_text)        
+        self.lab.set_text(pu_text)
+        Stats.do_tip(self.lab, mo_text)
         self.window.show_all()
         
         self.window.set_transient_for(stat_window.window)
