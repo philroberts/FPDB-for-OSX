@@ -1476,7 +1476,7 @@ def recognisePlayerNo(line, names, atype):
  
 #returns the site abbreviation for the given site
 def recogniseSite(line):
-    if (line.startswith("Full Tilt Poker")):
+    if (line.startswith("Full Tilt Poker") or line.startswith("FullTiltPoker")):
         return "ftp"
     elif (line.startswith("PokerStars")):
         return "ps"
