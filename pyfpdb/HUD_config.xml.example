@@ -49,7 +49,7 @@
 	        	<location seat="2" x="10"  y="288"> </location>
 	        </layout>
 	    </site>
-	    <site enabled="True" site_name="Full Tilt" table_finder="FullTiltPoker.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/Full Tilt Poker/" HH_path="~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/abc/" decoder="fulltilt_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+	    <site enabled="True" site_name="Full Tilt Poker" table_finder="FullTiltPoker.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/Full Tilt Poker/" HH_path="~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/abc/" decoder="fulltilt_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
 	        <layout fav_seat="0" height="547" max="8" width="794">
 	        	<location seat="1" x="640" y="64">  </location>
 	        	<location seat="2" x="650" y="230"> </location>
