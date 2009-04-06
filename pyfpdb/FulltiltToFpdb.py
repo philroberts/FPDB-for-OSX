@@ -34,6 +34,7 @@ class Fulltilt(HandHistoryConverter):
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+    # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
