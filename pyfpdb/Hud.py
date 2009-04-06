@@ -204,14 +204,14 @@ class Hud:
     def reposition_windows(self, *args):
         for w in self.stat_windows.itervalues():
             if type(w) == int:
-                print "in reposition, w =", w
+#                print "in reposition, w =", w
                 continue
-            print "in reposition, w =", w, w.x, w.y
+#            print "in reposition, w =", w, w.x, w.y
             w.window.move(w.x, w.y)
         return True
 
     def debug_stat_windows(self, *args):
-        print self.table, "\n", self.main_window.window.get_transient_for()
+#        print self.table, "\n", self.main_window.window.get_transient_for()
         for w in self.stat_windows:
             print self.stat_windows[w].window.window.get_transient_for()
                 
