@@ -469,23 +469,12 @@ def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
             for k in xrange(len(actionTypes[i][j])):
                 if (actionTypes[i][j][k]=="bet"):
                     bets.append((i,j,k))
-                    if (len(bets)==2):
-                        #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
-                        amount2=actionAmounts[bets[1][0]][bets[1][1]][bets[1][2]]
-                        amount1=actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]
-                        actionAmounts[bets[1][0]][bets[1][1]][bets[1][2]]=amount2-amount1
-                    elif (len(bets)>2):
-                        fail=True
-                        #todo: run correction for below
-                        if (site=="ps" and category=="holdem" and limit_type=="nl" and len(bets)==3):
-                            fail=False
-                        if (site=="ftp" and category=="omahahi" and limit_type=="pl" and len(bets)==3):
-                            fail=False
-                        
-                        if fail:
-                            print "len(bets)>2 in convert3B4B, i didnt think this is possible. i:",i,"j:",j,"k:",k
-                            print "actionTypes:",actionTypes
-                            raise FpdbError ("too many bets in convert3B4B")
+            if (len(bets)>=2):
+                #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
+                for betNo in reversed(xrange (1,len(bets))):
+                    amount2=actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]
+                    amount1=actionAmounts[bets[betNo-1][0]][bets[betNo-1][1]][bets[betNo-1][2]]
+                    actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]=amount2-amount1
     #print "actionAmounts postConvert",actionAmounts
 #end def convert3B4B(actionTypes, actionAmounts)
  
@@ -1476,7 +1465,7 @@ def recognisePlayerNo(line, names, atype):
  
 #returns the site abbreviation for the given site
 def recogniseSite(line):
-    if (line.startswith("Full Tilt Poker")):
+    if (line.startswith("Full Tilt Poker") or line.startswith("FullTiltPoker")):
         return "ftp"
     elif (line.startswith("PokerStars")):
         return "ps"
