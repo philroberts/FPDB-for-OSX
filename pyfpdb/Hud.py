@@ -125,7 +125,7 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.parent.kill_hud, self.table.name)
+        self.item1.connect("activate", self.parent.kill_hud, self.table_name)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')

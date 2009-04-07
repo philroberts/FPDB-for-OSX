@@ -108,9 +108,9 @@ class HUD_main(object):
                 gtk.gdk.threads_leave()
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
+        self.hud_dict[table_name].table_name = table_name
         self.hud_dict[table_name].stat_dict = stat_dict
         self.hud_dict[table_name].cards = cards
-        
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
     
@@ -184,7 +184,6 @@ class HUD_main(object):
                     tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
                 else:
                     tablewindow = Tables.discover_table_by_name(self.config, table_name)
-
                 if tablewindow == None:
 #    If no client window is found on the screen, complain and continue
                     if is_tournament:
