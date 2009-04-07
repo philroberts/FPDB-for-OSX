@@ -69,10 +69,10 @@
 
 	    <site enabled="True" 
 	          site_name="Full Tilt Poker" 
-	          table_finder="FullTiltPoker.exe" 
+	          table_finder="FullTiltPoker" 
 	          screen_name="YOUR SCREEN NAME HERE" 
 	          site_path="C:/Program Files/Full Tilt Poker/" 
-	          HH_path="~C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/" 
+	          HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/" 
 	          decoder="fulltilt_decode_table" 
 	          bgcolor="#000000" 
 	          fgcolor="#FFFFFF" 
