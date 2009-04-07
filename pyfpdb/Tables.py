@@ -135,7 +135,7 @@ def discover_posix(c):
             if re.search(params['table_finder'], listing):
                 if 'Lobby' in listing:   continue
                 if 'Instant Hand History' in listing: continue
-                if '\"Full Tilt Poker\"' in listing: continue
+#                if '\"Full Tilt Poker\"' in listing: continue
                 if 'History for table:' in listing: continue
                 if 'has no name' in listing: continue
                 info = decode_xwininfo(c, listing)
@@ -387,7 +387,7 @@ def discover_mac_by_name(c, tablename):
 if __name__=="__main__":
     c = Configuration.Config()
 
-    print discover_table_by_name(c, "Ringe")
+    print discover_table_by_name(c, "Torino")
 #    print discover_tournament_table(c, "118942908", "3")
 
     tables = discover(c)
