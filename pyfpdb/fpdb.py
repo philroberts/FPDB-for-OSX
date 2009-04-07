@@ -47,7 +47,7 @@ import GuiGraphViewer
 import FpdbSQLQueries
 import Configuration
 
-VERSION = "0.10"
+VERSION = "0.11"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
