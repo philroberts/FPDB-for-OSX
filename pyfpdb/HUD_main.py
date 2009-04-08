@@ -51,6 +51,8 @@ import Database
 import Tables
 import Hud
 
+aggregate_stats = {"ring": False, "tour": False} # config file!
+
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
@@ -85,7 +87,7 @@ class HUD_main(object):
         del(self.hud_dict[table])
         self.main_window.resize(1,1)
 
-    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, is_tournament, stat_dict, cards):
+    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, stat_dict, cards):
         
         def idle_func():
             
@@ -149,8 +151,8 @@ class HUD_main(object):
 #    get basic info about the new hand from the db
 #    if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game) = self.db_connection.get_table_name(new_hand_id)
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id)
+                (table_name, max, poker_game, type) = self.db_connection.get_table_name(new_hand_id)
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, aggregate = aggregate_stats[type])
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
@@ -160,15 +162,17 @@ class HUD_main(object):
                 sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
                 continue
 
-#    find out if this hand is from a tournament
-            mat_obj = tourny_finder.search(table_name)
-            if mat_obj:
-                is_tournament = True
-                (tour_number, tab_number) = mat_obj.group(1, 2)
-                temp_key = tour_number
+            if type == "tour":   # hand is from a tournament
+                mat_obj = tourny_finder.search(table_name)
+                if mat_obj:
+                    (tour_number, tab_number) = mat_obj.group(1, 2)
+                    temp_key = tour_number
+                else:   # tourney, but can't get number and table
+                    print "could not find tournamtne: skipping "
+                    sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
+                    continue
+                    
             else:
-                is_tournament = False
-                (tour_number, tab_number) = (0, 0)
                 temp_key = table_name
 
 #    Update an existing HUD
@@ -180,17 +184,17 @@ class HUD_main(object):
     
 #    Or create a new HUD
             else:
-                if is_tournament:
+                if type == "tour":
                     tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
                 else:
                     tablewindow = Tables.discover_table_by_name(self.config, table_name)
                 if tablewindow == None:
 #    If no client window is found on the screen, complain and continue
-                    if is_tournament:
+                    if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
                     sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
-                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, is_tournament, stat_dict, cards)
+                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")
