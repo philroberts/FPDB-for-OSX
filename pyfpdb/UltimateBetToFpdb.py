@@ -21,16 +21,15 @@
 import sys
 from HandHistoryConverter import *
 
-# PokerStars HH Format
 
-class PokerStars(HandHistoryConverter):
+class UltimateBet(HandHistoryConverter):
 
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
-    re_SplitHands   = re.compile('(\n\n+)')
+    re_GameInfo     = re.compile("Stage #(?P<HID>[0-9]+):\s+\(?(?P<GAME>Hold\'em|Razz|Seven Card|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Normal|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_SplitHands   = re.compile('(\n\n\n+)')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
-    re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
+    re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+) - (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
     
@@ -39,8 +38,8 @@ class PokerStars(HandHistoryConverter):
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PokerStars", follow=follow)
-        logging.info("Initialising PokerStars converter class")
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="UltimateBet", follow=follow)
+        logging.info("Initialising UltimateBetconverter class")
         self.filetype = "text"
         self.codepage = "cp1252"
         if autostart:
@@ -56,24 +55,19 @@ follow :  whether to tail -f the input"""
             logging.debug("player_re: " + player_re)
             self.re_PostSB           = re.compile(r"^%s: posts small blind \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%s: posts big blind \$?(?P<BB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_Antes            = re.compile(r"^%s - Ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_BringIn          = re.compile(r"^%s - Bring-In \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$(?P<BET>[.\d]+))?( to \$(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
-            self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
+            self.re_HeroCards        = re.compile(r"^Dealt to %s - Pocket (\[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%s -(?P<ATYPE> Bets| Checks| raises| Calls| Folds)( \$(?P<BET>[.\d]+))?( to \$(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
+            self.re_ShowdownAction   = re.compile(r"^%s - Shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
 
     def readSupportedGames(self):
-        return [["ring", "hold", "nl"],
-                ["ring", "hold", "pl"],
-                ["ring", "hold", "fl"],
-                ["ring", "stud", "fl"],
-                ["ring", "draw", "fl"],
-                ["ring", "omaha", "pl"]
+        return [ ["ring", "stud", "fl"]
                ]
 
     def determineGameType(self, handText):
@@ -280,20 +274,20 @@ follow :  whether to tail -f the input"""
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
-            if action.group('ATYPE') == ' raises':
+            if action.group('ATYPE') == ' Raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
+            elif action.group('ATYPE') == ' Calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
+            elif action.group('ATYPE') == ' Bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
+            elif action.group('ATYPE') == ' Folds':
                 hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
+            elif action.group('ATYPE') == ' Checks':
                 hand.addCheck( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
-            elif action.group('ATYPE') == ' stands pat':
-                hand.addStandsPat( street, action.group('PNAME'))
+            #elif action.group('ATYPE') == ' discards':
+            #    hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
+            #elif action.group('ATYPE') == ' stands pat':
+            #    hand.addStandsPat( street, action.group('PNAME'))
             else:
                 print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
 
@@ -332,4 +326,4 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = PokerStars(in_path = options.ipath, out_path = options.opath, follow = options.follow)
+    e = UltimateBet(in_path = options.ipath, out_path = options.opath, follow = options.follow)

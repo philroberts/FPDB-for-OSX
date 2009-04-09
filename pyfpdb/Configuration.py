@@ -33,6 +33,9 @@ import xml.dom.minidom
 from xml.dom.minidom import Node
 
 def fix_tf(x, default = True):
+#    The xml parser doesn't translate "True" to True. Therefore, we never get
+#    True or False from the parser only "True" or "False". So translate the 
+#    string to the python boolean representation.
     if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
         return True
     if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
@@ -80,11 +83,11 @@ class Site:
         self.hudbgcolor   = node.getAttribute("bgcolor")
         self.hudfgcolor   = node.getAttribute("fgcolor")
         self.converter    = node.getAttribute("converter")
-        self.enabled      = node.getAttribute("enabled")
         self.aux_window   = node.getAttribute("aux_window")
         self.font         = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
         self.use_frames    = node.getAttribute("use_frames")
+        self.enabled      = fix_tf(node.getAttribute("enabled"), default = True)
         self.layout       = {}
 
         for layout_node in node.getElementsByTagName('layout'):
@@ -222,7 +225,7 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.saveActions = fix_tf(node.getAttribute("saveActions"), True)
-        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), True)
+        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
@@ -547,7 +550,7 @@ class Config:
         return paths
     
     def get_frames(self, site = "PokerStars"):
-        return self.supported_sites[site].use_frames == "True"
+        return self.supported_sites[site].use_frames == True
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
@@ -598,14 +601,17 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
-    def get_supported_sites(self):
+    def get_supported_sites(self, all = False):
         """Returns the list of supported sites."""
-        return self.supported_sites.keys()
+        the_sites = []
+        for site in self.supported_sites.keys():
+            params = self.get_site_parameters(site)
+            if all or params['enabled']:
+                the_sites.append(site)
+        return the_sites
 
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
-        if not self.supported_sites.has_key(site):
-            return None
         parms = {}
         parms["converter"]    = self.supported_sites[site].converter
         parms["decoder"]      = self.supported_sites[site].decoder
@@ -617,10 +623,10 @@ class Config:
         parms["table_finder"] = self.supported_sites[site].table_finder
         parms["HH_path"]      = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
-        parms["enabled"]      = self.supported_sites[site].enabled
         parms["aux_window"]   = self.supported_sites[site].aux_window
         parms["font"]         = self.supported_sites[site].font
         parms["font_size"]    = self.supported_sites[site].font_size
+        parms["enabled"]      = self.supported_sites[site].enabled
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,

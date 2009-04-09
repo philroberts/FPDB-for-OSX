@@ -163,9 +163,9 @@ def prepareBulkImport(fdb):
 #    DON'T FORGET TO RECREATE THEM!!
                 #print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-		    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
                     fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-		    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
+                    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
                 except:
                     print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
             else:
@@ -465,21 +465,12 @@ def convert3B4B(category, limit_type, actionTypes, actionAmounts):
             for k in xrange(len(actionTypes[i][j])):
                 if (actionTypes[i][j][k]=="bet"):
                     bets.append((i,j,k))
-                    if (len(bets)==2):
-                        #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
-                        amount2=actionAmounts[bets[1][0]][bets[1][1]][bets[1][2]]
-                        amount1=actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]
-                        actionAmounts[bets[1][0]][bets[1][1]][bets[1][2]]=amount2-amount1
-                    elif (len(bets)>2):
-                        fail=True
-                        #todo: run correction for below
-                        if (limit_type=="nl" or limit_type == "pl"):
-                            fail=False
-
-                        if fail:
-                            print "len(bets)>2 in convert3B4B, i didnt think this is possible. i:",i,"j:",j,"k:",k
-                            print "actionTypes:",actionTypes
-                            raise FpdbError ("too many bets in convert3B4B")
+            if (len(bets)>=2):
+                #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
+                for betNo in reversed(xrange (1,len(bets))):
+                    amount2=actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]
+                    amount1=actionAmounts[bets[betNo-1][0]][bets[betNo-1][1]][bets[betNo-1][2]]
+                    actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]=amount2-amount1
     #print "actionAmounts postConvert",actionAmounts
 #end def convert3B4B(actionTypes, actionAmounts)
  
@@ -649,7 +640,7 @@ def filterCrap(hand, isTourney):
             hand[i] = False
         elif hand[i].find(" is low with [")!=-1:
             hand[i] = False
-        elif (hand[i].endswith(" mucks")):
+        elif hand[i].endswith(" mucks"):
             hand[i] = False
         elif hand[i].endswith(": mucks hand"):
             hand[i] = False
@@ -853,11 +844,19 @@ def goesAllInOnThisLine(line):
 #end def goesAllInOnThisLine
  
 #returns the action type code (see table design) of the given action line
-ActionTypes = { 'calls':"call", 'brings in for':"blind", 'completes it to':"bet", ' posts $':"blind",
-                ' posts a dead ' : "blind", ' posts the small blind of $':"blind", ': posts big blind ':"blind",
-                ' posts the big blind of $':"blind", ': posts small & big blinds $':"blind",
-                ': posts small blind $':"blind",
-                ' bets' : "bet", ' raises' : "bet"
+ActionTypes = { 'brings in for'                :"blind", 
+                ' posts $'                     :"blind",
+                ' posts a dead '               :"blind", 
+                ' posts the small blind of $'  :"blind", 
+                ': posts big blind '           :"blind",
+                ': posts small blind '         :"blind", 
+                ' posts the big blind of $'    :"blind", 
+                ': posts small & big blinds $' :"blind",
+                ': posts small blind $'        :"blind",
+                'calls'                        :"call", 
+                'completes it to'              :"bet", 
+                ' bets'                        :"bet", 
+                ' raises'                      :"bet"
                }
 def parseActionType(line):
     if (line.startswith("Uncalled bet")):
@@ -1310,18 +1309,33 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 # { playername: id } instead of depending on it's relation to the positions list
 # then this can be reduced in complexity a bit
 
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    for i in xrange(len(names)):
+#        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#        tmp=cursor.fetchall()
+#        if (len(tmp)==0): #new player
+#            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
+#            #print "Number of players rows inserted: %d" % cursor.rowcount
+#            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#            tmp=cursor.fetchall()
+#        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
+#        result.append(tmp[0][0])
+#    return result
+
 def recognisePlayerIDs(cursor, names, site_id):
-    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names)) # get all playerids by the names passed in
+    q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
+    cursor.execute(q, names) # get all playerids by the names passed in
     ids = dict(cursor.fetchall()) # convert to dict
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
         if notfound: # insert them into database
             cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-            cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(notfound)) # get their new ids
+            q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
+            cursor.execute(q2, notfound) # get their new ids
             tmp = dict(cursor.fetchall())
             for n in tmp: # put them all into the same dict
                 ids[n] = tmp[n]
- 
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
     return [ids[n] for n in names]
 #end def recognisePlayerIDs

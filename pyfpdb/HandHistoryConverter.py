@@ -72,7 +72,8 @@ import gettext
 gettext.install('myapplication')
 
 class HandHistoryConverter():
-    READ_CHUNK_SIZE = 1000 # bytes to read at a time from file
+
+    READ_CHUNK_SIZE = 10000 # bytes to read at a time from file (in tail mode)
     def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
         logging.info("HandHistory init called")
         
@@ -154,7 +155,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
                     time.sleep(interval)
                     fd.seek(where)
                 else:
-                    print "%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1])
+                    logging.debug("%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1]))
                     fd = codecs.open(self.in_path, 'r', self.codepage)
                     fd.seek(where)
             else:
@@ -162,6 +163,7 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
                 data = data + newdata
                 result = self.re_SplitHands.split(data)
                 result = iter(result)
+                data = ''
                 # --x       data (- is bit of splitter, x is paragraph)     yield,...,keep
                 # [,--,x]    result of re.split (with group around splitter)
                 # ,x        our output: yield nothing, keep x
@@ -181,9 +183,10 @@ Tail the in_path file and yield handTexts separated by re_SplitHands"""
                 # We want to yield all paragraphs followed by a splitter, i.e. all even indices except the last.
                 for para in result:
                     try:
-                        splitter = result.next()
+                        result.next()
+                        splitter = True
                     except StopIteration:
-                        splitter = None
+                        splitter = False
                     if splitter: # para is followed by a splitter
                         if para: yield para # para not ''
                     else:

@@ -331,7 +331,7 @@ class Sql:
                 """
 
             self.query['get_table_name'] = """
-                    select tableName, maxSeats, category 
+                    select tableName, maxSeats, category, type 
                     from Hands,Gametypes 
                     where Hands.id = %s
                     and Gametypes.id = Hands.gametypeId

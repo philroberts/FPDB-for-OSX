@@ -206,9 +206,7 @@ class GuiBulkImport():
             self.lab_drop.set_sensitive(False)
 
 def main(argv=None):
-    """main can also be called in the python interpreter, by supplying the command line as the argument.
->>>import GuiBulkImport
->>>GuiBulkImport.main(['-f'.'~/data/hands'])"""
+    """main can also be called in the python interpreter, by supplying the command line as the argument."""
     if argv is None:
         argv = sys.argv[1:]
 
@@ -242,7 +240,7 @@ def main(argv=None):
     settings.update(config.get_default_paths())
 
     if not options.gui:
-        print """-q is deprecated. Just use "-f filename" instead"""
+        print '-q is deprecated. Just use "-f filename" instead'
         # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
         i = GuiBulkImport(db, settings, config)

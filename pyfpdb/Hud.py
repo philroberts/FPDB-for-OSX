@@ -125,7 +125,7 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.parent.kill_hud, self.table.name)
+        self.item1.connect("activate", self.parent.kill_hud, self.table_name)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')
@@ -176,7 +176,7 @@ class Hud:
             loc = self.config.get_locations(self.table.site, self.max)
             # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
             for i, w in enumerate(self.stat_windows.itervalues()):
-                (x, y) = loc[adj[i]]
+                (x, y) = loc[adj[i+1]]
                 w.relocate(x, y)
         return True
 
@@ -197,16 +197,21 @@ class Hud:
             s.window.destroy()    
         self.stat_windows = {}
 #    also kill any aux windows
-        (aux.destroy() for aux in self.aux_windows)
+        for aux in self.aux_windows:
+            aux.destroy()
         self.aux_windows = []
 
     def reposition_windows(self, *args):
-        if self.stat_windows != {} and len(self.stat_windows) > 0:
-            (x.window.move(x.x, x.y) for x in self.stat_windows.itervalues() if type(x) != int)
+        for w in self.stat_windows.itervalues():
+            if type(w) == int:
+#                print "in reposition, w =", w
+                continue
+#            print "in reposition, w =", w, w.x, w.y
+            w.window.move(w.x, w.y)
         return True
 
     def debug_stat_windows(self, *args):
-        print self.table, "\n", self.main_window.window.get_transient_for()
+#        print self.table, "\n", self.main_window.window.get_transient_for()
         for w in self.stat_windows:
             print self.stat_windows[w].window.window.get_transient_for()
                 
