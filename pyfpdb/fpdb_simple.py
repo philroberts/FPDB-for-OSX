@@ -869,11 +869,19 @@ def goesAllInOnThisLine(line):
 #end def goesAllInOnThisLine
  
 #returns the action type code (see table design) of the given action line
-ActionTypes = { 'calls':"call", 'brings in for':"blind", 'completes it to':"bet", ' posts $':"blind",
-                ' posts a dead ' : "blind", ' posts the small blind of $':"blind", ': posts big blind ':"blind",
-                ' posts the big blind of $':"blind", ': posts small & big blinds $':"blind",
-                ': posts small blind $':"blind", ': posts small blind ':"blind",
-                ' bets' : "bet", ' raises' : "bet"
+ActionTypes = { 'brings in for'                :"blind", 
+                ' posts $'                     :"blind",
+                ' posts a dead '               :"blind", 
+                ' posts the small blind of $'  :"blind", 
+                ': posts big blind '           :"blind",
+                ': posts small blind '         :"blind", 
+                ' posts the big blind of $'    :"blind", 
+                ': posts small & big blinds $' :"blind",
+                ': posts small blind $'        :"blind",
+                'calls'                        :"call", 
+                'completes it to'              :"bet", 
+                ' bets'                        :"bet", 
+                ' raises'                      :"bet"
                }
 def parseActionType(line):
     if (line.startswith("Uncalled bet")):
