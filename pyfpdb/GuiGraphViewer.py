@@ -185,7 +185,7 @@ class GuiGraphViewer (threading.Thread):
         print "self.sites[%s] set to %s" %(site, self.sites[site])
 
     def fillPlayerFrame(self, vbox):
-        for site in self.conf.supported_sites.keys():
+        for site in self.conf.get_supported_sites():
             pathHBox = gtk.HBox(False, 0)
             vbox.pack_start(pathHBox, False, True, 0)
             pathHBox.show()
@@ -194,7 +194,7 @@ class GuiGraphViewer (threading.Thread):
             self.createPlayerLine(pathHBox, site, player)
 
     def fillSitesFrame(self, vbox):
-        for site in self.conf.supported_sites.keys():
+        for site in self.conf.get_supported_sites():
             hbox = gtk.HBox(False, 0)
             vbox.pack_start(hbox, False, True, 0)
             hbox.show()
