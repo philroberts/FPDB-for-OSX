@@ -56,7 +56,6 @@ class Filters(threading.Thread):
 
         playerFrame = gtk.Frame("Hero:")
         playerFrame.set_label_align(0.0, 0.0)
-        playerFrame.show()
         vbox = gtk.VBox(False, 0)
 
         self.fillPlayerFrame(vbox)
@@ -64,7 +63,6 @@ class Filters(threading.Thread):
 
         sitesFrame = gtk.Frame("Sites:")
         sitesFrame.set_label_align(0.0, 0.0)
-        sitesFrame.show()
         vbox = gtk.VBox(False, 0)
 
         self.fillSitesFrame(vbox)
@@ -133,6 +131,9 @@ class Filters(threading.Thread):
     def registerGraphCallback(self, callback):
         self.graphButton.connect("clicked", callback, "clicked")
 
+    def cardCallback(self, widget, data=None):
+        print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+
     def createPlayerLine(self, hbox, site, player):
         label = gtk.Label(site +" id:")
         hbox.pack_start(label, False, False, 0)
@@ -153,6 +154,7 @@ class Filters(threading.Thread):
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
         cb.connect('clicked', self.__set_site_select, site)
+        cb.set_active(True)
         hbox.pack_start(cb, False, False, 0)
 
     def createGameLine(self, hbox, game):
@@ -222,6 +224,27 @@ class Filters(threading.Thread):
                 self.createLimitLine(hbox, line[0])
         else:
             print "INFO: No games returned from database"
+
+    def fillCardsFrame(self, vbox):
+        hbox1 = gtk.HBox(True,0)
+        hbox1.show()
+        vbox.pack_start(hbox1, True, True, 0)
+
+        cards = [ "A", "K","Q","J","T","9","8","7","6","5","4","3","2" ]
+
+        for j in range(0, len(cards)):
+            hbox1 = gtk.HBox(True,0)
+            hbox1.show()
+            vbox.pack_start(hbox1, True, True, 0)
+            for i in range(0, len(cards)):
+                if i < (j + 1):
+                    suit = "o"
+                else:
+                    suit = "s"
+                button = gtk.ToggleButton("%s%s%s" %(cards[i], cards[j], suit))
+                button.connect("toggled", self.cardCallback, "%s%s%s" %(cards[i], cards[j], suit))
+                hbox1.pack_start(button, True, True, 0)
+                button.show()
 
     def fillDateFrame(self, vbox):
         # Hat tip to Mika Bostrom - calendar code comes from PokerStats
