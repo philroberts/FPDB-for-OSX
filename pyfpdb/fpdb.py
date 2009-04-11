@@ -381,7 +381,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.window.connect("destroy", self.destroy)
         self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
         self.window.set_border_width(1)
-        self.window.set_size_request(1020,400)
+        self.window.set_default_size(900,720)
         self.window.set_resizable(True)
 
         self.menu_items = (
@@ -449,7 +449,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.tab_main_help(None, None)
 
-        self.status_bar = gtk.Label("Status: Connected to "+self.db.get_backend_name()+" database named "+self.db.database+" on host "+self.db.host)
+        self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
         self.main_vbox.pack_end(self.status_bar, False, True, 0)
         self.status_bar.show()
 

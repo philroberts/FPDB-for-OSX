@@ -58,13 +58,14 @@ class Importer:
         self.cursor     = None
         self.filelist   = {}
         self.dirlist    = {}
+        self.siteIds    = {}
         self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
         self.monitor    = False
-        self.updated    = {}       #Time last import was run {file:mtime}
+        self.updated    = {}         #Time last import was run {file:mtime}
         self.lines      = None
-        self.faobs      = None       #File as one big string
-        self.pos_in_file = {} # dict to remember how far we have read in the file
+        self.faobs      = None       # File as one big string
+        self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
         
@@ -109,20 +110,32 @@ class Importer:
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
         self.filelist[filename] = [site] + [filter]
+        if site not in self.siteIds:
+            # Get id from Sites table in DB
+            self.fdb.cursor.execute(self.fdb.sql.query['getSiteId'], (site,))
+            result = self.fdb.cursor.fetchall()
+            if len(result) == 1:
+                self.siteIds[site] = result[0][0]
+            else:
+                if len(result) == 0:
+                    print "[ERROR] Database ID for %s not found" % site
+                else:
+                    print "[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet" % site
+
 
     # Called from GuiBulkImport to add a file or directory.
-    def addBulkImportImportFileOrDir(self, inputPath,filter = "passthrough"):
+    def addBulkImportImportFileOrDir(self, inputPath, site = "PokerStars"):
         """Add a file or directory for bulk import"""
-        
+        filter = self.config.hhcs[site].converter
         # Bulk import never monitors
         # if directory, add all files in it. Otherwise add single file.
         # TODO: only add sane files?
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site="default", filter=filter)
+                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site=site, filter=filter)
         else:
-            self.addImportFile(inputPath, site="default", filter=filter)
+            self.addImportFile(inputPath, site=site, filter=filter)
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
@@ -193,7 +206,7 @@ class Importer:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
         for file in self.filelist:
-            if os.path.exists(file):            
+            if os.path.exists(file):
                 stat_info = os.stat(file)
                 try: 
                     lastupdate = self.updated[file]
@@ -213,8 +226,8 @@ class Importer:
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
             else:
                 removeFromFileList[file] = True
-        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)                       
-        
+        self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
+
         for file in self.removeFromFileList:
             if file in self.filelist:
                 del self.filelist[file]
@@ -294,10 +307,9 @@ class Importer:
             print "TODO: implement importing tournament summaries"
             #self.faobs = readfile(inputFile)
             #self.parseTourneyHistory()
-            return 0
-        
-        site = fpdb_simple.recogniseSite(firstline)
-        category = fpdb_simple.recogniseCategory(firstline)
+            return (0,0,0,1,0)
+
+        category=fpdb_simple.recogniseCategory(firstline)
 
         startpos = 0
         stored = 0 #counter
@@ -305,61 +317,30 @@ class Importer:
         partial = 0 #counter
         errors = 0 #counter
 
-        for i in xrange (len(self.lines)): #main loop, iterates through the lines of a file and calls the appropriate parser method
-            if len(self.lines[i]) < 2:
-                endpos = i
-                hand = self.lines[startpos:endpos]
+        for i in xrange (len(self.lines)):
+            if (len(self.lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
+                endpos=i
+                hand=self.lines[startpos:endpos]
         
-                if len(hand[0]) < 2:
-                    hand = hand[1:]
-        
-                cancelled=False
-                damaged=False
-                if (site=="ftp"):
-                    for i in range (len(hand)):
-                        if hand[i].endswith(" has been canceled"): #this is their typo. this is a typo, right?
-                            cancelled = True
+                if (len(hand[0])<2):
+                    hand=hand[1:]
 
-                        #FTP generates lines looking like:
-                        #Seat 1: IOS Seat 2: kashman59 (big blind) showed [8c 9d] and won ($3.25) with a pair of Eights
-                        #ie. Seat X multiple times on the same line in the summary section, when a new player sits down in the
-                        #middle of the hand.
-                        #TODO: Deal with this properly, either fix the file or make the parsing code work with this line.
-                        if "Seat" in hand[i]:
-                            mo = re.search(" Seat [0-9]+: ", hand[i])
-                            if mo:
-                                print "mo=", mo, "\nmo.start=", mo.start(),"\nhand[i]=",hand[i]
-                                hand.insert(i+1, hand[i][mo.start()+1:])
-                                hand[i] = hand[i][0:mo.start()]
-                
-                if len(hand) < 3:
+        
+                if (len(hand)<3):
                     pass
-                    #todo: the above 2 lines are kind of a dirty hack, the mentioned circumstances should be handled elsewhere but that doesnt work with DOS/Win EOL. actually this doesnt work.
-                elif hand[0].endswith(" (partial)"): #partial hand - do nothing
-                    partial += 1
-                elif "Seat" not in hand[1] and "Seat" not in hand[2] and "Seat" not in hand[3]:
-                    partial += 1
-                elif cancelled or damaged:
-                    partial += 1
-                    if damaged:
-                        print """
-                                 DEBUG: Partial hand triggered by a line containing 'Seat X:' twice. This is a
-                                 bug in the FTP software when a player sits down in the middle of a hand.
-                                 Adding a newline after the player name will fix the issue
-                              """
-                        print "File: %s" %(file)
-                        print "Line: %s" %(startpos)
-                else: #normal processing
-                    isTourney = fpdb_simple.isTourney(hand[0])
+                    #TODO: This is ugly - we didn't actually find the start of the
+                    # hand with the outer loop so we test again...
+                else:
+                    isTourney=fpdb_simple.isTourney(hand[0])
                     if not isTourney:
-                        hand = fpdb_simple.filterAnteBlindFold(site,hand)
+                        hand = fpdb_simple.filterAnteBlindFold(hand)
                     self.hand=hand
-                    
+
                     try:
                         handsId = fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                           ,self.fdb.cursor, site, category, hand, self.config)
+                                                           ,self.fdb.cursor, self.siteIds[site], category, hand, self.config)
                         self.fdb.db.commit()
-                        
+
                         stored += 1
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
@@ -370,7 +351,7 @@ class Importer:
                     except (ValueError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
-                
+
                         if (self.settings['failOnError']):
                             self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
@@ -378,26 +359,25 @@ class Importer:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
 
-                        #fe.printStackTrace() #todo: get stacktrace
                         self.fdb.db.rollback()
-                        
+
                         if self.settings['failOnError']:
                             self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
-                        
+
                     if self.settings['minPrint']:
-                        if not ((stored+duplicates+partial+errors) % self.settings['minPrint']):
-                            print "stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors
+                        if not ((stored+duplicates+errors) % self.settings['minPrint']):
+                            print "stored:", stored, "duplicates:", duplicates, "errors:", errors
             
                     if self.settings['handCount']:
-                        if ((stored+duplicates+partial+errors) >= self.settings['handCount']):
+                        if ((stored+duplicates+errors) >= self.settings['handCount']):
                             if not self.settings['quiet']:
                                 print "quitting due to reaching the amount of hands to be imported"
-                                print "Total stored:", stored, "duplicates:", duplicates, "partial/damaged:", partial, "errors:", errors, " time:", (time() - starttime)
+                                print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
                             sys.exit(0)
                 startpos = endpos
         ttime = time() - starttime
-        print "\rTotal stored:", stored, "duplicates:", duplicates, "partial:", partial, "errors:", errors, " time:", ttime
+        print "\rTotal stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", ttime
         
         if not stored:
             if duplicates:
@@ -408,16 +388,11 @@ class Importer:
             else:
                 print "failed to read a single hand from file:", inputFile
                 handsId=0
-            #todo: this will cause return of an unstored hand number if the last hand was error or partial
+            #todo: this will cause return of an unstored hand number if the last hand was error
         self.fdb.db.commit()
         self.handsId=handsId
         return (stored, duplicates, partial, errors, ttime)
 
-    def parseTourneyHistory(self):
-        print "Tourney history parser stub"
-        #Find tournament boundaries.
-        #print self.foabs
-        
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
         print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
