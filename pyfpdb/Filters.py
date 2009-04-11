@@ -96,8 +96,7 @@ class Filters(threading.Thread):
         self.fillDateFrame(vbox)
         dateFrame.add(vbox)
 
-        graphButton=gtk.Button("Generate Graph")
-        #graphButton.connect("clicked", self.generateGraph, "cliced data")
+        self.graphButton=gtk.Button("Generate Graph")
 
         self.fig = None
         self.exportButton=gtk.Button("Export to File")
@@ -109,7 +108,7 @@ class Filters(threading.Thread):
         self.mainVBox.add(gamesFrame)
         self.mainVBox.add(limitsFrame)
         self.mainVBox.add(dateFrame)
-        self.mainVBox.add(graphButton)
+        self.mainVBox.add(self.graphButton)
         self.mainVBox.add(self.exportButton)
 
         self.mainVBox.show_all()
@@ -118,6 +117,21 @@ class Filters(threading.Thread):
         """returns the vbox of this thread"""
         return self.mainVBox
     #end def get_vbox
+
+    def getSites(self):
+        return self.sites
+
+    def getSiteIds(self):
+        return self.siteid
+
+    def getHeroes(self):
+        return self.heroes
+
+    def getDates(self):
+        return self.__get_dates()
+
+    def registerGraphCallback(self, callback):
+        self.graphButton.connect("clicked", callback, "clicked")
 
     def createPlayerLine(self, hbox, site, player):
         label = gtk.Label(site +" id:")
@@ -266,6 +280,12 @@ class Filters(threading.Thread):
     def __get_dates(self):
         t1 = self.start_date.get_text()
         t2 = self.end_date.get_text()
+
+        if t1 == '':
+            t1 = '1970-01-01'
+        if t2 == '':
+            t2 = '2020-12-12'
+
         return (t1, t2)
 
     def __get_date(self, widget, calendar, entry, win):
