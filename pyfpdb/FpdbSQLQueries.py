@@ -1153,6 +1153,12 @@ class FpdbSQLQueries:
                         and hprof2.PlPosition = stats.PlPosition)
                 order by stats.category, stats.limittype, stats.bigBlind, cast(stats.PlPosition as signed)
                 """
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
+        
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+
 
 if __name__== "__main__":
         from optparse import OptionParser
