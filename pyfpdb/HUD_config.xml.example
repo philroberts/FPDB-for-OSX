@@ -12,7 +12,8 @@
 	          screen_name="YOUR SCREEN NAME HERE" 
 	          site_path="C:/Program Files/PokerStars/" 
 	          HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/" 
-	          decoder="pokerstars_decode_table" 
+	          decoder="pokerstars_decode_table"
+              converter="PokerStarsToFpdb"
 	          bgcolor="#000000" 
 	          fgcolor="#FFFFFF" 
 	          hudopacity="1.0" 
@@ -73,6 +74,7 @@
 	          site_path="C:/Program Files/Full Tilt Poker/" 
 	          HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/" 
 	          decoder="fulltilt_decode_table" 
+              converter="FulltiltToFpdb"
 	          bgcolor="#000000" 
 	          fgcolor="#FFFFFF" 
 	          hudopacity="1.0" 
@@ -121,6 +123,7 @@
 	          site_path="" 
 	          HH_path="" 
 	          decoder="everleaf_decode_table" 
+              converter="EverleafToFpdb"
 	          supported_games="holdem">
 	        <layout fav_seat="0" height="547" max="8" width="794">
 	        	<location seat="1" x="640" y="64">  </location>
