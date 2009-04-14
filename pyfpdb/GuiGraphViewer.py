@@ -124,9 +124,10 @@ class GuiGraphViewer (threading.Thread):
         sitenos = []
         playerids = []
 
-        sites = self.filters.getSites()
-        heroes = self.filters.getHeroes()
+        sites   = self.filters.getSites()
+        heroes  = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
+        limits  = self.filters.getLimits()
         # Which sites are selected?
         for site in sites:
             if sites[site] == True:
@@ -141,18 +142,20 @@ class GuiGraphViewer (threading.Thread):
             print "No sites selected - defaulting to PokerStars"
             sitenos = [2]
 
-
         if not playerids:
             print "No player ids found"
             return
 
+        if not limits:
+            print "No limits found"
+            return
 
         #Set graph properties
         self.ax = self.fig.add_subplot(111)
 
         #Get graph data from DB
         starttime = time()
-        line = self.getRingProfitGraph(playerids, sitenos)
+        line = self.getRingProfitGraph(playerids, sitenos, limits)
         print "Graph generated in: %s" %(time() - starttime)
 
         self.ax.set_title("Profit graph for ring games")
@@ -182,7 +185,7 @@ class GuiGraphViewer (threading.Thread):
             self.exportButton.set_sensitive(True)
     #end of def showClicked
 
-    def getRingProfitGraph(self, names, sites):
+    def getRingProfitGraph(self, names, sites, limits):
         tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
         start_date, end_date = self.filters.getDates()
@@ -192,18 +195,22 @@ class GuiGraphViewer (threading.Thread):
         # [5L] into (5) not (5,) and [5L, 2829L] into (5, 2829)
         nametest = str(tuple(names))
         sitetest = str(tuple(sites))
+        limittest = str(tuple(limits))
         nametest = nametest.replace("L", "")
         nametest = nametest.replace(",)",")")
         sitetest = sitetest.replace(",)",")")
+        limittest = limittest.replace("L", "")
+        limittest = limittest.replace(",)",")")
 
         #Must be a nicer way to deal with tuples of size 1 ie. (2,) - which makes sql barf
         tmp = tmp.replace("<player_test>", nametest)
         tmp = tmp.replace("<site_test>", sitetest)
         tmp = tmp.replace("<startdate_test>", start_date)
         tmp = tmp.replace("<enddate_test>", end_date)
+        tmp = tmp.replace("<limit_test>", limittest)
 
-#        print "DEBUG: sql query:"
-#        print tmp
+        #print "DEBUG: sql query:"
+        #print tmp
         self.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()

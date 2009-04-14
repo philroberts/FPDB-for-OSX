@@ -125,6 +125,13 @@ class Filters(threading.Thread):
     def getHeroes(self):
         return self.heroes
 
+    def getLimits(self):
+        ltuple = []
+        for l in self.limits:
+            if self.limits[l] == True:
+                ltuple.append(l)
+        return ltuple
+
     def getDates(self):
         return self.__get_dates()
 
