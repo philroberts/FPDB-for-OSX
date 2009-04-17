@@ -30,7 +30,7 @@ import fpdb_db
 import FpdbSQLQueries
 
 class Filters(threading.Thread):
-    def __init__(self, db, settings, config, qdict, debug=True):
+    def __init__(self, db, settings, config, qdict, display = {},debug=True):
         self.debug=debug
         #print "start of GraphViewer constructor"
         self.db=db
@@ -78,7 +78,7 @@ class Filters(threading.Thread):
         gamesFrame.add(vbox)
 
         # Limits
-        limitsFrame = gtk.Frame("Games:")
+        limitsFrame = gtk.Frame("Limits:")
         limitsFrame.set_label_align(0.0, 0.0)
         limitsFrame.show()
         vbox = gtk.VBox(False, 0)
@@ -94,22 +94,37 @@ class Filters(threading.Thread):
         self.fillDateFrame(vbox)
         dateFrame.add(vbox)
 
-        self.graphButton=gtk.Button("Generate Graph")
+        self.Button1=gtk.Button("Unamed 1")
 
-        self.fig = None
-        self.exportButton=gtk.Button("Export to File")
+        self.Button2=gtk.Button("Unamed 2")
         #self.exportButton.connect("clicked", self.exportGraph, "show clicked")
-        self.exportButton.set_sensitive(False)
+        self.Button2.set_sensitive(False)
 
         self.mainVBox.add(playerFrame)
         self.mainVBox.add(sitesFrame)
         self.mainVBox.add(gamesFrame)
         self.mainVBox.add(limitsFrame)
         self.mainVBox.add(dateFrame)
-        self.mainVBox.add(self.graphButton)
-        self.mainVBox.add(self.exportButton)
+        self.mainVBox.add(self.Button1)
+        self.mainVBox.add(self.Button2)
 
         self.mainVBox.show_all()
+
+        # Should do this cleaner
+        if display["Heroes"] == False:
+            playerFrame.hide()
+        if display["Sites"] == False:
+            sitesFrame.hide()
+        if display["Games"] == False:
+            gamesFrame.hide()
+        if display["Limits"] == False:
+            limitsFrame.hide()
+        if display["Dates"] == False:
+            dateFrame.hide()
+        if display["Button1"] == False:
+            self.Button1.hide()
+        if display["Button2"] == False:
+            self.Button2.hide()
 
     def get_vbox(self):
         """returns the vbox of this thread"""
@@ -135,8 +150,17 @@ class Filters(threading.Thread):
     def getDates(self):
         return self.__get_dates()
 
-    def registerGraphCallback(self, callback):
-        self.graphButton.connect("clicked", callback, "clicked")
+    def registerButton1Name(self, title):
+        self.Button1.set_label(title)
+
+    def registerButton1Callback(self, callback):
+        self.Button1.connect("clicked", callback, "clicked")
+
+    def registerButton2Name(self, title):
+        self.Button2.set_label(title)
+
+    def registerButton2Callback(self, callback):
+        self.Button2.connect("clicked", callback, "clicked")
 
     def cardCallback(self, widget, data=None):
         print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])

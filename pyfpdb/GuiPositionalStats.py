@@ -43,7 +43,16 @@ class GuiPositionalStats (threading.Thread):
         settings.update(config.get_import_parameters())
         settings.update(config.get_default_paths())
 
-        self.filters = Filters.Filters(db, settings, config, querylist)
+        filters_display = { "Heroes"  :  True,
+                            "Sites"   :  True,
+                            "Games"   :  False,
+                            "Limits"  :  False,
+                            "Dates"   :  False,
+                            "Button1" :  False,
+                            "Button2" :  False
+                          }
+
+        self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
 
         self.stat_table = None
         self.stats_frame = None

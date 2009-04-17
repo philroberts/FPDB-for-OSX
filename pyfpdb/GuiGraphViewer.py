@@ -53,8 +53,20 @@ class GuiGraphViewer (threading.Thread):
         self.sql=querylist
         self.conf = config
 
-        self.filters = Filters.Filters(db, settings, config, querylist)
-        self.filters.registerGraphCallback(self.generateGraph)
+        filters_display = { "Heroes"  :  True,
+                            "Sites"   :  True,
+                            "Games"   :  True,
+                            "Limits"  :  True,
+                            "Dates"   :  True,
+                            "Button1" :  True,
+                            "Button2" :  True
+                          }
+
+        self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
+        self.filters.registerButton1Name("Refresh Graph")
+        self.filters.registerButton1Callback(self.generateGraph)
+        self.filters.registerButton2Name("Export to File")
+        self.filters.registerButton2Callback(self.exportGraph)
 
         self.mainHBox = gtk.HBox(False, 0)
         self.mainHBox.show()
@@ -69,9 +81,7 @@ class GuiGraphViewer (threading.Thread):
         self.mainHBox.add(self.hpane)
 
         self.fig = None
-        self.exportButton=gtk.Button("Export to File")
-        self.exportButton.connect("clicked", self.exportGraph, "show clicked")
-        self.exportButton.set_sensitive(False)
+        #self.exportButton.set_sensitive(False)
 
         self.fig = Figure(figsize=(5,4), dpi=100)
         self.canvas = None
