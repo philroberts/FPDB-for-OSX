@@ -267,6 +267,7 @@ class fpdb:
             self.settings['db-databaseName'],
             self.settings['db-user'], 
             self.settings['db-password'])
+<<<<<<< HEAD:pyfpdb/fpdb.py
         if self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
@@ -287,6 +288,7 @@ class fpdb:
 
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
+        self.db.db.rollback()
     #end def load_profile
 
     def not_implemented(self):
