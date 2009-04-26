@@ -2404,7 +2404,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
             # Try to do the update first:
             num = cursor.execute("""UPDATE HudCache
 SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
-    street0_3B4BChance=%s, street0_3B4BDone=%s,
+    street0_3B4BChance=street0_3B4BChance+%s, street0_3B4BDone=street0_3B4BDone+%s,
     street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
     street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
     street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,
