@@ -73,6 +73,7 @@ class Importer:
         
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
+        self.fdb.db.rollback()
 
     #Set functions
     def setCallHud(self, value):
@@ -367,6 +368,7 @@ class Importer:
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except fpdb_simple.DuplicateError:
                         duplicates += 1
+                        self.fdb.db.rollback()
                     except (ValueError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
@@ -374,6 +376,8 @@ class Importer:
                         if (self.settings['failOnError']):
                             self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
+                        else:
+                            self.fdb.db.rollback()
                     except (fpdb_simple.FpdbError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
