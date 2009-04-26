@@ -287,6 +287,7 @@ class fpdb:
 
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
+        self.db.db.rollback()
     #end def load_profile
 
     def not_implemented(self):
@@ -296,7 +297,7 @@ class fpdb:
     def obtain_global_lock(self):
         print "todo: implement obtain_global_lock (users: pls ignore this)"
     #end def obtain_global_lock
-
+    
     def quit(self, widget, data):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
@@ -340,7 +341,6 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
-
 
     def tab_main_help(self, widget, data):
         """Displays a tab with the main fpdb help screen"""
