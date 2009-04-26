@@ -2109,6 +2109,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
             firstPfCallByNo=i
             firstPfCallerId=actionTypeByNo[0][i][0]
             break
+    firstPlayId = firstPfCallerId
+    if firstPfRaiseByNo <> -1:
+        if firstPfRaiseByNo < firstPfCallByNo or firstPfCallByNo == -1:
+            firstPlayId = firstPfRaiserId
+
     
     cutoffId=-1
     buttonId=-1
@@ -2116,13 +2121,13 @@ sure to also change the following storage method and table_viewer.prepare_data i
     bbId=-1
     if base=="hold":
         for player in range(len(positions)):
-            if positions==1:
+            if positions[player]==1:
                 cutoffId=player_ids[player]
-            if positions==0:
+            if positions[player]==0:
                 buttonId=player_ids[player]
-            if positions=='S':
+            if positions[player]=='S':
                 sbId=player_ids[player]
-            if positions=='B':
+            if positions[player]=='B':
                 bbId=player_ids[player]
             
     someoneStole=False
@@ -2183,24 +2188,27 @@ sure to also change the following storage method and table_viewer.prepare_data i
         
         #steal calculations
         if base=="hold":
-            if len(player_ids)>=5: #no point otherwise
+            if len(player_ids)>=3: # no point otherwise  # was 5, use 3 to match pokertracker definition
                 if positions[player]==1:
-                    if firstPfRaiserId==player_ids[player]:
-                        myStealAttemptChance=True
+                    if      firstPfRaiserId==player_ids[player] \
+                       and (firstPfCallByNo==-1 or firstPfCallByNo>firstPfRaiseByNo):
                         myStealAttempted=True
-                    elif firstPfRaiserId==buttonId or firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+                        myStealAttemptChance=True
+                    if firstPlayId==cutoffId or firstPlayId==buttonId or firstPlayId==sbId or firstPlayId==bbId or firstPlayId==-1:
                         myStealAttemptChance=True
                 if positions[player]==0:
-                    if firstPfRaiserId==player_ids[player]:
-                        myStealAttemptChance=True
+                    if      firstPfRaiserId==player_ids[player] \
+                       and (firstPfCallByNo==-1 or firstPfCallByNo>firstPfRaiseByNo):
                         myStealAttempted=True
-                    elif firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+                        myStealAttemptChance=True
+                    if firstPlayId==buttonId or firstPlayId==sbId or firstPlayId==bbId or firstPlayId==-1:
                         myStealAttemptChance=True
                 if positions[player]=='S':
-                    if firstPfRaiserId==player_ids[player]:
-                        myStealAttemptChance=True
+                    if      firstPfRaiserId==player_ids[player] \
+                       and (firstPfCallByNo==-1 or firstPfCallByNo>firstPfRaiseByNo):
                         myStealAttempted=True
-                    elif firstPfRaiserId==bbId or firstPfRaiserId==-1:
+                        myStealAttemptChance=True
+                    if firstPlayId==sbId or firstPlayId==bbId or firstPlayId==-1:
                         myStealAttemptChance=True
                 if positions[player]=='B':
                     pass
