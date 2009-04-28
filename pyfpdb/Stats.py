@@ -191,6 +191,27 @@ def wtsd(stat_dict, player):
                 '% went to showdown'
                 )
 
+def wtsd_0(stat_dict, player):
+    """    Went to SD when saw flop/4th."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['sd'])/float(stat_dict[player]['saw_f'])
+        return (stat, 
+                '%2.0f'      % (100*stat) + '%', 
+                'w=%2.0f'    % (100*stat) + '%', 
+                'wtsd=%2.0f' % (100*stat) + '%', 
+                '(%d/%d)'    % (stat_dict[player]['sd'], stat_dict[player]['saw_f']),
+                '% went to showdown'
+                )
+    except:
+        return (stat, 
+                '%2.0f'      % (0) + '%', 
+                'w=%2.0f'    % (0) + '%', 
+                'wtsd=%2.0f' % (0) + '%', 
+                '(%d/%d)'    % (0, 0),
+                '% went to showdown'
+                )
+
 def wmsd(stat_dict, player):
     """    Won $ at showdown."""
     stat = 0.0
@@ -208,6 +229,27 @@ def wmsd(stat_dict, player):
                 '%3.1f'      % (0) + '%', 
                 'w=%3.1f'    % (0) + '%', 
                 'wmsd=%3.1f' % (0) + '%', 
+                '(%d/%d)'    % (0, 0),
+                '% won money at showdown'
+                )
+
+def wmsd_0(stat_dict, player):
+    """    Won $ at showdown."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['wmsd'])/float(stat_dict[player]['sd'])
+        return (stat, 
+                '%2.0f'      % (100*stat) + '%', 
+                'w=%2.0f'    % (100*stat) + '%', 
+                'wmsd=%2.0f' % (100*stat) + '%', 
+                '(%5.1f/%d)'    % (float(stat_dict[player]['wmsd']), stat_dict[player]['sd']),
+                '% won money at showdown'
+                )
+    except:
+        return (stat, 
+                '%2.0f'      % (0) + '%', 
+                'w=%2.0f'    % (0) + '%', 
+                'wmsd=%2.0f' % (0) + '%', 
                 '(%d/%d)'    % (0, 0),
                 '% won money at showdown'
                 )
@@ -313,6 +355,27 @@ def steal(stat_dict, player):
                 )
     except:
         return (stat, 'NA', 'st=NA', 'steal=NA', '(0/0)', '% steal attempted')
+           
+def steal_0(stat_dict, player):
+    """    Steal %."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['steal'])/float(stat_dict[player]['steal_opp'])
+        return (stat,
+                '%2.0f'        % (100*stat) + '%', 
+                'st=%2.0f'     % (100*stat) + '%', 
+                'steal=%2.0f' % (100*stat) + '%', 
+                '(%d/%d)'      % (stat_dict[player]['steal'], stat_dict[player]['steal_opp']),
+                '% steal attempted'
+                )
+    except:
+        return (stat,
+                '%2.0f'        % (0) + '%', 
+                'st=%2.0f'     % (0) + '%', 
+                'steal=%2.0f' % (0) + '%', 
+                '(%d/%d)'      % (0, 0),
+                '% steal attempted'
+                )
 
 def f_SB_steal(stat_dict, player):
     """    Folded SB to steal."""
@@ -343,6 +406,26 @@ def f_BB_steal(stat_dict, player):
                 '%3.1f'        % (100*stat) + '%', 
                 'fBB=%3.1f'     % (100*stat) + '%', 
                 'fBB_s=%3.1f' % (100*stat) + '%', 
+                '(%d/%d)'      % (stat_dict[player]['bbnotdef'], stat_dict[player]['bbstolen']),
+                '% folded BB to steal'
+                )
+    except:
+        return (stat,
+                'NA',
+                'fBB=NA',
+                'fBB_s=NA',
+                '(0/0)',
+                '% folded BB to steal')
+
+def f_BB_steal_0(stat_dict, player):
+    """    Folded BB to steal."""
+    stat = 0.0
+    try:
+        stat = float(stat_dict[player]['bbnotdef'])/float(stat_dict[player]['bbstolen'])
+        return (stat,
+                '%2.0f'        % (100*stat) + '%', 
+                'fBB=%2.0f'     % (100*stat) + '%', 
+                'fBB_s=%2.0f' % (100*stat) + '%', 
                 '(%d/%d)'      % (stat_dict[player]['bbnotdef'], stat_dict[player]['bbstolen']),
                 '% folded BB to steal'
                 )
