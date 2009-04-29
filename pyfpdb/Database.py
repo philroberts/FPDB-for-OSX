@@ -200,7 +200,10 @@ class Database:
         for row in c.fetchall():
             t_dict = {}
             for name, val in zip(colnames, row):
-                t_dict[name] = val
+                t_dict[name.lower()] = val
+#                print t_dict
+            t_dict['screen_name'] = names[t_dict['player_id']]
+            t_dict['seat']        = seats[t_dict['player_id']]
             stat_dict[t_dict['player_id']] = t_dict
         return stat_dict
             

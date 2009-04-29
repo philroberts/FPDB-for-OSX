@@ -32,6 +32,8 @@
 #           float(stat_dict[player]['vpip'])/float(stat_dict[player]['n']).  You can see how the 
 #           keys of stat_dict relate to the column names in HudCache by inspecting
 #           the proper section of the SQL.py module.
+#           The stat_dict keys should be in lower case, i.e. vpip not VPIP, since
+#           postgres returns the column names in lower case.
 #        3  You have to write a small function for each stat you want to add.  See
 #           the vpip() function for example.  This function has to be protected from
 #           exceptions, using something like the try:/except: paragraphs in vpip.
@@ -316,12 +318,12 @@ def f_SB_steal(stat_dict, player):
     """    Folded SB to steal."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['SBnotDef'])/float(stat_dict[player]['SBstolen'])
+        stat = float(stat_dict[player]['sbnotdef'])/float(stat_dict[player]['sbstolen'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'fSB=%3.1f'     % (100*stat) + '%', 
                 'fSB_s=%3.1f' % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['SBnotDef'], stat_dict[player]['SBstolen']),
+                '(%d/%d)'      % (stat_dict[player]['sbnotdef'], stat_dict[player]['sbstolen']),
                 '% folded SB to steal'
                 )
     except:
@@ -336,12 +338,12 @@ def f_BB_steal(stat_dict, player):
     """    Folded BB to steal."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['BBnotDef'])/float(stat_dict[player]['BBstolen'])
+        stat = float(stat_dict[player]['bbnotdef'])/float(stat_dict[player]['bbstolen'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'fBB=%3.1f'     % (100*stat) + '%', 
                 'fBB_s=%3.1f' % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['BBnotDef'], stat_dict[player]['BBstolen']),
+                '(%d/%d)'      % (stat_dict[player]['bbnotdef'], stat_dict[player]['bbstolen']),
                 '% folded BB to steal'
                 )
     except:
@@ -356,12 +358,12 @@ def three_B_0(stat_dict, player):
     """    Three bet preflop/3rd."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['TB_0'])/float(stat_dict[player]['TB_opp_0'])
+        stat = float(stat_dict[player]['tb_0'])/float(stat_dict[player]['tb_opp_0'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 '3B=%3.1f'     % (100*stat) + '%', 
                 '3B_pf=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['TB_0'], stat_dict[player]['TB_opp_0']),
+                '(%d/%d)'      % (stat_dict[player]['tb_0'], stat_dict[player]['tb_opp_0']),
                 '% 3/4 Bet preflop/3rd'
                 )
     except:
@@ -537,12 +539,12 @@ def cb_1(stat_dict, player):
     """    Flop continuation bet."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['CB_1'])/float(stat_dict[player]['CB_opp_1'])
+        stat = float(stat_dict[player]['cb_1'])/float(stat_dict[player]['cb_opp_1'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'cb1=%3.1f'     % (100*stat) + '%', 
                 'cb_1=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['CB_1'], stat_dict[player]['CB_opp_1']),
+                '(%d/%d)'      % (stat_dict[player]['cb_1'], stat_dict[player]['cb_opp_1']),
                 '% continuation bet flop/4th'
                 )
     except:
@@ -558,12 +560,12 @@ def cb_2(stat_dict, player):
     """    Turn continuation bet."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['CB_2'])/float(stat_dict[player]['CB_opp_2'])
+        stat = float(stat_dict[player]['cb_2'])/float(stat_dict[player]['cb_opp_2'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'cb2=%3.1f'     % (100*stat) + '%', 
                 'cb_2=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['CB_2'], stat_dict[player]['CB_opp_2']),
+                '(%d/%d)'      % (stat_dict[player]['cb_2'], stat_dict[player]['cb_opp_2']),
                 '% continuation bet turn/5th'
                 )
     except:
@@ -579,12 +581,12 @@ def cb_3(stat_dict, player):
     """    River continuation bet."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['CB_3'])/float(stat_dict[player]['CB_opp_3'])
+        stat = float(stat_dict[player]['cb_3'])/float(stat_dict[player]['cb_opp_3'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'cb3=%3.1f'     % (100*stat) + '%', 
                 'cb_3=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['CB_3'], stat_dict[player]['CB_opp_3']),
+                '(%d/%d)'      % (stat_dict[player]['cb_3'], stat_dict[player]['cb_opp_3']),
                 '% continuation bet river/6th'
                 )
     except:
@@ -600,12 +602,12 @@ def cb_4(stat_dict, player):
     """    7th street continuation bet."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['CB_4'])/float(stat_dict[player]['CB_opp_4'])
+        stat = float(stat_dict[player]['cb_4'])/float(stat_dict[player]['cb_opp_4'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'cb4=%3.1f'     % (100*stat) + '%', 
                 'cb_4=%3.1f'  % (100*stat) + '%', 
-                '(%d/%d)'      % (stat_dict[player]['CB_4'], stat_dict[player]['CB_opp_4']),
+                '(%d/%d)'      % (stat_dict[player]['cb_4'], stat_dict[player]['cb_opp_4']),
                 '% continuation bet 7th'
                 )
     except:
@@ -719,10 +721,10 @@ if __name__== "__main__":
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'fold_f') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'wmsd') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'steal') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_SB_steal') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_BB_steal') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_B_0') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'WMsF') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_sb_steal') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_bb_steal') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_b_0') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'wmsf') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_1') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_2') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_3') 
