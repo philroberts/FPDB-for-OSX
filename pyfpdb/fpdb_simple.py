@@ -18,14 +18,18 @@
 #This file contains simple functions for fpdb
  
 import datetime
+import time
 import re
  
-PS=1
-FTP=2
+PS  = 1
+FTP = 2
 
-MYSQL_INNODB=2
-PGSQL=3
-SQLITE=4
+# TODO: these constants are also used in fpdb_save_to_db and others, is there a way to do like C #define, and #include ?
+MYSQL_INNODB    = 2
+PGSQL           = 3
+SQLITE          = 4
+
+
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
 #                                            1 - drop during bulk import
@@ -48,7 +52,7 @@ indexes = [
           , [ # indexes for postgres (list index 3)
               {'tab':'Boardcards',      'col':'handId',            'drop':0}
             , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
-            , {'tab':'Hands',           'col':'gametypeId',        'drop':1}
+            , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
             , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
             , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
             , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
@@ -156,12 +160,14 @@ def prepareBulkImport(fdb):
                     except:
                         pass
             elif fdb.backend == PGSQL:
-                print "dropping pg fk", fk['fktab'], fk['fkcol']
+#    DON'T FORGET TO RECREATE THEM!!
+                #print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
+                #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                    fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+                    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
                 except:
-                    pass
+                    print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -175,12 +181,16 @@ def prepareBulkImport(fdb):
                 except:
                     pass
             elif fdb.backend == PGSQL:
-                print "dropping pg index ", idx['tab'], idx['col']
+#    DON'T FORGET TO RECREATE THEM!!
+                #print "Index dropping disabled for postgresql."
+                #print "dropping pg index ", idx['tab'], idx['col']
                 # mod to use tab_col for index name?
                 try:
                     fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
+		    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                    #print "dropped  pg index ", idx['tab'], idx['col']
                 except:
-                    pass
+		    print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col']) 
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -241,6 +251,7 @@ def afterBulkImport(fdb):
                 except:
                     pass
             elif fdb.backend == PGSQL:
+#                pass
                 # mod to use tab_col for index name?
                 print "creating pg index ", idx['tab'], idx['col']
                 try:
@@ -326,309 +337,7 @@ def analyzeDB(fdb):
         except:
             print "Error during vacuum"
         fdb.db.set_isolation_level(1)   # go back to normal isolation level
-#end def analyzeDB
-
-
-# Data Structures for index and foreign key creation
-# drop_code is an int with possible values:  0 - don't drop for bulk import
-#                                            1 - drop during bulk import
-# db differences: 
-# - note that mysql automatically creates indexes on constrained columns when
-#   foreign keys are created, while postgres does not. Hence the much longer list
-#   of indexes is required for postgres.
-# all primary keys are left on all the time
-#
-#             table     column           drop_code
-
-indexes = [
-            [ ] # no db with index 0
-          , [ ] # no db with index 1
-          , [ # indexes for mysql (list index 2)
-              {'tab':'Players',  'col':'name',          'drop':0}
-            , {'tab':'Hands',    'col':'siteHandNo',    'drop':0}
-            , {'tab':'Tourneys', 'col':'siteTourneyNo', 'drop':0}
-            ]
-          , [ # indexes for postgres (list index 3)
-              {'tab':'Boardcards',      'col':'handId',            'drop':0}
-            , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
-            , {'tab':'Hands',           'col':'gametypeId',        'drop':1}
-            , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-            , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
-            , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
-            , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
-            , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-            , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
-            , {'tab':'HudCache',        'col':'playerId',          'drop':0}
-            , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
-            , {'tab':'Players',         'col':'siteId',            'drop':1}
-            , {'tab':'Players',         'col':'name',              'drop':0}
-            , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
-            , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
-            , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
-            , {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}
-            , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-            ]
-          ]
-
-foreignKeys = [
-                [ ] # no db with index 0
-              , [ ] # no db with index 1
-              , [ # foreign keys for mysql
-                  {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
-                , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
-                ]
-              , [ # foreign keys for postgres
-                  {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
-                , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
-                , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
-                , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
-                , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
-                ]
-              ]
-
-
-# MySQL Notes:
-#    "FOREIGN KEY (handId) REFERENCES Hands(id)" - requires index on Hands.id
-#                                                - creates index handId on <thistable>.handId
-# alter table t drop foreign key fk
-# alter table t add foreign key (fkcol) references tab(rcol)
-# alter table t add constraint c foreign key (fkcol) references tab(rcol)
-# (fkcol is used for foreigh key name)
-
-# mysql to list indexes:
-#   SELECT table_name, index_name, non_unique, column_name 
-#   FROM INFORMATION_SCHEMA.STATISTICS
-#     WHERE table_name = 'tbl_name'
-#     AND table_schema = 'db_name'
-#   ORDER BY table_name, index_name, seq_in_index
-#
-# ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)
-# ALTER TABLE tab DROP INDEX idx
-
-# mysql to list fks:
-#   SELECT constraint_name, table_name, column_name, referenced_table_name, referenced_column_name
-#   FROM information_schema.KEY_COLUMN_USAGE
-#   WHERE REFERENCED_TABLE_SCHEMA = (your schema name here)
-#   AND REFERENCED_TABLE_NAME is not null
-#   ORDER BY TABLE_NAME, COLUMN_NAME;
-
-# this may indicate missing object
-# _mysql_exceptions.OperationalError: (1025, "Error on rename of '.\\fpdb\\hands' to '.\\fpdb\\#sql2-7f0-1b' (errno: 152)")
-
-
-# PG notes:
-
-#  To add a foreign key constraint to a table:
-#  ALTER TABLE tab ADD CONSTRAINT c FOREIGN KEY (col) REFERENCES t2(col2) MATCH FULL;
-#  ALTER TABLE tab DROP CONSTRAINT zipchk
-#
-#  Note: index names must be unique across a schema
-#  CREATE INDEX idx ON tab(col)
-#  DROP INDEX idx
-
-def prepareBulkImport(fdb):
-    """Drop some indexes/foreign keys to prepare for bulk import. 
-       Currently keeping the standalone indexes as needed to import quickly"""
-    # fdb is a fpdb_db object including backend, db, cursor, sql variables
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(0)   # allow table/index operations to work
-    for fk in foreignKeys[fdb.backend]:
-        if fk['drop'] == 1:
-            if fdb.backend == MYSQL_INNODB:
-                fdb.cursor.execute("SELECT constraint_name " +
-                                   "FROM information_schema.KEY_COLUMN_USAGE " +
-                                   #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
-                                   "WHERE 1=1 " +
-                                   "AND table_name = %s AND column_name = %s " + 
-                                   "AND referenced_table_name = %s " +
-                                   "AND referenced_column_name = %s ",
-                                   (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
-                cons = fdb.cursor.fetchone()
-                print "preparebulk: cons=", cons
-                if cons:
-                    print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
-                    try:
-                        fdb.cursor.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
-                    except:
-                        pass
-            elif fdb.backend == PGSQL:
-                print "dropping pg fk", fk['fktab'], fk['fkcol']
-                try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " drop constraint " 
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey')
-                except:
-                    pass
-            else:
-                print "Only MySQL and Postgres supported so far"
-                return -1
-    
-    for idx in indexes[fdb.backend]:
-        if idx['drop'] == 1:
-            if fdb.backend == MYSQL_INNODB:
-                print "dropping mysql index ", idx['tab'], idx['col']
-                try:
-                    fdb.cursor.execute( "alter table %s drop index %s", (idx['tab'],idx['col']) )
-                except:
-                    pass
-            elif fdb.backend == PGSQL:
-                print "dropping pg index ", idx['tab'], idx['col']
-                # mod to use tab_col for index name?
-                try:
-                    fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
-                except:
-                    pass
-            else:
-                print "Only MySQL and Postgres supported so far"
-                return -1
-
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(1)   # go back to normal isolation level
-    fdb.db.commit() # seems to clear up errors if there were any in postgres
-#end def prepareBulkImport
-
-def afterBulkImport(fdb):
-    """Re-create any dropped indexes/foreign keys after bulk import"""
-    # fdb is a fpdb_db object including backend, db, cursor, sql variables
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(0)   # allow table/index operations to work
-    for fk in foreignKeys[fdb.backend]:
-        if fk['drop'] == 1:
-            if fdb.backend == MYSQL_INNODB:
-                fdb.cursor.execute("SELECT constraint_name " +
-                                   "FROM information_schema.KEY_COLUMN_USAGE " +
-                                   #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
-                                   "WHERE 1=1 " +
-                                   "AND table_name = %s AND column_name = %s " + 
-                                   "AND referenced_table_name = %s " +
-                                   "AND referenced_column_name = %s ",
-                                   (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
-                cons = fdb.cursor.fetchone()
-                print "afterbulk: cons=", cons
-                if cons:
-                    pass
-                else:
-                    print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
-                    try:
-                        fdb.cursor.execute("alter table " + fk['fktab'] + " add foreign key (" 
-                                           + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
-                                           + fk['rcol'] + ")")
-                    except:
-                        pass
-            elif fdb.backend == PGSQL:
-                print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
-                try:
-                    fdb.cursor.execute("alter table " + fk['fktab'] + " add constraint "
-                                       + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
-                                       + " foreign key (" + fk['fkcol']
-                                       + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
-                except:
-                    pass
-            else:
-                print "Only MySQL and Postgres supported so far"
-                return -1
-    
-    for idx in indexes[fdb.backend]:
-        if idx['drop'] == 1:
-            if fdb.backend == MYSQL_INNODB:
-                print "creating mysql index ", idx['tab'], idx['col']
-                try:
-                    fdb.cursor.execute( "alter table %s add index %s(%s)"
-                                      , (idx['tab'],idx['col'],idx['col']) )
-                except:
-                    pass
-            elif fdb.backend == PGSQL:
-                # mod to use tab_col for index name?
-                print "creating pg index ", idx['tab'], idx['col']
-                try:
-                    print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                    fdb.cursor.execute( "create index %s_%s_idx on %s(%s)"
-                                      % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
-                except:
-                    print "   ERROR! :-("
-                    pass
-            else:
-                print "Only MySQL and Postgres supported so far"
-                return -1
-
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(1)   # go back to normal isolation level
-    fdb.db.commit()   # seems to clear up errors if there were any in postgres
-#end def afterBulkImport
-
-def createAllIndexes(fdb):
-    """Create new indexes"""
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(0)   # allow table/index operations to work
-    for idx in indexes[fdb.backend]:
-        if fdb.backend == MYSQL_INNODB:
-            print "creating mysql index ", idx['tab'], idx['col']
-            try:
-                fdb.cursor.execute( "alter table %s add index %s(%s)"
-                                  , (idx['tab'],idx['col'],idx['col']) )
-            except:
-                pass
-        elif fdb.backend == PGSQL:
-            # mod to use tab_col for index name?
-            print "creating pg index ", idx['tab'], idx['col']
-            try:
-                print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                fdb.cursor.execute( "create index %s_%s_idx on %s(%s)"
-                                  % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
-            except:
-                print "   ERROR! :-("
-                pass
-        else:
-            print "Only MySQL and Postgres supported so far"
-            return -1
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(1)   # go back to normal isolation level
-#end def createAllIndexes
-
-def dropAllIndexes(fdb):
-    """Drop all standalone indexes (i.e. not including primary keys or foreign keys)
-       using list of indexes in indexes data structure"""
-    # maybe upgrade to use data dictionary?? (but take care to exclude PK and FK)
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(0)   # allow table/index operations to work
-    for idx in indexes[fdb.backend]:
-        if fdb.backend == MYSQL_INNODB:
-            print "dropping mysql index ", idx['tab'], idx['col']
-            try:
-                fdb.cursor.execute( "alter table %s drop index %s"
-                                  , (idx['tab'],idx['col']) )
-            except:
-                pass
-        elif fdb.backend == PGSQL:
-            print "dropping pg index ", idx['tab'], idx['col']
-            # mod to use tab_col for index name?
-            try:
-                fdb.cursor.execute( "drop index %s_%s_idx"
-                                  % (idx['tab'],idx['col']) )
-            except:
-                pass
-        else:
-            print "Only MySQL and Postgres supported so far"
-            return -1
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(1)   # go back to normal isolation level
-#end def dropAllIndexes
-
-def analyzeDB(fdb):
-    """Do whatever the DB can offer to update index/table statistics"""
-    if fdb.backend == PGSQL:
-        fdb.db.set_isolation_level(0)   # allow vacuum to work
-        try:
-            fdb.cursor.execute("vacuum analyze")
-        except:
-            print "Error during vacuum"
-        fdb.db.set_isolation_level(1)   # go back to normal isolation level
+    fdb.db.commit()
 #end def analyzeDB
 
 class DuplicateError(Exception):
@@ -676,86 +385,78 @@ def getLastInsertId(backend, conn, cursor):
  
 #returns an array of the total money paid. intending to add rebuys/addons here
 def calcPayin(count, buyin, fee):
-    result=[]
-    for i in range(count):
-        result.append (buyin+fee)
-    return result
+    return [buyin + fee for i in xrange(count)]
 #end def calcPayin
- 
+
 def checkPositions(positions):
-	"""verifies that these positions are valid"""
-	for i in range (len(positions)):
-		pos=positions[i]
-		try:#todo: use type recognition instead of error
-			if (len(pos)!=1):
-				raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+pos) #dont need to str() here
-		except TypeError:#->not string->is int->fine
-			pass
-		
-		### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
-		### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
-		if not (pos == "B" or pos == "S" or (pos >= 0 and pos <= 9)):
-			raise FpdbError("invalid position found in checkPositions. i: "+str(i)+"   position: "+str(pos))
-#end def fpdb_simple.checkPositions
+    """ verify positions are valid """
+    if any(not (p == "B" or p == "S" or (p >= 0 and p <= 9)) for p in positions):
+        raise FpdbError("invalid position '"+p+"' found in checkPositions")
+#    for p in positions:
+#        if not (p == "B" or p == "S" or (p >= 0 and p <= 9)):
+#            raise FpdbError("invalid position '" + p + "' found in checkPositions")
+ 
+    ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
+    ### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
  
 #classifies each line for further processing in later code. Manipulates the passed arrays.
 def classifyLines(hand, category, lineTypes, lineStreets):
-    currentStreet="predeal"
-    done=False #set this to true once we reach the last relevant line (the summary, except rake, is all repeats)
-    for i in range (len(hand)):
-        if (done):
-            if (hand[i].find("[")==-1 or hand[i].find("mucked [")==-1):
+    currentStreet = "predeal"
+    done = False #set this to true once we reach the last relevant line (the summary, except rake, is all repeats)
+    for i, line in enumerate(hand):
+        if done:
+            if "[" not in line or "mucked [" not in line:
                 lineTypes.append("ignore")
-            else: #it's storing a mucked card
+            else:
                 lineTypes.append("cards")
-        elif (hand[i].startswith("Dealt to")):
+        elif line.startswith("Dealt to"):
             lineTypes.append("cards")
-        elif (i==0):
+        elif i == 0:
             lineTypes.append("header")
-        elif (hand[i].startswith("Seat ") and ((hand[i].find("in chips")!=-1) or (hand[i].find("($")!=-1))):
+        elif line.startswith("Table '"):
+            lineTypes.append("table")            
+        elif line.startswith("Seat ") and ( ("in chips" in line) or "($" in line):
             lineTypes.append("name")
-        elif (isActionLine(hand[i])):
+        elif isActionLine(line):
             lineTypes.append("action")
-            if (hand[i].find(" posts ")!=-1 or hand[i].find(" posts the ")!=-1):#need to set this here so the "action" of posting blinds is registered properly
+            if " posts " in line or " posts the " in line:
                 currentStreet="preflop"
-        elif (isWinLine(hand[i])):
-            lineTypes.append("win")
-        elif (hand[i].startswith("Total pot ") and hand[i].find("Rake")!=-1):
-            lineTypes.append("rake")
-            done=True
-        elif (hand[i]=="*** SHOW DOWN ***" or hand[i]=="*** SUMMARY ***"):
-            lineTypes.append("ignore")
-            #print "in classifyLine, showdown or summary"
-        elif (hand[i].find(" antes ")!=-1 or hand[i].find(" posts the ante ")!=-1):
+        elif " antes " in line or " posts the ante " in line:
             lineTypes.append("ante")
-        elif (hand[i].startswith("*** FLOP *** [")):
+        elif line.startswith("*** FLOP *** ["):
             lineTypes.append("cards")
             currentStreet="flop"
-        elif (hand[i].startswith("*** TURN *** [")):
+        elif line.startswith("*** TURN *** ["):
             lineTypes.append("cards")
             currentStreet="turn"
-        elif (hand[i].startswith("*** RIVER *** [")):
+        elif line.startswith("*** RIVER *** ["):            
             lineTypes.append("cards")
             currentStreet="river"
-        elif (hand[i].startswith("*** 3")):
+        elif line.startswith("*** 3"):
             lineTypes.append("ignore")
             currentStreet=0
-        elif (hand[i].startswith("*** 4")):
+        elif line.startswith("*** 4"):
             lineTypes.append("ignore")
             currentStreet=1
-        elif (hand[i].startswith("*** 5")):
+        elif line.startswith("*** 5"):
             lineTypes.append("ignore")
             currentStreet=2
-        elif (hand[i].startswith("*** 6")):
+        elif line.startswith("*** 6"):
             lineTypes.append("ignore")
             currentStreet=3
-        elif (hand[i].startswith("*** 7") or hand[i]=="*** RIVER ***"):
+        elif line.startswith("*** 7") or line == "*** RIVER ***":
             lineTypes.append("ignore")
-            currentStreet=4
-        elif (hand[i].find(" shows [")!=-1):
+            currentStreet=4                
+        elif isWinLine(line):
+            lineTypes.append("win")
+        elif line.startswith("Total pot ") and "Rake" in line:
+            lineTypes.append("rake")
+            done=True
+        elif "*** SHOW DOWN ***" in line or "*** SUMMARY ***" in line:
+            lineTypes.append("ignore")
+            #print "in classifyLine, showdown or summary"
+        elif " shows [" in line:
             lineTypes.append("cards")
-        elif (hand[i].startswith("Table '")):
-            lineTypes.append("table")
         else:
             raise FpdbError("unrecognised linetype in:"+hand[i])
         lineStreets.append(currentStreet)
@@ -763,45 +464,35 @@ def classifyLines(hand, category, lineTypes, lineStreets):
  
 def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
     """calculates the actual bet amounts in the given amount array and changes it accordingly."""
-    for i in range (len(actionTypes)):
-        for j in range (len(actionTypes[i])):
+    for i in xrange(len(actionTypes)):
+        for j in xrange(len(actionTypes[i])):
             bets=[]
-            for k in range (len(actionTypes[i][j])):
+            for k in xrange(len(actionTypes[i][j])):
                 if (actionTypes[i][j][k]=="bet"):
                     bets.append((i,j,k))
-                    if (len(bets)==2):
-                        #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
-                        amount2=actionAmounts[bets[1][0]][bets[1][1]][bets[1][2]]
-                        amount1=actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]
-                        actionAmounts[bets[1][0]][bets[1][1]][bets[1][2]]=amount2-amount1
-                    elif (len(bets)>2):
-                        fail=True
-                        #todo: run correction for below
-                        if (site=="ps" and category=="holdem" and limit_type=="nl" and len(bets)==3):
-                            fail=False
-                        if (site=="ftp" and category=="omahahi" and limit_type=="pl" and len(bets)==3):
-                            fail=False
-                        
-                        if fail:
-                            print "len(bets)>2 in convert3B4B, i didnt think this is possible. i:",i,"j:",j,"k:",k
-                            print "actionTypes:",actionTypes
-                            raise FpdbError ("too many bets in convert3B4B")
+            if (len(bets)>=2):
+                #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
+                for betNo in reversed(xrange (1,len(bets))):
+                    amount2=actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]
+                    amount1=actionAmounts[bets[betNo-1][0]][bets[betNo-1][1]][bets[betNo-1][2]]
+                    actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]=amount2-amount1
     #print "actionAmounts postConvert",actionAmounts
 #end def convert3B4B(actionTypes, actionAmounts)
  
 #Corrects the bet amount if the player had to pay blinds
 def convertBlindBet(actionTypes, actionAmounts):
     i=0#setting street to pre-flop
-    for j in range (len(actionTypes[i])):#playerloop
+    for j in xrange(len(actionTypes[i])):#playerloop
         blinds=[]
         bets=[]
-        for k in range (len(actionTypes[i][j])):
-            if (actionTypes[i][j][k]=="blind"):
+        for k in xrange(len(actionTypes[i][j])):
+            if actionTypes[i][j][k] == "blind":
                 blinds.append((i,j,k))
             
-            if (len(blinds)>0 and actionTypes[i][j][k]=="bet"):
+            if blinds and actionTypes[i][j][k] == "bet":
+#            if (len(blinds)>0 and actionTypes[i][j][k]=="bet"):
                 bets.append((i,j,k))
-                if (len(bets)==1):
+                if len(bets) == 1:
                     blind_amount=actionAmounts[blinds[0][0]][blinds[0][1]][blinds[0][2]]
                     bet_amount=actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]
                     actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]=bet_amount-blind_amount
@@ -810,84 +501,49 @@ def convertBlindBet(actionTypes, actionAmounts):
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 #todo: make this use convertCardValuesBoard
 def convertCardValues(arr):
-    for i in range (len(arr)):
-        for j in range (len(arr[i])):
-            if (arr[i][j]=="A"):
-                arr[i][j]=14
-            elif (arr[i][j]=="K"):
-                arr[i][j]=13
-            elif (arr[i][j]=="Q"):
-                arr[i][j]=12
-            elif (arr[i][j]=="J"):
-                arr[i][j]=11
-            elif (arr[i][j]=="T"):
-                arr[i][j]=10
-            else:
-                arr[i][j]=int(arr[i][j])
+    map(convertCardValuesBoard, arr)
 #end def convertCardValues
+
+# a 0-card is one in a stud game that we did not see or was not shown
+card_map = { 0: 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 def convertCardValuesBoard(arr):
-    for i in range (len(arr)):
-        if (arr[i]=="A"):
-            arr[i]=14
-        elif (arr[i]=="K"):
-            arr[i]=13
-        elif (arr[i]=="Q"):
-            arr[i]=12
-        elif (arr[i]=="J"):
-            arr[i]=11
-        elif (arr[i]=="T"):
-            arr[i]=10
-        else:
-            arr[i]=int(arr[i])
+    for i in xrange(len(arr)):
+        arr[i] = card_map[arr[i]]
 #end def convertCardValuesBoard
  
 #this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
 def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
-    for i in range(seats):#create second dimension arrays
-        tmp=[]
-        card_values.append(tmp)
-        tmp=[]
-        card_suits.append(tmp)
+    for i in xrange(seats):#create second dimension arrays
+        card_values.append( [] )
+        card_suits.append( [] )
         antes.append(0)
         winnings.append(0)
         rakes.append(0)
     
-    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        streetCount=4
-    else:
-        streetCount=5
+    streetCount = 4 if category == "holdem" or category == "omahahi" or category == "omahahilo" else 5
     
-    for i in range(streetCount): #build the first dimension array, for streets
-        tmp=[]
-        action_types.append(tmp)
-        tmp=[]
-        allIns.append(tmp)
-        tmp=[]
-        action_amounts.append(tmp)
-        tmp=[]
-        actionNos.append(tmp)
-        tmp=[]
-        actionTypeByNo.append(tmp)
-        for j in range (seats): #second dimension arrays: players
-            tmp=[]
-            action_types[i].append(tmp)
-            tmp=[]
-            allIns[i].append(tmp)
-            tmp=[]
-            action_amounts[i].append(tmp)
-            tmp=[]
-            actionNos[i].append(tmp)
-    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        pass
-    elif (category=="razz" or category=="studhi" or category=="studhilo"):#need to fill card arrays.
-        for i in range(seats):
-            for j in range (7):
+    for i in xrange(streetCount): #build the first dimension array, for streets
+        action_types.append([])
+        allIns.append([])
+        action_amounts.append([])
+        actionNos.append([])
+        actionTypeByNo.append([])
+        for j in xrange (seats): #second dimension arrays: players
+            action_types[i].append([])
+            allIns[i].append([])
+            action_amounts[i].append([])
+            actionNos[i].append([])
+#    if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+#        pass
+    if category=="razz" or category=="studhi" or category=="studhilo":#need to fill card arrays.
+        for i in xrange(seats):
+            for j in xrange(7):
                 card_values[i].append(0)
                 card_suits[i].append("x")
-    else:
-        raise FpdbError("invalid category")
+#    else:
+#        raise FpdbError("invalid category")
 #end def createArrays
  
 def fill_board_cards(board_values, board_suits):
@@ -900,16 +556,16 @@ def fill_board_cards(board_values, board_suits):
 def fillCardArrays(player_count, base, category, card_values, card_suits):
     """fills up the two card arrays"""
     if (category=="holdem"):
-        cardCount=2
+        cardCount = 2
     elif (category=="omahahi" or category=="omahahilo"):
-        cardCount=4
+        cardCount = 4
     elif base=="stud":
-        cardCount=7
+        cardCount = 7
     else:
-        raise fpdb_simple.FpdbError ("invalid category:", category)
+        raise fpdb_simple.FpdbError("invalid category:", category)
     
-    for i in range (player_count):
-        while (len(card_values[i])<cardCount):
+    for i in xrange(player_count):
+        while (len(card_values[i]) < cardCount):
             card_values[i].append(0)
             card_suits[i].append("x")
 #end def fillCardArrays
@@ -921,170 +577,165 @@ def filterAnteBlindFold(site,hand):
     #todo: in tourneys this should not be removed but
     #print "start of filterAnteBlindFold"
     pre3rd=[]
-    for i in range (len(hand)):
-        if (hand[i].startswith("*** 3") or hand[i].startswith("*** HOLE")):
-            pre3rd=hand[0:i]
+    for i, line in enumerate(hand):
+        if line.startswith("*** 3") or line.startswith("*** HOLE"):
+            pre3rd = hand[0:i]
     
     foldeeName=None
-    for i in range (len(pre3rd)):
-        if (pre3rd[i].endswith("folds") or pre3rd[i].endswith("is sitting out") or pre3rd[i].endswith(" stands up")): #found ante fold or timeout
-            pos=pre3rd[i].find (" folds")
-            foldeeName=pre3rd[i][0:pos]
-            if pos==-1 and pre3rd[i].find(" in chips)")==-1:
-                pos=pre3rd[i].find (" is sitting out")
-                foldeeName=pre3rd[i][0:pos]
-            if pos==-1:
-                pos=pre3rd[i].find (" stands up")
-                foldeeName=pre3rd[i][0:pos]
-            if pos==-1:#this one is for PS tourney
-                pos1=pre3rd[i].find (": ")+2
-                pos2=pre3rd[i].find (" (")
-                foldeeName=pre3rd[i][pos1:pos2]
+    for line in pre3rd:
+        if line.endswith("folds") or line.endswith("is sitting out") or line.endswith(" stands up"): #found ante fold or timeout
+            pos = line.find(" folds")
+            foldeeName = line[0:pos]
+            if pos == -1 and " in chips)" not in line:
+                pos = line.find(" is sitting out")
+                foldeeName = line[0:pos]
+            if pos == -1:
+                pos = line.find(" stands up")
+                foldeeName = line[0:pos]
+            if pos == -1:
+                pos1 = line.find(": ") + 2
+                pos2 = line.find(" (")
+                foldeeName = line[pos1:pos2]
  
     if foldeeName!=None:
         #print "filterAnteBlindFold, foldeeName:",foldeeName
-        toRemove=[]
-        for i in range (len(hand)): #using hand again to filter from all streets, just in case.
-            #todo: this will break it if sittin out BB wins a hand
-            if (hand[i].find(foldeeName)!=-1):
-                toRemove.append(hand[i])
-            
-        for i in range (len(toRemove)):
-            hand.remove(toRemove[i])
+        for i, line in enumerate(hand):
+            if foldeeName in line:
+                hand[i] = None
+                
+    return [line for line in hand if line]
 #end def filterAnteFold
+
+def stripEOLspaces(str):
+    return str.rstrip()
  
 #removes useless lines as well as trailing spaces
 def filterCrap(site, hand, isTourney):
     #remove two trailing spaces at end of line
-    for i in range (len(hand)):
-        if (hand[i][-1]==' '):
-            hand[i]=hand[i][:-1]
-        if (hand[i][-1]==' '):
-            hand[i]=hand[i][:-1]
+    hand = [line.rstrip() for line in hand]
             
     #print "hand after trailing space removal in filterCrap:",hand
     #general variable position word filter/string filter
-    toRemove=[]
-    for i in range (len(hand)):
-        if (hand[i].startswith("Board [")):
-            toRemove.append(hand[i])
-        elif (hand[i].find(" out of hand ")!=-1):
+    for i in xrange (len(hand)):
+        if hand[i].startswith("Board ["):
+            hand[i] = False
+        elif hand[i].find(" out of hand ")!=-1:
             hand[i]=hand[i][:-56]
-        elif (hand[i].find("($0 in chips)") != -1):
-            toRemove.append(hand[i])
-        elif (hand[i]=="*** HOLE CARDS ***"):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has been disconnected")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has requested TIME")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has returned")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("will be allowed to play after the button")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has timed out")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has timed out while disconnected")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has timed out while being disconnected")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("is connected")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("is disconnected")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling angry")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling confused")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling happy")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(" is feeling normal")):
-            toRemove.append(hand[i])
-        elif (hand[i].find(" is low with [")!=-1):
-            toRemove.append(hand[i])
+        elif "($0 in chips)" in hand[i]:
+            hand[i] = False
+        elif hand[i]=="*** HOLE CARDS ***":
+            hand[i] = False
+        elif hand[i].endswith("has been disconnected"):
+            hand[i] = False
+        elif hand[i].endswith("has requested TIME"):
+            hand[i] = False
+        elif hand[i].endswith("has returned"):
+            hand[i] = False
+        elif hand[i].endswith("will be allowed to play after the button"):
+            hand[i] = False
+        elif hand[i].endswith("has timed out"):
+            hand[i] = False
+        elif hand[i].endswith("has timed out while disconnected"):
+            hand[i] = False
+        elif hand[i].endswith("has timed out while being disconnected"):
+            hand[i] = False
+        elif hand[i].endswith("is connected"):
+            hand[i] = False
+        elif hand[i].endswith("is disconnected"):
+            hand[i] = False
+        elif hand[i].endswith(" is feeling angry"):
+            hand[i] = False
+        elif hand[i].endswith(" is feeling confused"):
+            hand[i] = False
+        elif hand[i].endswith(" is feeling happy"):
+            hand[i] = False
+        elif hand[i].endswith(" is feeling normal"):
+            hand[i] = False
+        elif " is low with [" in hand[i]:
+            hand[i] = False
         #elif (hand[i].find("-max Seat #")!=-1 and hand[i].find(" is the button")!=-1):
         # toRemove.append(hand[i])
-        elif (hand[i].endswith(" mucks")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith(": mucks hand")):
-            toRemove.append(hand[i])
-        elif (hand[i]=="No low hand qualified"):
-            toRemove.append(hand[i])
-        elif (hand[i]=="Pair on board - a double bet is allowed"):
-            toRemove.append(hand[i])
-        elif (hand[i].find(" shows ")!=-1 and hand[i].find("[")==-1):
-            toRemove.append(hand[i])
-        #elif (hand[i].startswith("Table '") and hand[i].endswith("-max")):
-        # toRemove.append(hand[i])
-        elif (hand[i].startswith("The button is in seat #")):
-            toRemove.append(hand[i])
+        elif hand[i].endswith(" mucks"):
+            hand[i] = False
+        elif hand[i].endswith(": mucks hand"):
+            hand[i] = False
+        elif hand[i] == "No low hand qualified":
+            hand[i] = False
+        elif hand[i] == "Pair on board - a double bet is allowed":
+            hand[i] = False
+        elif " shows " in hand[i] and "[" not in hand[i]:
+            hand[i] = False
+        elif hand[i].startswith("The button is in seat #"):
+            hand[i] = False
         #above is alphabetic, reorder below if bored
-        elif (hand[i].startswith("Time has expired")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("has reconnected")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("seconds left to act")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("seconds to reconnect")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("was removed from the table for failing to post")):
-            toRemove.append(hand[i])
-        elif (hand[i].find("joins the table at seat ")!=-1):
-            toRemove.append(hand[i])
+        elif hand[i].startswith("Time has expired"):
+            hand[i] = False
+        elif hand[i].endswith("has reconnected"):
+            hand[i] = False
+        elif hand[i].endswith("seconds left to act"):
+            hand[i] = False
+        elif hand[i].endswith("seconds to reconnect"):
+            hand[i] = False
+        elif hand[i].endswith("was removed from the table for failing to post"):
+            hand[i] = False
+        elif "joins the table at seat " in hand[i]:
+            hand[i] = False
         elif (hand[i].endswith(" sits down")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith("leaves the table")):
-            toRemove.append(hand[i])
+            hand[i] = False
         elif (hand[i].endswith(" stands up")):
-            toRemove.append(hand[i])
-        elif (hand[i].find("is high with ")!=-1):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("doesn't show hand")):
-            toRemove.append(hand[i])
-        elif (hand[i].endswith("is being treated as all-in")):
-            toRemove.append(hand[i])
-        elif (hand[i].find(" adds $")!=-1):
-            toRemove.append(hand[i])
-        elif (hand[i]=="Betting is capped"):
-            toRemove.append(hand[i])
+            hand[i] = False
+        elif "is high with" in hand[i]:
+            hand[i] = False
+        elif hand[i].endswith("doesn't show hand"):
+            hand[i] = False
+        elif hand[i].endswith("is being treated as all-in"):
+            hand[i] = False
+        elif " adds $" in hand[i]:
+            hand[i] = False
+        elif hand[i] == "Betting is capped":
+            hand[i] = False
         #site specific variable position filter
-        elif (hand[i].find(" said, \"")!=-1):
-            toRemove.append(hand[i])
-        elif (hand[i].find(": ")!=-1 and site=="ftp" and hand[i].find("Seat ")==-1 and hand[i].find(": Table")==-1): #filter ftp chat
-            toRemove.append(hand[i])
-        if isTourney:
+        elif 'said, "' in hand[i]:
+            hand[i] = False
+        elif site == "ftp" and ":" in hand[i] and "Seat " not in hand[i] and ": Table" not in hand[i]: # FTP chat
+            hand[i] = False
+        if isTourney and not hand[i] == False:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
-                toRemove.append(hand[i])
-        else:
+                hand[i] = False
+        elif hand[i]:
             if (hand[i].endswith(": sits out")):
-                toRemove.append(hand[i])
+                hand[i] = False
             elif (hand[i].endswith(" is sitting out")):
-                toRemove.append(hand[i])
- 
-    
-    for i in range (len(toRemove)):
-        #print "removing in filterCr:",toRemove[i]
-        hand.remove(toRemove[i])
-    
+                hand[i] = False
+
+    hand = [line for line in hand if line]  # python docs say this is identical to filter(None, list)
+        
     #print "done with filterCrap, hand:", hand
     return hand
 #end filterCrap
  
 #takes a poker float (including , for thousand seperator and converts it to an int
-def float2int (string):
-    pos=string.find(",")
-    if (pos!=-1): #remove , the thousand seperator
-        string=string[0:pos]+string[pos+1:]
-        
-    pos=string.find(".")
-    if (pos!=-1): #remove decimal point
-        string=string[0:pos]+string[pos+1:]
+def float2int(string):
+    pos = string.find(",")
+    if pos != -1: #remove , the thousand seperator
+        string = "%s%s" % (string[0:pos], string[pos+1:])
+       
+    pos = string.find(".")
+    if pos != -1: #remove decimal point
+        string = "%s%s" % (string[0:pos], string[pos+1:])
     
     result = int(string)
-    if pos==-1: #no decimal point - was in full dollars - need to multiply with 100
-        result*=100
+    if pos == -1: #no decimal point - was in full dollars - need to multiply with 100
+        result *= 100
     return result
 #end def float2int
+
+ActionLines = ( "calls $", ": calls ", "brings in for", "completes it to", "posts small blind",
+                "posts the small blind", "posts big blind", "posts the big blind",
+                "posts small & big blinds", "posts $", "posts a dead", "bets $",
+                ": bets ", " raises")
  
 #returns boolean whether the passed line is an action line
 def isActionLine(line):
@@ -1092,34 +743,14 @@ def isActionLine(line):
         return True
     elif (line.endswith("checks")):
         return True
-    elif (line.find("calls $")!=-1 or line.find(": calls ")!=-1):
-        return True
-    elif (line.find("brings in for")!=-1):
-        return True
-    elif (line.find("completes it to")!=-1):
-        return True
-    elif (line.find("posts small blind")!=-1):
-        return True
-    elif (line.find("posts the small blind")!=-1):
-        return True
-    elif (line.find("posts big blind")!=-1):
-        return True
-    elif (line.find("posts the big blind")!=-1):
-        return True
-    elif (line.find("posts small & big blinds")!=-1):
-        return True
-    elif (line.find(" posts $")!=-1): #this reads voluntary blind pay in FTP Holdem
-        return True
-    elif (line.find(" posts a dead ")!=-1): #this reads voluntary blind pay in FTP Holdem
-        return True
-    elif (line.find("bets $")!=-1 or line.find(": bets ")!=-1):
-        return True
-    elif (line.find("raises")!=-1):
-        return True
     elif (line.startswith("Uncalled bet")):
         return True
-    else:
-        return False
+ 
+    return any(x for x in ActionLines if x in line)   
+#    return bool([ x for x in ActionLines if x in line])
+#        ret = any(True for searchstr in ActionLines if searchstr in line)
+#        ret = len( [ x for x in ActionLines if line.find(x) > -1] ) > 0
+#        ret = any(searchstr in line for searchstr in ActionLines)
 #end def isActionLine
  
 #returns whether this is a duplicate
@@ -1138,56 +769,15 @@ def isRebuyOrAddon(topline):
  
 #returns whether the passed topline indicates a tournament or not
 def isTourney(topline):
-    if (topline.find("Tournament")!=-1):
-        return True
-    else:
-        return False
+    return "Tournament" in topline
 #end def isTourney
  
+WinLines = ( "wins the pot", "ties for the ", "wins side pot", "wins the low main pot", "wins the high main pot",
+             "wins the low",
+             "wins the high pot", "wins the high side pot", "wins the main pot", "wins the side pot", "collected" )
 #returns boolean whether the passed line is a win line
 def isWinLine(line):
-    if (line.find("wins the pot")!=-1):
-        return True
-    elif (line.find("ties for the high pot")!=-1):
-        return True
-    elif (line.find("ties for the high main pot")!=-1):
-        return True
-    elif (line.find("ties for the high side pot")!=-1):
-        return True
-    elif (line.find("ties for the low pot")!=-1):
-        return True
-    elif (line.find("ties for the low main pot")!=-1):
-        return True
-    elif (line.find("ties for the low side pot")!=-1):
-        return True
-    elif (line.find("ties for the main pot")!=-1): #for ftp tied main pot of split pot
-        return True
-    elif (line.find("ties for the pot")!=-1): #for ftp tie
-        return True
-    elif (line.find("ties for the side pot")!=-1): #for ftp tied split pots
-        return True
-    elif (line.find("wins side pot #")!=-1): #for ftp multi split pots
-        return True
-    elif (line.find("wins the low main pot")!=-1):
-        return True
-    elif (line.find("wins the low pot")!=-1):
-        return True
-    elif (line.find("wins the low side pot")!=-1):
-        return True
-    elif (line.find("wins the high main pot")!=-1):
-        return True
-    elif (line.find("wins the high pot")!=-1):
-        return True
-    elif (line.find("wins the high side pot")!=-1):
-        return True
-    elif (line.find("wins the main pot")!=-1):
-        return True
-    elif (line.find("wins the side pot")!=-1): #for ftp split pots
-        return True
-    elif (line.find("collected")!=-1):
-        return True
-    else:
-        return False #not raising error here, any unknown line wouldve been detected in isActionLine already
+    return any(x for x in WinLines if x in line)   
 #end def isWinLine
  
 #returns the amount of cash/chips put into the put in the given action line
@@ -1202,39 +792,36 @@ def parseActionAmount(line, atype, site, isTourney):
     if line.endswith(" and is capped"):
         line=line[:-14]
  
-    
-    if (atype=="fold"):
-        amount=0
-    elif (atype=="check"):
-        amount=0
-    elif (atype=="unbet" and site=="ftp"):
-        pos1=line.find("$")+1
-        pos2=line.find(" returned to")
-        amount=float2int(line[pos1:pos2])
-    elif (atype=="unbet" and site=="ps"):
-        #print "ps unbet, line:",line
-        pos1=line.find("$")+1
-        if pos1==0:
-            pos1=line.find("(")+1
-        pos2=line.find(")")
-        amount=float2int(line[pos1:pos2])
-    elif (atype=="bet" and site=="ps" and line.find(": raises $")!=-1 and line.find("to $")!=-1):
-        pos=line.find("to $")+4
-        amount=float2int(line[pos:])
+    if atype == "fold" or atype == "check":
+        amount = 0
+    elif atype == "unbet":
+        if site == "ftp":
+            pos1 = line.find("$") + 1
+            pos2 = line.find(" returned to")
+            amount = float2int(line[pos1:pos2])
+        elif site == "ps":
+            pos1 = line.find("$") + 1
+            if pos1 == 0:
+                pos1 = line.find("(") + 1
+            pos2 = line.find(")")
+            amount = float2int(line[pos1:pos2])
+    elif atype == "bet" and site == "ps" and line.find(": raises $")!=-1 and line.find("to $")!=-1:
+        pos = line.find("to $")+4
+        amount = float2int(line[pos:])
     else:
         if not isTourney:
-            pos=line.rfind("$")+1
+            pos = line.rfind("$")+1
             #print "parseActionAmount, line:", line, "line[pos:]:", line[pos:]
-            amount=float2int(line[pos:])
+            amount = float2int(line[pos:])
         else:
             #print "line:"+line+"EOL"
-            pos=line.rfind(" ")+1
+            pos = line.rfind(" ")+1
             #print "pos:",pos
             #print "pos of 20:", line.find("20")
-            amount=int(line[pos:])
+            amount = int(line[pos:])
     
-    if atype=="unbet":
-        amount*=-1
+    if atype == "unbet":
+        amount *= -1
     return amount
 #end def parseActionAmount
  
@@ -1242,25 +829,25 @@ def parseActionAmount(line, atype, site, isTourney):
 # action_amounts. For stud this expects numeric streets (3-7), for
 # holdem/omaha it expects predeal, preflop, flop, turn or river
 def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
-    if (street=="predeal" or street=="preflop"):
-        street=0
-    elif (street=="flop"):
-        street=1
-    elif (street=="turn"):
-        street=2
-    elif (street=="river"):
-        street=3
+    if street == "predeal" or street == "preflop":
+        street = 0
+    elif street == "flop":
+        street = 1
+    elif street == "turn":
+        street = 2
+    elif street == "river":
+        street = 3
     
-    nextActionNo=0
-    for player in range(len(actionNos[street])):
-        for count in range(len(actionNos[street][player])):
+    nextActionNo = 0
+    for player in xrange(len(actionNos[street])):
+        for count in xrange(len(actionNos[street][player])):
             if actionNos[street][player][count]>=nextActionNo:
                 nextActionNo=actionNos[street][player][count]+1
                 
-    line, allIn=goesAllInOnThisLine(line)
-    atype=parseActionType(line)
-    playerno=recognisePlayerNo(line, names, atype)
-    amount=parseActionAmount(line, atype, site, isTourney)
+    (line, allIn) = goesAllInOnThisLine(line)
+    atype = parseActionType(line)
+    playerno = recognisePlayerNo(line, names, atype)
+    amount = parseActionAmount(line, atype, site, isTourney)
     
     action_types[street][playerno].append(atype)
     allIns[street][playerno].append(allIn)
@@ -1272,98 +859,89 @@ def parseActionLine(site, base, isTourney, line, street, playerIDs, names, actio
  
 def goesAllInOnThisLine(line):
     """returns whether the player went all-in on this line and removes the all-in text from the line."""
-    isAllIn=False
+    isAllIn = False
     if (line.endswith(" and is all-in")):
-        line=line[:-14]
-        isAllIn=True
+        line = line[:-14]
+        isAllIn = True
     elif (line.endswith(", and is all in")):
-        line=line[:-15]
-        isAllIn=True
+        line = line[:-15]
+        isAllIn = True
     return (line, isAllIn)
 #end def goesAllInOnThisLine
  
 #returns the action type code (see table design) of the given action line
+ActionTypes = { 'brings in for'                :"blind", 
+                ' posts $'                     :"blind",
+                ' posts a dead '               :"blind", 
+                ' posts the small blind of $'  :"blind", 
+                ': posts big blind '           :"blind",
+                ': posts small blind '         :"blind", 
+                ' posts the big blind of $'    :"blind", 
+                ': posts small & big blinds $' :"blind",
+                ': posts small blind $'        :"blind",
+                'calls'                        :"call", 
+                'completes it to'              :"bet", 
+                ' bets'                        :"bet", 
+                ' raises'                      :"bet"
+               }
 def parseActionType(line):
     if (line.startswith("Uncalled bet")):
         return "unbet"
-    elif (line.endswith("folds")):
+    elif (line.endswith(" folds")):
         return "fold"
-    elif (line.endswith("checks")):
+    elif (line.endswith(" checks")):
         return "check"
-    elif (line.find("calls")!=-1):
-        return "call"
-    elif (line.find("brings in for")!=-1):
-        return "blind"
-    elif (line.find("completes it to")!=-1):
-        return "bet"
-       #todo: what if someone completes instead of bringing in?
-    elif (line.find(" posts $")!=-1):
-        return "blind"
-    elif (line.find(" posts a dead ")!=-1):
-        return "blind"
-    elif (line.find(": posts small blind ")!=-1):
-        return "blind"
-    elif (line.find(" posts the small blind of $")!=-1):
-        return "blind"
-    elif (line.find(": posts big blind ")!=-1):
-        return "blind"
-    elif (line.find(" posts the big blind of $")!=-1):
-        return "blind"
-    elif (line.find(": posts small & big blinds $")!=-1):
-        return "blind"
-    #todo: seperately record voluntary blind payments made to join table out of turn
-    elif (line.find("bets")!=-1):
-        return "bet"
-    elif (line.find("raises")!=-1):
-        return "bet"
     else:
-        raise FpdbError ("failed to recognise actiontype in parseActionLine in: "+line)
+        for x in ActionTypes:
+            if x in line:
+                return ActionTypes[x]   
+    raise FpdbError ("failed to recognise actiontype in parseActionLine in: "+line)
 #end def parseActionType
  
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, site, isTourney, names, antes):
-    for i in range(len(names)):
-        if (line.startswith(names[i].encode("latin-1"))): #found the ante'er
-            pos=line.rfind("$")+1
+    for i, name in enumerate(names):
+        if line.startswith(name.encode("latin-1")):
+            pos = line.rfind("$") + 1
             if not isTourney:
-                antes[i]+=float2int(line[pos:])
+                antes[i] += float2int(line[pos:])
             else:
-                if line.find("all-in")==-1:
-                    pos=line.rfind(" ")+1
-                    antes[i]+=int(line[pos:])
+                if "all-in" not in line:
+                    pos = line.rfind(" ") + 1
+                    antes[i] += int(line[pos:])
                 else:
-                    pos1=line.rfind("ante")+5
-                    pos2=line.find(" ",pos1)
-                    antes[i]+=int(line[pos1:pos2])
+                    pos1 = line.rfind("ante") + 5
+                    pos2 = line.find(" ", pos1)
+                    antes[i] += int(line[pos1:pos2])
         #print "parseAnteLine line: ", line, "antes[i]", antes[i], "antes", antes
 #end def parseAntes
  
 #returns the buyin of a tourney in cents
 def parseBuyin(topline):
-    pos1=topline.find("$")+1
-    pos2=topline.find("+")
+    pos1 = topline.find("$")+1
+    pos2 = topline.find("+")
     return float2int(topline[pos1:pos2])
 #end def parseBuyin
  
 #parses a card line and changes the passed arrays accordingly
 #todo: reorganise this messy method
 def parseCardLine(site, category, street, line, names, cardValues, cardSuits, boardValues, boardSuits):
-    if (line.startswith("Dealt to ") or line.find(" shows [")!=-1 or line.find("mucked [")!=-1):
-        playerNo=recognisePlayerNo(line, names, "card") #anything but unbet will be ok for that string
+    if line.startswith("Dealt to") or " shows [" in line or "mucked [" in line:
+        playerNo = recognisePlayerNo(line, names, "card") #anything but unbet will be ok for that string
  
-        pos=line.rfind("[")+1
-        if (category=="holdem"):
+        pos = line.rfind("[")+1
+        if category == "holdem":
             for i in (pos, pos+3):
                 cardValues[playerNo].append(line[i:i+1])
                 cardSuits[playerNo].append(line[i+1:i+2])
-            if (len(cardValues[playerNo])!=2):
+            if len(cardValues[playerNo]) !=2:
                 if cardValues[playerNo][0]==cardValues[playerNo][2] and cardSuits[playerNo][1]==cardSuits[playerNo][3]: #two tests will do
                     cardValues[playerNo]=cardValues[playerNo][0:2]
                     cardSuits[playerNo]=cardSuits[playerNo][0:2]
                 else:
                     print "line:",line,"cardValues[playerNo]:",cardValues[playerNo]
                     raise FpdbError("read too many/too few holecards in parseCardLine")
-        elif (category=="omahahi" or category=="omahahilo"):
+        elif category == "omahahi" or category == "omahahilo":
             for i in (pos, pos+3, pos+6, pos+9):
                 cardValues[playerNo].append(line[i:i+1])
                 cardSuits[playerNo].append(line[i+1:i+2])
@@ -1374,8 +952,8 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
                 else:
                     print "line:",line,"cardValues[playerNo]:",cardValues[playerNo]
                     raise FpdbError("read too many/too few holecards in parseCardLine")
-        elif (category=="razz" or category=="studhi" or category=="studhilo"):
-            if (line.find("shows")==-1 and line.find("mucked")==-1):
+        elif category=="razz" or category=="studhi" or category=="studhilo":
+            if "shows" not in line and "mucked" not in line:
                 #print "parseCardLine(in stud if), street:", street
                 if line[pos+2]=="]": #-> not (hero and 3rd street)
                     cardValues[playerNo][street+2]=line[pos:pos+1]
@@ -1425,7 +1003,7 @@ def parseCashesAndSeatNos(lines, site):
     """parses the startCashes and seatNos of each player out of the given lines and returns them as a dictionary of two arrays"""
     cashes = []
     seatNos = []
-    for i in range (len(lines)):
+    for i in xrange (len(lines)):
         pos2=lines[i].find(":")
         seatNos.append(int(lines[i][5:pos2]))
         
@@ -1452,19 +1030,26 @@ def parseFee(topline):
 def parseHandStartTime(topline, site):
     #convert x:13:35 to 0x:13:35
     counter=0
-    while (True):
-        pos=topline.find(" "+str(counter)+":")
-        if (pos!=-1):
-            topline=topline[0:pos+1]+"0"+topline[pos+1:]
-        counter+=1
-        if counter==10: break
+    while counter < 10:
+        pos = topline.find(" %d:" % counter)
+        if pos != -1:
+            topline = "%s0%s" % (topline[0:pos+1], topline[pos+1:])
+            break
+        counter += 1
     
     isUTC=False
     if site=="ftp":
+        # Full Tilt Sit'n'Go
+        # Full Tilt Poker Game #10311865543: $1 + $0.25 Sit & Go (78057629), Table 1 - 25/50 - No Limit Hold'em - 0:07:45 ET - 2009/01/29
+        # Cash Game:
+        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
+        # Full Tilt Poker Game #9468383505: Table Bike (deep 6) - $0.05/$0.10 - No Limit Hold'em - 5:09:36 ET - 2008/12/13
         pos = topline.find(" ", len(topline)-26)+1
         tmp = topline[pos:]
-        #print "year:", tmp[14:18], "month", tmp[19:21], "day", tmp[22:24], "hour", tmp[0:2], "minute", tmp[3:5], "second", tmp[6:8]
-        result = datetime.datetime(int(tmp[14:18]), int(tmp[19:21]), int(tmp[22:24]), int(tmp[0:2]), int(tmp[3:5]), int(tmp[6:8]))
+
+        rexx = '(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+) ET [\- ]+(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})'
+        m = re.search(rexx,tmp)
+        result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
     elif site=="ps":
         if topline.find("UTC")!=-1:
             pos1 = topline.find("-")+2
@@ -1494,98 +1079,87 @@ def parseHandStartTime(topline, site):
 #end def parseHandStartTime
  
 #parses the names out of the given lines and returns them as an array
+def findName(line):
+    pos1 = line.find(":") + 2
+    pos2 = line.rfind("(") - 1
+    return unicode(line[pos1:pos2], "latin-1")
+
 def parseNames(lines):
-    result = []
-    for i in range (len(lines)):
-        pos1=lines[i].find(":")+2
-        pos2=lines[i].rfind("(")-1
-        tmp=lines[i][pos1:pos2]
-        #print "parseNames, tmp original:",tmp
-        tmp=unicode(tmp,"latin-1")
-        #print "parseNames, tmp after unicode latin-1 conversion:",tmp
-        result.append(tmp)
-    return result
+    return [findName(line) for line in lines]
 #end def parseNames
  
-#returns an array with the positions of the respective players
-def parsePositions (hand, names):
-	#prep array
-	positions=[]
-	for i in range(len(names)):
-		positions.append(-1)
-	
-	#find blinds
-	sb,bb=-1,-1
-	for i in range (len(hand)):
-		if (sb==-1 and hand[i].find("small blind")!=-1 and hand[i].find("dead small blind")==-1):
-			sb=hand[i]
-			#print "sb:",sb
-		if (bb==-1 and hand[i].find("big blind")!=-1 and hand[i].find("dead big blind")==-1):
-			bb=hand[i]
-			#print "bb:",bb
+def parsePositions(hand, names):
+    positions = [-1 for i in names]
+    sb, bb = -1, -1
+    
+    #find blinds
+    for line in hand:
+        if sb == -1 and "small blind" in line and "dead small blind" not in line:
+            sb = line
+        if bb == -1 and "big blind" in line and "dead big blind" not in line:
+            bb = line
 
-	#identify blinds
-	#print "parsePositions before recognising sb/bb. names:",names
-	sbExists=True
-	if (sb!=-1):
-		sb=recognisePlayerNo(sb, names, "bet")
-	else:
-		sbExists=False
-	if (bb!=-1):
-		bb=recognisePlayerNo(bb, names, "bet")
-		
+#identify blinds
+#print "parsePositions before recognising sb/bb. names:",names
+    sbExists = True
+    if sb != -1:
+        sb = recognisePlayerNo(sb, names, "bet")
+    else:
+        sbExists = False
+    if bb != -1:
+        bb = recognisePlayerNo(bb, names, "bet")
+        
 #	print "sb = ", sb, "bb = ", bb
-	if bb == sb:
-		sbExists = False
-		sb = -1
-	
-	#write blinds into array
-	if (sbExists):
-		positions[sb]="S"
-	positions[bb]="B"
-	
-	
-	#fill up rest of array
-	if (sbExists):
-		arraypos=sb-1
-	else:
-		arraypos=bb-1
-	distFromBtn=0
-	while (arraypos>=0 and arraypos != bb):
-		#print "parsePositions first while, arraypos:",arraypos,"positions:",positions
-		positions[arraypos]=distFromBtn
-		arraypos-=1
-		distFromBtn+=1
+    if bb == sb: # if big and small are same, then don't duplicate the small
+        sbExists = False
+        sb = -1
 
-	# eric - this takes into account dead seats between blinds
-	if sbExists:
-		i = bb - 1
-		while positions[i] < 0 and i != sb:
-			positions[i] = 9
-			i -= 1
-	### RHH - Changed to set the null seats before BB to "9"			
-	if sbExists:
-		i = sb-1
-	else:
-		i = bb-1
-	while positions[i] < 0:
-		positions[i]=9
-		i-=1
-	
-	arraypos=len(names)-1
-	if (bb!=0 or (bb==0 and sbExists==False) or (bb == 1 and sb != arraypos) ):
-		while (arraypos>bb and arraypos > sb):
-			positions[arraypos]=distFromBtn
-			arraypos-=1
-			distFromBtn+=1
-			
-	for i in range (len(names)):
-		if positions[i]==-1:
-			print "parsePositions names:",names
-			print "result:",positions
-			raise FpdbError ("failed to read positions")
+    #write blinds into array
+    if sbExists:
+        positions[sb]="S"
+    positions[bb]="B"
+
+    #fill up rest of array
+    if sbExists:
+        arraypos = sb-1
+    else:
+        arraypos = bb-1
+        
+    distFromBtn=0
+    while arraypos >= 0 and arraypos != bb:
+        #print "parsePositions first while, arraypos:",arraypos,"positions:",positions
+        positions[arraypos] = distFromBtn
+        arraypos -= 1
+        distFromBtn += 1
+
+    # eric - this takes into account dead seats between blinds
+    if sbExists:
+        i = bb - 1
+        while positions[i] < 0 and i != sb:
+            positions[i] = 9
+            i -= 1
+    ### RHH - Changed to set the null seats before BB to "9"			
+    if sbExists:
+        i = sb-1
+    else:
+        i = bb-1
+    while positions[i] < 0:
+        positions[i]=9
+        i-=1
+
+    arraypos=len(names)-1
+    if (bb!=0 or (bb==0 and sbExists==False) or (bb == 1 and sb != arraypos) ):
+        while (arraypos>bb and arraypos > sb):
+            positions[arraypos]=distFromBtn
+            arraypos-=1
+            distFromBtn+=1
+
+    if any(p == -1 for p in positions):
+        print "parsePositions names:",names
+        print "result:",positions
+        raise FpdbError ("failed to read positions")
 #	print str(positions), "\n"
-	return positions
+    return positions
 #end def parsePositions
  
 #simply parses the rake amount and returns it as an int
@@ -1651,38 +1225,41 @@ def parseTourneyNo(topline):
 #parses a win/collect line. manipulates the passed array winnings, no explicit return
 def parseWinLine(line, site, names, winnings, isTourney):
     #print "parseWinLine: line:",line
-    for i in range(len(names)):
-        if (line.startswith(names[i].encode("latin-1"))): #found a winner
+    for i,n in enumerate(names):
+        n = n.encode("latin-1")
+        if line.startswith(n):
             if isTourney:
-                pos1=line.rfind("collected ")+10
-                if (site=="ftp"):
-                    pos2=line.find(")", pos1)
-                elif (site=="ps"):
-                    pos2=line.find(" ", pos1)
-                winnings[i]+=int(line[pos1:pos2])
+                pos1 = line.rfind("collected ") + 10
+                if site == "ftp":
+                    pos2 = line.find(")", pos1)
+                elif site == "ps":
+                    pos2 = line.find(" ", pos1)
+                winnings[i] += int(line[pos1:pos2])
             else:
-                pos1=line.rfind("$")+1
-                if (site=="ftp"):
-                    pos2=line.find(")", pos1)
-                elif (site=="ps"):
-                    pos2=line.find(" ", pos1)
-                winnings[i]+=float2int(line[pos1:pos2])
+                pos1 = line.rfind("$") + 1
+                if site == "ftp":
+                    pos2 = line.find(")", pos1)
+                elif site == "ps":
+                    pos2 = line.find(" ", pos1)
+                winnings[i] += float2int(line[pos1:pos2])
 #end def parseWinLine
  
 #returns the category (as per database) string for the given line
 def recogniseCategory(line):
-    if (line.find("Razz")!=-1):
+    if "Razz" in line:
         return "razz"
-    elif (line.find("Hold'em")!=-1):
+    elif "Hold'em" in line:
         return "holdem"
-    elif (line.find("Omaha")!=-1 and line.find("Hi/Lo")==-1 and line.find("H/L")==-1):
-        return "omahahi"
-    elif (line.find("Omaha")!=-1 and (line.find("Hi/Lo")!=-1 or line.find("H/L")!=-1)):
-        return "omahahilo"
-    elif (line.find("Stud")!=-1 and line.find("Hi/Lo")==-1 and line.find("H/L")==-1):
-        return "studhi"
-    elif (line.find("Stud")!=-1 and (line.find("Hi/Lo")!=-1 or line.find("H/L")!=-1)):
-        return "studhilo"
+    elif "Omaha" in line:
+        if "Hi/Lo" not in line and "H/L" not in line:
+            return "omahahi"
+        else:
+            return "omahahilo"
+    elif "Stud" in line:
+        if "Hi/Lo" not in line and "H/L" not in line:
+            return "studhi"
+        else:
+            return "studhilo"
     else:
         raise FpdbError("failed to recognise category, line:"+line)
 #end def recogniseCategory
@@ -1809,25 +1386,68 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 #end def recogniseTourneyTypeId
  
 #returns the SQL ids of the names given in an array
+# TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
+# { playername: id } instead of depending on it's relation to the positions list
+# then this can be reduced in complexity a bit
+
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    for i in xrange(len(names)):
+#        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#        tmp=cursor.fetchall()
+#        if (len(tmp)==0): #new player
+#            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
+#            #print "Number of players rows inserted: %d" % cursor.rowcount
+#            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#            tmp=cursor.fetchall()
+#        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
+#        result.append(tmp[0][0])
+#    return result
+
 def recognisePlayerIDs(cursor, names, site_id):
-    result = []
-    for i in range (len(names)):
-        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-        tmp=cursor.fetchall()
-        if (len(tmp)==0): #new player
-            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
-            #print "Number of players rows inserted: %d" % cursor.rowcount
-            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-            tmp=cursor.fetchall()
-        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-        result.append(tmp[0][0])
-    return result
+    q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
+    cursor.execute(q, names) # get all playerids by the names passed in
+    ids = dict(cursor.fetchall()) # convert to dict
+    if len(ids) != len(names):
+        notfound = [n for n in names if n not in ids] # make list of names not in database
+        if notfound: # insert them into database
+            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+            q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
+            cursor.execute(q2, notfound) # get their new ids
+            tmp = dict(cursor.fetchall())
+            for n in tmp: # put them all into the same dict
+                ids[n] = tmp[n]
+    # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
+    return [ids[n] for n in names]
 #end def recognisePlayerIDs
+
+
+# Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
+# this version could also be improved upon using list comprehensions, etc
+
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    notfound = []
+#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+#    tmp = dict(cursor.fetchall())
+#    for n in names:
+#        if n not in tmp:
+#            notfound.append(n)
+#        else:
+#            result.append(tmp[n])
+#    if notfound:
+#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+#        tmp = cursor.fetchall()
+#        for n in tmp:
+#            result.append(n[0])
+#        
+#    return result
  
 #recognises the name in the given line and returns its array position in the given array
 def recognisePlayerNo(line, names, atype):
     #print "recogniseplayerno, names:",names
-    for i in range (len(names)):
+    for i in xrange(len(names)):
         if (atype=="unbet"):
             if (line.endswith(names[i].encode("latin-1"))):
                 return (i)
@@ -1854,7 +1474,7 @@ def recognisePlayerNo(line, names, atype):
  
 #returns the site abbreviation for the given site
 def recogniseSite(line):
-    if (line.startswith("Full Tilt Poker")):
+    if (line.startswith("Full Tilt Poker") or line.startswith("FullTiltPoker")):
         return "ftp"
     elif (line.startswith("PokerStars")):
         return "ps"
@@ -1877,7 +1497,7 @@ def recogniseSiteID(cursor, site):
  
 #removes trailing \n from the given array
 def removeTrailingEOL(arr):
-    for i in range(len(arr)):
+    for i in xrange(len(arr)):
         if (arr[i].endswith("\n")):
             #print "arr[i] before removetrailingEOL:", arr[i]
             arr[i]=arr[i][:-1]
@@ -1889,7 +1509,7 @@ def removeTrailingEOL(arr):
 def splitRake(winnings, rakes, totalRake):
     winnercnt=0
     totalWin=0
-    for i in range(len(winnings)):
+    for i in xrange(len(winnings)):
         if winnings[i]!=0:
             winnercnt+=1
             totalWin+=winnings[i]
@@ -1898,7 +1518,7 @@ def splitRake(winnings, rakes, totalRake):
         rakes[firstWinner]=totalRake
     else:
         totalWin=float(totalWin)
-        for i in range(len(winnings)):
+        for i in xrange(len(winnings)):
             if winnings[i]!=0:
                 winPortion=winnings[i]/totalWin
                 rakes[i]=totalRake*winPortion
@@ -1908,11 +1528,14 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
 #stores into table hands_actions
     #print "start of storeActions, actionNos:",actionNos
     #print " action_amounts:",action_amounts
-    for i in range (len(actionTypes)): #iterate through streets
-        for j in range (len(actionTypes[i])): #iterate through names
-            for k in range (len(actionTypes[i][j])): #iterate through individual actions of that player on that street
-                cursor.execute ("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)"
-                               , (handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k]))
+    inserts = []
+    for i in xrange(len(actionTypes)): #iterate through streets
+        for j in xrange(len(actionTypes[i])): #iterate through names
+            for k in xrange(len(actionTypes[i][j])): #iterate through individual actions of that player on that street
+                # Add inserts into a list and let 
+                inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
+
+    cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
@@ -1940,7 +1563,7 @@ def store_hands_players_holdem_omaha(backend, conn, cursor, category, hands_id, 
                                     ,positions, card_values, card_suits, winnings, rakes, seatNos):
     result=[]
     if (category=="holdem"):
-        for i in range (len(player_ids)):
+        for i in xrange(len(player_ids)):
             cursor.execute ("""
 INSERT INTO HandsPlayers
 (handId, playerId, startCash, position,
@@ -1953,7 +1576,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
             #result.append(cursor.fetchall()[0][0])
             result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
     elif (category=="omahahi" or category=="omahahilo"):
-        for i in range (len(player_ids)):
+        for i in xrange(len(player_ids)):
             cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, position,
 card1Value, card1Suit, card2Value, card2Suit,
@@ -1976,7 +1599,7 @@ def store_hands_players_stud(backend, conn, cursor, hands_id, player_ids, start_
 #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
     result=[]
     #print "before inserts in store_hands_players_stud, antes:", antes
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, ante,
 card1Value, card1Suit, card2Value, card2Suit,
@@ -2001,7 +1624,7 @@ def store_hands_players_holdem_omaha_tourney(backend, conn, cursor, category, ha
                                             , winnings, rakes, seatNos, tourneys_players_ids):
     #stores hands_players for tourney holdem/omaha hands
     result=[]
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         if len(card_values[0])==2:
             cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, position,
@@ -2035,7 +1658,7 @@ def store_hands_players_stud_tourney(backend, conn, cursor, hands_id, player_ids
             antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
 #stores hands_players for tourney stud/razz hands
     result=[]
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, ante,
 card1Value, card1Suit, card2Value, card2Suit,
@@ -2095,19 +1718,20 @@ sure to also change the following storage method and table_viewer.prepare_data i
     firstPfRaiserNo=-1
     firstPfCallByNo=-1
     firstPfCallerId=-1
-    for i in range(len(actionTypeByNo[0])):
-        if actionTypeByNo[0][i][1]=="bet":
-            firstPfRaiseByNo=i
-            firstPfRaiserId=actionTypeByNo[0][i][0]
-            for j in range(len(player_ids)):
-                if player_ids[j]==firstPfRaiserId:
-                    firstPfRaiserNo=j
+    
+    for i, action in enumerate(actionTypeByNo[0]):
+        if action[1] == "bet":
+            firstPfRaiseByNo = i
+            firstPfRaiserId = action[0]
+            for j, pid in enumerate(player_ids):
+                if pid == firstPfRaiserId:
+                    firstPfRaiserNo = j
                     break
             break
-    for i in range(len(actionTypeByNo[0])):
-        if actionTypeByNo[0][i][1]=="call":
-            firstPfCallByNo=i
-            firstPfCallerId=actionTypeByNo[0][i][0]
+    for i, action in enumerate(actionTypeByNo[0]):
+        if action[1] == "call":
+            firstPfCallByNo = i
+            firstPfCallerId = action[0]
             break
     firstPlayId = firstPfCallerId
     if firstPfRaiseByNo <> -1:
@@ -2120,20 +1744,20 @@ sure to also change the following storage method and table_viewer.prepare_data i
     sbId=-1
     bbId=-1
     if base=="hold":
-        for player in range(len(positions)):
-            if positions[player]==1:
-                cutoffId=player_ids[player]
-            if positions[player]==0:
-                buttonId=player_ids[player]
-            if positions[player]=='S':
-                sbId=player_ids[player]
-            if positions[player]=='B':
-                bbId=player_ids[player]
+        for player, pos in enumerate(positions):
+            if pos == 1:
+                cutoffId = player_ids[player]
+            if pos == 0:
+                buttonId = player_ids[player]
+            if pos == 'S':
+                sbId = player_ids[player]
+            if pos == 'B':
+                bbId = player_ids[player]
             
     someoneStole=False
     
     #run a loop for each player preparing the actual values that will be commited to SQL
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         #set default values
         myStreet0VPI=False
         myStreet0Aggr=False
@@ -2164,30 +1788,29 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #calculate VPIP and PFR
         street=0
         heroPfRaiseCount=0
-        for count in range (len(action_types[street][player])):#finally individual actions
-            currentAction=action_types[street][player][count]
-            if currentAction=="bet":
-                myStreet0Aggr=True
-            if (currentAction=="bet" or currentAction=="call"):
-                myStreet0VPI=True
+        for currentAction in action_types[street][player]: # finally individual actions
+            if currentAction == "bet":
+                myStreet0Aggr = True
+            if currentAction == "bet" or currentAction == "call":
+                myStreet0VPI = True
         
         #PF3B4BChance and PF3B4B
         pfFold=-1
         pfRaise=-1
-        if firstPfRaiseByNo!=-1:
-            for i in range(len(actionTypeByNo[0])):
-                if actionTypeByNo[0][i][0]==player_ids[player]:
-                    if actionTypeByNo[0][i][1]=="bet" and pfRaise==-1 and i>firstPfRaiseByNo:
-                        pfRaise=i
-                    if actionTypeByNo[0][i][1]=="fold" and pfFold==-1:
-                        pfFold=i
-            if pfFold==-1 or pfFold>firstPfRaiseByNo:
-                myStreet0_3B4BChance=True
-                if pfRaise>firstPfRaiseByNo:
-                    myStreet0_3B4BDone=True
+        if firstPfRaiseByNo != -1:
+            for i, actionType in enumerate(actionTypeByNo[0]):
+                if actionType[0] == player_ids[player]:
+                    if actionType[1] == "bet" and pfRaise == -1 and i > firstPfRaiseByNo:
+                        pfRaise = i
+                    if actionType[1] == "fold" and pfFold == -1:
+                        pfFold = i
+            if pfFold == -1 or pfFold > firstPfRaiseByNo:
+                myStreet0_3B4BChance = True
+                if pfRaise > firstPfRaiseByNo:
+                    myStreet0_3B4BDone = True
         
         #steal calculations
-        if base=="hold":
+        if base == "hold":
             if len(player_ids)>=3: # no point otherwise  # was 5, use 3 to match pokertracker definition
                 if positions[player]==1:
                     if      firstPfRaiserId==player_ids[player] \
@@ -2218,121 +1841,111 @@ sure to also change the following storage method and table_viewer.prepare_data i
         
         
         #calculate saw* values
-        isAllIn=False
-        for i in range(len(allIns[0][player])):
-            if allIns[0][player][i]:
-                isAllIn=True
+        isAllIn = False
+        if any(i for i in allIns[0][player]):
+            isAllIn = True
         if (len(action_types[1][player])>0 or isAllIn):
-            myStreet1Seen=True
- 
-            for i in range(len(allIns[1][player])):
-                if allIns[1][player][i]:
-                    isAllIn=True
+            myStreet1Seen = True
+            
+            if any(i for i in allIns[1][player]):
+                isAllIn = True
             if (len(action_types[2][player])>0 or isAllIn):
-                myStreet2Seen=True
+                myStreet2Seen = True
  
-                for i in range(len(allIns[2][player])):
-                    if allIns[2][player][i]:
-                        isAllIn=True
+                if any(i for i in allIns[2][player]):
+                    isAllIn = True
                 if (len(action_types[3][player])>0 or isAllIn):
-                    myStreet3Seen=True
+                    myStreet3Seen = True
  
                     #print "base:", base
                     if base=="hold":
-                        mySawShowdown=True
-                        for count in range (len(action_types[3][player])):
-                            if action_types[3][player][count]=="fold":
-                                mySawShowdown=False
+                        mySawShowdown = True
+                        if any(actiontype == "fold" for actiontype in action_types[3][player]):
+                            mySawShowdown = False
                     else:
                         #print "in else"
-                        for i in range(len(allIns[3][player])):
-                            if allIns[3][player][i]:
-                                isAllIn=True
+                        if any(i for i in allIns[3][player]):
+                            isAllIn = True
                         if (len(action_types[4][player])>0 or isAllIn):
                             #print "in if"
-                            myStreet4Seen=True
+                            myStreet4Seen = True
  
-                            mySawShowdown=True
-                            for count in range (len(action_types[4][player])):
-                                if action_types[4][player][count]=="fold":
-                                    mySawShowdown=False
+                            mySawShowdown = True
+                            if any(actiontype == "fold" for actiontype in action_types[4][player]):
+                                mySawShowdown = False
                         
  
         #flop stuff
         street=1
         if myStreet1Seen:
-            for count in range(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet1Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet1Aggr = True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet1=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet1=True
         
         #turn stuff - copy of flop with different vars
         street=2
         if myStreet2Seen:
-            for count in range(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet2Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet2Aggr = True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet2=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet2=True
         
         #river stuff - copy of flop with different vars
         street=3
         if myStreet3Seen:
-            for count in range(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet3Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                    myStreet3Aggr = True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet3=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet3=True
         
         #stud river stuff - copy of flop with different vars
         street=4
         if myStreet4Seen:
-            for count in range(len(action_types[street][player])):
-                if action_types[street][player][count]=="bet":
-                    myStreet4Aggr=True
+            if any(actiontype == "bet" for actiontype in action_types[street][player]):
+                myStreet4Aggr=True
             
-            for otherPlayer in range (len(player_ids)):
+            for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
                 else:
-                    for countOther in range (len(action_types[street][otherPlayer])):
+                    for countOther in xrange(len(action_types[street][otherPlayer])):
                         if action_types[street][otherPlayer][countOther]=="bet":
                             myOtherRaisedStreet4=True
-                            for countOtherFold in range (len(action_types[street][player])):
+                            for countOtherFold in xrange(len(action_types[street][player])):
                                 if action_types[street][player][countOtherFold]=="fold":
                                     myFoldToOtherRaisedStreet4=True
         
-        if winnings[player]!=0:
+        if winnings[player] != 0:
             if myStreet1Seen:
-                myWonWhenSeenStreet1=winnings[player]/float(totalWinnings)
+                myWonWhenSeenStreet1 = winnings[player] / float(totalWinnings)
                 if mySawShowdown:
                     myWonAtSD=myWonWhenSeenStreet1
         
@@ -2418,7 +2031,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     foldedBbToSteal=[]
     foldSbToStealChance=[]
     foldedSbToSteal=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myFoldBbToStealChance=False
         myFoldedBbToSteal=False
         myFoldSbToStealChance=False
@@ -2427,7 +2040,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
         if base=="hold":
             if someoneStole and (positions[player]=='B' or positions[player]=='S') and firstPfRaiserId!=player_ids[player]:
                 street=0
-                for count in range (len(action_types[street][player])):#individual actions
+                for count in xrange(len(action_types[street][player])):#individual actions
                     if positions[player]=='B':
                         myFoldBbToStealChance=True
                         if action_types[street][player][count]=="fold":
@@ -2451,7 +2064,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street1CBChance=[]
     street1CBDone=[]
     didStreet1CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet1CBChance=False
         myStreet1CBDone=False
         
@@ -2470,7 +2083,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street2CBChance=[]
     street2CBDone=[]
     didStreet2CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet2CBChance=False
         myStreet2CBDone=False
         
@@ -2489,7 +2102,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street3CBChance=[]
     street3CBDone=[]
     didStreet3CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet3CBChance=False
         myStreet3CBDone=False
         
@@ -2508,7 +2121,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street4CBChance=[]
     street4CBDone=[]
     didStreet4CB=[]
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myStreet4CBChance=False
         myStreet4CBDone=False
         
@@ -2535,7 +2148,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
     foldToStreet4CBChance=[]
     foldToStreet4CBDone=[]
     
-    for player in range (len(player_ids)):
+    for player in xrange(len(player_ids)):
         myFoldToStreet1CBChance=False
         myFoldToStreet1CBDone=False
         foldToStreet1CBChance.append(myFoldToStreet1CBChance)
@@ -2589,14 +2202,14 @@ sure to also change the following storage method and table_viewer.prepare_data i
     street4CheckCallRaiseChance=[]
     street4CheckCallRaiseDone=[]
     #print "b4 totprof calc, len(playerIds)=", len(player_ids)
-    for pl in range (len(player_ids)):
+    for pl in xrange(len(player_ids)):
         #print "pl=", pl
         myTotalProfit=winnings[pl]  # still need to deduct other costs
         if antes:
             myTotalProfit=winnings[pl] - antes[pl]
-        for i in range (len(actionTypes)): #iterate through streets
-            #for j in range (len(actionTypes[i])): #iterate through names (using pl loop above)
-                for k in range (len(actionTypes[i][pl])): #iterate through individual actions of that player on that street
+        for i in xrange(len(actionTypes)): #iterate through streets
+            #for j in xrange(len(actionTypes[i])): #iterate through names (using pl loop above)
+                for k in xrange(len(actionTypes[i][pl])): #iterate through individual actions of that player on that street
                     myTotalProfit -= actionAmounts[i][pl][k]
         
         myStreet1CheckCallRaiseChance=False
@@ -2640,7 +2253,7 @@ def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetC
     #print "beginning of generateFoldToCB, street:", street, "len(actionTypeByNo):", len(actionTypeByNo)
     #print "len(actionTypeByNo[street]):",len(actionTypeByNo[street])
     firstCBReaction=0
-    for action in range(len(actionTypeByNo[street])):
+    for action in xrange(len(actionTypeByNo[street])):
         if actionTypeByNo[street][action][1]=="bet":
             for player in didStreetCB:
                 if player==actionTypeByNo[street][action][0] and firstCBReaction==0:
@@ -2648,7 +2261,7 @@ def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetC
                     break
     
     for action in actionTypeByNo[street][firstCBReaction:]:
-        for player in range(len(playerIDs)):
+        for player in xrange(len(playerIDs)):
             if playerIDs[player]==action[0]:
                 foldToStreetCBChance[player]=True
                 if action[1]=="fold":
@@ -2660,7 +2273,7 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
         
         #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
-        for player in range (len(playerIds)):
+        for player in xrange(len(playerIds)):
             if base=="hold":
                 cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
             else:
@@ -2671,8 +2284,8 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
             try: len(row)
             except TypeError:
                 row=[]
-            
-            if (len(row)==0):
+
+            if not row:            
                 #print "new huddata row"
                 doInsert=True
                 row=[]
@@ -2680,14 +2293,16 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
                 row.append(gametypeId)
                 row.append(playerIds[player])
                 row.append(len(playerIds))#seats
-                for i in range(len(hudImportData)+2):
+                for i in xrange(len(hudImportData)+2):
                     row.append(0)
                 
             else:
                 doInsert=False
+                # This is making a copy of the original list, although i really don't see any reason it's being done?
                 newrow=[]
-                for i in range(len(row)):
-                    newrow.append(row[i])
+                newrow.extend(row)
+#                for i in xrange(len(row)):
+#                    newrow.append(row[i])
                 row=newrow
             
             if base=="hold":
@@ -2818,7 +2433,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
         
         #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
-        for player in range (len(playerIds)):
+        for player in xrange(len(playerIds)):
             
             # Set up a clean row
             row=[]
@@ -2826,7 +2441,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
             row.append(gametypeId)
             row.append(playerIds[player])
             row.append(len(playerIds))#seats
-            for i in range(len(hudImportData)+2):
+            for i in xrange(len(hudImportData)+2):
                 row.append(0)
                 
             if base=="hold":
@@ -3005,7 +2620,7 @@ def store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks,
     #print "payin_amounts:",payin_amounts
     #print "ranks:",ranks
     #print "winnings:",winnings
-    for i in range (len(player_ids)):
+    for i in xrange(len(player_ids)):
         cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s", (tourney_id, player_ids[i]))
         tmp=cursor.fetchone()
         #print "tried SELECTing tourneys_players.id:",tmp

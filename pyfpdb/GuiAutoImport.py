@@ -26,7 +26,8 @@ import os
 import sys
 import time
 import fpdb_import
-
+from optparse import OptionParser
+import Configuration
 
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config):
@@ -44,7 +45,7 @@ class GuiAutoImport (threading.Thread):
 
         self.importer = fpdb_import.Importer(self,self.settings, self.config)
         self.importer.setCallHud(True)
-        self.importer.setMinPrint(30)
+        self.importer.setMinPrint(settings['minPrint'])
         self.importer.setQuiet(False)
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
@@ -106,7 +107,8 @@ class GuiAutoImport (threading.Thread):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
             self.importer.runUpdated()
-            print "GuiAutoImport.import_dir done"
+            sys.stdout.write(".")
+            sys.stdout.flush()
             return True
         else:
             return False
@@ -128,12 +130,13 @@ class GuiAutoImport (threading.Thread):
             widget.set_label(u'Stop Autoimport')
             if self.pipe_to_hud is None:
                 if os.name == 'nt':
-                    command = "python HUD_run_me.py" + " %s" % (self.database)
+                    command = "python HUD_main.py" + " %s" % (self.database)
                     bs = 0    # windows is not happy with line buffing here
                     self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
                 else:
-                    command = self.config.execution_path('HUD_run_me.py')
+                    command = os.path.join(sys.path[0],  'HUD_main.py')
+                    #command = self.config.execution_path('HUD_main.py') # Hi Ray. Sorry about this, kludging.
                     bs = 1
                     self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
@@ -199,13 +202,14 @@ class GuiAutoImport (threading.Thread):
         filter.show()
 
     def addSites(self, vbox):
-        for site in self.config.supported_sites.keys():
+        the_sites = self.config.get_supported_sites()
+        for site in the_sites:
             pathHBox = gtk.HBox(False, 0)
             vbox.pack_start(pathHBox, False, True, 0)
             pathHBox.show()
-
-            paths = self.config.get_default_paths(site)
+    
             params = self.config.get_site_parameters(site)
+            paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
             self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
 
@@ -213,18 +217,41 @@ if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()
 
-    settings = {}
-    settings['db-host'] = "192.168.1.100"
-    settings['db-user'] = "mythtv"
-    settings['db-password'] = "mythtv"
-    settings['db-databaseName'] = "fpdb"
-    settings['hud-defaultInterval'] = 10
-    settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
-    settings['callFpdbHud'] = True
+#    settings = {}
+#    settings['db-host'] = "192.168.1.100"
+#    settings['db-user'] = "mythtv"
+#    settings['db-password'] = "mythtv"
+#    settings['db-databaseName'] = "fpdb"
+#    settings['hud-defaultInterval'] = 10
+#    settings['hud-defaultPath'] = 'C:/Program Files/PokerStars/HandHistory/nutOmatic'
+#    settings['callFpdbHud'] = True
 
-    i = GuiAutoImport(settings)
-    main_window = gtk.Window()
-    main_window.connect("destroy", destroy)
-    main_window.add(i.mainVBox)
-    main_window.show()
-    gtk.main()
+    parser = OptionParser()
+    parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
+    parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
+                    help="How often to print a one-line status report (0 (default) means never)")
+    (options, sys.argv) = parser.parse_args()
+
+    config = Configuration.Config()
+#    db = fpdb_db.fpdb_db()
+
+    settings = {}
+    settings['minPrint'] = options.minPrint
+    if os.name == 'nt': settings['os'] = 'windows'
+    else:               settings['os'] = 'linuxmac'
+
+    settings.update(config.get_db_parameters('fpdb'))
+    settings.update(config.get_tv_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+
+    if(options.gui == True):
+        i = GuiAutoImport(settings, config)
+        main_window = gtk.Window()
+        main_window.connect('destroy', destroy)
+        main_window.add(i.mainVBox)
+        main_window.show()
+        gtk.main()
+    else:
+        pass
+    

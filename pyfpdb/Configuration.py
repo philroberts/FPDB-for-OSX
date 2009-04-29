@@ -3,7 +3,7 @@
 
 Handles HUD configuration files.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008, 2009,  Ray E. Barker
 
 #    
 #    This program is free software; you can redistribute it and/or modify
@@ -32,14 +32,39 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+def fix_tf(x, default = True):
+#    The xml parser doesn't translate "True" to True. Therefore, we never get
+#    True or False from the parser only "True" or "False". So translate the 
+#    string to the python boolean representation.
+    if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
+        return True
+    if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
+        return False
+    return default
+
 class Layout:
-    def __init__(self, max):
-        self.max = int(max)
-        self.location = []
-        for i in range(self.max + 1): self.location.append(None)
+    def __init__(self, node):
+
+        self.max      = int( node.getAttribute('max') )
+        if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
+        self.width    = int( node.getAttribute('width') )
+        self.height   = int( node.getAttribute('height') )
         
+        self.location = []
+        self.location = map(lambda x: None, range(self.max+1)) # fill array with max seats+1 empty entries
+
+        for location_node in node.getElementsByTagName('location'):
+            if location_node.getAttribute('seat') != "":
+                self.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+            elif location_node.getAttribute('common') != "":
+                self.common = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
+
     def __str__(self):
-        temp = "    Layout = %d max, width= %d, height = %d, fav_seat = %d\n" % (self.max, self.width, self.height, self.fav_seat)
+        temp = "    Layout = %d max, width= %d, height = %d" % (self.max, self.width, self.height)
+        if hasattr(self, 'fav_seat'): temp = temp + ", fav_seat = %d\n" % self.fav_seat
+        else: temp = temp + "\n"
+        if hasattr(self, "common"):
+            temp = temp + "        Common = (%d, %d)\n" % (self.common[0], self.common[1])
         temp = temp + "        Locations = "
         for i in range(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
@@ -58,22 +83,15 @@ class Site:
         self.hudbgcolor   = node.getAttribute("bgcolor")
         self.hudfgcolor   = node.getAttribute("fgcolor")
         self.converter    = node.getAttribute("converter")
-        self.enabled      = node.getAttribute("enabled")
         self.aux_window   = node.getAttribute("aux_window")
         self.font         = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
+        self.use_frames    = node.getAttribute("use_frames")
+        self.enabled      = fix_tf(node.getAttribute("enabled"), default = True)
         self.layout       = {}
-        
+
         for layout_node in node.getElementsByTagName('layout'):
-            max         = int( layout_node.getAttribute('max') )
-            lo = Layout(max)
-            lo.fav_seat = int( layout_node.getAttribute('fav_seat') )
-            lo.width    = int( layout_node.getAttribute('width') )
-            lo.height   = int( layout_node.getAttribute('height') )
-            
-            for location_node in layout_node.getElementsByTagName('location'):
-                lo.location[int( location_node.getAttribute('seat') )] = (int( location_node.getAttribute('x') ), int( location_node.getAttribute('y')))
-                
+            lo = Layout(layout_node)
             self.layout[lo.max] = lo
 
     def __str__(self):
@@ -104,7 +122,12 @@ class Game:
         self.db        = node.getAttribute("db")
         self.rows      = int( node.getAttribute("rows") )
         self.cols      = int( node.getAttribute("cols") )
-        self.aux       = node.getAttribute("aux")
+
+        aux_text = node.getAttribute("aux")
+        aux_list = aux_text.split(',')
+        for i in range(0, len(aux_list)):
+            aux_list[i] = aux_list[i].strip()
+        self.aux = aux_list
 
         self.stats     = {}
         for stat_node in node.getElementsByTagName('stat'):
@@ -155,21 +178,23 @@ class Aux_window:
     def __init__(self, node):
         for (name, value) in node.attributes.items():
             setattr(self, name, value)
-#        self.name    = node.getAttribute("mw_name")
-#        self.cards   = node.getAttribute("deck")
-#        self.card_wd = node.getAttribute("card_wd")
-#        self.card_ht = node.getAttribute("card_ht")
-#        self.rows    = node.getAttribute("rows")
-#        self.cols    = node.getAttribute("cols")
-#        self.format  = node.getAttribute("stud")
+
+        self.layout = {}
+        for layout_node in node.getElementsByTagName('layout'):
+            lo = Layout(layout_node)
+            self.layout[lo.max] = lo
 
     def __str__(self):
         temp = 'Aux = ' + self.name + "\n"
         for key in dir(self):
             if key.startswith('__'): continue
+            if key == 'layout':  continue
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + value + "\n"
+
+        for layout in self.layout:
+            temp = temp + "%s" % self.layout[layout]
         return temp
 
 class Popup:
@@ -189,10 +214,13 @@ class Import:
     def __init__(self, node):
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
-	self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.saveActions = fix_tf(node.getAttribute("saveActions"), True)
+        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), False)
 
     def __str__(self):
-        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s" % (self.interval, self.callFpdbHud, self.hhArchiveBase)
+        return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
+             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
 class Tv:
     def __init__(self, node):
@@ -205,13 +233,14 @@ class Tv:
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
 class Config:
-    def __init__(self, file = None):
+    def __init__(self, file = None, dbname = 'fpdb'):
 
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
+        self.dbname = dbname
 
         self.default_config_path = self.get_default_config_path()
-        if not file == None: # configuration file path has been passed
+        if file != None: # configuration file path has been passed
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
@@ -222,7 +251,7 @@ class Config:
 
         if file == None: # no config file in the normal places
             file = self.find_example_config() #Look for an example file to edit
-            if not file == None:
+            if file != None:
                 pass
             
         if file == None: # that didn't work either, just die
@@ -283,7 +312,7 @@ class Config:
             tv = Tv(node = tv_node)
             self.tv = tv
 
-        db = self.get_db_parameters('fpdb')
+        db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
             df_file = self.find_default_conf()
             if df_file == None: # this is bad
@@ -357,6 +386,11 @@ class Config:
             if site_node.getAttribute("site_name") == site:
                 return site_node
 
+    def get_aux_node(self, aux):
+        for aux_node in self.doc.getElementsByTagName("aw"):
+            if aux_node.getAttribute("name") == aux:
+                return aux_node
+
     def get_db_node(self, db_name):
         for db_node in self.doc.getElementsByTagName("database"):
             if db_node.getAttribute("db_name") == db_name:
@@ -371,12 +405,17 @@ class Config:
                 return layout_node
 
     def get_location_node(self, layout_node, seat):
-        for location_node in layout_node.getElementsByTagName("location"):
-            if int( location_node.getAttribute("seat") ) == int( seat ):
-                return location_node
+        if seat == "common":
+            for location_node in layout_node.getElementsByTagName("location"):
+                if location_node.hasAttribute("common"):
+                    return location_node
+        else:
+            for location_node in layout_node.getElementsByTagName("location"):
+                if int( location_node.getAttribute("seat") ) == int( seat ):
+                    return location_node
 
     def save(self, file = None):
-        if not file == None:
+        if file != None:
             f = open(file, 'w')
             self.doc.writexml(f)
             f.close()
@@ -397,63 +436,92 @@ class Config:
             location_node.setAttribute("y", str( locations[i-1][1] ))
             self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
 
-    def get_db_parameters(self, name = None):
-        if name == None: name = 'fpdb'
+    def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
+        aux_node   = self.get_aux_node(aux_name)
+        layout_node = self.get_layout_node(aux_node, max)
+        if layout_node == None:
+            print "aux node not found"
+            return
+        print "editing locations =", locations
+        for (i, pos) in locations.iteritems():
+            location_node = self.get_location_node(layout_node, i)
+            location_node.setAttribute("x", str( locations[i][0] ))
+            location_node.setAttribute("y", str( locations[i][1] ))
+            if i == "common":
+                self.aux_windows[aux_name].layout[max].common = ( locations[i][0], locations[i][1] )
+            else:
+                self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
+
+    def get_db_parameters(self):
         db = {}
-        try:
-            db['db-databaseName'] = name
-            db['db-host'] = self.supported_databases[name].db_ip
-            db['db-user'] = self.supported_databases[name].db_user
-            db['db-password'] = self.supported_databases[name].db_pass
-            db['db-server'] = self.supported_databases[name].db_server
-            if   string.lower(self.supported_databases[name].db_server) == 'mysql':
-                db['db-backend'] = 2
-            elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
-                db['db-backend'] = 3
-            else: db['db-backend'] = None # this is big trouble
-        except:
-            pass
+        name = self.dbname
+        try:    db['db-databaseName'] = name
+        except: pass
+
+        try:    db['db-host'] = self.supported_databases[name].db_ip
+        except: pass
+
+        try:    db['db-user'] = self.supported_databases[name].db_user
+        except: pass
+
+        try:    db['db-password'] = self.supported_databases[name].db_pass
+        except: pass
+
+        try:    db['db-server'] = self.supported_databases[name].db_server
+        except: pass
+
+        if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+            db['db-backend'] = 2
+        elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+            db['db-backend'] = 3
+        else: db['db-backend'] = None # this is big trouble
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
                           db_pass = None, db_server = None, db_type = None):
         db_node = self.get_db_node(db_name)
-        if not db_node == None:
-            if not db_ip     == None: db_node.setAttribute("db_ip", db_ip)
-            if not db_user   == None: db_node.setAttribute("db_user", db_user)
-            if not db_pass   == None: db_node.setAttribute("db_pass", db_pass)
-            if not db_server == None: db_node.setAttribute("db_server", db_server)
-            if not db_type   == None: db_node.setAttribute("db_type", db_type)
+        if db_node != None:
+            if db_ip     != None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   != None: db_node.setAttribute("db_user", db_user)
+            if db_pass   != None: db_node.setAttribute("db_pass", db_pass)
+            if db_server != None: db_node.setAttribute("db_server", db_server)
+            if db_type   != None: db_node.setAttribute("db_type", db_type)
         if self.supported_databases.has_key(db_name):
-            if not db_ip     == None: self.supported_databases[db_name].dp_ip     = db_ip
-            if not db_user   == None: self.supported_databases[db_name].dp_user   = db_user
-            if not db_pass   == None: self.supported_databases[db_name].dp_pass   = db_pass
-            if not db_server == None: self.supported_databases[db_name].dp_server = db_server
-            if not db_type   == None: self.supported_databases[db_name].dp_type   = db_type
+            if db_ip     != None: self.supported_databases[db_name].dp_ip     = db_ip
+            if db_user   != None: self.supported_databases[db_name].dp_user   = db_user
+            if db_pass   != None: self.supported_databases[db_name].dp_pass   = db_pass
+            if db_server != None: self.supported_databases[db_name].dp_server = db_server
+            if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
         return
 
     def get_tv_parameters(self):
         tv = {}
-        try:
-            tv['combinedStealFold'] = self.tv.combinedStealFold
-            tv['combined2B3B']      = self.tv.combined2B3B
-            tv['combinedPostflop']  = self.tv.combinedPostflop
-        except: # Default tv parameters
-            tv['combinedStealFold'] = True
-            tv['combined2B3B']      = True
-            tv['combinedPostflop']  = True
+        try:    tv['combinedStealFold'] = self.tv.combinedStealFold
+        except: tv['combinedStealFold'] = True
+
+        try:    tv['combined2B3B']      = self.tv.combined2B3B
+        except: tv['combined2B3B']      = True
+
+        try:    tv['combinedPostflop']  = self.tv.combinedPostflop
+        except: tv['combinedPostflop']  = True
         return tv
     
     def get_import_parameters(self):
         imp = {}
-        try:
-            imp['callFpdbHud']   = self.imp.callFpdbHud
-            imp['interval']      = self.imp.interval
-            imp['hhArchiveBase'] = self.imp.hhArchiveBase
-        except: # Default params
-            imp['callFpdbHud']   = True
-            imp['interval']      = 10
-            imp['hhArchiveBase'] = "~/.fpdb/HandHistories/"
+        try:     imp['callFpdbHud']       = self.imp.callFpdbHud
+        except:  imp['callFpdbHud']       = True
+
+        try:     imp['interval']          = self.imp.interval
+        except:  imp['interval']          = 10
+
+        try:     imp['hhArchiveBase']     = self.imp.hhArchiveBase
+        except:  imp['hhArchiveBase']     = "~/.fpdb/HandHistories/"
+
+        try:     imp['saveActions']       = self.imp.saveActions
+        except:  imp['saveActions']       = True
+
+        try:     imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
+        except:  imp['fastStoreHudCache'] = True
         return imp
 
     def get_default_paths(self, site = "PokerStars"):
@@ -465,6 +533,9 @@ class Config:
             paths['hud-defaultPath']        = "default"
             paths['bulkImport-defaultPath'] = "default"
         return paths
+    
+    def get_frames(self, site = "PokerStars"):
+        return self.supported_sites[site].use_frames == True
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
@@ -505,14 +576,27 @@ class Config:
                           (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
-    def get_supported_sites(self):
+    def get_aux_locations(self, aux = "mucked", max = "9"):
+        
+        try:
+            locations = self.aux_windows[aux].layout[max].location
+        except:
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+                          (586, 393), (421, 440), (267, 440), (  0, 361),
+                          (  0, 280), (121, 280), ( 46,  30) )
+        return locations
+
+    def get_supported_sites(self, all = False):
         """Returns the list of supported sites."""
-        return self.supported_sites.keys()
+        the_sites = []
+        for site in self.supported_sites.keys():
+            params = self.get_site_parameters(site)
+            if all or params['enabled']:
+                the_sites.append(site)
+        return the_sites
 
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
-        if not self.supported_sites.has_key(site):
-            return None
         parms = {}
         parms["converter"]    = self.supported_sites[site].converter
         parms["decoder"]      = self.supported_sites[site].decoder
@@ -524,10 +608,10 @@ class Config:
         parms["table_finder"] = self.supported_sites[site].table_finder
         parms["HH_path"]      = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
-        parms["enabled"]      = self.supported_sites[site].enabled
         parms["aux_window"]   = self.supported_sites[site].aux_window
         parms["font"]         = self.supported_sites[site].font
         parms["font_size"]    = self.supported_sites[site].font_size
+        parms["enabled"]      = self.supported_sites[site].enabled
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
@@ -538,31 +622,19 @@ class Config:
                             font = None, font_size = None):
         """Sets the specified site parameters for the specified site."""
         site_node = self.get_site_node(site_name)
-        if not db_node == None:
-            if not converter      == None: site_node.setAttribute("converter", converter)
-            if not decoder        == None: site_node.setAttribute("decoder", decoder)
-            if not hudbgcolor     == None: site_node.setAttribute("hudbgcolor", hudbgcolor)
-            if not hudfgcolor     == None: site_node.setAttribute("hudfgcolor", hudfgcolor)
-            if not hudopacity     == None: site_node.setAttribute("hudopacity", hudopacity)
-            if not screen_name    == None: site_node.setAttribute("screen_name", screen_name)
-            if not site_path      == None: site_node.setAttribute("site_path", site_path)
-            if not table_finder   == None: site_node.setAttribute("table_finder", table_finder)
-            if not HH_path        == None: site_node.setAttribute("HH_path", HH_path)
-            if not enabled        == None: site_node.setAttribute("enabled", enabled)
-            if not font           == None: site_node.setAttribute("font", font)
-            if not font_size      == None: site_node.setAttribute("font_size", font_size)
-
-#        if self.supported_databases.has_key(db_name):
-#            if not converter      == None: self.supported_sites[site].converter = converter
-#            if not decoder        == None: self.supported_sites[site].decoder = decoder
-#            if not hudbgcolor     == None: self.supported_sites[site].hudbgcolor = hudbgcolor
-#            if not hudfgcolor     == None: self.supported_sites[site].hudfgcolor = hudfgcolor
-#            if not hudopacity     == None: self.supported_sites[site].hudopacity = hudopacity
-#            if not screen_name    == None: self.supported_sites[site].screen_name = screen_name
-#            if not site_path      == None: self.supported_sites[site].site_path = site_path
-#            if not table_finder   == None: self.supported_sites[site].table_finder = table_finder
-#            if not HH_path        == None: self.supported_sites[site].HH_path = HH_path
-#            if not enabled        == None: self.supported_sites[site].enabled = enabled
+        if db_node != None:
+            if converter      != None: site_node.setAttribute("converter", converter)
+            if decoder        != None: site_node.setAttribute("decoder", decoder)
+            if hudbgcolor     != None: site_node.setAttribute("hudbgcolor", hudbgcolor)
+            if hudfgcolor     != None: site_node.setAttribute("hudfgcolor", hudfgcolor)
+            if hudopacity     != None: site_node.setAttribute("hudopacity", hudopacity)
+            if screen_name    != None: site_node.setAttribute("screen_name", screen_name)
+            if site_path      != None: site_node.setAttribute("site_path", site_path)
+            if table_finder   != None: site_node.setAttribute("table_finder", table_finder)
+            if HH_path        != None: site_node.setAttribute("HH_path", HH_path)
+            if enabled        != None: site_node.setAttribute("enabled", enabled)
+            if font           != None: site_node.setAttribute("font", font)
+            if font_size      != None: site_node.setAttribute("font_size", font_size)
         return
 
     def get_aux_windows(self):
@@ -605,7 +677,7 @@ class Config:
 
     def execution_path(self, filename):
         """Join the fpdb path to filename."""
-        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(1))), filename)
+        return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(0))), filename)
 
 if __name__== "__main__":
     c = Config()
@@ -656,7 +728,12 @@ if __name__== "__main__":
     print "locs   = ", c.get_locations("PokerStars", 8)
     for mw in c.get_aux_windows():
         print c.get_aux_parameters(mw)
-            
+
+    print "mucked locations =", c.get_aux_locations('mucked', 9)
+#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
+#                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
+#    print "mucked locations =", c.get_aux_locations('mucked', 9)
+
     for site in c.supported_sites.keys():
         print "site = ", site,
         print c.get_site_parameters(site)

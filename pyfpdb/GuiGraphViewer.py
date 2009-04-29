@@ -20,7 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
-from time import time
+from time import *
 #import pokereval
 
 try:
@@ -46,9 +46,15 @@ class GuiGraphViewer (threading.Thread):
         return self.mainHBox
     #end def get_vbox
 
+    def clearGraphData(self):
+        self.fig.clf()
+        if self.canvas is not None:
+            self.canvas.destroy()
+
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+
     def generateGraph(self, widget, data):
-        try: self.canvas.destroy()
-        except AttributeError: pass
+        self.clearGraphData()
 
         sitenos = []
         playerids = []
@@ -62,17 +68,16 @@ class GuiGraphViewer (threading.Thread):
                 if len(result) == 1:
                     playerids.append(result[0][0])
 
-        if sitenos == []:
+        if not sitenos:
             #Should probably pop up here.
             print "No sites selected - defaulting to PokerStars"
             sitenos = [2]
 
 
-        if playerids == []:
+        if not playerids:
             print "No player ids found"
             return
 
-        self.fig = Figure(figsize=(5,4), dpi=100)
 
         #Set graph properties
         self.ax = self.fig.add_subplot(111)
@@ -104,9 +109,9 @@ class GuiGraphViewer (threading.Thread):
             #Draw plot
             self.ax.plot(line,)
 
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
             self.graphBox.add(self.canvas)
             self.canvas.show()
+            self.exportButton.set_sensitive(True)
     #end of def showClicked
 
     def getRingProfitGraph(self, names, sites):
@@ -279,16 +284,24 @@ class GuiGraphViewer (threading.Thread):
         win.destroy()
 
     def exportGraph (self, widget, data):
+        if self.fig is None:
+            return # Might want to disable export button until something has been generated.
         dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
                                             action=gtk.FILE_CHOOSER_ACTION_OPEN,
                                             buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+        #TODO: Suggest path and filename to start with
 
         response = dia_chooser.run()
         if response == gtk.RESPONSE_OK:
             self.exportDir = dia_chooser.get_filename()
+            print "DEBUG: self.exportDir = %s" %(self.exportDir)
         elif response == gtk.RESPONSE_CANCEL:
             print 'Closed, no graph exported'
         dia_chooser.destroy()
+        #TODO: Check to see if file exists
+        #NOTE: Dangerous - will happily overwrite any file we have write access too
+        #TODO: This asks for a directory but will take a filename and overwrite it.
+        self.fig.savefig(self.exportDir, format="png")
 
     def __init__(self, db, settings, querylist, config, debug=True):
         """Constructor for GraphViewer"""
@@ -354,8 +367,10 @@ class GuiGraphViewer (threading.Thread):
         graphButton.connect("clicked", self.generateGraph, "cliced data")
         graphButton.show()
 
+        self.fig = None
         self.exportButton=gtk.Button("Export to File")
         self.exportButton.connect("clicked", self.exportGraph, "show clicked")
+        self.exportButton.set_sensitive(False)
         self.exportButton.show()
 
         self.leftPanelBox.add(playerFrame)
@@ -366,3 +381,34 @@ class GuiGraphViewer (threading.Thread):
 
         self.leftPanelBox.show()
         self.graphBox.show()
+
+        self.fig = Figure(figsize=(5,4), dpi=100)
+        self.canvas = None
+
+#################################
+#
+#        self.db.cursor.execute("""select UNIX_TIMESTAMP(handStart) as time, id from Hands ORDER BY time""")
+#        THRESHOLD = 1800
+#        hands = self.db.cursor.fetchall()
+#
+#        times = map(lambda x:long(x[0]), hands)
+#        handids = map(lambda x:int(x[1]), hands)
+#        print "DEBUG: len(times) %s" %(len(times))
+#        diffs = diff(times)
+#        print "DEBUG: len(diffs) %s" %(len(diffs))
+#        index = nonzero(diff(times) > THRESHOLD)
+#        print "DEBUG: len(index[0]) %s" %(len(index[0]))
+#        print "DEBUG: index %s" %(index)
+#        print "DEBUG: index[0][0] %s" %(index[0][0])
+#
+#        total = 0
+#
+#        last_idx = 0
+#        for i in range(len(index[0])):
+#            print "Hands in session %4s: %4s  Start: %s End: %s Total: %s" %(i, index[0][i] - last_idx, strftime("%d/%m/%Y %H:%M", localtime(times[last_idx])), strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]])), times[index[0][i]] - times[last_idx])
+#            total = total + (index[0][i] - last_idx)
+#            last_idx = index[0][i] + 1
+#
+#        print "Total: ", total
+#################################
+

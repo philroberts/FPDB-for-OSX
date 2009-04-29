@@ -23,12 +23,12 @@ import FpdbSQLQueries
 class fpdb_db:
     def __init__(self):
         """Simple constructor, doesnt really do anything"""
-        self.db=None
-        self.cursor=None
-        self.sql = {}
-        self.MYSQL_INNODB=2
-        self.PGSQL=3
-        self.SQLITE=4
+        self.db             = None
+        self.cursor         = None
+        self.sql            = {}
+        self.MYSQL_INNODB   = 2
+        self.PGSQL          = 3
+        self.SQLITE         = 4
     #end def __init__
 
     def do_connect(self, config=None):
@@ -37,10 +37,7 @@ class fpdb_db:
             raise FpdbError('Configuration not defined')
 
         self.settings = {}
-        if (os.sep=="/"):
-            self.settings['os']="linuxmac"
-        else:
-            self.settings['os']="windows"
+        self.settings['os'] = "linuxmac" if os.name != "nt" else "windows"
 
         self.settings.update(config.get_db_parameters())
         self.connect(self.settings['db-backend'],
@@ -62,7 +59,7 @@ class fpdb_db:
         self.database=database
         if backend==self.MYSQL_INNODB:
             import MySQLdb
-            self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database)
+            self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
         elif backend==self.PGSQL:
             import psycopg2
             # If DB connection is made over TCP, then the variables

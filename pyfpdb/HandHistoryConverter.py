@@ -15,12 +15,12 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import Configuration
-import FpdbRegex
 import Hand
 import re
 import sys
 import traceback
+import logging
+from optparse import OptionParser
 import os
 import os.path
 import xml.dom.minidom
@@ -28,7 +28,7 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
-from pokereval import PokerEval
+# from pokereval import PokerEval
 import time
 import datetime
 import gettext
@@ -71,85 +71,178 @@ letter2names = {
 import gettext
 gettext.install('myapplication')
 
+class HandHistoryConverter():
 
-
-class HandHistoryConverter:
-    eval = PokerEval()
-    def __init__(self, config, file, sitename):
-        print "HandHistory init called"
-        self.c         = config
-        self.sitename  = sitename
-        self.obs       = ""             # One big string
+    READ_CHUNK_SIZE = 10000 # bytes to read at a time from file (in tail mode)
+    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
+        logging.info("HandHistory init called")
+        
+        # default filetype and codepage. Subclasses should set these properly.
         self.filetype  = "text"
         self.codepage  = "utf8"
-        self.doc       = None     # For XML based HH files
-        self.file      = file
-        self.hhbase    = self.c.get_import_parameters().get("hhArchiveBase")
-        self.hhbase    = os.path.expanduser(self.hhbase)
-        self.hhdir     = os.path.join(self.hhbase,sitename)
-        self.gametype  = []
-#		self.ofile     = os.path.join(self.hhdir,file)
-        self.rexx      = FpdbRegex.FpdbRegex()
+        
+        self.in_path = in_path
+        self.out_path = out_path
+        if self.out_path == '-':
+            # write to stdout
+            self.out_fh = sys.stdout
+        else:
+            # TODO: out_path should be sanity checked before opening. Perhaps in fpdb_import?
+            # I'm not sure what we're looking for, although we don't want out_path==in_path!='-'
+            self.out_fh = open(self.out_path, 'w') # doomswitch is now on :|
+        self.sitename  = sitename
+        self.follow = follow
+        self.compiledPlayers   = set()
+        self.maxseats  = 10
 
     def __str__(self):
+        #TODO : I got rid of most of the hhdir stuff.
         tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
-        tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
-        tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
+        #tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
+        #tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
         tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
-        tmp = tmp + "\tinfile:     '%s'\n" % (self.file)
-#		tmp = tmp + "\toutfile:    '%s'\n" % (self.ofile)
-#		tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-#		tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-#		tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-#		tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
+        tmp = tmp + "\tinfile:     '%s'\n" % (self.in_path)
+        tmp = tmp + "\toutfile:    '%s'\n" % (self.out_path)
+        #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
+        #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
+        #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
+        #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
         return tmp
 
-    def processFile(self):
+    def start(self):
+        """process a hand at a time from the input specified by in_path.
+If in follow mode, wait for more data to turn up.
+Otherwise, finish at eof..."""        
         starttime = time.time()
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
             return
-        self.readFile(self.file)
-        self.gametype = self.determineGameType()
-        self.hands = self.splitFileIntoHands()
-        for hand in self.hands:
-            print "\nInput:\n"+hand.string
-            self.readHandInfo(hand)
-            self.readPlayerStacks(hand)
-            print "DEBUG stacks:", hand.stacks
-            self.markStreets(hand)
-            self.readBlinds(hand)
-            self.readHeroCards(hand) # want to generalise to draw games
 
-            self.readShowdownActions(hand)
-            
-            # Read actions in street order
-            for street in hand.streetList: # go through them in order
-                if hand.streets.group(street) is not None:
-                    self.readCommunityCards(hand, street) # read community cards
-                    self.readAction(hand, street)
-
-                    
-            self.readCollectPot(hand)
-            self.readShownCards(hand)
-
-            # finalise it (total the pot)
-            hand.totalPot()
-            self.getRake(hand)
-
-            hand.writeHand(sys.stderr)
-            #if(hand.involved == True):
-                #self.writeHand("output file", hand)
-                #hand.printHand()
-            #else:
-                #pass #Don't write out observed hands
-
+        if self.follow:
+            numHands = 0
+            for handText in self.tailHands():
+                numHands+=1
+                self.processHand(handText)
+        else:
+            handsList = self.allHandsAsList()
+            logging.info("Parsing %d hands" % len(handsList))
+            for handText in handsList:
+                self.processHand(handText)
+            numHands=  len(handsList)
         endtime = time.time()
-        print "Processed %d hands in %d seconds" % (len(self.hands), endtime-starttime)
+        print "Processed %d hands in %.3f seconds" % (numHands, endtime - starttime)
+        if self.out_fh != sys.stdout:
+            self.out_fh.close()
 
-    #####
+
+    def tailHands(self):
+        """Generator of handTexts from a tailed file:
+Tail the in_path file and yield handTexts separated by re_SplitHands"""
+        if self.in_path == '-': raise StopIteration
+        interval = 1.0 # seconds to sleep between reads for new data
+        fd = codecs.open(self.in_path,'r', self.codepage)
+        data = ''
+        while 1:
+            where = fd.tell()
+            newdata = fd.read(self.READ_CHUNK_SIZE)
+            if not newdata:
+                fd_results = os.fstat(fd.fileno())
+                try:
+                    st_results = os.stat(self.in_path)
+                except OSError:
+                    st_results = fd_results
+                if st_results[1] == fd_results[1]:
+                    time.sleep(interval)
+                    fd.seek(where)
+                else:
+                    logging.debug("%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1]))
+                    fd = codecs.open(self.in_path, 'r', self.codepage)
+                    fd.seek(where)
+            else:
+                # yield hands
+                data = data + newdata
+                result = self.re_SplitHands.split(data)
+                result = iter(result)
+                data = ''
+                # --x       data (- is bit of splitter, x is paragraph)     yield,...,keep
+                # [,--,x]    result of re.split (with group around splitter)
+                # ,x        our output: yield nothing, keep x
+                #
+                # --x--x    [,--,x,--,x]  x,x
+                # -x--x     [-x,--,x]     x,x
+                # x-        [x-]          ,x-
+                # x--       [x,--,]       x,--
+                # x--x      [x,--,x]      x,x
+                # x--x--    [x,--,x,--,]  x,x,--
+                
+                # The length is always odd.
+                # 'odd' indices are always splitters.
+                # 'even' indices are always paragraphs or ''
+                # We want to discard all the ''
+                # We want to discard splitters unless the final item is '' (because the splitter could grow with new data)
+                # We want to yield all paragraphs followed by a splitter, i.e. all even indices except the last.
+                for para in result:
+                    try:
+                        result.next()
+                        splitter = True
+                    except StopIteration:
+                        splitter = False
+                    if splitter: # para is followed by a splitter
+                        if para: yield para # para not ''
+                    else:
+                        data = para # keep final partial paragraph
+
+
+    def allHandsAsList(self):
+        """Return a list of handtexts in the file at self.in_path"""
+        #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
+        self.readFile()
+        self.obs = self.obs.strip()
+        self.obs = self.obs.replace('\r\n', '\n')
+        if self.obs == "" or self.obs == None:
+            logging.info("Read no hands.")
+            return
+        return re.split(self.re_SplitHands,  self.obs)
+        
+    def processHand(self, handText):
+        gametype = self.determineGameType(handText)
+        logging.debug("gametype %s" % gametype)
+        if gametype is None: 
+            l = None
+            gametype = "unmatched"
+            # TODO: not ideal, just trying to not error.
+            # TODO: Need to count failed hands.
+        else:
+            # See if gametype is supported.
+            type = gametype['type']
+            base = gametype['base']
+            limit = gametype['limitType']
+            l = [type] + [base] + [limit]
+        hand = None
+        if l in self.readSupportedGames():
+            hand = None
+            if gametype['base'] == 'hold':
+                logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
+                hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
+            elif gametype['base'] == 'stud':
+                hand = Hand.StudHand(self, self.sitename, gametype, handText)
+            elif gametype['base'] == 'draw':
+                hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+        else:
+            logging.info("Unsupported game type: %s" % gametype)
+
+        if hand:
+            hand.writeHand(self.out_fh)
+        else:
+            logging.info("Unsupported game type: %s" % gametype)
+            # TODO: pity we don't know the HID at this stage. Log the entire hand?
+            # From the log we can deduce that it is the hand after the one before :)
+
+
     # These functions are parse actions that may be overridden by the inheriting class
-    #
+    # This function should return a list of lists looking like:
+    # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
+    # Showing all supported games limits and types
     
     def readSupportedGames(self): abstract
 
@@ -157,22 +250,38 @@ class HandHistoryConverter:
     #   type  base limit
     # [ ring, hold, nl   , sb, bb ]
     # Valid types specified in docs/tabledesign.html in Gametypes
-    def determineGameType(self): abstract
+    def determineGameType(self, handText): abstract
+    """return dict with keys/values:
+    'type'       in ('ring', 'tour')
+    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+    'base'       in ('hold', 'stud', 'draw')
+    'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
+    'hilo'       in ('h','l','s')
+    'smallBlind' int?
+    'bigBlind'   int?
+    'smallBet'
+    'bigBet'
+    'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
+or None if we fail to get the info """
+    #TODO: which parts are optional/required?
 
     # Read any of:
-    # HID		HandID
-    # TABLE		Table name
-    # SB 		small blind
-    # BB		big blind
-    # GAMETYPE	gametype
-    # YEAR MON DAY HR MIN SEC 	datetime
-    # BUTTON	button seat number
+    # HID       HandID
+    # TABLE     Table name
+    # SB        small blind
+    # BB        big blind
+    # GAMETYPE  gametype
+    # YEAR MON DAY HR MIN SEC   datetime
+    # BUTTON    button seat number
     def readHandInfo(self, hand): abstract
 
     # Needs to return a list of lists in the format
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
-
+    
+    def compilePlayerRegexs(self): abstract
+    """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
+    
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
@@ -182,7 +291,11 @@ class HandHistoryConverter:
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    def readAntes(self, hand): abstract
+    def readBringIn(self, hand): abstract
+    def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
+    def readPlayerCards(self, hand, street): abstract
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
@@ -194,23 +307,34 @@ class HandHistoryConverter:
     
     
     def sanityCheck(self):
+        """Check we aren't going to do some stupid things"""
+        #TODO: the hhbase stuff needs to be in fpdb_import
         sane = False
         base_w = False
-        #Check if hhbase exists and is writable
-        #Note: Will not try to create the base HH directory
-        if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
-            print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
-        else:
-            #Check if hhdir exists and is writable
-            if not os.path.isdir(self.hhdir):
-                # In first pass, dir may not exist. Attempt to create dir
-                print "Creating directory: '%s'" % (self.hhdir)
-                os.mkdir(self.hhdir)
-                sane = True
-            elif os.access(self.hhdir, os.W_OK):
-                sane = True
-            else:
-                print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
+        #~ #Check if hhbase exists and is writable
+        #~ #Note: Will not try to create the base HH directory
+        #~ if not (os.access(self.hhbase, os.W_OK) and os.path.isdir(self.hhbase)):
+            #~ print "HH Sanity Check: Directory hhbase '" + self.hhbase + "' doesn't exist or is not writable"
+        #~ else:
+            #~ #Check if hhdir exists and is writable
+            #~ if not os.path.isdir(self.hhdir):
+                #~ # In first pass, dir may not exist. Attempt to create dir
+                #~ print "Creating directory: '%s'" % (self.hhdir)
+                #~ os.mkdir(self.hhdir)
+                #~ sane = True
+            #~ elif os.access(self.hhdir, os.W_OK):
+                #~ sane = True
+            #~ else:
+                #~ print "HH Sanity Check: Directory hhdir '" + self.hhdir + "' or its parent directory are not writable"
+
+        # Make sure input and output files are different or we'll overwrite the source file
+        if True: # basically.. I don't know
+            sane = True
+        
+        if(self.in_path != '-' and self.out_path == self.in_path):
+            print "HH Sanity Check: output and input files are the same, check config"
+            sane = False
+
 
         return sane
 
@@ -221,21 +345,27 @@ class HandHistoryConverter:
 
     def splitFileIntoHands(self):
         hands = []
-        self.obs.strip()
-        list = self.rexx.split_hand_re.split(self.obs)
+        self.obs = self.obs.strip()
+        list = self.re_SplitHands.split(self.obs)
         list.pop() #Last entry is empty
         for l in list:
-#			print "'" + l + "'"
+#           print "'" + l + "'"
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 
-    def readFile(self, filename):
-        """Read file"""
-        print "Reading file: '%s'" %(filename)
+    def readFile(self):
+        """open in_path according to self.codepage"""
+        
         if(self.filetype == "text"):
-            infile=codecs.open(filename, "rU", self.codepage)
-            self.obs = infile.read()
-            infile.close()
+            if self.in_path == '-':
+                # read from stdin
+                logging.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
+                in_fh = codecs.getreader('cp1252')(sys.stdin)
+            else:
+                logging.debug("Opening %s with %s" % (self.in_path, self.codepage))
+                in_fh = codecs.open(self.in_path, 'r', self.codepage)
+            self.obs = in_fh.read()
+            in_fh.close()
         elif(self.filetype == "xml"):
             try:
                 doc = xml.dom.minidom.parse(filename)
@@ -244,18 +374,9 @@ class HandHistoryConverter:
                 traceback.print_exc(file=sys.stderr)
 
 
-#takes a poker float (including , for thousand seperator and converts it to an int
-    def float2int (self, string):
-        pos=string.find(",")
-        if (pos!=-1): #remove , the thousand seperator
-            string=string[0:pos]+string[pos+1:]
+    def getStatus(self):
+        #TODO: Return a status of true if file processed ok
+        return True
 
-        pos=string.find(".")
-        if (pos!=-1): #remove decimal point
-            string=string[0:pos]+string[pos+1:]
-
-        result = int(string)
-        if pos==-1: #no decimal point - was in full dollars - need to multiply with 100
-            result*=100
-        return result
-#end def float2int
+    def getProcessedFile(self):
+        return self.out_path

@@ -116,31 +116,53 @@ class Database:
         row = c.fetchone()
         return row[0]
 
-#    def get_cards(self, hand):
-#    this version is for the PTrackSv2 db
-#        c = self.connection.cursor()
-#        c.execute(self.sql.query['get_cards'], hand)
-#        colnames = [desc[0] for desc in c.description]
-#        cards = {}
-#        for row in c.fetchall():
-#            s_dict = {}
-#            for name, val in zip(colnames, row):
-#                s_dict[name] = val
-#            cards[s_dict['seat_number']] = s_dict
-#        return (cards)
-
     def get_cards(self, hand):
-#    this version is for the fpdb db
+        """Get and return the cards for each player in the hand."""
+        cards = {} # dict of cards, the key is the seat number example: {1: 'AcQd9hTs5d'}
         c = self.connection.cursor()
         c.execute(self.sql.query['get_cards'], hand)
         colnames = [desc[0] for desc in c.description]
-        cards = {}
         for row in c.fetchall():
             s_dict = {}
             for name, val in zip(colnames, row):
                 s_dict[name] = val
-            cards[s_dict['seat_number']] = s_dict
-        return (cards)
+            cards[s_dict['seat_number']] = (self.convert_cards(s_dict))
+        return cards
+
+    def get_common_cards(self, hand):
+        """Get and return the community cards for the specified hand."""
+        cards = {}
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_common_cards'], hand)
+        colnames = [desc[0] for desc in c.description]
+        for row in c.fetchall():
+            s_dict = {}
+            for name, val in zip(colnames, row):
+                s_dict[name] = val
+            cards['common'] = (self.convert_cards(s_dict))
+        return cards
+
+    def convert_cards(self, d):
+        ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
+        cards = ""
+        for i in xrange(1, 8):
+#            key = 'card' + str(i) + 'Value'
+#            if not d.has_key(key): continue
+#            if d[key] == None:
+#                break
+#            elif d[key] == 0:
+#                cards += "xx"
+#            else:
+#                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
+            cv = "card%dValue" % i
+            if cv not in d or d[cv] == None:
+                break
+            elif d[cv] == 0:
+                cards += "xx"
+            else:
+                cs = "card%dSuit" % i
+                cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
+        return cards
 
     def get_action_from_hand(self, hand_no):
         action = [ [], [], [], [], [] ]
@@ -165,19 +187,11 @@ class Database:
         c = self.connection.cursor()
 
         if aggregate:
-            query = 'get_stats_from_hand'
-            subs = (hand, hand)
-        else:
             query = 'get_stats_from_hand_aggregated'
             subs = (hand, hand, hand)
-
-#    get the players in the hand and their seats
-        c.execute(self.sql.query['get_players_from_hand'], (hand, ))
-        names = {}
-        seats = {}
-        for row in c.fetchall():
-            names[row[0]] = row[2]
-            seats[row[0]] = row[1]
+        else:
+            query = 'get_stats_from_hand'
+            subs = (hand, hand)
 
 #    now get the stats
         c.execute(self.sql.query[query], subs)
@@ -187,9 +201,6 @@ class Database:
             t_dict = {}
             for name, val in zip(colnames, row):
                 t_dict[name.lower()] = val
-#                print t_dict
-            t_dict['screen_name'] = names[t_dict['player_id']]
-            t_dict['seat']        = seats[t_dict['player_id']]
             stat_dict[t_dict['player_id']] = t_dict
         return stat_dict
             
@@ -225,6 +236,7 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
 
+    print "cards =", db_connection.get_cards(73525)
     db_connection.close_connection
 
     print "press enter to continue"

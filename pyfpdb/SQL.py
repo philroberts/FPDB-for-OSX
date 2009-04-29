@@ -173,6 +173,8 @@ class Sql:
 
             self.query['get_stats_from_hand'] = """
                     SELECT HudCache.playerId             AS player_id, 
+                        seatNo                           AS seat,
+                        name                             AS screen_name,
                         sum(HDs)                         AS n,
                         sum(street0VPI)                  AS vpip,
                         sum(street0Aggr)                 AS pfr,
@@ -233,6 +235,7 @@ class Sql:
                          INNER JOIN HandsPlayers ON (HandsPlayers.handId = %s)
                          INNER JOIN HudCache ON (    HudCache.PlayerId = HandsPlayers.PlayerId+0
                                                  AND HudCache.gametypeId+0 = Hands.gametypeId+0)
+                         INNER JOIN Players ON (Players.id = HandsPlayers.PlayerId+0)
                     WHERE Hands.id = %s
                     GROUP BY HudCache.PlayerId
                 """
@@ -328,7 +331,7 @@ class Sql:
                 """
 
             self.query['get_table_name'] = """
-                    select tableName, maxSeats, category 
+                    select tableName, maxSeats, category, type 
                     from Hands,Gametypes 
                     where Hands.id = %s
                     and Gametypes.id = Hands.gametypeId
@@ -356,6 +359,17 @@ class Sql:
                     from HandsPlayers, Players 
                     where handID = %s and HandsPlayers.playerId = Players.id 
                     order by seatNo
+                """
+
+            self.query['get_common_cards'] = """
+                    select 
+                        card1Value, card1Suit, 
+                        card2Value, card2Suit, 
+                        card3Value, card3Suit, 
+                        card4Value, card4Suit, 
+                        card5Value, card5Suit
+                    from BoardCards
+                    where handId = %s
                 """
 
             self.query['get_action_from_hand'] = """

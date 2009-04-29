@@ -35,6 +35,7 @@ if os.name == 'nt':
     import win32process
     import win32api
     import win32con
+    import win32security
 
 #    FreePokerTools modules
 import Configuration
@@ -129,12 +130,14 @@ def discover_posix(c):
 #    xwininfo -root -tree -id 0xnnnnn    gets the info on a single window
         for s in c.get_supported_sites():
             params = c.get_site_parameters(s)
+            
+# TODO: We need to make a list of phrases, shared between the WIndows and Unix code!!!!!!       
             if re.search(params['table_finder'], listing):
-                if re.search('Lobby', listing):                continue
-                if re.search('Instant Hand History', listing): continue
-                if re.search('\"Full Tilt Poker\"', listing):  continue # FTP Lobby
-                if re.search('History for table:', listing):   continue
-                if re.search('has no name', listing):          continue
+                if 'Lobby' in listing:   continue
+                if 'Instant Hand History' in listing: continue
+#                if '\"Full Tilt Poker\"' in listing: continue
+                if 'History for table:' in listing: continue
+                if 'has no name' in listing: continue
                 info = decode_xwininfo(c, listing)
                 if info['site'] == None:                       continue
                 if info['title'] == info['exe']:               continue
@@ -147,8 +150,8 @@ def discover_posix(c):
 def discover_posix_by_name(c, tablename):
     """Find an XWindows poker client of the given name."""
     for listing in os.popen('xwininfo -root -tree').readlines():
-        if re.search(tablename, listing):
-            if re.search('History for table:', listing): continue
+        if tablename in listing:
+            if 'History for table:' in listing: continue
             info = decode_xwininfo(c, listing)
             if not info['name'] == tablename:            continue
             return info
@@ -195,9 +198,9 @@ def discover_nt(c):
     titles = {}
     tables = {}
     win32gui.EnumWindows(win_enum_handler, titles)
-    for hwnd in titles.keys():
-        if re.search('Logged In as', titles[hwnd], re.IGNORECASE) and not re.search('Lobby', titles[hwnd]):
-            if re.search('Full Tilt Poker', titles[hwnd]):
+    for hwnd in titles:
+        if 'Logged In as' in titles[hwnd] and not 'Lobby' in titles[hwnd]:
+            if 'Full Tilt Poker' in titles[hwnd]:
                 continue
             tw = Table_Window()
             tw.number = hwnd
@@ -207,14 +210,16 @@ def discover_nt(c):
             tw.height = int( height ) - b_width - tb_height
             tw.x      = int( x ) + b_width
             tw.y      = int( y ) + tb_height
-            if re.search('Logged In as', titles[hwnd]):
+            
+# TODO: Isn't the site being determined by the EXE name it belongs to? is this section of code even useful? cleaning it anyway
+            if 'Logged In as' in titles[hwnd]:
                 tw.site = "PokerStars"
-            elif re.search('Logged In As', titles[hwnd]): #wait, what??!
+            elif 'Logged In As' in titles[hwnd]:
                 tw.site = "Full Tilt"
             else:
                 tw.site = "Unknown"
                 sys.stderr.write("Found unknown table = %s" % tw.title)
-            if not tw.site == "Unknown":
+            if tw.site != "Unknown":
                 eval("%s(tw)" % c.supported_sites[tw.site].decoder)
             else:
                 tw.name = "Unknown"
@@ -226,10 +231,10 @@ def discover_nt_by_name(c, tablename):
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
-        if titles[hwnd].find(tablename) == -1: continue
-        if titles[hwnd].find("History for table:") > -1: continue
-        if titles[hwnd].find("HUD:") > -1: continue
-        if titles[hwnd].find("Chat:") > -1: continue
+        if not tablename in titles[hwnd]: continue
+        if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
+        if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
+        if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
         return decode_windows(c, titles[hwnd], hwnd)
     return None
 
@@ -246,10 +251,23 @@ def discover_nt_tournament(c, tour_number, tab_number):
 
 def get_nt_exe(hwnd):
     """Finds the name of the executable that the given window handle belongs to."""
+    
+    # Request privileges to enable "debug process", so we can later use PROCESS_VM_READ, retardedly required to GetModuleFileNameEx()
+    priv_flags = win32security.TOKEN_ADJUST_PRIVILEGES | win32security.TOKEN_QUERY
+    hToken = win32security.OpenProcessToken (win32api.GetCurrentProcess(), priv_flags)
+    # enable "debug process"
+    privilege_id = win32security.LookupPrivilegeValue (None, win32security.SE_DEBUG_NAME)
+    old_privs = win32security.AdjustTokenPrivileges (hToken, 0, [(privilege_id, win32security.SE_PRIVILEGE_ENABLED)])
+    
+    # Open the process, and query it's filename
     processid = win32process.GetWindowThreadProcessId(hwnd)
     pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
     exename = win32process.GetModuleFileNameEx(pshandle, 0)
+    
+    # clean up
     win32api.CloseHandle(pshandle)
+    win32api.CloseHandle(hToken)
+    
     return exename
 
 def decode_windows(c, title, hwnd):
@@ -343,7 +361,7 @@ def clean_title(name):
                 ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
                 ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
                 ' \(speed\)', 
-                ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
+                ' no all-in', ' fast', ',', ' 50BB min', '50bb min', '\s+$']:
         name = re.sub(pattern, '', name)
     name = name.rstrip()
     return name
@@ -369,12 +387,12 @@ def discover_mac_by_name(c, tablename):
 if __name__=="__main__":
     c = Configuration.Config()
 
-    print discover_table_by_name(c, "Ringe")
+    print discover_table_by_name(c, "Torino")
 #    print discover_tournament_table(c, "118942908", "3")
 
-#    tables = discover(c)
-#    for t in tables.keys():
-#        print tables[t]
+    tables = discover(c)
+    for t in tables.keys():
+        print tables[t]
 
     print "press enter to continue"
     sys.stdin.readline()

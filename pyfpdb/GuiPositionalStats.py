@@ -25,7 +25,7 @@ import fpdb_import
 import fpdb_db
 import FpdbSQLQueries
 
-class GuiPlayerStats (threading.Thread):
+class GuiPositionalStats (threading.Thread):
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.main_hbox
@@ -35,6 +35,9 @@ class GuiPlayerStats (threading.Thread):
         self.activesite = data
         print "DEBUG: activesite set to %s" %(self.activesite)
 
+    def cardCallback(self, widget, data=None):
+        print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+
     def refreshStats(self, widget, data):
         try: self.stats_table.destroy()
         except AttributeError: pass
@@ -42,7 +45,8 @@ class GuiPlayerStats (threading.Thread):
 
     def fillStatsFrame(self, vbox):
         # Get currently active site and grab playerid
-        tmp = self.sql.query['playerStats']
+        print "DEBUG: attempting to fill stats frame"
+        tmp = self.sql.query['playerStatsByPosition']
 
         result = self.cursor.execute(self.sql.query['getPlayerId'], (self.heroes[self.activesite],))
         result = self.cursor.fetchall()
@@ -60,7 +64,7 @@ class GuiPlayerStats (threading.Thread):
                 vbox.add(self.stats_table)
 
                 # Create header row
-                titles = ("Game", "Hands", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
+                titles = ("Game", "Position", "#", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
 
                 col = 0
                 row = 0
@@ -108,6 +112,27 @@ class GuiPlayerStats (threading.Thread):
         hbox.add(button)
         vbox.pack_start(hbox, False, True, 0)
         hbox.show()
+
+    def fillCardsFrame(self, vbox):
+        hbox1 = gtk.HBox(True,0)
+        hbox1.show()
+        vbox.pack_start(hbox1, True, True, 0)
+
+        cards = [ "A", "K","Q","J","T","9","8","7","6","5","4","3","2" ]
+
+        for j in range(0, len(cards)):
+            hbox1 = gtk.HBox(True,0)
+            hbox1.show()
+            vbox.pack_start(hbox1, True, True, 0)
+            for i in range(0, len(cards)):
+                if i < (j + 1):
+                    suit = "o"
+                else:
+                    suit = "s"
+                button = gtk.ToggleButton("%s%s%s" %(cards[i], cards[j], suit))
+                button.connect("toggled", self.cardCallback, "%s%s%s" %(cards[i], cards[j], suit))
+                hbox1.pack_start(button, True, True, 0)
+                button.show()
 
     def createPlayerLine(self, hbox, site, player):
         if(self.buttongroup == None):
@@ -162,6 +187,15 @@ class GuiPlayerStats (threading.Thread):
 
         self.fillPlayerFrame(vbox)
         playerFrame.add(vbox)
+
+        cardsFrame = gtk.Frame("Cards:")
+        cardsFrame.set_label_align(0.0, 0.0)
+        cardsFrame.show()
+        vbox = gtk.VBox(False, 0)
+        vbox.show()
+
+        self.fillCardsFrame(vbox)
+        cardsFrame.add(vbox)
 
         statsFrame = gtk.Frame("Stats:")
         statsFrame.set_label_align(0.0, 0.0)
