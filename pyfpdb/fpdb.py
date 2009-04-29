@@ -287,7 +287,7 @@ class fpdb:
 
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
-		self.db.db.rollback()
+        self.db.db.rollback()
     #end def load_profile
 
     def not_implemented(self):
