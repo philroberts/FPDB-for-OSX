@@ -173,6 +173,8 @@ class Sql:
 
             self.query['get_stats_from_hand'] = """
                     SELECT HudCache.playerId             AS player_id, 
+                        HandsPlayers.seatNo              AS seat,
+                        Players.name                     AS screen_name,
                         seatNo                           AS seat,
                         name                             AS screen_name,
                         sum(HDs)                         AS n,
@@ -237,7 +239,7 @@ class Sql:
                                                  AND HudCache.gametypeId+0 = Hands.gametypeId+0)
                          INNER JOIN Players ON (Players.id = HandsPlayers.PlayerId+0)
                     WHERE Hands.id = %s
-                    GROUP BY HudCache.PlayerId
+                    GROUP BY HudCache.PlayerId, HandsPlayers.seatNo, Players.name
                 """
 
 #    same as above except stats are aggregated for all blind/limit levels

@@ -120,7 +120,7 @@ class Database:
         """Get and return the cards for each player in the hand."""
         cards = {} # dict of cards, the key is the seat number example: {1: 'AcQd9hTs5d'}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_cards'], hand)
+        c.execute(self.sql.query['get_cards'], [hand])
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             s_dict = {}
@@ -133,7 +133,7 @@ class Database:
         """Get and return the community cards for the specified hand."""
         cards = {}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_common_cards'], hand)
+        c.execute(self.sql.query['get_common_cards'], [hand])
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             s_dict = {}
