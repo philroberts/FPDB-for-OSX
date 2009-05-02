@@ -641,6 +641,7 @@ class FpdbSQLQueries:
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
+                     ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
                      ,stats.wtsdwsf
@@ -671,6 +672,9 @@ class FpdbSQLQueries:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                 AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                AS pfr
+                           ,case when sum(stealattemptchance) = 0 then '0'
+                                 else format(100.0*sum(stealattempted)/sum(stealattemptchance),1)
+                            end                                                             AS steals
                            ,format(100.0*sum(street1Seen)/sum(HDs),1)                AS saw_f
                            ,format(100.0*sum(sawShowdown)/sum(HDs),1)                AS sawsd
                            ,case when sum(street1Seen) = 0 then 'oo'
@@ -740,6 +744,7 @@ class FpdbSQLQueries:
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
+                     ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
                      ,stats.wtsdwsf
@@ -769,6 +774,9 @@ class FpdbSQLQueries:
                            ,sum(HDs) as n
                            ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')           AS vpip
                            ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')          AS pfr
+                           ,case when sum(stealattemptchance) = 0 then '0'
+                                 else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
+                            end                                                             AS steals
                            ,to_char(100.0*sum(street1Seen)/sum(HDs),'90D0')          AS saw_f
                            ,to_char(100.0*sum(sawShowdown)/sum(HDs),'90D0')          AS sawsd
                            ,case when sum(street1Seen) = 0 then 'oo'
