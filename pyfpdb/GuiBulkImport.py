@@ -30,7 +30,6 @@ import gtk
 #    fpdb/FreePokerTools modules
 import fpdb_simple
 import fpdb_import
-import fpdb_db
 import Configuration
 
 class GuiBulkImport():
@@ -83,8 +82,7 @@ class GuiBulkImport():
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, db, settings, config):
-        self.db = db # this is an instance of fpdb_db
+    def __init__(self, settings, config):
         self.settings = settings
         self.config = config
         self.importer = fpdb_import.Importer(self, self.settings,
@@ -227,7 +225,6 @@ def main(argv=None):
     (options, sys.argv) = parser.parse_args(args = argv)
 
     config = Configuration.Config()
-    db = None
     
     settings = {}
     settings['minPrint'] = options.minPrint
@@ -243,7 +240,7 @@ def main(argv=None):
         print '-q is deprecated. Just use "-f filename" instead'
         # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
-        i = GuiBulkImport(db, settings, config)
+        i = GuiBulkImport(settings, config)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
         main_window.add(i.vbox)

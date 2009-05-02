@@ -324,7 +324,7 @@ class fpdb:
     def tab_bulk_import(self, widget, data):
         """opens a tab for bulk importing"""
         #print "start of tab_bulk_import"
-        new_import_thread=GuiBulkImport.GuiBulkImport(self.db, self.settings, self.config)
+        new_import_thread=GuiBulkImport.GuiBulkImport(self.settings, self.config)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
