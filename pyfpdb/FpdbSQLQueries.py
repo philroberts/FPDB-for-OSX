@@ -41,8 +41,8 @@ class FpdbSQLQueries:
             self.query['list_tables'] = """ """
 
         ##################################################################
-            # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
-            ##################################################################
+        # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
+        ##################################################################
 
         if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
             self.query['drop_table'] = """DROP TABLE IF EXISTS """
@@ -609,7 +609,7 @@ class FpdbSQLQueries:
         elif(self.dbname == 'SQLite'):
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
 
-        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL'):
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
                 SELECT hp.handId, hp.winnings, coalesce(hp.ante,0) + SUM(ha.amount)
                      , hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount))
@@ -617,27 +617,14 @@ class FpdbSQLQueries:
                 INNER JOIN Players pl      ON hp.playerId     = pl.id
                 INNER JOIN Hands h         ON h.id            = hp.handId
                 INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
+                INNER JOIN Gametypes g     ON h.gametypeId    = g.id
                 where pl.id in <player_test>
                 AND   pl.siteId in <site_test>
                 AND   h.handStart > '<startdate_test>'
                 AND   h.handStart < '<enddate_test>'
+                AND   g.bigBlind in <limit_test>
                 AND   hp.tourneysPlayersId IS NULL
                 GROUP BY hp.handId, hp.winnings, h.handStart, hp.ante
-                ORDER BY h.handStart"""
-        elif(self.dbname == 'SQLite'):
-        #Probably doesn't work.
-            self.query['getRingProfitAllHandsPlayerIdSite'] = """
-                SELECT hp.handId, hp.winnings, SUM(ha.amount), hp.winnings - SUM(ha.amount)
-                FROM HandsPlayers hp
-                INNER JOIN Players pl      ON hp.playerId     = pl.id
-                INNER JOIN Hands h         ON h.id            = hp.handId
-                INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
-                where pl.id in <player_test>
-                AND   pl.siteId in <site_test>
-                AND   h.handStart > '<startdate_test>'
-                AND   h.handStart < '<enddate_test>'
-                AND   hp.tourneysPlayersId IS NULL
-                GROUP BY hp.handId, hp.winnings, h.handStart
                 ORDER BY h.handStart"""
 
         if(self.dbname == 'MySQL InnoDB'):
@@ -1153,6 +1140,12 @@ class FpdbSQLQueries:
                         and hprof2.PlPosition = stats.PlPosition)
                 order by stats.category, stats.limittype, stats.bigBlind, cast(stats.PlPosition as signed)
                 """
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
+        
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+
 
 if __name__== "__main__":
         from optparse import OptionParser
