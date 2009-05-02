@@ -27,7 +27,7 @@ import Filters
 import FpdbSQLQueries
 
 class GuiPlayerStats (threading.Thread):
-    def __init__(self, db, config, querylist, debug=True):
+    def __init__(self, config, querylist, debug=True):
         self.debug=debug
         self.conf=config
         
@@ -52,7 +52,7 @@ class GuiPlayerStats (threading.Thread):
                             "Button2" :  False
                           }
 
-        self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
 
         self.stat_table = None
         self.stats_frame = None
