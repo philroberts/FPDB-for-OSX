@@ -87,6 +87,7 @@ class GuiGraphViewer (threading.Thread):
         self.canvas = None
 
         self.mainHBox.show_all()
+        self.db.db.rollback()
 
 #################################
 #
@@ -224,6 +225,7 @@ class GuiGraphViewer (threading.Thread):
         self.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
+        self.db.db.rollback()
 
         if(winnings == ()):
             return None
