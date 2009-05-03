@@ -120,10 +120,11 @@ class GuiPositionalStats (threading.Thread):
         nametest = nametest.replace(",)",")")
 
         tmp = tmp.replace("<player_test>", nametest)
+        #tmp = tmp.replace("<gametype_test>", "gt.id")
 
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
-        cols = 16
+        cols = 18
         rows = len(result)+1 # +1 for title row
         self.stats_table = gtk.Table(rows, cols, False)
         self.stats_table.set_col_spacings(4)
@@ -131,7 +132,7 @@ class GuiPositionalStats (threading.Thread):
         vbox.add(self.stats_table)
 
         # Create header row
-        titles = ("Game", "Position", "#", "VPIP", "PFR", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
+        titles = ("Game", "Position", "#", "VPIP", "PFR", "Steals", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance")
 
         col = 0
         row = 0
@@ -155,6 +156,8 @@ class GuiPositionalStats (threading.Thread):
                     l = gtk.Label(' ')
                 if col == 0:
                     l.set_alignment(xalign=0.0, yalign=0.5)
+                elif col == 1:
+                    l.set_alignment(xalign=0.5, yalign=0.5)
                 else:
                     l.set_alignment(xalign=1.0, yalign=0.5)
                 eb.add(l)
