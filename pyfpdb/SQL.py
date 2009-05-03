@@ -175,8 +175,6 @@ class Sql:
                     SELECT HudCache.playerId             AS player_id, 
                         HandsPlayers.seatNo              AS seat,
                         Players.name                     AS screen_name,
-                        seatNo                           AS seat,
-                        name                             AS screen_name,
                         sum(HDs)                         AS n,
                         sum(street0VPI)                  AS vpip,
                         sum(street0Aggr)                 AS pfr,
