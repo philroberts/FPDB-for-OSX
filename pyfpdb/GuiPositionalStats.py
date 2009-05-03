@@ -48,11 +48,13 @@ class GuiPositionalStats (threading.Thread):
                             "Games"   :  False,
                             "Limits"  :  False,
                             "Dates"   :  False,
-                            "Button1" :  False,
+                            "Button1" :  True,
                             "Button2" :  False
                           }
 
         self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
+        self.filters.registerButton1Name("Refresh")
+        self.filters.registerButton1Callback(self.refreshStats)
 
         self.stat_table = None
         self.stats_frame = None
@@ -125,8 +127,8 @@ class GuiPositionalStats (threading.Thread):
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         cols = 18
-        rows = len(result)+1 # +1 for title row
-        self.stats_table = gtk.Table(rows, cols, False)
+        rows = len(result) # gtk table expands as required
+        self.stats_table = gtk.Table(1, cols, False) 
         self.stats_table.set_col_spacings(4)
         self.stats_table.show()
         vbox.add(self.stats_table)
@@ -142,16 +144,21 @@ class GuiPositionalStats (threading.Thread):
             self.stats_table.attach(l, col, col+1, row, row+1, yoptions=gtk.SHRINK)
             col +=1 
 
-        for row in range(rows-1):
+        last_game = ""
+        sqlrow = 0
+        while sqlrow < rows:
             if(row%2 == 0):
                 bgcolor = "white"
             else:
                 bgcolor = "lightgrey"
+            rowprinted=0
             for col in range(cols):
                 eb = gtk.EventBox()
                 eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-                if result[row][col]:
-                    l = gtk.Label(result[row][col])
+                # print blank row between levels:
+                if result[sqlrow][col] and (sqlrow == 0 or result[sqlrow][0] == last_game):
+                    l = gtk.Label(result[sqlrow][col])
+                    rowprinted=1
                 else:
                     l = gtk.Label(' ')
                 if col == 0:
@@ -164,5 +171,76 @@ class GuiPositionalStats (threading.Thread):
                 self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
                 l.show()
                 eb.show()
-        self.db.db.commit()
+            last_game = result[sqlrow][0]
+            if rowprinted:
+                sqlrow = sqlrow+1
+            row = row + 1
+        
+        # show totals at bottom
+        tmp = self.sql.query['playerStats']
+        tmp = tmp.replace("<player_test>", nametest)
+        self.cursor.execute(tmp)
+        result = self.cursor.fetchall()
+        rows = len(result)
+
+        # blank row
+        col = 0
+        if(row%2 == 0):
+            bgcolor = "white"
+        else:
+            bgcolor = "lightgrey"
+        eb = gtk.EventBox()
+        eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
+        l = gtk.Label(' ')
+        eb.add(l)
+        self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
+        l.show()
+        eb.show()
+        row = row + 1
+
+        for sqlrow in range(rows):
+            if(row%2 == 0):
+                bgcolor = "white"
+            else:
+                bgcolor = "lightgrey"
+            inc = 0
+            for col in range(cols):
+                eb = gtk.EventBox()
+                eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
+                if col == 1:
+                    l = gtk.Label('Totals')
+                    inc = 1
+                elif result[sqlrow][col-inc]:
+                    l = gtk.Label(result[sqlrow][col-inc])
+                else:
+                    l = gtk.Label(' ')
+                if col == 0:
+                    l.set_alignment(xalign=0.0, yalign=0.5)
+                elif col == 1:
+                    l.set_alignment(xalign=0.5, yalign=0.5)
+                else:
+                    l.set_alignment(xalign=1.0, yalign=0.5)
+                eb.add(l)
+                self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
+                l.show()
+                eb.show()
+            row = row + 1
+
+        self.db.db.rollback()
     #end def fillStatsFrame(self, vbox):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
