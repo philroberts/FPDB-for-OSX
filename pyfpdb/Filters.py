@@ -82,6 +82,9 @@ class Filters(threading.Thread):
         limitsFrame.set_label_align(0.0, 0.0)
         limitsFrame.show()
         vbox = gtk.VBox(False, 0)
+        self.cbLimits = {}
+        self.cbNoLimits = None
+        self.cbAllLimits = None
 
         self.fillLimitsFrame(vbox, display)
         limitsFrame.add(vbox)
@@ -197,22 +200,39 @@ class Filters(threading.Thread):
         cb = gtk.CheckButton(str(limit))
         cb.connect('clicked', self.__set_limit_select, limit)
         hbox.pack_start(cb, False, False, 0)
-        cb.set_active(True)
+        if limit != "None":
+            cb.set_active(True)
+        return(cb)
 
     def __set_site_select(self, w, site):
-        print w.get_active()
+        #print w.get_active()
         self.sites[site] = w.get_active()
         print "self.sites[%s] set to %s" %(site, self.sites[site])
 
     def __set_game_select(self, w, game):
-        print w.get_active()
+        #print w.get_active()
         self.games[game] = w.get_active()
         print "self.games[%s] set to %s" %(game, self.games[game])
 
     def __set_limit_select(self, w, limit):
-        print w.get_active()
+        #print w.get_active()
         self.limits[limit] = w.get_active()
         print "self.limit[%s] set to %s" %(limit, self.limits[limit])
+        if str(limit).isdigit():
+            if self.limits[limit]:
+                if self.cbNoLimits != None:
+                    self.cbNoLimits.set_active(False)
+            else:
+                if self.cbAllLimits != None:
+                    self.cbAllLimits.set_active(False)
+        elif limit == "All":
+            if self.limits[limit]:
+                for cb in self.cbLimits.values():
+                    cb.set_active(True)
+        elif limit == "None":
+            if self.limits[limit]:
+                for cb in self.cbLimits.values():
+                    cb.set_active(False)
 
     def fillPlayerFrame(self, vbox):
         for site in self.conf.get_supported_sites():
@@ -250,14 +270,29 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getLimits'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
-            for line in result:
+            hbox = gtk.HBox(True, 0)
+            vbox.pack_start(hbox, False, False, 0)
+            vbox1 = gtk.VBox(False, 0)
+            hbox.pack_start(vbox1, False, False, 0)
+            vbox2 = gtk.VBox(False, 0)
+            hbox.pack_start(vbox2, False, False, 0)
+            for i, line in enumerate(result):
                 hbox = gtk.HBox(False, 0)
-                vbox.pack_start(hbox, False, True, 0)
-                self.createLimitLine(hbox, line[0])
+                if i < len(result)/2:
+                    vbox1.pack_start(hbox, False, False, 0)
+                else:
+                    vbox2.pack_start(hbox, False, False, 0)
+                self.cbLimits[line[0]] = self.createLimitLine(hbox, line[0])
             if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
                 hbox = gtk.HBox(False, 0)
                 vbox.pack_start(hbox, False, True, 0)
-                self.createLimitLine(hbox, "Separate levels")
+                self.cbAllLimits = self.createLimitLine(hbox, "All")
+                hbox = gtk.HBox(False, 0)
+                vbox.pack_start(hbox, False, True, 0)
+                self.cbNoLimits = self.createLimitLine(hbox, "None")
+                hbox = gtk.HBox(False, 0)
+                vbox.pack_start(hbox, False, True, 0)
+                cb = self.createLimitLine(hbox, "Separate levels")
         else:
             print "INFO: No games returned from database"
 

@@ -633,10 +633,7 @@ class FpdbSQLQueries:
                       concat(upper(stats.limitType), ' '
                             ,concat(upper(substring(stats.category,1,1)),substring(stats.category,2) ), ' '
                             ,stats.name, ' $'
-                            ,cast(trim(leading ' ' from
-                                  case when stats.bigBlind < 100 then format(stats.bigBlind/100.0,2)
-                                      else format(stats.bigBlind/100.0,0)
-                                  end ) as char)
+                            ,cast(stats.bigBlindDesc as char)
                             )                                                      AS Game
                      ,stats.n
                      ,stats.vpip
@@ -651,25 +648,20 @@ class FpdbSQLQueries:
                      ,stats.TuAFq
                      ,stats.RvAFq
                      ,stats.PoFAFq
-                     /* if you have handsactions data the next 3 fields should give same answer as
-                        following 3 commented out fields */
                      ,stats.Net
                      ,stats.BBper100
                      ,stats.Profitperhand
-                     /*,format(hprof2.sum_profit/100.0,2)                          AS Net
-                       ,format((hprof2.sum_profit/(stats.bigBlind+0.0)) / (stats.n/100.0),2)
-                                                                                   AS BBlPer100
-                       ,hprof2.profitperhand                                       AS Profitperhand
-                     */
-                     ,format(hprof2.variance,2)                                    AS Variance
+                     ,case when hprof2.variance = -999 then '-'
+                           else format(hprof2.variance, 2)
+                      end                                                          AS Variance
                 FROM
                     (select /* stats from hudcache */
                             gt.base
                            ,gt.category
                            ,upper(gt.limitType) as limitType
                            ,s.name
-                           ,gt.bigBlind
-                           ,hc.gametypeId
+                           ,<selectgt.bigBlind>                                             AS bigBlindDesc
+                           ,<hcgametypeId>                                                  AS gtId
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
@@ -681,27 +673,27 @@ class FpdbSQLQueries:
                             end                                                             AS steals
                            ,format(100.0*sum(street1Seen)/sum(HDs),1)                       AS saw_f
                            ,format(100.0*sum(sawShowdown)/sum(HDs),1)                       AS sawsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else format(100.0*sum(sawShowdown)/sum(street1Seen),1)
                             end                                                             AS wtsdwsf
-                           ,case when sum(sawShowdown) = 0 then 'oo'
+                           ,case when sum(sawShowdown) = 0 then '-'
                                  else format(100.0*sum(wonAtSD)/sum(sawShowdown),1)
                             end                                                             AS wmsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else format(100.0*sum(street1Aggr)/sum(street1Seen),1)
                             end                                                             AS FlAFq
-                           ,case when sum(street2Seen) = 0 then 'oo'
+                           ,case when sum(street2Seen) = 0 then '-'
                                  else format(100.0*sum(street2Aggr)/sum(street2Seen),1)
                             end                                                             AS TuAFq
-                           ,case when sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street3Seen) = 0 then '-'
                                 else format(100.0*sum(street3Aggr)/sum(street3Seen),1)
                             end                                                             AS RvAFq
-                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
                                 else format(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
                                          /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
                             end                                                             AS PoFAFq
                            ,format(sum(totalProfit)/100.0,2)                                AS Net
-                           ,format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
+                           ,format((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
                                                                                             AS BBper100
                            ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
                      from Gametypes gt
@@ -713,100 +705,94 @@ class FpdbSQLQueries:
                           ,gt.category
                           ,upper(gt.limitType)
                           ,s.name
-                          ,gt.bigBlind
-                          ,hc.gametypeId
+                          <groupbygt.bigBlind>
+                          ,gtId
                     ) stats
                 inner join
                     ( select # profit from handsplayers/handsactions
-                             hprof.gameTypeId, sum(hprof.profit) sum_profit,
+                             hprof.gtId, sum(hprof.profit) sum_profit,
                              avg(hprof.profit/100.0) profitperhand,
-                             variance(hprof.profit/100.0) variance
+                             case when hprof.gtId = -1 then -999
+                                  else variance(hprof.profit/100.0)
+                             end as variance
                       from
-                          (select hp.handId, h.gameTypeId, hp.winnings, SUM(ha.amount) as costs
+                          (select hp.handId, <hgameTypeId> as gtId, hp.winnings, SUM(ha.amount) as costs
                                 , hp.winnings - SUM(ha.amount) as profit
-                          from HandsPlayers hp
-                          inner join Hands h        ON h.id            = hp.handId
-                          left join HandsActions ha ON ha.handPlayerId = hp.id
-                          where hp.playerId in <player_test>
-                          and   hp.tourneysPlayersId IS NULL
-                          group by hp.handId, h.gameTypeId, hp.position, hp.winnings
-                         ) hprof
-                      group by hprof.gameTypeId
+                           from HandsPlayers hp
+                           inner join Hands h        ON h.id            = hp.handId
+                           left join HandsActions ha ON ha.handPlayerId = hp.id
+                           where hp.playerId in <player_test>
+                           and   hp.tourneysPlayersId IS NULL
+                           group by hp.handId, gtId, hp.position, hp.winnings
+                          ) hprof
+                      group by hprof.gtId
                      ) hprof2
-                    on hprof2.gameTypeId = stats.gameTypeId
-                order by stats.category, stats.limittype, stats.bigBlind"""
+                    on hprof2.gtId = stats.gtId
+                order by stats.category, stats.limittype, stats.bigBlindDesc"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
                        || initcap(stats.category) || ' '
                        || stats.name || ' $'
-                       || trim(leading ' ' from
-                          case when stats.bigBlind < 100 then to_char(stats.bigBlind/100.0,'0D00')
-                            else to_char(stats.bigBlind/100.0,'99990')
-                          end )                                                       AS Game
-                     ,stats.n
-                     ,stats.vpip
-                     ,stats.pfr
-                     ,stats.pf3
-                     ,stats.steals
-                     ,stats.saw_f
-                     ,stats.sawsd
-                     ,stats.wtsdwsf
-                     ,stats.wmsd
-                     ,stats.FlAFq
-                     ,stats.TuAFq
-                     ,stats.RvAFq
-                     ,stats.PoFAFq
-                     /* if you have handsactions data the next 3 fields should give same answer as
-                        following 3 commented out fields */
-                     ,stats.Net
-                     ,stats.BBper100
-                     ,stats.Profitperhand
-                     /*,to_char(hprof2.sum_profit/100.0,'9G999G990D00')               AS Net
-                     ,to_char((hprof2.sum_profit/(stats.bigBlind+0.0)) / (stats.n/100.0), '990D00')
-                                                                                      AS BBper100
-                     ,hprof2.profitperhand                                            AS Profitperhand
-                     */
-                     ,round(hprof2.variance,2)                                        AS Variance
+                       || stats.bigBlindDesc                                          AS Game
+                      ,stats.n
+                      ,stats.vpip
+                      ,stats.pfr
+                      ,stats.pf3
+                      ,stats.steals
+                      ,stats.saw_f
+                      ,stats.sawsd
+                      ,stats.wtsdwsf
+                      ,stats.wmsd
+                      ,stats.FlAFq
+                      ,stats.TuAFq
+                      ,stats.RvAFq
+                      ,stats.PoFAFq
+                      ,stats.Net
+                      ,stats.BBper100
+                      ,stats.Profitperhand
+                      ,case when hprof2.variance = -999 then '-'
+                            else to_char(hprof2.variance, '0D00')
+                       end                                                          AS Variance
                 FROM
                     (select gt.base
                            ,gt.category
-                           ,upper(gt.limitType) as limitType
+                           ,upper(gt.limitType)                                             AS limitType
                            ,s.name
-                           ,gt.bigBlind
-                           ,hc.gametypeId
+                           ,<selectgt.bigBlind>                                             AS bigBlindDesc
+                           ,<hcgametypeId>                                                  AS gtId
                            ,sum(HDs) as n
                            ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')                  AS vpip
                            ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')                 AS pfr
                            ,case when sum(street0_3b4bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
                             end                                                             AS pf3
-                           ,case when sum(stealattemptchance) = 0 then '0'
+                           ,case when sum(stealattemptchance) = 0 then '-'
                                  else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
                             end                                                             AS steals
                            ,to_char(100.0*sum(street1Seen)/sum(HDs),'90D0')                 AS saw_f
                            ,to_char(100.0*sum(sawShowdown)/sum(HDs),'90D0')                 AS sawsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else to_char(100.0*sum(sawShowdown)/sum(street1Seen),'90D0')
                             end                                                             AS wtsdwsf
-                           ,case when sum(sawShowdown) = 0 then 'oo'
+                           ,case when sum(sawShowdown) = 0 then '-'
                                  else to_char(100.0*sum(wonAtSD)/sum(sawShowdown),'90D0')
                             end                                                             AS wmsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else to_char(100.0*sum(street1Aggr)/sum(street1Seen),'90D0')
                             end                                                             AS FlAFq
-                           ,case when sum(street2Seen) = 0 then 'oo'
+                           ,case when sum(street2Seen) = 0 then '-'
                                  else to_char(100.0*sum(street2Aggr)/sum(street2Seen),'90D0')
                             end                                                             AS TuAFq
-                           ,case when sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street3Seen) = 0 then '-'
                                 else to_char(100.0*sum(street3Aggr)/sum(street3Seen),'90D0')
                             end                                                             AS RvAFq
-                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
                                 else to_char(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
                                          /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),'90D0')
                             end                                                             AS PoFAFq
                            ,round(sum(totalProfit)/100.0,2)                                 AS Net
-                           ,to_char((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0), '990D00')
+                           ,to_char((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0), '990D00')
                                                                                             AS BBper100
                            ,to_char(sum(totalProfit/100.0) / (sum(HDs)+0.0), '990D0000')    AS Profitperhand
                      from Gametypes gt
@@ -818,31 +804,30 @@ class FpdbSQLQueries:
                           ,gt.category
                           ,upper(gt.limitType)
                           ,s.name
-                          ,gt.bigBlind
-                          ,hc.gametypeId
+                          <groupbygt.bigBlind>
+                          ,gtId
                     ) stats
                 inner join
                     ( select
-                             hprof.gameTypeId, sum(hprof.profit) AS sum_profit,
+                             hprof.gtId, sum(hprof.profit) AS sum_profit,
                              avg(hprof.profit/100.0) AS profitperhand,
-                             variance(hprof.profit/100.0) AS variance
+                             case when hprof.gtId = -1 then -999
+                                  else variance(hprof.profit/100.0)
+                             end as variance
                       from
-                          (select hp.handId,
-                          h.gameTypeId,
-                          hp.winnings,
-                          SUM(ha.amount) as costs,
-                          hp.winnings - SUM(ha.amount) as profit
-                          from HandsPlayers hp
-                          inner join Hands h        ON (h.id            = hp.handId)
-                          left join HandsActions ha ON (ha.handPlayerId = hp.id)
-                          where hp.playerId in <player_test>
-                          and   hp.tourneysPlayersId IS NULL
-                          group by hp.handId, h.gameTypeId, hp.position, hp.winnings
-                         ) hprof
-                      group by hprof.gameTypeId
+                          (select hp.handId, <hgameTypeId> as gtId, hp.winnings,
+                                  SUM(ha.amount) as costs, hp.winnings - SUM(ha.amount) as profit
+                           from HandsPlayers hp
+                           inner join Hands h        ON (h.id            = hp.handId)
+                           left join HandsActions ha ON (ha.handPlayerId = hp.id)
+                           where hp.playerId in <player_test>
+                           and   hp.tourneysPlayersId IS NULL
+                           group by hp.handId, gtId, hp.position, hp.winnings
+                          ) hprof
+                      group by hprof.gtId
                      ) hprof2
-                    on hprof2.gameTypeId = stats.gameTypeId
-                order by stats.base, stats.limittype, stats.bigBlind"""
+                    on hprof2.gtId = stats.gtId
+                order by stats.base, stats.limittype, stats.bigBlindDesc"""
         elif(self.dbname == 'SQLite'):
             self.query['playerStats'] = """ """
 
@@ -878,7 +863,7 @@ class FpdbSQLQueries:
                      ,stats.Net
                      ,stats.BBper100
                      ,stats.Profitperhand
-                     ,case when hprof2.variance = -999 then 'NA'
+                     ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
                 FROM
@@ -903,32 +888,32 @@ class FpdbSQLQueries:
                            ,case when sum(street0_3b4bchance) = 0 then '0'
                                  else format(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),1)
                             end                                                             AS pf3
-                           ,case when sum(stealattemptchance) = 0 then '0'
+                           ,case when sum(stealattemptchance) = 0 then '-'
                                  else format(100.0*sum(stealattempted)/sum(stealattemptchance),1)
                             end                                                             AS steals
                            ,format(100.0*sum(street1Seen)/sum(HDs),1)                       AS saw_f
                            ,format(100.0*sum(sawShowdown)/sum(HDs),1)                       AS sawsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else format(100.0*sum(sawShowdown)/sum(street1Seen),1)
                             end                                                             AS wtsdwsf
-                           ,case when sum(sawShowdown) = 0 then 'oo'
+                           ,case when sum(sawShowdown) = 0 then '-'
                                  else format(100.0*sum(wonAtSD)/sum(sawShowdown),1)
                             end                                                             AS wmsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else format(100.0*sum(street1Aggr)/sum(street1Seen),1)
                             end                                                             AS FlAFq
-                           ,case when sum(street2Seen) = 0 then 'oo'
+                           ,case when sum(street2Seen) = 0 then '-'
                                  else format(100.0*sum(street2Aggr)/sum(street2Seen),1)
                             end                                                             AS TuAFq
-                           ,case when sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street3Seen) = 0 then '-'
                                 else format(100.0*sum(street3Aggr)/sum(street3Seen),1)
                             end                                                             AS RvAFq
-                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
                                 else format(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
                                          /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
                             end                                                             AS PoFAFq
                            ,format(sum(totalProfit)/100.0,2)                                AS Net
-                           ,format((sum(totalProfit)/(gt.bigBlind+0.0)) / (sum(HDs)/100.0),2)
+                           ,format((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
                                                                                             AS BBper100
                            ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
                      from Gametypes gt
@@ -955,7 +940,7 @@ class FpdbSQLQueries:
                              end                                      as PlPosition,
                              sum(hprof.profit) as sum_profit,
                              avg(hprof.profit/100.0) as profitperhand,
-                             case when hprof.gtId = 1 then -999
+                             case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
@@ -1005,7 +990,7 @@ class FpdbSQLQueries:
                       ,stats.Net
                       ,stats.BBper100
                       ,stats.Profitperhand
-                      ,case when hprof2.variance = -999 then 'NA'
+                      ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
                 FROM
@@ -1030,27 +1015,27 @@ class FpdbSQLQueries:
                            ,case when sum(street0_3b4bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
                             end                                                             AS pf3
-                           ,case when sum(stealattemptchance) = 0 then '0'
+                           ,case when sum(stealattemptchance) = 0 then '-'
                                  else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
                             end                                                             AS steals
                            ,to_char(round(100.0*sum(street1Seen)/sum(HDs)),'90D0')          AS saw_f
                            ,to_char(round(100.0*sum(sawShowdown)/sum(HDs)),'90D0')          AS sawsd
-                           ,case when sum(street1Seen) = 0 then 'NA'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else to_char(round(100.0*sum(sawShowdown)/sum(street1Seen)),'90D0')
                             end                                                             AS wtsdwsf
-                           ,case when sum(sawShowdown) = 0 then 'NA'
+                           ,case when sum(sawShowdown) = 0 then '-'
                                  else to_char(round(100.0*sum(wonAtSD)/sum(sawShowdown)),'90D0')
                             end                                                             AS wmsd
-                           ,case when sum(street1Seen) = 0 then 'NA'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else to_char(round(100.0*sum(street1Aggr)/sum(street1Seen)),'90D0')
                             end                                                             AS FlAFq
-                           ,case when sum(street2Seen) = 0 then 'NA'
+                           ,case when sum(street2Seen) = 0 then '-'
                                  else to_char(round(100.0*sum(street2Aggr)/sum(street2Seen)),'90D0')
                             end                                                             AS TuAFq
-                           ,case when sum(street3Seen) = 0 then 'NA'
+                           ,case when sum(street3Seen) = 0 then '-'
                                 else to_char(round(100.0*sum(street3Aggr)/sum(street3Seen)),'90D0')
                             end                                                             AS RvAFq
-                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'NA'
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
                                 else to_char(round(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
                                          /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen))),'90D0')
                             end                                                             AS PoFAFq
@@ -1076,7 +1061,7 @@ class FpdbSQLQueries:
                     ) stats
                 inner join
                     ( select /* profit from handsplayers/handsactions */
-                             hprof.gameTypeId, 
+                             hprof.gtId, 
                              case when hprof.position = 'B' then -2
                                   when hprof.position = 'S' then -1
                                   when hprof.position in ('3','4') then 2
@@ -1085,11 +1070,11 @@ class FpdbSQLQueries:
                              end                                      as PlPosition,
                              sum(hprof.profit) as sum_profit,
                              avg(hprof.profit/100.0) as profitperhand,
-                             case when hprof.gameTypeId = 1 then -999
+                             case when hprof.gtId = -1 then -999
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gameTypeId, hp.position, hp.winnings
+                          (select hp.handId, <hgameTypeId> as gtId, hp.position, hp.winnings
                                 , SUM(ha.amount) as costs, hp.winnings - SUM(ha.amount) as profit
                            from HandsPlayers hp
                            inner join Hands h        ON h.id            = hp.handId
@@ -1098,9 +1083,9 @@ class FpdbSQLQueries:
                            and   hp.tourneysPlayersId IS NULL
                            group by hp.handId, gameTypeId, hp.position, hp.winnings
                           ) hprof
-                      group by hprof.gameTypeId, PlPosition
+                      group by hprof.gtId, PlPosition
                     ) hprof2
-                    on (    hprof2.gameTypeId = stats.gtId
+                    on (    hprof2.gtId = stats.gtId
                         and hprof2.PlPosition = stats.PlPosition)
                 order by stats.category, stats.limitType, stats.bigBlindDesc, cast(stats.PlPosition as smallint)
                 """
@@ -1168,24 +1153,24 @@ class FpdbSQLQueries:
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                AS pfr
                            ,format(100.0*sum(street1Seen)/sum(HDs),1)                AS saw_f
                            ,format(100.0*sum(sawShowdown)/sum(HDs),1)                AS sawsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                 else format(100.0*sum(sawShowdown)/sum(street1Seen),1)
                             end                                                             AS wtsdwsf
-                           ,case when sum(sawShowdown) = 0 then 'oo'
+                           ,case when sum(sawShowdown) = 0 then '-'
                            end                                                             AS wtsdwsf
-                           ,case when sum(sawShowdown) = 0 then 'oo'
+                           ,case when sum(sawShowdown) = 0 then '-'
                                  else format(100.0*sum(wonAtSD)/sum(sawShowdown),1)
                             end                                                             AS wmsd
-                           ,case when sum(street1Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen) = 0 then '-'
                                  else format(100.0*sum(street1Aggr)/sum(street1Seen),1)
                             end                                                             AS FlAFq
-                           ,case when sum(street2Seen) = 0 then 'oo'
+                           ,case when sum(street2Seen) = 0 then '-'
                                  else format(100.0*sum(street2Aggr)/sum(street2Seen),1)
                             end                                                             AS TuAFq
-                           ,case when sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street3Seen) = 0 then '-'
                                 else format(100.0*sum(street3Aggr)/sum(street3Seen),1)
                             end                                                             AS RvAFq
-                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then 'oo'
+                           ,case when sum(street1Seen)+sum(street2Seen)+sum(street3Seen) = 0 then '-'
                                 else format(100.0*(sum(street1Aggr)+sum(street2Aggr)+sum(street3Aggr))
                                          /(sum(street1Seen)+sum(street2Seen)+sum(street3Seen)),1)
                             end                                                             AS PoFAFq

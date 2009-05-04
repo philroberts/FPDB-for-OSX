@@ -30,15 +30,15 @@ class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
         self.debug=debug
         self.conf=config
+        self.MYSQL_INNODB   = 2
+        self.PGSQL          = 3
+        self.SQLITE         = 4
         
         # create new db connection to avoid conflicts with other threads
         self.db = fpdb_db.fpdb_db()
         self.db.do_connect(self.conf)
         self.cursor=self.db.cursor
         self.sql = querylist
-        self.MYSQL_INNODB   = 2
-        self.PGSQL          = 3
-        self.SQLITE         = 4
 
         settings = {}
         settings.update(config.get_db_parameters())
