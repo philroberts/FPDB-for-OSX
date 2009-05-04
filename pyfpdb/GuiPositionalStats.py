@@ -27,7 +27,7 @@ import Filters
 import FpdbSQLQueries
 
 class GuiPositionalStats (threading.Thread):
-    def __init__(self, db, config, querylist, debug=True):
+    def __init__(self, config, querylist, debug=True):
         self.debug=debug
         self.conf=config
         
@@ -56,7 +56,7 @@ class GuiPositionalStats (threading.Thread):
                             "Button2"  :  False
                           }
 
-        self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 
@@ -252,15 +252,21 @@ class GuiPositionalStats (threading.Thread):
     #end def fillStatsFrame(self, vbox):
 
     def refineQuery(self, query, playerids, sitenos, limits):
-        nametest = str(tuple(playerids))
-        nametest = nametest.replace("L", "")
-        nametest = nametest.replace(",)",")")
-        query = query.replace("<player_test>", nametest)
+        if playerids:
+            nametest = str(tuple(playerids))
+            nametest = nametest.replace("L", "")
+            nametest = nametest.replace(",)",")")
+            query = query.replace("<player_test>", nametest)
+        else:
+            query = query.replace("<player_test>", "1 = 2")
 
-        blindtest = str(tuple([x for x in limits if str(x).isdigit()]))
-        blindtest = blindtest.replace("L", "")
-        blindtest = blindtest.replace(",)",")")
-        query = query.replace("<gtbigBlind_test>", "gt.bigBlind in " +  blindtest)
+        if [x for x in limits if str(x).isdigit()]:
+            blindtest = str(tuple([x for x in limits if str(x).isdigit()]))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            query = query.replace("<gtbigBlind_test>", "gt.bigBlind in " +  blindtest)
+        else:
+            query = query.replace("<gtbigBlind_test>", "gt.bigBlind = -1 ")
 
         groupLevels = "Separate" not in str(limits)
         if groupLevels:
@@ -271,7 +277,7 @@ class GuiPositionalStats (threading.Thread):
                                                      else format(min(gt.bigBlind)/100.0, 0)
                                                 end)
                                           ,' - '
-                                           trim(leading ' ' from
+                                          ,trim(leading ' ' from
                                                 case when max(gt.bigBlind) < 100 
                                                      then format(max(gt.bigBlind)/100.0, 2)
                                                      else format(max(gt.bigBlind)/100.0, 0)
