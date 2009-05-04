@@ -641,6 +641,7 @@ class FpdbSQLQueries:
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
+                     ,stats.pf3
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -672,7 +673,11 @@ class FpdbSQLQueries:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
-                           ,case when sum(stealattemptchance) = 0 then '0'
+                           ,case when sum(street0_3b4bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),1)
+                            end                                                             AS pf3
+                           ,case when sum(stealattemptchance) = 0 then '-'
+
                                  else format(100.0*sum(stealattempted)/sum(stealattemptchance),1)
                             end                                                             AS steals
                            ,format(100.0*sum(street1Seen)/sum(HDs),1)                       AS saw_f
@@ -744,6 +749,7 @@ class FpdbSQLQueries:
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
+                     ,stats.pf3
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -772,13 +778,16 @@ class FpdbSQLQueries:
                            ,gt.bigBlind
                            ,hc.gametypeId
                            ,sum(HDs) as n
-                           ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')           AS vpip
-                           ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')          AS pfr
+                           ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')                  AS vpip
+                           ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')                 AS pfr
+                           ,case when sum(street0_3b4bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
+                            end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '0'
                                  else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
                             end                                                             AS steals
-                           ,to_char(100.0*sum(street1Seen)/sum(HDs),'90D0')          AS saw_f
-                           ,to_char(100.0*sum(sawShowdown)/sum(HDs),'90D0')          AS sawsd
+                           ,to_char(100.0*sum(street1Seen)/sum(HDs),'90D0')                 AS saw_f
+                           ,to_char(100.0*sum(sawShowdown)/sum(HDs),'90D0')                 AS sawsd
                            ,case when sum(street1Seen) = 0 then 'oo'
                                  else to_char(100.0*sum(sawShowdown)/sum(street1Seen),'90D0')
                             end                                                             AS wtsdwsf
@@ -860,6 +869,7 @@ class FpdbSQLQueries:
                      ,stats.n
                      ,stats.vpip
                      ,stats.pfr
+                     ,stats.pf3
                      ,stats.steals
                      ,stats.saw_f
                      ,stats.sawsd
@@ -899,6 +909,9 @@ class FpdbSQLQueries:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
+                           ,case when sum(street0_3b4bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),1)
+                            end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '0'
                                  else format(100.0*sum(stealattempted)/sum(stealattemptchance),1)
                             end                                                             AS steals
@@ -991,6 +1004,7 @@ class FpdbSQLQueries:
                       ,stats.n
                       ,stats.vpip
                       ,stats.pfr
+                      ,stats.pf3
                       ,stats.steals
                       ,stats.saw_f
                       ,stats.sawsd
@@ -1031,6 +1045,9 @@ class FpdbSQLQueries:
 
                            ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'90D0')           AS vpip
                            ,to_char(round(100.0*sum(street0Aggr)/sum(HDs)),'90D0')          AS pfr
+                           ,case when sum(street0_3b4bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
+                            end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '0'
                                  else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
                             end                                                             AS steals
