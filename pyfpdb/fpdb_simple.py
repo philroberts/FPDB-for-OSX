@@ -190,7 +190,7 @@ def prepareBulkImport(fdb):
                     print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
                     #print "dropped  pg index ", idx['tab'], idx['col']
                 except:
-            print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                    print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col'])
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
