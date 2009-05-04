@@ -83,7 +83,7 @@ class Filters(threading.Thread):
         limitsFrame.show()
         vbox = gtk.VBox(False, 0)
 
-        self.fillLimitsFrame(vbox)
+        self.fillLimitsFrame(vbox, display)
         limitsFrame.add(vbox)
 
         dateFrame = gtk.Frame("Date:")
@@ -197,6 +197,7 @@ class Filters(threading.Thread):
         cb = gtk.CheckButton(str(limit))
         cb.connect('clicked', self.__set_limit_select, limit)
         hbox.pack_start(cb, False, False, 0)
+        cb.set_active(True)
 
     def __set_site_select(self, w, site):
         print w.get_active()
@@ -245,7 +246,7 @@ class Filters(threading.Thread):
         else:
             print "INFO: No games returned from database"
 
-    def fillLimitsFrame(self, vbox):
+    def fillLimitsFrame(self, vbox, display):
         self.cursor.execute(self.sql.query['getLimits'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
@@ -253,6 +254,10 @@ class Filters(threading.Thread):
                 hbox = gtk.HBox(False, 0)
                 vbox.pack_start(hbox, False, True, 0)
                 self.createLimitLine(hbox, line[0])
+            if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
+                hbox = gtk.HBox(False, 0)
+                vbox.pack_start(hbox, False, True, 0)
+                self.createLimitLine(hbox, "Separate levels")
         else:
             print "INFO: No games returned from database"
 

@@ -115,6 +115,7 @@ class GuiPlayerStats (threading.Thread):
         nametest = nametest.replace(",)",")")
 
         tmp = tmp.replace("<player_test>", nametest)
+        tmp = tmp.replace("<gtbigBlind_test>", "1 = 1")
 
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
