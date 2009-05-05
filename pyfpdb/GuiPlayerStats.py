@@ -30,6 +30,9 @@ class GuiPlayerStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
         self.debug=debug
         self.conf=config
+        self.MYSQL_INNODB   = 2
+        self.PGSQL          = 3
+        self.SQLITE         = 4
         
         # create new db connection to avoid conflicts with other threads
         self.db = fpdb_db.fpdb_db()
@@ -43,16 +46,19 @@ class GuiPlayerStats (threading.Thread):
         settings.update(config.get_import_parameters())
         settings.update(config.get_default_paths())
 
-        filters_display = { "Heroes"  :  True,
-                            "Sites"   :  True,
-                            "Games"   :  False,
-                            "Limits"  :  False,
-                            "Dates"   :  False,
-                            "Button1" :  False,
-                            "Button2" :  False
+        filters_display = { "Heroes"   :  True,
+                            "Sites"    :  True,
+                            "Games"    :  False,
+                            "Limits"   :  True,
+                            "LimitSep" :  True,
+                            "Dates"    :  False,
+                            "Button1"  :  True,
+                            "Button2"  :  False
                           }
 
         self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
+        self.filters.registerButton1Name("Refresh")
+        self.filters.registerButton1Callback(self.refreshStats)
 
         self.stat_table = None
         self.stats_frame = None
@@ -85,6 +91,7 @@ class GuiPlayerStats (threading.Thread):
         sites = self.filters.getSites()
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
+        limits  = self.filters.getLimits()
         sitenos = []
         playerids = []
 
@@ -104,18 +111,15 @@ class GuiPlayerStats (threading.Thread):
         if not playerids:
             print "No player ids found"
             return
+        if not limits:
+            print "No limits found"
+            return
 
-        self.createStatsTable(vbox, playerids, sitenos)
+        self.createStatsTable(vbox, playerids, sitenos, limits)
 
-    def createStatsTable(self, vbox, playerids, sitenos):
+    def createStatsTable(self, vbox, playerids, sitenos, limits):
         tmp = self.sql.query['playerStats']
-
-        nametest = str(tuple(playerids))
-        nametest = nametest.replace("L", "")
-        nametest = nametest.replace(",)",")")
-
-        tmp = tmp.replace("<player_test>", nametest)
-
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         cols = 18
@@ -158,3 +162,74 @@ class GuiPlayerStats (threading.Thread):
                 eb.show()
         self.db.db.commit()
     #end def fillStatsFrame(self, vbox):
+
+    def refineQuery(self, query, playerids, sitenos, limits):
+        if playerids:
+            nametest = str(tuple(playerids))
+            nametest = nametest.replace("L", "")
+            nametest = nametest.replace(",)",")")
+            query = query.replace("<player_test>", nametest)
+        else:
+            query = query.replace("<player_test>", "1 = 2")
+
+        if [x for x in limits if str(x).isdigit()]:
+            blindtest = str(tuple([x for x in limits if str(x).isdigit()]))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            query = query.replace("<gtbigBlind_test>", "gt.bigBlind in " +  blindtest)
+        else:
+            query = query.replace("<gtbigBlind_test>", "gt.bigBlind = -1 ")
+
+        groupLevels = "Separate" not in str(limits)
+        if groupLevels:
+            if self.db.backend == self.MYSQL_INNODB:
+                bigblindselect = """concat(trim(leading ' ' from
+                                                case when min(gt.bigBlind) < 100 
+                                                     then format(min(gt.bigBlind)/100.0, 2)
+                                                     else format(min(gt.bigBlind)/100.0, 0)
+                                                end)
+                                          ,' - '
+                                          ,trim(leading ' ' from
+                                                case when max(gt.bigBlind) < 100 
+                                                     then format(max(gt.bigBlind)/100.0, 2)
+                                                     else format(max(gt.bigBlind)/100.0, 0)
+                                                end)
+                                          ) """
+            else:
+                bigblindselect = """trim(leading ' ' from
+                                         case when min(gt.bigBlind) < 100 
+                                              then to_char(min(gt.bigBlind)/100.0,'90D00')
+                                              else to_char(min(gt.bigBlind)/100.0,'999990')
+                                         end)
+                                    || ' - ' ||
+                                    trim(leading ' ' from
+                                         case when max(gt.bigBlind) < 100 
+                                              then to_char(max(gt.bigBlind)/100.0,'90D00')
+                                              else to_char(max(gt.bigBlind)/100.0,'999990')
+                                         end) """
+            query = query.replace("<selectgt.bigBlind>", bigblindselect)
+            query = query.replace("<groupbygt.bigBlind>", "")
+            query = query.replace("<hcgametypeId>", "-1")
+            query = query.replace("<hgameTypeId>", "-1")
+        else:
+            if self.db.backend == self.MYSQL_INNODB:
+                bigblindselect = """trim(leading ' ' from
+                                          case when gt.bigBlind < 100 
+                                               then format(gt.bigBlind/100.0, 2)
+                                               else format(gt.bigBlind/100.0, 0)
+                                          end 
+                                         ) """
+            else:
+                bigblindselect = """trim(leading ' ' from
+                                          case when gt.bigBlind < 100 
+                                               then to_char(gt.bigBlind/100.0,'90D00')
+                                               else to_char(gt.bigBlind/100.0,'999990')
+                                          end 
+                                         ) """
+            query = query.replace("<selectgt.bigBlind>", bigblindselect)
+            query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
+            query = query.replace("<hcgametypeId>", "hc.gametypeId")
+            query = query.replace("<hgameTypeId>", "h.gameTypeId")
+        #print "query =\n", query
+        return(query)
+    #end def refineQuery(self, query, playerids, sitenos, limits):
