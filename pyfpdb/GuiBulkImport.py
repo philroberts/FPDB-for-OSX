@@ -72,6 +72,9 @@ class GuiBulkImport():
         self.importer.setCallHud(False)
         starttime = time()
         (stored, dups, partial, errs, ttime) = self.importer.runImport()
+        ttime = time() - starttime
+        if ttime == 0:
+            ttime = 1
         print 'GuiBulkImport.import_dir done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
              % (stored, dups, partial, errs, ttime, stored / ttime)
         self.importer.clearFileList()
