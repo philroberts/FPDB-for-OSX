@@ -1310,38 +1310,35 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 # { playername: id } instead of depending on it's relation to the positions list
 # then this can be reduced in complexity a bit
 
-def recognisePlayerIDs(cursor, names, site_id):
-    result = []
-    for i in xrange(len(names)):
-        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-        tmp=cursor.fetchall()
-        if (len(tmp)==0): #new player
-            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
-            #print "Number of players rows inserted: %d" % cursor.rowcount
-            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-            tmp=cursor.fetchall()
-        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-        result.append(tmp[0][0])
-    return result
-
-# This version breaks for me using postgres on windows with a unicode problem. The names don't come out in unicode
-# for some reason so the id isn't found even though it's just been created. Currently investigating the unicode issue but
-# not really understanding it yet .... - sqlcoder
 #def recognisePlayerIDs(cursor, names, site_id):
-#    q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
-#    cursor.execute(q, names) # get all playerids by the names passed in
-#    ids = dict(cursor.fetchall()) # convert to dict
-#    if len(ids) != len(names):
-#        notfound = [n for n in names if n not in ids] # make list of names not in database
-#        if notfound: # insert them into database
-#            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [[n] for n in notfound])
-#            q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
-#            cursor.execute(q2, notfound) # get their new ids
-#            tmp = dict(cursor.fetchall())
-#            for n in tmp: # put them all into the same dict
-#                ids[n] = tmp[n]
-#    # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
-#    return [ids[n] for n in names]
+#    result = []
+#    for i in xrange(len(names)):
+#        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#        tmp=cursor.fetchall()
+#        if (len(tmp)==0): #new player
+#            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
+#            #print "Number of players rows inserted: %d" % cursor.rowcount
+#            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+#            tmp=cursor.fetchall()
+#        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
+#        result.append(tmp[0][0])
+#    return result
+
+def recognisePlayerIDs(cursor, names, site_id):
+    q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
+    cursor.execute(q, names) # get all playerids by the names passed in
+    ids = dict(cursor.fetchall()) # convert to dict
+    if len(ids) != len(names):
+        notfound = [n for n in names if n not in ids] # make list of names not in database
+        if notfound: # insert them into database
+            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
+            q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
+            cursor.execute(q2, notfound) # get their new ids
+            tmp = cursor.fetchall()
+            for n,id in tmp: # put them all into the same dict
+                ids[n] = id
+    # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
+    return [ids[n] for n in names]
 #end def recognisePlayerIDs
 
 
