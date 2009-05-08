@@ -632,7 +632,7 @@ class FpdbSQLQueries:
                 SELECT 
                       concat(upper(stats.limitType), ' '
                             ,concat(upper(substring(stats.category,1,1)),substring(stats.category,2) ), ' '
-                            ,stats.name, ' $'
+                            ,stats.name, ' '
                             ,cast(stats.bigBlindDesc as char)
                             )                                                      AS Game
                      ,stats.n
@@ -654,6 +654,7 @@ class FpdbSQLQueries:
                      ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
+                     ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
                             gt.base
@@ -696,11 +697,13 @@ class FpdbSQLQueries:
                            ,format((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
                                                                                             AS BBper100
                            ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
+                           ,format( avg(activeSeats), 1)                                    AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
+                     and   hc.activeSeats <seats_test>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
@@ -728,12 +731,12 @@ class FpdbSQLQueries:
                       group by hprof.gtId
                      ) hprof2
                     on hprof2.gtId = stats.gtId
-                order by stats.category, stats.limittype, stats.bigBlindDesc"""
+                order by stats.category, stats.limittype, stats.bigBlindDesc <orderbyseats>"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
                        || initcap(stats.category) || ' '
-                       || stats.name || ' $'
+                       || stats.name || ' '
                        || stats.bigBlindDesc                                          AS Game
                       ,stats.n
                       ,stats.vpip
@@ -754,6 +757,7 @@ class FpdbSQLQueries:
                       ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
+                      ,AvgSeats
                 FROM
                     (select gt.base
                            ,gt.category
@@ -762,7 +766,7 @@ class FpdbSQLQueries:
                            ,<selectgt.bigBlind>                                             AS bigBlindDesc
                            ,<hcgametypeId>                                                  AS gtId
                            ,sum(HDs) as n
-                           ,to_char(100.0*sum(street0VPI)/sum(HDs),'90D0')                  AS vpip
+                           ,to_char(100.0*sum(street0VPI)/sum(HDs),'990D0')                 AS vpip
                            ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')                 AS pfr
                            ,case when sum(street0_3b4bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
@@ -795,11 +799,13 @@ class FpdbSQLQueries:
                            ,to_char((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0), '990D00')
                                                                                             AS BBper100
                            ,to_char(sum(totalProfit/100.0) / (sum(HDs)+0.0), '990D0000')    AS Profitperhand
+                           ,to_char(avg(activeSeats),'90D0')                                AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
+                     and   hc.activeSeats <seats_test>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
@@ -827,7 +833,7 @@ class FpdbSQLQueries:
                       group by hprof.gtId
                      ) hprof2
                     on hprof2.gtId = stats.gtId
-                order by stats.base, stats.limittype, stats.bigBlindDesc"""
+                order by stats.base, stats.limittype, stats.bigBlindDesc <orderbyseats>"""
         elif(self.dbname == 'SQLite'):
             self.query['playerStats'] = """ """
 
@@ -836,7 +842,7 @@ class FpdbSQLQueries:
                 SELECT 
                       concat(upper(stats.limitType), ' '
                             ,concat(upper(substring(stats.category,1,1)),substring(stats.category,2) ), ' '
-                            ,stats.name, ' $'
+                            ,stats.name, ' '
                             ,cast(stats.bigBlindDesc as char)
                             )                                                      AS Game
                      ,case when stats.PlPosition = -2 then 'BB'
@@ -866,6 +872,7 @@ class FpdbSQLQueries:
                      ,case when hprof2.variance = -999 then '-'
                            else format(hprof2.variance, 2)
                       end                                                          AS Variance
+                     ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
                             gt.base
@@ -916,17 +923,20 @@ class FpdbSQLQueries:
                            ,format((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
                                                                                             AS BBper100
                            ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
+                           ,format( avg(activeSeats), 1)                                    AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
+                     and   hc.activeSeats <seats_test>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
                           ,s.name
                           <groupbygt.bigBlind>
                           ,gtId
+                          <groupbyseats>
                           ,PlPosition
                     ) stats
                 inner join
@@ -957,14 +967,15 @@ class FpdbSQLQueries:
                      ) hprof2
                     on (    hprof2.gtId = stats.gtId
                         and hprof2.PlPosition = stats.PlPosition)
-                order by stats.category, stats.limitType, stats.bigBlindDesc, cast(stats.PlPosition as signed)
+                order by stats.category, stats.limitType, stats.bigBlindDesc
+                         <orderbyseats>, cast(stats.PlPosition as signed)
                 """
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStatsByPosition'] = """
                 select /* stats from hudcache */
                        upper(stats.limitType) || ' '
                        || upper(substr(stats.category,1,1)) || substr(stats.category,2) || ' '
-                       || stats.name || ' $'
+                       || stats.name || ' '
                        || stats.bigBlindDesc                                        AS Game
                       ,case when stats.PlPosition = -2 then 'BB'
                             when stats.PlPosition = -1 then 'SB'
@@ -993,6 +1004,7 @@ class FpdbSQLQueries:
                       ,case when hprof2.variance = -999 then '-'
                             else to_char(hprof2.variance, '0D00')
                        end                                                          AS Variance
+                      ,stats.AvgSeats
                 FROM
                     (select /* stats from hudcache */
                             gt.base
@@ -1010,7 +1022,7 @@ class FpdbSQLQueries:
                                  else 9
                             end                                                             AS PlPosition
                            ,sum(HDs)                                                        AS n
-                           ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'90D0')           AS vpip
+                           ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'990D0')          AS vpip
                            ,to_char(round(100.0*sum(street0Aggr)/sum(HDs)),'90D0')          AS pfr
                            ,case when sum(street0_3b4bchance) = 0 then '0'
                                  else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
@@ -1046,17 +1058,20 @@ class FpdbSQLQueries:
                            ,case when sum(HDs) = 0 then '0'
                                  else to_char( (sum(totalProfit)/100.0) / sum(HDs), '90D0000')
                             end                                                             AS Profitperhand
+                           ,to_char(avg(activeSeats),'90D0')                                AS AvgSeats
                      from Gametypes gt
                           inner join Sites s     on (s.Id = gt.siteId)
                           inner join HudCache hc on (hc.gameTypeId = gt.Id)
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
+                     and   hc.activeSeats <seats_test>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
                           ,s.name
                           <groupbygt.bigBlind>
                           ,gtId
+                          <groupbyseats>
                           ,PlPosition
                     ) stats
                 inner join
@@ -1087,7 +1102,8 @@ class FpdbSQLQueries:
                     ) hprof2
                     on (    hprof2.gtId = stats.gtId
                         and hprof2.PlPosition = stats.PlPosition)
-                order by stats.category, stats.limitType, stats.bigBlindDesc, cast(stats.PlPosition as smallint)
+                order by stats.category, stats.limitType, stats.bigBlindDesc
+                         <orderbyseats>, cast(stats.PlPosition as smallint)
                 """
         elif(self.dbname == 'SQLite'):
             self.query['playerStatsByPosition'] = """ """
