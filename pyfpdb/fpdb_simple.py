@@ -1331,12 +1331,12 @@ def recognisePlayerIDs(cursor, names, site_id):
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
         if notfound: # insert them into database
-            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [[n] for n in notfound])
+            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
             q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
             cursor.execute(q2, notfound) # get their new ids
-            tmp = dict(cursor.fetchall())
-            for n in tmp: # put them all into the same dict
-                ids[n] = tmp[n]
+            tmp = cursor.fetchall()
+            for n,id in tmp: # put them all into the same dict
+                ids[n] = id
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
     return [ids[n] for n in names]
 #end def recognisePlayerIDs

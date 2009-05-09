@@ -62,6 +62,8 @@ class fpdb_db:
             self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
         elif backend==self.PGSQL:
             import psycopg2
+            import psycopg2.extensions
+            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
             print "host=%s user=%s pass=%s." % (host, user, password)

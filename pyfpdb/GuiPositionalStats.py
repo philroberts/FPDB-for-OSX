@@ -51,6 +51,7 @@ class GuiPositionalStats (threading.Thread):
                             "Games"    :  False,
                             "Limits"   :  True,
                             "LimitSep" :  True,
+                            "Seats"    :  True,
                             "Dates"    :  False,
                             "Button1"  :  True,
                             "Button2"  :  False
@@ -79,12 +80,14 @@ class GuiPositionalStats (threading.Thread):
         # To miss columns out remove them from both tuples (the 1st 2 elements should always be included).
         # To change the heading just edit the second list element as required
         # If the first list element does not match a query column that pair is ignored
-        self.posncols =  ( "game", "plposition", "vpip", "pfr", "pf3", "steals" 
+        self.posncols =  ( "game", "avgseats", "plposition", "vpip", "pfr", "pf3", "steals" 
                          , "saw_f", "sawsd", "wtsdwsf", "wmsd", "flafq", "tuafq", "rvafq"
-                         , "pofafq", "net", "bbper100", "profitperhand", "variance", "n" )
-        self.posnheads = ( "Game", "Posn", "VPIP", "PFR", "PF3", "Steals"
+                         , "pofafq", "net", "bbper100", "profitperhand", "variance", "n"
+                         )
+        self.posnheads = ( "Game", "Seats", "Posn", "VPIP", "PFR", "PF3", "Steals"
                          , "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq"
-                         , "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance", "Hds" )
+                         , "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance", "Hds"
+                         )
 
         self.fillStatsFrame(self.stats_frame)
         statsFrame.add(self.stats_frame)
@@ -112,6 +115,7 @@ class GuiPositionalStats (threading.Thread):
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
         limits  = self.filters.getLimits()
+        seats = self.filters.getSeats()
         sitenos = []
         playerids = []
 
@@ -135,11 +139,11 @@ class GuiPositionalStats (threading.Thread):
             print "No limits found"
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits)
+        self.createStatsTable(vbox, playerids, sitenos, limits, seats)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits):
+    def createStatsTable(self, vbox, playerids, sitenos, limits, seats):
         tmp = self.sql.query['playerStatsByPosition']
-        tmp = self.refineQuery(tmp, playerids, sitenos, limits)
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         self.stats_table = gtk.Table(1, 1, False) # gtk table expands as required
@@ -158,14 +162,14 @@ class GuiPositionalStats (threading.Thread):
             self.stats_table.attach(l, col, col+1, row, row+1, yoptions=gtk.SHRINK)
             col +=1 
 
-        last_game = ""
-        sqlrow = 0
+        last_game,last_seats,sqlrow = "","",0
         while sqlrow < rows:
             if(row%2 == 0):
                 bgcolor = "white"
             else:
                 bgcolor = "lightgrey"
             rowprinted=0
+            avgcol = colnames.index('avgseats')
             for col,colname in enumerate(self.posncols):
                 if colname in colnames:
                     sqlcol = colnames.index(colname)
@@ -174,9 +178,17 @@ class GuiPositionalStats (threading.Thread):
                 eb = gtk.EventBox()
                 eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
                 # print blank row between levels:
-                if result[sqlrow][sqlcol] and (sqlrow == 0 or result[sqlrow][0] == last_game):
-                    l = gtk.Label(result[sqlrow][sqlcol])
-                    rowprinted=1
+                if result[sqlrow][sqlcol]:
+                    if sqlrow == 0:
+                        l = gtk.Label(result[sqlrow][sqlcol])
+                        rowprinted=1
+                    elif result[sqlrow][0] != last_game:
+                        l = gtk.Label(' ')
+                    elif 'show' in seats and seats['show'] and result[sqlrow][avgcol] != last_seats:
+                        l = gtk.Label(' ')
+                    else:
+                        l = gtk.Label(result[sqlrow][sqlcol])
+                        rowprinted=1
                 else:
                     l = gtk.Label(' ')
                 if col == 0:
@@ -190,13 +202,14 @@ class GuiPositionalStats (threading.Thread):
                 l.show()
                 eb.show()
             last_game = result[sqlrow][0]
+            last_seats = result[sqlrow][avgcol]
             if rowprinted:
                 sqlrow = sqlrow+1
             row = row + 1
         
         # show totals at bottom
         tmp = self.sql.query['playerStats']
-        tmp = self.refineQuery(tmp, playerids, sitenos, limits)
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
 
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
@@ -251,7 +264,7 @@ class GuiPositionalStats (threading.Thread):
         self.db.db.rollback()
     #end def fillStatsFrame(self, vbox):
 
-    def refineQuery(self, query, playerids, sitenos, limits):
+    def refineQuery(self, query, playerids, sitenos, limits, seats):
         if playerids:
             nametest = str(tuple(playerids))
             nametest = nametest.replace("L", "")
@@ -259,6 +272,19 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace("<player_test>", nametest)
         else:
             query = query.replace("<player_test>", "1 = 2")
+
+        if seats:
+            query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
+            if 'show' in seats and seats['show']:
+                query = query.replace('<groupbyseats>', ',hc.activeSeats')
+                query = query.replace('<orderbyseats>', ',stats.AvgSeats')
+            else:
+                query = query.replace('<groupbyseats>', '')
+                query = query.replace('<orderbyseats>', '')
+        else:
+            query = query.replace('<seats_test>', 'between 0 and 100')
+            query = query.replace('<groupbyseats>', '')
+            query = query.replace('<orderbyseats>', '')
 
         if [x for x in limits if str(x).isdigit()]:
             blindtest = str(tuple([x for x in limits if str(x).isdigit()]))
@@ -268,15 +294,16 @@ class GuiPositionalStats (threading.Thread):
         else:
             query = query.replace("<gtbigBlind_test>", "gt.bigBlind = -1 ")
 
-        groupLevels = "Separate" not in str(limits)
+        groupLevels = "show" not in str(limits)
         if groupLevels:
             if self.db.backend == self.MYSQL_INNODB:
-                bigblindselect = """concat(trim(leading ' ' from
+                bigblindselect = """concat('$'
+                                          ,trim(leading ' ' from
                                                 case when min(gt.bigBlind) < 100 
                                                      then format(min(gt.bigBlind)/100.0, 2)
                                                      else format(min(gt.bigBlind)/100.0, 0)
                                                 end)
-                                          ,' - '
+                                          ,' - $'
                                           ,trim(leading ' ' from
                                                 case when max(gt.bigBlind) < 100 
                                                      then format(max(gt.bigBlind)/100.0, 2)
@@ -284,36 +311,40 @@ class GuiPositionalStats (threading.Thread):
                                                 end)
                                           ) """
             else:
-                bigblindselect = """trim(leading ' ' from
+                bigblindselect = """'$' ||
+                                    trim(leading ' ' from
                                          case when min(gt.bigBlind) < 100 
                                               then to_char(min(gt.bigBlind)/100.0,'90D00')
                                               else to_char(min(gt.bigBlind)/100.0,'999990')
                                          end)
-                                    || ' - ' ||
+                                    || ' - $' ||
                                     trim(leading ' ' from
                                          case when max(gt.bigBlind) < 100 
                                               then to_char(max(gt.bigBlind)/100.0,'90D00')
                                               else to_char(max(gt.bigBlind)/100.0,'999990')
                                          end) """
+            bigblindselect = "cast('' as char)" # avoid odd effects when some posns and/or seats 
+                                                # are missing from some limits (dunno why cast is
+                                                # needed but it says "unknown type" otherwise?!
             query = query.replace("<selectgt.bigBlind>", bigblindselect)
             query = query.replace("<groupbygt.bigBlind>", "")
             query = query.replace("<hcgametypeId>", "-1")
             query = query.replace("<hgameTypeId>", "-1")
         else:
             if self.db.backend == self.MYSQL_INNODB:
-                bigblindselect = """trim(leading ' ' from
-                                          case when gt.bigBlind < 100 
-                                               then format(gt.bigBlind/100.0, 2)
-                                               else format(gt.bigBlind/100.0, 0)
-                                          end 
-                                         ) """
+                bigblindselect = """concat('$', trim(leading ' ' from
+                                                     case when gt.bigBlind < 100 
+                                                          then format(gt.bigBlind/100.0, 2)
+                                                          else format(gt.bigBlind/100.0, 0)
+                                                     end 
+                                                    ) )"""
             else:
-                bigblindselect = """trim(leading ' ' from
-                                          case when gt.bigBlind < 100 
-                                               then to_char(gt.bigBlind/100.0,'90D00')
-                                               else to_char(gt.bigBlind/100.0,'999990')
-                                          end 
-                                         ) """
+                bigblindselect = """'$' || trim(leading ' ' from
+                                                case when gt.bigBlind < 100 
+                                                     then to_char(gt.bigBlind/100.0,'90D00')
+                                                     else to_char(gt.bigBlind/100.0,'999990')
+                                                end 
+                                               ) """
             query = query.replace("<selectgt.bigBlind>", bigblindselect)
             query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
             query = query.replace("<hcgametypeId>", "hc.gametypeId")
