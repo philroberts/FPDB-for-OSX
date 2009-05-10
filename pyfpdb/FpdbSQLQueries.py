@@ -697,7 +697,7 @@ class FpdbSQLQueries:
                            ,format((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
                                                                                             AS BBper100
                            ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
-                           ,format( avg(activeSeats), 1)                                    AS AvgSeats
+                           ,format( sum(activeSeats*HDs)/(sum(HDs)+0.0), 2)                 AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
@@ -731,7 +731,7 @@ class FpdbSQLQueries:
                       group by hprof.gtId
                      ) hprof2
                     on hprof2.gtId = stats.gtId
-                order by stats.category, stats.limittype, stats.bigBlindDesc <orderbyseats>"""
+                order by stats.category, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
@@ -799,7 +799,7 @@ class FpdbSQLQueries:
                            ,to_char((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0), '990D00')
                                                                                             AS BBper100
                            ,to_char(sum(totalProfit/100.0) / (sum(HDs)+0.0), '990D0000')    AS Profitperhand
-                           ,to_char(avg(activeSeats),'90D0')                                AS AvgSeats
+                           ,to_char(sum(activeSeats*HDs)/(sum(HDs)+0.0),'90D00')            AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
@@ -833,7 +833,7 @@ class FpdbSQLQueries:
                       group by hprof.gtId
                      ) hprof2
                     on hprof2.gtId = stats.gtId
-                order by stats.base, stats.limittype, stats.bigBlindDesc <orderbyseats>"""
+                order by stats.base, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
         elif(self.dbname == 'SQLite'):
             self.query['playerStats'] = """ """
 
@@ -923,7 +923,7 @@ class FpdbSQLQueries:
                            ,format((sum(totalProfit/(gt.bigBlind+0.0))) / (sum(HDs)/100.0),2)
                                                                                             AS BBper100
                            ,format( (sum(totalProfit)/100.0) / sum(HDs), 4)                 AS Profitperhand
-                           ,format( avg(activeSeats), 1)                                    AS AvgSeats
+                           ,format( sum(activeSeats*HDs)/(sum(HDs)+0.0), 2)                 AS AvgSeats
                      from Gametypes gt
                           inner join Sites s on s.Id = gt.siteId
                           inner join HudCache hc on hc.gameTypeId = gt.Id
@@ -967,7 +967,7 @@ class FpdbSQLQueries:
                      ) hprof2
                     on (    hprof2.gtId = stats.gtId
                         and hprof2.PlPosition = stats.PlPosition)
-                order by stats.category, stats.limitType, stats.bigBlindDesc
+                order by stats.category, stats.limitType, stats.bigBlindDesc desc
                          <orderbyseats>, cast(stats.PlPosition as signed)
                 """
         elif(self.dbname == 'PostgreSQL'):
@@ -1058,7 +1058,7 @@ class FpdbSQLQueries:
                            ,case when sum(HDs) = 0 then '0'
                                  else to_char( (sum(totalProfit)/100.0) / sum(HDs), '90D0000')
                             end                                                             AS Profitperhand
-                           ,to_char(avg(activeSeats),'90D0')                                AS AvgSeats
+                           ,to_char(sum(activeSeats*HDs)/(sum(HDs)+0.0),'90D00')            AS AvgSeats
                      from Gametypes gt
                           inner join Sites s     on (s.Id = gt.siteId)
                           inner join HudCache hc on (hc.gameTypeId = gt.Id)
@@ -1102,7 +1102,7 @@ class FpdbSQLQueries:
                     ) hprof2
                     on (    hprof2.gtId = stats.gtId
                         and hprof2.PlPosition = stats.PlPosition)
-                order by stats.category, stats.limitType, stats.bigBlindDesc
+                order by stats.category, stats.limitType, stats.bigBlindDesc desc
                          <orderbyseats>, cast(stats.PlPosition as smallint)
                 """
         elif(self.dbname == 'SQLite'):
