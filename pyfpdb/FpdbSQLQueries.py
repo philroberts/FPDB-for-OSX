@@ -185,6 +185,13 @@ class FpdbSQLQueries:
                             importTime DATETIME NOT NULL,
                             seats SMALLINT NOT NULL,
                             maxSeats SMALLINT NOT NULL,
+                            vpi SMALLINT NOT NULL,
+                            street0Seen SMALLINT NOT NULL,
+                            street1Seen SMALLINT NOT NULL,
+                            street2Seen SMALLINT NOT NULL,
+                            street3Seen SMALLINT NOT NULL,
+                            street4Seen SMALLINT NOT NULL,
+                            sdSeen SMALLINT NOT NULL,
                             comment TEXT,
                             commentTs DATETIME)
                         ENGINE=INNODB""" 
@@ -198,6 +205,13 @@ class FpdbSQLQueries:
                         importTime timestamp without time zone,
                         seats SMALLINT,
                         maxSeats SMALLINT,
+                        vpi SMALLINT NOT NULL,
+                        street0Seen SMALLINT NOT NULL,
+                        street1Seen SMALLINT NOT NULL,
+                        street2Seen SMALLINT NOT NULL,
+                        street3Seen SMALLINT NOT NULL,
+                        street4Seen SMALLINT NOT NULL,
+                        sdSeen SMALLINT NOT NULL,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif(self.dbname == 'SQLite'):
@@ -306,7 +320,7 @@ class FpdbSQLQueries:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
-                        ante INT,
+                        activeSeats SMALLINT NOT NULL,
                     
                         card1Value smallint NOT NULL,
                         card1Suit char(1) NOT NULL,
@@ -322,28 +336,104 @@ class FpdbSQLQueries:
                         card6Suit char(1),
                         card7Value smallint,
                         card7Suit char(1),
+                        startCards smallint,
                     
+                        ante INT,
                         winnings int NOT NULL,
                         rake int NOT NULL,
+                        totalProfit INT NOT NULL,
                         comment text,
                         commentTs DATETIME,
-                    
-                        tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
+                        tourneysPlayersId BIGINT UNSIGNED, 
+                        tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+
+                        wonWhenSeenStreet1 FLOAT NOT NULL,
+                        wonWhenSeenStreet2 FLOAT NOT NULL,
+                        wonWhenSeenStreet3 FLOAT NOT NULL,
+                        wonWhenSeenStreet4 FLOAT NOT NULL,
+                        wonAtSD FLOAT NOT NULL,
+
+                        street0VPI BOOLEAN NOT NULL,
+                        street0Aggr BOOLEAN NOT NULL,
+                        street0_3BChance BOOLEAN NOT NULL,
+                        street0_3BDone BOOLEAN NOT NULL,
+                        street0_4BChance BOOLEAN NOT NULL,
+                        street0_4BDone BOOLEAN NOT NULL,
+                        other3BStreet0 BOOLEAN NOT NULL,
+                        other4BStreet0 BOOLEAN NOT NULL,
+
+                        street1Seen BOOLEAN NOT NULL,
+                        street2Seen BOOLEAN NOT NULL,
+                        street3Seen BOOLEAN NOT NULL,
+                        street4Seen BOOLEAN NOT NULL,
+                        sawShowdown BOOLEAN NOT NULL,
+
+                        street1Aggr BOOLEAN NOT NULL,
+                        street2Aggr BOOLEAN NOT NULL,
+                        street3Aggr BOOLEAN NOT NULL,
+                        street4Aggr BOOLEAN NOT NULL,
+
+                        otherRaisedStreet0 BOOLEAN NOT NULL,
+                        otherRaisedStreet1 BOOLEAN NOT NULL,
+                        otherRaisedStreet2 BOOLEAN NOT NULL,
+                        otherRaisedStreet3 BOOLEAN NOT NULL,
+                        otherRaisedStreet4 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet0 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet1 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet2 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet3 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet4 BOOLEAN NOT NULL,
+
+                        stealAttemptChance BOOLEAN NOT NULL,
+                        stealAttempted BOOLEAN NOT NULL,
+                        foldBbToStealChance BOOLEAN NOT NULL,
+                        foldedBbToSteal BOOLEAN NOT NULL,
+                        foldSbToStealChance BOOLEAN NOT NULL,
+                        foldedSbToSteal BOOLEAN NOT NULL,
+
+                        street1CBChance BOOLEAN NOT NULL,
+                        street1CBDone BOOLEAN NOT NULL,
+                        street2CBChance BOOLEAN NOT NULL,
+                        street2CBDone BOOLEAN NOT NULL,
+                        street3CBChance BOOLEAN NOT NULL,
+                        street3CBDone BOOLEAN NOT NULL,
+                        street4CBChance BOOLEAN NOT NULL,
+                        street4CBDone BOOLEAN NOT NULL,
+
+                        foldToStreet1CBChance BOOLEAN NOT NULL,
+                        foldToStreet1CBDone BOOLEAN NOT NULL,
+                        foldToStreet2CBChance BOOLEAN NOT NULL,
+                        foldToStreet2CBDone BOOLEAN NOT NULL,
+                        foldToStreet3CBChance BOOLEAN NOT NULL,
+                        foldToStreet3CBDone BOOLEAN NOT NULL,
+                        foldToStreet4CBChance BOOLEAN NOT NULL,
+                        foldToStreet4CBDone BOOLEAN NOT NULL,
+
+                        street1CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street1CheckCallRaiseDone BOOLEAN NOT NULL,
+                        street2CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street2CheckCallRaiseDone BOOLEAN NOT NULL,
+                        street3CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street3CheckCallRaiseDone BOOLEAN NOT NULL,
+                        street4CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street4CheckCallRaiseDone BOOLEAN NOT NULL,
+                        
+                        FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
                         ENGINE=INNODB"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handId BIGINT, FOREIGN KEY (handId) REFERENCES Hands(id),
-                        playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        startCash INT,
+                        handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        startCash INT NOT NULL,
                         position CHAR(1),
-                        seatNo SMALLINT,
-                        ante INT,
+                        seatNo SMALLINT NOT NULL,
+                        activeSeats SMALLINT NOT NULL,
 
-                        card1Value smallint,
-                        card1Suit char(1),
-                        card2Value smallint,
-                        card2Suit char(1),
+                        card1Value smallint NOT NULL,
+                        card1Suit char(1) NOT NULL,
+                        card2Value smallint NOT NULL,
+                        card2Suit char(1) NOT NULL,
                         card3Value smallint,
                         card3Suit char(1),
                         card4Value smallint,
@@ -354,12 +444,89 @@ class FpdbSQLQueries:
                         card6Suit char(1),
                         card7Value smallint,
                         card7Suit char(1),
+                        startCards smallint,
 
-                        winnings int,
-                        rake int,
+                        ante INT,
+                        winnings int NOT NULL,
+                        rake int NOT NULL,
+                        totalProfit INT NOT NULL,
                         comment text,
                         commentTs timestamp without time zone,
-                        tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
+                        tourneysPlayersId BIGINT, 
+                        tourneyTypeId INT NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+
+                        wonWhenSeenStreet1 FLOAT NOT NULL,
+                        wonWhenSeenStreet2 FLOAT NOT NULL,
+                        wonWhenSeenStreet3 FLOAT NOT NULL,
+                        wonWhenSeenStreet4 FLOAT NOT NULL,
+                        wonAtSD FLOAT NOT NULL,
+
+                        street0VPI BOOLEAN NOT NULL,
+                        street0Aggr BOOLEAN NOT NULL,
+                        street0_3BChance BOOLEAN NOT NULL,
+                        street0_3BDone BOOLEAN NOT NULL,
+                        street0_4BChance BOOLEAN NOT NULL,
+                        street0_4BDone BOOLEAN NOT NULL,
+                        other3BStreet0 BOOLEAN NOT NULL,
+                        other4BStreet0 BOOLEAN NOT NULL,
+
+                        street1Seen BOOLEAN NOT NULL,
+                        street2Seen BOOLEAN NOT NULL,
+                        street3Seen BOOLEAN NOT NULL,
+                        street4Seen BOOLEAN NOT NULL,
+                        sawShowdown BOOLEAN NOT NULL,
+
+                        street1Aggr BOOLEAN NOT NULL,
+                        street2Aggr BOOLEAN NOT NULL,
+                        street3Aggr BOOLEAN NOT NULL,
+                        street4Aggr BOOLEAN NOT NULL,
+
+                        otherRaisedStreet0 BOOLEAN NOT NULL,
+                        otherRaisedStreet1 BOOLEAN NOT NULL,
+                        otherRaisedStreet2 BOOLEAN NOT NULL,
+                        otherRaisedStreet3 BOOLEAN NOT NULL,
+                        otherRaisedStreet4 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet0 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet1 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet2 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet3 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet4 BOOLEAN NOT NULL,
+
+                        stealAttemptChance BOOLEAN NOT NULL,
+                        stealAttempted BOOLEAN NOT NULL,
+                        foldBbToStealChance BOOLEAN NOT NULL,
+                        foldedBbToSteal BOOLEAN NOT NULL,
+                        foldSbToStealChance BOOLEAN NOT NULL,
+                        foldedSbToSteal BOOLEAN NOT NULL,
+
+                        street1CBChance BOOLEAN NOT NULL,
+                        street1CBDone BOOLEAN NOT NULL,
+                        street2CBChance BOOLEAN NOT NULL,
+                        street2CBDone BOOLEAN NOT NULL,
+                        street3CBChance BOOLEAN NOT NULL,
+                        street3CBDone BOOLEAN NOT NULL,
+                        street4CBChance BOOLEAN NOT NULL,
+                        street4CBDone BOOLEAN NOT NULL,
+
+                        foldToStreet1CBChance BOOLEAN NOT NULL,
+                        foldToStreet1CBDone BOOLEAN NOT NULL,
+                        foldToStreet2CBChance BOOLEAN NOT NULL,
+                        foldToStreet2CBDone BOOLEAN NOT NULL,
+                        foldToStreet3CBChance BOOLEAN NOT NULL,
+                        foldToStreet3CBDone BOOLEAN NOT NULL,
+                        foldToStreet4CBChance BOOLEAN NOT NULL,
+                        foldToStreet4CBDone BOOLEAN NOT NULL,
+
+                        street1CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street1CheckCallRaiseDone BOOLEAN NOT NULL,
+                        street2CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street2CheckCallRaiseDone BOOLEAN NOT NULL,
+                        street3CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street3CheckCallRaiseDone BOOLEAN NOT NULL,
+                        street4CheckCallRaiseChance BOOLEAN NOT NULL,
+                        street4CheckCallRaiseDone BOOLEAN NOT NULL,
+
+                        FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
         elif(self.dbname == 'SQLite'):
             self.query['createHandsPlayersTable'] = """ """
 
@@ -400,7 +567,7 @@ class FpdbSQLQueries:
         if(self.dbname == 'MySQL InnoDB'):
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        handPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+                        handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
                         action CHAR(5) NOT NULL,
@@ -412,7 +579,7 @@ class FpdbSQLQueries:
         elif(self.dbname == 'PostgreSQL'):
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+                        handsPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT,
                         actionNo SMALLINT,
                         action CHAR(5),
@@ -611,12 +778,10 @@ class FpdbSQLQueries:
 
         if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL') or (self.dbname == 'SQLite'):
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
-                SELECT hp.handId, hp.winnings, coalesce(hp.ante,0) + SUM(ha.amount)
-                     , hp.winnings - (coalesce(hp.ante,0) + SUM(ha.amount))
+                SELECT hp.handId, hp.totalProfit, hp.totalProfit, hp.totalProfit
                 FROM HandsPlayers hp
                 INNER JOIN Players pl      ON hp.playerId     = pl.id
                 INNER JOIN Hands h         ON h.id            = hp.handId
-                INNER JOIN HandsActions ha ON ha.handPlayerId = hp.id
                 INNER JOIN Gametypes g     ON h.gametypeId    = g.id
                 where pl.id in <player_test>
                 AND   pl.siteId in <site_test>
@@ -624,8 +789,73 @@ class FpdbSQLQueries:
                 AND   h.handStart < '<enddate_test>'
                 AND   g.bigBlind in <limit_test>
                 AND   hp.tourneysPlayersId IS NULL
-                GROUP BY hp.handId, hp.winnings, h.handStart, hp.ante
+                GROUP BY h.handStart, hp.handId, hp.totalProfit
                 ORDER BY h.handStart"""
+
+        if self.dbname in ['MySQL InnoDB', 'PostgreSQL']:
+            self.query['playerDetailedStats'] = """
+                     select
+                             h.gametypeId
+                            ,sum(hp.totalProfit)                                             AS sum_profit
+                            ,avg(hp.totalProfit/100.0)                                       AS profitperhand
+                            /*,case when h.gametypeId = -1 then -999
+                                  else variance(hp.totalProfit/100.0)
+                             end                                                                    AS variance*/
+                            ,gt.base
+                            ,gt.category
+                            ,upper(gt.limitType)                                                    AS limitType
+                            ,s.name
+                            /*,<selectgt.bigBlind>                                                  AS bigBlindDesc
+                            ,<hcgametypeId>                                                         AS gtId*/
+                            ,count(1)                                                               AS n
+                            ,100.0*sum(cast(street0VPI as integer))/count(1)                        AS vpip
+                            ,100.0*sum(cast(street0Aggr as integer))/count(1)                       AS pfr
+                            ,case when sum(cast(street0_3b4bchance as integer)) = 0 then '0'
+                                  else 100.0*sum(cast(street0_3b4bdone as integer))/sum(cast(street0_3b4bchance as integer))
+                             end                                                                    AS pf3
+                            ,case when sum(cast(stealattemptchance as integer)) = 0 then -999
+                                  else 100.0*sum(cast(stealattempted as integer))/sum(cast(stealattemptchance as integer))
+                             end                                                                    AS steals
+                            ,100.0*sum(cast(street1Seen as integer))/count(1)                       AS saw_f
+                            ,100.0*sum(cast(sawShowdown as integer))/count(1)                       AS sawsd
+                            ,case when sum(cast(street1Seen as integer)) = 0 then -999
+                                  else 100.0*sum(cast(sawShowdown as integer))/sum(cast(street1Seen as integer))
+                             end                                                                    AS wtsdwsf
+                            ,case when sum(cast(sawShowdown as integer)) = 0 then -999
+                                  else 100.0*sum(cast(wonAtSD as integer))/sum(cast(sawShowdown as integer))
+                             end                                                                    AS wmsd
+                            ,case when sum(cast(street1Seen as integer)) = 0 then -999
+                                  else 100.0*sum(cast(street1Aggr as integer))/sum(cast(street1Seen as integer))
+                             end                                                                    AS FlAFq
+                            ,case when sum(cast(street2Seen as integer)) = 0 then -999
+                                  else 100.0*sum(cast(street2Aggr as integer))/sum(cast(street2Seen as integer))
+                             end                                                                    AS TuAFq
+                            ,case when sum(cast(street3Seen as integer)) = 0 then -999
+                                 else 100.0*sum(cast(street3Aggr as integer))/sum(cast(street3Seen as integer))
+                             end                                                                    AS RvAFq
+                            ,case when sum(cast(street1Seen as integer))+sum(cast(street2Seen as integer))+sum(cast(street3Seen as integer)) = 0 then -999
+                                 else 100.0*(sum(cast(street1Aggr as integer))+sum(cast(street2Aggr as integer))+sum(cast(street3Aggr as integer)))
+                                          /(sum(cast(street1Seen as integer))+sum(cast(street2Seen as integer))+sum(cast(street3Seen as integer)))
+                             end                                                                    AS PoFAFq
+                            ,sum(totalProfit)/100.0                                                 AS Net
+                            ,(sum(totalProfit/(gt.bigBlind+0.0))) / (count(1)/100.0)
+                                                                                                    AS BBper100
+                            ,(sum(totalProfit)/100.0) / count(1)                                    AS Profitperhand
+                            ,sum(activeSeats)/(count(1)+0.0)                                        AS AvgSeats
+                      from HandsPlayers hp
+                      inner join Hands h       on  (h.id = hp.handId)
+                      inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+                      inner join Sites s       on  (s.Id = gt.siteId)
+                      where hp.playerId in (1) /* <player_test> */
+                      and   hp.tourneysPlayersId IS NULL
+                      group by h.gametypeId
+                              ,hp.playerId
+                              ,gt.base
+                              ,gt.category
+                              ,upper(gt.limitType)
+                              ,s.name"""
+        elif(self.dbname == 'SQLite'):
+            self.query['playerDetailedStats'] = """ """
 
         if(self.dbname == 'MySQL InnoDB'):
             self.query['playerStats'] = """
@@ -719,14 +949,12 @@ class FpdbSQLQueries:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.winnings, SUM(ha.amount) as costs
-                                , hp.winnings - SUM(ha.amount) as profit
+                          (select hp.handId, <hgameTypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
                            inner join Hands h        ON h.id            = hp.handId
-                           left join HandsActions ha ON ha.handPlayerId = hp.id
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           group by hp.handId, gtId, hp.position, hp.winnings
+                           group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
                      ) hprof2
@@ -821,14 +1049,12 @@ class FpdbSQLQueries:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.winnings,
-                                  SUM(ha.amount) as costs, hp.winnings - SUM(ha.amount) as profit
+                          (select hp.handId, <hgameTypeId> as gtId, hp.totalProfit as profit
                            from HandsPlayers hp
-                           inner join Hands h        ON (h.id            = hp.handId)
-                           left join HandsActions ha ON (ha.handPlayerId = hp.id)
+                           inner join Hands h   ON (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           group by hp.handId, gtId, hp.position, hp.winnings
+                           group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
                      ) hprof2
@@ -954,14 +1180,13 @@ class FpdbSQLQueries:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.position, hp.winnings
-                                , SUM(ha.amount) as costs, hp.winnings - SUM(ha.amount) as profit
+                          (select hp.handId, <hgameTypeId> as gtId, hp.position
+                                , hp.totalProfit as profit
                            from HandsPlayers hp
-                           inner join Hands h        ON h.id            = hp.handId
-                           left join HandsActions ha ON ha.handPlayerId = hp.id
+                           inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           group by hp.handId, gtId, hp.position, hp.winnings
+                           group by hp.handId, gtId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
                      ) hprof2
@@ -1089,14 +1314,13 @@ class FpdbSQLQueries:
                                   else variance(hprof.profit/100.0)
                              end as variance
                       from
-                          (select hp.handId, <hgameTypeId> as gtId, hp.position, hp.winnings
-                                , SUM(ha.amount) as costs, hp.winnings - SUM(ha.amount) as profit
+                          (select hp.handId, <hgameTypeId> as gtId, hp.position
+                                , hp.totalProfit as profit
                            from HandsPlayers hp
-                           inner join Hands h        ON h.id            = hp.handId
-                           left join HandsActions ha ON ha.handPlayerId = hp.id
+                           inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           group by hp.handId, gameTypeId, hp.position, hp.winnings
+                           group by hp.handId, gameTypeId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
                     ) hprof2
@@ -1243,6 +1467,160 @@ class FpdbSQLQueries:
         
         if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
             self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+
+
+        ####################################
+        # Queries to rebuild/modify hudcache
+        ####################################
+        
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['clearHudCache'] = """DELETE FROM HudCache"""
+        
+        if(self.dbname == 'MySQL InnoDB') or (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['rebuildHudCache'] = """
+                INSERT INTO HudCache
+                (gametypeId
+                ,playerId
+                ,activeSeats
+                ,position
+                ,tourneyTypeId
+                ,HDs
+                ,wonWhenSeenStreet1
+                ,wonAtSD
+                ,street0VPI
+                ,street0Aggr
+                ,street0_3B4BChance
+                ,street0_3B4BDone
+                ,street1Seen
+                ,street2Seen
+                ,street3Seen
+                ,street4Seen
+                ,sawShowdown
+                ,street1Aggr
+                ,street2Aggr
+                ,street3Aggr
+                ,street4Aggr
+                ,otherRaisedStreet1
+                ,otherRaisedStreet2
+                ,otherRaisedStreet3
+                ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet1
+                ,foldToOtherRaisedStreet2
+                ,foldToOtherRaisedStreet3
+                ,foldToOtherRaisedStreet4
+                ,stealAttemptChance
+                ,stealAttempted
+                ,foldBbToStealChance
+                ,foldedBbToSteal
+                ,foldSbToStealChance
+                ,foldedSbToSteal
+                ,street1CBChance
+                ,street1CBDone
+                ,street2CBChance
+                ,street2CBDone
+                ,street3CBChance
+                ,street3CBDone
+                ,street4CBChance
+                ,street4CBDone
+                ,foldToStreet1CBChance
+                ,foldToStreet1CBDone
+                ,foldToStreet2CBChance
+                ,foldToStreet2CBDone
+                ,foldToStreet3CBChance
+                ,foldToStreet3CBDone
+                ,foldToStreet4CBChance
+                ,foldToStreet4CBDone
+                ,totalProfit
+                ,street1CheckCallRaiseChance
+                ,street1CheckCallRaiseDone
+                ,street2CheckCallRaiseChance
+                ,street2CheckCallRaiseDone
+                ,street3CheckCallRaiseChance
+                ,street3CheckCallRaiseDone
+                ,street4CheckCallRaiseChance
+                ,street4CheckCallRaiseDone
+                )
+                SELECT h.gametypeId
+                      ,hp.playerId
+                      ,hp.activeSeats
+                      ,case when hp.position = 'B' then 'B'
+                            when hp.position = 'S' then 'S'
+                            when hp.position = '0' then 'D'
+                            when hp.position = '1' then 'C'
+                            when hp.position = '2' then 'M'
+                            when hp.position = '3' then 'M'
+                            when hp.position = '4' then 'M'
+                            when hp.position = '5' then 'E'
+                            when hp.position = '6' then 'E'
+                            when hp.position = '7' then 'E'
+                            when hp.position = '8' then 'E'
+                            when hp.position = '9' then 'E'
+                            else 'E'
+                       end                                            AS hc_position
+                      ,hp.tourneyTypeId
+                      ,count(1)
+                      ,sum(wonWhenSeenStreet1)
+                      ,sum(wonAtSD)
+                      ,sum(CAST(street0VPI as integer)) 
+                      ,sum(CAST(street0Aggr as integer)) 
+                      ,sum(CAST(street0_3B4BChance as integer)) 
+                      ,sum(CAST(street0_3B4BDone as integer)) 
+                      ,sum(CAST(street1Seen as integer)) 
+                      ,sum(CAST(street2Seen as integer)) 
+                      ,sum(CAST(street3Seen as integer)) 
+                      ,sum(CAST(street4Seen as integer)) 
+                      ,sum(CAST(sawShowdown as integer)) 
+                      ,sum(CAST(street1Aggr as integer)) 
+                      ,sum(CAST(street2Aggr as integer)) 
+                      ,sum(CAST(street3Aggr as integer)) 
+                      ,sum(CAST(street4Aggr as integer)) 
+                      ,sum(CAST(otherRaisedStreet1 as integer)) 
+                      ,sum(CAST(otherRaisedStreet2 as integer)) 
+                      ,sum(CAST(otherRaisedStreet3 as integer)) 
+                      ,sum(CAST(otherRaisedStreet4 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet1 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet2 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet3 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet4 as integer)) 
+                      ,sum(CAST(stealAttemptChance as integer)) 
+                      ,sum(CAST(stealAttempted as integer)) 
+                      ,sum(CAST(foldBbToStealChance as integer)) 
+                      ,sum(CAST(foldedBbToSteal as integer)) 
+                      ,sum(CAST(foldSbToStealChance as integer)) 
+                      ,sum(CAST(foldedSbToSteal as integer)) 
+                      ,sum(CAST(street1CBChance as integer)) 
+                      ,sum(CAST(street1CBDone as integer)) 
+                      ,sum(CAST(street2CBChance as integer)) 
+                      ,sum(CAST(street2CBDone as integer)) 
+                      ,sum(CAST(street3CBChance as integer)) 
+                      ,sum(CAST(street3CBDone as integer)) 
+                      ,sum(CAST(street4CBChance as integer)) 
+                      ,sum(CAST(street4CBDone as integer)) 
+                      ,sum(CAST(foldToStreet1CBChance as integer)) 
+                      ,sum(CAST(foldToStreet1CBDone as integer)) 
+                      ,sum(CAST(foldToStreet2CBChance as integer)) 
+                      ,sum(CAST(foldToStreet2CBDone as integer)) 
+                      ,sum(CAST(foldToStreet3CBChance as integer)) 
+                      ,sum(CAST(foldToStreet3CBDone as integer)) 
+                      ,sum(CAST(foldToStreet4CBChance as integer)) 
+                      ,sum(CAST(foldToStreet4CBDone as integer)) 
+                      ,sum(CAST(totalProfit as integer)) 
+                      ,sum(CAST(street1CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street1CheckCallRaiseDone as integer)) 
+                      ,sum(CAST(street2CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street2CheckCallRaiseDone as integer)) 
+                      ,sum(CAST(street3CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street3CheckCallRaiseDone as integer)) 
+                      ,sum(CAST(street4CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street4CheckCallRaiseDone as integer)) 
+                FROM HandsPlayers hp
+                INNER JOIN Hands h ON (h.id = hp.handId)
+                GROUP BY h.gametypeId
+                        ,hp.playerId
+                        ,hp.activeSeats
+                        ,hc_position
+                        ,hp.tourneyTypeId
+"""
 
 
 if __name__== "__main__":
