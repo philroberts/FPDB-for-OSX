@@ -567,7 +567,7 @@ class FpdbSQLQueries:
         if(self.dbname == 'MySQL InnoDB'):
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+                        handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT NOT NULL,
                         actionNo SMALLINT NOT NULL,
                         action CHAR(5) NOT NULL,
@@ -579,7 +579,7 @@ class FpdbSQLQueries:
         elif(self.dbname == 'PostgreSQL'):
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        handsPlayerId BIGINT, FOREIGN KEY (handPlayerId) REFERENCES HandsPlayers(id),
+                        handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
                         street SMALLINT,
                         actionNo SMALLINT,
                         action CHAR(5),
