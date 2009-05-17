@@ -320,7 +320,6 @@ class FpdbSQLQueries:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
-                        activeSeats SMALLINT NOT NULL,
                     
                         card1Value smallint NOT NULL,
                         card1Suit char(1) NOT NULL,
@@ -428,7 +427,6 @@ class FpdbSQLQueries:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
-                        activeSeats SMALLINT NOT NULL,
 
                         card1Value smallint NOT NULL,
                         card1Suit char(1) NOT NULL,
@@ -816,66 +814,73 @@ class FpdbSQLQueries:
 
         if self.dbname in ['MySQL InnoDB', 'PostgreSQL']:
             self.query['playerDetailedStats'] = """
-                     select
-                             h.gametypeId
-                            ,sum(hp.totalProfit)                                             AS sum_profit
-                            ,avg(hp.totalProfit/100.0)                                       AS profitperhand
-                            /*,case when h.gametypeId = -1 then -999
-                                  else variance(hp.totalProfit/100.0)
-                             end                                                                    AS variance*/
+                     select  <hgameTypeId>                                                          AS hgametypeid
                             ,gt.base
                             ,gt.category
-                            ,upper(gt.limitType)                                                    AS limitType
+                            ,upper(gt.limitType)                                                    AS limittype
                             ,s.name
-                            /*,<selectgt.bigBlind>                                                  AS bigBlindDesc
-                            ,<hcgametypeId>                                                         AS gtId*/
+                            ,min(gt.bigBlind)                                                       AS minbigblind
+                            ,max(gt.bigBlind)                                                       AS maxbigblind
+                            /*,<hcgametypeId>                                                         AS gtid*/
                             ,count(1)                                                               AS n
-                            ,100.0*sum(cast(street0VPI as integer))/count(1)                        AS vpip
-                            ,100.0*sum(cast(street0Aggr as integer))/count(1)                       AS pfr
-                            ,case when sum(cast(street0_3Bchance as integer)) = 0 then '0'
-                                  else 100.0*sum(cast(street0_3Bdone as integer))/sum(cast(street0_3Bchance as integer))
+                            ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
+                            ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
+                            ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
                              end                                                                    AS pf3
-                            ,case when sum(cast(stealattemptchance as integer)) = 0 then -999
-                                  else 100.0*sum(cast(stealattempted as integer))/sum(cast(stealattemptchance as integer))
+                            ,case when sum(cast(hp.stealattemptchance as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.stealattempted as <signed>integer))/sum(cast(hp.stealattemptchance as <signed>integer))
                              end                                                                    AS steals
-                            ,100.0*sum(cast(street1Seen as integer))/count(1)                       AS saw_f
-                            ,100.0*sum(cast(sawShowdown as integer))/count(1)                       AS sawsd
-                            ,case when sum(cast(street1Seen as integer)) = 0 then -999
-                                  else 100.0*sum(cast(sawShowdown as integer))/sum(cast(street1Seen as integer))
+                            ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)           AS saw_f
+                            ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)           AS sawsd
+                            ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
                              end                                                                    AS wtsdwsf
-                            ,case when sum(cast(sawShowdown as integer)) = 0 then -999
-                                  else 100.0*sum(cast(wonAtSD as integer))/sum(cast(sawShowdown as integer))
+                            ,case when sum(cast(hp.sawShowdown as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.wonAtSD as <signed>integer))/sum(cast(hp.sawShowdown as <signed>integer))
                              end                                                                    AS wmsd
-                            ,case when sum(cast(street1Seen as integer)) = 0 then -999
-                                  else 100.0*sum(cast(street1Aggr as integer))/sum(cast(street1Seen as integer))
-                             end                                                                    AS FlAFq
-                            ,case when sum(cast(street2Seen as integer)) = 0 then -999
-                                  else 100.0*sum(cast(street2Aggr as integer))/sum(cast(street2Seen as integer))
-                             end                                                                    AS TuAFq
-                            ,case when sum(cast(street3Seen as integer)) = 0 then -999
-                                 else 100.0*sum(cast(street3Aggr as integer))/sum(cast(street3Seen as integer))
-                             end                                                                    AS RvAFq
-                            ,case when sum(cast(street1Seen as integer))+sum(cast(street2Seen as integer))+sum(cast(street3Seen as integer)) = 0 then -999
-                                 else 100.0*(sum(cast(street1Aggr as integer))+sum(cast(street2Aggr as integer))+sum(cast(street3Aggr as integer)))
-                                          /(sum(cast(street1Seen as integer))+sum(cast(street2Seen as integer))+sum(cast(street3Seen as integer)))
-                             end                                                                    AS PoFAFq
-                            ,sum(totalProfit)/100.0                                                 AS Net
-                            ,(sum(totalProfit/(gt.bigBlind+0.0))) / (count(1)/100.0)
-                                                                                                    AS BBper100
-                            ,(sum(totalProfit)/100.0) / count(1)                                    AS Profitperhand
-                            ,sum(activeSeats)/(count(1)+0.0)                                        AS AvgSeats
+                            ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street1Aggr as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                             end                                                                    AS flafq
+                            ,case when sum(cast(hp.street2Seen as <signed>integer)) = 0 then -999
+                                  else 100.0*sum(cast(hp.street2Aggr as <signed>integer))/sum(cast(hp.street2Seen as <signed>integer))
+                             end                                                                    AS tuafq
+                            ,case when sum(cast(hp.street3Seen as <signed>integer)) = 0 then -999
+                                 else 100.0*sum(cast(hp.street3Aggr as <signed>integer))/sum(cast(hp.street3Seen as <signed>integer))
+                             end                                                                    AS rvafq
+                            ,case when sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)) = 0 then -999
+                                 else 100.0*(sum(cast(hp.street1Aggr as <signed>integer))+sum(cast(hp.street2Aggr as <signed>integer))+sum(cast(hp.street3Aggr as <signed>integer)))
+                                          /(sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)))
+                             end                                                                    AS pofafq
+                            ,sum(hp.totalProfit)/100.0                                              AS net
+                            ,sum(hp.rake)/100.0                                                     AS rake
+                            ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
+                            ,avg(hp.totalProfit)/100.0                                              AS profitperhand
+                            ,100.0*avg((hp.totalProfit+hp.rake)/(gt.bigBlind+0.0))                  AS bb100xr
+                            ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
+                            ,avg(h.seats+0.0)                                                       AS avgseats
+                            ,variance(hp.totalProfit/100.0)                                         AS variance
                       from HandsPlayers hp
                       inner join Hands h       on  (h.id = hp.handId)
                       inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                       inner join Sites s       on  (s.Id = gt.siteId)
-                      where hp.playerId in (1) /* <player_test> */
+                      where hp.playerId in <player_test>
                       and   hp.tourneysPlayersId IS NULL
-                      group by h.gametypeId
+                      and   h.seats <seats_test>
+                      group by hgameTypeId
                               ,hp.playerId
                               ,gt.base
                               ,gt.category
+                              <groupbyseats>
                               ,upper(gt.limitType)
-                              ,s.name"""
+                              ,s.name
+                      order by hp.playerId
+                              ,gt.base
+                              ,gt.category
+                              <orderbyseats>
+                              ,upper(gt.limitType)
+                              ,s.name
+                      """
         elif(self.dbname == 'SQLite'):
             self.query['playerDetailedStats'] = """ """
 

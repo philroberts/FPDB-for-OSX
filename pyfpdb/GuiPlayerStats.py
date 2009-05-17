@@ -52,6 +52,7 @@ class GuiPlayerStats (threading.Thread):
                             "Limits"   :  True,
                             "LimitSep" :  True,
                             "Seats"    :  True,
+                            "SeatSep"  :  True,
                             "Dates"    :  False,
                             "Button1"  :  True,
                             "Button2"  :  False
@@ -60,6 +61,31 @@ class GuiPlayerStats (threading.Thread):
         self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
+
+        # TODO: these probably be a dict keyed on colAlias and the headings loop should use colAlias ...
+        # This could be stored in config eventually, or maybe configured in this window somehow.
+        # Each colAlias element is the name of a column returned by the sql 
+        # query (in lower case) and each colHeads element is the text to use as
+        # the heading in the GUI. Both sequences should be the same length.
+        # To miss columns out remove them from both tuples (the 1st 2 elements should always be included).
+        # To change the heading just edit the second list element as required
+        # If the first list element does not match a query column that pair is ignored
+        self.colAlias =  ( "game", "n", "avgseats", "vpip", "pfr", "pf3", "steals" 
+                         , "saw_f", "sawsd", "wtsdwsf", "wmsd", "flafq", "tuafq", "rvafq"
+                         , "pofafq", "net", "bbper100", "rake", "variance"
+                         )
+        self.colHeads = ( "Game", "Hds", "Seats", "VPIP", "PFR", "PF3", "Steals"
+                        , "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq"
+                        , "PoFAFq", "Net($)", "BB/100", "Rake($)", "Variance"
+                        )
+        self.colXAligns = ( 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+                          , 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0
+                          , 1.0, 1.0, 1.0, 1.0, 1.0
+                          )
+        self.colFormats = ( "%s", "%d", "%3.1f", "%3.1f", "%3.1f", "%3.1f", "%3.1f"
+                          , "%3.1f", "%3.1f", "%3.1f", "%3.1f", "%3.1f", "%3.1f", "%3.1f"
+                          , "%3.1f", "%6.2f", "%4.2f", "%6.2f", "%5.2f"
+                          )
 
         self.stat_table = None
         self.stats_frame = None
@@ -120,45 +146,64 @@ class GuiPlayerStats (threading.Thread):
         self.createStatsTable(vbox, playerids, sitenos, limits, seats)
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, seats):
-        tmp = self.sql.query['playerStats']
-        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
-        self.cursor.execute(tmp)
-        result = self.cursor.fetchall()
-        cols = 19
-
-        rows = len(result)+1 # +1 for title row
-        self.stats_table = gtk.Table(rows, cols, False)
+        self.stats_table = gtk.Table(1, 1, False)
         self.stats_table.set_col_spacings(4)
         self.stats_table.show()
         vbox.add(self.stats_table)
 
         # Create header row
-        titles = ("Game", "Hands", "VPIP", "PFR", "PF3", "Steals", "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq", "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance", "AvgSeats")
-
-        col = 0
         row = 0
-        for t in titles:
-            l = gtk.Label(titles[col])
+        col = 0
+        for t in self.colHeads:
+            l = gtk.Label(self.colHeads[col])
+            l.set_alignment(xalign=self.colXAligns[col], yalign=0.5)
             l.show()
             self.stats_table.attach(l, col, col+1, row, row+1, yoptions=gtk.SHRINK)
             col +=1 
 
-        for row in range(rows-1):
+        tmp = self.sql.query['playerDetailedStats']
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
+        self.cursor.execute(tmp)
+        result = self.cursor.fetchall()
+
+        #cols = 19
+        rows = len(result) # +1 for title row
+        colnames = [desc[0].lower() for desc in self.cursor.description]
+
+        col = 0
+        for row in range(rows):
             if(row%2 == 0):
                 bgcolor = "white"
             else:
                 bgcolor = "lightgrey"
-            for col in range(cols):
+            for col,colname in enumerate(self.colAlias):
+                if colname in colnames:
+                    value = result[row][colnames.index(colname)]
+                else:
+                    if colname == 'game':
+                        minbb = result[row][colnames.index('minbigblind')]
+                        maxbb = result[row][colnames.index('maxbigblind')]
+                        value = result[row][colnames.index('limittype')] + ' ' \
+                                + result[row][colnames.index('category')].title() + ' ' \
+                                + result[row][colnames.index('name')] + ' $'
+                        if 100 * int(minbb/100.0) != minbb:
+                            value += '%.2f' % (minbb/100.0)
+                        else:
+                            value += '%.0f' % (minbb/100.0)
+                        if minbb != maxbb:
+                            if 100 * int(maxbb/100.0) != maxbb:
+                                value += ' - $' + '%.2f' % (maxbb/100.0)
+                            else:
+                                value += ' - $' + '%.0f' % (maxbb/100.0)
+                    else:
+                        continue
                 eb = gtk.EventBox()
                 eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-                if result[row][col]:
-                    l = gtk.Label(result[row][col])
+                if value and value != -999:
+                    l = gtk.Label(self.colFormats[col] % value)
                 else:
                     l = gtk.Label(' ')
-                if col == 0:
-                    l.set_alignment(xalign=0.0, yalign=0.5)
-                else:
-                    l.set_alignment(xalign=1.0, yalign=0.5)
+                l.set_alignment(xalign=self.colXAligns[col], yalign=0.5)
                 eb.add(l)
                 self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
                 l.show()
@@ -178,8 +223,8 @@ class GuiPlayerStats (threading.Thread):
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
             if 'show' in seats and seats['show']:
-                query = query.replace('<groupbyseats>', ',hc.activeSeats')
-                query = query.replace('<orderbyseats>', ',stats.AvgSeats')
+                query = query.replace('<groupbyseats>', ',h.seats')
+                query = query.replace('<orderbyseats>', ',h.seats')
             else:
                 query = query.replace('<groupbyseats>', '')
                 query = query.replace('<orderbyseats>', '')
@@ -198,57 +243,19 @@ class GuiPlayerStats (threading.Thread):
 
         groupLevels = "show" not in str(limits)
         if groupLevels:
-            if self.db.backend == self.MYSQL_INNODB:
-                bigblindselect = """concat(trim(leading ' ' from
-                                                case when min(gt.bigBlind) < 100 
-                                                     then format(min(gt.bigBlind)/100.0, 2)
-                                                     else format(min(gt.bigBlind)/100.0, 0)
-                                                end)
-                                          ,' - '
-                                          ,trim(leading ' ' from
-                                                case when max(gt.bigBlind) < 100 
-                                                     then format(max(gt.bigBlind)/100.0, 2)
-                                                     else format(max(gt.bigBlind)/100.0, 0)
-                                                end)
-                                          ) """
-            else:
-                bigblindselect = """trim(leading ' ' from
-                                         case when min(gt.bigBlind) < 100 
-                                              then to_char(min(gt.bigBlind)/100.0,'90D00')
-                                              else to_char(min(gt.bigBlind)/100.0,'999990')
-                                         end)
-                                    || ' - ' ||
-                                    trim(leading ' ' from
-                                         case when max(gt.bigBlind) < 100 
-                                              then to_char(max(gt.bigBlind)/100.0,'90D00')
-                                              else to_char(max(gt.bigBlind)/100.0,'999990')
-                                         end) """
-            bigblindselect = "cast('' as char)" # avoid odd effects when some posns and/or seats 
-                                                # are missing from some limits (dunno why cast is
-                                                # needed but it says "unknown type" otherwise?!
-            query = query.replace("<selectgt.bigBlind>", bigblindselect)
             query = query.replace("<groupbygt.bigBlind>", "")
             query = query.replace("<hcgametypeId>", "-1")
             query = query.replace("<hgameTypeId>", "-1")
         else:
-            if self.db.backend == self.MYSQL_INNODB:
-                bigblindselect = """concat('$', trim(leading ' ' from
-                                                     case when gt.bigBlind < 100 
-                                                          then format(gt.bigBlind/100.0, 2)
-                                                          else format(gt.bigBlind/100.0, 0)
-                                                     end 
-                                                    ) ) """
-            else:
-                bigblindselect = """'$' || trim(leading ' ' from
-                                                case when gt.bigBlind < 100 
-                                                     then to_char(gt.bigBlind/100.0,'90D00')
-                                                     else to_char(gt.bigBlind/100.0,'999990')
-                                                end 
-                                               ) """
-            query = query.replace("<selectgt.bigBlind>", bigblindselect)
             query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
             query = query.replace("<hcgametypeId>", "hc.gametypeId")
             query = query.replace("<hgameTypeId>", "h.gameTypeId")
+
+        if self.db.backend == self.MYSQL_INNODB:
+            query = query.replace("<signed>", 'signed ')
+        else:
+            query = query.replace("<signed>", '')
+
         #print "query =\n", query
         return(query)
     #end def refineQuery(self, query, playerids, sitenos, limits):
