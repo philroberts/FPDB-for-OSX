@@ -52,6 +52,7 @@ class GuiPositionalStats (threading.Thread):
                             "Limits"   :  True,
                             "LimitSep" :  True,
                             "Seats"    :  True,
+                            "SeatSep"  :  True,
                             "Dates"    :  False,
                             "Button1"  :  True,
                             "Button2"  :  False
@@ -142,25 +143,34 @@ class GuiPositionalStats (threading.Thread):
         self.createStatsTable(vbox, playerids, sitenos, limits, seats)
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, seats):
-        tmp = self.sql.query['playerStatsByPosition']
-        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
-        self.cursor.execute(tmp)
-        result = self.cursor.fetchall()
+
+
+
+
         self.stats_table = gtk.Table(1, 1, False) # gtk table expands as required
         self.stats_table.set_col_spacings(4)
         self.stats_table.show()
         vbox.add(self.stats_table)
 
-        colnames = [desc[0].lower() for desc in self.cursor.description]
-        rows = len(result)
+        row = 0
+
+
 
         col = 0
-        row = 0
+
         for t in self.posnheads:
             l = gtk.Label(self.posnheads[col])
             l.show()
             self.stats_table.attach(l, col, col+1, row, row+1, yoptions=gtk.SHRINK)
             col +=1 
+
+        tmp = self.sql.query['playerStatsByPosition']
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
+        self.cursor.execute(tmp)
+        result = self.cursor.fetchall()
+
+        rows = len(result)
+        colnames = [desc[0].lower() for desc in self.cursor.description]
 
         last_game,last_seats,sqlrow = "","",0
         while sqlrow < rows:

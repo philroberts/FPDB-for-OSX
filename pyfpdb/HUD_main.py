@@ -195,6 +195,7 @@ class HUD_main(object):
                     sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
+            self.db_connection.connection.rollback()
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")

@@ -57,6 +57,7 @@ class GuiGraphViewer (threading.Thread):
                             "Sites"   :  True,
                             "Games"   :  True,
                             "Limits"  :  True,
+                            "Seats"   :  False,
                             "Dates"   :  True,
                             "Button1" :  True,
                             "Button2" :  True
@@ -73,10 +74,12 @@ class GuiGraphViewer (threading.Thread):
 
         self.leftPanelBox = self.filters.get_vbox()
         self.graphBox = gtk.VBox(False, 0)
+        self.graphBox.show()
 
         self.hpane = gtk.HPaned()
         self.hpane.pack1(self.leftPanelBox)
         self.hpane.pack2(self.graphBox)
+        self.hpane.show()
 
         self.mainHBox.add(self.hpane)
 
@@ -86,7 +89,7 @@ class GuiGraphViewer (threading.Thread):
         self.fig = Figure(figsize=(5,4), dpi=100)
         self.canvas = None
 
-        self.mainHBox.show_all()
+
         self.db.db.rollback()
 
 #################################
@@ -175,7 +178,8 @@ class GuiGraphViewer (threading.Thread):
         self.ax.set_xlabel("Hands", fontsize = 12)
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-        if(line == None):
+        if line == None or line == []:
+
             #TODO: Do something useful like alert user
             print "No hands returned by graph query"
         else:
@@ -193,7 +197,7 @@ class GuiGraphViewer (threading.Thread):
 
             self.graphBox.add(self.canvas)
             self.canvas.show()
-            self.exportButton.set_sensitive(True)
+            #self.exportButton.set_sensitive(True)
     #end of def showClicked
 
     def getRingProfitGraph(self, names, sites, limits):
