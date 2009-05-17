@@ -54,7 +54,7 @@ indexes = [
             , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
             , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
             , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-            , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
+            , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
             , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
             , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
             , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -78,7 +78,7 @@ foreignKeys = [
                   {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                 , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -87,7 +87,7 @@ foreignKeys = [
                   {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                 , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -1433,7 +1433,7 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
                 # Add inserts into a list and let 
                 inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
 
-    cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
+    cursor.executemany("INSERT INTO HandsActions (handsPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
@@ -1482,7 +1482,7 @@ def store_hands_players_holdem_omaha(backend, conn, cursor, category, hands_id, 
 INSERT INTO HandsPlayers
 (handId, playerId, startCash, position, activeSeats, tourneyTypeId,
  card1Value, card1Suit, card2Value, card2Suit, winnings, rake, seatNo, totalProfit,
- street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+ street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
  street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
  street1Aggr, street2Aggr, street3Aggr, street4Aggr,
  otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
@@ -1503,7 +1503,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
              card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
              winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
              hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
-             hudCache['street0_3B4BChance'][i], hudCache['street0_3B4BDone'][i],
+             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
              hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
              hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
              hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
@@ -1534,7 +1534,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
 (handId, playerId, startCash, position, activeSeats, tourneyTypeId,
  card1Value, card1Suit, card2Value, card2Suit,
  card3Value, card3Suit, card4Value, card4Suit, winnings, rake, seatNo, totalProfit,
- street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+ street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
  street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
  street1Aggr, street2Aggr, street3Aggr, street4Aggr,
  otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
@@ -1556,7 +1556,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
              card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
              winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
              hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
-             hudCache['street0_3B4BChance'][i], hudCache['street0_3B4BDone'][i],
+             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
              hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
              hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
              hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
@@ -1679,8 +1679,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
     #setup subarrays of the result dictionary.
     street0VPI=[]
     street0Aggr=[]
-    street0_3B4BChance=[]
-    street0_3B4BDone=[]
+    street0_3BChance=[]
+    street0_3BDone=[]
     street1Seen=[]
     street2Seen=[]
     street3Seen=[]
@@ -1753,8 +1753,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #set default values
         myStreet0VPI=False
         myStreet0Aggr=False
-        myStreet0_3B4BChance=False
-        myStreet0_3B4BDone=False
+        myStreet0_3BChance=False
+        myStreet0_3BDone=False
         myStreet1Seen=False
         myStreet2Seen=False
         myStreet3Seen=False
@@ -1786,7 +1786,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
             if currentAction == "bet" or currentAction == "call":
                 myStreet0VPI = True
         
-        #PF3B4BChance and PF3B4B
+        #PF3BChance and PF3B
         pfFold=-1
         pfRaise=-1
         if firstPfRaiseByNo != -1:
@@ -1797,9 +1797,9 @@ sure to also change the following storage method and table_viewer.prepare_data i
                     if actionType[1] == "fold" and pfFold == -1:
                         pfFold = i
             if pfFold == -1 or pfFold > firstPfRaiseByNo:
-                myStreet0_3B4BChance = True
+                myStreet0_3BChance = True
                 if pfRaise > firstPfRaiseByNo:
-                    myStreet0_3B4BDone = True
+                    myStreet0_3BDone = True
         
         #steal calculations
         if base=="hold":
@@ -1944,8 +1944,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #add each value to the appropriate array
         street0VPI.append(myStreet0VPI)
         street0Aggr.append(myStreet0Aggr)
-        street0_3B4BChance.append(myStreet0_3B4BChance)
-        street0_3B4BDone.append(myStreet0_3B4BDone)
+        street0_3BChance.append(myStreet0_3BChance)
+        street0_3BDone.append(myStreet0_3BDone)
         street1Seen.append(myStreet1Seen)
         street2Seen.append(myStreet2Seen)
         street3Seen.append(myStreet3Seen)
@@ -1993,8 +1993,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
     #add each array to the to-be-returned dictionary
     result={'street0VPI':street0VPI}
     result['street0Aggr']=street0Aggr
-    result['street0_3B4BChance']=street0_3B4BChance
-    result['street0_3B4BDone']=street0_3B4BDone
+    result['street0_3BChance']=street0_3BChance
+    result['street0_3BDone']=street0_3BDone
     result['street1Seen']=street1Seen
     result['street2Seen']=street2Seen
     result['street3Seen']=street3Seen
@@ -2305,8 +2305,8 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
             row[6]+=1 #HDs
             if hudImportData['street0VPI'][player]: row[7]+=1
             if hudImportData['street0Aggr'][player]: row[8]+=1
-            if hudImportData['street0_3B4BChance'][player]: row[9]+=1
-            if hudImportData['street0_3B4BDone'][player]: row[10]+=1
+            if hudImportData['street0_3BChance'][player]: row[9]+=1
+            if hudImportData['street0_3BDone'][player]: row[10]+=1
             if hudImportData['street1Seen'][player]: row[11]+=1
             if hudImportData['street2Seen'][player]: row[12]+=1
             if hudImportData['street3Seen'][player]: row[13]+=1
@@ -2369,7 +2369,7 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
                 #print "playerid before insert:",row[2]
                 cursor.execute("""INSERT INTO HudCache
 (gametypeId, playerId, activeSeats, position, tourneyTypeId,
-HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
 street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
 street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
 otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,
@@ -2395,7 +2395,7 @@ VALUES (%s, %s, %s, %s, %s,
             else:
                 #print "storing updated hud data line"
                 cursor.execute("""UPDATE HudCache
-SET HDs=%s, street0VPI=%s, street0Aggr=%s, street0_3B4BChance=%s, street0_3B4BDone=%s,
+SET HDs=%s, street0VPI=%s, street0Aggr=%s, street0_3BChance=%s, street0_3BDone=%s,
 street1Seen=%s, street2Seen=%s, street3Seen=%s, street4Seen=%s, sawShowdown=%s,
 street1Aggr=%s, street2Aggr=%s, street3Aggr=%s, street4Aggr=%s, otherRaisedStreet1=%s,
 otherRaisedStreet2=%s, otherRaisedStreet3=%s, otherRaisedStreet4=%s, foldToOtherRaisedStreet1=%s, foldToOtherRaisedStreet2=%s,
@@ -2444,8 +2444,8 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
             row[6]+=1 #HDs
             if hudImportData['street0VPI'][player]: row[7]+=1
             if hudImportData['street0Aggr'][player]: row[8]+=1
-            if hudImportData['street0_3B4BChance'][player]: row[9]+=1
-            if hudImportData['street0_3B4BDone'][player]: row[10]+=1
+            if hudImportData['street0_3BChance'][player]: row[9]+=1
+            if hudImportData['street0_3BDone'][player]: row[10]+=1
             if hudImportData['street1Seen'][player]: row[11]+=1
             if hudImportData['street2Seen'][player]: row[12]+=1
             if hudImportData['street3Seen'][player]: row[13]+=1
@@ -2507,7 +2507,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
             # Try to do the update first:
             num = cursor.execute("""UPDATE HudCache
 SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
-    street0_3B4BChance=street0_3B4BChance+%s, street0_3B4BDone=street0_3B4BDone+%s,
+    street0_3BChance=street0_3BChance+%s, street0_3BDone=street0_3BDone+%s,
     street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
     street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
     street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,
@@ -2556,7 +2556,7 @@ AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
                 #print "playerid before insert:",row[2]," num = ", num
                 cursor.execute("""INSERT INTO HudCache
 (gametypeId, playerId, activeSeats, position, tourneyTypeId,
-HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
 street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
 street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
 otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,

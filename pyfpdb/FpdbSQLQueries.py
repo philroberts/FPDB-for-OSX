@@ -185,13 +185,13 @@ class FpdbSQLQueries:
                             importTime DATETIME NOT NULL,
                             seats SMALLINT NOT NULL,
                             maxSeats SMALLINT NOT NULL,
-                            vpi SMALLINT NOT NULL,
-                            street0Seen SMALLINT NOT NULL,
-                            street1Seen SMALLINT NOT NULL,
-                            street2Seen SMALLINT NOT NULL,
-                            street3Seen SMALLINT NOT NULL,
-                            street4Seen SMALLINT NOT NULL,
-                            sdSeen SMALLINT NOT NULL,
+                            vpi SMALLINT,
+                            street0Seen SMALLINT,
+                            street1Seen SMALLINT,
+                            street2Seen SMALLINT,
+                            street3Seen SMALLINT,
+                            street4Seen SMALLINT,
+                            sdSeen SMALLINT,
                             comment TEXT,
                             commentTs DATETIME)
                         ENGINE=INNODB""" 
@@ -205,13 +205,13 @@ class FpdbSQLQueries:
                         importTime timestamp without time zone,
                         seats SMALLINT,
                         maxSeats SMALLINT,
-                        vpi SMALLINT NOT NULL,
-                        street0Seen SMALLINT NOT NULL,
-                        street1Seen SMALLINT NOT NULL,
-                        street2Seen SMALLINT NOT NULL,
-                        street3Seen SMALLINT NOT NULL,
-                        street4Seen SMALLINT NOT NULL,
-                        sdSeen SMALLINT NOT NULL,
+                        vpi SMALLINT,
+                        street0Seen SMALLINT,
+                        street1Seen SMALLINT,
+                        street2Seen SMALLINT,
+                        street3Seen SMALLINT,
+                        street4Seen SMALLINT,
+                        sdSeen SMALLINT,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif(self.dbname == 'SQLite'):
@@ -348,19 +348,19 @@ class FpdbSQLQueries:
                         tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT NOT NULL,
-                        wonWhenSeenStreet2 FLOAT NOT NULL,
-                        wonWhenSeenStreet3 FLOAT NOT NULL,
-                        wonWhenSeenStreet4 FLOAT NOT NULL,
+                        wonWhenSeenStreet2 FLOAT,
+                        wonWhenSeenStreet3 FLOAT,
+                        wonWhenSeenStreet4 FLOAT,
                         wonAtSD FLOAT NOT NULL,
 
                         street0VPI BOOLEAN NOT NULL,
                         street0Aggr BOOLEAN NOT NULL,
                         street0_3BChance BOOLEAN NOT NULL,
                         street0_3BDone BOOLEAN NOT NULL,
-                        street0_4BChance BOOLEAN NOT NULL,
-                        street0_4BDone BOOLEAN NOT NULL,
-                        other3BStreet0 BOOLEAN NOT NULL,
-                        other4BStreet0 BOOLEAN NOT NULL,
+                        street0_4BChance BOOLEAN,
+                        street0_4BDone BOOLEAN,
+                        other3BStreet0 BOOLEAN,
+                        other4BStreet0 BOOLEAN,
 
                         street1Seen BOOLEAN NOT NULL,
                         street2Seen BOOLEAN NOT NULL,
@@ -373,12 +373,12 @@ class FpdbSQLQueries:
                         street3Aggr BOOLEAN NOT NULL,
                         street4Aggr BOOLEAN NOT NULL,
 
-                        otherRaisedStreet0 BOOLEAN NOT NULL,
+                        otherRaisedStreet0 BOOLEAN,
                         otherRaisedStreet1 BOOLEAN NOT NULL,
                         otherRaisedStreet2 BOOLEAN NOT NULL,
                         otherRaisedStreet3 BOOLEAN NOT NULL,
                         otherRaisedStreet4 BOOLEAN NOT NULL,
-                        foldToOtherRaisedStreet0 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet0 BOOLEAN,
                         foldToOtherRaisedStreet1 BOOLEAN NOT NULL,
                         foldToOtherRaisedStreet2 BOOLEAN NOT NULL,
                         foldToOtherRaisedStreet3 BOOLEAN NOT NULL,
@@ -456,19 +456,19 @@ class FpdbSQLQueries:
                         tourneyTypeId INT NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT NOT NULL,
-                        wonWhenSeenStreet2 FLOAT NOT NULL,
-                        wonWhenSeenStreet3 FLOAT NOT NULL,
-                        wonWhenSeenStreet4 FLOAT NOT NULL,
+                        wonWhenSeenStreet2 FLOAT,
+                        wonWhenSeenStreet3 FLOAT,
+                        wonWhenSeenStreet4 FLOAT,
                         wonAtSD FLOAT NOT NULL,
 
                         street0VPI BOOLEAN NOT NULL,
                         street0Aggr BOOLEAN NOT NULL,
                         street0_3BChance BOOLEAN NOT NULL,
                         street0_3BDone BOOLEAN NOT NULL,
-                        street0_4BChance BOOLEAN NOT NULL,
-                        street0_4BDone BOOLEAN NOT NULL,
-                        other3BStreet0 BOOLEAN NOT NULL,
-                        other4BStreet0 BOOLEAN NOT NULL,
+                        street0_4BChance BOOLEAN,
+                        street0_4BDone BOOLEAN,
+                        other3BStreet0 BOOLEAN,
+                        other4BStreet0 BOOLEAN,
 
                         street1Seen BOOLEAN NOT NULL,
                         street2Seen BOOLEAN NOT NULL,
@@ -481,12 +481,12 @@ class FpdbSQLQueries:
                         street3Aggr BOOLEAN NOT NULL,
                         street4Aggr BOOLEAN NOT NULL,
 
-                        otherRaisedStreet0 BOOLEAN NOT NULL,
+                        otherRaisedStreet0 BOOLEAN,
                         otherRaisedStreet1 BOOLEAN NOT NULL,
                         otherRaisedStreet2 BOOLEAN NOT NULL,
                         otherRaisedStreet3 BOOLEAN NOT NULL,
                         otherRaisedStreet4 BOOLEAN NOT NULL,
-                        foldToOtherRaisedStreet0 BOOLEAN NOT NULL,
+                        foldToOtherRaisedStreet0 BOOLEAN,
                         foldToOtherRaisedStreet1 BOOLEAN NOT NULL,
                         foldToOtherRaisedStreet2 BOOLEAN NOT NULL,
                         foldToOtherRaisedStreet3 BOOLEAN NOT NULL,
@@ -603,13 +603,23 @@ class FpdbSQLQueries:
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
                         tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-                        
                         HDs INT NOT NULL,
+
+                        wonWhenSeenStreet1 FLOAT NOT NULL,
+                        wonWhenSeenStreet2 FLOAT,
+                        wonWhenSeenStreet3 FLOAT,
+                        wonWhenSeenStreet4 FLOAT,
+                        wonAtSD FLOAT NOT NULL,
+
                         street0VPI INT NOT NULL,
                         street0Aggr INT NOT NULL,
-                        street0_3B4BChance INT NOT NULL,
-                        street0_3B4BDone INT NOT NULL,
-                        
+                        street0_3BChance INT NOT NULL,
+                        street0_3BDone INT NOT NULL,
+                        street0_4BChance INT,
+                        street0_4BDone INT,
+                        other3BStreet0 INT,
+                        other4BStreet0 INT,
+
                         street1Seen INT NOT NULL,
                         street2Seen INT NOT NULL,
                         street3Seen INT NOT NULL,
@@ -620,17 +630,17 @@ class FpdbSQLQueries:
                         street2Aggr INT NOT NULL,
                         street3Aggr INT NOT NULL,
                         street4Aggr INT NOT NULL,
-                        
+
+                        otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT NOT NULL,
                         otherRaisedStreet2 INT NOT NULL,
                         otherRaisedStreet3 INT NOT NULL,
                         otherRaisedStreet4 INT NOT NULL,
+                        foldToOtherRaisedStreet0 INT,
                         foldToOtherRaisedStreet1 INT NOT NULL,
                         foldToOtherRaisedStreet2 INT NOT NULL,
                         foldToOtherRaisedStreet3 INT NOT NULL,
                         foldToOtherRaisedStreet4 INT NOT NULL,
-                        wonWhenSeenStreet1 FLOAT NOT NULL,
-                        wonAtSD FLOAT NOT NULL,
                         
                         stealAttemptChance INT NOT NULL,
                         stealAttempted INT NOT NULL,
@@ -638,7 +648,7 @@ class FpdbSQLQueries:
                         foldedBbToSteal INT NOT NULL,
                         foldSbToStealChance INT NOT NULL,
                         foldedSbToSteal INT NOT NULL,
-                        
+
                         street1CBChance INT NOT NULL,
                         street1CBDone INT NOT NULL,
                         street2CBChance INT NOT NULL,
@@ -676,12 +686,23 @@ class FpdbSQLQueries:
                         activeSeats SMALLINT,
                         position CHAR(1),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
-
                         HDs INT,
-                        street0VPI INT,
+
+                        wonWhenSeenStreet1 FLOAT NOT NULL,
+                        wonWhenSeenStreet2 FLOAT,
+                        wonWhenSeenStreet3 FLOAT,
+                        wonWhenSeenStreet4 FLOAT,
+                        wonAtSD FLOAT NOT NULL,
+
+                        street0VPI INT NOT NULL,
                         street0Aggr INT,
-                        street0_3B4BChance INT,
-                        street0_3B4BDone INT,
+                        street0_3BChance INT NOT NULL,
+                        street0_3BDone INT NOT NULL,
+                        street0_4BChance INT,
+                        street0_4BDone INT,
+                        other3BStreet0 INT,
+                        other4BStreet0 INT,
+
                         street1Seen INT,
                         street2Seen INT,
                         street3Seen INT,
@@ -691,16 +712,17 @@ class FpdbSQLQueries:
                         street2Aggr INT,
                         street3Aggr INT,
                         street4Aggr INT,
+
+                        otherRaisedStreet0 INT,
                         otherRaisedStreet1 INT,
                         otherRaisedStreet2 INT,
                         otherRaisedStreet3 INT,
                         otherRaisedStreet4 INT,
+                        foldToOtherRaisedStreet0 INT,
                         foldToOtherRaisedStreet1 INT,
                         foldToOtherRaisedStreet2 INT,
                         foldToOtherRaisedStreet3 INT,
                         foldToOtherRaisedStreet4 INT,
-                        wonWhenSeenStreet1 FLOAT,
-                        wonAtSD FLOAT,
 
                         stealAttemptChance INT,
                         stealAttempted INT,
@@ -810,8 +832,8 @@ class FpdbSQLQueries:
                             ,count(1)                                                               AS n
                             ,100.0*sum(cast(street0VPI as integer))/count(1)                        AS vpip
                             ,100.0*sum(cast(street0Aggr as integer))/count(1)                       AS pfr
-                            ,case when sum(cast(street0_3b4bchance as integer)) = 0 then '0'
-                                  else 100.0*sum(cast(street0_3b4bdone as integer))/sum(cast(street0_3b4bchance as integer))
+                            ,case when sum(cast(street0_3Bchance as integer)) = 0 then '0'
+                                  else 100.0*sum(cast(street0_3Bdone as integer))/sum(cast(street0_3Bchance as integer))
                              end                                                                    AS pf3
                             ,case when sum(cast(stealattemptchance as integer)) = 0 then -999
                                   else 100.0*sum(cast(stealattempted as integer))/sum(cast(stealattemptchance as integer))
@@ -896,8 +918,8 @@ class FpdbSQLQueries:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
-                           ,case when sum(street0_3b4bchance) = 0 then '0'
-                                 else format(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),1)
+                           ,case when sum(street0_3Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '-'
                                  else format(100.0*sum(stealattempted)/sum(stealattemptchance),1)
@@ -996,8 +1018,8 @@ class FpdbSQLQueries:
                            ,sum(HDs) as n
                            ,to_char(100.0*sum(street0VPI)/sum(HDs),'990D0')                 AS vpip
                            ,to_char(100.0*sum(street0Aggr)/sum(HDs),'90D0')                 AS pfr
-                           ,case when sum(street0_3b4bchance) = 0 then '0'
-                                 else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
+                           ,case when sum(street0_3Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '-'
                                  else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
@@ -1118,8 +1140,8 @@ class FpdbSQLQueries:
                            ,sum(HDs)                                                        AS n
                            ,format(100.0*sum(street0VPI)/sum(HDs),1)                        AS vpip
                            ,format(100.0*sum(street0Aggr)/sum(HDs),1)                       AS pfr
-                           ,case when sum(street0_3b4bchance) = 0 then '0'
-                                 else format(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),1)
+                           ,case when sum(street0_3Bchance) = 0 then '0'
+                                 else format(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),1)
                             end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '-'
                                  else format(100.0*sum(stealattempted)/sum(stealattemptchance),1)
@@ -1249,8 +1271,8 @@ class FpdbSQLQueries:
                            ,sum(HDs)                                                        AS n
                            ,to_char(round(100.0*sum(street0VPI)/sum(HDs)),'990D0')          AS vpip
                            ,to_char(round(100.0*sum(street0Aggr)/sum(HDs)),'90D0')          AS pfr
-                           ,case when sum(street0_3b4bchance) = 0 then '0'
-                                 else to_char(100.0*sum(street0_3b4bdone)/sum(street0_3b4bchance),'90D0')
+                           ,case when sum(street0_3Bchance) = 0 then '0'
+                                 else to_char(100.0*sum(street0_3Bdone)/sum(street0_3Bchance),'90D0')
                             end                                                             AS pf3
                            ,case when sum(stealattemptchance) = 0 then '-'
                                  else to_char(100.0*sum(stealattempted)/sum(stealattemptchance),'90D0')
@@ -1448,8 +1470,8 @@ class FpdbSQLQueries:
                           (select hp.handId, h.gameTypeId, hp.position, hp.winnings, SUM(ha.amount) as costs
                                 , hp.winnings - SUM(ha.amount) as profit
                           from HandsPlayers hp
-                          inner join Hands h        ON h.id            = hp.handId
-                          left join HandsActions ha ON ha.handPlayerId = hp.id
+                          inner join Hands h        ON h.id             = hp.handId
+                          left join HandsActions ha ON ha.handsPlayerId = hp.id
                           where hp.playerId in <player_test>
                                                      # use <gametype_test> here ?
                           and   hp.tourneysPlayersId IS NULL
@@ -1489,8 +1511,8 @@ class FpdbSQLQueries:
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
-                ,street0_3B4BChance
-                ,street0_3B4BDone
+                ,street0_3BChance
+                ,street0_3BDone
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -1563,8 +1585,8 @@ class FpdbSQLQueries:
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer)) 
                       ,sum(CAST(street0Aggr as integer)) 
-                      ,sum(CAST(street0_3B4BChance as integer)) 
-                      ,sum(CAST(street0_3B4BDone as integer)) 
+                      ,sum(CAST(street0_3BChance as integer)) 
+                      ,sum(CAST(street0_3BDone as integer)) 
                       ,sum(CAST(street1Seen as integer)) 
                       ,sum(CAST(street2Seen as integer)) 
                       ,sum(CAST(street3Seen as integer)) 
