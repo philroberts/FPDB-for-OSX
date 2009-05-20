@@ -27,9 +27,10 @@ import Filters
 import FpdbSQLQueries
 
 class GuiPlayerStats (threading.Thread):
-    def __init__(self, config, querylist, debug=True):
+    def __init__(self, config, querylist, mainwin, debug=True):
         self.debug=debug
         self.conf=config
+        self.main_window=mainwin
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4

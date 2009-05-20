@@ -331,7 +331,7 @@ class fpdb:
     #end def tab_bulk_import
 
     def tab_player_stats(self, widget, data):
-        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.querydict)
+        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.querydict, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Player Stats")
@@ -401,8 +401,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
                 ("/Viewers/_Graphs", "<control>G", self.tabGraphViewer, 0, None ),
                 ("/Viewers/Hand _Replayer (todo)", None, self.not_implemented, 0, None ),
                 ("/Viewers/Player _Details (todo)", None, self.not_implemented, 0, None ),
-                ("/Viewers/_Player Stats (tabulated view)", None, self.tab_player_stats, 0, None ),
-                ("/Viewers/Positional Stats (tabulated view)", None, self.tab_positional_stats, 0, None ),
+                ("/Viewers/_Player Stats (tabulated view)", "<control>P", self.tab_player_stats, 0, None ),
+                ("/Viewers/P_ositional Stats (tabulated view)", "<control>O", self.tab_positional_stats, 0, None ),
                 ("/Viewers/Starting _Hands (todo)", None, self.not_implemented, 0, None ),
                 ("/Viewers/_Session Replayer (todo)", None, self.not_implemented, 0, None ),
                 ("/Viewers/Poker_table Viewer (mostly obselete)", "<control>T", self.tab_table_viewer, 0, None ),
