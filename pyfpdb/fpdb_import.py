@@ -235,6 +235,8 @@ class Importer:
         
         self.addToDirList = {}
         self.removeFromFileList = {}
+        self.fdb.db.rollback()
+
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
