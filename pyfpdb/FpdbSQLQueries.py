@@ -653,6 +653,7 @@ class FpdbSQLQueries:
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
                         tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT NOT NULL,
 
                         wonWhenSeenStreet1 FLOAT NOT NULL,
@@ -753,6 +754,7 @@ class FpdbSQLQueries:
                         activeSeats SMALLINT,
                         position CHAR(1),
                         tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT,
 
                         wonWhenSeenStreet1 FLOAT NOT NULL,
@@ -1601,6 +1603,7 @@ class FpdbSQLQueries:
                 ,activeSeats
                 ,position
                 ,tourneyTypeId
+                ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
                 ,wonAtSD
@@ -1675,6 +1678,7 @@ class FpdbSQLQueries:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
+                      ,'A000000'  /* All-time cache, no key required */
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
