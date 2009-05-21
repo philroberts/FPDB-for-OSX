@@ -50,6 +50,10 @@ def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
         (y+2) represents rank of second card (2=2 .. 14=Ace)
         If x > y then pair is suited, if x < y then unsuited"""
         # This doesn't actually do anything yet - CG
+        #AAKKds
+        #AAKKs
+        #AAKKr
+        # Is probably what we are looking for
     return(0)
 
 def cardFromValueSuit(value, suit):
