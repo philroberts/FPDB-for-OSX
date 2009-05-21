@@ -191,15 +191,14 @@ class Database:
             winners[row[0]] = row[1]
         return winners
 
-    def get_stats_from_hand(self, hand, aggregate = False):
+    def get_stats_from_hand(self, hand, aggregate = False, stylekey = 'A000000'):
         c = self.connection.cursor()
 
         if aggregate:
             query = 'get_stats_from_hand_aggregated'
-            subs = (hand, hand, hand)
         else:
             query = 'get_stats_from_hand'
-            subs = (hand, hand)
+        subs = (hand, hand, stylekey, stylekey)
 
 #    now get the stats
         c.execute(self.sql.query[query], subs)
@@ -218,7 +217,10 @@ class Database:
         c = self.connection.cursor()
         c.execute(self.sql.query['get_player_id'], {'player': player_name, 'site': site})
         row = c.fetchone()
-        return row[0]
+        if row:
+            return row[0]
+        else:
+            return None
 
 if __name__=="__main__":
     c = Configuration.Config()
@@ -234,16 +236,17 @@ if __name__=="__main__":
     print "last hand = ", h
     
     hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
-    print "nutOmatic is id_player = %d" % hero
+    if hero:
+        print "nutOmatic is id_player = %d" % hero
     
     stat_dict = db_connection.get_stats_from_hand(h)
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    print "nutOmatics stats:"
-    stat_dict = db_connection.get_stats_from_hand(h, hero)
-    for p in stat_dict.keys():
-        print p, "  ", stat_dict[p]
+    #print "nutOmatics stats:"
+    #stat_dict = db_connection.get_stats_from_hand(h, hero)
+    #for p in stat_dict.keys():
+    #    print p, "  ", stat_dict[p]
 
     print "cards =", db_connection.get_cards(73525)
     db_connection.close_connection
