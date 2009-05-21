@@ -183,37 +183,67 @@ class FpdbSQLQueries:
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
-                            seats SMALLINT NOT NULL,
-                            maxSeats SMALLINT NOT NULL,
-                            vpi SMALLINT,
-                            street0Seen SMALLINT,
-                            street1Seen SMALLINT,
-                            street2Seen SMALLINT,
-                            street3Seen SMALLINT,
-                            street4Seen SMALLINT,
-                            sdSeen SMALLINT,
+                            seats TINYINT NOT NULL,
+                            maxSeats TINYINT NOT NULL,
+                            boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                            boardcard2 smallint,
+                            boardcard3 smallint,
+                            boardcard4 smallint,
+                            boardcard5 smallint,
+                            texture smallint,
+                            playersVpi SMALLINT NOT NULL,         /* num of players vpi */
+                            playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
+                            playersAtStreet2 SMALLINT NOT NULL,
+                            playersAtStreet3 SMALLINT NOT NULL,
+                            playersAtStreet4 SMALLINT NOT NULL,
+                            playersAtShowdown SMALLINT NOT NULL,
+                            street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                            street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
+                            street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
+                            street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
+                            street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
+                            street1Pot INT,                  /* pot size at flop/street4 */
+                            street2Pot INT,                  /* pot size at turn/street5 */
+                            street3Pot INT,                  /* pot size at river/street6 */
+                            street4Pot INT,                  /* pot size at sd/street7 */
+                            showdownPot INT,                 /* pot size at sd/street7 */
                             comment TEXT,
                             commentTs DATETIME)
                         ENGINE=INNODB""" 
         elif(self.dbname == 'PostgreSQL'):
             self.query['createHandsTable'] = """CREATE TABLE Hands (
-                        id BIGSERIAL, PRIMARY KEY (id),
-                        tableName VARCHAR(20),
-                        siteHandNo BIGINT,
-                        gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                        handStart timestamp without time zone,
-                        importTime timestamp without time zone,
-                        seats SMALLINT,
-                        maxSeats SMALLINT,
-                        vpi SMALLINT,
-                        street0Seen SMALLINT,
-                        street1Seen SMALLINT,
-                        street2Seen SMALLINT,
-                        street3Seen SMALLINT,
-                        street4Seen SMALLINT,
-                        sdSeen SMALLINT,
-                        comment TEXT,
-                        commentTs timestamp without time zone)"""
+                            id BIGSERIAL, PRIMARY KEY (id),
+                            tableName VARCHAR(20) NOT NULL,
+                            siteHandNo BIGINT NOT NULL,
+                            gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                            handStart timestamp without time zone NOT NULL,
+                            importTime timestamp without time zone NOT NULL,
+                            seats SMALLINT NOT NULL,
+                            maxSeats SMALLINT NOT NULL,
+                            boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                            boardcard2 smallint,
+                            boardcard3 smallint,
+                            boardcard4 smallint,
+                            boardcard5 smallint,
+                            texture smallint,
+                            playersVpi SMALLINT NOT NULL,         /* num of players vpi */
+                            playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
+                            playersAtStreet2 SMALLINT NOT NULL,
+                            playersAtStreet3 SMALLINT NOT NULL,
+                            playersAtStreet4 SMALLINT NOT NULL,
+                            playersAtShowdown SMALLINT NOT NULL,
+                            street0Raises SMALLINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                            street1Raises SMALLINT NOT NULL, /* num small bets paid to see turn/street5 */
+                            street2Raises SMALLINT NOT NULL, /* num big bets paid to see river/street6 */
+                            street3Raises SMALLINT NOT NULL, /* num big bets paid to see sd/street7 */
+                            street4Raises SMALLINT NOT NULL, /* num big bets paid to see showdown */
+                            street1Pot INT,                 /* pot size at flop/street4 */
+                            street2Pot INT,                 /* pot size at turn/street5 */
+                            street3Pot INT,                 /* pot size at river/street6 */
+                            street4Pot INT,                 /* pot size at sd/street7 */
+                            showdownPot INT,                /* pot size at sd/street7 */
+                            comment TEXT,
+                            commentTs timestamp without time zone)"""
         elif(self.dbname == 'SQLite'):
             self.query['createHandsTable'] = """ """
 
@@ -321,20 +351,13 @@ class FpdbSQLQueries:
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                     
-                        card1Value smallint NOT NULL,
-                        card1Suit char(1) NOT NULL,
-                        card2Value smallint NOT NULL,
-                        card2Suit char(1) NOT NULL,
-                        card3Value smallint,
-                        card3Suit char(1),
-                        card4Value smallint,
-                        card4Suit char(1),
-                        card5Value smallint,
-                        card5Suit char(1),
-                        card6Value smallint,
-                        card6Suit char(1),
-                        card7Value smallint,
-                        card7Suit char(1),
+                        card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                        card2 smallint NOT NULL,
+                        card3 smallint,
+                        card4 smallint,
+                        card5 smallint,
+                        card6 smallint,
+                        card7 smallint,
                         startCards smallint,
                     
                         ante INT,
@@ -416,7 +439,25 @@ class FpdbSQLQueries:
                         street3CheckCallRaiseDone BOOLEAN NOT NULL,
                         street4CheckCallRaiseChance BOOLEAN NOT NULL,
                         street4CheckCallRaiseDone BOOLEAN NOT NULL,
-                        
+
+                        street0Calls TINYINT,
+                        street1Calls TINYINT,
+                        street2Calls TINYINT,
+                        street3Calls TINYINT,
+                        street4Calls TINYINT,
+                        street0Bets TINYINT,
+                        street1Bets TINYINT,
+                        street2Bets TINYINT,
+                        street3Bets TINYINT,
+                        street4Bets TINYINT,
+                        street0Raises TINYINT,
+                        street1Raises TINYINT,
+                        street2Raises TINYINT,
+                        street3Raises TINYINT,
+                        street4Raises TINYINT,
+
+                        actionString VARCHAR(15),
+
                         FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
                         ENGINE=INNODB"""
         elif(self.dbname == 'PostgreSQL'):
@@ -428,20 +469,13 @@ class FpdbSQLQueries:
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
 
-                        card1Value smallint NOT NULL,
-                        card1Suit char(1) NOT NULL,
-                        card2Value smallint NOT NULL,
-                        card2Suit char(1) NOT NULL,
-                        card3Value smallint,
-                        card3Suit char(1),
-                        card4Value smallint,
-                        card4Suit char(1),
-                        card5Value smallint,
-                        card5Suit char(1),
-                        card6Value smallint,
-                        card6Suit char(1),
-                        card7Value smallint,
-                        card7Suit char(1),
+                        card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                        card2 smallint NOT NULL,
+                        card3 smallint,
+                        card4 smallint,
+                        card5 smallint,
+                        card6 smallint,
+                        card7 smallint,
                         startCards smallint,
 
                         ante INT,
@@ -523,6 +557,24 @@ class FpdbSQLQueries:
                         street3CheckCallRaiseDone BOOLEAN NOT NULL,
                         street4CheckCallRaiseChance BOOLEAN NOT NULL,
                         street4CheckCallRaiseDone BOOLEAN NOT NULL,
+
+                        street0Calls SMALLINT,
+                        street1Calls SMALLINT,
+                        street2Calls SMALLINT,
+                        street3Calls SMALLINT,
+                        street4Calls SMALLINT,
+                        street0Bets SMALLINT,
+                        street1Bets SMALLINT,
+                        street2Bets SMALLINT,
+                        street3Bets SMALLINT,
+                        street4Bets SMALLINT,
+                        street0Raises SMALLINT,
+                        street1Raises SMALLINT,
+                        street2Raises SMALLINT,
+                        street3Raises SMALLINT,
+                        street4Raises SMALLINT,
+
+                        actionString VARCHAR(15),
 
                         FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
         elif(self.dbname == 'SQLite'):
@@ -674,7 +726,24 @@ class FpdbSQLQueries:
                         street3CheckCallRaiseChance INT NOT NULL,
                         street3CheckCallRaiseDone INT NOT NULL,
                         street4CheckCallRaiseChance INT NOT NULL,
-                        street4CheckCallRaiseDone INT NOT NULL)
+                        street4CheckCallRaiseDone INT NOT NULL,
+
+                        street0Calls INT,
+                        street1Calls INT,
+                        street2Calls INT,
+                        street3Calls INT,
+                        street4Calls INT,
+                        street0Bets INT,
+                        street1Bets INT,
+                        street2Bets INT,
+                        street3Bets INT,
+                        street4Bets INT,
+                        street0Raises INT,
+                        street1Raises INT,
+                        street2Raises INT,
+                        street3Raises INT,
+                        street4Raises INT)
+
                         ENGINE=INNODB"""
         elif(self.dbname == 'PostgreSQL'):
             self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
@@ -756,7 +825,24 @@ class FpdbSQLQueries:
                         street3CheckCallRaiseChance INT,
                         street3CheckCallRaiseDone INT,
                         street4CheckCallRaiseChance INT,
-                        street4CheckCallRaiseDone INT)"""
+                        street4CheckCallRaiseDone INT,
+
+                        street0Calls INT,
+                        street1Calls INT,
+                        street2Calls INT,
+                        street3Calls INT,
+                        street4Calls INT,
+                        street0Bets INT,
+                        street1Bets INT,
+                        street2Bets INT,
+                        street3Bets INT,
+                        street4Bets INT,
+                        street0Raises INT,
+                        street1Raises INT,
+                        street2Raises INT,
+                        street3Raises INT,
+                        street4Raises INT)
+                        """
         elif(self.dbname == 'SQLite'):
             self.query['createHudCacheTable'] = """ """
 
@@ -867,6 +953,8 @@ class FpdbSQLQueries:
                       where hp.playerId in <player_test>
                       and   hp.tourneysPlayersId IS NULL
                       and   h.seats <seats_test>
+                      <flagtest>
+                      <gtbigBlind_test>
                       group by hgameTypeId
                               ,hp.playerId
                               ,gt.base
@@ -878,6 +966,8 @@ class FpdbSQLQueries:
                               ,gt.base
                               ,gt.category
                               <orderbyseats>
+                              <orderbyhgameTypeId>
+                              ,maxbigblind desc
                               ,upper(gt.limitType)
                               ,s.name
                       """

@@ -349,13 +349,13 @@ class Sql:
                     select 
                         seatNo     AS seat_number, 
                         name       AS screen_name, 
-                        card1Value, card1Suit,
-                        card2Value, card2Suit,
-                        card3Value, card3Suit,
-                        card4Value, card4Suit,
-                        card5Value, card5Suit,
-                        card6Value, card6Suit,
-                        card7Value, card7Suit
+                        card1, /*card1Value, card1Suit, */
+                        card2, /*card2Value, card2Suit, */
+                        card3, /*card3Value, card3Suit, */
+                        card4, /*card4Value, card4Suit, */
+                        card5, /*card5Value, card5Suit, */
+                        card6, /*card6Value, card6Suit, */
+                        card7  /*card7Value, card7Suit */
                     from HandsPlayers, Players 
                     where handID = %s and HandsPlayers.playerId = Players.id 
                     order by seatNo

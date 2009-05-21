@@ -20,6 +20,8 @@
 import datetime
 import time
 import re
+
+import Card
  
 PS  = 1
 FTP = 2
@@ -1448,14 +1450,29 @@ card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
 #end def store_board_cards
  
 def storeHands(backend, conn, cursor, site_hand_no, gametype_id
-              ,hand_start_time, names, tableName, maxSeats):
-#stores into table hands
-    cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats) VALUES (%s, %s, %s, %s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats))
-    #todo: find a better way of doing this...
-    #cursor.execute("SELECT id FROM Hands WHERE siteHandNo=%s AND gametypeId=%s", (site_hand_no, gametype_id))
-    #return cursor.fetchall()[0][0]
+              ,hand_start_time, names, tableName, maxSeats, hudCache):
+#stores into table hands:
+    cursor.execute ("""INSERT INTO Hands 
+                       (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+                       ,playersVpi, playersAtStreet1, playersAtStreet2
+                       ,playersAtStreet3, playersAtStreet4, playersAtShowdown
+                       ,street0Raises, street1Raises, street2Raises
+                       ,street3Raises, street4Raises, street1Pot
+                       ,street2Pot, street3Pot, street4Pot
+                       ,showdownPot
+                       ) 
+                       VALUES 
+                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    """
+                   ,   (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats
+                       ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
+                       ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
+                       ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
+                       ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
+                       ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
+                       ,hudCache['showdownPot']
+                       ))
     return getLastInsertId(backend, conn, cursor)
-    #return db.insert_id() # mysql only
 #end def storeHands
  
 def store_hands_players_holdem_omaha(backend, conn, cursor, category, hands_id, player_ids, start_cashes
@@ -1474,14 +1491,13 @@ def store_hands_players_holdem_omaha(backend, conn, cursor, category, hands_id, 
 
     if (category=="holdem"):
         for i in xrange(len(player_ids)):
-            x,y = card_values[i][0],card_values[i][1]
-            if (card_suits[i][0] == card_suits[i][1] and x < y) or (card_suits[i][0] != card_suits[i][1] and x > y):
-                x,y = y,x
-            startCards = 13 * (x-2) + (y-2)
+            startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
+            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
             cursor.execute ("""
 INSERT INTO HandsPlayers
-(handId, playerId, startCash, position, activeSeats, tourneyTypeId,
- card1Value, card1Suit, card2Value, card2Suit, winnings, rake, seatNo, totalProfit,
+(handId, playerId, startCash, position, tourneyTypeId,
+ card1, card2, startCards, winnings, rake, seatNo, totalProfit,
  street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
  street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
  street1Aggr, street2Aggr, street3Aggr, street4Aggr,
@@ -1494,13 +1510,16 @@ INSERT INTO HandsPlayers
  foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
  foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
  street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
- street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone
+ street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
+ street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+ street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
 )
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
  %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
- %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-            (hands_id, player_ids[i], start_cashes[i], positions[i], len(player_ids), 1, # tourneytypeid
-             card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
+ %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+ %s, %s, %s, %s, %s, %s, %s, %s)""",
+            (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+             card1, card2, startCards,
              winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
              hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
              hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
@@ -1523,7 +1542,9 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
              hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
              hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
              hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
-             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i]
+             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
+             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
+             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
             )              )
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
@@ -1531,8 +1552,8 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
     elif (category=="omahahi" or category=="omahahilo"):
         for i in xrange(len(player_ids)):
             cursor.execute ("""INSERT INTO HandsPlayers
-(handId, playerId, startCash, position, activeSeats, tourneyTypeId,
- card1Value, card1Suit, card2Value, card2Suit,
+(handId, playerId, startCash, position, tourneyTypeId,
+ card1Value, card1Suit, card2Value, card2Suit, 
  card3Value, card3Suit, card4Value, card4Suit, winnings, rake, seatNo, totalProfit,
  street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
  street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
@@ -1546,12 +1567,15 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
  foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
  foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
  street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
- street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone
+ street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
+ street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+ street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
 )
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
  %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
- %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-            (hands_id, player_ids[i], start_cashes[i], positions[i], len(player_ids), 1, # tourneytypeid
+ %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+ %s, %s, %s, %s, %s, %s, %s, %s)""",
+            (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
              card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
              card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
              winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
@@ -1576,7 +1600,9 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
              hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
              hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
              hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
-             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i]
+             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
+             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
+             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
             )              )
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
@@ -1705,6 +1731,41 @@ sure to also change the following storage method and table_viewer.prepare_data i
     stealAttempted=[]
     hudDataPositions=[]
     
+    street0Calls=[]
+    street1Calls=[]
+    street2Calls=[]
+    street3Calls=[]
+    street4Calls=[]
+    street0Bets=[]
+    street1Bets=[]
+    street2Bets=[]
+    street3Bets=[]
+    street4Bets=[]
+    #street0Raises=[]
+    #street1Raises=[]
+    #street2Raises=[]
+    #street3Raises=[]
+    #street4Raises=[]
+    
+    # Summary figures for hand table:
+    result={}
+    result['playersVpi']=0
+    result['playersAtStreet1']=0
+    result['playersAtStreet2']=0
+    result['playersAtStreet3']=0
+    result['playersAtStreet4']=0
+    result['playersAtShowdown']=0
+    result['street0Raises']=0
+    result['street1Raises']=0
+    result['street2Raises']=0
+    result['street3Raises']=0
+    result['street4Raises']=0
+    result['street1Pot']=0
+    result['street2Pot']=0
+    result['street3Pot']=0
+    result['street4Pot']=0
+    result['showdownPot']=0
+    
     firstPfRaiseByNo=-1
     firstPfRaiserId=-1
     firstPfRaiserNo=-1
@@ -1776,6 +1837,21 @@ sure to also change the following storage method and table_viewer.prepare_data i
         myWonAtSD=0.0
         myStealAttemptChance=False
         myStealAttempted=False
+        myStreet0Calls=0
+        myStreet1Calls=0
+        myStreet2Calls=0
+        myStreet3Calls=0
+        myStreet4Calls=0
+        myStreet0Bets=0
+        myStreet1Bets=0
+        myStreet2Bets=0
+        myStreet3Bets=0
+        myStreet4Bets=0
+        #myStreet0Raises=0
+        #myStreet1Raises=0
+        #myStreet2Raises=0
+        #myStreet3Raises=0
+        #myStreet4Raises=0
         
         #calculate VPIP and PFR
         street=0
@@ -1785,6 +1861,13 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 myStreet0Aggr = True
             if currentAction == "bet" or currentAction == "call":
                 myStreet0VPI = True
+            
+        if myStreet0VPI:
+            result['playersVpi'] += 1
+        myStreet0Calls = action_types[street][player].count('call')
+        myStreet0Bets = action_types[street][player].count('bet')
+        # street0Raises = action_types[street][player].count('raise')  bet count includes raises for now
+        result['street0Raises'] += myStreet0Bets
         
         #PF3BChance and PF3B
         pfFold=-1
@@ -1865,13 +1948,28 @@ sure to also change the following storage method and table_viewer.prepare_data i
                             mySawShowdown = True
                             if any(actiontype == "fold" for actiontype in action_types[4][player]):
                                 mySawShowdown = False
-                        
+
+        if myStreet1Seen:
+            result['playersAtStreet1'] += 1
+        if myStreet2Seen:
+            result['playersAtStreet2'] += 1
+        if myStreet3Seen:
+            result['playersAtStreet3'] += 1
+        if myStreet4Seen:
+            result['playersAtStreet4'] += 1
+        if mySawShowdown:
+            result['playersAtShowdown'] += 1
  
         #flop stuff
         street=1
         if myStreet1Seen:
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                 myStreet1Aggr = True
+            
+            myStreet1Calls = action_types[street][player].count('call')
+            myStreet1Bets = action_types[street][player].count('bet')
+            # street1Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street1Raises'] += myStreet1Bets
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1890,6 +1988,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                 myStreet2Aggr = True
             
+            myStreet2Calls = action_types[street][player].count('call')
+            myStreet2Bets = action_types[street][player].count('bet')
+            # street2Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street2Raises'] += myStreet2Bets
+            
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
@@ -1907,6 +2010,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                     myStreet3Aggr = True
             
+            myStreet3Calls = action_types[street][player].count('call')
+            myStreet3Bets = action_types[street][player].count('bet')
+            # street3Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street3Raises'] += myStreet3Bets
+            
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
@@ -1923,6 +2031,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
         if myStreet4Seen:
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                 myStreet4Aggr=True
+            
+            myStreet4Calls = action_types[street][player].count('call')
+            myStreet4Bets = action_types[street][player].count('bet')
+            # street4Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street4Raises'] += myStreet4Bets
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1989,9 +2102,25 @@ sure to also change the following storage method and table_viewer.prepare_data i
         elif base=="stud":
             #todo: stud positions and steals
             pass
+
+        street0Calls.append(myStreet0Calls)
+        street1Calls.append(myStreet1Calls)
+        street2Calls.append(myStreet2Calls)
+        street3Calls.append(myStreet3Calls)
+        street4Calls.append(myStreet4Calls)
+        street0Bets.append(myStreet0Bets)
+        street1Bets.append(myStreet1Bets)
+        street2Bets.append(myStreet2Bets)
+        street3Bets.append(myStreet3Bets)
+        street4Bets.append(myStreet4Bets)
+        #street0Raises.append(myStreet0Raises)
+        #street1Raises.append(myStreet1Raises)
+        #street2Raises.append(myStreet2Raises)
+        #street3Raises.append(myStreet3Raises)
+        #street4Raises.append(myStreet4Raises)
     
     #add each array to the to-be-returned dictionary
-    result={'street0VPI':street0VPI}
+    result['street0VPI']=street0VPI
     result['street0Aggr']=street0Aggr
     result['street0_3BChance']=street0_3BChance
     result['street0_3BDone']=street0_3BDone
@@ -2017,6 +2146,21 @@ sure to also change the following storage method and table_viewer.prepare_data i
     result['wonAtSD']=wonAtSD
     result['stealAttemptChance']=stealAttemptChance
     result['stealAttempted']=stealAttempted
+    result['street0Calls']=street0Calls
+    result['street1Calls']=street1Calls
+    result['street2Calls']=street2Calls
+    result['street3Calls']=street3Calls
+    result['street4Calls']=street4Calls
+    result['street0Bets']=street0Bets
+    result['street1Bets']=street1Bets
+    result['street2Bets']=street2Bets
+    result['street3Bets']=street3Bets
+    result['street4Bets']=street4Bets
+    #result['street0Raises']=street0Raises
+    #result['street1Raises']=street1Raises
+    #result['street2Raises']=street2Raises
+    #result['street3Raises']=street3Raises
+    #result['street4Raises']=street4Raises
     
     #now the various steal values
     foldBbToStealChance=[]

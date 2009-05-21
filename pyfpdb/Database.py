@@ -32,6 +32,7 @@ import traceback
 #    FreePokerTools modules
 import Configuration
 import SQL
+import Card
 
 class Database:
     def __init__(self, c, db_name, game):
@@ -78,6 +79,7 @@ class Database:
 
         self.type = c.supported_databases[db_name].db_type
         self.sql = SQL.Sql(game = game, type = self.type)
+        self.connection.rollback()
         
     def close_connection(self):
         self.connection.close()
@@ -122,11 +124,17 @@ class Database:
         c = self.connection.cursor()
         c.execute(self.sql.query['get_cards'], [hand])
         colnames = [desc[0] for desc in c.description]
+        cardnames = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7']
         for row in c.fetchall():
-            s_dict = {}
-            for name, val in zip(colnames, row):
-                s_dict[name] = val
-            cards[s_dict['seat_number']] = (self.convert_cards(s_dict))
+            cs = ['', '', '', '', '', '', '']
+            seat = -1
+            for col,name in enumerate(colnames):
+                if name in cardnames:
+                    cs[cardnames.index(name)] = Card.valueSuitFromCard(row[col])
+                elif name == 'seat_number':
+                    seat = row[col]
+            if seat != -1:
+                cards[seat] = ''.join(cs)
         return cards
 
     def get_common_cards(self, hand):
