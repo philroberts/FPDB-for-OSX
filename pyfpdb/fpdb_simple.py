@@ -2411,9 +2411,43 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
         for player in xrange(len(playerIds)):
             if base=="hold":
-                cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
+                cursor.execute("""SELECT id, gametypeId, playerId, activeSeats, position, tourneyTypeId, HDs,
+                                         street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+                                         street1Seen, street2Seen, street3Seen, street4Seen,
+                                         sawShowdown, street1Aggr, street2Aggr, street3Aggr, street4Aggr, 
+                                         otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
+                                         foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
+                                         wonWhenSeenStreet1, wonAtSD, stealAttemptChance, stealAttempted,
+                                         foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+                                         street1CBChance, street1CBDone, street2CBChance, street2CBDone,
+                                         street3CBChance, street3CBDone, street4CBChance, street4CBDone,
+                                         foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
+                                         foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
+                                         totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
+                                         street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone
+                                  FROM HudCache 
+                                  WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s
+                               """
+                              , (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
             else:
-                cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
+                cursor.execute("""SELECT id, gametypeId, playerId, activeSeats, position, tourneyTypeId, HDs,
+                                         street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+                                         street1Seen, street2Seen, street3Seen, street4Seen,
+                                         sawShowdown, street1Aggr, street2Aggr, street3Aggr, street4Aggr, 
+                                         otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
+                                         foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
+                                         wonWhenSeenStreet1, wonAtSD, stealAttemptChance, stealAttempted,
+                                         foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+                                         street1CBChance, street1CBDone, street2CBChance, street2CBDone,
+                                         street3CBChance, street3CBDone, street4CBChance, street4CBDone,
+                                         foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
+                                         foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
+                                         totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
+                                         street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone
+                                  FROM HudCache 
+                                  WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s
+                               """
+                              , (gametypeId, playerIds[player], len(playerIds)))
             row=cursor.fetchone()
             #print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
             
