@@ -66,7 +66,7 @@ class GuiAutoImport (threading.Thread):
         vbox2 = gtk.VBox(True, 0)
         hbox.pack_start(vbox2, True, True, 0)
 
-        self.intervalLabel = gtk.Label("Interval (ie. break) between imports in seconds:")
+        self.intervalLabel = gtk.Label("Time between imports in seconds:")
         self.intervalLabel.set_alignment(xalign=1.0, yalign=0.5)
         vbox1.pack_start(self.intervalLabel, True, True, 0)
 
