@@ -44,6 +44,14 @@ def twoStartCardString(card):
         elif x > y: return(s[x] + s[y] + 's')
         else:       return(s[y] + s[x] + 'o')
 
+def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
+    """ Function to convert 4 value,suit pairs into a Omaha style starting hand e.g. AAds
+        Hand is stored as an int 13 * x + y where (x+2) represents rank of 1st card and
+        (y+2) represents rank of second card (2=2 .. 14=Ace)
+        If x > y then pair is suited, if x < y then unsuited"""
+        # This doesn't actually do anything yet - CG
+    return(0)
+
 def cardFromValueSuit(value, suit):
     """ 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As """
     if suit == 'h':  return(value-1)

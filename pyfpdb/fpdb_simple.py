@@ -1551,10 +1551,14 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
             result.append( getLastInsertId(backend, conn, cursor) )
     elif (category=="omahahi" or category=="omahahilo"):
         for i in xrange(len(player_ids)):
+            startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1], card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
+            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
+            card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
+            card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
             cursor.execute ("""INSERT INTO HandsPlayers
 (handId, playerId, startCash, position, tourneyTypeId,
- card1Value, card1Suit, card2Value, card2Suit, 
- card3Value, card3Suit, card4Value, card4Suit, winnings, rake, seatNo, totalProfit,
+ card1, card2, card3, card4, winnings, rake, seatNo, totalProfit,
  street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
  street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
  street1Aggr, street2Aggr, street3Aggr, street4Aggr,
@@ -1576,8 +1580,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
  %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
  %s, %s, %s, %s, %s, %s, %s, %s)""",
             (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
-             card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
-             card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
+             card1, card2, card3, card4,
              winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
              hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
              hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
