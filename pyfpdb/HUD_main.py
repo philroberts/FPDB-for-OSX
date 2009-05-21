@@ -168,7 +168,7 @@ class HUD_main(object):
                     (tour_number, tab_number) = mat_obj.group(1, 2)
                     temp_key = tour_number
                 else:   # tourney, but can't get number and table
-                    print "could not find tournamtne: skipping "
+                    print "could not find tournament: skipping "
                     sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
                     continue
                     
