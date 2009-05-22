@@ -45,11 +45,14 @@ def twoStartCardString(card):
         else:       return(s[y] + s[x] + 'o')
 
 def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
-    """ Function to convert 4 value,suit pairs into a Omaha style starting hand e.g. AAds
-        Hand is stored as an int 13 * x + y where (x+2) represents rank of 1st card and
-        (y+2) represents rank of second card (2=2 .. 14=Ace)
-        If x > y then pair is suited, if x < y then unsuited"""
+    """ Function to convert 4 value,suit pairs into a Omaha style starting hand,
+        haven't decided how to encode this yet """
         # This doesn't actually do anything yet - CG
+
+        # What combinations do we need to store? just cards: AA23? some suits as well e.g. when
+        # double suited ATcKTd? Lots more possible combos than holdem :-(  270K vs 1326? not sure
+        # Probably need to use this field as a key into some other table  -  sc
+
         #AAKKds
         #AAKKs
         #AAKKr

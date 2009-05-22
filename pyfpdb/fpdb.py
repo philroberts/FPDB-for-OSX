@@ -438,7 +438,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.tabs=[]
         self.tab_names=[]
         self.tab_buttons=[]
-        self.tab_box = gtk.HBox(False,1)
+        self.tab_box = gtk.HBox(True,1)
         self.main_vbox.pack_start(self.tab_box, False, True, 0)
         self.tab_box.show()
         #done tab bar

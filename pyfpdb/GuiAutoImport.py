@@ -57,28 +57,55 @@ class GuiAutoImport (threading.Thread):
         self.database=settings['db-databaseName']
 
         self.mainVBox=gtk.VBox(False,1)
-        self.mainVBox.show()
 
-        self.settingsHBox = gtk.HBox(False, 0)
-        self.mainVBox.pack_start(self.settingsHBox, False, True, 0)
-        self.settingsHBox.show()
+        hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
+        self.mainVBox.pack_start(hbox, False, False, 0)
+        
+        vbox1 = gtk.VBox(True, 0)
+        hbox.pack_start(vbox1, True, True, 0)
+        vbox2 = gtk.VBox(True, 0)
+        hbox.pack_start(vbox2, True, True, 0)
 
-        self.intervalLabel = gtk.Label("Interval (ie. break) between imports in seconds:")
-        self.settingsHBox.pack_start(self.intervalLabel)
-        self.intervalLabel.show()
+        self.intervalLabel = gtk.Label("Time between imports in seconds:")
+        self.intervalLabel.set_alignment(xalign=1.0, yalign=0.5)
+        vbox1.pack_start(self.intervalLabel, True, True, 0)
 
-        self.intervalEntry=gtk.Entry()
+        hbox = gtk.HBox(False, 0)
+        vbox2.pack_start(hbox, True, True, 0)
+        self.intervalEntry = gtk.Entry()
         self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
-        self.settingsHBox.pack_start(self.intervalEntry)
-        self.intervalEntry.show()
+        hbox.pack_start(self.intervalEntry, False, False, 0)
+        lbl1 = gtk.Label()
+        hbox.pack_start(lbl1, expand=True, fill=True)
 
-        self.addSites(self.mainVBox)
+        lbl = gtk.Label('')
+        vbox1.pack_start(lbl, expand=True, fill=True)
+        lbl = gtk.Label('')
+        vbox2.pack_start(lbl, expand=True, fill=True)
+
+        self.addSites(vbox1, vbox2)
+
+        hbox = gtk.HBox(False, 0)
+        self.mainVBox.pack_start(hbox, expand=True, padding=3)
+
+        hbox = gtk.HBox(False, 0)
+        self.mainVBox.pack_start(hbox, expand=False, padding=3)
+
+        lbl1 = gtk.Label()
+        hbox.pack_start(lbl1, expand=True, fill=False)
 
         self.doAutoImportBool = False
-        self.startButton=gtk.ToggleButton("Start Autoimport")
+        self.startButton = gtk.ToggleButton("  _Start Autoimport  ")
         self.startButton.connect("clicked", self.startClicked, "start clicked")
-        self.mainVBox.add(self.startButton)
-        self.startButton.show()
+        hbox.pack_start(self.startButton, expand=False, fill=False)
+
+        lbl2 = gtk.Label()
+        hbox.pack_start(lbl2, expand=True, fill=False)
+
+        hbox = gtk.HBox(False, 0)
+        hbox.show()
+        self.mainVBox.pack_start(hbox, expand=True, padding=3)
+        self.mainVBox.show_all()
 
 
     #end of GuiAutoImport.__init__
@@ -177,40 +204,41 @@ class GuiAutoImport (threading.Thread):
     #Create the site line given required info and setup callbacks
     #enabling and disabling sites from this interface not possible
     #expects a box to layout the line horizontally
-    def createSiteLine(self, hbox, site, iconpath, hhpath, filter_name, active = True):
+    def createSiteLine(self, hbox1, hbox2, site, iconpath, hhpath, filter_name, active = True):
         label = gtk.Label(site + " auto-import:")
-        hbox.pack_start(label, False, False, 0)
+        hbox1.pack_start(label, False, False, 3)
         label.show()
 
         dirPath=gtk.Entry()
         dirPath.set_text(hhpath)
-        hbox.pack_start(dirPath, False, True, 0)
+        hbox1.pack_start(dirPath, True, True, 3)
         dirPath.show()
 
         browseButton=gtk.Button("Browse...")
         browseButton.connect("clicked", self.browseClicked, [site] + [dirPath])
-        hbox.pack_start(browseButton, False, False, 0)
+        hbox2.pack_start(browseButton, False, False, 3)
         browseButton.show()
 
-        label = gtk.Label(site + " filter:")
-        hbox.pack_start(label, False, False, 0)
+        label = gtk.Label(' ' + site + " filter:")
+        hbox2.pack_start(label, False, False, 3)
         label.show()
 
         filter=gtk.Entry()
         filter.set_text(filter_name)
-        hbox.pack_start(filter, False, True, 0)
+        hbox2.pack_start(filter, True, True, 3)
         filter.show()
 
-    def addSites(self, vbox):
+    def addSites(self, vbox1, vbox2):
         the_sites = self.config.get_supported_sites()
         for site in the_sites:
-            pathHBox = gtk.HBox(False, 0)
-            vbox.pack_start(pathHBox, False, True, 0)
-            pathHBox.show()
+            pathHBox1 = gtk.HBox(False, 0)
+            vbox1.pack_start(pathHBox1, False, True, 0)
+            pathHBox2 = gtk.HBox(False, 0)
+            vbox2.pack_start(pathHBox2, False, True, 0)
     
             params = self.config.get_site_parameters(site)
             paths = self.config.get_default_paths(site)
-            self.createSiteLine(pathHBox, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
+            self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
             self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
 
 if __name__== "__main__":

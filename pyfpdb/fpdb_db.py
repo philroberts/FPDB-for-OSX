@@ -59,7 +59,10 @@ class fpdb_db:
         self.database=database
         if backend==self.MYSQL_INNODB:
             import MySQLdb
-            self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+            try:
+                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+            except:
+                raise fpdb_simple.FpdbError("MySQL connection failed")
         elif backend==self.PGSQL:
             import psycopg2
             import psycopg2.extensions
@@ -68,15 +71,21 @@ class fpdb_db:
             # host, user and password are required
             print "host=%s user=%s pass=%s." % (host, user, password)
             if self.host and self.user and self.password:
-                self.db = psycopg2.connect(host = host,
-                        user = user, 
-                        password = password, 
-                        database = database)
+                try:
+                    self.db = psycopg2.connect(host = host,
+                            user = user, 
+                            password = password, 
+                            database = database)
+                except:
+                    raise fpdb_simple.FpdbError("PostgreSQL connection failed")
             # For local domain-socket connections, only DB name is
             # needed, and everything else is in fact undefined and/or
             # flat out wrong
             else:
-                self.db = psycopg2.connect(database = database)
+                try:
+                    self.db = psycopg2.connect(database = database)
+                except:
+                    raise fpdb_simple.FpdbError("PostgreSQL connection failed")
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
@@ -138,7 +147,7 @@ class fpdb_db:
 
         if(self.get_backend_name() == 'MySQL InnoDB'):
             #Databases with FOREIGN KEY support need this switched of before you can drop tables
-            self.drop_referencial_integrity()
+            self.drop_referential_integrity()
 
             # Query the DB to see what tables exist
             self.cursor.execute(self.sql.query['list_tables'])
@@ -157,7 +166,7 @@ class fpdb_db:
             self.db.commit()
     #end def drop_tables
 
-    def drop_referencial_integrity(self):
+    def drop_referential_integrity(self):
         """Update all tables to remove foreign keys"""
 
         self.cursor.execute(self.sql.query['list_tables'])
@@ -175,7 +184,7 @@ class fpdb_db:
                     key = "`" + inner[j][0] + "_" + m.group() + "`"
                     self.cursor.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
                 self.db.commit()
-        #end drop_referencial_inegrity
+        #end drop_referential_inegrity
     
     def get_backend_name(self):
         """Returns the name of the currently used backend"""

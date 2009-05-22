@@ -2549,7 +2549,7 @@ def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
             if doInsert:
                 #print "playerid before insert:",row[2]
                 cursor.execute("""INSERT INTO HudCache
-(gametypeId, playerId, activeSeats, position, tourneyTypeId,
+(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
 HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
 street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
 street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
@@ -2561,7 +2561,7 @@ street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStre
 foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
 foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
 street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
-VALUES (%s, %s, %s, %s, %s,
+VALUES (%s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
@@ -2572,7 +2572,14 @@ VALUES (%s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
+%s, %s, %s, %s, %s)"""
+                              # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+                              , (row[1], row[2], row[3], row[4], row[5], 'A000000', row[6], row[7], row[8], row[9], row[10]
+                                ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
+                                ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
+                                ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
+                                ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
+                                ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
             else:
                 #print "storing updated hud data line"
                 cursor.execute("""UPDATE HudCache
@@ -2736,7 +2743,7 @@ AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
                 or (backend == MYSQL_INNODB and num == 0) ):
                 #print "playerid before insert:",row[2]," num = ", num
                 cursor.execute("""INSERT INTO HudCache
-(gametypeId, playerId, activeSeats, position, tourneyTypeId,
+(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
 HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
 street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
 street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
@@ -2748,7 +2755,7 @@ street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStre
 foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
 foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
 street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
-VALUES (%s, %s, %s, %s, %s,
+VALUES (%s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
@@ -2759,7 +2766,14 @@ VALUES (%s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
+%s, %s, %s, %s, %s)"""
+                              # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+                              , (row[1], row[2], row[3], row[4], row[5], 'A000000', row[6], row[7], row[8], row[9], row[10]
+                                ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
+                                ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
+                                ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
+                                ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
+                                ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]) )
                 #print "hopefully inserted hud data line: ", cursor.statusmessage
                 # message seems to be "INSERT 0 1"
             else:
