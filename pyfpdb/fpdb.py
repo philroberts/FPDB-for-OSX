@@ -105,30 +105,30 @@ class fpdb:
     #end def delete_event
 
     def destroy(self, widget, data=None):
-        self.quit(widget, data)
+        self.quit(widget)
     #end def destroy
 
-    def dia_about(self, widget, data):
+    def dia_about(self, widget, data=None):
         print "todo: implement dia_about",
         print " version = %s, requires database version %s" % (VERSION, "118")
     #end def dia_about
 
-    def dia_create_del_database(self, widget, data):
+    def dia_create_del_database(self, widget, data=None):
         print "todo: implement dia_create_del_database"
         self.obtain_global_lock()
     #end def dia_create_del_database
 
-    def dia_create_del_user(self, widget, data):
+    def dia_create_del_user(self, widget, data=None):
         print "todo: implement dia_create_del_user"
         self.obtain_global_lock()
     #end def dia_create_del_user
 
-    def dia_database_stats(self, widget, data):
+    def dia_database_stats(self, widget, data=None):
         print "todo: implement dia_database_stats"
         #string=fpdb_db.getDbStats(db, cursor)
     #end def dia_database_stats
 
-    def dia_delete_db_parts(self, widget, data):
+    def dia_delete_db_parts(self, widget, data=None):
         print "todo: implement dia_delete_db_parts"
         self.obtain_global_lock()
     #end def dia_delete_db_parts
@@ -138,7 +138,7 @@ class fpdb:
         self.obtain_global_lock()
     #end def dia_edit_profile
 
-    def dia_export_db(self, widget, data):
+    def dia_export_db(self, widget, data=None):
         print "todo: implement dia_export_db"
         self.obtain_global_lock()
     #end def dia_export_db
@@ -163,16 +163,16 @@ class fpdb:
 #        return (user, pw, response)
     #end def dia_get_db_root_credentials
 
-    def dia_import_db(self, widget, data):
+    def dia_import_db(self, widget, data=None):
         print "todo: implement dia_import_db"
         self.obtain_global_lock()
     #end def dia_import_db
 
-    def dia_licensing(self, widget, data):
+    def dia_licensing(self, widget, data=None):
         print "todo: implement dia_licensing"
     #end def dia_licensing
 
-    def dia_load_profile(self, widget, data):
+    def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
         self.obtain_global_lock()
         chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
@@ -188,7 +188,7 @@ class fpdb:
             print 'User cancelled loading profile'
     #end def dia_load_profile
 
-    def dia_recreate_tables(self, widget, data):
+    def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         self.obtain_global_lock()
         
@@ -205,12 +205,12 @@ class fpdb:
             print 'User cancelled recreating tables'
     #end def dia_recreate_tables
 
-    def dia_regression_test(self, widget, data):
+    def dia_regression_test(self, widget, data=None):
         print "todo: implement dia_regression_test"
         self.obtain_global_lock()
     #end def dia_regression_test
 
-    def dia_save_profile(self, widget, data):
+    def dia_save_profile(self, widget, data=None):
         print "todo: implement dia_save_profile"
     #end def dia_save_profile
 
@@ -237,11 +237,87 @@ class fpdb:
 
     def get_menu(self, window):
         """returns the menu for this program"""
-        accel_group = gtk.AccelGroup()
-        self.item_factory = gtk.ItemFactory(gtk.MenuBar, "<main>", accel_group)
-        self.item_factory.create_items(self.menu_items)
+        fpdbmenu = """
+            <ui>
+              <menubar name="MenuBar">
+                <menu action="main">
+                  <menuitem action="LoadProf"/>
+                  <menuitem action="EditProf"/>
+                  <menuitem action="SaveProf"/>
+                  <separator/>
+                  <menuitem action="Quit"/>
+                </menu>
+                <menu action="import">
+                  <menuitem action="bulkimp"/>
+                  <menuitem action="autoimp"/>
+                  <menuitem action="autorate"/>
+                </menu>
+                <menu action="viewers">
+                  <menuitem action="autoimp"/>
+                  <menuitem action="graphs"/>
+                  <menuitem action="handreplay"/>
+                  <menuitem action="playerdetails"/>
+                  <menuitem action="playerstats"/>
+                  <menuitem action="posnstats"/>
+                  <menuitem action="sessionreplay"/>
+                  <menuitem action="tableviewer"/>
+                </menu>
+                <menu action="database">
+                  <menuitem action="createdb"/>
+                  <menuitem action="createuser"/>
+                  <menuitem action="createtabs"/>
+                  <menuitem action="stats"/>
+                </menu>
+                <menu action="help">
+                  <menuitem action="Abbrev"/>
+                  <separator/>
+                  <menuitem action="About"/>
+                  <menuitem action="License"/>
+                </menu>
+              </menubar>
+            </ui>"""
+
+        uimanager = gtk.UIManager()
+        accel_group = uimanager.get_accel_group()
+        actiongroup = gtk.ActionGroup('UIManagerExample')
+
+        # Create actions
+        actiongroup.add_actions([('main', None, '_Main'),
+                                 ('Quit', gtk.STOCK_QUIT, '_Quit me!', None, 'Quit the Program', self.quit),
+                                 ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
+                                 ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
+                                 ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
+                                 ('import', None, '_Import'),
+                                 ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
+                                 ('autorate', None, 'Auto _Rating (todo)', '<control>R', 'Auto Rating (todo)', self.not_implemented),
+                                 ('viewers', None, '_Viewers'),
+                                 ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
+                                 ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
+                                 ('handreplay', None, 'Hand _Replayer (todo)', None, 'Hand Replayer (todo)', self.not_implemented),
+                                 ('playerdetails', None, 'Player _Details (todo)', None, 'Player Details (todo)', self.not_implemented),
+                                 ('playerstats', None, '_Player Stats (tabulated view)', '<control>P', 'Player Stats (tabulated view)', self.tab_player_stats),
+                                 ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
+                                 ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
+                                 ('database', None, '_Database'),
+                                 ('createdb', None, 'Create or Delete _Database (todo)', None, 'Create or Delete Database', self.dia_create_del_database),
+                                 ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
+                                 ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
+                                 ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('help', None, '_Help'),
+                                 ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
+                                 ('About', None, 'A_bout', None, 'About the program', self.dia_about),
+                                 ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
+                                ])
+        actiongroup.get_action('Quit').set_property('short-label', '_Quit')
+
+        uimanager.insert_action_group(actiongroup, 0)
+        merge_id = uimanager.add_ui_from_string(fpdbmenu)
+
+        # Create a MenuBar
+        menubar = uimanager.get_widget('/MenuBar')
         window.add_accel_group(accel_group)
-        return self.item_factory.get_widget("<main>")
+        return menubar
     #end def get_menu
 
     def load_profile(self):
@@ -298,7 +374,7 @@ class fpdb:
         print "todo: implement obtain_global_lock (users: pls ignore this)"
     #end def obtain_global_lock
 
-    def quit(self, widget, data):
+    def quit(self, widget):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
@@ -309,11 +385,11 @@ class fpdb:
         print "todo: implement release_global_lock"
     #end def release_global_lock
 
-    def tab_abbreviations(self, widget, data):
+    def tab_abbreviations(self, widget, data=None):
         print "todo: implement tab_abbreviations"
     #end def tab_abbreviations
 
-    def tab_auto_import(self, widget, data):
+    def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
         new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config)
         self.threads.append(new_aimp_thread)
@@ -321,7 +397,7 @@ class fpdb:
         self.add_and_display_tab(aimp_tab, "Auto Import")
     #end def tab_auto_import
 
-    def tab_bulk_import(self, widget, data):
+    def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
         #print "start of tab_bulk_import"
         new_import_thread=GuiBulkImport.GuiBulkImport(self.settings, self.config)
@@ -330,20 +406,20 @@ class fpdb:
         self.add_and_display_tab(bulk_tab, "Bulk Import")
     #end def tab_bulk_import
 
-    def tab_player_stats(self, widget, data):
+    def tab_player_stats(self, widget, data=None):
         new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.querydict, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Player Stats")
 
-    def tab_positional_stats(self, widget, data):
+    def tab_positional_stats(self, widget, data=None):
         new_ps_thread=GuiPositionalStats.GuiPositionalStats(self.config, self.querydict)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
 
 
-    def tab_main_help(self, widget, data):
+    def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         #print "start of tab_main_help"
         mh_tab=gtk.Label("""Welcome to Fpdb!
@@ -353,7 +429,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.add_and_display_tab(mh_tab, "Help")
     #end def tab_main_help
 
-    def tab_table_viewer(self, widget, data):
+    def tab_table_viewer(self, widget, data=None):
         """opens a table viewer tab"""
         #print "start of tab_table_viewer"
         new_tv_thread=GuiTableViewer.GuiTableViewer(self.db, self.settings)
@@ -362,7 +438,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.add_and_display_tab(tv_tab, "Table Viewer")
     #end def tab_table_viewer
 
-    def tabGraphViewer(self, widget, data):
+    def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
         #print "start of tabGraphViewer"
         new_gv_thread=GuiGraphViewer.GuiGraphViewer(self.db, self.settings, self.querydict, self.config)
@@ -384,46 +460,6 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.window.set_border_width(1)
         self.window.set_default_size(900,720)
         self.window.set_resizable(True)
-
-        self.menu_items = (
-                ( "/_Main",                                 None,         None, 0, "<Branch>" ),
-                ( "/Main/_Load Profile (broken)",                    "<control>L", self.dia_load_profile, 0, None ),
-                ( "/Main/_Edit Profile (todo)",                    "<control>E", self.dia_edit_profile, 0, None ),
-                ( "/Main/_Save Profile (todo)",                    None,         self.dia_save_profile, 0, None ),
-                ("/Main/sep1", None, None, 0, "<Separator>" ),
-                ("/Main/_Quit", "<control>Q", self.quit, 0, None ),
-                ("/_Import",                               None,         None, 0, "<Branch>" ),
-                ("/Import/_Bulk Import",  "<control>B", self.tab_bulk_import, 0, None ),
-                ("/Import/_Auto Import and HUD", "<control>A", self.tab_auto_import, 0, None ),
-                ("/Import/Auto _Rating (todo)",                   "<control>R", self.not_implemented, 0, None ),
-                ("/_Viewers", None, None, 0, "<Branch>" ),
-                ("/_Viewers/_Auto Import and HUD", "<control>A", self.tab_auto_import, 0, None ),
-                ("/Viewers/_Graphs", "<control>G", self.tabGraphViewer, 0, None ),
-                ("/Viewers/Hand _Replayer (todo)", None, self.not_implemented, 0, None ),
-                ("/Viewers/Player _Details (todo)", None, self.not_implemented, 0, None ),
-                ("/Viewers/_Player Stats (tabulated view)", "<control>P", self.tab_player_stats, 0, None ),
-                ("/Viewers/P_ositional Stats (tabulated view)", "<control>O", self.tab_positional_stats, 0, None ),
-                ("/Viewers/Starting _Hands (todo)", None, self.not_implemented, 0, None ),
-                ("/Viewers/_Session Replayer (todo)", None, self.not_implemented, 0, None ),
-                ("/Viewers/Poker_table Viewer (mostly obselete)", "<control>T", self.tab_table_viewer, 0, None ),
-                #( "/Viewers/Tourney Replayer
-                ( "/_Database",                             None,         None, 0, "<Branch>" ),
-                ( "/Database/Create or Delete _Database (todo)",   None,         self.dia_create_del_database, 0, None ),
-                ( "/Database/Create or Delete _User (todo)",       None,         self.dia_create_del_user, 0, None ),
-                ( "/Database/Create or Recreate _Tables",   None,         self.dia_recreate_tables, 0, None ),
-                ( "/Database/_Statistics (todo)",                  None,         self.dia_database_stats, 0, None ),
-                ( "/D_ebugging",                            None,         None, 0, "<Branch>" ),
-                ( "/Debugging/_Delete Parts of Database (todo)",   None,         self.dia_delete_db_parts, 0, None ),
-                ( "/Debugging/_Export DB (todo)",                  None,         self.dia_export_db, 0, None ),
-                ( "/Debugging/_Import DB (todo)",                  None,         self.dia_import_db, 0, None ),
-                ( "/Debugging/_Regression test (todo)",            None,         self.dia_regression_test, 0, None ),
-                ( "/_Help",                                 None,         None, 0, "<LastBranch>" ),
-                ( "/Help/_Main Help",                       "<control>H", self.tab_main_help, 0, None ),
-                ( "/Help/_Abbrevations (todo)",                    None,         self.tab_abbreviations, 0, None ),
-                ( "/Help/sep1",                             None,         None, 0, "<Separator>" ),
-                ( "/Help/A_bout (todo)",                           None,         self.dia_about, 0, None ),
-                ( "/Help/_License and Copying (todo)",             None,         self.dia_licensing, 0, None )
-        )
 
         self.main_vbox = gtk.VBox(False, 1)
         self.main_vbox.set_border_width(1)
@@ -455,6 +491,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.status_bar.show()
 
         self.window.show()
+        sys.stderr.write("fpdb starting ...")
     #end def __init__
 
     def main(self):

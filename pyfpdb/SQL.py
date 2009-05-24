@@ -324,7 +324,7 @@ class Sql:
                            AND    gt1.category = gt2.category
                            AND    gt1.limittype = gt2.limittype
                            AND    gt2.id = h.gametypeId)
-                    GROUP BY hc.PlayerId, hc.styleKey
+                    GROUP BY hc.PlayerId, p.name, hc.styleKey
                 """
          
             self.query['get_players_from_hand'] = """
