@@ -366,7 +366,7 @@ class fpdb:
         self.db.db.rollback()
     #end def load_profile
 
-    def not_implemented(self, widget, data):
+    def not_implemented(self, widget, data=None):
         print "todo: called unimplemented menu entry (users: pls ignore this)"#remove this once more entries are implemented
     #end def not_implemented
 
