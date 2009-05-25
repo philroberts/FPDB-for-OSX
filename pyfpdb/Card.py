@@ -48,9 +48,15 @@ def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
     """ Function to convert 4 value,suit pairs into a Omaha style starting hand,
         haven't decided how to encode this yet """
         # This doesn't actually do anything yet - CG
+
         # What combinations do we need to store? just cards: AA23? some suits as well e.g. when
         # double suited ATcKTd? Lots more possible combos than holdem :-(  270K vs 1326? not sure
         # Probably need to use this field as a key into some other table  -  sc
+
+        #AAKKds
+        #AAKKs
+        #AAKKr
+        # Is probably what we are looking for
     return(0)
 
 def cardFromValueSuit(value, suit):
