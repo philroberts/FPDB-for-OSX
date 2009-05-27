@@ -54,7 +54,7 @@ def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametyp
                                                           ,start_cashes, antes, card_values
                                                           ,card_suits, winnings, rakes, seatNos)
     
-    fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+    fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     
     if saveActions:
         fpdb_simple.storeActions(cursor, hands_players_ids, action_types
@@ -90,9 +90,9 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     t4 = time()            
     #print "ring holdem, backend=%d" % backend
     if fastStoreHudCache:
-        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     else:
-        fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     t5 = time()
     fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
     t6 = time()
@@ -131,9 +131,9 @@ def tourney_holdem_omaha(config, backend, db, cursor, base, category, siteTourne
     
     #print "tourney holdem, backend=%d" % backend
     if fastStoreHudCache:
-        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     else:
-        fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     
     fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
     
@@ -165,7 +165,7 @@ def tourney_stud(config, backend, db, cursor, base, category, siteTourneyNo, buy
                                              , playerIds, startCashes, antes, cardValues, cardSuits
                                              , winnings, rakes, seatNos, tourneys_players_ids)
     
-    fpdb_simple.storeHudCache(backend, cursor, base, category, gametypeId, playerIds, hudImportData)
+    fpdb_simple.storeHudCache(backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
     
     if saveActions:
         fpdb_simple.storeActions(cursor, hands_players_ids, actionTypes, allIns, actionAmounts, actionNos)

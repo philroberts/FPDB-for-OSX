@@ -31,6 +31,8 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
+# config while trying out new hudcache mechanism
+use_date_in_hudcache = True
 
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -2407,9 +2409,15 @@ def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetC
                     foldToStreetCBDone[player]=True
 #end def generateFoldToCB
  
-def storeHudCache(backend, cursor, base, category, gametypeId, playerIds, hudImportData):
+def storeHudCache(backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData):
         """Modified version aiming for more speed ..."""
 # if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+        if use_date_in_hudcache:
+            #print "key =", "d%02d%02d%02d " % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+            styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+        else:
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            styleKey = 'A000000'
         
         #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
@@ -2525,7 +2533,9 @@ WHERE gametypeId+0=%s
 AND   playerId=%s 
 AND   activeSeats=%s 
 AND   position=%s 
-AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
+AND   tourneyTypeId+0=%s
+AND   styleKey=%s
+                      """, (row[6], row[7], row[8], row[9], row[10],
                             row[11], row[12], row[13], row[14], row[15],
                             row[16], row[17], row[18], row[19], row[20],
                             row[21], row[22], row[23], row[24], row[25],
@@ -2536,7 +2546,7 @@ AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
                             row[46], row[47], row[48], row[49], row[50],
                             row[51], row[52], row[53], row[54], row[55],
                             row[56], row[57], row[58], row[59], row[60],
-                            row[1], row[2], row[3], str(row[4]), row[5]))
+                            row[1], row[2], row[3], str(row[4]), row[5], styleKey))
             # Test statusmessage to see if update worked, do insert if not
             #print "storehud2, upd num =", num
             if (   (backend == PGSQL and cursor.statusmessage != "UPDATE 1")
@@ -2567,8 +2577,7 @@ VALUES (%s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s)"""
-                              # hard-code styleKey as 'A000000' (all-time cache, no key) for now
-                              , (row[1], row[2], row[3], row[4], row[5], 'A000000', row[6], row[7], row[8], row[9], row[10]
+                              , (row[1], row[2], row[3], row[4], row[5], styleKey, row[6], row[7], row[8], row[9], row[10]
                                 ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
                                 ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
                                 ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
@@ -2583,11 +2592,17 @@ VALUES (%s, %s, %s, %s, %s, %s,
 # print "todo: implement storeHudCache for stud base"
 #end def storeHudCache
  
-def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudImportData):
+def storeHudCache2(backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData):
         """Modified version aiming for more speed ..."""
 # if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+        if use_date_in_hudcache:
+            #print "key =", "d%02d%02d%02d " % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+            styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+        else:
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            styleKey = 'A000000'
         
-        #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
+        #print "storeHudCache2, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
         for player in xrange(len(playerIds)):
             
@@ -2701,7 +2716,9 @@ WHERE gametypeId+0=%s
 AND   playerId=%s 
 AND   activeSeats=%s 
 AND   position=%s 
-AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
+AND   tourneyTypeId+0=%s
+AND   styleKey=%s
+                      """, (row[6], row[7], row[8], row[9], row[10],
                             row[11], row[12], row[13], row[14], row[15],
                             row[16], row[17], row[18], row[19], row[20],
                             row[21], row[22], row[23], row[24], row[25],
@@ -2712,7 +2729,7 @@ AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
                             row[46], row[47], row[48], row[49], row[50],
                             row[51], row[52], row[53], row[54], row[55],
                             row[56], row[57], row[58], row[59], row[60],
-                            row[1], row[2], row[3], str(row[4]), row[5]))
+                            row[1], row[2], row[3], str(row[4]), row[5], styleKey))
             # Test statusmessage to see if update worked, do insert if not
             #print "storehud2, upd num =", num
             if (   (backend == PGSQL and cursor.statusmessage != "UPDATE 1")
@@ -2743,8 +2760,7 @@ VALUES (%s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s)"""
-                              # hard-code styleKey as 'A000000' (all-time cache, no key) for now
-                              , (row[1], row[2], row[3], row[4], row[5], 'A000000', row[6], row[7], row[8], row[9], row[10]
+                              , (row[1], row[2], row[3], row[4], row[5], styleKey, row[6], row[7], row[8], row[9], row[10]
                                 ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
                                 ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
                                 ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
