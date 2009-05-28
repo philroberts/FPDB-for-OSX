@@ -154,7 +154,7 @@ class GuiAutoImport (threading.Thread):
 #    to watch.
         if widget.get_active(): # toggled on
             self.doAutoImportBool = True
-            widget.set_label(u'Stop Autoimport')
+            widget.set_label(u'  _Stop Autoimport  ')
             if self.pipe_to_hud is None:
                 if os.name == 'nt':
                     command = "python HUD_main.py" + " %s" % (self.database)
@@ -190,7 +190,7 @@ class GuiAutoImport (threading.Thread):
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
-            self.startButton.set_label(u'Start Autoimport')
+            self.startButton.set_label(u'  _Start Autoimport  ')
             
                 
 

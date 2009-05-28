@@ -26,6 +26,7 @@ Create and manage the database objects.
 #    Standard Library modules
 import sys
 import traceback
+from datetime import datetime, date, time, timedelta
 
 #    pyGTK modules
 
@@ -77,10 +78,40 @@ class Database:
             print "press enter to continue"
             sys.exit()
 
+        self.db_server = c.supported_databases[db_name].db_server
         self.type = c.supported_databases[db_name].db_type
-        self.sql = SQL.Sql(game = game, type = self.type)
+        self.sql = SQL.Sql(game = game, type = self.type, db_server = self.db_server)
         self.connection.rollback()
         
+                                   # To add to config:
+        self.hud_style = 'T'       # A=All-time 
+                                   # S=Session
+                                   # T=timed (last n days)
+                                   # Future values may also include: 
+                                   #                                 H=Hands (last n hands)
+        self.hud_hands = 1000      # Max number of hands from each player to use for hud stats
+        self.hud_days  = 90        # Max number of days from each player to use for hud stats
+        self.hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
+                                   # (hands every 2 mins for 1 hour = one session, if followed
+                                   # by a 40 minute gap and then more hands on same table that is
+                                   # a new session)
+        cur = self.connection.cursor()
+
+        self.hand_1day_ago = 0
+        cur.execute(self.sql.query['get_hand_1day_ago'])
+        row = cur.fetchone()
+        if row and row[0]:
+            self.hand_1day_ago = row[0]
+        #print "hand 1day ago =", self.hand_1day_ago
+
+        d = timedelta(days=self.hud_days)
+        now = datetime.utcnow() - d
+        self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
+
+        self.hand_nhands_ago = 0  # todo
+        #cur.execute(self.sql.query['get_table_name'], (hand_id, ))
+        #row = cur.fetchone()
+
     def close_connection(self):
         self.connection.close()
         
@@ -191,16 +222,25 @@ class Database:
             winners[row[0]] = row[1]
         return winners
 
-    def get_stats_from_hand(self, hand, aggregate = False, stylekey = 'A000000'):
+    def get_stats_from_hand(self, hand, aggregate = False):
+        if self.hud_style == 'S':
+            return( self.get_stats_from_hand_session(hand) )
+        else:   # self.hud_style == A
+            if aggregate:
+                query = 'get_stats_from_hand_aggregated'
+            else:
+                query = 'get_stats_from_hand'
+        
+        if self.hud_style == 'T':
+            stylekey = self.date_ndays_ago
+        else:  # assume A (all-time)
+            stylekey = '0000000'  # all stylekey values should be higher than this
+
+        subs = (hand, hand, stylekey)
+        #print "get stats: hud style =", self.hud_style, "subs =", subs
         c = self.connection.cursor()
 
-        if aggregate:
-            query = 'get_stats_from_hand_aggregated'
-        else:
-            query = 'get_stats_from_hand'
-        subs = (hand, hand, stylekey, stylekey)
-
-#    now get the stats
+#       now get the stats
         c.execute(self.sql.query[query], subs)
         colnames = [desc[0] for desc in c.description]
         stat_dict = {}
@@ -210,6 +250,52 @@ class Database:
                 t_dict[name.lower()] = val
 #                print t_dict
             stat_dict[t_dict['player_id']] = t_dict
+
+        return stat_dict
+
+    # uses query on handsplayers instead of hudcache to get stats on just this session
+    def get_stats_from_hand_session(self, hand):
+
+        if self.hud_style == 'S':
+            query = self.sql.query['get_stats_from_hand_session']
+            if self.db_server == 'mysql':
+                query = query.replace("<signed>", 'signed ')
+            else:
+                query = query.replace("<signed>", '')
+        else:   # self.hud_style == A
+            return None
+        
+        subs = (self.hand_1day_ago, hand)
+        c = self.connection.cursor()
+
+        # now get the stats
+        #print "sess_stats: subs =", subs, "subs[0] =", subs[0]
+        c.execute(query, subs)
+        colnames = [desc[0] for desc in c.description]
+        n,stat_dict = 0,{}
+        row = c.fetchone()
+        while row:
+            if colnames[0].lower() == 'player_id':
+                playerid = row[0]
+            else:
+                print "ERROR: query %s result does not have player_id as first column" % (query,)
+                break
+
+            for name, val in zip(colnames, row):
+                if not playerid in stat_dict:
+                    stat_dict[playerid] = {}
+                    stat_dict[playerid][name.lower()] = val
+                elif not name.lower() in stat_dict[playerid]:
+                    stat_dict[playerid][name.lower()] = val
+                elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
+                    stat_dict[playerid][name.lower()] += val
+            n += 1
+            if n >= 4000: break  # todo: don't think this is needed so set nice and high 
+                                 #       for now - comment out or remove?
+            row = c.fetchone()
+        #print "   %d rows fetched, len(stat_dict) = %d" % (n, len(stat_dict))
+
+        #print "session stat_dict =", stat_dict
         return stat_dict
             
     def get_player_id(self, config, site, player_name):

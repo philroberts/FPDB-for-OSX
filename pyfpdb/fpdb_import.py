@@ -226,7 +226,7 @@ class Importer:
                 #if os.path.isdir(file):
                     #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
             else:
-                removeFromFileList[file] = True
+                self.removeFromFileList[file] = True
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
 
         for file in self.removeFromFileList:
@@ -303,7 +303,8 @@ class Importer:
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
         except:
-            print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
+            # just skip the debug message and return silently:
+            #print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
             return (0,0,0,1,0)
 
         if firstline.find("Tournament Summary")!=-1:
