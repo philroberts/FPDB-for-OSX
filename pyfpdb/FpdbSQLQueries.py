@@ -1053,6 +1053,8 @@ class FpdbSQLQueries:
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
+                     and   concat( '20', substring(hc.styleKey,2,2), '-', substring(hc.styleKey,4,2), '-' 
+                                 , substring(hc.styleKey,6,2) ) <datestest>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
@@ -1073,6 +1075,7 @@ class FpdbSQLQueries:
                            inner join Hands h        ON h.id            = hp.handId
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
+                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
                            group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
@@ -1153,6 +1156,8 @@ class FpdbSQLQueries:
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
+                     and   '20' || SUBSTR(hc.styleKey,2,2) || '-' || SUBSTR(hc.styleKey,4,2) || '-' 
+                           || SUBSTR(hc.styleKey,6,2) <datestest>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
@@ -1173,6 +1178,7 @@ class FpdbSQLQueries:
                            inner join Hands h   ON (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
+                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
                            group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
@@ -1275,6 +1281,8 @@ class FpdbSQLQueries:
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
+                     and   concat( '20', substring(hc.styleKey,2,2), '-', substring(hc.styleKey,4,2), '-' 
+                                 , substring(hc.styleKey,6,2) ) <datestest>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
@@ -1305,6 +1313,7 @@ class FpdbSQLQueries:
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
+                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
                            group by hp.handId, gtId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
@@ -1409,6 +1418,8 @@ class FpdbSQLQueries:
                      where hc.playerId in <player_test>
                      and   <gtbigBlind_test>
                      and   hc.activeSeats <seats_test>
+                     and   '20' || SUBSTR(hc.styleKey,2,2) || '-' || SUBSTR(hc.styleKey,4,2) || '-' 
+                           || SUBSTR(hc.styleKey,6,2) <datestest>
                      group by gt.base
                           ,gt.category
                           ,upper(gt.limitType)
@@ -1439,6 +1450,7 @@ class FpdbSQLQueries:
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
+                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
                            group by hp.handId, gameTypeId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
@@ -1662,7 +1674,7 @@ class FpdbSQLQueries:
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
-                      ,hp.activeSeats
+                      ,h.seats
                       ,case when hp.position = 'B' then 'B'
                             when hp.position = 'S' then 'S'
                             when hp.position = '0' then 'D'
@@ -1678,7 +1690,7 @@ class FpdbSQLQueries:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,'A000000'  /* All-time cache, no key required */
+                      ,date_format(h.handStart, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -1738,9 +1750,158 @@ class FpdbSQLQueries:
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 GROUP BY h.gametypeId
                         ,hp.playerId
-                        ,hp.activeSeats
+                        ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
+                        ,date_format(h.handStart, 'd%y%m%d')
+"""
+        elif (self.dbname == 'PostgreSQL')  or (self.dbname == 'SQLite'):
+            self.query['rebuildHudCache'] = """
+                INSERT INTO HudCache
+                (gametypeId
+                ,playerId
+                ,activeSeats
+                ,position
+                ,tourneyTypeId
+                ,styleKey
+                ,HDs
+                ,wonWhenSeenStreet1
+                ,wonAtSD
+                ,street0VPI
+                ,street0Aggr
+                ,street0_3BChance
+                ,street0_3BDone
+                ,street1Seen
+                ,street2Seen
+                ,street3Seen
+                ,street4Seen
+                ,sawShowdown
+                ,street1Aggr
+                ,street2Aggr
+                ,street3Aggr
+                ,street4Aggr
+                ,otherRaisedStreet1
+                ,otherRaisedStreet2
+                ,otherRaisedStreet3
+                ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet1
+                ,foldToOtherRaisedStreet2
+                ,foldToOtherRaisedStreet3
+                ,foldToOtherRaisedStreet4
+                ,stealAttemptChance
+                ,stealAttempted
+                ,foldBbToStealChance
+                ,foldedBbToSteal
+                ,foldSbToStealChance
+                ,foldedSbToSteal
+                ,street1CBChance
+                ,street1CBDone
+                ,street2CBChance
+                ,street2CBDone
+                ,street3CBChance
+                ,street3CBDone
+                ,street4CBChance
+                ,street4CBDone
+                ,foldToStreet1CBChance
+                ,foldToStreet1CBDone
+                ,foldToStreet2CBChance
+                ,foldToStreet2CBDone
+                ,foldToStreet3CBChance
+                ,foldToStreet3CBDone
+                ,foldToStreet4CBChance
+                ,foldToStreet4CBDone
+                ,totalProfit
+                ,street1CheckCallRaiseChance
+                ,street1CheckCallRaiseDone
+                ,street2CheckCallRaiseChance
+                ,street2CheckCallRaiseDone
+                ,street3CheckCallRaiseChance
+                ,street3CheckCallRaiseDone
+                ,street4CheckCallRaiseChance
+                ,street4CheckCallRaiseDone
+                )
+                SELECT h.gametypeId
+                      ,hp.playerId
+                      ,h.seats
+                      ,case when hp.position = 'B' then 'B'
+                            when hp.position = 'S' then 'S'
+                            when hp.position = '0' then 'D'
+                            when hp.position = '1' then 'C'
+                            when hp.position = '2' then 'M'
+                            when hp.position = '3' then 'M'
+                            when hp.position = '4' then 'M'
+                            when hp.position = '5' then 'E'
+                            when hp.position = '6' then 'E'
+                            when hp.position = '7' then 'E'
+                            when hp.position = '8' then 'E'
+                            when hp.position = '9' then 'E'
+                            else 'E'
+                       end                                            AS hc_position
+                      ,hp.tourneyTypeId
+                      ,'d' || to_char(h.handStart, 'YYMMDD')
+                      ,count(1)
+                      ,sum(wonWhenSeenStreet1)
+                      ,sum(wonAtSD)
+                      ,sum(CAST(street0VPI as integer)) 
+                      ,sum(CAST(street0Aggr as integer)) 
+                      ,sum(CAST(street0_3BChance as integer)) 
+                      ,sum(CAST(street0_3BDone as integer)) 
+                      ,sum(CAST(street1Seen as integer)) 
+                      ,sum(CAST(street2Seen as integer)) 
+                      ,sum(CAST(street3Seen as integer)) 
+                      ,sum(CAST(street4Seen as integer)) 
+                      ,sum(CAST(sawShowdown as integer)) 
+                      ,sum(CAST(street1Aggr as integer)) 
+                      ,sum(CAST(street2Aggr as integer)) 
+                      ,sum(CAST(street3Aggr as integer)) 
+                      ,sum(CAST(street4Aggr as integer)) 
+                      ,sum(CAST(otherRaisedStreet1 as integer)) 
+                      ,sum(CAST(otherRaisedStreet2 as integer)) 
+                      ,sum(CAST(otherRaisedStreet3 as integer)) 
+                      ,sum(CAST(otherRaisedStreet4 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet1 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet2 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet3 as integer)) 
+                      ,sum(CAST(foldToOtherRaisedStreet4 as integer)) 
+                      ,sum(CAST(stealAttemptChance as integer)) 
+                      ,sum(CAST(stealAttempted as integer)) 
+                      ,sum(CAST(foldBbToStealChance as integer)) 
+                      ,sum(CAST(foldedBbToSteal as integer)) 
+                      ,sum(CAST(foldSbToStealChance as integer)) 
+                      ,sum(CAST(foldedSbToSteal as integer)) 
+                      ,sum(CAST(street1CBChance as integer)) 
+                      ,sum(CAST(street1CBDone as integer)) 
+                      ,sum(CAST(street2CBChance as integer)) 
+                      ,sum(CAST(street2CBDone as integer)) 
+                      ,sum(CAST(street3CBChance as integer)) 
+                      ,sum(CAST(street3CBDone as integer)) 
+                      ,sum(CAST(street4CBChance as integer)) 
+                      ,sum(CAST(street4CBDone as integer)) 
+                      ,sum(CAST(foldToStreet1CBChance as integer)) 
+                      ,sum(CAST(foldToStreet1CBDone as integer)) 
+                      ,sum(CAST(foldToStreet2CBChance as integer)) 
+                      ,sum(CAST(foldToStreet2CBDone as integer)) 
+                      ,sum(CAST(foldToStreet3CBChance as integer)) 
+                      ,sum(CAST(foldToStreet3CBDone as integer)) 
+                      ,sum(CAST(foldToStreet4CBChance as integer)) 
+                      ,sum(CAST(foldToStreet4CBDone as integer)) 
+                      ,sum(CAST(totalProfit as integer)) 
+                      ,sum(CAST(street1CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street1CheckCallRaiseDone as integer)) 
+                      ,sum(CAST(street2CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street2CheckCallRaiseDone as integer)) 
+                      ,sum(CAST(street3CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street3CheckCallRaiseDone as integer)) 
+                      ,sum(CAST(street4CheckCallRaiseChance as integer)) 
+                      ,sum(CAST(street4CheckCallRaiseDone as integer)) 
+                FROM HandsPlayers hp
+                INNER JOIN Hands h ON (h.id = hp.handId)
+                GROUP BY h.gametypeId
+                        ,hp.playerId
+                        ,h.seats
+                        ,hc_position
+                        ,hp.tourneyTypeId
+                        ,to_char(h.handStart, 'YYMMDD')
 """
 
 

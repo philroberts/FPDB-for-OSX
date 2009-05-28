@@ -53,7 +53,7 @@ class GuiPositionalStats (threading.Thread):
                             "LimitSep" :  True,
                             "Seats"    :  True,
                             "SeatSep"  :  True,
-                            "Dates"    :  False,
+                            "Dates"    :  True,
                             "Button1"  :  True,
                             "Button2"  :  False
                           }
@@ -117,6 +117,7 @@ class GuiPositionalStats (threading.Thread):
         siteids = self.filters.getSiteIds()
         limits  = self.filters.getLimits()
         seats = self.filters.getSeats()
+        dates = self.filters.getDates()
         sitenos = []
         playerids = []
 
@@ -140,24 +141,16 @@ class GuiPositionalStats (threading.Thread):
             print "No limits found"
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, seats)
+        self.createStatsTable(vbox, playerids, sitenos, limits, seats, dates)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, seats):
-
-
-
-
+    def createStatsTable(self, vbox, playerids, sitenos, limits, seats, dates):
         self.stats_table = gtk.Table(1, 1, False) # gtk table expands as required
         self.stats_table.set_col_spacings(4)
         self.stats_table.show()
         vbox.add(self.stats_table)
 
         row = 0
-
-
-
         col = 0
-
         for t in self.posnheads:
             l = gtk.Label(self.posnheads[col])
             l.show()
@@ -165,7 +158,7 @@ class GuiPositionalStats (threading.Thread):
             col +=1 
 
         tmp = self.sql.query['playerStatsByPosition']
-        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
 
@@ -219,8 +212,7 @@ class GuiPositionalStats (threading.Thread):
         
         # show totals at bottom
         tmp = self.sql.query['playerStats']
-        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats)
-
+        tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         rows = len(result)
@@ -274,7 +266,7 @@ class GuiPositionalStats (threading.Thread):
         self.db.db.rollback()
     #end def fillStatsFrame(self, vbox):
 
-    def refineQuery(self, query, playerids, sitenos, limits, seats):
+    def refineQuery(self, query, playerids, sitenos, limits, seats, dates):
         if playerids:
             nametest = str(tuple(playerids))
             nametest = nametest.replace("L", "")
@@ -359,6 +351,10 @@ class GuiPositionalStats (threading.Thread):
             query = query.replace("<groupbygt.bigBlind>", ",gt.bigBlind")
             query = query.replace("<hcgametypeId>", "hc.gametypeId")
             query = query.replace("<hgameTypeId>", "h.gameTypeId")
+
+        # Filter on dates
+        query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")
+
         #print "query =\n", query
         return(query)
     #end def refineQuery(self, query, playerids, sitenos, limits):
