@@ -259,11 +259,14 @@ class GuiPlayerStats (threading.Thread):
                 if col == 1 and holecards:
                     listcols[col].pack_start(textcell, expand=True)
                 else:
-                    listcols[col].pack_start(textcell, expand=False)
+                    listcols[col].pack_start(textcell, expand=True)
                 listcols[col].add_attribute(textcell, 'text', col)
+                listcols[col].set_expand(True)
             else:
-                listcols[col].pack_start(numcell, expand=False)
+                listcols[col].pack_start(numcell, expand=True)
                 listcols[col].add_attribute(numcell, 'text', col)
+                listcols[col].set_alignment(1.0)
+                listcols[col].set_expand(True)
 
         rows = len(result) # +1 for title row
 
@@ -433,8 +436,5 @@ class GuiPlayerStats (threading.Thread):
             self.refreshStats(None, None)
 
         detailDialog.destroy()
-
-
-
 
 
