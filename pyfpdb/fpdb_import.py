@@ -303,8 +303,7 @@ class Importer:
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
         except:
-            # just skip the debug message and return silently:
-            #print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
+            print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
             return (0,0,0,1,0)
 
         if firstline.find("Tournament Summary")!=-1:
