@@ -96,7 +96,7 @@ class fpdb_db:
         try:
             self.cursor.execute("SELECT * FROM Settings")
             settings=self.cursor.fetchone()
-            if settings[0]!=118:
+            if settings[0]!=119:
                 print "outdated or too new database version - please recreate tables"
                 self.wrongDbVersion=True
         except:# _mysql_exceptions.ProgrammingError:
@@ -201,7 +201,7 @@ class fpdb_db:
     #end def get_db_info
     
     def fillDefaultData(self):
-        self.cursor.execute("INSERT INTO Settings VALUES (118);")
+        self.cursor.execute("INSERT INTO Settings VALUES (119);")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
