@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
+
+    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
+
 	<supported_sites>
-	    <site enabled="True" site_name="PokerStars" table_finder="PokerStars.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+
+	    <site enabled="True" 
+	          site_name="PokerStars" 
+	          table_finder="PokerStars.exe" 
+	          screen_name="YOUR SCREEN NAME HERE" 
+	          site_path="C:/Program Files/PokerStars/" 
+	          HH_path="C:/Program Files/PokerStars/HandHistory/YOUR SCREEN NAME HERE/" 
+	          decoder="pokerstars_decode_table"
+              converter="PokerStarsToFpdb"
+	          bgcolor="#000000" 
+	          fgcolor="#FFFFFF" 
+	          hudopacity="1.0" 
+	          font="Sans" 
+	          font_size="8"
+	          supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
 	        <layout max="8" width="792" height="546" fav_seat="0">
 	        	<location seat="1" x="684" y="61">  </location>
 	        	<location seat="2" x="689" y="239"> </location>
@@ -49,7 +66,21 @@
 	        	<location seat="2" x="10"  y="288"> </location>
 	        </layout>
 	    </site>
-	    <site enabled="True" site_name="Full Tilt Poker" table_finder="FullTiltPoker.exe" screen_name="DO NOT NEED THIS YET" site_path="~/.wine/drive_c/Program Files/Full Tilt Poker/" HH_path="~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/abc/" decoder="fulltilt_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+
+	    <site enabled="True" 
+	          site_name="Full Tilt Poker" 
+	          table_finder="FullTiltPoker" 
+	          screen_name="YOUR SCREEN NAME HERE" 
+	          site_path="C:/Program Files/Full Tilt Poker/" 
+	          HH_path="C:/Program Files/Full Tilt Poker/HandHistory/YOUR SCREEN NAME HERE/" 
+	          decoder="fulltilt_decode_table" 
+              converter="FulltiltToFpdb"
+	          bgcolor="#000000" 
+	          fgcolor="#FFFFFF" 
+	          hudopacity="1.0" 
+	          font="Sans" 
+	          font_size="8"
+	          supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
 	        <layout fav_seat="0" height="547" max="8" width="794">
 	        	<location seat="1" x="640" y="64">  </location>
 	        	<location seat="2" x="650" y="230"> </location>
@@ -84,7 +115,16 @@
 	        	<location seat="9" x="70" y="53">  </location>
 	        </layout>
 	    </site>
-	    <site enabled="False" site_name="Everleaf" table_finder="Everleaf.exe" screen_name="DO NOT NEED THIS YET" site_path="" HH_path="" decoder="everleaf_decode_table" converter="EverleafToFpdb" supported_games="holdem">
+
+	    <site enabled="False" 
+	          site_name="Everleaf" 
+	          table_finder="Everleaf.exe" 
+	          screen_name="YOUR SCREEN NAME HERE" 
+	          site_path="" 
+	          HH_path="" 
+	          decoder="everleaf_decode_table" 
+              converter="EverleafToFpdb"
+	          supported_games="holdem">
 	        <layout fav_seat="0" height="547" max="8" width="794">
 	        	<location seat="1" x="640" y="64">  </location>
 	        	<location seat="2" x="650" y="230"> </location>
@@ -120,8 +160,10 @@
 	        </layout>
 	    </site>
     </supported_sites>
+
     <supported_games>
-    	<game cols="3" db="fpdb" game_name="holdem" rows="2">
+
+    	<game cols="3" db="fpdb" game_name="holdem" rows="2" aux="mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
@@ -129,7 +171,8 @@
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	
-    	<game cols="3" db="fpdb" game_name="razz" rows="2">
+
+    	<game cols="3" db="fpdb" game_name="razz" rows="2" aux="stud_mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
@@ -137,7 +180,8 @@
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	
-    	<game cols="3" db="fpdb" game_name="omahahi" rows="2">
+
+    	<game cols="3" db="fpdb" game_name="omahahi" rows="2" aux="mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
@@ -145,7 +189,8 @@
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	 	
-    	<game cols="3" db="fpdb" game_name="omahahilo" rows="2">
+
+    	<game cols="3" db="fpdb" game_name="omahahilo" rows="2" aux="mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
@@ -153,7 +198,8 @@
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	
-    	<game cols="3" db="fpdb" game_name="studhi" rows="2">
+
+    	<game cols="3" db="fpdb" game_name="studhi" rows="2" aux="stud_mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
@@ -161,7 +207,8 @@
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	
-    	<game cols="3" db="fpdb" game_name="studhilo" rows="2">
+
+    	<game cols="3" db="fpdb" game_name="studhilo" rows="2" aux="stud_mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
@@ -170,6 +217,7 @@
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
     	</game>    	
     </supported_games>
+
     <popup_windows>
     	<pu pu_name="default">
             <pu_stat pu_stat_name="n"> </pu_stat>
@@ -196,15 +244,60 @@
             <pu_stat pu_stat_name="ffreq_4"> </pu_stat>
     	</pu>
     </popup_windows>
-    <import callFpdbHud = "True" interval = "10" ></import>
-    <tv combinedStealFold = "True" combined2B3B = "True" combinedPostflop = "True"></tv>
+
+    <aux_windows>
+    	<aw card_ht="42" card_wd="30" class="Stud_mucked" cols="11" deck="Cards01.png" module="Mucked" name="stud_mucked" rows="8"> </aw>
+    	<aw class="Hello" module="Hello" name="Hello"> </aw>
+    	<aw class="Hello_Menu" module="Hello" name="Hello_menu"> </aw>
+    	<aw class="Hello_plus" module="Hello" name="Hello_plus"> </aw>
+    	<aw card_ht="42" card_wd="30" class="Flop_Mucked" deck="Cards01.png" module="Mucked" name="mucked" opacity="0.7" timeout="5">
+	        <layout height="546" max="6" width="792">
+	        	<location seat="1" x="555" y="169"> </location>
+	        	<location seat="2" x="572" y="276"> </location>
+	        	<location seat="3" x="363" y="348"> </location>
+	        	<location seat="4" x="150" y="273"> </location>
+	        	<location seat="5" x="150" y="169">  </location>
+	        	<location seat="6" x="363" y="113">  </location>
+	        	<location common="1" x="323" y="232"> </location>
+	        </layout>
+	        <layout height="546" max="9" width="792">
+	        	<location seat="1" x="486" y="113">  </location>
+	        	<location seat="2" x="555" y="169"> </location>
+	        	<location seat="3" x="572" y="276"> </location>
+	        	<location seat="4" x="522" y="345"> </location>
+	        	<location seat="5" x="363" y="348"> </location>
+	        	<location seat="6" x="217" y="341"> </location>
+	        	<location seat="7" x="150" y="273"> </location>
+	        	<location seat="8" x="150" y="169">  </location>
+	        	<location seat="9" x="230" y="115">  </location>
+	        	<location common="1" x="323" y="232"> </location>
+	        </layout>
+	        <layout height="546" max="10" width="792">
+	        	<location seat="1" x="486" y="113">  </location>
+	        	<location seat="2" x="499" y="138"> </location>
+	        	<location seat="3" x="522" y="212"> </location>
+	        	<location seat="4" x="501" y="281"> </location>
+	        	<location seat="5" x="402" y="323"> </location>
+	        	<location seat="6" x="243" y="311"> </location>
+	        	<location seat="7" x="203" y="262"> </location>
+	        	<location seat="8" x="170" y="185">  </location>
+	        	<location seat="9" x="183" y="128">  </location>
+	        	<location seat="10" x="213" y="86">  </location>
+	        	<location common="1" x="317" y="237"> </location>
+	        </layout>
+    	</aw>
+    </aux_windows>
+
+    <hhcs>
+        <hhc site="PokerStars" converter="PokerStarsToFpdb"/>
+        <hhc site="Full Tilt Poker" converter="FulltiltToFpdb"/>
+        <hhc site="Everleaf" converter="EverleafToFpdb"/>
+    </hhcs>
 
     <supported_databases>
-    	<database db_name="fpdb"         db_server="mysql"      db_ip="localhost" db_user="fpdb"   db_pass="YOUR MYSQL PASSWORD" db_type="fpdb">    </database>
+    	<database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD" db_type="fpdb"></database>
     </supported_databases>
-    <mucked_windows>
-    	<mw mw_name="stud1" format="stud" rows="8" cols="11" deck="Cards01.png" card_wd="30" card_ht="42"> </mw>
-    </mucked_windows>
+
 </FreePokerToolsConfig>
 
     

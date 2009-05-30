@@ -197,6 +197,15 @@ class Aux_window:
             temp = temp + "%s" % self.layout[layout]
         return temp
 
+class HHC:
+    def __init__(self, node):
+        self.site      = node.getAttribute("site")
+        self.converter = node.getAttribute("converter")
+
+    def __str__(self):
+        return "%s:\t%s" % (self.site, self.converter)
+
+
 class Popup:
     def __init__(self, node):
         self.name  = node.getAttribute("pu_name")
@@ -277,6 +286,7 @@ class Config:
         self.supported_games = {}
         self.supported_databases = {}
         self.aux_windows = {}
+        self.hhcs = {}
         self.popup_windows = {}
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
@@ -298,6 +308,11 @@ class Config:
         for aw_node in doc.getElementsByTagName("aw"):
             aw = Aux_window(node = aw_node)
             self.aux_windows[aw.name] = aw
+
+#       s_dbs = doc.getElementsByTagName("mucked_windows")
+        for hhc_node in doc.getElementsByTagName("hhc"):
+            hhc = HHC(node = hhc_node)
+            self.hhcs[hhc.site] = hhc
 
 #        s_dbs = doc.getElementsByTagName("popup_windows")
         for pu_node in doc.getElementsByTagName("pu"):
@@ -703,6 +718,11 @@ if __name__== "__main__":
     for w in c.aux_windows.keys():
         print c.aux_windows[w]
     print "----------- END AUX WINDOW FORMATS -----------"
+
+    print "\n----------- HAND HISTORY CONVERTERS -----------"
+    for w in c.hhcs.keys():
+        print c.hhcs[w]
+    print "----------- END HAND HISTORY CONVERTERS -----------"
     
     print "\n----------- POPUP WINDOW FORMATS -----------"
     for w in c.popup_windows.keys():

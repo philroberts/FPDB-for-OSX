@@ -32,8 +32,7 @@ saveActions = True  # set this to False to avoid storing action data
                     # Pros: speeds up imports
                     # Cons: no action data is saved, so you need to keep the hand histories
                     #       variance not available on stats page
-                    #       no graphs
-
+                    #     : No graphs
 #stores a stud/razz hand into the database
 def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametype_id, hand_start_time
              ,names, player_ids, start_cashes, antes, card_values, card_suits, winnings, rakes
@@ -55,7 +54,7 @@ def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametyp
                                                           ,start_cashes, antes, card_values
                                                           ,card_suits, winnings, rakes, seatNos)
     
-    fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
+    fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     
     if saveActions:
         fpdb_simple.storeActions(cursor, hands_players_ids, action_types
@@ -83,17 +82,17 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     t2 = time()
 
     hands_id = fpdb_simple.storeHands(backend, db, cursor, site_hand_no, gametype_id
-                                   ,hand_start_time, names, tableName, maxSeats)
+                                   ,hand_start_time, names, tableName, maxSeats, hudImportData)
     t3 = time()
     hands_players_ids = fpdb_simple.store_hands_players_holdem_omaha(
                                backend, db, cursor, category, hands_id, player_ids, start_cashes
-                             , positions, card_values, card_suits, winnings, rakes, seatNos)
+                             , positions, card_values, card_suits, winnings, rakes, seatNos, hudImportData)
     t4 = time()            
     #print "ring holdem, backend=%d" % backend
     if fastStoreHudCache:
-        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     else:
-        fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     t5 = time()
     fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
     t6 = time()
@@ -132,9 +131,9 @@ def tourney_holdem_omaha(config, backend, db, cursor, base, category, siteTourne
     
     #print "tourney holdem, backend=%d" % backend
     if fastStoreHudCache:
-        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache2(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     else:
-        fpdb_simple.storeHudCache(cursor, base, category, gametype_id, player_ids, hudImportData)
+        fpdb_simple.storeHudCache(backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
     
     fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
     
@@ -166,7 +165,7 @@ def tourney_stud(config, backend, db, cursor, base, category, siteTourneyNo, buy
                                              , playerIds, startCashes, antes, cardValues, cardSuits
                                              , winnings, rakes, seatNos, tourneys_players_ids)
     
-    fpdb_simple.storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData)
+    fpdb_simple.storeHudCache(backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
     
     if saveActions:
         fpdb_simple.storeActions(cursor, hands_players_ids, actionTypes, allIns, actionAmounts, actionNos)

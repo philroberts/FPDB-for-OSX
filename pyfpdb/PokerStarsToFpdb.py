@@ -73,7 +73,7 @@ follow :  whether to tail -f the input"""
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
                 ["ring", "stud", "fl"],
-                ["ring", "draw", "fl"],
+                #["ring", "draw", "fl"],
                 ["ring", "omaha", "pl"]
                ]
 

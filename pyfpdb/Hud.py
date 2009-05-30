@@ -125,7 +125,7 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.parent.kill_hud, self.table.name)
+        self.item1.connect("activate", self.parent.kill_hud, self.table_name)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')
@@ -204,14 +204,14 @@ class Hud:
     def reposition_windows(self, *args):
         for w in self.stat_windows.itervalues():
             if type(w) == int:
-                print "in reposition, w =", w
+#                print "in reposition, w =", w
                 continue
-            print "in reposition, w =", w, w.x, w.y
+#            print "in reposition, w =", w, w.x, w.y
             w.window.move(w.x, w.y)
         return True
 
     def debug_stat_windows(self, *args):
-        print self.table, "\n", self.main_window.window.get_transient_for()
+#        print self.table, "\n", self.main_window.window.get_transient_for()
         for w in self.stat_windows:
             print self.stat_windows[w].window.window.get_transient_for()
                 

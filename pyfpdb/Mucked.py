@@ -451,7 +451,7 @@ class Flop_Mucked(Aux_Window):
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
         new_locs = {}
-        print "adj =", self.adj
+#        print "adj =", self.adj
         for (i, pos) in self.positions.iteritems():
             if i != 'common':
                 new_locs[self.adj[int(i)]] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)

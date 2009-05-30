@@ -30,7 +30,6 @@ import gtk
 #    fpdb/FreePokerTools modules
 import fpdb_simple
 import fpdb_import
-import fpdb_db
 import Configuration
 
 class GuiBulkImport():
@@ -66,13 +65,16 @@ class GuiBulkImport():
             self.importer.setDropIndexes(cb_model[cb_index][0])
         else:
             self.importer.setDropIndexes("auto")
-        hhc=self.cbfilter.get_model()[self.cbfilter.get_active()][0]
+        sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
         self.lab_info.set_text("Importing")
         
-        self.importer.addBulkImportImportFileOrDir(self.inputFile,filter=hhc)
+        self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
         self.importer.setCallHud(False)
         starttime = time()
         (stored, dups, partial, errs, ttime) = self.importer.runImport()
+        ttime = time() - starttime
+        if ttime == 0:
+            ttime = 1
         print 'GuiBulkImport.import_dir done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
              % (stored, dups, partial, errs, ttime, stored / ttime)
         self.importer.clearFileList()
@@ -83,8 +85,7 @@ class GuiBulkImport():
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, db, settings, config):
-        self.db = db # this is an instance of fpdb_db
+    def __init__(self, settings, config):
         self.settings = settings
         self.config = config
         self.importer = fpdb_import.Importer(self, self.settings,
@@ -175,11 +176,9 @@ class GuiBulkImport():
 
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
-        self.cbfilter.append_text("passthrough")
-        self.cbfilter.append_text("BetfairToFpdb")
-        self.cbfilter.append_text("EverleafToFpdb")
-        self.cbfilter.append_text("FulltiltToFpdb")
-        self.cbfilter.append_text("PokerStarsToFpdb")
+        for w in self.config.hhcs:
+            print w
+            self.cbfilter.append_text(w)
         self.cbfilter.set_active(0)
         self.table.attach(self.cbfilter, 3, 4, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
         self.cbfilter.show()
@@ -220,8 +219,8 @@ def main(argv=None):
                     help="Input file in quiet mode")
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
                     help="don't start gui; deprecated (just give a filename with -f).")
-    parser.add_option("-c", "--convert", dest="filtername", default="passthrough", metavar="FILTER",
-                    help="Conversion filter (*passthrough, FullTiltToFpdb, PokerStarsToFpdb, EverleafToFpdb)")
+    parser.add_option("-c", "--convert", dest="filtername", default="PokerStars", metavar="FILTER",
+                    help="Conversion filter (*Full Tilt Poker, PokerStars, Everleaf)")
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help="If this option is passed it quits when it encounters any error")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
@@ -229,7 +228,6 @@ def main(argv=None):
     (options, sys.argv) = parser.parse_args(args = argv)
 
     config = Configuration.Config()
-    db = None
     
     settings = {}
     settings['minPrint'] = options.minPrint
@@ -245,7 +243,7 @@ def main(argv=None):
         print '-q is deprecated. Just use "-f filename" instead'
         # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
-        i = GuiBulkImport(db, settings, config)
+        i = GuiBulkImport(settings, config)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
         main_window.add(i.vbox)
@@ -256,7 +254,7 @@ def main(argv=None):
         importer = fpdb_import.Importer(False,settings, config) 
         importer.setDropIndexes("auto")
         importer.setFailOnError(options.failOnError)
-        importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), filter=options.filtername)
+        importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
         importer.runImport()
         importer.clearFileList()
