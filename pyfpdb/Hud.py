@@ -473,6 +473,7 @@ class Popup_window:
     def __init__(self, parent, stat_window):
         self.sb_click = 0
         self.stat_window = stat_window
+        self.parent = parent
 
 #    create the popup window
         self.window = gtk.Window()

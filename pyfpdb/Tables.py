@@ -309,6 +309,10 @@ def get_site_from_exe(c, exe):
             return params['site_name']
     return None
 
+def everleaf_decode_table(tw):
+# 2 - Tournament ID: 573256 - NL Hold'em - 150/300 blinds - Good luck <username>! - [Connection is ...]    
+    pass
+
 def pokerstars_decode_table(tw):
 #    Extract poker information from the window title.  This is not needed for
 #    fpdb, since all that information is available in the db via new_hand_number.
