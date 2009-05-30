@@ -383,7 +383,7 @@ class fpdb:
         print "todo: implement obtain_global_lock (users: pls ignore this)"
     #end def obtain_global_lock
 
-    def quit(self, widget):
+    def quit(self, widget, data):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
@@ -427,8 +427,12 @@ class fpdb:
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
 
+<<<<<<< HEAD:pyfpdb/fpdb.py
 
     def tab_main_help(self, widget, data=None):
+=======
+    def tab_main_help(self, widget, data):
+>>>>>>> f0b4d82fa554c678f5df0e847083fb8c3bbd0bfa:pyfpdb/fpdb.py
         """Displays a tab with the main fpdb help screen"""
         #print "start of tab_main_help"
         mh_tab=gtk.Label("""Welcome to Fpdb!
