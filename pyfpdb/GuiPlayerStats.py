@@ -60,7 +60,7 @@ class GuiPlayerStats (threading.Thread):
                             "LimitSep" :  True,
                             "Seats"    :  True,
                             "SeatSep"  :  True,
-                            "Dates"    :  False,
+                            "Dates"    :  True,
                             "Groups"   :  True,
                             "Button1"  :  True,
                             "Button2"  :  True
@@ -93,8 +93,9 @@ class GuiPlayerStats (threading.Thread):
                        , ("rvafq",    True,  "RvAFq",    1.0, "%3.1f")
                        , ("pofafq",   False, "PoFAFq",   1.0, "%3.1f")
                        , ("net",      True,  "Net($)",   1.0, "%6.2f")
-                       , ("bbper100", True,  "BB/100",   1.0, "%4.2f")
+                       , ("bbper100", True,  "bb/100",   1.0, "%4.2f")
                        , ("rake",     True,  "Rake($)",  1.0, "%6.2f")
+                       , ("bb100xr",  True,  "bbxr/100", 1.0, "%4.2f")
                        , ("variance", True,  "Variance", 1.0, "%5.2f")
                        ]
 
@@ -155,6 +156,7 @@ class GuiPlayerStats (threading.Thread):
         siteids = self.filters.getSiteIds()
         limits  = self.filters.getLimits()
         seats  = self.filters.getSeats()
+        dates = self.filters.getDates()
         sitenos = []
         playerids = []
 
@@ -178,16 +180,16 @@ class GuiPlayerStats (threading.Thread):
             print "No limits found"
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, seats)
+        self.createStatsTable(vbox, playerids, sitenos, limits, seats, dates)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, seats):
+    def createStatsTable(self, vbox, playerids, sitenos, limits, seats, dates):
         starttime = time()
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
         # holecards - whether to display card breakdown (True/False)
         flags = [False]
-        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, seats)
+        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, dates)
 
         # Separator
         sep = gtk.HSeparator()
@@ -210,13 +212,13 @@ class GuiPlayerStats (threading.Thread):
 
         # Detailed table
         flags = [True]
-        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats)
+        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, dates)
 
         self.db.db.commit()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
-    def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats):
+    def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats, dates):
         row = 0
         sqlrow = 0
         colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
@@ -229,7 +231,7 @@ class GuiPlayerStats (threading.Thread):
         self.stats_table.show()
         
         tmp = self.sql.query[query]
-        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats)
+        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, dates)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -311,7 +313,7 @@ class GuiPlayerStats (threading.Thread):
         
     #end def addTable(self, query, vars, playerids, sitenos, limits, seats):
 
-    def refineQuery(self, query, flags, playerids, sitenos, limits, seats):
+    def refineQuery(self, query, flags, playerids, sitenos, limits, seats, dates):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
@@ -370,6 +372,9 @@ class GuiPlayerStats (threading.Thread):
             query = query.replace("<signed>", 'signed ')
         else:
             query = query.replace("<signed>", '')
+
+        # Filter on dates
+        query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")
 
         #print "query =\n", query
         return(query)
@@ -436,5 +441,8 @@ class GuiPlayerStats (threading.Thread):
             self.refreshStats(None, None)
 
         detailDialog.destroy()
+
+
+
 
 
