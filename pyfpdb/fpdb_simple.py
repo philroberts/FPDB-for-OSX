@@ -20,6 +20,7 @@
 import datetime
 import time
 import re
+import sys
 
 import Card
  
@@ -156,7 +157,7 @@ def prepareBulkImport(fdb):
                                    "AND referenced_column_name = %s ",
                                    (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
                 cons = fdb.cursor.fetchone()
-                print "preparebulk: cons=", cons
+                #print "preparebulk: cons=", cons
                 if cons:
                     print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
                     try:
@@ -165,13 +166,25 @@ def prepareBulkImport(fdb):
                         pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                #print "dropping pg fk", fk['fktab'], fk['fkcol']
+                print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-                #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
-                    fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-                    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
+                    # try to lock table to see if index drop will work:
+                    # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
+                    # then drop still hangs :-(  does work in some tests though??
+                    # will leave code here for now pending further tests/enhancement ...
+                    fdb.cursor.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
+                    #print "after lock, status:", fdb.cursor.statusmessage
+                    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                    try:
+                        fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+                        print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
+                    except:
+                        if "does not exist" not in str(sys.exc_value):
+                            print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
+                                  % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
                 except:
-                    print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
+                    print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
+                          % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -181,22 +194,32 @@ def prepareBulkImport(fdb):
             if fdb.backend == MYSQL_INNODB:
                 print "dropping mysql index ", idx['tab'], idx['col']
                 try:
+                    # apparently nowait is not implemented in mysql so this just hands if there are locks 
+                    # preventing the index drop :-(
                     fdb.cursor.execute( "alter table %s drop index %s", (idx['tab'],idx['col']) )
                 except:
                     pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                #print "Index dropping disabled for postgresql."
-                #print "dropping pg index ", idx['tab'], idx['col']
-                # mod to use tab_col for index name?
+                print "dropping pg index ", idx['tab'], idx['col']
                 try:
-                    fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
-		    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
-                    #print "dropped  pg index ", idx['tab'], idx['col']
+                    # try to lock table to see if index drop will work:
+                    fdb.cursor.execute( "lock table %s in exclusive mode nowait" % (idx['tab'],) )
+                    #print "after lock, status:", fdb.cursor.statusmessage
+                    try:
+                        # table locked ok so index drop should work:
+                        #print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                        fdb.cursor.execute( "drop index if exists %s_%s_idx" % (idx['tab'],idx['col']) )
+                        #print "dropped  pg index ", idx['tab'], idx['col']
+                    except:
+                        if "does not exist" not in str(sys.exc_value):
+                            print "warning: drop index %s_%s_idx failed: %s, continuing ..." \
+                                  % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n')) 
                 except:
-		    print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                    print "warning: index %s_%s_idx not dropped %s, continuing ..." \
+                          % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
             else:
-                print "Only MySQL and Postgres supported so far"
+                print "Error: Only MySQL and Postgres supported so far"
                 return -1
 
     if fdb.backend == PGSQL:
@@ -343,6 +366,27 @@ def analyzeDB(fdb):
         fdb.db.set_isolation_level(1)   # go back to normal isolation level
     fdb.db.commit()
 #end def analyzeDB
+
+def get_global_lock(fdb):
+    if fdb.backend == MYSQL_INNODB:
+        try:
+            fdb.cursor.execute( "lock tables Hands write" )
+        except:
+            print "Error! failed to obtain global lock. Close all programs accessing " \
+                  + "database (including fpdb) and try again (%s)." \
+                  % ( str(sys.exc_value).rstrip('\n'), )
+            return(False)
+    elif fdb.backend == PGSQL:
+        try:
+            fdb.cursor.execute( "lock table Hands in exclusive mode nowait" )
+            #print "... after lock table, status =", fdb.cursor.statusmessage
+        except:
+            print "Error! failed to obtain global lock. Close all programs accessing " \
+                  + "database (including fpdb) and try again (%s)." \
+                  % ( str(sys.exc_value).rstrip('\n'), )
+            return(False)
+    return(True) 
+
 
 class DuplicateError(Exception):
     def __init__(self, value):

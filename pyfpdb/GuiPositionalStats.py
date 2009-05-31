@@ -87,7 +87,7 @@ class GuiPositionalStats (threading.Thread):
                          )
         self.posnheads = ( "Game", "Seats", "Posn", "VPIP", "PFR", "PF3", "Steals"
                          , "Saw_F", "SawSD", "WtSDwsF", "W$SD", "FlAFq", "TuAFq", "RvAFq"
-                         , "PoFAFq", "Net($)", "BB/100", "$/hand", "Variance", "Hds"
+                         , "PoFAFq", "Net($)", "bb/100", "$/hand", "Variance", "Hds"
                          )
 
         self.fillStatsFrame(self.stats_frame)
