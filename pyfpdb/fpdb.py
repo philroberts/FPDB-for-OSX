@@ -283,7 +283,7 @@ class fpdb:
 
         # Create actions
         actiongroup.add_actions([('main', None, '_Main'),
-                                 ('Quit', gtk.STOCK_QUIT, '_Quit me!', None, 'Quit the Program', self.quit),
+                                 ('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.quit),
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
