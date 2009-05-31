@@ -367,6 +367,27 @@ def analyzeDB(fdb):
     fdb.db.commit()
 #end def analyzeDB
 
+def get_global_lock(fdb):
+    if fdb.backend == MYSQL_INNODB:
+        try:
+            fdb.cursor.execute( "lock tables Hands write" )
+        except:
+            print "Error! failed to obtain global lock. Close all programs accessing " \
+                  + "database (including fpdb) and try again (%s)." \
+                  % ( str(sys.exc_value).rstrip('\n'), )
+            return(False)
+    elif fdb.backend == PGSQL:
+        try:
+            fdb.cursor.execute( "lock table Hands in exclusive mode nowait" )
+            #print "... after lock table, status =", fdb.cursor.statusmessage
+        except:
+            print "Error! failed to obtain global lock. Close all programs accessing " \
+                  + "database (including fpdb) and try again (%s)." \
+                  % ( str(sys.exc_value).rstrip('\n'), )
+            return(False)
+    return(True) 
+
+
 class DuplicateError(Exception):
     def __init__(self, value):
         self.value = value
