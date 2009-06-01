@@ -86,6 +86,7 @@ Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected fpdb_db object"""
         # TODO:
         # Players - base playerid and siteid tuple
+        sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
         # BoardCards - ?

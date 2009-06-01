@@ -221,4 +221,22 @@ class fpdb_db:
         self.db.commit()
         print "Finished recreating tables"
     #end def recreate_tables
-#end class fpdb_db
+
+    def getSqlPlayerIDs(names, site_id):
+        result = []
+        notfound = []
+        self.cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+        tmp = dict(self.cursor.fetchall())
+        for n in names:
+            if n not in tmp:
+                notfound.append(n)
+            else:
+                result.append(tmp[n])
+        if notfound:
+            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+            cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+            tmp = cursor.fetchall()
+            for n in tmp:
+                result.append(n[0])
+
+        return result
