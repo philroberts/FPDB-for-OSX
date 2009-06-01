@@ -147,7 +147,6 @@ class HUD_main(object):
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
-    
 #    get basic info about the new hand from the db
 #    if there is a db error, complain, skip hand, and proceed
             try:
@@ -168,7 +167,7 @@ class HUD_main(object):
                     (tour_number, tab_number) = mat_obj.group(1, 2)
                     temp_key = tour_number
                 else:   # tourney, but can't get number and table
-                    print "could not find tournamtne: skipping "
+                    print "could not find tournament: skipping "
                     sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
                     continue
                     

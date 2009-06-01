@@ -62,9 +62,10 @@ class fpdb_db:
             self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
         elif backend==self.PGSQL:
             import psycopg2
+            import psycopg2.extensions 
+            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
-            print "host=%s user=%s pass=%s." % (host, user, password)
             if self.host and self.user and self.password:
                 self.db = psycopg2.connect(host = host,
                         user = user, 
@@ -75,6 +76,7 @@ class fpdb_db:
             # flat out wrong
             else:
                 self.db = psycopg2.connect(database = database)
+#            self.db.set_client_encoding('UNICODE')
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()

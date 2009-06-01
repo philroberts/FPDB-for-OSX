@@ -237,7 +237,7 @@ class Sql:
                                                  AND HudCache.gametypeId+0 = Hands.gametypeId+0)
                          INNER JOIN Players ON (Players.id = HandsPlayers.PlayerId+0)
                     WHERE Hands.id = %s
-                    GROUP BY HudCache.PlayerId
+                    GROUP BY HudCache.PlayerId, Players.name, seatNo
                 """
 
 #    same as above except stats are aggregated for all blind/limit levels
@@ -312,7 +312,7 @@ class Sql:
                         AND    gt1.limittype = gt2.limittype
                         AND    gt2.id = Hands.gametypeId
                         AND    Hands.id = %s)
-                    GROUP BY HudCache.PlayerId
+                    GROUP BY HudCache.PlayerId, Players.name, seatNo
                 """
          
             self.query['get_players_from_hand'] = """
@@ -349,13 +349,20 @@ class Sql:
                     select 
                         seatNo     AS seat_number, 
                         name       AS screen_name, 
-                        card1Value, card1Suit,
-                        card2Value, card2Suit,
-                        card3Value, card3Suit,
-                        card4Value, card4Suit,
-                        card5Value, card5Suit,
-                        card6Value, card6Suit,
-                        card7Value, card7Suit
+                        card1Value AS card1value,
+                        card1Suit  AS card1suit,
+                        card2Value AS card2value,
+                        card2Suit  AS card2suit,
+                        card3Value AS card3value,
+                        card3Suit  AS card3suit,
+                        card4Value AS card4value,
+                        card4Suit  AS card4suit,
+                        card5Value AS card5value,
+                        card5Suit  AS card5suit,
+                        card6Value AS card6value,
+                        card6Suit  AS card6suit,
+                        card7Value AS card7value,
+                        card7Suit  AS card7suit
                     from HandsPlayers, Players 
                     where handID = %s and HandsPlayers.playerId = Players.id 
                     order by seatNo
@@ -363,11 +370,16 @@ class Sql:
 
             self.query['get_common_cards'] = """
                     select 
-                        card1Value, card1Suit, 
-                        card2Value, card2Suit, 
-                        card3Value, card3Suit, 
-                        card4Value, card4Suit, 
-                        card5Value, card5Suit
+                        card1Value AS card1value,
+                        card1Suit  AS card1suit,
+                        card2Value AS card2value,
+                        card2Suit  AS card2suit,
+                        card3Value AS card3value,
+                        card3Suit  AS card3suit,
+                        card4Value AS card4value,
+                        card4Suit  AS card4suit,
+                        card5Value AS card5value,
+                        card5Suit  AS card5suit
                     from BoardCards
                     where handId = %s
                 """

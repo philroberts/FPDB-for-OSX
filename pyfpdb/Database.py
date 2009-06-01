@@ -38,12 +38,15 @@ class Database:
         if   c.supported_databases[db_name].db_server == 'postgresql':
             #    psycopg2 database module for posgres via DB-API
             import psycopg2
+            import psycopg2.extensions 
+            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
             try:
-                self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
-                                       user = c.supported_databases[db_name].db_user,
-                                       password = c.supported_databases[db_name].db_pass,
-                                       database = c.supported_databases[db_name].db_name)
+#                self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
+#                                       user = c.supported_databases[db_name].db_user,
+#                                       password = c.supported_databases[db_name].db_pass,
+#                                       database = c.supported_databases[db_name].db_name)
+                self.connection = psycopg2.connect(database = c.supported_databases[db_name].db_name)
             except:
                 print "Error opening database connection %s.  See error log file." % (file)
                 traceback.print_exc(file=sys.stderr)
@@ -120,7 +123,7 @@ class Database:
         """Get and return the cards for each player in the hand."""
         cards = {} # dict of cards, the key is the seat number example: {1: 'AcQd9hTs5d'}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_cards'], hand)
+        c.execute(self.sql.query['get_cards'], (hand, ))
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             s_dict = {}
@@ -133,7 +136,7 @@ class Database:
         """Get and return the community cards for the specified hand."""
         cards = {}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_common_cards'], hand)
+        c.execute(self.sql.query['get_common_cards'], (hand,))
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             s_dict = {}
@@ -154,20 +157,20 @@ class Database:
 #                cards += "xx"
 #            else:
 #                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
-            cv = "card%dValue" % i
+            cv = "card%dvalue" % i
             if cv not in d or d[cv] == None:
                 break
             elif d[cv] == 0:
                 cards += "xx"
             else:
-                cs = "card%dSuit" % i
+                cs = "card%dsuit" % i
                 cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
         return cards
 
     def get_action_from_hand(self, hand_no):
         action = [ [], [], [], [], [] ]
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_action_from_hand'], (hand_no))
+        c.execute(self.sql.query['get_action_from_hand'], (hand_no, ))
         for row in c.fetchall():
             street = row[0]
             act = row[1:]
@@ -178,7 +181,7 @@ class Database:
         """Returns a hash of winners:amount won, given a hand number."""
         winners = {}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_winners_from_hand'], (hand))
+        c.execute(self.sql.query['get_winners_from_hand'], (hand, ))
         for row in c.fetchall():
             winners[row[0]] = row[1]
         return winners
@@ -205,7 +208,6 @@ class Database:
         return stat_dict
             
     def get_player_id(self, config, site, player_name):
-        print "site  = %s, player name = %s" % (site, player_name)
         c = self.connection.cursor()
         c.execute(self.sql.query['get_player_id'], {'player': player_name, 'site': site})
         row = c.fetchone()
@@ -224,19 +226,19 @@ if __name__=="__main__":
     h = db_connection.get_last_hand()
     print "last hand = ", h
     
-    hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
+    hero = db_connection.get_player_id(c, 'Full Tilt Poker', 'PokerAscetic')
     print "nutOmatic is id_player = %d" % hero
     
     stat_dict = db_connection.get_stats_from_hand(h)
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    print "nutOmatics stats:"
-    stat_dict = db_connection.get_stats_from_hand(h, hero)
-    for p in stat_dict.keys():
-        print p, "  ", stat_dict[p]
+#    print "nutOmatics stats:"
+#    stat_dict = db_connection.get_stats_from_hand(h, hero)
+#    for p in stat_dict.keys():
+#        print p, "  ", stat_dict[p]
 
-    print "cards =", db_connection.get_cards(73525)
+    print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
 
     print "press enter to continue"
