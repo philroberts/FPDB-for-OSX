@@ -54,6 +54,7 @@ class CarbonPoker(HandHistoryConverter):
 		print "Initialising Carbon Poker converter class"
 		HandHistoryConverter.__init__(self, config, filename, "Carbon") # Call super class init
 		self.setFileType("xml")
+        self.siteId   = 4 # Needs to match id entry in Sites database
 
 	def readSupportedGames(self): 
 		pass

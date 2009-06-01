@@ -72,6 +72,7 @@ class OnGame(HandHistoryConverter):
         HandHistoryConverter.__init__(self, config, file, sitename="OnGame") # Call super class init.
         self.sitename = "OnGame"
         self.setFileType("text", "cp1252")
+        self.siteId   = 5 # Needs to match id entry in Sites database
         #self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
         self.rexx.setSplitHandRegex('\n\n\n+')
         

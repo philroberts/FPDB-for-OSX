@@ -205,6 +205,10 @@ class fpdb_db:
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Carbon', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'OnGame', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'UltimateBet', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Betfair', 'USD');")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
     #end def fillDefaultData
     

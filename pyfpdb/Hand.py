@@ -100,6 +100,29 @@ db: a connected fpdb_db object"""
         """ Function to create Hand object from database """
         pass
 
+# Get SQL player IDs from database
+# this version could also be improved upon using list comprehensions, etc
+
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    notfound = []
+#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+#    tmp = dict(cursor.fetchall())
+#    for n in names:
+#        if n not in tmp:
+#            notfound.append(n)
+#        else:
+#            result.append(tmp[n])
+#    if notfound:
+#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+#        tmp = cursor.fetchall()
+#        for n in tmp:
+#            result.append(n[0])
+#        
+#    return result
+
+
 
     def addPlayer(self, seat, name, chips):
         """\
