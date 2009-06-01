@@ -470,6 +470,9 @@ class Config:
         try:    db['db-server'] = self.supported_databases[name].db_server
         except: pass
 
+        try:    db['db-type'] = self.supported_databases[name].db_type
+        except: pass
+
         if   string.lower(self.supported_databases[name].db_server) == 'mysql':
             db['db-backend'] = 2
         elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
