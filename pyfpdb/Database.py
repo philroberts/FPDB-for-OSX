@@ -26,6 +26,7 @@ Create and manage the database objects.
 #    Standard Library modules
 import sys
 import traceback
+import string
 
 #    pyGTK modules
 
@@ -35,18 +36,21 @@ import SQL
 
 class Database:
     def __init__(self, c, db_name, game):
-        if   c.supported_databases[db_name].db_server == 'postgresql':
-            #    psycopg2 database module for posgres via DB-API
-            import psycopg2
+        db_params = c.get_db_parameters()
+        if (string.lower(db_params['db-server']) == 'postgresql' or
+            string.lower(db_params['db-server']) == 'postgres'):
+            import psycopg2  #   posgres via DB-API
             import psycopg2.extensions 
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
             try:
-#                self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
-#                                       user = c.supported_databases[db_name].db_user,
-#                                       password = c.supported_databases[db_name].db_pass,
-#                                       database = c.supported_databases[db_name].db_name)
-                self.connection = psycopg2.connect(database = c.supported_databases[db_name].db_name)
+                if db_params['db-host'] == 'localhost' or db_params['db-host'] == '127.0.0.1': 
+                    self.connection = psycopg2.connect(database = db_params['db-databaseName'])
+                else:
+                    self.connection = psycopg2.connect(host = db_params['db-host'],
+                                       user = db_params['db-user'],
+                                       password = db_params['db-password'],
+                                       database = db_params['db-databaseName'])
             except:
                 print "Error opening database connection %s.  See error log file." % (file)
                 traceback.print_exc(file=sys.stderr)
@@ -54,14 +58,13 @@ class Database:
                 sys.stdin.readline()
                 sys.exit()
 
-        elif c.supported_databases[db_name].db_server == 'mysql':
-            #    mysql bindings
-            import MySQLdb
+        elif string.lower(db_params['db-server']) == 'mysql':
+            import MySQLdb  #    mysql bindings
             try:
-                self.connection = MySQLdb.connect(host = c.supported_databases[db_name].db_ip,
-                                       user = c.supported_databases[db_name].db_user,
-                                       passwd = c.supported_databases[db_name].db_pass,
-                                       db = c.supported_databases[db_name].db_name)
+                self.connection = MySQLdb.connect(host = db_params['db-host'],
+                                       user = db_params['db-user'],
+                                       passwd = db_params['db-password'],
+                                       db = db_params['db-databaseName'])
                 cur_iso = self.connection.cursor() 
                 cur_iso.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED') 
                 cur_iso.close()
@@ -79,7 +82,7 @@ class Database:
             print "press enter to continue"
             sys.exit()
 
-        self.type = c.supported_databases[db_name].db_type
+        self.type = db_params['db-type']
         self.sql = SQL.Sql(game = game, type = self.type)
         
     def close_connection(self):
