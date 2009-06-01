@@ -239,4 +239,5 @@ class fpdb_db:
             for n in tmp:
                 result.append(n[0])
 
+        #We proabably want to cache this
         return result
