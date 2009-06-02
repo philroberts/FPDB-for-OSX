@@ -66,17 +66,16 @@ class fpdb_db:
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
-            if self.host and self.user and self.password:
+            # For local domain-socket connections, only DB name is
+            # needed, and everything else is in fact undefined and/or
+            # flat out wrong
+            if self.host == "localhost" or self.host == "127.0.0.1":
+                self.db = psycopg2.connect(database = database)
+            else:
                 self.db = psycopg2.connect(host = host,
                         user = user, 
                         password = password, 
                         database = database)
-            # For local domain-socket connections, only DB name is
-            # needed, and everything else is in fact undefined and/or
-            # flat out wrong
-            else:
-                self.db = psycopg2.connect(database = database)
-#            self.db.set_client_encoding('UNICODE')
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
