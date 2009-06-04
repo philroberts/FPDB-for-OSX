@@ -1390,27 +1390,6 @@ def recognisePlayerIDs(cursor, names, site_id):
 #end def recognisePlayerIDs
 
 
-# Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
-# this version could also be improved upon using list comprehensions, etc
-
-#def recognisePlayerIDs(cursor, names, site_id):
-#    result = []
-#    notfound = []
-#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-#    tmp = dict(cursor.fetchall())
-#    for n in names:
-#        if n not in tmp:
-#            notfound.append(n)
-#        else:
-#            result.append(tmp[n])
-#    if notfound:
-#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-#        tmp = cursor.fetchall()
-#        for n in tmp:
-#            result.append(n[0])
-#        
-#    return result
  
 #recognises the name in the given line and returns its array position in the given array
 def recognisePlayerNo(line, names, atype):

@@ -86,6 +86,7 @@ Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected fpdb_db object"""
         # TODO:
         # Players - base playerid and siteid tuple
+        sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
         # BoardCards - ?
@@ -99,6 +100,29 @@ db: a connected fpdb_db object"""
     def select(self, handId):
         """ Function to create Hand object from database """
         pass
+
+# Get SQL player IDs from database
+# this version could also be improved upon using list comprehensions, etc
+
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    notfound = []
+#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+#    tmp = dict(cursor.fetchall())
+#    for n in names:
+#        if n not in tmp:
+#            notfound.append(n)
+#        else:
+#            result.append(tmp[n])
+#    if notfound:
+#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+#        tmp = cursor.fetchall()
+#        for n in tmp:
+#            result.append(n[0])
+#        
+#    return result
+
 
 
     def addPlayer(self, seat, name, chips):

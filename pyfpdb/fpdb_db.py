@@ -96,7 +96,7 @@ class fpdb_db:
         try:
             self.cursor.execute("SELECT * FROM Settings")
             settings=self.cursor.fetchone()
-            if settings[0]!=118:
+            if settings[0]!=119:
                 print "outdated or too new database version - please recreate tables"
                 self.wrongDbVersion=True
         except:# _mysql_exceptions.ProgrammingError:
@@ -201,10 +201,14 @@ class fpdb_db:
     #end def get_db_info
     
     def fillDefaultData(self):
-        self.cursor.execute("INSERT INTO Settings VALUES (118);")
+        self.cursor.execute("INSERT INTO Settings VALUES (119);")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Carbon', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'OnGame', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'UltimateBet', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Betfair', 'USD');")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
     #end def fillDefaultData
     
@@ -217,4 +221,23 @@ class fpdb_db:
         self.db.commit()
         print "Finished recreating tables"
     #end def recreate_tables
-#end class fpdb_db
+
+    def getSqlPlayerIDs(names, site_id):
+        result = []
+        notfound = []
+        self.cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+        tmp = dict(self.cursor.fetchall())
+        for n in names:
+            if n not in tmp:
+                notfound.append(n)
+            else:
+                result.append(tmp[n])
+        if notfound:
+            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+            cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+            tmp = cursor.fetchall()
+            for n in tmp:
+                result.append(n[0])
+
+        #We proabably want to cache this
+        return result

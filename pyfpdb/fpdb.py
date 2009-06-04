@@ -44,6 +44,7 @@ import GuiPositionalStats
 import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
+import GuiSessionViewer
 import FpdbSQLQueries
 import Configuration
 
@@ -127,6 +128,12 @@ class fpdb:
         print "todo: implement dia_database_stats"
         #string=fpdb_db.getDbStats(db, cursor)
     #end def dia_database_stats
+
+    def dia_database_sessions(self, widget, data=None):
+        new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.querydict)
+        self.threads.append(new_sessions_thread)
+        sessions_tab=new_sessions_thread.get_vbox()
+        self.add_and_display_tab(sessions_tab, "Sessions")
 
     def dia_delete_db_parts(self, widget, data=None):
         print "todo: implement dia_delete_db_parts"
@@ -286,6 +293,7 @@ class fpdb:
                   <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="stats"/>
+                  <menuitem action="sessions"/>
                 </menu>
                 <menu action="help">
                   <menuitem action="Abbrev"/>
@@ -323,6 +331,7 @@ class fpdb:
                                  ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('sessions', None, 'Sessions', None, 'View Sessions', self.dia_database_sessions),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
