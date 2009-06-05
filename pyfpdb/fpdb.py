@@ -182,35 +182,53 @@ class fpdb:
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
         if self.obtain_global_lock():
-            chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
-                    action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                    buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-            chooser.set_filename(self.profile)
+            try:
+                chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
+                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                        buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+                chooser.set_filename(self.profile)
 
-            response = chooser.run()
-            chooser.destroy()    
-            if response == gtk.RESPONSE_OK:
-                self.load_profile(chooser.get_filename())
-            elif response == gtk.RESPONSE_CANCEL:
-                print 'User cancelled loading profile'
+                response = chooser.run()
+                chooser.destroy()    
+                if response == gtk.RESPONSE_OK:
+                    self.load_profile(chooser.get_filename())
+                elif response == gtk.RESPONSE_CANCEL:
+                    print 'User cancelled loading profile'
+            except:
+                pass
+            self.release_global_lock()
     #end def dia_load_profile
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
         if self.obtain_global_lock():
-        
-            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
-                    buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-            diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
-            dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
-            response = dia_confirm.run()
-            dia_confirm.destroy()
-            if response == gtk.RESPONSE_YES:
-                self.db.recreate_tables()
-            elif response == gtk.RESPONSE_NO:
-                print 'User cancelled recreating tables'
-            self.release_global_lock()
+            lock_released = False
+            try:
+                dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+                        buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
+                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
+                dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+
+                response = dia_confirm.run()
+                dia_confirm.destroy()
+                if response == gtk.RESPONSE_YES:
+                    if self.db.backend == self.fdb_lock.MYSQL_INNODB:
+                        # mysql requires locks on all tables or none - easier to release this lock 
+                        # than lock all the other tables
+                        # ToDo: lock all other tables so that lock doesn't have to be released
+                        self.release_global_lock()
+                        lock_released = True
+                        self.db.recreate_tables()
+                    else:
+                        # for other dbs use same connection as holds global lock
+                        self.fdb_lock.recreate_tables()
+                elif response == gtk.RESPONSE_NO:
+                    print 'User cancelled recreating tables'
+            except:
+                pass
+            if not lock_released:
+                self.release_global_lock()
     #end def dia_recreate_tables
 
     def dia_regression_test(self, widget, data=None):
