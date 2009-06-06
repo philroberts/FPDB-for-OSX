@@ -19,6 +19,10 @@
 rm regression-test/*.found.txt
 rm regression-test/*.pyc
 rm pyfpdb/*.pyc
+rm pyfpdb/*~
+rm pyfpdb/fpdb-error-log.txt
+rm pyfpdb/HUD-error.txt
+rm pyfpdb/hand-errors.txt
 
 # make the fpdb_$1.zip file for windows
 echo "*** making zip file"
