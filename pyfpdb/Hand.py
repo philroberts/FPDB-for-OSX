@@ -36,6 +36,7 @@ class Hand:
         self.sitename = sitename
         self.stats = DerivedStats.DerivedStats(self)
         self.gametype = gametype
+        self.starttime = 0
         self.handText = handText
         self.handid = 0
         self.tablename = "Slartibartfast"
@@ -89,8 +90,57 @@ db: a connected fpdb_db object"""
         sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
-        # BoardCards - ?
+        # BoardCards - Skip - no longer necessary?
         # Hands - Summary information of hand indexed by handId - gameinfo
+             # self.tablename = tableName
+             # self.handid = siteHandNo
+             # gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                #
+             # self.starttime = handStart
+             # importTime DATETIME NOT NULL,
+                #
+             # seats TINYINT NOT NULL,
+                #
+             # self.maxseats = maxSeats
+             # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+             # boardcard2 smallint,
+             # boardcard3 smallint,
+             # boardcard4 smallint,
+             # boardcard5 smallint,
+             # texture smallint,
+             # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
+                # Needs to be recorded
+             # playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
+                # Needs to be recorded
+             # playersAtStreet2 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtStreet3 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtStreet4 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtShowdown SMALLINT NOT NULL,
+                # Needs to be recorded
+             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                # Needs to be recorded
+             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
+                # Needs to be recorded
+             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
+                # Needs to be recorded
+             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
+                # Needs to be recorded
+             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
+                # Needs to be recorded
+             # street1Pot INT,                  /* pot size at flop/street4 */
+                # Needs to be recorded
+             # street2Pot INT,                  /* pot size at turn/street5 */
+                # Needs to be recorded
+             # street3Pot INT,                  /* pot size at river/street6 */
+                # Needs to be recorded
+             # street4Pot INT,                  /* pot size at sd/street7 */
+                # Needs to be recorded
+             # showdownPot INT,                 /* pot size at sd/street7 */
+             # comment TEXT,
+             # commentTs DATETIME
         # HandsPlayers - ? ... Do we fix winnings?
         # Tourneys ?
         # TourneysPlayers
@@ -100,29 +150,6 @@ db: a connected fpdb_db object"""
     def select(self, handId):
         """ Function to create Hand object from database """
         pass
-
-# Get SQL player IDs from database
-# this version could also be improved upon using list comprehensions, etc
-
-#def recognisePlayerIDs(cursor, names, site_id):
-#    result = []
-#    notfound = []
-#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-#    tmp = dict(cursor.fetchall())
-#    for n in names:
-#        if n not in tmp:
-#            notfound.append(n)
-#        else:
-#            result.append(tmp[n])
-#    if notfound:
-#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-#        tmp = cursor.fetchall()
-#        for n in tmp:
-#            result.append(n[0])
-#        
-#    return result
-
 
 
     def addPlayer(self, seat, name, chips):
