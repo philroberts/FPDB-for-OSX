@@ -150,7 +150,9 @@ class Importer:
                 self.monitor = True
                 self.dirlist[site] = [dir] + [filter]
 
+            #print "addImportDirectory: checking files in", dir
             for file in os.listdir(dir):
+                #print "                    adding file ", file
                 self.addImportFile(os.path.join(dir, file), site, filter)
         else:
             print "Warning: Attempted to add non-directory: '" + str(dir) + "' as an import directory"
@@ -162,7 +164,7 @@ class Importer:
         if self.settings['dropIndexes'] == 'auto':
             self.settings['dropIndexes'] = self.calculate_auto()
         if self.settings['dropIndexes'] == 'drop':
-            fpdb_simple.prepareBulkImport(self.fdb)
+            self.fdb.prepareBulkImport()
         totstored = 0
         totdups = 0
         totpartial = 0
@@ -177,8 +179,8 @@ class Importer:
             toterrors += errors
             tottime += ttime
         if self.settings['dropIndexes'] == 'drop':
-            fpdb_simple.afterBulkImport(self.fdb)
-        fpdb_simple.analyzeDB(self.fdb)
+            self.fdb.afterBulkImport()
+        self.fdb.analyzeDB(self.fdb)
         return (totstored, totdups, totpartial, toterrors, tottime)
 #        else: import threaded
 
@@ -203,14 +205,18 @@ class Importer:
         #todo: make efficient - always checks for new file, should be able to use mtime of directory
         # ^^ May not work on windows
         
+        #rulog = open('runUpdated.txt', 'a')
+        #rulog.writelines("runUpdated ... ")
         for site in self.dirlist:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
 
         for file in self.filelist:
             if os.path.exists(file):
                 stat_info = os.stat(file)
+                #rulog.writelines("path exists ")
                 try: 
                     lastupdate = self.updated[file]
+                    #rulog.writelines("lastupdate = %d, mtime = %d" % (lastupdate,stat_info.st_mtime))
                     if stat_info.st_mtime > lastupdate:
                         self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
                         self.updated[file] = time()
@@ -236,7 +242,8 @@ class Importer:
         self.addToDirList = {}
         self.removeFromFileList = {}
         self.fdb.db.rollback()
-
+        #rulog.writelines("  finished\n")
+        #rulog.close()
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
@@ -282,6 +289,7 @@ class Importer:
         starttime = time()
         last_read_hand = 0
         loc = 0
+        #print "file =", file
         if file == "stdin":
             inputFile = sys.stdin
         else:
@@ -292,10 +300,17 @@ class Importer:
                 return (0, 0, 0, 1, 0)
             try:
                 loc = self.pos_in_file[file]
+                #size = os.path.getsize(file)
+                #print "loc =", loc, 'size =', size
             except:
                 pass
         # Read input file into class and close file
         inputFile.seek(loc)
+        #tmplines = inputFile.readlines()
+        #if tmplines == None or tmplines == []:
+        #    print "tmplines = ", tmplines
+        #else:
+        #    print "tmplines[0] =", tmplines[0]
         self.lines = fpdb_simple.removeTrailingEOL(inputFile.readlines())
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
@@ -303,7 +318,8 @@ class Importer:
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
         except:
-            print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
+            # just skip the debug message and return silently:
+            #print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
             return (0,0,0,1,0)
 
         if firstline.find("Tournament Summary")!=-1:
@@ -348,6 +364,7 @@ class Importer:
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
+                            print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except fpdb_simple.DuplicateError:
                         duplicates += 1
@@ -364,7 +381,6 @@ class Importer:
                     except (fpdb_simple.FpdbError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
-
                         self.fdb.db.rollback()
 
                         if self.settings['failOnError']:
