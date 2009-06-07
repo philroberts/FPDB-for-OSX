@@ -427,12 +427,7 @@ class fpdb:
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
 
-<<<<<<< HEAD:pyfpdb/fpdb.py
-
-    def tab_main_help(self, widget, data=None):
-=======
     def tab_main_help(self, widget, data):
->>>>>>> f0b4d82fa554c678f5df0e847083fb8c3bbd0bfa:pyfpdb/fpdb.py
         """Displays a tab with the main fpdb help screen"""
         #print "start of tab_main_help"
         mh_tab=gtk.Label("""Welcome to Fpdb!
