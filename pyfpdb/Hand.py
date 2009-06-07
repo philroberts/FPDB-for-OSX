@@ -1121,11 +1121,12 @@ select
     g.smallBet / 100.0,
     g.bigBet / 100.0,
     s.currency,
-    (bc.card1value,bc.card1suit),
-    (bc.card2value,bc.card2suit),
-    (bc.card3value,bc.card3suit),
-    (bc.card4value,bc.card4suit),
-    (bc.card5value,bc.card5suit)
+    bc.card1value,
+    bc.card1suit,
+    bc.card2value,bc.card2suit,
+    bc.card3value,bc.card3suit,
+    bc.card4value,bc.card4suit,
+    bc.card5value,bc.card5suit
 from
     hands as h,
     boardcards as bc,
@@ -1145,7 +1146,14 @@ limit 1""", {'handid':handid})
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
     h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-    print res[11:16]
+    cards = map("".join, zip(map(str,res[11:21:2]), res[12:21:2]))
+    
+    if cards[0] != "0x":
+        h.setCommunityCards('FLOP', cards[0:3])
+    if cards[3] != "0x":
+        h.setCommunityCards('TURN', cards[3])
+    if cards[4] != "0x":      
+        h.setCommunityCards('RIVER', cards[4])
     #[Card.valueSuitFromCard(x) for x in cards]
     
     
