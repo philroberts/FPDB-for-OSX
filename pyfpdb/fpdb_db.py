@@ -18,6 +18,7 @@
 import os
 import re
 import sys
+from time import time, strftime
 
 import fpdb_simple
 import FpdbSQLQueries
@@ -175,7 +176,7 @@ class fpdb_db:
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
-            print "host=%s user=%s pass=%s." % (host, user, password)
+            # print "host=%s user=%s pass=%s." % (host, user, password)
             if self.host and self.user and self.password:
                 try:
                     self.db = psycopg2.connect(host = host,
@@ -327,7 +328,7 @@ class fpdb_db:
     def prepareBulkImport(self):
         """Drop some indexes/foreign keys to prepare for bulk import. 
            Currently keeping the standalone indexes as needed to import quickly"""
-        # self is a fpdb_db object including backend, db, cursor, sql variables
+        stime = time()
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(0)   # allow table/index operations to work
         for fk in self.foreignKeys[self.backend]:
@@ -410,11 +411,13 @@ class fpdb_db:
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(1)   # go back to normal isolation level
         self.db.commit() # seems to clear up errors if there were any in postgres
+        ptime = time() - stime
+        print "prepare import took", ptime, "seconds"
     #end def prepareBulkImport
 
     def afterBulkImport(self):
         """Re-create any dropped indexes/foreign keys after bulk import"""
-        # self is a fpdb_db object including backend, db, cursor, sql variables
+        stime = time()
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(0)   # allow table/index operations to work
         for fk in self.foreignKeys[self.backend]:
@@ -480,6 +483,8 @@ class fpdb_db:
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(1)   # go back to normal isolation level
         self.db.commit()   # seems to clear up errors if there were any in postgres
+        atime = time() - stime
+        print "after import took", atime, "seconds"
     #end def afterBulkImport
 
     def createAllIndexes(self):
@@ -542,6 +547,7 @@ class fpdb_db:
 
     def analyzeDB(self):
         """Do whatever the DB can offer to update index/table statistics"""
+        stime = time()
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(0)   # allow vacuum to work
             try:
@@ -550,6 +556,8 @@ class fpdb_db:
                 print "Error during vacuum"
             self.db.set_isolation_level(1)   # go back to normal isolation level
         self.db.commit()
+        atime = time() - stime
+        print "analyze took", atime, "seconds"
     #end def analyzeDB
 
     # Currently uses an exclusive lock on the Hands table as a global lock

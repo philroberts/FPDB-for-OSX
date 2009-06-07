@@ -256,7 +256,7 @@ class Importer:
             conv = None
             # Load filter, process file, pass returned filename to import_fpdb_file
             
-            print "converting %s" % file
+            print "\nConverting %s" % file
             hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
             hhbase    = os.path.expanduser(hhbase)
             hhdir     = os.path.join(hhbase,site)
