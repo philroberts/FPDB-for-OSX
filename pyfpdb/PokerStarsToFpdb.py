@@ -44,6 +44,7 @@ follow :  whether to tail -f the input"""
         logging.info("Initialising PokerStars converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
+        self.siteId   = 2 # Needs to match id entry in Sites database
         if autostart:
             self.start()
 

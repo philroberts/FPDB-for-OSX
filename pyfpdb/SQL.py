@@ -564,13 +564,13 @@ class Sql:
             if db_server == 'mysql':
                 self.query['get_hand_1day_ago'] = """
                     select coalesce(max(id),0)
-                    from hands
-                    where handstart < date_sub(utc_timestamp(), interval '1' day)"""
+                    from Hands
+                    where handStart < date_sub(utc_timestamp(), interval '1' day)"""
             else:  # assume postgresql
                 self.query['get_hand_1day_ago'] = """
                     select coalesce(max(id),0)
-                    from hands
-                    where handstart < now() at time zone 'UTC' - interval '1 day'"""
+                    from Hands
+                    where handStart < now() at time zone 'UTC' - interval '1 day'"""
 
 if __name__== "__main__":
 #    just print the default queries and exit
