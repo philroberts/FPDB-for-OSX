@@ -180,7 +180,7 @@ class Importer:
             tottime += ttime
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.afterBulkImport()
-        self.fdb.analyzeDB(self.fdb)
+        self.fdb.analyzeDB()
         return (totstored, totdups, totpartial, toterrors, tottime)
 #        else: import threaded
 
