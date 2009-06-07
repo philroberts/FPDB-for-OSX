@@ -1465,7 +1465,6 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
 #stores into table board_cards
-    return
     cursor.execute ("""INSERT INTO BoardCards (handId, card1Value, card1Suit,
 card2Value, card2Suit, card3Value, card3Suit, card4Value, card4Suit,
 card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
