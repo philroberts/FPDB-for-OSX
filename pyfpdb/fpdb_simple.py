@@ -16,6 +16,10 @@
 #agpl-3.0.txt in the docs folder of the package.
  
 #This file contains simple functions for fpdb
+
+#Aiming to eventually remove this module, functions will move to, eg:
+#fpdb_db      db create/re-create/management/etc
+#Hands        or related files for saving hands to db, etc
  
 import datetime
 import time
@@ -28,6 +32,7 @@ PS  = 1
 FTP = 2
 
 # TODO: these constants are also used in fpdb_save_to_db and others, is there a way to do like C #define, and #include ?
+# answer - yes. These are defined in fpdb_db so are accessible through that class.
 MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
@@ -366,27 +371,6 @@ def analyzeDB(fdb):
         fdb.db.set_isolation_level(1)   # go back to normal isolation level
     fdb.db.commit()
 #end def analyzeDB
-
-def get_global_lock(fdb):
-    if fdb.backend == MYSQL_INNODB:
-        try:
-            fdb.cursor.execute( "lock tables Hands write" )
-        except:
-            print "Error! failed to obtain global lock. Close all programs accessing " \
-                  + "database (including fpdb) and try again (%s)." \
-                  % ( str(sys.exc_value).rstrip('\n'), )
-            return(False)
-    elif fdb.backend == PGSQL:
-        try:
-            fdb.cursor.execute( "lock table Hands in exclusive mode nowait" )
-            #print "... after lock table, status =", fdb.cursor.statusmessage
-        except:
-            print "Error! failed to obtain global lock. Close all programs accessing " \
-                  + "database (including fpdb) and try again (%s)." \
-                  % ( str(sys.exc_value).rstrip('\n'), )
-            return(False)
-    return(True) 
-
 
 class DuplicateError(Exception):
     def __init__(self, value):
@@ -1390,6 +1374,27 @@ def recognisePlayerIDs(cursor, names, site_id):
 #end def recognisePlayerIDs
 
 
+# Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
+# this version could also be improved upon using list comprehensions, etc
+
+#def recognisePlayerIDs(cursor, names, site_id):
+#    result = []
+#    notfound = []
+#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+#    tmp = dict(cursor.fetchall())
+#    for n in names:
+#        if n not in tmp:
+#            notfound.append(n)
+#        else:
+#            result.append(tmp[n])
+#    if notfound:
+#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+#        tmp = cursor.fetchall()
+#        for n in tmp:
+#            result.append(n[0])
+#        
+#    return result
  
 #recognises the name in the given line and returns its array position in the given array
 def recognisePlayerNo(line, names, atype):

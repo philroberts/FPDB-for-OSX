@@ -17,6 +17,8 @@
 
 import os
 import re
+import sys
+
 import fpdb_simple
 import FpdbSQLQueries
 
@@ -96,7 +98,7 @@ class fpdb_db:
         try:
             self.cursor.execute("SELECT * FROM Settings")
             settings=self.cursor.fetchone()
-            if settings[0]!=119:
+            if settings[0]!=118:
                 print "outdated or too new database version - please recreate tables"
                 self.wrongDbVersion=True
         except:# _mysql_exceptions.ProgrammingError:
@@ -201,14 +203,10 @@ class fpdb_db:
     #end def get_db_info
     
     def fillDefaultData(self):
-        self.cursor.execute("INSERT INTO Settings VALUES (119);")
+        self.cursor.execute("INSERT INTO Settings VALUES (118);")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Carbon', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'OnGame', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'UltimateBet', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Betfair', 'USD');")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
     #end def fillDefaultData
     
@@ -222,22 +220,33 @@ class fpdb_db:
         print "Finished recreating tables"
     #end def recreate_tables
 
-    def getSqlPlayerIDs(names, site_id):
-        result = []
-        notfound = []
-        self.cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-        tmp = dict(self.cursor.fetchall())
-        for n in names:
-            if n not in tmp:
-                notfound.append(n)
-            else:
-                result.append(tmp[n])
-        if notfound:
-            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-            cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-            tmp = cursor.fetchall()
-            for n in tmp:
-                result.append(n[0])
-
-        #We proabably want to cache this
-        return result
+    # Currently uses an exclusive lock on the Hands table as a global lock
+    # Return values are Unix style, 0 for success, positive integers for errors
+    # 1 = generic error
+    # 2 = hands table does not exist (error message is suppressed)
+    def get_global_lock(self):
+        if self.backend == self.MYSQL_INNODB:
+            try:
+                self.cursor.execute( "lock tables Hands write" )
+            except:
+                # Table 'fpdb.hands' doesn't exist
+                if str(sys.exc_value).find(".hands' doesn't exist") >= 0:
+                    return(2)
+                print "Error! failed to obtain global lock. Close all programs accessing " \
+                      + "database (including fpdb) and try again (%s)." \
+                      % ( str(sys.exc_value).rstrip('\n'), )
+                return(1)
+        elif self.backend == self.PGSQL:
+            try:
+                self.cursor.execute( "lock table Hands in exclusive mode nowait" )
+                #print "... after lock table, status =", self.cursor.statusmessage
+            except:
+                # relation "hands" does not exist
+                if str(sys.exc_value).find('relation "hands" does not exist') >= 0:
+                    return(2)
+                print "Error! failed to obtain global lock. Close all programs accessing " \
+                      + "database (including fpdb) and try again (%s)." \
+                      % ( str(sys.exc_value).rstrip('\n'), )
+                return(1)
+        return(0) 
+#end class fpdb_db
