@@ -92,14 +92,14 @@ db: a connected fpdb_db object"""
         # HandsActions - all actions for all players for all streets - self.actions
         # BoardCards - Skip - no longer necessary?
         # Hands - Summary information of hand indexed by handId - gameinfo
-             hh['siteHandNo'] =  self.handid
+             #hh['siteHandNo'] =  self.handid
              # gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                 #
-             hh['handStart'] = self.starttime
+             #hh['handStart'] = self.starttime
              # seats TINYINT NOT NULL,
                 #
-             hh['tableName'] = self.tablename
-             hh['maxSeats'] = self.maxseats
+             #hh['tableName'] = self.tablenam
+             #hh['maxSeats'] = self.maxseats
              # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
              # boardcard2 smallint,
              # boardcard3 smallint,
@@ -139,7 +139,7 @@ db: a connected fpdb_db object"""
              # showdownPot INT,                 /* pot size at sd/street7 */
              # comment TEXT,
              # commentTs DATETIME
-        handid = db.storeHand(hh)
+        # handid = db.storeHand(hh)
         # HandsPlayers - ? ... Do we fix winnings?
         # Tourneys ?
         # TourneysPlayers
