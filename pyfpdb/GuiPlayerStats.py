@@ -76,27 +76,28 @@ class GuiPlayerStats (threading.Thread):
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed, column heading, xalignment, formatting
-        self.columns = [ ("game",     True,  "Game",     0.0, "%s")
-                       , ("hand",     False, "Hand",     0.0, "%s")   # true not allowed for this line
-                       , ("n",        True,  "Hds",      1.0, "%d")
-                       , ("avgseats", True,  "Seats",    1.0, "%3.1f")
-                       , ("vpip",     True,  "VPIP",     1.0, "%3.1f")
-                       , ("pfr",      True,  "PFR",      1.0, "%3.1f")
-                       , ("pf3",      True,  "PF3",      1.0, "%3.1f")
-                       , ("steals",   True,  "Steals",   1.0, "%3.1f")
-                       , ("saw_f",    True,  "Saw_F",    1.0, "%3.1f")
-                       , ("sawsd",    True,  "SawSD",    1.0, "%3.1f")
-                       , ("wtsdwsf",  True,  "WtSDwsF",  1.0, "%3.1f")
-                       , ("wmsd",     True,  "W$SD",     1.0, "%3.1f")
-                       , ("flafq",    True,  "FlAFq",    1.0, "%3.1f")
-                       , ("tuafq",    True,  "TuAFq",    1.0, "%3.1f")
-                       , ("rvafq",    True,  "RvAFq",    1.0, "%3.1f")
-                       , ("pofafq",   False, "PoFAFq",   1.0, "%3.1f")
-                       , ("net",      True,  "Net($)",   1.0, "%6.2f")
-                       , ("bbper100", True,  "bb/100",   1.0, "%4.2f")
-                       , ("rake",     True,  "Rake($)",  1.0, "%6.2f")
-                       , ("bb100xr",  True,  "bbxr/100", 1.0, "%4.2f")
-                       , ("variance", True,  "Variance", 1.0, "%5.2f")
+        self.columns = [ ["game",       True,  "Game",     0.0, "%s"]
+                       , ["hand",       False, "Hand",     0.0, "%s"]   # true not allowed for this line
+                       , ["plposition", False, "Posn",     1.0, "%s"]   # true not allowed for this line (set in code)
+                       , ["n",          True,  "Hds",      1.0, "%d"]
+                       , ["avgseats",   True,  "Seats",    1.0, "%3.1f"]
+                       , ["vpip",       True,  "VPIP",     1.0, "%3.1f"]
+                       , ["pfr",        True,  "PFR",      1.0, "%3.1f"]
+                       , ["pf3",        True,  "PF3",      1.0, "%3.1f"]
+                       , ["steals",     True,  "Steals",   1.0, "%3.1f"]
+                       , ["saw_f",      True,  "Saw_F",    1.0, "%3.1f"]
+                       , ["sawsd",      True,  "SawSD",    1.0, "%3.1f"]
+                       , ["wtsdwsf",    True,  "WtSDwsF",  1.0, "%3.1f"]
+                       , ["wmsd",       True,  "W$SD",     1.0, "%3.1f"]
+                       , ["flafq",      True,  "FlAFq",    1.0, "%3.1f"]
+                       , ["tuafq",      True,  "TuAFq",    1.0, "%3.1f"]
+                       , ["rvafq",      True,  "RvAFq",    1.0, "%3.1f"]
+                       , ["pofafq",     False, "PoFAFq",   1.0, "%3.1f"]
+                       , ["net",        True,  "Net($)",   1.0, "%6.2f"]
+                       , ["bbper100",   True,  "bb/100",   1.0, "%4.2f"]
+                       , ["rake",       True,  "Rake($)",  1.0, "%6.2f"]
+                       , ["bb100xr",    True,  "bbxr/100", 1.0, "%4.2f"]
+                       , ["variance",   True,  "Variance", 1.0, "%5.2f"]
                        ]
 
         # Detail filters:  This holds the data used in the popup window, extra values are
@@ -136,7 +137,7 @@ class GuiPlayerStats (threading.Thread):
         self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
 
         # make sure Hand column is not displayed
-        [x for x in self.columns if x[0] == 'hand'][0][1] == False
+        [x for x in self.columns if x[0] == 'hand'][0][1] = False
 
     def get_vbox(self):
         """returns the vbox of this thread"""
@@ -156,6 +157,7 @@ class GuiPlayerStats (threading.Thread):
         siteids = self.filters.getSiteIds()
         limits  = self.filters.getLimits()
         seats  = self.filters.getSeats()
+        groups = self.filters.getGroups()
         dates = self.filters.getDates()
         sitenos = []
         playerids = []
@@ -180,16 +182,16 @@ class GuiPlayerStats (threading.Thread):
             print "No limits found"
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, seats, dates)
+        self.createStatsTable(vbox, playerids, sitenos, limits, seats, groups, dates)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, seats, dates):
+    def createStatsTable(self, vbox, playerids, sitenos, limits, seats, groups, dates):
         starttime = time()
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
         # holecards - whether to display card breakdown (True/False)
         flags = [False]
-        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, dates)
+        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
 
         # Separator
         sep = gtk.HSeparator()
@@ -212,13 +214,13 @@ class GuiPlayerStats (threading.Thread):
 
         # Detailed table
         flags = [True]
-        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, dates)
+        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
 
         self.db.db.commit()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
-    def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats, dates):
+    def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats, groups, dates):
         row = 0
         sqlrow = 0
         colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
@@ -231,7 +233,7 @@ class GuiPlayerStats (threading.Thread):
         self.stats_table.show()
         
         tmp = self.sql.query[query]
-        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, dates)
+        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, groups, dates)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -245,6 +247,8 @@ class GuiPlayerStats (threading.Thread):
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         vbox.pack_start(view, expand=False, padding=3)
         textcell = gtk.CellRendererText()
+        textcell50 = gtk.CellRendererText()
+        textcell50.set_property('xalign', 0.5)
         numcell = gtk.CellRendererText()
         numcell.set_property('xalign', 1.0)
         listcols = []
@@ -258,17 +262,18 @@ class GuiPlayerStats (threading.Thread):
             listcols.append(gtk.TreeViewColumn(s))
             view.append_column(listcols[col])
             if column[colformat] == '%s':
-                if col == 1 and holecards:
+                if column[colxalign] == 0.0:
                     listcols[col].pack_start(textcell, expand=True)
+                    listcols[col].add_attribute(textcell, 'text', col)
                 else:
-                    listcols[col].pack_start(textcell, expand=True)
-                listcols[col].add_attribute(textcell, 'text', col)
+                    listcols[col].pack_start(textcell50, expand=True)
+                    listcols[col].add_attribute(textcell50, 'text', col)
                 listcols[col].set_expand(True)
             else:
                 listcols[col].pack_start(numcell, expand=True)
                 listcols[col].add_attribute(numcell, 'text', col)
-                listcols[col].set_alignment(1.0)
                 listcols[col].set_expand(True)
+                #listcols[col].set_alignment(column[colxalign]) # no effect?
 
         rows = len(result) # +1 for title row
 
@@ -281,6 +286,11 @@ class GuiPlayerStats (threading.Thread):
             for col,column in enumerate(cols_to_show):
                 if column[colalias] in colnames:
                     value = result[sqlrow][colnames.index(column[colalias])]
+                    if column[colalias] == 'plposition':
+                        if value == 'B':
+                            value = 'BB'
+                        if value == 'S':
+                            value = 'SB'
                 else:
                     if column[colalias] == 'game':
                         if holecards:
@@ -313,7 +323,7 @@ class GuiPlayerStats (threading.Thread):
         
     #end def addTable(self, query, vars, playerids, sitenos, limits, seats):
 
-    def refineQuery(self, query, flags, playerids, sitenos, limits, seats, dates):
+    def refineQuery(self, query, flags, playerids, sitenos, limits, seats, groups, dates):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
@@ -375,6 +385,16 @@ class GuiPlayerStats (threading.Thread):
 
         # Filter on dates
         query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")
+
+        # Group by position?
+        if groups['posn']:
+            query = query.replace("<position>", 'hp.position')
+            # set flag in self.columns to show posn column
+            [x for x in self.columns if x[0] == 'plposition'][0][1] = True
+        else:
+            query = query.replace("<position>", "'1'")
+            # unset flag in self.columns to hide posn column
+            [x for x in self.columns if x[0] == 'plposition'][0][1] = False
 
         #print "query =\n", query
         return(query)

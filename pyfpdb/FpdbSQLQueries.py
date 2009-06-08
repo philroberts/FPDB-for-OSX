@@ -910,6 +910,7 @@ class FpdbSQLQueries:
                             ,min(gt.bigBlind)                                                       AS minbigblind
                             ,max(gt.bigBlind)                                                       AS maxbigblind
                             /*,<hcgametypeId>                                                         AS gtid*/
+                            ,<position>                                                             AS plposition
                             ,count(1)                                                               AS n
                             ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
                             ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
@@ -963,12 +964,17 @@ class FpdbSQLQueries:
                               ,gt.base
                               ,gt.category
                               <groupbyseats>
+                              ,plposition
                               ,upper(gt.limitType)
                               ,s.name
                       order by hp.playerId
                               ,gt.base
                               ,gt.category
                               <orderbyseats>
+                              ,case <position> when 'B' then 'B'
+                                               when 'S' then 'S'
+                                               else concat('Z', <position>)
+                               end
                               <orderbyhgameTypeId>
                               ,maxbigblind desc
                               ,upper(gt.limitType)
@@ -983,7 +989,8 @@ class FpdbSQLQueries:
                             ,s.name
                             ,min(gt.bigBlind)                                                       AS minbigblind
                             ,max(gt.bigBlind)                                                       AS maxbigblind
-                            /*,<hcgametypeId>                                                         AS gtid*/
+                            /*,<hcgametypeId>                                                       AS gtid*/
+                            ,<position>                                                             AS plposition
                             ,count(1)                                                               AS n
                             ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
                             ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
@@ -993,8 +1000,8 @@ class FpdbSQLQueries:
                             ,case when sum(cast(hp.stealattemptchance as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.stealattempted as <signed>integer))/sum(cast(hp.stealattemptchance as <signed>integer))
                              end                                                                    AS steals
-                            ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)           AS saw_f
-                            ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)           AS sawsd
+                            ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
+                            ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
                             ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
                                   else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
                              end                                                                    AS wtsdwsf
@@ -1037,12 +1044,17 @@ class FpdbSQLQueries:
                               ,gt.base
                               ,gt.category
                               <groupbyseats>
+                              ,plposition
                               ,upper(gt.limitType)
                               ,s.name
                       order by hp.playerId
                               ,gt.base
                               ,gt.category
                               <orderbyseats>
+                              ,case <position> when 'B' then 'B'
+                                               when 'S' then 'S'
+                                               else 'Z'||<position>
+                               end
                               <orderbyhgameTypeId>
                               ,maxbigblind desc
                               ,upper(gt.limitType)

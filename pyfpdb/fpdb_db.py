@@ -17,6 +17,9 @@
 
 import os
 import re
+import sys
+from time import time, strftime
+
 import fpdb_simple
 import FpdbSQLQueries
 
@@ -29,6 +32,110 @@ class fpdb_db:
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
+
+        # Data Structures for index and foreign key creation
+        # drop_code is an int with possible values:  0 - don't drop for bulk import
+        #                                            1 - drop during bulk import
+        # db differences: 
+        # - note that mysql automatically creates indexes on constrained columns when
+        #   foreign keys are created, while postgres does not. Hence the much longer list
+        #   of indexes is required for postgres.
+        # all primary keys are left on all the time
+        #
+        #             table     column           drop_code
+
+        self.indexes = [
+                         [ ] # no db with index 0
+                       , [ ] # no db with index 1
+                       , [ # indexes for mysql (list index 2)
+                           {'tab':'Players',  'col':'name',          'drop':0}
+                         , {'tab':'Hands',    'col':'siteHandNo',    'drop':0}
+                         , {'tab':'Tourneys', 'col':'siteTourneyNo', 'drop':0}
+                         ]
+                       , [ # indexes for postgres (list index 3)
+                           {'tab':'Boardcards',      'col':'handId',            'drop':0}
+                         , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
+                         , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
+                         , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
+                         , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
+                         , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
+                         , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
+                         , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
+                         , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
+                         , {'tab':'HudCache',        'col':'playerId',          'drop':0}
+                         , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
+                         , {'tab':'Players',         'col':'siteId',            'drop':1}
+                         , {'tab':'Players',         'col':'name',              'drop':0}
+                         , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
+                         , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
+                         , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
+                         , {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}
+                         , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+                         ]
+                       ]
+
+        self.foreignKeys = [
+                             [ ] # no db with index 0
+                           , [ ] # no db with index 1
+                           , [ # foreign keys for mysql
+                               {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                             , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                             , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                             , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                             , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                             , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                             , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                             ]
+                           , [ # foreign keys for postgres
+                               {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                             , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
+                             , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                             , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                             , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
+                             , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
+                             , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                             ]
+                           ]
+
+
+        # MySQL Notes:
+        #    "FOREIGN KEY (handId) REFERENCES Hands(id)" - requires index on Hands.id
+        #                                                - creates index handId on <thistable>.handId
+        # alter table t drop foreign key fk
+        # alter table t add foreign key (fkcol) references tab(rcol)
+        # alter table t add constraint c foreign key (fkcol) references tab(rcol)
+        # (fkcol is used for foreigh key name)
+
+        # mysql to list indexes:
+        #   SELECT table_name, index_name, non_unique, column_name 
+        #   FROM INFORMATION_SCHEMA.STATISTICS
+        #     WHERE table_name = 'tbl_name'
+        #     AND table_schema = 'db_name'
+        #   ORDER BY table_name, index_name, seq_in_index
+        #
+        # ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)
+        # ALTER TABLE tab DROP INDEX idx
+
+        # mysql to list fks:
+        #   SELECT constraint_name, table_name, column_name, referenced_table_name, referenced_column_name
+        #   FROM information_schema.KEY_COLUMN_USAGE
+        #   WHERE REFERENCED_TABLE_SCHEMA = (your schema name here)
+        #   AND REFERENCED_TABLE_NAME is not null
+        #   ORDER BY TABLE_NAME, COLUMN_NAME;
+
+        # this may indicate missing object
+        # _mysql_exceptions.OperationalError: (1025, "Error on rename of '.\\fpdb\\hands' to '.\\fpdb\\#sql2-7f0-1b' (errno: 152)")
+
+
+        # PG notes:
+
+        #  To add a foreign key constraint to a table:
+        #  ALTER TABLE tab ADD CONSTRAINT c FOREIGN KEY (col) REFERENCES t2(col2) MATCH FULL;
+        #  ALTER TABLE tab DROP CONSTRAINT zipchk
+        #
+        #  Note: index names must be unique across a schema
+        #  CREATE INDEX idx ON tab(col)
+        #  DROP INDEX idx
     #end def __init__
 
     def do_connect(self, config=None):
@@ -69,7 +176,7 @@ class fpdb_db:
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
-            print "host=%s user=%s pass=%s." % (host, user, password)
+            # print "host=%s user=%s pass=%s." % (host, user, password)
             if self.host and self.user and self.password:
                 try:
                     self.db = psycopg2.connect(host = host,
@@ -96,7 +203,7 @@ class fpdb_db:
         try:
             self.cursor.execute("SELECT * FROM Settings")
             settings=self.cursor.fetchone()
-            if settings[0]!=119:
+            if settings[0]!=118:
                 print "outdated or too new database version - please recreate tables"
                 self.wrongDbVersion=True
         except:# _mysql_exceptions.ProgrammingError:
@@ -201,14 +308,10 @@ class fpdb_db:
     #end def get_db_info
     
     def fillDefaultData(self):
-        self.cursor.execute("INSERT INTO Settings VALUES (119);")
+        self.cursor.execute("INSERT INTO Settings VALUES (118);")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Carbon', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'OnGame', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'UltimateBet', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Betfair', 'USD');")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
     #end def fillDefaultData
     
@@ -217,30 +320,275 @@ class fpdb_db:
         
         self.drop_tables()
         self.create_tables()
-        fpdb_simple.createAllIndexes(self)
+        self.createAllIndexes()
         self.db.commit()
         print "Finished recreating tables"
     #end def recreate_tables
 
-    def getSqlPlayerIDs(names, site_id):
-        result = []
-        notfound = []
-        self.cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-        tmp = dict(self.cursor.fetchall())
-        for n in names:
-            if n not in tmp:
-                notfound.append(n)
-            else:
-                result.append(tmp[n])
-        if notfound:
-            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-            cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-            tmp = cursor.fetchall()
-            for n in tmp:
-                result.append(n[0])
+    def prepareBulkImport(self):
+        """Drop some indexes/foreign keys to prepare for bulk import. 
+           Currently keeping the standalone indexes as needed to import quickly"""
+        stime = time()
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(0)   # allow table/index operations to work
+        for fk in self.foreignKeys[self.backend]:
+            if fk['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    self.cursor.execute("SELECT constraint_name " +
+                                       "FROM information_schema.KEY_COLUMN_USAGE " +
+                                       #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                                       "WHERE 1=1 " +
+                                       "AND table_name = %s AND column_name = %s " + 
+                                       "AND referenced_table_name = %s " +
+                                       "AND referenced_column_name = %s ",
+                                       (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                    cons = self.cursor.fetchone()
+                    #print "preparebulk: cons=", cons
+                    if cons:
+                        print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
+                        try:
+                            self.cursor.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
+                        except:
+                            pass
+                elif self.backend == self.PGSQL:
+    #    DON'T FORGET TO RECREATE THEM!!
+                    print "dropping pg fk", fk['fktab'], fk['fkcol']
+                    try:
+                        # try to lock table to see if index drop will work:
+                        # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
+                        # then drop still hangs :-(  does work in some tests though??
+                        # will leave code here for now pending further tests/enhancement ...
+                        self.cursor.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
+                        #print "after lock, status:", self.cursor.statusmessage
+                        #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                        try:
+                            self.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+                            print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
+                        except:
+                            if "does not exist" not in str(sys.exc_value):
+                                print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
+                                      % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
+                    except:
+                        print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
+                              % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
+                else:
+                    print "Only MySQL and Postgres supported so far"
+                    return -1
+        
+        for idx in self.indexes[self.backend]:
+            if idx['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    print "dropping mysql index ", idx['tab'], idx['col']
+                    try:
+                        # apparently nowait is not implemented in mysql so this just hands if there are locks 
+                        # preventing the index drop :-(
+                        self.cursor.execute( "alter table %s drop index %s", (idx['tab'],idx['col']) )
+                    except:
+                        pass
+                elif self.backend == self.PGSQL:
+    #    DON'T FORGET TO RECREATE THEM!!
+                    print "dropping pg index ", idx['tab'], idx['col']
+                    try:
+                        # try to lock table to see if index drop will work:
+                        self.cursor.execute( "lock table %s in exclusive mode nowait" % (idx['tab'],) )
+                        #print "after lock, status:", self.cursor.statusmessage
+                        try:
+                            # table locked ok so index drop should work:
+                            #print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                            self.cursor.execute( "drop index if exists %s_%s_idx" % (idx['tab'],idx['col']) )
+                            #print "dropped  pg index ", idx['tab'], idx['col']
+                        except:
+                            if "does not exist" not in str(sys.exc_value):
+                                print "warning: drop index %s_%s_idx failed: %s, continuing ..." \
+                                      % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n')) 
+                    except:
+                        print "warning: index %s_%s_idx not dropped %s, continuing ..." \
+                              % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
+                else:
+                    print "Error: Only MySQL and Postgres supported so far"
+                    return -1
 
-        #We proabably want to cache this
-        return result
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(1)   # go back to normal isolation level
+        self.db.commit() # seems to clear up errors if there were any in postgres
+        ptime = time() - stime
+        print "prepare import took", ptime, "seconds"
+    #end def prepareBulkImport
+
+    def afterBulkImport(self):
+        """Re-create any dropped indexes/foreign keys after bulk import"""
+        stime = time()
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(0)   # allow table/index operations to work
+        for fk in self.foreignKeys[self.backend]:
+            if fk['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    self.cursor.execute("SELECT constraint_name " +
+                                       "FROM information_schema.KEY_COLUMN_USAGE " +
+                                       #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                                       "WHERE 1=1 " +
+                                       "AND table_name = %s AND column_name = %s " + 
+                                       "AND referenced_table_name = %s " +
+                                       "AND referenced_column_name = %s ",
+                                       (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                    cons = self.cursor.fetchone()
+                    print "afterbulk: cons=", cons
+                    if cons:
+                        pass
+                    else:
+                        print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                        try:
+                            self.cursor.execute("alter table " + fk['fktab'] + " add foreign key (" 
+                                               + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
+                                               + fk['rcol'] + ")")
+                        except:
+                            pass
+                elif self.backend == self.PGSQL:
+                    print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                    try:
+                        self.cursor.execute("alter table " + fk['fktab'] + " add constraint "
+                                           + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
+                                           + " foreign key (" + fk['fkcol']
+                                           + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
+                    except:
+                        pass
+                else:
+                    print "Only MySQL and Postgres supported so far"
+                    return -1
+        
+        for idx in self.indexes[self.backend]:
+            if idx['drop'] == 1:
+                if self.backend == self.MYSQL_INNODB:
+                    print "creating mysql index ", idx['tab'], idx['col']
+                    try:
+                        self.cursor.execute( "alter table %s add index %s(%s)"
+                                          , (idx['tab'],idx['col'],idx['col']) )
+                    except:
+                        pass
+                elif self.backend == self.PGSQL:
+    #                pass
+                    # mod to use tab_col for index name?
+                    print "creating pg index ", idx['tab'], idx['col']
+                    try:
+                        print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                        self.cursor.execute( "create index %s_%s_idx on %s(%s)"
+                                          % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+                    except:
+                        print "   ERROR! :-("
+                        pass
+                else:
+                    print "Only MySQL and Postgres supported so far"
+                    return -1
+
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(1)   # go back to normal isolation level
+        self.db.commit()   # seems to clear up errors if there were any in postgres
+        atime = time() - stime
+        print "after import took", atime, "seconds"
+    #end def afterBulkImport
+
+    def createAllIndexes(self):
+        """Create new indexes"""
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(0)   # allow table/index operations to work
+        for idx in self.indexes[self.backend]:
+            if self.backend == self.MYSQL_INNODB:
+                print "creating mysql index ", idx['tab'], idx['col']
+                try:
+                    self.cursor.execute( "alter table %s add index %s(%s)"
+                                      , (idx['tab'],idx['col'],idx['col']) )
+                except:
+                    pass
+            elif self.backend == self.PGSQL:
+                # mod to use tab_col for index name?
+                print "creating pg index ", idx['tab'], idx['col']
+                try:
+                    print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                    self.cursor.execute( "create index %s_%s_idx on %s(%s)"
+                                      % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+                except:
+                    print "   ERROR! :-("
+                    pass
+            else:
+                print "Only MySQL and Postgres supported so far"
+                return -1
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(1)   # go back to normal isolation level
+    #end def createAllIndexes
+
+    def dropAllIndexes(self):
+        """Drop all standalone indexes (i.e. not including primary keys or foreign keys)
+           using list of indexes in indexes data structure"""
+        # maybe upgrade to use data dictionary?? (but take care to exclude PK and FK)
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(0)   # allow table/index operations to work
+        for idx in self.indexes[self.backend]:
+            if self.backend == self.MYSQL_INNODB:
+                print "dropping mysql index ", idx['tab'], idx['col']
+                try:
+                    self.cursor.execute( "alter table %s drop index %s"
+                                      , (idx['tab'],idx['col']) )
+                except:
+                    pass
+            elif self.backend == self.PGSQL:
+                print "dropping pg index ", idx['tab'], idx['col']
+                # mod to use tab_col for index name?
+                try:
+                    self.cursor.execute( "drop index %s_%s_idx"
+                                      % (idx['tab'],idx['col']) )
+                except:
+                    pass
+            else:
+                print "Only MySQL and Postgres supported so far"
+                return -1
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(1)   # go back to normal isolation level
+    #end def dropAllIndexes
+
+    def analyzeDB(self):
+        """Do whatever the DB can offer to update index/table statistics"""
+        stime = time()
+        if self.backend == self.PGSQL:
+            self.db.set_isolation_level(0)   # allow vacuum to work
+            try:
+                self.cursor.execute("vacuum analyze")
+            except:
+                print "Error during vacuum"
+            self.db.set_isolation_level(1)   # go back to normal isolation level
+        self.db.commit()
+        atime = time() - stime
+        print "analyze took", atime, "seconds"
+    #end def analyzeDB
+
+    # Currently uses an exclusive lock on the Hands table as a global lock
+    # Return values are Unix style, 0 for success, positive integers for errors
+    # 1 = generic error
+    # 2 = hands table does not exist (error message is suppressed)
+    def get_global_lock(self):
+        if self.backend == self.MYSQL_INNODB:
+            try:
+                self.cursor.execute( "lock tables Hands write" )
+            except:
+                # Table 'fpdb.hands' doesn't exist
+                if str(sys.exc_value).find(".hands' doesn't exist") >= 0:
+                    return(2)
+                print "Error! failed to obtain global lock. Close all programs accessing " \
+                      + "database (including fpdb) and try again (%s)." \
+                      % ( str(sys.exc_value).rstrip('\n'), )
+                return(1)
+        elif self.backend == self.PGSQL:
+            try:
+                self.cursor.execute( "lock table Hands in exclusive mode nowait" )
+                #print "... after lock table, status =", self.cursor.statusmessage
+            except:
+                # relation "hands" does not exist
+                if str(sys.exc_value).find('relation "hands" does not exist') >= 0:
+                    return(2)
+                print "Error! failed to obtain global lock. Close all programs accessing " \
+                      + "database (including fpdb) and try again (%s)." \
+                      % ( str(sys.exc_value).rstrip('\n'), )
+                return(1)
+        return(0) 
 
     def storeHand(self, p):
         #stores into table hands:
@@ -265,3 +613,4 @@ class fpdb_db:
               )
              )
         #return getLastInsertId(backend, conn, cursor)
+#end class fpdb_db

@@ -181,7 +181,7 @@ class fpdb:
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock():
+        if self.obtain_global_lock() == 0:  # returns 0 if successful
             try:
                 chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
                         action=gtk.FILE_CHOOSER_ACTION_OPEN,
@@ -201,7 +201,7 @@ class fpdb:
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
-        if self.obtain_global_lock():
+        if self.obtain_global_lock() in (0,2):  # returns 0 if successful, 2 if Hands table does not exist
 
             lock_released = False
             try:
@@ -406,7 +406,7 @@ class fpdb:
                               self.settings['db-databaseName'],
                               self.settings['db-user'], 
                               self.settings['db-password'])
-        return fpdb_simple.get_global_lock(self.fdb_lock)
+        return self.fdb_lock.get_global_lock()
     #end def obtain_global_lock
 
     def quit(self, widget):
@@ -454,7 +454,6 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
-
 
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
