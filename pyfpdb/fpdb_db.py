@@ -241,3 +241,27 @@ class fpdb_db:
 
         #We proabably want to cache this
         return result
+
+    def storeHand(self, p):
+        #stores into table hands:
+        self.cursor.execute ("""INSERT INTO Hands 
+             (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+              ,playersVpi, playersAtStreet1, playersAtStreet2
+              ,playersAtStreet3, playersAtStreet4, playersAtShowdown
+              ,street0Raises, street1Raises, street2Raises
+              ,street3Raises, street4Raises, street1Pot
+              ,street2Pot, street3Pot, street4Pot
+              ,showdownPot
+             ) 
+             VALUES 
+              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+             ,(p['siteHandNo'], gametype_id, p['handStart'], len(names), p['tableName'], datetime.datetime.today(), p['maxSeats']
+               ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
+               ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
+               ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
+               ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
+               ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
+               ,hudCache['showdownPot']
+              )
+             )
+        #return getLastInsertId(backend, conn, cursor)
