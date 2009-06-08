@@ -1138,7 +1138,6 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
 #stores into table board_cards
-    return
     cursor.execute ("""INSERT INTO BoardCards (handId, card1Value, card1Suit,
 card2Value, card2Suit, card3Value, card3Suit, card4Value, card4Suit,
 card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
@@ -2382,7 +2381,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, hand_start_time,
             # Try to do the update first:
             num = cursor.execute("""UPDATE HudCache
 SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
-    street0_3BChance=street0_3BChance+%s, street0_3BDone=street0_3BDone+%s,
+    street0_3B4BChance=street0_3B4BChance+%s, street0_3B4BDone=street0_3B4BDone+%s,
     street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
     street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
     street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,

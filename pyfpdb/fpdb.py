@@ -409,7 +409,7 @@ class fpdb:
         return self.fdb_lock.get_global_lock()
     #end def obtain_global_lock
 
-    def quit(self, widget):
+    def quit(self, widget, data):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
