@@ -76,7 +76,7 @@ class GuiTableViewer (threading.Thread):
 		arr=[]
 		#first prepare the header row
 		if (self.category=="holdem" or self.category=="omahahi" or self.category=="omahahilo"):
-			tmp=("Name", "HDs", "VPIP", "PFR", "PF3B4B", "ST")
+			tmp=("Name", "HDs", "VPIP", "PFR", "PF3B", "ST")
 			
 			tmp+=("FS", "FB")
 			
@@ -131,7 +131,7 @@ class GuiTableViewer (threading.Thread):
 			tmp.append(str(row[6]))#Hands
 			tmp.append(self.hudDivide(row[7],row[6])) #VPIP
 			tmp.append(self.hudDivide(row[8],row[6])) #PFR
-			tmp.append(self.hudDivide(row[10],row[9])+" ("+str(row[9])+")") #PF3B4B
+			tmp.append(self.hudDivide(row[10],row[9])+" ("+str(row[9])+")") #PF3B
 			
 			tmp.append(self.hudDivide(row[31],row[30])+" ("+str(row[30])+")") #ST
 			

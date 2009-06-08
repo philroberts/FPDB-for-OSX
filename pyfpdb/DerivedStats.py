@@ -26,8 +26,10 @@ class DerivedStats():
         self.HDs                             = 0
         self.street0VPI                      = 0
         self.street0Aggr                     = 0
-        self.street0_3B4BChance              = 0
-        self.street0_3B4BDone                = 0
+        self.street0_3BChance                = 0
+        self.street0_3BDone                  = 0
+        self.street0_4BChance                = 0
+        self.street0_4BDone                  = 0
 
         self.street1Seen                     = 0
         self.street2Seen                     = 0

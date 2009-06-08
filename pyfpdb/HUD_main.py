@@ -81,10 +81,11 @@ class HUD_main(object):
 
     def kill_hud(self, event, table):
 #    called by an event in the HUD, to kill this specific HUD
-        self.hud_dict[table].kill()
-        self.hud_dict[table].main_window.destroy()
-        self.vb.remove(self.hud_dict[table].tablehudlabel)
-        del(self.hud_dict[table])
+        if table in self.hud_dict:
+            self.hud_dict[table].kill()
+            self.hud_dict[table].main_window.destroy()
+            self.vb.remove(self.hud_dict[table].tablehudlabel)
+            del(self.hud_dict[table])
         self.main_window.resize(1,1)
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, stat_dict, cards):
@@ -194,6 +195,7 @@ class HUD_main(object):
                     sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
+            self.db_connection.connection.rollback()
 
 if __name__== "__main__":
     sys.stderr.write("HUD_main starting\n")

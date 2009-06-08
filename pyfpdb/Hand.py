@@ -36,6 +36,7 @@ class Hand:
         self.sitename = sitename
         self.stats = DerivedStats.DerivedStats(self)
         self.gametype = gametype
+        self.starttime = 0
         self.handText = handText
         self.handid = 0
         self.tablename = "Slartibartfast"
@@ -86,10 +87,59 @@ Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected fpdb_db object"""
         # TODO:
         # Players - base playerid and siteid tuple
+        sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
-        # BoardCards - ?
+        # BoardCards - Skip - no longer necessary?
         # Hands - Summary information of hand indexed by handId - gameinfo
+             hh['siteHandNo'] =  self.handid
+             # gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
+                #
+             hh['handStart'] = self.starttime
+             # seats TINYINT NOT NULL,
+                #
+             hh['tableName'] = self.tablename
+             hh['maxSeats'] = self.maxseats
+             # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+             # boardcard2 smallint,
+             # boardcard3 smallint,
+             # boardcard4 smallint,
+             # boardcard5 smallint,
+             # texture smallint,
+             # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
+                # Needs to be recorded
+             # playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
+                # Needs to be recorded
+             # playersAtStreet2 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtStreet3 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtStreet4 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtShowdown SMALLINT NOT NULL,
+                # Needs to be recorded
+             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                # Needs to be recorded
+             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
+                # Needs to be recorded
+             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
+                # Needs to be recorded
+             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
+                # Needs to be recorded
+             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
+                # Needs to be recorded
+             # street1Pot INT,                  /* pot size at flop/street4 */
+                # Needs to be recorded
+             # street2Pot INT,                  /* pot size at turn/street5 */
+                # Needs to be recorded
+             # street3Pot INT,                  /* pot size at river/street6 */
+                # Needs to be recorded
+             # street4Pot INT,                  /* pot size at sd/street7 */
+                # Needs to be recorded
+             # showdownPot INT,                 /* pot size at sd/street7 */
+             # comment TEXT,
+             # commentTs DATETIME
+        handid = db.storeHand(hh)
         # HandsPlayers - ? ... Do we fix winnings?
         # Tourneys ?
         # TourneysPlayers

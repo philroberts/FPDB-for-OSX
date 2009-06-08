@@ -21,11 +21,11 @@ import fpdb_simple
 import fpdb_save_to_db
 
 #parses a holdem hand
-def mainParser(backend, db, cursor, site, category, hand, config):
+def mainParser(backend, db, cursor, siteID, category, hand, config):
     category = fpdb_simple.recogniseCategory(hand[0])
-    
+
     base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
-    
+
     #part 0: create the empty arrays
     lineTypes   = [] #char, valid values: header, name, cards, action, win, rake, ignore
     lineStreets = [] #char, valid values: (predeal, preflop, flop, turn, river)
@@ -34,9 +34,7 @@ def mainParser(backend, db, cursor, site, category, hand, config):
 
     #part 1: read hand no and check for duplicate
     siteHandNo      = fpdb_simple.parseSiteHandNo(hand[0])
-    handStartTime   = fpdb_simple.parseHandStartTime(hand[0], site)
-    siteID          = fpdb_simple.recogniseSiteID(cursor, site)
-    #print "parse logic, siteID:",siteID,"site:",site
+    handStartTime   = fpdb_simple.parseHandStartTime(hand[0])
     
     isTourney       = fpdb_simple.isTourney(hand[0])
     smallBlindLine  = 0
@@ -46,11 +44,9 @@ def mainParser(backend, db, cursor, site, category, hand, config):
             smallBlindLine = i
             break
     #print "small blind line:",smallBlindLine
-    
+
     gametypeID = fpdb_simple.recogniseGametypeID(backend, db, cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
     if isTourney:
-        if site != "ps":
-            raise fpdb_simple.FpdbError("tourneys are only supported on PS right now")
         siteTourneyNo   = fpdb_simple.parseTourneyNo(hand[0])
         buyin           = fpdb_simple.parseBuyin(hand[0])
         fee             = fpdb_simple.parseFee(hand[0])
@@ -61,10 +57,10 @@ def mainParser(backend, db, cursor, site, category, hand, config):
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
         tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(cursor, siteID, buyin, fee, knockout, rebuyOrAddon)
-        
+
     fpdb_simple.isAlreadyInDB(cursor, gametypeID, siteHandNo)
     
-    hand = fpdb_simple.filterCrap(site, hand, isTourney)
+    hand = fpdb_simple.filterCrap(hand, isTourney)
     
     #part 2: classify lines by type (e.g. cards, action, win, sectionchange) and street
     fpdb_simple.classifyLines(hand, category, lineTypes, lineStreets)
@@ -74,10 +70,10 @@ def mainParser(backend, db, cursor, site, category, hand, config):
     for i, line in enumerate(hand):
         if lineTypes[i] == "name":
             seatLines.append(line)
-            
+
     names       = fpdb_simple.parseNames(seatLines)
     playerIDs   = fpdb_simple.recognisePlayerIDs(cursor, names, siteID)
-    tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines, site)
+    tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
     
@@ -90,30 +86,27 @@ def mainParser(backend, db, cursor, site, category, hand, config):
     #part 4: take appropriate action for each line based on linetype
     for i, line in enumerate(hand):
         if lineTypes[i] == "cards":
-            fpdb_simple.parseCardLine(site, category, lineStreets[i], line, names, cardValues, cardSuits, boardValues, boardSuits)
+            fpdb_simple.parseCardLine(category, lineStreets[i], line, names, cardValues, cardSuits, boardValues, boardSuits)
             #if category=="studhilo":
             #    print "hand[i]:", hand[i]
             #    print "cardValues:", cardValues
             #    print "cardSuits:", cardSuits
         elif lineTypes[i] == "action":
-            fpdb_simple.parseActionLine(site, base, isTourney, line, lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
+            fpdb_simple.parseActionLine(base, isTourney, line, lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
         elif lineTypes[i] == "win":
-            fpdb_simple.parseWinLine(line, site, names, winnings, isTourney)
+            fpdb_simple.parseWinLine(line, names, winnings, isTourney)
         elif lineTypes[i] == "rake":
             totalRake = 0 if isTourney else fpdb_simple.parseRake(line)
             fpdb_simple.splitRake(winnings, rakes, totalRake)
         elif lineTypes[i]=="header" or lineTypes[i]=="rake" or lineTypes[i]=="name" or lineTypes[i]=="ignore":
             pass
         elif lineTypes[i]=="ante":
-            fpdb_simple.parseAnteLine(line, site, isTourney, names, antes)
+            fpdb_simple.parseAnteLine(line, isTourney, names, antes)
         elif lineTypes[i]=="table":
-            tableResult=fpdb_simple.parseTableLine(site, base, line)
+            tableResult=fpdb_simple.parseTableLine(base, line)
         else:
             raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
-        
-    if site == "ftp":
-        tableResult = fpdb_simple.parseTableLine(site, base, hand[0])
-        
+
     maxSeats    = tableResult['maxSeats']
     tableName   = tableResult['tableName']
     #print "before part5, antes:", antes
@@ -128,7 +121,7 @@ def mainParser(backend, db, cursor, site, category, hand, config):
         
     cursor.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
     limit_type = cursor.fetchone()[0]
-    fpdb_simple.convert3B4B(site, category, limit_type, actionTypes, actionAmounts)
+    fpdb_simple.convert3B4B(category, limit_type, actionTypes, actionAmounts)
     
     totalWinnings = sum(winnings)
     
@@ -141,7 +134,7 @@ def mainParser(backend, db, cursor, site, category, hand, config):
         hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
                                      , allIns, actionTypeByNo, winnings, totalWinnings, None
                                      , actionTypes, actionAmounts, antes)
-    
+
     if isTourney:
         ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
         payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
@@ -165,7 +158,7 @@ def mainParser(backend, db, cursor, site, category, hand, config):
                                      , allIns, actionAmounts, actionNos, hudImportData, maxSeats
                                      , tableName, seatNos)
         else:
-            raise fpdb_simple.FpdbError("unrecognised category") # it's impossible to get here, but w/e
+            raise fpdb_simple.FpdbError("unrecognised category")
     else:
         if base == "hold":
             result = fpdb_save_to_db.ring_holdem_omaha(
@@ -183,7 +176,7 @@ def mainParser(backend, db, cursor, site, category, hand, config):
                                      , actionAmounts, actionNos, hudImportData, maxSeats, tableName
                                      , seatNos)
         else:
-            raise fpdb_simple.FpdbError ("unrecognised category") # also impossible to get here
+            raise fpdb_simple.FpdbError ("unrecognised category")
     db.commit()
     return result
 #end def mainParser

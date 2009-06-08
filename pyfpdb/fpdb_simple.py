@@ -20,6 +20,9 @@
 import datetime
 import time
 import re
+import sys
+
+import Card
  
 PS  = 1
 FTP = 2
@@ -29,6 +32,8 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
+# config while trying out new hudcache mechanism
+use_date_in_hudcache = True
 
 # Data Structures for index and foreign key creation
 # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -54,7 +59,7 @@ indexes = [
             , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
             , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
             , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-            , {'tab':'HandsActions',    'col':'handplayerId',      'drop':0}
+            , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
             , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
             , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
             , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -78,7 +83,7 @@ foreignKeys = [
                   {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                 , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -87,7 +92,7 @@ foreignKeys = [
                   {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                 , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                , {'fktab':'HandsActions', 'fkcol':'handPlayerId',  'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
+                , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                 , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                 , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
@@ -152,7 +157,7 @@ def prepareBulkImport(fdb):
                                    "AND referenced_column_name = %s ",
                                    (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
                 cons = fdb.cursor.fetchone()
-                print "preparebulk: cons=", cons
+                #print "preparebulk: cons=", cons
                 if cons:
                     print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
                     try:
@@ -161,13 +166,25 @@ def prepareBulkImport(fdb):
                         pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                #print "dropping pg fk", fk['fktab'], fk['fkcol']
+                print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
-                #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
-                    fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
-                    print "dropped pg fk pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
+                    # try to lock table to see if index drop will work:
+                    # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
+                    # then drop still hangs :-(  does work in some tests though??
+                    # will leave code here for now pending further tests/enhancement ...
+                    fdb.cursor.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
+                    #print "after lock, status:", fdb.cursor.statusmessage
+                    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                    try:
+                        fdb.cursor.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+                        print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
+                    except:
+                        if "does not exist" not in str(sys.exc_value):
+                            print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
+                                  % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
                 except:
-                    print "! failed drop pg fk %s_%s_fkey" % (fk['fktab'], fk['fkcol'])
+                    print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
+                          % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
@@ -177,22 +194,32 @@ def prepareBulkImport(fdb):
             if fdb.backend == MYSQL_INNODB:
                 print "dropping mysql index ", idx['tab'], idx['col']
                 try:
+                    # apparently nowait is not implemented in mysql so this just hands if there are locks 
+                    # preventing the index drop :-(
                     fdb.cursor.execute( "alter table %s drop index %s", (idx['tab'],idx['col']) )
                 except:
                     pass
             elif fdb.backend == PGSQL:
 #    DON'T FORGET TO RECREATE THEM!!
-                #print "Index dropping disabled for postgresql."
-                #print "dropping pg index ", idx['tab'], idx['col']
-                # mod to use tab_col for index name?
+                print "dropping pg index ", idx['tab'], idx['col']
                 try:
-                    fdb.cursor.execute( "drop index %s_%s_idx" % (idx['tab'],idx['col']) )
-		    print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
-                    #print "dropped  pg index ", idx['tab'], idx['col']
+                    # try to lock table to see if index drop will work:
+                    fdb.cursor.execute( "lock table %s in exclusive mode nowait" % (idx['tab'],) )
+                    #print "after lock, status:", fdb.cursor.statusmessage
+                    try:
+                        # table locked ok so index drop should work:
+                        #print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                        fdb.cursor.execute( "drop index if exists %s_%s_idx" % (idx['tab'],idx['col']) )
+                        #print "dropped  pg index ", idx['tab'], idx['col']
+                    except:
+                        if "does not exist" not in str(sys.exc_value):
+                            print "warning: drop index %s_%s_idx failed: %s, continuing ..." \
+                                  % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n')) 
                 except:
-		    print "! failed drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                    print "warning: index %s_%s_idx not dropped %s, continuing ..." \
+                          % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
             else:
-                print "Only MySQL and Postgres supported so far"
+                print "Error: Only MySQL and Postgres supported so far"
                 return -1
 
     if fdb.backend == PGSQL:
@@ -337,7 +364,29 @@ def analyzeDB(fdb):
         except:
             print "Error during vacuum"
         fdb.db.set_isolation_level(1)   # go back to normal isolation level
+    fdb.db.commit()
 #end def analyzeDB
+
+def get_global_lock(fdb):
+    if fdb.backend == MYSQL_INNODB:
+        try:
+            fdb.cursor.execute( "lock tables Hands write" )
+        except:
+            print "Error! failed to obtain global lock. Close all programs accessing " \
+                  + "database (including fpdb) and try again (%s)." \
+                  % ( str(sys.exc_value).rstrip('\n'), )
+            return(False)
+    elif fdb.backend == PGSQL:
+        try:
+            fdb.cursor.execute( "lock table Hands in exclusive mode nowait" )
+            #print "... after lock table, status =", fdb.cursor.statusmessage
+        except:
+            print "Error! failed to obtain global lock. Close all programs accessing " \
+                  + "database (including fpdb) and try again (%s)." \
+                  % ( str(sys.exc_value).rstrip('\n'), )
+            return(False)
+    return(True) 
+
 
 class DuplicateError(Exception):
     def __init__(self, value):
@@ -391,10 +440,6 @@ def checkPositions(positions):
     """ verify positions are valid """
     if any(not (p == "B" or p == "S" or (p >= 0 and p <= 9)) for p in positions):
         raise FpdbError("invalid position '"+p+"' found in checkPositions")
-#    for p in positions:
-#        if not (p == "B" or p == "S" or (p >= 0 and p <= 9)):
-#            raise FpdbError("invalid position '" + p + "' found in checkPositions")
- 
     ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
     ### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
  
@@ -445,7 +490,7 @@ def classifyLines(hand, category, lineTypes, lineStreets):
             currentStreet=3
         elif line.startswith("*** 7") or line == "*** RIVER ***":
             lineTypes.append("ignore")
-            currentStreet=4                
+            currentStreet=4
         elif isWinLine(line):
             lineTypes.append("win")
         elif line.startswith("Total pot ") and "Rake" in line:
@@ -461,7 +506,7 @@ def classifyLines(hand, category, lineTypes, lineStreets):
         lineStreets.append(currentStreet)
 #end def classifyLines
  
-def convert3B4B(site, category, limit_type, actionTypes, actionAmounts):
+def convert3B4B(category, limit_type, actionTypes, actionAmounts):
     """calculates the actual bet amounts in the given amount array and changes it accordingly."""
     for i in xrange(len(actionTypes)):
         for j in xrange(len(actionTypes[i])):
@@ -571,7 +616,7 @@ def fillCardArrays(player_count, base, category, card_values, card_suits):
  
 #filters out a player that folded before paying ante or blinds. This should be called
 #before calling the actual hand parser. manipulates hand, no return.
-def filterAnteBlindFold(site,hand):
+def filterAnteBlindFold(hand):
     #todo: this'll only get rid of one ante folder, not multiple ones
     #todo: in tourneys this should not be removed but
     #print "start of filterAnteBlindFold"
@@ -609,7 +654,7 @@ def stripEOLspaces(str):
     return str.rstrip()
  
 #removes useless lines as well as trailing spaces
-def filterCrap(site, hand, isTourney):
+def filterCrap(hand, isTourney):
     #remove two trailing spaces at end of line
     hand = [line.rstrip() for line in hand]
             
@@ -642,18 +687,8 @@ def filterCrap(site, hand, isTourney):
             hand[i] = False
         elif hand[i].endswith("is disconnected"):
             hand[i] = False
-        elif hand[i].endswith(" is feeling angry"):
+        elif hand[i].find(" is low with [")!=-1:
             hand[i] = False
-        elif hand[i].endswith(" is feeling confused"):
-            hand[i] = False
-        elif hand[i].endswith(" is feeling happy"):
-            hand[i] = False
-        elif hand[i].endswith(" is feeling normal"):
-            hand[i] = False
-        elif " is low with [" in hand[i]:
-            hand[i] = False
-        #elif (hand[i].find("-max Seat #")!=-1 and hand[i].find(" is the button")!=-1):
-        # toRemove.append(hand[i])
         elif hand[i].endswith(" mucks"):
             hand[i] = False
         elif hand[i].endswith(": mucks hand"):
@@ -679,13 +714,9 @@ def filterCrap(site, hand, isTourney):
             hand[i] = False
         elif "joins the table at seat " in hand[i]:
             hand[i] = False
-        elif (hand[i].endswith(" sits down")):
-            hand[i] = False
         elif (hand[i].endswith("leaves the table")):
             hand[i] = False
-        elif (hand[i].endswith(" stands up")):
-            hand[i] = False
-        elif "is high with" in hand[i]:
+        elif "is high with " in hand[i]:
             hand[i] = False
         elif hand[i].endswith("doesn't show hand"):
             hand[i] = False
@@ -695,11 +726,9 @@ def filterCrap(site, hand, isTourney):
             hand[i] = False
         elif hand[i] == "Betting is capped":
             hand[i] = False
-        #site specific variable position filter
-        elif 'said, "' in hand[i]:
+        elif (hand[i].find(" said, \"")!=-1):
             hand[i] = False
-        elif site == "ftp" and ":" in hand[i] and "Seat " not in hand[i] and ": Table" not in hand[i]: # FTP chat
-            hand[i] = False
+
         if isTourney and not hand[i] == False:
             if (hand[i].endswith(" is sitting out") and (not hand[i].startswith("Seat "))):
                 hand[i] = False
@@ -780,7 +809,7 @@ def isWinLine(line):
 #end def isWinLine
  
 #returns the amount of cash/chips put into the put in the given action line
-def parseActionAmount(line, atype, site, isTourney):
+def parseActionAmount(line, atype, isTourney):
     #if (line.endswith(" and is all-in")):
     # line=line[:-14]
     #elif (line.endswith(", and is all in")):
@@ -794,19 +823,14 @@ def parseActionAmount(line, atype, site, isTourney):
     if atype == "fold" or atype == "check":
         amount = 0
     elif atype == "unbet":
-        if site == "ftp":
-            pos1 = line.find("$") + 1
-            pos2 = line.find(" returned to")
-            amount = float2int(line[pos1:pos2])
-        elif site == "ps":
-            pos1 = line.find("$") + 1
-            if pos1 == 0:
-                pos1 = line.find("(") + 1
-            pos2 = line.find(")")
-            amount = float2int(line[pos1:pos2])
-    elif atype == "bet" and site == "ps" and line.find(": raises $")!=-1 and line.find("to $")!=-1:
-        pos = line.find("to $")+4
-        amount = float2int(line[pos:])
+        pos1 = line.find("$") + 1
+        if pos1 == 0:
+            pos1 = line.find("(") + 1
+        pos2 = line.find(")")
+        amount = float2int(line[pos1:pos2])
+    elif atype == "bet" and line.find(": raises $")!=-1 and line.find("to $")!=-1:
+        pos=line.find("to $")+4
+        amount=float2int(line[pos:])
     else:
         if not isTourney:
             pos = line.rfind("$")+1
@@ -827,7 +851,7 @@ def parseActionAmount(line, atype, site, isTourney):
 #doesnt return anything, simply changes the passed arrays action_types and
 # action_amounts. For stud this expects numeric streets (3-7), for
 # holdem/omaha it expects predeal, preflop, flop, turn or river
-def parseActionLine(site, base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
+def parseActionLine(base, isTourney, line, street, playerIDs, names, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
     if street == "predeal" or street == "preflop":
         street = 0
     elif street == "flop":
@@ -846,7 +870,7 @@ def parseActionLine(site, base, isTourney, line, street, playerIDs, names, actio
     (line, allIn) = goesAllInOnThisLine(line)
     atype = parseActionType(line)
     playerno = recognisePlayerNo(line, names, atype)
-    amount = parseActionAmount(line, atype, site, isTourney)
+    amount = parseActionAmount(line, atype, isTourney)
     
     action_types[street][playerno].append(atype)
     allIns[street][playerno].append(allIn)
@@ -898,7 +922,7 @@ def parseActionType(line):
 #end def parseActionType
  
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
-def parseAnteLine(line, site, isTourney, names, antes):
+def parseAnteLine(line, isTourney, names, antes):
     for i, name in enumerate(names):
         if line.startswith(name.encode("latin-1")):
             pos = line.rfind("$") + 1
@@ -924,7 +948,7 @@ def parseBuyin(topline):
  
 #parses a card line and changes the passed arrays accordingly
 #todo: reorganise this messy method
-def parseCardLine(site, category, street, line, names, cardValues, cardSuits, boardValues, boardSuits):
+def parseCardLine(category, street, line, names, cardValues, cardSuits, boardValues, boardSuits):
     if line.startswith("Dealt to") or " shows [" in line or "mucked [" in line:
         playerNo = recognisePlayerNo(line, names, "card") #anything but unbet will be ok for that string
  
@@ -998,7 +1022,7 @@ def parseCardLine(site, category, street, line, names, cardValues, cardSuits, bo
         raise FpdbError ("unrecognised line:"+line)
 #end def parseCardLine
  
-def parseCashesAndSeatNos(lines, site):
+def parseCashesAndSeatNos(lines):
     """parses the startCashes and seatNos of each player out of the given lines and returns them as a dictionary of two arrays"""
     cashes = []
     seatNos = []
@@ -1009,10 +1033,7 @@ def parseCashesAndSeatNos(lines, site):
         pos1=lines[i].rfind("($")+2
         if pos1==1: #for tourneys - it's 1 instead of -1 due to adding 2 above
             pos1=lines[i].rfind("(")+1
-        if (site=="ftp"):
-            pos2=lines[i].rfind(")")
-        elif (site=="ps"):
-            pos2=lines[i].find(" in chips")
+        pos2=lines[i].find(" in chips")
         cashes.append(float2int(lines[i][pos1:pos2]))
     return {'startCashes':cashes, 'seatNos':seatNos}
 #end def parseCashesAndSeatNos
@@ -1026,7 +1047,7 @@ def parseFee(topline):
 #end def parsefee
  
 #returns a datetime object with the starttime indicated in the given topline
-def parseHandStartTime(topline, site):
+def parseHandStartTime(topline):
     #convert x:13:35 to 0x:13:35
     counter=0
     while counter < 10:
@@ -1037,41 +1058,25 @@ def parseHandStartTime(topline, site):
         counter += 1
     
     isUTC=False
-    if site=="ftp":
-        # Full Tilt Sit'n'Go
-        # Full Tilt Poker Game #10311865543: $1 + $0.25 Sit & Go (78057629), Table 1 - 25/50 - No Limit Hold'em - 0:07:45 ET - 2009/01/29
-        # Cash Game:
-        # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
-        # Full Tilt Poker Game #9468383505: Table Bike (deep 6) - $0.05/$0.10 - No Limit Hold'em - 5:09:36 ET - 2008/12/13
-        pos = topline.find(" ", len(topline)-26)+1
-        tmp = topline[pos:]
-
-        rexx = '(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+) ET [\- ]+(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})'
-        m = re.search(rexx,tmp)
-        result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-    elif site=="ps":
-        if topline.find("UTC")!=-1:
-            pos1 = topline.find("-")+2
-            pos2 = topline.find("UTC")
-            tmp=topline[pos1:pos2]
-            isUTC=True
-        else:
-            tmp=topline
-            #print "parsehandStartTime, tmp:", tmp
-            pos = tmp.find("-")+2
-            tmp = tmp[pos:]
-        #Need to match either
-        # 2008/09/07 06:23:14 ET or
-        # 2008/08/17 - 01:14:43 (ET) or
-        # 2008/11/12 9:33:31 CET [2008/11/12 3:33:31 ET]
-        rexx = '(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)'
-        m = re.search(rexx,tmp)
-        #print "year:", int(m.group('YEAR')), "month", int(m.group('MON')), "day", int(m.group('DAY')), "hour", int(m.group('HR')), "minute", int(m.group('MIN')), "second", int(m.group('SEC'))
-        result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
+    if topline.find("UTC")!=-1:
+        pos1 = topline.find("-")+2
+        pos2 = topline.find("UTC")
+        tmp=topline[pos1:pos2]
+        isUTC=True
     else:
-        raise FpdbError("invalid site in parseHandStartTime")
+        tmp=topline
+        #print "parsehandStartTime, tmp:", tmp
+        pos = tmp.find("-")+2
+        tmp = tmp[pos:]
+    #Need to match either
+    # 2008/09/07 06:23:14 ET or
+    # 2008/08/17 - 01:14:43 (ET) or
+    # 2008/11/12 9:33:31 CET [2008/11/12 3:33:31 ET]
+    rexx = '(?P<YEAR>[0-9]{4})\/(?P<MON>[0-9]{2})\/(?P<DAY>[0-9]{2})[\- ]+(?P<HR>[0-9]+):(?P<MIN>[0-9]+):(?P<SEC>[0-9]+)'
+    m = re.search(rexx,tmp)
+    result = datetime.datetime(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')), int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
     
-    if (site=="ftp" or site=="ps") and not isUTC: #these use US ET
+    if not isUTC: #these use US ET
         result+=datetime.timedelta(hours=5)
     
     return result
@@ -1175,42 +1180,15 @@ def parseSiteHandNo(topline):
     return topline[pos1:pos2]
 #end def parseSiteHandNo
  
-def parseTableLine(site, base, line):
+def parseTableLine(base, line):
     """returns a dictionary with maxSeats and tableName"""
-    if site=="ps":
-        pos1=line.find('\'')+1
-        pos2=line.find('\'', pos1)
-        #print "table:",line[pos1:pos2]
-        pos3=pos2+2
-        pos4=line.find("-max")
-        #print "seats:",line[pos3:pos4]
-        return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
-    elif site=="ftp":
-        pos1=line.find("Table ")+6
-        pos2=line.find("-")-1
-        if base=="hold":
-            maxSeats=9
-        elif base=="stud":
-            maxSeats=8
-            
-        if line.find("6 max")!=-1:
-            maxSeats=6
-        elif line.find("4 max")!=-1:
-            maxSeats=4
-        elif line.find("heads up")!=-1:
-            maxSeats=2
-            
-        tableName = line[pos1:pos2]
-        for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
-                    ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
-                    ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
-                    ' \(speed\)', 
-                    ' no all-in', ' fast', ',', ' 50BB min', '\s+$']:
-            tableName = re.sub(pattern, '', tableName)
-        tableName = tableName.rstrip()            
-        return {'maxSeats':maxSeats, 'tableName':tableName}
-    else:
-        raise FpdbError("invalid site ID")
+    pos1=line.find('\'')+1
+    pos2=line.find('\'', pos1)
+    #print "table:",line[pos1:pos2]
+    pos3=pos2+2
+    pos4=line.find("-max")
+    #print "seats:",line[pos3:pos4]
+    return {'maxSeats':int(line[pos3:pos4]), 'tableName':line[pos1:pos2]}
 #end def parseTableLine
  
 #returns the hand no assigned by the poker site
@@ -1222,24 +1200,18 @@ def parseTourneyNo(topline):
 #end def parseTourneyNo
  
 #parses a win/collect line. manipulates the passed array winnings, no explicit return
-def parseWinLine(line, site, names, winnings, isTourney):
+def parseWinLine(line, names, winnings, isTourney):
     #print "parseWinLine: line:",line
     for i,n in enumerate(names):
         n = n.encode("latin-1")
         if line.startswith(n):
             if isTourney:
                 pos1 = line.rfind("collected ") + 10
-                if site == "ftp":
-                    pos2 = line.find(")", pos1)
-                elif site == "ps":
-                    pos2 = line.find(" ", pos1)
-                winnings[i] += int(line[pos1:pos2])
+                pos2 = line.find(" ", pos1)
+                winnings[i]+=int(line[pos1:pos2])
             else:
                 pos1 = line.rfind("$") + 1
-                if site == "ftp":
-                    pos2 = line.find(")", pos1)
-                elif site == "ps":
-                    pos2 = line.find(" ", pos1)
+                pos2 = line.find(" ", pos1)
                 winnings[i] += float2int(line[pos1:pos2])
 #end def parseWinLine
  
@@ -1285,10 +1257,7 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
     pos1=pos2+2
     if isTourney:
         pos1-=1
-    if (site_id==1): #ftp
-        pos2=topline.find(" ", pos1)
-    elif (site_id==2): #ps
-        pos2=topline.find(")")
+    pos2=topline.find(")")
     
     if pos2<=pos1:
         pos2=topline.find(")", pos1)
@@ -1413,35 +1382,14 @@ def recognisePlayerIDs(cursor, names, site_id):
             cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
             q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
             cursor.execute(q2, notfound) # get their new ids
-            tmp = dict(cursor.fetchall())
-            for n in tmp: # put them all into the same dict
-                ids[n] = tmp[n]
+            tmp = cursor.fetchall()
+            for n,id in tmp: # put them all into the same dict
+                ids[n] = id
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
     return [ids[n] for n in names]
 #end def recognisePlayerIDs
 
 
-# Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
-# this version could also be improved upon using list comprehensions, etc
-
-#def recognisePlayerIDs(cursor, names, site_id):
-#    result = []
-#    notfound = []
-#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-#    tmp = dict(cursor.fetchall())
-#    for n in names:
-#        if n not in tmp:
-#            notfound.append(n)
-#        else:
-#            result.append(tmp[n])
-#    if notfound:
-#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-#        tmp = cursor.fetchall()
-#        for n in tmp:
-#            result.append(n[0])
-#        
-#    return result
  
 #recognises the name in the given line and returns its array position in the given array
 def recognisePlayerNo(line, names, atype):
@@ -1471,28 +1419,6 @@ def recognisePlayerNo(line, names, atype):
     raise FpdbError ("failed to recognise player in: "+line+" atype:"+atype)
 #end def recognisePlayerNo
  
-#returns the site abbreviation for the given site
-def recogniseSite(line):
-    if (line.startswith("Full Tilt Poker") or line.startswith("FullTiltPoker")):
-        return "ftp"
-    elif (line.startswith("PokerStars")):
-        return "ps"
-    else:
-        raise FpdbError("failed to recognise site, line:"+line)
-#end def recogniseSite
- 
-#returns the ID of the given site
-def recogniseSiteID(cursor, site):
-    if (site=="ftp"):
-        return 1
-        #cursor.execute("SELECT id FROM Sites WHERE name = ('Full Tilt Poker')")
-    elif (site=="ps"):
-        return 2
-        #cursor.execute("SELECT id FROM Sites WHERE name = ('PokerStars')")
-    else:
-        raise FpdbError("invalid site in recogniseSiteID: "+site)
-    return cursor.fetchall()[0][0]
-#end def recogniseSiteID
  
 #removes trailing \n from the given array
 def removeTrailingEOL(arr):
@@ -1534,11 +1460,12 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
                 # Add inserts into a list and let 
                 inserts = inserts + [(handsPlayersIds[j], i, actionNos[i][j][k], actionTypes[i][j][k], allIns[i][j][k], actionAmounts[i][j][k])]
 
-    cursor.executemany("INSERT INTO HandsActions (handPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
+    cursor.executemany("INSERT INTO HandsActions (handsPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
 def store_board_cards(cursor, hands_id, board_values, board_suits):
 #stores into table board_cards
+    return
     cursor.execute ("""INSERT INTO BoardCards (handId, card1Value, card1Suit,
 card2Value, card2Suit, card3Value, card3Suit, card4Value, card4Suit,
 card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
@@ -1548,46 +1475,166 @@ card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
 #end def store_board_cards
  
 def storeHands(backend, conn, cursor, site_hand_no, gametype_id
-              ,hand_start_time, names, tableName, maxSeats):
-#stores into table hands
-    cursor.execute ("INSERT INTO Hands (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats) VALUES (%s, %s, %s, %s, %s, %s, %s)", (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats))
-    #todo: find a better way of doing this...
-    #cursor.execute("SELECT id FROM Hands WHERE siteHandNo=%s AND gametypeId=%s", (site_hand_no, gametype_id))
-    #return cursor.fetchall()[0][0]
+              ,hand_start_time, names, tableName, maxSeats, hudCache):
+#stores into table hands:
+    cursor.execute ("""INSERT INTO Hands 
+                       (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+                       ,playersVpi, playersAtStreet1, playersAtStreet2
+                       ,playersAtStreet3, playersAtStreet4, playersAtShowdown
+                       ,street0Raises, street1Raises, street2Raises
+                       ,street3Raises, street4Raises, street1Pot
+                       ,street2Pot, street3Pot, street4Pot
+                       ,showdownPot
+                       ) 
+                       VALUES 
+                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    """
+                   ,   (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats
+                       ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
+                       ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
+                       ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
+                       ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
+                       ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
+                       ,hudCache['showdownPot']
+                       ))
     return getLastInsertId(backend, conn, cursor)
-    #return db.insert_id() # mysql only
 #end def storeHands
  
 def store_hands_players_holdem_omaha(backend, conn, cursor, category, hands_id, player_ids, start_cashes
-                                    ,positions, card_values, card_suits, winnings, rakes, seatNos):
+                                    ,positions, card_values, card_suits, winnings, rakes, seatNos, hudCache):
     result=[]
+
+    # postgres (and others?) needs the booleans converted to ints before saving:
+    # (or we could just save them as boolean ... but then we can't sum them so easily in sql ???)
+    # NO - storing booleans for now so don't need this
+    #hudCacheInt = {}
+    #for k,v in hudCache.iteritems():
+    #    if k in ('wonWhenSeenStreet1', 'wonAtSD', 'totalProfit'):
+    #        hudCacheInt[k] = v
+    #    else:
+    #        hudCacheInt[k] = map(lambda x: 1 if x else 0, v)
+
     if (category=="holdem"):
         for i in xrange(len(player_ids)):
+            startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
+            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
             cursor.execute ("""
 INSERT INTO HandsPlayers
-(handId, playerId, startCash, position,
-card1Value, card1Suit, card2Value, card2Suit, winnings, rake, seatNo)
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-            (hands_id, player_ids[i], start_cashes[i], positions[i],
-            card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
-            winnings[i], rakes[i], seatNos[i]))
+(handId, playerId, startCash, position, tourneyTypeId,
+ card1, card2, startCards, winnings, rake, seatNo, totalProfit,
+ street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+ street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+ street1Aggr, street2Aggr, street3Aggr, street4Aggr,
+ otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
+ foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
+ wonWhenSeenStreet1, wonAtSD,
+ stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+ street1CBChance, street1CBDone, street2CBChance, street2CBDone,
+ street3CBChance, street3CBDone, street4CBChance, street4CBDone,
+ foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
+ foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
+ street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
+ street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
+ street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+ street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
+)
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+ %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+ %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+ %s, %s, %s, %s, %s, %s, %s, %s)""",
+            (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+             card1, card2, startCards,
+             winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
+             hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
+             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
+             hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
+             hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
+             hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
+             hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
+             hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
+             hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
+             hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
+             hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
+             hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
+             hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
+             hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
+             hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
+             hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
+             hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
+             hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
+             hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
+             hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
+             hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
+             hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
+             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
+             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
+             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
+            )              )
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
-            result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
+            result.append( getLastInsertId(backend, conn, cursor) )
     elif (category=="omahahi" or category=="omahahilo"):
         for i in xrange(len(player_ids)):
+            startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1], card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
+            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
+            card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
+            card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
             cursor.execute ("""INSERT INTO HandsPlayers
-(handId, playerId, startCash, position,
-card1Value, card1Suit, card2Value, card2Suit,
-card3Value, card3Suit, card4Value, card4Suit, winnings, rake, seatNo)
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-            (hands_id, player_ids[i], start_cashes[i], positions[i],
-            card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
-            card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
-            winnings[i], rakes[i], seatNos[i]))
+(handId, playerId, startCash, position, tourneyTypeId,
+ card1, card2, card3, card4, winnings, rake, seatNo, totalProfit,
+ street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+ street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+ street1Aggr, street2Aggr, street3Aggr, street4Aggr,
+ otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
+ foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
+ wonWhenSeenStreet1, wonAtSD,
+ stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+ street1CBChance, street1CBDone, street2CBChance, street2CBDone,
+ street3CBChance, street3CBDone, street4CBChance, street4CBDone,
+ foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
+ foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
+ street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
+ street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
+ street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+ street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
+)
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+ %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+ %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+ %s, %s, %s, %s, %s, %s, %s, %s)""",
+            (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+             card1, card2, card3, card4,
+             winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
+             hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
+             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
+             hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
+             hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
+             hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
+             hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
+             hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
+             hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
+             hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
+             hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
+             hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
+             hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
+             hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
+             hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
+             hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
+             hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
+             hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
+             hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
+             hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
+             hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
+             hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
+             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
+             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
+             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
+            )              )
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
-            result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
+            result.append( getLastInsertId(backend, conn, cursor) )
     else:
         raise FpdbError("invalid category")
     return result
@@ -1614,7 +1661,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
         card_values[i][6], card_suits[i][6], winnings[i], rakes[i], seatNos[i]))
         #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
         #result.append(cursor.fetchall()[0][0])
-        result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
+        result.append( getLastInsertId(backend, conn, cursor) )
     return result
 #end def store_hands_players_stud
  
@@ -1648,7 +1695,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
             raise FpdbError ("invalid card_values length:"+str(len(card_values[0])))
         #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
         #result.append(cursor.fetchall()[0][0])
-        result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
+        result.append( getLastInsertId(backend, conn, cursor) )
     
     return result
 #end def store_hands_players_holdem_omaha_tourney
@@ -1673,7 +1720,7 @@ VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
         card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
         #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
         #result.append(cursor.fetchall()[0][0])
-        result.append( getLastInsertId(backend, conn, cursor) ) # mysql only
+        result.append( getLastInsertId(backend, conn, cursor) )
     return result
 #end def store_hands_players_stud_tourney
  
@@ -1686,8 +1733,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
     #setup subarrays of the result dictionary.
     street0VPI=[]
     street0Aggr=[]
-    street0_3B4BChance=[]
-    street0_3B4BDone=[]
+    street0_3BChance=[]
+    street0_3BDone=[]
     street1Seen=[]
     street2Seen=[]
     street3Seen=[]
@@ -1712,6 +1759,41 @@ sure to also change the following storage method and table_viewer.prepare_data i
     stealAttempted=[]
     hudDataPositions=[]
     
+    street0Calls=[]
+    street1Calls=[]
+    street2Calls=[]
+    street3Calls=[]
+    street4Calls=[]
+    street0Bets=[]
+    street1Bets=[]
+    street2Bets=[]
+    street3Bets=[]
+    street4Bets=[]
+    #street0Raises=[]
+    #street1Raises=[]
+    #street2Raises=[]
+    #street3Raises=[]
+    #street4Raises=[]
+    
+    # Summary figures for hand table:
+    result={}
+    result['playersVpi']=0
+    result['playersAtStreet1']=0
+    result['playersAtStreet2']=0
+    result['playersAtStreet3']=0
+    result['playersAtStreet4']=0
+    result['playersAtShowdown']=0
+    result['street0Raises']=0
+    result['street1Raises']=0
+    result['street2Raises']=0
+    result['street3Raises']=0
+    result['street4Raises']=0
+    result['street1Pot']=0
+    result['street2Pot']=0
+    result['street3Pot']=0
+    result['street4Pot']=0
+    result['showdownPot']=0
+    
     firstPfRaiseByNo=-1
     firstPfRaiserId=-1
     firstPfRaiserNo=-1
@@ -1732,6 +1814,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
             firstPfCallByNo = i
             firstPfCallerId = action[0]
             break
+    firstPlayId = firstPfCallerId
+    if firstPfRaiseByNo <> -1:
+        if firstPfRaiseByNo < firstPfCallByNo or firstPfCallByNo == -1:
+            firstPlayId = firstPfRaiserId
+
     
     cutoffId=-1
     buttonId=-1
@@ -1755,8 +1842,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #set default values
         myStreet0VPI=False
         myStreet0Aggr=False
-        myStreet0_3B4BChance=False
-        myStreet0_3B4BDone=False
+        myStreet0_3BChance=False
+        myStreet0_3BDone=False
         myStreet1Seen=False
         myStreet2Seen=False
         myStreet3Seen=False
@@ -1778,6 +1865,21 @@ sure to also change the following storage method and table_viewer.prepare_data i
         myWonAtSD=0.0
         myStealAttemptChance=False
         myStealAttempted=False
+        myStreet0Calls=0
+        myStreet1Calls=0
+        myStreet2Calls=0
+        myStreet3Calls=0
+        myStreet4Calls=0
+        myStreet0Bets=0
+        myStreet1Bets=0
+        myStreet2Bets=0
+        myStreet3Bets=0
+        myStreet4Bets=0
+        #myStreet0Raises=0
+        #myStreet1Raises=0
+        #myStreet2Raises=0
+        #myStreet3Raises=0
+        #myStreet4Raises=0
         
         #calculate VPIP and PFR
         street=0
@@ -1787,8 +1889,15 @@ sure to also change the following storage method and table_viewer.prepare_data i
                 myStreet0Aggr = True
             if currentAction == "bet" or currentAction == "call":
                 myStreet0VPI = True
+            
+        if myStreet0VPI:
+            result['playersVpi'] += 1
+        myStreet0Calls = action_types[street][player].count('call')
+        myStreet0Bets = action_types[street][player].count('bet')
+        # street0Raises = action_types[street][player].count('raise')  bet count includes raises for now
+        result['street0Raises'] += myStreet0Bets
         
-        #PF3B4BChance and PF3B4B
+        #PF3BChance and PF3B
         pfFold=-1
         pfRaise=-1
         if firstPfRaiseByNo != -1:
@@ -1799,30 +1908,33 @@ sure to also change the following storage method and table_viewer.prepare_data i
                     if actionType[1] == "fold" and pfFold == -1:
                         pfFold = i
             if pfFold == -1 or pfFold > firstPfRaiseByNo:
-                myStreet0_3B4BChance = True
+                myStreet0_3BChance = True
                 if pfRaise > firstPfRaiseByNo:
-                    myStreet0_3B4BDone = True
+                    myStreet0_3BDone = True
         
         #steal calculations
-        if base == "hold":
-            if len(player_ids)>=5: #no point otherwise
+        if base=="hold":
+            if len(player_ids)>=3: # no point otherwise  # was 5, use 3 to match pokertracker definition
                 if positions[player]==1:
-                    if firstPfRaiserId==player_ids[player]:
-                        myStealAttemptChance=True
+                    if      firstPfRaiserId==player_ids[player] \
+                       and (firstPfCallByNo==-1 or firstPfCallByNo>firstPfRaiseByNo):
                         myStealAttempted=True
-                    elif firstPfRaiserId==buttonId or firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+                        myStealAttemptChance=True
+                    if firstPlayId==cutoffId or firstPlayId==buttonId or firstPlayId==sbId or firstPlayId==bbId or firstPlayId==-1:
                         myStealAttemptChance=True
                 if positions[player]==0:
-                    if firstPfRaiserId==player_ids[player]:
-                        myStealAttemptChance=True
+                    if      firstPfRaiserId==player_ids[player] \
+                       and (firstPfCallByNo==-1 or firstPfCallByNo>firstPfRaiseByNo):
                         myStealAttempted=True
-                    elif firstPfRaiserId==sbId or firstPfRaiserId==bbId or firstPfRaiserId==-1:
+                        myStealAttemptChance=True
+                    if firstPlayId==buttonId or firstPlayId==sbId or firstPlayId==bbId or firstPlayId==-1:
                         myStealAttemptChance=True
                 if positions[player]=='S':
-                    if firstPfRaiserId==player_ids[player]:
-                        myStealAttemptChance=True
+                    if      firstPfRaiserId==player_ids[player] \
+                       and (firstPfCallByNo==-1 or firstPfCallByNo>firstPfRaiseByNo):
                         myStealAttempted=True
-                    elif firstPfRaiserId==bbId or firstPfRaiserId==-1:
+                        myStealAttemptChance=True
+                    if firstPlayId==sbId or firstPlayId==bbId or firstPlayId==-1:
                         myStealAttemptChance=True
                 if positions[player]=='B':
                     pass
@@ -1864,13 +1976,28 @@ sure to also change the following storage method and table_viewer.prepare_data i
                             mySawShowdown = True
                             if any(actiontype == "fold" for actiontype in action_types[4][player]):
                                 mySawShowdown = False
-                        
+
+        if myStreet1Seen:
+            result['playersAtStreet1'] += 1
+        if myStreet2Seen:
+            result['playersAtStreet2'] += 1
+        if myStreet3Seen:
+            result['playersAtStreet3'] += 1
+        if myStreet4Seen:
+            result['playersAtStreet4'] += 1
+        if mySawShowdown:
+            result['playersAtShowdown'] += 1
  
         #flop stuff
         street=1
         if myStreet1Seen:
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                 myStreet1Aggr = True
+            
+            myStreet1Calls = action_types[street][player].count('call')
+            myStreet1Bets = action_types[street][player].count('bet')
+            # street1Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street1Raises'] += myStreet1Bets
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1889,6 +2016,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                 myStreet2Aggr = True
             
+            myStreet2Calls = action_types[street][player].count('call')
+            myStreet2Bets = action_types[street][player].count('bet')
+            # street2Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street2Raises'] += myStreet2Bets
+            
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
@@ -1906,6 +2038,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                     myStreet3Aggr = True
             
+            myStreet3Calls = action_types[street][player].count('call')
+            myStreet3Bets = action_types[street][player].count('bet')
+            # street3Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street3Raises'] += myStreet3Bets
+            
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
                     pass
@@ -1922,6 +2059,11 @@ sure to also change the following storage method and table_viewer.prepare_data i
         if myStreet4Seen:
             if any(actiontype == "bet" for actiontype in action_types[street][player]):
                 myStreet4Aggr=True
+            
+            myStreet4Calls = action_types[street][player].count('call')
+            myStreet4Bets = action_types[street][player].count('bet')
+            # street4Raises = action_types[street][player].count('raise')  bet count includes raises for now
+            result['street4Raises'] += myStreet4Bets
             
             for otherPlayer in xrange(len(player_ids)):
                 if player==otherPlayer:
@@ -1943,8 +2085,8 @@ sure to also change the following storage method and table_viewer.prepare_data i
         #add each value to the appropriate array
         street0VPI.append(myStreet0VPI)
         street0Aggr.append(myStreet0Aggr)
-        street0_3B4BChance.append(myStreet0_3B4BChance)
-        street0_3B4BDone.append(myStreet0_3B4BDone)
+        street0_3BChance.append(myStreet0_3BChance)
+        street0_3BDone.append(myStreet0_3BDone)
         street1Seen.append(myStreet1Seen)
         street2Seen.append(myStreet2Seen)
         street3Seen.append(myStreet3Seen)
@@ -1988,12 +2130,28 @@ sure to also change the following storage method and table_viewer.prepare_data i
         elif base=="stud":
             #todo: stud positions and steals
             pass
+
+        street0Calls.append(myStreet0Calls)
+        street1Calls.append(myStreet1Calls)
+        street2Calls.append(myStreet2Calls)
+        street3Calls.append(myStreet3Calls)
+        street4Calls.append(myStreet4Calls)
+        street0Bets.append(myStreet0Bets)
+        street1Bets.append(myStreet1Bets)
+        street2Bets.append(myStreet2Bets)
+        street3Bets.append(myStreet3Bets)
+        street4Bets.append(myStreet4Bets)
+        #street0Raises.append(myStreet0Raises)
+        #street1Raises.append(myStreet1Raises)
+        #street2Raises.append(myStreet2Raises)
+        #street3Raises.append(myStreet3Raises)
+        #street4Raises.append(myStreet4Raises)
     
     #add each array to the to-be-returned dictionary
-    result={'street0VPI':street0VPI}
+    result['street0VPI']=street0VPI
     result['street0Aggr']=street0Aggr
-    result['street0_3B4BChance']=street0_3B4BChance
-    result['street0_3B4BDone']=street0_3B4BDone
+    result['street0_3BChance']=street0_3BChance
+    result['street0_3BDone']=street0_3BDone
     result['street1Seen']=street1Seen
     result['street2Seen']=street2Seen
     result['street3Seen']=street3Seen
@@ -2016,6 +2174,21 @@ sure to also change the following storage method and table_viewer.prepare_data i
     result['wonAtSD']=wonAtSD
     result['stealAttemptChance']=stealAttemptChance
     result['stealAttempted']=stealAttempted
+    result['street0Calls']=street0Calls
+    result['street1Calls']=street1Calls
+    result['street2Calls']=street2Calls
+    result['street3Calls']=street3Calls
+    result['street4Calls']=street4Calls
+    result['street0Bets']=street0Bets
+    result['street1Bets']=street1Bets
+    result['street2Bets']=street2Bets
+    result['street3Bets']=street3Bets
+    result['street4Bets']=street4Bets
+    #result['street0Raises']=street0Raises
+    #result['street1Raises']=street1Raises
+    #result['street2Raises']=street2Raises
+    #result['street3Raises']=street3Raises
+    #result['street4Raises']=street4Raises
     
     #now the various steal values
     foldBbToStealChance=[]
@@ -2259,168 +2432,15 @@ def generateFoldToCB(street, playerIDs, didStreetCB, streetCBDone, foldToStreetC
                     foldToStreetCBDone[player]=True
 #end def generateFoldToCB
  
-def storeHudCache(cursor, base, category, gametypeId, playerIds, hudImportData):
-# if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        
-        #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
-        #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
-        for player in xrange(len(playerIds)):
-            if base=="hold":
-                cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s AND position=%s", (gametypeId, playerIds[player], len(playerIds), hudImportData['position'][player]))
-            else:
-                cursor.execute("SELECT * FROM HudCache WHERE gametypeId+0=%s AND playerId=%s AND activeSeats=%s", (gametypeId, playerIds[player], len(playerIds)))
-            row=cursor.fetchone()
-            #print "gametypeId:", gametypeId, "playerIds[player]",playerIds[player], "len(playerIds):",len(playerIds), "row:",row
-            
-            try: len(row)
-            except TypeError:
-                row=[]
-
-            if not row:            
-                #print "new huddata row"
-                doInsert=True
-                row=[]
-                row.append(0)#blank for id
-                row.append(gametypeId)
-                row.append(playerIds[player])
-                row.append(len(playerIds))#seats
-                for i in xrange(len(hudImportData)+2):
-                    row.append(0)
-                
-            else:
-                doInsert=False
-                # This is making a copy of the original list, although i really don't see any reason it's being done?
-                newrow=[]
-                newrow.extend(row)
-#                for i in xrange(len(row)):
-#                    newrow.append(row[i])
-                row=newrow
-            
-            if base=="hold":
-                row[4]=hudImportData['position'][player]
-            else:
-                row[4]=0
-            row[5]=1 #tourneysGametypeId
-            row[6]+=1 #HDs
-            if hudImportData['street0VPI'][player]: row[7]+=1
-            if hudImportData['street0Aggr'][player]: row[8]+=1
-            if hudImportData['street0_3B4BChance'][player]: row[9]+=1
-            if hudImportData['street0_3B4BDone'][player]: row[10]+=1
-            if hudImportData['street1Seen'][player]: row[11]+=1
-            if hudImportData['street2Seen'][player]: row[12]+=1
-            if hudImportData['street3Seen'][player]: row[13]+=1
-            if hudImportData['street4Seen'][player]: row[14]+=1
-            if hudImportData['sawShowdown'][player]: row[15]+=1
-            if hudImportData['street1Aggr'][player]: row[16]+=1
-            if hudImportData['street2Aggr'][player]: row[17]+=1
-            if hudImportData['street3Aggr'][player]: row[18]+=1
-            if hudImportData['street4Aggr'][player]: row[19]+=1
-            if hudImportData['otherRaisedStreet1'][player]: row[20]+=1
-            if hudImportData['otherRaisedStreet2'][player]: row[21]+=1
-            if hudImportData['otherRaisedStreet3'][player]: row[22]+=1
-            if hudImportData['otherRaisedStreet4'][player]: row[23]+=1
-            if hudImportData['foldToOtherRaisedStreet1'][player]: row[24]+=1
-            if hudImportData['foldToOtherRaisedStreet2'][player]: row[25]+=1
-            if hudImportData['foldToOtherRaisedStreet3'][player]: row[26]+=1
-            if hudImportData['foldToOtherRaisedStreet4'][player]: row[27]+=1
-            if hudImportData['wonWhenSeenStreet1'][player]!=0.0: row[28]+=hudImportData['wonWhenSeenStreet1'][player]
-            if hudImportData['wonAtSD'][player]!=0.0: row[29]+=hudImportData['wonAtSD'][player]
-            if hudImportData['stealAttemptChance'][player]: row[30]+=1
-            if hudImportData['stealAttempted'][player]: row[31]+=1
-            if hudImportData['foldBbToStealChance'][player]: row[32]+=1
-            if hudImportData['foldedBbToSteal'][player]: row[33]+=1
-            if hudImportData['foldSbToStealChance'][player]: row[34]+=1
-            if hudImportData['foldedSbToSteal'][player]: row[35]+=1
-            
-            if hudImportData['street1CBChance'][player]: row[36]+=1
-            if hudImportData['street1CBDone'][player]: row[37]+=1
-            if hudImportData['street2CBChance'][player]: row[38]+=1
-            if hudImportData['street2CBDone'][player]: row[39]+=1
-            if hudImportData['street3CBChance'][player]: row[40]+=1
-            if hudImportData['street3CBDone'][player]: row[41]+=1
-            if hudImportData['street4CBChance'][player]: row[42]+=1
-            if hudImportData['street4CBDone'][player]: row[43]+=1
-            
-            if hudImportData['foldToStreet1CBChance'][player]: row[44]+=1
-            if hudImportData['foldToStreet1CBDone'][player]: row[45]+=1
-            if hudImportData['foldToStreet2CBChance'][player]: row[46]+=1
-            if hudImportData['foldToStreet2CBDone'][player]: row[47]+=1
-            if hudImportData['foldToStreet3CBChance'][player]: row[48]+=1
-            if hudImportData['foldToStreet3CBDone'][player]: row[49]+=1
-            if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
-            if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
- 
-            #print "player=", player
-            #print "len(totalProfit)=", len(hudImportData['totalProfit'])
-            if hudImportData['totalProfit'][player]:
-                row[52]+=hudImportData['totalProfit'][player]
- 
-            if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
-            if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1
-            if hudImportData['street2CheckCallRaiseChance'][player]: row[55]+=1
-            if hudImportData['street2CheckCallRaiseDone'][player]: row[56]+=1
-            if hudImportData['street3CheckCallRaiseChance'][player]: row[57]+=1
-            if hudImportData['street3CheckCallRaiseDone'][player]: row[58]+=1
-            if hudImportData['street4CheckCallRaiseChance'][player]: row[59]+=1
-            if hudImportData['street4CheckCallRaiseDone'][player]: row[60]+=1
-            
-            if doInsert:
-                #print "playerid before insert:",row[2]
-                cursor.execute("""INSERT INTO HudCache
-(gametypeId, playerId, activeSeats, position, tourneyTypeId,
-HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
-street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
-street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
-otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,
-foldToOtherRaisedStreet3, foldToOtherRaisedStreet4, wonWhenSeenStreet1, wonAtSD, stealAttemptChance,
-stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
-street1CBChance, street1CBDone, street2CBChance, street2CBDone, street3CBChance,
-street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStreet1CBDone,
-foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
-foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
-street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
-VALUES (%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
-            else:
-                #print "storing updated hud data line"
-                cursor.execute("""UPDATE HudCache
-SET HDs=%s, street0VPI=%s, street0Aggr=%s, street0_3B4BChance=%s, street0_3B4BDone=%s,
-street1Seen=%s, street2Seen=%s, street3Seen=%s, street4Seen=%s, sawShowdown=%s,
-street1Aggr=%s, street2Aggr=%s, street3Aggr=%s, street4Aggr=%s, otherRaisedStreet1=%s,
-otherRaisedStreet2=%s, otherRaisedStreet3=%s, otherRaisedStreet4=%s, foldToOtherRaisedStreet1=%s, foldToOtherRaisedStreet2=%s,
-foldToOtherRaisedStreet3=%s, foldToOtherRaisedStreet4=%s, wonWhenSeenStreet1=%s, wonAtSD=%s, stealAttemptChance=%s,
-stealAttempted=%s, foldBbToStealChance=%s, foldedBbToSteal=%s, foldSbToStealChance=%s, foldedSbToSteal=%s,
-street1CBChance=%s, street1CBDone=%s, street2CBChance=%s, street2CBDone=%s, street3CBChance=%s,
-street3CBDone=%s, street4CBChance=%s, street4CBDone=%s, foldToStreet1CBChance=%s, foldToStreet1CBDone=%s,
-foldToStreet2CBChance=%s, foldToStreet2CBDone=%s, foldToStreet3CBChance=%s, foldToStreet3CBDone=%s, foldToStreet4CBChance=%s,
-foldToStreet4CBDone=%s, totalProfit=%s, street1CheckCallRaiseChance=%s, street1CheckCallRaiseDone=%s, street2CheckCallRaiseChance=%s,
-street2CheckCallRaiseDone=%s, street3CheckCallRaiseChance=%s, street3CheckCallRaiseDone=%s, street4CheckCallRaiseChance=%s, street4CheckCallRaiseDone=%s
-WHERE gametypeId=%s AND playerId=%s AND activeSeats=%s AND position=%s AND tourneyTypeId=%s""", (row[6], row[7], row[8], row[9], row[10],
-                    row[11], row[12], row[13], row[14], row[15],
-                    row[16], row[17], row[18], row[19], row[20],
-                    row[21], row[22], row[23], row[24], row[25],
-                    row[26], row[27], row[28], row[29], row[30],
-                    row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40],
-                    row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50],
-                    row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60],
-                    row[1], row[2], row[3], str(row[4]), row[5]))
-# else:
-# print "todo: implement storeHudCache for stud base"
-#end def storeHudCache
- 
-def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudImportData):
+def storeHudCache(backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData):
         """Modified version aiming for more speed ..."""
 # if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+        if use_date_in_hudcache:
+            #print "key =", "d%02d%02d%02d " % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+            styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+        else:
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            styleKey = 'A000000'
         
         #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
         #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
@@ -2443,8 +2463,8 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
             row[6]+=1 #HDs
             if hudImportData['street0VPI'][player]: row[7]+=1
             if hudImportData['street0Aggr'][player]: row[8]+=1
-            if hudImportData['street0_3B4BChance'][player]: row[9]+=1
-            if hudImportData['street0_3B4BDone'][player]: row[10]+=1
+            if hudImportData['street0_3BChance'][player]: row[9]+=1
+            if hudImportData['street0_3BDone'][player]: row[10]+=1
             if hudImportData['street1Seen'][player]: row[11]+=1
             if hudImportData['street2Seen'][player]: row[12]+=1
             if hudImportData['street3Seen'][player]: row[13]+=1
@@ -2506,7 +2526,7 @@ def storeHudCache2(backend, cursor, base, category, gametypeId, playerIds, hudIm
             # Try to do the update first:
             num = cursor.execute("""UPDATE HudCache
 SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
-    street0_3B4BChance=%s, street0_3B4BDone=%s,
+    street0_3BChance=street0_3BChance+%s, street0_3BDone=street0_3BDone+%s,
     street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
     street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
     street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,
@@ -2536,7 +2556,9 @@ WHERE gametypeId+0=%s
 AND   playerId=%s 
 AND   activeSeats=%s 
 AND   position=%s 
-AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
+AND   tourneyTypeId+0=%s
+AND   styleKey=%s
+                      """, (row[6], row[7], row[8], row[9], row[10],
                             row[11], row[12], row[13], row[14], row[15],
                             row[16], row[17], row[18], row[19], row[20],
                             row[21], row[22], row[23], row[24], row[25],
@@ -2547,15 +2569,15 @@ AND   tourneyTypeId+0=%s""", (row[6], row[7], row[8], row[9], row[10],
                             row[46], row[47], row[48], row[49], row[50],
                             row[51], row[52], row[53], row[54], row[55],
                             row[56], row[57], row[58], row[59], row[60],
-                            row[1], row[2], row[3], str(row[4]), row[5]))
+                            row[1], row[2], row[3], str(row[4]), row[5], styleKey))
             # Test statusmessage to see if update worked, do insert if not
             #print "storehud2, upd num =", num
             if (   (backend == PGSQL and cursor.statusmessage != "UPDATE 1")
                 or (backend == MYSQL_INNODB and num == 0) ):
                 #print "playerid before insert:",row[2]," num = ", num
                 cursor.execute("""INSERT INTO HudCache
-(gametypeId, playerId, activeSeats, position, tourneyTypeId,
-HDs, street0VPI, street0Aggr, street0_3B4BChance, street0_3B4BDone,
+(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
+HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
 street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
 street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
 otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,
@@ -2566,7 +2588,7 @@ street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStre
 foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
 foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
 street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
-VALUES (%s, %s, %s, %s, %s,
+VALUES (%s, %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
@@ -2577,7 +2599,196 @@ VALUES (%s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
 %s, %s, %s, %s, %s,
-%s, %s, %s, %s, %s)""", (row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40], row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50], row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]))
+%s, %s, %s, %s, %s)"""
+                              , (row[1], row[2], row[3], row[4], row[5], styleKey, row[6], row[7], row[8], row[9], row[10]
+                                ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
+                                ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
+                                ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
+                                ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
+                                ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]) )
+                #print "hopefully inserted hud data line: ", cursor.statusmessage
+                # message seems to be "INSERT 0 1"
+            else:
+                #print "updated(2) hud data line"
+                pass
+# else:
+# print "todo: implement storeHudCache for stud base"
+#end def storeHudCache
+ 
+def storeHudCache2(backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData):
+        """Modified version aiming for more speed ..."""
+# if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
+        if use_date_in_hudcache:
+            #print "key =", "d%02d%02d%02d " % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+            styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+        else:
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            styleKey = 'A000000'
+        
+        #print "storeHudCache2, len(playerIds)=", len(playerIds), " len(vpip)=" \
+        #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
+        for player in xrange(len(playerIds)):
+            
+            # Set up a clean row
+            row=[]
+            row.append(0)#blank for id
+            row.append(gametypeId)
+            row.append(playerIds[player])
+            row.append(len(playerIds))#seats
+            for i in xrange(len(hudImportData)+2):
+                row.append(0)
+                
+            if base=="hold":
+                row[4]=hudImportData['position'][player]
+            else:
+                row[4]=0
+            row[5]=1 #tourneysGametypeId
+            row[6]+=1 #HDs
+            if hudImportData['street0VPI'][player]: row[7]+=1
+            if hudImportData['street0Aggr'][player]: row[8]+=1
+            if hudImportData['street0_3BChance'][player]: row[9]+=1
+            if hudImportData['street0_3BDone'][player]: row[10]+=1
+            if hudImportData['street1Seen'][player]: row[11]+=1
+            if hudImportData['street2Seen'][player]: row[12]+=1
+            if hudImportData['street3Seen'][player]: row[13]+=1
+            if hudImportData['street4Seen'][player]: row[14]+=1
+            if hudImportData['sawShowdown'][player]: row[15]+=1
+            if hudImportData['street1Aggr'][player]: row[16]+=1
+            if hudImportData['street2Aggr'][player]: row[17]+=1
+            if hudImportData['street3Aggr'][player]: row[18]+=1
+            if hudImportData['street4Aggr'][player]: row[19]+=1
+            if hudImportData['otherRaisedStreet1'][player]: row[20]+=1
+            if hudImportData['otherRaisedStreet2'][player]: row[21]+=1
+            if hudImportData['otherRaisedStreet3'][player]: row[22]+=1
+            if hudImportData['otherRaisedStreet4'][player]: row[23]+=1
+            if hudImportData['foldToOtherRaisedStreet1'][player]: row[24]+=1
+            if hudImportData['foldToOtherRaisedStreet2'][player]: row[25]+=1
+            if hudImportData['foldToOtherRaisedStreet3'][player]: row[26]+=1
+            if hudImportData['foldToOtherRaisedStreet4'][player]: row[27]+=1
+            if hudImportData['wonWhenSeenStreet1'][player]!=0.0: row[28]+=hudImportData['wonWhenSeenStreet1'][player]
+            if hudImportData['wonAtSD'][player]!=0.0: row[29]+=hudImportData['wonAtSD'][player]
+            if hudImportData['stealAttemptChance'][player]: row[30]+=1
+            if hudImportData['stealAttempted'][player]: row[31]+=1
+            if hudImportData['foldBbToStealChance'][player]: row[32]+=1
+            if hudImportData['foldedBbToSteal'][player]: row[33]+=1
+            if hudImportData['foldSbToStealChance'][player]: row[34]+=1
+            if hudImportData['foldedSbToSteal'][player]: row[35]+=1
+            
+            if hudImportData['street1CBChance'][player]: row[36]+=1
+            if hudImportData['street1CBDone'][player]: row[37]+=1
+            if hudImportData['street2CBChance'][player]: row[38]+=1
+            if hudImportData['street2CBDone'][player]: row[39]+=1
+            if hudImportData['street3CBChance'][player]: row[40]+=1
+            if hudImportData['street3CBDone'][player]: row[41]+=1
+            if hudImportData['street4CBChance'][player]: row[42]+=1
+            if hudImportData['street4CBDone'][player]: row[43]+=1
+            
+            if hudImportData['foldToStreet1CBChance'][player]: row[44]+=1
+            if hudImportData['foldToStreet1CBDone'][player]: row[45]+=1
+            if hudImportData['foldToStreet2CBChance'][player]: row[46]+=1
+            if hudImportData['foldToStreet2CBDone'][player]: row[47]+=1
+            if hudImportData['foldToStreet3CBChance'][player]: row[48]+=1
+            if hudImportData['foldToStreet3CBDone'][player]: row[49]+=1
+            if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
+            if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
+ 
+            #print "player=", player
+            #print "len(totalProfit)=", len(hudImportData['totalProfit'])
+            if hudImportData['totalProfit'][player]:
+                row[52]+=hudImportData['totalProfit'][player]
+ 
+            if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
+            if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1
+            if hudImportData['street2CheckCallRaiseChance'][player]: row[55]+=1
+            if hudImportData['street2CheckCallRaiseDone'][player]: row[56]+=1
+            if hudImportData['street3CheckCallRaiseChance'][player]: row[57]+=1
+            if hudImportData['street3CheckCallRaiseDone'][player]: row[58]+=1
+            if hudImportData['street4CheckCallRaiseChance'][player]: row[59]+=1
+            if hudImportData['street4CheckCallRaiseDone'][player]: row[60]+=1
+            
+            # Try to do the update first:
+            num = cursor.execute("""UPDATE HudCache
+SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
+    street0_3BChance=street0_3BChance+%s, street0_3BDone=street0_3BDone+%s,
+    street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
+    street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
+    street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,
+    street4Aggr=street4Aggr+%s, otherRaisedStreet1=otherRaisedStreet1+%s,
+    otherRaisedStreet2=otherRaisedStreet2+%s, otherRaisedStreet3=otherRaisedStreet3+%s,
+    otherRaisedStreet4=otherRaisedStreet4+%s,
+    foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s, foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
+    foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s, foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
+    wonWhenSeenStreet1=wonWhenSeenStreet1+%s, wonAtSD=wonAtSD+%s, stealAttemptChance=stealAttemptChance+%s,
+    stealAttempted=stealAttempted+%s, foldBbToStealChance=foldBbToStealChance+%s,
+    foldedBbToSteal=foldedBbToSteal+%s,
+    foldSbToStealChance=foldSbToStealChance+%s, foldedSbToSteal=foldedSbToSteal+%s,
+    street1CBChance=street1CBChance+%s, street1CBDone=street1CBDone+%s, street2CBChance=street2CBChance+%s,
+    street2CBDone=street2CBDone+%s, street3CBChance=street3CBChance+%s,
+    street3CBDone=street3CBDone+%s, street4CBChance=street4CBChance+%s, street4CBDone=street4CBDone+%s,
+    foldToStreet1CBChance=foldToStreet1CBChance+%s, foldToStreet1CBDone=foldToStreet1CBDone+%s,
+    foldToStreet2CBChance=foldToStreet2CBChance+%s, foldToStreet2CBDone=foldToStreet2CBDone+%s,
+    foldToStreet3CBChance=foldToStreet3CBChance+%s,
+    foldToStreet3CBDone=foldToStreet3CBDone+%s, foldToStreet4CBChance=foldToStreet4CBChance+%s,
+    foldToStreet4CBDone=foldToStreet4CBDone+%s, totalProfit=totalProfit+%s,
+    street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
+    street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s, street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
+    street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s, street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
+    street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s, street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
+    street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
+WHERE gametypeId+0=%s 
+AND   playerId=%s 
+AND   activeSeats=%s 
+AND   position=%s 
+AND   tourneyTypeId+0=%s
+AND   styleKey=%s
+                      """, (row[6], row[7], row[8], row[9], row[10],
+                            row[11], row[12], row[13], row[14], row[15],
+                            row[16], row[17], row[18], row[19], row[20],
+                            row[21], row[22], row[23], row[24], row[25],
+                            row[26], row[27], row[28], row[29], row[30],
+                            row[31], row[32], row[33], row[34], row[35],
+                            row[36], row[37], row[38], row[39], row[40],
+                            row[41], row[42], row[43], row[44], row[45],
+                            row[46], row[47], row[48], row[49], row[50],
+                            row[51], row[52], row[53], row[54], row[55],
+                            row[56], row[57], row[58], row[59], row[60],
+                            row[1], row[2], row[3], str(row[4]), row[5], styleKey))
+            # Test statusmessage to see if update worked, do insert if not
+            #print "storehud2, upd num =", num
+            if (   (backend == PGSQL and cursor.statusmessage != "UPDATE 1")
+                or (backend == MYSQL_INNODB and num == 0) ):
+                #print "playerid before insert:",row[2]," num = ", num
+                cursor.execute("""INSERT INTO HudCache
+(gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
+HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
+otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,
+foldToOtherRaisedStreet3, foldToOtherRaisedStreet4, wonWhenSeenStreet1, wonAtSD, stealAttemptChance,
+stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+street1CBChance, street1CBDone, street2CBChance, street2CBDone, street3CBChance,
+street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStreet1CBDone,
+foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
+foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
+street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
+VALUES (%s, %s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s,
+%s, %s, %s, %s, %s)"""
+                              , (row[1], row[2], row[3], row[4], row[5], styleKey, row[6], row[7], row[8], row[9], row[10]
+                                ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
+                                ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
+                                ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
+                                ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
+                                ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]) )
                 #print "hopefully inserted hud data line: ", cursor.statusmessage
                 # message seems to be "INSERT 0 1"
             else:

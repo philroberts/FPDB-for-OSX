@@ -29,7 +29,7 @@ Set up all of the SQL statements for a given game and database type.
 
 class Sql:
     
-    def __init__(self, game = 'holdem', type = 'PT3'):
+    def __init__(self, game = 'holdem', type = 'PT3', db_server = 'mysql'):
         self.query = {}
 
 ############################################################################
@@ -172,148 +172,328 @@ class Sql:
                 """
 
             self.query['get_stats_from_hand'] = """
-                    SELECT HudCache.playerId             AS player_id, 
-                        seatNo                           AS seat,
-                        name                             AS screen_name,
-                        sum(HDs)                         AS n,
-                        sum(street0VPI)                  AS vpip,
-                        sum(street0Aggr)                 AS pfr,
-                        sum(street0_3B4BChance)          AS TB_opp_0,
-                        sum(street0_3B4BDone)            AS TB_0,
-                        sum(street1Seen)                 AS saw_f,
-                        sum(street1Seen)                 AS saw_1,
-                        sum(street2Seen)                 AS saw_2,
-                        sum(street3Seen)                 AS saw_3,
-                        sum(street4Seen)                 AS saw_4,
-                        sum(sawShowdown)                 AS sd,
-                        sum(street1Aggr)                 AS aggr_1,
-                        sum(street2Aggr)                 AS aggr_2,
-                        sum(street3Aggr)                 AS aggr_3,
-                        sum(street4Aggr)                 AS aggr_4,
-                        sum(otherRaisedStreet1)          AS was_raised_1,
-                        sum(otherRaisedStreet2)          AS was_raised_2,
-                        sum(otherRaisedStreet3)          AS was_raised_3,
-                        sum(otherRaisedStreet4)          AS was_raised_4,
-                        sum(foldToOtherRaisedStreet1)    AS f_freq_1,
-                        sum(foldToOtherRaisedStreet2)    AS f_freq_2,
-                        sum(foldToOtherRaisedStreet3)    AS f_freq_3,
-                        sum(foldToOtherRaisedStreet4)    AS f_freq_4,
-                        sum(wonWhenSeenStreet1)          AS w_w_s_1,
-                        sum(wonAtSD)                     AS wmsd,
-                        sum(stealAttemptChance)          AS steal_opp,
-                        sum(stealAttempted)              AS steal,
-                        sum(foldSbToStealChance)         AS SBstolen,
-                        sum(foldedSbToSteal)             AS SBnotDef,
-                        sum(foldBbToStealChance)         AS BBstolen,
-                        sum(foldedBbToSteal)             AS BBnotDef,
-                        sum(street1CBChance)             AS CB_opp_1,
-                        sum(street1CBDone)               AS CB_1,
-                        sum(street2CBChance)             AS CB_opp_2,
-                        sum(street2CBDone)               AS CB_2,
-                        sum(street3CBChance)             AS CB_opp_3,
-                        sum(street3CBDone)               AS CB_3,
-                        sum(street4CBChance)             AS CB_opp_4,
-                        sum(street4CBDone)               AS CB_4,
-                        sum(foldToStreet1CBChance)       AS f_cb_opp_1,
-                        sum(foldToStreet1CBDone)         AS f_cb_1,
-                        sum(foldToStreet2CBChance)       AS f_cb_opp_2,
-                        sum(foldToStreet2CBDone)         AS f_cb_2,
-                        sum(foldToStreet3CBChance)       AS f_cb_opp_3,
-                        sum(foldToStreet3CBDone)         AS f_cb_3,
-                        sum(foldToStreet4CBChance)       AS f_cb_opp_4,
-                        sum(foldToStreet4CBDone)         AS f_cb_4,
-                        sum(totalProfit)                 AS net,
-                        sum(street1CheckCallRaiseChance) AS ccr_opp_1,
-                        sum(street1CheckCallRaiseDone)   AS ccr_1,
-                        sum(street2CheckCallRaiseChance) AS ccr_opp_2,
-                        sum(street2CheckCallRaiseDone)   AS ccr_2,
-                        sum(street3CheckCallRaiseChance) AS ccr_opp_3,
-                        sum(street3CheckCallRaiseDone)   AS ccr_3,
-                        sum(street4CheckCallRaiseChance) AS ccr_opp_4,
-                        sum(street4CheckCallRaiseDone)   AS ccr_4
-                    FROM Hands
-                         INNER JOIN HandsPlayers ON (HandsPlayers.handId = %s)
-                         INNER JOIN HudCache ON (    HudCache.PlayerId = HandsPlayers.PlayerId+0
-                                                 AND HudCache.gametypeId+0 = Hands.gametypeId+0)
-                         INNER JOIN Players ON (Players.id = HandsPlayers.PlayerId+0)
-                    WHERE Hands.id = %s
-                    GROUP BY HudCache.PlayerId, Players.name, seatNo
+                    SELECT hc.playerId                      AS player_id, 
+                        hp.seatNo                           AS seat,
+                        p.name                              AS screen_name,
+                        sum(hc.HDs)                         AS n,
+                        sum(hc.street0VPI)                  AS vpip,
+                        sum(hc.street0Aggr)                 AS pfr,
+                        sum(hc.street0_3BChance)            AS TB_opp_0,
+                        sum(hc.street0_3BDone)              AS TB_0,
+                        sum(hc.street1Seen)                 AS saw_f,
+                        sum(hc.street1Seen)                 AS saw_1,
+                        sum(hc.street2Seen)                 AS saw_2,
+                        sum(hc.street3Seen)                 AS saw_3,
+                        sum(hc.street4Seen)                 AS saw_4,
+                        sum(hc.sawShowdown)                 AS sd,
+                        sum(hc.street1Aggr)                 AS aggr_1,
+                        sum(hc.street2Aggr)                 AS aggr_2,
+                        sum(hc.street3Aggr)                 AS aggr_3,
+                        sum(hc.street4Aggr)                 AS aggr_4,
+                        sum(hc.otherRaisedStreet1)          AS was_raised_1,
+                        sum(hc.otherRaisedStreet2)          AS was_raised_2,
+                        sum(hc.otherRaisedStreet3)          AS was_raised_3,
+                        sum(hc.otherRaisedStreet4)          AS was_raised_4,
+                        sum(hc.foldToOtherRaisedStreet1)    AS f_freq_1,
+                        sum(hc.foldToOtherRaisedStreet2)    AS f_freq_2,
+                        sum(hc.foldToOtherRaisedStreet3)    AS f_freq_3,
+                        sum(hc.foldToOtherRaisedStreet4)    AS f_freq_4,
+                        sum(hc.wonWhenSeenStreet1)          AS w_w_s_1,
+                        sum(hc.wonAtSD)                     AS wmsd,
+                        sum(hc.stealAttemptChance)          AS steal_opp,
+                        sum(hc.stealAttempted)              AS steal,
+                        sum(hc.foldSbToStealChance)         AS SBstolen,
+                        sum(hc.foldedSbToSteal)             AS SBnotDef,
+                        sum(hc.foldBbToStealChance)         AS BBstolen,
+                        sum(hc.foldedBbToSteal)             AS BBnotDef,
+                        sum(hc.street1CBChance)             AS CB_opp_1,
+                        sum(hc.street1CBDone)               AS CB_1,
+                        sum(hc.street2CBChance)             AS CB_opp_2,
+                        sum(hc.street2CBDone)               AS CB_2,
+                        sum(hc.street3CBChance)             AS CB_opp_3,
+                        sum(hc.street3CBDone)               AS CB_3,
+                        sum(hc.street4CBChance)             AS CB_opp_4,
+                        sum(hc.street4CBDone)               AS CB_4,
+                        sum(hc.foldToStreet1CBChance)       AS f_cb_opp_1,
+                        sum(hc.foldToStreet1CBDone)         AS f_cb_1,
+                        sum(hc.foldToStreet2CBChance)       AS f_cb_opp_2,
+                        sum(hc.foldToStreet2CBDone)         AS f_cb_2,
+                        sum(hc.foldToStreet3CBChance)       AS f_cb_opp_3,
+                        sum(hc.foldToStreet3CBDone)         AS f_cb_3,
+                        sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
+                        sum(hc.foldToStreet4CBDone)         AS f_cb_4,
+                        sum(hc.totalProfit)                 AS net,
+                        sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
+                        sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
+                        sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
+                        sum(hc.street2CheckCallRaiseDone)   AS ccr_2,
+                        sum(hc.street3CheckCallRaiseChance) AS ccr_opp_3,
+                        sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
+                        sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
+                        sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                    FROM Hands h
+                         INNER JOIN HandsPlayers hp ON (hp.handId = %s)
+                         INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
+                                                    AND hc.gametypeId+0 = h.gametypeId+0)
+                         INNER JOIN Players p ON (p.id = hp.PlayerId+0)
+                    WHERE h.id = %s
+                    AND   hc.styleKey > %s
+                          /* styleKey is currently 'd' (for date) followed by a yyyymmdd
+                             date key. Set it to 0000000 or similar to get all records  */
+                    /* also check activeseats here? even if only 3 groups eg 2-3/4-6/7+ ??
+                       e.g. could use a multiplier:
+                       AND   h.seats > X / 1.25  and  hp.seats < X * 1.25
+                       where X is the number of active players at the current table (and 
+                       1.25 would be a config value so user could change it)
+                    */
+                    GROUP BY hc.PlayerId, hp.seatNo, p.name
                 """
 
 #    same as above except stats are aggregated for all blind/limit levels
             self.query['get_stats_from_hand_aggregated'] = """
-                    SELECT HudCache.playerId             AS player_id, 
-                        sum(HDs)                         AS n,
-                        sum(street0VPI)                  AS vpip,
-                        sum(street0Aggr)                 AS pfr,
-                        sum(street0_3B4BChance)          AS TB_opp_0,
-                        sum(street0_3B4BDone)            AS TB_0,
-                        sum(street1Seen)                 AS saw_f,
-                        sum(street1Seen)                 AS saw_1,
-                        sum(street2Seen)                 AS saw_2,
-                        sum(street3Seen)                 AS saw_3,
-                        sum(street4Seen)                 AS saw_4,
-                        sum(sawShowdown)                 AS sd,
-                        sum(street1Aggr)                 AS aggr_1,
-                        sum(street2Aggr)                 AS aggr_2,
-                        sum(street3Aggr)                 AS aggr_3,
-                        sum(street4Aggr)                 AS aggr_4,
-                        sum(otherRaisedStreet1)          AS was_raised_1,
-                        sum(otherRaisedStreet2)          AS was_raised_2,
-                        sum(otherRaisedStreet3)          AS was_raised_3,
-                        sum(otherRaisedStreet4)          AS was_raised_4,
-                        sum(foldToOtherRaisedStreet1)    AS f_freq_1,
-                        sum(foldToOtherRaisedStreet2)    AS f_freq_2,
-                        sum(foldToOtherRaisedStreet3)    AS f_freq_3,
-                        sum(foldToOtherRaisedStreet4)    AS f_freq_4,
-                        sum(wonWhenSeenStreet1)          AS w_w_s_1,
-                        sum(wonAtSD)                     AS wmsd,
-                        sum(stealAttemptChance)          AS steal_opp,
-                        sum(stealAttempted)              AS steal,
-                        sum(foldSbToStealChance)         AS SBstolen,
-                        sum(foldedSbToSteal)             AS SBnotDef,
-                        sum(foldBbToStealChance)         AS BBstolen,
-                        sum(foldedBbToSteal)             AS BBnotDef,
-                        sum(street1CBChance)             AS CB_opp_1,
-                        sum(street1CBDone)               AS CB_1,
-                        sum(street2CBChance)             AS CB_opp_2,
-                        sum(street2CBDone)               AS CB_2,
-                        sum(street3CBChance)             AS CB_opp_3,
-                        sum(street3CBDone)               AS CB_3,
-                        sum(street4CBChance)             AS CB_opp_4,
-                        sum(street4CBDone)               AS CB_4,
-                        sum(foldToStreet1CBChance)       AS f_cb_opp_1,
-                        sum(foldToStreet1CBDone)         AS f_cb_1,
-                        sum(foldToStreet2CBChance)       AS f_cb_opp_2,
-                        sum(foldToStreet2CBDone)         AS f_cb_2,
-                        sum(foldToStreet3CBChance)       AS f_cb_opp_3,
-                        sum(foldToStreet3CBDone)         AS f_cb_3,
-                        sum(foldToStreet4CBChance)       AS f_cb_opp_4,
-                        sum(foldToStreet4CBDone)         AS f_cb_4,
-                        sum(totalProfit)                 AS net,
-                        sum(street1CheckCallRaiseChance) AS ccr_opp_1,
-                        sum(street1CheckCallRaiseDone)   AS ccr_1,
-                        sum(street2CheckCallRaiseChance) AS ccr_opp_2,
-                        sum(street2CheckCallRaiseDone)   AS ccr_2,
-                        sum(street3CheckCallRaiseChance) AS ccr_opp_3,
-                        sum(street3CheckCallRaiseDone)   AS ccr_3,
-                        sum(street4CheckCallRaiseChance) AS ccr_opp_4,
-                        sum(street4CheckCallRaiseDone)   AS ccr_4
-                    FROM HudCache, Hands
-                    WHERE HudCache.PlayerId in 
-                        (SELECT PlayerId FROM HandsPlayers 
-                        WHERE handId = %s)
-                    AND  Hands.id = %s
-                    AND  HudCache.gametypeId in
-                        (SELECT gt1.id from Gametypes gt1, Gametypes gt2, Hands
-                        WHERE  gt1.siteid = gt2.siteid
-                        AND    gt1.type = gt2.type
-                        AND    gt1.category = gt2.category
-                        AND    gt1.limittype = gt2.limittype
-                        AND    gt2.id = Hands.gametypeId
-                        AND    Hands.id = %s)
-                    GROUP BY HudCache.PlayerId, Players.name, seatNo
+                    SELECT hc.playerId                         AS player_id, 
+                           max(case when hc.gametypeId = h.gametypeId 
+                                    then hp.seatNo
+                                    else -1
+                               end)                            AS seat,
+                           p.name                              AS screen_name,
+                           sum(hc.HDs)                         AS n,
+                           sum(hc.street0VPI)                  AS vpip,
+                           sum(hc.street0Aggr)                 AS pfr,
+                           sum(hc.street0_3BChance)            AS TB_opp_0,
+                           sum(hc.street0_3BDone)              AS TB_0,
+                           sum(hc.street1Seen)                 AS saw_f,
+                           sum(hc.street1Seen)                 AS saw_1,
+                           sum(hc.street2Seen)                 AS saw_2,
+                           sum(hc.street3Seen)                 AS saw_3,
+                           sum(hc.street4Seen)                 AS saw_4,
+                           sum(hc.sawShowdown)                 AS sd,
+                           sum(hc.street1Aggr)                 AS aggr_1,
+                           sum(hc.street2Aggr)                 AS aggr_2,
+                           sum(hc.street3Aggr)                 AS aggr_3,
+                           sum(hc.street4Aggr)                 AS aggr_4,
+                           sum(hc.otherRaisedStreet1)          AS was_raised_1,
+                           sum(hc.otherRaisedStreet2)          AS was_raised_2,
+                           sum(hc.otherRaisedStreet3)          AS was_raised_3,
+                           sum(hc.otherRaisedStreet4)          AS was_raised_4,
+                           sum(hc.foldToOtherRaisedStreet1)    AS f_freq_1,
+                           sum(hc.foldToOtherRaisedStreet2)    AS f_freq_2,
+                           sum(hc.foldToOtherRaisedStreet3)    AS f_freq_3,
+                           sum(hc.foldToOtherRaisedStreet4)    AS f_freq_4,
+                           sum(hc.wonWhenSeenStreet1)          AS w_w_s_1,
+                           sum(hc.wonAtSD)                     AS wmsd,
+                           sum(hc.stealAttemptChance)          AS steal_opp,
+                           sum(hc.stealAttempted)              AS steal,
+                           sum(hc.foldSbToStealChance)         AS SBstolen,
+                           sum(hc.foldedSbToSteal)             AS SBnotDef,
+                           sum(hc.foldBbToStealChance)         AS BBstolen,
+                           sum(hc.foldedBbToSteal)             AS BBnotDef,
+                           sum(hc.street1CBChance)             AS CB_opp_1,
+                           sum(hc.street1CBDone)               AS CB_1,
+                           sum(hc.street2CBChance)             AS CB_opp_2,
+                           sum(hc.street2CBDone)               AS CB_2,
+                           sum(hc.street3CBChance)             AS CB_opp_3,
+                           sum(hc.street3CBDone)               AS CB_3,
+                           sum(hc.street4CBChance)             AS CB_opp_4,
+                           sum(hc.street4CBDone)               AS CB_4,
+                           sum(hc.foldToStreet1CBChance)       AS f_cb_opp_1,
+                           sum(hc.foldToStreet1CBDone)         AS f_cb_1,
+                           sum(hc.foldToStreet2CBChance)       AS f_cb_opp_2,
+                           sum(hc.foldToStreet2CBDone)         AS f_cb_2,
+                           sum(hc.foldToStreet3CBChance)       AS f_cb_opp_3,
+                           sum(hc.foldToStreet3CBDone)         AS f_cb_3,
+                           sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
+                           sum(hc.foldToStreet4CBDone)         AS f_cb_4,
+                           sum(hc.totalProfit)                 AS net,
+                           sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
+                           sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
+                           sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
+                           sum(hc.street2CheckCallRaiseDone)   AS ccr_2,
+                           sum(hc.street3CheckCallRaiseChance) AS ccr_opp_3,
+                           sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
+                           sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
+                           sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                    FROM Hands h
+                         INNER JOIN HandsPlayers hp ON (hp.handId = %s)
+                         INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
+                         INNER JOIN Players p       ON (p.id = hc.playerId)
+                    WHERE h.id = %s
+                    AND   hc.styleKey > %s
+                          /* styleKey is currently 'd' (for date) followed by a yyyymmdd
+                             date key. Set it to 0000000 or similar to get all records  */
+                    /* also check activeseats here? even if only 3 groups eg 2-3/4-6/7+ ??
+                       e.g. could use a multiplier:
+                       AND   h.seats > %s / 1.25  and  hp.seats < %s * 1.25
+                       where %s is the number of active players at the current table (and 
+                       1.25 would be a config value so user could change it)
+                    */
+                    AND   hc.gametypeId+0 in
+                          (SELECT gt1.id from Gametypes gt1, Gametypes gt2
+                           WHERE  gt1.siteid = gt2.siteid
+                           AND    gt1.type = gt2.type
+                           AND    gt1.category = gt2.category
+                           AND    gt1.limittype = gt2.limittype
+                           AND    gt2.id = h.gametypeId)
+                    GROUP BY hc.PlayerId, p.name, hc.styleKey
                 """
+
+            if db_server == 'mysql':
+                self.query['get_stats_from_hand_session'] = """
+                        SELECT hp.playerId                                              AS player_id,
+                               hp.handId                                                AS hand_id,
+                               hp.seatNo                                                AS seat,
+                               p.name                                                   AS screen_name,
+                               h.seats                                                  AS seats,
+                               1                                                        AS n,
+                               cast(hp2.street0VPI as <signed>integer)                  AS vpip,
+                               cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
+                               cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
+                               cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                               cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
+                               cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
+                               cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
+                               cast(hp2.street3Seen as <signed>integer)                 AS saw_3,
+                               cast(hp2.street4Seen as <signed>integer)                 AS saw_4,
+                               cast(hp2.sawShowdown as <signed>integer)                 AS sd,
+                               cast(hp2.street1Aggr as <signed>integer)                 AS aggr_1,
+                               cast(hp2.street2Aggr as <signed>integer)                 AS aggr_2,
+                               cast(hp2.street3Aggr as <signed>integer)                 AS aggr_3,
+                               cast(hp2.street4Aggr as <signed>integer)                 AS aggr_4,
+                               cast(hp2.otherRaisedStreet1 as <signed>integer)          AS was_raised_1,
+                               cast(hp2.otherRaisedStreet2 as <signed>integer)          AS was_raised_2,
+                               cast(hp2.otherRaisedStreet3 as <signed>integer)          AS was_raised_3,
+                               cast(hp2.otherRaisedStreet4 as <signed>integer)          AS was_raised_4,
+                               cast(hp2.foldToOtherRaisedStreet1 as <signed>integer)    AS f_freq_1,
+                               cast(hp2.foldToOtherRaisedStreet2 as <signed>integer)    AS f_freq_2,
+                               cast(hp2.foldToOtherRaisedStreet3 as <signed>integer)    AS f_freq_3,
+                               cast(hp2.foldToOtherRaisedStreet4 as <signed>integer)    AS f_freq_4,
+                               cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
+                               cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
+                               cast(hp2.stealAttemptChance as <signed>integer)          AS steal_opp,
+                               cast(hp2.stealAttempted as <signed>integer)              AS steal,
+                               cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
+                               cast(hp2.foldedSbToSteal as <signed>integer)             AS SBnotDef,
+                               cast(hp2.foldBbToStealChance as <signed>integer)         AS BBstolen,
+                               cast(hp2.foldedBbToSteal as <signed>integer)             AS BBnotDef,
+                               cast(hp2.street1CBChance as <signed>integer)             AS CB_opp_1,
+                               cast(hp2.street1CBDone as <signed>integer)               AS CB_1,
+                               cast(hp2.street2CBChance as <signed>integer)             AS CB_opp_2,
+                               cast(hp2.street2CBDone as <signed>integer)               AS CB_2,
+                               cast(hp2.street3CBChance as <signed>integer)             AS CB_opp_3,
+                               cast(hp2.street3CBDone as <signed>integer)               AS CB_3,
+                               cast(hp2.street4CBChance as <signed>integer)             AS CB_opp_4,
+                               cast(hp2.street4CBDone as <signed>integer)               AS CB_4,
+                               cast(hp2.foldToStreet1CBChance as <signed>integer)       AS f_cb_opp_1,
+                               cast(hp2.foldToStreet1CBDone as <signed>integer)         AS f_cb_1,
+                               cast(hp2.foldToStreet2CBChance as <signed>integer)       AS f_cb_opp_2,
+                               cast(hp2.foldToStreet2CBDone as <signed>integer)         AS f_cb_2,
+                               cast(hp2.foldToStreet3CBChance as <signed>integer)       AS f_cb_opp_3,
+                               cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
+                               cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
+                               cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
+                               cast(hp2.totalProfit as <signed>integer)                 AS net,
+                               cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
+                               cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
+                               cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
+                               cast(hp2.street2CheckCallRaiseDone as <signed>integer)   AS ccr_2,
+                               cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
+                               cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
+                               cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
+                               cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
+                        FROM
+                             Hands h         /* players in this hand */
+                             INNER JOIN Hands h2         ON (h2.id > %s AND   h2.tableName = h.tableName)
+                             INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)
+                             INNER JOIN HandsPlayers hp2 ON (hp2.playerId+0 = hp.playerId+0 AND (hp2.handId = h2.id+0))  /* other hands by these players */
+                             INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                        WHERE hp.handId = %s
+                        /* check activeseats once this data returned? (don't want to do that here as it might 
+                           assume a session ended just because the number of seats dipped for a few hands)
+                        */
+                        ORDER BY h.handStart desc, hp2.PlayerId
+                        /* order rows by handstart descending so that we can stop reading rows when 
+                           there's a gap over X minutes between hands (ie. when we get back to start of
+                           the session */
+                    """
+            else:  # assume postgresql
+                self.query['get_stats_from_hand_session'] = """
+                        SELECT hp.playerId                                              AS player_id,
+                               hp.handId                                                AS hand_id,
+                               hp.seatNo                                                AS seat,
+                               p.name                                                   AS screen_name,
+                               h.seats                                                  AS seats,
+                               1                                                        AS n,
+                               cast(hp2.street0VPI as <signed>integer)                  AS vpip,
+                               cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
+                               cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
+                               cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                               cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
+                               cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
+                               cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
+                               cast(hp2.street3Seen as <signed>integer)                 AS saw_3,
+                               cast(hp2.street4Seen as <signed>integer)                 AS saw_4,
+                               cast(hp2.sawShowdown as <signed>integer)                 AS sd,
+                               cast(hp2.street1Aggr as <signed>integer)                 AS aggr_1,
+                               cast(hp2.street2Aggr as <signed>integer)                 AS aggr_2,
+                               cast(hp2.street3Aggr as <signed>integer)                 AS aggr_3,
+                               cast(hp2.street4Aggr as <signed>integer)                 AS aggr_4,
+                               cast(hp2.otherRaisedStreet1 as <signed>integer)          AS was_raised_1,
+                               cast(hp2.otherRaisedStreet2 as <signed>integer)          AS was_raised_2,
+                               cast(hp2.otherRaisedStreet3 as <signed>integer)          AS was_raised_3,
+                               cast(hp2.otherRaisedStreet4 as <signed>integer)          AS was_raised_4,
+                               cast(hp2.foldToOtherRaisedStreet1 as <signed>integer)    AS f_freq_1,
+                               cast(hp2.foldToOtherRaisedStreet2 as <signed>integer)    AS f_freq_2,
+                               cast(hp2.foldToOtherRaisedStreet3 as <signed>integer)    AS f_freq_3,
+                               cast(hp2.foldToOtherRaisedStreet4 as <signed>integer)    AS f_freq_4,
+                               cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
+                               cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
+                               cast(hp2.stealAttemptChance as <signed>integer)          AS steal_opp,
+                               cast(hp2.stealAttempted as <signed>integer)              AS steal,
+                               cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
+                               cast(hp2.foldedSbToSteal as <signed>integer)             AS SBnotDef,
+                               cast(hp2.foldBbToStealChance as <signed>integer)         AS BBstolen,
+                               cast(hp2.foldedBbToSteal as <signed>integer)             AS BBnotDef,
+                               cast(hp2.street1CBChance as <signed>integer)             AS CB_opp_1,
+                               cast(hp2.street1CBDone as <signed>integer)               AS CB_1,
+                               cast(hp2.street2CBChance as <signed>integer)             AS CB_opp_2,
+                               cast(hp2.street2CBDone as <signed>integer)               AS CB_2,
+                               cast(hp2.street3CBChance as <signed>integer)             AS CB_opp_3,
+                               cast(hp2.street3CBDone as <signed>integer)               AS CB_3,
+                               cast(hp2.street4CBChance as <signed>integer)             AS CB_opp_4,
+                               cast(hp2.street4CBDone as <signed>integer)               AS CB_4,
+                               cast(hp2.foldToStreet1CBChance as <signed>integer)       AS f_cb_opp_1,
+                               cast(hp2.foldToStreet1CBDone as <signed>integer)         AS f_cb_1,
+                               cast(hp2.foldToStreet2CBChance as <signed>integer)       AS f_cb_opp_2,
+                               cast(hp2.foldToStreet2CBDone as <signed>integer)         AS f_cb_2,
+                               cast(hp2.foldToStreet3CBChance as <signed>integer)       AS f_cb_opp_3,
+                               cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
+                               cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
+                               cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
+                               cast(hp2.totalProfit as <signed>integer)                 AS net,
+                               cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
+                               cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
+                               cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
+                               cast(hp2.street2CheckCallRaiseDone as <signed>integer)   AS ccr_2,
+                               cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
+                               cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
+                               cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
+                               cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
+                        FROM Hands h                                                  /* this hand */
+                             INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
+                                                             AND h2.tableName = h.tableName)
+                             INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
+                             INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0 
+                                                             AND hp2.handId = h2.id)  /* other hands by these players */
+                             INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                        WHERE h.id = %s
+                        /* check activeseats once this data returned? (don't want to do that here as it might 
+                           assume a session ended just because the number of seats dipped for a few hands)
+                        */
+                        ORDER BY h.handStart desc, hp2.PlayerId
+                        /* order rows by handstart descending so that we can stop reading rows when 
+                           there's a gap over X minutes between hands (ie. when we get back to start of
+                           the session */
+                    """
          
             self.query['get_players_from_hand'] = """
                     SELECT HandsPlayers.playerId, seatNo, name
@@ -349,20 +529,13 @@ class Sql:
                     select 
                         seatNo     AS seat_number, 
                         name       AS screen_name, 
-                        card1Value AS card1value,
-                        card1Suit  AS card1suit,
-                        card2Value AS card2value,
-                        card2Suit  AS card2suit,
-                        card3Value AS card3value,
-                        card3Suit  AS card3suit,
-                        card4Value AS card4value,
-                        card4Suit  AS card4suit,
-                        card5Value AS card5value,
-                        card5Suit  AS card5suit,
-                        card6Value AS card6value,
-                        card6Suit  AS card6suit,
-                        card7Value AS card7value,
-                        card7Suit  AS card7suit
+                        card1, /*card1Value, card1Suit, */
+                        card2, /*card2Value, card2Suit, */
+                        card3, /*card3Value, card3Suit, */
+                        card4, /*card4Value, card4Suit, */
+                        card5, /*card5Value, card5Suit, */
+                        card6, /*card6Value, card6Suit, */
+                        card7  /*card7Value, card7Suit */
                     from HandsPlayers, Players 
                     where handID = %s and HandsPlayers.playerId = Players.id 
                     order by seatNo
@@ -389,9 +562,21 @@ class Sql:
                 FROM Players, HandsActions, HandsPlayers
                 WHERE HandsPlayers.handid = %s
                 AND HandsPlayers.playerid = Players.id
-                AND HandsActions.handPlayerId = HandsPlayers.id
+                AND HandsActions.handsPlayerId = HandsPlayers.id
                 ORDER BY street, actionno
             """
+
+            if db_server == 'mysql':
+                self.query['get_hand_1day_ago'] = """
+                    select coalesce(max(id),0)
+                    from Hands
+                    where handStart < date_sub(utc_timestamp(), interval '1' day)"""
+            else:  # assume postgresql
+                self.query['get_hand_1day_ago'] = """
+                    select coalesce(max(id),0)
+                    from Hands
+                    where handStart < now() at time zone 'UTC' - interval '1 day'"""
+
 if __name__== "__main__":
 #    just print the default queries and exit
     s = Sql(game = 'razz', type = 'ptracks')

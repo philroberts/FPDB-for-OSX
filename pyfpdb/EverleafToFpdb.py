@@ -27,7 +27,8 @@ from HandHistoryConverter import *
 class Everleaf(HandHistoryConverter):
     
     # Static regexes
-    re_SplitHands  = re.compile(r"(\n\n\n+)")
+    re_SplitHands  = re.compile(r"\n\n\n+")
+    re_TailSplitHands  = re.compile(r"(\n\n\n+)")
     re_GameInfo    = re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) ?(?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
                      #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
     re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
@@ -48,6 +49,7 @@ debugging: if False, pass on partially supported game types. If true, have a go 
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
+        self.siteId   = 3 # Needs to match id entry in Sites database
         self.debugging = debugging
         if autostart:
             self.start()

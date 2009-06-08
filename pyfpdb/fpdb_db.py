@@ -59,23 +59,33 @@ class fpdb_db:
         self.database=database
         if backend==self.MYSQL_INNODB:
             import MySQLdb
-            self.db=MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+            try:
+                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+            except:
+                raise fpdb_simple.FpdbError("MySQL connection failed")
         elif backend==self.PGSQL:
             import psycopg2
-            import psycopg2.extensions 
+            import psycopg2.extensions
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
+            print "host=%s user=%s pass=%s." % (host, user, password)
+            if self.host and self.user and self.password:
+                try:
+                    self.db = psycopg2.connect(host = host,
+                            user = user, 
+                            password = password, 
+                            database = database)
+                except:
+                    raise fpdb_simple.FpdbError("PostgreSQL connection failed")
             # For local domain-socket connections, only DB name is
             # needed, and everything else is in fact undefined and/or
             # flat out wrong
-            if self.host == "localhost" or self.host == "127.0.0.1":
-                self.db = psycopg2.connect(database = database)
             else:
-                self.db = psycopg2.connect(host = host,
-                        user = user, 
-                        password = password, 
-                        database = database)
+                try:
+                    self.db = psycopg2.connect(database = database)
+                except:
+                    raise fpdb_simple.FpdbError("PostgreSQL connection failed")
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
@@ -86,7 +96,7 @@ class fpdb_db:
         try:
             self.cursor.execute("SELECT * FROM Settings")
             settings=self.cursor.fetchone()
-            if settings[0]!=118:
+            if settings[0]!=119:
                 print "outdated or too new database version - please recreate tables"
                 self.wrongDbVersion=True
         except:# _mysql_exceptions.ProgrammingError:
@@ -137,7 +147,7 @@ class fpdb_db:
 
         if(self.get_backend_name() == 'MySQL InnoDB'):
             #Databases with FOREIGN KEY support need this switched of before you can drop tables
-            self.drop_referencial_integrity()
+            self.drop_referential_integrity()
 
             # Query the DB to see what tables exist
             self.cursor.execute(self.sql.query['list_tables'])
@@ -156,7 +166,7 @@ class fpdb_db:
             self.db.commit()
     #end def drop_tables
 
-    def drop_referencial_integrity(self):
+    def drop_referential_integrity(self):
         """Update all tables to remove foreign keys"""
 
         self.cursor.execute(self.sql.query['list_tables'])
@@ -174,7 +184,7 @@ class fpdb_db:
                     key = "`" + inner[j][0] + "_" + m.group() + "`"
                     self.cursor.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
                 self.db.commit()
-        #end drop_referencial_inegrity
+        #end drop_referential_inegrity
     
     def get_backend_name(self):
         """Returns the name of the currently used backend"""
@@ -191,10 +201,14 @@ class fpdb_db:
     #end def get_db_info
     
     def fillDefaultData(self):
-        self.cursor.execute("INSERT INTO Settings VALUES (118);")
+        self.cursor.execute("INSERT INTO Settings VALUES (119);")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
         self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Carbon', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'OnGame', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'UltimateBet', 'USD');")
+        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Betfair', 'USD');")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
     #end def fillDefaultData
     
@@ -207,4 +221,47 @@ class fpdb_db:
         self.db.commit()
         print "Finished recreating tables"
     #end def recreate_tables
-#end class fpdb_db
+
+    def getSqlPlayerIDs(names, site_id):
+        result = []
+        notfound = []
+        self.cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+        tmp = dict(self.cursor.fetchall())
+        for n in names:
+            if n not in tmp:
+                notfound.append(n)
+            else:
+                result.append(tmp[n])
+        if notfound:
+            cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+            cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+            tmp = cursor.fetchall()
+            for n in tmp:
+                result.append(n[0])
+
+        #We proabably want to cache this
+        return result
+
+    def storeHand(self, p):
+        #stores into table hands:
+        self.cursor.execute ("""INSERT INTO Hands 
+             (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+              ,playersVpi, playersAtStreet1, playersAtStreet2
+              ,playersAtStreet3, playersAtStreet4, playersAtShowdown
+              ,street0Raises, street1Raises, street2Raises
+              ,street3Raises, street4Raises, street1Pot
+              ,street2Pot, street3Pot, street4Pot
+              ,showdownPot
+             ) 
+             VALUES 
+              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+             ,(p['siteHandNo'], gametype_id, p['handStart'], len(names), p['tableName'], datetime.datetime.today(), p['maxSeats']
+               ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
+               ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
+               ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
+               ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
+               ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
+               ,hudCache['showdownPot']
+              )
+             )
+        #return getLastInsertId(backend, conn, cursor)
