@@ -172,27 +172,20 @@ class fpdb_db:
                 raise fpdb_simple.FpdbError("MySQL connection failed")
         elif backend==self.PGSQL:
             import psycopg2
-            import psycopg2.extensions
+            import psycopg2.extensions 
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
-            # print "host=%s user=%s pass=%s." % (host, user, password)
-            if self.host and self.user and self.password:
-                try:
-                    self.db = psycopg2.connect(host = host,
-                            user = user, 
-                            password = password, 
-                            database = database)
-                except:
-                    raise fpdb_simple.FpdbError("PostgreSQL connection failed")
             # For local domain-socket connections, only DB name is
             # needed, and everything else is in fact undefined and/or
             # flat out wrong
+            if self.host == "localhost" or self.host == "127.0.0.1":
+                self.db = psycopg2.connect(database = database)
             else:
-                try:
-                    self.db = psycopg2.connect(database = database)
-                except:
-                    raise fpdb_simple.FpdbError("PostgreSQL connection failed")
+                self.db = psycopg2.connect(host = host,
+                        user = user, 
+                        password = password, 
+                        database = database)
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()

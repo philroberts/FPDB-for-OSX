@@ -148,7 +148,6 @@ class HUD_main(object):
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
-    
 #    get basic info about the new hand from the db
 #    if there is a db error, complain, skip hand, and proceed
             try:
