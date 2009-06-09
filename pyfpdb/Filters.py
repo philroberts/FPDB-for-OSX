@@ -44,6 +44,7 @@ class Filters(threading.Thread):
         self.games  = {}
         self.limits = {}
         self.seats  = {}
+        self.groups  = {}
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
@@ -52,6 +53,7 @@ class Filters(threading.Thread):
         self.filterText = {'limitsall':'All', 'limitsnone':'None', 'limitsshow':'Show _Limits'
                           ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
                           ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
+                          ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
                           }
 
         # For use in date ranges.
@@ -109,6 +111,15 @@ class Filters(threading.Thread):
         self.fillSeatsFrame(vbox, self.display)
         seatsFrame.add(vbox)
 
+        # Groups
+        groupsFrame = gtk.Frame()
+        groupsFrame.show()
+        vbox = gtk.VBox(False, 0)
+        self.sbGroups = {}
+
+        self.fillGroupsFrame(vbox, self.display)
+        groupsFrame.add(vbox)
+
         # Date
         dateFrame = gtk.Frame("Date:")
         dateFrame.set_label_align(0.0, 0.0)
@@ -131,6 +142,7 @@ class Filters(threading.Thread):
         self.mainVBox.add(gamesFrame)
         self.mainVBox.add(limitsFrame)
         self.mainVBox.add(seatsFrame)
+        self.mainVBox.add(groupsFrame)
         self.mainVBox.add(dateFrame)
         self.mainVBox.add(self.Button1)
         self.mainVBox.add(self.Button2)
@@ -148,6 +160,8 @@ class Filters(threading.Thread):
             limitsFrame.hide()
         if "Seats" not in self.display or self.display["Seats"] == False:
             seatsFrame.hide()
+        if "Groups" not in self.display or self.display["Groups"] == False:
+            groupsFrame.hide()
         if "Dates" not in self.display or self.display["Dates"] == False:
             dateFrame.hide()
         if "Button1" not in self.display or self.display["Button1"] == False:
@@ -182,6 +196,9 @@ class Filters(threading.Thread):
         if 'to' in self.sbSeats:
             self.seats['to'] = self.sbSeats['to'].get_value_as_int()
         return self.seats
+
+    def getGroups(self):
+        return self.groups
 
     def getDates(self):
         return self.__get_dates()
@@ -273,6 +290,11 @@ class Filters(threading.Thread):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.seats[seat] = w.get_active()
         print "self.seats[%s] set to %s" %(seat, self.seats[seat])
+
+    def __set_group_select(self, w, group):
+        #print "__set_seat_select: seat =", seat, "active =", w.get_active()
+        self.groups[group] = w.get_active()
+        print "self.groups[%s] set to %s" %(group, self.groups[group])
 
     def fillPlayerFrame(self, vbox):
         for site in self.conf.get_supported_sites():
@@ -389,9 +411,32 @@ class Filters(threading.Thread):
             self.sbSeats['show'] = cb
             self.seats['show'] = False
 
-
         self.sbSeats['from'] = sb1
         self.sbSeats['to']   = sb2
+
+    def fillGroupsFrame(self, vbox, display):
+        hbox = gtk.HBox(False, 0)
+        vbox.pack_start(hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['groupstitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'groups')
+        hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['groups'] = vbox1
+
+        hbox = gtk.HBox(False, 0)
+        vbox1.pack_start(hbox, False, True, 0)
+
+        cb = gtk.CheckButton(self.filterText['posnshow'])
+        cb.connect('clicked', self.__set_group_select, 'posn')
+        hbox.pack_start(cb, False, False, 0)
+        self.sbGroups['posn'] = cb
+        self.groups['posn'] = False
 
     def fillCardsFrame(self, vbox):
         hbox1 = gtk.HBox(True,0)

@@ -42,6 +42,7 @@ follow :  whether to tail -f the input"""
         logging.info("Initialising UltimateBetconverter class")
         self.filetype = "text"
         self.codepage = "cp1252"
+        self.siteId   = 6 # Needs to match id entry in Sites database
         if autostart:
             self.start()
 

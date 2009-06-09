@@ -312,11 +312,13 @@ The program itself is licensed under AGPLv3, see agpl-3.0.txt</p>
 </TABLE>
 <p><BR></P>
 <p><B>Table HandsPlayers</B></P>
-<p>cardX: can be 1 through 20, one for each card. In holdem only 1-2 of these are used, in omaha 1-4, in stud/razz 1-7, in single draw 1-10, in tripple draw all 20 and in badugi 1-16 (4*4).</P>
-<p>For the draw games: the first 5 (badugi: 4) cards are the initial cards, the next 5 (badugi: 4) are after the first draw, etc.<br>
-Example 1: If a player gets 2-6 spades for his first five cards and decides to throw away the 4 and then gets a 7 of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 4, 5, 6, 2, 3, 5, 6, 7<br>
-Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and decides to throw away the 2 and the 3 and then gets a Q and K of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 5, 8, J, 5, 8, J, Q, K.</p>
+<p>cardX: can be 1 through 20, one for each card. In holdem only 1-2 of these are used, in omaha 1-4, in stud/razz 1-7, in single draw games 1-10 is used and in badugi 1-16 (4*4) is used.</P>
+<p>For the draw games: the first 5 (badugi: 4) cards are the initial cards, the next 5 (badugi: 4) are after the first draw. If a player keeps some cards then those cards' spaces are filled with "k", short for "kept".<br>
+Example 1: If a player gets 2-6 spades for his first five cards and decides to throw away the 4 and then gets a 7 of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 4, 5, 6, k, k, 7, k, k<br>
+Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and decides to throw away the 2 and the 3 and then gets a Q and K of spades then the first 10 fields of cardXValue would be as follows: 2, 3, 5, 8, J, Q, K, k, k, k<br>
+Note that it will k in the space of which card was there previously, so in example 2 where the player kept the last 3 cards, the last 3 fields of the first draw (ie. card8-10Value) are replaced with k.</p>
 <p>I did not separate this into an extra table because I felt the lost space is not sufficiently large. Also the benefit for searching is far less relevant.</P>
+<p>ToDo: Original plan was to implement the many flags from hudcache as booleans - need to try this out as it will save space and may therefore be quicker.</p>
 <TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
 	<TR VALIGN=TOP>
 		<TD><P>Field Name</P></TD>
@@ -354,31 +356,22 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><p>The seat in which the person was sitting - necessary for HUD</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
+		<TD><P>card1(..7)</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><p>0=none/unknown, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>startCards</P></TD>
+		<TD><P>smallint</P></TD>
+		<TD><p>int representing Holdem starting cards.<br/>Hand is stored as an int 13 * x + y where x and y
+are in range 0..12, and (x+2) and (y+2) represents rank of each card (2=2 .. 14=Ace). <br/>
+If x > y then pair is suited, if x < y then unsuited.<br/>
+Omaha and other games may need to use this as a key into another table. (to be decided ...)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
 		<TD><P>ante</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>note: for cash this could be boolean, but in tourneys you may enter a hand with less than the full ante</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>cardXValue</P></TD>
-		<TD><P>smallint</P></TD>
-		<TD><p>2-10=2-10, J=11, Q=12, K=13, A=14 (even in razz), unknown/no card=x<br>
-			see note above table</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>cardXSuit</P></TD>
-		<TD><P>char(1)</P></TD>
-		<TD><P>h=hearts, s=spades, d=diamonds, c=clubs, unknown/no card=x</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>cardXDiscarded</P></TD>
-		<TD><P>boolean</P></TD>
-		<TD><P>Whether the card was discarded (this only applies to draw games, X can be 1 through 15 since the final cards can obviously not be discarded).</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>DrawnX</P></TD>
-		<TD><P>smallint</P></TD>
-		<TD><p>X can be 1 through 3.<br>
-			This field denotes how many cards the player has drawn on each draw.</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>winnings</P></TD>
@@ -388,7 +381,12 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 	<TR VALIGN=TOP>
 		<TD><P>rake</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>rake for this player for this hand</P></TD>
+		<TD><P>rake for this player for this hand (i.e. final pot(s) size = winnings + rake)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>totalProfit</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>profit for this player for this hand ( i.e. winnings - (ante + bets) )</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>comment</P></TD>
@@ -404,6 +402,384 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>tourneysPlayersId</P></TD>
 		<TD><P>bigint</P></TD>
 		<TD><P>references TourneysPlayers.id</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>tourneyTypeId</P></TD>
+		<TD><P>bigint</P></TD>
+		<TD><P>references TourneyTypes.id (maybe this should be on Hands?)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonWhenSeenStreet1(..4)</P></TD>
+		<TD><P>float</P></TD>
+		<TD><P>How many hands the player won after seeing the flop/street4 - this can be a "partial win" if the pot is split.<br>
+			To be completely clear, this stores a hand count, NOT a money amount.<br/>
+   (2/3/4: Same for turn/street5, river/street6, street7)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonAtSD</P></TD>
+		<TD><P>float</P></TD>
+		<TD><P>As wonWhenSeenStreet1, but for showdown.</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0VPI</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player pay to see flop, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0Aggr</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player raise before flop, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0_3BChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player have chance to 3B, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0_3BDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player 3bet before flop, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0_4BChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player have chance to 4B, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0_4BDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player 4bet before flop, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>other_3BStreet0</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did other player 3bet before flop, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>other_4BStreet0</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did other player 4bet before flop, 1 or 0</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Seen(/2/3/4)</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player see flop/street4 (.. etc)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>sawShowdown</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>did player see showdown</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Aggr</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player raised flop/street4</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Aggr</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player raised turn/street5</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Aggr</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player raised river/street6</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Aggr</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player raised street7</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>otherRaisedStreet0</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised pre-flop/street3</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>otherRaisedStreet1</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised flop/street4</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>otherRaisedStreet2</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised turn/street5</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>otherRaisedStreet3</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised river/street6</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>otherRaisedStreet4</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised street7</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet0</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised flop/street4 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet1</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised flop/street4 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet2</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised Turn/street5 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet3</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised River/street6 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet4</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised street7 and the player folded</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>stealAttemptChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player was in CO, BTN or SB and nobody has called yet</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>stealAttempted</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player took a chance per the above condition</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldBbToStealChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Somebody tried to steal BB from player</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldedBbToSteal</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player folded BB to steal attempt</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldSbToStealChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Somebody tried to steal SB from player</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldedSbToSteal</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player folded SB to steal attempt</P></TD>
+	</TR>
+
+	<TR VALIGN=TOP>
+		<TD><P>street1CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to make continuation bet on flop/street4</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to make continuation bet on flop/street4</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to make continuation bet on turn/street5</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to make continuation bet on turn/street5</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to make continuation bet on river/street6</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to make continuation bet on river/street6</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to make continuation bet on street7</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to make continuation bet on street7</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet1CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet1CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet2CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet2CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet3CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet3CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet4CBChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player had chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToStreet4CBDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Player used chance to fold to continuation bet on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street1CheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1CheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2CheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2CheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3CheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3CheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CheckCallRaiseChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player had the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4CheckCallRaiseDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street0Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street0Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street0Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+
+	<TR VALIGN=TOP>
+		<TD><P>actionString</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Experimental - idea is to store the action on this street as a string: e.g. kkBrcfC, with 
+  player's own choices in upper case and other players in lower case. k=check, b=bet, c=call, 
+  r=raise. (Perhaps NL would miss out bet sizes for this?) It would then be possible to do complex 
+  ad-hoc queries using queries like: actionString like '%B%r%C%
+  </P></TD>
 	</TR>
 </TABLE>
 <p><BR></P>
@@ -444,11 +820,22 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>smallint</P></TD>
 		<TD><P>References TourneyTypes.id</P></TD>
 	</TR>
-
 	<TR VALIGN=TOP>
 		<TD><P>HDs</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands this player played in this gametype with this number of seats</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonWhenSeenStreet1(/2/3/4)</P></TD>
+		<TD><P>float</P></TD>
+		<TD><P>How many hands the player won after seeing the flop/street4 - this can be a "partial win" if the pot is split.<br>
+			To be completely clear, this stores a hand count, NOT a money amount.<br/>
+   (/2/3/4: Same for turn/street5, river/street6, street7)</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>wonAtSD</P></TD>
+		<TD><P>float</P></TD>
+		<TD><P>As wonWhenSeenStreet1, but for showdown.</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>street0VPI</P></TD>
@@ -463,14 +850,24 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>number of hands where player raised before flop</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>street0_3B4BChance</P></TD>
+		<TD><P>street0_3BChance</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player had chance to 3B or 4B</P></TD>
+		<TD><P>number of hands where player had chance to 3B before flop</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
-		<TD><P>street0_3B4BDone</P></TD>
+		<TD><P>street0_3BDone</P></TD>
 		<TD><P>int</P></TD>
-		<TD><P>number of hands where player 3bet/4bet before flop</P></TD>
+		<TD><P>number of hands where player 3bet before flop</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0_4BChance</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player had chance to 4B before flop</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street0_4BDone</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where player 4bet before flop</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>street1Seen</P></TD>
@@ -518,6 +915,11 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>number of hands where player raised street7</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
+		<TD><P>otherRaisedStreet0</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised pre-flop/street3</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
 		<TD><P>otherRaisedStreet1</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where someone else raised flop/street4</P></TD>
@@ -536,6 +938,11 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>otherRaisedStreet4</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where someone else raised street7</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>foldToOtherRaisedStreet0</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>number of hands where someone else raised pre-flop/street3 and the player folded</P></TD>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD><P>foldToOtherRaisedStreet1</P></TD>
@@ -557,18 +964,6 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>int</P></TD>
 		<TD><P>number of hands where someone else raised street7 and the player folded</P></TD>
 	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>wonWhenSeenStreet1</P></TD>
-		<TD><P>float</P></TD>
-		<TD><P>How many hands the player won after seeing the flop/street4 - this can be a "partial win" if the pot is split.<br>
-			To be completely clear, this stores a hand count, NOT a money amount.</P></TD>
-	</TR>
-	<TR VALIGN=TOP>
-		<TD><P>wonAtSD</P></TD>
-		<TD><P>float</P></TD>
-		<TD><P>As wonWhenSeenStreet1, but for showdown.</P></TD>
-	</TR>
-
 	<TR VALIGN=TOP>
 		<TD><P>stealAttemptChance</P></TD>
 		<TD><P>int</P></TD>
@@ -727,6 +1122,84 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>street4CheckCallRaiseDone</P></TD>
 		<TD><P>int</P></TD>
 		<TD><P>How often player used the chance to do a check-raise or a call-raise on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street0Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Calls</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player called on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street0Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Bets</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player bet on this street</P></TD>
+	</TR>
+	
+	<TR VALIGN=TOP>
+		<TD><P>street0Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street1Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street2Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street3Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>street4Raises</P></TD>
+		<TD><P>int</P></TD>
+		<TD><P>Number of times player raised on this street</P></TD>
 	</TR>
 	
 </TABLE>
@@ -924,6 +1397,33 @@ Example 2: If a player gets 2, 3, 5, 8, J of spades for his first five cards and
 		<TD><P>commentTs</P></TD>
 		<TD><P>datetime (in UTC)</P></TD>
 		<TD><P><BR></P></TD>
+	</TR>
+</TABLE>
+<p><BR></P>
+<p><B>Possible Changes</B></P>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=0>
+	<TR VALIGN=TOP>
+		<TD><P>Table</P></TD>
+		<TD><P>Comment</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>BoardCards</P></TD>
+		<TD><P>Remove as these attributes are now stored on Hands</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>HandsActions</P></TD>
+		<TD><P>Remove if/when these attributes are stored on Hands or elsewhere</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>HandsPlayers</P></TD>
+		<TD><P>Move tourneyTypeId field to Hands table.</P></TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD><P>Comments</P></TD>
+		<TD><P>Comment fields on various tables should probably be moved to a single comment table. Aim 
+  should be to where possible reduce tables to a list of fixed length not-null columns and have 
+  the larger, sparser comment columns in a dedicated table. (May not be possible or practical but 
+  something to aim at.)</P></TD>
 	</TR>
 </TABLE>
 </BODY>

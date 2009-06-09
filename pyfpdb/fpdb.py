@@ -181,35 +181,54 @@ class fpdb:
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
-        self.obtain_global_lock()
-        chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
-                action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-        chooser.set_filename(self.profile)
+        if self.obtain_global_lock() == 0:  # returns 0 if successful
+            try:
+                chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
+                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
+                        buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+                chooser.set_filename(self.profile)
 
-        response = chooser.run()
-        chooser.destroy()    
-        if response == gtk.RESPONSE_OK:
-            self.load_profile(chooser.get_filename())
-        elif response == gtk.RESPONSE_CANCEL:
-            print 'User cancelled loading profile'
+                response = chooser.run()
+                chooser.destroy()    
+                if response == gtk.RESPONSE_OK:
+                    self.load_profile(chooser.get_filename())
+                elif response == gtk.RESPONSE_CANCEL:
+                    print 'User cancelled loading profile'
+            except:
+                pass
+            self.release_global_lock()
     #end def dia_load_profile
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
-        self.obtain_global_lock()
-        
-        dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
-                buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-        diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
-        dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+        if self.obtain_global_lock() in (0,2):  # returns 0 if successful, 2 if Hands table does not exist
 
-        response = dia_confirm.run()
-        dia_confirm.destroy()
-        if response == gtk.RESPONSE_YES:
-            self.db.recreate_tables()
-        elif response == gtk.RESPONSE_NO:
-            print 'User cancelled recreating tables'
+            lock_released = False
+            try:
+                dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+                        buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
+                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
+                dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+
+                response = dia_confirm.run()
+                dia_confirm.destroy()
+                if response == gtk.RESPONSE_YES:
+                    if self.db.backend == self.fdb_lock.MYSQL_INNODB:
+                        # mysql requires locks on all tables or none - easier to release this lock 
+                        # than lock all the other tables
+                        # ToDo: lock all other tables so that lock doesn't have to be released
+                        self.release_global_lock()
+                        lock_released = True
+                        self.db.recreate_tables()
+                    else:
+                        # for other dbs use same connection as holds global lock
+                        self.fdb_lock.recreate_tables()
+                elif response == gtk.RESPONSE_NO:
+                    print 'User cancelled recreating tables'
+            except:
+                pass
+            if not lock_released:
+                self.release_global_lock()
     #end def dia_recreate_tables
 
     def dia_regression_test(self, widget, data=None):
@@ -291,7 +310,7 @@ class fpdb:
 
         # Create actions
         actiongroup.add_actions([('main', None, '_Main'),
-                                 ('Quit', gtk.STOCK_QUIT, '_Quit me!', None, 'Quit the Program', self.quit),
+                                 ('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.quit),
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
@@ -380,10 +399,17 @@ class fpdb:
     #end def not_implemented
 
     def obtain_global_lock(self):
-        print "todo: implement obtain_global_lock (users: pls ignore this)"
+        print "\nTaking global lock ..."
+        self.fdb_lock = fpdb_db.fpdb_db()
+        self.fdb_lock.connect(self.settings['db-backend'],
+                              self.settings['db-host'],
+                              self.settings['db-databaseName'],
+                              self.settings['db-user'], 
+                              self.settings['db-password'])
+        return self.fdb_lock.get_global_lock()
     #end def obtain_global_lock
 
-    def quit(self, widget):
+    def quit(self, widget, data):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
@@ -391,7 +417,9 @@ class fpdb:
     #end def quit_cliecked
 
     def release_global_lock(self):
-        print "todo: implement release_global_lock"
+        self.fdb_lock.db.rollback()
+        self.fdb_lock.disconnect()
+        print "Global lock released."
     #end def release_global_lock
 
     def tab_abbreviations(self, widget, data=None):
@@ -426,7 +454,6 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
-
 
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
