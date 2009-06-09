@@ -62,7 +62,7 @@ class Table(Table_Window):
             return None
 
         (x, y, width, height) = win32gui.GetWindowRect(hwnd)
-	print "x = %s y = %s width = %s height = %s" % (x, y, width, height)
+        print "x = %s y = %s width = %s height = %s" % (x, y, width, height)
         self.x      = int(x) + b_width
         self.y      = int(y) + tb_height
         self.height = int(height) - b_width - tb_height
