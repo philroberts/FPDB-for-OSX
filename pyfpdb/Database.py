@@ -26,8 +26,8 @@ Create and manage the database objects.
 #    Standard Library modules
 import sys
 import traceback
-import string
 from datetime import datetime, date, time, timedelta
+import string
 
 #    pyGTK modules
 
@@ -85,9 +85,9 @@ class Database:
             sys.exit()
 
         self.type = db_params['db-type']
-        self.db_server = c.supported_databases[db_name].db_server
-        self.sql = SQL.Sql(game = game, type = self.type, db_server = self.db_server)
-        self.connection.rollback()        
+        self.sql = SQL.Sql(game = game, type = self.type)
+        self.connection.rollback()
+
                                    # To add to config:
         self.hud_style = 'T'       # A=All-time 
                                    # S=Session
@@ -177,7 +177,7 @@ class Database:
         """Get and return the community cards for the specified hand."""
         cards = {}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_common_cards'], (hand,))
+        c.execute(self.sql.query['get_common_cards'], [hand])
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             s_dict = {}
@@ -325,8 +325,9 @@ if __name__=="__main__":
     h = db_connection.get_last_hand()
     print "last hand = ", h
     
-    hero = db_connection.get_player_id(c, 'Full Tilt Poker', 'PokerAscetic')
-    print "nutOmatic is id_player = %d" % hero
+    hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
+    if hero:
+        print "nutOmatic is id_player = %d" % hero
     
     stat_dict = db_connection.get_stats_from_hand(h)
     for p in stat_dict.keys():
