@@ -337,7 +337,6 @@ if __name__=="__main__":
 #    stat_dict = db_connection.get_stats_from_hand(h, hero)
 #    for p in stat_dict.keys():
 #        print p, "  ", stat_dict[p]
->>>>>>> 7ef6a533ec6c73d5815ace42168067a6f8c26e3a:pyfpdb/Database.py
 
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
