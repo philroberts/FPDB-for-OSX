@@ -165,9 +165,10 @@ class Importer:
         start = datetime.datetime.now()
         print "started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
-            self.settings['dropIndexes'] = self.calculate_auto()
+            self.settings['dropIndexes'] = self.calculate_auto2(10.0, 500.0)
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.prepareBulkImport()
+        #self.settings['updateHudCache'] = self.calculate_auto2(10.0, 500.0)
         totstored = 0
         totdups = 0
         totpartial = 0
@@ -201,6 +202,40 @@ class Importer:
         if len(self.filelist) < 50:            return "don't drop"      
         if self.settings['handsInDB'] > 50000: return "don't drop"
         return "drop"
+
+    def calculate_auto2(self, scale, increment):
+        """A second heuristic to determine a reasonable value of drop/don't drop
+           This one adds up size of files to import to guess number of hands in them
+           Example values of scale and increment params might be 10 and 500 meaning
+           roughly: drop if importing more than 10% (100/scale) of hands in db or if
+           less than 500 hands in db"""
+        size_per_hand = 1300.0  # wag based on a PS 6-up FLHE file. Actual value not hugely important
+                                # as values of scale and increment compensate for it anyway.
+                                # decimal used to force float arithmetic
+        
+        # get number of hands in db
+        if 'handsInDB' not in self.settings:
+            try:
+                tmpcursor = self.fdb.db.cursor()
+                tmpcursor.execute("Select count(1) from Hands;")
+                self.settings['handsInDB'] = tmpcursor.fetchone()[0]
+            except:
+                pass # if this fails we're probably doomed anyway
+        
+        # add up size of import files
+        total_size = 0.0
+        for file in self.filelist:
+            if os.path.exists(file):
+                stat_info = os.stat(file)
+                total_size += stat_info.st_size
+
+        # if hands_in_db is zero or very low, we want to drop indexes, otherwise compare 
+        # import size with db size somehow:
+        #print "auto2: handsindb =", self.settings['handsInDB'], "total_size =", total_size, "size_per_hand =", \
+        #      size_per_hand, "inc =", increment
+        if self.settings['handsInDB'] < scale * (total_size/size_per_hand) + increment:
+            return "drop"
+        return "don't drop"
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
