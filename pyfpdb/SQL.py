@@ -543,11 +543,16 @@ class Sql:
 
             self.query['get_common_cards'] = """
                     select 
-                        card1Value, card1Suit, 
-                        card2Value, card2Suit, 
-                        card3Value, card3Suit, 
-                        card4Value, card4Suit, 
-                        card5Value, card5Suit
+                        card1Value AS card1value,
+                        card1Suit  AS card1suit,
+                        card2Value AS card2value,
+                        card2Suit  AS card2suit,
+                        card3Value AS card3value,
+                        card3Suit  AS card3suit,
+                        card4Value AS card4value,
+                        card4Suit  AS card4suit,
+                        card5Value AS card5value,
+                        card5Suit  AS card5suit
                     from BoardCards
                     where handId = %s
                 """

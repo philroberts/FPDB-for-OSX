@@ -27,6 +27,7 @@ Create and manage the database objects.
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta
+import string
 
 #    pyGTK modules
 
@@ -37,15 +38,21 @@ import Card
 
 class Database:
     def __init__(self, c, db_name, game):
-        if   c.supported_databases[db_name].db_server == 'postgresql':
-            #    psycopg2 database module for posgres via DB-API
-            import psycopg2
+        db_params = c.get_db_parameters()
+        if (string.lower(db_params['db-server']) == 'postgresql' or
+            string.lower(db_params['db-server']) == 'postgres'):
+            import psycopg2  #   posgres via DB-API
+            import psycopg2.extensions 
+            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
             try:
-                self.connection = psycopg2.connect(host = c.supported_databases[db_name].db_ip,
-                                       user = c.supported_databases[db_name].db_user,
-                                       password = c.supported_databases[db_name].db_pass,
-                                       database = c.supported_databases[db_name].db_name)
+                if db_params['db-host'] == 'localhost' or db_params['db-host'] == '127.0.0.1': 
+                    self.connection = psycopg2.connect(database = db_params['db-databaseName'])
+                else:
+                    self.connection = psycopg2.connect(host = db_params['db-host'],
+                                       user = db_params['db-user'],
+                                       password = db_params['db-password'],
+                                       database = db_params['db-databaseName'])
             except:
                 print "Error opening database connection %s.  See error log file." % (file)
                 traceback.print_exc(file=sys.stderr)
@@ -53,14 +60,13 @@ class Database:
                 sys.stdin.readline()
                 sys.exit()
 
-        elif c.supported_databases[db_name].db_server == 'mysql':
-            #    mysql bindings
-            import MySQLdb
+        elif string.lower(db_params['db-server']) == 'mysql':
+            import MySQLdb  #    mysql bindings
             try:
-                self.connection = MySQLdb.connect(host = c.supported_databases[db_name].db_ip,
-                                       user = c.supported_databases[db_name].db_user,
-                                       passwd = c.supported_databases[db_name].db_pass,
-                                       db = c.supported_databases[db_name].db_name)
+                self.connection = MySQLdb.connect(host = db_params['db-host'],
+                                       user = db_params['db-user'],
+                                       passwd = db_params['db-password'],
+                                       db = db_params['db-databaseName'])
                 cur_iso = self.connection.cursor() 
                 cur_iso.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED') 
                 cur_iso.close()
@@ -78,11 +84,10 @@ class Database:
             print "press enter to continue"
             sys.exit()
 
-        self.db_server = c.supported_databases[db_name].db_server
-        self.type = c.supported_databases[db_name].db_type
-        self.sql = SQL.Sql(game = game, type = self.type, db_server = self.db_server)
+        self.type = db_params['db-type']
+        self.sql = SQL.Sql(game = game, type = self.type)
         self.connection.rollback()
-        
+
                                    # To add to config:
         self.hud_style = 'T'       # A=All-time 
                                    # S=Session
@@ -193,20 +198,20 @@ class Database:
 #                cards += "xx"
 #            else:
 #                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
-            cv = "card%dValue" % i
+            cv = "card%dvalue" % i
             if cv not in d or d[cv] == None:
                 break
             elif d[cv] == 0:
                 cards += "xx"
             else:
-                cs = "card%dSuit" % i
+                cs = "card%dsuit" % i
                 cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
         return cards
 
     def get_action_from_hand(self, hand_no):
         action = [ [], [], [], [], [] ]
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_action_from_hand'], (hand_no))
+        c.execute(self.sql.query['get_action_from_hand'], (hand_no, ))
         for row in c.fetchall():
             street = row[0]
             act = row[1:]
@@ -217,7 +222,7 @@ class Database:
         """Returns a hash of winners:amount won, given a hand number."""
         winners = {}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_winners_from_hand'], (hand))
+        c.execute(self.sql.query['get_winners_from_hand'], (hand, ))
         for row in c.fetchall():
             winners[row[0]] = row[1]
         return winners
@@ -299,7 +304,6 @@ class Database:
         return stat_dict
             
     def get_player_id(self, config, site, player_name):
-        print "site  = %s, player name = %s" % (site, player_name)
         c = self.connection.cursor()
         c.execute(self.sql.query['get_player_id'], {'player': player_name, 'site': site})
         row = c.fetchone()
@@ -329,12 +333,13 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    #print "nutOmatics stats:"
-    #stat_dict = db_connection.get_stats_from_hand(h, hero)
-    #for p in stat_dict.keys():
-    #    print p, "  ", stat_dict[p]
+#    print "nutOmatics stats:"
+#    stat_dict = db_connection.get_stats_from_hand(h, hero)
+#    for p in stat_dict.keys():
+#        print p, "  ", stat_dict[p]
+>>>>>>> 7ef6a533ec6c73d5815ace42168067a6f8c26e3a:pyfpdb/Database.py
 
-    print "cards =", db_connection.get_cards(73525)
+    print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
 
     print "press enter to continue"

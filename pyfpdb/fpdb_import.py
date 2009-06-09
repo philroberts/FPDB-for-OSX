@@ -44,6 +44,9 @@ except:
 try:
     import psycopg2
     pgsqlLibFound=True
+    import psycopg2.extensions 
+    psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+
 except:
     pass
 
