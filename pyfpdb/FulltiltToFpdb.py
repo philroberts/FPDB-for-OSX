@@ -124,7 +124,7 @@ follow :  whether to tail -f the input"""
         
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.starttime = time.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
         hand.maxseats = 8 # assume 8-max until we see otherwise
         if m.group('TABLEATTRIBUTES'):
             m2 = re.search("(deep )?(\d+)( max)?", m.group('TABLEATTRIBUTES'))
