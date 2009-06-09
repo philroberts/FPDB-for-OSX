@@ -878,7 +878,8 @@ Add a complete on [street] by [player] to [amountTo]
     
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+#        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_post_antes = set([x[0] for x in self.actions['ANTES']])

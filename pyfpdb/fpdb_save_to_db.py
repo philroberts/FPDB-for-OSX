@@ -26,14 +26,13 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
-#fastStoreHudCache = False   # set this to True to test the new storeHudCache routine
-#
-#saveActions = True  # set this to False to avoid storing action data
-#                    # Pros: speeds up imports
-#                    # Cons: no action data is saved, so you need to keep the hand histories
-#                    #       variance not available on stats page
-#                    #       no graphs
+fastStoreHudCache = False   # set this to True to test the new storeHudCache routine
 
+saveActions = True  # set this to False to avoid storing action data
+                    # Pros: speeds up imports
+                    # Cons: no action data is saved, so you need to keep the hand histories
+                    #       variance not available on stats page
+                    #     : No graphs
 #stores a stud/razz hand into the database
 def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametype_id, hand_start_time
              ,names, player_ids, start_cashes, antes, card_values, card_suits, winnings, rakes
@@ -48,7 +47,7 @@ def ring_stud(config, backend, db, cursor, base, category, site_hand_no, gametyp
     fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
     
     hands_id = fpdb_simple.storeHands(backend, db, cursor, site_hand_no, gametype_id
-                                   ,hand_start_time, names, tableName, maxSeats)
+                                   ,hand_start_time, names, tableName, maxSeats, hudImportData)
     
     #print "before calling store_hands_players_stud, antes:", antes
     hands_players_ids = fpdb_simple.store_hands_players_stud(backend, db, cursor, hands_id, player_ids
