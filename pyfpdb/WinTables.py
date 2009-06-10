@@ -72,7 +72,8 @@ class Table(Table_Window):
         self.title  = titles[hwnd]
         self.site   = ""
         self.hud    = None
-        self.number = gtk.gdk.window_foreign_new(long(self.window))
+        self.number = hwnd
+        self.gdkhandle = gtk.gdk.window_foreign_new(long(self.window))
 
     def get_geometry(self):
 
@@ -112,32 +113,31 @@ class Table(Table_Window):
         win32api.CloseHandle(hToken)
         
         return exename
+    def topify(self, hud):
+        """Set the specified gtk window to stayontop in MS Windows."""
+    
+        def windowEnumerationHandler(hwnd, resultList):
+            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
+            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
+    
+        unique_name = 'unique name for finding this window'
+        real_name = hud.main_window.get_title()
+        hud.main_window.set_title(unique_name)
+        tl_windows = []
+        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
+            
+        for w in tl_windows:
+            if w[1] == unique_name:
+                hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
+                hud.main_window.gdkhandle.set_transient_for(self.gdkhandle)
+#                
+#                style = win32gui.GetWindowLong(self.number, win32con.GWL_EXSTYLE)
+#                style |= win32con.WS_CLIPCHILDREN
+#                win32gui.SetWindowLong(self.number, win32con.GWL_EXSTYLE, style)
+                break
+                
+        hud.main_window.set_title(real_name)
+
 def win_enum_handler(hwnd, titles):
     titles[hwnd] = win32gui.GetWindowText(hwnd)
-
-def topify_window(hud, window):
-    """Set the specified gtk window to stayontop in MS Windows."""
-
-    def windowEnumerationHandler(hwnd, resultList):
-        '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-        resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-
-    unique_name = 'unique name for finding this window'
-    real_name = window.get_title()
-    window.set_title(unique_name)
-    tl_windows = []
-    win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-        
-    for w in tl_windows:
-        if w[1] == unique_name:
-            hud.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(long(hud.table.number))
-            hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-            hud.main_window.gdkhandle.set_transient_for(hud.main_window.parentgdkhandle)
-            
-            style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
-            style |= win32con.WS_CLIPCHILDREN
-            win32gui.SetWindowLong(hud.table.number, win32con.GWL_EXSTYLE, style)
-            break
-            
-    window.set_title(real_name)
 
