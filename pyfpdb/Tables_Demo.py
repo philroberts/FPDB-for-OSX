@@ -92,6 +92,8 @@ if __name__=="__main__":
     print "game =", table.get_game()
 
     fake = fake_hud(table)
+    print "fake =", fake
     gobject.timeout_add(100, check_on_table, table, fake)
+    print "calling main"
     gtk.main()
 

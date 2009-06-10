@@ -65,8 +65,11 @@ class Table(Table_Window):
         print "x = %s y = %s width = %s height = %s" % (x, y, width, height)
         self.x      = int(x) + b_width
         self.y      = int(y) + tb_height
-        self.height = int(height) - b_width - tb_height
-        self.width  = int(width) - 2*b_width
+        self.width  = width - x
+        self.height = height - y
+        print "x = %s y = %s width = %s height = %s" % (self.x, self.y, self.width, self.height)
+        #self.height = int(height) - b_width - tb_height
+        #self.width  = int(width) - 2*b_width
         
         self.exe    = self.get_nt_exe(hwnd)
         self.title  = titles[hwnd]
@@ -82,6 +85,8 @@ class Table(Table_Window):
 
         try:
             (x, y, width, height) = win32gui.GetWindowRect(hwnd)
+            width = width - x
+            height = height - y
             return {'x'      : int(x) + b_width,
                     'y'      : int(y) + tb_height,
                     'width'  : int(height) - b_width - tb_height,
@@ -128,8 +133,12 @@ class Table(Table_Window):
             
         for w in tl_windows:
             if w[1] == unique_name:
-                hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-                hud.main_window.gdkhandle.set_transient_for(self.gdkhandle)
+#                hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
+#                hud.main_window.gdkhandle.set_transient_for(self.gdkhandle)
+                rect = self.gdkhandle.get_frame_extents()
+                (innerx, innery) = self.gdkhandle.get_origin()
+                b_width = rect.x - innerx
+                tb_height = rect.y - innery
 #                
 #                style = win32gui.GetWindowLong(self.number, win32con.GWL_EXSTYLE)
 #                style |= win32con.WS_CLIPCHILDREN
