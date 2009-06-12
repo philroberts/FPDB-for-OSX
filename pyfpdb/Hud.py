@@ -577,25 +577,25 @@ class Popup_window:
     def topify_window(self, window):
         """Set the specified gtk window to stayontop in MS Windows."""
 
-        def windowEnumerationHandler(hwnd, resultList):
-            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
+#        def windowEnumerationHandler(hwnd, resultList):
+#            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
+#            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
 
-        unique_name = 'unique name for finding this window'
-        real_name = window.get_title()
-        window.set_title(unique_name)
-        tl_windows = []
-        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
+#        unique_name = 'unique name for finding this window'
+#        real_name = window.get_title()
+#        window.set_title(unique_name)
+#        tl_windows = []
+#        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
         
-        for w in tl_windows:
-            if w[1] == unique_name:
-                window.set_transient_for(self.parent.main_window)               
-                style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
-                style |= win32con.WS_CLIPCHILDREN
-                win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
-                break
+#        for w in tl_windows:
+#            if w[1] == unique_name:
+        window.set_transient_for(self.parent.main_window)               
+        style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
+        style |= win32con.WS_CLIPCHILDREN
+        win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
+#                break
                 
-        window.set_title(real_name)
+#        window.set_title(real_name)
 
 if __name__== "__main__":
     main_window = gtk.Window()
