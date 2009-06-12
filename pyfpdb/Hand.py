@@ -80,6 +80,10 @@ class Hand:
         self.totalcollected = None
         self.rake = None
 
+    def __str__(self):
+        str = ''
+        str = str + "Hand Object for %s at %s" % (self.handid, self.sitename) 
+        return str
 
     def insert(self, db):
         """ Function to insert Hand into database
@@ -382,7 +386,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "omahahilo"  : "Omaha Hi/Lo",
               "razz"       : "Razz",
               "studhi"     : "7 Card Stud",
-              "studhilo"   : "FIXME",
+              "studhilo"   : "7 Card Stud Hi/Lo",
               "fivedraw"   : "5 Card Draw",
               "27_1draw"   : "FIXME",
               "27_3draw"   : "Triple Draw 2-7 Lowball",
