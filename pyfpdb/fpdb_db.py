@@ -179,13 +179,28 @@ class fpdb_db:
             # For local domain-socket connections, only DB name is
             # needed, and everything else is in fact undefined and/or
             # flat out wrong
+            # sqlcoder: This database only connect failed in my windows setup??
+            # Modifed it to try the 4 parameter style if the first connect fails - does this work everywhere?
+            connected = False
             if self.host == "localhost" or self.host == "127.0.0.1":
-                self.db = psycopg2.connect(database = database)
-            else:
-                self.db = psycopg2.connect(host = host,
-                        user = user, 
-                        password = password, 
-                        database = database)
+                try:
+                    self.db = psycopg2.connect(database = database)
+                    connected = True
+                except:
+                    pass
+                    #msg = "PostgreSQL direct connection to database (%s) failed, trying with user ..." % (database,)
+                    #print msg
+                    #raise fpdb_simple.FpdbError(msg)
+            if not connected:
+                try:
+                    self.db = psycopg2.connect(host = host,
+                                               user = user, 
+                                               password = password, 
+                                               database = database)
+                except:
+                    msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
+                    print msg
+                    raise fpdb_simple.FpdbError(msg)
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
