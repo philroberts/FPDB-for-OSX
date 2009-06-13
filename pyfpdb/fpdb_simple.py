@@ -1318,19 +1318,26 @@ def store_hands_players_stud(backend, conn, cursor, hands_id, player_ids, start_
     result=[]
     #print "before inserts in store_hands_players_stud, antes:", antes
     for i in xrange(len(player_ids)):
+        card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+        card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
+        card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
+        card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
+        card5 = Card.cardFromValueSuit(card_values[i][4], card_suits[i][4])
+        card6 = Card.cardFromValueSuit(card_values[i][5], card_suits[i][5])
+        card7 = Card.cardFromValueSuit(card_values[i][6], card_suits[i][6])
+
         cursor.execute ("""INSERT INTO HandsPlayers
-(handId, playerId, startCash, ante,
-card1Value, card1Suit, card2Value, card2Suit,
-card3Value, card3Suit, card4Value, card4Suit,
-card5Value, card5Suit, card6Value, card6Suit,
-card7Value, card7Suit, winnings, rake, seatNo)
-VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-%s, %s, %s, %s)""",
-        (hands_id, player_ids[i], start_cashes[i], antes[i],
-        card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
-        card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
-        card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-        card_values[i][6], card_suits[i][6], winnings[i], rakes[i], seatNos[i]))
+(handId, playerId, startCash, ante, tourneyTypeId,
+card1, card2,
+card3, card4,
+card5, card6,
+card7, winnings, rake, seatNo)
+VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+        (hands_id, player_ids[i], start_cashes[i], antes[i], 1, 
+        card1, card2,
+        card3, card4,
+        card5, card6,
+        card7, winnings[i], rakes[i], seatNos[i]))
         #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
         #result.append(cursor.fetchall()[0][0])
         result.append( getLastInsertId(backend, conn, cursor) )

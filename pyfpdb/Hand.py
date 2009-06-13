@@ -80,6 +80,10 @@ class Hand:
         self.totalcollected = None
         self.rake = None
 
+    def __str__(self):
+        str = ''
+        str = str + "Hand Object for %s at %s" % (self.handid, self.sitename) 
+        return str
 
     def insert(self, db):
         """ Function to insert Hand into database
@@ -382,7 +386,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
               "omahahilo"  : "Omaha Hi/Lo",
               "razz"       : "Razz",
               "studhi"     : "7 Card Stud",
-              "studhilo"   : "FIXME",
+              "studhilo"   : "7 Card Stud Hi/Lo",
               "fivedraw"   : "5 Card Draw",
               "27_1draw"   : "FIXME",
               "27_3draw"   : "Triple Draw 2-7 Lowball",
@@ -878,7 +882,8 @@ Add a complete on [street] by [player] to [amountTo]
     
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+#        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
