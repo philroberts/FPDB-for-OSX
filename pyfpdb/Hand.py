@@ -1146,14 +1146,18 @@ limit 1""", {'handid':handid})
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
     h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-    cards = map("".join, zip(map(str,res[11:21:2]), res[12:21:2]))
+    rank = {0:'X',1:'1',2:'2',3:'3',4:'4', 
+            5:'5',6:'6',7:'7',8:'8',9:'9',
+            10:'T',11:'J',12:'Q',13:'K',14:'A'}
+    ranks = [rank[r] for r in res[11:21:2]]
+    cards = map("".join, zip(ranks, res[12:21:2]))
     
-    if cards[0] != "0x":
+    if cards[0] != "Xx":
         h.setCommunityCards('FLOP', cards[0:3])
-    if cards[3] != "0x":
-        h.setCommunityCards('TURN', cards[3])
-    if cards[4] != "0x":      
-        h.setCommunityCards('RIVER', cards[4])
+    if cards[3] != "Xx":
+        h.setCommunityCards('TURN', [cards[3]])
+    if cards[4] != "Xx":      
+        h.setCommunityCards('RIVER', [cards[4]])
     #[Card.valueSuitFromCard(x) for x in cards]
     
     
@@ -1182,9 +1186,10 @@ WHERE h.id = %(handid)s
     c.execute("""
 SELECT
     hp.seatno,
+    hp.winnings / 100.0 as winnings,
     p.name,
     round(hp.startcash / 100.0,2) as chips,
-    (hp.card1,hp.card2) as hole
+    hp.card1,hp.card2
 FROM
     handsplayers as hp,
     players as p
@@ -1192,9 +1197,11 @@ WHERE
     hp.handid = %(handid)s
 and p.id = hp.playerid
 """, {'handid':handid})
-    for (seat, name, chips, cards) in c.fetchall():
+    for (seat, winnings, name, chips, card1,card2) in c.fetchall():
         h.addPlayer(seat,name,chips)
-        h.addHoleCards([Card.valueSuitFromCard(x) for x in cards],name)
+        h.addHoleCards(map(Card.valueSuitFromCard, (card1,card2)),name)
+        if winnings > 0:
+            h.addCollectPot(name, winnings)
     
     # actions
     c.execute("""
@@ -1237,7 +1244,7 @@ ORDER BY
         else:
             print act, player, streetnum, allin, amount
             # TODO : other actions
-    #hhc.readCollectPot(self)
+
     #hhc.readShowdownActions(self)
     #hc.readShownCards(self)
     h.totalPot()
