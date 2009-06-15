@@ -514,6 +514,59 @@ Card ranks will be uppercased
             self.addHoleCards(holeandboard.difference(board),player,shown=True)
 
 
+    def writeHTMLHand(self, fh=sys.__stdout__):
+        from nevow import tags as T
+        from nevow import flat
+        players_who_act_preflop = (([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
+        players_stacks = [x for x in self.players if x[1] in players_who_act_preflop]
+
+        action_streets = [x for x in self.actionStreets if len(self.actions[x]) > 0]
+        def render_stack(context,data):
+            pat = context.tag.patternGenerator('list_item')
+            for player in data:
+                x = "Seat %s: %s ($%s in chips) " %(player[0], player[1],
+                player[2])
+                context.tag[ pat().fillSlots('playerStack', x)]
+            return context.tag
+
+        def render_street(context,data):
+            pat = context.tag.patternGenerator('list_item')
+            for street in data:
+                actions = [
+                    T.h3['%s' % street],
+                    T.ol(class_='actions', data=self.actions[street],
+                render=render_action)[
+                        T.li(pattern='list_item')[ T.slot(name='action')]
+                    ]
+                ]
+                context.tag[ pat().fillSlots('street', actions)]
+            return context.tag
+
+        def render_action(context,data):
+            pat = context.tag.patternGenerator('list_item')
+            for act in data:
+                x = "%s %s" % (act[0],act[1])
+                context.tag[ pat().fillSlots('action', x)]
+            return context.tag
+
+        s = T.p[ 
+            T.h1[ "%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid,
+            self.getGameTypeAsString(), self.sb, self.bb,
+            datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET'))
+            ],
+            T.h2[ "Table '%s' %d-max Seat #%s is the button" %(self.tablename,
+            self.maxseats, self.buttonpos)],
+            T.ol(class_='stacks', data = players_stacks, render=render_stack)[
+                T.li(pattern='list_item')[ T.slot(name='playerStack') ]
+            ],
+            T.ol(class_='streets', data = action_streets,
+            render=render_street)[
+                T.li(pattern='list_item')[ T.slot(name='street')]
+            ]
+        ]
+        return flat.flatten(s)
+
+        
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
         print >>fh, ("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
