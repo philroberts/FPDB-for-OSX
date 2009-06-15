@@ -132,7 +132,7 @@ Otherwise, finish at eof...
                 self.processHand(handText)
             numHands=  len(handsList)
         endtime = time.time()
-        print "Processed %d hands in %.3f seconds" % (numHands, endtime - starttime)
+        print "read %d hands in %.3f seconds" % (numHands, endtime - starttime)
         if self.out_fh != sys.stdout:
             self.out_fh.close()
 
