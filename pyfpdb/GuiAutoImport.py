@@ -28,6 +28,7 @@ import time
 import fpdb_import
 from optparse import OptionParser
 import Configuration
+import string
 
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config):
@@ -165,7 +166,11 @@ class GuiAutoImport (threading.Thread):
                     command = os.path.join(sys.path[0],  'HUD_main.py')
                     #command = self.config.execution_path('HUD_main.py') # Hi Ray. Sorry about this, kludging.
                     bs = 1
-                    self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE, 
+                    print "GUI:options =", self.settings['cl_options']
+                    options = string.split(self.settings['cl_options'])
+                    cl = [command, ] + options
+                    print "cl =", cl
+                    self.pipe_to_hud = subprocess.Popen(cl, bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
     #            self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE,
     #                                                universal_newlines=True)
