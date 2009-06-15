@@ -1115,10 +1115,10 @@ select
     g.type,
     g.limitType,
     g.hilo,
-    g.smallBlind / 100.0,
-    g.bigBlind / 100.0 ,
-    g.smallBet / 100.0,
-    g.bigBet / 100.0,
+    round(g.smallBlind / 100.0,2),
+    round(g.bigBlind / 100.0,2),
+    round(g.smallBet / 100.0,2),
+    round(g.bigBet / 100.0,2),
     s.currency,
     bc.card1value,
     bc.card1suit,
@@ -1185,7 +1185,7 @@ WHERE h.id = %(handid)s
     c.execute("""
 SELECT
     hp.seatno,
-    hp.winnings / 100.0 as winnings,
+    round(hp.winnings / 100.0,2) as winnings,
     p.name,
     round(hp.startcash / 100.0,2) as chips,
     hp.card1,hp.card2
@@ -1210,7 +1210,7 @@ SELECT
     ha.street,
     ha.action,
     ha.allin,
-    ha.amount / 100.0
+    round(ha.amount / 100.0,2)
 FROM
     handsplayers as hp,
     handsactions as ha,
