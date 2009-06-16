@@ -21,7 +21,8 @@ import fpdb_simple
 import fpdb_save_to_db
 
 #parses a holdem hand
-def mainParser(backend, db, cursor, siteID, category, hand, config):
+def mainParser(settings, db, cursor, siteID, category, hand, config):
+    backend = settings['db-backend']
     category = fpdb_simple.recogniseCategory(hand[0])
 
     base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
@@ -141,7 +142,7 @@ def mainParser(backend, db, cursor, siteID, category, hand, config):
         
         if base == "hold":
             result = fpdb_save_to_db.tourney_holdem_omaha(
-                                       config, backend, db, cursor, base, category, siteTourneyNo, buyin
+                                       config, settings, db, cursor, base, category, siteTourneyNo, buyin
                                      , fee, knockout, entries, prizepool, tourneyStartTime
                                      , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
                                      , gametypeID, handStartTime, names, playerIDs, startCashes
@@ -150,7 +151,7 @@ def mainParser(backend, db, cursor, siteID, category, hand, config):
                                      , actionNos, hudImportData, maxSeats, tableName, seatNos)
         elif base == "stud":
             result = fpdb_save_to_db.tourney_stud(
-                                       config, backend, db, cursor, base, category, siteTourneyNo
+                                       config, settings, db, cursor, base, category, siteTourneyNo
                                      , buyin, fee, knockout, entries, prizepool, tourneyStartTime
                                      , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
                                      , gametypeID, handStartTime, names, playerIDs, startCashes
@@ -162,7 +163,7 @@ def mainParser(backend, db, cursor, siteID, category, hand, config):
     else:
         if base == "hold":
             result = fpdb_save_to_db.ring_holdem_omaha(
-                                       config, backend, db, cursor, base, category, siteHandNo
+                                       config, settings, db, cursor, base, category, siteHandNo
                                      , gametypeID, handStartTime, names, playerIDs
                                      , startCashes, positions, cardValues, cardSuits
                                      , boardValues, boardSuits, winnings, rakes
@@ -170,7 +171,7 @@ def mainParser(backend, db, cursor, siteID, category, hand, config):
                                      , hudImportData, maxSeats, tableName, seatNos)
         elif base == "stud":
             result = fpdb_save_to_db.ring_stud(
-                                       config, backend, db, cursor, base, category, siteHandNo, gametypeID
+                                       config, settings, db, cursor, base, category, siteHandNo, gametypeID
                                      , handStartTime, names, playerIDs, startCashes, antes
                                      , cardValues, cardSuits, winnings, rakes, actionTypes, allIns
                                      , actionAmounts, actionNos, hudImportData, maxSeats, tableName
