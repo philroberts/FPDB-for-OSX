@@ -158,25 +158,15 @@ class GuiAutoImport (threading.Thread):
             widget.set_label(u'  _Stop Autoimport  ')
             if self.pipe_to_hud is None:
                 if os.name == 'nt':
-                    command = "python HUD_main.py" + " %s" % (self.database)
+                    command = "python HUD_main.py" + " " + self.settings['cl_options']
                     bs = 0    # windows is not happy with line buffing here
                     self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
                 else:
                     command = os.path.join(sys.path[0],  'HUD_main.py')
-                    #command = self.config.execution_path('HUD_main.py') # Hi Ray. Sorry about this, kludging.
-                    bs = 1
-                    print "GUI:options =", self.settings['cl_options']
-                    options = string.split(self.settings['cl_options'])
-                    cl = [command, ] + options
-                    print "cl =", cl
-                    self.pipe_to_hud = subprocess.Popen(cl, bufsize = bs, stdin = subprocess.PIPE, 
+                    cl = [command, ] + string.split(self.settings['cl_options'])
+                    self.pipe_to_hud = subprocess.Popen(cl, bufsize = 1, stdin = subprocess.PIPE, 
                                                     universal_newlines=True)
-    #            self.pipe_to_hud = subprocess.Popen((command, self.database), bufsize = bs, stdin = subprocess.PIPE,
-    #                                                universal_newlines=True)
-    #            command = command + " %s" % (self.database)
-    #            print "command = ", command
-    #            self.pipe_to_hud = os.popen(command, 'w')
 
     #            Add directories to importer object.
                 for site in self.input_settings:
