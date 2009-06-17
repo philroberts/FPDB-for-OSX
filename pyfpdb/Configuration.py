@@ -250,6 +250,7 @@ class Config:
 
         self.default_config_path = self.get_default_config_path()
         if file != None: # configuration file path has been passed
+            file = os.path.expanduser(file)
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))

@@ -43,7 +43,7 @@ import Configuration
 import Stats
 import Mucked
 import Database
-import HUD_main
+#import HUD_main
 
 def importName(module_name, name):
     """Import a named object 'name' from module 'module_name'."""
