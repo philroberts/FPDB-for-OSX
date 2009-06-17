@@ -518,6 +518,59 @@ Card ranks will be uppercased
             self.addHoleCards(holeandboard.difference(board),player,shown=True)
 
 
+    def writeHTMLHand(self, fh=sys.__stdout__):
+        from nevow import tags as T
+        from nevow import flat
+        players_who_act_preflop = (([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
+        players_stacks = [x for x in self.players if x[1] in players_who_act_preflop]
+
+        action_streets = [x for x in self.actionStreets if len(self.actions[x]) > 0]
+        def render_stack(context,data):
+            pat = context.tag.patternGenerator('list_item')
+            for player in data:
+                x = "Seat %s: %s ($%s in chips) " %(player[0], player[1],
+                player[2])
+                context.tag[ pat().fillSlots('playerStack', x)]
+            return context.tag
+
+        def render_street(context,data):
+            pat = context.tag.patternGenerator('list_item')
+            for street in data:
+                actions = [
+                    T.h3['%s' % street],
+                    T.ol(class_='actions', data=self.actions[street],
+                render=render_action)[
+                        T.li(pattern='list_item')[ T.slot(name='action')]
+                    ]
+                ]
+                context.tag[ pat().fillSlots('street', actions)]
+            return context.tag
+
+        def render_action(context,data):
+            pat = context.tag.patternGenerator('list_item')
+            for act in data:
+                x = "%s %s" % (act[0],act[1])
+                context.tag[ pat().fillSlots('action', x)]
+            return context.tag
+
+        s = T.p[ 
+            T.h1[ "%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid,
+            self.getGameTypeAsString(), self.sb, self.bb,
+            datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET'))
+            ],
+            T.h2[ "Table '%s' %d-max Seat #%s is the button" %(self.tablename,
+            self.maxseats, self.buttonpos)],
+            T.ol(class_='stacks', data = players_stacks, render=render_stack)[
+                T.li(pattern='list_item')[ T.slot(name='playerStack') ]
+            ],
+            T.ol(class_='streets', data = action_streets,
+            render=render_street)[
+                T.li(pattern='list_item')[ T.slot(name='street')]
+            ]
+        ]
+        return flat.flatten(s)
+
+        
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
         print >>fh, ("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
@@ -1120,10 +1173,10 @@ select
     g.type,
     g.limitType,
     g.hilo,
-    g.smallBlind / 100.0,
-    g.bigBlind / 100.0 ,
-    g.smallBet / 100.0,
-    g.bigBet / 100.0,
+    round(g.smallBlind / 100.0,2),
+    round(g.bigBlind / 100.0,2),
+    round(g.smallBet / 100.0,2),
+    round(g.bigBet / 100.0,2),
     s.currency,
     bc.card1value,
     bc.card1suit,
@@ -1150,14 +1203,18 @@ limit 1""", {'handid':handid})
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
     h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
-    cards = map("".join, zip(map(str,res[11:21:2]), res[12:21:2]))
+    rank = {0:'X',1:'1',2:'2',3:'3',4:'4', 
+            5:'5',6:'6',7:'7',8:'8',9:'9',
+            10:'T',11:'J',12:'Q',13:'K',14:'A'}
+    ranks = [rank[r] for r in res[11:21:2]]
+    cards = map("".join, zip(ranks, res[12:21:2]))
     
-    if cards[0] != "0x":
+    if cards[0] != "Xx":
         h.setCommunityCards('FLOP', cards[0:3])
-    if cards[3] != "0x":
-        h.setCommunityCards('TURN', cards[3])
-    if cards[4] != "0x":      
-        h.setCommunityCards('RIVER', cards[4])
+    if cards[3] != "Xx":
+        h.setCommunityCards('TURN', [cards[3]])
+    if cards[4] != "Xx":      
+        h.setCommunityCards('RIVER', [cards[4]])
     #[Card.valueSuitFromCard(x) for x in cards]
     
     
@@ -1186,9 +1243,10 @@ WHERE h.id = %(handid)s
     c.execute("""
 SELECT
     hp.seatno,
+    round(hp.winnings / 100.0,2) as winnings,
     p.name,
     round(hp.startcash / 100.0,2) as chips,
-    (hp.card1,hp.card2) as hole
+    hp.card1,hp.card2
 FROM
     handsplayers as hp,
     players as p
@@ -1196,9 +1254,11 @@ WHERE
     hp.handid = %(handid)s
 and p.id = hp.playerid
 """, {'handid':handid})
-    for (seat, name, chips, cards) in c.fetchall():
+    for (seat, winnings, name, chips, card1,card2) in c.fetchall():
         h.addPlayer(seat,name,chips)
-        h.addHoleCards([Card.valueSuitFromCard(x) for x in cards],name)
+        h.addHoleCards(map(Card.valueSuitFromCard, (card1,card2)),name)
+        if winnings > 0:
+            h.addCollectPot(name, winnings)
     
     # actions
     c.execute("""
@@ -1208,7 +1268,7 @@ SELECT
     ha.street,
     ha.action,
     ha.allin,
-    ha.amount / 100.0
+    round(ha.amount / 100.0,2)
 FROM
     handsplayers as hp,
     handsactions as ha,
@@ -1241,7 +1301,7 @@ ORDER BY
         else:
             print act, player, streetnum, allin, amount
             # TODO : other actions
-    #hhc.readCollectPot(self)
+
     #hhc.readShowdownActions(self)
     #hc.readShownCards(self)
     h.totalPot()
