@@ -35,6 +35,7 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 import Database
+import Card
 
 class Aux_Window:
     def __init__(self, hud, params, config):
@@ -67,16 +68,23 @@ class Aux_Window:
 #    Some utility routines useful for Aux_Windows
 #
     def get_card_images(self):
-        card_images = {}
-        suits = ('S', 'H', 'D', 'C')
-        ranks = ('A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'B')
+
+        card_images = 53 * [0]
+        suits = ('s', 'h', 'd', 'c')
+        ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
         pb  = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(self.params['deck']))
         
-        for j in range(0, 14):
+        for j in range(0, 13):
             for i in range(0, 4):
                 temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
                 pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
-                card_images[(ranks[j], suits[i])] = temp_pb
+                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = temp_pb
+        temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
+#    also pick out a card back and store in [0]
+        j = 13
+        i = 2
+        pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
+        card_images[0] = temp_pb
         return(card_images)
 #   cards are 30 wide x 42 high
 
@@ -108,9 +116,10 @@ class Stud_mucked(Aux_Window):
 
     def create(self):
 
-        self.container =gtk.Window() 
+        self.container = gtk.Window() 
         self.vbox = gtk.VBox()
         self.container.add(self.vbox)
+        self.container.set_title(self.hud.table.name)
 
         self.mucked_list.create(self.vbox)
         self.mucked_cards.create(self.vbox)
@@ -207,7 +216,9 @@ class Stud_list:
 #    find the hero's seat from the stat_dict
             for stat in self.parent.hud.stat_dict.itervalues():
                 if stat['screen_name'] == hero:
-                    return self.parent.hud.cards[stat['seat']][0:6]
+                    return Card.valueSuitFromCard(self.parent.hud.cards[stat['seat']][0]) +\
+                           Card.valueSuitFromCard(self.parent.hud.cards[stat['seat']][1]) +\
+                           Card.valueSuitFromCard(self.parent.hud.cards[stat['seat']][2])
         return "xxxxxx"
             
     def update_gui(self, new_hand_id):
@@ -240,7 +251,7 @@ class Stud_cards:
 
         for r in range(0, self.rows):
             for c in range(0, self.cols):
-                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[('B', 'S')])
+                self.seen_cards[(c, r)] = gtk.image_new_from_pixbuf(self.card_images[(0)])
                 self.eb[(c, r)]= gtk.EventBox()
 
 #    set up the contents for the cells
@@ -287,11 +298,11 @@ class Stud_cards:
         self.clear()
         for c, cards in self.parent.hud.cards.iteritems():
             self.grid_contents[(1, c - 1)].set_text(self.get_screen_name(c))
-            for i in ((0, cards[0:2]), (1, cards[2:4]), (2, cards[4:6]), (3, cards[6:8]), 
-                      (4, cards[8:10]), (5, cards[10:12]), (6, cards[12:14])):
-                if not i[1] == "xx":
+            for i in ((0, cards[0]), (1, cards[1]), (2, cards[2]), (3, cards[3]), 
+                      (4, cards[4]), (5, cards[5]), (6, cards[6])):
+                if not i[1] == 0:
                     self.seen_cards[(i[0], c - 1)]. \
-                        set_from_pixbuf(self.card_images[self.parent.split_cards(i[1])])
+                        set_from_pixbuf(self.card_images[i[1]])
 ##    action in tool tips for 3rd street cards
         for c in (0, 1, 2):
             for r in range(0, self.rows):
@@ -314,7 +325,7 @@ class Stud_cards:
         for r in range(0, self.rows):
             self.grid_contents[(1, r)].set_text("             ")
             for c in range(0, 7):
-                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[('B', 'S')])
+                self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0])
                 self.eb[(c, r)].set_tooltip_text('')
 
 class Flop_Mucked(Aux_Window):
@@ -459,29 +470,31 @@ class Flop_Mucked(Aux_Window):
                 new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
 
-if __name__== "__main__":
-    
-    def destroy(*args):             # call back for terminating the main eventloop
-        gtk.main_quit()             # used only for testing
+#    This test program doesn't work
 
-    def process_new_hand(source, condition, db_connection):  #callback from stdin watch -- testing only
-#    there is a new hand_id to be processed
-#    just read it and pass it to update
-        new_hand_id = sys.stdin.readline()
-        new_hand_id = new_hand_id.rstrip()  # remove trailing whitespace
-        m.update_data(new_hand_id, db_connection)
-        m.update_gui(new_hand_id)
-        return(True)
-
-    config = Configuration.Config()
-    db_connection = Database.Database(config, 'fpdb', '')
-    main_window = gtk.Window()
-    main_window.set_keep_above(True)
-    main_window.connect("destroy", destroy)
-
-    aux_to_call = "stud_mucked"
-    aux_params = config.get_aux_parameters(aux_to_call)
-    m = eval("%s(main_window, None, config, aux_params)" % aux_params['class'])
-    
-    s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand, db_connection)
-    gtk.main()
+#if __name__== "__main__":
+#    
+#    def destroy(*args):             # call back for terminating the main eventloop
+#        gtk.main_quit()             # used only for testing
+#
+#    def process_new_hand(source, condition, db_connection):  #callback from stdin watch -- testing only
+##    there is a new hand_id to be processed
+##    just read it and pass it to update
+#        new_hand_id = sys.stdin.readline()
+#        new_hand_id = new_hand_id.rstrip()  # remove trailing whitespace
+#        m.update_data(new_hand_id, db_connection)
+#        m.update_gui(new_hand_id)
+#        return(True)
+#
+#    config = Configuration.Config()
+#    db_connection = Database.Database(config, 'fpdbTEST', '')
+#    main_window = gtk.Window()
+#    main_window.set_keep_above(True)
+#    main_window.connect("destroy", destroy)
+#
+#    aux_to_call = "stud_mucked"
+#    aux_params = config.get_aux_parameters(aux_to_call)
+#    m = eval("%s(None, config, aux_params)" % aux_params['class'])
+#    
+#    s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand, db_connection)
+#    gtk.main()
