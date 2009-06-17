@@ -156,21 +156,13 @@ class Database:
 
     def get_cards(self, hand):
         """Get and return the cards for each player in the hand."""
-        cards = {} # dict of cards, the key is the seat number example: {1: 'AcQd9hTs5d'}
+        cards = {} # dict of cards, the key is the seat number,
+                   # the value is a tuple of the players cards
+                   # example: {1: (0, 0, 20, 21, 22, 0 , 0)}
         c = self.connection.cursor()
         c.execute(self.sql.query['get_cards'], [hand])
-        colnames = [desc[0] for desc in c.description]
-        cardnames = ['card1', 'card2', 'card3', 'card4', 'card5', 'card6', 'card7']
         for row in c.fetchall():
-            cs = ['', '', '', '', '', '', '']
-            seat = -1
-            for col,name in enumerate(colnames):
-                if name in cardnames:
-                    cs[cardnames.index(name)] = Card.valueSuitFromCard(row[col])
-                elif name == 'seat_number':
-                    seat = row[col]
-            if seat != -1:
-                cards[seat] = ''.join(cs)
+            cards[row[0]] = row[1:]
         return cards
 
     def get_common_cards(self, hand):
