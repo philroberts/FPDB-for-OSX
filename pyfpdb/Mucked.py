@@ -76,17 +76,18 @@ class Aux_Window:
         
         for j in range(0, 13):
             for i in range(0, 4):
-                temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
-                pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
-                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = temp_pb
+                card_images[Card.cardFromValueSuit(ranks[j], suits[i])] = self.cropper(pb, i, j)
         temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
 #    also pick out a card back and store in [0]
-        j = 13
-        i = 2
-        pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
-        card_images[0] = temp_pb
+        card_images[0] = self.cropper(pb, 2, 13)
         return(card_images)
 #   cards are 30 wide x 42 high
+
+    def cropper(self, pb, i, j):
+        """Crop out a card image given an FTP deck and the i, j position."""
+        temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
+        pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
+        return temp_pb
 
     def split_cards(self, card):
         if card == 'xx': return ('B', 'S')
