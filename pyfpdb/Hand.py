@@ -703,11 +703,12 @@ Card ranks will be uppercased
         if board:   # sometimes hand ends preflop without a board
             print >>fh, ("Board [%s]" % (" ".join(board)))
 
+        print "holecards =", self.holecards
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
-                print >>fh, ("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]['PREFLOP']), self.collectees[name]))
+                print >>fh, ("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards['PREFLOP'][name]), self.collectees[name]))
             elif name in self.collectees:
                 print >>fh, ("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
             #~ elif name in self.shown:
@@ -716,7 +717,7 @@ Card ranks will be uppercased
                 print >>fh, ("Seat %d: %s folded" % (seatnum, name))
             else:
                 if name in self.shown:
-                    print >>fh, ("Seat %d: %s showed [%s] and lost with..." % (seatnum, name, " ".join(self.holecards[name]['PREFLOP'])))
+                    print >>fh, ("Seat %d: %s showed [%s] and lost with..." % (seatnum, name, " ".join(self.holecards['PREFLOP'][name])))
                 else:
                     print >>fh, ("Seat %d: %s mucked" % (seatnum, name))
 
