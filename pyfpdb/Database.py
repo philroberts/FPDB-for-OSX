@@ -32,62 +32,22 @@ import string
 #    pyGTK modules
 
 #    FreePokerTools modules
+import fpdb_db
 import Configuration
 import SQL
 import Card
 
 class Database:
     def __init__(self, c, db_name, game):
+        self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
+        self.fdb.do_connect(c)
+        self.connection = self.fdb.db
+
         db_params = c.get_db_parameters()
-        if (string.lower(db_params['db-server']) == 'postgresql' or
-            string.lower(db_params['db-server']) == 'postgres'):
-            import psycopg2  #   posgres via DB-API
-            import psycopg2.extensions 
-            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-
-            try:
-                if db_params['db-host'] == 'localhost' or db_params['db-host'] == '127.0.0.1': 
-                    self.connection = psycopg2.connect(database = db_params['db-databaseName'])
-                else:
-                    self.connection = psycopg2.connect(host = db_params['db-host'],
-                                       user = db_params['db-user'],
-                                       password = db_params['db-password'],
-                                       database = db_params['db-databaseName'])
-            except:
-                print "Error opening database connection %s.  See error log file." % (file)
-                traceback.print_exc(file=sys.stderr)
-                print "press enter to continue"
-                sys.stdin.readline()
-                sys.exit()
-
-        elif string.lower(db_params['db-server']) == 'mysql':
-            import MySQLdb  #    mysql bindings
-            try:
-                self.connection = MySQLdb.connect(host = db_params['db-host'],
-                                       user = db_params['db-user'],
-                                       passwd = db_params['db-password'],
-                                       db = db_params['db-databaseName'])
-                cur_iso = self.connection.cursor() 
-                cur_iso.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED') 
-                cur_iso.close()
-
-            except:
-                print "Error opening database connection %s.  See error log file." % (file)
-                traceback.print_exc(file=sys.stderr)
-                print "press enter to continue"
-                sys.stdin.readline()
-                sys.exit()
-
-        else:
-            print "Database = %s not recognized." % (c.supported_databases[db_name].db_server)
-            sys.stderr.write("Database not recognized, exiting.\n")
-            print "press enter to continue"
-            sys.exit()
-
         self.type = db_params['db-type']
-        self.sql = SQL.Sql(game = game, type = self.type)
+        self.sql = SQL.Sql(game = game, type = self.type, db_server = db_params['db-backend'])
         self.connection.rollback()
-
+        
                                    # To add to config:
         self.hud_style = 'T'       # A=All-time 
                                    # S=Session
@@ -203,7 +163,7 @@ class Database:
     def get_action_from_hand(self, hand_no):
         action = [ [], [], [], [], [] ]
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_action_from_hand'], (hand_no, ))
+        c.execute(self.sql.query['get_action_from_hand'], (hand_no,))
         for row in c.fetchall():
             street = row[0]
             act = row[1:]
@@ -214,7 +174,7 @@ class Database:
         """Returns a hash of winners:amount won, given a hand number."""
         winners = {}
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_winners_from_hand'], (hand, ))
+        c.execute(self.sql.query['get_winners_from_hand'], (hand,))
         for row in c.fetchall():
             winners[row[0]] = row[1]
         return winners
@@ -325,10 +285,10 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-#    print "nutOmatics stats:"
-#    stat_dict = db_connection.get_stats_from_hand(h, hero)
-#    for p in stat_dict.keys():
-#        print p, "  ", stat_dict[p]
+    #print "nutOmatics stats:"
+    #stat_dict = db_connection.get_stats_from_hand(h, hero)
+    #for p in stat_dict.keys():
+    #    print p, "  ", stat_dict[p]
 
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
