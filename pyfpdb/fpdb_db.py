@@ -578,7 +578,7 @@ class fpdb_db:
                 self.cursor.execute( "lock tables Hands write" )
             except:
                 # Table 'fpdb.hands' doesn't exist
-                if str(sys.exc_value).find(".hands' doesn't exist") >= 0:
+                if str(sys.exc_value).find(".Hands' doesn't exist") >= 0:
                     return(2)
                 print "Error! failed to obtain global lock. Close all programs accessing " \
                       + "database (including fpdb) and try again (%s)." \

@@ -35,6 +35,7 @@ def mainParser(settings, db, cursor, siteID, category, hand, config):
 
     #part 1: read hand no and check for duplicate
     siteHandNo      = fpdb_simple.parseSiteHandNo(hand[0])
+    #print "siteHandNo =", siteHandNo
     handStartTime   = fpdb_simple.parseHandStartTime(hand[0])
     
     isTourney       = fpdb_simple.isTourney(hand[0])
@@ -127,6 +128,7 @@ def mainParser(settings, db, cursor, siteID, category, hand, config):
     totalWinnings = sum(winnings)
     
     # if hold'em, use positions and not antes, if stud do not use positions, use antes
+    # this is used for handsplayers inserts, so still needed even if hudcache update is being skipped
     if base == "hold":
         hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
                                      , allIns, actionTypeByNo, winnings, totalWinnings, positions
