@@ -37,7 +37,7 @@ import Configuration
 import Database
 import Card
 
-class Aux_Window:
+class Aux_Window(object):
     def __init__(self, hud, params, config):
         self.hud     = hud
         self.params  = params
@@ -94,9 +94,11 @@ class Aux_Window:
         return (card[0], card[1].upper())
 
     def has_cards(self, cards):
+        """Returns the number of cards in the list."""
+        n = 0
         for c in cards:
-            if c in set('shdc'): return True
-        return False
+            if c != None and c > 0: n = n + 1
+        return n
 
 class Stud_mucked(Aux_Window):
     def __init__(self, hud, config, params):
@@ -329,21 +331,26 @@ class Stud_cards:
                 self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0])
                 self.eb[(c, r)].set_tooltip_text('')
 
-class Flop_Mucked(Aux_Window):
-    """Aux_Window class for displaying mucked cards for flop games."""
+class Aux_Seats(Aux_Window):
+    """A super class to display an aux_window at each seat."""
 
     def __init__(self, hud, config, params):
         self.hud     = hud       # hud object that this aux window supports
         self.config  = config    # configuration object for this aux window to use
         self.params  = params    # dict aux params from config
         self.positions = {}      # dict of window positions
-#        self.rel_positions = {}  # dict of window positions, relative to the table origin
-        self.displayed_cards = False
+        self.displayed = False
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
+
+class Flop_Mucked(Aux_Seats):
+    """Aux_Window class for displaying mucked cards for flop games."""
+
+    def __init__(self, hud, config, params):
+        super(Flop_Mucked, self).__init__(hud, config, params)
         self.card_images = self.get_card_images()
 
     def create(self):
-        self.adj = self.hud.adj_seats(0, self.config)
+        self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
         loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
         
         self.m_windows = {}      # windows to put the card images in
@@ -364,7 +371,7 @@ class Flop_Mucked(Aux_Window):
             self.eb[i].connect("button_press_event", self.button_press_cb)
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.m_windows[i].add(self.eb[i])
-            self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[('B', 'H')])
+            self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[0])
             self.eb[i].add(self.seen_cards[i])
             self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
 #            self.rel_positions[i] = (int(x), int(y))
@@ -373,35 +380,40 @@ class Flop_Mucked(Aux_Window):
             self.m_windows[i].show_all()
             self.m_windows[i].hide()
 
+    def create_contents(self, i):
+        """Create the widgets for showing the contents of the Aux_seats window."""
+
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
-        if self.displayed_cards:
+        if self.displayed:
             self.hide_mucked_cards()
-            self.displayed_cards = False
+            self.displayed = False
         for (i, cards) in self.hud.cards.iteritems():
-            if self.has_cards(cards):
+            n_cards = self.has_cards(cards)
+            if n_cards > 0:
 #    scratch is a working pixbuf, used to assemble the image
                 scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                                         int(self.params['card_wd'])*len(cards)/2,
+                                         int(self.params['card_wd'])*n_cards,
                                          int(self.params['card_ht']))
                 x = 0 # x coord where the next card starts in scratch
-                for card in [cards[k:k+2] for k in xrange(0, len(cards), 2)]:
+                for card in cards:
 #    concatenate each card image to scratch
-                    self.card_images[self.split_cards(card)].copy_area(0, 0, 
+                    if card == None or card ==0:
+                        break
+                    self.card_images[card].copy_area(0, 0, 
                                             int(self.params['card_wd']), int(self.params['card_ht']),
                                             scratch, x, 0)
                     x = x + int(self.params['card_wd'])
                 self.seen_cards[i].set_from_pixbuf(scratch)
-#                self.m_windows[i].show_all()
                 self.m_windows[i].resize(1,1)
                 self.m_windows[i].show()
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
-                self.displayed_cards = True
+                self.displayed = True
 
         for stats in self.hud.stat_dict.itervalues():
             self.eb[stats['seat']].set_tooltip_text(stats['screen_name'])
 
-        if self.displayed_cards and float(self.params['timeout']) > 0:
+        if self.displayed and float(self.params['timeout']) > 0:
             self.timer_on = True
             gobject.timeout_add(int(1000*float(self.params['timeout'])), self.timed_out)
 
@@ -425,7 +437,7 @@ class Flop_Mucked(Aux_Window):
         """Hide the mucked card windows."""
         for (i, w) in self.m_windows.iteritems():
             w.hide()
-        self.displayed_cards = False
+        self.displayed = False
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
@@ -458,7 +470,7 @@ class Flop_Mucked(Aux_Window):
         for (i, cards) in self.hud.cards.iteritems():
             self.m_windows[i].show()
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
-            self.displayed_cards = True
+            self.displayed = True
 
     def save_layout(self, *args):
         """Save new layout back to the aux element in the config file."""
