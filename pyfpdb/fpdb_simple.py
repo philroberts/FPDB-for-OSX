@@ -1147,10 +1147,13 @@ card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
 #end def store_board_cards
  
 def storeHands(backend, conn, cursor, site_hand_no, gametype_id
-              ,hand_start_time, names, tableName, maxSeats, hudCache):
+              ,hand_start_time, names, tableName, maxSeats, hudCache,
+              board_values, board_suits):
+    cards = [Card.cardFromValueSuit(v,s) for v,s in zip(board_values,board_suits)]
 #stores into table hands:
     cursor.execute ("""INSERT INTO Hands 
                        (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+                       ,boardcard1,boardcard2,boardcard3,boardcard4,boardcard5
                        ,playersVpi, playersAtStreet1, playersAtStreet2
                        ,playersAtStreet3, playersAtStreet4, playersAtShowdown
                        ,street0Raises, street1Raises, street2Raises
@@ -1159,9 +1162,11 @@ def storeHands(backend, conn, cursor, site_hand_no, gametype_id
                        ,showdownPot
                        ) 
                        VALUES 
-                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                       (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                       %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """
                    ,   (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.datetime.today(), maxSeats
+                       ,cards[0], cards[1], cards[2], cards[3], cards[4]
                        ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
                        ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
                        ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
