@@ -703,7 +703,6 @@ Card ranks will be uppercased
         if board:   # sometimes hand ends preflop without a board
             print >>fh, ("Board [%s]" % (" ".join(board)))
 
-        print "holecards =", self.holecards
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
             seatnum = player[0]
             name = player[1]
