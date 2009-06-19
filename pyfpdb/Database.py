@@ -272,6 +272,9 @@ class Database:
         else:
             return None
 
+    def get_last_insert_id(self):
+        return self.fdb.getLastInsertId()
+
 
     #stores a stud/razz hand into the database
     def ring_stud(self, config, settings, db, cursor, base, category, site_hand_no, gametype_id, hand_start_time
@@ -304,8 +307,6 @@ class Database:
                          ,action_amounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
         """stores a holdem/omaha hand into the database"""
 
-        #   print "DEBUG: import_options = ", import_options
-
         t0 = time()
         fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
         t1 = time()
@@ -315,6 +316,7 @@ class Database:
         hands_id = fpdb_simple.storeHands(self.backend, db, cursor, site_hand_no, gametype_id
                                        ,hand_start_time, names, tableName, maxSeats,
                                        hudImportData, board_values, board_suits)
+        #TEMPORARY CALL! - Just until all functions are migrated
         t3 = time()
         hands_players_ids = fpdb_simple.store_hands_players_holdem_omaha(
                                    self.backend, db, cursor, category, hands_id, player_ids, start_cashes

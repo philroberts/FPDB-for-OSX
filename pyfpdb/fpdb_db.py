@@ -596,7 +596,35 @@ class fpdb_db:
                       + "database (including fpdb) and try again (%s)." \
                       % ( str(sys.exc_value).rstrip('\n'), )
                 return(1)
-        return(0) 
+        return(0)
+
+    def getLastInsertId(self):
+        if self.backend == self.MYSQL_INNODB:
+            ret = self.db.insert_id()
+            if ret < 1 or ret > 999999999:
+                print "getLastInsertId(): problem fetching insert_id? ret=", ret
+                ret = -1
+        elif self.backend == self.PGSQL:
+            # some options:
+            # currval(hands_id_seq) - use name of implicit seq here
+            # lastval() - still needs sequences set up?
+            # insert ... returning  is useful syntax (but postgres specific?)
+            # see rules (fancy trigger type things)
+            self.cursor.execute ("SELECT lastval()")
+            row = self.cursor.fetchone()
+            if not row:
+                print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
+                ret = -1
+            else:
+                ret = row[0]
+        elif self.backend == self.SQLITE:
+            # don't know how to do this in sqlite
+            print "getLastInsertId(): not coded for sqlite yet"
+            ret = -1
+        else:
+            print "getLastInsertId(): unknown backend ", self.backend
+            ret = -1
+        return ret
 
     def storeHand(self, p):
         #stores into table hands:
