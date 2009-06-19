@@ -34,10 +34,6 @@ import Options
 
 (options, sys.argv) = Options.fpdb_options()
 
-print "HUD: dbname =", options.dbname
-print "HUD: config =", options.config
-print "HUD: logging =", options.errorsToConsole
-
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
     errorFile = open('fpdb-error-log.txt', 'w', 0)

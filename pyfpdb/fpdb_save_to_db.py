@@ -82,7 +82,8 @@ def ring_holdem_omaha(config, backend, db, cursor, base, category, site_hand_no,
     t2 = time()
 
     hands_id = fpdb_simple.storeHands(backend, db, cursor, site_hand_no, gametype_id
-                                   ,hand_start_time, names, tableName, maxSeats, hudImportData)
+                                   ,hand_start_time, names, tableName, maxSeats,
+                                   hudImportData, board_values, board_suits)
     t3 = time()
     hands_players_ids = fpdb_simple.store_hands_players_holdem_omaha(
                                backend, db, cursor, category, hands_id, player_ids, start_cashes
