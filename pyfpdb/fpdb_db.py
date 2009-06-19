@@ -630,6 +630,7 @@ class fpdb_db:
         #stores into table hands:
         self.cursor.execute ("""INSERT INTO Hands 
              (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+              ,boardcard1, boardcard2, boardcard3, boardcard4, boardcard5
               ,playersVpi, playersAtStreet1, playersAtStreet2
               ,playersAtStreet3, playersAtStreet4, playersAtShowdown
               ,street0Raises, street1Raises, street2Raises
@@ -640,6 +641,7 @@ class fpdb_db:
              VALUES 
               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
              ,(p['siteHandNo'], gametype_id, p['handStart'], len(names), p['tableName'], datetime.datetime.today(), p['maxSeats']
+               ,p['boardcard1'], ['boardcard2'], p['boardcard3'], ['boardcard4'], ['boardcard5'] 
                ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
                ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
                ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
