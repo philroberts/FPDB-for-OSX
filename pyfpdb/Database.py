@@ -45,7 +45,7 @@ class Database:
 
         db_params = c.get_db_parameters()
         self.type = db_params['db-type']
-        self.sql = SQL.Sql(game = game, type = self.type, db_server = db_params['db-backend'])
+        self.sql = SQL.Sql(game = game, type = self.type, db_server = db_params['db-server'])
         self.connection.rollback()
         
                                    # To add to config:
