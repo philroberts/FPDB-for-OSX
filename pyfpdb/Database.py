@@ -170,12 +170,8 @@ class Database:
         cards = {}
         c = self.connection.cursor()
         c.execute(self.sql.query['get_common_cards'], [hand])
-        colnames = [desc[0] for desc in c.description]
-        for row in c.fetchall():
-            s_dict = {}
-            for name, val in zip(colnames, row):
-                s_dict[name] = val
-            cards['common'] = (self.convert_cards(s_dict))
+#        row = c.fetchone()
+        cards['common'] = c.fetchone()
         return cards
 
     def convert_cards(self, d):
