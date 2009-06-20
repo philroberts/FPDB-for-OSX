@@ -288,36 +288,34 @@ class Importer:
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
-        if filter == "passthrough" or filter == "":
-            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
-        else:
-            conv = None
-            # Load filter, process file, pass returned filename to import_fpdb_file
+
+        conv = None
+        # Load filter, process file, pass returned filename to import_fpdb_file
             
-            print "\nConverting %s" % file
-            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-            hhbase    = os.path.expanduser(hhbase)
-            hhdir     = os.path.join(hhbase,site)
-            try:
-                out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
-            except:
-                out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+        print "\nConverting %s" % file
+        hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+        hhbase    = os.path.expanduser(hhbase)
+        hhdir     = os.path.join(hhbase,site)
+        try:
+            out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
+        except:
+            out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
-            filter_name = filter.replace("ToFpdb", "")
+        filter_name = filter.replace("ToFpdb", "")
 
-            mod = __import__(filter)
-            obj = getattr(mod, filter_name, None)
-            if callable(obj):
-                conv = obj(in_path = file, out_path = out_path)
-                if(conv.getStatus()):
-                    (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
-                else:
-                    # conversion didn't work
-                    # TODO: appropriate response?
-                    return (0, 0, 0, 1, 0)
+        mod = __import__(filter)
+        obj = getattr(mod, filter_name, None)
+        if callable(obj):
+            conv = obj(in_path = file, out_path = out_path)
+            if(conv.getStatus()):
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             else:
-                print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
-                return
+                # conversion didn't work
+                # TODO: appropriate response?
+                return (0, 0, 0, 1, 0)
+        else:
+            print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
+            return
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
