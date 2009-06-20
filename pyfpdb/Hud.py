@@ -445,10 +445,10 @@ class Stat_Window:
                 
                 Stats.do_tip(e_box[r][c], 'stuff')
                 if usegtkframes:
-                    grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                    grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
                     self.frame[r][c].add(e_box[r][c])
                 else:
-                    grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = 0, ypadding = 0)
+                    grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
                 label[r].append( gtk.Label('xxx') )
                 
                 if usegtkframes:
