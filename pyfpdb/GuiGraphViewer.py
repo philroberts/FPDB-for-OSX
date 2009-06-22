@@ -43,14 +43,14 @@ import Filters
 
 class GuiGraphViewer (threading.Thread):
 
-    def __init__(self, db, settings, querylist, config, debug=True):
+    def __init__(self, querylist, config, debug=True):
         """Constructor for GraphViewer"""
         self.debug=debug
         #print "start of GraphViewer constructor"
-        self.db=db
-        self.cursor=db.cursor
-        self.settings=settings
-        self.sql=querylist
+        self.db = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
+        self.db.do_connect(config)
+
+        self.sql = querylist
         self.conf = config
 
         filters_display = { "Heroes"  :  True,
@@ -63,7 +63,7 @@ class GuiGraphViewer (threading.Thread):
                             "Button2" :  True
                           }
 
-        self.filters = Filters.Filters(db, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
         self.filters.registerButton1Name("Refresh Graph")
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name("Export to File")
@@ -146,7 +146,7 @@ class GuiGraphViewer (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                self.db.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
@@ -226,7 +226,7 @@ class GuiGraphViewer (threading.Thread):
 
         #print "DEBUG: sql query:"
         #print tmp
-        self.cursor.execute(tmp)
+        self.db.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
         self.db.db.rollback()

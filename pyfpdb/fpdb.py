@@ -41,6 +41,7 @@ import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import GuiSessionViewer
+import Database
 import FpdbSQLQueries
 import Configuration
 
@@ -388,6 +389,8 @@ class fpdb:
 
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
+        self.dbi = Database.Database(self.config)   # dbi for db interface and to avoid clashes with db/database/etc
+                                                    # can rename later if required
         self.db.db.rollback()
     #end def load_profile
 
@@ -474,7 +477,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
         #print "start of tabGraphViewer"
-        new_gv_thread=GuiGraphViewer.GuiGraphViewer(self.db, self.settings, self.querydict, self.config)
+        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.querydict, self.config)
         self.threads.append(new_gv_thread)
         gv_tab=new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")
