@@ -17,15 +17,11 @@
 
 import os
 import sys
-from optparse import OptionParser
+import Options
+import string
 
-
-parser = OptionParser()
-parser.add_option("-x", "--errorsToConsole", action="store_true",
-                help="If passed error output will go to the console rather than .")
-parser.add_option("-d", "--databaseName", dest="dbname", default="fpdb",
-                help="Overrides the default database name")
-(options, sys.argv) = parser.parse_args()
+cl_options = string.join(sys.argv[1:])
+(options, sys.argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
@@ -356,6 +352,7 @@ class fpdb:
         else:
             self.settings['os']="windows"
 
+        self.settings.update({'cl_options': cl_options})
         self.settings.update(self.config.get_db_parameters())
         self.settings.update(self.config.get_tv_parameters())
         self.settings.update(self.config.get_import_parameters())
@@ -486,7 +483,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def __init__(self):
         self.threads=[]
         self.db=None
-        self.config = Configuration.Config(dbname=options.dbname)
+        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.load_profile()
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)

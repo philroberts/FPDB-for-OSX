@@ -528,7 +528,6 @@ class Sql:
             self.query['get_cards'] = """
                     select 
                         seatNo     AS seat_number, 
-                        name       AS screen_name, 
                         card1, /*card1Value, card1Suit, */
                         card2, /*card2Value, card2Suit, */
                         card3, /*card3Value, card3Suit, */

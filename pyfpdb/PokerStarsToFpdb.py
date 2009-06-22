@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+    #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008, Carl Gherardi
@@ -26,7 +26,7 @@ from HandHistoryConverter import *
 class PokerStars(HandHistoryConverter):
 
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
@@ -95,6 +95,7 @@ follow :  whether to tail -f the input"""
               'Omaha Hi/Lo' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
               '7 Card Stud' : ('stud','studhi'),
+        '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                    'Badugi' : ('draw','badugi')
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
@@ -208,7 +209,7 @@ follow :  whether to tail -f the input"""
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
-            hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+            hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
     def readHeroCards(self, hand):
         m = self.re_HeroCards.search(hand.handText)
