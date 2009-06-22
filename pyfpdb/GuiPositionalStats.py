@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+from time import time, strftime
     
 import fpdb_import
 import fpdb_db
@@ -177,6 +178,7 @@ class GuiPositionalStats (threading.Thread):
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, seats, dates):
 
+        starttime = time()
         colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
         row = 0
         col = 0
@@ -318,6 +320,7 @@ class GuiPositionalStats (threading.Thread):
         vbox.show_all()
 
         self.db.db.rollback()
+        print "Positional Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
     def refineQuery(self, query, playerids, sitenos, limits, seats, dates):
