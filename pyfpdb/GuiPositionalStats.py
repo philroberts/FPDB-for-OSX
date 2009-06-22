@@ -59,7 +59,7 @@ class GuiPositionalStats (threading.Thread):
                             "Button2"  :  False
                           }
 
-        self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 

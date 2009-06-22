@@ -66,7 +66,7 @@ class GuiPlayerStats (threading.Thread):
                             "Button2"  :  True
                           }
 
-        self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name("_Refresh")

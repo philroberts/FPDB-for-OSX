@@ -63,7 +63,7 @@ class GuiGraphViewer (threading.Thread):
                             "Button2" :  True
                           }
 
-        self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(db, config, querylist, display = filters_display)
         self.filters.registerButton1Name("Refresh Graph")
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name("Export to File")
