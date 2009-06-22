@@ -227,11 +227,6 @@ class GuiPlayerStats (threading.Thread):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
-
-        self.stats_table = gtk.Table(1, 1, False)
-        self.stats_table.set_col_spacings(4)
-        self.stats_table.show()
-        
         tmp = self.sql.query[query]
         tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, groups, dates)
         self.cursor.execute(tmp)
@@ -279,10 +274,6 @@ class GuiPlayerStats (threading.Thread):
 
         while sqlrow < rows:
             treerow = []
-            if(row%2 == 0):
-                bgcolor = "white"
-            else:
-                bgcolor = "lightgrey"
             for col,column in enumerate(cols_to_show):
                 if column[colalias] in colnames:
                     value = result[sqlrow][colnames.index(column[colalias])]
