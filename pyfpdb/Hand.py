@@ -111,6 +111,14 @@ db: a connected fpdb_db object"""
              # boardcard3 smallint,
              # boardcard4 smallint,
              # boardcard5 smallint,
+                 # Flop turn and river may all be empty - add (likely) too many elements and trim with range
+                 # boardcards = board['FLOP'] + board['TURN'] + board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
+                 # cards = [Card.cardFromValueSuit(v,s) for v,s in boardcards[0:4]]
+                 # hh['boardcard1'] = cards[0]
+                 # hh['boardcard2'] = cards[1]
+                 # hh['boardcard3'] = cards[2]
+                 # hh['boardcard4'] = cards[3]
+                 # hh['boardcard5'] = cards[4]
              # texture smallint,
              # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                 # Needs to be recorded
@@ -194,6 +202,7 @@ If a player has None chips he won't be added."""
     def setCommunityCards(self, street, cards):
         logging.debug("setCommunityCards %s %s" %(street,  cards))
         self.board[street] = [self.card(c) for c in cards]
+        print "DEBUG: self.board: %s" % self.board
 
     def card(self,c):
         """upper case the ranks but not suits, 'atjqk' => 'ATJQK'"""

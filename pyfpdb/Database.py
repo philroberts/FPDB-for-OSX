@@ -33,6 +33,7 @@ import string
 
 #    FreePokerTools modules
 import fpdb_db
+import fpdb_simple
 import Configuration
 import SQL
 import Card
@@ -44,7 +45,9 @@ class Database:
         self.connection = self.fdb.db
 
         db_params = c.get_db_parameters()
+        self.import_options = c.get_import_parameters()
         self.type = db_params['db-type']
+        self.backend = db_params['db-backend']
         self.sql = SQL.Sql(game = game, type = self.type, db_server = db_params['db-server'])
         self.connection.rollback()
         
@@ -76,6 +79,11 @@ class Database:
         self.hand_nhands_ago = 0  # todo
         #cur.execute(self.sql.query['get_table_name'], (hand_id, ))
         #row = cur.fetchone()
+        self.saveActions = False if self.import_options['saveActions'] == False else True
+
+
+    def commit(self):
+        self.fdb.db.commit()
 
     def close_connection(self):
         self.connection.close()
@@ -259,6 +267,129 @@ class Database:
             return row[0]
         else:
             return None
+
+    def get_last_insert_id(self):
+        return self.fdb.getLastInsertId()
+
+
+    #stores a stud/razz hand into the database
+    def ring_stud(self, config, settings, db, cursor, base, category, site_hand_no, gametype_id, hand_start_time
+                 ,names, player_ids, start_cashes, antes, card_values, card_suits, winnings, rakes
+                 ,action_types, allIns, action_amounts, actionNos, hudImportData, maxSeats, tableName
+                 ,seatNos):
+
+        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+
+        hands_id = fpdb_simple.storeHands(self.backend, db, cursor, site_hand_no, gametype_id
+                                       ,hand_start_time, names, tableName, maxSeats, hudImportData)
+
+        #print "before calling store_hands_players_stud, antes:", antes
+        hands_players_ids = fpdb_simple.store_hands_players_stud(self.backend, db, cursor, hands_id, player_ids
+                                                              ,start_cashes, antes, card_values
+                                                              ,card_suits, winnings, rakes, seatNos)
+
+        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+            fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
+
+        if self.saveActions:
+            fpdb_simple.storeActions(cursor, hands_players_ids, action_types
+                                    ,allIns, action_amounts, actionNos)
+        return hands_id
+    #end def ring_stud
+
+    def ring_holdem_omaha(self, config, settings, db, cursor, base, category, site_hand_no, gametype_id
+                         ,hand_start_time, names, player_ids, start_cashes, positions, card_values
+                         ,card_suits, board_values, board_suits, winnings, rakes, action_types, allIns
+                         ,action_amounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
+        """stores a holdem/omaha hand into the database"""
+
+        t0 = time()
+        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+        t1 = time()
+        fpdb_simple.fill_board_cards(board_values, board_suits)
+        t2 = time()
+
+        hands_id = fpdb_simple.storeHands(self.backend, db, cursor, site_hand_no, gametype_id
+                                       ,hand_start_time, names, tableName, maxSeats,
+                                       hudImportData, board_values, board_suits)
+        #TEMPORARY CALL! - Just until all functions are migrated
+        t3 = time()
+        hands_players_ids = fpdb_simple.store_hands_players_holdem_omaha(
+                                   self.backend, db, cursor, category, hands_id, player_ids, start_cashes
+                                 , positions, card_values, card_suits, winnings, rakes, seatNos, hudImportData)
+        t4 = time()
+        #print "ring holdem, backend=%d" % backend
+        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+            fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
+        t5 = time()
+        fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
+        t6 = time()
+        if self.saveActions:
+            fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts, actionNos)
+        t7 = time()
+        #print "fills=(%4.3f) saves=(%4.3f,%4.3f,%4.3f,%4.3f)" % (t2-t0, t3-t2, t4-t3, t5-t4, t6-t5)
+        return hands_id
+    #end def ring_holdem_omaha
+
+    def tourney_holdem_omaha(self, config, settings, db, cursor, base, category, siteTourneyNo, buyin, fee, knockout
+                            ,entries, prizepool, tourney_start, payin_amounts, ranks, tourneyTypeId
+                            ,siteId #end of tourney specific params
+                            ,site_hand_no, gametype_id, hand_start_time, names, player_ids
+                            ,start_cashes, positions, card_values, card_suits, board_values
+                            ,board_suits, winnings, rakes, action_types, allIns, action_amounts
+                            ,actionNos, hudImportData, maxSeats, tableName, seatNos):
+        """stores a tourney holdem/omaha hand into the database"""
+
+        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+        fpdb_simple.fill_board_cards(board_values, board_suits)
+
+        tourney_id = fpdb_simple.store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, tourney_start)
+        tourneys_players_ids = fpdb_simple.store_tourneys_players(cursor, tourney_id, player_ids, payin_amounts, ranks, winnings)
+
+        hands_id = fpdb_simple.storeHands(self.backend, db, cursor, site_hand_no, gametype_id
+                                       ,hand_start_time, names, tableName, maxSeats)
+
+        hands_players_ids = fpdb_simple.store_hands_players_holdem_omaha_tourney(
+                          self.backend, db, cursor, category, hands_id, player_ids, start_cashes, positions
+                        , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids)
+
+        #print "tourney holdem, backend=%d" % backend
+        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+            fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
+
+        fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
+
+        if self.saveActions:
+            fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts, actionNos)
+        return hands_id
+    #end def tourney_holdem_omaha
+
+    def tourney_stud(self, config, settings, db, cursor, base, category, siteTourneyNo, buyin, fee, knockout, entries
+                    ,prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteId
+                    ,siteHandNo, gametypeId, handStartTime, names, playerIds, startCashes, antes
+                    ,cardValues, cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts
+                    ,actionNos, hudImportData, maxSeats, tableName, seatNos):
+        #stores a tourney stud/razz hand into the database
+
+        fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
+
+        tourney_id = fpdb_simple.store_tourneys(cursor, tourneyTypeId, siteTourneyNo, entries, prizepool, tourneyStartTime)
+
+        tourneys_players_ids = fpdb_simple.store_tourneys_players(cursor, tourney_id, playerIds, payin_amounts, ranks, winnings)
+
+        hands_id = fpdb_simple.storeHands(self.backend, db, cursor, siteHandNo, gametypeId, handStartTime, names, tableName, maxSeats)
+
+        hands_players_ids = fpdb_simple.store_hands_players_stud_tourney(self.backend, db, cursor, hands_id
+                                                 , playerIds, startCashes, antes, cardValues, cardSuits
+                                                 , winnings, rakes, seatNos, tourneys_players_ids)
+
+        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+            fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
+
+        if self.saveActions:
+            fpdb_simple.storeActions(cursor, hands_players_ids, actionTypes, allIns, actionAmounts, actionNos)
+        return hands_id
+    #end def tourney_stud
 
 if __name__=="__main__":
     c = Configuration.Config()
