@@ -39,7 +39,7 @@ import SQL
 import Card
 
 class Database:
-    def __init__(self, c, db_name, game):
+    def __init__(self, c, db_name = None, game = None): # db_name and game not used any more
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
         self.connection = self.fdb.db
@@ -48,7 +48,7 @@ class Database:
         self.import_options = c.get_import_parameters()
         self.type = db_params['db-type']
         self.backend = db_params['db-backend']
-        self.sql = SQL.Sql(game = game, type = self.type, db_server = db_params['db-server'])
+        self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
         self.connection.rollback()
         
                                    # To add to config:

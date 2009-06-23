@@ -30,12 +30,11 @@ import fpdb_db
 import FpdbSQLQueries
 
 class Filters(threading.Thread):
-    def __init__(self, db, settings, config, qdict, display = {},debug=True):
+    def __init__(self, db, config, qdict, display = {}, debug=True):
         self.debug=debug
         #print "start of GraphViewer constructor"
         self.db=db
         self.cursor=db.cursor
-        self.settings=settings
         self.sql=qdict
         self.conf = config
         self.display = display
@@ -235,7 +234,7 @@ class Filters(threading.Thread):
 
     def __set_hero_name(self, w, site):
         self.heroes[site] = w.get_text()
-#        print "DEBUG: settings heroes[%s]: %s"%(site, self.heroes[site])
+#        print "DEBUG: setting heroes[%s]: %s"%(site, self.heroes[site])
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -556,23 +555,12 @@ def main(argv=None):
     config = Configuration.Config()
     db = None
     
-    settings = {}
-
-    settings.update(config.get_db_parameters())
-    settings.update(config.get_tv_parameters())
-    settings.update(config.get_import_parameters())
-    settings.update(config.get_default_paths())
-
     db = fpdb_db.fpdb_db()
-    db.connect(settings['db-backend'],
-               settings['db-host'],
-               settings['db-databaseName'],
-               settings['db-user'],
-               settings['db-password'])
+    db.do_connect(config)
 
     qdict = FpdbSQLQueries.FpdbSQLQueries(db.get_backend_name())
 
-    i = Filters(db, settings, config, qdict)
+    i = Filters(db, config, qdict)
     main_window = gtk.Window()
     main_window.connect('destroy', destroy)
     main_window.add(i.get_vbox())
