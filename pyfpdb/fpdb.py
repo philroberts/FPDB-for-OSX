@@ -396,7 +396,7 @@ class fpdb:
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
-        self.dbi = Database.Database(self.config, sql = self.sql)   # dbi for db interface and to avoid clashes with db/database/etc
+        #self.dbi = Database.Database(self.config, sql = self.sql)   # dbi for db interface and to avoid clashes with db/database/etc
                                                                # can rename later if required
         self.db.db.rollback()
     #end def load_profile
