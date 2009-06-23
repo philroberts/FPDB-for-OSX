@@ -43,21 +43,12 @@ class Aux_Window(object):
         self.params  = params
         self.config  = config
 
-    def update_data(self, *args):
-        pass
-
-    def update_gui(self, *args):
-        pass
-
-    def create(self, *args):
-        pass
-
-    def relocate(self, *args):
-        pass
-
-    def save_layout(self, *args):
-        pass
-
+#   Override these methods as needed
+    def update_data(self, *args): pass
+    def update_gui(self, *args):  pass
+    def create(self, *args):      pass
+    def relocate(self, *args):    pass
+    def save_layout(self, *args): pass
     def destroy(self):
         try:
             self.container.destroy()
@@ -88,10 +79,6 @@ class Aux_Window(object):
         temp_pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, pb.get_has_alpha(), pb.get_bits_per_sample(),  30,  42)
         pb.copy_area(30*j, 42*i, 30, 42, temp_pb, 0, 0)
         return temp_pb
-
-    def split_cards(self, card):
-        if card == 'xx': return ('B', 'S')
-        return (card[0], card[1].upper())
 
     def has_cards(self, cards):
         """Returns the number of cards in the list."""
@@ -331,6 +318,9 @@ class Stud_cards:
                 self.seen_cards[(c, r)].set_from_pixbuf(self.card_images[0])
                 self.eb[(c, r)].set_tooltip_text('')
 
+class Seat_Window(gtk.Window):
+    """Subclass gtk.Window for the seat windows."""
+
 class Aux_Seats(Aux_Window):
     """A super class to display an aux_window at each seat."""
 
@@ -339,8 +329,53 @@ class Aux_Seats(Aux_Window):
         self.config  = config    # configuration object for this aux window to use
         self.params  = params    # dict aux params from config
         self.positions = {}      # dict of window positions
-        self.displayed = False
+        self.displayed = False   # the seat windows are displayed
+        self.uses_timer = False  # the Aux_seats object uses a timer to control hiding
         self.timer_on = False    # bool = Ture if the timeout for removing the cards is on
+
+#    placeholders that should be overridden--so we don't throw errors
+    def create_contents(self): pass
+
+    def create(self):
+        self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
+        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
+        
+        self.m_windows = {}      # windows to put the card images in
+
+        for i in (range(1, self.hud.max + 1) + ['common']):           
+            if i == 'common':
+                (x, y) = self.params['layout'][self.hud.max].common
+            else:
+                (x, y) = loc[self.adj[i]]
+            self.m_windows[i] = Seat_Window()
+            self.m_windows[i].set_decorated(False)
+            self.m_windows[i].set_property("skip-taskbar-hint", True)
+            self.m_windows[i].set_transient_for(self.hud.main_window)
+            self.m_windows[i].set_focus_on_map(False)
+            self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
+            self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
+            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
+            self.m_windows[i].set_opacity(float(self.params['opacity']))
+
+#    the create_contents method is supplied by the subclass
+            self.create_contents(self.m_windows[i], i)
+
+            self.m_windows[i].show_all()
+            self.m_windows[i].hide()
+
+#   Methods likely to be of use for any Seat_Window implementation
+    def destroy(self):
+        """Destroy all of the seat windows."""
+        for i in self.m_windows.keys():
+            self.m_windows[i].destroy()
+            del(self.m_windows[i])
+
+#   Methods likely to be useful for mucked card windows (or similar) only
+    def hide(self):
+        """Hide the seat windows."""
+        for (i, w) in self.m_windows.iteritems():
+            w.hide()
+        self.displayed = False
 
 class Flop_Mucked(Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
@@ -348,46 +383,29 @@ class Flop_Mucked(Aux_Seats):
     def __init__(self, hud, config, params):
         super(Flop_Mucked, self).__init__(hud, config, params)
         self.card_images = self.get_card_images()
+        self.uses_timer = True  # this Aux_seats object uses a timer to control hiding
 
-    def create(self):
-        self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
-        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
-        
-        self.m_windows = {}      # windows to put the card images in
-        self.eb = {}             # event boxes so we can interact with the mucked cards
-        self.seen_cards = {}     # image objects to stash the cards in
-
-        for i in (range(1, self.hud.max + 1) + ['common']):           
-            if i == 'common':
-                (x, y) = self.params['layout'][self.hud.max].common
-            else:
-                (x, y) = loc[self.adj[i]]
-            self.m_windows[i] = gtk.Window()
-            self.m_windows[i].set_decorated(False)
-            self.m_windows[i].set_property("skip-taskbar-hint", True)
-            self.m_windows[i].set_transient_for(self.hud.main_window)
-            self.m_windows[i].set_focus_on_map(False)
-            self.eb[i] = gtk.EventBox()
-            self.eb[i].connect("button_press_event", self.button_press_cb)
-            self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-            self.m_windows[i].add(self.eb[i])
-            self.seen_cards[i] = gtk.image_new_from_pixbuf(self.card_images[0])
-            self.eb[i].add(self.seen_cards[i])
-            self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
-#            self.rel_positions[i] = (int(x), int(y))
-            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
-            self.m_windows[i].set_opacity(float(self.params['opacity']))
-            self.m_windows[i].show_all()
-            self.m_windows[i].hide()
-
-    def create_contents(self, i):
+    def create_contents(self, container, i):
         """Create the widgets for showing the contents of the Aux_seats window."""
+        container.eb = gtk.EventBox()
+        container.eb.connect("button_press_event", self.button_press_cb)
+        container.add(container.eb)
+        container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
+        container.eb.add(container.seen_cards)
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
-        if self.displayed:
-            self.hide_mucked_cards()
-            self.displayed = False
+        if self.displayed: self.hide()
+
+#   See how many players showed a hand. Skip if only 1 shows (= hero)
+        n_sd = 0
+        for (i, cards) in self.hud.cards.iteritems():
+            n_cards = self.has_cards(cards)
+            if n_cards > 0:
+                n_sd = n_sd + 1
+        if n_sd < 2: return
+
+#    More than 1 player showed, so display the hole cards
         for (i, cards) in self.hud.cards.iteritems():
             n_cards = self.has_cards(cards)
             if n_cards > 0:
@@ -404,23 +422,18 @@ class Flop_Mucked(Aux_Seats):
                                             int(self.params['card_wd']), int(self.params['card_ht']),
                                             scratch, x, 0)
                     x = x + int(self.params['card_wd'])
-                self.seen_cards[i].set_from_pixbuf(scratch)
+                self.m_windows[i].seen_cards.set_from_pixbuf(scratch)
                 self.m_windows[i].resize(1,1)
                 self.m_windows[i].show()
                 self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
                 self.displayed = True
 
         for stats in self.hud.stat_dict.itervalues():
-            self.eb[stats['seat']].set_tooltip_text(stats['screen_name'])
+            self.m_windows[i].eb.set_tooltip_text(stats['screen_name'])
 
         if self.displayed and float(self.params['timeout']) > 0:
             self.timer_on = True
             gobject.timeout_add(int(1000*float(self.params['timeout'])), self.timed_out)
-
-    def destroy(self):
-        """Destroy all of the mucked windows."""
-        for w in self.m_windows.values():
-            w.destroy()
 
     def timed_out(self):
 #    this is the callback from the timeout
@@ -430,14 +443,8 @@ class Flop_Mucked(Aux_Seats):
         if not self.timer_on:
             return False
         else:
-            self.hide_mucked_cards()
+            self.hide()
             return False
-
-    def hide_mucked_cards(self):
-        """Hide the mucked card windows."""
-        for (i, w) in self.m_windows.iteritems():
-            w.hide()
-        self.displayed = False
 
     def button_press_cb(self, widget, event, *args):
         """Handle button clicks in the event boxes."""
@@ -456,7 +463,7 @@ class Flop_Mucked(Aux_Seats):
                 self.timer_on = False
             else:
                 self.timer_on = False
-                self.hide_mucked_cards()
+                self.hide()
 
         elif event.button == 1:   # left button event
             window = widget.get_parent()
@@ -482,32 +489,3 @@ class Flop_Mucked(Aux_Seats):
             else:
                 new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
-
-#    This test program doesn't work
-
-#if __name__== "__main__":
-#    
-#    def destroy(*args):             # call back for terminating the main eventloop
-#        gtk.main_quit()             # used only for testing
-#
-#    def process_new_hand(source, condition, db_connection):  #callback from stdin watch -- testing only
-##    there is a new hand_id to be processed
-##    just read it and pass it to update
-#        new_hand_id = sys.stdin.readline()
-#        new_hand_id = new_hand_id.rstrip()  # remove trailing whitespace
-#        m.update_data(new_hand_id, db_connection)
-#        m.update_gui(new_hand_id)
-#        return(True)
-#
-#    config = Configuration.Config()
-#    db_connection = Database.Database(config, 'fpdbTEST', '')
-#    main_window = gtk.Window()
-#    main_window.set_keep_above(True)
-#    main_window.connect("destroy", destroy)
-#
-#    aux_to_call = "stud_mucked"
-#    aux_params = config.get_aux_parameters(aux_to_call)
-#    m = eval("%s(None, config, aux_params)" % aux_params['class'])
-#    
-#    s_id = gobject.io_add_watch(sys.stdin, gobject.IO_IN, process_new_hand, db_connection)
-#    gtk.main()
