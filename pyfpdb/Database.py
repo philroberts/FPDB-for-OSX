@@ -39,7 +39,8 @@ import SQL
 import Card
 
 class Database:
-    def __init__(self, c, db_name = None, game = None): # db_name and game not used any more
+    def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
+        print "creating Database instance, sql =", sql
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
         self.connection = self.fdb.db
@@ -48,7 +49,11 @@ class Database:
         self.import_options = c.get_import_parameters()
         self.type = db_params['db-type']
         self.backend = db_params['db-backend']
-        self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
+        # where possible avoid creating new SQL instance by using the global one passed in
+        if sql == None:
+            self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
+        else:
+            self.sql = sql
         self.connection.rollback()
         
                                    # To add to config:
