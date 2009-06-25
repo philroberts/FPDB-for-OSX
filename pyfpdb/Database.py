@@ -49,6 +49,7 @@ class Database:
         self.import_options = c.get_import_parameters()
         self.type = db_params['db-type']
         self.backend = db_params['db-backend']
+        self.db_server = db_params['db-server']
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql == None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
