@@ -243,7 +243,6 @@ class fpdb_db:
         self.cursor.execute(self.sql.query['createPlayersTable'])
         self.cursor.execute(self.sql.query['createAutoratesTable'])
         self.cursor.execute(self.sql.query['createHandsTable'])
-        self.cursor.execute(self.sql.query['createBoardCardsTable'])
         self.cursor.execute(self.sql.query['createTourneyTypesTable'])
         self.cursor.execute(self.sql.query['createTourneysTable'])
         self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
