@@ -328,7 +328,6 @@ class Database:
         if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
         t5 = time()
-        fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
         t6 = time()
         if self.saveActions:
             fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts, actionNos)
@@ -362,8 +361,6 @@ class Database:
         #print "tourney holdem, backend=%d" % backend
         if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-
-        fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 
         if self.saveActions:
             fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts, actionNos)
