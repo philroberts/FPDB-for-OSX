@@ -87,6 +87,13 @@ class Aux_Window(object):
             if c != None and c > 0: n = n + 1
         return n
 
+    def get_id_from_seat(self, seat):
+        """Determine player id from seat number, given stat_dict."""
+        for id, dict in self.hud.stat_dict.iteritems():
+            if seat == dict['seat']:
+                return id
+        return None
+        
 class Stud_mucked(Aux_Window):
     def __init__(self, hud, config, params):
 
@@ -335,6 +342,7 @@ class Aux_Seats(Aux_Window):
 
 #    placeholders that should be overridden--so we don't throw errors
     def create_contents(self): pass
+    def update_contents(self): pass
 
     def create(self):
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
@@ -355,13 +363,20 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
-            self.m_windows[i].set_opacity(float(self.params['opacity']))
+            if self.params.has_key('opacity'):
+                self.m_windows[i].set_opacity(float(self.params['opacity']))
 
 #    the create_contents method is supplied by the subclass
             self.create_contents(self.m_windows[i], i)
 
             self.m_windows[i].show_all()
-            self.m_windows[i].hide()
+            if self.uses_timer:
+                self.m_windows[i].hide()
+
+    def update_gui(self, new_hand_id):
+        """Update the gui, LDO."""
+        for i in self.m_windows.keys():
+            self.update_contents(self.m_windows[i], i)           
 
 #   Methods likely to be of use for any Seat_Window implementation
     def destroy(self):
@@ -376,6 +391,21 @@ class Aux_Seats(Aux_Window):
         for (i, w) in self.m_windows.iteritems():
             w.hide()
         self.displayed = False
+
+    def save_layout(self, *args):
+        """Save new layout back to the aux element in the config file."""
+        new_locs = {}
+#        print "adj =", self.adj
+        for (i, pos) in self.positions.iteritems():
+            if i != 'common':
+                new_locs[self.adj[int(i)]] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
+            else:
+                new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
+        self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
+
+    def configure_event_cb(self, widget, event, i, *args):
+        self.positions[i] = widget.get_position()
+#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
 
 class Flop_Mucked(Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
@@ -393,6 +423,33 @@ class Flop_Mucked(Aux_Seats):
         container.seen_cards = gtk.image_new_from_pixbuf(self.card_images[0])
         container.eb.add(container.seen_cards)
 
+    def update_contents(self, container, i):
+        if not self.hud.cards.has_key(i): return
+        cards = self.hud.cards[i]
+        n_cards = self.has_cards(cards)
+        if n_cards > 1:
+
+#    scratch is a working pixbuf, used to assemble the image
+            scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
+                                     int(self.params['card_wd'])*n_cards,
+                                     int(self.params['card_ht']))
+            x = 0 # x coord where the next card starts in scratch
+            for card in cards:
+#    concatenate each card image to scratch
+                if card == None or card ==0:
+                    break
+                self.card_images[card].copy_area(0, 0, 
+                                        int(self.params['card_wd']), int(self.params['card_ht']),
+                                        scratch, x, 0)
+                x = x + int(self.params['card_wd'])
+            container.seen_cards.set_from_pixbuf(scratch)
+            container.resize(1,1)
+            container.show()
+            container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
+            self.displayed = True
+            if i != "common":
+                self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[i]['screen_name'])
+
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
         if self.displayed: self.hide()
@@ -403,33 +460,11 @@ class Flop_Mucked(Aux_Seats):
             n_cards = self.has_cards(cards)
             if n_cards > 0:
                 n_sd = n_sd + 1
-        if n_sd < 2: return
+        if n_sd < 2: 
+            print "skipping, n_sd =", n_sd
+            return
 
-#    More than 1 player showed, so display the hole cards
-        for (i, cards) in self.hud.cards.iteritems():
-            n_cards = self.has_cards(cards)
-            if n_cards > 0:
-#    scratch is a working pixbuf, used to assemble the image
-                scratch = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8,
-                                         int(self.params['card_wd'])*n_cards,
-                                         int(self.params['card_ht']))
-                x = 0 # x coord where the next card starts in scratch
-                for card in cards:
-#    concatenate each card image to scratch
-                    if card == None or card ==0:
-                        break
-                    self.card_images[card].copy_area(0, 0, 
-                                            int(self.params['card_wd']), int(self.params['card_ht']),
-                                            scratch, x, 0)
-                    x = x + int(self.params['card_wd'])
-                self.m_windows[i].seen_cards.set_from_pixbuf(scratch)
-                self.m_windows[i].resize(1,1)
-                self.m_windows[i].show()
-                self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
-                self.displayed = True
-
-        for stats in self.hud.stat_dict.itervalues():
-            self.m_windows[i].eb.set_tooltip_text(stats['screen_name'])
+        super(Flop_Mucked, self).update_gui(new_hand_id)
 
         if self.displayed and float(self.params['timeout']) > 0:
             self.timer_on = True
@@ -469,23 +504,8 @@ class Flop_Mucked(Aux_Seats):
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
 
-    def configure_event_cb(self, widget, event, i, *args):
-        self.positions[i] = widget.get_position()
-#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
-
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
             self.m_windows[i].show()
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])   # here is where I move back
             self.displayed = True
-
-    def save_layout(self, *args):
-        """Save new layout back to the aux element in the config file."""
-        new_locs = {}
-#        print "adj =", self.adj
-        for (i, pos) in self.positions.iteritems():
-            if i != 'common':
-                new_locs[self.adj[int(i)]] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
-            else:
-                new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
-        self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
