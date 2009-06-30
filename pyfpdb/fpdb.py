@@ -364,15 +364,10 @@ class fpdb:
         self.settings.update(self.config.get_default_paths())
 
         if self.db != None and self.db.fdb != None:
-            self.db.fdb.disconnect()
+            self.db.disconnect()
 
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
         self.db = Database.Database(self.config, sql = self.sql)
-
-
-
-
-
 
         if self.db.fdb.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
@@ -393,19 +388,15 @@ class fpdb:
             diaDbVersionWarning.destroy()
 
         if self.status_bar == None:
-            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.fdb.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
         else:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.fdb.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
 
         # Database connected to successfully, load queries to pass on to other classes
-        self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.fdb.get_backend_name())
-        self.db.fdb.db.rollback()
-
-
-
-
+        self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
+        self.db.connection.rollback()
     #end def load_profile
 
     def not_implemented(self, widget, data=None):
@@ -415,22 +406,21 @@ class fpdb:
     def obtain_global_lock(self):
         print "\nTaking global lock ..."
         self.fdb_lock = Database.Database(self.config, sql = self.sql)
-
-        self.fdb_lock.fdb.do_connect(self.config)
+        self.fdb_lock.do_connect(self.config)
         return self.fdb_lock.fdb.get_global_lock()
     #end def obtain_global_lock
 
     def quit(self, widget, data=None):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
-        self.db.fdb.disconnect()
+        self.db.disconnect()
         gtk.main_quit()
     #end def quit_cliecked
 
     def release_global_lock(self):
         self.fdb_lock.fdb.db.rollback()
         self.fdb_lock.fdb.disconnect()
-        print "Global lock released."
+        print "Global lock released.\n"
     #end def release_global_lock
 
     def tab_abbreviations(self, widget, data=None):
