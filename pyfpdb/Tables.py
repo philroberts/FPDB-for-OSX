@@ -231,7 +231,7 @@ def discover_nt_by_name(c, tablename):
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
-        print "Tbales.py: tablename =", tablename, "title =", titles[hwnd]
+        #print "Tables.py: tablename =", tablename, "title =", titles[hwnd]
         try:
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
             if not tablename in titles[hwnd]: continue

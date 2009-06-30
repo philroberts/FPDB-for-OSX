@@ -41,6 +41,7 @@ import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import GuiSessionViewer
+import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
@@ -179,20 +180,21 @@ class fpdb:
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
         if self.obtain_global_lock() == 0:  # returns 0 if successful
-            try:
-                chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
-                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                        buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-                chooser.set_filename(self.profile)
+            #try:
+            #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
+            #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
+            #            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+            #    chooser.set_filename(self.profile)
 
-                response = chooser.run()
-                chooser.destroy()    
-                if response == gtk.RESPONSE_OK:
-                    self.load_profile(chooser.get_filename())
-                elif response == gtk.RESPONSE_CANCEL:
-                    print 'User cancelled loading profile'
-            except:
-                pass
+            #    response = chooser.run()
+            #    chooser.destroy()    
+            #    if response == gtk.RESPONSE_OK:
+            #        self.load_profile(chooser.get_filename())
+            #    elif response == gtk.RESPONSE_CANCEL:
+            #        print 'User cancelled loading profile'
+            #except:
+            #    pass
+            self.load_profile()
             self.release_global_lock()
     #end def dia_load_profile
 
@@ -347,6 +349,7 @@ class fpdb:
 
     def load_profile(self):
         """Loads profile from the provided path name."""
+        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.settings = {}
         if (os.sep=="/"):
             self.settings['os']="linuxmac"
@@ -383,10 +386,18 @@ class fpdb:
             response = diaDbVersionWarning.run()
             diaDbVersionWarning.destroy()
 
+        if self.status_bar == None:
+            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
+            self.main_vbox.pack_end(self.status_bar, False, True, 0)
+            self.status_bar.show()
+        else:
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.database, self.db.host))
+
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
-        self.dbi = Database.Database(self.config)   # dbi for db interface and to avoid clashes with db/database/etc
-                                                    # can rename later if required
+        self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
+        self.dbi = Database.Database(self.config, sql = self.sql)   # dbi for db interface and to avoid clashes with db/database/etc
+                                                               # can rename later if required
         self.db.db.rollback()
     #end def load_profile
 
@@ -476,10 +487,9 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     #end def tabGraphViewer
 
     def __init__(self):
-        self.threads=[]
-        self.db=None
-        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
-        self.load_profile()
+        self.threads = []
+        self.db = None
+        self.status_bar = None
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
@@ -514,11 +524,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.tab_main_help(None, None)
 
-        self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
-        self.main_vbox.pack_end(self.status_bar, False, True, 0)
-        self.status_bar.show()
-
         self.window.show()
+        self.load_profile()
         sys.stderr.write("fpdb starting ...")
     #end def __init__
 
