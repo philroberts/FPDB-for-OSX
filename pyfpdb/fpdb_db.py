@@ -567,17 +567,18 @@ class fpdb_db:
         print "analyze took", atime, "seconds"
     #end def analyzeDB
 
-    # Currently uses an exclusive lock on the Hands table as a global lock
+    # Currently uses an exclusive lock on the Players table as a global lock 
+    # ( Changed because Hands is used in Database.init() )
     # Return values are Unix style, 0 for success, positive integers for errors
     # 1 = generic error
-    # 2 = hands table does not exist (error message is suppressed)
+    # 2 = players table does not exist (error message is suppressed)
     def get_global_lock(self):
         if self.backend == self.MYSQL_INNODB:
             try:
-                self.cursor.execute( "lock tables Hands write" )
+                self.cursor.execute( "lock tables Players write" )
             except:
-                # Table 'fpdb.hands' doesn't exist
-                if str(sys.exc_value).find(".Hands' doesn't exist") >= 0:
+                # Table 'fpdb.players' doesn't exist
+                if str(sys.exc_value).find(".Players' doesn't exist") >= 0:
                     return(2)
                 print "Error! failed to obtain global lock. Close all programs accessing " \
                       + "database (including fpdb) and try again (%s)." \
@@ -585,11 +586,11 @@ class fpdb_db:
                 return(1)
         elif self.backend == self.PGSQL:
             try:
-                self.cursor.execute( "lock table Hands in exclusive mode nowait" )
+                self.cursor.execute( "lock table Players in exclusive mode nowait" )
                 #print "... after lock table, status =", self.cursor.statusmessage
             except:
-                # relation "hands" does not exist
-                if str(sys.exc_value).find('relation "hands" does not exist') >= 0:
+                # relation "players" does not exist
+                if str(sys.exc_value).find('relation "players" does not exist') >= 0:
                     return(2)
                 print "Error! failed to obtain global lock. Close all programs accessing " \
                       + "database (including fpdb) and try again (%s)." \
