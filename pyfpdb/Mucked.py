@@ -87,6 +87,13 @@ class Aux_Window(object):
             if c != None and c > 0: n = n + 1
         return n
 
+    def get_id_from_seat(self, seat):
+        """Determine player id from seat number, given stat_dict."""
+        for id, dict in self.hud.stat_dict.iteritems():
+            if seat == dict['seat']:
+                return id
+        return None
+        
 class Stud_mucked(Aux_Window):
     def __init__(self, hud, config, params):
 
@@ -356,13 +363,15 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
             self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
-            self.m_windows[i].set_opacity(float(self.params['opacity']))
+            if self.params.has_key('opacity'):
+                self.m_windows[i].set_opacity(float(self.params['opacity']))
 
 #    the create_contents method is supplied by the subclass
             self.create_contents(self.m_windows[i], i)
 
             self.m_windows[i].show_all()
-            self.m_windows[i].hide()
+            if self.uses_timer:
+                self.m_windows[i].hide()
 
     def update_gui(self, new_hand_id):
         """Update the gui, LDO."""
@@ -393,6 +402,10 @@ class Aux_Seats(Aux_Window):
             else:
                 new_locs[i] = (pos[0] - self.hud.table.x, pos[1] - self.hud.table.y)
         self.config.edit_aux_layout(self.params['name'], self.hud.max, locations = new_locs)
+
+    def configure_event_cb(self, widget, event, i, *args):
+        self.positions[i] = widget.get_position()
+#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
 
 class Flop_Mucked(Aux_Seats):
     """Aux_Window class for displaying mucked cards for flop games."""
@@ -490,10 +503,6 @@ class Flop_Mucked(Aux_Seats):
         elif event.button == 1:   # left button event
             window = widget.get_parent()
             window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-
-    def configure_event_cb(self, widget, event, i, *args):
-        self.positions[i] = widget.get_position()
-#        self.rel_positions[i] = (self.positions[i][0] - self.hud.table.x, self.positions[i][1] - self.hud.table.y)
 
     def expose_all(self):
         for (i, cards) in self.hud.cards.iteritems():
