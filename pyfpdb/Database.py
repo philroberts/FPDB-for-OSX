@@ -287,7 +287,8 @@ class Database:
         fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
 
         hands_id = fpdb_simple.storeHands(self.backend, db, cursor, site_hand_no, gametype_id
-                                       ,hand_start_time, names, tableName, maxSeats, hudImportData)
+                                       ,hand_start_time, names, tableName, maxSeats, hudImportData
+                                       ,(None, None, None, None, None), (None, None, None, None, None))
 
         #print "before calling store_hands_players_stud, antes:", antes
         hands_players_ids = fpdb_simple.store_hands_players_stud(self.backend, db, cursor, hands_id, player_ids
