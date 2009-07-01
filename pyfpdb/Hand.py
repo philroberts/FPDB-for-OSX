@@ -916,6 +916,11 @@ class StudHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
+
+        self.allStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        self.communityStreets = []
+        self.actionStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+
         self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         Hand.__init__(self, sitename, gametype, handText)
@@ -957,7 +962,7 @@ closed    likewise, but known only to player
         logging.debug("addPlayerCards %s, o%s x%s" % (player,  open, closed))
         try:
             self.checkPlayerExists(player)
-            self.holecards[player][street] = (open, closed)
+            self.holecards[street][player] = (open, closed)
 #            cards = set([self.card(c) for c in cards])
 #            self.holecards[player].update(cards)
         except FpdbParseError, e:
@@ -1015,8 +1020,8 @@ Add a complete on [street] by [player] to [amountTo]
             dealt = 0
             #~ print >>fh, _("*** 3RD STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
-                if 'THIRD' in self.holecards[player]:
-                    (open,  closed) = self.holecards[player]['THIRD']
+                if self.holecards['THIRD'].has_key(player):
+                    (open,  closed) = self.holecards['THIRD'][player]
                     dealt+=1
                     if dealt==1:
                         print >>fh, _("*** 3RD STREET ***")
@@ -1029,12 +1034,12 @@ Add a complete on [street] by [player] to [amountTo]
             dealt = 0
             #~ print >>fh, _("*** 4TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
-                if 'FOURTH' in self.holecards[player]:
+                if player in self.holecards['FOURTH']:
                     old = []
-                    (o,c) = self.holecards[player]['THIRD']
+                    (o,c) = self.holecards['THIRD'][player]
                     if o:old.extend(o)
                     if c:old.extend(c)
-                    new = self.holecards[player]['FOURTH'][0]
+                    new = self.holecards['FOURTH'][player][0]
                     dealt+=1
                     if dealt==1:
                         print >>fh, _("*** 4TH STREET ***")
@@ -1046,13 +1051,13 @@ Add a complete on [street] by [player] to [amountTo]
             dealt = 0
             #~ print >>fh, _("*** 5TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
-                if 'FIFTH' in self.holecards[player]:
+                if self.holecards['FIFTH'].has_key(player):
                     old = []
                     for street in ('THIRD','FOURTH'):
-                        (o,c) = self.holecards[player][street]
+                        (o,c) = self.holecards[street][player]
                         if o:old.extend(o)
                         if c:old.extend(c)
-                    new = self.holecards[player]['FIFTH'][0]
+                    new = self.holecards['FIFTH'][player][0]
                     dealt+=1
                     if dealt==1:
                         print >>fh, _("*** 5TH STREET ***")
@@ -1064,13 +1069,13 @@ Add a complete on [street] by [player] to [amountTo]
             dealt = 0
             #~ print >>fh, _("*** 6TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
-                if 'SIXTH' in self.holecards[player]:
+                if self.holecards['SIXTH'].has_key(player):
                     old = []
                     for street in ('THIRD','FOURTH','FIFTH'):
-                        (o,c) = self.holecards[player][street]
+                        (o,c) = self.holecards[street][player]
                         if o:old.extend(o)
                         if c:old.extend(c)
-                    new = self.holecards[player]['SIXTH'][0]
+                    new = self.holecards['SIXTH'][player][0]
                     dealt += 1
                     if dealt == 1:
                         print >>fh, _("*** 6TH STREET ***")
@@ -1085,13 +1090,13 @@ Add a complete on [street] by [player] to [amountTo]
             # i.e. are all but one players folded; is there an allin showdown; and all that.
             print >>fh, _("*** 7TH STREET ***")
             for player in [x[1] for x in self.players if x[1] in players_who_post_antes]:
-                if 'SEVENTH' in self.holecards[player]:
+                if self.holecards['SEVENTH'].has_key(player):
                     old = []
                     for street in ('THIRD','FOURTH','FIFTH','SIXTH'):
-                        (o,c) = self.holecards[player][street]
+                        (o,c) = self.holecards[street][player]
                         if o:old.extend(o)
                         if c:old.extend(c)
-                    new = self.holecards[player]['SEVENTH'][0]
+                    new = self.holecards['SEVENTH'][player][0]
                     if new:
                         print >>fh, _("Dealt to %s:%s%s") % (player, " [" + " ".join(old) + "] " if old else " ", "[" + " ".join(new) + "]" if new else "")
             for act in self.actions['SEVENTH']:
