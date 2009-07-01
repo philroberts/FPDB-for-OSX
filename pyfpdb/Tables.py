@@ -231,7 +231,7 @@ def discover_nt_by_name(c, tablename):
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
-        print "Tbales.py: tablename =", tablename, "title =", titles[hwnd]
+        #print "Tables.py: tablename =", tablename, "title =", titles[hwnd]
         try:
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
             if not tablename in titles[hwnd]: continue
@@ -313,6 +313,10 @@ def get_site_from_exe(c, exe):
         if re.search(params['table_finder'], exe):
             return params['site_name']
     return None
+
+def everleaf_decode_table(tw):
+# 2 - Tournament ID: 573256 - NL Hold'em - 150/300 blinds - Good luck <username>! - [Connection is ...]    
+    pass
 
 def pokerstars_decode_table(tw):
 #    Extract poker information from the window title.  This is not needed for

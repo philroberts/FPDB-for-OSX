@@ -21,10 +21,13 @@ import fpdb_simple
 import Database
 
 #parses a holdem hand
-def mainParser(settings, fdb, siteID, category, hand, config):
+def mainParser(settings, fdb, siteID, category, hand, config, db = None):
     backend = settings['db-backend']
-    #This is redundant - hopefully fdb will be a Database object in an interation soon
-    db = Database.Database(config, 'fpdb', '')
+    if db == None:
+        #This is redundant - hopefully fdb will be a Database object in an iteration soon
+        db = Database.Database(c = config, sql = None)
+    else:
+        db = db
     category = fpdb_simple.recogniseCategory(hand[0])
 
     base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"

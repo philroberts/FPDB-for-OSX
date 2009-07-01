@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+from time import time, strftime
     
 import fpdb_import
 import fpdb_db
@@ -58,21 +59,50 @@ class GuiPositionalStats (threading.Thread):
                             "Button2"  :  False
                           }
 
-        self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 
+        # ToDo: store in config
+        # ToDo: create popup to adjust column config
+        # columns to display, keys match column name returned by sql, values in tuple are:
+        #     is column displayed, column heading, xalignment, formatting
+        self.columns = [ ["game",       True,  "Game",     0.0, "%s"]
+                       , ["hand",       False, "Hand",     0.0, "%s"]   # true not allowed for this line
+                       , ["plposition", False, "Posn",     1.0, "%s"]   # true not allowed for this line (set in code)
+                       , ["n",          True,  "Hds",      1.0, "%d"]
+                       , ["avgseats",   True,  "Seats",    1.0, "%3.1f"]
+                       , ["vpip",       True,  "VPIP",     1.0, "%3.1f"]
+                       , ["pfr",        True,  "PFR",      1.0, "%3.1f"]
+                       , ["pf3",        True,  "PF3",      1.0, "%3.1f"]
+                       , ["steals",     True,  "Steals",   1.0, "%3.1f"]
+                       , ["saw_f",      True,  "Saw_F",    1.0, "%3.1f"]
+                       , ["sawsd",      True,  "SawSD",    1.0, "%3.1f"]
+                       , ["wtsdwsf",    True,  "WtSDwsF",  1.0, "%3.1f"]
+                       , ["wmsd",       True,  "W$SD",     1.0, "%3.1f"]
+                       , ["flafq",      True,  "FlAFq",    1.0, "%3.1f"]
+                       , ["tuafq",      True,  "TuAFq",    1.0, "%3.1f"]
+                       , ["rvafq",      True,  "RvAFq",    1.0, "%3.1f"]
+                       , ["pofafq",     False, "PoFAFq",   1.0, "%3.1f"]
+                       , ["net",        True,  "Net($)",   1.0, "%6.2f"]
+                       , ["bbper100",   True,  "bb/100",   1.0, "%4.2f"]
+                       , ["rake",       True,  "Rake($)",  1.0, "%6.2f"]
+                       , ["bb100xr",    True,  "bbxr/100", 1.0, "%4.2f"]
+                       , ["variance",   True,  "Variance", 1.0, "%5.2f"]
+                       ]
+
         self.stat_table = None
         self.stats_frame = None
+        self.stats_vbox = None
         
         self.main_hbox = gtk.HBox(False, 0)
         self.main_hbox.show()
 
-        statsFrame = gtk.Frame("Stats:")
-        statsFrame.set_label_align(0.0, 0.0)
-        statsFrame.show()
-        self.stats_frame = gtk.VBox(False, 0)
+        self.stats_frame = gtk.Frame()
+        self.stats_frame.set_label_align(0.0, 0.0)
         self.stats_frame.show()
+        self.stats_vbox = gtk.VBox(False, 0)
+        self.stats_vbox.show()
 
         # This could be stored in config eventually, or maybe configured in this window somehow.
         # Each posncols element is the name of a column returned by the sql 
@@ -90,11 +120,11 @@ class GuiPositionalStats (threading.Thread):
                          , "PoFAFq", "Net($)", "bb/100", "$/hand", "Variance", "Hds"
                          )
 
-        self.fillStatsFrame(self.stats_frame)
-        statsFrame.add(self.stats_frame)
+        self.fillStatsFrame(self.stats_vbox)
+        self.stats_frame.add(self.stats_vbox)
 
         self.main_hbox.pack_start(self.filters.get_vbox())
-        self.main_hbox.pack_start(statsFrame)
+        self.main_hbox.pack_start(self.stats_frame)
 
 
     def get_vbox(self):
@@ -107,9 +137,12 @@ class GuiPositionalStats (threading.Thread):
         print "DEBUG: activesite set to %s" %(self.activesite)
 
     def refreshStats(self, widget, data):
-        try: self.stats_table.destroy()
+        try: self.stats_vbox.destroy()
         except AttributeError: pass
-        self.fillStatsFrame(self.stats_frame)
+        self.stats_vbox = gtk.VBox(False, 0)
+        self.stats_vbox.show()
+        self.stats_frame.add(self.stats_vbox)
+        self.fillStatsFrame(self.stats_vbox)
 
     def fillStatsFrame(self, vbox):
         sites = self.filters.getSites()
@@ -144,66 +177,104 @@ class GuiPositionalStats (threading.Thread):
         self.createStatsTable(vbox, playerids, sitenos, limits, seats, dates)
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, seats, dates):
-        self.stats_table = gtk.Table(1, 1, False) # gtk table expands as required
-        self.stats_table.set_col_spacings(4)
-        self.stats_table.show()
-        vbox.add(self.stats_table)
 
+        starttime = time()
+        colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
         row = 0
         col = 0
-        for t in self.posnheads:
-            l = gtk.Label(self.posnheads[col])
-            l.show()
-            self.stats_table.attach(l, col, col+1, row, row+1, yoptions=gtk.SHRINK)
-            col +=1 
 
         tmp = self.sql.query['playerStatsByPosition']
         tmp = self.refineQuery(tmp, playerids, sitenos, limits, seats, dates)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
+        colnames = [desc[0].lower() for desc in self.cursor.description]
+
+        liststore = gtk.ListStore(*([str] * len(colnames)))
+        view = gtk.TreeView(model=liststore)
+        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        vbox.pack_start(view, expand=False, padding=3)
+        # left-aligned cells:
+        textcell = gtk.CellRendererText()
+        # centred cells:
+        textcell50 = gtk.CellRendererText()
+        textcell50.set_property('xalign', 0.5)
+        # right-aligned cells:
+        numcell = gtk.CellRendererText()
+        numcell.set_property('xalign', 1.0)
+        listcols = []
+
+        for t in self.posnheads:
+            listcols.append(gtk.TreeViewColumn(self.posnheads[col]))
+            view.append_column(listcols[col])
+            if col == 0:
+                listcols[col].pack_start(textcell, expand=True)
+                listcols[col].add_attribute(textcell, 'text', col)
+                listcols[col].set_expand(True)
+            elif col in (1, 2):
+                listcols[col].pack_start(textcell50, expand=True)
+                listcols[col].add_attribute(textcell50, 'text', col)
+                listcols[col].set_expand(True)
+            else:
+                listcols[col].pack_start(numcell, expand=True)
+                listcols[col].add_attribute(numcell, 'text', col)
+                listcols[col].set_expand(True)
+            col +=1 
+
+        # Code below to be used when full column data structures implemented like in player stats:
+        
+        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
+        #for col, column in enumerate(cols_to_show):
+        #    if column[colalias] == 'game' and holecards:
+        #        s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
+        #    else:
+        #        s = column[colheading]
+        #    listcols.append(gtk.TreeViewColumn(s))
+        #    view.append_column(listcols[col])
+        #    if column[colformat] == '%s':
+        #        if column[colxalign] == 0.0:
+        #            listcols[col].pack_start(textcell, expand=True)
+        #            listcols[col].add_attribute(textcell, 'text', col)
+        #        else:
+        #            listcols[col].pack_start(textcell50, expand=True)
+        #            listcols[col].add_attribute(textcell50, 'text', col)
+        #        listcols[col].set_expand(True)
+        #    else:
+        #        listcols[col].pack_start(numcell, expand=True)
+        #        listcols[col].add_attribute(numcell, 'text', col)
+        #        listcols[col].set_expand(True)
+        #        #listcols[col].set_alignment(column[colxalign]) # no effect?
 
         rows = len(result)
-        colnames = [desc[0].lower() for desc in self.cursor.description]
 
         last_game,last_seats,sqlrow = "","",0
         while sqlrow < rows:
-            if(row%2 == 0):
-                bgcolor = "white"
-            else:
-                bgcolor = "lightgrey"
             rowprinted=0
+            treerow = []
             avgcol = colnames.index('avgseats')
             for col,colname in enumerate(self.posncols):
                 if colname in colnames:
                     sqlcol = colnames.index(colname)
                 else:
                     continue
-                eb = gtk.EventBox()
-                eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-                # print blank row between levels:
                 if result[sqlrow][sqlcol]:
                     if sqlrow == 0:
-                        l = gtk.Label(result[sqlrow][sqlcol])
+                        value = result[sqlrow][sqlcol]
                         rowprinted=1
                     elif result[sqlrow][0] != last_game:
-                        l = gtk.Label(' ')
+                        value = ' '
                     elif 'show' in seats and seats['show'] and result[sqlrow][avgcol] != last_seats:
-                        l = gtk.Label(' ')
+                        value = ' '
                     else:
-                        l = gtk.Label(result[sqlrow][sqlcol])
+                        value = result[sqlrow][sqlcol]
                         rowprinted=1
                 else:
                     l = gtk.Label(' ')
-                if col == 0:
-                    l.set_alignment(xalign=0.0, yalign=0.5)
-                elif col == 1:
-                    l.set_alignment(xalign=0.5, yalign=0.5)
+                    value = ' '
+                if value and value != -999:
+                    treerow.append(value)
                 else:
-                    l.set_alignment(xalign=1.0, yalign=0.5)
-                eb.add(l)
-                self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
-                l.show()
-                eb.show()
+                    treerow.append(' ')
+            iter = liststore.append(treerow)
             last_game = result[sqlrow][0]
             last_seats = result[sqlrow][avgcol]
             if rowprinted:
@@ -220,50 +291,36 @@ class GuiPositionalStats (threading.Thread):
 
         # blank row between main stats and totals:
         col = 0
-        if(row%2 == 0):
-            bgcolor = "white"
-        else:
-            bgcolor = "lightgrey"
-        eb = gtk.EventBox()
-        eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
-        l = gtk.Label(' ')
-        eb.add(l)
-        self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
-        l.show()
-        eb.show()
+        treerow = [' ' for x in self.posncols]
+        iter = liststore.append(treerow)
         row = row + 1
 
         for sqlrow in range(rows):
-            if(row%2 == 0):
-                bgcolor = "white"
-            else:
-                bgcolor = "lightgrey"
+            treerow = []
             for col,colname in enumerate(self.posncols):
                 if colname in colnames:
                     sqlcol = colnames.index(colname)
                 elif colname != "plposition":
                     continue
-                eb = gtk.EventBox()
-                eb.modify_bg(gtk.STATE_NORMAL, gtk.gdk.color_parse(bgcolor))
                 if colname == 'plposition':
                     l = gtk.Label('Totals')
+                    value = 'Totals'
                 elif result[sqlrow][sqlcol]:
                     l = gtk.Label(result[sqlrow][sqlcol])
+                    value = result[sqlrow][sqlcol]
                 else:
                     l = gtk.Label(' ')
-                if col == 0:
-                    l.set_alignment(xalign=0.0, yalign=0.5)
-                elif col == 1:
-                    l.set_alignment(xalign=0.5, yalign=0.5)
+                    value = ' '
+                if value and value != -999:
+                    treerow.append(value)
                 else:
-                    l.set_alignment(xalign=1.0, yalign=0.5)
-                eb.add(l)
-                self.stats_table.attach(eb, col, col+1, row+1, row+2, yoptions=gtk.SHRINK)
-                l.show()
-                eb.show()
+                    treerow.append(' ')
+            iter = liststore.append(treerow)
             row = row + 1
+        vbox.show_all()
 
         self.db.db.rollback()
+        print "Positional Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
     def refineQuery(self, query, playerids, sitenos, limits, seats, dates):
