@@ -40,7 +40,7 @@ import Card
 
 class Database:
     def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
-        print "creating Database instance, sql =", sql
+        print "\ncreating Database instance, sql =", sql
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
         self.connection = self.fdb.db
@@ -87,13 +87,28 @@ class Database:
         #row = cur.fetchone()
         self.saveActions = False if self.import_options['saveActions'] == False else True
 
+    def do_connect(self, c):
+        self.fdb.do_connect(c)
 
     def commit(self):
         self.fdb.db.commit()
 
     def close_connection(self):
         self.connection.close()
+
+    def disconnect(self, due_to_error=False):
+        """Disconnects the DB (rolls back if param is true, otherwise commits"""
+        self.fdb.disconnect(due_to_error)
+    
+    def reconnect(self, due_to_error=False):
+        """Reconnects the DB"""
+        self.fdb.reconnect(due_to_error=False)
+    
+    def get_backend_name(self):
+        """Reconnects the DB"""
+        return self.fdb.get_backend_name()
         
+
     def get_table_name(self, hand_id):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_table_name'], (hand_id, ))
@@ -329,7 +344,6 @@ class Database:
         if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
         t5 = time()
-        fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
         t6 = time()
         if self.saveActions:
             fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts, actionNos)
@@ -363,8 +377,6 @@ class Database:
         #print "tourney holdem, backend=%d" % backend
         if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-
-        fpdb_simple.store_board_cards(cursor, hands_id, board_values, board_suits)
 
         if self.saveActions:
             fpdb_simple.storeActions(cursor, hands_players_ids, action_types, allIns, action_amounts, actionNos)

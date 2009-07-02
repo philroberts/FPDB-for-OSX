@@ -32,7 +32,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
-import fpdb_db
+
 import fpdb_simple
 import GuiBulkImport
 import GuiPlayerStats
@@ -206,22 +206,23 @@ class fpdb:
             try:
                 dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
+                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
+                            +self.db.fdb.database+" on "+self.db.fdb.host+" they will be deleted."
                 dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
                 response = dia_confirm.run()
                 dia_confirm.destroy()
                 if response == gtk.RESPONSE_YES:
-                    if self.db.backend == self.fdb_lock.MYSQL_INNODB:
+                    if self.db.fdb.backend == self.fdb_lock.fdb.MYSQL_INNODB:
                         # mysql requires locks on all tables or none - easier to release this lock 
                         # than lock all the other tables
                         # ToDo: lock all other tables so that lock doesn't have to be released
                         self.release_global_lock()
                         lock_released = True
-                        self.db.recreate_tables()
+                        self.db.fdb.recreate_tables()
                     else:
                         # for other dbs use same connection as holds global lock
-                        self.fdb_lock.recreate_tables()
+                        self.fdb_lock.fdb.recreate_tables()
                 elif response == gtk.RESPONSE_NO:
                     print 'User cancelled recreating tables'
             except:
@@ -362,13 +363,13 @@ class fpdb:
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db!=None:
+        if self.db != None and self.db.fdb != None:
             self.db.disconnect()
 
-        self.db = fpdb_db.fpdb_db()
-        #print "end of fpdb.load_profile, databaseName:",self.settings['db-databaseName']
-        self.db.do_connect(self.config)
-        if self.db.wrongDbVersion:
+        self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
+        self.db = Database.Database(self.config, sql = self.sql)
+
+        if self.db.fdb.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
             label = gtk.Label("An invalid DB version or missing tables have been detected.")
@@ -387,18 +388,15 @@ class fpdb:
             diaDbVersionWarning.destroy()
 
         if self.status_bar == None:
-            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
+            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
         else:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.database, self.db.host))
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
 
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
-        self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
-        self.dbi = Database.Database(self.config, sql = self.sql)   # dbi for db interface and to avoid clashes with db/database/etc
-                                                               # can rename later if required
-        self.db.db.rollback()
+        self.db.connection.rollback()
     #end def load_profile
 
     def not_implemented(self, widget, data=None):
@@ -407,9 +405,9 @@ class fpdb:
 
     def obtain_global_lock(self):
         print "\nTaking global lock ..."
-        self.fdb_lock = fpdb_db.fpdb_db()
+        self.fdb_lock = Database.Database(self.config, sql = self.sql)
         self.fdb_lock.do_connect(self.config)
-        return self.fdb_lock.get_global_lock()
+        return self.fdb_lock.fdb.get_global_lock()
     #end def obtain_global_lock
 
     def quit(self, widget, data=None):
@@ -420,9 +418,9 @@ class fpdb:
     #end def quit_cliecked
 
     def release_global_lock(self):
-        self.fdb_lock.db.rollback()
-        self.fdb_lock.disconnect()
-        print "Global lock released."
+        self.fdb_lock.fdb.db.rollback()
+        self.fdb_lock.fdb.disconnect()
+        print "Global lock released.\n"
     #end def release_global_lock
 
     def tab_abbreviations(self, widget, data=None):
@@ -471,7 +469,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def tab_table_viewer(self, widget, data=None):
         """opens a table viewer tab"""
         #print "start of tab_table_viewer"
-        new_tv_thread=GuiTableViewer.GuiTableViewer(self.db, self.settings)
+        new_tv_thread=GuiTableViewer.GuiTableViewer(self.db.fdb, self.settings)
         self.threads.append(new_tv_thread)
         tv_tab=new_tv_thread.get_vbox()
         self.add_and_display_tab(tv_tab, "Table Viewer")
