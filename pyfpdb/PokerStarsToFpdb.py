@@ -26,7 +26,7 @@ from HandHistoryConverter import *
 class PokerStars(HandHistoryConverter):
 
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(?P<MIXED>HORSE|8\-Game|HOSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
@@ -89,6 +89,7 @@ follow :  whether to tail -f the input"""
         
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
                     'Omaha' : ('hold','omahahi'),
@@ -109,6 +110,8 @@ follow :  whether to tail -f the input"""
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
+        if 'MIXED' in mg:
+            info['mixedType'] = mixes[mg['MIXED']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
         return info
