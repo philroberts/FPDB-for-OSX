@@ -66,7 +66,7 @@ follow :  whether to tail -f the input"""
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
+            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) (?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
 
     def readSupportedGames(self):
@@ -222,7 +222,7 @@ follow :  whether to tail -f the input"""
             # Also works with Omaha hands.
             cards = m.group('NEWCARDS')
             cards = set(cards.split(' '))
-            hand.addHoleCards(cards, m.group('PNAME'))
+            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False)
 
     def readDrawCards(self, hand, street):
         logging.debug("readDrawCards")
@@ -314,9 +314,15 @@ follow :  whether to tail -f the input"""
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
+                print "SHOWED", m.group('SHOWED')
                 cards = m.group('CARDS')
                 cards = set(cards.split(' '))
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+
+                (shown, mucked) = (False, False)
+                if m.group('SHOWED') == "showed": shown = True
+                elif m.group('SHOWED') == "mucked": mucked = True
+
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
 
 if __name__ == "__main__":
     parser = OptionParser()

@@ -26,6 +26,7 @@ import operator
 import time,datetime
 from copy import deepcopy
 from Exceptions import *
+import pprint
 import DerivedStats
 import Card
 
@@ -74,6 +75,7 @@ class Hand:
         self.folded = set()
         self.dealt = set()  # 'dealt to' line to be printed
         self.shown = set()  # cards were shown
+        self.mucked = set() # cards were mucked at showdown
 
 #        self.action = []
         # Things to do with money
@@ -83,8 +85,49 @@ class Hand:
         self.rake = None
 
     def __str__(self):
+        vars = ( ("BB", self.bb),
+                 ("SB", self.sb),
+                 ("BUTTONPOS", self.buttonpos),
+                 ("HAND NO.", self.handid),
+                 ("SITE", self.sitename),
+                 ("TABLE NAME", self.tablename),
+                 ("HERO", self.hero),
+                 ("MAXSEATS", self.maxseats),
+                 ("LASTBET", self.lastBet),
+                 ("ACTION STREETS", self.actionStreets),
+                 ("STREETS", self.streets),   
+                 ("ALL STREETS", self.allStreets),
+                 ("COMMUNITY STREETS", self.communityStreets),
+                 ("HOLE STREETS", self.holeStreets),
+                 ("COUNTED SEATS", self.counted_seats),
+                 ("DEALT", self.dealt),
+                 ("SHOWN", self.shown),
+                 ("MUCKED", self.mucked),
+                 ("TOTAL POT", self.totalpot),
+                 ("TOTAL COLLECTED", self.totalcollected),
+                 ("RAKE", self.rake),
+                 ("START TIME", self.starttime),
+        )
+ 
+        structs = ( ("PLAYERS", self.players),
+                    ("STACKS", self.stacks),
+                    ("POSTED", self.posted),
+                    ("POT", self.pot),
+                    ("SEATING", self.seating),
+                    ("GAMETYPE", self.gametype),
+                    ("ACTION", self.actions),
+                    ("COLLECTEES", self.collectees),
+                    ("BETS", self.bets),
+                    ("BOARD", self.board),
+                    ("DISCARDS", self.discards),
+                    ("HOLECARDS", self.holecards),
+        )
         str = ''
-        str = str + "Hand Object for %s at %s" % (self.handid, self.sitename) 
+        for (name, var) in vars:
+            str = str + "\n%s = " % name + pprint.pformat(var)
+
+        for (name, struct) in structs:
+            str = str + "\n%s =\n" % name + pprint.pformat(struct, 4)
         return str
 
     def insert(self, db):
@@ -494,12 +537,13 @@ class HoldemOmahaHand(Hand):
             pass
                 
 
-    def addHoleCards(self, cards, player, shown=False, dealt=False):
+    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
         """\
 Assigns observed holecards to a player.
 cards   list of card bigrams e.g. ['2h','Jc']
 player  (string) name of player
 shown   whether they were revealed at showdown
+mucked  whether they were mucked at showdown
 dealt   whether they were seen in a 'dealt to' line
 """
         logging.debug("addHoleCards %s %s" % (cards, player))
@@ -516,23 +560,25 @@ dealt   whether they were seen in a 'dealt to' line
             self.dealt.add(player)
         if shown:
             self.shown.add(player)
+        if mucked:
+            self.mucked.add(player)
         if player in self.holecards['PREFLOP']:
             self.holecards['PREFLOP'][player].update(cardset)
         else:
             self.holecards['PREFLOP'][player] = cardset
 
-    def addShownCards(self, cards, player, holeandboard=None):
+    def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False):
         """\
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
         logging.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
-            self.addHoleCards(cards,player,shown=True)
+            self.addHoleCards(cards,player,shown, mucked)
         elif holeandboard is not None:
             holeandboard = set([self.card(c) for c in holeandboard])
             board = set([c for s in self.board.values() for c in s])
-            self.addHoleCards(holeandboard.difference(board),player,shown=True)
+            self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
 
 
     def writeHTMLHand(self, fh=sys.__stdout__):
