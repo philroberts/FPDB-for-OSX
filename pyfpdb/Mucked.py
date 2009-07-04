@@ -448,7 +448,8 @@ class Flop_Mucked(Aux_Seats):
             container.move(self.positions[i][0], self.positions[i][1])   # here is where I move back
             self.displayed = True
             if i != "common":
-                self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[i]['screen_name'])
+                id = self.get_id_from_seat(i)
+                self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[id]['screen_name'])
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
@@ -458,7 +459,7 @@ class Flop_Mucked(Aux_Seats):
         n_sd = 0
         for (i, cards) in self.hud.cards.iteritems():
             n_cards = self.has_cards(cards)
-            if n_cards > 0:
+            if n_cards > 0 and i != 'common':
                 n_sd = n_sd + 1
         if n_sd < 2: 
             print "skipping, n_sd =", n_sd

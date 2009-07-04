@@ -26,7 +26,7 @@ from HandHistoryConverter import *
 class PokerStars(HandHistoryConverter):
 
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(HORSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(?P<MIXED>HORSE|8\-Game|HOSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
@@ -66,8 +66,7 @@ follow :  whether to tail -f the input"""
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
-
+            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -89,6 +88,7 @@ follow :  whether to tail -f the input"""
         
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
         games = {              # base, category
                   "Hold'em" : ('hold','holdem'), 
                     'Omaha' : ('hold','omahahi'),
@@ -109,6 +109,8 @@ follow :  whether to tail -f the input"""
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
+        if 'MIXED' in mg:
+            info['mixedType'] = mixes[mg['MIXED']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
         return info
@@ -222,7 +224,7 @@ follow :  whether to tail -f the input"""
             # Also works with Omaha hands.
             cards = m.group('NEWCARDS')
             cards = set(cards.split(' '))
-            hand.addHoleCards(cards, m.group('PNAME'))
+            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False)
 
     def readDrawCards(self, hand, street):
         logging.debug("readDrawCards")
@@ -316,7 +318,12 @@ follow :  whether to tail -f the input"""
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
                 cards = set(cards.split(' '))
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+
+                (shown, mucked) = (False, False)
+                if m.group('SHOWED') == "showed": shown = True
+                elif m.group('SHOWED') == "mucked": mucked = True
+
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
 
 if __name__ == "__main__":
     parser = OptionParser()
