@@ -317,7 +317,7 @@ follow :  whether to tail -f the input"""
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(' '))
+                cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
 
                 (shown, mucked) = (False, False)
                 if m.group('SHOWED') == "showed": shown = True

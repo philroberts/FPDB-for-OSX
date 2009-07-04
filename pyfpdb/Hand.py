@@ -410,6 +410,20 @@ Add a raise on [street] by [player] to [amountTo]
             self.collectees[player] += Decimal(pot)
 
 
+    def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False):
+        """\
+For when a player shows cards for any reason (for showdown or out of choice).
+Card ranks will be uppercased
+"""
+        logging.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
+        if cards is not None:
+            self.addHoleCards(cards,player,shown, mucked)
+        elif holeandboard is not None:
+            holeandboard = set([self.card(c) for c in holeandboard])
+            board = set([c for s in self.board.values() for c in s])
+            self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
+
+
     def totalPot(self):
         """If all bets and blinds have been added, totals up the total pot size"""
         
@@ -566,20 +580,6 @@ dealt   whether they were seen in a 'dealt to' line
             self.holecards['PREFLOP'][player].update(cardset)
         else:
             self.holecards['PREFLOP'][player] = cardset
-
-    def addShownCards(self, cards, player, holeandboard=None, shown=True, mucked=False):
-        """\
-For when a player shows cards for any reason (for showdown or out of choice).
-Card ranks will be uppercased
-"""
-        logging.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
-        if cards is not None:
-            self.addHoleCards(cards,player,shown, mucked)
-        elif holeandboard is not None:
-            holeandboard = set([self.card(c) for c in holeandboard])
-            board = set([c for s in self.board.values() for c in s])
-            self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
-
 
     def writeHTMLHand(self, fh=sys.__stdout__):
         from nevow import tags as T
@@ -991,7 +991,7 @@ class StudHand(Hand):
                     hhc.readStudPlayerCards(self, street)
                     hhc.readAction(self, street)
             hhc.readCollectPot(self)
-            #hhc.readShownCards(self) # not done yet
+            hhc.readShownCards(self) # not done yet
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
         elif builtFrom == "DB":
@@ -1013,6 +1013,36 @@ closed    likewise, but known only to player
 #            self.holecards[player].update(cards)
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+
+    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
+        """\
+Assigns observed holecards to a player.
+cards   list of card bigrams e.g. ['2h','Jc']
+player  (string) name of player
+shown   whether they were revealed at showdown
+mucked  whether they were mucked at showdown
+dealt   whether they were seen in a 'dealt to' line
+"""
+#
+#    For stud games we just need to do the routine setting of shown/mucked/etc
+#    and then update the cards 'THIRD' and 'SEVENTH'
+        logging.debug("addHoleCards %s %s" % (cards, player))
+        try:
+            self.checkPlayerExists(player)
+        except FpdbParseError, e:
+            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+            return
+
+        if dealt:
+            self.dealt.add(player)
+        if shown:
+            self.shown.add(player)
+        if mucked:
+            self.mucked.add(player)
+        if len(cards) > 2:
+            self.holecards['THIRD'][player] = (cards[0:3], None)
+        if len(cards) > 6:
+            self.holecards['SEVENTH'][player] = (cards[6], None)
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
@@ -1045,6 +1075,7 @@ Add a complete on [street] by [player] to [amountTo]
             self.actions['THIRD'].append(act)
             self.lastBet['THIRD'] = Decimal(bringin)
             self.pot.addMoney(player, Decimal(bringin))
+
     
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
