@@ -1042,7 +1042,7 @@ dealt   whether they were seen in a 'dealt to' line
         if len(cards) > 2:
             self.holecards['THIRD'][player] = (cards[0:3], None)
         if len(cards) > 6:
-            self.holecards['SEVENTH'][player] = (cards[6], None)
+            self.holecards['SEVENTH'][player] = ([cards[6]], None)
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
@@ -1212,11 +1212,13 @@ Add a complete on [street] by [player] to [amountTo]
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards[name]), self.collectees[name]))
+                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, self.join_holecards(name), self.collectees[name]))
             elif name in self.collectees:
                 print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
             elif name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name])))
+                print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, self.join_holecards(name)))
+            elif name in self.mucked:
+                print >>fh, _("Seat %d: %s mucked [%s]" % (seatnum, name, self.join_holecards(name)))
             elif name in self.folded:
                 print >>fh, _("Seat %d: %s folded" % (seatnum, name))
             else:
@@ -1225,6 +1227,12 @@ Add a complete on [street] by [player] to [amountTo]
         print >>fh, "\n\n"
 
 
+    def join_holecards(self, player):
+        holecards = []
+        for street in self.holeStreets:
+            if self.holecards[street].has_key(player):
+                holecards = holecards + self.holecards[street][player][0]
+        return " ".join(holecards)
 
 class Pot(object):
 
