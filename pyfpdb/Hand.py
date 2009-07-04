@@ -772,6 +772,8 @@ dealt   whether they were seen in a 'dealt to' line
             else:
                 if name in self.shown:
                     print >>fh, ("Seat %d: %s showed [%s] and lost with..." % (seatnum, name, " ".join(self.holecards['PREFLOP'][name])))
+                elif name in self.mucked:
+                    print >>fh, ("Seat %d: %s mucked [%s] " % (seatnum, name, " ".join(self.holecards['PREFLOP'][name])))
                 else:
                     print >>fh, ("Seat %d: %s mucked" % (seatnum, name))
 
