@@ -66,8 +66,7 @@ follow :  whether to tail -f the input"""
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s \(.*\) (?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
-
+            self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
@@ -317,7 +316,6 @@ follow :  whether to tail -f the input"""
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                print "SHOWED", m.group('SHOWED')
                 cards = m.group('CARDS')
                 cards = set(cards.split(' '))
 
