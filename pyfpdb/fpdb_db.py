@@ -589,11 +589,12 @@ class fpdb_db:
                 return(1)
         elif self.backend == self.PGSQL:
             try:
+                self.db.commit()
                 self.cursor.execute( "lock table Players in exclusive mode nowait" )
                 #print "... after lock table, status =", self.cursor.statusmessage
             except:
                 # relation "players" does not exist
-                if str(sys.exc_value).find('relation "Players" does not exist') >= 0:
+                if str(sys.exc_value).find('does not exist') >= 0:
                     return(2)
                 print "Error! failed to obtain global lock. Close all programs accessing " \
                       + "database (including fpdb) and try again (%s)." \
