@@ -207,6 +207,7 @@ class fpdb_db:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
         self.cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED')
+        self.db.commit()
         # Set up query dictionary as early in the connection process as we can.
         self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
         self.wrongDbVersion=False
@@ -592,7 +593,7 @@ class fpdb_db:
                 #print "... after lock table, status =", self.cursor.statusmessage
             except:
                 # relation "players" does not exist
-                if str(sys.exc_value).find('relation "players" does not exist') >= 0:
+                if str(sys.exc_value).find('relation "Players" does not exist') >= 0:
                     return(2)
                 print "Error! failed to obtain global lock. Close all programs accessing " \
                       + "database (including fpdb) and try again (%s)." \
