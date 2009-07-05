@@ -224,7 +224,7 @@ follow :  whether to tail -f the input"""
             # Also works with Omaha hands.
             cards = m.group('NEWCARDS')
             cards = set(cards.split(' '))
-            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False)
+            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
 
     def readDrawCards(self, hand, street):
         logging.debug("readDrawCards")
