@@ -182,7 +182,9 @@ class fpdb_db:
             # sqlcoder: This database only connect failed in my windows setup??
             # Modifed it to try the 4 parameter style if the first connect fails - does this work everywhere?
             connected = False
-            if self.host == "localhost" or self.host == "127.0.0.1":
+            if self.host == None or self.host == '' \
+                    or self.host == "localhost" \
+                    or self.host == "127.0.0.1":
                 try:
                     self.db = psycopg2.connect(database = database)
                     connected = True
