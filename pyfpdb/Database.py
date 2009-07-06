@@ -72,19 +72,22 @@ class Database:
         cur = self.connection.cursor()
 
         self.hand_1day_ago = 0
-        cur.execute(self.sql.query['get_hand_1day_ago'])
-        row = cur.fetchone()
-        if row and row[0]:
-            self.hand_1day_ago = row[0]
-        #print "hand 1day ago =", self.hand_1day_ago
+        try:
+            cur.execute(self.sql.query['get_hand_1day_ago'])
+            row = cur.fetchone()
+            if row and row[0]:
+                self.hand_1day_ago = row[0]
+            #print "hand 1day ago =", self.hand_1day_ago
 
-        d = timedelta(days=self.hud_days)
-        now = datetime.utcnow() - d
-        self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
+            d = timedelta(days=self.hud_days)
+            now = datetime.utcnow() - d
+            self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
 
-        self.hand_nhands_ago = 0  # todo
-        #cur.execute(self.sql.query['get_table_name'], (hand_id, ))
-        #row = cur.fetchone()
+            self.hand_nhands_ago = 0  # todo
+            #cur.execute(self.sql.query['get_table_name'], (hand_id, ))
+            #row = cur.fetchone()
+        except: # no tables created yet
+            pass
         self.saveActions = False if self.import_options['saveActions'] == False else True
 
     def do_connect(self, c):
