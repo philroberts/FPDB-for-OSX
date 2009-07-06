@@ -1041,10 +1041,16 @@ dealt   whether they were seen in a 'dealt to' line
             self.shown.add(player)
         if mucked:
             self.mucked.add(player)
-        if len(cards) > 2:
-            self.holecards['THIRD'][player] = (cards[0:3], None)
-        if len(cards) > 6:
-            self.holecards['SEVENTH'][player] = ([cards[6]], None)
+        if player == self.hero:
+            if len(cards) > 2:
+                self.holecards['THIRD'][player] = ([cards[0:3]], [])
+            if len(cards) > 6:
+                self.holecards['SEVENTH'][player] = ([cards[6]], [])
+        else:
+            if len(cards) > 2:
+                self.holecards['THIRD'][player] = ([cards[0]], cards[1:3])
+            if len(cards) > 6:
+                self.holecards['SEVENTH'][player] = ([], [cards[6]])
 
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
