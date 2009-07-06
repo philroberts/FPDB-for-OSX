@@ -109,7 +109,7 @@ follow :  whether to tail -f the input"""
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
-        if 'MIXED' in mg:
+        if 'MIXED' in mg and mg['MIXED'] != None:
             info['mixedType'] = mixes[mg['MIXED']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
