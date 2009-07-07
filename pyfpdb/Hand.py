@@ -1088,6 +1088,11 @@ Add a complete on [street] by [player] to [amountTo]
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
 #        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
+
+# TODO:
+#    Hole cards are not currently correctly written. Currently the down cards for non-heros
+#    are shown in the "dealt to" lines. They should be hidden in those lines. I tried to fix
+#    but mind got boggled, will try again.
         print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
         print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         

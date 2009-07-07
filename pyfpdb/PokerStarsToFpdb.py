@@ -26,7 +26,18 @@ from HandHistoryConverter import *
 class PokerStars(HandHistoryConverter):
 
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(?P<MIXED>HORSE|8\-Game|HOSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+#    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(?P<MIXED>HORSE|8\-Game|HOSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_GameInfo     = re.compile("""PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
+                                  (Tournament\s\#(?P<TOURNO>\d+),\s(?P<BUYIN>[\$\+\d\.]+)\s)?
+                                  (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
+                                  (?P<GAME>Hold\'em|Razz|7\sCard Stud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi)\s
+                                  (?P<LIMIT>No\sLimit|Limit|Pot\sLimit),?\s
+                                  (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?\(?
+                                  (?P<CURRENCY>\$|)?
+                                  (?P<SB>[.0-9]+)/\$?
+                                  (?P<BB>[.0-9]+)\)\s-\s
+                                  (?P<DATETIME>.*$)""",
+                                  re.MULTILINE|re.VERBOSE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
@@ -62,7 +73,8 @@ follow :  whether to tail -f the input"""
             self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" %  player_re, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$(?P<BET>[.\d]+))?( to \$(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
+#            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$(?P<BET>[.\d]+))?( to \$(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$?(?P<BET>[.\d]+))?( to \$?(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
@@ -72,20 +84,26 @@ follow :  whether to tail -f the input"""
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+
                 ["ring", "stud", "fl"],
                 #["ring", "draw", "fl"],
-                ["ring", "omaha", "pl"]
+
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
+
+                ["tour", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
-        info = {'type':'ring'}
         
+        info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
             return None
 
         mg = m.groupdict()
-        
+        print "mg =", mg
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
@@ -99,6 +117,10 @@ follow :  whether to tail -f the input"""
                    'Badugi' : ('draw','badugi')
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+#    I don't think this is doing what we think. mg will always have all 
+#    the expected keys, but the ones that didn't match in the regex will
+#    have a value of None. It is OK if it throws an exception when it 
+#    runs across an unknown game or limit or whatever.
         if 'LIMIT' in mg:
             info['limitType'] = limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -111,6 +133,13 @@ follow :  whether to tail -f the input"""
             info['currency'] = currencies[mg['CURRENCY']]
         if 'MIXED' in mg and mg['MIXED'] != None:
             info['mixedType'] = mixes[mg['MIXED']]
+        info['tourNo'] = mg['TOURNO']
+        if info['tourNo'] == None:
+            info['type'] = 'ring'
+        else:
+            info['type'] = 'tour'
+        info['buyin'] = mg['BUYIN']
+        info['level'] = mg['LEVEL'] 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
         return info
