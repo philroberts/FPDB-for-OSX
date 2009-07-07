@@ -103,7 +103,7 @@ follow :  whether to tail -f the input"""
             return None
 
         mg = m.groupdict()
-        print "mg =", mg
+#        print "mg =", mg
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
