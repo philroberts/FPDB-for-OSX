@@ -109,7 +109,7 @@ follow :  whether to tail -f the input"""
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
-        if 'MIXED' in mg:
+        if 'MIXED' in mg and mg['MIXED'] != None:
             info['mixedType'] = mixes[mg['MIXED']]
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         
@@ -224,7 +224,7 @@ follow :  whether to tail -f the input"""
             # Also works with Omaha hands.
             cards = m.group('NEWCARDS')
             cards = set(cards.split(' '))
-            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False)
+            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
 
     def readDrawCards(self, hand, street):
         logging.debug("readDrawCards")
@@ -317,7 +317,7 @@ follow :  whether to tail -f the input"""
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(' '))
+                cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
 
                 (shown, mucked) = (False, False)
                 if m.group('SHOWED') == "showed": shown = True
