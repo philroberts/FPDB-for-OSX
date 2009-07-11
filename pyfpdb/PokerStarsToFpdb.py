@@ -30,7 +30,7 @@ class PokerStars(HandHistoryConverter):
     re_GameInfo     = re.compile("""PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
                                   (Tournament\s\#(?P<TOURNO>\d+),\s(?P<BUYIN>[\$\+\d\.]+)\s)?
                                   (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-                                  (?P<GAME>Hold\'em|Razz|7\sCard Stud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi)\s
+                                  (?P<GAME>Hold\'em|Razz|7\sCard Stud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
                                   (?P<LIMIT>No\sLimit|Limit|Pot\sLimit),?\s
                                   (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?\(?
                                   (?P<CURRENCY>\$|)?
@@ -40,7 +40,11 @@ class PokerStars(HandHistoryConverter):
                                   re.MULTILINE|re.VERBOSE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
-    re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
+    re_HandInfo     = re.compile("""^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
+                                    ((?P<MAX>\d+)-max\s)?
+                                    (?P<PLAY>\(Play\sMoney\)\s)?
+                                    (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
+                                    re.MULTILINE|re.VERBOSE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
@@ -73,8 +77,11 @@ follow :  whether to tail -f the input"""
             self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" %  player_re, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-#            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$(?P<BET>[.\d]+))?( to \$(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$?(?P<BET>[.\d]+))?( to \$?(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
+#            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$?(?P<BET>[.\d]+))?( to \$?(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"""^%s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
+                                                        (\s\$?(?P<BET>[.\d]+))?(\sto\s\$?(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
+                                                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
+                                                         %  player_re, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
@@ -86,7 +93,8 @@ follow :  whether to tail -f the input"""
                 ["ring", "hold", "fl"],
 
                 ["ring", "stud", "fl"],
-                #["ring", "draw", "fl"],
+
+                ["ring", "draw", "fl"],
 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -96,6 +104,9 @@ follow :  whether to tail -f the input"""
                ]
 
     def determineGameType(self, handText):
+#    inspect the handText and return the gametype dict
+#    gametype dict is:
+#    {'limitType': xxx, 'base': xxx, 'category': xxx}
         
         info = {}
         m = self.re_GameInfo.search(handText)
@@ -103,18 +114,18 @@ follow :  whether to tail -f the input"""
             return None
 
         mg = m.groupdict()
-#        print "mg =", mg
-        # translations from captured groups to our info strings
+        # translations from captured groups to fpdb info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
-        games = {              # base, category
-                  "Hold'em" : ('hold','holdem'), 
-                    'Omaha' : ('hold','omahahi'),
-              'Omaha Hi/Lo' : ('hold','omahahilo'),
-                     'Razz' : ('stud','razz'), 
-              '7 Card Stud' : ('stud','studhi'),
-        '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                   'Badugi' : ('draw','badugi')
+        games = {                          # base, category
+                              "Hold'em" : ('hold','holdem'), 
+                                'Omaha' : ('hold','omahahi'),
+                          'Omaha Hi/Lo' : ('hold','omahahilo'),
+                                 'Razz' : ('stud','razz'), 
+                          '7 Card Stud' : ('stud','studhi'),
+                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                               'Badugi' : ('draw','badugi'),
+              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 #    I don't think this is doing what we think. mg will always have all 
@@ -131,17 +142,13 @@ follow :  whether to tail -f the input"""
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
-        if 'MIXED' in mg and mg['MIXED'] != None:
-            info['mixedType'] = mixes[mg['MIXED']]
-        info['tourNo'] = mg['TOURNO']
-        if info['tourNo'] == None:
+
+        if 'TOURNO' in mg and mg['TOURNO'] == None:
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
-        info['buyin'] = mg['BUYIN']
-        info['level'] = mg['LEVEL'] 
+
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        
         return info
 
 
@@ -150,14 +157,13 @@ follow :  whether to tail -f the input"""
         m = self.re_HandInfo.search(hand.handText,re.DOTALL)
         if m:
             info.update(m.groupdict())
-            # TODO: Be less lazy and parse maxseats from the HandInfo regex
-            if m.group('TABLEATTRIBUTES'):
-                m2 = re.search("\s*(\d+)-max", m.group('TABLEATTRIBUTES'))
-                hand.maxseats = int(m2.group(1))
+#                hand.maxseats = int(m2.group(1))
+        else:
+            pass  # throw an exception here, eh?
         m = self.re_GameInfo.search(hand.handText)
         if m: info.update(m.groupdict())
-        m = self.re_Button.search(hand.handText)
-        if m: info.update(m.groupdict()) 
+#        m = self.re_Button.search(hand.handText)
+#        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
         logging.debug("readHandInfo: %s" % info)
         for key in info:
@@ -174,7 +180,21 @@ follow :  whether to tail -f the input"""
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-        
+            if key == 'MAX':
+                hand.maxseats = info[key]
+
+            if key == 'MIXED':
+                hand.mixed = info[key]
+
+            if key == 'TOURNO':
+                hand.tourNo = info[key]
+            if key == 'BUYIN':
+                hand.buyin = info[key]
+            if key == 'LEVEL':
+                hand.level = info[key]
+            if key == 'PLAY' and info['PLAY'] != None:
+                hand.currency = 'play' # overrides previously set value
+
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
@@ -314,6 +334,7 @@ follow :  whether to tail -f the input"""
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
+            acts = action.groupdict()
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
@@ -325,7 +346,7 @@ follow :  whether to tail -f the input"""
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
+                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
