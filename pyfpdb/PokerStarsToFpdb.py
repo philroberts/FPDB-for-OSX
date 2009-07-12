@@ -23,6 +23,9 @@ from HandHistoryConverter import *
 
 # PokerStars HH Format
 
+# TODO: fix finding hero in stud games
+# TODO: fix open/closed hole cards for stud games 
+
 class PokerStars(HandHistoryConverter):
 
     # Static regexes
@@ -181,7 +184,7 @@ follow :  whether to tail -f the input"""
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'MAX':
-                hand.maxseats = info[key]
+                hand.maxseats = int(info[key])
 
             if key == 'MIXED':
                 hand.mixed = info[key]
