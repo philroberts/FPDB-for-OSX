@@ -138,6 +138,29 @@ class Hand:
             str = str + "\n%s =\n" % name + pprint.pformat(struct, 4)
         return str
 
+    def addHoleCards(self, street, player, open=[], closed=[], shown=False, mucked=False, dealt=False):
+        """\
+Assigns observed holecards to a player.
+cards   list of card bigrams e.g. ['2h','Jc']
+player  (string) name of player
+shown   whether they were revealed at showdown
+mucked  whether they were mucked at showdown
+dealt   whether they were seen in a 'dealt to' line
+"""
+        logging.debug("addHoleCards %s %s" % (open + closed, player))
+        try:
+            self.checkPlayerExists(player)
+        except FpdbParseError, e:
+            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+            return
+
+        if dealt:  self.dealt.add(player)
+        if shown:  self.shown.add(player)
+        if mucked: self.mucked.add(player)
+
+        print "stuff =", street, player, open, closed
+        self.holecards[street][player] = [open, closed]
+
     def insert(self, db):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
@@ -559,35 +582,13 @@ class HoldemOmahaHand(Hand):
             pass
                 
 
-    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
-        """\
-Assigns observed holecards to a player.
-cards   list of card bigrams e.g. ['2h','Jc']
-player  (string) name of player
-shown   whether they were revealed at showdown
-mucked  whether they were mucked at showdown
-dealt   whether they were seen in a 'dealt to' line
-"""
-        logging.debug("addHoleCards %s %s" % (cards, player))
-        try:
-            self.checkPlayerExists(player)
-        except FpdbParseError, e:
-            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
-            return
-
-        cardset = set((self.card(c) for c in cards))
-        if len(cardset) == 0:
-            return
-        if dealt:
-            self.dealt.add(player)
-        if shown:
-            self.shown.add(player)
-        if mucked:
-            self.mucked.add(player)
-        if player in self.holecards['PREFLOP']:
-            self.holecards['PREFLOP'][player].update(cardset)
+    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
+        if player == self.hero: # we have hero's cards just update shown/mucked
+            if shown:  self.shown.add(player)
+            if mucked: self.mucked.add(player)
         else:
-            self.holecards['PREFLOP'][player] = cardset
+            self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+
 
     def writeHTMLHand(self, fh=sys.__stdout__):
         from nevow import tags as T
@@ -701,10 +702,10 @@ dealt   whether they were seen in a 'dealt to' line
         
         print >>fh, ("*** HOLE CARDS ***")
         for player in self.dealt:
-            print >>fh, ("Dealt to %s [%s]" %(player, " ".join(self.holecards['PREFLOP'][player])))
+            print >>fh, ("Dealt to %s [%s]" %(player, " ".join(self.holecards['PREFLOP'][player][1])))
         if self.hero == "":
             for player in self.shown.difference(self.dealt):
-                print >>fh, ("Dealt to %s [%s]" %(player, " ".join(self.holecards['PREFLOP'][player])))
+                print >>fh, ("Dealt to %s [%s]" %(player, " ".join(self.holecards['PREFLOP'][player][1])))
 
         if self.actions['PREFLOP']:
             for act in self.actions['PREFLOP']:
@@ -743,7 +744,7 @@ dealt   whether they were seen in a 'dealt to' line
                 elif self.gametype['category'] in ('holdem'):
                     numOfHoleCardsNeeded = 2
                 if len(self.holecards['PREFLOP'][name]) == numOfHoleCardsNeeded:
-                    print >>fh, ("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards['PREFLOP'][name])))
+                    print >>fh, ("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards['PREFLOP'][name][1])))
                 
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
@@ -770,7 +771,7 @@ dealt   whether they were seen in a 'dealt to' line
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
-                print >>fh, ("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards['PREFLOP'][name]), self.collectees[name]))
+                print >>fh, ("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards['PREFLOP'][name][1]), self.collectees[name]))
             elif name in self.collectees:
                 print >>fh, ("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
             #~ elif name in self.shown:
@@ -779,9 +780,9 @@ dealt   whether they were seen in a 'dealt to' line
                 print >>fh, ("Seat %d: %s folded" % (seatnum, name))
             else:
                 if name in self.shown:
-                    print >>fh, ("Seat %d: %s showed [%s] and lost with..." % (seatnum, name, " ".join(self.holecards['PREFLOP'][name])))
+                    print >>fh, ("Seat %d: %s showed [%s] and lost with..." % (seatnum, name, " ".join(self.holecards['PREFLOP'][name][1])))
                 elif name in self.mucked:
-                    print >>fh, ("Seat %d: %s mucked [%s] " % (seatnum, name, " ".join(self.holecards['PREFLOP'][name])))
+                    print >>fh, ("Seat %d: %s mucked [%s] " % (seatnum, name, " ".join(self.holecards['PREFLOP'][name][1])))
                 else:
                     print >>fh, ("Seat %d: %s mucked" % (seatnum, name))
 

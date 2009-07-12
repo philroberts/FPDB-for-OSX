@@ -80,6 +80,7 @@ follow :  whether to tail -f the input"""
             self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" %  player_re, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
+#            self.re_DealToCards      = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
 #            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$?(?P<BET>[.\d]+))?( to \$?(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
             self.re_Action           = re.compile(r"""^%s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                                                         (\s\$?(?P<BET>[.\d]+))?(\sto\s\$?(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
@@ -265,18 +266,41 @@ follow :  whether to tail -f the input"""
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
+#    def readHeroCards(self, hand):
+#        m = self.re_HeroCards.search(hand.handText)
+#        if(m == None):
+#            #Not involved in hand
+#            hand.involved = False
+#        else:
+#            hand.hero = m.group('PNAME')
+#            # "2c, qh" -> set(["2c","qc"])
+#            # Also works with Omaha hands.
+#            cards = m.group('NEWCARDS')
+#            cards = set(cards.split(' '))
+#            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
+
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
-            hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
-            # Also works with Omaha hands.
-            cards = m.group('NEWCARDS')
-            cards = set(cards.split(' '))
-            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
+#    streets PREFLOP, PREDRAW, and THIRD are special cases
+        for street in ('PREFLOP', 'PREDRAW'):
+            if street in hand.streets.keys():
+                print "text =", hand.streets[street]
+                m = self.re_HeroCards.search(hand.streets[street])
+                if m == None:
+                    hand.involved = False
+                else:
+                    hand.hero = m.group('PNAME')
+                    newcards = m.group('NEWCARDS').split(' ')
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
+
+#    def readHeroCards(self, hand):
+#        for street, text in hand.streets.iteritems():
+#            m = self.re_HeroCards.search(hand.handText)
+#            if(m == None):
+#                #Not involved in hand
+#                hand.involved = False
+#            else:
+                
+
 
     def readDrawCards(self, hand, street):
         logging.debug("readDrawCards")
@@ -357,9 +381,9 @@ follow :  whether to tail -f the input"""
 
 
     def readShowdownActions(self, hand):
+# TODO: pick up mucks also
         for shows in self.re_ShowdownAction.finditer(hand.handText):            
-            cards = shows.group('CARDS')
-            cards = set(cards.split(' '))
+            cards = shows.group('CARDS').split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
