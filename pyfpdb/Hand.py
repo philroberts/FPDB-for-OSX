@@ -15,6 +15,8 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+# TODO: get writehand() encoding correct
+
 import re
 import sys
 import traceback
@@ -147,7 +149,7 @@ shown   whether they were revealed at showdown
 mucked  whether they were mucked at showdown
 dealt   whether they were seen in a 'dealt to' line
 """
-        logging.debug("addHoleCards %s %s" % (open + closed, player))
+#        logging.debug("addHoleCards %s %s" % (open + closed, player))
         try:
             self.checkPlayerExists(player)
         except FpdbParseError, e:
@@ -158,7 +160,6 @@ dealt   whether they were seen in a 'dealt to' line
         if shown:  self.shown.add(player)
         if mucked: self.mucked.add(player)
 
-        print "stuff =", street, player, open, closed
         self.holecards[street][player] = [open, closed]
 
     def insert(self, db):
@@ -808,12 +809,13 @@ class DrawHand(Hand):
             hhc.markStreets(self)
             hhc.readBlinds(self)
             hhc.readButton(self)
+            hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
             # Read actions in street order
             for street in self.streetList:
                 if self.streets[street]:
                     # hhc.readCommunityCards(self, street)
-                    hhc.readDrawCards(self, street)
+#                    hhc.readDrawCards(self, street)
                     hhc.readAction(self, street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
@@ -849,20 +851,28 @@ class DrawHand(Hand):
         #print "DEBUG: self.posted: %s" %(self.posted)
 
 
+    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
+        if player == self.hero: # we have hero's cards just update shown/mucked
+            if shown:  self.shown.add(player)
+            if mucked: self.mucked.add(player)
+        else:
+# TODO: Probably better to find the last street with action and add the hole cards to that street
+            self.addHoleCards('DRAWTHREE', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
 
-    def addDrawHoleCards(self, newcards, oldcards, player, street, shown=False):
-        """\
-Assigns observed holecards to a player.
-cards   list of card bigrams e.g. ['2h','Jc']
-player  (string) name of player
-"""
-        try:
-            self.checkPlayerExists(player)
-#            if shown and len(cardset) > 0:
-#                self.shown.add(player)
-            self.holecards[street][player] = (newcards,oldcards)
-        except FpdbParseError, e:
-            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+
+#    def addDrawHoleCards(self, newcards, oldcards, player, street, shown=False):
+#        """\
+#Assigns observed holecards to a player.
+#cards   list of card bigrams e.g. ['2h','Jc']
+#player  (string) name of player
+#"""
+#        try:
+#            self.checkPlayerExists(player)
+##            if shown and len(cardset) > 0:
+##                self.shown.add(player)
+#            self.holecards[street][player] = (newcards,oldcards)
+#        except FpdbParseError, e:
+#            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
 
     def discardDrawHoleCards(self, cards, player, street):
@@ -872,7 +882,6 @@ player  (string) name of player
 
     def addDiscard(self, street, player, num, cards):
         self.checkPlayerExists(player)
-        print "street, player, num, cards =", street, player, num, cards
         if cards:
             act = (player, 'discards', num, cards)
             self.discardDrawHoleCards(cards, player, street)
@@ -896,32 +905,32 @@ player  (string) name of player
 #            self.addHoleCards(holeandboard.difference(board),player,shown=True)
 
 
-    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
-        """\
-Assigns observed holecards to a player.
-cards   list of card bigrams e.g. ['2h','Jc']
-player  (string) name of player
-shown   whether they were revealed at showdown
-mucked  whether they were mucked at showdown
-dealt   whether they were seen in a 'dealt to' line
-"""
-#    I think this only gets called for shown cards.
-        logging.debug("addHoleCards %s %s" % (cards, player))
-        try:
-            self.checkPlayerExists(player)
-        except FpdbParseError, e:
-            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
-            return
-
-        if dealt:
-            self.dealt.add(player)
-        if shown:
-            self.shown.add(player)
-        if mucked:
-            self.mucked.add(player)
-        if player != self.hero: #skip hero, we know his cards
-            print "player, cards =", player, cards
-            self.holecards[self.holeStreets[-1]][player] = (cards, set([]))
+#    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
+#        """\
+#Assigns observed holecards to a player.
+#cards   list of card bigrams e.g. ['2h','Jc']
+#player  (string) name of player
+#shown   whether they were revealed at showdown
+#mucked  whether they were mucked at showdown
+#dealt   whether they were seen in a 'dealt to' line
+#"""
+##    I think this only gets called for shown cards.
+#        logging.debug("addHoleCards %s %s" % (cards, player))
+#        try:
+#            self.checkPlayerExists(player)
+#        except FpdbParseError, e:
+#            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+#            return
+#
+#        if dealt:
+#            self.dealt.add(player)
+#        if shown:
+#            self.shown.add(player)
+#        if mucked:
+#            self.mucked.add(player)
+#        if player != self.hero: #skip hero, we know his cards
+#            print "player, cards =", player, cards
+#            self.holecards[self.holeStreets[-1]][player] = (cards, set([]))
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
@@ -1023,13 +1032,14 @@ class StudHand(Hand):
             hhc.markStreets(self)
             hhc.readAntes(self)
             hhc.readBringIn(self)
+            hhc.readHeroCards(self)
             #hhc.readShowdownActions(self) # not done yet
             # Read actions in street order
             for street in self.streetList:
                 if self.streets[street]:
                     logging.debug(street)
                     logging.debug(self.streets[street])
-                    hhc.readStudPlayerCards(self, street)
+#                    hhc.readStudPlayerCards(self, street)
                     hhc.readAction(self, street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self) # not done yet
@@ -1037,6 +1047,19 @@ class StudHand(Hand):
             hhc.getRake(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
+
+    def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
+        if player == self.hero: # we have hero's cards just update shown/mucked
+            if shown:  self.shown.add(player)
+            if mucked: self.mucked.add(player)
+        else:
+#            self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+            self.addHoleCards('THIRD',   player, open=[cards[2]], closed=cards[0:2], shown=shown, mucked=mucked)
+            self.addHoleCards('FOURTH',  player, open=[cards[3]], closed=[],         shown=shown, mucked=mucked)
+            self.addHoleCards('FIFTH',   player, open=[cards[4]], closed=[],         shown=shown, mucked=mucked)
+            self.addHoleCards('SIXTH',   player, open=[cards[5]], closed=[],         shown=shown, mucked=mucked)
+            self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
+
 
     def addPlayerCards(self, player,  street,  open=[],  closed=[]):
         """\
@@ -1055,42 +1078,41 @@ closed    likewise, but known only to player
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
-    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
-        """\
-Assigns observed holecards to a player.
-cards   list of card bigrams e.g. ['2h','Jc']
-player  (string) name of player
-shown   whether they were revealed at showdown
-mucked  whether they were mucked at showdown
-dealt   whether they were seen in a 'dealt to' line
-"""
+#    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
+#        """\
+#Assigns observed holecards to a player.
+#cards   list of card bigrams e.g. ['2h','Jc']
+#player  (string) name of player
+#shown   whether they were revealed at showdown
+#mucked  whether they were mucked at showdown
+#dealt   whether they were seen in a 'dealt to' line
+#"""
+##
+##    For stud games we just need to do the routine setting of shown/mucked/etc
+##    and then update the cards 'THIRD' and 'SEVENTH'
+#        logging.debug("addHoleCards %s %s" % (cards, player))
+#        try:
+#            self.checkPlayerExists(player)
+#        except FpdbParseError, e:
+#            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
+#            return
 #
-#    For stud games we just need to do the routine setting of shown/mucked/etc
-#    and then update the cards 'THIRD' and 'SEVENTH'
-        logging.debug("addHoleCards %s %s" % (cards, player))
-        try:
-            self.checkPlayerExists(player)
-        except FpdbParseError, e:
-            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
-            return
-
-        if dealt:
-            self.dealt.add(player)
-        if shown:
-            self.shown.add(player)
-        if mucked:
-            self.mucked.add(player)
-        if player == self.hero:
-            if len(cards) > 2:
-                self.holecards['THIRD'][player] = ([cards[0:3]], [])
-            if len(cards) > 6:
-                self.holecards['SEVENTH'][player] = ([cards[6]], [])
-        else:
-            if len(cards) > 2:
-                self.holecards['THIRD'][player] = ([cards[0]], cards[1:3])
-            if len(cards) > 6:
-                self.holecards['SEVENTH'][player] = ([], [cards[6]])
-
+#        if dealt:
+#            self.dealt.add(player)
+#        if shown:
+#            self.shown.add(player)
+#        if mucked:
+#            self.mucked.add(player)
+#        if player == self.hero:
+#            if len(cards) > 2:
+#                self.holecards['THIRD'][player] = ([cards[0:3]], [])
+#            if len(cards) > 6:
+#                self.holecards['SEVENTH'][player] = ([cards[6]], [])
+#        else:
+#            if len(cards) > 2:
+#                self.holecards['THIRD'][player] = ([cards[0]], cards[1:3])
+#            if len(cards) > 6:
+#                self.holecards['SEVENTH'][player] = ([], [cards[6]])
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
         # assert street=='THIRD'
