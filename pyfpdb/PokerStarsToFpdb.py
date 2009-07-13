@@ -18,6 +18,7 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+# TODO: straighten out discards for draw games
 import sys
 from HandHistoryConverter import *
 
@@ -25,16 +26,35 @@ from HandHistoryConverter import *
 
 class PokerStars(HandHistoryConverter):
 
+############################################################
+#    Class Variables
+
     # Static regexes
-    re_GameInfo     = re.compile("PokerStars Game #(?P<HID>[0-9]+):\s+(?P<MIXED>HORSE|8\-Game|HOSE)? \(?(?P<GAME>Hold\'em|Razz|7 Card Stud|7 Card Stud Hi/Lo|Omaha|Omaha Hi/Lo|Badugi) (?P<LIMIT>No Limit|Limit|Pot Limit),? \(?(?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\) - (?P<DATETIME>.*$)", re.MULTILINE)
+    re_GameInfo     = re.compile("""PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
+                                  (Tournament\s\#(?P<TOURNO>\d+),\s(?P<BUYIN>[\$\+\d\.]+)\s)?
+                                  (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
+                                  (?P<GAME>Hold\'em|Razz|7\sCard Stud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
+                                  (?P<LIMIT>No\sLimit|Limit|Pot\sLimit),?\s
+                                  (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?\(?
+                                  (?P<CURRENCY>\$|)?
+                                  (?P<SB>[.0-9]+)/\$?
+                                  (?P<BB>[.0-9]+)\)\s-\s
+                                  (?P<DATETIME>.*$)""",
+                                  re.MULTILINE|re.VERBOSE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
-    re_HandInfo     = re.compile("^Table \'(?P<TABLE>[- a-zA-Z]+)\'(?P<TABLEATTRIBUTES>.+?$)?", re.MULTILINE)
+    re_HandInfo     = re.compile("""^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
+                                    ((?P<MAX>\d+)-max\s)?
+                                    (?P<PLAY>\(Play\sMoney\)\s)?
+                                    (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
+                                    re.MULTILINE|re.VERBOSE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
-    
+
+    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
+
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
@@ -53,6 +73,9 @@ follow :  whether to tail -f the input"""
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
+# TODO: should probably rename re_HeroCards and corresponding method,
+#    since they are used to find all cards on lines starting with "Dealt to:"
+#    They still identify the hero.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: " + player_re)
@@ -62,9 +85,12 @@ follow :  whether to tail -f the input"""
             self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" %  player_re, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s:(?P<ATYPE> bets| checks| raises| calls| folds| discards| stands pat)( \$(?P<BET>[.\d]+))?( to \$(?P<BETTO>[.\d]+))?( (?P<NODISCARDED>\d) cards?( \[(?P<DISCARDED>.+?)\])?)?" %  player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"""^%s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
+                                                        (\s\$?(?P<BET>[.\d]+))?(\sto\s\$?(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
+                                                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
+                                                         %  player_re, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$?(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
@@ -72,33 +98,46 @@ follow :  whether to tail -f the input"""
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+
                 ["ring", "stud", "fl"],
-                #["ring", "draw", "fl"],
-                ["ring", "omaha", "pl"]
+
+                ["ring", "draw", "fl"],
+
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
+
+                ["tour", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
-        info = {'type':'ring'}
+#    inspect the handText and return the gametype dict
+#    gametype dict is:
+#    {'limitType': xxx, 'base': xxx, 'category': xxx}
         
+        info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
             return None
 
         mg = m.groupdict()
-        
-        # translations from captured groups to our info strings
+        # translations from captured groups to fpdb info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
-        mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
-        games = {              # base, category
-                  "Hold'em" : ('hold','holdem'), 
-                    'Omaha' : ('hold','omahahi'),
-              'Omaha Hi/Lo' : ('hold','omahahilo'),
-                     'Razz' : ('stud','razz'), 
-              '7 Card Stud' : ('stud','studhi'),
-        '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                   'Badugi' : ('draw','badugi')
+        games = {                          # base, category
+                              "Hold'em" : ('hold','holdem'), 
+                                'Omaha' : ('hold','omahahi'),
+                          'Omaha Hi/Lo' : ('hold','omahahilo'),
+                                 'Razz' : ('stud','razz'), 
+                          '7 Card Stud' : ('stud','studhi'),
+                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                               'Badugi' : ('draw','badugi'),
+              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
+#    I don't think this is doing what we think. mg will always have all 
+#    the expected keys, but the ones that didn't match in the regex will
+#    have a value of None. It is OK if it throws an exception when it 
+#    runs across an unknown game or limit or whatever.
         if 'LIMIT' in mg:
             info['limitType'] = limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -109,10 +148,13 @@ follow :  whether to tail -f the input"""
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
-        if 'MIXED' in mg and mg['MIXED'] != None:
-            info['mixedType'] = mixes[mg['MIXED']]
+
+        if 'TOURNO' in mg and mg['TOURNO'] == None:
+            info['type'] = 'ring'
+        else:
+            info['type'] = 'tour'
+
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        
         return info
 
 
@@ -121,14 +163,13 @@ follow :  whether to tail -f the input"""
         m = self.re_HandInfo.search(hand.handText,re.DOTALL)
         if m:
             info.update(m.groupdict())
-            # TODO: Be less lazy and parse maxseats from the HandInfo regex
-            if m.group('TABLEATTRIBUTES'):
-                m2 = re.search("\s*(\d+)-max", m.group('TABLEATTRIBUTES'))
-                hand.maxseats = int(m2.group(1))
+#                hand.maxseats = int(m2.group(1))
+        else:
+            pass  # throw an exception here, eh?
         m = self.re_GameInfo.search(hand.handText)
         if m: info.update(m.groupdict())
-        m = self.re_Button.search(hand.handText)
-        if m: info.update(m.groupdict()) 
+#        m = self.re_Button.search(hand.handText)
+#        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
         logging.debug("readHandInfo: %s" % info)
         for key in info:
@@ -145,7 +186,23 @@ follow :  whether to tail -f the input"""
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-        
+            if key == 'MAX':
+                hand.maxseats = int(info[key])
+
+            if key == 'MIXED':
+                if info[key] == None: hand.mixed = None
+                else:   hand.mixed = self.mixes[info[key]]
+
+            if key == 'TOURNO':
+                hand.tourNo = info[key]
+            if key == 'BUYIN':
+                hand.buyin = info[key]
+            if key == 'LEVEL':
+                hand.level = info[key]
+            if key == 'PLAY' and info['PLAY'] != None:
+#                hand.currency = 'play' # overrides previously set value
+                hand.gametype['currency'] = 'play'
+
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
@@ -213,78 +270,115 @@ follow :  whether to tail -f the input"""
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
+#    def readHeroCards(self, hand):
+#        m = self.re_HeroCards.search(hand.handText)
+#        if(m == None):
+#            #Not involved in hand
+#            hand.involved = False
+#        else:
+#            hand.hero = m.group('PNAME')
+#            # "2c, qh" -> set(["2c","qc"])
+#            # Also works with Omaha hands.
+#            cards = m.group('NEWCARDS')
+#            cards = set(cards.split(' '))
+#            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
+
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
-            hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
-            # Also works with Omaha hands.
-            cards = m.group('NEWCARDS')
-            cards = set(cards.split(' '))
-            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
+#    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
+#    we need to grab hero's cards
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                for found in m:
+#                    if m == None:
+#                        hand.involved = False
+#                    else:
+                    hand.hero = found.group('PNAME')
+                    newcards = found.group('NEWCARDS').split(' ')
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
-    def readDrawCards(self, hand, street):
-        logging.debug("readDrawCards")
-        m = self.re_HeroCards.finditer(hand.streets[street])
-        if m == None:
-            hand.involved = False
-        else:
-            for player in m:
-                hand.hero = player.group('PNAME') # Only really need to do this once
-                newcards = player.group('NEWCARDS')
-                oldcards = player.group('OLDCARDS')
-                if newcards == None:
-                    newcards = set()
+        for street, text in hand.streets.iteritems():
+            if street in ('PREFLOP', 'DEAL'): continue  # already done these
+            m = self.re_HeroCards.finditer(hand.streets[street])
+            for found in m:
+                player = found.group('PNAME')
+                if found.group('NEWCARDS') == None:
+                    newcards = []
                 else:
-                    newcards = set(newcards.split(' '))
-                if oldcards == None:
-                    oldcards = set()
+                    newcards = found.group('NEWCARDS').split(' ')
+                if found.group('OLDCARDS') == None:
+                    oldcards = []
                 else:
-                    oldcards = set(oldcards.split(' '))
-                hand.addDrawHoleCards(newcards, oldcards, player.group('PNAME'), street)
+                    oldcards = found.group('OLDCARDS').split(' ')
+
+                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                    hand.hero = player
+                    hand.dealt.add(player) # need this for stud??
+                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                else:
+                    hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
+
+            
+#    def readDrawCards(self, hand, street):
+#        logging.debug("readDrawCards")
+#        m = self.re_HeroCards.finditer(hand.streets[street])
+#        if m == None:
+#            hand.involved = False
+#        else:
+#            for player in m:
+#                hand.hero = player.group('PNAME') # Only really need to do this once
+#                newcards = player.group('NEWCARDS')
+#                oldcards = player.group('OLDCARDS')
+#                if newcards == None:
+#                    newcards = set()
+#                else:
+#                    newcards = set(newcards.split(' '))
+#                if oldcards == None:
+#                    oldcards = set()
+#                else:
+#                    oldcards = set(oldcards.split(' '))
+#                hand.addDrawHoleCards(newcards, oldcards, player.group('PNAME'), street)
 
 
-    def readStudPlayerCards(self, hand, street):
-        # See comments of reference implementation in FullTiltToFpdb.py
-        logging.debug("readStudPlayerCards")
-        m = self.re_HeroCards.finditer(hand.streets[street])
-        for player in m:
-            #~ logging.debug(player.groupdict())
-            (pname,  oldcards,  newcards) = (player.group('PNAME'), player.group('OLDCARDS'), player.group('NEWCARDS'))
-            if oldcards:
-                oldcards = [c.strip() for c in oldcards.split(' ')]
-            if newcards:
-                newcards = [c.strip() for c in newcards.split(' ')]
-            if street=='ANTES':
-                return
-            elif street=='THIRD':
-                # we'll have observed hero holecards in CARDS and thirdstreet open cards in 'NEWCARDS'
-                # hero: [xx][o]
-                # others: [o]
-                hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = oldcards,  open = newcards)
-            elif street in ('FOURTH',  'FIFTH',  'SIXTH'):
-                # 4th:
-                # hero: [xxo] [o]
-                # others: [o] [o]
-                # 5th:
-                # hero: [xxoo] [o]
-                # others: [oo] [o]
-                # 6th:
-                # hero: [xxooo] [o]
-                # others:  [ooo] [o]
-                hand.addPlayerCards(player = player.group('PNAME'), street = street, open = newcards)
-                # we may additionally want to check the earlier streets tally with what we have but lets trust it for now.
-            elif street=='SEVENTH' and newcards:
-                # hero: [xxoooo] [x]
-                # others: not reported.
-                hand.addPlayerCards(player = player.group('PNAME'), street = street, closed = newcards)
+#    def readStudPlayerCards(self, hand, street):
+#        # See comments of reference implementation in FullTiltToFpdb.py
+#        logging.debug("readStudPlayerCards")
+#        m = self.re_HeroCards.finditer(hand.streets[street])
+#        for player in m:
+#            #~ logging.debug(player.groupdict())
+#            (pname,  oldcards,  newcards) = (player.group('PNAME'), player.group('OLDCARDS'), player.group('NEWCARDS'))
+#            if oldcards:
+#                oldcards = [c.strip() for c in oldcards.split(' ')]
+#            if newcards:
+#                newcards = [c.strip() for c in newcards.split(' ')]
+#            if street=='ANTES':
+#                return
+#            elif street=='THIRD':
+#                # we'll have observed hero holecards in CARDS and thirdstreet open cards in 'NEWCARDS'
+#                # hero: [xx][o]
+#                # others: [o]
+#                hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = oldcards,  open = newcards)
+#            elif street in ('FOURTH',  'FIFTH',  'SIXTH'):
+#                # 4th:
+#                # hero: [xxo] [o]
+#                # others: [o] [o]
+#                # 5th:
+#                # hero: [xxoo] [o]
+#                # others: [oo] [o]
+#                # 6th:
+#                # hero: [xxooo] [o]
+#                # others:  [ooo] [o]
+#                hand.addPlayerCards(player = player.group('PNAME'), street = street, open = newcards)
+#                # we may additionally want to check the earlier streets tally with what we have but lets trust it for now.
+#            elif street=='SEVENTH' and newcards:
+#                # hero: [xxoooo] [x]
+#                # others: not reported.
+#                hand.addPlayerCards(player = player.group('PNAME'), street = street, closed = newcards)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
+            acts = action.groupdict()
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
@@ -296,7 +390,7 @@ follow :  whether to tail -f the input"""
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             elif action.group('ATYPE') == ' discards':
-                hand.addDiscard(street, action.group('PNAME'), action.group('NODISCARDED'), action.group('DISCARDED'))
+                hand.addDiscard(street, action.group('PNAME'), action.group('BET'), action.group('DISCARDED'))
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
@@ -304,9 +398,9 @@ follow :  whether to tail -f the input"""
 
 
     def readShowdownActions(self, hand):
+# TODO: pick up mucks also
         for shows in self.re_ShowdownAction.finditer(hand.handText):            
-            cards = shows.group('CARDS')
-            cards = set(cards.split(' '))
+            cards = shows.group('CARDS').split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
