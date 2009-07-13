@@ -18,7 +18,6 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
-# TODO: play money currency showing up as T$
 # TODO: straighten out discards for draw games
 import sys
 from HandHistoryConverter import *
@@ -53,7 +52,9 @@ class PokerStars(HandHistoryConverter):
     re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
-    
+
+    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
+
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
@@ -122,7 +123,6 @@ follow :  whether to tail -f the input"""
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
-        mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
         games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
@@ -190,7 +190,8 @@ follow :  whether to tail -f the input"""
                 hand.maxseats = int(info[key])
 
             if key == 'MIXED':
-                hand.mixed = info[key]
+                if info[key] == None: hand.mixed = None
+                else:   hand.mixed = self.mixes[info[key]]
 
             if key == 'TOURNO':
                 hand.tourNo = info[key]
@@ -199,7 +200,8 @@ follow :  whether to tail -f the input"""
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != None:
-                hand.currency = 'play' # overrides previously set value
+#                hand.currency = 'play' # overrides previously set value
+                hand.gametype['currency'] = 'play'
 
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
