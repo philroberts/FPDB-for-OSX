@@ -19,7 +19,6 @@ import os
 import sys
 import Options
 import string
-
 cl_options = string.join(sys.argv[1:])
 (options, sys.argv) = Options.fpdb_options()
 
@@ -27,6 +26,8 @@ if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
     errorFile = open('fpdb-error-log.txt', 'w', 0)
     sys.stderr = errorFile
+
+import logging
 
 import pygtk
 pygtk.require('2.0')
@@ -481,6 +482,11 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     #end def tabGraphViewer
 
     def __init__(self):
+        LOG_FILENAME = './logging.out'
+        LOG_FORMAT = "%(asctime)-15s %(levelname)-8s %(message)s"
+        logging.basicConfig(filename=LOG_FILENAME,level=10,format=LOG_FORMAT)
+        logging.info("Fpdb started")
+        
         self.threads=[]
         self.db=None
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
