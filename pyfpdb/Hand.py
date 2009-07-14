@@ -545,22 +545,25 @@ Map the tuple self.gametype onto the pokerstars string describing it
             return ("%s: stands pat" %(act[0]))
 
     def getStakesAsString(self):
-        retstring = "%s%s/%s%s" % (self.SYMBOL[self.gametype['currency']], self.sb, self.SYMBOL[self.gametype['currency']], self.bb)
-        return retstring
+        """Return a string of the stakes of the current hand."""
+        return "%s%s/%s%s" % (self.sym, self.sb, self.sym, self.bb)
 
     def writeGameLine(self):
-#        print >>fh, ("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
-        game_string = "PokerStars Game #%s: " % self.handid
-        if self.tourNo != None:
-            game_string = game_string + "Tournament #%s, %s %s - Level %s (%s) - " % (self.tourNo, 
+        """Return the first HH line for the current hand."""
+        gs = "PokerStars Game #%s: " % self.handid
+
+        if self.tourNo != None and self.mixed != None: # mixed tournament
+            gs = gs + "Tournament #%s, %s %s (%s) - Level %s (%s) - " % (self.tourNo, self.buyin, self.MS[self.mixed], self.getGameTypeAsString(), self.level, self.getStakesAsString())
+        elif self.tourNo != None: # all other tournaments
+            gs = gs + "Tournament #%s, %s %s - Level %s (%s) - " % (self.tourNo, 
                             self.buyin, self.getGameTypeAsString(), self.level, self.getStakesAsString())
-        elif self.mixed != None:
-            game_string = game_string + " %s (%s, %s) - " % (self.MS[self.mixed], 
+        elif self.mixed != None: # all other mixed games
+            gs = gs + " %s (%s, %s) - " % (self.MS[self.mixed], 
                             self.getGameTypeAsString(), self.getStakesAsString())
-        else:
-            game_string = game_string + " %s (%s) - " % (self.getGameTypeAsString(), self.getStakesAsString())
-        game_string = game_string + datetime.datetime.strftime(self.starttime,'%Y/%m/%d %H:%M:%S ET')
-        return game_string
+        else: # non-mixed cash games
+            gs = gs + " %s (%s) - " % (self.getGameTypeAsString(), self.getStakesAsString())
+
+        return gs + datetime.datetime.strftime(self.starttime,'%Y/%m/%d %H:%M:%S ET')
 
 
     def writeTableLine(self):
@@ -723,12 +726,10 @@ class HoldemOmahaHand(Hand):
         
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-#        print >>fh, ("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
+        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         print >>fh, self.writeGameLine() 
         print >>fh, self.writeTableLine() 
 
-#        print >>fh, ("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
-        
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
         logging.debug(self.actions['PREFLOP'])
         for player in [x for x in self.players if x[1] in players_who_act_preflop]:
@@ -972,9 +973,8 @@ class DrawHand(Hand):
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-#        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d %H:%M:%S ET', self.starttime)))
+        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         print >>fh, self.writeGameLine() 
-#        print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         print >>fh, self.writeTableLine()
 
         players_who_act_ondeal = set(([x[0] for x in self.actions['DEAL']]+[x[0] for x in self.actions['BLINDSANTES']]))
@@ -1188,16 +1188,14 @@ Add a complete on [street] by [player] to [amountTo]
     
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-#        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, time.strftime('%Y/%m/%d - %H:%M:%S (ET)', self.starttime)))
 
 # TODO:
 #    Hole cards are not currently correctly written. Currently the down cards for non-heros
 #    are shown in the "dealt to" lines. They should be hidden in those lines. I tried to fix
 #    but mind got boggled, will try again.
-#        print >>fh, _("%s Game #%s:  %s ($%s/$%s) - %s" %("PokerStars", self.handid, self.getGameTypeAsString(), self.sb, self.bb, datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET')))
+        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         print >>fh, self.writeGameLine() 
         print >>fh, self.writeTableLine() 
-#        print >>fh, _("Table '%s' %d-max Seat #%s is the button" %(self.tablename, self.maxseats, self.buttonpos))
         
         players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
 
