@@ -33,8 +33,8 @@ class PokerStars(HandHistoryConverter):
     re_GameInfo     = re.compile("""PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
                                   (Tournament\s\#(?P<TOURNO>\d+),\s(?P<BUYIN>[\$\+\d\.]+)\s)?
                                   (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-                                  (?P<GAME>Hold\'em|Razz|7\sCard Stud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
-                                  (?P<LIMIT>No\sLimit|Limit|Pot\sLimit),?\s
+                                  (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
+                                  (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
                                   (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?\(?
                                   (?P<CURRENCY>\$|)?
                                   (?P<SB>[.0-9]+)/\$?
