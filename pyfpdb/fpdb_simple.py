@@ -1136,16 +1136,6 @@ def storeActions(cursor, handsPlayersIds, actionTypes, allIns, actionAmounts, ac
     cursor.executemany("INSERT INTO HandsActions (handsPlayerId, street, actionNo, action, allIn, amount) VALUES (%s, %s, %s, %s, %s, %s)", inserts)
 #end def storeActions
  
-def store_board_cards(cursor, hands_id, board_values, board_suits):
-#stores into table board_cards
-    cursor.execute ("""INSERT INTO BoardCards (handId, card1Value, card1Suit,
-card2Value, card2Suit, card3Value, card3Suit, card4Value, card4Suit,
-card5Value, card5Suit) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
-    (hands_id, board_values[0], board_suits[0], board_values[1], board_suits[1],
-    board_values[2], board_suits[2], board_values[3], board_suits[3],
-    board_values[4], board_suits[4]))
-#end def store_board_cards
- 
 def storeHands(backend, conn, cursor, site_hand_no, gametype_id
               ,hand_start_time, names, tableName, maxSeats, hudCache,
               board_values, board_suits):

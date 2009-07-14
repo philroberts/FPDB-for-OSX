@@ -32,6 +32,7 @@ import re
 
 import fpdb_simple
 import fpdb_db
+import Database
 import fpdb_parse_logic
 import Configuration
 
@@ -58,7 +59,8 @@ class Importer:
         self.settings   = settings
         self.caller     = caller
         self.config     = config
-        self.fdb        = None
+        self.database   = None       # database will be the main db interface eventually
+        self.fdb        = None       # fdb may disappear or just hold the simple db connection
         self.cursor     = None
         self.filelist   = {}
         self.dirlist    = {}
@@ -76,6 +78,7 @@ class Importer:
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
         
+        self.database = Database.Database(self.config)  # includes .connection and .sql variables
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
         self.fdb.db.rollback()
@@ -393,8 +396,9 @@ class Importer:
                     self.hand=hand
 
                     try:
-                        handsId = fpdb_parse_logic.mainParser(self.settings, self.fdb
-                                                           , self.siteIds[site], category, hand, self.config)
+                        handsId = fpdb_parse_logic.mainParser( self.settings, self.fdb
+                                                             , self.siteIds[site], category, hand
+                                                             , self.config, self.database )
                         self.fdb.db.commit()
 
                         stored += 1
