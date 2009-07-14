@@ -205,7 +205,7 @@ class fpdb_db:
                     print msg
                     raise fpdb_simple.FpdbError(msg)
         elif backend==fpdb_db.SQLITE:
-            logging.info("Connecting to SQLite:(%s)")
+            logging.info("Connecting to SQLite:%(database)s" % {'database':database})
             import sqlite3
             self.db = sqlite3.connect(database,detect_types=sqlite3.PARSE_DECLTYPES)
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
