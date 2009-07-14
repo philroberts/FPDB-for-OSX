@@ -31,8 +31,8 @@ from xml.dom.minidom import Node
 import time
 import datetime
 
-#import gettext
-#gettext.install('fpdb')
+import gettext
+gettext.install('fpdb')
 
 class HandHistoryConverter():
 

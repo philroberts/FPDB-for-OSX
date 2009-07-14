@@ -298,7 +298,7 @@ follow :  whether to tail -f the input"""
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
         for street, text in hand.streets.iteritems():
-            if street in ('PREFLOP', 'DEAL'): continue  # already done these
+            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
             m = self.re_HeroCards.finditer(hand.streets[street])
             for found in m:
                 player = found.group('PNAME')
