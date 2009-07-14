@@ -28,91 +28,51 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
-# from pokereval import PokerEval
 import time
 import datetime
-import gettext
 
-#from pokerengine.pokercards import *
-# provides letter2name{}, letter2names{}, visible_card(), not_visible_card(), is_visible(), card_value(), class PokerCards
-# but it's probably not installed so here are the ones we may want:
-letter2name = {
-    'A': 'Ace',
-    'K': 'King',
-    'Q': 'Queen',
-    'J': 'Jack',
-    'T': 'Ten',
-    '9': 'Nine',
-    '8': 'Eight',
-    '7': 'Seven',
-    '6': 'Six',
-    '5': 'Five',
-    '4': 'Four',
-    '3': 'Trey',
-    '2': 'Deuce'
-    }
-
-letter2names = {
-    'A': 'Aces',
-    'K': 'Kings',
-    'Q': 'Queens',
-    'J': 'Jacks',
-    'T': 'Tens',
-    '9': 'Nines',
-    '8': 'Eights',
-    '7': 'Sevens',
-    '6': 'Sixes',
-    '5': 'Fives',
-    '4': 'Fours',
-    '3': 'Treys',
-    '2': 'Deuces'
-    }
-
-import gettext
-gettext.install('myapplication')
+#import gettext
+#gettext.install('fpdb')
 
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file (in tail mode)
     def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
-        logging.info("HandHistory init called")
+        logging.info("HandHistory init")
         
         # default filetype and codepage. Subclasses should set these properly.
         self.filetype  = "text"
         self.codepage  = "utf8"
-        
+
         self.in_path = in_path
         self.out_path = out_path
-        if self.out_path == '-':
-            # write to stdout
+        
+        if in_path == '-':
+            self.in_fh = sys.stdin
+
+        if out_path == '-':
             self.out_fh = sys.stdout
         else:
-            # TODO: out_path should be sanity checked before opening. Perhaps in fpdb_import?
-            # I'm not sure what we're looking for, although we don't want out_path==in_path!='-'
-            self.out_fh = open(self.out_path, 'w') # doomswitch is now on :|
+            # TODO: out_path should be sanity checked.
+            self.out_fh = open(self.out_path, 'w')
+
         self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
 
     def __str__(self):
-        #TODO : I got rid of most of the hhdir stuff.
-        tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
-        #tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
-        #tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
-        tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
-        tmp = tmp + "\tinfile:     '%s'\n" % (self.in_path)
-        tmp = tmp + "\toutfile:    '%s'\n" % (self.out_path)
-        #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-        #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-        #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-        #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
-        return tmp
+        return """
+HandHistoryConverter: '%(sitename)s'
+    filetype:   '%(filetype)s'
+    in_path:    '%(in_path)s'
+    out_path:   '%(out_path)s'
+    """ % { 'sitename':self.sitename, 'filetype':self.filetype, 'in_path':self.in_path, 'out_path':self.out_path }
 
     def start(self):
         """process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
-Otherwise, finish at eof...
+Otherwise, finish at eof.
 
 """        
         starttime = time.time()
@@ -224,7 +184,6 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             base = gametype['base']
             limit = gametype['limitType']
             l = [type] + [base] + [limit]
-        hand = None
         if l in self.readSupportedGames():
             hand = None
             if gametype['base'] == 'hold':
