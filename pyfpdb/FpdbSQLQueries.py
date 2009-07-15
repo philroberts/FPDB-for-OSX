@@ -38,7 +38,9 @@ class FpdbSQLQueries:
         elif(self.dbname == 'PostgreSQL'):
             self.query['list_tables'] = """SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"""
         elif(self.dbname == 'SQLite'):
-            self.query['list_tables'] = """ """
+            self.query['list_tables'] = """SELECT name FROM sqlite_master
+            WHERE type='table'
+            ORDER BY name;"""
 
         ##################################################################
         # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
@@ -63,8 +65,8 @@ class FpdbSQLQueries:
             self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
 
         elif(self.dbname == 'SQLite'):
-                        #Probably doesn't work.
-            self.query['createSettingsTable'] = """ """
+            self.query['createSettingsTable'] = """CREATE TABLE Settings
+            (version INTEGER) """
 
 
         ################################
@@ -83,7 +85,10 @@ class FpdbSQLQueries:
                         name varchar(32),
                         currency char(3))"""
         elif(self.dbname == 'SQLite'):
-            self.query['createSitesTable'] = """ """
+            self.query['createSitesTable'] = """CREATE TABLE Sites (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT NOT NULL,
+                        currency TEXT NOT NULL)"""
 
 
         ################################
@@ -118,7 +123,19 @@ class FpdbSQLQueries:
                         smallBet int,
                         bigBet int)"""
         elif(self.dbname == 'SQLite'):
-            self.query['createGametypesTable'] = """ """
+            self.query['createGametypesTable'] = """CREATE TABLE GameTypes (
+                        id INTEGER PRIMARY KEY,
+                        siteId INTEGER,
+                        type TEXT,
+                        base TEXT,
+                        category TEXT,
+                        limitType TEXT,
+                        hiLo TEXT,
+                        smallBlind INTEGER,
+                        bigBlind INTEGER,
+                        smallBet INTEGER,
+                        bigBet INTEGER,
+                        FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
         ################################
@@ -141,7 +158,13 @@ class FpdbSQLQueries:
                         comment text,
                         commentTs timestamp without time zone)"""
         elif(self.dbname == 'SQLite'):
-            self.query['createPlayersTable'] = """ """
+            self.query['createPlayersTable'] = """CREATE TABLE Players (
+                        id INTEGER PRIMARY KEY,
+                        name TEXT,
+                        siteId INTEGER,
+                        comment TEXT,
+                        commentTs BLOB,
+                        FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
 
         ################################
@@ -245,7 +268,18 @@ class FpdbSQLQueries:
                             comment TEXT,
                             commentTs timestamp without time zone)"""
         elif(self.dbname == 'SQLite'):
-            self.query['createHandsTable'] = """ """
+            self.query['createHandsTable'] = """CREATE TABLE Hands (
+                            id INTEGER PRIMARY KEY,
+                            tableName TEXT(20),
+                            siteHandNo INTEGER,
+                            gametypeId INTEGER,
+                            handStart BLOB,
+                            importTime BLOB,
+                            seats INTEGER,
+                            maxSeats INTEGER,
+                            comment TEXT,
+                            commentTs BLOB,
+                            FOREIGN KEY(gametypeId) REFERENCES Gametypes(id) ON DELETE CASCADE)"""
 
 
         ################################
@@ -299,7 +333,14 @@ class FpdbSQLQueries:
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif(self.dbname == 'SQLite'):
-            self.query['createTourneysTable'] = """ """
+            self.query['createTourneysTable'] = """CREATE TABLE TourneyTypes (
+                        id INTEGER PRIMARY KEY,
+                        siteId INTEGER,
+                        buyin INTEGER,
+                        fee INTEGER,
+                        knockout INTEGER,
+                        rebuyOrAddon BOOL,
+                        FOREIGN KEY(siteId) REFERENCES Sites(id) ON DELETE CASCADE)"""
 
         ################################
         # Create HandsPlayers
@@ -831,6 +872,13 @@ class FpdbSQLQueries:
             self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
         elif(self.dbname == 'SQLite'):
             self.query['addPlayersIndex'] = """ """
+
+
+        if(self.dbname == 'MySQL InnoDB' or self.dbname == 'PostgreSQL'):
+            self.query['set tx level'] = """SET SESSION TRANSACTION
+            ISOLATION LEVEL READ COMMITTED"""
+        elif(self.dbname == 'SQLite'):
+            self.query['set tx level'] = """ """
 
         ################################
         # Queries used in GuiGraphViewer

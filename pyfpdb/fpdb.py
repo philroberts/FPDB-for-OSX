@@ -19,7 +19,6 @@ import os
 import sys
 import Options
 import string
-
 cl_options = string.join(sys.argv[1:])
 (options, sys.argv) = Options.fpdb_options()
 
@@ -27,6 +26,8 @@ if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
     errorFile = open('fpdb-error-log.txt', 'w', 0)
     sys.stderr = errorFile
+
+import logging
 
 import pygtk
 pygtk.require('2.0')
