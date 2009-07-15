@@ -114,7 +114,7 @@ class HandHistoryConverter():
 If in follow mode, wait for more data to turn up.
 Otherwise, finish at eof...
 
-"""        
+"""
         starttime = time.time()
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
