@@ -1,4 +1,4 @@
-    #!/usr/bin/env python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008, Carl Gherardi
@@ -298,8 +298,7 @@ follow :  whether to tail -f the input"""
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
         for street, text in hand.streets.iteritems():
-            if street in ('PREFLOP', 'DEAL'): continue  # already done these
-            if hand.streets[street] == None: continue   # don't regex a None
+            if not text or street in ('PREFLOP', 'DEAL'): continue  # already done these
             m = self.re_HeroCards.finditer(hand.streets[street])
             for found in m:
                 player = found.group('PNAME')
@@ -422,7 +421,7 @@ follow :  whether to tail -f the input"""
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/pokerstars/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
+    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
     parser.add_option("-q", "--quiet",

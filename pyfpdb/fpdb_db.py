@@ -18,20 +18,21 @@
 import os
 import re
 import sys
+import logging
 from time import time, strftime
 
 import fpdb_simple
 import FpdbSQLQueries
 
 class fpdb_db:
+    MYSQL_INNODB = 2
+    PGSQL = 3
+    SQLITE = 4
     def __init__(self):
         """Simple constructor, doesnt really do anything"""
         self.db             = None
         self.cursor         = None
         self.sql            = {}
-        self.MYSQL_INNODB   = 2
-        self.PGSQL          = 3
-        self.SQLITE         = 4
 
         # Data Structures for index and foreign key creation
         # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -71,6 +72,8 @@ class fpdb_db:
                          , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                          , {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}
                          , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+                         ]
+                       , [ # indexes for sqlite (list index 4)
                          ]
                        ]
 
@@ -146,12 +149,12 @@ class fpdb_db:
         self.settings = {}
         self.settings['os'] = "linuxmac" if os.name != "nt" else "windows"
 
-        self.settings.update(config.get_db_parameters())
-        self.connect(self.settings['db-backend'],
-                     self.settings['db-host'],
-                     self.settings['db-databaseName'],
-                     self.settings['db-user'], 
-                     self.settings['db-password'])
+        db = config.get_db_parameters()
+        self.connect(backend=db['db-backend'],
+                     host=db['db-host'],
+                     database=db['db-databaseName'],
+                     user=db['db-user'], 
+                     password=db['db-password'])
     #end def do_connect
     
     def connect(self, backend=None, host=None, database=None,
@@ -164,13 +167,13 @@ class fpdb_db:
         self.user=user
         self.password=password
         self.database=database
-        if backend==self.MYSQL_INNODB:
+        if backend==fpdb_db.MYSQL_INNODB:
             import MySQLdb
             try:
                 self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
             except:
                 raise fpdb_simple.FpdbError("MySQL connection failed")
-        elif backend==self.PGSQL:
+        elif backend==fpdb_db.PGSQL:
             import psycopg2
             import psycopg2.extensions 
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
@@ -201,12 +204,19 @@ class fpdb_db:
                     msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
                     print msg
                     raise fpdb_simple.FpdbError(msg)
+        elif backend==fpdb_db.SQLITE:
+            logging.info("Connecting to SQLite:%(database)s" % {'database':database})
+            import sqlite3
+            self.db = sqlite3.connect(database,detect_types=sqlite3.PARSE_DECLTYPES)
+            sqlite3.register_converter("bool", lambda x: bool(int(x)))
+            sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+
         else:
             raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
-        self.cursor.execute('SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED')
         # Set up query dictionary as early in the connection process as we can.
         self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
+        self.cursor.execute(self.sql.query['set tx level'])
         self.wrongDbVersion=False
         try:
             self.cursor.execute("SELECT * FROM Settings")
@@ -237,7 +247,9 @@ class fpdb_db:
 
     def create_tables(self):
         #todo: should detect and fail gracefully if tables already exist.
+        logging.debug(self.sql.query['createSettingsTable'])
         self.cursor.execute(self.sql.query['createSettingsTable'])
+        logging.debug(self.sql.query['createSitesTable'])
         self.cursor.execute(self.sql.query['createSitesTable'])
         self.cursor.execute(self.sql.query['createGametypesTable'])
         self.cursor.execute(self.sql.query['createPlayersTable'])
@@ -274,10 +286,12 @@ class fpdb_db:
             for table in tables:
                 self.cursor.execute(self.sql.query['drop_table'] + table[0] + ' cascade') 
         elif(self.get_backend_name() == 'SQLite'):
-            #todo: sqlite version here
-            print "Empty function here"
+            self.cursor.execute(self.sql.query['list_tables'])
+            for table in self.cursor.fetchall():
+                logging.debug(self.sql.query['drop_table'] + table[0])
+                self.cursor.execute(self.sql.query['drop_table'] + table[0])
 
-            self.db.commit()
+        self.db.commit()
     #end def drop_tables
 
     def drop_referential_integrity(self):
@@ -306,6 +320,8 @@ class fpdb_db:
             return "MySQL InnoDB"
         elif self.backend==3:
             return "PostgreSQL"
+        elif self.backend==4:
+            return "SQLite"
         else:
             raise fpdb_simple.FpdbError("invalid backend")
     #end def get_backend_name
@@ -315,11 +331,15 @@ class fpdb_db:
     #end def get_db_info
     
     def fillDefaultData(self):
-        self.cursor.execute("INSERT INTO Settings VALUES (118);")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Full Tilt Poker', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'PokerStars', 'USD');")
-        self.cursor.execute("INSERT INTO Sites VALUES (DEFAULT, 'Everleaf', 'USD');")
+        self.cursor.execute("INSERT INTO Settings (version) VALUES (118);")
+        self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
+        self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
+        self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
+        self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
         self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
+        #self.cursor.execute("""INSERT INTO TourneyTypes
+        #                    (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
+        #                    (1,0,0,0,?)""",(False,) )
     #end def fillDefaultData
     
     def recreate_tables(self):
@@ -617,7 +637,7 @@ class fpdb_db:
                 ret = -1
             else:
                 ret = row[0]
-        elif self.backend == self.SQLITE:
+        elif self.backend == fpdb_db.SQLITE:
             # don't know how to do this in sqlite
             print "getLastInsertId(): not coded for sqlite yet"
             ret = -1
@@ -628,27 +648,70 @@ class fpdb_db:
 
     def storeHand(self, p):
         #stores into table hands:
-        self.cursor.execute ("""INSERT INTO Hands 
-             (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
-              ,boardcard1, boardcard2, boardcard3, boardcard4, boardcard5
-              ,playersVpi, playersAtStreet1, playersAtStreet2
-              ,playersAtStreet3, playersAtStreet4, playersAtShowdown
-              ,street0Raises, street1Raises, street2Raises
-              ,street3Raises, street4Raises, street1Pot
-              ,street2Pot, street3Pot, street4Pot
-              ,showdownPot
+        self.cursor.execute ("""INSERT INTO Hands ( 
+            tablename, 
+            sitehandno,
+            gametypeid, 
+            handstart, 
+            importtime,
+            seats, 
+            maxseats,
+            boardcard1, 
+            boardcard2, 
+            boardcard3, 
+            boardcard4, 
+            boardcard5,
+--            texture,
+            playersVpi,
+            playersAtStreet1, 
+            playersAtStreet2,
+            playersAtStreet3, 
+            playersAtStreet4, 
+            playersAtShowdown,
+            street0Raises,
+            street1Raises,
+            street2Raises,
+            street3Raises,
+            street4Raises,
+--            street1Pot,
+--            street2Pot,
+--            street3Pot,
+--            street4Pot,
+--            showdownPot
              ) 
              VALUES 
-              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-             ,(p['siteHandNo'], gametype_id, p['handStart'], len(names), p['tableName'], datetime.datetime.today(), p['maxSeats']
-               ,p['boardcard1'], ['boardcard2'], p['boardcard3'], ['boardcard4'], ['boardcard5'] 
-               ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
-               ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
-               ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
-               ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
-               ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
-               ,hudCache['showdownPot']
-              )
-             )
+              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+            %s, %s, %s, %s, %s, %s, %s)""",
+            (
+                p['tablename'], 
+                p['sitehandno'], 
+                p['gametypeid'], 
+                p['handStart'], 
+                datetime.datetime.today(), 
+                len(p['names']),
+                p['maxSeats'],
+                p['boardcard1'], 
+                p['boardcard2'], 
+                p['boardcard3'], 
+                p['boardcard4'], 
+                p['boardcard5'],
+                hudCache['playersVpi'], 
+                hudCache['playersAtStreet1'], 
+                hudCache['playersAtStreet2'],
+                hudCache['playersAtStreet3'], 
+                hudCache['playersAtStreet4'], 
+                hudCache['playersAtShowdown'],
+                hudCache['street0Raises'], 
+                hudCache['street1Raises'], 
+                hudCache['street2Raises'],
+                hudCache['street3Raises'], 
+                hudCache['street4Raises'], 
+                hudCache['street1Pot'],
+                hudCache['street2Pot'], 
+                hudCache['street3Pot'],
+                hudCache['street4Pot'],
+                hudCache['showdownPot']
+            )
+        )
         #return getLastInsertId(backend, conn, cursor)
 #end class fpdb_db

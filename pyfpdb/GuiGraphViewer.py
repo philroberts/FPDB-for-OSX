@@ -154,7 +154,7 @@ class GuiGraphViewer (threading.Thread):
         if not sitenos:
             #Should probably pop up here.
             print "No sites selected - defaulting to PokerStars"
-            sitenos = [2]
+            return
 
         if not playerids:
             print "No player ids found"
