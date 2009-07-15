@@ -336,9 +336,10 @@ class fpdb_db:
         self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         self.cursor.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
-        self.cursor.execute("""INSERT INTO TourneyTypes
-                            (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
-                            (1,0,0,0,?)""",(False,) )
+        self.cursor.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
+        #self.cursor.execute("""INSERT INTO TourneyTypes
+        #                    (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
+        #                    (1,0,0,0,?)""",(False,) )
     #end def fillDefaultData
     
     def recreate_tables(self):
