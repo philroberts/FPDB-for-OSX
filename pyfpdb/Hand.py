@@ -32,7 +32,7 @@ import pprint
 import DerivedStats
 import Card
 
-class Hand:
+class Hand(object):
 
 ###############################################################3
 #    Class Variables
@@ -575,6 +575,13 @@ Map the tuple self.gametype onto the pokerstars string describing it
         return table_string
 
 
+    def writeHand(self, fh=sys.__stdout__):
+        # PokerStars format.
+        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
+        print >>fh, self.writeGameLine() 
+        print >>fh, self.writeTableLine() 
+
+
 class HoldemOmahaHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
         if gametype['base'] != 'hold':
@@ -726,9 +733,7 @@ class HoldemOmahaHand(Hand):
         
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
-        print >>fh, self.writeGameLine() 
-        print >>fh, self.writeTableLine() 
+        super(HoldemOmahaHand, self).writeHand(fh)
 
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
         logging.debug(self.actions['PREFLOP'])
@@ -973,9 +978,7 @@ class DrawHand(Hand):
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
-        print >>fh, self.writeGameLine() 
-        print >>fh, self.writeTableLine()
+        super(DrawHand, self).writeHand(fh)
 
         players_who_act_ondeal = set(([x[0] for x in self.actions['DEAL']]+[x[0] for x in self.actions['BLINDSANTES']]))
 
@@ -1193,9 +1196,7 @@ Add a complete on [street] by [player] to [amountTo]
 #    Hole cards are not currently correctly written. Currently the down cards for non-heros
 #    are shown in the "dealt to" lines. They should be hidden in those lines. I tried to fix
 #    but mind got boggled, will try again.
-        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
-        print >>fh, self.writeGameLine() 
-        print >>fh, self.writeTableLine() 
+        super(StudHand, self).writeHand(fh)
         
         players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
 
