@@ -126,11 +126,12 @@ class GuiGraphViewer (threading.Thread):
     #end def get_vbox
 
     def clearGraphData(self):
-        self.fig.clf()
+        self.fig.clear()
         if self.canvas is not None:
             self.canvas.destroy()
 
-        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+        if self.canvas == None:
+            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
 
     def generateGraph(self, widget, data):
         self.clearGraphData()
@@ -197,6 +198,7 @@ class GuiGraphViewer (threading.Thread):
 
             self.graphBox.add(self.canvas)
             self.canvas.show()
+            self.canvas.draw()
             #self.exportButton.set_sensitive(True)
     #end of def showClicked
 
