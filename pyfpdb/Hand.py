@@ -96,6 +96,9 @@ class Hand(object):
         self.totalpot = None
         self.totalcollected = None
         self.rake = None
+        # currency symbol for this hand
+        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
+        self.pot.setSym(self.sym)
 
     def __str__(self):
         vars = ( ("BB", self.bb),
@@ -575,7 +578,6 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         print >>fh, self.writeGameLine() 
         print >>fh, self.writeTableLine() 
 
@@ -1249,6 +1251,10 @@ class Pot(object):
         self.committed = {}
         self.total = None
         self.returned = {}
+        self.sym = u'$' # this is the default currency symbol
+
+    def setSym(self, sym):
+        self.sym = sym
     
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
@@ -1300,16 +1306,16 @@ class Pot(object):
             raise FpdbParseError
         
 
-        
+# TODO: This really neeads to be a loop to handle multiple side pots
         if len(self.pots) == 1: # (only use Total pot)
-            return "Total pot $%.2f" % (self.total,)
+            return "Total pot %s%.2f" % (self.sym, self.total,)
         elif len(self.pots) == 2:
-            return "Total pot $%.2f Main pot $%.2f. Side pot $%2.f." % (self.total, self.pots[0], self.pots[1])
+            return "Total pot %s%.2f Main pot %s%.2f. Side pot %s%2.f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1])
         elif len(self.pots) == 3:
-            return "Total pot $%.2f Main pot $%.2f. Side pot-1 $%2.2f. Side pot-2 $%.2f." % (self.total, self.pots[0], self.pots[1], self.pots[2])
+            return "Total pot %s%.2f Main pot $%.2f. Side pot-1 %s%2.2f. Side pot-2 %s%.2f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1], self.sym, self.pots[2])
         elif len(self.pots) == 0:
             # no small blind and walk in bb (hopefully)
-            return "Total pot $%.2f" % (self.total,)
+            return "Total pot %s%.2f" % (self.sym, self.total,)
         else:
             return ("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
             # I don't know stars format for a walk in the bb when sb doesn't post.
