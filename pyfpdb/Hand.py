@@ -808,8 +808,8 @@ class HoldemOmahaHand(Hand):
         print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
 
         board = []
-        for s in self.board.values():
-            board += s
+        for street in ["FLOP", "TURN", "RIVER"]:
+            board += self.board[street]
         if board:   # sometimes hand ends preflop without a board
             print >>fh, ("Board [%s]" % (" ".join(board)))
 
