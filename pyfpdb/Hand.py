@@ -81,7 +81,6 @@ class Hand(object):
             self.holecards[street] = {} # dict from player names to holecards
             self.discards[street] = {} # dict from player names to dicts by street ... of tuples ... of discarded holecards
         # Collections indexed by player names
-#        self.holecards = {} # dict from player names to dicts by street ... of tuples ... of holecards
         self.stacks = {}
         self.collected = [] #list of ?
         self.collectees = {} # dict from player names to amounts collected (?)
@@ -92,7 +91,6 @@ class Hand(object):
         self.shown = set()  # cards were shown
         self.mucked = set() # cards were mucked at showdown
 
-#        self.action = []
         # Things to do with money
         self.pot = Pot()
         self.totalpot = None
@@ -733,7 +731,6 @@ class HoldemOmahaHand(Hand):
         
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-# TODO: board cards (in summary) not printed in correct order
         super(HoldemOmahaHand, self).writeHand(fh)
 
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
@@ -859,8 +856,6 @@ class DrawHand(Hand):
             # Read actions in street order
             for street in self.streetList:
                 if self.streets[street]:
-                    # hhc.readCommunityCards(self, street)
-#                    hhc.readDrawCards(self, street)
                     hhc.readAction(self, street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
@@ -1020,13 +1015,11 @@ class StudHand(Hand):
             hhc.readAntes(self)
             hhc.readBringIn(self)
             hhc.readHeroCards(self)
-            #hhc.readShowdownActions(self) # not done yet
             # Read actions in street order
             for street in self.streetList:
                 if self.streets[street]:
                     logging.debug(street)
                     logging.debug(self.streets[street])
-#                    hhc.readStudPlayerCards(self, street)
                     hhc.readAction(self, street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self) # not done yet
@@ -1040,7 +1033,6 @@ class StudHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-#            self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
             self.addHoleCards('THIRD',   player, open=[cards[2]], closed=cards[0:2], shown=shown, mucked=mucked)
             self.addHoleCards('FOURTH',  player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
             self.addHoleCards('FIFTH',   player, open=[cards[4]], closed=cards[2:4], shown=shown, mucked=mucked)
@@ -1060,8 +1052,6 @@ closed    likewise, but known only to player
         try:
             self.checkPlayerExists(player)
             self.holecards[street][player] = (open, closed)
-#            cards = set([self.card(c) for c in cards])
-#            self.holecards[player].update(cards)
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
@@ -1101,17 +1091,13 @@ Add a complete on [street] by [player] to [amountTo]
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
 
-# TODO:
-#    Hole cards are not currently correctly written. Currently the down cards for non-heros
-#    are shown in the "dealt to" lines. They should be hidden in those lines. I tried to fix
-#    but mind got boggled, will try again.
         super(StudHand, self).writeHand(fh)
         
         players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
 
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             #Only print stacks of players who do something preflop
-            print >>fh, _("Seat %s: %s (%s%s)" %(player[0], player[1], self.sym, player[2]))
+            print >>fh, _("Seat %s: %s (%s%s in chips)" %(player[0], player[1], self.sym, player[2]))
 
         if 'ANTES' in self.actions:
             for act in self.actions['ANTES']:
@@ -1202,7 +1188,7 @@ Add a complete on [street] by [player] to [amountTo]
 
         print >>fh, _("*** SUMMARY ***")
         print >>fh, "%s | Rake %s%.2f" % (self.pot, self.sym, self.rake)
-        #print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
+# TODO: side pots
 
         board = []
         for s in self.board.values():
