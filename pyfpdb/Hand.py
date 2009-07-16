@@ -905,21 +905,6 @@ class DrawHand(Hand):
             self.addHoleCards('DRAWTHREE', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
 
 
-#    def addDrawHoleCards(self, newcards, oldcards, player, street, shown=False):
-#        """\
-#Assigns observed holecards to a player.
-#cards   list of card bigrams e.g. ['2h','Jc']
-#player  (string) name of player
-#"""
-#        try:
-#            self.checkPlayerExists(player)
-##            if shown and len(cardset) > 0:
-##                self.shown.add(player)
-#            self.holecards[street][player] = (newcards,oldcards)
-#        except FpdbParseError, e:
-#            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
-
-
     def discardDrawHoleCards(self, cards, player, street):
         logging.debug("discardDrawHoleCards '%s' '%s' '%s'" % (cards, player, street))
         self.discards[street][player] = set([cards])
@@ -934,48 +919,6 @@ class DrawHand(Hand):
             act = (player, 'discards', num)
         self.actions[street].append(act)
 
-
-#    def addShownCards(self, cards, player, holeandboard=None, shown=False, mucked=False):
-#        """\
-#For when a player shows cards for any reason (for showdown or out of choice).
-#Card ranks will be uppercased
-#"""
-#        logging.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
-#        if cards is not None:
-#            self.shown.add(player)
-#            self.addHoleCards(cards,player)
-#        elif holeandboard is not None:
-#            holeandboard = set([self.card(c) for c in holeandboard])
-#            board = set([c for s in self.board.values() for c in s])
-#            self.addHoleCards(holeandboard.difference(board),player,shown=True)
-
-
-#    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
-#        """\
-#Assigns observed holecards to a player.
-#cards   list of card bigrams e.g. ['2h','Jc']
-#player  (string) name of player
-#shown   whether they were revealed at showdown
-#mucked  whether they were mucked at showdown
-#dealt   whether they were seen in a 'dealt to' line
-#"""
-##    I think this only gets called for shown cards.
-#        logging.debug("addHoleCards %s %s" % (cards, player))
-#        try:
-#            self.checkPlayerExists(player)
-#        except FpdbParseError, e:
-#            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
-#            return
-#
-#        if dealt:
-#            self.dealt.add(player)
-#        if shown:
-#            self.shown.add(player)
-#        if mucked:
-#            self.mucked.add(player)
-#        if player != self.hero: #skip hero, we know his cards
-#            print "player, cards =", player, cards
-#            self.holecards[self.holeStreets[-1]][player] = (cards, set([]))
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
@@ -1122,41 +1065,6 @@ closed    likewise, but known only to player
         except FpdbParseError, e:
             print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
 
-#    def addHoleCards(self, cards, player, shown, mucked, dealt=False):
-#        """\
-#Assigns observed holecards to a player.
-#cards   list of card bigrams e.g. ['2h','Jc']
-#player  (string) name of player
-#shown   whether they were revealed at showdown
-#mucked  whether they were mucked at showdown
-#dealt   whether they were seen in a 'dealt to' line
-#"""
-##
-##    For stud games we just need to do the routine setting of shown/mucked/etc
-##    and then update the cards 'THIRD' and 'SEVENTH'
-#        logging.debug("addHoleCards %s %s" % (cards, player))
-#        try:
-#            self.checkPlayerExists(player)
-#        except FpdbParseError, e:
-#            print "[ERROR] Tried to add holecards for unknown player: %s" % (player,)
-#            return
-#
-#        if dealt:
-#            self.dealt.add(player)
-#        if shown:
-#            self.shown.add(player)
-#        if mucked:
-#            self.mucked.add(player)
-#        if player == self.hero:
-#            if len(cards) > 2:
-#                self.holecards['THIRD'][player] = ([cards[0:3]], [])
-#            if len(cards) > 6:
-#                self.holecards['SEVENTH'][player] = ([cards[6]], [])
-#        else:
-#            if len(cards) > 2:
-#                self.holecards['THIRD'][player] = ([cards[0]], cards[1:3])
-#            if len(cards) > 6:
-#                self.holecards['SEVENTH'][player] = ([], [cards[6]])
     # TODO: def addComplete(self, player, amount):
     def addComplete(self, street, player, amountTo):
         # assert street=='THIRD'
