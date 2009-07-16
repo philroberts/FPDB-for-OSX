@@ -733,6 +733,7 @@ class HoldemOmahaHand(Hand):
         
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
+# TODO: board cards (in summary) not printed in correct order
         super(HoldemOmahaHand, self).writeHand(fh)
 
         players_who_act_preflop = set(([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
@@ -1329,7 +1330,7 @@ Add a complete on [street] by [player] to [amountTo]
                 return hc + " ".join(self.holecards[street][player][0]) + ']'
 
         if street == 'SEVENTH' and player != self.hero: return # only write 7th st line for hero, LDO 
-        return hc + " ".join(self.holecards[street][player][1]) + "][" + " ".join(self.holecards[street][player][0]) + "]"
+        return hc + " ".join(self.holecards[street][player][1]) + "] [" + " ".join(self.holecards[street][player][0]) + "]"
 
     def join_holecards(self, player):
         holecards = []
