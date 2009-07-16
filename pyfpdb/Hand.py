@@ -1336,7 +1336,15 @@ Add a complete on [street] by [player] to [amountTo]
         holecards = []
         for street in self.holeStreets:
             if self.holecards[street].has_key(player):
-                holecards = holecards + self.holecards[street][player][0]
+                if street == 'THIRD':
+                    holecards = holecards + self.holecards[street][player][1] + self.holecards[street][player][0]
+                elif street == 'SEVENTH':
+                    if player == self.hero:
+                        holecards = holecards + self.holecards[street][player][0]
+                    else:
+                        holecards = holecards + self.holecards[street][player][1]
+                else:
+                    holecards = holecards + self.holecards[street][player][0]
         return " ".join(holecards)
 
 class Pot(object):
