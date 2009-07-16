@@ -523,22 +523,22 @@ Map the tuple self.gametype onto the pokerstars string describing it
         elif act[1] == 'checks':
             return ("%s: checks " %(act[0]))
         elif act[1] == 'calls':
-            return ("%s: calls $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
+            return ("%s: calls %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'bets':
-            return ("%s: bets $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
+            return ("%s: bets %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'raises':
-            return ("%s: raises $%s to $%s%s" %(act[0], act[2], act[3], ' and is all-in' if act[5] else ''))
+            return ("%s: raises %s%s to %s%s%s" %(act[0], self.sym, act[2], self.sym, act[3], ' and is all-in' if act[5] else ''))
         elif act[1] == 'completea':
-            return ("%s: completes to $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
+            return ("%s: completes to %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'posts':
             if(act[2] == "small blind"):
-                return ("%s: posts small blind $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
+                return ("%s: posts small blind %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "big blind"):
-                return ("%s: posts big blind $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
+                return ("%s: posts big blind %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "both"):
-                return ("%s: posts small & big blinds $%s%s" %(act[0], act[3], ' and is all-in' if act[4] else ''))
+                return ("%s: posts small & big blinds %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
         elif act[1] == 'bringin':
-            return ("%s: brings in for $%s%s" %(act[0], act[2], ' and is all-in' if act[3] else ''))
+            return ("%s: brings in for %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'discards':
             return ("%s: discards %s %s%s" %(act[0], act[2], 'card' if act[2] == 1 else 'cards' , " [" + " ".join(self.discards[act[0]]['DRAWONE']) + "]" if self.hero == act[0] else ''))
         elif act[1] == 'stands pat':
@@ -645,8 +645,8 @@ class HoldemOmahaHand(Hand):
         def render_stack(context,data):
             pat = context.tag.patternGenerator('list_item')
             for player in data:
-                x = "Seat %s: %s ($%s in chips) " %(player[0], player[1],
-                player[2])
+                x = "Seat %s: %s (%s%s in chips) " %(player[0], player[1],
+                self.sym, player[2])
                 context.tag[ pat().fillSlots('playerStack', x)]
             return context.tag
 
@@ -800,12 +800,12 @@ class HoldemOmahaHand(Hand):
         # Immediately before the summary.
         # The current importer uses those lines for importing winning rather than the summary
         for name in self.pot.returned:
-            print >>fh, ("Uncalled bet ($%s) returned to %s" %(self.pot.returned[name],name))
+            print >>fh, ("Uncalled bet (%s%s) returned to %s" %(self.sym, self.pot.returned[name],name))
         for entry in self.collected:
-            print >>fh, ("%s collected $%s from x pot" %(entry[0], entry[1]))
+            print >>fh, ("%s collected %s%s from x pot" %(entry[0], self.sym, entry[1]))
 
         print >>fh, ("*** SUMMARY ***")
-        print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
+        print >>fh, "%s | Rake %s%.2f" % (self.pot, self.sym, self.rake)
 
         board = []
         for street in ["FLOP", "TURN", "RIVER"]:
@@ -817,9 +817,9 @@ class HoldemOmahaHand(Hand):
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
-                print >>fh, ("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, " ".join(self.holecards['PREFLOP'][name][1]), self.collectees[name]))
+                print >>fh, ("Seat %d: %s showed [%s] and won (%s%s)" % (seatnum, name, " ".join(self.holecards['PREFLOP'][name][1]), self.sym, self.collectees[name]))
             elif name in self.collectees:
-                print >>fh, ("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
+                print >>fh, ("Seat %d: %s collected (%s%s)" % (seatnum, name, self.sym, self.collectees[name]))
             #~ elif name in self.shown:
                 #~ print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, " ".join(self.holecards[name]['PREFLOP'])))
             elif name in self.folded:
@@ -928,11 +928,11 @@ class DrawHand(Hand):
 
         for player in [x for x in self.players if x[1] in players_who_act_ondeal]:
             #Only print stacks of players who do something on deal
-            print >>fh, _("Seat %s: %s ($%s in chips) " %(player[0], player[1], player[2]))
+            print >>fh, _("Seat %s: %s (%s%s in chips) " %(player[0], player[1], self.sym, player[2]))
 
         if 'BLINDSANTES' in self.actions:
             for act in self.actions['BLINDSANTES']:
-                print >>fh, _("%s: %s %s $%s" %(act[0], act[1], act[2], act[3]))
+                print >>fh, _("%s: %s %s %s%s" %(act[0], act[1], act[2], self.sym, act[3]))
 
         if 'DEAL' in self.actions:
             print >>fh, _("*** DEALING HANDS ***")
@@ -985,12 +985,12 @@ class DrawHand(Hand):
         # Immediately before the summary.
         # The current importer uses those lines for importing winning rather than the summary
         for name in self.pot.returned:
-            print >>fh, _("Uncalled bet ($%s) returned to %s" %(self.pot.returned[name],name))
+            print >>fh, _("Uncalled bet (%s%s) returned to %s" %(self.sym, self.pot.returned[name],name))
         for entry in self.collected:
-            print >>fh, _("%s collected $%s from x pot" %(entry[0], entry[1]))
+            print >>fh, _("%s collected %s%s from x pot" %(entry[0], self.sym, entry[1]))
 
         print >>fh, _("*** SUMMARY ***")
-        print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
+        print >>fh, "%s | Rake %s%.2f" % (self.pot, self.sym, self.rake)
         print >>fh, "\n\n"
 
 
@@ -1111,11 +1111,11 @@ Add a complete on [street] by [player] to [amountTo]
 
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             #Only print stacks of players who do something preflop
-            print >>fh, _("Seat %s: %s ($%s)" %(player[0], player[1], player[2]))
+            print >>fh, _("Seat %s: %s (%s%s)" %(player[0], player[1], self.sym, player[2]))
 
         if 'ANTES' in self.actions:
             for act in self.actions['ANTES']:
-                print >>fh, _("%s: posts the ante $%s" %(act[0], act[3]))
+                print >>fh, _("%s: posts the ante %s%s" %(act[0], self.sym, act[3]))
 
         if 'THIRD' in self.actions:
             dealt = 0
@@ -1196,12 +1196,12 @@ Add a complete on [street] by [player] to [amountTo]
         # Immediately before the summary.
         # The current importer uses those lines for importing winning rather than the summary
         for name in self.pot.returned:
-            print >>fh, _("Uncalled bet ($%s) returned to %s" %(self.pot.returned[name],name))
+            print >>fh, _("Uncalled bet (%s%s) returned to %s" %(self.sym, self.pot.returned[name],name))
         for entry in self.collected:
-            print >>fh, _("%s collected $%s from x pot" %(entry[0], entry[1]))
+            print >>fh, _("%s collected %s%s from x pot" %(entry[0], self.sym, entry[1]))
 
         print >>fh, _("*** SUMMARY ***")
-        print >>fh, "%s | Rake $%.2f" % (self.pot, self.rake)
+        print >>fh, "%s | Rake %s%.2f" % (self.pot, self.sym, self.rake)
         #print >>fh, _("Total pot $%s | Rake $%.2f" % (self.totalpot, self.rake)) # TODO: side pots
 
         board = []
@@ -1214,9 +1214,9 @@ Add a complete on [street] by [player] to [amountTo]
             seatnum = player[0]
             name = player[1]
             if name in self.collectees and name in self.shown:
-                print >>fh, _("Seat %d: %s showed [%s] and won ($%s)" % (seatnum, name, self.join_holecards(name), self.collectees[name]))
+                print >>fh, _("Seat %d: %s showed [%s] and won (%s%s)" % (seatnum, name, self.join_holecards(name), self.sym, self.collectees[name]))
             elif name in self.collectees:
-                print >>fh, _("Seat %d: %s collected ($%s)" % (seatnum, name, self.collectees[name]))
+                print >>fh, _("Seat %d: %s collected (%s%s)" % (seatnum, name, self.sym, self.collectees[name]))
             elif name in self.shown:
                 print >>fh, _("Seat %d: %s showed [%s]" % (seatnum, name, self.join_holecards(name)))
             elif name in self.mucked:
