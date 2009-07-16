@@ -173,6 +173,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         logging.debug("gametype %s" % gametype)
+        hand = None
         if gametype is None: 
             l = None
             gametype = "unmatched"
@@ -185,7 +186,6 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             limit = gametype['limitType']
             l = [type] + [base] + [limit]
         if l in self.readSupportedGames():
-            hand = None
             if gametype['base'] == 'hold':
                 logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
                 hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)

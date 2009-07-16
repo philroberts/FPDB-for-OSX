@@ -19,6 +19,7 @@
 ########################################################################
 
 import sys
+import datetime
 from HandHistoryConverter import *
 
 # Win2day HH Format
@@ -140,11 +141,7 @@ class Win2day(HandHistoryConverter):
         for key in info:
             if key == 'DATETIME':
                 # Win2day uses UTC timestamp
-                # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                # datetime = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), m2.group('M'),m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
-                # hand.starttime = time.strptime(time.gmtime(info[key]))
-                # hand.starttime = time.gmtime(int(info[key]))
-                hand.starttime = time.gmtime(int(info[key]))
+                hand.starttime = datetime.datetime.fromtimestamp(int(info[key]))
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':
@@ -225,18 +222,18 @@ class Win2day(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
+#    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
+#    we need to grab hero's cards
+        m = self.re_HeroCards.finditer(hand.streets['PREFLOP'])
+        newcards = []
+        for found in m:
+            hand.hero = found.group('PNAME')
+            for card in self.re_Card.finditer(found.group('CARDS')):
+                print self.convertWin2dayCards(card.group('CARD'))
+                newcards.append(self.convertWin2dayCards(card.group('CARD')))
             
-            hand.hero = m.group('PNAME')
-            holeCards = set([])
-            for card in self.re_Card.finditer(m.group('CARDS')):
-                holeCards.add(self.convertWin2dayCards(card.group('CARD')))
-            
-            hand.addHoleCards(holeCards, m.group('PNAME'))
+                    #hand.addHoleCards(holeCards, m.group('PNAME'))
+            hand.addHoleCards('PREFLOP', hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
     def convertWin2dayCards(self, card):
         card = int(card)
@@ -346,7 +343,7 @@ class Win2day(HandHistoryConverter):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             showdownCards = set([])
             for card in self.re_Card.finditer(shows.group('CARDS')):
-                print "DEBUG:", card, card.group('CARD'), self.convertWin2dayCards(card.group('CARD'))
+                #print "DEBUG:", card, card.group('CARD'), self.convertWin2dayCards(card.group('CARD'))
                 showdownCards.add(self.convertWin2dayCards(card.group('CARD')))
             
             hand.addShownCards(showdownCards, shows.group('PNAME'))
