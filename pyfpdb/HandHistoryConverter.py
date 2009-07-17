@@ -37,12 +37,13 @@ gettext.install('fpdb')
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file (in tail mode)
-    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
+    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False, index=0):
         logging.info("HandHistory init")
         
         # default filetype and codepage. Subclasses should set these properly.
         self.filetype  = "text"
         self.codepage  = "utf8"
+        self.index     = 0
 
         self.in_path = in_path
         self.out_path = out_path
@@ -330,7 +331,9 @@ or None if we fail to get the info """
             else:
                 logging.debug("Opening %s with %s" % (self.in_path, self.codepage))
                 in_fh = codecs.open(self.in_path, 'r', self.codepage)
+                in_fh.seek(self.index)
             self.obs = in_fh.read()
+            self.index = in_fh.tell()
             in_fh.close()
         elif(self.filetype == "xml"):
             try:
@@ -346,3 +349,6 @@ or None if we fail to get the info """
 
     def getProcessedFile(self):
         return self.out_path
+
+    def getLastCharacterRead(self):
+        return self.index

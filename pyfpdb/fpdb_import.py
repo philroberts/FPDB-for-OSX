@@ -312,7 +312,7 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            conv = obj(in_path = file, out_path = out_path)
+            conv = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
             if(conv.getStatus() and self.NEWIMPORT == False):
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             elif (conv.getStatus() and self.NEWIMPORT == True):

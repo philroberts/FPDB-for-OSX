@@ -55,12 +55,12 @@ class PokerStars(HandHistoryConverter):
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
 
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PokerStars", follow=follow)
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PokerStars", follow=follow, index=index)
         logging.info("Initialising PokerStars converter class")
         self.filetype = "text"
         self.codepage = "cp1252"

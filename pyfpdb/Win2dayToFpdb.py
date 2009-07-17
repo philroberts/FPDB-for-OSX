@@ -39,8 +39,8 @@ class Win2day(HandHistoryConverter):
     re_Card        = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD>', re.MULTILINE)
     re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Win2day", follow=follow)
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Win2day", follow=follow, index=index)
         logging.info("Initialising Win2day converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
