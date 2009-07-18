@@ -571,6 +571,11 @@ class Sql:
                     from Hands
                     where handStart < now() at time zone 'UTC' - interval '1 day'"""
 
+            #if db_server == 'mysql':
+            self.query['get_hand_nhands_ago'] = """
+                select coalesce(greatest(max(id),%s)-%s,0)
+                from Hands"""
+
 if __name__== "__main__":
 #    just print the default queries and exit
     s = Sql(game = 'razz', type = 'ptracks')
