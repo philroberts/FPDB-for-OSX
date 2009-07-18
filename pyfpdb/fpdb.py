@@ -446,7 +446,7 @@ class fpdb:
     #end def tab_bulk_import
 
     def tab_player_stats(self, widget, data=None):
-        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.querydict, self.window)
+        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Player Stats")
