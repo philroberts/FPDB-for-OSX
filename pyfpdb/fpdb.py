@@ -470,7 +470,7 @@ class fpdb:
         self.add_and_display_tab(ps_tab, "Player Stats")
 
     def tab_positional_stats(self, widget, data=None):
-        new_ps_thread=GuiPositionalStats.GuiPositionalStats(self.config, self.querydict)
+        new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")

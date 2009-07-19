@@ -45,10 +45,10 @@ class GuiPlayerStats (threading.Thread):
         self.cursor = self.db.cursor
 
         settings = {}
-        settings.update(config.get_db_parameters())
-        settings.update(config.get_tv_parameters())
-        settings.update(config.get_import_parameters())
-        settings.update(config.get_default_paths())
+        settings.update(self.conf.get_db_parameters())
+        settings.update(self.conf.get_tv_parameters())
+        settings.update(self.conf.get_import_parameters())
+        settings.update(self.conf.get_default_paths())
 
         # text used on screen stored here so that it can be configured
         self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
@@ -67,7 +67,7 @@ class GuiPlayerStats (threading.Thread):
                             "Button2"  :  True
                           }
 
-        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name("_Refresh")
@@ -217,7 +217,7 @@ class GuiPlayerStats (threading.Thread):
         flags = [True]
         self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
 
-        self.db.commit()
+        self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
