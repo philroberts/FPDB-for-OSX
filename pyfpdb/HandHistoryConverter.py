@@ -47,6 +47,8 @@ class HandHistoryConverter():
 
         self.in_path = in_path
         self.out_path = out_path
+
+        self.processedHands = []
         
         if in_path == '-':
             self.in_fh = sys.stdin
@@ -90,7 +92,7 @@ Otherwise, finish at eof.
             handsList = self.allHandsAsList()
             logging.info("Parsing %d hands" % len(handsList))
             for handText in handsList:
-                self.processHand(handText)
+                self.processedHands.append(self.processHand(handText))
             numHands=  len(handsList)
         endtime = time.time()
         print "read %d hands in %.3f seconds" % (numHands, endtime - starttime)
@@ -200,6 +202,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         if hand:
 #            print hand
             hand.writeHand(self.out_fh)
+            return hand
         else:
             logging.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
@@ -310,6 +313,7 @@ or None if we fail to get the info """
         self.filetype = filetype
         self.codepage = codepage
 
+    #This function doesn't appear to be used
     def splitFileIntoHands(self):
         hands = []
         self.obs = self.obs.strip()
@@ -346,6 +350,9 @@ or None if we fail to get the info """
     def getStatus(self):
         #TODO: Return a status of true if file processed ok
         return True
+
+    def getProcessedHands(self):
+        return self.processedHands
 
     def getProcessedFile(self):
         return self.out_path
