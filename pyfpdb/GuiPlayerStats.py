@@ -20,28 +20,29 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+import sys
 from time import time, strftime
 
 import Card
 import fpdb_import
+import Database
 import fpdb_db
 import Filters
-import FpdbSQLQueries
 
 class GuiPlayerStats (threading.Thread):
     def __init__(self, config, querylist, mainwin, debug=True):
-        self.debug=debug
-        self.conf=config
-        self.main_window=mainwin
+        self.debug = debug
+        self.conf = config
+        self.main_window = mainwin
+        self.sql = querylist
+
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
-        
+
         # create new db connection to avoid conflicts with other threads
-        self.db = fpdb_db.fpdb_db()
-        self.db.do_connect(self.conf)
-        self.cursor=self.db.cursor
-        self.sql = querylist
+        self.db = Database.Database(self.conf, sql=self.sql)
+        self.cursor = self.db.cursor
 
         settings = {}
         settings.update(config.get_db_parameters())
@@ -216,7 +217,7 @@ class GuiPlayerStats (threading.Thread):
         flags = [True]
         self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
 
-        self.db.db.commit()
+        self.db.commit()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
@@ -280,8 +281,10 @@ class GuiPlayerStats (threading.Thread):
                     if column[colalias] == 'plposition':
                         if value == 'B':
                             value = 'BB'
-                        if value == 'S':
+                        elif value == 'S':
                             value = 'SB'
+                        elif value == '0':
+                            value = 'Btn'
                 else:
                     if column[colalias] == 'game':
                         if holecards:
@@ -379,7 +382,8 @@ class GuiPlayerStats (threading.Thread):
 
         # Group by position?
         if groups['posn']:
-            query = query.replace("<position>", 'hp.position')
+            #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
+            query = query.replace("<position>", "hp.position")
             # set flag in self.columns to show posn column
             [x for x in self.columns if x[0] == 'plposition'][0][1] = True
         else:

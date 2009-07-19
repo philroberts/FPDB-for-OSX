@@ -1064,6 +1064,7 @@ class FpdbSQLQueries:
                               <orderbyseats>
                               ,case <position> when 'B' then 'B'
                                                when 'S' then 'S'
+                                               when '0' then 'Y'
                                                else 'Z'||<position>
                                end
                               <orderbyhgameTypeId>
