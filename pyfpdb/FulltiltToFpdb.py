@@ -52,12 +52,12 @@ class Fulltilt(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Fulltilt", follow=follow)
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Fulltilt", follow=follow, index=index)
         logging.info("Initialising Fulltilt converter class")
         self.filetype = "text"
         self.codepage = "cp1252"

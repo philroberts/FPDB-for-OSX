@@ -37,7 +37,7 @@ class Everleaf(HandHistoryConverter):
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False, index=0):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -45,7 +45,7 @@ follow :  whether to tail -f the input
 autostart: whether to run the thread (or you can call start() yourself)
 debugging: if False, pass on partially supported game types. If true, have a go and error..."""
         print "DEBUG: XXXXXXXXXXXXXXX"
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow, index=index)
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"

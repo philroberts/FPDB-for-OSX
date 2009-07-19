@@ -33,12 +33,12 @@ class UltimateBet(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="UltimateBet", follow=follow)
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="UltimateBet", follow=follow, index=index)
         logging.info("Initialising UltimateBetconverter class")
         self.filetype = "text"
         self.codepage = "cp1252"

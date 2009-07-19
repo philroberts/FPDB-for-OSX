@@ -83,6 +83,8 @@ class Importer:
         self.fdb.do_connect(self.config)
         self.fdb.db.rollback()
 
+        self.NEWIMPORT = False
+
     #Set functions
     def setCallHud(self, value):
         self.callHud = value
@@ -310,9 +312,17 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            conv = obj(in_path = file, out_path = out_path)
-            if(conv.getStatus()):
+            conv = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            if(conv.getStatus() and self.NEWIMPORT == False):
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
+            elif (conv.getStatus() and self.NEWIMPORT == True):
+                #This code doesn't do anything yet
+                handlist = hhc.getProcessedHands()
+                self.pos_in_file[file] = hhc.getLastCharacterRead()
+
+                for hand in handlist:
+                    hand.prepInsert()
+                    hand.insert()
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
