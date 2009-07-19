@@ -134,7 +134,7 @@ class fpdb:
     #end def dia_database_stats
 
     def dia_database_sessions(self, widget, data=None):
-        new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.querydict)
+        new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
         self.threads.append(new_sessions_thread)
         sessions_tab=new_sessions_thread.get_vbox()
         self.add_and_display_tab(sessions_tab, "Sessions")
@@ -497,7 +497,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
         #print "start of tabGraphViewer"
-        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.querydict, self.config)
+        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
         self.threads.append(new_gv_thread)
         gv_tab=new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")

@@ -38,20 +38,19 @@ except:
          and HUD are NOT affected by this problem."""
 
 import fpdb_import
-import fpdb_db
+import Database
 import Filters
 
 class GuiGraphViewer (threading.Thread):
 
     def __init__(self, querylist, config, debug=True):
         """Constructor for GraphViewer"""
-        self.debug=debug
-        #print "start of GraphViewer constructor"
-        self.db = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
-        self.db.do_connect(config)
-
         self.sql = querylist
         self.conf = config
+        self.debug = debug
+        #print "start of GraphViewer constructor"
+        self.db = Database.Database(self.conf, sql=self.sql)
+
 
         filters_display = { "Heroes"  :  True,
                             "Sites"   :  True,
@@ -63,7 +62,7 @@ class GuiGraphViewer (threading.Thread):
                             "Button2" :  True
                           }
 
-        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh Graph")
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name("Export to File")
@@ -90,7 +89,7 @@ class GuiGraphViewer (threading.Thread):
         self.canvas = None
 
 
-        self.db.db.rollback()
+        self.db.rollback()
 
 #################################
 #
@@ -130,8 +129,7 @@ class GuiGraphViewer (threading.Thread):
         if self.canvas is not None:
             self.canvas.destroy()
 
-        if self.canvas == None:
-            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
 
     def generateGraph(self, widget, data):
         self.clearGraphData()
@@ -207,7 +205,7 @@ class GuiGraphViewer (threading.Thread):
 #        print "DEBUG: getRingProfitGraph"
         start_date, end_date = self.filters.getDates()
 
-        #Buggered if I can find a way to do this 'nicely' take a list of intergers and longs
+        #Buggered if I can find a way to do this 'nicely' take a list of integers and longs
         # and turn it into a tuple readale by sql.
         # [5L] into (5) not (5,) and [5L, 2829L] into (5, 2829)
         nametest = str(tuple(names))
@@ -231,7 +229,7 @@ class GuiGraphViewer (threading.Thread):
         self.db.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
-        self.db.db.rollback()
+        self.db.rollback()
 
         if(winnings == ()):
             return None
