@@ -34,6 +34,8 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
+import interlocks
+
 
 import fpdb_simple
 import GuiBulkImport
@@ -503,7 +505,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
     def __init__(self):
         self.threads = []
-        self.lock = threading.Lock()
+        # no more than 1 process can this lock at a time:
+        self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
         self.db = None
         self.status_bar = None
 
