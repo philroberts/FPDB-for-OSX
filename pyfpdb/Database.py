@@ -111,6 +111,9 @@ class Database:
     def commit(self):
         self.fdb.db.commit()
 
+    def rollback(self):
+        self.fdb.db.rollback()
+
     def close_connection(self):
         self.connection.close()
 
