@@ -398,7 +398,7 @@ follow :  whether to tail -f the input"""
 
 
     def readShowdownActions(self, hand):
-# TODO: pick up mucks also
+# TODO: pick up mucks also??
         for shows in self.re_ShowdownAction.finditer(hand.handText):            
             cards = shows.group('CARDS').split(' ')
             hand.addShownCards(cards, shows.group('PNAME'))
