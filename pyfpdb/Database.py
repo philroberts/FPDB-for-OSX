@@ -64,31 +64,46 @@ class Database:
                                    # Future values may also include: 
                                    #                                 H=Hands (last n hands)
         self.hud_hands = 1000      # Max number of hands from each player to use for hud stats
-        self.hud_days  = 90        # Max number of days from each player to use for hud stats
+        self.hud_days  = 30        # Max number of days from each player to use for hud stats
         self.hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
                                    # (hands every 2 mins for 1 hour = one session, if followed
                                    # by a 40 minute gap and then more hands on same table that is
                                    # a new session)
-        cur = self.connection.cursor()
+        self.cursor = self.fdb.cursor
 
         if self.fdb.wrongDbVersion == False:
+            # self.hand_1day_ago used to fetch stats for current session (i.e. if hud_style = 'S')
             self.hand_1day_ago = 0
-            cur.execute(self.sql.query['get_hand_1day_ago'])
-            row = cur.fetchone()
+            self.cursor.execute(self.sql.query['get_hand_1day_ago'])
+            row = self.cursor.fetchone()
             if row and row[0]:
                 self.hand_1day_ago = row[0]
             #print "hand 1day ago =", self.hand_1day_ago
 
+            # self.date_ndays_ago used if hud_style = 'T'
             d = timedelta(days=self.hud_days)
             now = datetime.utcnow() - d
             self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
 
-            self.hand_nhands_ago = 0  # todo
-            #cur.execute(self.sql.query['get_table_name'], (hand_id, ))
-            #row = cur.fetchone()
+            # self.hand_nhands_ago is used for fetching stats for last n hands (hud_style = 'H')
+            # This option not used yet
+            self.hand_nhands_ago = 0
+            # should use aggregated version of query if appropriate
+            self.cursor.execute(self.sql.query['get_hand_nhands_ago'], (self.hud_hands,self.hud_hands))
+            row = self.cursor.fetchone()
+            if row and row[0]:
+                self.hand_nhands_ago = row[0]
+            print "hand n hands ago =", self.hand_nhands_ago
+
+            #self.cursor.execute(self.sql.query['get_table_name'], (hand_id, ))
+            #row = self.cursor.fetchone()
         else:
             print "Bailing on DB query, not sure it exists yet"
         self.saveActions = False if self.import_options['saveActions'] == False else True
+
+    # could be used by hud to change hud style
+    def set_hud_style(self, style):
+        self.hud_style = style
 
     def do_connect(self, c):
         self.fdb.do_connect(c)
