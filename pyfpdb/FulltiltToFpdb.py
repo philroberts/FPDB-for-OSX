@@ -23,11 +23,14 @@ import logging
 from HandHistoryConverter import *
 
 # Fulltilt HH Format converter
+# TODO: cat tourno and table to make table name for tournaments
 
 class Fulltilt(HandHistoryConverter):
     
     # Static regexes
-    re_GameInfo     = re.compile('''-\s(?P<CURRENCY>\$|)?
+    re_GameInfo     = re.compile('''(?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
+                                    .+
+                                    -\s(?P<CURRENCY>\$|)?
                                     (?P<SB>[.0-9]+)/
                                     \$?(?P<BB>[.0-9]+)\s
                                     (Ante\s\$(?P<ANTE>[.0-9]+)\s)?-\s
@@ -37,14 +40,15 @@ class Fulltilt(HandHistoryConverter):
     re_SplitHands   = re.compile(r"\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
-                                    Table\s(?P<TABLE>[-\sa-zA-Z]+)\s
+                                    (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
+                                    Table\s(?P<TABLE>[-\s\da-zA-Z]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*)
                                  ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[.0-9]+)\)\n')
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)')
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
@@ -75,19 +79,24 @@ follow :  whether to tail -f the input"""
             self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)(\s\$(?P<BET>[.\d]+))?" % player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)(\s\$?(?P<BET>[.,\d]+))?" % player_re, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
-
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+
                 ["ring", "stud", "fl"],
-                ["ring", "omaha", "pl"]
+
+                ["tour", "hold", "nl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
+
+                ["tour", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -121,8 +130,9 @@ follow :  whether to tail -f the input"""
             (info['base'], info['category']) = games[mg['GAME']]
         if mg['CURRENCY'] != None:
             info['currency'] = currencies[mg['CURRENCY']]
+        if mg['TOURNO'] == None:  info['type'] = "ring"
+        else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        
         return info
 
     def readHandInfo(self, hand):
@@ -132,14 +142,17 @@ follow :  whether to tail -f the input"""
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
             return None
-        print "group_dict =", m.groupdict()
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
-        hand.maxseats = 8 # assume 8-max until we see otherwise
         if m.group('TABLEATTRIBUTES'):
             m2 = re.search("(deep )?(\d+)( max)?", m.group('TABLEATTRIBUTES'))
             hand.maxseats = int(m2.group(2))
+
+        hand.tourNo = m.group('TOURNO')
+#        if key == 'PLAY' and info['PLAY'] != None:
+#            hand.gametype['currency'] = 'play'
+
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
 #       m.group('BB')
@@ -304,5 +317,4 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    print "ipath =", options.ipath
     e = Fulltilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)
