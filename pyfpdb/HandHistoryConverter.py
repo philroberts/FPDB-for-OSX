@@ -346,6 +346,29 @@ or None if we fail to get the info """
             except:
                 traceback.print_exc(file=sys.stderr)
 
+    def guessMaxSeats(self, hand):
+        """Return a guess at max_seats when not specified in HH."""
+        mo = self.maxOccSeat(hand)
+
+        if mo == 10: return 10 #that was easy
+
+        if hand.gametype['base'] == 'stud':
+            if mo <= 8: return 8
+            else: return mo 
+
+        if hand.gametype['base'] == 'draw':
+            if mo <= 6: return 6
+            else: return mo
+
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 10
+
+    def maxOccSeat(self, hand):
+        max = 0
+        for player in hand.players:
+            if player[0] > max: max = player[0]
+        return max
 
     def getStatus(self):
         #TODO: Return a status of true if file processed ok

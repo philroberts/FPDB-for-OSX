@@ -51,7 +51,7 @@ class Hand(object):
         self.handid = 0
         self.tablename = ""
         self.hero = ""
-        self.maxseats = 10
+        self.maxseats = None
         self.counted_seats = 0
         self.buttonpos = 0
         self.tourNo = None
@@ -630,6 +630,8 @@ class HoldemOmahaHand(Hand):
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            if self.maxseats == None:
+                self.maxseats = hhc.guessMaxSeats(self)
         elif builtFrom == "DB":
             if handid is not None:
                 self.select(handid) # Will need a handId
