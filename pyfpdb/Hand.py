@@ -1324,7 +1324,7 @@ class Pot(object):
         elif len(self.pots) == 2:
             return "Total pot %s%.2f Main pot %s%.2f. Side pot %s%2.f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1])
         elif len(self.pots) == 3:
-            return "Total pot %s%.2f Main pot $%.2f. Side pot-1 %s%2.2f. Side pot-2 %s%.2f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1], self.sym, self.pots[2])
+            return "Total pot %s%.2f Main pot %s%.2f. Side pot-1 %s%2.2f. Side pot-2 %s%.2f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1], self.sym, self.pots[2])
         elif len(self.pots) == 0:
             # no small blind and walk in bb (hopefully)
             return "Total pot %s%.2f" % (self.sym, self.total,)
