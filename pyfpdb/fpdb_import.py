@@ -317,12 +317,12 @@ class Importer:
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             elif (conv.getStatus() and self.NEWIMPORT == True):
                 #This code doesn't do anything yet
-                handlist = hhc.getProcessedHands()
-                self.pos_in_file[file] = hhc.getLastCharacterRead()
+                handlist = conv.getProcessedHands()
+                self.pos_in_file[file] = conv.getLastCharacterRead()
 
                 for hand in handlist:
-                    hand.prepInsert()
-                    hand.insert()
+                    hand.prepInsert(self.fdb)
+                    hand.insert(self.fdb)
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
