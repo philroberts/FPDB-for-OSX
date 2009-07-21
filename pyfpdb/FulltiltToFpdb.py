@@ -48,7 +48,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<DATETIME>.*)
                                  ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)')
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
@@ -79,7 +79,7 @@ follow :  whether to tail -f the input"""
             self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)(\s\$?(?P<BET>[.,\d]+))?" % player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( \$?(?P<BET>[.,\d]+))?" % player_re, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
@@ -298,6 +298,24 @@ follow :  whether to tail -f the input"""
                 cards = m.group('CARDS')
                 cards = cards.split(' ')
                 hand.addShownCards(cards=cards, player=m.group('PNAME'))
+
+    def guessMaxSeats(self, hand):
+        """Return a guess at max_seats when not specified in HH."""
+        mo = self.maxOccSeat(hand)
+
+        if mo == 10: return 10 #that was easy
+
+        if hand.gametype['base'] == 'stud':
+            if mo <= 8: return 8
+            else: return mo 
+
+        if hand.gametype['base'] == 'draw':
+            if mo <= 6: return 6
+            else: return mo
+
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 9
 
 
 if __name__ == "__main__":
