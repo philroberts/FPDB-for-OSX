@@ -205,10 +205,11 @@ class GuiBulkImport():
         self.load_button.show()
 
 #    see how many hands are in the db and adjust accordingly
-        tcursor = self.importer.fdb.db.cursor()
+        tcursor = self.importer.database.cursor
         tcursor.execute("Select count(1) from Hands")
         row = tcursor.fetchone()
         tcursor.close()
+        self.importer.database.rollback()
         self.n_hands_in_db = row[0]
         if self.n_hands_in_db == 0:
             self.cb_dropindexes.set_active(2)

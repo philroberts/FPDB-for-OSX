@@ -81,9 +81,10 @@ class Importer:
         self.database = Database.Database(self.config)  # includes .connection and .sql variables
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
-        self.fdb.db.rollback()
+        self.fdb.db.rollback()         # make sure all locks are released
 
         self.NEWIMPORT = False
+        self.allow_hudcache_rebuild = True;
 
     #Set functions
     def setCallHud(self, value):
@@ -168,13 +169,19 @@ class Importer:
 
     def runImport(self):
         """"Run full import on self.filelist."""
+
         start = datetime.datetime.now()
-        print "started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
+        print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
-            self.settings['dropIndexes'] = self.calculate_auto2(10.0, 500.0)
+            self.settings['dropIndexes'] = self.calculate_auto2(12.0, 500.0)
+        if self.allow_hudcache_rebuild:
+            self.settings['dropHudCache'] = self.calculate_auto2(25.0, 500.0)    # returns "drop"/"don't drop"
+
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.prepareBulkImport()
-        #self.settings['updateHudCache'] = self.calculate_auto2(10.0, 500.0)
+        else:
+            print "No need drop indexes."
+        #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
         totstored = 0
         totdups = 0
         totpartial = 0
@@ -190,7 +197,13 @@ class Importer:
             tottime += ttime
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.afterBulkImport()
-        self.fdb.analyzeDB()
+        else:
+            print "No need rebuild indexes."
+        if self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
+        else:
+            print "No need to rebuild hudcache."
+        self.database.analyzeDB()
         return (totstored, totdups, totpartial, toterrors, tottime)
 #        else: import threaded
 
@@ -237,11 +250,12 @@ class Importer:
 
         # if hands_in_db is zero or very low, we want to drop indexes, otherwise compare 
         # import size with db size somehow:
-        #print "auto2: handsindb =", self.settings['handsInDB'], "total_size =", total_size, "size_per_hand =", \
-        #      size_per_hand, "inc =", increment
+        ret = "don't drop"
         if self.settings['handsInDB'] < scale * (total_size/size_per_hand) + increment:
-            return "drop"
-        return "don't drop"
+            ret = "drop"
+        #print "auto2: handsindb =", self.settings['handsInDB'], "total_size =", total_size, "size_per_hand =", \
+        #      size_per_hand, "inc =", increment, "return:", ret
+        return ret
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
@@ -309,6 +323,24 @@ class Importer:
 
         filter_name = filter.replace("ToFpdb", "")
 
+#  Example code for using threads & queues:  (maybe for obj and import_fpdb_file??)
+#def worker():
+#    while True:
+#        item = q.get()
+#        do_work(item)
+#        q.task_done()
+#
+#q = Queue()
+#for i in range(num_worker_threads):
+#     t = Thread(target=worker)
+#     t.setDaemon(True)
+#     t.start()
+#
+#for item in source():
+#    q.put(item)
+#
+#q.join()       # block until all tasks are done
+
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
@@ -317,12 +349,12 @@ class Importer:
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
             elif (conv.getStatus() and self.NEWIMPORT == True):
                 #This code doesn't do anything yet
-                handlist = conv.getProcessedHands()
-                self.pos_in_file[file] = conv.getLastCharacterRead()
+                handlist = hhc.getProcessedHands()
+                self.pos_in_file[file] = hhc.getLastCharacterRead()
 
                 for hand in handlist:
-                    hand.prepInsert(self.fdb)
-                    hand.insert(self.fdb)
+                    hand.prepInsert()
+                    hand.insert()
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
