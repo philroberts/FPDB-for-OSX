@@ -144,7 +144,6 @@ follow :  whether to tail -f the input"""
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
-        print "m =", m.groupdict()
         if(m == None):
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
@@ -230,7 +229,7 @@ follow :  whether to tail -f the input"""
             logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning("No bringin found")
+            logging.warning("No bringin found, handid =%s" % hand.handid)
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -330,7 +329,6 @@ follow :  whether to tail -f the input"""
         if m == None: hand.mixed = None
         else:
             hand.mixed = self.mixes[m.groupdict()['MIXED']]
-        print "mixed =", hand.mixed
 
 if __name__ == "__main__":
     parser = OptionParser()

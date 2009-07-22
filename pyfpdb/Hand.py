@@ -880,6 +880,7 @@ class DrawHand(Hand):
             hhc.getRake(self)
             if self.maxseats == None:
                 self.maxseats = hhc.guessMaxSeats(self)
+            hhc.readOther(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
 
@@ -1047,6 +1048,7 @@ class StudHand(Hand):
             hhc.getRake(self)
             if self.maxseats == None:
                 self.maxseats = hhc.guessMaxSeats(self)
+            hhc.readOther(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
 
