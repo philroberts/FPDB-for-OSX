@@ -263,10 +263,10 @@ follow :  whether to tail -f the input"""
                 else:
                     oldcards = found.group('OLDCARDS').split(' ')
 
-                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                if street == 'THIRD' and len(oldcards) == 2: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
-                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                    hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
                 else:
                     hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
 
