@@ -583,7 +583,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         table_string = "Table \'%s\' %s-max" % (self.tablename, self.maxseats)
         if self.gametype['currency'] == 'play':
             table_string = table_string + " (Play Money)"
-        if self.buttonpos != None:
+        if self.buttonpos != None and self.buttonpos != 0:
             table_string = table_string + " Seat #%s is the button" % self.buttonpos
         return table_string
 
@@ -877,6 +877,8 @@ class DrawHand(Hand):
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            if self.maxseats == None:
+                self.maxseats = hhc.guessMaxSeats(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
 
@@ -1032,7 +1034,8 @@ class StudHand(Hand):
             hhc.readBringIn(self)
             hhc.readHeroCards(self)
             # Read actions in street order
-            for street in self.streetList:
+            for street in self.actionStreets:
+                if street == 'ANTES': continue # OMG--sometime someone folds in the ante round
                 if self.streets[street]:
                     logging.debug(street)
                     logging.debug(self.streets[street])
@@ -1041,6 +1044,8 @@ class StudHand(Hand):
             hhc.readShownCards(self) # not done yet
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
+            if self.maxseats == None:
+                self.maxseats = hhc.guessMaxSeats(self)
         elif builtFrom == "DB":
             self.select("dummy") # Will need a handId
 
@@ -1326,7 +1331,7 @@ class Pot(object):
         elif len(self.pots) == 2:
             return "Total pot %s%.2f Main pot %s%.2f. Side pot %s%2.f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1])
         elif len(self.pots) == 3:
-            return "Total pot %s%.2f Main pot %s%.2f. Side pot-1 %s%2.2f. Side pot-2 %s%.2f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1], self.sym, self.pots[2])
+            return "Total pot %s%.2f Main pot $%.2f. Side pot-1 %s%2.2f. Side pot-2 %s%.2f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1], self.sym, self.pots[2])
         elif len(self.pots) == 0:
             # no small blind and walk in bb (hopefully)
             return "Total pot %s%.2f" % (self.sym, self.total,)
