@@ -58,7 +58,6 @@ class Database:
         self.db_server = db_params['db-server']
         
         if self.backend == self.PGSQL:
-            print "importing pg extensions ..."
             from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
             #ISOLATION_LEVEL_AUTOCOMMIT     = 0
             #ISOLATION_LEVEL_READ_COMMITTED = 1 
