@@ -1085,6 +1085,7 @@ closed    likewise, but known only to player
 Add a complete on [street] by [player] to [amountTo]
 """
         logging.debug("%s %s completes %s" % (street, player, amountTo))
+        amountTo = re.sub(u',', u'', amountTo) #some sites have commas
         self.checkPlayerExists(player)
         Bp = self.lastBet['THIRD']
         Bc = reduce(operator.add, self.bets[street][player], 0)
