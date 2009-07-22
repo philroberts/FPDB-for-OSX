@@ -52,7 +52,10 @@ class Fulltilt(HandHistoryConverter):
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+
+# These regexes are for FTP only
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
+    re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
     mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
@@ -150,8 +153,8 @@ follow :  whether to tail -f the input"""
         hand.tablename = m.group('TABLE')
         hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
         if m.group('TABLEATTRIBUTES'):
-            m2 = re.search("(deep )?(\d+)( max)?", m.group('TABLEATTRIBUTES'))
-            hand.maxseats = int(m2.group(2))
+            m2 = self.re_Max.search(m.group('TABLEATTRIBUTES'))
+            if m2: hand.maxseats = int(m2.group('MAX'))
 
         hand.tourNo = m.group('TOURNO')
         if m.group('PLAY') != None:
