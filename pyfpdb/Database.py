@@ -29,10 +29,6 @@ import traceback
 from datetime import datetime, date, time, timedelta
 from time import time, strftime
 import string
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
-#ISOLATION_LEVEL_AUTOCOMMIT     = 0
-#ISOLATION_LEVEL_READ_COMMITTED = 1 
-#ISOLATION_LEVEL_SERIALIZABLE   = 2
 
 #    pyGTK modules
 
@@ -60,6 +56,14 @@ class Database:
         self.type = db_params['db-type']
         self.backend = db_params['db-backend']
         self.db_server = db_params['db-server']
+        
+        if self.backend == self.PGSQL:
+            print "importing pg extensions ..."
+            from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
+            #ISOLATION_LEVEL_AUTOCOMMIT     = 0
+            #ISOLATION_LEVEL_READ_COMMITTED = 1 
+            #ISOLATION_LEVEL_SERIALIZABLE   = 2
+
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql == None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
