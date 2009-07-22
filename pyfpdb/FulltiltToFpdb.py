@@ -42,7 +42,7 @@ class Fulltilt(HandHistoryConverter):
     re_HandInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     Table\s
-                                    (?P<PLAY>Play\sChip\s|PC)
+                                    (?P<PLAY>Play\sChip\s|PC)?
                                     (?P<TABLE>[-\s\da-zA-Z]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
@@ -52,7 +52,10 @@ class Fulltilt(HandHistoryConverter):
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
+
+    mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
 
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
@@ -319,6 +322,12 @@ follow :  whether to tail -f the input"""
         if mo <= 6: return 6
         return 9
 
+    def readOther(self, hand):
+        m = self.re_Mixed.search(self.in_path)
+        if m == None: hand.mixed = None
+        else:
+            hand.mixed = self.mixes[m.groupdict()['MIXED']]
+        print "mixed =", hand.mixed
 
 if __name__ == "__main__":
     parser = OptionParser()

@@ -200,7 +200,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             logging.info("Unsupported game type: %s" % gametype)
 
         if hand:
-#            print hand
+            print hand
             hand.writeHand(self.out_fh)
             return hand
         else:
@@ -269,6 +269,11 @@ or None if we fail to get the info """
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
+
+    # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
+    # e.g., FTP doesn't put mixed game info in the HH, but puts in in the 
+    # file name. Use readOther() to clean up those messes.
+    def readOther(self, hand): pass
     
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # an inheriting class can calculate it for the specific site if need be.

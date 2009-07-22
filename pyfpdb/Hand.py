@@ -39,7 +39,7 @@ class Hand(object):
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
     SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
-    MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE'}
+    MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
 
 
     def __init__(self, sitename, gametype, handText, builtFrom = "HHC"):
@@ -632,6 +632,7 @@ class HoldemOmahaHand(Hand):
             hhc.getRake(self)
             if self.maxseats == None:
                 self.maxseats = hhc.guessMaxSeats(self)
+            hhc.readOther(self)
         elif builtFrom == "DB":
             if handid is not None:
                 self.select(handid) # Will need a handId
