@@ -33,17 +33,19 @@ class Fulltilt(HandHistoryConverter):
                                     -\s(?P<CURRENCY>\$|)?
                                     (?P<SB>[.0-9]+)/
                                     \$?(?P<BB>[.0-9]+)\s
-                                    (Ante\s\$(?P<ANTE>[.0-9]+)\s)?-\s
+                                    (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz))
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
                                  ''', re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
-                                    Table\s(?P<TABLE>[-\s\da-zA-Z]+)\s
+                                    Table\s
+                                    (?P<PLAY>Play\sChip\s|PC)
+                                    (?P<TABLE>[-\s\da-zA-Z]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$(?P<ANTE>[.0-9]+)\s)?-\s
+                                    \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*)
                                  ''', re.VERBOSE)
@@ -109,7 +111,6 @@ follow :  whether to tail -f the input"""
         m = self.re_GameInfo.search(handText)
         if not m: 
             return None
-
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
@@ -119,8 +120,8 @@ follow :  whether to tail -f the input"""
                  'Omaha Hi' : ('hold','omahahi'), 
                 'Omaha H/L' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
-              '7 Card Stud' : ('stud','studhi'), 
-                 'Stud H/L' : ('stud', 'studhilo')
+                  'Stud Hi' : ('stud','studhi'), 
+                 'Stud H/L' : ('stud','studhilo')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
         info['limitType'] = limits[mg['LIMIT']]
@@ -137,7 +138,7 @@ follow :  whether to tail -f the input"""
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
-
+        print "m =", m.groupdict()
         if(m == None):
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
@@ -150,8 +151,8 @@ follow :  whether to tail -f the input"""
             hand.maxseats = int(m2.group(2))
 
         hand.tourNo = m.group('TOURNO')
-#        if key == 'PLAY' and info['PLAY'] != None:
-#            hand.gametype['currency'] = 'play'
+        if m.group('PLAY') != None:
+            hand.gametype['currency'] = 'play'
 
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
@@ -214,6 +215,7 @@ follow :  whether to tail -f the input"""
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+#            if player.group() != 
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
