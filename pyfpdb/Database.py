@@ -27,6 +27,7 @@ Create and manage the database objects.
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta
+from time import time, strftime
 import string
 
 #    pyGTK modules
@@ -39,6 +40,11 @@ import SQL
 import Card
 
 class Database:
+
+    MYSQL_INNODB = 2
+    PGSQL = 3
+    SQLITE = 4
+
     def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
         print "\ncreating Database instance, sql =", sql
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
@@ -50,12 +56,18 @@ class Database:
         self.type = db_params['db-type']
         self.backend = db_params['db-backend']
         self.db_server = db_params['db-server']
+        
+        if self.backend == self.PGSQL:
+            from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
+            #ISOLATION_LEVEL_AUTOCOMMIT     = 0
+            #ISOLATION_LEVEL_READ_COMMITTED = 1 
+            #ISOLATION_LEVEL_SERIALIZABLE   = 2
+
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql == None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
         else:
             self.sql = sql
-        self.connection.rollback()
         
                                    # To add to config:
         self.hud_style = 'T'       # A=All-time 
@@ -99,7 +111,10 @@ class Database:
             #row = self.cursor.fetchone()
         else:
             print "Bailing on DB query, not sure it exists yet"
+
         self.saveActions = False if self.import_options['saveActions'] == False else True
+
+        self.connection.rollback()  # make sure any locks taken so far are released
 
     # could be used by hud to change hud style
     def set_hud_style(self, style):
@@ -113,6 +128,9 @@ class Database:
 
     def rollback(self):
         self.fdb.db.rollback()
+
+    def get_cursor(self):
+        return self.connection.cursor()
 
     def close_connection(self):
         self.connection.close()
@@ -331,7 +349,7 @@ class Database:
                                                               ,start_cashes, antes, card_values
                                                               ,card_suits, winnings, rakes, seatNos)
 
-        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
 
         if self.saveActions:
@@ -362,7 +380,7 @@ class Database:
                                  , positions, card_values, card_suits, winnings, rakes, seatNos, hudImportData)
         t4 = time()
         #print "ring holdem, backend=%d" % backend
-        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
         t5 = time()
         t6 = time()
@@ -396,7 +414,7 @@ class Database:
                         , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids)
 
         #print "tourney holdem, backend=%d" % backend
-        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
 
         if self.saveActions:
@@ -423,13 +441,45 @@ class Database:
                                                  , playerIds, startCashes, antes, cardValues, cardSuits
                                                  , winnings, rakes, seatNos, tourneys_players_ids)
 
-        if 'updateHudCache' not in settings or settings['updateHudCache'] != 'drop':
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             fpdb_simple.storeHudCache(self.backend, cursor, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
 
         if self.saveActions:
             fpdb_simple.storeActions(cursor, hands_players_ids, actionTypes, allIns, actionAmounts, actionNos)
         return hands_id
     #end def tourney_stud
+
+    def rebuild_hudcache(self):
+        """clears hudcache and rebuilds from the individual handsplayers records"""
+
+        stime = time()
+        self.connection.cursor().execute(self.sql.query['clearHudCache'])
+        self.connection.cursor().execute(self.sql.query['rebuildHudCache'])
+        self.commit()
+        print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
+    #end def rebuild_hudcache
+
+
+    def analyzeDB(self):
+        """Do whatever the DB can offer to update index/table statistics"""
+        stime = time()
+        if self.backend == self.MYSQL_INNODB:
+            try:
+                self.cursor.execute(self.sql.query['analyze'])
+            except:
+                print "Error during analyze"
+        elif self.backend == self.PGSQL:
+            self.connection.set_isolation_level(0)   # allow vacuum to work
+            try:
+                self.cursor = self.get_cursor()
+                self.cursor.execute(self.sql.query['analyze'])
+            except:
+                print "Error during analyze:", str(sys.exc_value)
+            self.connection.set_isolation_level(1)   # go back to normal isolation level
+        self.commit()
+        atime = time() - stime
+        print "Analyze took %.1f seconds" % (atime,)
+    #end def analyzeDB
 
 if __name__=="__main__":
     c = Configuration.Config()
