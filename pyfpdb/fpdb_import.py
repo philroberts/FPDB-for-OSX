@@ -180,7 +180,7 @@ class Importer:
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.prepareBulkImport()
         else:
-            print "No need drop indexes."
+            print "No need to drop indexes."
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
         totstored = 0
         totdups = 0
@@ -198,7 +198,7 @@ class Importer:
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.afterBulkImport()
         else:
-            print "No need rebuild indexes."
+            print "No need to rebuild indexes."
         if self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
