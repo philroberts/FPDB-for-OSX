@@ -20,34 +20,35 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+import sys
 from time import time, strftime
 
 import Card
 import fpdb_import
+import Database
 import fpdb_db
 import Filters
-import FpdbSQLQueries
 
 class GuiPlayerStats (threading.Thread):
     def __init__(self, config, querylist, mainwin, debug=True):
-        self.debug=debug
-        self.conf=config
-        self.main_window=mainwin
+        self.debug = debug
+        self.conf = config
+        self.main_window = mainwin
+        self.sql = querylist
+
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
-        
+
         # create new db connection to avoid conflicts with other threads
-        self.db = fpdb_db.fpdb_db()
-        self.db.do_connect(self.conf)
-        self.cursor=self.db.cursor
-        self.sql = querylist
+        self.db = Database.Database(self.conf, sql=self.sql)
+        self.cursor = self.db.cursor
 
         settings = {}
-        settings.update(config.get_db_parameters())
-        settings.update(config.get_tv_parameters())
-        settings.update(config.get_import_parameters())
-        settings.update(config.get_default_paths())
+        settings.update(self.conf.get_db_parameters())
+        settings.update(self.conf.get_tv_parameters())
+        settings.update(self.conf.get_import_parameters())
+        settings.update(self.conf.get_default_paths())
 
         # text used on screen stored here so that it can be configured
         self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
@@ -66,7 +67,7 @@ class GuiPlayerStats (threading.Thread):
                             "Button2"  :  True
                           }
 
-        self.filters = Filters.Filters(self.db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name("_Refresh")
@@ -216,7 +217,7 @@ class GuiPlayerStats (threading.Thread):
         flags = [True]
         self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
 
-        self.db.db.commit()
+        self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
@@ -227,11 +228,6 @@ class GuiPlayerStats (threading.Thread):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
-
-        self.stats_table = gtk.Table(1, 1, False)
-        self.stats_table.set_col_spacings(4)
-        self.stats_table.show()
-        
         tmp = self.sql.query[query]
         tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, groups, dates)
         self.cursor.execute(tmp)
@@ -279,18 +275,16 @@ class GuiPlayerStats (threading.Thread):
 
         while sqlrow < rows:
             treerow = []
-            if(row%2 == 0):
-                bgcolor = "white"
-            else:
-                bgcolor = "lightgrey"
             for col,column in enumerate(cols_to_show):
                 if column[colalias] in colnames:
                     value = result[sqlrow][colnames.index(column[colalias])]
                     if column[colalias] == 'plposition':
                         if value == 'B':
                             value = 'BB'
-                        if value == 'S':
+                        elif value == 'S':
                             value = 'SB'
+                        elif value == '0':
+                            value = 'Btn'
                 else:
                     if column[colalias] == 'game':
                         if holecards:
@@ -388,7 +382,8 @@ class GuiPlayerStats (threading.Thread):
 
         # Group by position?
         if groups['posn']:
-            query = query.replace("<position>", 'hp.position')
+            #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
+            query = query.replace("<position>", "hp.position")
             # set flag in self.columns to show posn column
             [x for x in self.columns if x[0] == 'plposition'][0][1] = True
         else:

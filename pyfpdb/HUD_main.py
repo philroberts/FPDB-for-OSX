@@ -29,12 +29,16 @@ Main for FreePokerTools HUD.
 
 #    Standard Library modules
 import sys
-
-#    redirect the stderr
-errorfile = open('HUD-error.txt', 'w', 0)
-sys.stderr = errorfile
-
 import os
+import Options
+
+(options, sys.argv) = Options.fpdb_options()
+
+if not options.errorsToConsole:
+    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
+    errorFile = open('fpdb-error-log.txt', 'w', 0)
+    sys.stderr = errorFile
+
 import thread
 import time
 import string
@@ -59,7 +63,7 @@ class HUD_main(object):
 
     def __init__(self, db_name = 'fpdb'):
         self.db_name = db_name
-        self.config = Configuration.Config()
+        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.hud_dict = {}
 
 #    a thread to read stdin
@@ -198,17 +202,12 @@ class HUD_main(object):
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":
-    sys.stderr.write("HUD_main starting\n")
 
-#    database name can be passed on command line
-    try:
-        db_name = sys.argv[1]
-    except:
-        db_name = 'fpdb'
-    sys.stderr.write("Using db name = %s\n" % (db_name))
+    sys.stderr.write("HUD_main starting\n")
+    sys.stderr.write("Using db name = %s\n" % (options.dbname))
 
 #    start the HUD_main object
-    hm = HUD_main(db_name = db_name)
+    hm = HUD_main(db_name = options.dbname)
 
 #    start the event loop
     gtk.main()

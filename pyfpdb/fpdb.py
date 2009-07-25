@@ -17,26 +17,26 @@
 
 import os
 import sys
-from optparse import OptionParser
-
-
-parser = OptionParser()
-parser.add_option("-x", "--errorsToConsole", action="store_true",
-                help="If passed error output will go to the console rather than .")
-parser.add_option("-d", "--databaseName", dest="dbname", default="fpdb",
-                help="Overrides the default database name")
-(options, sys.argv) = parser.parse_args()
+import threading
+import Options
+import string
+cl_options = string.join(sys.argv[1:])
+(options, sys.argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
     errorFile = open('fpdb-error-log.txt', 'w', 0)
     sys.stderr = errorFile
 
+import logging
+
 import pygtk
 pygtk.require('2.0')
 import gtk
 
-import fpdb_db
+import interlocks
+
+
 import fpdb_simple
 import GuiBulkImport
 import GuiPlayerStats
@@ -45,6 +45,8 @@ import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import GuiSessionViewer
+import SQL
+import Database
 import FpdbSQLQueries
 import Configuration
 
@@ -117,11 +119,13 @@ class fpdb:
     def dia_create_del_database(self, widget, data=None):
         print "todo: implement dia_create_del_database"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_create_del_database
 
     def dia_create_del_user(self, widget, data=None):
         print "todo: implement dia_create_del_user"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_create_del_user
 
     def dia_database_stats(self, widget, data=None):
@@ -130,7 +134,7 @@ class fpdb:
     #end def dia_database_stats
 
     def dia_database_sessions(self, widget, data=None):
-        new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.querydict)
+        new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
         self.threads.append(new_sessions_thread)
         sessions_tab=new_sessions_thread.get_vbox()
         self.add_and_display_tab(sessions_tab, "Sessions")
@@ -138,16 +142,19 @@ class fpdb:
     def dia_delete_db_parts(self, widget, data=None):
         print "todo: implement dia_delete_db_parts"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_delete_db_parts
 
     def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
         print "todo: implement dia_edit_profile"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_edit_profile
 
     def dia_export_db(self, widget, data=None):
         print "todo: implement dia_export_db"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_export_db
 
     def dia_get_db_root_credentials(self):
@@ -173,6 +180,7 @@ class fpdb:
     def dia_import_db(self, widget, data=None):
         print "todo: implement dia_import_db"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_import_db
 
     def dia_licensing(self, widget, data=None):
@@ -181,19 +189,23 @@ class fpdb:
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock() == 0:  # returns 0 if successful
-            try:
-                chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
-                        action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                        buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-                chooser.set_filename(self.profile)
+        if self.obtain_global_lock():  # returns true if successful
+            #try:
+            #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
+            #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
+            #            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
+            #    chooser.set_filename(self.profile)
 
-                response = chooser.run()
-                chooser.destroy()    
-                if response == gtk.RESPONSE_OK:
-                    self.load_profile(chooser.get_filename())
-                elif response == gtk.RESPONSE_CANCEL:
-                    print 'User cancelled loading profile'
+            #    response = chooser.run()
+            #    chooser.destroy()    
+            #    if response == gtk.RESPONSE_OK:
+            #        self.load_profile(chooser.get_filename())
+            #    elif response == gtk.RESPONSE_CANCEL:
+            #        print 'User cancelled loading profile'
+            #except:
+            #    pass
+            try:
+                self.load_profile()
             except:
                 pass
             self.release_global_lock()
@@ -201,39 +213,41 @@ class fpdb:
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
-        if self.obtain_global_lock() in (0,2):  # returns 0 if successful, 2 if Hands table does not exist
+        if self.obtain_global_lock():  # returns true if successful
 
-            lock_released = False
+            #lock_released = False
             try:
                 dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database "+self.db.database+" on "+self.db.host+" they will be deleted."
+                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
+                            +self.db.fdb.database+" on "+self.db.fdb.host+" they will be deleted."
                 dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
                 response = dia_confirm.run()
                 dia_confirm.destroy()
                 if response == gtk.RESPONSE_YES:
-                    if self.db.backend == self.fdb_lock.MYSQL_INNODB:
+                    #if self.db.fdb.backend == self.fdb_lock.fdb.MYSQL_INNODB:
                         # mysql requires locks on all tables or none - easier to release this lock 
                         # than lock all the other tables
                         # ToDo: lock all other tables so that lock doesn't have to be released
-                        self.release_global_lock()
-                        lock_released = True
-                        self.db.recreate_tables()
-                    else:
+                    #    self.release_global_lock()
+                    #    lock_released = True
+                    self.db.fdb.recreate_tables()
+                    #else:
                         # for other dbs use same connection as holds global lock
-                        self.fdb_lock.recreate_tables()
+                    #    self.fdb_lock.fdb.recreate_tables()
                 elif response == gtk.RESPONSE_NO:
                     print 'User cancelled recreating tables'
             except:
                 pass
-            if not lock_released:
-                self.release_global_lock()
+            #if not lock_released:
+            self.release_global_lock()
     #end def dia_recreate_tables
 
     def dia_regression_test(self, widget, data=None):
         print "todo: implement dia_regression_test"
         self.obtain_global_lock()
+        self.release_global_lock()
     #end def dia_regression_test
 
     def dia_save_profile(self, widget, data=None):
@@ -350,28 +364,27 @@ class fpdb:
 
     def load_profile(self):
         """Loads profile from the provided path name."""
+        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.settings = {}
+        self.settings['global_lock'] = self.lock
         if (os.sep=="/"):
             self.settings['os']="linuxmac"
         else:
             self.settings['os']="windows"
 
+        self.settings.update({'cl_options': cl_options})
         self.settings.update(self.config.get_db_parameters())
         self.settings.update(self.config.get_tv_parameters())
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db!=None:
+        if self.db != None and self.db.fdb != None:
             self.db.disconnect()
 
-        self.db = fpdb_db.fpdb_db()
-        #print "end of fpdb.load_profile, databaseName:",self.settings['db-databaseName']
-        self.db.connect(self.settings['db-backend'],
-            self.settings['db-host'],
-            self.settings['db-databaseName'],
-            self.settings['db-user'], 
-            self.settings['db-password'])
-        if self.db.wrongDbVersion:
+        self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
+        self.db = Database.Database(self.config, sql = self.sql)
+
+        if self.db.fdb.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
             label = gtk.Label("An invalid DB version or missing tables have been detected.")
@@ -389,9 +402,16 @@ class fpdb:
             response = diaDbVersionWarning.run()
             diaDbVersionWarning.destroy()
 
+        if self.status_bar == None:
+            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.main_vbox.pack_end(self.status_bar, False, True, 0)
+            self.status_bar.show()
+        else:
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+
         # Database connected to successfully, load queries to pass on to other classes
         self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
-        self.db.db.rollback()
+        self.db.connection.rollback()
     #end def load_profile
 
     def not_implemented(self, widget, data=None):
@@ -399,17 +419,18 @@ class fpdb:
     #end def not_implemented
 
     def obtain_global_lock(self):
-        print "\nTaking global lock ..."
-        self.fdb_lock = fpdb_db.fpdb_db()
-        self.fdb_lock.connect(self.settings['db-backend'],
-                              self.settings['db-host'],
-                              self.settings['db-databaseName'],
-                              self.settings['db-user'], 
-                              self.settings['db-password'])
-        return self.fdb_lock.get_global_lock()
+        ret = self.lock.acquire(False) # will return false if lock is already held
+        if ret:
+            print "\nGlobal lock taken ..."
+        else:
+            print "\nFailed to get global lock."
+        return ret
+        # need to release it later:
+        # self.lock.release()
+
     #end def obtain_global_lock
 
-    def quit(self, widget, data):
+    def quit(self, widget, data=None):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
@@ -417,9 +438,8 @@ class fpdb:
     #end def quit_cliecked
 
     def release_global_lock(self):
-        self.fdb_lock.db.rollback()
-        self.fdb_lock.disconnect()
-        print "Global lock released."
+        self.lock.release()
+        print "Global lock released.\n"
     #end def release_global_lock
 
     def tab_abbreviations(self, widget, data=None):
@@ -444,13 +464,13 @@ class fpdb:
     #end def tab_bulk_import
 
     def tab_player_stats(self, widget, data=None):
-        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.querydict, self.window)
+        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Player Stats")
 
     def tab_positional_stats(self, widget, data=None):
-        new_ps_thread=GuiPositionalStats.GuiPositionalStats(self.config, self.querydict)
+        new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
@@ -468,7 +488,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def tab_table_viewer(self, widget, data=None):
         """opens a table viewer tab"""
         #print "start of tab_table_viewer"
-        new_tv_thread=GuiTableViewer.GuiTableViewer(self.db, self.settings)
+        new_tv_thread=GuiTableViewer.GuiTableViewer(self.db.fdb, self.settings)
         self.threads.append(new_tv_thread)
         tv_tab=new_tv_thread.get_vbox()
         self.add_and_display_tab(tv_tab, "Table Viewer")
@@ -477,17 +497,18 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
         #print "start of tabGraphViewer"
-        new_gv_thread=GuiGraphViewer.GuiGraphViewer(self.db, self.settings, self.querydict, self.config)
+        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
         self.threads.append(new_gv_thread)
         gv_tab=new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")
     #end def tabGraphViewer
 
     def __init__(self):
-        self.threads=[]
-        self.db=None
-        self.config = Configuration.Config(dbname=options.dbname)
-        self.load_profile()
+        self.threads = []
+        # no more than 1 process can this lock at a time:
+        self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
+        self.db = None
+        self.status_bar = None
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
@@ -522,11 +543,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.tab_main_help(None, None)
 
-        self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
-        self.main_vbox.pack_end(self.status_bar, False, True, 0)
-        self.status_bar.show()
-
         self.window.show()
+        self.load_profile()
         sys.stderr.write("fpdb starting ...")
     #end def __init__
 

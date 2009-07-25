@@ -28,93 +28,56 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
-# from pokereval import PokerEval
 import time
 import datetime
-import gettext
-
-#from pokerengine.pokercards import *
-# provides letter2name{}, letter2names{}, visible_card(), not_visible_card(), is_visible(), card_value(), class PokerCards
-# but it's probably not installed so here are the ones we may want:
-letter2name = {
-    'A': 'Ace',
-    'K': 'King',
-    'Q': 'Queen',
-    'J': 'Jack',
-    'T': 'Ten',
-    '9': 'Nine',
-    '8': 'Eight',
-    '7': 'Seven',
-    '6': 'Six',
-    '5': 'Five',
-    '4': 'Four',
-    '3': 'Trey',
-    '2': 'Deuce'
-    }
-
-letter2names = {
-    'A': 'Aces',
-    'K': 'Kings',
-    'Q': 'Queens',
-    'J': 'Jacks',
-    'T': 'Tens',
-    '9': 'Nines',
-    '8': 'Eights',
-    '7': 'Sevens',
-    '6': 'Sixes',
-    '5': 'Fives',
-    '4': 'Fours',
-    '3': 'Treys',
-    '2': 'Deuces'
-    }
 
 import gettext
-gettext.install('myapplication')
+gettext.install('fpdb')
 
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file (in tail mode)
-    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False):
-        logging.info("HandHistory init called")
+    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False, index=0):
+        logging.info("HandHistory init")
         
         # default filetype and codepage. Subclasses should set these properly.
         self.filetype  = "text"
         self.codepage  = "utf8"
-        
+        self.index     = 0
+
         self.in_path = in_path
         self.out_path = out_path
-        if self.out_path == '-':
-            # write to stdout
+
+        self.processedHands = []
+        
+        if in_path == '-':
+            self.in_fh = sys.stdin
+
+        if out_path == '-':
             self.out_fh = sys.stdout
         else:
-            # TODO: out_path should be sanity checked before opening. Perhaps in fpdb_import?
-            # I'm not sure what we're looking for, although we don't want out_path==in_path!='-'
-            self.out_fh = open(self.out_path, 'w') # doomswitch is now on :|
+            # TODO: out_path should be sanity checked.
+            self.out_fh = open(self.out_path, 'w')
+
         self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
 
     def __str__(self):
-        #TODO : I got rid of most of the hhdir stuff.
-        tmp = "HandHistoryConverter: '%s'\n" % (self.sitename)
-        #tmp = tmp + "\thhbase:     '%s'\n" % (self.hhbase)
-        #tmp = tmp + "\thhdir:      '%s'\n" % (self.hhdir)
-        tmp = tmp + "\tfiletype:   '%s'\n" % (self.filetype)
-        tmp = tmp + "\tinfile:     '%s'\n" % (self.in_path)
-        tmp = tmp + "\toutfile:    '%s'\n" % (self.out_path)
-        #tmp = tmp + "\tgametype:   '%s'\n" % (self.gametype[0])
-        #tmp = tmp + "\tgamebase:   '%s'\n" % (self.gametype[1])
-        #tmp = tmp + "\tlimit:      '%s'\n" % (self.gametype[2])
-        #tmp = tmp + "\tsb/bb:      '%s/%s'\n" % (self.gametype[3], self.gametype[4])
-        return tmp
+        return """
+HandHistoryConverter: '%(sitename)s'
+    filetype:   '%(filetype)s'
+    in_path:    '%(in_path)s'
+    out_path:   '%(out_path)s'
+    """ % { 'sitename':self.sitename, 'filetype':self.filetype, 'in_path':self.in_path, 'out_path':self.out_path }
 
     def start(self):
         """process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
-Otherwise, finish at eof...
+Otherwise, finish at eof.
 
-"""        
+"""
         starttime = time.time()
         if not self.sanityCheck():
             print "Cowardly refusing to continue after failed sanity check"
@@ -129,7 +92,7 @@ Otherwise, finish at eof...
             handsList = self.allHandsAsList()
             logging.info("Parsing %d hands" % len(handsList))
             for handText in handsList:
-                self.processHand(handText)
+                self.processedHands.append(self.processHand(handText))
             numHands=  len(handsList)
         endtime = time.time()
         print "read %d hands in %.3f seconds" % (numHands, endtime - starttime)
@@ -213,6 +176,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         logging.debug("gametype %s" % gametype)
+        hand = None
         if gametype is None: 
             l = None
             gametype = "unmatched"
@@ -224,9 +188,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             base = gametype['base']
             limit = gametype['limitType']
             l = [type] + [base] + [limit]
-        hand = None
         if l in self.readSupportedGames():
-            hand = None
             if gametype['base'] == 'hold':
                 logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
                 hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
@@ -238,7 +200,9 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             logging.info("Unsupported game type: %s" % gametype)
 
         if hand:
+#            print hand
             hand.writeHand(self.out_fh)
+            return hand
         else:
             logging.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
@@ -305,6 +269,11 @@ or None if we fail to get the info """
     def readAction(self, hand, street): abstract
     def readCollectPot(self, hand): abstract
     def readShownCards(self, hand): abstract
+
+    # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
+    # e.g., FTP doesn't put mixed game info in the HH, but puts in in the 
+    # file name. Use readOther() to clean up those messes.
+    def readOther(self, hand): pass
     
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # an inheriting class can calculate it for the specific site if need be.
@@ -349,6 +318,7 @@ or None if we fail to get the info """
         self.filetype = filetype
         self.codepage = codepage
 
+    #This function doesn't appear to be used
     def splitFileIntoHands(self):
         hands = []
         self.obs = self.obs.strip()
@@ -370,7 +340,9 @@ or None if we fail to get the info """
             else:
                 logging.debug("Opening %s with %s" % (self.in_path, self.codepage))
                 in_fh = codecs.open(self.in_path, 'r', self.codepage)
+                in_fh.seek(self.index)
             self.obs = in_fh.read()
+            self.index = in_fh.tell()
             in_fh.close()
         elif(self.filetype == "xml"):
             try:
@@ -379,10 +351,39 @@ or None if we fail to get the info """
             except:
                 traceback.print_exc(file=sys.stderr)
 
+    def guessMaxSeats(self, hand):
+        """Return a guess at max_seats when not specified in HH."""
+        mo = self.maxOccSeat(hand)
+
+        if mo == 10: return 10 #that was easy
+
+        if hand.gametype['base'] == 'stud':
+            if mo <= 8: return 8
+            else: return mo 
+
+        if hand.gametype['base'] == 'draw':
+            if mo <= 6: return 6
+            else: return mo
+
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 10
+
+    def maxOccSeat(self, hand):
+        max = 0
+        for player in hand.players:
+            if player[0] > max: max = player[0]
+        return max
 
     def getStatus(self):
         #TODO: Return a status of true if file processed ok
         return True
 
+    def getProcessedHands(self):
+        return self.processedHands
+
     def getProcessedFile(self):
         return self.out_path
+
+    def getLastCharacterRead(self):
+        return self.index

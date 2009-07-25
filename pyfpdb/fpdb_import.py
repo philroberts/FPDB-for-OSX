@@ -22,6 +22,7 @@
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
 from time import time, strftime
+import logging
 import traceback
 import math
 import datetime
@@ -31,6 +32,7 @@ import re
 
 import fpdb_simple
 import fpdb_db
+import Database
 import fpdb_parse_logic
 import Configuration
 
@@ -57,7 +59,8 @@ class Importer:
         self.settings   = settings
         self.caller     = caller
         self.config     = config
-        self.fdb        = None
+        self.database   = None       # database will be the main db interface eventually
+        self.fdb        = None       # fdb may disappear or just hold the simple db connection
         self.cursor     = None
         self.filelist   = {}
         self.dirlist    = {}
@@ -75,9 +78,13 @@ class Importer:
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
         
+        self.database = Database.Database(self.config)  # includes .connection and .sql variables
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(self.config)
-        self.fdb.db.rollback()
+        self.fdb.db.rollback()         # make sure all locks are released
+
+        self.NEWIMPORT = False
+        self.allow_hudcache_rebuild = True;
 
     #Set functions
     def setCallHud(self, value):
@@ -162,12 +169,19 @@ class Importer:
 
     def runImport(self):
         """"Run full import on self.filelist."""
+
         start = datetime.datetime.now()
-        print "started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
+        print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
-            self.settings['dropIndexes'] = self.calculate_auto()
+            self.settings['dropIndexes'] = self.calculate_auto2(12.0, 500.0)
+        if self.allow_hudcache_rebuild:
+            self.settings['dropHudCache'] = self.calculate_auto2(25.0, 500.0)    # returns "drop"/"don't drop"
+
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.prepareBulkImport()
+        else:
+            print "No need drop indexes."
+        #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
         totstored = 0
         totdups = 0
         totpartial = 0
@@ -183,7 +197,13 @@ class Importer:
             tottime += ttime
         if self.settings['dropIndexes'] == 'drop':
             self.fdb.afterBulkImport()
-        self.fdb.analyzeDB()
+        else:
+            print "No need rebuild indexes."
+        if self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
+        else:
+            print "No need to rebuild hudcache."
+        self.database.analyzeDB()
         return (totstored, totdups, totpartial, toterrors, tottime)
 #        else: import threaded
 
@@ -201,6 +221,41 @@ class Importer:
         if len(self.filelist) < 50:            return "don't drop"      
         if self.settings['handsInDB'] > 50000: return "don't drop"
         return "drop"
+
+    def calculate_auto2(self, scale, increment):
+        """A second heuristic to determine a reasonable value of drop/don't drop
+           This one adds up size of files to import to guess number of hands in them
+           Example values of scale and increment params might be 10 and 500 meaning
+           roughly: drop if importing more than 10% (100/scale) of hands in db or if
+           less than 500 hands in db"""
+        size_per_hand = 1300.0  # wag based on a PS 6-up FLHE file. Actual value not hugely important
+                                # as values of scale and increment compensate for it anyway.
+                                # decimal used to force float arithmetic
+        
+        # get number of hands in db
+        if 'handsInDB' not in self.settings:
+            try:
+                tmpcursor = self.fdb.db.cursor()
+                tmpcursor.execute("Select count(1) from Hands;")
+                self.settings['handsInDB'] = tmpcursor.fetchone()[0]
+            except:
+                pass # if this fails we're probably doomed anyway
+        
+        # add up size of import files
+        total_size = 0.0
+        for file in self.filelist:
+            if os.path.exists(file):
+                stat_info = os.stat(file)
+                total_size += stat_info.st_size
+
+        # if hands_in_db is zero or very low, we want to drop indexes, otherwise compare 
+        # import size with db size somehow:
+        ret = "don't drop"
+        if self.settings['handsInDB'] < scale * (total_size/size_per_hand) + increment:
+            ret = "drop"
+        #print "auto2: handsindb =", self.settings['handsInDB'], "total_size =", total_size, "size_per_hand =", \
+        #      size_per_hand, "inc =", increment, "return:", ret
+        return ret
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
@@ -253,36 +308,60 @@ class Importer:
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
-        if filter == "passthrough" or filter == "":
-            (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(file, site)
-        else:
-            conv = None
-            # Load filter, process file, pass returned filename to import_fpdb_file
+
+        conv = None
+        # Load filter, process file, pass returned filename to import_fpdb_file
             
-            print "\nConverting %s" % file
-            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-            hhbase    = os.path.expanduser(hhbase)
-            hhdir     = os.path.join(hhbase,site)
-            try:
-                out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
-            except:
-                out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
+        print "\nConverting %s" % file
+        hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+        hhbase    = os.path.expanduser(hhbase)
+        hhdir     = os.path.join(hhbase,site)
+        try:
+            out_path     = os.path.join(hhdir, file.split(os.path.sep)[-2]+"-"+os.path.basename(file))
+        except:
+            out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
-            filter_name = filter.replace("ToFpdb", "")
+        filter_name = filter.replace("ToFpdb", "")
 
-            mod = __import__(filter)
-            obj = getattr(mod, filter_name, None)
-            if callable(obj):
-                conv = obj(in_path = file, out_path = out_path)
-                if(conv.getStatus()):
-                    (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
-                else:
-                    # conversion didn't work
-                    # TODO: appropriate response?
-                    return (0, 0, 0, 1, 0)
+#  Example code for using threads & queues:  (maybe for obj and import_fpdb_file??)
+#def worker():
+#    while True:
+#        item = q.get()
+#        do_work(item)
+#        q.task_done()
+#
+#q = Queue()
+#for i in range(num_worker_threads):
+#     t = Thread(target=worker)
+#     t.setDaemon(True)
+#     t.start()
+#
+#for item in source():
+#    q.put(item)
+#
+#q.join()       # block until all tasks are done
+
+        mod = __import__(filter)
+        obj = getattr(mod, filter_name, None)
+        if callable(obj):
+            conv = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            if(conv.getStatus() and self.NEWIMPORT == False):
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
+            elif (conv.getStatus() and self.NEWIMPORT == True):
+                #This code doesn't do anything yet
+                handlist = hhc.getProcessedHands()
+                self.pos_in_file[file] = hhc.getLastCharacterRead()
+
+                for hand in handlist:
+                    hand.prepInsert()
+                    hand.insert()
             else:
-                print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
-                return
+                # conversion didn't work
+                # TODO: appropriate response?
+                return (0, 0, 0, 1, 0)
+        else:
+            print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
+            return
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
@@ -359,8 +438,9 @@ class Importer:
                     self.hand=hand
 
                     try:
-                        handsId = fpdb_parse_logic.mainParser(self.settings['db-backend'], self.fdb.db
-                                                           ,self.fdb.cursor, self.siteIds[site], category, hand, self.config)
+                        handsId = fpdb_parse_logic.mainParser( self.settings, self.fdb
+                                                             , self.siteIds[site], category, hand
+                                                             , self.config, self.database )
                         self.fdb.db.commit()
 
                         stored += 1

@@ -34,10 +34,13 @@ import gobject
 
 #    FreePokerTools modules
 from Mucked import Aux_Window
+from Mucked import Seat_Window
+from Mucked import Aux_Seats
 
 class Hello(Aux_Window):
     """A 'Hello World' Aux_Window demo."""
     def create(self):
+        print "creating Hello"
 #    This demo simply creates a label in a window.
         self.container = gtk.Window()
         self.container.add(gtk.Label("Hello World"))
@@ -99,15 +102,18 @@ class Hello_plus(Aux_Window):
 #    hands played that was updated in the "update_data()" function.
         self.label.set_text("Hello %s\nYou have played %d hands\n on %s." % (self.hero, self.hands_played, self.site))
 
-class Hello_Menu(Aux_Window):
-    """A 'Hello World' Aux_Window demo."""
-    def create(self):
-#    This demo puts a menu item on the HUD mainwindow.
-        self.item = gtk.MenuItem('Print cards')
-        self.hud.menu.append(self.item)
-        self.item.connect("activate", self.print_cards)
-        self.item.show()
+class Hello_Seats(Aux_Seats):
+    """A 'Hello World' Seat_Window demo."""
 
-    def print_cards(self, *args):
-#    callback for the menu item
-        print "cards =", self.hud.cards
+    def create_contents(self, container, i):
+        container.label = gtk.Label("empty")
+        container.add(container.label)
+        container.show_all()
+
+    def update_contents(self, container, i):
+        if i == "common": return
+        id = self.get_id_from_seat(i)
+        if id == None:
+            container.label.set_text("empty")
+        else:
+            container.label.set_text("player = %s" % self.hud.stat_dict[id]['screen_name'])

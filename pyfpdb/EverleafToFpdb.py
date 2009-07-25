@@ -37,7 +37,7 @@ class Everleaf(HandHistoryConverter):
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False, index=0):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -45,7 +45,7 @@ follow :  whether to tail -f the input
 autostart: whether to run the thread (or you can call start() yourself)
 debugging: if False, pass on partially supported game types. If true, have a go and error..."""
         print "DEBUG: XXXXXXXXXXXXXXX"
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow)
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow, index=index)
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
@@ -237,10 +237,13 @@ or None if we fail to get the info """
             # Also works with Omaha hands.
             cards = m.group('CARDS')
             cards = [card.strip() for card in cards.split(',')]
-            hand.addHoleCards(cards, m.group('PNAME'))
+#            hand.addHoleCards(cards, m.group('PNAME'))
+            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
+
         else:
             #Not involved in hand
             hand.involved = False
+
 
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
@@ -292,7 +295,8 @@ or None if we fail to get the info """
                 cards = cards.split(', ')
                 player = m.group('PNAME')
                 logging.debug("readShownCards %s cards=%s" % (player, cards))
-                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
+#                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'))
 
 
 

@@ -86,13 +86,33 @@ class Site:
         self.aux_window   = node.getAttribute("aux_window")
         self.font         = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
-        self.use_frames    = node.getAttribute("use_frames")
+        self.use_frames   = node.getAttribute("use_frames")
         self.enabled      = fix_tf(node.getAttribute("enabled"), default = True)
+        self.xpad         = node.getAttribute("xpad")
+        self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
+
+#   Site defaults
+        if self.xpad       == "": self.xpad = 1
+        else: self.xpad = int(self.xpad)
+
+        if self.ypad       == "": self.ypad = 0
+        else: self.ypad = int(self.ypad)
+
+        if self.font_size  == "": self.font_size = 7
+        else: self.font_size = int(self.font_size)
+
+        if self.hudopacity == "": self.hudopacity = 1.0
+        else: self.hudopacity = float(self.hudopacity)
+
+        if self.use_frames == "": self.use_frames = False
+        if self.font       == "": self.font = "Sans" 
+        if self.hudbgcolor == "": self.hudbgcolor = "000000"
+        if self.hudfgcolor == "": self.hudfgcolor = "FFFFFF"
 
     def __str__(self):
         temp = "Site = " + self.site_name + "\n"
@@ -119,9 +139,16 @@ class Stat:
 class Game:
     def __init__(self, node):
         self.game_name = node.getAttribute("game_name")
-        self.db        = node.getAttribute("db")
         self.rows      = int( node.getAttribute("rows") )
         self.cols      = int( node.getAttribute("cols") )
+        self.xpad      = node.getAttribute("xpad")
+        self.ypad      = node.getAttribute("ypad")
+
+#    Defaults
+        if self.xpad == "": self.xpad = 1
+        else: self.xpad = int(self.xpad)
+        if self.ypad == "": self.ypad = 0
+        else: self.ypad = int(self.ypad)
 
         aux_text = node.getAttribute("aux")
         aux_list = aux_text.split(',')
@@ -146,9 +173,10 @@ class Game:
             
     def __str__(self):
         temp = "Game = " + self.game_name + "\n"
-        temp = temp + "    db = %s\n" % self.db
         temp = temp + "    rows = %d\n" % self.rows
         temp = temp + "    cols = %d\n" % self.cols
+        temp = temp + "    xpad = %d\n" % self.xpad
+        temp = temp + "    ypad = %d\n" % self.ypad
         temp = temp + "    aux = %s\n" % self.aux
         
         for stat in self.stats.keys():
@@ -250,6 +278,7 @@ class Config:
 
         self.default_config_path = self.get_default_config_path()
         if file != None: # configuration file path has been passed
+            file = os.path.expanduser(file)
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
@@ -492,6 +521,8 @@ class Config:
             db['db-backend'] = 2
         elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
             db['db-backend'] = 3
+        elif string.lower(self.supported_databases[name].db_server) == 'sqlite':
+            db['db-backend'] = 4 
         else: db['db-backend'] = None # this is big trouble
         return db
 
@@ -630,6 +661,8 @@ class Config:
         parms["font"]         = self.supported_sites[site].font
         parms["font_size"]    = self.supported_sites[site].font_size
         parms["enabled"]      = self.supported_sites[site].enabled
+        parms["xpad"]         = self.supported_sites[site].xpad
+        parms["ypad"]         = self.supported_sites[site].ypad
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
@@ -680,9 +713,10 @@ class Config:
         param = {}
         if self.supported_games.has_key(name):
             param['game_name'] = self.supported_games[name].game_name
-            param['db']        = self.supported_games[name].db
             param['rows']      = self.supported_games[name].rows
             param['cols']      = self.supported_games[name].cols
+            param['xpad']      = self.supported_games[name].xpad
+            param['ypad']      = self.supported_games[name].ypad
             param['aux']       = self.supported_games[name].aux
         return param
 

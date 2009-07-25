@@ -57,6 +57,21 @@ def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
         #AAKKs
         #AAKKr
         # Is probably what we are looking for
+
+        # mct:
+        # my maths says there are 4 classes of suitedness
+        # SSSS SSSx SSxy SSHH
+        # encode them as follows:
+        # SSSS (K, J, 6, 3)
+        # - 13C4 = 715 possibilities
+        # SSSx (K, J, 6),(3)
+        # - 13C3 * 13 = 3718 possibilities 
+        # SSxy (K, J),(6),(3)
+        # - 13C2 * 13*13 = 13182 possibilities
+        # SSHH (K, J),(6, 3)
+        # - 13C2 * 13C2 = 6084 possibilities
+        # Needless to say they won't fit on a 13x13 grid.
+        # The actual number of hands in each class is far greater
     return(0)
 
 def cardFromValueSuit(value, suit):
@@ -70,7 +85,7 @@ def cardFromValueSuit(value, suit):
 def valueSuitFromCard(card):
     """ Function to convert a card stored in the database (int 0-52) into value 
         and suit like 9s, 4c etc """
-    if card < 0 or card > 52:
+    if card < 0 or card > 52 or not card:
         return('')
     else:
         return( ['', '2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', 'Th', 'Jh', 'Qh', 'Kh', 'Ah'
@@ -80,4 +95,7 @@ def valueSuitFromCard(card):
                 ][card] )
 
 
-
+if __name__ == '__main__':
+    for i in xrange(1, 14):
+        print "card %2d = %s    card %2d = %s    card %2d = %s    card %2d = %s" % \
+            (i, valueSuitFromCard(i), i+13, valueSuitFromCard(i+13), i+26, valueSuitFromCard(i+26), i+39, valueSuitFromCard(i+39))

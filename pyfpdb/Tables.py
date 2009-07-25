@@ -231,7 +231,12 @@ def discover_nt_by_name(c, tablename):
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
-        if not tablename in titles[hwnd]: continue
+        #print "Tables.py: tablename =", tablename, "title =", titles[hwnd]
+        try:
+            # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
+            if not tablename in titles[hwnd]: continue
+        except:
+            continue
         if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
         if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
         if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
@@ -364,7 +369,7 @@ def clean_title(name):
     for pattern in [' \(6 max\)', ' \(heads up\)', ' \(deep\)',
                 ' \(deep hu\)', ' \(deep 6\)', ' \(2\)',
                 ' \(edu\)', ' \(edu, 6 max\)', ' \(6\)',
-                ' \(speed\)', 
+                ' \(speed\)', 'special', 'newVPP', 
                 ' no all-in', ' fast', ',', ' 50BB min', '50bb min', '\s+$']:
         name = re.sub(pattern, '', name)
     name = name.rstrip()

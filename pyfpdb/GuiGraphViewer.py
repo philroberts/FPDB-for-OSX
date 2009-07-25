@@ -38,20 +38,19 @@ except:
          and HUD are NOT affected by this problem."""
 
 import fpdb_import
-import fpdb_db
+import Database
 import Filters
 
 class GuiGraphViewer (threading.Thread):
 
-    def __init__(self, db, settings, querylist, config, debug=True):
+    def __init__(self, querylist, config, debug=True):
         """Constructor for GraphViewer"""
-        self.debug=debug
-        #print "start of GraphViewer constructor"
-        self.db=db
-        self.cursor=db.cursor
-        self.settings=settings
-        self.sql=querylist
+        self.sql = querylist
         self.conf = config
+        self.debug = debug
+        #print "start of GraphViewer constructor"
+        self.db = Database.Database(self.conf, sql=self.sql)
+
 
         filters_display = { "Heroes"  :  True,
                             "Sites"   :  True,
@@ -63,7 +62,7 @@ class GuiGraphViewer (threading.Thread):
                             "Button2" :  True
                           }
 
-        self.filters = Filters.Filters(db, settings, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh Graph")
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name("Export to File")
@@ -90,7 +89,7 @@ class GuiGraphViewer (threading.Thread):
         self.canvas = None
 
 
-        self.db.db.rollback()
+        self.db.rollback()
 
 #################################
 #
@@ -126,7 +125,7 @@ class GuiGraphViewer (threading.Thread):
     #end def get_vbox
 
     def clearGraphData(self):
-        self.fig.clf()
+        self.fig.clear()
         if self.canvas is not None:
             self.canvas.destroy()
 
@@ -146,7 +145,7 @@ class GuiGraphViewer (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                self.db.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
@@ -154,7 +153,7 @@ class GuiGraphViewer (threading.Thread):
         if not sitenos:
             #Should probably pop up here.
             print "No sites selected - defaulting to PokerStars"
-            sitenos = [2]
+            return
 
         if not playerids:
             print "No player ids found"
@@ -197,6 +196,7 @@ class GuiGraphViewer (threading.Thread):
 
             self.graphBox.add(self.canvas)
             self.canvas.show()
+            self.canvas.draw()
             #self.exportButton.set_sensitive(True)
     #end of def showClicked
 
@@ -205,7 +205,7 @@ class GuiGraphViewer (threading.Thread):
 #        print "DEBUG: getRingProfitGraph"
         start_date, end_date = self.filters.getDates()
 
-        #Buggered if I can find a way to do this 'nicely' take a list of intergers and longs
+        #Buggered if I can find a way to do this 'nicely' take a list of integers and longs
         # and turn it into a tuple readale by sql.
         # [5L] into (5) not (5,) and [5L, 2829L] into (5, 2829)
         nametest = str(tuple(names))
@@ -226,10 +226,10 @@ class GuiGraphViewer (threading.Thread):
 
         #print "DEBUG: sql query:"
         #print tmp
-        self.cursor.execute(tmp)
+        self.db.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
-        self.db.db.rollback()
+        self.db.rollback()
 
         if(winnings == ()):
             return None
