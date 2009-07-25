@@ -237,10 +237,13 @@ or None if we fail to get the info """
             # Also works with Omaha hands.
             cards = m.group('CARDS')
             cards = [card.strip() for card in cards.split(',')]
-            hand.addHoleCards(cards, m.group('PNAME'))
+#            hand.addHoleCards(cards, m.group('PNAME'))
+            hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
+
         else:
             #Not involved in hand
             hand.involved = False
+
 
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
@@ -292,7 +295,8 @@ or None if we fail to get the info """
                 cards = cards.split(', ')
                 player = m.group('PNAME')
                 logging.debug("readShownCards %s cards=%s" % (player, cards))
-                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
+#                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'))
 
 
 
