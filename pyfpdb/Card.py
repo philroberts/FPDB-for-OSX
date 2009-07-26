@@ -24,25 +24,37 @@ def twoStartCards(value1, suit1, value2, suit2):
         (y+2) represents rank of second card (2=2 .. 14=Ace)
         If x > y then pair is suited, if x < y then unsuited"""
     if value1 < 2 or value2 < 2:
-        return(0)
-    if (suit1 == suit2 and value1 < value2) or (suit1 != suit2 and value2 > value1):
-        return(13 * (value2-2) + (value1-1))
+        ret = 0
+    if value1 == value2: # pairs
+        ret = (13 * (value2-2) + (value2-1) )
+    elif suit1 == suit2:
+        if value1 > value2:
+            ret = 13 * (value1-2) + (value2-1)
+        else:
+            ret = 13 * (value2-2) + (value1-1)
     else:
-        return(13 * (value1-2) + (value2-1))
+        if value1 > value2:
+            ret = 13 * (value2-2) + (value2-1)
+        else:
+            ret = 13 * (value1-2) + (value2-1)
+            
+#    print "twoStartCards(", value1, suit1, value2, suit2, ")=", ret
+    return ret
 
 def twoStartCardString(card):
     """ Function to convert an int representing 2 holdem hole cards (as created by twoStartCards)
         into a string like AQo """
-    if card <= 0:
-        return 'xx'
-    else:
+    ret = 'xx'
+    if card > 0:
         card -= 1
         s = ('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
-        x = card/13
-        y = card - 13*x
-        if x == y:  return(s[x] + s[y])
-        elif x > y: return(s[x] + s[y] + 's')
-        else:       return(s[y] + s[x] + 'o')
+        x = card / 13
+        y = card - 13 * x
+        if x == y:  ret = s[x] + s[y]
+        elif x > y: ret = s[x] + s[y] + 's'
+        else:       ret = s[y] + s[x] + 'o'
+#    print "twoStartCardString(", card ,") = " + ret
+    return ret
 
 def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
     """ Function to convert 4 value,suit pairs into a Omaha style starting hand,
