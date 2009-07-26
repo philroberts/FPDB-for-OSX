@@ -247,25 +247,30 @@ class fpdb_db:
 
     def create_tables(self):
         #todo: should detect and fail gracefully if tables already exist.
-        logging.debug(self.sql.query['createSettingsTable'])
-        self.cursor.execute(self.sql.query['createSettingsTable'])
-        logging.debug(self.sql.query['createSitesTable'])
-        self.cursor.execute(self.sql.query['createSitesTable'])
-        self.cursor.execute(self.sql.query['createGametypesTable'])
-        self.cursor.execute(self.sql.query['createPlayersTable'])
-        self.cursor.execute(self.sql.query['createAutoratesTable'])
-        self.cursor.execute(self.sql.query['createHandsTable'])
-        self.cursor.execute(self.sql.query['createTourneyTypesTable'])
-        self.cursor.execute(self.sql.query['createTourneysTable'])
-        self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
-        self.cursor.execute(self.sql.query['createHandsPlayersTable'])
-        self.cursor.execute(self.sql.query['createHandsActionsTable'])
-        self.cursor.execute(self.sql.query['createHudCacheTable'])
-        #self.cursor.execute(self.sql.query['addTourneyIndex'])
-        #self.cursor.execute(self.sql.query['addHandsIndex'])
-        #self.cursor.execute(self.sql.query['addPlayersIndex'])
-        self.fillDefaultData()
-        self.db.commit()
+        try:
+            logging.debug(self.sql.query['createSettingsTable'])
+            self.cursor.execute(self.sql.query['createSettingsTable'])
+            logging.debug(self.sql.query['createSitesTable'])
+            self.cursor.execute(self.sql.query['createSitesTable'])
+            self.cursor.execute(self.sql.query['createGametypesTable'])
+            self.cursor.execute(self.sql.query['createPlayersTable'])
+            self.cursor.execute(self.sql.query['createAutoratesTable'])
+            self.cursor.execute(self.sql.query['createHandsTable'])
+            self.cursor.execute(self.sql.query['createTourneyTypesTable'])
+            self.cursor.execute(self.sql.query['createTourneysTable'])
+            self.cursor.execute(self.sql.query['createTourneysPlayersTable'])
+            self.cursor.execute(self.sql.query['createHandsPlayersTable'])
+            #self.cursor.execute(self.sql.query['createHandsActionsTable'])
+            self.cursor.execute(self.sql.query['createHudCacheTable'])
+            #self.cursor.execute(self.sql.query['addTourneyIndex'])
+            #self.cursor.execute(self.sql.query['addHandsIndex'])
+            #self.cursor.execute(self.sql.query['addPlayersIndex'])
+            self.fillDefaultData()
+            self.db.commit()
+        except:
+            print "err: ", str(sys.exc_value)
+            self.db.rollback()
+            raise fpdb_simple.FpdbError( "Error creating tables " + str(sys.exc_value) )
 #end def disconnect
     
     def drop_tables(self):
@@ -573,31 +578,38 @@ class fpdb_db:
     #end def dropAllIndexes
 
     def getLastInsertId(self):
-        if self.backend == self.MYSQL_INNODB:
-            ret = self.db.insert_id()
-            if ret < 1 or ret > 999999999:
-                print "getLastInsertId(): problem fetching insert_id? ret=", ret
-                ret = -1
-        elif self.backend == self.PGSQL:
-            # some options:
-            # currval(hands_id_seq) - use name of implicit seq here
-            # lastval() - still needs sequences set up?
-            # insert ... returning  is useful syntax (but postgres specific?)
-            # see rules (fancy trigger type things)
-            self.cursor.execute ("SELECT lastval()")
-            row = self.cursor.fetchone()
-            if not row:
-                print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
+        try:
+            if self.backend == self.MYSQL_INNODB:
+                ret = self.db.insert_id()
+                if ret < 1 or ret > 999999999:
+                    print "getLastInsertId(): problem fetching insert_id? ret=", ret
+                    ret = -1
+            elif self.backend == self.PGSQL:
+                # some options:
+                # currval(hands_id_seq) - use name of implicit seq here
+                # lastval() - still needs sequences set up?
+                # insert ... returning  is useful syntax (but postgres specific?)
+                # see rules (fancy trigger type things)
+                c = self.db.cursor()
+                ret = c.execute ("SELECT lastval()")
+                row = c.fetchone()
+                if not row:
+                    print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
+                    ret = -1
+                else:
+                    ret = row[0]
+            elif self.backend == fpdb_db.SQLITE:
+                # don't know how to do this in sqlite
+                print "getLastInsertId(): not coded for sqlite yet"
                 ret = -1
             else:
-                ret = row[0]
-        elif self.backend == fpdb_db.SQLITE:
-            # don't know how to do this in sqlite
-            print "getLastInsertId(): not coded for sqlite yet"
+                print "getLastInsertId(): unknown backend ", self.backend
+                ret = -1
+        except:
             ret = -1
-        else:
-            print "getLastInsertId(): unknown backend ", self.backend
-            ret = -1
+            print "getLastInsertId error:", str(sys.exc_value), " ret =", ret
+            raise fpdb_simple.FpdbError( "getLastInsertId error: " + str(sys.exc_value) )
+
         return ret
 
     def storeHand(self, p):

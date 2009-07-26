@@ -19,9 +19,11 @@
 
 import fpdb_simple
 import Database
+from time import time, strftime
 
 #parses a holdem hand
 def mainParser(settings, fdb, siteID, category, hand, config, db = None):
+    t0 = time()
     backend = settings['db-backend']
     if db == None:
         #This is redundant - hopefully fdb will be a Database object in an iteration soon
@@ -79,7 +81,7 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
             seatLines.append(line)
 
     names       = fpdb_simple.parseNames(seatLines)
-    playerIDs   = fpdb_simple.recognisePlayerIDs(fdb.cursor, names, siteID)
+    playerIDs   = fpdb_simple.recognisePlayerIDs(fdb.cursor, names, siteID)  # inserts players as needed
     tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
@@ -143,49 +145,65 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
                                      , allIns, actionTypeByNo, winnings, totalWinnings, None
                                      , actionTypes, actionAmounts, antes)
 
-    if isTourney:
-        ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
-        payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
-        
-        if base == "hold":
-            result = db.tourney_holdem_omaha(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteTourneyNo, buyin
-                                     , fee, knockout, entries, prizepool, tourneyStartTime
-                                     , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
-                                     , gametypeID, handStartTime, names, playerIDs, startCashes
-                                     , positions, cardValues, cardSuits, boardValues, boardSuits
-                                     , winnings, rakes, actionTypes, allIns, actionAmounts
-                                     , actionNos, hudImportData, maxSeats, tableName, seatNos)
-        elif base == "stud":
-            result = db.tourney_stud(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteTourneyNo
-                                     , buyin, fee, knockout, entries, prizepool, tourneyStartTime
-                                     , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
-                                     , gametypeID, handStartTime, names, playerIDs, startCashes
-                                     , antes, cardValues, cardSuits, winnings, rakes, actionTypes
-                                     , allIns, actionAmounts, actionNos, hudImportData, maxSeats
-                                     , tableName, seatNos)
+
+    #print "parse: hand data prepared"    # only reads up to here apart from inserting new players
+    try:
+        fdb.db.commit()  # need to commit new players as different db connection used 
+                         # for other writes. maybe this will change maybe not ...
+    except:
+        print "parse: error during rollback: " + str(sys.exc_value)
+
+
+    # Following code writes hands to database and commits (or rolls back if there is an error)
+    try:
+        if isTourney:
+            ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
+            payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
+            
+            if base == "hold":
+                result = db.tourney_holdem_omaha(
+                                           config, settings, base, category, siteTourneyNo, buyin
+                                         , fee, knockout, entries, prizepool, tourneyStartTime
+                                         , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
+                                         , gametypeID, handStartTime, names, playerIDs, startCashes
+                                         , positions, cardValues, cardSuits, boardValues, boardSuits
+                                         , winnings, rakes, actionTypes, allIns, actionAmounts
+                                         , actionNos, hudImportData, maxSeats, tableName, seatNos)
+            elif base == "stud":
+                result = db.tourney_stud(
+                                           config, settings, base, category, siteTourneyNo
+                                         , buyin, fee, knockout, entries, prizepool, tourneyStartTime
+                                         , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
+                                         , gametypeID, handStartTime, names, playerIDs, startCashes
+                                         , antes, cardValues, cardSuits, winnings, rakes, actionTypes
+                                         , allIns, actionAmounts, actionNos, hudImportData, maxSeats
+                                         , tableName, seatNos)
+            else:
+                raise fpdb_simple.FpdbError("unrecognised category")
         else:
-            raise fpdb_simple.FpdbError("unrecognised category")
-    else:
-        if base == "hold":
-            result = db.ring_holdem_omaha(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteHandNo
-                                     , gametypeID, handStartTime, names, playerIDs
-                                     , startCashes, positions, cardValues, cardSuits
-                                     , boardValues, boardSuits, winnings, rakes
-                                     , actionTypes, allIns, actionAmounts, actionNos
-                                     , hudImportData, maxSeats, tableName, seatNos)
-        elif base == "stud":
-            result = db.ring_stud(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteHandNo, gametypeID
-                                     , handStartTime, names, playerIDs, startCashes, antes
-                                     , cardValues, cardSuits, winnings, rakes, actionTypes, allIns
-                                     , actionAmounts, actionNos, hudImportData, maxSeats, tableName
-                                     , seatNos)
-        else:
-            raise fpdb_simple.FpdbError ("unrecognised category")
-    fdb.db.commit()
+            if base == "hold":
+                result = db.ring_holdem_omaha(
+                                           config, settings, base, category, siteHandNo
+                                         , gametypeID, handStartTime, names, playerIDs
+                                         , startCashes, positions, cardValues, cardSuits
+                                         , boardValues, boardSuits, winnings, rakes
+                                         , actionTypes, allIns, actionAmounts, actionNos
+                                         , hudImportData, maxSeats, tableName, seatNos)
+            elif base == "stud":
+                result = db.ring_stud(
+                                           config, settings, base, category, siteHandNo, gametypeID
+                                         , handStartTime, names, playerIDs, startCashes, antes
+                                         , cardValues, cardSuits, winnings, rakes, actionTypes, allIns
+                                         , actionAmounts, actionNos, hudImportData, maxSeats, tableName
+                                         , seatNos)
+            else:
+                raise fpdb_simple.FpdbError ("unrecognised category")
+        db.commit()
+    except:
+        print "Error storing hand: " + str(sys.exc_value)
+        db.rollback()
+    t9 = time()
+    #print "parse and save=(%4.3f)" % (t9-t0)
     return result
 #end def mainParser
 
