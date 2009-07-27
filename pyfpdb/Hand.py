@@ -1323,31 +1323,19 @@ class Pot(object):
         # Total pot $124.30 Main pot $98.90. Side pot $23.40. | Rake $2
         
     def __str__(self):
+        if self.sym is None:
+            self.sym = "C"
         if self.total is None:
             print "call Pot.end() before printing pot total"
             # NB if I'm sure end() is idempotent, call it here.
             raise FpdbParseError
         
-
-# TODO: This really neeads to be a loop to handle multiple side pots
-        if len(self.pots) == 1: # (only use Total pot)
-            return "Total pot %s%.2f" % (self.sym, self.total,)
-        elif len(self.pots) == 2:
-            return "Total pot %s%.2f Main pot %s%.2f. Side pot %s%2.f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1])
-        elif len(self.pots) == 3:
-            return "Total pot %s%.2f Main pot $%.2f. Side pot-1 %s%2.2f. Side pot-2 %s%.2f." % (self.sym, self.total, self.sym, self.pots[0], self.sym, self.pots[1], self.sym, self.pots[2])
-        elif len(self.pots) == 0:
-            # no small blind and walk in bb (hopefully)
-            return "Total pot %s%.2f" % (self.sym, self.total,)
-        else:
-            return ("too many pots.. no small blind and walk in bb?. self.pots: %s" %(self.pots))
-            # I don't know stars format for a walk in the bb when sb doesn't post.
-            # The thing to do here is raise a Hand error like fpdb import does and file it into errors.txt
-
-
-
-
-
+        ret = "Total pot %s%.2f" % (self.sym, self.total)
+        if len(self.pots) < 2:
+            return ret;
+        ret += " Main pot %s%.2f" % (self.sym, self.pots[0])
+        
+        return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x]) ) for x in xrange(1, len(self.pots)) ])
 
 def assemble(cnxn, handid):
     c = cnxn.cursor()

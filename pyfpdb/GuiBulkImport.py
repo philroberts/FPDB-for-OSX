@@ -263,7 +263,7 @@ def main(argv=None):
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config) 
         # importer.setDropIndexes("auto")
-	importer.setDropIndexes("don't drop")
+        importer.setDropIndexes("don't drop")
         importer.setFailOnError(options.failOnError)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
