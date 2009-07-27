@@ -464,7 +464,7 @@ class fpdb_db:
                                        "AND referenced_column_name = %s ",
                                        (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
                     cons = self.cursor.fetchone()
-                    print "afterbulk: cons=", cons
+                    #print "afterbulk: cons=", cons
                     if cons:
                         pass
                     else:
@@ -516,7 +516,7 @@ class fpdb_db:
             self.db.set_isolation_level(1)   # go back to normal isolation level
         self.db.commit()   # seems to clear up errors if there were any in postgres
         atime = time() - stime
-        print "after import took", atime, "seconds"
+        print "After import took", atime, "seconds"
     #end def afterBulkImport
 
     def createAllIndexes(self):
