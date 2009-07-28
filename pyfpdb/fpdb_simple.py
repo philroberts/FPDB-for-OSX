@@ -983,7 +983,7 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
             #AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
  
         #result=(db.insert_id(),)
-        result=(getLastInsertId(backend,db,cursor),)
+        result=(db.get_last_insert_id(),)
     
     return result[0]
 #end def recogniseGametypeID

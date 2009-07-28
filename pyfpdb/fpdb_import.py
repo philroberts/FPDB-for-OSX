@@ -60,8 +60,6 @@ class Importer:
         self.caller     = caller
         self.config     = config
         self.database   = None       # database will be the main db interface eventually
-        self.fdb        = None       # fdb may disappear or just hold the simple db connection
-        self.cursor     = None
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
@@ -79,12 +77,9 @@ class Importer:
         self.settings.setdefault("handCount", 0)
         
         self.database = Database.Database(self.config)  # includes .connection and .sql variables
-        self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
-        self.fdb.do_connect(self.config)
-        self.fdb.db.rollback()         # make sure all locks are released
 
         self.NEWIMPORT = False
-        self.allow_hudcache_rebuild = False;
+        self.allow_hudcache_rebuild = False
 
     #Set functions
     def setCallHud(self, value):
@@ -123,8 +118,7 @@ class Importer:
         self.filelist[filename] = [site] + [filter]
         if site not in self.siteIds:
             # Get id from Sites table in DB
-            self.fdb.cursor.execute(self.fdb.sql.query['getSiteId'], (site,))
-            result = self.fdb.cursor.fetchall()
+            result = self.database.get_site_id(site)
             if len(result) == 1:
                 self.siteIds[site] = result[0][0]
             else:
@@ -178,7 +172,7 @@ class Importer:
             self.settings['dropHudCache'] = self.calculate_auto2(25.0, 500.0)    # returns "drop"/"don't drop"
 
         if self.settings['dropIndexes'] == 'drop':
-            self.fdb.prepareBulkImport()
+            self.database.prepareBulkImport()
         else:
             print "No need to drop indexes."
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
@@ -196,7 +190,7 @@ class Importer:
             toterrors += errors
             tottime += ttime
         if self.settings['dropIndexes'] == 'drop':
-            self.fdb.afterBulkImport()
+            self.database.afterBulkImport()
         else:
             print "No need to rebuild indexes."
         if self.allow_hudcache_rebuild and self.settings['dropHudCache'] == 'drop':
@@ -212,7 +206,7 @@ class Importer:
         if len(self.filelist) == 1:            return "don't drop"
         if 'handsInDB' not in self.settings:
             try:
-                tmpcursor = self.fdb.db.cursor()
+                tmpcursor = self.database.get_cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
@@ -235,7 +229,7 @@ class Importer:
         # get number of hands in db
         if 'handsInDB' not in self.settings:
             try:
-                tmpcursor = self.fdb.db.cursor()
+                tmpcursor = self.database.get_cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
@@ -299,12 +293,13 @@ class Importer:
         
         self.addToDirList = {}
         self.removeFromFileList = {}
-        self.fdb.db.rollback()
+        self.database.rollback()
         #rulog.writelines("  finished\n")
         #rulog.close()
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
+        #print "import_file_dict"
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
@@ -350,6 +345,7 @@ class Importer:
 
 
     def import_fpdb_file(self, file, site):
+        #print "import_fpdb_file"
         starttime = time()
         last_read_hand = 0
         loc = 0
@@ -379,8 +375,7 @@ class Importer:
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
 
-        # fix fdb and database cursors before using this:
-        #self.database.lock_for_insert() # ok when using one thread
+        #self.database.lock_for_insert() # should be ok when using one thread
 
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
@@ -423,10 +418,10 @@ class Importer:
                     self.hand=hand
 
                     try:
-                        handsId = fpdb_parse_logic.mainParser( self.settings, self.fdb
+                        handsId = fpdb_parse_logic.mainParser( self.settings
                                                              , self.siteIds[site], category, hand
                                                              , self.config, self.database )
-                        self.fdb.db.commit()
+                        self.database.commit()
 
                         stored += 1
                         if self.callHud:
@@ -436,23 +431,23 @@ class Importer:
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except fpdb_simple.DuplicateError:
                         duplicates += 1
-                        self.fdb.db.rollback()
+                        self.database.rollback()
                     except (ValueError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
 
                         if (self.settings['failOnError']):
-                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
+                            self.database.commit() #dont remove this, in case hand processing was cancelled.
                             raise
                         else:
-                            self.fdb.db.rollback()
+                            self.database.rollback()
                     except (fpdb_simple.FpdbError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
-                        self.fdb.db.rollback()
+                        self.database.rollback()
 
                         if self.settings['failOnError']:
-                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
+                            self.database.commit() #dont remove this, in case hand processing was cancelled.
                             raise
 
                     if self.settings['minPrint']:
@@ -479,7 +474,7 @@ class Importer:
                 print "failed to read a single hand from file:", inputFile
                 handsId=0
             #todo: this will cause return of an unstored hand number if the last hand was error
-        self.fdb.db.commit()
+        self.database.commit()
         self.handsId=handsId
         return (stored, duplicates, partial, errors, ttime)
 

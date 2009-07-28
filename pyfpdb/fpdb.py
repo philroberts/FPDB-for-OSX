@@ -232,7 +232,7 @@ class fpdb:
                         # ToDo: lock all other tables so that lock doesn't have to be released
                     #    self.release_global_lock()
                     #    lock_released = True
-                    self.db.fdb.recreate_tables()
+                    self.db.recreate_tables()
                     #else:
                         # for other dbs use same connection as holds global lock
                     #    self.fdb_lock.fdb.recreate_tables()

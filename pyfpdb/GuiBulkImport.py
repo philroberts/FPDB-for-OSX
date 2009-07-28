@@ -86,6 +86,7 @@ class GuiBulkImport():
 
                 self.lab_info.set_text("Import finished")
             except:
+                print "bulkimport.loadclicked error: "+str(sys.exc_value)
                 pass
             self.settings['global_lock'].release()
         else:

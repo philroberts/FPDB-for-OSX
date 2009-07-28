@@ -22,14 +22,13 @@ import Database
 from time import time, strftime
 
 #parses a holdem hand
-def mainParser(settings, fdb, siteID, category, hand, config, db = None):
+def mainParser(settings, siteID, category, hand, config, db = None):
+    # fdb is not used now - to be removed ...
     t0 = time()
+    #print "mainparser"
     backend = settings['db-backend']
     if db == None:
-        #This is redundant - hopefully fdb will be a Database object in an iteration soon
         db = Database.Database(c = config, sql = None)
-    else:
-        db = db
     category = fpdb_simple.recogniseCategory(hand[0])
 
     base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
@@ -54,7 +53,7 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
             break
     #print "small blind line:",smallBlindLine
 
-    gametypeID = fpdb_simple.recogniseGametypeID(backend, fdb.db, fdb.cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
+    gametypeID = fpdb_simple.recogniseGametypeID(backend, db, db.get_cursor(), hand[0], hand[smallBlindLine], siteID, category, isTourney)
     if isTourney:
         siteTourneyNo   = fpdb_simple.parseTourneyNo(hand[0])
         buyin           = fpdb_simple.parseBuyin(hand[0])
@@ -65,9 +64,9 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
         tourneyStartTime= handStartTime #todo: read tourney start time
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
-        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(fdb.cursor, siteID, buyin, fee, knockout, rebuyOrAddon)
+        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db.get_cursor(), siteID, buyin, fee, knockout, rebuyOrAddon)
 
-    fpdb_simple.isAlreadyInDB(fdb.cursor, gametypeID, siteHandNo)
+    fpdb_simple.isAlreadyInDB(db.get_cursor(), gametypeID, siteHandNo)
     
     hand = fpdb_simple.filterCrap(hand, isTourney)
     
@@ -81,7 +80,7 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
             seatLines.append(line)
 
     names       = fpdb_simple.parseNames(seatLines)
-    playerIDs   = fpdb_simple.recognisePlayerIDs(fdb.cursor, names, siteID)  # inserts players as needed
+    playerIDs   = fpdb_simple.recognisePlayerIDs(db.get_cursor(), names, siteID)  # inserts players as needed
     tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
@@ -128,8 +127,9 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
         fpdb_simple.convertBlindBet(actionTypes, actionAmounts)
         fpdb_simple.checkPositions(positions)
         
-    fdb.cursor.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
-    limit_type = fdb.cursor.fetchone()[0]
+    c = db.get_cursor()
+    c.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
+    limit_type = c.fetchone()[0]
     fpdb_simple.convert3B4B(category, limit_type, actionTypes, actionAmounts)
     
     totalWinnings = sum(winnings)
@@ -148,7 +148,7 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
 
     #print "parse: hand data prepared"    # only reads up to here apart from inserting new players
     try:
-        fdb.db.commit()  # need to commit new players as different db connection used 
+        db.commit()  # need to commit new players as different db connection used 
                          # for other writes. maybe this will change maybe not ...
     except:
         print "parse: error during rollback: " + str(sys.exc_value)
