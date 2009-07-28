@@ -361,6 +361,10 @@ class fpdb_db:
         """Drop some indexes/foreign keys to prepare for bulk import. 
            Currently keeping the standalone indexes as needed to import quickly"""
         stime = time()
+        if self.backend == self.MYSQL_INNODB:
+            self.cursor.execute("SET foreign_key_checks=0")
+            self.cursor.execute("SET autocommit=0")
+            return
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(0)   # allow table/index operations to work
         for fk in self.foreignKeys[self.backend]:
@@ -450,6 +454,12 @@ class fpdb_db:
     def afterBulkImport(self):
         """Re-create any dropped indexes/foreign keys after bulk import"""
         stime = time()
+        
+        if self.backend == self.MYSQL_INNODB:
+            self.cursor.execute("SET foreign_key_checks=1")
+            self.cursor.execute("SET autocommit=1")
+            return
+
         if self.backend == self.PGSQL:
             self.db.set_isolation_level(0)   # allow table/index operations to work
         for fk in self.foreignKeys[self.backend]:

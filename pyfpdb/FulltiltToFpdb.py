@@ -33,24 +33,32 @@ class Fulltilt(HandHistoryConverter):
                                     -\s(?P<CURRENCY>\$|)?
                                     (?P<SB>[.0-9]+)/
                                     \$?(?P<BB>[.0-9]+)\s
-                                    (Ante\s\$(?P<ANTE>[.0-9]+)\s)?-\s
+                                    (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
-                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz))
+                                    (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
                                  ''', re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
-                                    Table\s(?P<TABLE>[-\s\da-zA-Z]+)\s
+                                    Table\s
+                                    (?P<PLAY>Play\sChip\s|PC)?
+                                    (?P<TABLE>[-\s\da-zA-Z]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$(?P<ANTE>[.0-9]+)\s)?-\s
+                                    \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>.*)
                                  ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
+
+# These regexes are for FTP only
+    re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
+    re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
+
+    mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
 
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
@@ -109,7 +117,6 @@ follow :  whether to tail -f the input"""
         m = self.re_GameInfo.search(handText)
         if not m: 
             return None
-
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
@@ -119,8 +126,8 @@ follow :  whether to tail -f the input"""
                  'Omaha Hi' : ('hold','omahahi'), 
                 'Omaha H/L' : ('hold','omahahilo'),
                      'Razz' : ('stud','razz'), 
-              '7 Card Stud' : ('stud','studhi'), 
-                 'Stud H/L' : ('stud', 'studhilo')
+                  'Stud Hi' : ('stud','studhi'), 
+                 'Stud H/L' : ('stud','studhilo')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
         info['limitType'] = limits[mg['LIMIT']]
@@ -137,7 +144,6 @@ follow :  whether to tail -f the input"""
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
-
         if(m == None):
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
@@ -146,12 +152,12 @@ follow :  whether to tail -f the input"""
         hand.tablename = m.group('TABLE')
         hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
         if m.group('TABLEATTRIBUTES'):
-            m2 = re.search("(deep )?(\d+)( max)?", m.group('TABLEATTRIBUTES'))
-            hand.maxseats = int(m2.group(2))
+            m2 = self.re_Max.search(m.group('TABLEATTRIBUTES'))
+            if m2: hand.maxseats = int(m2.group('MAX'))
 
         hand.tourNo = m.group('TOURNO')
-#        if key == 'PLAY' and info['PLAY'] != None:
-#            hand.gametype['currency'] = 'play'
+        if m.group('PLAY') != None:
+            hand.gametype['currency'] = 'play'
 
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
@@ -214,6 +220,7 @@ follow :  whether to tail -f the input"""
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+#            if player.group() != 
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
 
     def readBringIn(self, hand):
@@ -222,7 +229,7 @@ follow :  whether to tail -f the input"""
             logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning("No bringin found")
+            logging.warning("No bringin found, handid =%s" % hand.handid)
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -255,10 +262,10 @@ follow :  whether to tail -f the input"""
                 else:
                     oldcards = found.group('OLDCARDS').split(' ')
 
-                if street == 'THIRD' and len(newcards) == 3: # hero in stud game
+                if street == 'THIRD' and len(oldcards) == 2: # hero in stud game
                     hand.hero = player
                     hand.dealt.add(player) # need this for stud??
-                    hand.addHoleCards(street, player, closed=newcards[0:2], open=[newcards[2]], shown=False, mucked=False, dealt=False)
+                    hand.addHoleCards(street, player, closed=oldcards, open=newcards, shown=False, mucked=False, dealt=False)
                 else:
                     hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
 
@@ -317,6 +324,11 @@ follow :  whether to tail -f the input"""
         if mo <= 6: return 6
         return 9
 
+    def readOther(self, hand):
+        m = self.re_Mixed.search(self.in_path)
+        if m == None: hand.mixed = None
+        else:
+            hand.mixed = self.mixes[m.groupdict()['MIXED']]
 
 if __name__ == "__main__":
     parser = OptionParser()
