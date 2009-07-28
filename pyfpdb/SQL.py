@@ -1562,6 +1562,13 @@ class Sql:
             else:  # assume postgres
                 self.query['analyze'] = "vacuum analyze"
 
+            if db_server == 'mysql':
+                self.query['lockForInsert'] = """
+                    lock tables hands write, handsplayers write, handsactions write, players write, hudcache write
+                    """
+            else:  # assume postgres
+                self.query['lockForInsert'] = ""
+
 if __name__== "__main__":
 #    just print the default queries and exit
     s = Sql(game = 'razz', type = 'ptracks')

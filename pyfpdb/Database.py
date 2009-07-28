@@ -505,6 +505,14 @@ class Database:
 # Start of Hand Writing routines. Idea is to provide a mixture of routines to store Hand data
 # however the calling prog requires. Main aims:
 # - existing static routines from fpdb_simple just modified
+
+    def lock_for_insert(self):
+        """Lock tables in MySQL to try to speed inserts up"""
+        try:
+            self.get_cursor().execute(self.sql.query['lockForInsert'])
+        except:
+            print "Error during fdb.lock_for_insert:", str(sys.exc_value)
+    #end def lock_for_insert
     
     
     def storeHands(self, backend, site_hand_no, gametype_id

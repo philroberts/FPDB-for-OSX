@@ -84,7 +84,7 @@ class Importer:
         self.fdb.db.rollback()         # make sure all locks are released
 
         self.NEWIMPORT = False
-        self.allow_hudcache_rebuild = True;
+        self.allow_hudcache_rebuild = False;
 
     #Set functions
     def setCallHud(self, value):
@@ -199,7 +199,7 @@ class Importer:
             self.fdb.afterBulkImport()
         else:
             print "No need to rebuild indexes."
-        if self.settings['dropHudCache'] == 'drop':
+        if self.allow_hudcache_rebuild and self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
             print "No need to rebuild hudcache."
@@ -323,24 +323,6 @@ class Importer:
 
         filter_name = filter.replace("ToFpdb", "")
 
-#  Example code for using threads & queues:  (maybe for obj and import_fpdb_file??)
-#def worker():
-#    while True:
-#        item = q.get()
-#        do_work(item)
-#        q.task_done()
-#
-#q = Queue()
-#for i in range(num_worker_threads):
-#     t = Thread(target=worker)
-#     t.setDaemon(True)
-#     t.start()
-#
-#for item in source():
-#    q.put(item)
-#
-#q.join()       # block until all tasks are done
-
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
@@ -396,6 +378,9 @@ class Importer:
         self.lines = fpdb_simple.removeTrailingEOL(inputFile.readlines())
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
+
+        # fix fdb and database cursors before using this:
+        #self.database.lock_for_insert() # ok when using one thread
 
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
