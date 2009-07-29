@@ -62,9 +62,14 @@ class Database:
                 [ ] # no db with index 0
               , [ ] # no db with index 1
               , [ # indexes for mysql (list index 2)
-                  {'tab':'Players',  'col':'name',          'drop':0}
-                , {'tab':'Hands',    'col':'siteHandNo',    'drop':0}
-                , {'tab':'Tourneys', 'col':'siteTourneyNo', 'drop':0}
+                  {'tab':'Players',         'col':'name',              'drop':0}
+                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
+                , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
+                , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} # not needed, handled by fk
+                , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0} # not needed, handled by fk
+                , {'tab':'HandsPlayers',    'col':'tourneysTypeId',    'drop':0}
+                , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
+                , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
                 ]
               , [ # indexes for postgres (list index 3)
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
@@ -589,6 +594,7 @@ class Database:
            Currently keeping the standalone indexes as needed to import quickly"""
         stime = time()
         c = self.get_cursor()
+        # sc: don't think autocommit=0 is needed, should already be in that mode
         if self.backend == self.MYSQL_INNODB:
             c.execute("SET foreign_key_checks=0")
             c.execute("SET autocommit=0")
@@ -607,13 +613,13 @@ class Database:
                               "AND referenced_column_name = %s ",
                               (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
                     cons = c.fetchone()
-                    #print "preparebulk: cons=", cons
+                    print "preparebulk find fk: cons=", cons
                     if cons:
                         print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
                         try:
                             c.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
                         except:
-                            pass
+                            print "    drop failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
     #    DON'T FORGET TO RECREATE THEM!!
                     print "dropping pg fk", fk['fktab'], fk['fkcol']
@@ -644,11 +650,13 @@ class Database:
                 if self.backend == self.MYSQL_INNODB:
                     print "dropping mysql index ", idx['tab'], idx['col']
                     try:
-                        # apparently nowait is not implemented in mysql so this just hands if there are locks 
+                        # apparently nowait is not implemented in mysql so this just hangs if there are locks 
                         # preventing the index drop :-(
-                        c.execute( "alter table %s drop index %s", (idx['tab'],idx['col']) )
+                        c.execute( "alter table %s drop index %s;", (idx['tab'],idx['col']) )
                     except:
-                        pass
+                        print "    drop index failed: " + str(sys.exc_info())
+                            # ALTER TABLE `fpdb`.`handsplayers` DROP INDEX `playerId`;
+                            # using: 'HandsPlayers' drop index 'playerId'
                 elif self.backend == self.PGSQL:
     #    DON'T FORGET TO RECREATE THEM!!
                     print "dropping pg index ", idx['tab'], idx['col']
@@ -713,7 +721,7 @@ class Database:
                                       + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
                                       + fk['rcol'] + ")")
                         except:
-                            pass
+                            print "    create fk failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
                     print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                     try:
@@ -722,7 +730,7 @@ class Database:
                                   + " foreign key (" + fk['fkcol']
                                   + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
                     except:
-                        pass
+                        print "   create fk failed: " + str(sys.exc_info())
                 else:
                     print "Only MySQL and Postgres supported so far"
                     return -1
@@ -735,7 +743,7 @@ class Database:
                         c.execute( "alter table %s add index %s(%s)"
                                  , (idx['tab'],idx['col'],idx['col']) )
                     except:
-                        pass
+                        print "    create fk failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
     #                pass
                     # mod to use tab_col for index name?
@@ -745,8 +753,7 @@ class Database:
                         c.execute( "create index %s_%s_idx on %s(%s)"
                                    % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
                     except:
-                        print "   ERROR! :-("
-                        pass
+                        print "   create index failed: " + str(sys.exc_info())
                 else:
                     print "Only MySQL and Postgres supported so far"
                     return -1
@@ -1614,7 +1621,7 @@ class HandToWrite:
             self.tableName = None
             self.seatNos = None
         except:
-            print "htw.init error: " + str(sys.exc_info)
+            print "htw.init error: " + str(sys.exc_info())
             raise
     # end def __init__
 
@@ -1664,7 +1671,7 @@ class HandToWrite:
             self.tableName = tableName
             self.seatNos = seatNos
         except:
-            print "htw.set_all error: " + str(sys.exc_info)
+            print "htw.set_all error: " + str(sys.exc_info())
             raise
     # end def set_hand
 
