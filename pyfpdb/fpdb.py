@@ -232,7 +232,7 @@ class fpdb:
                         # ToDo: lock all other tables so that lock doesn't have to be released
                     #    self.release_global_lock()
                     #    lock_released = True
-                    self.db.fdb.recreate_tables()
+                    self.db.recreate_tables()
                     #else:
                         # for other dbs use same connection as holds global lock
                     #    self.fdb_lock.fdb.recreate_tables()
@@ -243,6 +243,24 @@ class fpdb:
             #if not lock_released:
             self.release_global_lock()
     #end def dia_recreate_tables
+    
+    def dia_recreate_hudcache(self, widget, data=None):
+        if self.obtain_global_lock():
+            try:
+                dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+                diastring = "Please confirm that you want to re-create the HUD cache."
+                dia_confirm.format_secondary_text(diastring)
+                
+                response = dia_confirm.run()
+                dia_confirm.destroy()
+                if response == gtk.RESPONSE_YES:
+                    self.db.rebuild_hudcache()
+                elif response == gtk.REPSONSE_NO:
+                    print 'User cancelled rebuilding hud cache'
+            except:
+                pass
+        self.release_global_lock()
+    
 
     def dia_regression_test(self, widget, data=None):
         print "todo: implement dia_regression_test"
@@ -306,6 +324,7 @@ class fpdb:
                   <menuitem action="createdb"/>
                   <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
+                  <menuitem action="rebuildhudcache"/>
                   <menuitem action="stats"/>
                   <menuitem action="sessions"/>
                 </menu>
@@ -344,6 +363,7 @@ class fpdb:
                                  ('createdb', None, 'Create or Delete _Database (todo)', None, 'Create or Delete Database', self.dia_create_del_database),
                                  ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
+                                 ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
                                  ('sessions', None, 'Sessions', None, 'View Sessions', self.dia_database_sessions),
                                  ('help', None, '_Help'),
@@ -410,7 +430,6 @@ class fpdb:
             self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
 
         # Database connected to successfully, load queries to pass on to other classes
-        self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
         self.db.connection.rollback()
     #end def load_profile
 
@@ -457,7 +476,7 @@ class fpdb:
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
         #print "start of tab_bulk_import"
-        new_import_thread=GuiBulkImport.GuiBulkImport(self.settings, self.config)
+        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")

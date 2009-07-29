@@ -34,6 +34,7 @@ import Configuration
 
 class GuiBulkImport():
 
+    # not used
     def import_dir(self):
         """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 
@@ -80,12 +81,13 @@ class GuiBulkImport():
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
-                print 'GuiBulkImport.import_dir done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
+                print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
                      % (stored, dups, partial, errs, ttime, stored / ttime)
                 self.importer.clearFileList()
 
                 self.lab_info.set_text("Import finished")
             except:
+                print "bulkimport.loadclicked error: "+str(sys.exc_value)
                 pass
             self.settings['global_lock'].release()
         else:
@@ -95,10 +97,10 @@ class GuiBulkImport():
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, settings, config):
+    def __init__(self, settings, config, sql = None):
         self.settings = settings
         self.config = config
-        self.importer = fpdb_import.Importer(self, self.settings, config)
+        self.importer = fpdb_import.Importer(self, self.settings, config, sql)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
@@ -262,7 +264,8 @@ def main(argv=None):
     else:
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config) 
-        importer.setDropIndexes("auto")
+        # importer.setDropIndexes("auto")
+        importer.setDropIndexes("don't drop")
         importer.setFailOnError(options.failOnError)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
