@@ -430,7 +430,6 @@ class fpdb:
             self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
 
         # Database connected to successfully, load queries to pass on to other classes
-        self.querydict = FpdbSQLQueries.FpdbSQLQueries(self.db.get_backend_name())
         self.db.connection.rollback()
     #end def load_profile
 
@@ -477,7 +476,7 @@ class fpdb:
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
         #print "start of tab_bulk_import"
-        new_import_thread=GuiBulkImport.GuiBulkImport(self.settings, self.config)
+        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
