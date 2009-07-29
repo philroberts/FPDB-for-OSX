@@ -15,15 +15,20 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-#methods that are specific to holdem but not trivial
+#parses an in-memory fpdb hand history and calls db routine to store it
+
+import sys
 
 import fpdb_simple
 import Database
 from time import time, strftime
 
+
 #parses a holdem hand
 def mainParser(settings, siteID, category, hand, config, db = None):
+    #print "mainparser"
     # fdb is not used now - to be removed ...
+
     t0 = time()
     #print "mainparser"
     backend = settings['db-backend']
@@ -51,7 +56,6 @@ def mainParser(settings, siteID, category, hand, config, db = None):
             if line[-2:] == "$0": continue
             smallBlindLine = i
             break
-    #print "small blind line:",smallBlindLine
 
     gametypeID = fpdb_simple.recogniseGametypeID(backend, db, db.get_cursor(), hand[0], hand[smallBlindLine], siteID, category, isTourney)
     if isTourney:
@@ -65,6 +69,17 @@ def mainParser(settings, siteID, category, hand, config, db = None):
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
         tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db.get_cursor(), siteID, buyin, fee, knockout, rebuyOrAddon)
+    else:
+        siteTourneyNo   = -1
+        buyin           = -1
+        fee             = -1
+        entries         = -1
+        prizepool       = -1
+        knockout        = 0
+        tourneyStartTime= None
+        rebuyOrAddon    = -1
+
+        tourneyTypeId   = 1
 
     fpdb_simple.isAlreadyInDB(db.get_cursor(), gametypeID, siteHandNo)
     
@@ -145,63 +160,25 @@ def mainParser(settings, siteID, category, hand, config, db = None):
                                      , allIns, actionTypeByNo, winnings, totalWinnings, None
                                      , actionTypes, actionAmounts, antes)
 
-
     #print "parse: hand data prepared"    # only reads up to here apart from inserting new players
     try:
         db.commit()  # need to commit new players as different db connection used 
                          # for other writes. maybe this will change maybe not ...
     except:
-        print "parse: error during rollback: " + str(sys.exc_value)
+        print "parse: error during commit: " + str(sys.exc_value)
 
 
-    # Following code writes hands to database and commits (or rolls back if there is an error)
-    try:
-        if isTourney:
-            ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
-            payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
-            
-            if base == "hold":
-                result = db.tourney_holdem_omaha(
-                                           config, settings, base, category, siteTourneyNo, buyin
-                                         , fee, knockout, entries, prizepool, tourneyStartTime
-                                         , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
-                                         , gametypeID, handStartTime, names, playerIDs, startCashes
-                                         , positions, cardValues, cardSuits, boardValues, boardSuits
-                                         , winnings, rakes, actionTypes, allIns, actionAmounts
-                                         , actionNos, hudImportData, maxSeats, tableName, seatNos)
-            elif base == "stud":
-                result = db.tourney_stud(
-                                           config, settings, base, category, siteTourneyNo
-                                         , buyin, fee, knockout, entries, prizepool, tourneyStartTime
-                                         , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
-                                         , gametypeID, handStartTime, names, playerIDs, startCashes
-                                         , antes, cardValues, cardSuits, winnings, rakes, actionTypes
-                                         , allIns, actionAmounts, actionNos, hudImportData, maxSeats
-                                         , tableName, seatNos)
-            else:
-                raise fpdb_simple.FpdbError("unrecognised category")
-        else:
-            if base == "hold":
-                result = db.ring_holdem_omaha(
-                                           config, settings, base, category, siteHandNo
-                                         , gametypeID, handStartTime, names, playerIDs
-                                         , startCashes, positions, cardValues, cardSuits
-                                         , boardValues, boardSuits, winnings, rakes
-                                         , actionTypes, allIns, actionAmounts, actionNos
-                                         , hudImportData, maxSeats, tableName, seatNos)
-            elif base == "stud":
-                result = db.ring_stud(
-                                           config, settings, base, category, siteHandNo, gametypeID
-                                         , handStartTime, names, playerIDs, startCashes, antes
-                                         , cardValues, cardSuits, winnings, rakes, actionTypes, allIns
-                                         , actionAmounts, actionNos, hudImportData, maxSeats, tableName
-                                         , seatNos)
-            else:
-                raise fpdb_simple.FpdbError ("unrecognised category")
-        db.commit()
-    except:
-        print "Error storing hand: " + str(sys.exc_value)
-        db.rollback()
+    # save data structures in a HandToWrite instance and then insert into database: 
+    htw = Database.HandToWrite()
+    htw.set_all( config, settings, base, category, siteTourneyNo, buyin
+               , fee, knockout, entries, prizepool, tourneyStartTime
+               , isTourney, tourneyTypeId, siteID, siteHandNo
+               , gametypeID, handStartTime, names, playerIDs, startCashes
+               , positions, antes, cardValues, cardSuits, boardValues, boardSuits
+               , winnings, rakes, actionTypes, allIns, actionAmounts
+               , actionNos, hudImportData, maxSeats, tableName, seatNos)
+    result = db.store_the_hand(htw)
+
     t9 = time()
     #print "parse and save=(%4.3f)" % (t9-t0)
     return result

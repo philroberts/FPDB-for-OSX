@@ -165,9 +165,10 @@ class Sql:
             ################################
             # List tables
             ################################
+            print "db_server =", db_server
             if db_server == 'mysql':
                 self.query['list_tables'] = """SHOW TABLES"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['list_tables'] = """SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"""
             elif db_server == 'sqlite': # what is the correct value here?
                 self.query['list_tables'] = """SELECT name FROM sqlite_master
@@ -188,7 +189,7 @@ class Sql:
                 self.query['createSettingsTable'] = """CREATE TABLE Settings (
                                             version SMALLINT NOT NULL)
                                     ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
 
             elif db_server == 'sqlite': # what is the correct value here?
@@ -206,7 +207,7 @@ class Sql:
                             name varchar(32) NOT NULL,
                             currency char(3) NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createSitesTable'] = """CREATE TABLE Sites (
                             id SERIAL, PRIMARY KEY (id),
                             name varchar(32),
@@ -236,7 +237,7 @@ class Sql:
                             smallBet int NOT NULL,
                             bigBet int NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                             id SERIAL, PRIMARY KEY (id),
                             siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
@@ -277,7 +278,7 @@ class Sql:
                                 comment text,
                                 commentTs DATETIME)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createPlayersTable'] = """CREATE TABLE Players (
                             id SERIAL, PRIMARY KEY (id),
                             name VARCHAR(32),
@@ -308,7 +309,7 @@ class Sql:
                                 ratingTime DATETIME NOT NULL,
                                 handCount int NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
                                 id BIGSERIAL, PRIMARY KEY (id),
                                 playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
@@ -360,7 +361,7 @@ class Sql:
                                 comment TEXT,
                                 commentTs DATETIME)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createHandsTable'] = """CREATE TABLE Hands (
                                 id BIGSERIAL, PRIMARY KEY (id),
                                 tableName VARCHAR(20) NOT NULL,
@@ -422,7 +423,7 @@ class Sql:
                                 knockout INT NOT NULL,
                                 rebuyOrAddon BOOLEAN NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                             id SERIAL, PRIMARY KEY (id),
                             siteId INT, FOREIGN KEY (siteId) REFERENCES Sites(id),
@@ -449,7 +450,7 @@ class Sql:
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                             id SERIAL, PRIMARY KEY (id),
                             tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
@@ -591,7 +592,7 @@ class Sql:
 
                             FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
                             ENGINE=INNODB"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
                             id BIGSERIAL, PRIMARY KEY (id),
                             handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
@@ -727,7 +728,7 @@ class Sql:
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
                             id BIGSERIAL, PRIMARY KEY (id),
                             tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -757,7 +758,7 @@ class Sql:
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                             id BIGSERIAL, PRIMARY KEY (id),
                             handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
@@ -877,7 +878,7 @@ class Sql:
                             street4Raises INT)
 
                             ENGINE=INNODB"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
                             id BIGSERIAL, PRIMARY KEY (id),
                             gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -981,21 +982,21 @@ class Sql:
 
             if db_server == 'mysql':
                 self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['addTourneyIndex'] = """CREATE INDEX siteTourneyNo ON Tourneys (siteTourneyNo)"""
             elif db_server == 'sqlite': # what is the correct value here?
                 self.query['addHandsIndex'] = """ """
 
             if db_server == 'mysql':
                 self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['addHandsIndex'] = """CREATE INDEX siteHandNo ON Hands (siteHandNo)"""
             elif db_server == 'sqlite': # what is the correct value here?
                 self.query['addHandsIndex'] = """ """
 
             if db_server == 'mysql':
                 self.query['addPlayersIndex'] = """ALTER TABLE Players ADD INDEX name(name)"""
-            elif db_server == 'postgres': # what is the correct value here?
+            elif db_server == 'postgresql': # what is the correct value here?
                 self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
             elif db_server == 'sqlite': # what is the correct value here?
                 self.query['addPlayersIndex'] = """ """

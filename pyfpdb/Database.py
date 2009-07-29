@@ -67,8 +67,7 @@ class Database:
                 , {'tab':'Tourneys', 'col':'siteTourneyNo', 'drop':0}
                 ]
               , [ # indexes for postgres (list index 3)
-                  {'tab':'Boardcards',      'col':'handId',            'drop':0}
-                , {'tab':'Gametypes',       'col':'siteId',            'drop':0}
+                  {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
                 , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
@@ -589,16 +588,16 @@ class Database:
         """Drop some indexes/foreign keys to prepare for bulk import. 
            Currently keeping the standalone indexes as needed to import quickly"""
         stime = time()
+        c = self.get_cursor()
         if self.backend == self.MYSQL_INNODB:
-            self.get_cursor().execute("SET foreign_key_checks=0")
-            self.get_cursor().execute("SET autocommit=0")
+            c.execute("SET foreign_key_checks=0")
+            c.execute("SET autocommit=0")
             return
         if self.backend == self.PGSQL:
             self.connection.set_isolation_level(0)   # allow table/index operations to work
         for fk in self.foreignKeys[self.backend]:
             if fk['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    c = self.get_cursor()
                     c.execute("SELECT constraint_name " +
                               "FROM information_schema.KEY_COLUMN_USAGE " +
                               #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
@@ -640,7 +639,7 @@ class Database:
                     print "Only MySQL and Postgres supported so far"
                     return -1
         
-        for idx in indexes[self.backend]:
+        for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
                     print "dropping mysql index ", idx['tab'], idx['col']
@@ -684,8 +683,8 @@ class Database:
         """Re-create any dropped indexes/foreign keys after bulk import"""
         stime = time()
         
+        c = self.get_cursor()
         if self.backend == self.MYSQL_INNODB:
-            c = self.get_cursor()
             c.execute("SET foreign_key_checks=1")
             c.execute("SET autocommit=1")
             return
@@ -728,7 +727,7 @@ class Database:
                     print "Only MySQL and Postgres supported so far"
                     return -1
         
-        for idx in indexes[self.backend]:
+        for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
                     print "creating mysql index ", idx['tab'], idx['col']
@@ -823,12 +822,12 @@ class Database:
         """Drops the fpdb tables from the current db"""
 
         try:
+            c = self.get_cursor()
             if(self.get_backend_name() == 'MySQL InnoDB'):
                 #Databases with FOREIGN KEY support need this switched of before you can drop tables
                 self.drop_referential_integrity()
 
                 # Query the DB to see what tables exist
-                c = self.get_cursor()
                 c.execute(self.sql.query['list_tables'])
                 for table in c:
                     c.execute(self.sql.query['drop_table'] + table[0])
@@ -972,8 +971,64 @@ class Database:
         except:
             print "Error during fdb.lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
-    
-    
+
+
+    def store_the_hand(self, h):
+        """Take a HandToWrite object and store it in the db"""
+
+        # Following code writes hands to database and commits (or rolls back if there is an error)
+        try:
+            result = None
+            if h.isTourney:
+                ranks = map(lambda x: 0, h.names) # create an array of 0's equal to the length of names
+                payin_amounts = fpdb_simple.calcPayin(len(h.names), h.buyin, h.fee)
+                
+                if h.base == "hold":
+                    result = self.tourney_holdem_omaha(
+                                               h.config, h.settings, h.base, h.category, h.siteTourneyNo, h.buyin
+                                             , h.fee, h.knockout, h.entries, h.prizepool, h.tourneyStartTime
+                                             , h.payin_amounts, h.ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
+                                             , h.gametypeID, h.handStartTime, h.names, h.playerIDs, h.startCashes
+                                             , h.positions, h.cardValues, h.cardSuits, h.boardValues, h.boardSuits
+                                             , h.winnings, h.rakes, h.actionTypes, h.allIns, h.actionAmounts
+                                             , h.actionNos, h.hudImportData, h.maxSeats, h.tableName, h.seatNos)
+                elif h.base == "stud":
+                    result = self.tourney_stud(
+                                               h.config, h.settings, h.base, h.category, h.siteTourneyNo
+                                             , h.buyin, h.fee, h.knockout, h.entries, h.prizepool, h.tourneyStartTime
+                                             , h.payin_amounts, h.ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
+                                             , h.gametypeID, h.handStartTime, h.names, h.playerIDs, h.startCashes
+                                             , h.antes, h.cardValues, h.cardSuits, h.winnings, h.rakes, h.actionTypes
+                                             , h.allIns, h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats
+                                             , h.tableName, h.seatNos)
+                else:
+                    raise fpself.simple.Fpself.rror("unrecognised category")
+            else:
+                if h.base == "hold":
+                    result = self.ring_holdem_omaha(
+                                               h.config, h.settings, h.base, h.category, h.siteHandNo
+                                             , h.gametypeID, h.handStartTime, h.names, h.playerIDs
+                                             , h.startCashes, h.positions, h.cardValues, h.cardSuits
+                                             , h.boardValues, h.boardSuits, h.winnings, h.rakes
+                                             , h.actionTypes, h.allIns, h.actionAmounts, h.actionNos
+                                             , h.hudImportData, h.maxSeats, h.tableName, h.seatNos)
+                elif h.base == "stud":
+                    result = self.ring_stud(
+                                               h.config, h.settings, h.base, h.category, h.siteHandNo, h.gametypeID
+                                             , h.handStartTime, h.names, h.playerIDs, h.startCashes, h.antes
+                                             , h.cardValues, h.cardSuits, h.winnings, h.rakes, h.actionTypes, h.allIns
+                                             , h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats, h.tableName
+                                             , h.seatNos)
+                else:
+                    raise fpself.simple.Fpself.rror ("unrecognised category")
+            self.commit()
+        except:
+            print "Error storing hand: " + str(sys.exc_value)
+            self.rollback()
+
+        return result
+    #end def store_the_hand
+
     def storeHands(self, backend, site_hand_no, gametype_id
                   ,hand_start_time, names, tableName, maxSeats, hudCache
                   ,board_values, board_suits):
@@ -1512,6 +1567,157 @@ class Database:
         
         return result
     #end def store_tourneys_players
+
+
+# Class used to hold all the data needed to write a hand to the db
+# mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 
+
+class HandToWrite:
+
+    def __init__(self, finished = False): # db_name and game not used any more
+        try:
+            self.finished = finished
+            self.config = None
+            self.settings = None
+            self.base = None
+            self.category = None
+            self.siteTourneyNo = None
+            self.buyin = None
+            self.fee = None
+            self.knockout = None
+            self.entries = None
+            self.prizepool = None
+            self.tourneyStartTime = None
+            self.isTourney = None
+            self.tourneyTypeId = None
+            self.siteID = None
+            self.siteHandNo = None
+            self.gametypeID = None
+            self.handStartTime = None
+            self.names = None
+            self.playerIDs = None
+            self.startCashes = None
+            self.positions = None
+            self.antes = None
+            self.cardValues = None
+            self.cardSuits = None
+            self.boardValues = None
+            self.boardSuits = None
+            self.winnings = None
+            self.rakes = None
+            self.actionTypes = None
+            self.allIns = None
+            self.actionAmounts = None
+            self.actionNos = None
+            self.hudImportData = None
+            self.maxSeats = None
+            self.tableName = None
+            self.seatNos = None
+        except:
+            print "htw.init error: " + str(sys.exc_info)
+            raise
+    # end def __init__
+
+    def set_all( self, config, settings, base, category, siteTourneyNo, buyin
+               , fee, knockout, entries, prizepool, tourneyStartTime
+               , isTourney, tourneyTypeId, siteID, siteHandNo
+               , gametypeID, handStartTime, names, playerIDs, startCashes
+               , positions, antes, cardValues, cardSuits, boardValues, boardSuits
+               , winnings, rakes, actionTypes, allIns, actionAmounts
+               , actionNos, hudImportData, maxSeats, tableName, seatNos):
+        
+        try:
+            self.config = config
+            self.settings = settings
+            self.base = base
+            self.category = category
+            self.siteTourneyNo = siteTourneyNo
+            self.buyin = buyin
+            self.fee = fee
+            self.knockout = knockout
+            self.entries = entries
+            self.prizepool = prizepool
+            self.tourneyStartTime = tourneyStartTime
+            self.isTourney = isTourney
+            self.tourneyTypeId = tourneyTypeId
+            self.siteID = siteID
+            self.siteHandNo = siteHandNo
+            self.gametypeID = gametypeID
+            self.handStartTime = handStartTime
+            self.names = names
+            self.playerIDs = playerIDs
+            self.startCashes = startCashes
+            self.positions = positions
+            self.antes = antes
+            self.cardValues = cardValues
+            self.cardSuits = cardSuits
+            self.boardValues = boardValues
+            self.boardSuits = boardSuits
+            self.winnings = winnings
+            self.rakes = rakes
+            self.actionTypes = actionTypes
+            self.allIns = allIns
+            self.actionAmounts = actionAmounts
+            self.actionNos = actionNos
+            self.hudImportData = hudImportData
+            self.maxSeats = maxSeats
+            self.tableName = tableName
+            self.seatNos = seatNos
+        except:
+            print "htw.set_all error: " + str(sys.exc_info)
+            raise
+    # end def set_hand
+
+    def set_ring_holdem_omaha( self, config, settings, base, category, siteHandNo
+                             , gametypeID, handStartTime, names, playerIDs
+                             , startCashes, positions, cardValues, cardSuits
+                             , boardValues, boardSuits, winnings, rakes
+                             , actionTypes, allIns, actionAmounts, actionNos
+                             , hudImportData, maxSeats, tableName, seatNos ):
+        self.config = config
+        self.settings = settings
+        self.base = base
+        self.category = category
+        self.siteHandNo = siteHandNo
+        self.gametypeID = gametypeID
+        self.handStartTime = handStartTime
+        self.names = names
+        self.playerIDs = playerIDs
+        self.startCashes = startCashes
+        self.positions = positions
+        self.cardValues = cardValues
+        self.cardSuits = cardSuits
+        self.boardValues = boardValues
+        self.boardSuits = boardSuits
+        self.winnings = winnings
+        self.rakes = rakes
+        self.actionTypes = actionTypes
+        self.allIns = allIns
+        self.actionAmounts = actionAmounts
+        self.actionNos = actionNos
+        self.hudImportData = hudImportData
+        self.maxSeats = maxSeats
+        self.tableName = tableName
+        self.seatNos = seatNos
+    # end def set_ring_holdem_omaha
+
+    def send_ring_holdem_omaha(self, db):
+        result = db.ring_holdem_omaha(
+                                   self.config, self.settings, self.base, self.category, self.siteHandNo
+                                 , self.gametypeID, self.handStartTime, self.names, self.playerIDs
+                                 , self.startCashes, self.positions, self.cardValues, self.cardSuits
+                                 , self.boardValues, self.boardSuits, self.winnings, self.rakes
+                                 , self.actionTypes, self.allIns, self.actionAmounts, self.actionNos
+                                 , self.hudImportData, self.maxSeats, self.tableName, self.seatNos)
+    # end def send_ring_holdem_omaha
+
+    def get_finished(self):
+        return( self.finished )
+    # end def get_finished
+    
+    def get_siteHandNo(self):
+        return( self.siteHandNo )
+    # end def get_siteHandNo
 
 
 if __name__=="__main__":
