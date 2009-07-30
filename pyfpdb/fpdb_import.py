@@ -351,7 +351,7 @@ class Importer:
         starttime = time()
         last_read_hand = 0
         loc = 0
-        #print "file =", file
+        # print "file =", file
         if file == "stdin":
             inputFile = sys.stdin
         else:
