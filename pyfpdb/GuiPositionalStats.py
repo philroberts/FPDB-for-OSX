@@ -23,29 +23,28 @@ import os
 from time import time, strftime
     
 import fpdb_import
-import fpdb_db
+import Database
 import Filters
 import FpdbSQLQueries
 
 class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
-        self.debug=debug
-        self.conf=config
+        self.debug = debug
+        self.conf = config
+        self.sql = querylist
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
         
         # create new db connection to avoid conflicts with other threads
-        self.db = fpdb_db.fpdb_db()
-        self.db.do_connect(self.conf)
-        self.cursor=self.db.cursor
-        self.sql = querylist
+        self.db = Database.Database(self.conf, sql=self.sql)
+        self.cursor = self.db.cursor
 
         settings = {}
-        settings.update(config.get_db_parameters())
-        settings.update(config.get_tv_parameters())
-        settings.update(config.get_import_parameters())
-        settings.update(config.get_default_paths())
+        settings.update(self.conf.get_db_parameters())
+        settings.update(self.conf.get_tv_parameters())
+        settings.update(self.conf.get_import_parameters())
+        settings.update(self.conf.get_default_paths())
 
         filters_display = { "Heroes"   :  True,
                             "Sites"    :  True,
@@ -59,7 +58,7 @@ class GuiPositionalStats (threading.Thread):
                             "Button2"  :  False
                           }
 
-        self.filters = Filters.Filters(self.db, config, querylist, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 
@@ -319,7 +318,7 @@ class GuiPositionalStats (threading.Thread):
             row = row + 1
         vbox.show_all()
 
-        self.db.db.rollback()
+        self.db.rollback()
         print "Positional Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 

@@ -34,12 +34,12 @@ class Betfair(HandHistoryConverter):
     re_PlayerInfo    = re.compile("Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*)\s\(\s(\$(?P<CASH>[.0-9]+)) \)")
     re_Board         = re.compile(ur"\[ (?P<CARDS>.+) \]")
 
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Betfair", follow=follow) # Call super class init.
+        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Betfair", follow=follow, index) # Call super class init.
         logging.info("Initialising Betfair converter class")
         self.filetype = "text"
         self.codepage = "cp1252"

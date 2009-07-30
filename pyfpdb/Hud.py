@@ -235,12 +235,8 @@ class Hud:
 #    does the user have a fav_seat?
         if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
-                sys.stderr.write("site = %s, max = %d, fav seat = %d\n" % (self.table.site, self.max, config.supported_sites[self.table.site].layout[self.max].fav_seat))
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
-                sys.stderr.write("found fav seat = %d\n" % fav_seat)
-#                actual_seat = self.db_connection.get_actual_seat(hand, config.supported_sites[self.table.site].screen_name)
                 actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
-                sys.stderr.write("found actual seat = %d\n" % actual_seat)
                 for i in xrange(0, self.max + 1):
                     j = actual_seat + i
                     if j > self.max:
@@ -273,7 +269,6 @@ class Hud:
         self.cards = cards
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
         adj = self.adj_seats(hand, config)
-        sys.stderr.write("adj = %s\n" % adj)
         loc = self.config.get_locations(self.table.site, self.max)
 
 #    create the stat windows
@@ -282,7 +277,6 @@ class Hud:
             if i in self.stat_windows:
                 self.stat_windows[i].relocate(x, y)
             else:
-                sys.stderr.write("actual seat = %d, x = %d, y= %d\n" % (i, x, y))
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table, 

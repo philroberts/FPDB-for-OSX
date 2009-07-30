@@ -22,6 +22,7 @@
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
 from time import time, strftime
+import logging
 import traceback
 import math
 import datetime
@@ -53,14 +54,14 @@ except:
 
 class Importer:
 
-    def __init__(self, caller, settings, config):
+    def __init__(self, caller, settings, config, sql = None):
         """Constructor"""
         self.settings   = settings
         self.caller     = caller
         self.config     = config
+        self.sql        = sql
+
         self.database   = None       # database will be the main db interface eventually
-        self.fdb        = None       # fdb may disappear or just hold the simple db connection
-        self.cursor     = None
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
@@ -77,10 +78,10 @@ class Importer:
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
         
-        self.database = Database.Database(self.config)  # includes .connection and .sql variables
-        self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
-        self.fdb.do_connect(self.config)
-        self.fdb.db.rollback()
+        self.database = Database.Database(self.config, sql = self.sql)  # includes .connection and .sql variables
+
+        self.NEWIMPORT = False
+        self.allow_hudcache_rebuild = False
 
     #Set functions
     def setCallHud(self, value):
@@ -119,8 +120,7 @@ class Importer:
         self.filelist[filename] = [site] + [filter]
         if site not in self.siteIds:
             # Get id from Sites table in DB
-            self.fdb.cursor.execute(self.fdb.sql.query['getSiteId'], (site,))
-            result = self.fdb.cursor.fetchall()
+            result = self.database.get_site_id(site)
             if len(result) == 1:
                 self.siteIds[site] = result[0][0]
             else:
@@ -165,13 +165,19 @@ class Importer:
 
     def runImport(self):
         """"Run full import on self.filelist."""
+
         start = datetime.datetime.now()
-        print "started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
+        print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
-            self.settings['dropIndexes'] = self.calculate_auto2(10.0, 500.0)
+            self.settings['dropIndexes'] = self.calculate_auto2(12.0, 500.0)
+        if self.allow_hudcache_rebuild:
+            self.settings['dropHudCache'] = self.calculate_auto2(25.0, 500.0)    # returns "drop"/"don't drop"
+
         if self.settings['dropIndexes'] == 'drop':
-            self.fdb.prepareBulkImport()
-        #self.settings['updateHudCache'] = self.calculate_auto2(10.0, 500.0)
+            self.database.prepareBulkImport()
+        else:
+            print "No need to drop indexes."
+        #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
         totstored = 0
         totdups = 0
         totpartial = 0
@@ -186,8 +192,14 @@ class Importer:
             toterrors += errors
             tottime += ttime
         if self.settings['dropIndexes'] == 'drop':
-            self.fdb.afterBulkImport()
-        self.fdb.analyzeDB()
+            self.database.afterBulkImport()
+        else:
+            print "No need to rebuild indexes."
+        if self.allow_hudcache_rebuild and self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
+        else:
+            print "No need to rebuild hudcache."
+        self.database.analyzeDB()
         return (totstored, totdups, totpartial, toterrors, tottime)
 #        else: import threaded
 
@@ -196,7 +208,7 @@ class Importer:
         if len(self.filelist) == 1:            return "don't drop"
         if 'handsInDB' not in self.settings:
             try:
-                tmpcursor = self.fdb.db.cursor()
+                tmpcursor = self.database.get_cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
@@ -219,7 +231,7 @@ class Importer:
         # get number of hands in db
         if 'handsInDB' not in self.settings:
             try:
-                tmpcursor = self.fdb.db.cursor()
+                tmpcursor = self.database.get_cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
@@ -234,11 +246,12 @@ class Importer:
 
         # if hands_in_db is zero or very low, we want to drop indexes, otherwise compare 
         # import size with db size somehow:
-        #print "auto2: handsindb =", self.settings['handsInDB'], "total_size =", total_size, "size_per_hand =", \
-        #      size_per_hand, "inc =", increment
+        ret = "don't drop"
         if self.settings['handsInDB'] < scale * (total_size/size_per_hand) + increment:
-            return "drop"
-        return "don't drop"
+            ret = "drop"
+        #print "auto2: handsindb =", self.settings['handsInDB'], "total_size =", total_size, "size_per_hand =", \
+        #      size_per_hand, "inc =", increment, "return:", ret
+        return ret
 
     #Run import on updated files, then store latest update time.
     def runUpdated(self):
@@ -282,12 +295,13 @@ class Importer:
         
         self.addToDirList = {}
         self.removeFromFileList = {}
-        self.fdb.db.rollback()
+        self.database.rollback()
         #rulog.writelines("  finished\n")
         #rulog.close()
 
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, file, site, filter):
+        #print "import_file_dict"
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
@@ -309,9 +323,17 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            conv = obj(in_path = file, out_path = out_path)
-            if(conv.getStatus()):
+            conv = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            if(conv.getStatus() and self.NEWIMPORT == False):
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
+            elif (conv.getStatus() and self.NEWIMPORT == True):
+                #This code doesn't do anything yet
+                handlist = hhc.getProcessedHands()
+                self.pos_in_file[file] = hhc.getLastCharacterRead()
+
+                for hand in handlist:
+                    hand.prepInsert()
+                    hand.insert()
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
@@ -325,6 +347,7 @@ class Importer:
 
 
     def import_fpdb_file(self, file, site):
+        #print "import_fpdb_file"
         starttime = time()
         last_read_hand = 0
         loc = 0
@@ -353,6 +376,8 @@ class Importer:
         self.lines = fpdb_simple.removeTrailingEOL(inputFile.readlines())
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
+
+        #self.database.lock_for_insert() # should be ok when using one thread
 
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = self.lines[0]
@@ -395,10 +420,10 @@ class Importer:
                     self.hand=hand
 
                     try:
-                        handsId = fpdb_parse_logic.mainParser( self.settings, self.fdb
+                        handsId = fpdb_parse_logic.mainParser( self.settings
                                                              , self.siteIds[site], category, hand
                                                              , self.config, self.database )
-                        self.fdb.db.commit()
+                        self.database.commit()
 
                         stored += 1
                         if self.callHud:
@@ -408,23 +433,23 @@ class Importer:
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except fpdb_simple.DuplicateError:
                         duplicates += 1
-                        self.fdb.db.rollback()
+                        self.database.rollback()
                     except (ValueError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
 
                         if (self.settings['failOnError']):
-                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
+                            self.database.commit() #dont remove this, in case hand processing was cancelled.
                             raise
                         else:
-                            self.fdb.db.rollback()
+                            self.database.rollback()
                     except (fpdb_simple.FpdbError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
-                        self.fdb.db.rollback()
+                        self.database.rollback()
 
                         if self.settings['failOnError']:
-                            self.fdb.db.commit() #dont remove this, in case hand processing was cancelled.
+                            self.database.commit() #dont remove this, in case hand processing was cancelled.
                             raise
 
                     if self.settings['minPrint']:
@@ -451,7 +476,7 @@ class Importer:
                 print "failed to read a single hand from file:", inputFile
                 handsId=0
             #todo: this will cause return of an unstored hand number if the last hand was error
-        self.fdb.db.commit()
+        self.database.commit()
         self.handsId=handsId
         return (stored, duplicates, partial, errors, ttime)
 

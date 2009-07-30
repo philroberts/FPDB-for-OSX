@@ -34,6 +34,7 @@ import Configuration
 
 class GuiBulkImport():
 
+    # not used
     def import_dir(self):
         """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
 
@@ -49,47 +50,57 @@ class GuiBulkImport():
             self.importer.RunImportThreaded()
 
     def load_clicked(self, widget, data=None):
-#    get the dir to import from the chooser
-        self.inputFile = self.chooser.get_filename()
+        # Does the lock acquisition need to be more sophisticated for multiple dirs?
+        # (see comment above about what to do if pipe already open)
+        if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
+            try:
+                print "\nGlobal lock taken ..."
+                #    get the dir to import from the chooser
+                self.inputFile = self.chooser.get_filename()
 
-#    get the import settings from the gui and save in the importer
-        self.importer.setHandCount(int(self.spin_hands.get_text()))
-        self.importer.setMinPrint(int(self.spin_hands.get_text()))
-        self.importer.setQuiet(self.chk_st_st.get_active())
-        self.importer.setFailOnError(self.chk_fail.get_active())
-        self.importer.setThreads(int(self.spin_threads.get_text()))
-        self.importer.setHandsInDB(self.n_hands_in_db)
-        cb_model = self.cb_dropindexes.get_model()
-        cb_index = self.cb_dropindexes.get_active()
-        if cb_index:
-            self.importer.setDropIndexes(cb_model[cb_index][0])
+                #    get the import settings from the gui and save in the importer
+                self.importer.setHandCount(int(self.spin_hands.get_text()))
+                self.importer.setMinPrint(int(self.spin_hands.get_text()))
+                self.importer.setQuiet(self.chk_st_st.get_active())
+                self.importer.setFailOnError(self.chk_fail.get_active())
+                self.importer.setThreads(int(self.spin_threads.get_text()))
+                self.importer.setHandsInDB(self.n_hands_in_db)
+                cb_model = self.cb_dropindexes.get_model()
+                cb_index = self.cb_dropindexes.get_active()
+                if cb_index:
+                    self.importer.setDropIndexes(cb_model[cb_index][0])
+                else:
+                    self.importer.setDropIndexes("auto")
+                sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
+                self.lab_info.set_text("Importing")
+                
+                self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
+                self.importer.setCallHud(False)
+                starttime = time()
+                (stored, dups, partial, errs, ttime) = self.importer.runImport()
+                ttime = time() - starttime
+                if ttime == 0:
+                    ttime = 1
+                print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
+                     % (stored, dups, partial, errs, ttime, stored / ttime)
+                self.importer.clearFileList()
+
+                self.lab_info.set_text("Import finished")
+            except:
+                print "bulkimport.loadclicked error: "+str(sys.exc_value)
+                pass
+            self.settings['global_lock'].release()
         else:
-            self.importer.setDropIndexes("auto")
-        sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
-        self.lab_info.set_text("Importing")
-        
-        self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
-        self.importer.setCallHud(False)
-        starttime = time()
-        (stored, dups, partial, errs, ttime) = self.importer.runImport()
-        ttime = time() - starttime
-        if ttime == 0:
-            ttime = 1
-        print 'GuiBulkImport.import_dir done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
-             % (stored, dups, partial, errs, ttime, stored / ttime)
-        self.importer.clearFileList()
-
-        self.lab_info.set_text("Import finished")
+            print "bulk-import aborted - global lock not available"
 
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, settings, config):
+    def __init__(self, settings, config, sql = None):
         self.settings = settings
         self.config = config
-        self.importer = fpdb_import.Importer(self, self.settings,
-                config)
+        self.importer = fpdb_import.Importer(self, self.settings, config, sql)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
@@ -196,10 +207,11 @@ class GuiBulkImport():
         self.load_button.show()
 
 #    see how many hands are in the db and adjust accordingly
-        tcursor = self.importer.fdb.db.cursor()
+        tcursor = self.importer.database.cursor
         tcursor.execute("Select count(1) from Hands")
         row = tcursor.fetchone()
         tcursor.close()
+        self.importer.database.rollback()
         self.n_hands_in_db = row[0]
         if self.n_hands_in_db == 0:
             self.cb_dropindexes.set_active(2)
@@ -252,7 +264,8 @@ def main(argv=None):
     else:
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config) 
-        importer.setDropIndexes("auto")
+        # importer.setDropIndexes("auto")
+        importer.setDropIndexes("don't drop")
         importer.setFailOnError(options.failOnError)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)

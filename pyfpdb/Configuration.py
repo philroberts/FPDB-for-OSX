@@ -521,6 +521,8 @@ class Config:
             db['db-backend'] = 2
         elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
             db['db-backend'] = 3
+        elif string.lower(self.supported_databases[name].db_server) == 'sqlite':
+            db['db-backend'] = 4 
         else: db['db-backend'] = None # this is big trouble
         return db
 

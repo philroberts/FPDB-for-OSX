@@ -15,19 +15,25 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-#methods that are specific to holdem but not trivial
+#parses an in-memory fpdb hand history and calls db routine to store it
+
+import sys
 
 import fpdb_simple
 import Database
+from time import time, strftime
+
 
 #parses a holdem hand
-def mainParser(settings, fdb, siteID, category, hand, config, db = None):
+def mainParser(settings, siteID, category, hand, config, db = None):
+    #print "mainparser"
+    # fdb is not used now - to be removed ...
+
+    t0 = time()
+    #print "mainparser"
     backend = settings['db-backend']
     if db == None:
-        #This is redundant - hopefully fdb will be a Database object in an iteration soon
         db = Database.Database(c = config, sql = None)
-    else:
-        db = db
     category = fpdb_simple.recogniseCategory(hand[0])
 
     base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
@@ -50,9 +56,8 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
             if line[-2:] == "$0": continue
             smallBlindLine = i
             break
-    #print "small blind line:",smallBlindLine
 
-    gametypeID = fpdb_simple.recogniseGametypeID(backend, fdb.db, fdb.cursor, hand[0], hand[smallBlindLine], siteID, category, isTourney)
+    gametypeID = fpdb_simple.recogniseGametypeID(backend, db, db.get_cursor(), hand[0], hand[smallBlindLine], siteID, category, isTourney)
     if isTourney:
         siteTourneyNo   = fpdb_simple.parseTourneyNo(hand[0])
         buyin           = fpdb_simple.parseBuyin(hand[0])
@@ -63,9 +68,20 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
         tourneyStartTime= handStartTime #todo: read tourney start time
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
-        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(fdb.cursor, siteID, buyin, fee, knockout, rebuyOrAddon)
+        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db.get_cursor(), siteID, buyin, fee, knockout, rebuyOrAddon)
+    else:
+        siteTourneyNo   = -1
+        buyin           = -1
+        fee             = -1
+        entries         = -1
+        prizepool       = -1
+        knockout        = 0
+        tourneyStartTime= None
+        rebuyOrAddon    = -1
 
-    fpdb_simple.isAlreadyInDB(fdb.cursor, gametypeID, siteHandNo)
+        tourneyTypeId   = 1
+
+    fpdb_simple.isAlreadyInDB(db.get_cursor(), gametypeID, siteHandNo)
     
     hand = fpdb_simple.filterCrap(hand, isTourney)
     
@@ -79,7 +95,7 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
             seatLines.append(line)
 
     names       = fpdb_simple.parseNames(seatLines)
-    playerIDs   = fpdb_simple.recognisePlayerIDs(fdb.cursor, names, siteID)
+    playerIDs   = fpdb_simple.recognisePlayerIDs(db.get_cursor(), names, siteID)  # inserts players as needed
     tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
@@ -126,8 +142,9 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
         fpdb_simple.convertBlindBet(actionTypes, actionAmounts)
         fpdb_simple.checkPositions(positions)
         
-    fdb.cursor.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
-    limit_type = fdb.cursor.fetchone()[0]
+    c = db.get_cursor()
+    c.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
+    limit_type = c.fetchone()[0]
     fpdb_simple.convert3B4B(category, limit_type, actionTypes, actionAmounts)
     
     totalWinnings = sum(winnings)
@@ -143,49 +160,27 @@ def mainParser(settings, fdb, siteID, category, hand, config, db = None):
                                      , allIns, actionTypeByNo, winnings, totalWinnings, None
                                      , actionTypes, actionAmounts, antes)
 
-    if isTourney:
-        ranks = map(lambda x: 0, names) # create an array of 0's equal to the length of names
-        payin_amounts = fpdb_simple.calcPayin(len(names), buyin, fee)
-        
-        if base == "hold":
-            result = db.tourney_holdem_omaha(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteTourneyNo, buyin
-                                     , fee, knockout, entries, prizepool, tourneyStartTime
-                                     , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
-                                     , gametypeID, handStartTime, names, playerIDs, startCashes
-                                     , positions, cardValues, cardSuits, boardValues, boardSuits
-                                     , winnings, rakes, actionTypes, allIns, actionAmounts
-                                     , actionNos, hudImportData, maxSeats, tableName, seatNos)
-        elif base == "stud":
-            result = db.tourney_stud(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteTourneyNo
-                                     , buyin, fee, knockout, entries, prizepool, tourneyStartTime
-                                     , payin_amounts, ranks, tourneyTypeId, siteID, siteHandNo
-                                     , gametypeID, handStartTime, names, playerIDs, startCashes
-                                     , antes, cardValues, cardSuits, winnings, rakes, actionTypes
-                                     , allIns, actionAmounts, actionNos, hudImportData, maxSeats
-                                     , tableName, seatNos)
-        else:
-            raise fpdb_simple.FpdbError("unrecognised category")
-    else:
-        if base == "hold":
-            result = db.ring_holdem_omaha(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteHandNo
-                                     , gametypeID, handStartTime, names, playerIDs
-                                     , startCashes, positions, cardValues, cardSuits
-                                     , boardValues, boardSuits, winnings, rakes
-                                     , actionTypes, allIns, actionAmounts, actionNos
-                                     , hudImportData, maxSeats, tableName, seatNos)
-        elif base == "stud":
-            result = db.ring_stud(
-                                       config, settings, fdb.db, fdb.cursor, base, category, siteHandNo, gametypeID
-                                     , handStartTime, names, playerIDs, startCashes, antes
-                                     , cardValues, cardSuits, winnings, rakes, actionTypes, allIns
-                                     , actionAmounts, actionNos, hudImportData, maxSeats, tableName
-                                     , seatNos)
-        else:
-            raise fpdb_simple.FpdbError ("unrecognised category")
-    fdb.db.commit()
+    #print "parse: hand data prepared"    # only reads up to here apart from inserting new players
+    try:
+        db.commit()  # need to commit new players as different db connection used 
+                         # for other writes. maybe this will change maybe not ...
+    except:
+        print "parse: error during commit: " + str(sys.exc_value)
+
+
+    # save data structures in a HandToWrite instance and then insert into database: 
+    htw = Database.HandToWrite()
+    htw.set_all( config, settings, base, category, siteTourneyNo, buyin
+               , fee, knockout, entries, prizepool, tourneyStartTime
+               , isTourney, tourneyTypeId, siteID, siteHandNo
+               , gametypeID, handStartTime, names, playerIDs, startCashes
+               , positions, antes, cardValues, cardSuits, boardValues, boardSuits
+               , winnings, rakes, actionTypes, allIns, actionAmounts
+               , actionNos, hudImportData, maxSeats, tableName, seatNos)
+    result = db.store_the_hand(htw)
+
+    t9 = time()
+    #print "parse and save=(%4.3f)" % (t9-t0)
     return result
 #end def mainParser
 
