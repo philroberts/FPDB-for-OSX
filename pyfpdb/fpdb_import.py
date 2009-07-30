@@ -271,11 +271,11 @@ class Importer:
                 try: 
                     lastupdate = self.updated[file]
                     #rulog.writelines("lastupdate = %d, mtime = %d" % (lastupdate,stat_info.st_mtime))
-                    if stat_info.st_mtime > lastupdate:
+                    if stat_info.st_size > lastupdate: #stat_info.st_mtime > lastupdate:
                         self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                        self.updated[file] = time()
+                        self.updated[file] = stat_info.st_size #time()
                 except:
-                    self.updated[file] = time()
+                    self.updated[file] = stat_info.st_size #time()
                     # If modified in the last minute run an immediate import.
                     # This codepath only runs first time the file is found.
                     if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
