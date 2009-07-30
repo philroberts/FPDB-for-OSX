@@ -106,8 +106,23 @@ def valueSuitFromCard(card):
                      , '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', 'Ts', 'Js', 'Qs', 'Ks', 'As'
                 ][card] )
 
+def encodeCard(cardString):
+    """Take a card string (Ah) and convert it to the db card code (1)."""
+    try:
+        return {'2h':  1, '3h':  2, '4h':  3, '5h':  4, '6h':  5, '7h':  6, '8h':  7, '9h':  8, 'Th':  9, 'Jh': 10, 'Qh': 11, 'Kh': 12, 'Ah': 13,
+                '2d': 14, '3d': 15, '4d': 16, '5d': 17, '6d': 18, '7d': 19, '8d': 20, '9d': 21, 'Td': 22, 'Jd': 23, 'Qd': 24, 'Kd': 25, 'Ad': 26,
+                '2c': 27, '3c': 28, '4c': 29, '5c': 30, '6c': 31, '7c': 32, '8c': 33, '9c': 34, 'Tc': 35, 'Jc': 36, 'Qc': 27, 'Kc': 38, 'Ac': 39,
+                '2s': 40, '3s': 41, '4s': 42, '5s': 43, '6s': 44, '7s': 45, '8s': 46, '9s': 47, 'Ts': 48, 'Js': 49, 'Qs': 50, 'Ks': 51, 'As': 52,
+                '  ':  0
+                }[cardString]
+    except:
+        return 0 # everthing that isn't known is a unknown!
 
 if __name__ == '__main__':
+    print "fpdb card encoding(same as pokersource)"
     for i in xrange(1, 14):
         print "card %2d = %s    card %2d = %s    card %2d = %s    card %2d = %s" % \
             (i, valueSuitFromCard(i), i+13, valueSuitFromCard(i+13), i+26, valueSuitFromCard(i+26), i+39, valueSuitFromCard(i+39))
+
+        print 
+    print encodeCard('7c')

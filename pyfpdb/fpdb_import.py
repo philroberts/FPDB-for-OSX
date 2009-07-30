@@ -54,11 +54,13 @@ except:
 
 class Importer:
 
-    def __init__(self, caller, settings, config):
+    def __init__(self, caller, settings, config, sql = None):
         """Constructor"""
         self.settings   = settings
         self.caller     = caller
         self.config     = config
+        self.sql        = sql
+
         self.database   = None       # database will be the main db interface eventually
         self.filelist   = {}
         self.dirlist    = {}
@@ -76,7 +78,7 @@ class Importer:
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
         
-        self.database = Database.Database(self.config)  # includes .connection and .sql variables
+        self.database = Database.Database(self.config, sql = self.sql)  # includes .connection and .sql variables
 
         self.NEWIMPORT = False
         self.allow_hudcache_rebuild = False
