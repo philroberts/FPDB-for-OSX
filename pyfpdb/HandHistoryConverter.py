@@ -57,6 +57,10 @@ class HandHistoryConverter():
             self.out_fh = sys.stdout
         else:
             # TODO: out_path should be sanity checked.
+            out_dir = os.path.dirname(self.out_path)
+            if not os.path.isdir(out_dir):
+                logging.info("Creatin directory '%s'" % out_dir)
+                os.makedirs(out_dir)
             self.out_fh = open(self.out_path, 'w')
 
         self.sitename  = sitename
