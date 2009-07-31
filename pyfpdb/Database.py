@@ -27,7 +27,7 @@ Create and manage the database objects.
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta
-from time import time, strftime
+from time import time, strftime, sleep
 import string
 import re
 import logging
@@ -1607,7 +1607,7 @@ class Database:
                         tries = tries + 1
                         if tries < maxTries and wait < 5:    # wait < 5 just to make sure
                             print "deadlock detected - trying again ..."
-                            time.sleep(wait)
+                            sleep(wait)
                             wait = wait + wait
                             again = True
                         else:
