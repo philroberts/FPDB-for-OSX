@@ -294,6 +294,7 @@ class Stud_cards:
     def update_gui(self, new_hand_id):
         self.clear()
         for c, cards in self.parent.hud.cards.iteritems():
+            if c == 'common': continue
             self.grid_contents[(1, c - 1)].set_text(self.get_screen_name(c))
             for i in ((0, cards[0]), (1, cards[1]), (2, cards[2]), (3, cards[3]), 
                       (4, cards[4]), (5, cards[5]), (6, cards[6])):
@@ -462,7 +463,6 @@ class Flop_Mucked(Aux_Seats):
             if n_cards > 0 and i != 'common':
                 n_sd = n_sd + 1
         if n_sd < 2: 
-            print "skipping, n_sd =", n_sd
             return
 
         super(Flop_Mucked, self).update_gui(new_hand_id)

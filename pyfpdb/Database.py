@@ -1684,6 +1684,7 @@ class HandToWrite:
             self.maxSeats = None
             self.tableName = None
             self.seatNos = None
+            self.payin_amounts = None # tourney import was complaining mightily about this missing
         except:
             print "htw.init error: " + str(sys.exc_info())
             raise

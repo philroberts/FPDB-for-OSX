@@ -29,18 +29,31 @@ class PokerStars(HandHistoryConverter):
 ############################################################
 #    Class Variables
 
+    substitutions = {
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD",    # legal ISO currency codes
+                            'LS' : "\$"                  # legal currency symbols
+                    }
+
     # Static regexes
-    re_GameInfo     = re.compile("""PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
-                                  (Tournament\s\#(?P<TOURNO>\d+),\s(?P<BUYIN>[\$\+\d\.]+)\s)?
-                                  (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-                                  (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
-                                  (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
-                                  (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?\(?
-                                  (?P<CURRENCY>\$|)?
-                                  (?P<SB>[.0-9]+)/\$?
-                                  (?P<BB>[.0-9]+)\)\s-\s
-                                  (?P<DATETIME>.*$)""",
-                                  re.MULTILINE|re.VERBOSE)
+    re_GameInfo     = re.compile("""
+          PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
+          (Tournament\s\#                # open paren of tournament info
+          (?P<TOURNO>\d+),\s
+          (?P<BUYIN>[%(LS)s\+\d\.]+      # here's how I plan to use LS
+          \s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?
+          )\s)?                          # close paren of tournament info
+          (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
+          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
+          (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
+          (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
+          \(?                            # open paren of the stakes
+          (?P<CURRENCY>%(LS)s|)?
+          (?P<SB>[.0-9]+)/%(LS)s?
+          (?P<BB>[.0-9]+)
+          \s?(?P<ISO>%(LEGAL_ISO)s)?
+          \)\s-\s                        # close paren of the stakes
+          (?P<DATETIME>.*$)""" % substitutions,
+          re.MULTILINE|re.VERBOSE)
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
     re_HandInfo     = re.compile("""^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
@@ -270,19 +283,6 @@ follow :  whether to tail -f the input"""
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'both', a.group('SBBB'))
 
-#    def readHeroCards(self, hand):
-#        m = self.re_HeroCards.search(hand.handText)
-#        if(m == None):
-#            #Not involved in hand
-#            hand.involved = False
-#        else:
-#            hand.hero = m.group('PNAME')
-#            # "2c, qh" -> set(["2c","qc"])
-#            # Also works with Omaha hands.
-#            cards = m.group('NEWCARDS')
-#            cards = set(cards.split(' '))
-#            hand.addHoleCards(cards, m.group('PNAME'), shown=False, mucked=False, dealt=True)
-
     def readHeroCards(self, hand):
 #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
 #    we need to grab hero's cards
@@ -318,62 +318,6 @@ follow :  whether to tail -f the input"""
                 else:
                     hand.addHoleCards(street, player, open=newcards, closed=oldcards, shown=False, mucked=False, dealt=False)
 
-            
-#    def readDrawCards(self, hand, street):
-#        logging.debug("readDrawCards")
-#        m = self.re_HeroCards.finditer(hand.streets[street])
-#        if m == None:
-#            hand.involved = False
-#        else:
-#            for player in m:
-#                hand.hero = player.group('PNAME') # Only really need to do this once
-#                newcards = player.group('NEWCARDS')
-#                oldcards = player.group('OLDCARDS')
-#                if newcards == None:
-#                    newcards = set()
-#                else:
-#                    newcards = set(newcards.split(' '))
-#                if oldcards == None:
-#                    oldcards = set()
-#                else:
-#                    oldcards = set(oldcards.split(' '))
-#                hand.addDrawHoleCards(newcards, oldcards, player.group('PNAME'), street)
-
-
-#    def readStudPlayerCards(self, hand, street):
-#        # See comments of reference implementation in FullTiltToFpdb.py
-#        logging.debug("readStudPlayerCards")
-#        m = self.re_HeroCards.finditer(hand.streets[street])
-#        for player in m:
-#            #~ logging.debug(player.groupdict())
-#            (pname,  oldcards,  newcards) = (player.group('PNAME'), player.group('OLDCARDS'), player.group('NEWCARDS'))
-#            if oldcards:
-#                oldcards = [c.strip() for c in oldcards.split(' ')]
-#            if newcards:
-#                newcards = [c.strip() for c in newcards.split(' ')]
-#            if street=='ANTES':
-#                return
-#            elif street=='THIRD':
-#                # we'll have observed hero holecards in CARDS and thirdstreet open cards in 'NEWCARDS'
-#                # hero: [xx][o]
-#                # others: [o]
-#                hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = oldcards,  open = newcards)
-#            elif street in ('FOURTH',  'FIFTH',  'SIXTH'):
-#                # 4th:
-#                # hero: [xxo] [o]
-#                # others: [o] [o]
-#                # 5th:
-#                # hero: [xxoo] [o]
-#                # others: [oo] [o]
-#                # 6th:
-#                # hero: [xxooo] [o]
-#                # others:  [ooo] [o]
-#                hand.addPlayerCards(player = player.group('PNAME'), street = street, open = newcards)
-#                # we may additionally want to check the earlier streets tally with what we have but lets trust it for now.
-#            elif street=='SEVENTH' and newcards:
-#                # hero: [xxoooo] [x]
-#                # others: not reported.
-#                hand.addPlayerCards(player = player.group('PNAME'), street = street, closed = newcards)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])

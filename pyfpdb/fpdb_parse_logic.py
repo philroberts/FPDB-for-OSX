@@ -165,7 +165,12 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
     except:
         print "parse: error during commit: " + str(sys.exc_value)
 
-
+#    HERE's an ugly kludge to keep from failing when positions is undef
+#    We'll fix this by getting rid of the legacy importer.  REB
+    try:
+        if positions: pass
+    except:
+        positions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # save data structures in a HandToWrite instance and then insert into database: 
     htw = Database.HandToWrite()
     htw.set_all( config, settings, base, category, siteTourneyNo, buyin
