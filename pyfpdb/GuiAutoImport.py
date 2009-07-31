@@ -159,29 +159,33 @@ class GuiAutoImport (threading.Thread):
             # - Ideally we want to release the lock if the auto-import is killed by some 
             # kind of exception - is this possible?
             if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
-                print "\nGlobal lock taken ..."
-                self.doAutoImportBool = True
-                widget.set_label(u'  _Stop Autoimport  ')
-                if self.pipe_to_hud is None:
-                    if os.name == 'nt':
-                        command = "python HUD_main.py" + " " + self.settings['cl_options']
-                        bs = 0    # windows is not happy with line buffing here
-                        self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
-                                                        universal_newlines=True)
-                    else:
-                        command = os.path.join(sys.path[0],  'HUD_main.py')
-                        cl = [command, ] + string.split(self.settings['cl_options'])
-                        self.pipe_to_hud = subprocess.Popen(cl, bufsize = 1, stdin = subprocess.PIPE, 
-                                                        universal_newlines=True)
+                try:
+                    print "\nGlobal lock taken ..."
+                    self.doAutoImportBool = True
+                    widget.set_label(u'  _Stop Autoimport  ')
+                    if self.pipe_to_hud is None:
+                        if os.name == 'nt':
+                            command = "python HUD_main.py" + " " + self.settings['cl_options']
+                            bs = 0    # windows is not happy with line buffing here
+                            self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE, 
+                                                            universal_newlines=True)
+                        else:
+                            command = os.path.join(sys.path[0],  'HUD_main.py')
+                            cl = [command, ] + string.split(self.settings['cl_options'])
+                            self.pipe_to_hud = subprocess.Popen(cl, bufsize = 1, stdin = subprocess.PIPE, 
+                                                            universal_newlines=True)
 
-                    # Add directories to importer object.
-                    for site in self.input_settings:
-                        self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
-                        print "Adding import directories - Site: " + site + " dir: "+ str(self.input_settings[site][0])
-                        self.do_import()
+                        # Add directories to importer object.
+                        for site in self.input_settings:
+                            self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
+                            print "Adding import directories - Site: " + site + " dir: "+ str(self.input_settings[site][0])
+                            self.do_import()
 
-                        interval=int(self.intervalEntry.get_text())
-                        gobject.timeout_add(interval*1000, self.do_import)
+                            interval=int(self.intervalEntry.get_text())
+                            gobject.timeout_add(interval*1000, self.do_import)
+                except:
+                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                    print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             else:
                 print "auto-import aborted - global lock not available"
         else: # toggled off
