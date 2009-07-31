@@ -339,7 +339,7 @@ class Importer:
                 #rulog.writelines("path exists ")
                 if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
                     if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
-                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                        self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
                         self.updatedsize[file] = stat_info.st_size
                         self.updatedtime[file] = time()
                 else:
