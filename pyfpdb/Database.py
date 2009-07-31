@@ -31,6 +31,7 @@ from time import time, strftime
 import string
 import re
 import logging
+import Queue
 
 #    pyGTK modules
 
@@ -469,23 +470,19 @@ class Database:
                  ,action_types, allIns, action_amounts, actionNos, hudImportData, maxSeats, tableName
                  ,seatNos):
 
-        try:
-            fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
 
-            hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
-                                      ,hand_start_time, names, tableName, maxSeats, hudImportData
-                                      ,(None, None, None, None, None), (None, None, None, None, None))
+        hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
+                                  ,hand_start_time, names, tableName, maxSeats, hudImportData
+                                  ,(None, None, None, None, None), (None, None, None, None, None))
 
-            #print "before calling store_hands_players_stud, antes:", antes
-            hands_players_ids = self.store_hands_players_stud(self.backend, hands_id, player_ids
-                                                             ,start_cashes, antes, card_values
-                                                             ,card_suits, winnings, rakes, seatNos)
+        #print "before calling store_hands_players_stud, antes:", antes
+        hands_players_ids = self.store_hands_players_stud(self.backend, hands_id, player_ids
+                                                         ,start_cashes, antes, card_values
+                                                         ,card_suits, winnings, rakes, seatNos)
 
-            if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-                self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-        except:
-            print "ring_stud error: " + str(sys.exc_value)  # in case exception doesn't get printed
-            raise fpdb_simple.FpdbError("ring_stud error: " + str(sys.exc_value))
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
+            self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
 
         return hands_id
     #end def ring_stud
@@ -496,30 +493,26 @@ class Database:
                          ,action_amounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
         """stores a holdem/omaha hand into the database"""
 
-        try:
-            t0 = time()
-            #print "in ring_holdem_omaha"
-            fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-            t1 = time()
-            fpdb_simple.fill_board_cards(board_values, board_suits)
-            t2 = time()
+        t0 = time()
+        #print "in ring_holdem_omaha"
+        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+        t1 = time()
+        fpdb_simple.fill_board_cards(board_values, board_suits)
+        t2 = time()
 
-            hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
-                                      ,hand_start_time, names, tableName, maxSeats
-                                      ,hudImportData, board_values, board_suits)
-            #TEMPORARY CALL! - Just until all functions are migrated
-            t3 = time()
-            hands_players_ids = self.store_hands_players_holdem_omaha(
-                                       self.backend, category, hands_id, player_ids, start_cashes
-                                     , positions, card_values, card_suits, winnings, rakes, seatNos, hudImportData)
-            t4 = time()
-            if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-                self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-            t5 = time()
-            #print "fills=(%4.3f) saves=(%4.3f,%4.3f,%4.3f)" % (t2-t0, t3-t2, t4-t3, t5-t4)
-        except:
-            print "ring_holdem_omaha error: " + str(sys.exc_value)  # in case exception doesn't get printed
-            raise fpdb_simple.FpdbError("ring_holdem_omaha error: " + str(sys.exc_value))
+        hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
+                                  ,hand_start_time, names, tableName, maxSeats
+                                  ,hudImportData, board_values, board_suits)
+        #TEMPORARY CALL! - Just until all functions are migrated
+        t3 = time()
+        hands_players_ids = self.store_hands_players_holdem_omaha(
+                                   self.backend, category, hands_id, player_ids, start_cashes
+                                 , positions, card_values, card_suits, winnings, rakes, seatNos, hudImportData)
+        t4 = time()
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
+            self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
+        t5 = time()
+        #print "fills=(%4.3f) saves=(%4.3f,%4.3f,%4.3f)" % (t2-t0, t3-t2, t4-t3, t5-t4)
         return hands_id
     #end def ring_holdem_omaha
 
@@ -532,28 +525,24 @@ class Database:
                             ,actionNos, hudImportData, maxSeats, tableName, seatNos):
         """stores a tourney holdem/omaha hand into the database"""
 
-        try:
-            fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-            fpdb_simple.fill_board_cards(board_values, board_suits)
+        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
+        fpdb_simple.fill_board_cards(board_values, board_suits)
 
-            tourney_id = self.store_tourneys(tourneyTypeId, siteTourneyNo, entries, prizepool, tourney_start)
-            tourneys_players_ids = self.store_tourneys_players(tourney_id, player_ids, payin_amounts, ranks, winnings)
+        tourney_id = self.store_tourneys(tourneyTypeId, siteTourneyNo, entries, prizepool, tourney_start)
+        tourneys_players_ids = self.store_tourneys_players(tourney_id, player_ids, payin_amounts, ranks, winnings)
 
-            hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
-                                      ,hand_start_time, names, tableName, maxSeats
-                                      ,hudImportData, board_values, board_suits)
+        hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
+                                  ,hand_start_time, names, tableName, maxSeats
+                                  ,hudImportData, board_values, board_suits)
 
-            hands_players_ids = self.store_hands_players_holdem_omaha_tourney(
-                              self.backend, category, hands_id, player_ids, start_cashes, positions
-                            , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids
-                            , hudImportData)
+        hands_players_ids = self.store_hands_players_holdem_omaha_tourney(
+                          self.backend, category, hands_id, player_ids, start_cashes, positions
+                        , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids
+                        , hudImportData)
 
-            #print "tourney holdem, backend=%d" % backend
-            if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-                self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-        except:
-            print "tourney_holdem_omaha error: " + str(sys.exc_value)  # in case exception doesn't get printed
-            raise fpdb_simple.FpdbError("tourney_holdem_omaha error: " + str(sys.exc_value))
+        #print "tourney holdem, backend=%d" % backend
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
+            self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
 
         return hands_id
     #end def tourney_holdem_omaha
@@ -565,26 +554,22 @@ class Database:
                     ,actionNos, hudImportData, maxSeats, tableName, seatNos):
         #stores a tourney stud/razz hand into the database
 
-        try:
-            fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
+        fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
 
-            tourney_id = self.store_tourneys(tourneyTypeId, siteTourneyNo, entries, prizepool, tourneyStartTime)
+        tourney_id = self.store_tourneys(tourneyTypeId, siteTourneyNo, entries, prizepool, tourneyStartTime)
 
-            tourneys_players_ids = self.store_tourneys_players(tourney_id, playerIds, payin_amounts, ranks, winnings)
+        tourneys_players_ids = self.store_tourneys_players(tourney_id, playerIds, payin_amounts, ranks, winnings)
 
-            hands_id = self.storeHands( self.backend, siteHandNo, gametypeId
-                                      , handStartTime, names, tableName, maxSeats
-                                      , hudImportData, board_values, board_suits )
+        hands_id = self.storeHands( self.backend, siteHandNo, gametypeId
+                                  , handStartTime, names, tableName, maxSeats
+                                  , hudImportData, board_values, board_suits )
 
-            hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
-                                                     , playerIds, startCashes, antes, cardValues, cardSuits
-                                                     , winnings, rakes, seatNos, tourneys_players_ids)
+        hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
+                                                 , playerIds, startCashes, antes, cardValues, cardSuits
+                                                 , winnings, rakes, seatNos, tourneys_players_ids)
 
-            if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-                self.storeHudCache(self.backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
-        except:
-            print "tourney_stud error: " + str(sys.exc_value)  # in case exception doesn't get printed
-            raise fpdb_simple.FpdbError("tourney_stud error: " + str(sys.exc_value))
+        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
+            self.storeHudCache(self.backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
 
         return hands_id
     #end def tourney_stud
@@ -613,7 +598,7 @@ class Database:
                               "AND referenced_column_name = %s ",
                               (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
                     cons = c.fetchone()
-                    print "preparebulk find fk: cons=", cons
+                    #print "preparebulk find fk: cons=", cons
                     if cons:
                         print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
                         try:
@@ -994,7 +979,7 @@ class Database:
                     result = self.tourney_holdem_omaha(
                                                h.config, h.settings, h.base, h.category, h.siteTourneyNo, h.buyin
                                              , h.fee, h.knockout, h.entries, h.prizepool, h.tourneyStartTime
-                                             , h.payin_amounts, h.ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
+                                             , payin_amounts, ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
                                              , h.gametypeID, h.handStartTime, h.names, h.playerIDs, h.startCashes
                                              , h.positions, h.cardValues, h.cardSuits, h.boardValues, h.boardSuits
                                              , h.winnings, h.rakes, h.actionTypes, h.allIns, h.actionAmounts
@@ -1003,13 +988,13 @@ class Database:
                     result = self.tourney_stud(
                                                h.config, h.settings, h.base, h.category, h.siteTourneyNo
                                              , h.buyin, h.fee, h.knockout, h.entries, h.prizepool, h.tourneyStartTime
-                                             , h.payin_amounts, h.ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
+                                             , payin_amounts, ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
                                              , h.gametypeID, h.handStartTime, h.names, h.playerIDs, h.startCashes
                                              , h.antes, h.cardValues, h.cardSuits, h.winnings, h.rakes, h.actionTypes
                                              , h.allIns, h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats
                                              , h.tableName, h.seatNos)
                 else:
-                    raise fpself.simple.Fpself.rror("unrecognised category")
+                    raise fpdb_simple.FpdbError("unrecognised category")
             else:
                 if h.base == "hold":
                     result = self.ring_holdem_omaha(
@@ -1027,11 +1012,13 @@ class Database:
                                              , h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats, h.tableName
                                              , h.seatNos)
                 else:
-                    raise fpself.simple.Fpself.rror ("unrecognised category")
-            self.commit()
+                    raise fpdb_simple.FpdbError("unrecognised category")
         except:
             print "Error storing hand: " + str(sys.exc_value)
             self.rollback()
+            # re-raise the exception so that the calling routine can decide what to do:
+            # (e.g. a write thread might try again)
+            raise
 
         return result
     #end def store_the_hand
@@ -1576,8 +1563,85 @@ class Database:
     #end def store_tourneys_players
 
 
+    # read HandToWrite objects from q and insert into database
+    def insert_queue_hands(self, q, maxwait=10, commitEachHand=True):
+        n,fails,maxTries,firstWait = 0,0,4,0.1
+        sendFinal = False
+        t0 = time()
+        while True:
+            try:
+                h = q.get(True)  # (True,maxWait) has probs if 1st part of import is all dups
+            except Queue.Empty:
+                # Queue.Empty exception thrown if q was empty for
+                # if q.empty() also possible - no point if testing for Queue.Empty exception
+                # maybe increment a counter and only break after a few times?
+                # could also test threading.active_count() or look through threading.enumerate()
+                # so break immediately if no threads, but count up to X exceptions if a writer
+                # thread is still alive???
+                print "queue empty too long - writer stopping ..."
+                break
+            except:
+                print "writer stopping, error reading queue: " + str(sys.exc_info())
+                break
+            #print "got hand", str(h.get_finished())
+
+            tries,wait,again = 0,firstWait,True
+            while again:
+                try:
+                    again = False # set this immediately to avoid infinite loops!
+                    if h.get_finished():
+                        # all items on queue processed
+                        sendFinal = True
+                    else:
+                        self.store_the_hand(h)
+                        # optional commit, could be every hand / every N hands / every time a 
+                        # commit message received?? mark flag to indicate if commits outstanding
+                        if commitEachHand:
+                            self.commit()
+                        n = n + 1
+                except:
+                    #print "iqh store error", sys.exc_value # debug
+                    self.rollback()
+                    if re.search('deadlock', str(sys.exc_info()[1]), re.I):
+                        # deadlocks only a problem if hudcache is being updated
+                        tries = tries + 1
+                        if tries < maxTries and wait < 5:    # wait < 5 just to make sure
+                            print "deadlock detected - trying again ..."
+                            time.sleep(wait)
+                            wait = wait + wait
+                            again = True
+                        else:
+                            print "too many deadlocks - failed to store hand " + h.get_siteHandNo()
+                    if not again:
+                        fails = fails + 1
+                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                        print "***Error storing hand: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            # finished trying to store hand
+
+            # always reduce q count, whether or not this hand was saved ok
+            q.task_done()
+        # while True loop
+
+        self.commit()
+        if sendFinal:
+            q.task_done()
+        print "db writer finished: stored %d hands (%d fails) in %.1f seconds" % (n, fails, time()-t0)
+    # end def insert_queue_hands():
+
+
+    def send_finish_msg(self, q):
+        try:
+            h = HandToWrite(True)
+            q.put(h)
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+    # end def send_finish_msg():
+
+
 # Class used to hold all the data needed to write a hand to the db
 # mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 
+# self.insert_queue_hands()
 
 class HandToWrite:
 
@@ -1674,49 +1738,6 @@ class HandToWrite:
             print "htw.set_all error: " + str(sys.exc_info())
             raise
     # end def set_hand
-
-    def set_ring_holdem_omaha( self, config, settings, base, category, siteHandNo
-                             , gametypeID, handStartTime, names, playerIDs
-                             , startCashes, positions, cardValues, cardSuits
-                             , boardValues, boardSuits, winnings, rakes
-                             , actionTypes, allIns, actionAmounts, actionNos
-                             , hudImportData, maxSeats, tableName, seatNos ):
-        self.config = config
-        self.settings = settings
-        self.base = base
-        self.category = category
-        self.siteHandNo = siteHandNo
-        self.gametypeID = gametypeID
-        self.handStartTime = handStartTime
-        self.names = names
-        self.playerIDs = playerIDs
-        self.startCashes = startCashes
-        self.positions = positions
-        self.cardValues = cardValues
-        self.cardSuits = cardSuits
-        self.boardValues = boardValues
-        self.boardSuits = boardSuits
-        self.winnings = winnings
-        self.rakes = rakes
-        self.actionTypes = actionTypes
-        self.allIns = allIns
-        self.actionAmounts = actionAmounts
-        self.actionNos = actionNos
-        self.hudImportData = hudImportData
-        self.maxSeats = maxSeats
-        self.tableName = tableName
-        self.seatNos = seatNos
-    # end def set_ring_holdem_omaha
-
-    def send_ring_holdem_omaha(self, db):
-        result = db.ring_holdem_omaha(
-                                   self.config, self.settings, self.base, self.category, self.siteHandNo
-                                 , self.gametypeID, self.handStartTime, self.names, self.playerIDs
-                                 , self.startCashes, self.positions, self.cardValues, self.cardSuits
-                                 , self.boardValues, self.boardSuits, self.winnings, self.rakes
-                                 , self.actionTypes, self.allIns, self.actionAmounts, self.actionNos
-                                 , self.hudImportData, self.maxSeats, self.tableName, self.seatNos)
-    # end def send_ring_holdem_omaha
 
     def get_finished(self):
         return( self.finished )
