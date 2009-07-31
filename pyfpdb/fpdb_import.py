@@ -375,7 +375,10 @@ class Importer:
 
         # Load filter, process file, pass returned filename to import_fpdb_file
             
-        print "\nConverting %s" % file
+        if self.writeq != None:
+            print "\nConverting " + file + " (" + str(q.qsize()) + ")"
+        else:
+            print "\nConverting " + file
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
         hhdir     = os.path.join(hhbase,site)
@@ -403,10 +406,10 @@ class Importer:
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
-                return (0, 0, 0, 1, 0)
+                return (0, 0, 0, 1, 0, -1)
         else:
             print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
-            return
+            return (0, 0, 0, 1, 0, -1)
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
@@ -476,13 +479,13 @@ class Importer:
         except:
             # just skip the debug message and return silently:
             #print "DEBUG: import_fpdb_file: failed on lines[0]: '%s' '%s' '%s' '%s' " %( file, site, lines, loc)
-            return (0,0,0,1,0)
+            return (0,0,0,1,0,0)
 
         if firstline.find("Tournament Summary")!=-1:
             print "TODO: implement importing tournament summaries"
             #self.faobs = readfile(inputFile)
             #self.parseTourneyHistory()
-            return (0,0,0,1,0)
+            return (0,0,0,1,0,0)
 
         category=fpdb_simple.recogniseCategory(firstline)
 
@@ -491,8 +494,8 @@ class Importer:
         duplicates = 0 #counter
         partial = 0 #counter
         errors = 0 #counter
-        ttime = None
-        handsId = -1
+        ttime = 0
+        handsId = 0
 
         for i in xrange (len(lines)):
             if (len(lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
