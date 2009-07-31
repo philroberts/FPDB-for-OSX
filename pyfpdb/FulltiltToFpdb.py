@@ -176,6 +176,12 @@ follow :  whether to tail -f the input"""
         hand.tourNo = m.group('TOURNO')
         if m.group('PLAY') != None:
             hand.gametype['currency'] = 'play'
+            
+        # TODO: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
+        if hand.buyin == None:
+            hand.buyin = "$0.00+$0.00"
+        if hand.level == None:
+            hand.level = "0"            
 
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')

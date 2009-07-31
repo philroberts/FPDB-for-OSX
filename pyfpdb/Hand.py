@@ -564,7 +564,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
     def writeGameLine(self):
         """Return the first HH line for the current hand."""
         gs = "PokerStars Game #%s: " % self.handid
-
+            
         if self.tourNo != None and self.mixed != None: # mixed tournament
             gs = gs + "Tournament #%s, %s %s (%s) - Level %s (%s) - " % (self.tourNo, self.buyin, self.MS[self.mixed], self.getGameTypeAsString(), self.level, self.getStakesAsString())
         elif self.tourNo != None: # all other tournaments
