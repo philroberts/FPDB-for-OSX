@@ -140,6 +140,7 @@ follow :  whether to tail -f the input"""
         if mg['TOURNO'] == None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
     #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)
@@ -176,6 +177,12 @@ follow :  whether to tail -f the input"""
         hand.tourNo = m.group('TOURNO')
         if m.group('PLAY') != None:
             hand.gametype['currency'] = 'play'
+            
+        # TODO: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
+        if hand.buyin == None:
+            hand.buyin = "$0.00+$0.00"
+        if hand.level == None:
+            hand.level = "0"            
 
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')
