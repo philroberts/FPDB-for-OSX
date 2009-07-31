@@ -134,7 +134,6 @@ follow :  whether to tail -f the input"""
             return None
 
         mg = m.groupdict()
-        print "mg =", mg
         # translations from captured groups to fpdb info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {                          # base, category
