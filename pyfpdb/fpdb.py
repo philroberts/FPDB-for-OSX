@@ -204,10 +204,10 @@ class fpdb:
             #        print 'User cancelled loading profile'
             #except:
             #    pass
-            try:
-                self.load_profile()
-            except:
-                pass
+            #try:
+            self.load_profile()
+            #except:
+            #    pass
             self.release_global_lock()
     #end def dia_load_profile
 
@@ -246,19 +246,16 @@ class fpdb:
     
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
-            try:
-                dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
-                diastring = "Please confirm that you want to re-create the HUD cache."
-                dia_confirm.format_secondary_text(diastring)
-                
-                response = dia_confirm.run()
-                dia_confirm.destroy()
-                if response == gtk.RESPONSE_YES:
-                    self.db.rebuild_hudcache()
-                elif response == gtk.REPSONSE_NO:
-                    print 'User cancelled rebuilding hud cache'
-            except:
-                pass
+            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+            diastring = "Please confirm that you want to re-create the HUD cache."
+            dia_confirm.format_secondary_text(diastring)
+            
+            response = dia_confirm.run()
+            dia_confirm.destroy()
+            if response == gtk.RESPONSE_YES:
+                self.db.rebuild_hudcache()
+            elif response == gtk.REPSONSE_NO:
+                print 'User cancelled rebuilding hud cache'
         self.release_global_lock()
     
 

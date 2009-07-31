@@ -163,7 +163,8 @@ class HUD_main(object):
                     cards['common'] = comm_cards['common']
             except Exception, err:
                 print "db error: skipping ", new_hand_id, err
-                sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                    sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
                 continue
 
             if type == "tour":   # hand is from a tournament
