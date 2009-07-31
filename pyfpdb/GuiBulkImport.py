@@ -35,6 +35,9 @@ import Configuration
 
 class GuiBulkImport():
 
+    # CONFIGURATION  -  update these as preferred:
+    allowThreads = True  # set to True to try out the threads field
+
     # not used
     def import_dir(self):
         """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
@@ -146,7 +149,8 @@ class GuiBulkImport():
         self.spin_threads = gtk.SpinButton(adjustment=threads_adj, climb_rate=0.0, digits=0)
         self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.spin_threads.show()
-        self.spin_threads.set_sensitive(False)
+        if not self.allowThreads:
+            self.spin_threads.set_sensitive(False)
 
 #    checkbox - fail on error?
         self.chk_fail = gtk.CheckButton('Fail on error')
