@@ -94,29 +94,32 @@ def cardFromValueSuit(value, suit):
     elif suit == 's':  return(value+38)
     else: return(0)
 
-def valueSuitFromCard(card):
-    """ Function to convert a card stored in the database (int 0-52) into value 
-        and suit like 9s, 4c etc """
-    if card < 0 or card > 52 or not card:
-        return('')
-    else:
-        return( ['', '2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', 'Th', 'Jh', 'Qh', 'Kh', 'Ah'
+suitFromCardList = ['', '2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', 'Th', 'Jh', 'Qh', 'Kh', 'Ah'
                      , '2d', '3d', '4d', '5d', '6d', '7d', '8d', '9d', 'Td', 'Jd', 'Qd', 'Kd', 'Ad'
                      , '2c', '3c', '4c', '5c', '6c', '7c', '8c', '9c', 'Tc', 'Jc', 'Qc', 'Kc', 'Ac'
                      , '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', 'Ts', 'Js', 'Qs', 'Ks', 'As'
-                ][card] )
+                ]
+def valueSuitFromCard(card):
+    """ Function to convert a card stored in the database (int 0-52) into value 
+        and suit like 9s, 4c etc """
+    global suitFromCardList
+    if card < 0 or card > 52 or not card:
+        return('')
+    else:
+        return suitFromCardList[card]
 
-def encodeCard(cardString):
-    """Take a card string (Ah) and convert it to the db card code (1)."""
-    try:
-        return {'2h':  1, '3h':  2, '4h':  3, '5h':  4, '6h':  5, '7h':  6, '8h':  7, '9h':  8, 'Th':  9, 'Jh': 10, 'Qh': 11, 'Kh': 12, 'Ah': 13,
+encodeCardList = {'2h':  1, '3h':  2, '4h':  3, '5h':  4, '6h':  5, '7h':  6, '8h':  7, '9h':  8, 'Th':  9, 'Jh': 10, 'Qh': 11, 'Kh': 12, 'Ah': 13,
                 '2d': 14, '3d': 15, '4d': 16, '5d': 17, '6d': 18, '7d': 19, '8d': 20, '9d': 21, 'Td': 22, 'Jd': 23, 'Qd': 24, 'Kd': 25, 'Ad': 26,
                 '2c': 27, '3c': 28, '4c': 29, '5c': 30, '6c': 31, '7c': 32, '8c': 33, '9c': 34, 'Tc': 35, 'Jc': 36, 'Qc': 27, 'Kc': 38, 'Ac': 39,
                 '2s': 40, '3s': 41, '4s': 42, '5s': 43, '6s': 44, '7s': 45, '8s': 46, '9s': 47, 'Ts': 48, 'Js': 49, 'Qs': 50, 'Ks': 51, 'As': 52,
                 '  ':  0
-                }[cardString]
-    except:
-        return 0 # everthing that isn't known is a unknown!
+                }
+
+def encodeCard(cardString):
+    """Take a card string (Ah) and convert it to the db card code (1)."""
+    global encodeCardList
+    if cardString not in encodeCardList: return 0
+    return encodeCardList[cardString]
 
 if __name__ == '__main__':
     print "fpdb card encoding(same as pokersource)"
