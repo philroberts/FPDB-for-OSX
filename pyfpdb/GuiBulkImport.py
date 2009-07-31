@@ -21,6 +21,7 @@ import os
 import sys
 from time import time
 from optparse import OptionParser
+import traceback
 
 #    pyGTK modules
 import pygtk
@@ -81,14 +82,14 @@ class GuiBulkImport():
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
-                print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %d/sec'\
-                     % (stored, dups, partial, errs, ttime, stored / ttime)
+                print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 self.importer.clearFileList()
 
                 self.lab_info.set_text("Import finished")
             except:
-                print "bulkimport.loadclicked error: "+str(sys.exc_value)
-                pass
+                err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             self.settings['global_lock'].release()
         else:
             print "bulk-import aborted - global lock not available"
