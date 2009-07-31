@@ -204,10 +204,10 @@ class fpdb:
             #        print 'User cancelled loading profile'
             #except:
             #    pass
-            try:
-                self.load_profile()
-            except:
-                pass
+            #try:
+            self.load_profile()
+            #except:
+            #    pass
             self.release_global_lock()
     #end def dia_load_profile
 
