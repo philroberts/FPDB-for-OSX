@@ -118,7 +118,7 @@ follow :  whether to tail -f the input"""
         if not m: 
             return None
         mg = m.groupdict()
-        
+
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
@@ -140,7 +140,26 @@ follow :  whether to tail -f the input"""
         if mg['TOURNO'] == None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
+
+    #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)
+    # Same function as parent class, removing the 2 end characters. - CG
+    def allHandsAsList(self):
+        """Return a list of handtexts in the file at self.in_path"""
+        #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
+        self.readFile()
+
+        # FIXME: it's a hack
+        if self.obs[:2] == u'\xff\xfe':
+            self.obs = self.obs[2:].replace('\x00', '')
+
+        self.obs = self.obs.strip()
+        self.obs = self.obs.replace('\r\n', '\n')
+        if self.obs == "" or self.obs == None:
+            logging.info("Read no hands.")
+            return
+        return re.split(self.re_SplitHands,  self.obs)
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
@@ -158,6 +177,12 @@ follow :  whether to tail -f the input"""
         hand.tourNo = m.group('TOURNO')
         if m.group('PLAY') != None:
             hand.gametype['currency'] = 'play'
+            
+        # TODO: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
+        if hand.buyin == None:
+            hand.buyin = "$0.00+$0.00"
+        if hand.level == None:
+            hand.level = "0"            
 
 # These work, but the info is already in the Hand class - should be used for tourneys though.
 #       m.group('SB')

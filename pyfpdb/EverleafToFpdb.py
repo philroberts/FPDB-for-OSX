@@ -44,7 +44,7 @@ out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input
 autostart: whether to run the thread (or you can call start() yourself)
 debugging: if False, pass on partially supported game types. If true, have a go and error..."""
-        print "DEBUG: XXXXXXXXXXXXXXX"
+        #print "DEBUG: XXXXXXXXXXXXXXX"
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="Everleaf", follow=follow, index=index)
         logging.info("Initialising Everleaf converter class")
         self.filetype = "text"
