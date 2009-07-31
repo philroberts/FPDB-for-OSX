@@ -68,7 +68,8 @@ class Importer:
         self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
         self.monitor    = False
-        self.updated    = {}         #Time last import was run {file:mtime}
+        self.updatedsize = {}
+        self.updatedtime = {}
         self.lines      = None
         self.faobs      = None       # File as one big string
         self.pos_in_file = {}        # dict to remember how far we have read in the file
@@ -268,15 +269,18 @@ class Importer:
             if os.path.exists(file):
                 stat_info = os.stat(file)
                 #rulog.writelines("path exists ")
-                if file in self.updated:
-                    if stat_info.st_size > self.updated[file]:
+                if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
+                    if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
                         self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                        self.updated[file] = stat_info.st_size
+                        self.updatedsize[file] = stat_info.st_size
+                        self.updatedtime[file] = time()
                 else:
                     if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
-                        self.updated[file] = 0
+                        self.updatedsize[file] = 0
+                        self.updatedtime[file] = 0
                     else:
-                        self.updated[file] = stat_info.st_size
+                        self.updatedsize[file] = stat_info.st_size
+                        self.updatedtime[file] = time()
             else:
                 self.removeFromFileList[file] = True
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
