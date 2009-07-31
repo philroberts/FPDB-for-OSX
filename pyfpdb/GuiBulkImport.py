@@ -36,7 +36,7 @@ import Configuration
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
-    allowThreads = True  # set to True to try out the threads field
+    allowThreads = False  # set to True to try out the threads field
 
     # not used
     def import_dir(self):
