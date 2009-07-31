@@ -56,6 +56,7 @@ class Hand(object):
         self.buttonpos = 0
         self.tourNo = None
         self.buyin = None
+        self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
         self.seating = []

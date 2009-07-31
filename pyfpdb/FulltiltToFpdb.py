@@ -140,6 +140,7 @@ follow :  whether to tail -f the input"""
         if mg['TOURNO'] == None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
     #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)

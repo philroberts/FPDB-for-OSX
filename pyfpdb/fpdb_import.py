@@ -268,23 +268,15 @@ class Importer:
             if os.path.exists(file):
                 stat_info = os.stat(file)
                 #rulog.writelines("path exists ")
-                try: 
-                    lastupdate = self.updated[file]
-                    #rulog.writelines("lastupdate = %d, mtime = %d" % (lastupdate,stat_info.st_mtime))
-                    if stat_info.st_size > lastupdate: #stat_info.st_mtime > lastupdate:
+                if file in self.updated:
+                    if stat_info.st_size > self.updated[file]:
                         self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                        self.updated[file] = stat_info.st_size #time()
-                except:
-                    self.updated[file] = stat_info.st_size #time()
-                    # If modified in the last minute run an immediate import.
-                    # This codepath only runs first time the file is found.
+                        self.updated[file] = stat_info.st_size
+                else:
                     if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
-                        # TODO attach a HHC thread to the file
-                        # TODO import the output of the HHC thread  -- this needs to wait for the HHC to block?
-                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                # TODO we also test if directory, why?
-                #if os.path.isdir(file):
-                    #self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+                        self.updated[file] = 0
+                    else:
+                        self.updated[file] = stat_info.st_size
             else:
                 self.removeFromFileList[file] = True
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
