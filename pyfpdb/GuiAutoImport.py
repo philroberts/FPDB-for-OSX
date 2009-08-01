@@ -31,10 +31,11 @@ import Configuration
 import string
 
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config):
+    def __init__(self, settings, config, sql):
         """Constructor for GuiAutoImport"""
         self.settings=settings
         self.config=config
+        self.sql = sql
 
         imp = self.config.get_import_parameters()
 
@@ -44,7 +45,7 @@ class GuiAutoImport (threading.Thread):
         self.input_settings = {}
         self.pipe_to_hud = None
 
-        self.importer = fpdb_import.Importer(self,self.settings, self.config)
+        self.importer = fpdb_import.Importer(self, self.settings, self.config, self.sql)
         self.importer.setCallHud(True)
         self.importer.setMinPrint(settings['minPrint'])
         self.importer.setQuiet(False)
