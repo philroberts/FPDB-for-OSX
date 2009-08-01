@@ -190,7 +190,7 @@ class Database:
                                    # (hands every 2 mins for 1 hour = one session, if followed
                                    # by a 40 minute gap and then more hands on same table that is
                                    # a new session)
-        self.hud_style = 'T'       # A=All-time 
+        self.hud_style = 'A'       # A=All-time 
                                    # S=Session
                                    # T=timed (last n days)
                                    # Future values may also include: 
@@ -198,40 +198,16 @@ class Database:
         self.hud_hands = 2000      # Max number of hands from each player to use for hud stats
         self.hud_days  = 30        # Max number of days from each player to use for hud stats
 
-        self.hud_hero_style = 'T'  # Duplicate set of vars just for hero
-        self.hud_hero_hands = 2000
-        self.hud_hero_days  = 30
+        #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
+        #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
+        #self.hud_hero_days  = 30   # but last T days or last H hands for yourself
+
+        # vars for hand ids or dates fetched according to above config:
+        self.hand_1day_ago = 0           # max hand id more than 24 hrs earlier than now
+        self.date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD)
+        self.date_nhands_ago = {}        # dates N hands ago per player - not used yet
 
         self.cursor = self.fdb.cursor
-
-        if self.fdb.wrongDbVersion == False:
-            # self.hand_1day_ago used to fetch stats for current session (i.e. if hud_style = 'S')
-            self.hand_1day_ago = 0
-            self.cursor.execute(self.sql.query['get_hand_1day_ago'])
-            row = self.cursor.fetchone()
-            if row and row[0]:
-                self.hand_1day_ago = row[0]
-            #print "hand 1day ago =", self.hand_1day_ago
-
-            # self.date_ndays_ago used if hud_style = 'T'
-            d = timedelta(days=self.hud_days)
-            now = datetime.utcnow() - d
-            self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
-
-            # self.hand_nhands_ago is used for fetching stats for last n hands (hud_style = 'H')
-            # This option not used yet
-            self.hand_nhands_ago = 0
-            # should use aggregated version of query if appropriate
-            self.cursor.execute(self.sql.query['get_hand_nhands_ago'], (self.hud_hands,self.hud_hands))
-            row = self.cursor.fetchone()
-            if row and row[0]:
-                self.hand_nhands_ago = row[0]
-            print "hand n hands ago =", self.hand_nhands_ago
-
-            #self.cursor.execute(self.sql.query['get_table_name'], (hand_id, ))
-            #row = self.cursor.fetchone()
-        else:
-            print "Bailing on DB query, not sure it exists yet"
 
         self.saveActions = False if self.import_options['saveActions'] == False else True
 
@@ -365,6 +341,45 @@ class Database:
             winners[row[0]] = row[1]
         return winners
 
+    def init_hud_stat_vars(self):
+        """Initialise variables used by Hud to fetch stats."""
+
+        try:
+            # self.hand_1day_ago used to fetch stats for current session (i.e. if hud_style = 'S')
+            self.hand_1day_ago = 1
+            c = self.get_cursor()
+            c.execute(self.sql.query['get_hand_1day_ago'])
+            row = c.fetchone()
+            if row and row[0]:
+                self.hand_1day_ago = row[0]
+            #print "hand 1day ago =", self.hand_1day_ago
+
+            # self.date_ndays_ago used if hud_style = 'T'
+            d = timedelta(days=self.hud_days)
+            now = datetime.utcnow() - d
+            self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+
+    def init_player_hud_stat_vars(self, playerid):
+        # not sure if this is workable, to be continued ...
+        try:
+            # self.date_nhands_ago is used for fetching stats for last n hands (hud_style = 'H')
+            # This option not used yet - needs to be called for each player :-(
+            self.date_nhands_ago[str(playerid)] = 'd000000'
+
+            # should use aggregated version of query if appropriate
+            c.execute(self.sql.query['get_date_nhands_ago'], (self.hud_hands, playerid))
+            row = c.fetchone()
+            if row and row[0]:
+                self.date_nhands_ago[str(playerid)] = row[0]
+            c.close()
+            print "date n hands ago = " + self.date_nhands_ago[str(playerid)] + "(playerid "+str(playerid)+")"
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+
     def get_stats_from_hand(self, hand, aggregate = False):
         if self.hud_style == 'S':
             return( self.get_stats_from_hand_session(hand) )
@@ -376,11 +391,13 @@ class Database:
         
         if self.hud_style == 'T':
             stylekey = self.date_ndays_ago
+        #elif self.hud_style == 'H':
+        #    stylekey = self.date_nhands_ago  needs array by player here ...
         else:  # assume A (all-time)
             stylekey = '0000000'  # all stylekey values should be higher than this
 
-        subs = (hand, hand, stylekey)
-        #print "get stats: hud style =", self.hud_style, "subs =", subs
+        subs = (hand, stylekey)
+        #print "get stats: hud style =", self.hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
 
 #       now get the stats
@@ -409,7 +426,7 @@ class Database:
             return None
         
         subs = (self.hand_1day_ago, hand)
-        c = self.connection.cursor()
+        c = self.get_cursor()
 
         # now get the stats
         #print "sess_stats: subs =", subs, "subs[0] =", subs[0]

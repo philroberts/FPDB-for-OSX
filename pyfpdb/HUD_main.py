@@ -31,6 +31,7 @@ Main for FreePokerTools HUD.
 import sys
 import os
 import Options
+import traceback
 
 (options, sys.argv) = Options.fpdb_options()
 
@@ -55,7 +56,7 @@ import Database
 import Tables
 import Hud
 
-aggregate_stats = {"ring": False, "tour": False} # config file!
+aggregate_stats = {"ring": True, "tour": False} # config file!
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -144,6 +145,7 @@ class HUD_main(object):
 #    need their own access to the database, but should open their own
 #    if it is required.
         self.db_connection = Database.Database(self.config, self.db_name, 'temp')
+        self.db_connection.init_hud_stat_vars()
         tourny_finder = re.compile('(\d+) (\d+)')
     
         while 1: # wait for a new hand number on stdin
@@ -162,7 +164,8 @@ class HUD_main(object):
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
             except Exception, err:
-                print "db error: skipping ", new_hand_id, err
+                err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                print "db error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
                 if new_hand_id: # new_hand_id is none if we had an error prior to the store
                     sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
                 continue
