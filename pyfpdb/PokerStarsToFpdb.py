@@ -29,9 +29,11 @@ class PokerStars(HandHistoryConverter):
 ############################################################
 #    Class Variables
 
+    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': ""}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD",    # legal ISO currency codes
-                            'LS' : "\$"                  # legal currency symbols
+                            'LS' : "\$"                  # legal currency symbols  ADD Euro, Sterling, etc HERE
                     }
 
     # Static regexes
@@ -54,19 +56,26 @@ class PokerStars(HandHistoryConverter):
           \)\s-\s                        # close paren of the stakes
           (?P<DATETIME>.*$)""" % substitutions,
           re.MULTILINE|re.VERBOSE)
+
+    re_PlayerInfo   = re.compile("""
+          ^Seat\s(?P<SEAT>[0-9]+):\s
+          (?P<PNAME>.*)\s
+          \(%(LS)s?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
+          re.MULTILINE|re.VERBOSE)
+
+    re_HandInfo     = re.compile("""
+          ^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
+          ((?P<MAX>\d+)-max\s)?
+          (?P<PLAY>\(Play\sMoney\)\s)?
+          (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
+          re.MULTILINE|re.VERBOSE)
+
     re_SplitHands   = re.compile('\n\n+')
     re_TailSplitHands   = re.compile('(\n\n\n+)')
-    re_HandInfo     = re.compile("""^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
-                                    ((?P<MAX>\d+)-max\s)?
-                                    (?P<PLAY>\(Play\sMoney\)\s)?
-                                    (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
-                                    re.MULTILINE|re.VERBOSE)
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
-    re_PlayerInfo   = re.compile('^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[.0-9]+) in chips\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
-    mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'}
 
     def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
         """\
@@ -91,19 +100,21 @@ follow :  whether to tail -f the input"""
 #    They still identify the hero.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
+            subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
             logging.debug("player_re: " + player_re)
-            self.re_PostSB           = re.compile(r"^%s: posts small blind \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_PostBB           = re.compile(r"^%s: posts big blind \$?(?P<BB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%s: posts the ante \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%s: brings[- ]in( low|) for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%s: posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"""^%s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                                                        (\s\$?(?P<BET>[.\d]+))?(\sto\s\$?(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
-                                                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
-                                                         %  player_re, re.MULTILINE|re.VERBOSE)
+            self.re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
+            self.re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
+            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds \[%(CUR)s (?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
+            self.re_Action           = re.compile(r"""
+                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
+                        (\s%(CUR)s(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
+                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
+                         %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$?(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  player_re, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
