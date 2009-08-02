@@ -401,8 +401,8 @@ class Importer:
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
 
                 for hand in handlist:
-                    hand.prepInsert()
-                    hand.insert()
+                    #hand.prepInsert()
+                    hand.insert(self.database)
             else:
                 # conversion didn't work
                 # TODO: appropriate response?

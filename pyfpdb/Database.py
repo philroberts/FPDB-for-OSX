@@ -182,6 +182,9 @@ class Database:
         else:
             self.sql = sql
 
+        self.pcache      = None     # PlayerId cache
+        self.cachemiss   = 0        # Delete me later - using to count player cache misses
+
         # config while trying out new hudcache mechanism
         self.use_date_in_hudcache = True
 
@@ -980,6 +983,30 @@ class Database:
         except:
             print "Error during fdb.lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
+
+    def getSqlPlayerIDs(self, pnames, siteid):
+        result = {}
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key, siteid))
+ 
+        for player in pnames:
+            result[player] = self.pcache[player]
+
+        return result
+
+    def insertPlayer(self, name, site_id):
+        self.cachemiss += 1
+        result = None
+        c = self.get_cursor()
+        c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+        tmp=c.fetchall()
+        if (len(tmp)==0): #new player
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (name, site_id))
+            c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            tmp=c.fetchall()
+            #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
+        print "DEBUG: cache misses: %s" %self.cachemiss
+        return tmp[0][0]
 
 
     def store_the_hand(self, h):
@@ -1797,3 +1824,17 @@ if __name__=="__main__":
 
     print "press enter to continue"
     sys.stdin.readline()
+
+
+#Code borrowed from http://push.cx/2008/caching-dictionaries-in-python-vs-ruby
+class LambdaDict(dict):
+    def __init__(self, l):
+        super(LambdaDict, self).__init__()
+        self.l = l
+
+    def __getitem__(self, key):
+        if key in self:
+            return self.get(key)
+        else:
+            self.__setitem__(key, self.l(key))
+            return self.get(key)
