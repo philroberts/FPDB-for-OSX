@@ -1172,12 +1172,14 @@ class Sql:
                     */
                     AND   hc.gametypeId+0 in
                           (SELECT gt1.id from Gametypes gt1, Gametypes gt2
-                           WHERE  gt1.siteid = gt2.siteid
-                           AND    gt1.type = gt2.type
-                           AND    gt1.category = gt2.category
-                           AND    gt1.limittype = gt2.limittype
+                           WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
+                           AND    gt1.type = gt2.type               /* ring/tourney */
+                           AND    gt1.category = gt2.category       /* holdem/stud*/
+                           AND    gt1.limittype = gt2.limittype     /* fl/nl */
+                           AND    gt1.bigblind < gt2.bigblind * %s  /* bigblind similar size */
+                           AND    gt1.bigblind > gt2.bigblind / %s
                            AND    gt2.id = h.gametypeId)
-                    GROUP BY hc.PlayerId, p.name, hc.styleKey
+                    GROUP BY hc.PlayerId, p.name
                 """
 
             if db_server == 'mysql':

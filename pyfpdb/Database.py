@@ -185,19 +185,6 @@ class Database:
         # config while trying out new hudcache mechanism
         self.use_date_in_hudcache = True
 
-                                   # To add to config:
-        self.hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
-                                   # (hands every 2 mins for 1 hour = one session, if followed
-                                   # by a 40 minute gap and then more hands on same table that is
-                                   # a new session)
-        self.hud_style = 'A'       # A=All-time 
-                                   # S=Session
-                                   # T=timed (last n days)
-                                   # Future values may also include: 
-                                   #                                 H=Hands (last n hands)
-        self.hud_hands = 2000      # Max number of hands from each player to use for hud stats
-        self.hud_days  = 30        # Max number of days from each player to use for hud stats
-
         #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
         #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
         #self.hud_hero_days  = 30   # but last T days or last H hands for yourself
@@ -341,7 +328,7 @@ class Database:
             winners[row[0]] = row[1]
         return winners
 
-    def init_hud_stat_vars(self):
+    def init_hud_stat_vars(self, hud_days):
         """Initialise variables used by Hud to fetch stats."""
 
         try:
@@ -355,7 +342,7 @@ class Database:
             #print "hand 1day ago =", self.hand_1day_ago
 
             # self.date_ndays_ago used if hud_style = 'T'
-            d = timedelta(days=self.hud_days)
+            d = timedelta(days=hud_days)
             now = datetime.utcnow() - d
             self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
         except:
@@ -380,24 +367,28 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
-    def get_stats_from_hand(self, hand, aggregate = False):
-        if self.hud_style == 'S':
+    def get_stats_from_hand(self, hand, aggregate = False, hud_style = 'A', agg_bb_mult = 100):
+        if hud_style == 'S':
+
             return( self.get_stats_from_hand_session(hand) )
-        else:   # self.hud_style == A
+
+        else:   # hud_style == A
+
+            if hud_style == 'T':
+                stylekey = self.date_ndays_ago
+            #elif hud_style == 'H':
+            #    stylekey = date_nhands_ago  needs array by player here ...
+            else:  # assume A (all-time)
+                stylekey = '0000000'  # all stylekey values should be higher than this
+
             if aggregate:
                 query = 'get_stats_from_hand_aggregated'
+                subs = (hand, stylekey, agg_bb_mult, agg_bb_mult)
             else:
                 query = 'get_stats_from_hand'
-        
-        if self.hud_style == 'T':
-            stylekey = self.date_ndays_ago
-        #elif self.hud_style == 'H':
-        #    stylekey = self.date_nhands_ago  needs array by player here ...
-        else:  # assume A (all-time)
-            stylekey = '0000000'  # all stylekey values should be higher than this
+                subs = (hand, stylekey)
 
-        subs = (hand, stylekey)
-        #print "get stats: hud style =", self.hud_style, "query =", query, "subs =", subs
+        #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
 
 #       now get the stats
@@ -416,14 +407,11 @@ class Database:
     # uses query on handsplayers instead of hudcache to get stats on just this session
     def get_stats_from_hand_session(self, hand):
 
-        if self.hud_style == 'S':
-            query = self.sql.query['get_stats_from_hand_session']
-            if self.db_server == 'mysql':
-                query = query.replace("<signed>", 'signed ')
-            else:
-                query = query.replace("<signed>", '')
-        else:   # self.hud_style == A
-            return None
+        query = self.sql.query['get_stats_from_hand_session']
+        if self.db_server == 'mysql':
+            query = query.replace("<signed>", 'signed ')
+        else:
+            query = query.replace("<signed>", '')
         
         subs = (self.hand_1day_ago, hand)
         c = self.get_cursor()
