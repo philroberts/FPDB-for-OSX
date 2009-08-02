@@ -392,10 +392,10 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            conv = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
-            if(conv.getStatus() and self.NEWIMPORT == False):
+            hhc = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            if(hhc.getStatus() and self.NEWIMPORT == False):
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
-            elif (conv.getStatus() and self.NEWIMPORT == True):
+            elif (hhc.getStatus() and self.NEWIMPORT == True):
                 #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
