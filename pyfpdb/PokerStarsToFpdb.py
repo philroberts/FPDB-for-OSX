@@ -30,10 +30,10 @@ class PokerStars(HandHistoryConverter):
 #    Class Variables
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': ""}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\x80", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD",    # legal ISO currency codes
-                            'LS' : "\$"                  # legal currency symbols  ADD Euro, Sterling, etc HERE
+                            'LS' : "\$|\x80|\xa3"        # legal currency symbols  ADD Euro, Sterling, etc HERE
                     }
 
     # Static regexes
@@ -50,7 +50,7 @@ class PokerStars(HandHistoryConverter):
           (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
-          (?P<SB>[.0-9]+)/%(LS)s?
+          (?P<SB>[.0-9]+)/(%(LS)s)?
           (?P<BB>[.0-9]+)
           \s?(?P<ISO>%(LEGAL_ISO)s)?
           \)\s-\s                        # close paren of the stakes
@@ -60,7 +60,7 @@ class PokerStars(HandHistoryConverter):
     re_PlayerInfo   = re.compile("""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
-          \(%(LS)s?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
+          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
