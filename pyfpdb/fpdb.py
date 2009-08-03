@@ -491,7 +491,7 @@ class fpdb:
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
-        new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config)
+        new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")

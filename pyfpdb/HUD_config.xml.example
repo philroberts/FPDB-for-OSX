@@ -210,7 +210,7 @@
     	<game cols="3" db="fpdb" game_name="holdem" rows="2" aux="mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
@@ -219,7 +219,7 @@
     	<game cols="3" db="fpdb" game_name="razz" rows="2" aux="stud_mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
@@ -228,7 +228,7 @@
     	<game cols="3" db="fpdb" game_name="omahahi" rows="2" aux="mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
@@ -237,7 +237,7 @@
     	<game cols="3" db="fpdb" game_name="omahahilo" rows="2" aux="mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
@@ -246,7 +246,7 @@
     	<game cols="3" db="fpdb" game_name="studhi" rows="2" aux="stud_mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
@@ -255,7 +255,7 @@
     	<game cols="3" db="fpdb" game_name="studhilo" rows="2" aux="stud_mucked">
     		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
-    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq1" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
     		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
@@ -274,18 +274,18 @@
             <pu_stat pu_stat_name="wmsd"> </pu_stat>
             <pu_stat pu_stat_name="wtsd"> </pu_stat>
             <pu_stat pu_stat_name="WMsF"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq_1"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq_2"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq_3"> </pu_stat>
-            <pu_stat pu_stat_name="a_freq_4"> </pu_stat>
-            <pu_stat pu_stat_name="cb_1"> </pu_stat>
-            <pu_stat pu_stat_name="cb_2"> </pu_stat>
-            <pu_stat pu_stat_name="cb_3"> </pu_stat>
-            <pu_stat pu_stat_name="cb_4"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq_1"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq_2"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq_3"> </pu_stat>
-            <pu_stat pu_stat_name="ffreq_4"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq1"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq2"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq3"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq4"> </pu_stat>
+            <pu_stat pu_stat_name="cb1"> </pu_stat>
+            <pu_stat pu_stat_name="cb2"> </pu_stat>
+            <pu_stat pu_stat_name="cb3"> </pu_stat>
+            <pu_stat pu_stat_name="cb4"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq1"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq2"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq3"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq4"> </pu_stat>
     	</pu>
     </popup_windows>
 

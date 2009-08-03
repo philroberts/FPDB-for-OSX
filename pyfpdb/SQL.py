@@ -167,9 +167,9 @@ class Sql:
             ################################
             if db_server == 'mysql':
                 self.query['list_tables'] = """SHOW TABLES"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['list_tables'] = """SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['list_tables'] = """SELECT name FROM sqlite_master
                 WHERE type='table'
                 ORDER BY name;"""
@@ -188,10 +188,10 @@ class Sql:
                 self.query['createSettingsTable'] = """CREATE TABLE Settings (
                                             version SMALLINT NOT NULL)
                                     ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
 
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createSettingsTable'] = """CREATE TABLE Settings
                 (version INTEGER) """
 
@@ -206,12 +206,12 @@ class Sql:
                             name varchar(32) NOT NULL,
                             currency char(3) NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createSitesTable'] = """CREATE TABLE Sites (
                             id SERIAL, PRIMARY KEY (id),
                             name varchar(32),
                             currency char(3))"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createSitesTable'] = """CREATE TABLE Sites (
                             id INTEGER PRIMARY KEY,
                             name TEXT NOT NULL,
@@ -236,7 +236,7 @@ class Sql:
                             smallBet int NOT NULL,
                             bigBet int NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                             id SERIAL, PRIMARY KEY (id),
                             siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
@@ -249,7 +249,7 @@ class Sql:
                             bigBlind int,
                             smallBet int,
                             bigBet int)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createGametypesTable'] = """CREATE TABLE GameTypes (
                             id INTEGER PRIMARY KEY,
                             siteId INTEGER,
@@ -277,14 +277,14 @@ class Sql:
                                 comment text,
                                 commentTs DATETIME)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createPlayersTable'] = """CREATE TABLE Players (
                             id SERIAL, PRIMARY KEY (id),
                             name VARCHAR(32),
                             siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
                             comment text,
                             commentTs timestamp without time zone)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createPlayersTable'] = """CREATE TABLE Players (
                             id INTEGER PRIMARY KEY,
                             name TEXT,
@@ -308,7 +308,7 @@ class Sql:
                                 ratingTime DATETIME NOT NULL,
                                 handCount int NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
                                 id BIGSERIAL, PRIMARY KEY (id),
                                 playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
@@ -317,7 +317,7 @@ class Sql:
                                 shortDesc char(8),
                                 ratingTime timestamp without time zone,
                             handCount int)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createAutoratesTable'] = """ """
 
 
@@ -360,7 +360,7 @@ class Sql:
                                 comment TEXT,
                                 commentTs DATETIME)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createHandsTable'] = """CREATE TABLE Hands (
                                 id BIGSERIAL, PRIMARY KEY (id),
                                 tableName VARCHAR(20) NOT NULL,
@@ -394,7 +394,7 @@ class Sql:
                                 showdownPot INT,                /* pot size at sd/street7 */
                                 comment TEXT,
                                 commentTs timestamp without time zone)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createHandsTable'] = """CREATE TABLE Hands (
                                 id INTEGER PRIMARY KEY,
                                 tableName TEXT(20),
@@ -422,7 +422,7 @@ class Sql:
                                 knockout INT NOT NULL,
                                 rebuyOrAddon BOOLEAN NOT NULL)
                             ENGINE=INNODB""" 
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                             id SERIAL, PRIMARY KEY (id),
                             siteId INT, FOREIGN KEY (siteId) REFERENCES Sites(id),
@@ -430,7 +430,7 @@ class Sql:
                             fee INT,
                             knockout INT,
                             rebuyOrAddon BOOLEAN)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createTourneyTypesTable'] = """ """
 
 
@@ -449,7 +449,7 @@ class Sql:
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                             id SERIAL, PRIMARY KEY (id),
                             tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
@@ -459,7 +459,7 @@ class Sql:
                             startTime timestamp without time zone,
                             comment TEXT,
                             commentTs timestamp without time zone)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createTourneysTable'] = """CREATE TABLE TourneyTypes (
                             id INTEGER PRIMARY KEY,
                             siteId INTEGER,
@@ -591,7 +591,7 @@ class Sql:
 
                             FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
                             ENGINE=INNODB"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
                             id BIGSERIAL, PRIMARY KEY (id),
                             handId BIGINT NOT NULL, FOREIGN KEY (handId) REFERENCES Hands(id),
@@ -708,7 +708,7 @@ class Sql:
                             actionString VARCHAR(15),
 
                             FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createHandsPlayersTable'] = """ """
 
 
@@ -727,7 +727,7 @@ class Sql:
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
                             id BIGSERIAL, PRIMARY KEY (id),
                             tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -737,7 +737,7 @@ class Sql:
                             winnings INT,
                             comment TEXT,
                             commentTs timestamp without time zone)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createTourneysPlayersTable'] = """ """
 
 
@@ -757,7 +757,7 @@ class Sql:
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
                             id BIGSERIAL, PRIMARY KEY (id),
                             handsPlayerId BIGINT, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
@@ -768,7 +768,7 @@ class Sql:
                             amount INT,
                             comment TEXT,
                             commentTs timestamp without time zone)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createHandsActionsTable'] = """ """
 
 
@@ -877,7 +877,7 @@ class Sql:
                             street4Raises INT)
 
                             ENGINE=INNODB"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
                             id BIGSERIAL, PRIMARY KEY (id),
                             gametypeId INT, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
@@ -976,28 +976,28 @@ class Sql:
                             street3Raises INT,
                             street4Raises INT)
                             """
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['createHudCacheTable'] = """ """
 
             if db_server == 'mysql':
                 self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['addTourneyIndex'] = """CREATE INDEX siteTourneyNo ON Tourneys (siteTourneyNo)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['addHandsIndex'] = """ """
 
             if db_server == 'mysql':
                 self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['addHandsIndex'] = """CREATE INDEX siteHandNo ON Hands (siteHandNo)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['addHandsIndex'] = """ """
 
             if db_server == 'mysql':
                 self.query['addPlayersIndex'] = """ALTER TABLE Players ADD INDEX name(name)"""
-            elif db_server == 'postgresql': # what is the correct value here?
+            elif db_server == 'postgresql':
                 self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
-            elif db_server == 'sqlite': # what is the correct value here?
+            elif db_server == 'sqlite':
                 self.query['addPlayersIndex'] = """ """
 
 
@@ -1073,7 +1073,7 @@ class Sql:
                         sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
                         sum(hc.street4CheckCallRaiseDone)   AS ccr_4
                     FROM Hands h
-                         INNER JOIN HandsPlayers hp ON (hp.handId = %s)
+                         INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                          INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
                                                     AND hc.gametypeId+0 = h.gametypeId+0)
                          INNER JOIN Players p ON (p.id = hp.PlayerId+0)
@@ -1155,27 +1155,31 @@ class Sql:
                            sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
                            sum(hc.street4CheckCallRaiseDone)   AS ccr_4
                     FROM Hands h
-                         INNER JOIN HandsPlayers hp ON (hp.handId = %s)
+                         INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                          INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
                          INNER JOIN Players p       ON (p.id = hc.playerId)
                     WHERE h.id = %s
                     AND   hc.styleKey > %s
                           /* styleKey is currently 'd' (for date) followed by a yyyymmdd
                              date key. Set it to 0000000 or similar to get all records  */
-                    /* also check activeseats here? even if only 3 groups eg 2-3/4-6/7+ ??
+                    /* Note: s means the placeholder 'percent's but we can't include that 
+                       in comments. (db api thinks they are actual arguments)
+                       Could also check activeseats here? even if only 3 groups eg 2-3/4-6/7+ ??
                        e.g. could use a multiplier:
-                       AND   h.seats > %s / 1.25  and  hp.seats < %s * 1.25
-                       where %s is the number of active players at the current table (and 
+                       AND   h.seats > s / 1.25  and  hp.seats < s * 1.25
+                       where s is the number of active players at the current table (and 
                        1.25 would be a config value so user could change it)
                     */
                     AND   hc.gametypeId+0 in
                           (SELECT gt1.id from Gametypes gt1, Gametypes gt2
-                           WHERE  gt1.siteid = gt2.siteid
-                           AND    gt1.type = gt2.type
-                           AND    gt1.category = gt2.category
-                           AND    gt1.limittype = gt2.limittype
+                           WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
+                           AND    gt1.type = gt2.type               /* ring/tourney */
+                           AND    gt1.category = gt2.category       /* holdem/stud*/
+                           AND    gt1.limittype = gt2.limittype     /* fl/nl */
+                           AND    gt1.bigblind < gt2.bigblind * %s  /* bigblind similar size */
+                           AND    gt1.bigblind > gt2.bigblind / %s
                            AND    gt2.id = h.gametypeId)
-                    GROUP BY hc.PlayerId, p.name, hc.styleKey
+                    GROUP BY hc.PlayerId, p.name
                 """
 
             if db_server == 'mysql':
@@ -1406,16 +1410,50 @@ class Sql:
                     select coalesce(max(id),0)
                     from Hands
                     where handStart < date_sub(utc_timestamp(), interval '1' day)"""
-            else:  # assume postgresql
+            elif db_server == 'postgresql':
                 self.query['get_hand_1day_ago'] = """
                     select coalesce(max(id),0)
                     from Hands
                     where handStart < now() at time zone 'UTC' - interval '1 day'"""
 
-            #if db_server == 'mysql':
-            self.query['get_hand_nhands_ago'] = """
-                select coalesce(greatest(max(id),%s)-%s,0)
-                from Hands"""
+            # not used yet ...
+            # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
+            if db_server == 'mysql':
+                self.query['get_date_nhands_ago'] = """
+                    select concat( 'd', date_format(max(h.handStart), '%Y%m%d') )
+                    from (select hp.playerId
+                                ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
+                          from HandsPlayers hp
+                          where hp.playerId = %s
+                          group by hp.playerId) hp2
+                    inner join HandsPlayers hp3 on (    hp3.handId <= hp2.maxminusx
+                                                    and hp3.playerId = hp2.playerId)
+                    inner join Hands h          on (h.id = hp3.handId)
+                    """
+            elif db_server == 'postgresql':
+                self.query['get_date_nhands_ago'] = """
+                    select 'd' || to_char(max(h3.handStart), 'YYMMDD')
+                    from (select hp.playerId
+                                ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
+                          from HandsPlayers hp
+                          where hp.playerId = %s
+                          group by hp.playerId) hp2
+                    inner join HandsPlayers hp3 on (    hp3.handId <= hp2.maxminusx
+                                                    and hp3.playerId = hp2.playerId)
+                    inner join Hands h          on (h.id = hp3.handId)
+                    """
+            elif db_server == 'sqlite': # untested guess at query: 
+                self.query['get_date_nhands_ago'] = """
+                    select 'd' || strftime(max(h3.handStart), 'YYMMDD')
+                    from (select hp.playerId
+                                ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
+                          from HandsPlayers hp
+                          where hp.playerId = %s
+                          group by hp.playerId) hp2
+                    inner join HandsPlayers hp3 on (    hp3.handId <= hp2.maxminusx
+                                                    and hp3.playerId = hp2.playerId)
+                    inner join Hands h          on (h.id = hp3.handId)
+                    """
 
             # used in GuiPlayerStats:
             self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
@@ -1586,7 +1624,7 @@ class Sql:
                                   ,upper(gt.limitType)
                                   ,s.name
                           """
-            #elif db_server == 'sqlite': # what is the correct value here?
+            #elif db_server == 'sqlite':
             #    self.query['playerDetailedStats'] = """ """
 
             if db_server == 'mysql':
@@ -1798,7 +1836,7 @@ class Sql:
                          ) hprof2
                         on hprof2.gtId = stats.gtId
                     order by stats.base, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
-            #elif db_server == 'sqlite': # what is the correct value here?
+            #elif db_server == 'sqlite':
             #    self.query['playerStats'] = """ """
 
             if db_server == 'mysql':
@@ -2073,7 +2111,7 @@ class Sql:
                     order by stats.category, stats.limitType, stats.bigBlindDesc desc
                              <orderbyseats>, cast(stats.PlPosition as smallint)
                     """
-            #elif db_server == 'sqlite': # what is the correct value here?
+            #elif db_server == 'sqlite':
             #    self.query['playerStatsByPosition'] = """ """
 
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
