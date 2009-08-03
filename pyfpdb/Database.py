@@ -1005,7 +1005,7 @@ class Database:
             c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
             tmp=c.fetchall()
             #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-        print "DEBUG: cache misses: %s" %self.cachemiss
+        #print "DEBUG: cache misses: %s" %self.cachemiss
         return tmp[0][0]
 
 
