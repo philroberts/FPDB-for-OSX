@@ -733,8 +733,8 @@ class Database:
                 if self.backend == self.MYSQL_INNODB:
                     print "creating mysql index ", idx['tab'], idx['col']
                     try:
-                        c.execute( "alter table %s add index %s(%s)"
-                                 , (idx['tab'],idx['col'],idx['col']) )
+                        s = "alter table %s add index %s(%s)" % (idx['tab'],idx['col'],idx['col'])
+                        c.execute(s)
                     except:
                         print "    create fk failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
@@ -742,9 +742,8 @@ class Database:
                     # mod to use tab_col for index name?
                     print "creating pg index ", idx['tab'], idx['col']
                     try:
-                        print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                        c.execute( "create index %s_%s_idx on %s(%s)"
-                                   % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                        c.execute(s)
                     except:
                         print "   create index failed: " + str(sys.exc_info())
                 else:
@@ -859,20 +858,18 @@ class Database:
                 if self.backend == self.MYSQL_INNODB:
                     print "creating mysql index ", idx['tab'], idx['col']
                     try:
-                        self.get_cursor().execute( "alter table %s add index %s(%s)"
-                                                 , (idx['tab'],idx['col'],idx['col']) )
+                        s = "create index %s on %s(%s)" % (idx['col'],idx['tab'],idx['col'])
+                        self.get_cursor().execute(s)
                     except:
-                        pass
+                        print "    create idx failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
                     # mod to use tab_col for index name?
                     print "creating pg index ", idx['tab'], idx['col']
                     try:
-                        print "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
-                        self.get_cursor().execute( "create index %s_%s_idx on %s(%s)"
-                                                   % (idx['tab'], idx['col'], idx['tab'], idx['col']) )
+                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                        self.get_cursor().execute(s)
                     except:
-                        print "   ERROR! :-("
-                        pass
+                        print "    create idx failed: " + str(sys.exc_info())
                 else:
                     print "Only MySQL and Postgres supported so far"
                     return -1
