@@ -155,7 +155,7 @@ class fpdb_db:
         return (self.host, self.database, self.user, self.password)
     #end def get_db_info
 
-    def getLastInsertId(self):
+    def getLastInsertId(self, cursor=None):
         try:
             if self.backend == self.MYSQL_INNODB:
                 ret = self.db.insert_id()
@@ -177,9 +177,7 @@ class fpdb_db:
                 else:
                     ret = row[0]
             elif self.backend == fpdb_db.SQLITE:
-                # don't know how to do this in sqlite
-                print "getLastInsertId(): not coded for sqlite yet"
-                ret = -1
+                ret = cursor.lastrowid
             else:
                 print "getLastInsertId(): unknown backend ", self.backend
                 ret = -1
