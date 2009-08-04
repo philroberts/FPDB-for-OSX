@@ -813,9 +813,11 @@ class Database:
             self.fillDefaultData()
             self.commit()
         except:
-            print "Error creating tables: ", str(sys.exc_value)
+            #print "Error creating tables: ", str(sys.exc_value)
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error creating tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             self.rollback()
-            raise fpdb_simple.FpdbError( "Error creating tables " + str(sys.exc_value) )
+            raise
 #end def disconnect
     
     def drop_tables(self):
@@ -845,8 +847,9 @@ class Database:
 
             self.commit()
         except:
-            print "Error dropping tables: " + str(sys.exc_value)
-            raise fpdb_simple.FpdbError( "Error dropping tables " + str(sys.exc_value) )
+            print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.rollback()
+            raise
     #end def drop_tables
 
     def createAllIndexes(self):
@@ -917,7 +920,10 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
-        c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
+        if self.backend == self.SQLITE:
+            c.execute("INSERT INTO TourneyTypes VALUES (NULL, 1, 0, 0, 0, 0);")
+        else:
+            c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
         #c.execute("""INSERT INTO TourneyTypes
         #          (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
         #          (1,0,0,0,?)""",(False,) )
@@ -1793,6 +1799,8 @@ if __name__=="__main__":
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
     print "database type = ", db_connection.type
+    
+    db_connection.recreate_tables()
     
     h = db_connection.get_last_hand()
     print "last hand = ", h
