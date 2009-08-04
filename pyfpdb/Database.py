@@ -68,7 +68,7 @@ class Database:
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} # not needed, handled by fk
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0} # not needed, handled by fk
-                , {'tab':'HandsPlayers',    'col':'tourneysTypeId',    'drop':0}
+                , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
                 ]
