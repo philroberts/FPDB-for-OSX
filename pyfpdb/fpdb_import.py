@@ -78,19 +78,18 @@ class Importer:
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
        
-        # CONFIGURATION OPTIONS  -  update allowHudcacheRebuild and forceThreads for faster imports
+        # CONFIGURATION OPTIONS
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
-        self.settings.setdefault("allowHudcacheRebuild", False) # if True speeds up big imports a lot, also
-                                                               # stops deadlock problems with threaded imports
-        self.settings.setdefault("forceThreads", 0)            # set to 1/2/more for faster imports
+        #self.settings.setdefault("allowHudcacheRebuild", True) # NOT USED NOW
+        #self.settings.setdefault("forceThreads", 2)            # NOT USED NOW
         self.settings.setdefault("writeQSize", 1000)           # no need to change
         self.settings.setdefault("writeQMaxWait", 10)          # not used
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
         self.writerdbs = []
-        self.settings.setdefault("threads", 1) # value overridden by GuiBulkImport - use forceThreads above
+        self.settings.setdefault("threads", 1) # value set by GuiBulkImport
         for i in xrange(self.settings['threads']):
             self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
@@ -123,6 +122,9 @@ class Importer:
 
     def setDropIndexes(self, value):
         self.settings['dropIndexes'] = value
+
+    def setDropHudCache(self, value):
+        self.settings['dropHudCache'] = value
 
 #   def setWatchTime(self):
 #       self.updated = time()
@@ -186,8 +188,8 @@ class Importer:
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
-        if self.settings['forceThreads'] > 0:  # use forceThreads until threading enabled in GuiBulkImport
-            self.setThreads(self.settings['forceThreads'])
+        #if self.settings['forceThreads'] > 0:  # use forceThreads until threading enabled in GuiBulkImport
+        #    self.setThreads(self.settings['forceThreads'])
 
         # Initial setup
         start = datetime.datetime.now()
@@ -195,7 +197,7 @@ class Importer:
         print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
             self.settings['dropIndexes'] = self.calculate_auto2(self.database, 12.0, 500.0)
-        if self.settings['allowHudcacheRebuild']:
+        if self.settings['dropHudCache'] == 'auto':
             self.settings['dropHudCache'] = self.calculate_auto2(self.database, 25.0, 500.0)    # returns "drop"/"don't drop"
 
         if self.settings['dropIndexes'] == 'drop':
@@ -237,7 +239,7 @@ class Importer:
             self.database.afterBulkImport()
         else:
             print "No need to rebuild indexes."
-        if self.settings['allowHudcacheRebuild'] and self.settings['dropHudCache'] == 'drop':
+        if self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
             print "No need to rebuild hudcache."
