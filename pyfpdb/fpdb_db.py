@@ -64,7 +64,7 @@ class fpdb_db:
         if backend==fpdb_db.MYSQL_INNODB:
             import MySQLdb
             try:
-                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True, charset="utf8")
             except:
                 raise fpdb_simple.FpdbError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
