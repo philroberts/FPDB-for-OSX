@@ -19,6 +19,11 @@ Set up all of the SQL statements for a given game and database type.
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+#    NOTES:  The sql statements use the placeholder %s for bind variables
+#            which is then replaced by ? for sqlite. Comments can be included 
+#            within sql statements using C style /* ... */ comments, BUT
+#            THE COMMENTS MUST NOT INCLUDE %s OR ?.
+
 ########################################################################
 
 #    Standard Library modules
@@ -190,11 +195,11 @@ class Sql:
                                             version SMALLINT NOT NULL)
                                     ENGINE=INNODB"""
             elif db_server == 'postgresql':
-                self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT)"""
+                self.query['createSettingsTable'] =  """CREATE TABLE Settings (version SMALLINT NOT NULL)"""
 
             elif db_server == 'sqlite':
                 self.query['createSettingsTable'] = """CREATE TABLE Settings
-                (version INTEGER) """
+                (version INTEGER NOT NULL) """
 
 
             ################################
@@ -317,9 +322,16 @@ class Sql:
                                 description varchar(50),
                                 shortDesc char(8),
                                 ratingTime timestamp without time zone,
-                            handCount int)"""
+                                handCount int)"""
             elif db_server == 'sqlite':
-                self.query['createAutoratesTable'] = """ """
+                self.query['createAutoratesTable'] = """CREATE TABLE Autorates (
+                                id INTEGER PRIMARY KEY,
+                                playerId INT,
+                                gametypeId INT,
+                                description TEXT,
+                                shortDesc TEXT,
+                                ratingTime REAL,
+                                handCount int)"""
 
 
             ################################
@@ -1097,7 +1109,105 @@ class Sql:
                             street4Raises INT)
                             """
             elif db_server == 'sqlite':
-                self.query['createHudCacheTable'] = """ """
+                self.query['createHudCacheTable'] = """CREATE TABLE HudCache (
+                            id INTEGER PRIMARY KEY,
+                            gametypeId INT,
+                            playerId INT,
+                            activeSeats INT,
+                            position TEXT,
+                            tourneyTypeId INT,
+                            styleKey TEXT NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
+                            HDs INT,
+
+                            wonWhenSeenStreet1 REAL NOT NULL,
+                            wonWhenSeenStreet2 REAL,
+                            wonWhenSeenStreet3 REAL,
+                            wonWhenSeenStreet4 REAL,
+                            wonAtSD REAL NOT NULL,
+
+                            street0VPI INT NOT NULL,
+                            street0Aggr INT,
+                            street0_3BChance INT NOT NULL,
+                            street0_3BDone INT NOT NULL,
+                            street0_4BChance INT,
+                            street0_4BDone INT,
+                            other3BStreet0 INT,
+                            other4BStreet0 INT,
+
+                            street1Seen INT,
+                            street2Seen INT,
+                            street3Seen INT,
+                            street4Seen INT,
+                            sawShowdown INT,
+                            street1Aggr INT,
+                            street2Aggr INT,
+                            street3Aggr INT,
+                            street4Aggr INT,
+
+                            otherRaisedStreet0 INT,
+                            otherRaisedStreet1 INT,
+                            otherRaisedStreet2 INT,
+                            otherRaisedStreet3 INT,
+                            otherRaisedStreet4 INT,
+                            foldToOtherRaisedStreet0 INT,
+                            foldToOtherRaisedStreet1 INT,
+                            foldToOtherRaisedStreet2 INT,
+                            foldToOtherRaisedStreet3 INT,
+                            foldToOtherRaisedStreet4 INT,
+
+                            stealAttemptChance INT,
+                            stealAttempted INT,
+                            foldBbToStealChance INT,
+                            foldedBbToSteal INT,
+                            foldSbToStealChance INT,
+                            foldedSbToSteal INT,
+
+                            street1CBChance INT,
+                            street1CBDone INT,
+                            street2CBChance INT,
+                            street2CBDone INT,
+                            street3CBChance INT,
+                            street3CBDone INT,
+                            street4CBChance INT,
+                            street4CBDone INT,
+
+                            foldToStreet1CBChance INT,
+                            foldToStreet1CBDone INT,
+                            foldToStreet2CBChance INT,
+                            foldToStreet2CBDone INT,
+                            foldToStreet3CBChance INT,
+                            foldToStreet3CBDone INT,
+                            foldToStreet4CBChance INT,
+                            foldToStreet4CBDone INT,
+
+                            totalProfit INT,
+
+                            street1CheckCallRaiseChance INT,
+                            street1CheckCallRaiseDone INT,
+                            street2CheckCallRaiseChance INT,
+                            street2CheckCallRaiseDone INT,
+                            street3CheckCallRaiseChance INT,
+                            street3CheckCallRaiseDone INT,
+                            street4CheckCallRaiseChance INT,
+                            street4CheckCallRaiseDone INT,
+
+                            street0Calls INT,
+                            street1Calls INT,
+                            street2Calls INT,
+                            street3Calls INT,
+                            street4Calls INT,
+                            street0Bets INT,
+                            street1Bets INT,
+                            street2Bets INT,
+                            street3Bets INT,
+                            street4Bets INT,
+                            street0Raises INT,
+                            street1Raises INT,
+                            street2Raises INT,
+                            street3Raises INT,
+                            street4Raises INT)
+                            """
+
 
             if db_server == 'mysql':
                 self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
@@ -1124,9 +1234,10 @@ class Sql:
             self.query['get_last_hand'] = "select max(id) from Hands"
 
             self.query['get_player_id'] = """
-                    select Players.id AS player_id from Players, Sites
-                    where Players.name = %(player)s
-                    and Sites.name = %(site)s
+                    select Players.id AS player_id 
+                    from Players, Sites
+                    where Players.name = %s
+                    and Sites.name = %s
                     and Players.SiteId = Sites.id
                 """
 

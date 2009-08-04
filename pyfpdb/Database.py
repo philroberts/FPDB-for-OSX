@@ -452,7 +452,7 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_player_id'], {'player': player_name, 'site': site})
+        c.execute(self.sql.query['get_player_id'], (player_name, site))
         row = c.fetchone()
         if row:
             return row[0]
