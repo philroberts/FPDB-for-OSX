@@ -184,6 +184,7 @@ class Database:
 
         self.pcache      = None     # PlayerId cache
         self.cachemiss   = 0        # Delete me later - using to count player cache misses
+        self.cachehit    = 0        # Delete me later - using to count player cache hits
 
         # config while trying out new hudcache mechanism
         self.use_date_in_hudcache = True
@@ -976,21 +977,26 @@ class Database:
  
         for player in pnames:
             result[player] = self.pcache[player]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
 
         return result
 
     def insertPlayer(self, name, site_id):
-        self.cachemiss += 1
         result = None
         c = self.get_cursor()
         c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
         tmp=c.fetchall()
         if (len(tmp)==0): #new player
             c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (name, site_id))
+            #Get last id might be faster here.
             c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
             tmp=c.fetchall()
-            #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-        print "DEBUG: cache misses: %s" %self.cachemiss
         return tmp[0][0]
 
 
