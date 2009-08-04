@@ -74,7 +74,7 @@ class GuiBulkImport():
                 cb_hmodel = self.cb_drophudcache.get_model()
                 cb_hindex = self.cb_drophudcache.get_active()
 
-                self.lab_info.set_text("Importing")
+                self.lab_info.set_text("Importing") # doesn't display :-(
                 if cb_index:
                     self.importer.setDropIndexes(cb_model[cb_index][0])
                 else:
@@ -95,6 +95,13 @@ class GuiBulkImport():
                 print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 self.importer.clearFileList()
+                if self.n_hands_in_db == 0 and stored > 0:
+                    self.cb_dropindexes.set_sensitive(True)
+                    self.cb_dropindexes.set_active(0)
+                    self.lab_drop.set_sensitive(True)
+                    self.cb_drophudcache.set_sensitive(True)
+                    self.cb_drophudcache.set_active(0)
+                    self.lab_hdrop.set_sensitive(True)
 
                 self.lab_info.set_text("Import finished")
             except:
@@ -213,11 +220,11 @@ class GuiBulkImport():
         self.cbfilter.show()
 
 #    label - drop hudcache
-        self.lab_drop = gtk.Label("Drop HudCache:")
-        self.table.attach(self.lab_drop, 3, 4, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
-        self.lab_drop.show()
-        self.lab_drop.set_justify(gtk.JUSTIFY_RIGHT)
-        self.lab_drop.set_alignment(1.0, 0.5)
+        self.lab_hdrop = gtk.Label("Drop HudCache:")
+        self.table.attach(self.lab_hdrop, 3, 4, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.lab_hdrop.show()
+        self.lab_hdrop.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_hdrop.set_alignment(1.0, 0.5)
 
 #    ComboBox - drop hudcache
         self.cb_drophudcache = gtk.combo_box_new_text()
@@ -258,7 +265,7 @@ class GuiBulkImport():
             self.lab_drop.set_sensitive(False)
             self.cb_drophudcache.set_active(2)
             self.cb_drophudcache.set_sensitive(False)
-            self.lab_drop.set_sensitive(False)
+            self.lab_hdrop.set_sensitive(False)
 
 def main(argv=None):
     """main can also be called in the python interpreter, by supplying the command line as the argument."""
