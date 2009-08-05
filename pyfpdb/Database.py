@@ -910,12 +910,13 @@ class Database:
     #end def dropAllIndexes
     
     def fillDefaultData(self):
-        c = self.get_cursor()
+        c = self.get_cursor() 
         c.execute("INSERT INTO Settings (version) VALUES (118);")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
         #c.execute("""INSERT INTO TourneyTypes
         #          (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
