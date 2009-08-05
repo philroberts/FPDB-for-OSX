@@ -184,6 +184,7 @@ class Database:
 
         self.pcache      = None     # PlayerId cache
         self.cachemiss   = 0        # Delete me later - using to count player cache misses
+        self.cachehit    = 0        # Delete me later - using to count player cache hits
 
         # config while trying out new hudcache mechanism
         self.use_date_in_hudcache = True
@@ -451,7 +452,7 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_player_id'], {'player': player_name, 'site': site})
+        c.execute(self.sql.query['get_player_id'], (player_name, site))
         row = c.fetchone()
         if row:
             return row[0]
@@ -812,9 +813,11 @@ class Database:
             self.fillDefaultData()
             self.commit()
         except:
-            print "Error creating tables: ", str(sys.exc_value)
+            #print "Error creating tables: ", str(sys.exc_value)
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error creating tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             self.rollback()
-            raise fpdb_simple.FpdbError( "Error creating tables " + str(sys.exc_value) )
+            raise
 #end def disconnect
     
     def drop_tables(self):
@@ -844,8 +847,9 @@ class Database:
 
             self.commit()
         except:
-            print "Error dropping tables: " + str(sys.exc_value)
-            raise fpdb_simple.FpdbError( "Error dropping tables " + str(sys.exc_value) )
+            print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.rollback()
+            raise
     #end def drop_tables
 
     def createAllIndexes(self):
@@ -916,7 +920,10 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
-        c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
+        if self.backend == self.SQLITE:
+            c.execute("INSERT INTO TourneyTypes VALUES (NULL, 1, 0, 0, 0, 0);")
+        else:
+            c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
         #c.execute("""INSERT INTO TourneyTypes
         #          (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
         #          (1,0,0,0,?)""",(False,) )
@@ -976,21 +983,26 @@ class Database:
  
         for player in pnames:
             result[player] = self.pcache[player]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
 
         return result
 
     def insertPlayer(self, name, site_id):
-        self.cachemiss += 1
         result = None
         c = self.get_cursor()
         c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
         tmp=c.fetchall()
         if (len(tmp)==0): #new player
             c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (name, site_id))
+            #Get last id might be faster here.
             c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
             tmp=c.fetchall()
-            #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-        print "DEBUG: cache misses: %s" %self.cachemiss
         return tmp[0][0]
 
 
@@ -1787,6 +1799,8 @@ if __name__=="__main__":
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
     print "database type = ", db_connection.type
+    
+    db_connection.recreate_tables()
     
     h = db_connection.get_last_hand()
     print "last hand = ", h
