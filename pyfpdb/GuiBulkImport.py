@@ -74,7 +74,10 @@ class GuiBulkImport():
                 cb_hmodel = self.cb_drophudcache.get_model()
                 cb_hindex = self.cb_drophudcache.get_active()
 
-                self.lab_info.set_text("Importing") # doesn't display :-(
+                self.lab_info.set_markup('<span foreground="blue">Importing ...</span>') # uses pango markup!
+                while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
+                    gtk.main_iteration(False)
+
                 if cb_index:
                     self.importer.setDropIndexes(cb_model[cb_index][0])
                 else:
