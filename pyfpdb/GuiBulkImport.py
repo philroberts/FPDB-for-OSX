@@ -162,7 +162,7 @@ class GuiBulkImport():
         self.lab_threads.set_alignment(1.0, 0.5)
 
 #    spin button - threads
-        threads_adj = gtk.Adjustment(value=0, lower=0, upper=10, step_incr=1, page_incr=1, page_size=0) #not sure what upper value should be!
+        threads_adj = gtk.Adjustment(value=0, lower=0, upper=32, step_incr=1, page_incr=1, page_size=0) #not sure what upper value should be!
         self.spin_threads = gtk.SpinButton(adjustment=threads_adj, climb_rate=0.0, digits=0)
         self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
         self.spin_threads.show()
