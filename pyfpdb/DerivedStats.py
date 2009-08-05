@@ -15,6 +15,9 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+#fpdb modules
+import Card
+
 class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
@@ -88,6 +91,70 @@ class DerivedStats():
         self.street3CheckCallRaiseDone       = 0
         self.street4CheckCallRaiseChance     = 0
         self.street4CheckCallRaiseDone       = 0
+        
+        self.hands = {}
+        self.handsplayers = {}
 
-    def getStats():
+    def getStats(self, hand):
+        
+        for player in hand.players:
+            self.handsplayers[player[1]] = {}
+
+        self.assembleHands(self.hand)
+        self.assembleHandsPlayers(self.hand)
+        
+        print "hands =", self.hands
+        print "handsplayers =", self.handsplayers
+
+    def assembleHands(self, hand):
+        self.hands['tableName']  = hand.tablename
+        self.hands['siteHandNo'] = hand.handid
+        self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
+        self.hands['handStart']  = hand.starttime           # format this!
+        self.hands['importTime'] = None
+        self.hands['seats']      = self.countPlayers(hand) 
+        self.hands['maxSeats']   = hand.maxseats
+        self.hands['boardcard1'] = None
+        self.hands['boardcard2'] = None
+        self.hands['boardcard3'] = None
+        self.hands['boardcard4'] = None
+        self.hands['boardcard5'] = None
+
+        boardCard = 1
+        for street in hand.communityStreets:
+            for card in hand.board[street]:
+                self.hands['boardcard%s' % str(boardCard)] = Card.encodeCard(card)
+                boardCard += 1
+
+    def assembleHandsPlayers(self, hand):
+        self.vpip(self.hand)
+        for i, street in enumerate(hand.actionStreets[1:]):
+            self.aggr(self.hand, i)
+
+    def vpip(self, hand):
+        vpipers = set()
+        for act in hand.actions[hand.actionStreets[1]]:
+            if act[1] in ('calls','bets', 'raises'):
+                vpipers.add(act[0])
+
+        for player in hand.players:
+            if player[1] in vpipers:
+                self.handsplayers[player[1]]['vpip'] = True
+            else:
+                self.handsplayers[player[1]]['vpip'] = False
+        self.hands['playersVpi'] = len(vpipers)
+
+    def aggr(self, hand, i):
+        aggrers = set()
+        for act in hand.actions[hand.actionStreets[i]]:
+            if act[1] in ('completes', 'raises'):
+                aggrers.add(act[0])
+
+        for player in hand.players:
+            if player[1] in aggrers:
+                self.handsplayers[player[1]]['street%sAggr' % i] = True
+            else:
+                self.handsplayers[player[1]]['street%sAggr' % i] = False
+
+    def countPlayers(self, hand):
         pass
