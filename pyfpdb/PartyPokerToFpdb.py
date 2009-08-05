@@ -193,15 +193,11 @@ follow :  whether to tail -f the input"""
                 #["ring", "hold", "pl"],
                 #["ring", "hold", "fl"],
 
-                #["ring", "stud", "fl"],
-
-                #["ring", "draw", "fl"],
 
                 ["tour", "hold", "nl"],
                 #["tour", "hold", "pl"],
                 #["tour", "hold", "fl"],
 
-                #["tour", "stud", "fl"],
                ]
 
     def _getGameType(self, handText):
@@ -223,7 +219,13 @@ follow :  whether to tail -f the input"""
 #    inspect the handText and return the gametype dict
 #    gametype dict is:
 #    {'limitType': xxx, 'base': xxx, 'category': xxx}
-        
+        #print
+        #print
+        #print '#'*70
+        #print handText
+        #print '#'*70
+        #print
+        #print
         info = {}
         
         m = self._getGameType(handText)
@@ -290,8 +292,8 @@ follow :  whether to tail -f the input"""
         m = self.re_Hid.search(hand.handText)
         if m: info.update(m.groupdict())
 
-        # FIXME: it's a hack couse party doesn't supply hand.maxseats info
-        hand.maxseats = '9'
+        # FIXME: it's a hack cause party doesn't supply hand.maxseats info
+        #hand.maxseats = '9'
         hand.mixed = None
         
         # TODO : I rather like the idea of just having this dict as hand.info
@@ -301,11 +303,14 @@ follow :  whether to tail -f the input"""
                 #Saturday, July 25, 07:53:52 EDT 2009
                 #Thursday, July 30, 21:40:41 MSKS 2009
                 m2 = re.search("\w+, (?P<M>\w+) (?P<D>\d+), (?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+) (?P<TZ>[A-Z]+) (?P<Y>\d+)", info[key])
-                datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), m2.group('M'),m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%B/%d %H:%M:%S")
-                #FIXME: it's hack
-                tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
-                hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])
+                # we cant use '%B' due to locale problems
+                months = ['January', 'February', 'March', 'April','May', 'June',
+                    'July','August','September','October','November','December']
+                month = months.index(m2.group('M')) + 1
+                datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
+                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                #tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
+                #hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])
                     
             if key == 'HID':
                 hand.handid = info[key]
@@ -363,7 +368,7 @@ follow :  whether to tail -f the input"""
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
             m = self.re_Board.search(hand.streets[street])
-            hand.setCommunityCards(street, m.group('CARDS').strip().split(' '))
+            hand.setCommunityCards(street, renderCards(m.group('CARDS')))
 
     def readAntes(self, hand):
         logging.debug("reading antes")
@@ -432,7 +437,7 @@ follow :  whether to tail -f the input"""
 #                        hand.involved = False
 #                    else:
                     hand.hero = found.group('PNAME')
-                    newcards = found.group('NEWCARDS').split(' ')
+                    newcards = renderCards(found.group('NEWCARDS'))
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
 
@@ -471,8 +476,7 @@ follow :  whether to tail -f the input"""
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ') # needs to be a list, not a set--stud needs the order
+                cards = renderCards(m.group('CARDS'))
 
                 (shown, mucked) = (False, False)
                 if m.group('SHOWED') == "show": shown = True
@@ -484,11 +488,17 @@ def ringBlinds(ringLimit):
     "Returns blinds for current limit"
     ringLimit = float(ringLimit)
     if ringLimit == 5.: ringLimit = 4.
-    return ('%f' % (ringLimit/200.), '%f' % (ringLimit/100.)  )
+    return ('%.2f' % (ringLimit/200.), '%.2f' % (ringLimit/100.)  )
 
 def renderTrnyMoney(money):
     "renders 'numbers' like '1 200' and '2,000'"
     return money.replace(' ', '').replace(',', '')
+
+def renderCards(string):
+    "splits strings like ' Js, 4d '"
+    cards = string.strip().split(' ')
+    return filter(len, map(lambda x: x.strip(' ,'), cards))
+    
 
 if __name__ == "__main__":
     parser = OptionParser()
