@@ -36,7 +36,7 @@ import Configuration
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
-    allowThreads = False  # set to True to try out the threads field
+    allowThreads = True  # set to True to try out the threads field
 
     # not used
     def import_dir(self):
@@ -71,12 +71,19 @@ class GuiBulkImport():
                 self.importer.setHandsInDB(self.n_hands_in_db)
                 cb_model = self.cb_dropindexes.get_model()
                 cb_index = self.cb_dropindexes.get_active()
+                cb_hmodel = self.cb_drophudcache.get_model()
+                cb_hindex = self.cb_drophudcache.get_active()
+
+                self.lab_info.set_text("Importing")
                 if cb_index:
                     self.importer.setDropIndexes(cb_model[cb_index][0])
                 else:
                     self.importer.setDropIndexes("auto")
+                if cb_hindex:
+                    self.importer.setDropHudCache(cb_hmodel[cb_hindex][0])
+                else:
+                    self.importer.setDropHudCache("auto")
                 sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
-                self.lab_info.set_text("Importing")
                 
                 self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
                 self.importer.setCallHud(False)
@@ -115,7 +122,7 @@ class GuiBulkImport():
         self.chooser.show()
 
 #    Table widget to hold the settings
-        self.table = gtk.Table(rows = 3, columns = 5, homogeneous = False)
+        self.table = gtk.Table(rows = 5, columns = 5, homogeneous = False)
         self.vbox.add(self.table)
         self.table.show()
 
@@ -130,6 +137,7 @@ class GuiBulkImport():
         self.table.attach(self.lab_status, 1, 2, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_status.show()
         self.lab_status.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_status.set_alignment(1.0, 0.5)
 
 #    spin button - status
         status_adj = gtk.Adjustment(value=100, lower=0, upper=300, step_incr=10, page_incr=1, page_size=0) #not sure what upper value should be!
@@ -141,13 +149,15 @@ class GuiBulkImport():
         self.lab_threads = gtk.Label("Number of threads:")
         self.table.attach(self.lab_threads, 3, 4, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_threads.show()
-        self.lab_threads.set_sensitive(False)
+        if not self.allowThreads:
+            self.lab_threads.set_sensitive(False)
         self.lab_threads.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_threads.set_alignment(1.0, 0.5)
 
 #    spin button - threads
         threads_adj = gtk.Adjustment(value=0, lower=0, upper=10, step_incr=1, page_incr=1, page_size=0) #not sure what upper value should be!
         self.spin_threads = gtk.SpinButton(adjustment=threads_adj, climb_rate=0.0, digits=0)
-        self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
         self.spin_threads.show()
         if not self.allowThreads:
             self.spin_threads.set_sensitive(False)
@@ -162,6 +172,7 @@ class GuiBulkImport():
         self.table.attach(self.lab_hands, 1, 2, 1, 2, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_hands.show()
         self.lab_hands.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_hands.set_alignment(1.0, 0.5)
 
 #    spin button - hands to import
         hands_adj = gtk.Adjustment(value=0, lower=0, upper=10, step_incr=1, page_incr=1, page_size=0) #not sure what upper value should be!
@@ -174,6 +185,7 @@ class GuiBulkImport():
         self.table.attach(self.lab_drop, 3, 4, 1, 2, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_drop.show()
         self.lab_drop.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_drop.set_alignment(1.0, 0.5)
 
 #    ComboBox - drop indexes
         self.cb_dropindexes = gtk.combo_box_new_text()
@@ -186,9 +198,10 @@ class GuiBulkImport():
 
 #    label - filter
         self.lab_filter = gtk.Label("Site filter:")
-        self.table.attach(self.lab_filter, 2, 3, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_filter, 1, 2, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.lab_filter.show()
         self.lab_filter.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_filter.set_alignment(1.0, 0.5)
 
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
@@ -196,20 +209,41 @@ class GuiBulkImport():
             print w
             self.cbfilter.append_text(w)
         self.cbfilter.set_active(0)
-        self.table.attach(self.cbfilter, 3, 4, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.cbfilter, 2, 3, 2, 3, xpadding = 10, ypadding = 1, yoptions=gtk.SHRINK)
         self.cbfilter.show()
 
-#    label - info
-        self.lab_info = gtk.Label()
-        self.table.attach(self.lab_info, 0, 4, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
-        self.lab_info.show()
+#    label - drop hudcache
+        self.lab_drop = gtk.Label("Drop HudCache:")
+        self.table.attach(self.lab_drop, 3, 4, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.lab_drop.show()
+        self.lab_drop.set_justify(gtk.JUSTIFY_RIGHT)
+        self.lab_drop.set_alignment(1.0, 0.5)
+
+#    ComboBox - drop hudcache
+        self.cb_drophudcache = gtk.combo_box_new_text()
+        self.cb_drophudcache.append_text('auto')
+        self.cb_drophudcache.append_text("don't drop")
+        self.cb_drophudcache.append_text('drop')
+        self.cb_drophudcache.set_active(0)
+        self.table.attach(self.cb_drophudcache, 4, 5, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.cb_drophudcache.show()
 
 #    button - Import
         self.load_button = gtk.Button('Import')  # todo: rename variables to import too
         self.load_button.connect('clicked', self.load_clicked,
                                  'Import clicked')
-        self.table.attach(self.load_button, 4, 5, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.load_button, 2, 3, 4, 5, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
         self.load_button.show()
+
+#    label - spacer (keeps rows 3 & 5 apart)
+        self.lab_spacer = gtk.Label()
+        self.table.attach(self.lab_spacer, 3, 5, 3, 4, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.lab_spacer.show()
+
+#    label - info
+        self.lab_info = gtk.Label()
+        self.table.attach(self.lab_info, 3, 5, 4, 5, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.lab_info.show()
 
 #    see how many hands are in the db and adjust accordingly
         tcursor = self.importer.database.cursor
@@ -221,6 +255,9 @@ class GuiBulkImport():
         if self.n_hands_in_db == 0:
             self.cb_dropindexes.set_active(2)
             self.cb_dropindexes.set_sensitive(False)
+            self.lab_drop.set_sensitive(False)
+            self.cb_drophudcache.set_active(2)
+            self.cb_drophudcache.set_sensitive(False)
             self.lab_drop.set_sensitive(False)
 
 def main(argv=None):
