@@ -410,16 +410,37 @@ class Sql:
             elif db_server == 'sqlite':
                 self.query['createHandsTable'] = """CREATE TABLE Hands (
                                 id INTEGER PRIMARY KEY,
-                                tableName TEXT(20),
-                                siteHandNo INTEGER,
-                                gametypeId INTEGER,
-                                handStart REAL,
-                                importTime REAL,
-                                seats INTEGER,
-                                maxSeats INTEGER,
+                                tableName TEXT(20) NOT NULL,
+                                siteHandNo INT NOT NULL,
+                                gametypeId INT NOT NULL,
+                                handStart REAL NOT NULL,
+                                importTime REAL NOT NULL,
+                                seats INT NOT NULL,
+                                maxSeats INT NOT NULL,
+                                boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
+                                boardcard2 INT,
+                                boardcard3 INT,
+                                boardcard4 INT,
+                                boardcard5 INT,
+                                texture INT,
+                                playersVpi INT NOT NULL,         /* num of players vpi */
+                                playersAtStreet1 INT NOT NULL,   /* num of players seeing flop/street4 */
+                                playersAtStreet2 INT NOT NULL,
+                                playersAtStreet3 INT NOT NULL,
+                                playersAtStreet4 INT NOT NULL,
+                                playersAtShowdown INT NOT NULL,
+                                street0Raises INT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                                street1Raises INT NOT NULL, /* num small bets paid to see turn/street5 */
+                                street2Raises INT NOT NULL, /* num big bets paid to see river/street6 */
+                                street3Raises INT NOT NULL, /* num big bets paid to see sd/street7 */
+                                street4Raises INT NOT NULL, /* num big bets paid to see showdown */
+                                street1Pot INT,                 /* pot size at flop/street4 */
+                                street2Pot INT,                 /* pot size at turn/street5 */
+                                street3Pot INT,                 /* pot size at river/street6 */
+                                street4Pot INT,                 /* pot size at sd/street7 */
+                                showdownPot INT,                /* pot size at sd/street7 */
                                 comment TEXT,
-                                commentTs REAL,
-                                FOREIGN KEY(gametypeId) REFERENCES Gametypes(id) ON DELETE CASCADE)"""
+                                commentTs REAL)"""
 
 
             ################################
@@ -919,78 +940,78 @@ class Sql:
                             styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                             HDs INT NOT NULL,
 
-                            wonWhenSeenStreet1 FLOAT NOT NULL,
+                            wonWhenSeenStreet1 FLOAT,
                             wonWhenSeenStreet2 FLOAT,
                             wonWhenSeenStreet3 FLOAT,
                             wonWhenSeenStreet4 FLOAT,
-                            wonAtSD FLOAT NOT NULL,
+                            wonAtSD FLOAT,
 
-                            street0VPI INT NOT NULL,
-                            street0Aggr INT NOT NULL,
-                            street0_3BChance INT NOT NULL,
-                            street0_3BDone INT NOT NULL,
+                            street0VPI INT,
+                            street0Aggr INT,
+                            street0_3BChance INT,
+                            street0_3BDone INT,
                             street0_4BChance INT,
                             street0_4BDone INT,
                             other3BStreet0 INT,
                             other4BStreet0 INT,
 
-                            street1Seen INT NOT NULL,
-                            street2Seen INT NOT NULL,
-                            street3Seen INT NOT NULL,
-                            street4Seen INT NOT NULL,
-                            sawShowdown INT NOT NULL,
+                            street1Seen INT,
+                            street2Seen INT,
+                            street3Seen INT,
+                            street4Seen INT,
+                            sawShowdown INT,
                             
-                            street1Aggr INT NOT NULL,
-                            street2Aggr INT NOT NULL,
-                            street3Aggr INT NOT NULL,
-                            street4Aggr INT NOT NULL,
+                            street1Aggr INT,
+                            street2Aggr INT,
+                            street3Aggr INT,
+                            street4Aggr INT,
 
                             otherRaisedStreet0 INT,
-                            otherRaisedStreet1 INT NOT NULL,
-                            otherRaisedStreet2 INT NOT NULL,
-                            otherRaisedStreet3 INT NOT NULL,
-                            otherRaisedStreet4 INT NOT NULL,
+                            otherRaisedStreet1 INT,
+                            otherRaisedStreet2 INT,
+                            otherRaisedStreet3 INT,
+                            otherRaisedStreet4 INT,
                             foldToOtherRaisedStreet0 INT,
-                            foldToOtherRaisedStreet1 INT NOT NULL,
-                            foldToOtherRaisedStreet2 INT NOT NULL,
-                            foldToOtherRaisedStreet3 INT NOT NULL,
-                            foldToOtherRaisedStreet4 INT NOT NULL,
+                            foldToOtherRaisedStreet1 INT,
+                            foldToOtherRaisedStreet2 INT,
+                            foldToOtherRaisedStreet3 INT,
+                            foldToOtherRaisedStreet4 INT,
                             
-                            stealAttemptChance INT NOT NULL,
-                            stealAttempted INT NOT NULL,
-                            foldBbToStealChance INT NOT NULL,
-                            foldedBbToSteal INT NOT NULL,
-                            foldSbToStealChance INT NOT NULL,
-                            foldedSbToSteal INT NOT NULL,
+                            stealAttemptChance INT,
+                            stealAttempted INT,
+                            foldBbToStealChance INT,
+                            foldedBbToSteal INT,
+                            foldSbToStealChance INT,
+                            foldedSbToSteal INT,
 
-                            street1CBChance INT NOT NULL,
-                            street1CBDone INT NOT NULL,
-                            street2CBChance INT NOT NULL,
-                            street2CBDone INT NOT NULL,
-                            street3CBChance INT NOT NULL,
-                            street3CBDone INT NOT NULL,
-                            street4CBChance INT NOT NULL,
-                            street4CBDone INT NOT NULL,
+                            street1CBChance INT,
+                            street1CBDone INT,
+                            street2CBChance INT,
+                            street2CBDone INT,
+                            street3CBChance INT,
+                            street3CBDone INT,
+                            street4CBChance INT,
+                            street4CBDone INT,
                             
-                            foldToStreet1CBChance INT NOT NULL,
-                            foldToStreet1CBDone INT NOT NULL,
-                            foldToStreet2CBChance INT NOT NULL,
-                            foldToStreet2CBDone INT NOT NULL,
-                            foldToStreet3CBChance INT NOT NULL,
-                            foldToStreet3CBDone INT NOT NULL,
-                            foldToStreet4CBChance INT NOT NULL,
-                            foldToStreet4CBDone INT NOT NULL,
+                            foldToStreet1CBChance INT,
+                            foldToStreet1CBDone INT,
+                            foldToStreet2CBChance INT,
+                            foldToStreet2CBDone INT,
+                            foldToStreet3CBChance INT,
+                            foldToStreet3CBDone INT,
+                            foldToStreet4CBChance INT,
+                            foldToStreet4CBDone INT,
                             
-                            totalProfit INT NOT NULL,
+                            totalProfit INT,
                             
-                            street1CheckCallRaiseChance INT NOT NULL,
-                            street1CheckCallRaiseDone INT NOT NULL,
-                            street2CheckCallRaiseChance INT NOT NULL,
-                            street2CheckCallRaiseDone INT NOT NULL,
-                            street3CheckCallRaiseChance INT NOT NULL,
-                            street3CheckCallRaiseDone INT NOT NULL,
-                            street4CheckCallRaiseChance INT NOT NULL,
-                            street4CheckCallRaiseDone INT NOT NULL,
+                            street1CheckCallRaiseChance INT,
+                            street1CheckCallRaiseDone INT,
+                            street2CheckCallRaiseChance INT,
+                            street2CheckCallRaiseDone INT,
+                            street3CheckCallRaiseChance INT,
+                            street3CheckCallRaiseDone INT,
+                            street4CheckCallRaiseChance INT,
+                            street4CheckCallRaiseDone INT,
 
                             street0Calls INT,
                             street1Calls INT,
@@ -1020,16 +1041,16 @@ class Sql:
                             styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                             HDs INT,
 
-                            wonWhenSeenStreet1 FLOAT NOT NULL,
+                            wonWhenSeenStreet1 FLOAT,
                             wonWhenSeenStreet2 FLOAT,
                             wonWhenSeenStreet3 FLOAT,
                             wonWhenSeenStreet4 FLOAT,
-                            wonAtSD FLOAT NOT NULL,
+                            wonAtSD FLOAT,
 
-                            street0VPI INT NOT NULL,
+                            street0VPI INT,
                             street0Aggr INT,
-                            street0_3BChance INT NOT NULL,
-                            street0_3BDone INT NOT NULL,
+                            street0_3BChance INT,
+                            street0_3BDone INT,
                             street0_4BChance INT,
                             street0_4BDone INT,
                             other3BStreet0 INT,
@@ -1119,16 +1140,16 @@ class Sql:
                             styleKey TEXT NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                             HDs INT,
 
-                            wonWhenSeenStreet1 REAL NOT NULL,
+                            wonWhenSeenStreet1 REAL,
                             wonWhenSeenStreet2 REAL,
                             wonWhenSeenStreet3 REAL,
                             wonWhenSeenStreet4 REAL,
-                            wonAtSD REAL NOT NULL,
+                            wonAtSD REAL,
 
-                            street0VPI INT NOT NULL,
+                            street0VPI INT,
                             street0Aggr INT,
-                            street0_3BChance INT NOT NULL,
-                            street0_3BDone INT NOT NULL,
+                            street0_3BChance INT,
+                            street0_3BDone INT,
                             street0_4BChance INT,
                             street0_4BDone INT,
                             other3BStreet0 INT,
@@ -2515,7 +2536,7 @@ class Sql:
                             ,hp.tourneyTypeId
                             ,date_format(h.handStart, 'd%y%m%d')
 """
-            else:   # assume postgres
+            elif db_server == 'postgresql':
                 self.query['rebuildHudCache'] = """
                     INSERT INTO HudCache
                     (gametypeId
@@ -2663,6 +2684,154 @@ class Sql:
                             ,hp.tourneyTypeId
                             ,to_char(h.handStart, 'YYMMDD')
 """
+            else:   # assume sqlite
+                self.query['rebuildHudCache'] = """
+                    INSERT INTO HudCache
+                    (gametypeId
+                    ,playerId
+                    ,activeSeats
+                    ,position
+                    ,tourneyTypeId
+                    ,styleKey
+                    ,HDs
+                    ,wonWhenSeenStreet1
+                    ,wonAtSD
+                    ,street0VPI
+                    ,street0Aggr
+                    ,street0_3BChance
+                    ,street0_3BDone
+                    ,street1Seen
+                    ,street2Seen
+                    ,street3Seen
+                    ,street4Seen
+                    ,sawShowdown
+                    ,street1Aggr
+                    ,street2Aggr
+                    ,street3Aggr
+                    ,street4Aggr
+                    ,otherRaisedStreet1
+                    ,otherRaisedStreet2
+                    ,otherRaisedStreet3
+                    ,otherRaisedStreet4
+                    ,foldToOtherRaisedStreet1
+                    ,foldToOtherRaisedStreet2
+                    ,foldToOtherRaisedStreet3
+                    ,foldToOtherRaisedStreet4
+                    ,stealAttemptChance
+                    ,stealAttempted
+                    ,foldBbToStealChance
+                    ,foldedBbToSteal
+                    ,foldSbToStealChance
+                    ,foldedSbToSteal
+                    ,street1CBChance
+                    ,street1CBDone
+                    ,street2CBChance
+                    ,street2CBDone
+                    ,street3CBChance
+                    ,street3CBDone
+                    ,street4CBChance
+                    ,street4CBDone
+                    ,foldToStreet1CBChance
+                    ,foldToStreet1CBDone
+                    ,foldToStreet2CBChance
+                    ,foldToStreet2CBDone
+                    ,foldToStreet3CBChance
+                    ,foldToStreet3CBDone
+                    ,foldToStreet4CBChance
+                    ,foldToStreet4CBDone
+                    ,totalProfit
+                    ,street1CheckCallRaiseChance
+                    ,street1CheckCallRaiseDone
+                    ,street2CheckCallRaiseChance
+                    ,street2CheckCallRaiseDone
+                    ,street3CheckCallRaiseChance
+                    ,street3CheckCallRaiseDone
+                    ,street4CheckCallRaiseChance
+                    ,street4CheckCallRaiseDone
+                    )
+                    SELECT h.gametypeId
+                          ,hp.playerId
+                          ,h.seats
+                          ,case when hp.position = 'B' then 'B'
+                                when hp.position = 'S' then 'S'
+                                when hp.position = '0' then 'D'
+                                when hp.position = '1' then 'C'
+                                when hp.position = '2' then 'M'
+                                when hp.position = '3' then 'M'
+                                when hp.position = '4' then 'M'
+                                when hp.position = '5' then 'E'
+                                when hp.position = '6' then 'E'
+                                when hp.position = '7' then 'E'
+                                when hp.position = '8' then 'E'
+                                when hp.position = '9' then 'E'
+                                else 'E'
+                           end                                            AS hc_position
+                          ,hp.tourneyTypeId
+                          ,'d' || substr(strftime('%Y%m%d', h.handStart),3)
+                          ,count(1)
+                          ,sum(wonWhenSeenStreet1)
+                          ,sum(wonAtSD)
+                          ,sum(CAST(street0VPI as integer))
+                          ,sum(CAST(street0Aggr as integer))
+                          ,sum(CAST(street0_3BChance as integer))
+                          ,sum(CAST(street0_3BDone as integer))
+                          ,sum(CAST(street1Seen as integer))
+                          ,sum(CAST(street2Seen as integer))
+                          ,sum(CAST(street3Seen as integer))
+                          ,sum(CAST(street4Seen as integer))
+                          ,sum(CAST(sawShowdown as integer))
+                          ,sum(CAST(street1Aggr as integer))
+                          ,sum(CAST(street2Aggr as integer))
+                          ,sum(CAST(street3Aggr as integer))
+                          ,sum(CAST(street4Aggr as integer))
+                          ,sum(CAST(otherRaisedStreet1 as integer))
+                          ,sum(CAST(otherRaisedStreet2 as integer))
+                          ,sum(CAST(otherRaisedStreet3 as integer))
+                          ,sum(CAST(otherRaisedStreet4 as integer))
+                          ,sum(CAST(foldToOtherRaisedStreet1 as integer))
+                          ,sum(CAST(foldToOtherRaisedStreet2 as integer))
+                          ,sum(CAST(foldToOtherRaisedStreet3 as integer))
+                          ,sum(CAST(foldToOtherRaisedStreet4 as integer))
+                          ,sum(CAST(stealAttemptChance as integer))
+                          ,sum(CAST(stealAttempted as integer))
+                          ,sum(CAST(foldBbToStealChance as integer))
+                          ,sum(CAST(foldedBbToSteal as integer))
+                          ,sum(CAST(foldSbToStealChance as integer))
+                          ,sum(CAST(foldedSbToSteal as integer))
+                          ,sum(CAST(street1CBChance as integer))
+                          ,sum(CAST(street1CBDone as integer))
+                          ,sum(CAST(street2CBChance as integer))
+                          ,sum(CAST(street2CBDone as integer))
+                          ,sum(CAST(street3CBChance as integer))
+                          ,sum(CAST(street3CBDone as integer))
+                          ,sum(CAST(street4CBChance as integer))
+                          ,sum(CAST(street4CBDone as integer))
+                          ,sum(CAST(foldToStreet1CBChance as integer))
+                          ,sum(CAST(foldToStreet1CBDone as integer))
+                          ,sum(CAST(foldToStreet2CBChance as integer))
+                          ,sum(CAST(foldToStreet2CBDone as integer))
+                          ,sum(CAST(foldToStreet3CBChance as integer))
+                          ,sum(CAST(foldToStreet3CBDone as integer))
+                          ,sum(CAST(foldToStreet4CBChance as integer))
+                          ,sum(CAST(foldToStreet4CBDone as integer))
+                          ,sum(CAST(totalProfit as integer))
+                          ,sum(CAST(street1CheckCallRaiseChance as integer))
+                          ,sum(CAST(street1CheckCallRaiseDone as integer))
+                          ,sum(CAST(street2CheckCallRaiseChance as integer))
+                          ,sum(CAST(street2CheckCallRaiseDone as integer))
+                          ,sum(CAST(street3CheckCallRaiseChance as integer))
+                          ,sum(CAST(street3CheckCallRaiseDone as integer))
+                          ,sum(CAST(street4CheckCallRaiseChance as integer))
+                          ,sum(CAST(street4CheckCallRaiseDone as integer))
+                    FROM HandsPlayers hp
+                    INNER JOIN Hands h ON (h.id = hp.handId)
+                    GROUP BY h.gametypeId
+                            ,hp.playerId
+                            ,h.seats
+                            ,hc_position
+                            ,hp.tourneyTypeId
+                            ,'d' || substr(strftime('%Y%m%d', h.handStart),3)
+"""
 
             if db_server == 'mysql':
                 self.query['analyze'] = """
@@ -2681,6 +2850,44 @@ class Sql:
             else:  # assume postgres
                 self.query['lockForInsert'] = ""
 
+            self.query['getGametypeFL'] = """SELECT id
+                                               FROM Gametypes
+                                               WHERE siteId=%s
+                                               AND   type=%s
+                                               AND   category=%s
+                                               AND   limitType=%s
+                                               AND   smallBet=%s
+                                               AND   bigBet=%s
+            """
+
+            self.query['getGametypeNL'] = """SELECT id
+                                               FROM Gametypes
+                                               WHERE siteId=%s
+                                               AND   type=%s
+                                               AND   category=%s
+                                               AND   limitType=%s
+                                               AND   smallBlind=%s
+                                               AND   bigBlind=%s
+            """
+
+            self.query['insertGameTypes'] = """INSERT INTO Gametypes
+                                                  (siteId, type, base, category, limitType
+                                                  ,hiLo, smallBlind, bigBlind, smallBet, bigBet)
+                                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+            self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
+                                             WHERE gametypeId=%s AND siteHandNo=%s
+            """
+
+            if db_server == 'mysql':
+                self.query['placeholder'] = u'%s'
+            elif db_server == 'postgresql':
+                self.query['placeholder'] = u'%s'
+            elif db_server == 'sqlite':
+                self.query['placeholder'] = u'?'
+
+
+            # If using sqlite, use the ? placeholder instead of %s
             if db_server == 'sqlite':
                 for k,q in self.query.iteritems():
                     self.query[k] = re.sub('%s','?',q)
