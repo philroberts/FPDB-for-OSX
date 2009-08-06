@@ -991,19 +991,28 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 #    return result
 
 def recognisePlayerIDs(cursor, names, site_id):
-    q = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in names])
+#    print "\nrecognisePlayerIDs names=",len(names),names
+    q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in names]))
+#    print "q=",q
     cursor.execute(q, names) # get all playerids by the names passed in
     ids = dict(cursor.fetchall()) # convert to dict
+#    print "ids(1)=",len(ids),ids
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
+#        print "notfound=", notfound
         if notfound: # insert them into database
             cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
-            q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
+            q2 = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in notfound]))
             cursor.execute(q2, notfound) # get their new ids
             tmp = cursor.fetchall()
+#            print "tmp=", tmp
             for n,id in tmp: # put them all into the same dict
                 ids[n] = id
     # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
+#    print "ids=",ids
+#    list = [ids[n] for n in names]
+#    print "list=",list
+#    print "\n"
     return [ids[n] for n in names]
 #end def recognisePlayerIDs
 

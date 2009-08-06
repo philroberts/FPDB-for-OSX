@@ -37,7 +37,7 @@ import traceback
 
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('fpdb-error-log.txt', 'w', 0)
+    errorFile = open('HUD-error.txt', 'w', 0)
     sys.stderr = errorFile
 
 import thread

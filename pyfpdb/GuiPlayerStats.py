@@ -167,7 +167,9 @@ class GuiPlayerStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                # Nasty hack to deal with multiple sites + same player name -Eric
+                que = self.sql.query['getPlayerId'] + " AND siteId=%d" % siteids[site]
+                self.cursor.execute(que, (heroes[site],))
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
