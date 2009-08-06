@@ -181,9 +181,9 @@ or None if we fail to get the info """
         #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
         if hand.gametype['base'] == 'hold':
             m = re.search(r"\*\*\* POCKET CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
-                    r"\*\*\* FLOP \*\*\*(?P<FLOP>.+(?=\*\*\* TURN \*\*\*)|.+)"
-                    r"\*\*\* TURN \*\*\*(?P<TURN>.+(?=\*\*\* RIVER \*\*\*)|.+)"
-                    r"\*\*\* RIVER \*\*\*(?P<RIVER>.+)", hand.handText, re.DOTALL)
+                    r"(\*\*\* FLOP \*\*\*(?P<FLOP>.+(?=\*\*\* TURN \*\*\*)|.+))?"
+                    r"(\*\*\* TURN \*\*\*(?P<TURN>.+(?=\*\*\* RIVER \*\*\*)|.+))?"
+                    r"(\*\*\* RIVER \*\*\*(?P<RIVER>.+))?", hand.handText, re.DOTALL)
             
         elif hand.gametype['base'] == 'stud': # TODO: Not implemented yet
             m =     re.search(r"(?P<ANTES>.+(?=\*\* Dealing down cards \*\*)|.+)"
@@ -312,7 +312,6 @@ def validCard(card):
     if card == '10d': card = 'Td'
     if card == '10c': card = 'Tc'
     return card
-
 
 if __name__ == "__main__":
     parser = OptionParser()

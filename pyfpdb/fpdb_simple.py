@@ -48,37 +48,6 @@ class FpdbError(Exception):
         self.value = value
     def __str__(self):
         return repr(self.value)
-    
-# gets value for last auto-increment key generated
-# returns -1 if a problem occurs
-def getLastInsertId(backend, conn, cursor):
-    if backend == MYSQL_INNODB:
-        ret = conn.insert_id()
-        if ret < 1 or ret > 999999999:
-            print "getLastInsertId(): problem fetching insert_id? ret=", ret
-            ret = -1
-    elif backend == PGSQL:
-        # some options:
-        # currval(hands_id_seq) - use name of implicit seq here
-        # lastval() - still needs sequences set up?
-        # insert ... returning  is useful syntax (but postgres specific?)
-        # see rules (fancy trigger type things)
-        cursor.execute ("SELECT lastval()")
-        row = cursor.fetchone()
-        if not row:
-            print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
-            ret = -1
-        else:
-            ret = row[0]
-    elif backend == SQLITE:
-        # don't know how to do this in sqlite
-        print "getLastInsertId(): not coded for sqlite yet"
-        ret = -1
-    else:
-        print "getLastInsertId(): unknown backend ", backend
-        ret = -1
-    return ret
-#end def getLastInsertId
  
 #returns an array of the total money paid. intending to add rebuys/addons here
 def calcPayin(count, buyin, fee):
