@@ -920,6 +920,9 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('OnGame', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('UltimateBet', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Betfair', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes VALUES (NULL, 1, 0, 0, 0, 0);")
