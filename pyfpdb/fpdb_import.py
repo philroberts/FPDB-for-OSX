@@ -130,6 +130,9 @@ class Importer:
 #       self.updated = time()
 
     def clearFileList(self):
+        self.updatedsize = {}
+        self.updatetime = {}
+        self.pos_in_file = {}
         self.filelist = {}
 
     def closeDBs(self):

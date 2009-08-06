@@ -201,7 +201,7 @@ or None if we fail to get the info """
         logging.debug("readCommunityCards (%s)" % street)
         m = self.re_Board.search(hand.streets[street])
         cards = m.group('CARDS')
-        cards = [card.strip() for card in cards.split(',')]
+        cards = [validCard(card) for card in cards.split(' ')]
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
@@ -241,15 +241,14 @@ or None if we fail to get the info """
             # "2c, qh" -> ["2c","qc"]
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = [card.strip() for card in cards.split(',')]
+            cards = [validCard(card) for card in cards.split(' ')]
 #            hand.addHoleCards(cards, m.group('PNAME'))
             hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
 
         else:
             #Not involved in hand
             hand.involved = False
-
-
+    
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
         logging.warning("Absolute readStudPlayerCards is only a stub.")
@@ -283,7 +282,7 @@ or None if we fail to get the info """
         logging.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = cards.split(', ')
+            cards = [validCard(card) for card in cards.split(' ')]            
             logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
@@ -298,13 +297,21 @@ or None if we fail to get the info """
             try:
                 if m.group('CARDS') is not None:
                     cards = m.group('CARDS')
-                    cards = cards.split(', ')
+                    cards = [validCard(card) for card in cards.split(' ')]
                     player = m.group('PNAME')
                     logging.debug("readShownCards %s cards=%s" % (player, cards))
     #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
                     hand.addShownCards(cards=cards, player=m.group('PNAME'))
             except IndexError:
                 pass # there's no "PLAYER - Mucks" at AP that I can see
+
+def validCard(card):
+    card = card.strip()
+    if card == '10s': card = 'Ts'
+    if card == '10h': card = 'Th'
+    if card == '10d': card = 'Td'
+    if card == '10c': card = 'Tc'
+    return card
 
 
 if __name__ == "__main__":
