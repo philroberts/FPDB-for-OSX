@@ -60,7 +60,7 @@ debugging: if False, pass on partially supported game types. If true, have a go 
         logging.info("Initialising Absolute converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
-        self.siteId   = 3 # Needs to match id entry in Sites database
+        self.siteId   = 5 # Needs to match id entry in Sites database
         self.debugging = debugging
         if autostart:
             self.start()

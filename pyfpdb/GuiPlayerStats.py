@@ -132,7 +132,7 @@ class GuiPlayerStats (threading.Thread):
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
-        self.fillStatsFrame(self.stats_vbox)
+        # self.fillStatsFrame(self.stats_vbox)
 
         self.main_hbox.pack_start(self.filters.get_vbox())
         self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
