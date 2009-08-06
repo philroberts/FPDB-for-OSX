@@ -204,7 +204,9 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             logging.info("Unsupported game type: %s" % gametype)
 
         if hand:
+#    uncomment these to calculate some stats
 #            print hand
+#            hand.stats.getStats(hand)
             hand.writeHand(self.out_fh)
             return hand
         else:
