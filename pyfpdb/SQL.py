@@ -1667,6 +1667,11 @@ class Sql:
                     select coalesce(max(id),0)
                     from Hands
                     where handStart < now() at time zone 'UTC' - interval '1 day'"""
+            elif db_server == 'sqlite':
+                self.query['get_hand_1day_ago'] = """
+                    select coalesce(max(id),0)
+                    from Hands
+                    where handStart < strftime('%J', 'now') - 1"""
 
             # not used yet ...
             # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
@@ -2105,7 +2110,7 @@ class Sql:
                                when stats.PlPosition =  1 then 'CO'
                                when stats.PlPosition =  2 then 'MP'
                                when stats.PlPosition =  5 then 'EP'
-                               else '??'
+                               else 'xx'
                           end                                                          AS PlPosition
                          ,stats.n
                          ,stats.vpip
@@ -2239,7 +2244,7 @@ class Sql:
                                 when stats.PlPosition =  1 then 'CO'
                                 when stats.PlPosition =  2 then 'MP'
                                 when stats.PlPosition =  5 then 'EP'
-                                else '??'
+                                else 'xx'
                            end                                                          AS PlPosition
                           ,stats.n
                           ,stats.vpip
@@ -2767,7 +2772,7 @@ class Sql:
                                 else 'E'
                            end                                            AS hc_position
                           ,hp.tourneyTypeId
-                          ,'d' || substr(strftime('%Y%m%d', h.handStart),3)
+                          ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
                           ,count(1)
                           ,sum(wonWhenSeenStreet1)
                           ,sum(wonAtSD)
@@ -2830,7 +2835,7 @@ class Sql:
                             ,h.seats
                             ,hc_position
                             ,hp.tourneyTypeId
-                            ,'d' || substr(strftime('%Y%m%d', h.handStart),3)
+                            ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
 """
 
             if db_server == 'mysql':

@@ -971,12 +971,14 @@ class Database:
 
         try:
             stime = time()
-            self.connection.cursor().execute(self.sql.query['clearHudCache'])
-            self.connection.cursor().execute(self.sql.query['rebuildHudCache'])
+            self.get_cursor().execute(self.sql.query['clearHudCache'])
+            self.get_cursor().execute(self.sql.query['rebuildHudCache'])
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "Error rebuilding hudcache:", str(sys.exc_value)
+            print err
     #end def rebuild_hudcache
 
 
@@ -1616,11 +1618,14 @@ class Database:
                                       row[56], row[57], row[58], row[59], row[60],
                                       row[1], row[2], row[3], str(row[4]), row[5], styleKey))
                 # Test statusmessage to see if update worked, do insert if not
-                #print "storehud2, upd num =", num
+                #print "storehud2, upd num =", num.rowcount
+                # num is a cursor in sqlite
                 if (   (backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (backend == self.MYSQL_INNODB and num == 0) ):
+                    or (backend == self.MYSQL_INNODB and num == 0) 
+                    or (backend == self.SQLITE and num.rowcount == 0) 
+                   ):
                     #print "playerid before insert:",row[2]," num = ", num
-                    cursor.execute("""INSERT INTO HudCache
+                    num = cursor.execute("""INSERT INTO HudCache
     (gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
     HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
     street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
@@ -1651,7 +1656,7 @@ class Database:
                                     ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
                                     ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
                                     ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]) )
-                    #print "hopefully inserted hud data line: ", cursor.statusmessage
+                    #print "hopefully inserted hud data line: ", cursor.rowcount
                     # message seems to be "INSERT 0 1"
                 else:
                     #print "updated(2) hud data line"
