@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008, Carl Gherardi
+#    Copyright 2009, Grigorij Indigirkin
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -26,23 +26,30 @@ from HandHistoryConverter import *
 # PartyPoker HH Format
 
 class PartyPoker(HandHistoryConverter):
-
+    class ParsingException(Exception):
+        "Usage: raise ParsingException(<msg>[, hh=<hh>])"
+        def __init__(self, *args, **kwargs):
+            if len(args)==0: args=[''] + list(args)
+            msg, args = args[0], args[1:]
+            if 'hh' in kwargs:
+                msg += self.wrapHh(kwargs['hh'])
+                del kwargs['hh']
+            return Exception.__init__(self, msg, *args, **kwargs)
+        def wrapHh(self, hh):
+            return ("\n\nHand history attached below:\n"
+                    "%(DELIMETER)s\n%(HH)s\n%(DELIMETER)s") % \
+                    {'DELIMETER': '#'*50, 'HH': hh}
+                    
 ############################################################
 #    Class Variables
 
-    #mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
     sym = {'USD': "\$", }
-    #sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\x80", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
-    substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD",    # legal ISO currency codes
-                            'LS' : "\$|\x80|\xa3"        # legal currency symbols  ADD Euro, Sterling, etc HERE
-                    }
 
     # Static regexes
     # $5 USD NL Texas Hold'em - Saturday, July 25, 07:53:52 EDT 2009
     # NL Texas Hold'em $1 USD Buy-in Trny:45685440 Level:8  Blinds-Antes(600/1 200 -50) - Sunday, May 17, 11:25:07 MSKS 2009
     re_GameInfoRing     = re.compile("""
-            (?:\$|)\s*(?P<RINGLIMIT>\d+)\s*(?P<CURRENCY>USD)?\s*
+            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>\d+)\s*(?:USD)?\s*
             (?P<LIMIT>(NL))\s+
             (?P<GAME>(Texas\ Hold\'em))
             \s*\-\s*
@@ -51,8 +58,7 @@ class PartyPoker(HandHistoryConverter):
     re_GameInfoTrny     = re.compile("""
             (?P<LIMIT>(NL))\s+
             (?P<GAME>(Texas\ Hold\'em))\s+
-            (?:\$|)\s*
-            (?P<BUYIN>[.0-9]+)\s*(?P<CURRENCY>USD)?\s*Buy-in\s+
+            (?P<BUYIN>\$?[.0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
             Blinds(?:-Antes)?\(
@@ -87,7 +93,7 @@ class PartyPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile("""
           Seat\s(?P<SEAT>\d+):\s
           (?P<PNAME>.*)\s
-          \(\s*\$?(?P<CASH>[0-9,.]+)\s*(?:USD)\s*\)
+          \(\s*\$?(?P<CASH>[0-9,.]+)\s*(?:USD|)\s*\)
           """ , 
           re.VERBOSE)
     #re_PlayerInfo   = re.compile("""
@@ -148,17 +154,19 @@ follow :  whether to tail -f the input"""
 #    They still identify the hero.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
-            subst = {'PLYR': player_re, 'CUR': hand.gametype['currency']}
+            subst = {'PLYR': player_re, 'CUR_SYM': hand.SYMBOL[hand.gametype['currency']],
+                'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else ''}
             logging.debug("player_re: " + subst['PLYR'])
+            logging.debug("CUR_SYM: " + subst['CUR_SYM'])
             logging.debug("CUR: " + subst['CUR'])
             self.re_PostSB = re.compile(
-                r"^%(PLYR)s posts small blind \[[^.0-9]?(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
+                r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
                 re.MULTILINE)
             self.re_PostBB = re.compile(
-                r"^%(PLYR)s posts big blind \[[^.0-9]?(?P<BB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
+                r"^%(PLYR)s posts big blind \[%(CUR_SYM)s(?P<BB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"^%(PLYR)s posts ante \[[^.,0-9]?(?P<ANTE>[.0-9]+) ?%(CUR)s\]\." %  subst,
+                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.0-9]+) ?%(CUR)s\]\." %  subst,
                 re.MULTILINE)
             #self.re_BringIn = re.compile(
                 #r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst,
@@ -171,7 +179,7 @@ follow :  whether to tail -f the input"""
                 re.MULTILINE)
             self.re_Action = re.compile(r"""
                 ^%(PLYR)s\s+(?P<ATYPE>bets|checks|raises|calls|folds|is\sall-In)
-                (?:\s+\[[^.,0-9]?(?P<BET>[.,\d]+)\s+%(CUR)s\])?
+                (?:\s+\[%(CUR_SYM)s(?P<BET>[.,\d]+)\s*%(CUR)s\])?
                 """ %  subst, 
                 re.MULTILINE|re.VERBOSE)
             self.re_ShownCards = re.compile(
@@ -180,7 +188,7 @@ follow :  whether to tail -f the input"""
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
                 r""""^%(PLYR)s \s+ wins \s+
-                [^.,0-9]?(?P<POT>[.\d]+)\s*%(CUR)s""" %  subst, 
+                %(CUR_SYM)s(?P<POT>[.\d]+)\s*%(CUR)s""" %  subst, 
                 re.MULTILINE|re.VERBOSE)
             #self.re_sitsOut    = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             #self.re_ShownCards = re.compile(
@@ -193,11 +201,9 @@ follow :  whether to tail -f the input"""
                 #["ring", "hold", "pl"],
                 #["ring", "hold", "fl"],
 
-
                 ["tour", "hold", "nl"],
                 #["tour", "hold", "pl"],
                 #["tour", "hold", "fl"],
-
                ]
 
     def _getGameType(self, handText):
@@ -219,15 +225,10 @@ follow :  whether to tail -f the input"""
 #    inspect the handText and return the gametype dict
 #    gametype dict is:
 #    {'limitType': xxx, 'base': xxx, 'category': xxx}
-        #print
-        #print
-        #print '#'*70
-        #print handText
-        #print '#'*70
-        #print
-        #print
-        info = {}
+
+        print self.ParsingException().wrapHh( handText )
         
+        info = {}
         m = self._getGameType(handText)
         if m is None:
             return None
@@ -241,25 +242,28 @@ follow :  whether to tail -f the input"""
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'), 
                                 #'Omaha' : ('hold','omahahi'),
-                          #'Omaha Hi/Lo' : ('hold','omahahilo'),
-                                 #'Razz' : ('stud','razz'), 
-                          #'7 Card Stud' : ('stud','studhi'),
-                    #'7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                               #'Badugi' : ('draw','badugi'),
-              #'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                }
-        #currencies = { '$':'USD', '':'T$' }
-#    I don't think this is doing what we think. mg will always have all 
-#    the expected keys, but the ones that didn't match in the regex will
-#    have a value of None. It is OK if it throws an exception when it 
-#    runs across an unknown game or limit or whatever.
-        if 'LIMIT' in mg:
-            info['limitType'] = limits[mg['LIMIT']]
-        if 'GAME' in mg:
-            (info['base'], info['category']) = games[mg['GAME']]
+        currencies = { '$':'USD', '':'T$' }
 
-        if 'CURRENCY' in mg:
-            info['currency'] = mg['CURRENCY']
+        for expectedField in ['LIMIT', 'GAME']:
+            if mg[expectedField] is None:
+                raise self.ParsingException(
+                    "Cannot fetch field '%s'" % expectedField,
+                    hh = handText)
+        try:
+            info['limitType'] = limits[mg['LIMIT']]
+        except:
+            raise self.ParsingException(
+                "Unknown limit '%s'" % mg['LIMIT'],
+                hh = handText)
+
+        try:
+            (info['base'], info['category']) = games[mg['GAME']]
+        except:
+            raise self.ParsingException(
+                "Unknown game type '%s'" % mg['GAME'],
+                hh = handText)
+
 
         if 'TOURNO' in mg:
             info['type'] = 'tour'
@@ -268,9 +272,12 @@ follow :  whether to tail -f the input"""
         
         if info['type'] == 'ring':
             info['sb'], info['bb'] = ringBlinds(mg['RINGLIMIT'])
+            # FIXME: there are only $ and play money availible for cash
+            info['currency'] = currencies(mg['CURRENCY'])
         else:
             info['sb'] = renderTrnyMoney(mg['SB'])
             info['bb'] = renderTrnyMoney(mg['BB'])
+            info['currency'] = 'T$'
             
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
@@ -283,10 +290,7 @@ follow :  whether to tail -f the input"""
         if m:
             info.update(m.groupdict())
         else:
-            print '#'*15, 'START HH', '#'*15
-            print hand.handText
-            print '#'*15, '  END HH', '#'*15
-            raise Exception, "Cannot read hand info from hh above"
+            raise self.ParsingException("Cannot read Handinfo for current hand", hh=hand.handText)
         m = self._getGameType(hand.handText)
         if m: info.update(m.groupdict())
         m = self.re_Hid.search(hand.handText)
@@ -311,27 +315,23 @@ follow :  whether to tail -f the input"""
                 hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 #tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
                 #hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])
-                    
+                  
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
-            #if key == 'MAX':
-                #hand.maxseats = int(info[key])
-
-            #if key == 'MIXED':
-                #if info[key] == None: hand.mixed = None
-                #else:   hand.mixed = self.mixes[info[key]]
-
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                hand.buyin = info[key]
+                #FIXME: it's dirty hack T_T
+                cur = info[key][0] if info[key][0] not in '0123456789' else ''
+                hand.buyin = info[key] + '+%s0' % cur
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
+                # TODO: play money wasn't tested
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
 
@@ -364,9 +364,8 @@ follow :  whether to tail -f the input"""
             , hand.handText,re.DOTALL)
         hand.addStreets(m)
 
-    def readCommunityCards(self, hand, street): # street has been matched by markStreets, so exists in this hand
-        if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
-            #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
+    def readCommunityCards(self, hand, street): 
+        if street in ('FLOP','TURN','RIVER'):   
             m = self.re_Board.search(hand.streets[street])
             hand.setCommunityCards(street, renderCards(m.group('CARDS')))
 
@@ -399,10 +398,10 @@ follow :  whether to tail -f the input"""
             # party doesn't track blinds for tournaments
             # so there're some cra^Wcaclulations
             if hand.buttonpos == 0:
-                self.readButton(self, hand)
+                self.readButton(hand)
             # NOTE: code below depends on Hand's implementation
             # playersMap - dict {seat: (pname,stack)}
-            playersMap = dict([(f[0], f[1:2]) for f in hand.players]) 
+            playersMap = dict([(f[0], f[1:3]) for f in hand.players]) 
             maxSeat = max(playersMap)
             
             def findFirstNonEmptySeat(startSeat):
@@ -416,7 +415,7 @@ follow :  whether to tail -f the input"""
             if noSmallBlind:
                 hand.addBlind(None, None, None)
             else:
-                smallBlindSeat = findFirstNonEmptySeat(hand.buttonpos + 1)
+                smallBlindSeat = findFirstNonEmptySeat(int(hand.buttonpos) + 1)
                 blind = smartMin(hand.sb, playersMap[smallBlindSeat][1])
                 hand.addBlind(playersMap[smallBlindSeat][0], 'small blind', blind)
                     
@@ -446,6 +445,8 @@ follow :  whether to tail -f the input"""
         for action in m:
             acts = action.groupdict()
             if action.group('ATYPE') in ('raises','is all-In'):
+                #print action.groupdict()
+                #sys.exit(1)
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == 'calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
