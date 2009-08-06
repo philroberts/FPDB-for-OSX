@@ -72,20 +72,19 @@ class GuiGraphViewer (threading.Thread):
         self.mainHBox.show()
 
         self.leftPanelBox = self.filters.get_vbox()
-        self.graphBox = gtk.VBox(False, 0)
-        self.graphBox.show()
 
         self.hpane = gtk.HPaned()
         self.hpane.pack1(self.leftPanelBox)
+        self.mainHBox.add(self.hpane)
+        # hierarchy:  self.mainHBox / self.hpane / self.graphBox / self.canvas / self.fig / self.ax
+
+        self.graphBox = gtk.VBox(False, 0)
+        self.graphBox.show()
         self.hpane.pack2(self.graphBox)
         self.hpane.show()
 
-        self.mainHBox.add(self.hpane)
-
         self.fig = None
         #self.exportButton.set_sensitive(False)
-
-        self.fig = Figure(figsize=(5,4), dpi=100)
         self.canvas = None
 
 
@@ -125,79 +124,103 @@ class GuiGraphViewer (threading.Thread):
     #end def get_vbox
 
     def clearGraphData(self):
-        self.fig.clear()
-        if self.canvas is not None:
-            self.canvas.destroy()
 
-        self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+        try:
+            try:
+                if self.canvas:
+                    self.graphBox.remove(self.canvas)
+            except:
+                pass
+
+            if self.fig != None:
+                self.fig.clear()
+            self.fig = Figure(figsize=(5,4), dpi=100)
+            if self.canvas is not None:
+                self.canvas.destroy()
+
+            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            raise
 
     def generateGraph(self, widget, data):
-        self.clearGraphData()
+        print "generateGraph: start"
+        try:
+            self.clearGraphData()
+            print "after cleardata"
 
-        sitenos = []
-        playerids = []
+            sitenos = []
+            playerids = []
 
-        sites   = self.filters.getSites()
-        heroes  = self.filters.getHeroes()
-        siteids = self.filters.getSiteIds()
-        limits  = self.filters.getLimits()
-        # Which sites are selected?
-        for site in sites:
-            if sites[site] == True:
-                sitenos.append(siteids[site])
-                self.db.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
-                result = self.db.cursor.fetchall()
-                if len(result) == 1:
-                    playerids.append(result[0][0])
+            sites   = self.filters.getSites()
+            heroes  = self.filters.getHeroes()
+            siteids = self.filters.getSiteIds()
+            limits  = self.filters.getLimits()
+            print "got filter data"
+            # Which sites are selected?
+            for site in sites:
+                if sites[site] == True:
+                    sitenos.append(siteids[site])
+                    self.db.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                    result = self.db.cursor.fetchall()
+                    if len(result) == 1:
+                        playerids.append(result[0][0])
 
-        if not sitenos:
-            #Should probably pop up here.
-            print "No sites selected - defaulting to PokerStars"
-            return
+            if not sitenos:
+                #Should probably pop up here.
+                print "No sites selected - defaulting to PokerStars"
+                return
 
-        if not playerids:
-            print "No player ids found"
-            return
+            if not playerids:
+                print "No player ids found"
+                return
 
-        if not limits:
-            print "No limits found"
-            return
+            if not limits:
+                print "No limits found"
+                return
 
-        #Set graph properties
-        self.ax = self.fig.add_subplot(111)
+            #Set graph properties
+            print "add_subplot"
+            self.ax = self.fig.add_subplot(111)
 
-        #Get graph data from DB
-        starttime = time()
-        line = self.getRingProfitGraph(playerids, sitenos, limits)
-        print "Graph generated in: %s" %(time() - starttime)
+            #Get graph data from DB
+            starttime = time()
+            print "get line: playerids =", playerids, "sitenos =", sitenos, "limits =", limits
+            line = self.getRingProfitGraph(playerids, sitenos, limits)
+            print "Graph generated in: %s" %(time() - starttime)
 
-        self.ax.set_title("Profit graph for ring games")
+            self.ax.set_title("Profit graph for ring games")
 
-        #Set axis labels and grid overlay properites
-        self.ax.set_xlabel("Hands", fontsize = 12)
-        self.ax.set_ylabel("$", fontsize = 12)
-        self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-        if line == None or line == []:
+            #Set axis labels and grid overlay properites
+            self.ax.set_xlabel("Hands", fontsize = 12)
+            self.ax.set_ylabel("$", fontsize = 12)
+            self.ax.grid(color='g', linestyle=':', linewidth=0.2)
+            if line == None or line == []:
 
-            #TODO: Do something useful like alert user
-            print "No hands returned by graph query"
-        else:
-#            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
-            text = "All Hands, " + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
+                #TODO: Do something useful like alert user
+                print "No hands returned by graph query"
+            else:
+    #            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
+                text = "All Hands, " + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
 
-            self.ax.annotate(text,
-                             xy=(10, -10),
-                             xycoords='axes points',
-                             horizontalalignment='left', verticalalignment='top',
-                             fontsize=10)
+                self.ax.annotate(text,
+                                 xy=(10, -10),
+                                 xycoords='axes points',
+                                 horizontalalignment='left', verticalalignment='top',
+                                 fontsize=10)
 
-            #Draw plot
-            self.ax.plot(line,)
+                #Draw plot
+                self.ax.plot(line,)
 
-            self.graphBox.add(self.canvas)
-            self.canvas.show()
-            self.canvas.draw()
-            #self.exportButton.set_sensitive(True)
+                self.graphBox.add(self.canvas)
+                self.canvas.show()
+                self.canvas.draw()
+                #self.exportButton.set_sensitive(True)
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+
     #end of def showClicked
 
     def getRingProfitGraph(self, names, sites, limits):
