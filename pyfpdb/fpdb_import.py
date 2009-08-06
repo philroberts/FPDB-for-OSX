@@ -85,6 +85,8 @@ class Importer:
         #self.settings.setdefault("forceThreads", 2)            # NOT USED NOW
         self.settings.setdefault("writeQSize", 1000)           # no need to change
         self.settings.setdefault("writeQMaxWait", 10)          # not used
+        self.settings.setdefault("dropIndexes", "don't drop")
+        self.settings.setdefault("dropHudCache", "don't drop")
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
