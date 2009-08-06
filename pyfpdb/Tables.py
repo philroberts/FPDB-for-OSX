@@ -234,7 +234,7 @@ def discover_nt_by_name(c, tablename):
         #print "Tables.py: tablename =", tablename, "title =", titles[hwnd]
         try:
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
-            if not tablename.lower() in titles[hwnd]: continue
+            if not tablename.lower() in titles[hwnd].lower(): continue
         except:
             continue
         if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
@@ -302,7 +302,9 @@ def decode_windows(c, title, hwnd):
     return info
 
 def win_enum_handler(hwnd, titles):
-    titles[hwnd] = win32gui.GetWindowText(hwnd).lower()
+    str = win32gui.GetWindowText(hwnd)
+    if str != "":
+        titles[hwnd] = win32gui.GetWindowText(hwnd)
   
 ###################################################################
 #    Utility routines used by all the discoverers.
