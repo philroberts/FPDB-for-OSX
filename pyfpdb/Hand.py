@@ -40,7 +40,7 @@ class Hand(object):
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
     SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
-    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7}
+    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8}
 
 
     def __init__(self, sitename, gametype, handText, builtFrom = "HHC"):
