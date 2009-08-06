@@ -156,6 +156,8 @@ follow :  whether to tail -f the input"""
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR_SYM': hand.SYMBOL[hand.gametype['currency']],
                 'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else ''}
+            for key in ('CUR_SYM', 'CUR'):
+                subst[key] = re.escape(subst[key])
             logging.debug("player_re: " + subst['PLYR'])
             logging.debug("CUR_SYM: " + subst['CUR_SYM'])
             logging.debug("CUR: " + subst['CUR'])
@@ -273,7 +275,7 @@ follow :  whether to tail -f the input"""
         if info['type'] == 'ring':
             info['sb'], info['bb'] = ringBlinds(mg['RINGLIMIT'])
             # FIXME: there are only $ and play money availible for cash
-            info['currency'] = currencies(mg['CURRENCY'])
+            info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = renderTrnyMoney(mg['SB'])
             info['bb'] = renderTrnyMoney(mg['BB'])
