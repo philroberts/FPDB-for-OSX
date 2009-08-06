@@ -181,9 +181,9 @@ or None if we fail to get the info """
         #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.handText,re.DOTALL)
         if hand.gametype['base'] == 'hold':
             m = re.search(r"\*\*\* POCKET CARDS \*\*\*(?P<PREFLOP>.+(?=\*\*\* FLOP \*\*\*)|.+)"
-                    r"\*\*\* FLOP \*\*\*(?P<FLOP>.+(?=\*\*\* TURN \*\*\*)|.+)"
-                    r"\*\*\* TURN \*\*\*(?P<TURN>.+(?=\*\*\* RIVER \*\*\*)|.+)"
-                    r"\*\*\* RIVER \*\*\*(?P<RIVER>.+)", hand.handText, re.DOTALL)
+                    r"(\*\*\* FLOP \*\*\*(?P<FLOP>.+(?=\*\*\* TURN \*\*\*)|.+))?"
+                    r"(\*\*\* TURN \*\*\*(?P<TURN>.+(?=\*\*\* RIVER \*\*\*)|.+))?"
+                    r"(\*\*\* RIVER \*\*\*(?P<RIVER>.+))?", hand.handText, re.DOTALL)
             
         elif hand.gametype['base'] == 'stud': # TODO: Not implemented yet
             m =     re.search(r"(?P<ANTES>.+(?=\*\* Dealing down cards \*\*)|.+)"
@@ -201,7 +201,7 @@ or None if we fail to get the info """
         logging.debug("readCommunityCards (%s)" % street)
         m = self.re_Board.search(hand.streets[street])
         cards = m.group('CARDS')
-        cards = [card.strip() for card in cards.split(',')]
+        cards = [validCard(card) for card in cards.split(' ')]
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
@@ -241,7 +241,7 @@ or None if we fail to get the info """
             # "2c, qh" -> ["2c","qc"]
             # Also works with Omaha hands.
             cards = m.group('CARDS')
-            cards = [card.strip() for card in cards.split(',')]
+            cards = [validCard(card) for card in cards.split(' ')]
 #            hand.addHoleCards(cards, m.group('PNAME'))
             hand.addHoleCards('PREFLOP', hand.hero, closed=cards, shown=False, mucked=False, dealt=True)
 
@@ -283,7 +283,7 @@ or None if we fail to get the info """
         logging.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = cards.split(', ')
+            cards = [validCard(card) for card in cards.split(' ')]
             logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
@@ -298,7 +298,7 @@ or None if we fail to get the info """
             try:
                 if m.group('CARDS') is not None:
                     cards = m.group('CARDS')
-                    cards = cards.split(', ')
+                    cards = [validCard(card) for card in cards.split(' ')]
                     player = m.group('PNAME')
                     logging.debug("readShownCards %s cards=%s" % (player, cards))
     #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
@@ -306,6 +306,13 @@ or None if we fail to get the info """
             except IndexError:
                 pass # there's no "PLAYER - Mucks" at AP that I can see
 
+def validCard(card):
+    card = card.strip()
+    if card == '10s': card = 'Ts'
+    if card == '10h': card = 'Th'
+    if card == '10d': card = 'Td'
+    if card == '10c': card = 'Tc'
+    return card
 
 if __name__ == "__main__":
     parser = OptionParser()
