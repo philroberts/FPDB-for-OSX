@@ -914,7 +914,7 @@ class Database:
     #end def dropAllIndexes
     
     def fillDefaultData(self):
-        c = self.get_cursor()
+        c = self.get_cursor() 
         c.execute("INSERT INTO Settings (version) VALUES (118);")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
