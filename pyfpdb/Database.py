@@ -917,6 +917,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
         #c.execute("""INSERT INTO TourneyTypes
         #          (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
