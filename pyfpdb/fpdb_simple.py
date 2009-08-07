@@ -992,9 +992,9 @@ def recognisePlayerIDs(db, names, site_id):
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
         if notfound: # insert them into database
-            q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
-            q_ins = q_ins.replace('%s', db.sql.query['placeholder'])
-            c.executemany(q_ins, [(n,) for n in notfound])
+            #q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
+            #q_ins = q_ins.replace('%s', db.sql.query['placeholder'])
+            c.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
             q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
             q2 = q2.replace('%s', db.sql.query['placeholder'])
             c.execute(q2, notfound) # get their new ids
