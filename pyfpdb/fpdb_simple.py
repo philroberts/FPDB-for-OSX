@@ -400,10 +400,11 @@ def isActionLine(line):
 #end def isActionLine
  
 #returns whether this is a duplicate
-def isAlreadyInDB(cursor, gametypeID, siteHandNo):
+def isAlreadyInDB(db, gametypeID, siteHandNo):
     #print "isAlreadyInDB gtid,shand:",gametypeID, siteHandNo
-    cursor.execute ("SELECT id FROM Hands WHERE gametypeId=%s AND siteHandNo=%s", (gametypeID, siteHandNo))
-    result=cursor.fetchall()
+    c = db.get_cursor()
+    c.execute( db.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
+    result = c.fetchall()
     if (len(result)>=1):
         raise DuplicateError ("dupl")
 #end isAlreadyInDB
@@ -898,9 +899,11 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
     
     #print "recogniseGametypeID small_bet/blind:",small_bet,"big bet/blind:", big_bet,"limit type:",limit_type
     if (limit_type=="fl"):
-        cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBet=%s AND bigBet=%s", (site_id, type, category, limit_type, small_bet, big_bet))
+        cursor.execute ( db.sql.query['getGametypeFL']
+                       , (site_id, type, category, limit_type, small_bet, big_bet))
     else:
-        cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
+        cursor.execute ( db.sql.query['getGametypeNL']
+                       , (site_id, type, category, limit_type, small_bet, big_bet))
     result=cursor.fetchone()
     #print "recgt1 result=",result
     #ret=result[0]
@@ -935,25 +938,16 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
                     small_blind=float2int(smallBlindLine[pos:])
             else:
                 small_blind=0
-            cursor.execute( """INSERT INTO Gametypes(siteId, type, base, category, limitType
-                                                    ,hiLo, smallBlind, bigBlind, smallBet, bigBet)
-                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-                          , (site_id, type, base, category, limit_type, hiLo
-                            ,small_blind, big_blind, small_bet, big_bet) )
+            result = db.insertGameTypes( (site_id, type, base, category, limit_type, hiLo
+                                         ,small_blind, big_blind, small_bet, big_bet) )
             #cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s 
             #AND limitType=%s AND smallBet=%s AND bigBet=%s", (site_id, type, category, limit_type, small_bet, big_bet))
         else:
-            cursor.execute( """INSERT INTO Gametypes(siteId, type, base, category, limitType
-                                                    ,hiLo, smallBlind, bigBlind, smallBet, bigBet)
-                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-                          , (site_id, type, base, category, limit_type
-                            ,hiLo, small_bet, big_bet, 0, 0))#remember, for these bet means blind
+            result = db.insertGameTypes( (site_id, type, base, category, limit_type, hiLo
+                                         ,small_bet, big_bet, 0, 0) )#remember, for these bet means blind
             #cursor.execute ("SELECT id FROM Gametypes WHERE siteId=%s AND type=%s AND category=%s
             #AND limitType=%s AND smallBlind=%s AND bigBlind=%s", (site_id, type, category, limit_type, small_bet, big_bet))
  
-        #result=(db.insert_id(),)
-        result=(db.get_last_insert_id(),)
-    
     return result[0]
 #end def recogniseGametypeID
  
