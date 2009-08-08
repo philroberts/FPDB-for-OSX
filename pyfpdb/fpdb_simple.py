@@ -984,14 +984,17 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 #        result.append(tmp[0][0])
 #    return result
 
-def recognisePlayerIDs(cursor, names, site_id):
-    q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in names]))
-    cursor.execute(q, names) # get all playerids by the names passed in
-    ids = dict(cursor.fetchall()) # convert to dict
+def recognisePlayerIDs(db, names, site_id):
+    c = db.get_cursor()
+    q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" %(site_id, " OR name=".join([db.sql.query['placeholder'] for n in names]))
+    c.execute(q, names) # get all playerids by the names passed in
+    ids = dict(c.fetchall()) # convert to dict
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
         if notfound: # insert them into database
-            c.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
+            q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
+            q_ins = q_ins.replace('%s', db.sql.query['placeholder'])
+            c.executemany(q_ins, [(n,) for n in notfound])
             q2 = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in notfound]))
             q2 = q2.replace('%s', db.sql.query['placeholder'])
             c.execute(q2, notfound) # get their new ids

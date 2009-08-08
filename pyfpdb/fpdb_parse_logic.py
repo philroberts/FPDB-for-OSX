@@ -93,7 +93,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
             seatLines.append(line)
 
     names       = fpdb_simple.parseNames(seatLines)
-    playerIDs   = fpdb_simple.recognisePlayerIDs(db.get_cursor(), names, siteID)  # inserts players as needed
+    playerIDs   = fpdb_simple.recognisePlayerIDs(db, names, siteID)  # inserts players as needed
     tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
