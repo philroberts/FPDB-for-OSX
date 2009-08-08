@@ -185,31 +185,49 @@ db: a connected fpdb_db object"""
         # TODO:
         # Players - base playerid and siteid tuple
         sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
+
+        #Gametypes
+
+        print "DEBUG: self.gametype %s" % self.gametype
+        #Nice way to discover if the game is already listed in the db?
+        #Also this is using an old method from fpdb_simple - should probably conform to the rest of the inserts
+
+        hilo = "h"
+        if self.gametype['category'] in ['studhilo', 'omahahilo']:
+            hilo = "s"
+        elif self.gametype['category'] in ['razz','27_3draw','badugi']:
+            hilo = "l"
+        #FIXME - the two zeros are small_bet and big_bet for limit
+        gtid = db.insertGameTypes( (self.siteId, self.gametype['type'], self.gametype['base'], 
+                                    self.gametype['category'], self.gametype['limitType'], hilo,
+                                    self.gametype['sb'], self.gametype['bb'], 0, 0) )
+        
+
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
-        # BoardCards - Skip - no longer necessary
         # Hands - Summary information of hand indexed by handId - gameinfo
-             #hh['siteHandNo'] =  self.handid
-             # gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                #
-             #hh['handStart'] = self.starttime
-             # seats TINYINT NOT NULL,
-                #
-             #hh['tableName'] = self.tablenam
-             #hh['maxSeats'] = self.maxseats
+        #This should be moved to prepInsert
+        hh = {}
+        hh['siteHandNo'] =  self.handid
+        hh['handStart'] = self.starttime
+        # seats TINYINT NOT NULL,
+        hh['tableName'] = self.tablename
+        hh['maxSeats'] = self.maxseats
              # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
              # boardcard2 smallint,
              # boardcard3 smallint,
              # boardcard4 smallint,
              # boardcard5 smallint,
-                 # Flop turn and river may all be empty - add (likely) too many elements and trim with range
-                 # boardcards = board['FLOP'] + board['TURN'] + board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
-                 # cards = [Card.cardFromValueSuit(v,s) for v,s in boardcards[0:4]]
-                 # hh['boardcard1'] = cards[0]
-                 # hh['boardcard2'] = cards[1]
-                 # hh['boardcard3'] = cards[2]
-                 # hh['boardcard4'] = cards[3]
-                 # hh['boardcard5'] = cards[4]
+        # Flop turn and river may all be empty - add (likely) too many elements and trim with range
+        boardcards = self.board['FLOP'] + self.board['TURN'] + self.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
+        cards = [Card.encodeCard(c) for c in boardcards[0:5]]
+        hh['boardcard1'] = cards[0]
+        hh['boardcard2'] = cards[1]
+        hh['boardcard3'] = cards[2]
+        hh['boardcard4'] = cards[3]
+        hh['boardcard5'] = cards[4]
+
+        print hh
              # texture smallint,
              # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                 # Needs to be recorded
@@ -244,7 +262,7 @@ db: a connected fpdb_db object"""
              # showdownPot INT,                 /* pot size at sd/street7 */
              # comment TEXT,
              # commentTs DATETIME
-        # handid = db.storeHand(hh)
+        handid = db.storeHand(hh)
         # HandsPlayers - ? ... Do we fix winnings?
         # Tourneys ?
         # TourneysPlayers
@@ -453,6 +471,7 @@ Add a raise on [street] by [player] to [amountTo]
 
     def addCheck(self, street, player):
         #print "DEBUG: %s %s checked" % (street, player)
+        logging.debug("%s %s checks" % (street, player))
         self.checkPlayerExists(player)
         self.actions[street].append((player, 'checks'))
 

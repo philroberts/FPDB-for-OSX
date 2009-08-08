@@ -432,7 +432,8 @@
     </hhcs>
 
     <supported_databases>
-    	<database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD" db_type="fpdb"></database>
+        <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD" db_type="fpdb"></database>
+        <!-- <database db_ip="localhost" db_name="fpdb" db_pass="fpdb" db_server="sqlite" db_type="fpdb" db_user="fpdb"/> -->
     </supported_databases>
 
 </FreePokerToolsConfig>
