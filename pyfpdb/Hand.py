@@ -185,6 +185,24 @@ db: a connected fpdb_db object"""
         # TODO:
         # Players - base playerid and siteid tuple
         sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
+
+        #Gametypes
+
+        print "DEBUG: self.gametype %s" % self.gametype
+        #Nice way to discover if the game is already listed in the db?
+        #Also this is using an old method from fpdb_simple - should probably conform to the rest of the inserts
+
+        hilo = "h"
+        if self.gametype['category'] in ['studhilo', 'omahahilo']:
+            hilo = "s"
+        elif self.gametype['category'] in ['razz','27_3draw','badugi']:
+            hilo = "l"
+        #FIXME - the two zeros are small_bet and big_bet for limit
+        gtid = db.insertGameTypes( (self.siteId, self.gametype['type'], self.gametype['base'], 
+                                    self.gametype['category'], self.gametype['limitType'], hilo,
+                                    self.gametype['sb'], self.gametype['bb'], 0, 0) )
+        
+
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
         # Hands - Summary information of hand indexed by handId - gameinfo
@@ -208,6 +226,7 @@ db: a connected fpdb_db object"""
         hh['boardcard3'] = cards[2]
         hh['boardcard4'] = cards[3]
         hh['boardcard5'] = cards[4]
+
         print hh
              # texture smallint,
              # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
