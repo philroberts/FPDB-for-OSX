@@ -1043,7 +1043,7 @@ class Database:
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        print "DEBUG: name: %s site: %s" %(name, site_id)
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
 
         c.execute (q, (site_id, name))
 
@@ -1121,70 +1121,70 @@ class Database:
 
     def storeHand(self, p):
         #stores into table hands:
-        self.cursor.execute ("""INSERT INTO Hands ( 
+        q = """INSERT INTO Hands ( 
             tablename, 
-            sitehandno,
             gametypeid, 
+            sitehandno,
             handstart, 
             importtime,
-            seats, 
             maxseats,
             boardcard1, 
             boardcard2, 
             boardcard3, 
             boardcard4, 
-            boardcard5,
---            texture,
-            playersVpi,
-            playersAtStreet1, 
-            playersAtStreet2,
-            playersAtStreet3, 
-            playersAtStreet4, 
-            playersAtShowdown,
-            street0Raises,
-            street1Raises,
-            street2Raises,
-            street3Raises,
-            street4Raises,
---            street1Pot,
---            street2Pot,
---            street3Pot,
---            street4Pot,
---            showdownPot
+            boardcard5
              ) 
              VALUES 
-              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-            %s, %s, %s, %s, %s, %s, %s)""",
-            (
-                p['tablename'], 
-                p['sitehandno'], 
+              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+#---            texture,
+#--            playersVpi,
+#--            playersAtStreet1, 
+#--            playersAtStreet2,
+#--            playersAtStreet3, 
+#--            playersAtStreet4, 
+#--            playersAtShowdown,
+#--            street0Raises,
+#--            street1Raises,
+#--            street2Raises,
+#--            street3Raises,
+#--            street4Raises,
+#--            street1Pot,
+#--            street2Pot,
+#--            street3Pot,
+#--            street4Pot,
+#--            showdownPot
+#--            seats, 
+
+        q = q.replace('%s', self.sql.query['placeholder'])
+        self.cursor.execute(q, (
+                p['tableName'], 
+                p['siteHandNo'], 
                 p['gametypeid'], 
                 p['handStart'], 
-                datetime.datetime.today(), 
-                len(p['names']),
+                datetime.today(), #importtime
+#                len(p['names']), #seats
                 p['maxSeats'],
                 p['boardcard1'], 
                 p['boardcard2'], 
                 p['boardcard3'], 
                 p['boardcard4'], 
-                p['boardcard5'],
-                hudCache['playersVpi'], 
-                hudCache['playersAtStreet1'], 
-                hudCache['playersAtStreet2'],
-                hudCache['playersAtStreet3'], 
-                hudCache['playersAtStreet4'], 
-                hudCache['playersAtShowdown'],
-                hudCache['street0Raises'], 
-                hudCache['street1Raises'], 
-                hudCache['street2Raises'],
-                hudCache['street3Raises'], 
-                hudCache['street4Raises'], 
-                hudCache['street1Pot'],
-                hudCache['street2Pot'], 
-                hudCache['street3Pot'],
-                hudCache['street4Pot'],
-                hudCache['showdownPot']
-            )
+                p['boardcard5'])
+#                hudCache['playersVpi'], 
+#                hudCache['playersAtStreet1'], 
+#                hudCache['playersAtStreet2'],
+#                hudCache['playersAtStreet3'], 
+#                hudCache['playersAtStreet4'], 
+#                hudCache['playersAtShowdown'],
+#                hudCache['street0Raises'], 
+#                hudCache['street1Raises'], 
+#                hudCache['street2Raises'],
+#                hudCache['street3Raises'], 
+#                hudCache['street4Raises'], 
+#                hudCache['street1Pot'],
+#                hudCache['street2Pot'], 
+#                hudCache['street3Pot'],
+#                hudCache['street4Pot'],
+#                hudCache['showdownPot']
         )
         #return getLastInsertId(backend, conn, cursor)
     # def storeHand
