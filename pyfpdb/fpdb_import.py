@@ -85,6 +85,8 @@ class Importer:
         #self.settings.setdefault("forceThreads", 2)            # NOT USED NOW
         self.settings.setdefault("writeQSize", 1000)           # no need to change
         self.settings.setdefault("writeQMaxWait", 10)          # not used
+        self.settings.setdefault("dropIndexes", "don't drop")
+        self.settings.setdefault("dropHudCache", "don't drop")
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
@@ -130,6 +132,9 @@ class Importer:
 #       self.updated = time()
 
     def clearFileList(self):
+        self.updatedsize = {}
+        self.updatetime = {}
+        self.pos_in_file = {}
         self.filelist = {}
 
     def closeDBs(self):
@@ -197,7 +202,7 @@ class Importer:
         print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
             self.settings['dropIndexes'] = self.calculate_auto2(self.database, 12.0, 500.0)
-        if self.settings['dropHudCache'] == 'auto':
+        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'auto':
             self.settings['dropHudCache'] = self.calculate_auto2(self.database, 25.0, 500.0)    # returns "drop"/"don't drop"
 
         if self.settings['dropIndexes'] == 'drop':
@@ -239,7 +244,7 @@ class Importer:
             self.database.afterBulkImport()
         else:
             print "No need to rebuild indexes."
-        if self.settings['dropHudCache'] == 'drop':
+        if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'drop':
             self.database.rebuild_hudcache()
         else:
             print "No need to rebuild hudcache."
@@ -377,7 +382,7 @@ class Importer:
 
         # Load filter, process file, pass returned filename to import_fpdb_file
             
-        if self.writeq != None:
+        if self.settings['threads'] > 0 and self.writeq != None:
             print "\nConverting " + file + " (" + str(q.qsize()) + ")"
         else:
             print "\nConverting " + file

@@ -98,7 +98,7 @@ class Database:
     foreignKeys = [
                     [ ] # no db with index 0
                   , [ ] # no db with index 1
-                  , [ # foreign keys for mysql
+                  , [ # foreign keys for mysql (index 2)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
@@ -107,7 +107,7 @@ class Database:
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
                     ]
-                  , [ # foreign keys for postgres
+                  , [ # foreign keys for postgres (index 3)
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
@@ -115,6 +115,8 @@ class Database:
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
                     , {'fktab':'HudCache',     'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    ]
+                  , [ # no foreign keys in sqlite (index 4)
                     ]
                   ]
 
@@ -233,9 +235,15 @@ class Database:
         self.fdb.reconnect(due_to_error=False)
     
     def get_backend_name(self):
-        """Reconnects the DB"""
-        return self.fdb.get_backend_name()
-        
+        """Returns the name of the currently used backend"""
+        if self.backend==2:
+            return "MySQL InnoDB"
+        elif self.backend==3:
+            return "PostgreSQL"
+        elif self.backend==4:
+            return "SQLite"
+        else:
+            raise fpdb_simple.FpdbError("invalid backend")
 
     def get_table_name(self, hand_id):
         c = self.connection.cursor()
@@ -465,11 +473,39 @@ class Database:
         result = c.fetchall()
         return result
 
-    def get_last_insert_id(self):
+    def get_last_insert_id(self, cursor=None):
+        ret = None
         try:
-            ret = self.fdb.getLastInsertId()
+            if self.backend == self.MYSQL_INNODB:
+                ret = self.connection.insert_id()
+                if ret < 1 or ret > 999999999:
+                    print "getLastInsertId(): problem fetching insert_id? ret=", ret
+                    ret = -1
+            elif self.backend == self.PGSQL:
+                # some options:
+                # currval(hands_id_seq) - use name of implicit seq here
+                # lastval() - still needs sequences set up?
+                # insert ... returning  is useful syntax (but postgres specific?)
+                # see rules (fancy trigger type things)
+                c = self.get_cursor()
+                ret = c.execute ("SELECT lastval()")
+                row = c.fetchone()
+                if not row:
+                    print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
+                    ret = -1
+                else:
+                    ret = row[0]
+            elif self.backend == self.SQLITE:
+                ret = cursor.lastrowid
+            else:
+                print "getLastInsertId(): unknown backend ", self.backend
+                ret = -1
         except:
-            print "get_last_insert_id error:", str(sys.exc_value)
+            ret = -1
+            err = traceback.extract_tb(sys.exc_info()[2])
+            print "***get_last_insert_id error: " + str(sys.exc_info()[1])
+            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+            raise
         return ret
 
 
@@ -847,6 +883,7 @@ class Database:
 
             self.commit()
         except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             self.rollback()
             raise
@@ -920,6 +957,11 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('OnGame', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('UltimateBet', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Betfair', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes VALUES (NULL, 1, 0, 0, 0, 0);")
         else:
@@ -934,12 +976,14 @@ class Database:
 
         try:
             stime = time()
-            self.connection.cursor().execute(self.sql.query['clearHudCache'])
-            self.connection.cursor().execute(self.sql.query['rebuildHudCache'])
+            self.get_cursor().execute(self.sql.query['clearHudCache'])
+            self.get_cursor().execute(self.sql.query['rebuildHudCache'])
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "Error rebuilding hudcache:", str(sys.exc_value)
+            print err
     #end def rebuild_hudcache
 
 
@@ -996,15 +1040,21 @@ class Database:
     def insertPlayer(self, name, site_id):
         result = None
         c = self.get_cursor()
-        c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-        tmp=c.fetchall()
+        c.execute ("SELECT id FROM Players WHERE name=%s".replace('%s',self.sql.query['placeholder'])
+                  ,(name,))
+        tmp = c.fetchone()
         if (len(tmp)==0): #new player
-            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (name, site_id))
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                      ,(name, site_id))
             #Get last id might be faster here.
-            c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            tmp=c.fetchall()
-        return tmp[0][0]
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            tmp = [self.get_last_insert_id(c)]
+        return tmp[0]
 
+    def insertGameTypes(self, row):
+        c = self.get_cursor()
+        c.execute( self.sql.query['insertGameTypes'], row )
+        return [self.get_last_insert_id(c)]
 
     def store_the_hand(self, h):
         """Take a HandToWrite object and store it in the db"""
@@ -1064,6 +1114,76 @@ class Database:
         return result
     #end def store_the_hand
 
+    def storeHand(self, p):
+        #stores into table hands:
+        self.cursor.execute ("""INSERT INTO Hands ( 
+            tablename, 
+            sitehandno,
+            gametypeid, 
+            handstart, 
+            importtime,
+            seats, 
+            maxseats,
+            boardcard1, 
+            boardcard2, 
+            boardcard3, 
+            boardcard4, 
+            boardcard5,
+--            texture,
+            playersVpi,
+            playersAtStreet1, 
+            playersAtStreet2,
+            playersAtStreet3, 
+            playersAtStreet4, 
+            playersAtShowdown,
+            street0Raises,
+            street1Raises,
+            street2Raises,
+            street3Raises,
+            street4Raises,
+--            street1Pot,
+--            street2Pot,
+--            street3Pot,
+--            street4Pot,
+--            showdownPot
+             ) 
+             VALUES 
+              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+            %s, %s, %s, %s, %s, %s, %s)""",
+            (
+                p['tablename'], 
+                p['sitehandno'], 
+                p['gametypeid'], 
+                p['handStart'], 
+                datetime.datetime.today(), 
+                len(p['names']),
+                p['maxSeats'],
+                p['boardcard1'], 
+                p['boardcard2'], 
+                p['boardcard3'], 
+                p['boardcard4'], 
+                p['boardcard5'],
+                hudCache['playersVpi'], 
+                hudCache['playersAtStreet1'], 
+                hudCache['playersAtStreet2'],
+                hudCache['playersAtStreet3'], 
+                hudCache['playersAtStreet4'], 
+                hudCache['playersAtShowdown'],
+                hudCache['street0Raises'], 
+                hudCache['street1Raises'], 
+                hudCache['street2Raises'],
+                hudCache['street3Raises'], 
+                hudCache['street4Raises'], 
+                hudCache['street1Pot'],
+                hudCache['street2Pot'], 
+                hudCache['street3Pot'],
+                hudCache['street4Pot'],
+                hudCache['showdownPot']
+            )
+        )
+        #return getLastInsertId(backend, conn, cursor)
+    # def storeHand
+
     def storeHands(self, backend, site_hand_no, gametype_id
                   ,hand_start_time, names, tableName, maxSeats, hudCache
                   ,board_values, board_suits):
@@ -1071,30 +1191,31 @@ class Database:
         cards = [Card.cardFromValueSuit(v,s) for v,s in zip(board_values,board_suits)]
         #stores into table hands:
         try:
-            self.get_cursor().execute ("""INSERT INTO Hands 
-                                          (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
-                                          ,boardcard1,boardcard2,boardcard3,boardcard4,boardcard5
-                                          ,playersVpi, playersAtStreet1, playersAtStreet2
-                                          ,playersAtStreet3, playersAtStreet4, playersAtShowdown
-                                          ,street0Raises, street1Raises, street2Raises
-                                          ,street3Raises, street4Raises, street1Pot
-                                          ,street2Pot, street3Pot, street4Pot
-                                          ,showdownPot
-                                          ) 
-                                          VALUES 
-                                          (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                                       """
-                                      ,   (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.today(), maxSeats
-                                          ,cards[0], cards[1], cards[2], cards[3], cards[4]
-                                          ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
-                                          ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
-                                          ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
-                                          ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
-                                          ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
-                                          ,hudCache['showdownPot']
-                                          ))
-            ret = self.get_last_insert_id()
+            c = self.get_cursor()
+            c.execute ("""INSERT INTO Hands 
+                          (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
+                          ,boardcard1,boardcard2,boardcard3,boardcard4,boardcard5
+                          ,playersVpi, playersAtStreet1, playersAtStreet2
+                          ,playersAtStreet3, playersAtStreet4, playersAtShowdown
+                          ,street0Raises, street1Raises, street2Raises
+                          ,street3Raises, street4Raises, street1Pot
+                          ,street2Pot, street3Pot, street4Pot
+                          ,showdownPot
+                          ) 
+                          VALUES 
+                          (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                       """.replace('%s', self.sql.query['placeholder'])
+                      ,   (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.today(), maxSeats
+                          ,cards[0], cards[1], cards[2], cards[3], cards[4]
+                          ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
+                          ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
+                          ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
+                          ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
+                          ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
+                          ,hudCache['showdownPot']
+                          ))
+            ret = self.get_last_insert_id(c)
         except:
             ret = -1
             raise fpdb_simple.FpdbError( "storeHands error: " + str(sys.exc_value) )
@@ -1163,7 +1284,8 @@ class Database:
                                  hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
                                  hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
                                 ) )
-            self.get_cursor().executemany ("""
+            c = self.get_cursor()
+            c.executemany ("""
         INSERT INTO HandsPlayers
         (handId, playerId, startCash, position, tourneyTypeId,
          card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
@@ -1186,13 +1308,9 @@ class Database:
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
-            result.append( self.get_last_insert_id() )
-                
-            #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
-            #result.append(cursor.fetchall()[0][0])
-            result.append( self.get_last_insert_id() )
+            result.append( self.get_last_insert_id(c) ) # wrong? not used currently
         except:
             raise fpdb_simple.FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
 
@@ -1215,13 +1333,14 @@ class Database:
                 card6 = Card.cardFromValueSuit(card_values[i][5], card_suits[i][5])
                 card7 = Card.cardFromValueSuit(card_values[i][6], card_suits[i][6])
 
-                self.get_cursor().execute ("""INSERT INTO HandsPlayers
+                c = self.get_cursor()
+                c.execute ("""INSERT INTO HandsPlayers
         (handId, playerId, startCash, ante, tourneyTypeId,
         card1, card2,
         card3, card4,
         card5, card6,
         card7, winnings, rake, seatNo)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                 (hands_id, player_ids[i], start_cashes[i], antes[i], 1, 
                 card1, card2,
                 card3, card4,
@@ -1229,7 +1348,7 @@ class Database:
                 card7, winnings[i], rakes[i], seatNos[i]))
                 #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
                 #result.append(cursor.fetchall()[0][0])
-                result.append( self.get_last_insert_id() )
+                result.append( self.get_last_insert_id(c) )
         except:
             raise fpdb_simple.FpdbError( "store_hands_players_stud error: " + str(sys.exc_value) )
 
@@ -1292,7 +1411,8 @@ class Database:
                                  hudCache['street3Bets'][i], hudCache['street4Bets'][i]
                                 ) )
 
-            self.get_cursor().executemany ("""
+            c = self.get_cursor()
+            c.executemany ("""
         INSERT INTO HandsPlayers
         (handId, playerId, startCash, position, tourneyTypeId,
          card1, card2, card3, card4, startCards, winnings, rake, tourneysPlayersId, seatNo, totalProfit,
@@ -1316,10 +1436,10 @@ class Database:
         (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
 
-            result.append( self.get_last_insert_id() )
+            result.append( self.get_last_insert_id(c) )
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
         except:
@@ -1335,14 +1455,15 @@ class Database:
         try:
             result=[]
             for i in xrange(len(player_ids)):
-                self.get_cursor().execute ("""INSERT INTO HandsPlayers
+                c = self.get_cursor()
+                c.execute ("""INSERT INTO HandsPlayers
         (handId, playerId, startCash, ante,
         card1Value, card1Suit, card2Value, card2Suit,
         card3Value, card3Suit, card4Value, card4Suit,
         card5Value, card5Suit, card6Value, card6Suit,
         card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s, %s, %s, %s, %s)""",
+        %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                 (hands_id, player_ids[i], start_cashes[i], antes[i],
                 card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
                 card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
@@ -1350,7 +1471,7 @@ class Database:
                 card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
                 #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
                 #result.append(cursor.fetchall()[0][0])
-                result.append( self.get_last_insert_id() )
+                result.append( self.get_last_insert_id(c) )
         except:
             raise fpdb_simple.FpdbError( "store_hands_players_stud_tourney error: " + str(sys.exc_value) )
         
@@ -1488,24 +1609,28 @@ class Database:
     AND   position=%s 
     AND   tourneyTypeId+0=%s
     AND   styleKey=%s
-                          """, (row[6], row[7], row[8], row[9], row[10],
-                                row[11], row[12], row[13], row[14], row[15],
-                                row[16], row[17], row[18], row[19], row[20],
-                                row[21], row[22], row[23], row[24], row[25],
-                                row[26], row[27], row[28], row[29], row[30],
-                                row[31], row[32], row[33], row[34], row[35],
-                                row[36], row[37], row[38], row[39], row[40],
-                                row[41], row[42], row[43], row[44], row[45],
-                                row[46], row[47], row[48], row[49], row[50],
-                                row[51], row[52], row[53], row[54], row[55],
-                                row[56], row[57], row[58], row[59], row[60],
-                                row[1], row[2], row[3], str(row[4]), row[5], styleKey))
+                                     """.replace('%s', self.sql.query['placeholder'])
+                                    ,(row[6], row[7], row[8], row[9], row[10],
+                                      row[11], row[12], row[13], row[14], row[15],
+                                      row[16], row[17], row[18], row[19], row[20],
+                                      row[21], row[22], row[23], row[24], row[25],
+                                      row[26], row[27], row[28], row[29], row[30],
+                                      row[31], row[32], row[33], row[34], row[35],
+                                      row[36], row[37], row[38], row[39], row[40],
+                                      row[41], row[42], row[43], row[44], row[45],
+                                      row[46], row[47], row[48], row[49], row[50],
+                                      row[51], row[52], row[53], row[54], row[55],
+                                      row[56], row[57], row[58], row[59], row[60],
+                                      row[1], row[2], row[3], str(row[4]), row[5], styleKey))
                 # Test statusmessage to see if update worked, do insert if not
-                #print "storehud2, upd num =", num
+                #print "storehud2, upd num =", num.rowcount
+                # num is a cursor in sqlite
                 if (   (backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (backend == self.MYSQL_INNODB and num == 0) ):
+                    or (backend == self.MYSQL_INNODB and num == 0) 
+                    or (backend == self.SQLITE and num.rowcount == 0) 
+                   ):
                     #print "playerid before insert:",row[2]," num = ", num
-                    cursor.execute("""INSERT INTO HudCache
+                    num = cursor.execute("""INSERT INTO HudCache
     (gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
     HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
     street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
@@ -1529,14 +1654,14 @@ class Database:
     %s, %s, %s, %s, %s,
     %s, %s, %s, %s, %s,
     %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s)"""
+    %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                   , (row[1], row[2], row[3], row[4], row[5], styleKey, row[6], row[7], row[8], row[9], row[10]
                                     ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
                                     ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
                                     ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
                                     ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
                                     ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]) )
-                    #print "hopefully inserted hud data line: ", cursor.statusmessage
+                    #print "hopefully inserted hud data line: ", cursor.rowcount
                     # message seems to be "INSERT 0 1"
                 else:
                     #print "updated(2) hud data line"
@@ -1552,7 +1677,8 @@ class Database:
     def store_tourneys(self, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
         try:
             cursor = self.get_cursor()
-            cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
+            cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s".replace('%s', self.sql.query['placeholder'])
+                          , (siteTourneyNo, tourneyTypeId))
             tmp=cursor.fetchone()
             #print "tried SELECTing tourneys.id, result:",tmp
             
@@ -1561,7 +1687,8 @@ class Database:
             except TypeError:#means we have to create new one
                 cursor.execute("""INSERT INTO Tourneys
         (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime)
-        VALUES (%s, %s, %s, %s, %s)""", (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
+        VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+                              ,(tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
                 cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
                 tmp=cursor.fetchone()
                 #print "created new tourneys.id:",tmp
@@ -1581,7 +1708,8 @@ class Database:
             #print "ranks:",ranks
             #print "winnings:",winnings
             for i in xrange(len(player_ids)):
-                cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s", (tourney_id, player_ids[i]))
+                cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
+                              ,(tourney_id, player_ids[i]))
                 tmp=cursor.fetchone()
                 #print "tried SELECTing tourneys_players.id:",tmp
                 
@@ -1589,10 +1717,10 @@ class Database:
                     len(tmp)
                 except TypeError:
                     cursor.execute("""INSERT INTO TourneysPlayers
-        (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""",
+        (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                     (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
                     
-                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s",
+                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder']),
                                    (tourney_id, player_ids[i]))
                     tmp=cursor.fetchone()
                     #print "created new tourneys_players.id:",tmp
