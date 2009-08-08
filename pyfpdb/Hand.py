@@ -453,6 +453,7 @@ Add a raise on [street] by [player] to [amountTo]
 
     def addCheck(self, street, player):
         #print "DEBUG: %s %s checked" % (street, player)
+        logging.debug("%s %s checks" % (street, player))
         self.checkPlayerExists(player)
         self.actions[street].append((player, 'checks'))
 
