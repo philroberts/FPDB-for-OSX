@@ -96,14 +96,14 @@ Otherwise, finish at eof.
         else:
             handsList = self.allHandsAsList()
             logging.info("Parsing %d hands" % len(handsList))
-            nBadHangs = 0
+            nBadHands = 0
             for handText in handsList:
                 try:
                     self.processedHands.append(self.processHand(handText))
                 except Exception, e: # TODO: it's better to replace it with s-t like HhcEception
-                    nBadHangs += 1
+                    nBadHands += 1
                     logging.error("Caught exception while parsing hand: %s" % str(e))
-            numHands =  len(handsList) - nBadHangs
+            numHands =  len(handsList) - nBadHands
         endtime = time.time()
         print "read %d hands in %.3f seconds" % (numHands, endtime - starttime)
         if self.out_fh != sys.stdout:
