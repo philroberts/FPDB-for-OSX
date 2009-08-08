@@ -593,19 +593,20 @@ class Config:
         return paths
     
     def get_frames(self, site = "PokerStars"):
+        if site not in self.supported_sites: return False
         return self.supported_sites[site].use_frames == True
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        if self.supported_sites[site].hudopacity == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudopacity == "":
             colors['hudopacity'] = 0.90
         else:
             colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if self.supported_sites[site].hudbgcolor == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudbgcolor == "":
             colors['hudbgcolor'] = "#FFFFFF"
         else:
             colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if self.supported_sites[site].hudfgcolor == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudfgcolor == "":
             colors['hudfgcolor'] = "#000000"
         else:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
@@ -613,6 +614,8 @@ class Config:
     
     def get_default_font(self, site = 'PokerStars'):
         (font, font_size) = ("Sans", "8")
+        if site not in self.supported_sites:
+            return ("Sans", "8")
         if self.supported_sites[site].font == "":
             font = "Sans"
         else:

@@ -79,7 +79,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         rebuyOrAddon    = -1
 
         tourneyTypeId   = 1
-    fpdb_simple.isAlreadyInDB(db.get_cursor(), gametypeID, siteHandNo)
+    fpdb_simple.isAlreadyInDB(db, gametypeID, siteHandNo)
     
     hand = fpdb_simple.filterCrap(hand, isTourney)
     
@@ -93,7 +93,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
             seatLines.append(line)
 
     names       = fpdb_simple.parseNames(seatLines)
-    playerIDs   = fpdb_simple.recognisePlayerIDs(db.get_cursor(), names, siteID)  # inserts players as needed
+    playerIDs   = fpdb_simple.recognisePlayerIDs(db, names, siteID)  # inserts players as needed
     tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
@@ -141,7 +141,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         fpdb_simple.checkPositions(positions)
         
     c = db.get_cursor()
-    c.execute("SELECT limitType FROM Gametypes WHERE id=%s",(gametypeID, ))
+    c.execute("SELECT limitType FROM Gametypes WHERE id=%s" % (db.sql.query['placeholder'],), (gametypeID, ))
     limit_type = c.fetchone()[0]
     fpdb_simple.convert3B4B(category, limit_type, actionTypes, actionAmounts)
     

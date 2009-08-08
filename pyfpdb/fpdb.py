@@ -531,7 +531,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def tab_table_viewer(self, widget, data=None):
         """opens a table viewer tab"""
         #print "start of tab_table_viewer"
-        new_tv_thread=GuiTableViewer.GuiTableViewer(self.db.fdb, self.settings)
+        new_tv_thread = GuiTableViewer.GuiTableViewer(self.db, self.settings, self.config)
         self.threads.append(new_tv_thread)
         tv_tab=new_tv_thread.get_vbox()
         self.add_and_display_tab(tv_tab, "Table Viewer")
