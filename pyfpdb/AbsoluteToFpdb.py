@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008, Carl Gherardi
@@ -60,7 +60,7 @@ debugging: if False, pass on partially supported game types. If true, have a go 
         logging.info("Initialising Absolute converter class")
         self.filetype = "text"
         self.codepage = "cp1252"
-        self.siteId   = 3 # Needs to match id entry in Sites database
+        self.siteId   = 8 # Needs to match id entry in Sites database
         self.debugging = debugging
         if autostart:
             self.start()
@@ -79,7 +79,7 @@ debugging: if False, pass on partially supported game types. If true, have a go 
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
             self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re, re.MULTILINE)
-            print "^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re
+#            print "^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)| \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
             #self.re_PostSB          = re.compile(ur"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
@@ -248,8 +248,7 @@ or None if we fail to get the info """
         else:
             #Not involved in hand
             hand.involved = False
-
-
+    
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
         logging.warning("Absolute readStudPlayerCards is only a stub.")
@@ -283,7 +282,7 @@ or None if we fail to get the info """
         logging.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = [validCard(card) for card in cards.split(' ')]
+            cards = [validCard(card) for card in cards.split(' ')]            
             logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 
