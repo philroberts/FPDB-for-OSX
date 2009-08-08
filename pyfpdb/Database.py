@@ -1043,7 +1043,7 @@ class Database:
         c.execute ("SELECT id FROM Players WHERE name=%s".replace('%s',self.sql.query['placeholder'])
                   ,(name,))
         tmp = c.fetchone()
-        if (len(tmp)==0): #new player
+        if (tmp == None): #new player
             c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
                       ,(name, site_id))
             #Get last id might be faster here.
