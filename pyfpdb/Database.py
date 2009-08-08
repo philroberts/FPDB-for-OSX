@@ -1040,8 +1040,13 @@ class Database:
     def insertPlayer(self, name, site_id):
         result = None
         c = self.get_cursor()
-        c.execute ("SELECT id FROM Players WHERE name=%s".replace('%s',self.sql.query['placeholder'])
-                  ,(name,))
+        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        print "DEBUG: name: %s site: %s" %(name, site_id)
+
+        c.execute (q, (site_id, name))
+
         tmp = c.fetchone()
         if (tmp == None): #new player
             c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
