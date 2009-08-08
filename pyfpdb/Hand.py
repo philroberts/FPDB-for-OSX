@@ -197,10 +197,10 @@ db: a connected fpdb_db object"""
             hilo = "s"
         elif self.gametype['category'] in ['razz','27_3draw','badugi']:
             hilo = "l"
-        #FIXME - the two zeros are small_bet and big_bet for limit
+
         gtid = db.insertGameTypes( (self.siteId, self.gametype['type'], self.gametype['base'], 
                                     self.gametype['category'], self.gametype['limitType'], hilo,
-                                    self.gametype['sb'], self.gametype['bb'], 0, 0) )
+                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100), 0, 0) )
         
 
         # HudCache data to come from DerivedStats class
@@ -210,9 +210,11 @@ db: a connected fpdb_db object"""
         hh = {}
         hh['siteHandNo'] =  self.handid
         hh['handStart'] = self.starttime
+        hh['gameTypeId'] = gtid[0]
         # seats TINYINT NOT NULL,
         hh['tableName'] = self.tablename
         hh['maxSeats'] = self.maxseats
+        hh['seats'] = len(sqlids)
              # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
              # boardcard2 smallint,
              # boardcard3 smallint,

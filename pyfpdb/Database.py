@@ -28,6 +28,7 @@ import sys
 import traceback
 from datetime import datetime, date, time, timedelta
 from time import time, strftime, sleep
+from decimal import Decimal
 import string
 import re
 import logging
@@ -1127,6 +1128,7 @@ class Database:
             sitehandno,
             handstart, 
             importtime,
+            seats,
             maxseats,
             boardcard1, 
             boardcard2, 
@@ -1135,7 +1137,8 @@ class Database:
             boardcard5
              ) 
              VALUES 
-              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                %s, %s)"""
 #---            texture,
 #--            playersVpi,
 #--            playersAtStreet1, 
@@ -1156,14 +1159,17 @@ class Database:
 #--            seats, 
 
         q = q.replace('%s', self.sql.query['placeholder'])
+        print "DEBUG: p: %s" %p
+        print "DEBUG: gtid: %s" % p['gameTypeId']
         self.cursor.execute(q, (
                 p['tableName'], 
+                p['gameTypeId'], 
                 p['siteHandNo'], 
-                p['gametypeid'], 
                 p['handStart'], 
                 datetime.today(), #importtime
 #                len(p['names']), #seats
                 p['maxSeats'],
+                p['seats'],
                 p['boardcard1'], 
                 p['boardcard2'], 
                 p['boardcard3'], 
