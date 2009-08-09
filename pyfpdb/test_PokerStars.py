@@ -14,7 +14,7 @@ text = ""
 
 hhc = PokerStarsToFpdb.PokerStars(autostart=False)
 
-h = HoldemOmahaHand(None, "ASite", gametype, text, builtFrom = "Test")
+h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
 h.addPlayer("1", "s0rrow", "100000")
 
 hhc.compilePlayerRegexs(h)

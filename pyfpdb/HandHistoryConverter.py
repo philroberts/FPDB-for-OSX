@@ -20,7 +20,6 @@ import Hand
 import re
 import sys
 import traceback
-import logging
 from optparse import OptionParser
 import os
 import os.path
@@ -31,19 +30,37 @@ import operator
 from xml.dom.minidom import Node
 import time
 import datetime
+from Exceptions import FpdbParseError
 
 import gettext
 gettext.install('fpdb')
 
+import logging, logging.config
+logging.config.fileConfig("logging.conf")
+log = logging.getLogger("parser")
+
 class HandHistoryConverter():
 
-    READ_CHUNK_SIZE = 10000 # bytes to read at a time from file (in tail mode)
-    def __init__(self, in_path = '-', out_path = '-', sitename = None, follow=False, index=0):
-        logging.info("HandHistory init")
+    READ_CHUNK_SIZE = 10000 # bytes to read at a time from file in tail mode
+
+    # filetype can be "text" or "xml"
+    # so far always "text"
+    # subclass HHC_xml for xml parsing
+    filetype = "text"
+
+    # codepage indicates the encoding of the text file.
+    # cp1252 is a safe default
+    # "utf_8" is more likely if there are funny characters
+    codepage = "cp1252"
+
+    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True):
+        """\
+in_path   (default '-' = sys.stdin)
+out_path  (default '-' = sys.stdout)
+follow :  whether to tail -f the input"""
+
+        log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
         
-        # default filetype and codepage. Subclasses should set these properly.
-        self.filetype  = "text"
-        self.codepage  = "utf8"
         self.index     = 0
 
         self.in_path = in_path
@@ -60,54 +77,72 @@ class HandHistoryConverter():
             # TODO: out_path should be sanity checked.
             out_dir = os.path.dirname(self.out_path)
             if not os.path.isdir(out_dir):
-                logging.info("Creatin directory '%s'" % out_dir)
+                log.info("Creating directory '%s'" % out_dir)
                 os.makedirs(out_dir)
-            self.out_fh = open(self.out_path, 'w')
+            try:
+                self.out_fh = open(self.out_path, 'w')
+                log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
+            except:
+                log.error("out_path %s couldn't be opened" % (self.out_path))
 
-        self.sitename  = sitename
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
 
+        if autostart:
+            self.start()
+
     def __str__(self):
         return """
 HandHistoryConverter: '%(sitename)s'
-    filetype:   '%(filetype)s'
-    in_path:    '%(in_path)s'
-    out_path:   '%(out_path)s'
-    """ % { 'sitename':self.sitename, 'filetype':self.filetype, 'in_path':self.in_path, 'out_path':self.out_path }
+    filetype    '%(filetype)s'
+    in_path     '%(in_path)s'
+    out_path    '%(out_path)s'
+    follow      '%(follow)s'
+    """ %  locals() 
 
     def start(self):
-        """process a hand at a time from the input specified by in_path.
+        """Process a hand at a time from the input specified by in_path.
 If in follow mode, wait for more data to turn up.
-Otherwise, finish at eof.
+Otherwise, finish at EOF.
 
 """
         starttime = time.time()
         if not self.sanityCheck():
-            print "Cowardly refusing to continue after failed sanity check"
+            log.warning("Failed sanity check")
             return
 
-        if self.follow:
+        try:
             numHands = 0
-            for handText in self.tailHands():
-                numHands+=1
-                self.processHand(handText)
-        else:
-            handsList = self.allHandsAsList()
-            logging.info("Parsing %d hands" % len(handsList))
-            nBadHangs = 0
-            for handText in handsList:
-                try:
-                    self.processedHands.append(self.processHand(handText))
-                except Exception, e: # TODO: it's better to replace it with s-t like HhcEception
-                    nBadHangs += 1
-                    logging.error("Caught exception while parsing hand: %s" % str(e))
-            numHands =  len(handsList) - nBadHangs
-        endtime = time.time()
-        print "read %d hands in %.3f seconds" % (numHands, endtime - starttime)
-        if self.out_fh != sys.stdout:
-            self.out_fh.close()
+            numErrors = 0
+            if self.follow:
+                log.info("Tailing '%s'" % self.in_path)
+                for handText in self.tailHands():
+                    try:
+                        self.processHand(handText)
+                        numHands+=1
+                    except FpdbParseError, e:
+                        numErrors+=1
+                        log.warning("Failed to convert hand %s" % e.hid)
+                        log.debug(handText)
+            else:
+                handsList = self.allHandsAsList()
+                log.info("Parsing %d hands" % len(handsList))
+                for handText in handsList:
+                    try:
+                        self.processedHands.append(self.processHand(handText))
+                    except FpdbParseError, e:
+                        numErrors+=1
+                        log.warning("Failed to convert hand %s" % e.hid)
+                        log.debug(handText)
+                numHands = len(handsList)
+            endtime = time.time()
+            log.info("Read %d hands (%d failed) in %.3f seconds" % (numHands, numErrors, endtime - starttime))
+        except IOError, ioe:
+            log.exception("Error converting '%s'" % self.in_path)
+        finally:
+            if self.out_fh != sys.stdout:
+                self.out_fh.close()
 
 
     def tailHands(self):
@@ -134,7 +169,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
                     time.sleep(interval)
                     fd.seek(where)
                 else:
-                    logging.debug("%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1]))
+                    log.debug("%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1]))
                     fd = codecs.open(self.in_path, 'r', self.codepage)
                     fd.seek(where)
             else:
@@ -179,13 +214,13 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
         if self.obs == "" or self.obs == None:
-            logging.info("Read no hands.")
+            log.info("Read no hands.")
             return
         return re.split(self.re_SplitHands,  self.obs)
         
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
-        logging.debug("gametype %s" % gametype)
+        log.debug("gametype %s" % gametype)
         hand = None
         if gametype is None: 
             l = None
@@ -200,14 +235,14 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             l = [type] + [base] + [limit]
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
-                logging.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
+                log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
                 hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
             elif gametype['base'] == 'stud':
                 hand = Hand.StudHand(self, self.sitename, gametype, handText)
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self, self.sitename, gametype, handText)
         else:
-            logging.info("Unsupported game type: %s" % gametype)
+            log.info("Unsupported game type: %s" % gametype)
 
         if hand:
 #    uncomment these to calculate some stats
@@ -216,7 +251,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             hand.writeHand(self.out_fh)
             return hand
         else:
-            logging.info("Unsupported game type: %s" % gametype)
+            log.info("Unsupported game type: %s" % gametype)
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
 
@@ -342,26 +377,23 @@ or None if we fail to get the info """
         return hands
 
     def readFile(self):
-        """open in_path according to self.codepage"""
+        """Open in_path according to self.codepage. Exceptions caught further up"""
         
         if(self.filetype == "text"):
             if self.in_path == '-':
                 # read from stdin
-                logging.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
+                log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
-                logging.debug("Opening %s with %s" % (self.in_path, self.codepage))
                 in_fh = codecs.open(self.in_path, 'r', self.codepage)
                 in_fh.seek(self.index)
-            self.obs = in_fh.read()
-            self.index = in_fh.tell()
-            in_fh.close()
+                log.debug("Opened in_path: '%s' with %s" % (self.in_path, self.codepage))
+                self.obs = in_fh.read()
+                self.index = in_fh.tell()
+                in_fh.close()
         elif(self.filetype == "xml"):
-            try:
-                doc = xml.dom.minidom.parse(filename)
-                self.doc = doc
-            except:
-                traceback.print_exc(file=sys.stderr)
+            doc = xml.dom.minidom.parse(filename)
+            self.doc = doc
 
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""

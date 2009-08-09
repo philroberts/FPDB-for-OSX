@@ -43,6 +43,12 @@ class PartyPoker(HandHistoryConverter):
 ############################################################
 #    Class Variables
 
+    sitename = "PartyPoker"
+    codepage = "cp1252"
+    siteId = 9 # TODO: automate; it's a class variable so shouldn't hit DB too often
+    filetype = "text" # "text" or "xml". I propose we subclass HHC to HHC_Text and HHC_XML.
+
+
     sym = {'USD': "\$", }
 
     # Static regexes
@@ -97,20 +103,6 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile('^There is no Small Blind in this hand as the Big Blind of the previous hand left the table')
 
 
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PartyPoker", follow=follow, index=index)
-        logging.info("Initialising PartyPoker converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252" # FIXME: wtf?
-        self.siteId   = 9 # Needs to match id entry in Sites database
-        self._gameType = None # cached reg-parse result
-        if autostart: 
-            self.start()
-
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
         if list is None:
@@ -135,9 +127,9 @@ follow :  whether to tail -f the input"""
                 'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else ''}
             for key in ('CUR_SYM', 'CUR'):
                 subst[key] = re.escape(subst[key])
-            logging.debug("player_re: " + subst['PLYR'])
-            logging.debug("CUR_SYM: " + subst['CUR_SYM'])
-            logging.debug("CUR: " + subst['CUR'])
+            log.debug("player_re: " + subst['PLYR'])
+            log.debug("CUR_SYM: " + subst['CUR_SYM'])
+            log.debug("CUR: " + subst['CUR'])
             self.re_PostSB = re.compile(
                 r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
                 re.MULTILINE)
@@ -193,7 +185,7 @@ follow :  whether to tail -f the input"""
         gametype dict is:
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
-        logging.debug(self.ParsingException().wrapHh( handText ))
+        log.debug(self.ParsingException().wrapHh( handText ))
         
         info = {}
         m = self._getGameType(handText)
@@ -266,7 +258,7 @@ follow :  whether to tail -f the input"""
         #hand.maxseats = ???
         hand.mixed = None
         
-        logging.debug("readHandInfo: %s" % info)
+        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #Saturday, July 25, 07:53:52 EDT 2009
@@ -308,10 +300,10 @@ follow :  whether to tail -f the input"""
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            logging.info('readButton: not found')
+            log.info('readButton: not found')
 
     def readPlayerStacks(self, hand):
-        logging.debug("readPlayerStacks")
+        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
@@ -338,7 +330,7 @@ follow :  whether to tail -f the input"""
             hand.setCommunityCards(street, renderCards(m.group('CARDS')))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        log.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
@@ -468,8 +460,5 @@ if __name__ == "__main__":
                   action="store_const", const=logging.DEBUG, dest="verbosity")
 
     (options, args) = parser.parse_args()
-
-    #LOG_FILENAME = './logging.out'
-    logging.basicConfig(level=options.verbosity)
 
     e = PartyPoker(in_path = options.ipath, out_path = options.opath, follow = options.follow)
