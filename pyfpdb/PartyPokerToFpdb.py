@@ -167,6 +167,8 @@ class PartyPoker(HandHistoryConverter):
                ]
 
     def _getGameType(self, handText):
+        if not hasattr(self, '_gameType'):
+            self._gameType = None
         if self._gameType is None:
             # let's determine whether hand is trny
             # and whether 5-th line contains head line
