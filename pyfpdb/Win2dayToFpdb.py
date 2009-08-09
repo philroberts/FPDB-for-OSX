@@ -26,6 +26,11 @@ from HandHistoryConverter import *
 
 class Win2day(HandHistoryConverter):
 
+    sitename = "Win2day"
+    filetype = "text"
+    codepage = "cp1252"
+    siteID   = 4
+
     # Static regexes
     #<HISTORY ID="102271403" SESSION="session31237702.xml" TABLE="Innsbruck 3" GAME="GAME_THM" GAMETYPE="GAMETYPE_REAL" GAMEKIND="GAMEKIND_CASH" TABLECURRENCY="EUR" LIMIT="NL" STAKES="0.25/0.50" DATE="1246909773" WIN="0.00" LOSS="0.50">
     
@@ -39,15 +44,6 @@ class Win2day(HandHistoryConverter):
     re_Card        = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD>', re.MULTILINE)
     re_BoardLast    = re.compile('^<CARD LINK="(?P<CARD>[0-9]+)"></CARD></ACTION>', re.MULTILINE)
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Win2day", follow=follow, index=index)
-        logging.info("Initialising Win2day converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.sideID   = 4
-        if autostart:
-            self.start()
-
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -65,7 +61,7 @@ class Win2day(HandHistoryConverter):
             self.re_PostBoth         = re.compile(r'^<ACTION TYPE="HAND_BLINDS" PLAYER="%s" KIND="HAND_AB" VALUE="(?P<SBBB>[.0-9]+)"></ACTION>' %  player_re, re.MULTILINE)
     
             #r'<ACTION TYPE="HAND_DEAL" PLAYER="%s">\n<CARD LINK="(?P<CARD1>[0-9]+)"></CARD>\n<CARD LINK="(?P<CARD2>[0-9]+)"></CARD></ACTION>'
-            self.re_HeroCards        = re.compile(r'<ACTION TYPE="HAND_DEAL" PLAYER="%s">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]"></CARD>)</ACTION>' % player_re, re.MULTILINE)
+            self.re_HeroCards        = re.compile(r'<ACTION TYPE="HAND_DEAL" PLAYER="%s">\n(?P<CARDS><CARD LINK="[0-9]+"></CARD>\n<CARD LINK="[0-9]+"></CARD>)</ACTION>' % player_re, re.MULTILINE)
             
             #'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>'
             self.re_Action           = re.compile(r'^<ACTION TYPE="(?P<ATYPE>[_A-Z]+)" PLAYER="%s"( VALUE="(?P<BET>[.0-9]+)")?></ACTION>' %  player_re, re.MULTILINE)

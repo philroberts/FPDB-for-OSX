@@ -43,6 +43,11 @@ class PartyPoker(HandHistoryConverter):
 ############################################################
 #    Class Variables
 
+    codepage = "cp1252"
+    siteId = 9 # TODO: automate; it's a class variable so shouldn't hit DB too often
+    filetype = "text" # "text" or "xml". I propose we subclass HHC to HHC_Text and HHC_XML.
+
+
     sym = {'USD': "\$", }
 
     # Static regexes
@@ -126,20 +131,6 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile('^There is no Small Blind in this hand as the Big Blind of the previous hand left the table')
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
-
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PartyPoker", follow=follow, index=index)
-        logging.info("Initialising PartyPoker converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252" # FIXME: wtf?
-        self.siteId   = 9 # Needs to match id entry in Sites database
-        self._gameType = None # cached reg-parse result
-        if autostart: 
-            self.start()
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
