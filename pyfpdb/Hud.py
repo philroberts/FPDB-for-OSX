@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Hud.py
 
 Create and manage the hud overlays.
@@ -95,6 +96,8 @@ class Hud:
                 if my_import == None:
                     continue
                 self.aux_windows.append(my_import(self, config, aux_params))
+        
+        self.creation_attrs = None
 
     def create_mw(self):
 
@@ -146,6 +149,21 @@ class Hud:
         self.item4.connect("activate", self.debug_stat_windows)
         self.item4.show()
         
+        self.item5 = gtk.MenuItem('Set max seats')
+        self.menu.append(self.item5)
+        self.item5.show()
+        self.maxSeatsMenu = gtk.Menu()
+        self.item5.set_submenu(self.maxSeatsMenu)
+        for i in range(2, 11, 1):
+            item = gtk.MenuItem('%d-max' % i)
+            item.ms = i
+            self.maxSeatsMenu.append(item)
+            item.connect("activate", self.change_max_seats)
+            item.show()
+            setattr(self, 'maxSeatsMenuItem%d' % (i-1), item) 
+        
+            
+        
         self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
 
         self.main_window.show_all()
@@ -162,7 +180,19 @@ class Hud:
             self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
             
         self.update_table_position()
-               
+           
+    def change_max_seats(self, widget):
+        if self.max != widget.ms:
+            print 'change_max_seats', widget.ms
+            self.max = widget.ms
+            try:
+                self.kill()
+                self.create(*self.creation_attrs)
+                self.update(self.hand, self.config)
+            except Exception, e:
+                print "Expcetion:",str(e)
+                pass
+        
     def update_table_position(self):
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
@@ -264,6 +294,8 @@ class Hud:
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+        self.creation_attrs = hand, config, stat_dict, cards 
+
         self.hand = hand  
         if not self.mw_created:
             self.create_mw()
