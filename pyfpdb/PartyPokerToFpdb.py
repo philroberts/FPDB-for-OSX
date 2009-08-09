@@ -114,8 +114,17 @@ follow :  whether to tail -f the input"""
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
         if list is None:
-            return None
+            return []
         return filter(lambda text: len(text.strip()), list)
+    
+    def guessMaxSeats(self, hand):
+        """Return a guess at max_seats when not specified in HH."""
+        mo = self.maxOccSeat(hand)
+
+        if mo == 10: return mo
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 9 if hand.gametype['type']=='ring' else 10
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -285,8 +294,8 @@ follow :  whether to tail -f the input"""
                 #FIXME: it's dirty hack T_T
                 cur = info[key][0] if info[key][0] not in '0123456789' else ''
                 hand.buyin = info[key] + '+%s0' % cur
-            if key == 'MAXSEATS':
-                hand.maxseats = int(info[key])
+            #if key == 'MAXSEATS':
+                #hand.maxseats = int(info[key])
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
