@@ -88,6 +88,7 @@ class PartyPoker(HandHistoryConverter):
             """, 
           re.MULTILINE|re.VERBOSE)
 
+    re_TotalPlayers = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<MAXSEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\x00+')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
@@ -112,6 +113,8 @@ follow :  whether to tail -f the input"""
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
+        if list is None:
+            return None
         return filter(lambda text: len(text.strip()), list)
 
     def compilePlayerRegexs(self,  hand):
@@ -249,6 +252,9 @@ follow :  whether to tail -f the input"""
         m = self.re_Hid.search(hand.handText)
         if m: info.update(m.groupdict())
 
+        m = self.re_TotalPlayers.search(hand.handText)
+        if m: info.update(m.groupdict())
+
         # FIXME: it's a hack cause party doesn't supply hand.maxseats info
         #hand.maxseats = ???
         hand.mixed = None
@@ -281,6 +287,8 @@ follow :  whether to tail -f the input"""
                 #FIXME: it's dirty hack T_T
                 cur = info[key][0] if info[key][0] not in '0123456789' else ''
                 hand.buyin = info[key] + '+%s0' % cur
+            if key == 'MAXSEATS':
+                hand.maxseats = int(info[key])
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
