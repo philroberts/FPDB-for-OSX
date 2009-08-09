@@ -21,12 +21,15 @@
 
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
-from time import time, strftime
+from time import time, strftime, sleep
 import logging
 import traceback
 import math
 import datetime
 import re
+import Queue
+from collections import deque # using Queue for now
+import threading
 
 #    fpdb/FreePokerTools modules
 
@@ -42,11 +45,11 @@ try:
     mysqlLibFound=True
 except:
     pass
-    
+   
 try:
     import psycopg2
     pgsqlLibFound=True
-    import psycopg2.extensions 
+    import psycopg2.extensions
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 except:
@@ -61,27 +64,36 @@ class Importer:
         self.config     = config
         self.sql        = sql
 
-        self.database   = None       # database will be the main db interface eventually
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
         self.addToDirList = {}
         self.removeFromFileList = {} # to remove deleted files
         self.monitor    = False
-        self.updated    = {}         #Time last import was run {file:mtime}
+        self.updatedsize = {}
+        self.updatedtime = {}
         self.lines      = None
         self.faobs      = None       # File as one big string
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
-        
+       
+        # CONFIGURATION OPTIONS
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
-        
-        self.database = Database.Database(self.config, sql = self.sql)  # includes .connection and .sql variables
+        #self.settings.setdefault("allowHudcacheRebuild", True) # NOT USED NOW
+        #self.settings.setdefault("forceThreads", 2)            # NOT USED NOW
+        self.settings.setdefault("writeQSize", 1000)           # no need to change
+        self.settings.setdefault("writeQMaxWait", 10)          # not used
+
+        self.writeq = None
+        self.database = Database.Database(self.config, sql = self.sql)
+        self.writerdbs = []
+        self.settings.setdefault("threads", 1) # value set by GuiBulkImport
+        for i in xrange(self.settings['threads']):
+            self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
         self.NEWIMPORT = False
-        self.allow_hudcache_rebuild = False
 
     #Set functions
     def setCallHud(self, value):
@@ -104,15 +116,26 @@ class Importer:
 
     def setThreads(self, value):
         self.settings['threads'] = value
+        if self.settings["threads"] > len(self.writerdbs):
+            for i in xrange(self.settings['threads'] - len(self.writerdbs)):
+                self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
     def setDropIndexes(self, value):
         self.settings['dropIndexes'] = value
+
+    def setDropHudCache(self, value):
+        self.settings['dropHudCache'] = value
 
 #   def setWatchTime(self):
 #       self.updated = time()
 
     def clearFileList(self):
         self.filelist = {}
+
+    def closeDBs(self):
+        self.database.disconnect()
+        for i in xrange(len(self.writerdbs)):
+            self.writerdbs[i].disconnect()
 
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
@@ -164,61 +187,109 @@ class Importer:
             print "Warning: Attempted to add non-directory: '" + str(dir) + "' as an import directory"
 
     def runImport(self):
-        """"Run full import on self.filelist."""
+        """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
+        #if self.settings['forceThreads'] > 0:  # use forceThreads until threading enabled in GuiBulkImport
+        #    self.setThreads(self.settings['forceThreads'])
 
+        # Initial setup
         start = datetime.datetime.now()
+        starttime = time()
         print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
         if self.settings['dropIndexes'] == 'auto':
-            self.settings['dropIndexes'] = self.calculate_auto2(12.0, 500.0)
-        if self.allow_hudcache_rebuild:
-            self.settings['dropHudCache'] = self.calculate_auto2(25.0, 500.0)    # returns "drop"/"don't drop"
+            self.settings['dropIndexes'] = self.calculate_auto2(self.database, 12.0, 500.0)
+        if self.settings['dropHudCache'] == 'auto':
+            self.settings['dropHudCache'] = self.calculate_auto2(self.database, 25.0, 500.0)    # returns "drop"/"don't drop"
 
         if self.settings['dropIndexes'] == 'drop':
             self.database.prepareBulkImport()
         else:
             print "No need to drop indexes."
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
+
+        if self.settings['threads'] <= 0:
+            (totstored, totdups, totpartial, toterrors) = self.importFiles(self.database, None)
+        else:
+            # create queue (will probably change to deque at some point):
+            self.writeq = Queue.Queue( self.settings['writeQSize'] )
+            # start separate thread(s) to read hands from queue and write to db:
+            for i in xrange(self.settings['threads']):
+                t = threading.Thread( target=self.writerdbs[i].insert_queue_hands
+                                    , args=(self.writeq, self.settings["writeQMaxWait"])
+                                    , name="dbwriter-"+str(i) )
+                t.setDaemon(True)
+                t.start()
+            # read hands and write to q:
+            (totstored, totdups, totpartial, toterrors) = self.importFiles(self.database, self.writeq)
+
+            if self.writeq.empty():
+                print "writers finished already"
+                pass
+            else:
+                print "waiting for writers to finish ..."
+                #for t in threading.enumerate():
+                #    print "    "+str(t)
+                #self.writeq.join()
+                #using empty() might be more reliable:
+                while not self.writeq.empty() and len(threading.enumerate()) > 1:
+                    sleep(0.5)
+                print "                              ... writers finished"
+
+        # Tidying up after import
+        if self.settings['dropIndexes'] == 'drop':
+            self.database.afterBulkImport()
+        else:
+            print "No need to rebuild indexes."
+        if self.settings['dropHudCache'] == 'drop':
+            self.database.rebuild_hudcache()
+        else:
+            print "No need to rebuild hudcache."
+        self.database.analyzeDB()
+        endtime = time()
+        return (totstored, totdups, totpartial, toterrors, endtime-starttime)
+    # end def runImport
+
+    def importFiles(self, db, q):
+        """"Read filenames in self.filelist and pass to import_file_dict().
+            Uses a separate database connection if created as a thread (caller
+            passes None or no param as db)."""
+        
         totstored = 0
         totdups = 0
         totpartial = 0
         toterrors = 0
         tottime = 0
-#        if threads <= 1: do this bit
         for file in self.filelist:
-            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
+            (stored, duplicates, partial, errors, ttime) = self.import_file_dict(db, file
+                                               ,self.filelist[file][0], self.filelist[file][1], q)
             totstored += stored
             totdups += duplicates
             totpartial += partial
             toterrors += errors
-            tottime += ttime
-        if self.settings['dropIndexes'] == 'drop':
-            self.database.afterBulkImport()
-        else:
-            print "No need to rebuild indexes."
-        if self.allow_hudcache_rebuild and self.settings['dropHudCache'] == 'drop':
-            self.database.rebuild_hudcache()
-        else:
-            print "No need to rebuild hudcache."
-        self.database.analyzeDB()
-        return (totstored, totdups, totpartial, toterrors, tottime)
-#        else: import threaded
 
-    def calculate_auto(self):
+        for i in xrange( self.settings['threads'] ):
+            print "sending finish msg qlen =", q.qsize()
+            db.send_finish_msg(q)
+
+        return (totstored, totdups, totpartial, toterrors)
+    # end def importFiles
+
+    # not used currently
+    def calculate_auto(self, db):
         """An heuristic to determine a reasonable value of drop/don't drop"""
         if len(self.filelist) == 1:            return "don't drop"
         if 'handsInDB' not in self.settings:
             try:
-                tmpcursor = self.database.get_cursor()
+                tmpcursor = db.get_cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
                 pass # if this fails we're probably doomed anyway
         if self.settings['handsInDB'] < 5000:  return "drop"
-        if len(self.filelist) < 50:            return "don't drop"      
+        if len(self.filelist) < 50:            return "don't drop"     
         if self.settings['handsInDB'] > 50000: return "don't drop"
         return "drop"
 
-    def calculate_auto2(self, scale, increment):
+    def calculate_auto2(self, db, scale, increment):
         """A second heuristic to determine a reasonable value of drop/don't drop
            This one adds up size of files to import to guess number of hands in them
            Example values of scale and increment params might be 10 and 500 meaning
@@ -231,7 +302,7 @@ class Importer:
         # get number of hands in db
         if 'handsInDB' not in self.settings:
             try:
-                tmpcursor = self.database.get_cursor()
+                tmpcursor = db.get_cursor()
                 tmpcursor.execute("Select count(1) from Hands;")
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
@@ -244,7 +315,7 @@ class Importer:
                 stat_info = os.stat(file)
                 total_size += stat_info.st_size
 
-        # if hands_in_db is zero or very low, we want to drop indexes, otherwise compare 
+        # if hands_in_db is zero or very low, we want to drop indexes, otherwise compare
         # import size with db size somehow:
         ret = "don't drop"
         if self.settings['handsInDB'] < scale * (total_size/size_per_hand) + increment:
@@ -253,7 +324,7 @@ class Importer:
         #      size_per_hand, "inc =", increment, "return:", ret
         return ret
 
-    #Run import on updated files, then store latest update time.
+    #Run import on updated files, then store latest update time. Called from GuiAutoImport.py
     def runUpdated(self):
         #Check for new files in monitored directories
         #todo: make efficient - always checks for new file, should be able to use mtime of directory
@@ -268,15 +339,18 @@ class Importer:
             if os.path.exists(file):
                 stat_info = os.stat(file)
                 #rulog.writelines("path exists ")
-                if file in self.updated:
-                    if stat_info.st_size > self.updated[file]:
-                        self.import_file_dict(file, self.filelist[file][0], self.filelist[file][1])
-                        self.updated[file] = stat_info.st_size
+                if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
+                    if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
+                        self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
+                        self.updatedsize[file] = stat_info.st_size
+                        self.updatedtime[file] = time()
                 else:
                     if os.path.isdir(file) or (time() - stat_info.st_mtime) < 60:
-                        self.updated[file] = 0
+                        self.updatedsize[file] = 0
+                        self.updatedtime[file] = 0
                     else:
-                        self.updated[file] = stat_info.st_size
+                        self.updatedsize[file] = stat_info.st_size
+                        self.updatedtime[file] = time()
             else:
                 self.removeFromFileList[file] = True
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
@@ -284,7 +358,7 @@ class Importer:
         for file in self.removeFromFileList:
             if file in self.filelist:
                 del self.filelist[file]
-        
+       
         self.addToDirList = {}
         self.removeFromFileList = {}
         self.database.rollback()
@@ -292,16 +366,21 @@ class Importer:
         #rulog.close()
 
     # This is now an internal function that should not be called directly.
-    def import_file_dict(self, file, site, filter):
+    def import_file_dict(self, db, file, site, filter, q=None):
         #print "import_file_dict"
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
 
         conv = None
+        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
+
         # Load filter, process file, pass returned filename to import_fpdb_file
             
-        print "\nConverting %s" % file
+        if self.writeq != None:
+            print "\nConverting " + file + " (" + str(q.qsize()) + ")"
+        else:
+            print "\nConverting " + file
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
         hhdir     = os.path.join(hhbase,site)
@@ -315,34 +394,34 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            conv = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
-            if(conv.getStatus() and self.NEWIMPORT == False):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(out_path, site)
-            elif (conv.getStatus() and self.NEWIMPORT == True):
+            hhc = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            if(hhc.getStatus() and self.NEWIMPORT == False):
+                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
+            elif (hhc.getStatus() and self.NEWIMPORT == True):
                 #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
 
                 for hand in handlist:
-                    hand.prepInsert()
-                    hand.insert()
+                    #hand.prepInsert()
+                    hand.insert(self.database)
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
-                return (0, 0, 0, 1, 0)
+                return (0, 0, 0, 1, 0, -1)
         else:
             print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
-            return
+            return (0, 0, 0, 1, 0, -1)
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
 
-    def import_fpdb_file(self, file, site):
-        #print "import_fpdb_file"
+    def import_fpdb_file(self, db, file, site, q):
         starttime = time()
         last_read_hand = 0
         loc = 0
+        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
         # print "file =", file
         if file == "stdin":
             inputFile = sys.stdin
@@ -369,20 +448,46 @@ class Importer:
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
 
-        #self.database.lock_for_insert() # should be ok when using one thread
+        (stored, duplicates, partial, errors, ttime, handsId) = self.import_fpdb_lines(db, self.lines, starttime, file, site, q)
+
+        db.commit()
+        ttime = time() - starttime
+        if q == None:
+            print "\rTotal stored:", stored, "   duplicates:", duplicates, "errors:", errors, " time:", ttime
+       
+        if not stored:
+            if duplicates:
+                for line_no in xrange(len(self.lines)):
+                    if self.lines[line_no].find("Game #")!=-1:
+                        final_game_line=self.lines[line_no]
+                handsId=fpdb_simple.parseSiteHandNo(final_game_line)
+            else:
+                print "failed to read a single hand from file:", inputFile
+                handsId=0
+            #todo: this will cause return of an unstored hand number if the last hand was error
+        self.handsId=handsId
+
+        return (stored, duplicates, partial, errors, ttime)
+    # end def import_fpdb_file
+    
+
+    def import_fpdb_lines(self, db, lines, starttime, file, site, q = None):
+        """Import an fpdb hand history held in the list lines, could be one hand or many"""
+
+        #db.lock_for_insert() # should be ok when using one thread, but doesn't help??
 
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
-            firstline = self.lines[0]
+            firstline = lines[0]
         except:
             # just skip the debug message and return silently:
-            #print "DEBUG: import_fpdb_file: failed on self.lines[0]: '%s' '%s' '%s' '%s' " %( file, site, self.lines, loc)
-            return (0,0,0,1,0)
+            #print "DEBUG: import_fpdb_file: failed on lines[0]: '%s' '%s' '%s' '%s' " %( file, site, lines, loc)
+            return (0,0,0,1,0,0)
 
         if firstline.find("Tournament Summary")!=-1:
             print "TODO: implement importing tournament summaries"
             #self.faobs = readfile(inputFile)
             #self.parseTourneyHistory()
-            return (0,0,0,1,0)
+            return (0,0,0,1,0,0)
 
         category=fpdb_simple.recogniseCategory(firstline)
 
@@ -391,16 +496,18 @@ class Importer:
         duplicates = 0 #counter
         partial = 0 #counter
         errors = 0 #counter
+        ttime = 0
+        handsId = 0
 
-        for i in xrange (len(self.lines)):
-            if (len(self.lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
+        for i in xrange (len(lines)):
+            if (len(lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
                 endpos=i
-                hand=self.lines[startpos:endpos]
-        
+                hand=lines[startpos:endpos]
+       
                 if (len(hand[0])<2):
                     hand=hand[1:]
 
-        
+       
                 if (len(hand)<3):
                     pass
                     #TODO: This is ugly - we didn't actually find the start of the
@@ -412,10 +519,10 @@ class Importer:
                     self.hand=hand
 
                     try:
-                        handsId = fpdb_parse_logic.mainParser( self.settings
-                                                             , self.siteIds[site], category, hand
-                                                             , self.config, self.database )
-                        self.database.commit()
+                        handsId = fpdb_parse_logic.mainParser( self.settings, self.siteIds[site]
+                                                             , category, hand, self.config
+                                                             , db, q )
+                        db.commit()
 
                         stored += 1
                         if self.callHud:
@@ -425,29 +532,29 @@ class Importer:
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except fpdb_simple.DuplicateError:
                         duplicates += 1
-                        self.database.rollback()
+                        db.rollback()
                     except (ValueError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
 
                         if (self.settings['failOnError']):
-                            self.database.commit() #dont remove this, in case hand processing was cancelled.
+                            db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
                         else:
-                            self.database.rollback()
+                            db.rollback()
                     except (fpdb_simple.FpdbError), fe:
                         errors += 1
                         self.printEmailErrorMessage(errors, file, hand)
-                        self.database.rollback()
+                        db.rollback()
 
                         if self.settings['failOnError']:
-                            self.database.commit() #dont remove this, in case hand processing was cancelled.
+                            db.commit() #dont remove this, in case hand processing was cancelled.
                             raise
 
                     if self.settings['minPrint']:
                         if not ((stored+duplicates+errors) % self.settings['minPrint']):
-                            print "stored:", stored, "duplicates:", duplicates, "errors:", errors
-            
+                            print "stored:", stored, "   duplicates:", duplicates, "errors:", errors
+           
                     if self.settings['handCount']:
                         if ((stored+duplicates+errors) >= self.settings['handCount']):
                             if not self.settings['quiet']:
@@ -455,22 +562,8 @@ class Importer:
                                 print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
                             sys.exit(0)
                 startpos = endpos
-        ttime = time() - starttime
-        print "\rTotal stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", ttime
-        
-        if not stored:
-            if duplicates:
-                for line_no in xrange(len(self.lines)):
-                    if self.lines[line_no].find("Game #")!=-1:
-                        final_game_line=self.lines[line_no]
-                handsId=fpdb_simple.parseSiteHandNo(final_game_line)
-            else:
-                print "failed to read a single hand from file:", inputFile
-                handsId=0
-            #todo: this will cause return of an unstored hand number if the last hand was error
-        self.database.commit()
-        self.handsId=handsId
-        return (stored, duplicates, partial, errors, ttime)
+        return (stored, duplicates, partial, errors, ttime, handsId)
+    # end def import_fpdb_lines
 
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)

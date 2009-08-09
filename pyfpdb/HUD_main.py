@@ -31,6 +31,7 @@ Main for FreePokerTools HUD.
 import sys
 import os
 import Options
+import traceback
 
 (options, sys.argv) = Options.fpdb_options()
 
@@ -55,7 +56,23 @@ import Database
 import Tables
 import Hud
 
-aggregate_stats = {"ring": False, "tour": False} # config file!
+# To add to config:
+aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult
+hud_style = 'A'       # A=All-time 
+                      # S=Session
+                      # T=timed (last n days - set hud_days to required value)
+                      # Future values may also include: 
+                      #                                 H=Hands (last n hands)
+hud_days  = 90        # Max number of days from each player to use for hud stats
+agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds
+                      # must be < (agg_bb_mult * smaller blinds) to be aggregated
+                      # ie. 100 will aggregate almost everything, 2 will probably agg just the 
+                      # next higher and lower levels into the current one, try 3/10/30/100
+hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
+                      # (hands every 2 mins for 1 hour = one session, if followed
+                      # by a 40 minute gap and then more hands on same table that is
+                      # a new session)
+#hud_hands = 0        # Max number of hands from each player to use for hud stats (not used)
 
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
@@ -144,6 +161,7 @@ class HUD_main(object):
 #    need their own access to the database, but should open their own
 #    if it is required.
         self.db_connection = Database.Database(self.config, self.db_name, 'temp')
+        self.db_connection.init_hud_stat_vars(hud_days)
         tourny_finder = re.compile('(\d+) (\d+)')
     
         while 1: # wait for a new hand number on stdin
@@ -156,14 +174,18 @@ class HUD_main(object):
 #    if there is a db error, complain, skip hand, and proceed
             try:
                 (table_name, max, poker_game, type) = self.db_connection.get_table_name(new_hand_id)
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, aggregate = aggregate_stats[type])
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, aggregate_stats[type]
+                                                                  ,hud_style, agg_bb_mult)
+
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
             except Exception, err:
-                print "db error: skipping ", new_hand_id, err
-                sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                print "db error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                    sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
                 continue
 
             if type == "tour":   # hand is from a tournament

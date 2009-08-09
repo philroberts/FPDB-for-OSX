@@ -25,13 +25,12 @@ from time import time, strftime
 
 
 #parses a holdem hand
-def mainParser(settings, siteID, category, hand, config, db = None):
-    #print "mainparser"
-    # fdb is not used now - to be removed ...
+def mainParser(settings, siteID, category, hand, config, db = None, writeq = None):
 
     t0 = time()
     #print "mainparser"
     backend = settings['db-backend']
+    # Ideally db connection is passed in, if not use sql list if passed in, otherwise start from scratch
     if db == None:
         db = Database.Database(c = config, sql = None)
     category = fpdb_simple.recogniseCategory(hand[0])
@@ -80,7 +79,6 @@ def mainParser(settings, siteID, category, hand, config, db = None):
         rebuyOrAddon    = -1
 
         tourneyTypeId   = 1
-
     fpdb_simple.isAlreadyInDB(db.get_cursor(), gametypeID, siteHandNo)
     
     hand = fpdb_simple.filterCrap(hand, isTourney)
@@ -182,7 +180,13 @@ def mainParser(settings, siteID, category, hand, config, db = None):
                , positions, antes, cardValues, cardSuits, boardValues, boardSuits
                , winnings, rakes, actionTypes, allIns, actionAmounts
                , actionNos, hudImportData, maxSeats, tableName, seatNos)
-    result = db.store_the_hand(htw)
+
+    # save hand in db via direct call or via q if in a thread
+    if writeq == None:
+        result = db.store_the_hand(htw)
+    else:
+        writeq.put(htw)
+        result = -999  # meaning unknown
 
     t9 = time()
     #print "parse and save=(%4.3f)" % (t9-t0)

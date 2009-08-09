@@ -17,6 +17,33 @@
 
 import os
 import sys
+import re
+
+# if path is set to use an old version of python look for a new one:
+# (does this work in linux?)
+if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sys.argv:
+    #print "old path =", os.environ['PATH']
+    dirs = re.split(os.pathsep, os.environ['PATH'])
+    # remove any trailing / or \ chars from dirs:
+    dirs = [re.sub('[\\/]$','',p) for p in dirs]
+    # remove any dirs containing 'python' apart from those ending in 'python25', 'python26' or 'python':
+    dirs = [p for p in dirs if not re.search('python', p, re.I) or re.search('python25$', p, re.I) or re.search('python26$', p, re.I)]
+    tmppath = ";".join(dirs)
+    #print "new path =", tmppath
+    if re.search('python', tmppath, re.I):
+        os.environ['PATH'] = tmppath
+        print "Python " + sys.version[0:3] + ' - press return to continue\n'
+        sys.stdin.readline()
+        os.execvpe('python.exe', ('python.exe', 'fpdb.py', '-r'), os.environ) # first arg is ignored (name of program being run)
+    else:
+        print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
+        exit
+else:
+    pass
+    #print "debug - not changing path"
+
+print "Python " + sys.version[0:3] + '...\n'
+
 import threading
 import Options
 import string
@@ -204,10 +231,10 @@ class fpdb:
             #        print 'User cancelled loading profile'
             #except:
             #    pass
-            try:
-                self.load_profile()
-            except:
-                pass
+            #try:
+            self.load_profile()
+            #except:
+            #    pass
             self.release_global_lock()
     #end def dia_load_profile
 
@@ -246,19 +273,16 @@ class fpdb:
     
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
-            try:
-                dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
-                diastring = "Please confirm that you want to re-create the HUD cache."
-                dia_confirm.format_secondary_text(diastring)
-                
-                response = dia_confirm.run()
-                dia_confirm.destroy()
-                if response == gtk.RESPONSE_YES:
-                    self.db.rebuild_hudcache()
-                elif response == gtk.REPSONSE_NO:
-                    print 'User cancelled rebuilding hud cache'
-            except:
-                pass
+            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+            diastring = "Please confirm that you want to re-create the HUD cache."
+            dia_confirm.format_secondary_text(diastring)
+            
+            response = dia_confirm.run()
+            dia_confirm.destroy()
+            if response == gtk.RESPONSE_YES:
+                self.db.rebuild_hudcache()
+            elif response == gtk.REPSONSE_NO:
+                print 'User cancelled rebuilding hud cache'
         self.release_global_lock()
     
 
@@ -467,7 +491,7 @@ class fpdb:
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
-        new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config)
+        new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")
