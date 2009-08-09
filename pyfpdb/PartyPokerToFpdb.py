@@ -49,15 +49,15 @@ class PartyPoker(HandHistoryConverter):
     # $5 USD NL Texas Hold'em - Saturday, July 25, 07:53:52 EDT 2009
     # NL Texas Hold'em $1 USD Buy-in Trny:45685440 Level:8  Blinds-Antes(600/1 200 -50) - Sunday, May 17, 11:25:07 MSKS 2009
     re_GameInfoRing     = re.compile("""
-            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>\d+)\s*(?:USD)?\s*
-            (?P<LIMIT>(NL))\s+
-            (?P<GAME>(Texas\ Hold\'em))
+            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[0-9,]+)\s*(?:USD)?\s*
+            (?P<LIMIT>(NL|PL|))\s+
+            (?P<GAME>(Texas\ Hold\'em|Omaha))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE)
     re_GameInfoTrny     = re.compile("""
-            (?P<LIMIT>(NL))\s+
-            (?P<GAME>(Texas\ Hold\'em))\s+
+            (?P<LIMIT>(NL|PL|))\s+
+            (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
             (?P<BUYIN>\$?[.0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
@@ -157,12 +157,12 @@ follow :  whether to tail -f the input"""
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
-                #["ring", "hold", "pl"],
-                #["ring", "hold", "fl"],
+                ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
 
                 ["tour", "hold", "nl"],
-                #["tour", "hold", "pl"],
-                #["tour", "hold", "fl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
                ]
 
     def _getGameType(self, handText):
@@ -193,12 +193,10 @@ follow :  whether to tail -f the input"""
         
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
-        limits = { 'NL':'nl', 
-#            'Pot Limit':'pl', 'Limit':'fl' 
-            }
+        limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'), 
-                                #'Omaha' : ('hold','omahahi'),
+                                'Omaha' : ('hold','omahahi'),
                }
         currencies = { '$':'USD', '':'T$' }
 
@@ -208,7 +206,7 @@ follow :  whether to tail -f the input"""
                     "Cannot fetch field '%s'" % expectedField,
                     hh = handText)
         try:
-            info['limitType'] = limits[mg['LIMIT']]
+            info['limitType'] = limits[mg['LIMIT'].strip()]
         except:
             raise self.ParsingException(
                 "Unknown limit '%s'" % mg['LIMIT'],
@@ -232,8 +230,8 @@ follow :  whether to tail -f the input"""
             # FIXME: there are only $ and play money availible for cash
             info['currency'] = currencies[mg['CURRENCY']]
         else:
-            info['sb'] = renderTrnyMoney(mg['SB'])
-            info['bb'] = renderTrnyMoney(mg['BB'])
+            info['sb'] = clearMoneyString(mg['SB'])
+            info['bb'] = clearMoneyString(mg['BB'])
             info['currency'] = 'T$'
             
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
@@ -309,7 +307,7 @@ follow :  whether to tail -f the input"""
         players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
-                           renderTrnyMoney(a.group('CASH')))
+                           clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -434,11 +432,11 @@ follow :  whether to tail -f the input"""
                 
 def ringBlinds(ringLimit):
     "Returns blinds for current limit"
-    ringLimit = float(ringLimit)
+    ringLimit = float(clearMoneyString(ringLimit))
     if ringLimit == 5.: ringLimit = 4.
     return ('%.2f' % (ringLimit/200.), '%.2f' % (ringLimit/100.)  )
 
-def renderTrnyMoney(money):
+def clearMoneyString(money):
     "renders 'numbers' like '1 200' and '2,000'"
     return money.replace(' ', '').replace(',', '')
 
