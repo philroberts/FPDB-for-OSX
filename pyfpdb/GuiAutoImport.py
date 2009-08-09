@@ -17,6 +17,7 @@
 
 import threading
 import subprocess
+import traceback
 
 import pygtk
 pygtk.require('2.0')

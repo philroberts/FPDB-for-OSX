@@ -64,7 +64,7 @@ class fpdb_db:
         if backend==fpdb_db.MYSQL_INNODB:
             import MySQLdb
             try:
-                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True, charset="utf8")
+                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
             except:
                 raise fpdb_simple.FpdbError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
@@ -155,105 +155,4 @@ class fpdb_db:
         return (self.host, self.database, self.user, self.password)
     #end def get_db_info
 
-    def getLastInsertId(self, cursor=None):
-        try:
-            if self.backend == self.MYSQL_INNODB:
-                ret = self.db.insert_id()
-                if ret < 1 or ret > 999999999:
-                    print "getLastInsertId(): problem fetching insert_id? ret=", ret
-                    ret = -1
-            elif self.backend == self.PGSQL:
-                # some options:
-                # currval(hands_id_seq) - use name of implicit seq here
-                # lastval() - still needs sequences set up?
-                # insert ... returning  is useful syntax (but postgres specific?)
-                # see rules (fancy trigger type things)
-                c = self.db.cursor()
-                ret = c.execute ("SELECT lastval()")
-                row = c.fetchone()
-                if not row:
-                    print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
-                    ret = -1
-                else:
-                    ret = row[0]
-            elif self.backend == fpdb_db.SQLITE:
-                ret = cursor.lastrowid
-            else:
-                print "getLastInsertId(): unknown backend ", self.backend
-                ret = -1
-        except:
-            ret = -1
-            print "getLastInsertId error:", str(sys.exc_value), " ret =", ret
-            raise fpdb_simple.FpdbError( "getLastInsertId error: " + str(sys.exc_value) )
-
-        return ret
-
-    def storeHand(self, p):
-        #stores into table hands:
-        self.cursor.execute ("""INSERT INTO Hands ( 
-            tablename, 
-            sitehandno,
-            gametypeid, 
-            handstart, 
-            importtime,
-            seats, 
-            maxseats,
-            boardcard1, 
-            boardcard2, 
-            boardcard3, 
-            boardcard4, 
-            boardcard5,
---            texture,
-            playersVpi,
-            playersAtStreet1, 
-            playersAtStreet2,
-            playersAtStreet3, 
-            playersAtStreet4, 
-            playersAtShowdown,
-            street0Raises,
-            street1Raises,
-            street2Raises,
-            street3Raises,
-            street4Raises,
---            street1Pot,
---            street2Pot,
---            street3Pot,
---            street4Pot,
---            showdownPot
-             ) 
-             VALUES 
-              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-            %s, %s, %s, %s, %s, %s, %s)""",
-            (
-                p['tablename'], 
-                p['sitehandno'], 
-                p['gametypeid'], 
-                p['handStart'], 
-                datetime.datetime.today(), 
-                len(p['names']),
-                p['maxSeats'],
-                p['boardcard1'], 
-                p['boardcard2'], 
-                p['boardcard3'], 
-                p['boardcard4'], 
-                p['boardcard5'],
-                hudCache['playersVpi'], 
-                hudCache['playersAtStreet1'], 
-                hudCache['playersAtStreet2'],
-                hudCache['playersAtStreet3'], 
-                hudCache['playersAtStreet4'], 
-                hudCache['playersAtShowdown'],
-                hudCache['street0Raises'], 
-                hudCache['street1Raises'], 
-                hudCache['street2Raises'],
-                hudCache['street3Raises'], 
-                hudCache['street4Raises'], 
-                hudCache['street1Pot'],
-                hudCache['street2Pot'], 
-                hudCache['street3Pot'],
-                hudCache['street4Pot'],
-                hudCache['showdownPot']
-            )
-        )
-        #return getLastInsertId(backend, conn, cursor)
 #end class fpdb_db

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Configuration.py
 
 Handles HUD configuration files.
@@ -542,6 +543,13 @@ class Config:
             if db_server != None: self.supported_databases[db_name].dp_server = db_server
             if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
         return
+    
+    def getDefaultSite(self):
+        "Returns first enabled site or None"
+        for site_name,site in self.supported_sites.iteritems():
+            if site.enabled:
+                return site_name
+        return None
 
     def get_tv_parameters(self):
         tv = {}
@@ -573,30 +581,32 @@ class Config:
         except:  imp['fastStoreHudCache'] = True
         return imp
 
-    def get_default_paths(self, site = "PokerStars"):
+    def get_default_paths(self, site = None):
+        if site is None: site = self.getDefaultSite()
         paths = {}
         try:
-            paths['hud-defaultPath']        = os.path.expanduser(self.supported_sites[site].HH_path)
-            paths['bulkImport-defaultPath'] = os.path.expanduser(self.supported_sites[site].HH_path)
+            path = os.path.expanduser(self.supported_sites[site].HH_path)
+            assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
         except:
-            paths['hud-defaultPath']        = "default"
-            paths['bulkImport-defaultPath'] = "default"
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "default"
         return paths
     
     def get_frames(self, site = "PokerStars"):
+        if site not in self.supported_sites: return False
         return self.supported_sites[site].use_frames == True
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        if self.supported_sites[site].hudopacity == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudopacity == "":
             colors['hudopacity'] = 0.90
         else:
             colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if self.supported_sites[site].hudbgcolor == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudbgcolor == "":
             colors['hudbgcolor'] = "#FFFFFF"
         else:
             colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if self.supported_sites[site].hudfgcolor == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudfgcolor == "":
             colors['hudfgcolor'] = "#000000"
         else:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
@@ -604,6 +614,8 @@ class Config:
     
     def get_default_font(self, site = 'PokerStars'):
         (font, font_size) = ("Sans", "8")
+        if site not in self.supported_sites:
+            return ("Sans", "8")
         if self.supported_sites[site].font == "":
             font = "Sans"
         else:
