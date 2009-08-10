@@ -74,11 +74,17 @@ class Layout:
 
 class Site:
     def __init__(self, node):
+        def normalizePath(path):
+            "Normalized existing pathes"
+            if os.path.exists(path):
+                return os.path.abspath(path)
+            return path
+        
         self.site_name    = node.getAttribute("site_name")
         self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
-        self.site_path    = node.getAttribute("site_path")
-        self.HH_path      = node.getAttribute("HH_path")
+        self.site_path    = normalizePath(node.getAttribute("site_path"))
+        self.HH_path      = normalizePath(node.getAttribute("HH_path"))
         self.decoder      = node.getAttribute("decoder")
         self.hudopacity   = node.getAttribute("hudopacity")
         self.hudbgcolor   = node.getAttribute("bgcolor")
@@ -92,6 +98,8 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
+            
+        print self.site_name, self.HH_path
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
