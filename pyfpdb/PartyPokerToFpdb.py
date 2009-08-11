@@ -99,7 +99,9 @@ class PartyPoker(HandHistoryConverter):
     lineSplitter    = '\n'
     re_Button       = re.compile('Seat (?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
-    re_NoSmallBlind = re.compile('^There is no Small Blind in this hand as the Big Blind of the previous hand left the table')
+    re_NoSmallBlind = re.compile(
+                    '^There is no Small Blind in this hand as the Big Blind '
+                    'of the previous hand left the table', re.MULTILINE)
 
 
     def allHandsAsList(self):
@@ -121,23 +123,28 @@ class PartyPoker(HandHistoryConverter):
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
+            
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR_SYM': hand.SYMBOL[hand.gametype['currency']],
                 'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else ''}
             for key in ('CUR_SYM', 'CUR'):
                 subst[key] = re.escape(subst[key])
-            log.debug("player_re: " + subst['PLYR'])
-            log.debug("CUR_SYM: " + subst['CUR_SYM'])
-            log.debug("CUR: " + subst['CUR'])
+            log.debug("player_re: '%s'" % subst['PLYR'])
+            log.debug("CUR_SYM: '%s'" % subst['CUR_SYM'])
+            log.debug("CUR: '%s'" % subst['CUR'])
             self.re_PostSB = re.compile(
                 r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
                 re.MULTILINE)
             self.re_PostBB = re.compile(
                 r"^%(PLYR)s posts big blind \[%(CUR_SYM)s(?P<BB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
                 re.MULTILINE)
+            # NOTE: comma is used as a fraction part delimeter in re below
+            self.re_PostDead = re.compile(
+                r"^%(PLYR)s posts big blind \+ dead \[(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s\]\." %  subst, 
+                re.MULTILINE)
             self.re_Antes = re.compile(
-                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.0-9]+) ?%(CUR)s\]\." %  subst,
+                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.0-9]+) ?%(CUR)s\]" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
                 r"^Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
@@ -153,7 +160,7 @@ class PartyPoker(HandHistoryConverter):
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
                 r"""^%(PLYR)s \s+ wins \s+
-                %(CUR_SYM)s(?P<POT>[.\d]+)\s*%(CUR)s""" %  subst, 
+                %(CUR_SYM)s(?P<POT>[.,\d]+)\s*%(CUR)s""" %  subst, 
                 re.MULTILINE|re.VERBOSE)
 
     def readSupportedGames(self):
@@ -265,7 +272,25 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_TotalPlayers.search(hand.handText)
         if m: info.update(m.groupdict())
 
-        hand.mixed = None
+        
+        # FIXME: it's dirty hack
+        # party doesnt subtract uncalled money from commited money
+        # so hand.totalPot calculation has to be redefined
+        from Hand import Pot, HoldemOmahaHand
+        def getNewTotalPot(origTotalPot):
+            def totalPot(self):
+                if self.totalpot is None:
+                    self.pot.end()
+                    self.totalpot = self.pot.total
+                for i,v in enumerate(self.collected):
+                    if v[0] in self.pot.returned:
+                        self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
+                return origTotalPot()
+            return totalPot
+        instancemethod = type(hand.totalPot)
+        hand.totalPot = instancemethod(getNewTotalPot(hand.totalPot), hand, HoldemOmahaHand)
+        
+        
         
         log.debug("readHandInfo: %s" % info)
         for key in info:
@@ -350,6 +375,10 @@ class PartyPoker(HandHistoryConverter):
               
             for a in self.re_PostBB.finditer(hand.handText):
                 hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+                
+            deadFilter = lambda s: s.replace(',', '.')
+            for a in self.re_PostDead.finditer(hand.handText):
+                hand.addBlind(a.group('PNAME'), 'both', deadFilter(a.group('BBNDEAD')))
         else: 
             # party doesn't track blinds for tournaments
             # so there're some cra^Wcaclulations
@@ -370,6 +399,7 @@ class PartyPoker(HandHistoryConverter):
             
             if noSmallBlind:
                 hand.addBlind(None, None, None)
+                smallBlindSeat = int(hand.buttonpos)
             else:
                 smallBlindSeat = findFirstNonEmptySeat(int(hand.buttonpos) + 1)
                 blind = smartMin(hand.sb, playersMap[smallBlindSeat][1])
@@ -437,7 +467,7 @@ class PartyPoker(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            hand.addCollectPot(player=m.group('PNAME'),pot=clearMoneyString(m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
