@@ -21,24 +21,23 @@
 import sys
 from collections import defaultdict
 
+from Exceptions import FpdbParseError
 from HandHistoryConverter import *
 
 # PartyPoker HH Format
 
+class PartyPokerParseError(FpdbParseError):
+    "Usage: raise PartyPokerParseError(<msg>[, hh=<hh>][, hid=<hid>])"
+    def __init__(self, msg='', hh=None, hid=None):
+        if hh is not None:
+            msg += "\n\nHand history attached below:\n" + self.wrapHh(hh)
+        return super(PartyPokerParseError, self).__init__(hid=hid)
+        #return super(PartyPokerParseError, self).__init__(msg, hid=hid)
+    def wrapHh(self, hh):
+        return ("%(DELIMETER)s\n%(HH)s\n%(DELIMETER)s") % \
+                {'DELIMETER': '#'*50, 'HH': hh}
+
 class PartyPoker(HandHistoryConverter):
-    class ParsingException(Exception):
-        "Usage: raise ParsingException(<msg>[, hh=<hh>])"
-        def __init__(self, *args, **kwargs):
-            if len(args)==0: args=[''] + list(args)
-            msg, args = args[0], args[1:]
-            if 'hh' in kwargs:
-                msg += self.wrapHh(kwargs['hh'])
-                del kwargs['hh']
-            return Exception.__init__(self, msg, *args, **kwargs)
-        def wrapHh(self, hh):
-            return ("\n\nHand history attached below:\n"
-                    "%(DELIMETER)s\n%(HH)s\n%(DELIMETER)s") % \
-                    {'DELIMETER': '#'*50, 'HH': hh}
                     
 ############################################################
 #    Class Variables
@@ -116,6 +115,7 @@ class PartyPoker(HandHistoryConverter):
         if mo == 10: return mo
         if mo == 2: return 2
         if mo <= 6: return 6
+        # there are 9-max tables for cash and 10-max for tournaments
         return 9 if hand.gametype['type']=='ring' else 10
 
     def compilePlayerRegexs(self,  hand):
@@ -152,7 +152,7 @@ class PartyPoker(HandHistoryConverter):
                 r"\[ *(?P<CARDS>.+) *\](?P<COMBINATION>.+)\.", 
                 re.MULTILINE)
             self.re_CollectPot = re.compile(
-                r""""^%(PLYR)s \s+ wins \s+
+                r"""^%(PLYR)s \s+ wins \s+
                 %(CUR_SYM)s(?P<POT>[.\d]+)\s*%(CUR)s""" %  subst, 
                 re.MULTILINE|re.VERBOSE)
 
@@ -187,7 +187,7 @@ class PartyPoker(HandHistoryConverter):
         gametype dict is:
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
-        log.debug(self.ParsingException().wrapHh( handText ))
+        log.debug(PartyPokerParseError().wrapHh( handText ))
         
         info = {}
         m = self._getGameType(handText)
@@ -205,20 +205,20 @@ class PartyPoker(HandHistoryConverter):
 
         for expectedField in ['LIMIT', 'GAME']:
             if mg[expectedField] is None:
-                raise self.ParsingException(
+                raise PartyPokerParseError(
                     "Cannot fetch field '%s'" % expectedField,
                     hh = handText)
         try:
             info['limitType'] = limits[mg['LIMIT'].strip()]
         except:
-            raise self.ParsingException(
+            raise PartyPokerParseError(
                 "Unknown limit '%s'" % mg['LIMIT'],
                 hh = handText)
 
         try:
             (info['base'], info['category']) = games[mg['GAME']]
         except:
-            raise self.ParsingException(
+            raise PartyPokerParseError(
                 "Unknown game type '%s'" % mg['GAME'],
                 hh = handText)
 
@@ -231,6 +231,7 @@ class PartyPoker(HandHistoryConverter):
         if info['type'] == 'ring':
             info['sb'], info['bb'] = ringBlinds(mg['RINGLIMIT'])
             # FIXME: there are only $ and play money availible for cash
+            # to be honest, party doesn't save play money hh
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
@@ -243,21 +244,27 @@ class PartyPoker(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         info = {}
-        m = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if m:
-            info.update(m.groupdict())
-        else:
-            raise self.ParsingException("Cannot read Handinfo for current hand", hh=hand.handText)
-        m = self._getGameType(hand.handText)
-        if m: info.update(m.groupdict())
-        m = self.re_Hid.search(hand.handText)
-        if m: info.update(m.groupdict())
+        try:
+            info.update(self.re_Hid.search(hand.handText).groupdict())
+        except:
+            raise PartyPokerParseError("Cannot read HID for current hand", hh=hand.handText)
+        
+        try:
+            info.update(self.re_HandInfo.search(hand.handText,re.DOTALL).groupdict())
+        except:
+            raise PartyPokerParseError("Cannot read Handinfo for current hand", 
+            hh=hand.handText, hid = info['HID'])
+        
+        try:
+            info.update(self._getGameType(hand.handText).groupdict())
+        except:
+            raise PartyPokerParseError("Cannot read GameType for current hand", 
+            hh=hand.handText, hid = info['HID'])
+            
 
         m = self.re_TotalPlayers.search(hand.handText)
         if m: info.update(m.groupdict())
 
-        # FIXME: it's a hack cause party doesn't supply hand.maxseats info
-        #hand.maxseats = ???
         hand.mixed = None
         
         log.debug("readHandInfo: %s" % info)
@@ -285,16 +292,14 @@ class PartyPoker(HandHistoryConverter):
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                #FIXME: it's dirty hack T_T
+                # FIXME: it's dirty hack T_T
+                # code below assumes that rake is equal to zero
                 cur = info[key][0] if info[key][0] not in '0123456789' else ''
                 hand.buyin = info[key] + '+%s0' % cur
-            #if key == 'MAXSEATS':
-                #hand.maxseats = int(info[key])
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
-                # TODO: play money wasn't tested
-#                hand.currency = 'play' # overrides previously set value
+                # if realy there's no play money hh on party
                 hand.gametype['currency'] = 'play'
 
     def readButton(self, hand):
@@ -313,10 +318,6 @@ class PartyPoker(HandHistoryConverter):
                            clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
-        # PREFLOP = ** Dealing down cards **
-        # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
-        assert hand.gametype['base'] == "hold", \
-            "wtf! There're no %s games on party" % hand.gametype['base']
         m =  re.search(
             r"\*{2} Dealing down cards \*{2}"
             r"(?P<PREFLOP>.+?)"
@@ -337,11 +338,6 @@ class PartyPoker(HandHistoryConverter):
         for player in m:
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
     
-    def readBringIn(self, hand):
-        m = self.re_BringIn.search(hand.handText,re.DOTALL)
-        if m:
-            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
-        
     def readBlinds(self, hand):
         noSmallBlind = bool(self.re_NoSmallBlind.search(hand.handText))
         if hand.gametype['type'] == 'ring':
@@ -381,7 +377,7 @@ class PartyPoker(HandHistoryConverter):
                     
             bigBlindSeat = findFirstNonEmptySeat(smallBlindSeat + 1)
             blind = smartMin(hand.bb, playersMap[bigBlindSeat][1])
-            hand.addBlind(playersMap[bigBlindSeat][0], 'small blind', blind)
+            hand.addBlind(playersMap[bigBlindSeat][0], 'big blind', blind)
             
                 
 
@@ -400,18 +396,39 @@ class PartyPoker(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            if action.group('ATYPE') in ('raises','is all-In'):
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == 'folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'checks':
-                hand.addCheck( street, action.group('PNAME'))
+            playerName = action.group('PNAME')
+            amount = clearMoneyString(action.group('BET')) if action.group('BET') else None
+            actionType = action.group('ATYPE')
+            
+            if actionType == 'is all-In':
+                # party's allin can mean either raise or bet or call
+                Bp = hand.lastBet[street]
+                if Bp == 0:
+                    actionType = 'bets'
+                elif Bp < Decimal(amount):
+                    actionType = 'raises'
+                else:
+                    actionType = 'calls'
+            
+            if actionType == 'raises':
+                if street == 'PREFLOP' and \
+                    playerName in [item[0] for item in hand.actions['BLINDSANTES']]:
+                    # preflop raise from blind
+                    hand.addRaiseBy( street, playerName, amount )
+                else:
+                    hand.addCallandRaise( street, playerName, amount )
+            elif actionType == 'calls':
+                hand.addCall( street, playerName, amount )
+            elif actionType == 'bets':
+                hand.addBet( street, playerName, amount )
+            elif actionType == 'folds':
+                hand.addFold( street, playerName )
+            elif actionType == 'checks':
+                hand.addCheck( street, playerName )
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                raise PartyPokerParseError(
+                    "Unimplemented readAction: '%s' '%s'" % (playerName,actionType,),
+                    hid = hand.hid, hh = hand.handText )
 
 
     def readShowdownActions(self, hand):
@@ -434,17 +451,17 @@ class PartyPoker(HandHistoryConverter):
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
                 
 def ringBlinds(ringLimit):
-    "Returns blinds for current limit"
+    "Returns blinds for current limit in cash games"
     ringLimit = float(clearMoneyString(ringLimit))
     if ringLimit == 5.: ringLimit = 4.
     return ('%.2f' % (ringLimit/200.), '%.2f' % (ringLimit/100.)  )
 
 def clearMoneyString(money):
-    "renders 'numbers' like '1 200' and '2,000'"
+    "Renders 'numbers' like '1 200' and '2,000'"
     return money.replace(' ', '').replace(',', '')
 
 def renderCards(string):
-    "splits strings like ' Js, 4d '"
+    "Splits strings like ' Js, 4d '"
     cards = string.strip().split(' ')
     return filter(len, map(lambda x: x.strip(' ,'), cards))
     
