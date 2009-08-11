@@ -62,7 +62,7 @@ class HandHistoryConverter():
             if not os.path.isdir(out_dir) and out_dir != '':
                 logging.info("Creatin directory '%s'" % out_dir)
                 os.makedirs(out_dir)
-            self.out_fh = open(self.out_path, 'w')
+            self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
 
         self.sitename  = sitename
         self.follow = follow
