@@ -325,14 +325,13 @@ If a player has None chips he won't be added."""
         return c
 
     def addAnte(self, player, ante):
-        log.debug("%s %s antes %s" % ('ANTES', player, ante))
+        log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
             ante = re.sub(u',', u'', ante) #some sites have commas
-            self.bets['ANTES'][player].append(Decimal(ante))
+            self.bets['BLINDSANTES'][player].append(Decimal(ante))
             self.stacks[player] -= Decimal(ante)
             act = (player, 'posts', "ante", ante, self.stacks[player]==0)
-            self.actions['ANTES'].append(act)
-            #~ self.lastBet['ANTES'] = Decimal(ante)
+            self.actions['BLINDSANTES'].append(act)
             self.pot.addMoney(player, Decimal(ante))
 
     def addBlind(self, player, blindtype, amount):
@@ -495,6 +494,7 @@ Add a raise on [street] by [player] to [amountTo]
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
+        import sys; sys.exit(1)
         log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
@@ -576,6 +576,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 return ("%s: posts big blind %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "both"):
                 return ("%s: posts small & big blinds %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
+            elif(act[2] == "ante"):
+                return ("%s: posts ante %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
         elif act[1] == 'bringin':
             return ("%s: brings in for %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'discards':
@@ -642,6 +644,7 @@ class HoldemOmahaHand(Hand):
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
             hhc.readBlinds(self)
+            hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
@@ -893,6 +896,7 @@ class DrawHand(Hand):
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
             hhc.readBlinds(self)
+            hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
@@ -1041,11 +1045,11 @@ class StudHand(Hand):
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
 
-        self.allStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        self.allStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         self.communityStreets = []
-        self.actionStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        self.actionStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
 
-        self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
+        self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         Hand.__init__(self, sitename, gametype, handText)
         self.sb = gametype['sb']
@@ -1063,7 +1067,7 @@ class StudHand(Hand):
             hhc.readHeroCards(self)
             # Read actions in street order
             for street in self.actionStreets:
-                if street == 'ANTES': continue # OMG--sometime someone folds in the ante round
+                if street == 'BLINDSANTES': continue # OMG--sometime someone folds in the ante round
                 if self.streets[street]:
                     log.debug(street + self.streets[street])
                     hhc.readAction(self, street)
@@ -1143,14 +1147,14 @@ Add a complete on [street] by [player] to [amountTo]
 
         super(StudHand, self).writeHand(fh)
 
-        players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
+        players_who_post_antes = set([x[0] for x in self.actions['BLINDSANTES']])
 
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s (%s%s in chips)" %(player[0], player[1], self.sym, player[2]))
 
-        if 'ANTES' in self.actions:
-            for act in self.actions['ANTES']:
+        if 'BLINDSANTES' in self.actions:
+            for act in self.actions['BLINDSANTES']:
                 print >>fh, _("%s: posts the ante %s%s" %(act[0], self.sym, act[3]))
 
         if 'THIRD' in self.actions:
