@@ -347,19 +347,19 @@ If a player has None chips he won't be added."""
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             amount = re.sub(u',', u'', amount) #some sites have commas
-            self.bets['PREFLOP'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
-            #print "DEBUG %s posts, stack %s" % (player, self.stacks[player])
             act = (player, 'posts', blindtype, amount, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
+
+            if blindtype == 'both':
+                amount = self.bb
+                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
+                self.pot.addCommonMoney(Decimal(self.sb))
+
+            self.bets['PREFLOP'][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
-            if blindtype == 'big blind':
-                self.lastBet['PREFLOP'] = Decimal(amount)
-            elif blindtype == 'both':
-                # extra small blind is 'dead'
-                self.lastBet['PREFLOP'] = Decimal(self.bb)
+            self.lastBet['PREFLOP'] = Decimal(amount)
             self.posted = self.posted + [[player,blindtype]]
-        #print "DEBUG: self.posted: %s" %(self.posted)
 
 
 
@@ -1297,6 +1297,7 @@ class Pot(object):
     def __init__(self):
         self.contenders = set()
         self.committed = {}
+        self.common = Decimal(0)
         self.total = None
         self.returned = {}
         self.sym = u'$' # this is the default currency symbol
@@ -1311,13 +1312,16 @@ class Pot(object):
         # addFold must be called when a player folds
         self.contenders.discard(player)
 
+    def addCommonMoney(self, amount):
+        self.common += amount
+
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
         self.contenders.add(player)
         self.committed[player] += amount
 
     def end(self):
-        self.total = sum(self.committed.values())
+        self.total = sum(self.committed.values()) + self.common
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
