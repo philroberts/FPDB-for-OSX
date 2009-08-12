@@ -25,6 +25,7 @@ import datetime
 import time
 import re
 import sys
+import locale
 
 import Card
  
@@ -36,6 +37,8 @@ FTP = 2
 MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
+
+(localename, encoding) = locale.getdefaultlocale()
 
 class DuplicateError(Exception):
     def __init__(self, value):
@@ -704,7 +707,7 @@ def parseHandStartTime(topline):
 def findName(line):
     pos1 = line.find(":") + 2
     pos2 = line.rfind("(") - 1
-    return unicode(line[pos1:pos2], "latin-1")
+    return unicode(line[pos1:pos2], encoding)
 
 def parseNames(lines):
     return [findName(line) for line in lines]
