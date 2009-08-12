@@ -76,6 +76,7 @@ import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
+from Exceptions import *
 
 VERSION = "0.11"
 
@@ -98,7 +99,7 @@ class fpdb:
         for i in self.tab_names: #todo: check this is valid
             if i==new_tab_name:
                 return # we depend on this to not create duplicate tabs, there's no reason to raise an error here?
-#                raise fpdb_simple.FpdbError("duplicate tab_name not permitted")
+#                raise FpdbError("duplicate tab_name not permitted")
 
         self.tabs.append(new_tab)
         self.tab_names.append(new_tab_name)
@@ -120,7 +121,7 @@ class fpdb:
                 break
 
         if tab_no == -1:
-            raise fpdb_simple.FpdbError("invalid tab_no")
+            raise FpdbError("invalid tab_no")
         else:
             self.main_vbox.remove(self.current_tab)
             #self.current_tab.destroy()

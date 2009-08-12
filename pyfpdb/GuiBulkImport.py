@@ -319,6 +319,7 @@ def main(argv=None):
         # importer.setDropIndexes("auto")
         importer.setDropIndexes("don't drop")
         importer.setFailOnError(options.failOnError)
+        importer.setThreads(-1)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
         importer.runImport()

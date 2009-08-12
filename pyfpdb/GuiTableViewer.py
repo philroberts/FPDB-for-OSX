@@ -25,6 +25,7 @@ import fpdb_simple
     
 import fpdb_import
 import fpdb_db
+from Exceptions import *
 
 
 class GuiTableViewer (threading.Thread):
@@ -74,7 +75,7 @@ class GuiTableViewer (threading.Thread):
             
             tmp+=("WtSD", "W$wsF", "W$SD")
         else:
-            raise fpdb_simple.FpdbError("reimplement stud")
+            raise FpdbError("reimplement stud")
         arr.append(tmp)
         
         #then the data rows
@@ -94,7 +95,7 @@ class GuiTableViewer (threading.Thread):
             elif seatCount==2 or seatCount==3:
                 minSeats,maxSeats=seatCount,seatCount
             else:
-                fpdb_simple.FpdbError("invalid seatCount")
+                FpdbError("invalid seatCount")
             
             self.cursor.execute("SELECT * FROM HudCache WHERE gametypeId=%s AND playerId=%s AND activeSeats>=%s AND activeSeats<=%s", (self.gametype_id, self.player_ids[player][0], minSeats, maxSeats))
             rows=self.cursor.fetchall()
