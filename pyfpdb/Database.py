@@ -1021,6 +1021,22 @@ class Database:
             print "Error during fdb.lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
 
+    def getGameTypeId(self, siteid, game):
+        c = self.get_cursor()
+        #FIXME: Fixed for NL at the moment
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], 
+                        int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
+        tmp = c.fetchone()
+        if (tmp == None):
+            hilo = "h"
+            if game['category'] in ['studhilo', 'omahahilo']:
+                hilo = "s"
+            elif game['category'] in ['razz','27_3draw','badugi']:
+                hilo = "l"
+            tmp  = self.insertGameTypes( (siteid, game['type'], game['base'], game['category'], game['limitType'], hilo,
+                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
+        return tmp[0]
+
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
         if(self.pcache == None):

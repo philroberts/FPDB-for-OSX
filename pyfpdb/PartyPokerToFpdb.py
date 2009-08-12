@@ -43,21 +43,27 @@ class PartyPoker(HandHistoryConverter):
 ############################################################
 #    Class Variables
 
+    sitename = "PartyPoker"
+    codepage = "cp1252"
+    siteId = 9 # TODO: automate; it's a class variable so shouldn't hit DB too often
+    filetype = "text" # "text" or "xml". I propose we subclass HHC to HHC_Text and HHC_XML.
+
+
     sym = {'USD': "\$", }
 
     # Static regexes
     # $5 USD NL Texas Hold'em - Saturday, July 25, 07:53:52 EDT 2009
     # NL Texas Hold'em $1 USD Buy-in Trny:45685440 Level:8  Blinds-Antes(600/1 200 -50) - Sunday, May 17, 11:25:07 MSKS 2009
     re_GameInfoRing     = re.compile("""
-            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>\d+)\s*(?:USD)?\s*
-            (?P<LIMIT>(NL))\s+
-            (?P<GAME>(Texas\ Hold\'em))
+            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[0-9,]+)\s*(?:USD)?\s*
+            (?P<LIMIT>(NL|PL|))\s+
+            (?P<GAME>(Texas\ Hold\'em|Omaha))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE)
     re_GameInfoTrny     = re.compile("""
-            (?P<LIMIT>(NL))\s+
-            (?P<GAME>(Texas\ Hold\'em))\s+
+            (?P<LIMIT>(NL|PL|))\s+
+            (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
             (?P<BUYIN>\$?[.0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
@@ -88,6 +94,7 @@ class PartyPoker(HandHistoryConverter):
             """, 
           re.MULTILINE|re.VERBOSE)
 
+    re_TotalPlayers = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<MAXSEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\x00+')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
@@ -96,23 +103,20 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile('^There is no Small Blind in this hand as the Big Blind of the previous hand left the table')
 
 
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PartyPoker", follow=follow, index=index)
-        logging.info("Initialising PartyPoker converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252" # FIXME: wtf?
-        self.siteId   = 9 # Needs to match id entry in Sites database
-        self._gameType = None # cached reg-parse result
-        if autostart: 
-            self.start()
-
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
+        if list is None:
+            return []
         return filter(lambda text: len(text.strip()), list)
+    
+    def guessMaxSeats(self, hand):
+        """Return a guess at max_seats when not specified in HH."""
+        mo = self.maxOccSeat(hand)
+
+        if mo == 10: return mo
+        if mo == 2: return 2
+        if mo <= 6: return 6
+        return 9 if hand.gametype['type']=='ring' else 10
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -123,9 +127,9 @@ follow :  whether to tail -f the input"""
                 'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else ''}
             for key in ('CUR_SYM', 'CUR'):
                 subst[key] = re.escape(subst[key])
-            logging.debug("player_re: " + subst['PLYR'])
-            logging.debug("CUR_SYM: " + subst['CUR_SYM'])
-            logging.debug("CUR: " + subst['CUR'])
+            log.debug("player_re: " + subst['PLYR'])
+            log.debug("CUR_SYM: " + subst['CUR_SYM'])
+            log.debug("CUR: " + subst['CUR'])
             self.re_PostSB = re.compile(
                 r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst, 
                 re.MULTILINE)
@@ -154,15 +158,17 @@ follow :  whether to tail -f the input"""
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
-                #["ring", "hold", "pl"],
-                #["ring", "hold", "fl"],
+                ["ring", "hold", "pl"],
+                ["ring", "hold", "fl"],
 
                 ["tour", "hold", "nl"],
-                #["tour", "hold", "pl"],
-                #["tour", "hold", "fl"],
+                ["tour", "hold", "pl"],
+                ["tour", "hold", "fl"],
                ]
 
     def _getGameType(self, handText):
+        if not hasattr(self, '_gameType'):
+            self._gameType = None
         if self._gameType is None:
             # let's determine whether hand is trny
             # and whether 5-th line contains head line
@@ -181,7 +187,7 @@ follow :  whether to tail -f the input"""
         gametype dict is:
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
-        logging.debug(self.ParsingException().wrapHh( handText ))
+        log.debug(self.ParsingException().wrapHh( handText ))
         
         info = {}
         m = self._getGameType(handText)
@@ -190,12 +196,10 @@ follow :  whether to tail -f the input"""
         
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
-        limits = { 'NL':'nl', 
-#            'Pot Limit':'pl', 'Limit':'fl' 
-            }
+        limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
         games = {                          # base, category
                          "Texas Hold'em" : ('hold','holdem'), 
-                                #'Omaha' : ('hold','omahahi'),
+                                'Omaha' : ('hold','omahahi'),
                }
         currencies = { '$':'USD', '':'T$' }
 
@@ -205,7 +209,7 @@ follow :  whether to tail -f the input"""
                     "Cannot fetch field '%s'" % expectedField,
                     hh = handText)
         try:
-            info['limitType'] = limits[mg['LIMIT']]
+            info['limitType'] = limits[mg['LIMIT'].strip()]
         except:
             raise self.ParsingException(
                 "Unknown limit '%s'" % mg['LIMIT'],
@@ -229,8 +233,8 @@ follow :  whether to tail -f the input"""
             # FIXME: there are only $ and play money availible for cash
             info['currency'] = currencies[mg['CURRENCY']]
         else:
-            info['sb'] = renderTrnyMoney(mg['SB'])
-            info['bb'] = renderTrnyMoney(mg['BB'])
+            info['sb'] = clearMoneyString(mg['SB'])
+            info['bb'] = clearMoneyString(mg['BB'])
             info['currency'] = 'T$'
             
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
@@ -249,11 +253,14 @@ follow :  whether to tail -f the input"""
         m = self.re_Hid.search(hand.handText)
         if m: info.update(m.groupdict())
 
+        m = self.re_TotalPlayers.search(hand.handText)
+        if m: info.update(m.groupdict())
+
         # FIXME: it's a hack cause party doesn't supply hand.maxseats info
         #hand.maxseats = ???
         hand.mixed = None
         
-        logging.debug("readHandInfo: %s" % info)
+        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #Saturday, July 25, 07:53:52 EDT 2009
@@ -281,6 +288,8 @@ follow :  whether to tail -f the input"""
                 #FIXME: it's dirty hack T_T
                 cur = info[key][0] if info[key][0] not in '0123456789' else ''
                 hand.buyin = info[key] + '+%s0' % cur
+            #if key == 'MAXSEATS':
+                #hand.maxseats = int(info[key])
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
@@ -293,15 +302,15 @@ follow :  whether to tail -f the input"""
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            logging.info('readButton: not found')
+            log.info('readButton: not found')
 
     def readPlayerStacks(self, hand):
-        logging.debug("readPlayerStacks")
+        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
-                           renderTrnyMoney(a.group('CASH')))
+                           clearMoneyString(a.group('CASH')))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -323,7 +332,7 @@ follow :  whether to tail -f the input"""
             hand.setCommunityCards(street, renderCards(m.group('CARDS')))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        log.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
@@ -426,11 +435,11 @@ follow :  whether to tail -f the input"""
                 
 def ringBlinds(ringLimit):
     "Returns blinds for current limit"
-    ringLimit = float(ringLimit)
+    ringLimit = float(clearMoneyString(ringLimit))
     if ringLimit == 5.: ringLimit = 4.
     return ('%.2f' % (ringLimit/200.), '%.2f' % (ringLimit/100.)  )
 
-def renderTrnyMoney(money):
+def clearMoneyString(money):
     "renders 'numbers' like '1 200' and '2,000'"
     return money.replace(' ', '').replace(',', '')
 
@@ -453,8 +462,5 @@ if __name__ == "__main__":
                   action="store_const", const=logging.DEBUG, dest="verbosity")
 
     (options, args) = parser.parse_args()
-
-    #LOG_FILENAME = './logging.out'
-    logging.basicConfig(level=options.verbosity)
 
     e = PartyPoker(in_path = options.ipath, out_path = options.opath, follow = options.follow)
