@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
@@ -58,10 +59,10 @@ class HandHistoryConverter():
         else:
             # TODO: out_path should be sanity checked.
             out_dir = os.path.dirname(self.out_path)
-            if not os.path.isdir(out_dir):
+            if not os.path.isdir(out_dir) and out_dir != '':
                 logging.info("Creatin directory '%s'" % out_dir)
                 os.makedirs(out_dir)
-            self.out_fh = open(self.out_path, 'w')
+            self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
 
         self.sitename  = sitename
         self.follow = follow
@@ -95,9 +96,14 @@ Otherwise, finish at eof.
         else:
             handsList = self.allHandsAsList()
             logging.info("Parsing %d hands" % len(handsList))
+            nBadHangs = 0
             for handText in handsList:
-                self.processedHands.append(self.processHand(handText))
-            numHands=  len(handsList)
+                try:
+                    self.processedHands.append(self.processHand(handText))
+                except Exception, e: # TODO: it's better to replace it with s-t like HhcEception
+                    nBadHangs += 1
+                    logging.error("Caught exception while parsing hand: %s" % str(e))
+            numHands =  len(handsList) - nBadHangs
         endtime = time.time()
         print "read %d hands in %.3f seconds" % (numHands, endtime - starttime)
         if self.out_fh != sys.stdout:

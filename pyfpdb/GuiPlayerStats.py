@@ -81,7 +81,7 @@ class GuiPlayerStats (threading.Thread):
                        , ["hand",       False, "Hand",     0.0, "%s"]   # true not allowed for this line
                        , ["plposition", False, "Posn",     1.0, "%s"]   # true not allowed for this line (set in code)
                        , ["n",          True,  "Hds",      1.0, "%d"]
-                       , ["avgseats",   True,  "Seats",    1.0, "%3.1f"]
+                       , ["avgseats",   False,  "Seats",    1.0, "%3.1f"]
                        , ["vpip",       True,  "VPIP",     1.0, "%3.1f"]
                        , ["pfr",        True,  "PFR",      1.0, "%3.1f"]
                        , ["pf3",        True,  "PF3",      1.0, "%3.1f"]
@@ -132,7 +132,7 @@ class GuiPlayerStats (threading.Thread):
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
-        self.fillStatsFrame(self.stats_vbox)
+        # self.fillStatsFrame(self.stats_vbox)
 
         self.main_hbox.pack_start(self.filters.get_vbox())
         self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
@@ -167,7 +167,9 @@ class GuiPlayerStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                # Nasty hack to deal with multiple sites + same player name -Eric
+                que = self.sql.query['getPlayerId'] + " AND siteId=%d" % siteids[site]
+                self.cursor.execute(que, (heroes[site],))
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])

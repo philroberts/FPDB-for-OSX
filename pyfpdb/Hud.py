@@ -60,6 +60,8 @@ class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
+        if parent == None: # running from cli ..
+            self.parent = self
         self.parent        = parent
         self.table         = table
         self.config        = config
@@ -125,7 +127,8 @@ class Hud:
         self.menu = gtk.Menu()
         self.item1 = gtk.MenuItem('Kill this HUD')
         self.menu.append(self.item1)
-        self.item1.connect("activate", self.parent.kill_hud, self.table_name)
+        if self.parent != None:
+            self.item1.connect("activate", self.parent.kill_hud, self.table_name)
         self.item1.show()
         
         self.item2 = gtk.MenuItem('Save Layout')
@@ -233,7 +236,7 @@ class Hud:
 #        Need range here, not xrange -> need the actual list        
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
-        if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
+        if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
                 actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
@@ -600,15 +603,17 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Motorway")
+    t = Tables.discover_table_by_name(c, "Patriot Dr")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
+    
+    stat_dict = db.get_stats_from_hand(1)
 
 #    for t in tables:
-    win = Hud(t, 10, 'holdem', c, db)
-    win.create(1, c)
+    win = Hud(None, t, 10, 'holdem', c, db) # parent, table, max, poker_game, config, db_connection
+    win.create(1, c, stat_dict, None) # hand, config, stat_dict, cards):
 #        t.get_details()
-    win.update(8300, db, c)
+    win.update(8300, c) # self, hand, config):
 
     gtk.main()
