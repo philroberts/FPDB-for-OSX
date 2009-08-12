@@ -442,7 +442,7 @@ class PartyPoker(HandHistoryConverter):
 
             if actionType == 'raises':
                 if street == 'PREFLOP' and \
-                    playerName in [item[0] for item in hand.actions['BLINDSANTES']]:
+                    playerName in [item[0] for item in hand.actions['BLINDSANTES'] if item[2]!='ante']:
                     # preflop raise from blind
                     hand.addRaiseBy( street, playerName, amount )
                 else:
@@ -475,7 +475,7 @@ class PartyPoker(HandHistoryConverter):
                 cards = renderCards(m.group('CARDS'))
 
                 (shown, mucked) = (False, False)
-                if m.group('SHOWED') == "shows": shown = True
+                if m.group('SHOWED') == "show": shown = True
                 else: mucked = True
 
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
