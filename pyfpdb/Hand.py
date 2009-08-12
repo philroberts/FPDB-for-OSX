@@ -203,11 +203,6 @@ db: a connected fpdb_db object"""
         hh['tableName'] = self.tablename
         hh['maxSeats'] = self.maxseats
         hh['seats'] = len(sqlids)
-             # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
-             # boardcard2 smallint,
-             # boardcard3 smallint,
-             # boardcard4 smallint,
-             # boardcard5 smallint,
         # Flop turn and river may all be empty - add (likely) too many elements and trim with range
         boardcards = self.board['FLOP'] + self.board['TURN'] + self.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
         cards = [Card.encodeCard(c) for c in boardcards[0:5]]
@@ -217,7 +212,6 @@ db: a connected fpdb_db object"""
         hh['boardcard4'] = cards[3]
         hh['boardcard5'] = cards[4]
 
-        print hh
              # texture smallint,
              # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                 # Needs to be recorded
@@ -241,17 +235,14 @@ db: a connected fpdb_db object"""
                 # Needs to be recorded
              # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
                 # Needs to be recorded
-             # street1Pot INT,                  /* pot size at flop/street4 */
-                # Needs to be recorded
-             # street2Pot INT,                  /* pot size at turn/street5 */
-                # Needs to be recorded
-             # street3Pot INT,                  /* pot size at river/street6 */
-                # Needs to be recorded
-             # street4Pot INT,                  /* pot size at sd/street7 */
-                # Needs to be recorded
-             # showdownPot INT,                 /* pot size at sd/street7 */
+
+        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  self.getStreetTotals()
+        #FIXME: Pot size still in decimal, needs to be converted to cents
+        (hh['street1Pot'], hh['street2Pot'], hh['street3Pot'], hh['street4Pot'], hh['showdownPot']) = self.getStreetTotals()
+
              # comment TEXT,
              # commentTs DATETIME
+        #print hh
         handid = db.storeHand(hh)
         # HandsPlayers - ? ... Do we fix winnings?
         # Tourneys ?
@@ -489,7 +480,6 @@ Card ranks will be uppercased
             board = set([c for s in self.board.values() for c in s])
             self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
 
-
     def totalPot(self):
         """If all bets and blinds have been added, totals up the total pot size"""
         
@@ -573,6 +563,9 @@ Map the tuple self.gametype onto the pokerstars string describing it
         """Return a string of the stakes of the current hand."""
         return "%s%s/%s%s" % (self.sym, self.sb, self.sym, self.bb)
 
+    def getStreetTotals(self):
+        pass
+
     def writeGameLine(self):
         """Return the first HH line for the current hand."""
         gs = "PokerStars Game #%s: " % self.handid
@@ -638,6 +631,7 @@ class HoldemOmahaHand(Hand):
             for street in self.actionStreets:
                 if self.streets[street]:
                     hhc.readAction(self, street)
+                    self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
@@ -662,6 +656,18 @@ class HoldemOmahaHand(Hand):
         else:
             self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
 
+    def getStreetTotals(self):
+        # street1Pot INT,                  /* pot size at flop/street4 */
+        # street2Pot INT,                  /* pot size at turn/street5 */
+        # street3Pot INT,                  /* pot size at river/street6 */
+        # street4Pot INT,                  /* pot size at sd/street7 */
+        # showdownPot INT,                 /* pot size at sd/street7 */
+        tmp1 = self.pot.getTotalAtStreet('FLOP')
+        tmp2 = self.pot.getTotalAtStreet('TURN')
+        tmp3 = self.pot.getTotalAtStreet('RIVER')
+        tmp4 = 0
+        tmp5 = 0
+        return (tmp1,tmp2,tmp3,tmp4,tmp5)
 
     def writeHTMLHand(self, fh=sys.__stdout__):
         from nevow import tags as T
@@ -886,6 +892,7 @@ class DrawHand(Hand):
             for street in self.streetList:
                 if self.streets[street]:
                     hhc.readAction(self, street)
+                    self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
@@ -945,6 +952,14 @@ class DrawHand(Hand):
         else:
             act = (player, 'discards', num)
         self.actions[street].append(act)
+
+    def getStreetTotals(self):
+        # street1Pot INT,                  /* pot size at flop/street4 */
+        # street2Pot INT,                  /* pot size at turn/street5 */
+        # street3Pot INT,                  /* pot size at river/street6 */
+        # street4Pot INT,                  /* pot size at sd/street7 */
+        # showdownPot INT,                 /* pot size at sd/street7 */
+        return (0,0,0,0,0)
 
 
     def writeHand(self, fh=sys.__stdout__):
@@ -1053,6 +1068,7 @@ class StudHand(Hand):
                 if self.streets[street]:
                     log.debug(street + self.streets[street])
                     hhc.readAction(self, street)
+                    self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self) # not done yet
             self.totalPot() # finalise it (total the pot)
@@ -1122,6 +1138,14 @@ Add a complete on [street] by [player] to [amountTo]
             self.actions['THIRD'].append(act)
             self.lastBet['THIRD'] = Decimal(bringin)
             self.pot.addMoney(player, Decimal(bringin))
+
+    def getStreetTotals(self):
+        # street1Pot INT,                  /* pot size at flop/street4 */
+        # street2Pot INT,                  /* pot size at turn/street5 */
+        # street3Pot INT,                  /* pot size at river/street6 */
+        # street4Pot INT,                  /* pot size at sd/street7 */
+        # showdownPot INT,                 /* pot size at sd/street7 */
+        return (0,0,0,0,0)
 
     
     def writeHand(self, fh=sys.__stdout__):
@@ -1281,11 +1305,12 @@ class Pot(object):
 
 
     def __init__(self):
-        self.contenders = set()
-        self.committed = {}
-        self.total = None
-        self.returned = {}
-        self.sym = u'$' # this is the default currency symbol
+        self.contenders   = set()
+        self.committed    = {}
+        self.streettotals = {}
+        self.total        = None
+        self.returned     = {}
+        self.sym          = u'$' # this is the default currency symbol
 
     def setSym(self, sym):
         self.sym = sym
@@ -1301,6 +1326,14 @@ class Pot(object):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
         self.contenders.add(player)
         self.committed[player] += amount
+
+    def markTotal(self, street):
+        self.streettotals[street] = sum(self.committed.values())
+
+    def getTotalAtStreet(self, street):
+        if street in self.streettotals:
+            return self.streettotals[street]
+        return 0
 
     def end(self):
         self.total = sum(self.committed.values())
