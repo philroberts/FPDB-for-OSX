@@ -25,6 +25,7 @@ import datetime
 import time
 import re
 import sys
+import locale
 
 import Card
  
@@ -36,6 +37,8 @@ FTP = 2
 MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
+
+(localename, encoding) = locale.getdefaultlocale()
 
 class DuplicateError(Exception):
     def __init__(self, value):
@@ -543,7 +546,7 @@ def parseActionType(line):
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, isTourney, names, antes):
     for i, name in enumerate(names):
-        if line.startswith(name.encode("latin-1")):
+        if line.startswith(name.encode(encoding)):
             pos = line.rfind("$") + 1
             if not isTourney:
                 antes[i] += float2int(line[pos:])
@@ -705,7 +708,7 @@ def parseHandStartTime(topline):
 def findName(line):
     pos1 = line.find(":") + 2
     pos2 = line.rfind("(") - 1
-    return unicode(line[pos1:pos2], "latin-1")
+    return unicode(line[pos1:pos2], encoding)
 
 def parseNames(lines):
     return [findName(line) for line in lines]
@@ -822,7 +825,7 @@ def parseTourneyNo(topline):
 def parseWinLine(line, names, winnings, isTourney):
     #print "parseWinLine: line:",line
     for i,n in enumerate(names):
-        n = n.encode("latin-1")
+        n = n.encode(encoding)
         if line.startswith(n):
             if isTourney:
                 pos1 = line.rfind("collected ") + 10
@@ -1033,13 +1036,13 @@ def recognisePlayerNo(line, names, atype):
     #print "recogniseplayerno, names:",names
     for i in xrange(len(names)):
         if (atype=="unbet"):
-            if (line.endswith(names[i].encode("latin-1"))):
+            if (line.endswith(names[i].encode(encoding))):
                 return (i)
         elif (line.startswith("Dealt to ")):
             #print "recognisePlayerNo, card precut, line:",line
             tmp=line[9:]
             #print "recognisePlayerNo, card postcut, tmp:",tmp
-            if (tmp.startswith(names[i].encode("latin-1"))):
+            if (tmp.startswith(names[i].encode(encoding))):
                 return (i)
         elif (line.startswith("Seat ")):
             if (line.startswith("Seat 10")):
@@ -1047,10 +1050,10 @@ def recognisePlayerNo(line, names, atype):
             else:
                 tmp=line[8:]
             
-            if (tmp.startswith(names[i].encode("latin-1"))):
+            if (tmp.startswith(names[i].encode(encoding))):
                 return (i)
         else:
-            if (line.startswith(names[i].encode("latin-1"))):
+            if (line.startswith(names[i].encode(encoding))):
                 return (i)
     #if we're here we mustve failed
     raise FpdbError ("failed to recognise player in: "+line+" atype:"+atype)

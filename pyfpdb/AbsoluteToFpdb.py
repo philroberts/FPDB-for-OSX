@@ -26,6 +26,12 @@ from HandHistoryConverter import *
 # Class for converting Absolute HH format.
 
 class Absolute(HandHistoryConverter):
+
+    # Class Variables
+    sitename = "Absolute"
+    filetype = "text"
+    codepage = "cp1252"
+    siteid   = 8
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
@@ -48,24 +54,6 @@ class Absolute(HandHistoryConverter):
 #    re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input
-autostart: whether to run the thread (or you can call start() yourself)
-debugging: if False, pass on partially supported game types. If true, have a go and error..."""
-        #print "DEBUG: XXXXXXXXXXXXXXX"
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Absolute", follow=follow, index=index)
-        logging.info("Initialising Absolute converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.siteId   = 8 # Needs to match id entry in Sites database
-        self.debugging = debugging
-        if autostart:
-            self.start()
-            # otherwise you need to call start yourself.
-
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'

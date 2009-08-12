@@ -77,9 +77,13 @@ follow :  whether to tail -f the input"""
             # TODO: out_path should be sanity checked.
             out_dir = os.path.dirname(self.out_path)
             if not os.path.isdir(out_dir) and out_dir != '':
-                logging.info("Creatin directory '%s'" % out_dir)
+                log.info("Creating directory '%s'" % out_dir)
                 os.makedirs(out_dir)
-            self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
+            try:
+                self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
+                log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
+            except:
+                log.error("out_path %s couldn't be opened" % (self.out_path))
 
         self.follow = follow
         self.compiledPlayers   = set()

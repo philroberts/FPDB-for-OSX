@@ -22,7 +22,6 @@ import gtk
 import os
 import fpdb_simple
 
-    
 import fpdb_import
 import fpdb_db
 
