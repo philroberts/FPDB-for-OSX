@@ -211,7 +211,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.obs = self.obs.replace('\r\n', '\n')
         if self.obs == "" or self.obs == None:
             log.info("Read no hands.")
-            return
+            return []
         return re.split(self.re_SplitHands,  self.obs)
         
     def processHand(self, handText):

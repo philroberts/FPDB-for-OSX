@@ -150,7 +150,7 @@ class Fulltilt(HandHistoryConverter):
         self.obs = self.obs.replace('\r\n', '\n')
         if self.obs == "" or self.obs == None:
             logging.info("Read no hands.")
-            return
+            return []
         return re.split(self.re_SplitHands,  self.obs)
 
     def readHandInfo(self, hand):
