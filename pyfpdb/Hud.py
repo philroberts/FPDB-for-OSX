@@ -211,6 +211,11 @@ class Hud:
             for i, w in enumerate(self.stat_windows.itervalues()):
                 (x, y) = loc[adj[i+1]]
                 w.relocate(x, y)
+
+        # While we're at it, fix the positions of mucked cards too
+        for aux in self.aux_windows:
+            aux.update_card_positions()
+
         return True
 
     def on_button_press(self, widget, event):
@@ -235,6 +240,7 @@ class Hud:
         self.aux_windows = []
 
     def reposition_windows(self, *args):
+        self.update_table_position()
         for w in self.stat_windows.itervalues():
             if type(w) == int:
 #                print "in reposition, w =", w
