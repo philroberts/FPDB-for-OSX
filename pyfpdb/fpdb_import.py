@@ -380,8 +380,9 @@ class Importer:
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
 
+        file =  file.decode(fpdb_simple.LOCALE_ENCODING) 
+
         # Load filter, process file, pass returned filename to import_fpdb_file
-            
         if self.settings['threads'] > 0 and self.writeq != None:
             print "\nConverting " + file + " (" + str(q.qsize()) + ")"
         else:

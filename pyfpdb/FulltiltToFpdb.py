@@ -29,7 +29,7 @@ class Fulltilt(HandHistoryConverter):
     
     sitename = "Fulltilt"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = "utf-16"
     siteId   = 1 # Needs to match id entry in Sites database
 
     # Static regexes
@@ -134,24 +134,6 @@ class Fulltilt(HandHistoryConverter):
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
-
-    #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)
-    # Same function as parent class, removing the 2 end characters. - CG
-    def allHandsAsList(self):
-        """Return a list of handtexts in the file at self.in_path"""
-        #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
-        self.readFile()
-
-        # FIXME: it's a hack
-        if self.obs[:2] == u'\xff\xfe':
-            self.obs = self.obs[2:].replace('\x00', '')
-
-        self.obs = self.obs.strip()
-        self.obs = self.obs.replace('\r\n', '\n')
-        if self.obs == "" or self.obs == None:
-            logging.info("Read no hands.")
-            return []
-        return re.split(self.re_SplitHands,  self.obs)
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText)
