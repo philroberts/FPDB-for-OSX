@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Configuration.py
 
 Handles HUD configuration files.
@@ -73,11 +74,17 @@ class Layout:
 
 class Site:
     def __init__(self, node):
+        def normalizePath(path):
+            "Normalized existing pathes"
+            if os.path.exists(path):
+                return os.path.abspath(path)
+            return path
+        
         self.site_name    = node.getAttribute("site_name")
         self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
-        self.site_path    = node.getAttribute("site_path")
-        self.HH_path      = node.getAttribute("HH_path")
+        self.site_path    = normalizePath(node.getAttribute("site_path"))
+        self.HH_path      = normalizePath(node.getAttribute("HH_path"))
         self.decoder      = node.getAttribute("decoder")
         self.hudopacity   = node.getAttribute("hudopacity")
         self.hudbgcolor   = node.getAttribute("bgcolor")
@@ -91,6 +98,8 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
+            
+        print self.site_name, self.HH_path
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -542,6 +551,13 @@ class Config:
             if db_server != None: self.supported_databases[db_name].dp_server = db_server
             if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
         return
+    
+    def getDefaultSite(self):
+        "Returns first enabled site or None"
+        for site_name,site in self.supported_sites.iteritems():
+            if site.enabled:
+                return site_name
+        return None
 
     def get_tv_parameters(self):
         tv = {}
@@ -573,14 +589,15 @@ class Config:
         except:  imp['fastStoreHudCache'] = True
         return imp
 
-    def get_default_paths(self, site = "PokerStars"):
+    def get_default_paths(self, site = None):
+        if site is None: site = self.getDefaultSite()
         paths = {}
         try:
-            paths['hud-defaultPath']        = os.path.expanduser(self.supported_sites[site].HH_path)
-            paths['bulkImport-defaultPath'] = os.path.expanduser(self.supported_sites[site].HH_path)
+            path = os.path.expanduser(self.supported_sites[site].HH_path)
+            assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
         except:
-            paths['hud-defaultPath']        = "default"
-            paths['bulkImport-defaultPath'] = "default"
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "default"
         return paths
     
     def get_frames(self, site = "PokerStars"):

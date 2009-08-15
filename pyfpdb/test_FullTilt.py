@@ -4,7 +4,12 @@ import py
 
 # regression-test-files/fulltilt/nlhe/NLHE-6max-1.txt
 #   Sorrowful: start: $8.85 end: $14.70 total: $5.85 
-    
+  
+# 'Canceled' hand
+# regression-test-files/fulltilt/lh/Marlin.txt
+
+
+
 def checkGameInfo(hhc, header, info):
     assert hhc.determineGameType(header) == info
 

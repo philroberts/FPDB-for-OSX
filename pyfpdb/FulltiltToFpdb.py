@@ -27,8 +27,14 @@ from HandHistoryConverter import *
 
 class Fulltilt(HandHistoryConverter):
     
+    sitename = "Fulltilt"
+    filetype = "text"
+    codepage = "cp1252"
+    siteId   = 1 # Needs to match id entry in Sites database
+
     # Static regexes
-    re_GameInfo     = re.compile('''(?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
+    re_GameInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
+                                    (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     .+
                                     -\s(?P<CURRENCY>\$|)?
                                     (?P<SB>[.0-9]+)/
@@ -39,7 +45,7 @@ class Fulltilt(HandHistoryConverter):
                                  ''', re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
-    re_HandInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
+    re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     Table\s
                                     (?P<PLAY>Play\sChip\s|PC)?
@@ -47,8 +53,9 @@ class Fulltilt(HandHistoryConverter):
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
-                                    (?P<DATETIME>.*)
-                                 ''', re.VERBOSE)
+                                    (?P<DATETIME>.*?)\n
+                                    (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
+                                 ''', re.VERBOSE|re.DOTALL)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
@@ -59,20 +66,6 @@ class Fulltilt(HandHistoryConverter):
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
     mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
-
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Fulltilt", follow=follow, index=index)
-        logging.info("Initialising Fulltilt converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.siteId   = 1 # Needs to match id entry in Sites database
-        if autostart:
-            self.start()
-
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -118,7 +111,7 @@ follow :  whether to tail -f the input"""
         if not m: 
             return None
         mg = m.groupdict()
-
+        print mg
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
@@ -140,7 +133,7 @@ follow :  whether to tail -f the input"""
         if mg['TOURNO'] == None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
+#        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
     #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)
@@ -158,11 +151,11 @@ follow :  whether to tail -f the input"""
         self.obs = self.obs.replace('\r\n', '\n')
         if self.obs == "" or self.obs == None:
             logging.info("Read no hands.")
-            return
+            return []
         return re.split(self.re_SplitHands,  self.obs)
 
     def readHandInfo(self, hand):
-        m =  self.re_HandInfo.search(hand.handText,re.DOTALL)
+        m =  self.re_HandInfo.search(hand.handText)
         if(m == None):
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
@@ -170,6 +163,10 @@ follow :  whether to tail -f the input"""
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+
+        if m.group("CANCELLED"):
+            raise FpdbParseError(hid=m.group('HID'))
+
         if m.group('TABLEATTRIBUTES'):
             m2 = self.re_Max.search(m.group('TABLEATTRIBUTES'))
             if m2: hand.maxseats = int(m2.group('MAX'))
@@ -368,8 +365,5 @@ if __name__ == "__main__":
                   action="store_const", const=logging.DEBUG, dest="verbosity")
 
     (options, args) = parser.parse_args()
-
-    LOG_FILENAME = './logging.out'
-    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
     e = Fulltilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)

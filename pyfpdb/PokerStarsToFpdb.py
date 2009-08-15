@@ -19,6 +19,7 @@
 ########################################################################
 
 # TODO: straighten out discards for draw games
+
 import sys
 from HandHistoryConverter import *
 
@@ -26,8 +27,12 @@ from HandHistoryConverter import *
 
 class PokerStars(HandHistoryConverter):
 
-############################################################
-#    Class Variables
+    # Class Variables
+
+    sitename = "PokerStars"
+    filetype = "text"
+    codepage = "cp1252"
+    siteId   = 2 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
     sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\x80", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
@@ -75,20 +80,6 @@ class PokerStars(HandHistoryConverter):
     re_Button       = re.compile('Seat #(?P<BUTTON>\d+) is the button', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
-
-
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="PokerStars", follow=follow, index=index)
-        logging.info("Initialising PokerStars converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.siteId   = 2 # Needs to match id entry in Sites database
-        if autostart:
-            self.start()
 
 
     def compilePlayerRegexs(self,  hand):
@@ -387,8 +378,5 @@ if __name__ == "__main__":
                   action="store_const", const=logging.DEBUG, dest="verbosity")
 
     (options, args) = parser.parse_args()
-
-    LOG_FILENAME = './logging.out'
-    logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
     e = PokerStars(in_path = options.ipath, out_path = options.opath, follow = options.follow)
