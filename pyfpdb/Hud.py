@@ -210,6 +210,7 @@ class Hud:
         self.aux_windows = []
 
     def reposition_windows(self, *args):
+        self.update_table_position()
         for w in self.stat_windows.itervalues():
             if type(w) == int:
 #                print "in reposition, w =", w
