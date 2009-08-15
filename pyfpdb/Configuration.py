@@ -34,7 +34,7 @@ import xml.dom.minidom
 from xml.dom.minidom import Node
 
 import logging, logging.config
-logging.config.fileConfig("logging.conf")
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger("config")
 log.debug("config logger initialised")
 
@@ -208,7 +208,7 @@ class Database:
             if key.startswith('__'): continue
             value = getattr(self, key)
             if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
+            temp = temp + '    ' + key + " = " + repr(value) + "\n"
         return temp
 
 class Aux_window:

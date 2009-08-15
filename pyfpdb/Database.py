@@ -44,7 +44,7 @@ import Card
 from Exceptions import *
 
 import logging, logging.config
-logging.config.fileConfig("logging.conf")
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger('db')
 
 class Database:

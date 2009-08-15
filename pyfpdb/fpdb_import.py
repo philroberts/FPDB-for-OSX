@@ -39,7 +39,7 @@ import fpdb_parse_logic
 import Configuration
 
 import logging, logging.config
-logging.config.fileConfig("logging.conf")
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger('importer')
 
 #    database interface modules
