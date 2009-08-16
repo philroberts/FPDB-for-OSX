@@ -33,7 +33,8 @@ class Fulltilt(HandHistoryConverter):
     siteId   = 1 # Needs to match id entry in Sites database
 
     # Static regexes
-    re_GameInfo     = re.compile('''(?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
+    re_GameInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
+                                    (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     .+
                                     -\s(?P<CURRENCY>\$|)?
                                     (?P<SB>[.0-9]+)/
@@ -110,7 +111,7 @@ class Fulltilt(HandHistoryConverter):
         if not m: 
             return None
         mg = m.groupdict()
-
+        print mg
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
@@ -132,7 +133,7 @@ class Fulltilt(HandHistoryConverter):
         if mg['TOURNO'] == None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
+#        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
     #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)
