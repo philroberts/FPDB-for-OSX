@@ -41,7 +41,7 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)  (?P<LIMIT>No Limit|) (?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)  (?P<LIMIT>No Limit|Pot Limit|Normal) (?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)", re.MULTILINE)
     re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\nTable: (?P<TABLE>.*) \(Real Money\)", re.MULTILINE)
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
     re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
@@ -112,7 +112,7 @@ or None if we fail to get the info """
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'PL':'pl', '':'fl' }
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl' }
         games = {              # base, category
                   "Holdem" : ('hold','holdem'), 
                     'Omaha' : ('hold','omahahi'), 
