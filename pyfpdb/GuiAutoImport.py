@@ -146,7 +146,11 @@ class GuiAutoImport (threading.Thread):
             return False
         
     def reset_startbutton(self):
-        self.startButton.set_label(u'  _Stop Autoimport  ')
+        if self.pipe_to_hud is not None:
+            self.startButton.set_label(u'  _Stop Autoimport  ')
+        else:
+            self.startButton.set_label(u'  _Start Autoimport  ')
+        
         return False
 
 
@@ -185,9 +189,7 @@ class GuiAutoImport (threading.Thread):
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-                    
-                    print "self.pipe_to_hud = ", self.pipe_to_hud
-                    if self.pipe_to_hud is not None:
+                    else:                    
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
                             print "+Import directory - Site: " + site + " dir: " + str(self.input_settings[site][0])
