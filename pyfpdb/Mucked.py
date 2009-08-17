@@ -450,7 +450,9 @@ class Flop_Mucked(Aux_Seats):
             self.displayed = True
             if i != "common":
                 id = self.get_id_from_seat(i)
-                self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[id]['screen_name'])
+                # sc: had KeyError here with new table so added id != None test as a guess:
+                if id != None:
+                    self.m_windows[i].eb.set_tooltip_text(self.hud.stat_dict[id]['screen_name'])
 
     def update_gui(self, new_hand_id):
         """Prepare and show the mucked cards."""
