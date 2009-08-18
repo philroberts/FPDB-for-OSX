@@ -311,7 +311,7 @@ class Config:
         try:
             print "Reading configuration file %s\n" % (file)
             doc = xml.dom.minidom.parse(file)
-        except:
+        except: 
             print "Error parsing %s.  See error log file." % (file)
             traceback.print_exc(file=sys.stderr)
             print "press enter to continue"
@@ -596,8 +596,8 @@ class Config:
             path = os.path.expanduser(self.supported_sites[site].HH_path)
             assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
-        except:
-            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "default"
+        except AssertionError: 
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
     
     def get_frames(self, site = "PokerStars"):
