@@ -57,7 +57,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''', re.VERBOSE|re.DOTALL)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
 # These regexes are for FTP only
@@ -66,6 +66,7 @@ class Fulltilt(HandHistoryConverter):
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
     mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
+
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -82,7 +83,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
             self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( \$?(?P<BET>[.,\d]+))?" % player_re, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$(?P<POT>[.\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$?(?P<POT>[.,\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
@@ -158,6 +159,16 @@ class Fulltilt(HandHistoryConverter):
             hand.gametype['currency'] = 'play'
             
         # TODO: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
+        re_SNGBuyInFee  = re.compile('''(?P<CURRENCY>\$)?(?P<BUYIN>[.0-9]+) \+ \$?(?P<FEE>[.0-9]+) (?P<EXTRA_INFO>[\sA-Za-z&()]+)?''')
+        # TO DO : See if important info can be retrieved from EXTRA_INFO (sould be things like Turbo, Matrix, KO, ...)
+        try:
+            n = re_SNGBuyInFee.search(m.group('TOURNAMENT'))
+            #print "cur %s BUYIN %s FEE %s EXTRA %s" %(n.group('CURRENCY'), n.group('BUYIN'), n.group('FEE'), n.group('EXTRA_INFO'))
+            hand.buyin = "%s%s+%s%s" %(n.group('CURRENCY'), n.group('BUYIN'), n.group('CURRENCY'), n.group('FEE'))
+        except:
+            #print "Unable to collect BuyIn/Fee Info"
+            logging.info("Unable to collect BuyIn/Fee Info from HandInfo")
+
         if hand.buyin == None:
             hand.buyin = "$0.00+$0.00"
         if hand.level == None:
@@ -301,7 +312,7 @@ class Fulltilt(HandHistoryConverter):
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+            hand.addCollectPot(player=m.group('PNAME'),pot=re.sub(u',',u'',m.group('POT')))
 
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
