@@ -57,13 +57,17 @@ class Fulltilt(HandHistoryConverter):
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''', re.VERBOSE|re.DOTALL)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
+    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
 # These regexes are for FTP only
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
+
+
+
 
     mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
 
@@ -208,7 +212,11 @@ class Fulltilt(HandHistoryConverter):
 #FIXME:        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
-        m = self.re_PlayerInfo.finditer(hand.handText)
+        if hand.gametype['type'] == "ring" :
+            m = self.re_PlayerInfo.finditer(hand.handText)
+        else:   #if hand.gametype['type'] == "tour"
+            m = self.re_TourneyPlayerInfo.finditer(hand.handText)
+
         players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
