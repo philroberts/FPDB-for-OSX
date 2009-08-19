@@ -1587,6 +1587,9 @@ class Sql:
             # used in GuiPlayerStats:
             self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
+            self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
+
+
             # used in Filters:
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
             self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
