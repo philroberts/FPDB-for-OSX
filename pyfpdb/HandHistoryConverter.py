@@ -17,6 +17,7 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 import Hand
+import Tourney
 import re
 import sys
 import traceback
@@ -53,6 +54,7 @@ class HandHistoryConverter():
     # "utf_8" is more likely if there are funny characters
     codepage = "cp1252"
 
+
     def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True):
         """\
 in_path   (default '-' = sys.stdin)
@@ -67,6 +69,9 @@ follow :  whether to tail -f the input"""
         self.out_path = out_path
 
         self.processedHands = []
+
+        # Tourney object used to store TourneyInfo when called to deal with a Summary file
+        self.tourney = None
         
         if in_path == '-':
             self.in_fh = sys.stdin
@@ -88,6 +93,10 @@ follow :  whether to tail -f the input"""
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
+        
+        self.status = True
+
+        self.parsedObjectType = "HH"      #default behaviour : parsing HH files, can be "Summary" if the parsing encounters a Summary File
 
         if autostart:
             self.start()
@@ -116,6 +125,7 @@ Otherwise, finish at EOF.
             numHands = 0
             numErrors = 0
             if self.follow:
+                #TODO: See how summary files can be handled on the fly (here they should be rejected as before) 
                 log.info("Tailing '%s'" % self.in_path)
                 for handText in self.tailHands():
                     try:
@@ -128,16 +138,28 @@ Otherwise, finish at EOF.
             else:
                 handsList = self.allHandsAsList()
                 log.info("Parsing %d hands" % len(handsList))
-                for handText in handsList:
-                    try:
-                        self.processedHands.append(self.processHand(handText))
-                    except FpdbParseError, e:
-                        numErrors+=1
-                        log.warning("Failed to convert hand %s" % e.hid)
-                        log.debug(handText)
-                numHands = len(handsList)
-            endtime = time.time()
-            log.info("Read %d hands (%d failed) in %.3f seconds" % (numHands, numErrors, endtime - starttime))
+                # Determine if we're dealing with a HH file or a Summary file
+                if self.isSummary(handsList[0]) == False:
+                    self.parsedObjectType = "HH"
+                    for handText in handsList:
+                        try:
+                            self.processedHands.append(self.processHand(handText))
+                        except FpdbParseError, e:
+                            numErrors+=1
+                            log.warning("Failed to convert hand %s" % e.hid)
+                            log.debug(handText)
+                    numHands = len(handsList)
+                    endtime = time.time()
+                    log.info("Read %d hands (%d failed) in %.3f seconds" % (numHands, numErrors, endtime - starttime))
+                else:
+                        self.parsedObjectType = "Summary"
+                        summaryParsingStatus = self.readSummaryInfo(handsList)
+                        endtime = time.time()
+                        if summaryParsingStatus :
+                            log.info("Summary file '%s' correctly parsed  (took %.3f seconds)" % (self.in_path, endtime - starttime))
+                        else :                            
+                            log.warning("Error converting summary file '%s' (took %.3f seconds)" % (self.in_path, endtime - starttime))
+
         except IOError, ioe:
             log.exception("Error converting '%s'" % self.in_path)
         finally:
@@ -421,7 +443,7 @@ or None if we fail to get the info """
 
     def getStatus(self):
         #TODO: Return a status of true if file processed ok
-        return True
+        return self.status
 
     def getProcessedHands(self):
         return self.processedHands
@@ -431,3 +453,15 @@ or None if we fail to get the info """
 
     def getLastCharacterRead(self):
         return self.index
+
+    def isSummary(self, topline):
+        return " Tournament Summary " in topline
+
+    def getParsedObjectType(self):
+        return self.parsedObjectType
+
+    #returns a status (True/False) indicating wether the parsing could be done correctly or not    
+    def readSummaryInfo(self, summaryInfoList): abstract
+    
+    def getTourney(self):
+        return self.tourney
