@@ -168,15 +168,19 @@ class SummaryParser(htmllib.HTMLParser): # derive new HTML parser
                     self.TempResultPos += 1
 
 class EverleafSummary:
-    def main(self):
-        file = urllib.urlopen("http://www.poker4ever.com/en.tournaments.tournament-statistics?tid=817095")
-        parser = SummaryParser(formatter.NullFormatter())
-        parser.feed(file.read())
-        print "site=",parser.SiteName, "tourneyname=", parser.TourneyName, "tourneyid=", parser.TourneyId
-        print "start time=",parser.TourneyStartTime, "end time=",parser.TourneyEndTime
-        print "structure=", parser.TourneyStructure, "game type=",parser.TourneyGameType
-        print "buy-in=", parser.TourneyBuyIn, "rebuys=", parser.TourneyRebuys, "total players=", parser.TourneyPlayers, "pool=", parser.TourneyPool
-        print "results=", parser.Results
+    def __init__(self):
+        if __name__ != "__main__":
+            self.main()
+            
+    def main(self, id="785119"):
+        file = urllib.urlopen("http://www.poker4ever.com/en.tournaments.tournament-statistics?tid="+id)
+        self.parser = SummaryParser(formatter.NullFormatter())
+        self.parser.feed(file.read())
+        print "site=",self.parser.SiteName, "tourneyname=", self.parser.TourneyName, "tourneyid=", self.parser.TourneyId
+        print "start time=",self.parser.TourneyStartTime, "end time=",self.parser.TourneyEndTime
+        print "structure=", self.parser.TourneyStructure, "game type=",self.parser.TourneyGameType
+        print "buy-in=", self.parser.TourneyBuyIn, "rebuys=", self.parser.TourneyRebuys, "total players=", self.parser.TourneyPlayers, "pool=", self.parser.TourneyPool
+        print "results=", self.parser.Results
     
     
 if __name__ == "__main__":
