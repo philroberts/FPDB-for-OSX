@@ -172,7 +172,7 @@ class EverleafSummary:
         if __name__ != "__main__":
             self.main()
             
-    def main(self, id="785119"):
+    def main(self, id="785646"):
         file = urllib.urlopen("http://www.poker4ever.com/en.tournaments.tournament-statistics?tid="+id)
         self.parser = SummaryParser(formatter.NullFormatter())
         self.parser.feed(file.read())

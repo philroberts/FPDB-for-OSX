@@ -107,6 +107,11 @@ class Tournament:
             self.main_vbox.set_border_width(1)
             self.window.add(self.main_vbox)
             self.window.show()
+            
+    def addrebuy(self, widget=None):
+        t = self
+        t.numrebuys += 1
+        t.mylabel.set_label("%s - %s - %s - %s - %s %s - %s - %s - %s - %s - %s" % (t.site, t.id, t.starttime, t.endtime, t.structure, t.game, t.buyin, t.fee, t.numrebuys, t.numplayers, t.prizepool))
         
     def delete_event(self, widget, event, data=None):
         return False
@@ -154,15 +159,20 @@ class ttracker_main(object):
             editbutton = gtk.Button(label="Edit")
             print "new button=", editbutton
             editbutton.connect("clicked", t.openwindow)
+            rebuybutton = gtk.Button(label="Rebuy")
+            rebuybutton.connect("clicked", t.addrebuy)
+            self.vb.add(rebuybutton)
             self.vb.add(editbutton) # These should probably be put in.. a.. h-box? i don't know.. 
             self.vb.add(mylabel)
-            self.vb.show()
             self.main_window.resize_children()
             self.main_window.show()
             mylabel.show()
             editbutton.show()
+            rebuybutton.show()
             t.mylabel = mylabel
             t.editbutton = editbutton
+            t.rebuybutton = rebuybutton
+            self.vb.show()            
             print self.tourney_list
           
             return True
