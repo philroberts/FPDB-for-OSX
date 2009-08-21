@@ -396,29 +396,45 @@ class Importer:
             out_path     = os.path.join(hhdir, "x"+strftime("%d-%m-%y")+os.path.basename(file))
 
         filter_name = filter.replace("ToFpdb", "")
-
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
             hhc = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
-            if(hhc.getStatus() and self.NEWIMPORT == False):
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
-            elif (hhc.getStatus() and self.NEWIMPORT == True):
-                #This code doesn't do anything yet
-                handlist = hhc.getProcessedHands()
-                self.pos_in_file[file] = hhc.getLastCharacterRead()
+            if hhc.getParsedObjectType() == "HH":
+                if(hhc.getStatus() and self.NEWIMPORT == False):
+                    (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
+                elif (hhc.getStatus() and self.NEWIMPORT == True):
+                    #This code doesn't do anything yet
+                    handlist = hhc.getProcessedHands()
+                    self.pos_in_file[file] = hhc.getLastCharacterRead()
 
-                for hand in handlist:
-                    #hand.prepInsert()
-                    hand.insert(self.database)
+                    for hand in handlist:
+                        #hand.prepInsert()
+                        hand.insert(self.database)
+                else:
+                    # conversion didn't work
+                    # TODO: appropriate response?
+                    return (0, 0, 0, 1, 0, -1)
+            elif hhc.getParsedObjectType() == "Summary":
+                if(hhc.getStatus()):
+                    tourney = hhc.getTourney()
+                    #print tourney
+                    #tourney.prepInsert()
+                    (stored, duplicates, partial, errors, ttime) = tourney.insert(self.database)
+                    return (stored, duplicates, partial, errors, ttime)
+                    
+                else:
+                    # conversion didn't work
+                    # Could just be the parsing of a non summary file (classic HH file)
+                    return (0, 0, 0, 0, 0)
             else:
-                # conversion didn't work
-                # TODO: appropriate response?
+                print "Unknown objects parsed by HHC :'%s'" %(hhc.getObjectTypeRead())
                 return (0, 0, 0, 1, 0, -1)
+            
         else:
             print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
             return (0, 0, 0, 1, 0, -1)
-
+    
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
