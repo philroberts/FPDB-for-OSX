@@ -169,7 +169,7 @@ class SummaryParser(htmllib.HTMLParser): # derive new HTML parser
 
 class EverleafSummary:
     def main(self):
-        file = urllib.urlopen("http://www.poker4ever.com/en.tournaments.tournament-statistics?tid=785119")
+        file = urllib.urlopen("http://www.poker4ever.com/en.tournaments.tournament-statistics?tid=817095")
         parser = SummaryParser(formatter.NullFormatter())
         parser.feed(file.read())
         print "site=",parser.SiteName, "tourneyname=", parser.TourneyName, "tourneyid=", parser.TourneyId
