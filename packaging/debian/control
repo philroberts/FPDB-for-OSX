@@ -1,14 +1,14 @@
 Source: free-poker-tools
 Maintainer: Mika Bostrom <bostik+fpdb@bostik.iki.fi>
 Section: games
-Priority: optional
-Build-Depends: python, dpkg-dev, python-support
+Priority: extra
+Build-Depends: debhelper, python-support
 Standards-Version: 3.8.0
 
 Package: python-fpdb
 Architecture: any
 Section: games
-Priority: optional
+Priority: extra
 Depends: ${python:Depends}, python-gtk2, python-matplotlib,
 	python-support, mysql-server | postgresql | python-pysqlite2,
 	python-psycopg2 | python-mysqldb
