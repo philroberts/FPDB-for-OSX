@@ -1,0 +1,5 @@
+free-poker-tools (0.10.99) unstable; urgency=low
+
+  * Initial packaging release.
+
+ -- Mika Bostrom <bostik+fpdb@iki.fi>  Thu, 20 Aug 2009 06:30:53 +0300
