@@ -29,7 +29,7 @@ class Fulltilt(HandHistoryConverter):
     
     sitename = "Fulltilt"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = "utf-16"
     siteId   = 1 # Needs to match id entry in Sites database
 
     # Static regexes
@@ -57,13 +57,17 @@ class Fulltilt(HandHistoryConverter):
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''', re.VERBOSE|re.DOTALL)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
+    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
 # These regexes are for FTP only
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
+
+
+
 
     mixes = { 'HORSE': 'horse', '7-Game': '7game', 'HOSE': 'hose', 'HA': 'ha'}
 
@@ -137,25 +141,7 @@ class Fulltilt(HandHistoryConverter):
 #        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
-    #Following function is a hack, we should be dealing with this in readFile (i think correct codepage....)
-    # Same function as parent class, removing the 2 end characters. - CG
-    def allHandsAsList(self):
-        """Return a list of handtexts in the file at self.in_path"""
-        #TODO : any need for this to be generator? e.g. stars support can email one huge file of all hands in a year. Better to read bit by bit than all at once.
-        self.readFile()
-
-        # FIXME: it's a hack
-        if self.obs[:2] == u'\xff\xfe':
-            self.obs = self.obs[2:].replace('\x00', '')
-
-        self.obs = self.obs.strip()
-        self.obs = self.obs.replace('\r\n', '\n')
-        if self.obs == "" or self.obs == None:
-            logging.info("Read no hands.")
-            return []
-        return re.split(self.re_SplitHands,  self.obs)
-
-    def readHandInfo(self, hand): 
+    def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText)
         if(m == None):
             logging.info("Didn't match re_HandInfo")
@@ -208,7 +194,11 @@ class Fulltilt(HandHistoryConverter):
 #FIXME:        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
-        m = self.re_PlayerInfo.finditer(hand.handText)
+        if hand.gametype['type'] == "ring" :
+            m = self.re_PlayerInfo.finditer(hand.handText)
+        else:   #if hand.gametype['type'] == "tour"
+            m = self.re_TourneyPlayerInfo.finditer(hand.handText)
+
         players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))

@@ -408,9 +408,11 @@ class Stat_Window:
 
         if event.button == 3:   # right button event
             self.popups.append(Popup_window(widget, self))
+            return True
 
         if event.button == 2:   # middle button event
             self.window.hide()
+            return True
 
         if event.button == 1:   # left button event
             # TODO: make position saving save sizes as well?
@@ -418,7 +420,12 @@ class Stat_Window:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
                 self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-
+            return True
+        return False
+    
+    def noop(self): # i'm going to try to connect the focus-in and focus-out events here, to see if that fixes any of the focus problems.
+        return True
+    
     def kill_popup(self, popup):
         popup.window.destroy()
         self.popups.remove(popup)
@@ -493,9 +500,16 @@ class Stat_Window:
 
                 e_box[r][c].add(self.label[r][c])
                 e_box[r][c].connect("button_press_event", self.button_press_cb)
+                e_box[r][c].connect("focus-in-event", self.noop)
+                e_box[r][c].connect("focus", self.noop)
+                e_box[r][c].connect("focus-out-event", self.noop)
                 label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
+        self.window.connect("focus", self.noop)
+        self.window.connect("focus-in-event", self.noop)
+        self.window.connect("focus-out-event", self.noop)
+        self.window.connect("button_press_event", self.button_press_cb)
         
         self.window.move(self.x, self.y)
                    
@@ -596,7 +610,9 @@ class Popup_window:
 
         if event.button == 3:   # right button event
             self.stat_window.kill_popup(self)
+            return True
 #            self.window.destroy()
+        return False
 
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
