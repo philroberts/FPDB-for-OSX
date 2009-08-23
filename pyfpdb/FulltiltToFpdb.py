@@ -53,7 +53,8 @@ class Fulltilt(HandHistoryConverter):
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
-                                    (?P<DATETIME>.*?)\n
+                                    (?P<DATETIME>\d+:\d+:\d+\s\w+\s-\s\d+/\d+/\d+)\s?
+                                    (?P<PARTIAL>\(partial\))?\n
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''', re.VERBOSE|re.DOTALL)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
@@ -156,7 +157,6 @@ class Fulltilt(HandHistoryConverter):
         if not m: 
             return None
         mg = m.groupdict()
-        print mg
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
@@ -191,7 +191,7 @@ class Fulltilt(HandHistoryConverter):
         hand.tablename = m.group('TABLE')
         hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 
-        if m.group("CANCELLED"):
+        if m.group("CANCELLED") or m.group("PARTIAL"):
             raise FpdbParseError(hid=m.group('HID'))
 
         if m.group('TABLEATTRIBUTES'):
