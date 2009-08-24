@@ -398,6 +398,10 @@ or None if we fail to get the info """
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
         return hands
 
+    def __listof(self, x):
+        if isinstance(x, list) or isinstance(x, tuple): return x
+        else: return [x]
+
     def readFile(self):
         """Open in_path according to self.codepage. Exceptions caught further up"""
         
@@ -407,12 +411,20 @@ or None if we fail to get the info """
                 log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
-                in_fh = codecs.open(self.in_path, 'r', self.codepage)
-                in_fh.seek(self.index)
-                log.debug("Opened in_path: '%s' with %s" % (self.in_path, self.codepage))
-                self.obs = in_fh.read()
-                self.index = in_fh.tell()
-                in_fh.close()
+                success = False
+                for kodec in self.__listof(self.codepage):
+                    if success: break
+                    print "trying", kodec
+                    try:
+                        in_fh = codecs.open(self.in_path, 'r', kodec)
+                        in_fh.seek(self.index)
+                        log.debug("Opened in_path: '%s' with %s" % (self.in_path, kodec))
+                        self.obs = in_fh.read()
+                        self.index = in_fh.tell()
+                        in_fh.close()
+                        success = True
+                    except:
+                        pass
         elif(self.filetype == "xml"):
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
