@@ -57,6 +57,13 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<PARTIAL>\(partial\))?\n
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''', re.VERBOSE|re.DOTALL)
+    re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
+                                         (?P<CURRENCY>\$)?(?P<BUYIN>[.0-9]+)?\s*\+\s*\$?(?P<FEE>[.0-9]+)?
+                                         (\s(?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness)))?
+                                         (\s(?P<SHOOTOUT>Shootout))?
+                                         (\s(?P<SNG>Sit\s&\sGo))?
+                                         (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
+                                    ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
     re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
@@ -66,7 +73,7 @@ class Fulltilt(HandHistoryConverter):
     re_TourneyInfo  = re.compile('''Tournament\sSummary\s
                                     (?P<TOURNAMENT_NAME>[^$(]+)?\s*
                                     ((?P<CURRENCY>\$|)?(?P<BUYIN>[.0-9]+)\s*\+\s*\$?(?P<FEE>[.0-9]+)\s)?
-                                    ((?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy))\s)?
+                                    ((?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness))\s)?
                                     ((?P<SHOOTOUT>Shootout)\s)?
                                     ((?P<SNG>Sit\s&\sGo)\s)?
                                     (\((?P<TURBO1>Turbo)\)\s)?
@@ -202,16 +209,30 @@ class Fulltilt(HandHistoryConverter):
         if m.group('PLAY') != None:
             hand.gametype['currency'] = 'play'
             
-        # TODO: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
-        re_SNGBuyInFee  = re.compile('''(?P<CURRENCY>\$)?(?P<BUYIN>[.0-9]+) \+ \$?(?P<FEE>[.0-9]+) (?P<EXTRA_INFO>[\sA-Za-z&()]+)?''')
-        # TO DO : See if important info can be retrieved from EXTRA_INFO (sould be things like Turbo, Matrix, KO, ...)
-        try:
-            n = re_SNGBuyInFee.search(m.group('TOURNAMENT'))
-            #print "cur %s BUYIN %s FEE %s EXTRA %s" %(n.group('CURRENCY'), n.group('BUYIN'), n.group('FEE'), n.group('EXTRA_INFO'))
-            hand.buyin = "%s%s+%s%s" %(n.group('CURRENCY'), n.group('BUYIN'), n.group('CURRENCY'), n.group('FEE'))
-        except:
-            #print "Unable to collect BuyIn/Fee Info"
-            logging.info("Unable to collect BuyIn/Fee Info from HandInfo")
+        # Done: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
+        if m.group('TOURNAMENT') is not None:
+            n = self.re_TourneyExtraInfo.search(m.group('TOURNAMENT'))
+            if n.group('UNREADABLE_INFO') is not None:
+                hand.tourneyComment = n.group('UNREADABLE_INFO') 
+            else:
+                hand.tourneyComment = n.group('TOURNEY_NAME')   # can be None
+                if (n.group('CURRENCY') is not None and n.group('BUYIN') is not None and n.group('FEE') is not None):
+                    hand.buyin = "%s%s+%s%s" %(n.group('CURRENCY'), n.group('BUYIN'), n.group('CURRENCY'), n.group('FEE'))
+                if n.group('TURBO') is not None :
+                    hand.speed = "Turbo"
+                if n.group('SPECIAL') is not None :
+                    special = n.group('SPECIAL')
+                    if special == "Rebuy":
+                        hand.isRebuy = True
+                    if special == "KO":
+                        hand.isKO = True
+                    if special == "Head's Up":
+                        hand.isHU = True
+                    if re.search("Matrix", special):
+                        hand.isMatrix = True
+                    if special == "Shootout":
+                        hand.isShootout = True
+                 
 
         if hand.buyin == None:
             hand.buyin = "$0.00+$0.00"
@@ -472,6 +493,8 @@ class Fulltilt(HandHistoryConverter):
                 tourney.isMatrix = True
             if special == "Rebuy":
                 tourney.isRebuy = True
+            if special == "Madness":
+                tourney.tourneyComment = "Madness"
         if mg['SHOOTOUT'] is not None:
             tourney.isShootout = True
         if mg['TURBO1'] is not None or mg['TURBO2'] is not None :

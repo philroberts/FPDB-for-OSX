@@ -2758,6 +2758,12 @@ class Sql:
             self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                              WHERE gametypeId=%s AND siteHandNo=%s
             """
+            
+            self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id 
+                                                        FROM TourneyTypes tt 
+                                                        INNER JOIN Tourneys t ON (t.tourneyTypeId = tt.id) 
+                                                        WHERE t.siteTourneyNo=%s AND tt.siteId=%s
+            """
 
             if db_server == 'mysql':
                 self.query['placeholder'] = u'%s'

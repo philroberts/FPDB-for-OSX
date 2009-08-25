@@ -46,7 +46,6 @@ class Tourney(object):
 
 
     def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC"):
-        print "Tourney.__init__"
         self.sitename           = sitename
         self.siteId             = self.SITEIDS[sitename]
         self.gametype           = gametype
@@ -82,13 +81,12 @@ class Tourney(object):
         self.totalAddOns        = 0
         self.koBounty           = 0
         self.countKO            = 0     #To use for winnings calculation which is not counted in the rest of the summary file
+        self.tourneyComment     = None
         self.players            = []
 
         # Collections indexed by player names
         self.finishPositions    = {}
         self.winnings           = {}
-
-
 
         # currency symbol for this summary
         self.sym = None
@@ -129,7 +127,8 @@ class Tourney(object):
                  ("TOTAL REBUYS", self.totalRebuys),
                  ("TOTAL ADDONS", self.totalAddOns),
                  ("KO BOUNTY", self.koBounty),
-                 ("NB OF KO", self.countKO)
+                 ("NB OF KO", self.countKO),
+                 ("TOURNEY COMMENT", self.tourneyComment)
         )
  
         structs = ( ("GAMETYPE", self.gametype),
