@@ -964,12 +964,10 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         if self.backend == self.SQLITE:
-            c.execute("INSERT INTO TourneyTypes VALUES (NULL, 1, 0, 0, 0, 0);")
+            c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         else:
-            c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
-        #c.execute("""INSERT INTO TourneyTypes
-        #          (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
-        #          (1,0,0,0,?)""",(False,) )
+            c.execute("INSERT INTO TourneyTypes (siteId, buyin, fee) VALUES (1, 0, 0);")
+            
     #end def fillDefaultData
 
     def rebuild_hudcache(self):

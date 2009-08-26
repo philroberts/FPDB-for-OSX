@@ -325,8 +325,14 @@ class Sql:
                                 siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
                                 buyin INT NOT NULL,
                                 fee INT NOT NULL,
-                                knockout INT NOT NULL,
-                                rebuyOrAddon BOOLEAN NOT NULL)
+                                maxSeats INT NOT NULL DEFAULT -1,
+                                knockout BOOLEAN NOT NULL DEFAULT False,
+                                rebuyOrAddon BOOLEAN NOT NULL DEFAULT False,
+                                speed varchar(10),
+                                headsUp BOOLEAN NOT NULL DEFAULT False,
+                                shootout BOOLEAN NOT NULL DEFAULT False,
+                                matrix BOOLEAN NOT NULL DEFAULT False
+                                )
                             ENGINE=INNODB"""
             elif db_server == 'postgresql':
                 self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
@@ -334,16 +340,28 @@ class Sql:
                             siteId INT NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
                             buyin INT NOT NULL,
                             fee INT NOT NULL,
-                            knockout INT NOT NULL,
-                            rebuyOrAddon BOOLEAN NOT NULL)"""
+                            maxSeats INT NOT NULL DEFAULT -1,
+                            knockout BOOLEAN NOT NULL DEFAULT False,
+                            rebuyOrAddon BOOLEAN NOT NULL DEFAULT False,
+                            speed varchar(10),
+                            headsUp BOOLEAN NOT NULL DEFAULT False,
+                            shootout BOOLEAN NOT NULL DEFAULT False,
+                            matrix BOOLEAN NOT NULL DEFAULT False
+                            )"""
             elif db_server == 'sqlite':
                 self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                             id INTEGER PRIMARY KEY,
                             siteId INT NOT NULL,
                             buyin INT NOT NULL,
                             fee INT NOT NULL,
-                            knockout INT NOT NULL,
-                            rebuyOrAddon BOOLEAN NOT NULL)"""
+                            maxSeats INT NOT NULL DEFAULT -1,
+                            knockout BOOLEAN NOT NULL DEFAULT 0,
+                            rebuyOrAddon BOOLEAN NOT NULL DEFAULT 0,
+                            speed TEXT,
+                            headsUp BOOLEAN NOT NULL DEFAULT 0,
+                            shootout BOOLEAN NOT NULL DEFAULT 0,
+                            matrix BOOLEAN NOT NULL DEFAULT 0
+                            )"""
 
             ################################
             # Create Tourneys
@@ -357,6 +375,17 @@ class Sql:
                             entries INT NOT NULL,
                             prizepool INT NOT NULL,
                             startTime DATETIME NOT NULL,
+                            endTime DATETIME,
+                            buyinChips INT,
+                            tourneyName varchar(20),
+                            matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
+                            rebuyChips INT DEFAULT 0,
+                            addonChips INT DEFAULT 0,
+                            rebuyAmount INT DEFAULT 0,
+                            addonAmount INT DEFAULT 0,
+                            totalRebuys INT DEFAULT 0,
+                            totalAddons INT DEFAULT 0,
+                            koBounty INT DEFAULT 0,
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
@@ -368,6 +397,17 @@ class Sql:
                             entries INT,
                             prizepool INT,
                             startTime timestamp without time zone,
+                            endTime timestamp without time zone,
+                            buyinChips INT,
+                            tourneyName varchar(20),
+                            matrixIdProcessed SMALLINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
+                            rebuyChips INT DEFAULT 0,
+                            addonChips INT DEFAULT 0,
+                            rebuyAmount INT DEFAULT 0,
+                            addonAmount INT DEFAULT 0,
+                            totalRebuys INT DEFAULT 0,
+                            totalAddons INT DEFAULT 0,
+                            koBounty INT DEFAULT 0,
                             comment TEXT,
                             commentTs timestamp without time zone)"""
             elif db_server == 'sqlite':
@@ -378,6 +418,17 @@ class Sql:
                             entries INT,
                             prizepool INT,
                             startTime REAL,
+                            endTime REAL,
+                            buyinChips INT,
+                            tourneyName TEXT,
+                            matrixIdProcessed INT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
+                            rebuyChips INT DEFAULT 0,
+                            addonChips INT DEFAULT 0,
+                            rebuyAmount INT DEFAULT 0,
+                            addonAmount INT DEFAULT 0,
+                            totalRebuys INT DEFAULT 0,
+                            totalAddons INT DEFAULT 0,
+                            koBounty INT DEFAULT 0,
                             comment TEXT,
                             commentTs REAL)"""
             ################################
@@ -749,6 +800,9 @@ class Sql:
                             payinAmount INT NOT NULL,
                             rank INT NOT NULL,
                             winnings INT NOT NULL,
+                            nbRebuys INT DEFAULT 0,
+                            nbAddons INT DEFAULT 0,
+                            nbKO INT DEFAULT 0,
                             comment TEXT,
                             commentTs DATETIME)
                             ENGINE=INNODB"""
@@ -760,6 +814,9 @@ class Sql:
                             payinAmount INT,
                             rank INT,
                             winnings INT,
+                            nbRebuys INT DEFAULT 0,
+                            nbAddons INT DEFAULT 0,
+                            nbKO INT DEFAULT 0,
                             comment TEXT,
                             commentTs timestamp without time zone)"""
             elif db_server == 'sqlite':
