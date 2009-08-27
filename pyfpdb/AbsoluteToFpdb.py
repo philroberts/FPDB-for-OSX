@@ -41,7 +41,8 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)  (?P<LIMIT>No Limit|Pot Limit|Normal) (?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)(?: \(1 on 1\)|)?  (?P<LIMIT>No Limit|Pot Limit|Normal) (?P<CURRENCY>\$| €|)(?P<SB>\d*.\d\d)/?(?:\$| €|)(?P<BB>\d*.\d\d)? -", re.MULTILINE)
+    # TODO: can set max seats via (1 on 1) to a known 2 .. 
     re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\nTable: (?P<TABLE>.*) \(Real Money\)", re.MULTILINE)
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
     re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
@@ -69,7 +70,7 @@ class Absolute(HandHistoryConverter):
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re, re.MULTILINE)
 #            print "^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)| \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
             #self.re_PostSB          = re.compile(ur"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
             #self.re_PostBB          = re.compile(ur"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
             #self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
@@ -127,8 +128,11 @@ or None if we fail to get the info """
         if 'SB' in mg:
             info['sb'] = mg['SB']
         else:
-            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: Apparently AP doesn't provide small blind info!? must search to see if it's posted, I guess
-        if 'BB' in mg:
+            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: Apparently AP doesn't provide small blind info!? must search to see if it's posted, I guess 
+        if 'BB' not in mg:
+            info['bb'] = mg['BB']
+            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
+        elif 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
