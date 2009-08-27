@@ -243,6 +243,9 @@ def discover_nt_by_name(c, tablename):
         if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
         if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
         if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
+        if ' - Table ' in titles[hwnd]: continue # Absolute table Chat window.. sigh. TODO: Can we tell what site we're trying to discover for somehow in here, so i can limit this check just to AP searches?
+        temp = decode_windows(c, titles[hwnd], hwnd)
+        #print "attach to window", temp
         return decode_windows(c, titles[hwnd], hwnd)
     return None
 
