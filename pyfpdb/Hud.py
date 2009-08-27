@@ -407,7 +407,10 @@ class Stat_Window:
 #    and double-clicks.
 
         if event.button == 3:   # right button event
-            self.popups.append(Popup_window(widget, self))
+            newpopup = Popup_window(self.window, self)
+            #print "added popup", newpopup
+            # TODO: how should we go about making sure it doesn't open a dozen popups if you click?
+            self.popups.append(newpopup)
             return True
 
         if event.button == 2:   # middle button event
@@ -427,8 +430,9 @@ class Stat_Window:
         return True
     
     def kill_popup(self, popup):
+        print "remove popup", popup
+        self.popups.remove(popup)        
         popup.window.destroy()
-        self.popups.remove(popup)
         
     def kill_popups(self):
         map(lambda x: x.window.destroy(), self.popups)
@@ -595,8 +599,8 @@ class Popup_window:
         
         self.window.set_transient_for(stat_window.window)
 
-        if os.name == 'nt':
-            self.topify_window(self.window)
+#        if os.name == 'nt':
+#            self.topify_window(self.window)
 
     def button_press_cb(self, widget, event, *args):
 #    This handles all callbacks from button presses on the event boxes in 
@@ -640,10 +644,10 @@ class Popup_window:
         
 #        for w in tl_windows:
 #            if w[1] == unique_name:
-        window.set_transient_for(self.parent.main_window)               
-        style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
+#        window.set_transient_for(self.parent.window)               
+        style = win32gui.GetWindowLong(self.parent.table.number, win32con.GWL_EXSTYLE)
         style |= win32con.WS_CLIPCHILDREN
-        win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
+        win32gui.SetWindowLong(self.parent.table.number, win32con.GWL_EXSTYLE, style)
 #                break
                 
 #        window.set_title(real_name)
