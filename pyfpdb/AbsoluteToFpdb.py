@@ -41,7 +41,7 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)(?: \(1 on 1\)|)?  (?P<LIMIT>No Limit|Pot Limit|Normal) (?P<CURRENCY>\$| €|)(?P<SB>\d*.\d\d)/?(?:\$| €|)(?P<BB>\d*.\d\d)? -", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)(?: \(1 on 1\)|)?  (?P<LIMIT>No Limit|Pot Limit|Normal) (?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/?(?:\$| €|)(?P<BB>[.0-9]+)?", re.MULTILINE)
     # TODO: can set max seats via (1 on 1) to a known 2 .. 
     re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\nTable: (?P<TABLE>.*) \(Real Money\)", re.MULTILINE)
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
