@@ -423,7 +423,7 @@ class Stat_Window:
             return True
         return False
     
-    def noop(self): # i'm going to try to connect the focus-in and focus-out events here, to see if that fixes any of the focus problems.
+    def noop(self, arga=None, argb=None): # i'm going to try to connect the focus-in and focus-out events here, to see if that fixes any of the focus problems.
         return True
     
     def kill_popup(self, popup):

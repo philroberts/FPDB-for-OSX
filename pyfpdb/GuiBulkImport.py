@@ -284,7 +284,7 @@ def main(argv=None):
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
                     help="don't start gui; deprecated (just give a filename with -f).")
     parser.add_option("-c", "--convert", dest="filtername", default="PokerStars", metavar="FILTER",
-                    help="Conversion filter (*Full Tilt Poker, PokerStars, Everleaf)")
+                    help="Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)")
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
                     help="If this option is passed it quits when it encounters any error")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",

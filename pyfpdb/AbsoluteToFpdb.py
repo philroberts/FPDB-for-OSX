@@ -129,16 +129,18 @@ or None if we fail to get the info """
             info['sb'] = mg['SB']
         else:
             info['sb'] = str(float(mg['BB']) * 0.5) # TODO: Apparently AP doesn't provide small blind info!? must search to see if it's posted, I guess 
-        if 'BB' not in mg:
-            info['bb'] = mg['BB']
-            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
-        elif 'BB' in mg:
+        if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
             if info['currency'] == 'T$':
                 info['type'] = 'tour'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        if info['bb'] is None:
+            info['bb'] = mg['SB']
+            info['sb'] = str(float(mg['SB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
+                
+        #print info;
         
         return info
 
