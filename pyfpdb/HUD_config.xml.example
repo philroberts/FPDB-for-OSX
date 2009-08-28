@@ -252,10 +252,10 @@
 
 	    <site enabled="False"
 	          site_name="PartyPoker"
-	          table_finder="PartyPoker.exe"
+	          table_finder="PartyGaming.exe"
 	          screen_name="YOUR SCREEN NAME HERE"
-	          site_path=""
-	          HH_path=""
+	          site_path="C:/Program Files/PartyGaming/PartyPoker"
+	          HH_path="C:/Program Files/PartyGaming/PartyPoker/HandHistory/YOUR SCREEN NAME HERE/"
 	          decoder="everleaf_decode_table"
               converter="PartyPokerToFpdb"
 	          supported_games="holdem">

@@ -1052,6 +1052,22 @@ class Database:
             print "Error during fdb.lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
 
+    def getGameTypeId(self, siteid, game):
+        c = self.get_cursor()
+        #FIXME: Fixed for NL at the moment
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], 
+                        int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
+        tmp = c.fetchone()
+        if (tmp == None):
+            hilo = "h"
+            if game['category'] in ['studhilo', 'omahahilo']:
+                hilo = "s"
+            elif game['category'] in ['razz','27_3draw','badugi']:
+                hilo = "l"
+            tmp  = self.insertGameTypes( (siteid, game['type'], game['base'], game['category'], game['limitType'], hilo,
+                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
+        return tmp[0]
+
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
         if(self.pcache == None):
@@ -1165,11 +1181,16 @@ class Database:
             boardcard2, 
             boardcard3, 
             boardcard4, 
-            boardcard5
+            boardcard5,
+            street1Pot,
+            street2Pot,
+            street3Pot,
+            street4Pot,
+            showdownPot
              ) 
              VALUES 
               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                %s, %s)"""
+               %s, %s, %s, %s, %s, %s, %s)"""
 #---            texture,
 #--            playersVpi,
 #--            playersAtStreet1, 
@@ -1182,11 +1203,6 @@ class Database:
 #--            street2Raises,
 #--            street3Raises,
 #--            street4Raises,
-#--            street1Pot,
-#--            street2Pot,
-#--            street3Pot,
-#--            street4Pot,
-#--            showdownPot
 #--            seats, 
 
         q = q.replace('%s', self.sql.query['placeholder'])
@@ -1205,7 +1221,7 @@ class Database:
                 p['boardcard2'], 
                 p['boardcard3'], 
                 p['boardcard4'], 
-                p['boardcard5'])
+                p['boardcard5'],
 #                hudCache['playersVpi'], 
 #                hudCache['playersAtStreet1'], 
 #                hudCache['playersAtStreet2'],
@@ -1217,12 +1233,12 @@ class Database:
 #                hudCache['street2Raises'],
 #                hudCache['street3Raises'], 
 #                hudCache['street4Raises'], 
-#                hudCache['street1Pot'],
-#                hudCache['street2Pot'], 
-#                hudCache['street3Pot'],
-#                hudCache['street4Pot'],
-#                hudCache['showdownPot']
-        )
+                p['street1Pot'],
+                p['street2Pot'],
+                p['street3Pot'],
+                p['street4Pot'],
+                p['showdownPot']
+        ))
         #return getLastInsertId(backend, conn, cursor)
     # def storeHand
 

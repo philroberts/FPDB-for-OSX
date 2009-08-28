@@ -5,12 +5,12 @@
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
-#   
+#
 #This program is distributed in the hope that it will be useful,
 #but WITHOUT ANY WARRANTY; without even the implied warranty of
 #MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #GNU General Public License for more details.
-#       
+#
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in
@@ -121,7 +121,7 @@ class Hand(object):
                  ("MIXED", self.mixed),
                  ("LASTBET", self.lastBet),
                  ("ACTION STREETS", self.actionStreets),
-                 ("STREETS", self.streets),   
+                 ("STREETS", self.streets),
                  ("ALL STREETS", self.allStreets),
                  ("COMMUNITY STREETS", self.communityStreets),
                  ("HOLE STREETS", self.holeStreets),
@@ -134,7 +134,7 @@ class Hand(object):
                  ("RAKE", self.rake),
                  ("START TIME", self.starttime),
         )
- 
+
         structs = ( ("PLAYERS", self.players),
                     ("STACKS", self.stacks),
                     ("POSTED", self.posted),
@@ -190,21 +190,7 @@ db: a connected fpdb_db object"""
         sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
 
         #Gametypes
-
-        print "DEBUG: self.gametype %s" % self.gametype
-        #Nice way to discover if the game is already listed in the db?
-        #Also this is using an old method from fpdb_simple - should probably conform to the rest of the inserts
-
-        hilo = "h"
-        if self.gametype['category'] in ['studhilo', 'omahahilo']:
-            hilo = "s"
-        elif self.gametype['category'] in ['razz','27_3draw','badugi']:
-            hilo = "l"
-
-        gtid = db.insertGameTypes( (self.siteId, self.gametype['type'], self.gametype['base'], 
-                                    self.gametype['category'], self.gametype['limitType'], hilo,
-                                    int(Decimal(self.gametype['sb'])*100), int(Decimal(self.gametype['bb'])*100), 0, 0) )
-        
+        gtid = db.getGameTypeId(self.siteId, self.gametype)
 
         # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
@@ -213,16 +199,11 @@ db: a connected fpdb_db object"""
         hh = {}
         hh['siteHandNo'] =  self.handid
         hh['handStart'] = self.starttime
-        hh['gameTypeId'] = gtid[0]
+        hh['gameTypeId'] = gtid
         # seats TINYINT NOT NULL,
         hh['tableName'] = self.tablename
         hh['maxSeats'] = self.maxseats
         hh['seats'] = len(sqlids)
-             # boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
-             # boardcard2 smallint,
-             # boardcard3 smallint,
-             # boardcard4 smallint,
-             # boardcard5 smallint,
         # Flop turn and river may all be empty - add (likely) too many elements and trim with range
         boardcards = self.board['FLOP'] + self.board['TURN'] + self.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
         cards = [Card.encodeCard(c) for c in boardcards[0:5]]
@@ -232,7 +213,6 @@ db: a connected fpdb_db object"""
         hh['boardcard4'] = cards[3]
         hh['boardcard5'] = cards[4]
 
-        print hh
              # texture smallint,
              # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
                 # Needs to be recorded
@@ -256,17 +236,14 @@ db: a connected fpdb_db object"""
                 # Needs to be recorded
              # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
                 # Needs to be recorded
-             # street1Pot INT,                  /* pot size at flop/street4 */
-                # Needs to be recorded
-             # street2Pot INT,                  /* pot size at turn/street5 */
-                # Needs to be recorded
-             # street3Pot INT,                  /* pot size at river/street6 */
-                # Needs to be recorded
-             # street4Pot INT,                  /* pot size at sd/street7 */
-                # Needs to be recorded
-             # showdownPot INT,                 /* pot size at sd/street7 */
+
+        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  self.getStreetTotals()
+        #FIXME: Pot size still in decimal, needs to be converted to cents
+        (hh['street1Pot'], hh['street2Pot'], hh['street3Pot'], hh['street4Pot'], hh['showdownPot']) = self.getStreetTotals()
+
              # comment TEXT,
              # commentTs DATETIME
+        #print hh
         handid = db.storeHand(hh)
         # HandsPlayers - ? ... Do we fix winnings?
         # Tourneys ?
@@ -276,8 +253,8 @@ db: a connected fpdb_db object"""
 
     def select(self, handId):
         """ Function to create Hand object from database """
-        
-        
+
+
 
 
     def addPlayer(self, seat, name, chips):
@@ -326,14 +303,13 @@ If a player has None chips he won't be added."""
         return c
 
     def addAnte(self, player, ante):
-        log.debug("%s %s antes %s" % ('ANTES', player, ante))
+        log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
             ante = re.sub(u',', u'', ante) #some sites have commas
-            self.bets['ANTES'][player].append(Decimal(ante))
+            self.bets['BLINDSANTES'][player].append(Decimal(ante))
             self.stacks[player] -= Decimal(ante)
             act = (player, 'posts', "ante", ante, self.stacks[player]==0)
-            self.actions['ANTES'].append(act)
-            #~ self.lastBet['ANTES'] = Decimal(ante)   
+            self.actions['BLINDSANTES'].append(act)
             self.pot.addMoney(player, Decimal(ante))
 
     def addBlind(self, player, blindtype, amount):
@@ -348,19 +324,19 @@ If a player has None chips he won't be added."""
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             amount = re.sub(u',', u'', amount) #some sites have commas
-            self.bets['PREFLOP'][player].append(Decimal(amount))
             self.stacks[player] -= Decimal(amount)
-            #print "DEBUG %s posts, stack %s" % (player, self.stacks[player])
             act = (player, 'posts', blindtype, amount, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
+
+            if blindtype == 'both':
+                amount = self.bb
+                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
+                self.pot.addCommonMoney(Decimal(self.sb))
+
+            self.bets['PREFLOP'][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
-            if blindtype == 'big blind':
-                self.lastBet['PREFLOP'] = Decimal(amount)
-            elif blindtype == 'both':
-                # extra small blind is 'dead'
-                self.lastBet['PREFLOP'] = Decimal(self.bb)
+            self.lastBet['PREFLOP'] = Decimal(amount)
             self.posted = self.posted + [[player,blindtype]]
-        #print "DEBUG: self.posted: %s" %(self.posted)
 
 
 
@@ -378,22 +354,22 @@ If a player has None chips he won't be added."""
             act = (player, 'calls', amount, self.stacks[player]==0)
             self.actions[street].append(act)
             self.pot.addMoney(player, Decimal(amount))
-            
+
     def addRaiseBy(self, street, player, amountBy):
         """\
-Add a raise by amountBy on [street] by [player] 
+Add a raise by amountBy on [street] by [player]
 """
         #Given only the amount raised by, the amount of the raise can be calculated by
-        # working out how much this player has already in the pot 
+        # working out how much this player has already in the pot
         #   (which is the sum of self.bets[street][player])
-        # and how much he needs to call to match the previous player 
+        # and how much he needs to call to match the previous player
         #   (which is tracked by self.lastBet)
-        # let Bp = previous bet 
+        # let Bp = previous bet
         #     Bc = amount player has committed so far
         #     Rb = raise by
         # then: C = Bp - Bc (amount to call)
         #      Rt = Bp + Rb (raise to)
-        # 
+        #
         amountBy = re.sub(u',', u'', amountBy) #some sites have commas
         self.checkPlayerExists(player)
         Rb = Decimal(amountBy)
@@ -401,7 +377,7 @@ Add a raise by amountBy on [street] by [player]
         Bc = reduce(operator.add, self.bets[street][player], 0)
         C = Bp - Bc
         Rt = Bp + Rb
-        
+
         self._addRaise(street, player, C, Rb, Rt)
         #~ self.bets[street][player].append(C + Rb)
         #~ self.stacks[player] -= (C + Rb)
@@ -419,7 +395,7 @@ For sites which by "raises x" mean "calls and raises putting a total of x in the
         C = Bp - Bc
         Rb = CRb - C
         Rt = Bp + Rb
-        
+
         self._addRaise(street, player, C, Rb, Rt)
 
     def addRaiseTo(self, street, player, amountTo):
@@ -444,9 +420,9 @@ Add a raise on [street] by [player] to [amountTo]
         self.actions[street].append(act)
         self.lastBet[street] = Rt # TODO check this is correct
         self.pot.addMoney(player, C+Rb)
-    
-        
-        
+
+
+
     def addBet(self, street, player, amount):
         log.debug("%s %s bets %s" %(street, player, amount))
         amount = re.sub(u',', u'', amount) #some sites have commas
@@ -464,7 +440,7 @@ Add a raise on [street] by [player] to [amountTo]
         self.checkPlayerExists(player)
         act = (player, 'stands pat')
         self.actions[street].append(act)
-        
+
 
     def addFold(self, street, player):
         log.debug("%s %s folds" % (street, player))
@@ -472,7 +448,7 @@ Add a raise on [street] by [player] to [amountTo]
         self.folded.add(player)
         self.pot.addFold(player)
         self.actions[street].append((player, 'folds'))
-        
+
 
     def addCheck(self, street, player):
         #print "DEBUG: %s %s checked" % (street, player)
@@ -496,6 +472,7 @@ Add a raise on [street] by [player] to [amountTo]
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
+        import sys; sys.exit(1)
         log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
@@ -504,10 +481,9 @@ Card ranks will be uppercased
             board = set([c for s in self.board.values() for c in s])
             self.addHoleCards(holeandboard.difference(board),player,shown, mucked)
 
-
     def totalPot(self):
         """If all bets and blinds have been added, totals up the total pot size"""
-        
+
         # This gives us the total amount put in the pot
         if self.totalpot is None:
             self.pot.end()
@@ -577,6 +553,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
                 return ("%s: posts big blind %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
             elif(act[2] == "both"):
                 return ("%s: posts small & big blinds %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
+            elif(act[2] == "ante"):
+                return ("%s: posts the ante %s%s%s" %(act[0], self.sym, act[3], ' and is all-in' if act[4] else ''))
         elif act[1] == 'bringin':
             return ("%s: brings in for %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'discards':
@@ -588,17 +566,20 @@ Map the tuple self.gametype onto the pokerstars string describing it
         """Return a string of the stakes of the current hand."""
         return "%s%s/%s%s" % (self.sym, self.sb, self.sym, self.bb)
 
+    def getStreetTotals(self):
+        pass
+
     def writeGameLine(self):
         """Return the first HH line for the current hand."""
         gs = "PokerStars Game #%s: " % self.handid
-            
+
         if self.tourNo != None and self.mixed != None: # mixed tournament
             gs = gs + "Tournament #%s, %s %s (%s) - Level %s (%s) - " % (self.tourNo, self.buyin, self.MS[self.mixed], self.getGameTypeAsString(), self.level, self.getStakesAsString())
         elif self.tourNo != None: # all other tournaments
-            gs = gs + "Tournament #%s, %s %s - Level %s (%s) - " % (self.tourNo, 
+            gs = gs + "Tournament #%s, %s %s - Level %s (%s) - " % (self.tourNo,
                             self.buyin, self.getGameTypeAsString(), self.level, self.getStakesAsString())
         elif self.mixed != None: # all other mixed games
-            gs = gs + " %s (%s, %s) - " % (self.MS[self.mixed], 
+            gs = gs + " %s (%s, %s) - " % (self.MS[self.mixed],
                             self.getGameTypeAsString(), self.getStakesAsString())
         else: # non-mixed cash games
             gs = gs + " %s (%s) - " % (self.getGameTypeAsString(), self.getStakesAsString())
@@ -617,8 +598,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
-        print >>fh, self.writeGameLine() 
-        print >>fh, self.writeTableLine() 
+        print >>fh, self.writeGameLine()
+        print >>fh, self.writeTableLine()
 
 
 class HoldemOmahaHand(Hand):
@@ -633,9 +614,9 @@ class HoldemOmahaHand(Hand):
         Hand.__init__(self, sitename, gametype, handText, builtFrom = "HHC")
         self.sb = gametype['sb']
         self.bb = gametype['bb']
-        
+
         #Populate a HoldemOmahaHand
-        #Generally, we call 'read' methods here, which get the info according to the particular filter (hhc) 
+        #Generally, we call 'read' methods here, which get the info according to the particular filter (hhc)
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
@@ -643,6 +624,7 @@ class HoldemOmahaHand(Hand):
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
             hhc.readBlinds(self)
+            hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
@@ -653,6 +635,7 @@ class HoldemOmahaHand(Hand):
             for street in self.actionStreets:
                 if self.streets[street]:
                     hhc.readAction(self, street)
+                    self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
@@ -668,7 +651,7 @@ class HoldemOmahaHand(Hand):
         else:
             log.warning("HoldemOmahaHand.__init__:Neither HHC nor DB+handid provided")
             pass
-                
+
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
         if player == self.hero: # we have hero's cards just update shown/mucked
@@ -677,6 +660,18 @@ class HoldemOmahaHand(Hand):
         else:
             self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
 
+    def getStreetTotals(self):
+        # street1Pot INT,                  /* pot size at flop/street4 */
+        # street2Pot INT,                  /* pot size at turn/street5 */
+        # street3Pot INT,                  /* pot size at river/street6 */
+        # street4Pot INT,                  /* pot size at sd/street7 */
+        # showdownPot INT,                 /* pot size at sd/street7 */
+        tmp1 = self.pot.getTotalAtStreet('FLOP')
+        tmp2 = self.pot.getTotalAtStreet('TURN')
+        tmp3 = self.pot.getTotalAtStreet('RIVER')
+        tmp4 = 0
+        tmp5 = 0
+        return (tmp1,tmp2,tmp3,tmp4,tmp5)
 
     def writeHTMLHand(self):
         from nevow import tags as T
@@ -711,7 +706,7 @@ class HoldemOmahaHand(Hand):
                         ]
                     )
                 if street in self.actionStreets and self.actions[street]:
-                    lines.append( 
+                    lines.append(
                         T.ol(class_='actions', data=self.actions[street], render=render_action) [
                             T.li(pattern='list_item')[ T.slot(name='action') ]
                         ]
@@ -745,8 +740,8 @@ class HoldemOmahaHand(Hand):
                 context.tag[ pat().fillSlots('action', x)]
             return context.tag
 
-        s = T.p[ 
-            T.h1[ 
+        s = T.p[
+            T.h1[
                 T.span(class_='site')["%s Game #%s]" % ('PokerStars', self.handid)],
                 T.span(class_='type_limit')[ "%s ($%s/$%s)" %(self.getGameTypeAsString(), self.sb, self.bb) ],
                 T.span(class_='date')[ datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET') ]
@@ -772,7 +767,7 @@ class HoldemOmahaHand(Hand):
 
         return str(tidy.parseString(flat.flatten(s), **options))
 
-        
+
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
         super(HoldemOmahaHand, self).writeHand(fh)
@@ -786,7 +781,7 @@ class HoldemOmahaHand(Hand):
         if self.actions['BLINDSANTES']:
             for act in self.actions['BLINDSANTES']:
                 print >>fh, self.actionString(act)
-        
+
         print >>fh, ("*** HOLE CARDS ***")
         for player in self.dealt:
             print >>fh, ("Dealt to %s [%s]" %(player, " ".join(self.holecards['PREFLOP'][player][1])))
@@ -832,7 +827,7 @@ class HoldemOmahaHand(Hand):
                     numOfHoleCardsNeeded = 2
                 if len(self.holecards['PREFLOP'][name]) == numOfHoleCardsNeeded:
                     print >>fh, ("%s shows [%s] (a hand...)" % (name, " ".join(self.holecards['PREFLOP'][name][1])))
-                
+
         # Current PS format has the lines:
         # Uncalled bet ($111.25) returned to s0rrow
         # s0rrow collected $5.15 from side pot
@@ -874,7 +869,7 @@ class HoldemOmahaHand(Hand):
                     print >>fh, ("Seat %d: %s mucked" % (seatnum, name))
 
         print >>fh, "\n\n"
-        
+
 class DrawHand(Hand):
     def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
         if gametype['base'] != 'draw':
@@ -894,6 +889,7 @@ class DrawHand(Hand):
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
             hhc.readBlinds(self)
+            hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
             hhc.readShowdownActions(self)
@@ -901,6 +897,7 @@ class DrawHand(Hand):
             for street in self.streetList:
                 if self.streets[street]:
                     hhc.readAction(self, street)
+                    self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
@@ -919,8 +916,8 @@ class DrawHand(Hand):
         #   - this is a bet of 1 sb, as yet uncalled.
         # Player in the big blind posts
         #   - this is a call of 1 sb and a raise to 1 bb
-        # 
-        
+        #
+
         log.debug("addBlind: %s posts %s, %s" % (player, blindtype, amount))
         if player is not None:
             self.bets['DEAL'][player].append(Decimal(amount))
@@ -930,7 +927,7 @@ class DrawHand(Hand):
             self.actions['BLINDSANTES'].append(act)
             self.pot.addMoney(player, Decimal(amount))
             if blindtype == 'big blind':
-                self.lastBet['DEAL'] = Decimal(amount)            
+                self.lastBet['DEAL'] = Decimal(amount)
             elif blindtype == 'both':
                 # extra small blind is 'dead'
                 self.lastBet['DEAL'] = Decimal(self.bb)
@@ -960,6 +957,14 @@ class DrawHand(Hand):
         else:
             act = (player, 'discards', num)
         self.actions[street].append(act)
+
+    def getStreetTotals(self):
+        # street1Pot INT,                  /* pot size at flop/street4 */
+        # street2Pot INT,                  /* pot size at turn/street5 */
+        # street3Pot INT,                  /* pot size at river/street6 */
+        # street4Pot INT,                  /* pot size at sd/street7 */
+        # showdownPot INT,                 /* pot size at sd/street7 */
+        return (0,0,0,0,0)
 
 
     def writeHand(self, fh=sys.__stdout__):
@@ -1042,17 +1047,17 @@ class StudHand(Hand):
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
 
-        self.allStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        self.allStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         self.communityStreets = []
-        self.actionStreets = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
+        self.actionStreets = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
 
-        self.streetList = ['ANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
+        self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
         Hand.__init__(self, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         #Populate the StudHand
-        #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc) 
+        #Generally, we call a 'read' method here, which gets the info according to the particular filter (hhc)
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
@@ -1064,10 +1069,11 @@ class StudHand(Hand):
             hhc.readHeroCards(self)
             # Read actions in street order
             for street in self.actionStreets:
-                if street == 'ANTES': continue # OMG--sometime someone folds in the ante round
+                if street == 'BLINDSANTES': continue # OMG--sometime someone folds in the ante round
                 if self.streets[street]:
                     log.debug(street + self.streets[street])
                     hhc.readAction(self, street)
+                    self.pot.markTotal(street)
             hhc.readCollectPot(self)
             hhc.readShownCards(self) # not done yet
             self.totalPot() # finalise it (total the pot)
@@ -1127,7 +1133,7 @@ Add a complete on [street] by [player] to [amountTo]
         #~ self.actions[street].append(act)
         #~ self.lastBet[street] = Rt # TODO check this is correct
         #~ self.pot.addMoney(player, C+Rb)
-        
+
     def addBringIn(self, player, bringin):
         if player is not None:
             log.debug("Bringin: %s, %s" % (player , bringin))
@@ -1138,20 +1144,28 @@ Add a complete on [street] by [player] to [amountTo]
             self.lastBet['THIRD'] = Decimal(bringin)
             self.pot.addMoney(player, Decimal(bringin))
 
+    def getStreetTotals(self):
+        # street1Pot INT,                  /* pot size at flop/street4 */
+        # street2Pot INT,                  /* pot size at turn/street5 */
+        # street3Pot INT,                  /* pot size at river/street6 */
+        # street4Pot INT,                  /* pot size at sd/street7 */
+        # showdownPot INT,                 /* pot size at sd/street7 */
+        return (0,0,0,0,0)
+
     
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
 
         super(StudHand, self).writeHand(fh)
-        
-        players_who_post_antes = set([x[0] for x in self.actions['ANTES']])
+
+        players_who_post_antes = set([x[0] for x in self.actions['BLINDSANTES']])
 
         for player in [x for x in self.players if x[1] in players_who_post_antes]:
             #Only print stacks of players who do something preflop
             print >>fh, _("Seat %s: %s (%s%s in chips)" %(player[0], player[1], self.sym, player[2]))
 
-        if 'ANTES' in self.actions:
-            for act in self.actions['ANTES']:
+        if 'BLINDSANTES' in self.actions:
+            for act in self.actions['BLINDSANTES']:
                 print >>fh, _("%s: posts the ante %s%s" %(act[0], self.sym, act[3]))
 
         if 'THIRD' in self.actions:
@@ -1274,7 +1288,7 @@ Add a complete on [street] by [player] to [amountTo]
             else:
                 return hc + " ".join(self.holecards[street][player][0]) + ']'
 
-        if street == 'SEVENTH' and player != self.hero: return # only write 7th st line for hero, LDO 
+        if street == 'SEVENTH' and player != self.hero: return # only write 7th st line for hero, LDO
         return hc + " ".join(self.holecards[street][player][1]) + "] [" + " ".join(self.holecards[street][player][0]) + "]"
 
     def join_holecards(self, player):
@@ -1296,30 +1310,43 @@ class Pot(object):
 
 
     def __init__(self):
-        self.contenders = set()
-        self.committed = {}
-        self.total = None
-        self.returned = {}
-        self.sym = u'$' # this is the default currency symbol
+        self.contenders   = set()
+        self.committed    = {}
+        self.streettotals = {}
+        self.common       = Decimal(0)
+        self.total        = None
+        self.returned     = {}
+        self.sym          = u'$' # this is the default currency symbol
 
     def setSym(self, sym):
         self.sym = sym
-    
+
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
-    
+
     def addFold(self, player):
         # addFold must be called when a player folds
         self.contenders.discard(player)
-        
+
+    def addCommonMoney(self, amount):
+        self.common += amount
+
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
         self.contenders.add(player)
         self.committed[player] += amount
 
+    def markTotal(self, street):
+        self.streettotals[street] = sum(self.committed.values()) + self.common
+
+    def getTotalAtStreet(self, street):
+        if street in self.streettotals:
+            return self.streettotals[street]
+        return 0
+
     def end(self):
-        self.total = sum(self.committed.values())
-        
+        self.total = sum(self.committed.values()) + self.common
+
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
         lastbet = committed[-1][0] - committed[-2][0]
@@ -1337,7 +1364,7 @@ class Pot(object):
         self.pots = []
         while len(commitsall) > 0:
             commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
-            v1 = commitslive[0][0]        
+            v1 = commitslive[0][0]
             self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
             commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
 
@@ -1347,7 +1374,7 @@ class Pot(object):
         # and y+z+r = x
         # for example:
         # Total pot $124.30 Main pot $98.90. Side pot $23.40. | Rake $2
-        
+
     def __str__(self):
         if self.sym is None:
             self.sym = "C"
@@ -1355,17 +1382,17 @@ class Pot(object):
             print "call Pot.end() before printing pot total"
             # NB if I'm sure end() is idempotent, call it here.
             raise FpdbParseError
-        
+
         ret = "Total pot %s%.2f" % (self.sym, self.total)
         if len(self.pots) < 2:
             return ret;
         ret += " Main pot %s%.2f" % (self.sym, self.pots[0])
-        
+
         return ret + ''.join([ (" Side pot %s%.2f." % (self.sym, self.pots[x]) ) for x in xrange(1, len(self.pots)) ])
 
 def assemble(cnxn, handid):
     c = cnxn.cursor()
-    
+
     # We need at least sitename, gametype, handid
     # for the Hand.__init__
     c.execute("""
@@ -1408,10 +1435,10 @@ limit 1""", {'handid':handid})
         h.setCommunityCards('FLOP', cards[0:3])
     if cards[3]:
         h.setCommunityCards('TURN', [cards[3]])
-    if cards[4]:      
+    if cards[4]:
         h.setCommunityCards('RIVER', [cards[4]])
     #[Card.valueSuitFromCard(x) for x in cards]
-    
+
     # HandInfo : HID, TABLE
     # BUTTON - why is this treated specially in Hand?
     # answer: it is written out in hand histories
@@ -1429,7 +1456,7 @@ WHERE h.id = %(handid)s
     h.handid = res[0]
     h.tablename = res[1]
     h.starttime = res[2] # automatically a datetime
-    
+
     # PlayerStacks
     c.execute("""
 SELECT
@@ -1454,7 +1481,7 @@ and p.id = hp.playerid
             h.addCollectPot(name, winnings)
         if position == 'B':
             h.buttonpos = seat
-    
+
 
     # actions
     c.execute("""
@@ -1502,7 +1529,7 @@ ORDER BY
     #hc.readShownCards(self)
     h.totalPot()
     h.rake = h.totalpot - h.totalcollected
-    
+
 
     return h
 

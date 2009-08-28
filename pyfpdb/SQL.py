@@ -1,9 +1,7 @@
 #!/usr/bin/env python
-"""SQL.py
-
-Set up all of the SQL statements for a given game and database type.
+"""Returns a dict of SQL statements used in fpdb.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008-2009, Ray E. Barker
 #   
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -35,134 +33,8 @@ import re
 
 class Sql:
    
-    def __init__(self, game = 'holdem', type = 'PT3', db_server = 'mysql'):
+    def __init__(self, game = 'holdem', type = 'fpdb', db_server = 'mysql'):
         self.query = {}
-
-############################################################################
-#
-#    Support for the ptracks database, a cut down PT2 stud database.
-#    You can safely ignore this unless you are me.
-#
-        if game == 'razz' and type == 'ptracks':
-           
-            self.query['get_table_name'] = "select table_name from game where game_id = %s"
-
-            self.query['get_last_hand'] = "select max(game_id) from game"
-
-            self.query['get_recent_hands'] = "select game_id from game where game_id > %(last_hand)d"
-           
-            self.query['get_xml'] = "select xml from hand_history where game_id = %s"
-
-            self.query['get_player_id'] = """
-                    select player_id from players
-                    where screen_name = %(player)s
-                """
-               
-            self.query['get_hand_info'] = """
-                    SELECT
-                        game_id,
-                        CONCAT(hole_card_1, hole_card_2, hole_card_3, hole_card_4, hole_card_5, hole_card_6, hole_card_7) AS hand, 
-                        total_won-total_bet AS net
-                    FROM game_players
-                    WHERE game_id = %s AND player_id = 3
-                """
-
-            self.query['get_cards'] = """
-                    select
-                        seat_number,
-                        screen_name,
-                        hole_card_1,
-                        hole_card_2,
-                        hole_card_3,
-                        hole_card_4,
-                        hole_card_5,
-                        hole_card_6,
-                        hole_card_7
-                    from game_players, players
-                    where game_id = %s and game_players.player_id = players.player_id
-                    order by seat_number
-                """
-       
-            self.query['get_stats_from_hand'] = """
-                    SELECT player_id,
-                        count(*)                    AS n,
-                        sum(pre_fourth_raise_n)     AS pfr,
-                        sum(fourth_raise_n)         AS raise_n_2,
-                        sum(fourth_ck_raise_n)      AS cr_n_2,
-                        sum(fifth_bet_raise_n)      AS br_n_3,
-                        sum(fifth_bet_ck_raise_n)   AS cr_n_3,
-                        sum(sixth_bet_raise_n)      AS br_n_4,
-                        sum(sixth_bet_ck_raise_n)   AS cr_n_4,
-                        sum(river_bet_raise_n)      AS br_n_5,
-                        sum(river_bet_ck_raise_n)   AS cr_n_5,
-                        sum(went_to_showdown_n)     AS sd,
-                        sum(saw_fourth_n)           AS saw_f,
-                        sum(raised_first_pf)        AS first_pfr,
-                        sum(vol_put_money_in_pot)   AS vpip,
-                        sum(limp_with_prev_callers) AS limp_w_callers,
-
-                        sum(ppossible_actions)      AS poss_a_pf,
-                        sum(pfold)                  AS fold_pf,
-                        sum(pcheck)                 AS check_pf,
-                        sum(praise)                 AS raise_pf,
-                        sum(pcall)                  AS raise_pf,
-                        sum(limp_call_reraise_pf)   AS limp_call_pf,
-
-                        sum(pfr_check)              AS check_after_raise,
-                        sum(pfr_call)               AS call_after_raise,
-                        sum(pfr_fold)               AS fold_after_raise,
-                        sum(pfr_bet)                AS bet_after_raise,
-                        sum(pfr_raise)              AS raise_after_raise,
-                        sum(folded_to_river_bet)    AS fold_to_r_bet,
-
-                        sum(fpossible_actions)      AS poss_a_2,
-                        sum(ffold)                  AS fold_2,
-                        sum(fcheck)                 AS check_2,
-                        sum(fbet)                   AS bet_2,
-                        sum(fraise)                 AS raise_2,
-                        sum(fcall)                  AS raise_2,
-
-                        sum(fifpossible_actions)    AS poss_a_3,
-                        sum(fiffold)                AS fold_3,
-                        sum(fifcheck)               AS check_3,
-                        sum(fifbet)                 AS bet_3,
-                        sum(fifraise)               AS raise_3,
-                        sum(fifcall)                AS call_3,
-
-                        sum(spossible_actions)      AS poss_a_4,
-                        sum(sfold)                  AS fold_4,
-                        sum(scheck)                 AS check_4,
-                        sum(sbet)                   AS bet_4,
-                        sum(sraise)                 AS raise_4,
-                        sum(scall)                  AS call_4,
-
-                        sum(rpossible_actions)      AS poss_a_5,
-                        sum(rfold)                  AS fold_5,
-                        sum(rcheck)                 AS check_5,
-                        sum(rbet)                   AS bet_5,
-                        sum(rraise)                 AS raise_5,
-                        sum(rcall)                  AS call_5,
-
-                        sum(cold_call_pf)           AS cc_pf,
-                        sum(saw_fifth_n)            AS saw_3,
-                        sum(saw_sixth_n)            AS saw_4,
-                        sum(saw_river_n)            AS saw_5
-                    FROM game_players
-                    WHERE player_id in
-                        (SELECT player_id FROM game_players
-                        WHERE game_id = %s AND NOT player_id = %s)
-                    GROUP BY player_id
-                """
-# alternate form of WHERE for above
-#                        WHERE game_id = %(hand)d AND NOT player_id = %(hero)d)
-#                        WHERE game_id = %s AND NOT player_id = %s)
-
-            self.query['get_players_from_hand'] = """
-                    SELECT game_players.player_id, seat_number, screen_name
-                    FROM game_players INNER JOIN players ON (game_players.player_id = players.player_id)
-                    WHERE game_id = %s
-                """
-
 ###############################################################################3
 #    Support for the Free Poker DataBase = fpdb   http://fpdb.sourceforge.net/
 #
@@ -1715,6 +1587,9 @@ class Sql:
             # used in GuiPlayerStats:
             self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
+            self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
+
+
             # used in Filters:
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
             self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
@@ -2899,7 +2774,7 @@ class Sql:
 
 if __name__== "__main__":
 #    just print the default queries and exit
-    s = Sql(game = 'razz', type = 'ptracks')
+    s = Sql()
     for key in s.query:
         print "For query " + key + ", sql ="
         print s.query[key]

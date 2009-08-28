@@ -79,11 +79,17 @@ class Layout:
 
 class Site:
     def __init__(self, node):
+        def normalizePath(path):
+            "Normalized existing pathes"
+            if os.path.exists(path):
+                return os.path.abspath(path)
+            return path
+        
         self.site_name    = node.getAttribute("site_name")
         self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
-        self.site_path    = node.getAttribute("site_path")
-        self.HH_path      = node.getAttribute("HH_path")
+        self.site_path    = normalizePath(node.getAttribute("site_path"))
+        self.HH_path      = normalizePath(node.getAttribute("HH_path"))
         self.decoder      = node.getAttribute("decoder")
         self.hudopacity   = node.getAttribute("hudopacity")
         self.hudbgcolor   = node.getAttribute("bgcolor")
@@ -97,6 +103,8 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
+            
+        print self.site_name, self.HH_path
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -310,7 +318,7 @@ class Config:
         try:
             log.info("Reading configuration file %s" % (file))
             doc = xml.dom.minidom.parse(file)
-        except:
+        except: 
             log.error("Error parsing %s.  See error log file." % (file))
             traceback.print_exc(file=sys.stderr)
             print "press enter to continue"
@@ -607,8 +615,8 @@ class Config:
             path = os.path.expanduser(self.supported_sites[site].HH_path)
             assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
-        except:
-            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "default"
+        except AssertionError: 
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
     
     def get_frames(self, site = "PokerStars"):

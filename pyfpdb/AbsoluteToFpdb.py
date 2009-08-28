@@ -26,6 +26,12 @@ from HandHistoryConverter import *
 # Class for converting Absolute HH format.
 
 class Absolute(HandHistoryConverter):
+
+    # Class Variables
+    sitename = "Absolute"
+    filetype = "text"
+    codepage = "cp1252"
+    siteid   = 8
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
@@ -35,7 +41,7 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)  (?P<LIMIT>No Limit|) (?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)  (?P<LIMIT>No Limit|Pot Limit|Normal) (?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)", re.MULTILINE)
     re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\nTable: (?P<TABLE>.*) \(Real Money\)", re.MULTILINE)
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
     re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
@@ -48,24 +54,6 @@ class Absolute(HandHistoryConverter):
 #    re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input
-autostart: whether to run the thread (or you can call start() yourself)
-debugging: if False, pass on partially supported game types. If true, have a go and error..."""
-        #print "DEBUG: XXXXXXXXXXXXXXX"
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Absolute", follow=follow, index=index)
-        logging.info("Initialising Absolute converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.siteId   = 8 # Needs to match id entry in Sites database
-        self.debugging = debugging
-        if autostart:
-            self.start()
-            # otherwise you need to call start yourself.
-
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -124,7 +112,7 @@ or None if we fail to get the info """
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'PL':'pl', '':'fl' }
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl' }
         games = {              # base, category
                   "Holdem" : ('hold','holdem'), 
                     'Omaha' : ('hold','omahahi'), 

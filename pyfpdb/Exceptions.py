@@ -1,6 +1,8 @@
-
 class FpdbError(Exception):
-    pass
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
 class FpdbParseError(FpdbError): 
     def __init__(self,value='',hid=''):
@@ -13,8 +15,4 @@ class FpdbParseError(FpdbError):
             return repr(self.value)
 
 class DuplicateError(FpdbError):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
-
+    pass
