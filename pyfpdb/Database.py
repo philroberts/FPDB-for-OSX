@@ -24,6 +24,7 @@ Create and manage the database objects.
 # postmaster -D /var/lib/pgsql/data
 
 #    Standard Library modules
+import os
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta
@@ -31,7 +32,6 @@ from time import time, strftime, sleep
 from decimal import Decimal
 import string
 import re
-import logging
 import Queue
 
 #    pyGTK modules
@@ -42,6 +42,11 @@ import fpdb_simple
 import Configuration
 import SQL
 import Card
+from Exceptions import *
+
+import logging, logging.config
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+log = logging.getLogger('db')
 
 class Database:
 
@@ -93,6 +98,14 @@ class Database:
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
+                  {'tab':'Players',         'col':'name',              'drop':0}
+                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
+                , {'tab':'Hands',           'col':'gametypeId',        'drop':0} 
+                , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
+                , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
+                , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
+                , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
                 ]
               ]
 
@@ -161,8 +174,14 @@ class Database:
     #  CREATE INDEX idx ON tab(col)
     #  DROP INDEX idx
 
+    # SQLite notes:
+
+    # To add an index:
+    # create index indexname on tablename (col);
+
+
     def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
-        print "\ncreating Database instance, sql =", sql
+        log.info("Creating Database instance, sql = %s" % sql)
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
         self.connection = self.fdb.db
@@ -179,11 +198,16 @@ class Database:
             #ISOLATION_LEVEL_READ_COMMITTED = 1 
             #ISOLATION_LEVEL_SERIALIZABLE   = 2
 
+
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql == None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
         else:
             self.sql = sql
+
+        if self.backend == self.SQLITE and db_params['db-databaseName'] == ':memory:' and self.fdb.wrongDbVersion:
+            log.info("sqlite/:memory: - creating")
+            self.recreate_tables()
 
         self.pcache      = None     # PlayerId cache
         self.cachemiss   = 0        # Delete me later - using to count player cache misses
@@ -244,7 +268,7 @@ class Database:
         elif self.backend==4:
             return "SQLite"
         else:
-            raise fpdb_simple.FpdbError("invalid backend")
+            raise FpdbError("invalid backend")
 
     def get_table_name(self, hand_id):
         c = self.connection.cursor()
@@ -439,7 +463,7 @@ class Database:
             if colnames[0].lower() == 'player_id':
                 playerid = row[0]
             else:
-                print "ERROR: query %s result does not have player_id as first column" % (query,)
+                log.error("ERROR: query %s result does not have player_id as first column" % (query,))
                 break
 
             for name, val in zip(colnames, row):
@@ -480,7 +504,7 @@ class Database:
             if self.backend == self.MYSQL_INNODB:
                 ret = self.connection.insert_id()
                 if ret < 1 or ret > 999999999:
-                    print "getLastInsertId(): problem fetching insert_id? ret=", ret
+                    log.warning("getLastInsertId(): problem fetching insert_id? ret=%d" % ret)
                     ret = -1
             elif self.backend == self.PGSQL:
                 # some options:
@@ -492,14 +516,14 @@ class Database:
                 ret = c.execute ("SELECT lastval()")
                 row = c.fetchone()
                 if not row:
-                    print "getLastInsertId(%s): problem fetching lastval? row=" % seq, row
+                    log.warning("getLastInsertId(%s): problem fetching lastval? row=%d" % (seq, row))
                     ret = -1
                 else:
                     ret = row[0]
             elif self.backend == self.SQLITE:
                 ret = cursor.lastrowid
             else:
-                print "getLastInsertId(): unknown backend ", self.backend
+                log.error("getLastInsertId(): unknown backend: %d" % self.backend)
                 ret = -1
         except:
             ret = -1
@@ -823,16 +847,16 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
-        print "Finished recreating tables"
+        log.info("Finished recreating tables")
     #end def recreate_tables
 
     def create_tables(self):
         #todo: should detect and fail gracefully if tables already exist.
         try:
-            logging.debug(self.sql.query['createSettingsTable'])
+            log.debug(self.sql.query['createSettingsTable'])
             c = self.get_cursor()
             c.execute(self.sql.query['createSettingsTable'])
-            logging.debug(self.sql.query['createSitesTable'])
+            log.debug(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
             c.execute(self.sql.query['createPlayersTable'])
@@ -879,7 +903,7 @@ class Database:
             elif(self.get_backend_name() == 'SQLite'):
                 c.execute(self.sql.query['list_tables'])
                 for table in c.fetchall():
-                    logging.debug(self.sql.query['drop_table'] + table[0])
+                    log.debug(self.sql.query['drop_table'] + table[0])
                     c.execute(self.sql.query['drop_table'] + table[0])
 
             self.commit()
@@ -912,14 +936,21 @@ class Database:
                         self.get_cursor().execute(s)
                     except:
                         print "    create idx failed: " + str(sys.exc_info())
+                elif self.backend == self.SQLITE:
+                    log.debug("Creating sqlite index %s %s" % (idx['tab'], idx['col']))
+                    try:
+                        s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
+                        self.get_cursor().execute(s)
+                    except:
+                        log.debug("Create idx failed: " + str(sys.exc_info()))
                 else:
-                    print "Only MySQL and Postgres supported so far"
+                    print "Only MySQL, Postgres and SQLite supported so far"
                     return -1
             if self.backend == self.PGSQL:
                 self.connection.set_isolation_level(1)   # go back to normal isolation level
         except:
             print "Error creating indexes: " + str(sys.exc_value)
-            raise fpdb_simple.FpdbError( "Error creating indexes " + str(sys.exc_value) )
+            raise FpdbError( "Error creating indexes " + str(sys.exc_value) )
     #end def createAllIndexes
 
     def dropAllIndexes(self):
@@ -1107,7 +1138,7 @@ class Database:
                                              , h.allIns, h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats
                                              , h.tableName, h.seatNos)
                 else:
-                    raise fpdb_simple.FpdbError("unrecognised category")
+                    raise FpdbError("unrecognised category")
             else:
                 if h.base == "hold":
                     result = self.ring_holdem_omaha(
@@ -1125,7 +1156,7 @@ class Database:
                                              , h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats, h.tableName
                                              , h.seatNos)
                 else:
-                    raise fpdb_simple.FpdbError("unrecognised category")
+                    raise FpdbError("unrecognised category")
         except:
             print "Error storing hand: " + str(sys.exc_value)
             self.rollback()
@@ -1245,7 +1276,7 @@ class Database:
             ret = self.get_last_insert_id(c)
         except:
             ret = -1
-            raise fpdb_simple.FpdbError( "storeHands error: " + str(sys.exc_value) )
+            raise FpdbError( "storeHands error: " + str(sys.exc_value) )
 
         return ret
     #end def storeHands
@@ -1280,7 +1311,7 @@ class Database:
                     card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
                     card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
                 else:
-                    raise fpdb_simple.FpdbError("invalid category")
+                    raise FpdbError("invalid category")
 
                 inserts.append( (
                                  hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
@@ -1339,7 +1370,7 @@ class Database:
                                           ,inserts )
             result.append( self.get_last_insert_id(c) ) # wrong? not used currently
         except:
-            raise fpdb_simple.FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
+            raise FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
 
         return result
     #end def store_hands_players_holdem_omaha
@@ -1377,7 +1408,7 @@ class Database:
                 #result.append(cursor.fetchall()[0][0])
                 result.append( self.get_last_insert_id(c) )
         except:
-            raise fpdb_simple.FpdbError( "store_hands_players_stud error: " + str(sys.exc_value) )
+            raise FpdbError( "store_hands_players_stud error: " + str(sys.exc_value) )
 
         return result
     #end def store_hands_players_stud
@@ -1470,7 +1501,7 @@ class Database:
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
         except:
-            raise fpdb_simple.FpdbError( "store_hands_players_holdem_omaha_tourney error: " + str(sys.exc_value) )
+            raise FpdbError( "store_hands_players_holdem_omaha_tourney error: " + str(sys.exc_value) )
         
         return result
     #end def store_hands_players_holdem_omaha_tourney
@@ -1500,7 +1531,7 @@ class Database:
                 #result.append(cursor.fetchall()[0][0])
                 result.append( self.get_last_insert_id(c) )
         except:
-            raise fpdb_simple.FpdbError( "store_hands_players_stud_tourney error: " + str(sys.exc_value) )
+            raise FpdbError( "store_hands_players_stud_tourney error: " + str(sys.exc_value) )
         
         return result
     #end def store_hands_players_stud_tourney
@@ -1697,7 +1728,7 @@ class Database:
         # print "todo: implement storeHudCache for stud base"
 
         except:
-            raise fpdb_simple.FpdbError( "storeHudCache error: " + str(sys.exc_value) )
+            raise FpdbError( "storeHudCache error: " + str(sys.exc_value) )
         
     #end def storeHudCache
  
@@ -1720,7 +1751,7 @@ class Database:
                 tmp=cursor.fetchone()
                 #print "created new tourneys.id:",tmp
         except:
-            raise fpdb_simple.FpdbError( "store_tourneys error: " + str(sys.exc_value) )
+            raise FpdbError( "store_tourneys error: " + str(sys.exc_value) )
         
         return tmp[0]
     #end def store_tourneys
@@ -1753,7 +1784,7 @@ class Database:
                     #print "created new tourneys_players.id:",tmp
                 result.append(tmp[0])
         except:
-            raise fpdb_simple.FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
+            raise FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
         
         return result
     #end def store_tourneys_players

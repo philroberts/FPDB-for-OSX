@@ -22,6 +22,7 @@ import sys
 import fpdb_simple
 import Database
 from time import time, strftime
+from Exceptions import *
 
 
 #parses a holdem hand
@@ -126,7 +127,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         elif lineTypes[i]=="table":
             tableResult=fpdb_simple.parseTableLine(base, line)
         else:
-            raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
+            raise FpdbError("unrecognised lineType:"+lineTypes[i])
 
     maxSeats    = tableResult['maxSeats']
     tableName   = tableResult['tableName']
