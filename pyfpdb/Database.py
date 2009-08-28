@@ -24,6 +24,7 @@ Create and manage the database objects.
 # postmaster -D /var/lib/pgsql/data
 
 #    Standard Library modules
+import os
 import sys
 import traceback
 from datetime import datetime, date, time, timedelta

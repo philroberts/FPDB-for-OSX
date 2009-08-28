@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
@@ -677,7 +678,7 @@ class HoldemOmahaHand(Hand):
             self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
 
 
-    def writeHTMLHand(self, fh=sys.__stdout__):
+    def writeHTMLHand(self):
         from nevow import tags as T
         from nevow import flat
         players_who_act_preflop = (([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
