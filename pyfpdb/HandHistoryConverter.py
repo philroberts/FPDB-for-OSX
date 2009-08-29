@@ -37,7 +37,7 @@ import gettext
 gettext.install('fpdb')
 
 import logging, logging.config
-logging.config.fileConfig("logging.conf")
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger("parser")
 
 class HandHistoryConverter():

@@ -25,6 +25,7 @@ import datetime
 import time
 import re
 import sys
+from Exceptions import *
 import locale
 
 import Card
@@ -39,18 +40,6 @@ PGSQL           = 3
 SQLITE          = 4
 
 LOCALE_ENCODING = locale.getdefaultlocale()[1]
-
-class DuplicateError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
- 
-class FpdbError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
 
 #returns an array of the total money paid. intending to add rebuys/addons here
 def calcPayin(count, buyin, fee):
@@ -227,7 +216,7 @@ def fillCardArrays(player_count, base, category, card_values, card_suits):
     elif base=="stud":
         cardCount = 7
     else:
-        raise fpdb_simple.FpdbError("invalid category:", category)
+        raise FpdbError("invalid category:", category)
     
     for i in xrange(player_count):
         while (len(card_values[i]) < cardCount):
