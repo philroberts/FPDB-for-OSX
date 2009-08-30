@@ -42,6 +42,7 @@ import fpdb_simple
 import Configuration
 import SQL
 import Card
+import Tourney
 
 class Database:
 
@@ -584,7 +585,7 @@ class Database:
         hands_players_ids = self.store_hands_players_holdem_omaha_tourney(
                           self.backend, category, hands_id, player_ids, start_cashes, positions
                         , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids
-                        , hudImportData)
+                        , hudImportData, tourneyTypeId)
 
         #print "tourney holdem, backend=%d" % backend
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
@@ -612,7 +613,7 @@ class Database:
 
         hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
                                                  , playerIds, startCashes, antes, cardValues, cardSuits
-                                                 , winnings, rakes, seatNos, tourneys_players_ids)
+                                                 , winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId)
 
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             self.storeHudCache(self.backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
@@ -1281,7 +1282,7 @@ class Database:
                     raise fpdb_simple.FpdbError("invalid category")
 
                 inserts.append( (
-                                 hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+                                 hands_id, player_ids[i], start_cashes[i], positions[i],
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
                                  hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
@@ -1312,7 +1313,7 @@ class Database:
             c = self.get_cursor()
             c.executemany ("""
         INSERT INTO HandsPlayers
-        (handId, playerId, startCash, position, tourneyTypeId,
+        (handId, playerId, startCash, position,
          card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
          street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
          street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
@@ -1333,7 +1334,7 @@ class Database:
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+         %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
             result.append( self.get_last_insert_id(c) ) # wrong? not used currently
         except:
@@ -1383,7 +1384,7 @@ class Database:
     def store_hands_players_holdem_omaha_tourney(self, backend, category, hands_id, player_ids
                                                 ,start_cashes, positions, card_values, card_suits
                                                 ,winnings, rakes, seatNos, tourneys_players_ids
-                                                ,hudCache):
+                                                ,hudCache, tourneyTypeId):
         #stores hands_players for tourney holdem/omaha hands
 
         try:
@@ -1405,7 +1406,7 @@ class Database:
                 else:
                     raise FpdbError ("invalid card_values length:"+str(len(card_values[0])))
 
-                inserts.append( (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+                inserts.append( (hands_id, player_ids[i], start_cashes[i], positions[i], tourneyTypeId,
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], hudCache['totalProfit'][i],
                                  hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
@@ -1474,7 +1475,7 @@ class Database:
     #end def store_hands_players_holdem_omaha_tourney
      
     def store_hands_players_stud_tourney(self, backend, hands_id, player_ids, start_cashes,
-                antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
+                antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId):
         #stores hands_players for tourney stud/razz hands
 
         try:
@@ -1486,14 +1487,14 @@ class Database:
         card1Value, card1Suit, card2Value, card2Suit,
         card3Value, card3Suit, card4Value, card4Suit,
         card5Value, card5Suit, card6Value, card6Suit,
-        card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo)
+        card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo, tourneyTypeId)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
+        %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                 (hands_id, player_ids[i], start_cashes[i], antes[i],
                 card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
                 card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
                 card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-                card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
+                card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], tourneyTypeId))
                 #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
                 #result.append(cursor.fetchall()[0][0])
                 result.append( self.get_last_insert_id(c) )
@@ -1832,6 +1833,36 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
+    def tRecogniseTourneyType(self, tourney):
+        print "Database.tRecogniseTourneyType"
+        typeId = 1
+        # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
+        # if not found create it
+        
+        # Checks for an existing tourney with tourney.siteId and tourney.tourNo (and get the tourneyTypeId)
+        # if the two TTypeId don't match, update the Tourneys.tourneyTypeId
+        return typeId
+        
+    def tRecognizeTourney(self, tourney, dbTourneyTypeId):
+        print "Database.tRecognizeTourney"
+        tourneyID = 1
+        # Check if tourney exists in db (based on tourney.siteId and tourney.tourNo)
+        # If not => create it with the tourneyTypeId given as input
+        # if found => retrieve data (in the first query) and check if an update is needed, if so do it
+        # rem : Tourney Specific data = entries, prizepool, buyinchips, rebuychips, addonchips, totalrebuys, totaladdons, kobounty
+        return tourneyID
+
+    def tStoreTourneyPlayers(self, tourney, dbTourneyId):
+        print "Database.tStoreTourneyPlayers"
+        tourneyPlayersIds=[]
+        # Look for existing players in TourneysPlayers
+        # For the ones not in db insert with all data (nbrebuys, nbaddons, nbKO, payinAmount, rank, winnings)
+        # For the others, get data and check if an update is needed, if so, do it
+        return tourneyPlayersIds
+        
+    def tCheckTourneysHandsPlayers(self, tourney, dbTourneysPlayersIds, dbTourneyTypeId):
+        print "Database.tCheckTourneysHandsPlayers"
+        # Make a direct update of lines from HandsPlayers where touneyplayersid=<input> and tourneyTypeId <> dbTourneyTypeId, set tourneyTypeId=dbTourneyTypeId  
 
 # Class used to hold all the data needed to write a hand to the db
 # mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 

@@ -162,6 +162,16 @@ class Tourney(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
+        dbTourneyTypeId = db.tRecogniseTourneyType(self)
+        print "Tourney Type ID = %d" % dbTourneyTypeId
+        dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
+        print "Tourney ID = %d" % dbTourneyId
+        dbTourneysPlayersIds = db.tStoreTourneyPlayers(self, dbTourneyId)
+        db.tCheckTourneysHandsPlayers(self, dbTourneysPlayersIds, dbTourneyTypeId)
+        
+        # TO DO : Return what has been done (tourney created, updated, nothing)
+        # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneyPlayers and handsplayers)
+        # if so, prototypes may need changes to know what has been done
         stored = 0
         duplicates = 0
         partial = 0
