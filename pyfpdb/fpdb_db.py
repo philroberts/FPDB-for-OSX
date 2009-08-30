@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Steffen Jobbagy-Felso
 #This program is free software: you can redistribute it and/or modify
@@ -20,7 +21,14 @@ import re
 import sys
 import logging
 from time import time, strftime
-import sqlalchemy.pool as pool
+
+use_pool = False
+try:
+    import sqlalchemy.pool as pool
+    use_pool = True
+except:
+    logging.info("Not using sqlalchemy connection pool.")
+
 
 import fpdb_simple
 import FpdbSQLQueries
@@ -66,15 +74,17 @@ class fpdb_db:
         self.database=database
         if backend==fpdb_db.MYSQL_INNODB:
             import MySQLdb
-            MySQLdb = pool.manage(MySQLdb, pool_size=5)
+            if use_pool:
+                MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
                 self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
             except:
                 raise FpdbError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
             import psycopg2
-            import psycopg2.extensions 
-            psycopg2 = pool.manage(psycopg2, pool_size=5)
+            import psycopg2.extensions
+            if use_pool:
+                psycopg2 = pool.manage(psycopg2, pool_size=5)
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
@@ -106,7 +116,10 @@ class fpdb_db:
         elif backend==fpdb_db.SQLITE:
             logging.info("Connecting to SQLite:%(database)s" % {'database':database})
             import sqlite3
-            sqlite3 = pool.manage(sqlite3, pool_size=1)
+            if use_pool:
+                sqlite3 = pool.manage(sqlite3, pool_size=1)
+            else:
+                logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
             self.db = sqlite3.connect(database,detect_types=sqlite3.PARSE_DECLTYPES)
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
