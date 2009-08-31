@@ -584,8 +584,15 @@ Map the tuple self.gametype onto the pokerstars string describing it
         else: # non-mixed cash games
             gs = gs + " %s (%s) - " % (self.getGameTypeAsString(), self.getStakesAsString())
 
-        return gs + datetime.datetime.strftime(self.starttime,'%Y/%m/%d %H:%M:%S ET')
-
+        try:
+            timestr = datetime.datetime.strftime(self.starttime, '%Y/%m/%d %H:%M:%S ET')
+        except TypeError:
+            print "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, expecting datetime.date object, received:", self.starttime
+            print "*** Make sure your HandHistoryConverter is setting hand.starttime properly!"
+            print "*** Game String:", gs
+            return gs
+        else:
+            return gs + timestr
 
     def writeTableLine(self):
         table_string = "Table \'%s\' %s-max" % (self.tablename, self.maxseats)
