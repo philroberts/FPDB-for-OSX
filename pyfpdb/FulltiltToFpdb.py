@@ -20,6 +20,7 @@
 
 import sys
 import logging
+import fpdb_simple
 from HandHistoryConverter import *
 
 # Fulltilt HH Format converter
@@ -475,10 +476,10 @@ class Fulltilt(HandHistoryConverter):
 
         # Additional info can be stored in the tourney object
         if mg['BUYIN'] is not None:
-            tourney.buyin = mg['BUYIN']
+            tourney.buyin = fpdb_simple.float2int(mg['BUYIN'])
             tourney.fee = 0
         if mg['FEE'] is not None:
-            tourney.fee = mg['FEE']
+            tourney.fee = fpdb_simple.float2int(mg['FEE'])
         if mg['TOURNAMENT_NAME'] is not None:
             # Tournament Name can have a trailing space at the end (depending on the tournament description)
             tourney.tourneyName = mg['TOURNAMENT_NAME'].rstrip()
@@ -523,24 +524,24 @@ class Fulltilt(HandHistoryConverter):
             mg = m.groupdict()
             if tourney.isMatrix :
                 if mg['BUYIN'] is not None:
-                    tourney.subTourneyBuyin = mg['BUYIN']
+                    tourney.subTourneyBuyin = fpdb_simple.float2int(mg['BUYIN'])
                     tourney.subTourneyFee = 0
                 if mg['FEE'] is not None:
-                    tourney.subTourneyFee = mg['FEE']
+                    tourney.subTourneyFee = fpdb_simple.float2int(mg['FEE'])
             else :
                 if mg['BUYIN'] is not None:
                     if tourney.buyin is None:
-                        tourney.buyin = mg['BUYIN']
+                        tourney.buyin = fpdb_simple.float2int(mg['BUYIN'])
                     else :
-                        if mg['BUYIN'] != tourney.buyin:
-                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (touney.buyin, mg['BUYIN']) )
-                            tourney.subTourneyBuyin = mg['BUYIN']
+                        if fpdb_simple.float2int(mg['BUYIN']) != tourney.buyin:
+                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (touney.buyin, fpdb_simple.float2int(mg['BUYIN'])) )
+                            tourney.subTourneyBuyin = fpdb_simple.float2int(mg['BUYIN'])
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
-                        tourney.fee = mg['FEE']
+                        tourney.fee = fpdb_simple.float2int(mg['FEE'])
                     else :
-                        if mg['FEE'] != tourney.fee:
-                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (touney.fee, mg['FEE']) )
+                        if fpdb_simple.float2int(mg['FEE']) != tourney.fee:
+                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (touney.fee, fpdb_simple.float2int(mg['FEE'])) )
                             tourney.subTourneyFee = mg['FEE']
 
         if tourney.buyin is None:
@@ -596,6 +597,9 @@ class Fulltilt(HandHistoryConverter):
         if mg['IN_PROGRESS'] is not None or mg['ENDTIME'] is not None:
             # Assign endtime to tourney (if None, that's ok, it's because the tourney wans't over over when the summary file was produced)
             tourney.endtime = mg['ENDTIME']
+            
+        tourney.rebuyAmount = fpdb_simple.float2int("%s" % tourney.rebuyAmount)
+        tourney.addOnAmount = fpdb_simple.float2int("%s" % tourney.addOnAmount)
         #print mg
 
         return True

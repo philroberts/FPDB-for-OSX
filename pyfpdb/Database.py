@@ -1836,12 +1836,57 @@ class Database:
     def tRecogniseTourneyType(self, tourney):
         print "Database.tRecogniseTourneyType"
         typeId = 1
-        # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
-        # if not found create it
+        # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
+                        (tourney.tourNo, tourney.siteId)
+                        )
+        result=cursor.fetchone()
+
+        expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
+                           7 : "isHU", 8 : "isShootout", 9 : "isMatrix" }
+        typeIdMatch = True
+
+        try:
+            len(result)
+            typeId = result[0]
+            print "Tourney found in db with Tourney_Type_ID = %d" % typeId
+            for ev in expectedValues :
+                print "ev : %s" % ev
+                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
+                    print "TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev] )
+                    typeIdMatch = False
+                    #break
+        except:
+            # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
+            typeIdMatch = False
+    
+        if typeIdMatch == False :
+            # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
+            # if not found create it
+            print "Searching for a TourneyTypeId matching TourneyType data"
+            cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
+                            (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
+                             tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                            )
+            result=cursor.fetchone()
+            #print "tried SELECTing gametypes.id, result:",result
         
-        # Checks for an existing tourney with tourney.siteId and tourney.tourNo (and get the tourneyTypeId)
-        # if the two TTypeId don't match, update the Tourneys.tourneyTypeId
-        return typeId
+            try:
+                len(result)
+                typeId = result[0]
+                print "Existing Tourney Type Id found : %d" % typeId
+            except TypeError: #this means we need to create a new entry
+                print "Tourney Type Id not found : create one"
+                cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
+                                (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
+                                 tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                                )
+                typeId = self.get_last_insert_id(cursor)
+
+        return typeId            
+    #end def tRecogniseTourneyType
+
         
     def tRecognizeTourney(self, tourney, dbTourneyTypeId):
         print "Database.tRecognizeTourney"
@@ -1849,7 +1894,7 @@ class Database:
         # Check if tourney exists in db (based on tourney.siteId and tourney.tourNo)
         # If not => create it with the tourneyTypeId given as input
         # if found => retrieve data (in the first query) and check if an update is needed, if so do it
-        # rem : Tourney Specific data = entries, prizepool, buyinchips, rebuychips, addonchips, totalrebuys, totaladdons, kobounty
+        # rem : Tourney Specific data = tourneyTypeId, entries, prizepool, buyinchips, rebuychips, addonchips, totalrebuys, totaladdons, kobounty
         return tourneyID
 
     def tStoreTourneyPlayers(self, tourney, dbTourneyId):

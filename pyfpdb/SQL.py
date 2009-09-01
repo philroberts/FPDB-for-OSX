@@ -2816,10 +2816,37 @@ class Sql:
                                              WHERE gametypeId=%s AND siteHandNo=%s
             """
             
-            self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id 
+            self.query['getTourneyTypeIdByTourneyNo'] = """SELECT tt.id,
+                                                                  tt.buyin,
+                                                                  tt.fee,
+                                                                  tt.maxSeats,
+                                                                  tt.knockout,
+                                                                  tt.rebuyOrAddon,
+                                                                  tt.speed,
+                                                                  tt.headsUp,
+                                                                  tt.shootout,
+                                                                  tt.matrix
                                                         FROM TourneyTypes tt 
                                                         INNER JOIN Tourneys t ON (t.tourneyTypeId = tt.id) 
                                                         WHERE t.siteTourneyNo=%s AND tt.siteId=%s
+            """
+            
+            self.query['getTourneyTypeId'] = """SELECT  id
+                                                FROM TourneyTypes
+                                                WHERE siteId=%s
+                                                AND buyin=%s
+                                                AND fee=%s
+                                                AND knockout=%s
+                                                AND rebuyOrAddon=%s
+                                                AND speed=%s
+                                                AND headsUp=%s
+                                                AND shootout=%s
+                                                AND matrix=%s
+            """
+            self.query['insertTourneyTypes'] = """INSERT INTO TourneyTypes
+                                                      (siteId, buyin, fee, knockout, rebuyOrAddon
+                                                      ,speed, headsUp, shootout, matrix)
+                                                  VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
 
             if db_server == 'mysql':
