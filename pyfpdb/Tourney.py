@@ -260,10 +260,9 @@ db: a connected fpdb_db object"""
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
 name        (string) player name
-winnings    (string) the money the player ended the tourney with (can be 0, or -1 if unknown)
+winnings    (decimal) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
-        winnings = re.sub(u',', u'', winnings) #some sites have commas
         self.players.append(name)
         self.finishPositions.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
