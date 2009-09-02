@@ -1834,7 +1834,7 @@ class Database:
     # end def send_finish_msg():
 
     def tRecogniseTourneyType(self, tourney):
-        print "Database.tRecogniseTourneyType"
+        logging.debug("Database.tRecogniseTourneyType")
         typeId = 1
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
@@ -1850,11 +1850,10 @@ class Database:
         try:
             len(result)
             typeId = result[0]
-            print "Tourney found in db with Tourney_Type_ID = %d" % typeId
+            logging.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
             for ev in expectedValues :
-                print "ev : %s" % ev
                 if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
-                    print "TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev] )
+                    logging.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
                     typeIdMatch = False
                     #break
         except:
@@ -1864,37 +1863,113 @@ class Database:
         if typeIdMatch == False :
             # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
             # if not found create it
-            print "Searching for a TourneyTypeId matching TourneyType data"
+            logging.debug("Searching for a TourneyTypeId matching TourneyType data")
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
                              tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
                             )
             result=cursor.fetchone()
-            #print "tried SELECTing gametypes.id, result:",result
         
             try:
                 len(result)
                 typeId = result[0]
-                print "Existing Tourney Type Id found : %d" % typeId
+                logging.debug("Existing Tourney Type Id found : %d" % typeId)
             except TypeError: #this means we need to create a new entry
-                print "Tourney Type Id not found : create one"
+                logging.debug("Tourney Type Id not found : create one")
                 cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
                                 (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
                                  tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
                                 )
                 typeId = self.get_last_insert_id(cursor)
 
-        return typeId            
+        return typeId
     #end def tRecogniseTourneyType
 
         
     def tRecognizeTourney(self, tourney, dbTourneyTypeId):
-        print "Database.tRecognizeTourney"
+        logging.debug("Database.tRecognizeTourney")
         tourneyID = 1
         # Check if tourney exists in db (based on tourney.siteId and tourney.tourNo)
-        # If not => create it with the tourneyTypeId given as input
-        # if found => retrieve data (in the first query) and check if an update is needed, if so do it
-        # rem : Tourney Specific data = tourneyTypeId, entries, prizepool, buyinchips, rebuychips, addonchips, totalrebuys, totaladdons, kobounty
+        # If so retrieve all data to check for consistency
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourney'].replace('%s', self.sql.query['placeholder']),
+                        (tourney.tourNo, tourney.siteId)
+                        )
+        result=cursor.fetchone()
+
+        expectedValuesDecimal = { 2  : "entries", 3 : "prizepool", 6  : "buyInChips", 9  : "rebuyChips", 
+                                  10 : "addOnChips", 11 : "rebuyAmount", 12 : "addOnAmount", 13 : "totalRebuys", 
+                                  14 : "totalAddOns", 15 : "koBounty" }
+        expectedValues = { 7 : "tourneyName", 16 : "tourneyComment"  }
+
+        tourneyDataMatch = True
+        tCommentTs = None
+        starttime = None
+        endtime = None
+
+        try:
+            len(result)
+            tourneyID = result[0]
+            logging.debug("Tourney found in db with TourneyID = %d" % tourneyID)
+            if result[1] <> dbTourneyTypeId:
+                tourneyDataMatch = False
+                logging.debug("Tourney has wrong type ID (expected : %s - found : %s)" % (dbTourneyTypeId, result[1]))
+            if (tourney.starttime is None and result[4] is not None) or ( tourney.starttime is not None and fpdb_simple.parseHandStartTime("- %s" % tourney.starttime) <> result[4]) :
+                tourneyDataMatch = False
+                logging.debug("Tourney data mismatch : wrong starttime : Tourney=%s / db=%s" % (tourney.starttime, result[4]))
+            if (tourney.endtime is None and result[5] is not None) or ( tourney.endtime is not None and fpdb_simple.parseHandStartTime("- %s" % tourney.endtime) <> result[5]) :
+                tourneyDataMatch = False
+                logging.debug("Tourney data mismatch : wrong endtime : Tourney=%s / db=%s" % (tourney.endtime, result[5]))
+
+            for ev in expectedValues :
+                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
+                    logging.debug("Tourney data mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
+                    tourneyDataMatch = False
+                    #break
+            for evD in expectedValuesDecimal :
+                if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD)) ) <> result[evD] ):
+                    logging.debug("Tourney data mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValuesDecimal.get(evD), getattr( tourney, expectedValuesDecimal.get(evD)), result[evD]) )
+                    tourneyDataMatch = False
+                    #break
+
+            # TO DO : Deal with matrix summary mutliple parsings
+            
+        except:
+            # Tourney not found : create
+            logging.debug("Tourney is not found : create")
+            if tourney.tourneyComment is not None :
+                tCommentTs = datetime.today()
+            if tourney.starttime is not None :
+                starttime = fpdb_simple.parseHandStartTime("- %s" % tourney.starttime)
+            if tourney.endtime is not None :
+                endtime = fpdb_simple.parseHandStartTime("- %s" % tourney.endtime)
+            # TODO : deal with matrix Id processed
+            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                                (dbTourneyTypeId, tourney.tourNo, tourney.entries, tourney.prizepool, starttime,
+                                 endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
+                                 tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
+                                 tourney.tourneyComment, tCommentTs)
+                                )
+            tourneyID = self.get_last_insert_id(cursor)
+
+
+        # Deal with inconsistent tourney in db
+        if tourneyDataMatch == False :
+            # Update Tourney
+            if result[16] <> tourney.tourneyComment :
+                tCommentTs = datetime.today()
+            if tourney.starttime is not None :
+                starttime = fpdb_simple.parseHandStartTime("- %s" % tourney.starttime)
+            if tourney.endtime is not None :
+                endtime = fpdb_simple.parseHandStartTime("- %s" % tourney.endtime)
+
+            cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
+                                (dbTourneyTypeId, tourney.entries, tourney.prizepool, starttime,
+                                 endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
+                                 tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
+                                 tourney.tourneyComment, tCommentTs, tourneyID)
+                                )
+
         return tourneyID
 
     def tStoreTourneyPlayers(self, tourney, dbTourneyId):

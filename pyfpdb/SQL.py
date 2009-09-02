@@ -2843,12 +2843,67 @@ class Sql:
                                                 AND shootout=%s
                                                 AND matrix=%s
             """
+
             self.query['insertTourneyTypes'] = """INSERT INTO TourneyTypes
                                                       (siteId, buyin, fee, knockout, rebuyOrAddon
                                                       ,speed, headsUp, shootout, matrix)
                                                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
 
+            self.query['getTourney'] = """SELECT t.id,
+                                                 t.tourneyTypeId,
+                                                 t.entries,
+                                                 t.prizepool,
+                                                 t.startTime,
+                                                 t.endTime,
+                                                 t.buyinChips,
+                                                 t.tourneyName,
+                                                 t.matrixIdProcessed,
+                                                 t.rebuyChips,
+                                                 t.addonChips,
+                                                 t.rebuyAmount,
+                                                 t.addonAmount,
+                                                 t.totalRebuys,
+                                                 t.totalAddons,
+                                                 t.koBounty,
+                                                 t.comment
+                                            FROM Tourneys t  
+                                            INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id) 
+                                            WHERE t.siteTourneyNo=%s AND tt.siteId=%s
+            """
+
+            self.query['insertTourney'] = """INSERT INTO Tourneys
+                                                (tourneyTypeId, siteTourneyNo, entries, prizepool,
+                                                 startTime, endTime, buyinChips, tourneyName, matrixIdProcessed,
+                                                 rebuyChips, addonChips, rebuyAmount, addonAmount, totalRebuys,
+                                                 totalAddons, koBounty, comment, commentTs)
+                                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                    %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            
+            self.query['updateTourney'] = """UPDATE Tourneys
+                                                 SET tourneyTypeId = %s,
+                                                     entries = %s,
+                                                     prizepool = %s,
+                                                     startTime = %s,
+                                                     endTime = %s,
+                                                     buyinChips = %s,
+                                                     tourneyName = %s,
+                                                     matrixIdProcessed = %s,
+                                                     rebuyChips = %s,
+                                                     addonChips = %s,
+                                                     rebuyAmount = %s,
+                                                     addonAmount = %s,
+                                                     totalRebuys = %s,
+                                                     totalAddons = %s,
+                                                     koBounty = %s,
+                                                     comment = %s,
+                                                     commentTs = %s
+                                            WHERE id=%s
+            """
+
+            
+            
             if db_server == 'mysql':
                 self.query['placeholder'] = u'%s'
             elif db_server == 'postgresql':
