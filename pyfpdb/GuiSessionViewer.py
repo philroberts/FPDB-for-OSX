@@ -21,7 +21,11 @@ pygtk.require('2.0')
 import gtk
 import os
 from time import time, strftime, localtime
-from numpy import diff, nonzero
+try:
+    from numpy import diff, nonzero
+except:
+    print """Failed to load numpy in Session Viewer"""
+    print """This is of no consequence as the module currently doesn't do anything."""
 
 import Card
 import fpdb_import
