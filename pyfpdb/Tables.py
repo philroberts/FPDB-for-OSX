@@ -69,6 +69,7 @@ class Table_Window:
         if 'site' in info:      self.site   = info['site']
         if 'title' in info:     self.title  = info['title']
         if 'name' in info:      self.name   = info['name']
+        self.gdkhandle = None
 
     def __str__(self):
 #    __str__ method for testing
