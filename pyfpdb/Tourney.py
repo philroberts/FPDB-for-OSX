@@ -73,20 +73,21 @@ class Tourney(object):
         self.subTourneyFee      = None
         self.rebuyChips         = 0
         self.addOnChips         = 0
-        self.countRebuys        = 0
-        self.countAddOns        = 0
         self.rebuyAmount		= 0
         self.addOnAmount		= 0
         self.totalRebuys        = 0
         self.totalAddOns        = 0
         self.koBounty           = 0
-        self.countKO            = 0     #To use for winnings calculation which is not counted in the rest of the summary file
         self.tourneyComment     = None
         self.players            = []
 
         # Collections indexed by player names
         self.finishPositions    = {}
         self.winnings           = {}
+        self.payinAmounts       = {}
+        self.countRebuys        = {}
+        self.countAddOns        = {}
+        self.countKO            = {}
 
         # currency symbol for this summary
         self.sym = None
@@ -120,21 +121,20 @@ class Tourney(object):
                  ("ADDON CHIPS", self.addOnChips),
                  ("REBUY AMOUNT", self.rebuyAmount),
                  ("ADDON AMOUNT", self.addOnAmount),
-                 ("COUNT REBUYS", self.countRebuys),
-                 ("COUNT ADDONS", self.countAddOns),
-                 ("NB REBUYS", self.countRebuys),
-                 ("NB ADDONS", self.countAddOns),
                  ("TOTAL REBUYS", self.totalRebuys),
                  ("TOTAL ADDONS", self.totalAddOns),
                  ("KO BOUNTY", self.koBounty),
-                 ("NB OF KO", self.countKO),
                  ("TOURNEY COMMENT", self.tourneyComment)
         )
  
         structs = ( ("GAMETYPE", self.gametype),
                     ("PLAYERS", self.players),
+                    ("PAYIN AMOUNTS", self.payinAmounts),
                     ("POSITIONS", self.finishPositions),                    
                     ("WINNINGS", self.winnings),
+                    ("COUNT REBUYS", self.countRebuys),
+                    ("COUNT ADDONS", self.countAddOns),
+                    ("NB OF KO", self.countKO)
         )
         str = ''
         for (name, var) in vars:
@@ -255,7 +255,7 @@ db: a connected fpdb_db object"""
         
         
 
-    def addPlayer(self, rank, name, winnings):
+    def addPlayer(self, rank, name, winnings, payinAmount, nbRebuys, nbAddons, nbKO):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
@@ -266,6 +266,10 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
         self.players.append(name)
         self.finishPositions.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
+        self.payinAmounts.update( {name : Decimal(payinAmount) } )
+        self.countRebuys.update( {name: Decimal(nbRebuys) } )
+        self.countAddOns.update( {name: Decimal(nbAddons) } )
+        self.countKO.update( {name : Decimal(nbKO) } )
         
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
@@ -277,11 +281,6 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
             self.players.append([-1, name, 0])
             
         self.winnings[name] = oldWins + Decimal(additionnalWinnings)
-        
-
-    def calculatePayinAmount(self):
-        return self.buyin + self.fee + (self.rebuyAmount * self.countRebuys) + (self.addOnAmount	* self.countAddOns )
-
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
