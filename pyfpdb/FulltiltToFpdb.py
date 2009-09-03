@@ -426,7 +426,7 @@ class Fulltilt(HandHistoryConverter):
                 self.status = False
             else:
                 self.tourney = Tourney.Tourney(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
-                self.status = status = self.getPlayersPositionsAndWinnings(self.tourney)
+                self.status = self.getPlayersPositionsAndWinnings(self.tourney)
                 if self.status == True :
                     self.status = self.determineTourneyType(self.tourney)
                     #print self.tourney
