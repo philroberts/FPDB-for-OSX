@@ -418,10 +418,10 @@ class Importer:
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
-                return (0, 0, 0, 1, 0, -1)
+                return (0, 0, 0, 1, 0)
         else:
             log.warning("Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter))
-            return (0, 0, 0, 1, 0, -1)
+            return (0, 0, 0, 1, 0)
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)

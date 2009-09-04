@@ -370,7 +370,7 @@ class Sql:
             if db_server == 'mysql':
                 self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                             id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                            tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                             siteTourneyNo BIGINT NOT NULL,
                             entries INT NOT NULL,
                             prizepool INT NOT NULL,
@@ -392,7 +392,7 @@ class Sql:
             elif db_server == 'postgresql':
                 self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                             id SERIAL, PRIMARY KEY (id),
-                            tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                            tourneyTypeId INT DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                             siteTourneyNo BIGINT,
                             entries INT,
                             prizepool INT,
@@ -413,7 +413,7 @@ class Sql:
             elif db_server == 'sqlite':
                 self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                             id INTEGER PRIMARY KEY,
-                            tourneyTypeId INT,
+                            tourneyTypeId INT DEFAULT 1,
                             siteTourneyNo INT,
                             entries INT,
                             prizepool INT,
@@ -460,7 +460,7 @@ class Sql:
                             comment text,
                             commentTs DATETIME,
                             tourneysPlayersId BIGINT UNSIGNED,
-                            tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                            tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                             wonWhenSeenStreet1 FLOAT,
                             wonWhenSeenStreet2 FLOAT,
@@ -578,7 +578,7 @@ class Sql:
                             comment text,
                             commentTs timestamp without time zone,
                             tourneysPlayersId BIGINT,
-                            tourneyTypeId INT NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                            tourneyTypeId INT NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                             wonWhenSeenStreet1 FLOAT,
                             wonWhenSeenStreet2 FLOAT,
@@ -695,7 +695,7 @@ class Sql:
                             comment TEXT,
                             commentTs REAL,
                             tourneysPlayersId INT,
-                            tourneyTypeId INT NOT NULL,
+                            tourneyTypeId INT NOT NULL DEFAULT 1,
 
                             wonWhenSeenStreet1 REAL,
                             wonWhenSeenStreet2 REAL,
@@ -865,7 +865,7 @@ class Sql:
                             playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                             activeSeats SMALLINT NOT NULL,
                             position CHAR(1),
-                            tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                            tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                             styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                             HDs INT NOT NULL,
 
@@ -966,7 +966,7 @@ class Sql:
                             playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                             activeSeats SMALLINT,
                             position CHAR(1),
-                            tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                            tourneyTypeId INT DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                             styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                             HDs INT,
 
@@ -1065,7 +1065,7 @@ class Sql:
                             playerId INT,
                             activeSeats INT,
                             position TEXT,
-                            tourneyTypeId INT,
+                            tourneyTypeId INT DEFAULT 1,
                             styleKey TEXT NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                             HDs INT,
 

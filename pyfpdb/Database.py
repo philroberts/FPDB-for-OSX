@@ -884,35 +884,51 @@ class Database:
     
     def drop_tables(self):
         """Drops the fpdb tables from the current db"""
-
         try:
             c = self.get_cursor()
-            if(self.get_backend_name() == 'MySQL InnoDB'):
-                #Databases with FOREIGN KEY support need this switched of before you can drop tables
-                self.drop_referential_integrity()
-
-                # Query the DB to see what tables exist
-                c.execute(self.sql.query['list_tables'])
-                for table in c:
-                    c.execute(self.sql.query['drop_table'] + table[0])
-            elif(self.get_backend_name() == 'PostgreSQL'):
-                self.commit()# I have no idea why this makes the query work--REB 07OCT2008
-                c.execute(self.sql.query['list_tables'])
-                tables = c.fetchall()
-                for table in tables:
-                    c.execute(self.sql.query['drop_table'] + table[0] + ' cascade') 
-            elif(self.get_backend_name() == 'SQLite'):
-                c.execute(self.sql.query['list_tables'])
-                for table in c.fetchall():
-                    log.debug(self.sql.query['drop_table'] + table[0])
-                    c.execute(self.sql.query['drop_table'] + table[0])
-
-            self.commit()
         except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            self.rollback()
-            raise
+            print "*** Error unable to get cursor"
+        else:
+            backend = self.get_backend_name()
+            if backend == 'MySQL InnoDB': # what happens if someone is using MyISAM?
+                try:
+                    self.drop_referential_integrity() # needed to drop tables with foreign keys
+                    c.execute(self.sql.query['list_tables'])
+                    tables = c.fetchall()
+                    for table in tables:
+                        c.execute(self.sql.query['drop_table'] + table[0])
+                except:
+                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                    print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                    self.rollback()
+            elif backend == 'PostgreSQL':
+                try:
+                    self.commit()
+                    c.execute(self.sql.query['list_tables'])
+                    tables = c.fetchall()
+                    for table in tables:
+                        c.execute(self.sql.query['drop_table'] + table[0] + ' cascade')
+                except:
+                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                    print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                    self.rollback()
+            elif backend == 'SQLite':
+                try:
+                    c.execute(self.sql.query['list_tables'])
+                    for table in c.fetchall():
+                        log.debug(self.sql.query['drop_table'] + table[0])
+                        c.execute(self.sql.query['drop_table'] + table[0])
+                except:
+                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                    print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                    self.rollback()
+            try:
+                self.commit()
+            except:
+                print "*** Error in committing table drop"
+                err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                print "***Error dropping tables: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                self.rollback()
     #end def drop_tables
 
     def createAllIndexes(self):
@@ -998,7 +1014,7 @@ class Database:
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         else:
-            c.execute("INSERT INTO TourneyTypes (siteId, buyin, fee) VALUES (1, 0, 0);")
+            c.execute("insert into tourneytypes values (0,1,0,0,0,0,0,null,0,0,0);")
 
     #end def fillDefaultData
 
