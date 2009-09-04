@@ -139,7 +139,7 @@ Otherwise, finish at EOF.
                 handsList = self.allHandsAsList()
                 log.info("Parsing %d hands" % len(handsList))
                 # Determine if we're dealing with a HH file or a Summary file
-                if self.isSummary(handsList[0]) == False:
+                if len(handsList) == 0 or self.isSummary(handsList[0]) == False:
                     self.parsedObjectType = "HH"
                     for handText in handsList:
                         try:
