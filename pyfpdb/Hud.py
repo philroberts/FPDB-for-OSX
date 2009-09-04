@@ -109,6 +109,7 @@ class Hud:
         win = gtk.Window()
         win.set_gravity(gtk.gdk.GRAVITY_STATIC)
         win.set_title("%s FPDBHUD" % (self.table.name))
+        win.set_skip_taskbar_hint(True)
         win.set_decorated(False)
         win.set_opacity(self.colors["hudopacity"])
         
@@ -364,17 +365,7 @@ class Hud:
         
         if not self.table.gdkhandle:
             self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
-#        window.window.reparent(self.table.gdkhandle, 0, 0)
-#        window.map()
-#        window.window.set_transient_for(self.table.gdkhandle)
-#        if os.name == "nt":
-#            print "window.window.handle=",window.window.handle
-#            oldparent = win32gui.SetParent(window.window.handle, self.table.number)
-#            print "oldparent=",oldparent
-#            win32gui.SendMessage(self.table.number, 0x0127) # WM_CHANGEUISTATE
-#            win32gui.SendMessage(self.table.number, 0x0128) # WM_UPDATEUISTATE
-#        window.present()
-        
+        window.window.set_transient_for(self.table.gdkhandle)
 
 class Stat_Window:
 
@@ -496,7 +487,7 @@ class Stat_Window:
 
         
         self.window.move(self.x, self.y)
-        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window.. 
+        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
         self.topify_window(self.window)
                    
         self.window.hide()
@@ -640,7 +631,7 @@ if __name__== "__main__":
     
     c = Configuration.Config()
     #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Motorway")
+    t = Tables.discover_table_by_name(c, "Corona")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
