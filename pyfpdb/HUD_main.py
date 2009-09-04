@@ -195,7 +195,7 @@ class HUD_main(object):
                     temp_key = tour_number
                 else:   # tourney, but can't get number and table
                     print "could not find tournament: skipping "
-                    sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
+                    #sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
                     continue
                     
             else:

@@ -14,5 +14,8 @@ class FpdbParseError(FpdbError):
         else:
             return repr(self.value)
 
+class FpdbDatabaseError(FpdbError):
+    pass
+
 class DuplicateError(FpdbError):
     pass
