@@ -46,7 +46,6 @@ class Tourney(object):
 
 
     def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC"):
-        print "Tourney.__init__"
         self.sitename           = sitename
         self.siteId             = self.SITEIDS[sitename]
         self.gametype           = gametype
@@ -74,21 +73,21 @@ class Tourney(object):
         self.subTourneyFee      = None
         self.rebuyChips         = 0
         self.addOnChips         = 0
-        self.countRebuys        = 0
-        self.countAddOns        = 0
         self.rebuyAmount		= 0
         self.addOnAmount		= 0
         self.totalRebuys        = 0
         self.totalAddOns        = 0
         self.koBounty           = 0
-        self.countKO            = 0     #To use for winnings calculation which is not counted in the rest of the summary file
+        self.tourneyComment     = None
         self.players            = []
 
         # Collections indexed by player names
         self.finishPositions    = {}
         self.winnings           = {}
-
-
+        self.payinAmounts       = {}
+        self.countRebuys        = {}
+        self.countAddOns        = {}
+        self.countKO            = {}
 
         # currency symbol for this summary
         self.sym = None
@@ -122,20 +121,20 @@ class Tourney(object):
                  ("ADDON CHIPS", self.addOnChips),
                  ("REBUY AMOUNT", self.rebuyAmount),
                  ("ADDON AMOUNT", self.addOnAmount),
-                 ("COUNT REBUYS", self.countRebuys),
-                 ("COUNT ADDONS", self.countAddOns),
-                 ("NB REBUYS", self.countRebuys),
-                 ("NB ADDONS", self.countAddOns),
                  ("TOTAL REBUYS", self.totalRebuys),
                  ("TOTAL ADDONS", self.totalAddOns),
                  ("KO BOUNTY", self.koBounty),
-                 ("NB OF KO", self.countKO)
+                 ("TOURNEY COMMENT", self.tourneyComment)
         )
  
         structs = ( ("GAMETYPE", self.gametype),
                     ("PLAYERS", self.players),
+                    ("PAYIN AMOUNTS", self.payinAmounts),
                     ("POSITIONS", self.finishPositions),                    
                     ("WINNINGS", self.winnings),
+                    ("COUNT REBUYS", self.countRebuys),
+                    ("COUNT ADDONS", self.countAddOns),
+                    ("NB OF KO", self.countKO)
         )
         str = ''
         for (name, var) in vars:
@@ -152,7 +151,6 @@ class Tourney(object):
         pass
 
     def insert(self, db):
-        print "TODO: Insert Tourney in DB"
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -163,6 +161,19 @@ class Tourney(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
+        dbTourneyTypeId = db.tRecogniseTourneyType(self)
+        logging.debug("Tourney Type ID = %d" % dbTourneyTypeId)
+        dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
+        logging.debug("Tourney ID = %d" % dbTourneyId)
+        dbTourneysPlayersIds = db.tStoreTourneyPlayers(self, dbTourneyId)
+        logging.debug("TourneysPlayersId = %s" % dbTourneysPlayersIds) 
+        db.tUpdateTourneysHandsPlayers(self, dbTourneysPlayersIds, dbTourneyTypeId)
+        logging.debug("tUpdateTourneysHandsPlayers done")
+        logging.debug("Tourney Insert done")
+        
+        # TO DO : Return what has been done (tourney created, updated, nothing)
+        # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneyPlayers and handsplayers)
+        # if so, prototypes may need changes to know what has been done or make some kind of dict in Tourney object that could be updated during the insert process to store that information
         stored = 0
         duplicates = 0
         partial = 0
@@ -246,18 +257,21 @@ db: a connected fpdb_db object"""
         
         
 
-    def addPlayer(self, rank, name, winnings):
+    def addPlayer(self, rank, name, winnings, payinAmount, nbRebuys, nbAddons, nbKO):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
 name        (string) player name
-winnings    (string) the money the player ended the tourney with (can be 0, or -1 if unknown)
+winnings    (decimal) the money the player ended the tourney with (can be 0, or -1 if unknown)
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
-        winnings = re.sub(u',', u'', winnings) #some sites have commas
         self.players.append(name)
         self.finishPositions.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
+        self.payinAmounts.update( {name : Decimal(payinAmount) } )
+        self.countRebuys.update( {name: Decimal(nbRebuys) } )
+        self.countAddOns.update( {name: Decimal(nbAddons) } )
+        self.countKO.update( {name : Decimal(nbKO) } )
         
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
@@ -269,11 +283,6 @@ winnings    (string) the money the player ended the tourney with (can be 0, or -
             self.players.append([-1, name, 0])
             
         self.winnings[name] = oldWins + Decimal(additionnalWinnings)
-        
-
-    def calculatePayinAmount(self):
-        return self.buyin + self.fee + (self.rebuyAmount * self.countRebuys) + (self.addOnAmount	* self.countAddOns )
-
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:

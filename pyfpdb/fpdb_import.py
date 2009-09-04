@@ -55,9 +55,9 @@ try:
     pgsqlLibFound=True
     import psycopg2.extensions
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-    log.debug("Import module: pyscopg2")
+    log.debug("Import module: psycopg2")
 except:
-    log.debug("Import module: pyscopg2 not found")
+    log.debug("Import module: psycopg2 not found")
 
 class Importer:
 

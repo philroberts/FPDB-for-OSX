@@ -64,6 +64,15 @@ class Hand(object):
         self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
+        # Some attributes for hand from a tourney
+        self.speed = "Normal"
+        self.isRebuy = False
+        self.isKO = False
+        self.isHU = False
+        self.isMatrix = False
+        self.isShootout = False
+        self.tourneyComment = None
+
         self.seating = []
         self.players = []
         self.posted = []

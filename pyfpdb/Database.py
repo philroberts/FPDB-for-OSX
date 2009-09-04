@@ -42,6 +42,7 @@ import fpdb_simple
 import Configuration
 import SQL
 import Card
+import Tourney
 from Exceptions import *
 
 import logging, logging.config
@@ -608,7 +609,7 @@ class Database:
         hands_players_ids = self.store_hands_players_holdem_omaha_tourney(
                           self.backend, category, hands_id, player_ids, start_cashes, positions
                         , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids
-                        , hudImportData)
+                        , hudImportData, tourneyTypeId)
 
         #print "tourney holdem, backend=%d" % backend
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
@@ -636,7 +637,7 @@ class Database:
 
         hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
                                                  , playerIds, startCashes, antes, cardValues, cardSuits
-                                                 , winnings, rakes, seatNos, tourneys_players_ids)
+                                                 , winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId)
 
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             self.storeHudCache(self.backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
@@ -995,12 +996,10 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         if self.backend == self.SQLITE:
-            c.execute("INSERT INTO TourneyTypes VALUES (NULL, 1, 0, 0, 0, 0);")
+            c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         else:
-            c.execute("INSERT INTO TourneyTypes VALUES (DEFAULT, 1, 0, 0, 0, False);")
-        #c.execute("""INSERT INTO TourneyTypes
-        #          (siteId,buyin,fee,knockout,rebuyOrAddon) VALUES
-        #          (1,0,0,0,?)""",(False,) )
+            c.execute("INSERT INTO TourneyTypes (siteId, buyin, fee) VALUES (1, 0, 0);")
+
     #end def fillDefaultData
 
     def rebuild_hudcache(self):
@@ -1314,7 +1313,7 @@ class Database:
                     raise FpdbError("invalid category")
 
                 inserts.append( (
-                                 hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+                                 hands_id, player_ids[i], start_cashes[i], positions[i],
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
                                  hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
@@ -1345,7 +1344,7 @@ class Database:
             c = self.get_cursor()
             c.executemany ("""
         INSERT INTO HandsPlayers
-        (handId, playerId, startCash, position, tourneyTypeId,
+        (handId, playerId, startCash, position,
          card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
          street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
          street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
@@ -1366,7 +1365,7 @@ class Database:
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+         %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
             result.append( self.get_last_insert_id(c) ) # wrong? not used currently
         except:
@@ -1416,7 +1415,7 @@ class Database:
     def store_hands_players_holdem_omaha_tourney(self, backend, category, hands_id, player_ids
                                                 ,start_cashes, positions, card_values, card_suits
                                                 ,winnings, rakes, seatNos, tourneys_players_ids
-                                                ,hudCache):
+                                                ,hudCache, tourneyTypeId):
         #stores hands_players for tourney holdem/omaha hands
 
         try:
@@ -1438,7 +1437,7 @@ class Database:
                 else:
                     raise FpdbError ("invalid card_values length:"+str(len(card_values[0])))
 
-                inserts.append( (hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid
+                inserts.append( (hands_id, player_ids[i], start_cashes[i], positions[i], tourneyTypeId,
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], hudCache['totalProfit'][i],
                                  hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
@@ -1507,7 +1506,7 @@ class Database:
     #end def store_hands_players_holdem_omaha_tourney
      
     def store_hands_players_stud_tourney(self, backend, hands_id, player_ids, start_cashes,
-                antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids):
+                antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId):
         #stores hands_players for tourney stud/razz hands
 
         try:
@@ -1519,14 +1518,14 @@ class Database:
         card1Value, card1Suit, card2Value, card2Suit,
         card3Value, card3Suit, card4Value, card4Suit,
         card5Value, card5Suit, card6Value, card6Suit,
-        card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo)
+        card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo, tourneyTypeId)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
+        %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                 (hands_id, player_ids[i], start_cashes[i], antes[i],
                 card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
                 card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
                 card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-                card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i]))
+                card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], tourneyTypeId))
                 #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
                 #result.append(cursor.fetchall()[0][0])
                 result.append( self.get_last_insert_id(c) )
@@ -1864,6 +1863,236 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
+
+    def tRecogniseTourneyType(self, tourney):
+        logging.debug("Database.tRecogniseTourneyType")
+        typeId = 1
+        # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
+                        (tourney.tourNo, tourney.siteId)
+                        )
+        result=cursor.fetchone()
+
+        expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
+                           7 : "isHU", 8 : "isShootout", 9 : "isMatrix" }
+        typeIdMatch = True
+
+        try:
+            len(result)
+            typeId = result[0]
+            logging.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
+            for ev in expectedValues :
+                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
+                    logging.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
+                    typeIdMatch = False
+                    #break
+        except:
+            # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
+            typeIdMatch = False
+    
+        if typeIdMatch == False :
+            # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
+            # if not found create it
+            logging.debug("Searching for a TourneyTypeId matching TourneyType data")
+            cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
+                            (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
+                             tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                            )
+            result=cursor.fetchone()
+        
+            try:
+                len(result)
+                typeId = result[0]
+                logging.debug("Existing Tourney Type Id found : %d" % typeId)
+            except TypeError: #this means we need to create a new entry
+                logging.debug("Tourney Type Id not found : create one")
+                cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
+                                (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
+                                 tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                                )
+                typeId = self.get_last_insert_id(cursor)
+
+        return typeId
+    #end def tRecogniseTourneyType
+
+        
+    def tRecognizeTourney(self, tourney, dbTourneyTypeId):
+        logging.debug("Database.tRecognizeTourney")
+        tourneyID = 1
+        # Check if tourney exists in db (based on tourney.siteId and tourney.tourNo)
+        # If so retrieve all data to check for consistency
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourney'].replace('%s', self.sql.query['placeholder']),
+                        (tourney.tourNo, tourney.siteId)
+                        )
+        result=cursor.fetchone()
+
+        expectedValuesDecimal = { 2  : "entries", 3 : "prizepool", 6  : "buyInChips", 9  : "rebuyChips", 
+                                  10 : "addOnChips", 11 : "rebuyAmount", 12 : "addOnAmount", 13 : "totalRebuys", 
+                                  14 : "totalAddOns", 15 : "koBounty" }
+        expectedValues = { 7 : "tourneyName", 16 : "tourneyComment"  }
+
+        tourneyDataMatch = True
+        tCommentTs = None
+        starttime = None
+        endtime = None
+
+        try:
+            len(result)
+            tourneyID = result[0]
+            logging.debug("Tourney found in db with TourneyID = %d" % tourneyID)
+            if result[1] <> dbTourneyTypeId:
+                tourneyDataMatch = False
+                logging.debug("Tourney has wrong type ID (expected : %s - found : %s)" % (dbTourneyTypeId, result[1]))
+            if (tourney.starttime is None and result[4] is not None) or ( tourney.starttime is not None and fpdb_simple.parseHandStartTime("- %s" % tourney.starttime) <> result[4]) :
+                tourneyDataMatch = False
+                logging.debug("Tourney data mismatch : wrong starttime : Tourney=%s / db=%s" % (tourney.starttime, result[4]))
+            if (tourney.endtime is None and result[5] is not None) or ( tourney.endtime is not None and fpdb_simple.parseHandStartTime("- %s" % tourney.endtime) <> result[5]) :
+                tourneyDataMatch = False
+                logging.debug("Tourney data mismatch : wrong endtime : Tourney=%s / db=%s" % (tourney.endtime, result[5]))
+
+            for ev in expectedValues :
+                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
+                    logging.debug("Tourney data mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
+                    tourneyDataMatch = False
+                    #break
+            for evD in expectedValuesDecimal :
+                if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD)) ) <> result[evD] ):
+                    logging.debug("Tourney data mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValuesDecimal.get(evD), getattr( tourney, expectedValuesDecimal.get(evD)), result[evD]) )
+                    tourneyDataMatch = False
+                    #break
+
+            # TO DO : Deal with matrix summary mutliple parsings
+            
+        except:
+            # Tourney not found : create
+            logging.debug("Tourney is not found : create")
+            if tourney.tourneyComment is not None :
+                tCommentTs = datetime.today()
+            if tourney.starttime is not None :
+                starttime = fpdb_simple.parseHandStartTime("- %s" % tourney.starttime)
+            if tourney.endtime is not None :
+                endtime = fpdb_simple.parseHandStartTime("- %s" % tourney.endtime)
+            # TODO : deal with matrix Id processed
+            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                                (dbTourneyTypeId, tourney.tourNo, tourney.entries, tourney.prizepool, starttime,
+                                 endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
+                                 tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
+                                 tourney.tourneyComment, tCommentTs)
+                                )
+            tourneyID = self.get_last_insert_id(cursor)
+
+
+        # Deal with inconsistent tourney in db
+        if tourneyDataMatch == False :
+            # Update Tourney
+            if result[16] <> tourney.tourneyComment :
+                tCommentTs = datetime.today()
+            if tourney.starttime is not None :
+                starttime = fpdb_simple.parseHandStartTime("- %s" % tourney.starttime)
+            if tourney.endtime is not None :
+                endtime = fpdb_simple.parseHandStartTime("- %s" % tourney.endtime)
+
+            cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
+                                (dbTourneyTypeId, tourney.entries, tourney.prizepool, starttime,
+                                 endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
+                                 tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
+                                 tourney.tourneyComment, tCommentTs, tourneyID)
+                            )
+
+        return tourneyID
+    #end def tRecognizeTourney
+    
+    def tStoreTourneyPlayers(self, tourney, dbTourneyId):
+        logging.debug("Database.tStoreTourneyPlayers")
+        # First, get playerids for the players and specifically the one for hero : 
+        playersIds = fpdb_simple.recognisePlayerIDs(self, tourney.players, tourney.siteId)
+        # hero may be None for matrix tourneys summaries
+#        hero = [ tourney.hero ]
+#        heroId = fpdb_simple.recognisePlayerIDs(self, hero , tourney.siteId)
+#        logging.debug("hero Id = %s - playersId = %s" % (heroId , playersIds))
+
+        tourneyPlayersIds=[]
+        try:
+            cursor = self.get_cursor()
+    
+            for i in xrange(len(playersIds)):
+                cursor.execute(self.sql.query['getTourneysPlayers'].replace('%s', self.sql.query['placeholder'])
+                              ,(dbTourneyId, playersIds[i]))
+                result=cursor.fetchone()
+                #print "tried SELECTing tourneys_players.id:",tmp
+                
+                try:
+                    len(result)
+                    # checking data
+                    logging.debug("TourneysPlayers found : checking data")
+                    expectedValuesDecimal = { 1  : "payinAmounts", 2 : "finishPositions", 3  : "winnings", 4 : "countRebuys", 
+                                              5  : "countAddOns", 6 : "countKO" }
+    
+                    tourneyPlayersIds.append(result[0]);
+    
+                    tourneysPlayersDataMatch = True
+                    for evD in expectedValuesDecimal :
+                        if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]] ) <> result[evD] ):
+                            logging.debug("TourneysPlayers data mismatch for TourneysPlayer id=%d, name=%s : wrong %s : Tourney=%s / db=%s" % (result[0], tourney.players[i], expectedValuesDecimal.get(evD), getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]], result[evD]) )
+                            tourneysPlayersDataMatch = False
+                            #break
+
+                    if tourneysPlayersDataMatch == False:
+                        logging.debug("TourneysPlayers data update needed")
+                        cursor.execute (self.sql.query['updateTourneysPlayers'].replace('%s', self.sql.query['placeholder']),
+                                            (tourney.payinAmounts[tourney.players[i]], tourney.finishPositions[tourney.players[i]],
+                                             tourney.winnings[tourney.players[i]] , tourney.countRebuys[tourney.players[i]],
+                                             tourney.countAddOns[tourney.players[i]] , tourney.countKO[tourney.players[i]],
+                                             result[7], result[8], result[0])
+                                        )
+
+                except TypeError:
+                    logging.debug("TourneysPlayers not found : need insert")
+                    cursor.execute (self.sql.query['insertTourneysPlayers'].replace('%s', self.sql.query['placeholder']),
+                                        (dbTourneyId, playersIds[i],
+                                         tourney.payinAmounts[tourney.players[i]], tourney.finishPositions[tourney.players[i]],
+                                         tourney.winnings[tourney.players[i]] , tourney.countRebuys[tourney.players[i]],
+                                         tourney.countAddOns[tourney.players[i]] , tourney.countKO[tourney.players[i]],
+                                         None, None)
+                                        )
+                    tourneyPlayersIds.append(self.get_last_insert_id(cursor))
+                                        
+        except:
+            raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
+    
+        return tourneyPlayersIds
+    #end def tStoreTourneyPlayers
+
+    def tUpdateTourneysHandsPlayers(self, tourney, dbTourneysPlayersIds, dbTourneyTypeId):
+        logging.debug("Database.tCheckTourneysHandsPlayers")
+        try:
+            # Massive update seems to take quite some time ...
+#            query = self.sql.query['updateHandsPlayersForTTypeId2'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner'].join([self.sql.query['placeholder'] for id in dbTourneysPlayersIds]) )
+#            cursor = self.get_cursor()
+#            cursor.execute (query, dbTourneysPlayersIds)
+
+            query = self.sql.query['selectHandsPlayersWithWrongTTypeId'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner'].join([self.sql.query['placeholder'] for id in dbTourneysPlayersIds]) )
+            #print "query : %s" % query
+            cursor = self.get_cursor()
+            cursor.execute (query, dbTourneysPlayersIds)
+            result=cursor.fetchall()
+
+            if (len(result) > 0):
+                logging.debug("%d lines need update : %s" % (len(result), result) )
+                listIds = []
+                for i in result:
+                    listIds.append(i[0])
+
+                query2 = self.sql.query['updateHandsPlayersForTTypeId'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner_id'].join([self.sql.query['placeholder'] for id in listIds]) )
+                cursor.execute (query2, listIds)
+            else:
+                logging.debug("No need to update, HandsPlayers are correct")
+
+        except:
+            raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
+    #end def tUpdateTourneysHandsPlayers
 
 
 # Class used to hold all the data needed to write a hand to the db
