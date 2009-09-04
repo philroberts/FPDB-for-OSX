@@ -137,7 +137,7 @@ class fpdb_db:
                 print "outdated or too new database version - please recreate tables"
                 self.wrongDbVersion=True
         except:# _mysql_exceptions.ProgrammingError:
-            print "failed to read settings table - please recreate tables"
+            if database !=  ":memory:": print "failed to read settings table - please recreate tables"
             self.wrongDbVersion=True
     #end def connect
 

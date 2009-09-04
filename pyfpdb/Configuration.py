@@ -345,8 +345,10 @@ class Config:
             self.supported_games[game.game_name] = game
             
 #        s_dbs = doc.getElementsByTagName("supported_databases")
-        if dbname and dbname in self.supported_databases:
-            self.db_selected = dbname
+        # select database from those defined in config by:
+        #    1) command line option
+        # or 2) selected="True" in config element
+        # or 3) just choose the first we come across
         for db_node in doc.getElementsByTagName("database"):
             try:
                 db = Database(node = db_node)
@@ -360,6 +362,9 @@ class Config:
                     self.db_selected = db.db_name
             except:
                 raise
+        if dbname and dbname in self.supported_databases:
+            self.db_selected = dbname
+
 
 #       s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
