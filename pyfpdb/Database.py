@@ -1968,21 +1968,101 @@ class Database:
                                  endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
                                  tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
                                  tourney.tourneyComment, tCommentTs, tourneyID)
-                                )
+                            )
 
         return tourneyID
-
+    #end def tRecognizeTourney
+    
     def tStoreTourneyPlayers(self, tourney, dbTourneyId):
-        print "Database.tStoreTourneyPlayers"
+        logging.debug("Database.tStoreTourneyPlayers")
+        # First, get playerids for the players and specifically the one for hero : 
+        playersIds = fpdb_simple.recognisePlayerIDs(self, tourney.players, tourney.siteId)
+        # hero may be None for matrix tourneys summaries
+#        hero = [ tourney.hero ]
+#        heroId = fpdb_simple.recognisePlayerIDs(self, hero , tourney.siteId)
+#        logging.debug("hero Id = %s - playersId = %s" % (heroId , playersIds))
+
         tourneyPlayersIds=[]
-        # Look for existing players in TourneysPlayers
-        # For the ones not in db insert with all data (nbrebuys, nbaddons, nbKO, payinAmount, rank, winnings)
-        # For the others, get data and check if an update is needed, if so, do it
+        try:
+            cursor = self.get_cursor()
+    
+            for i in xrange(len(playersIds)):
+                cursor.execute(self.sql.query['getTourneysPlayers'].replace('%s', self.sql.query['placeholder'])
+                              ,(dbTourneyId, playersIds[i]))
+                result=cursor.fetchone()
+                #print "tried SELECTing tourneys_players.id:",tmp
+                
+                try:
+                    len(result)
+                    # checking data
+                    logging.debug("TourneysPlayers found : checking data")
+                    expectedValuesDecimal = { 1  : "payinAmounts", 2 : "finishPositions", 3  : "winnings", 4 : "countRebuys", 
+                                              5  : "countAddOns", 6 : "countKO" }
+    
+                    tourneyPlayersIds.append(result[0]);
+    
+                    tourneysPlayersDataMatch = True
+                    for evD in expectedValuesDecimal :
+                        if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]] ) <> result[evD] ):
+                            logging.debug("TourneysPlayers data mismatch for TourneysPlayer id=%d, name=%s : wrong %s : Tourney=%s / db=%s" % (result[0], tourney.players[i], expectedValuesDecimal.get(evD), getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]], result[evD]) )
+                            tourneysPlayersDataMatch = False
+                            #break
+
+                    if tourneysPlayersDataMatch == False:
+                        logging.debug("TourneysPlayers data update needed")
+                        cursor.execute (self.sql.query['updateTourneysPlayers'].replace('%s', self.sql.query['placeholder']),
+                                            (tourney.payinAmounts[tourney.players[i]], tourney.finishPositions[tourney.players[i]],
+                                             tourney.winnings[tourney.players[i]] , tourney.countRebuys[tourney.players[i]],
+                                             tourney.countAddOns[tourney.players[i]] , tourney.countKO[tourney.players[i]],
+                                             result[7], result[8], result[0])
+                                        )
+
+                except TypeError:
+                    logging.debug("TourneysPlayers not found : need insert")
+                    cursor.execute (self.sql.query['insertTourneysPlayers'].replace('%s', self.sql.query['placeholder']),
+                                        (dbTourneyId, playersIds[i],
+                                         tourney.payinAmounts[tourney.players[i]], tourney.finishPositions[tourney.players[i]],
+                                         tourney.winnings[tourney.players[i]] , tourney.countRebuys[tourney.players[i]],
+                                         tourney.countAddOns[tourney.players[i]] , tourney.countKO[tourney.players[i]],
+                                         None, None)
+                                        )
+                    tourneyPlayersIds.append(self.get_last_insert_id(cursor))
+                                        
+        except:
+            raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
+    
         return tourneyPlayersIds
-        
-    def tCheckTourneysHandsPlayers(self, tourney, dbTourneysPlayersIds, dbTourneyTypeId):
-        print "Database.tCheckTourneysHandsPlayers"
-        # Make a direct update of lines from HandsPlayers where touneyplayersid=<input> and tourneyTypeId <> dbTourneyTypeId, set tourneyTypeId=dbTourneyTypeId  
+    #end def tStoreTourneyPlayers
+
+    def tUpdateTourneysHandsPlayers(self, tourney, dbTourneysPlayersIds, dbTourneyTypeId):
+        logging.debug("Database.tCheckTourneysHandsPlayers")
+        try:
+            # Massive update seems to take quite some time ...
+#            query = self.sql.query['updateHandsPlayersForTTypeId2'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner'].join([self.sql.query['placeholder'] for id in dbTourneysPlayersIds]) )
+#            cursor = self.get_cursor()
+#            cursor.execute (query, dbTourneysPlayersIds)
+
+            query = self.sql.query['selectHandsPlayersWithWrongTTypeId'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner'].join([self.sql.query['placeholder'] for id in dbTourneysPlayersIds]) )
+            #print "query : %s" % query
+            cursor = self.get_cursor()
+            cursor.execute (query, dbTourneysPlayersIds)
+            result=cursor.fetchall()
+
+            if (len(result) > 0):
+                logging.debug("%d lines need update : %s" % (len(result), result) )
+                listIds = []
+                for i in result:
+                    listIds.append(i[0])
+
+                query2 = self.sql.query['updateHandsPlayersForTTypeId'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner_id'].join([self.sql.query['placeholder'] for id in listIds]) )
+                cursor.execute (query2, listIds)
+            else:
+                logging.debug("No need to update, HandsPlayers are correct")
+
+        except:
+            raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
+    #end def tUpdateTourneysHandsPlayers
+
 
 # Class used to hold all the data needed to write a hand to the db
 # mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 

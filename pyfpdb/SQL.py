@@ -2901,6 +2901,55 @@ class Sql:
                                                      commentTs = %s
                                             WHERE id=%s
             """
+            
+            self.query['getTourneysPlayers'] = """SELECT    id,
+                                                            payinAmount,
+                                                            rank,
+                                                            winnings,
+                                                            nbRebuys,
+                                                            nbAddons,
+                                                            nbKO,
+                                                            comment,
+                                                            commentTs
+                                                    FROM TourneysPlayers
+                                                    WHERE tourneyId=%s AND playerId+0=%s            
+            """
+
+            self.query['updateTourneysPlayers'] = """UPDATE TourneysPlayers
+                                                     SET payinAmount = %s,
+                                                         rank = %s,
+                                                         winnings = %s,
+                                                         nbRebuys = %s,
+                                                         nbAddons = %s,
+                                                         nbKO = %s,
+                                                         comment = %s,
+                                                         commentTs = %s
+                                                     WHERE id=%s
+            """
+
+            self.query['insertTourneysPlayers'] = """INSERT INTO TourneysPlayers
+                                                        (tourneyId, playerId, payinAmount, rank, winnings, nbRebuys, nbAddons, nbKO, comment, commentTs)
+                                                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+
+            self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id
+                                                                  FROM HandsPlayers 
+                                                                  WHERE tourneyTypeId <> %s AND (TourneysPlayersId+0=%s)
+            """
+
+#            self.query['updateHandsPlayersForTTypeId2'] = """UPDATE HandsPlayers 
+#                                                            SET tourneyTypeId= %s
+#                                                            WHERE (TourneysPlayersId+0=%s)
+#            """
+
+            self.query['updateHandsPlayersForTTypeId'] = """UPDATE HandsPlayers 
+                                                             SET tourneyTypeId= %s
+                                                             WHERE (id=%s)
+            """
+
+
+            self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
+            self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
 
             
             
