@@ -208,6 +208,7 @@ class Database:
         if self.backend == self.SQLITE and db_params['db-databaseName'] == ':memory:' and self.fdb.wrongDbVersion:
             log.info("sqlite/:memory: - creating")
             self.recreate_tables()
+            self.fdb.wrongDbVersion = False
 
         self.pcache      = None     # PlayerId cache
         self.cachemiss   = 0        # Delete me later - using to count player cache misses
