@@ -336,7 +336,8 @@ class Hud:
         for s in self.stat_dict:
             statd = self.stat_dict[s]
             try:
-                self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
+                self.stat_windows[statd['seat']].player_id = statd['player_id']
+                #self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
             except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
                 self.create(hand, config, self.stat_dict, self.cards)
