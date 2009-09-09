@@ -99,7 +99,7 @@ class fpdb:
         self.tabs.append(new_tab)
         self.tab_names.append(new_tab_name)
 
-        new_tab_sel_button=gtk.ToggleButton(new_tab_name)
+        new_tab_sel_button = gtk.ToggleButton(new_tab_name)
         new_tab_sel_button.connect("clicked", self.tab_clicked, new_tab_name)
         self.tab_box.add(new_tab_sel_button)
         new_tab_sel_button.show()
@@ -146,7 +146,7 @@ class fpdb:
         print "todo: implement dia_database_stats"
 
     def dia_database_sessions(self, widget, data=None):
-        new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
+        new_sessions_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
         self.threads.append(new_sessions_thread)
         sessions_tab=new_sessions_thread.get_vbox()
         self.add_and_display_tab(sessions_tab, "Sessions")
@@ -453,7 +453,7 @@ class fpdb:
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
-        new_aimp_thread=GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
+        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")
@@ -467,7 +467,7 @@ class fpdb:
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
     def tab_player_stats(self, widget, data=None):
-        new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
+        new_ps_thread = GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Player Stats")
@@ -490,14 +490,14 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         """opens a table viewer tab"""
         new_tv_thread = GuiTableViewer.GuiTableViewer(self.db, self.settings, self.config)
         self.threads.append(new_tv_thread)
-        tv_tab=new_tv_thread.get_vbox()
+        tv_tab = new_tv_thread.get_vbox()
         self.add_and_display_tab(tv_tab, "Table Viewer")
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
         new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
         self.threads.append(new_gv_thread)
-        gv_tab=new_gv_thread.get_vbox()
+        gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")
 
     def __init__(self):
