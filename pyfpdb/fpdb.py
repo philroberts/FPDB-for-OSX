@@ -83,23 +83,18 @@ VERSION = "0.11"
 class fpdb:
     def tab_clicked(self, widget, tab_name):
         """called when a tab button is clicked to activate that tab"""
-        #print "start of tab_clicked"
         self.display_tab(tab_name)
-    #end def tab_clicked
 
     def add_and_display_tab(self, new_tab, new_tab_name):
         """just calls the component methods"""
         self.add_tab(new_tab, new_tab_name)
         self.display_tab(new_tab_name)
-    #end def add_and_display_tab
 
     def add_tab(self, new_tab, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
-        #print "start of add_tab"
         for i in self.tab_names: #todo: check this is valid
-            if i==new_tab_name:
-                return # we depend on this to not create duplicate tabs, there's no reason to raise an error here?
-#                raise FpdbError("duplicate tab_name not permitted")
+            if i == new_tab_name:
+                return # if tab already exists, just go to it
 
         self.tabs.append(new_tab)
         self.tab_names.append(new_tab_name)
@@ -109,11 +104,9 @@ class fpdb:
         self.tab_box.add(new_tab_sel_button)
         new_tab_sel_button.show()
         self.tab_buttons.append(new_tab_sel_button)
-    #end def add_tab
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
-        #print "start of display_tab, len(self.tab_names):",len(self.tab_names)
         tab_no = -1
         for i, name in enumerate(self.tab_names):
             if name == new_tab_name:
@@ -124,42 +117,33 @@ class fpdb:
             raise FpdbError("invalid tab_no")
         else:
             self.main_vbox.remove(self.current_tab)
-            #self.current_tab.destroy()
             self.current_tab=self.tabs[tab_no]
             self.main_vbox.add(self.current_tab)
             self.tab_buttons[tab_no].set_active(True)
             self.current_tab.show()
-    #end def display_tab
 
     def delete_event(self, widget, event, data=None):
         return False
-    #end def delete_event
 
     def destroy(self, widget, data=None):
         self.quit(widget)
-    #end def destroy
 
     def dia_about(self, widget, data=None):
         print "todo: implement dia_about",
         print " version = %s, requires database version %s" % (VERSION, "118")
-    #end def dia_about
 
     def dia_create_del_database(self, widget, data=None):
         print "todo: implement dia_create_del_database"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_create_del_database
 
     def dia_create_del_user(self, widget, data=None):
         print "todo: implement dia_create_del_user"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_create_del_user
 
     def dia_database_stats(self, widget, data=None):
         print "todo: implement dia_database_stats"
-        #string=fpdb_db.getDbStats(db, cursor)
-    #end def dia_database_stats
 
     def dia_database_sessions(self, widget, data=None):
         new_sessions_thread=GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
@@ -171,19 +155,16 @@ class fpdb:
         print "todo: implement dia_delete_db_parts"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_delete_db_parts
 
     def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
         print "todo: implement dia_edit_profile"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_edit_profile
 
     def dia_export_db(self, widget, data=None):
         print "todo: implement dia_export_db"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_export_db
 
     def dia_get_db_root_credentials(self):
         """obtains db root credentials from user"""
@@ -203,17 +184,14 @@ class fpdb:
 #        response=dialog.run()
 #        dialog.destroy()
 #        return (user, pw, response)
-    #end def dia_get_db_root_credentials
 
     def dia_import_db(self, widget, data=None):
         print "todo: implement dia_import_db"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_import_db
 
     def dia_licensing(self, widget, data=None):
         print "todo: implement dia_licensing"
-    #end def dia_licensing
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
@@ -237,7 +215,6 @@ class fpdb:
             #except:
             #    pass
             self.release_global_lock()
-    #end def dia_load_profile
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
@@ -267,7 +244,6 @@ class fpdb:
                 print 'User cancelled recreating tables'
             #if not lock_released:
             self.release_global_lock()
-    #end def dia_recreate_tables
     
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
@@ -283,16 +259,13 @@ class fpdb:
                 print 'User cancelled rebuilding hud cache'
         self.release_global_lock()
     
-
     def dia_regression_test(self, widget, data=None):
         print "todo: implement dia_regression_test"
         self.obtain_global_lock()
         self.release_global_lock()
-    #end def dia_regression_test
 
     def dia_save_profile(self, widget, data=None):
         print "todo: implement dia_save_profile"
-    #end def dia_save_profile
 
     def diaSetupWizard(self, path):
         print "todo: implement setup wizard"
@@ -313,7 +286,6 @@ class fpdb:
 
         response = diaSetupWizard.run()
         sys.exit(1)
-    #end def diaSetupWizard
 
     def get_menu(self, window):
         """returns the menu for this program"""
@@ -402,7 +374,6 @@ class fpdb:
         menubar = uimanager.get_widget('/MenuBar')
         window.add_accel_group(accel_group)
         return menubar
-    #end def get_menu
 
     def load_profile(self):
         """Loads profile from the provided path name."""
@@ -453,11 +424,9 @@ class fpdb:
 
         # Database connected to successfully, load queries to pass on to other classes
         self.db.connection.rollback()
-    #end def load_profile
 
     def not_implemented(self, widget, data=None):
         print "todo: called unimplemented menu entry (users: pls ignore this)"#remove this once more entries are implemented
-    #end def not_implemented
 
     def obtain_global_lock(self):
         ret = self.lock.acquire(False) # will return false if lock is already held
@@ -469,23 +438,18 @@ class fpdb:
         # need to release it later:
         # self.lock.release()
 
-    #end def obtain_global_lock
-
     def quit(self, widget, data=None):
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
         gtk.main_quit()
-    #end def quit_cliecked
 
     def release_global_lock(self):
         self.lock.release()
         print "Global lock released.\n"
-    #end def release_global_lock
 
     def tab_abbreviations(self, widget, data=None):
         print "todo: implement tab_abbreviations"
-    #end def tab_abbreviations
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
@@ -493,7 +457,6 @@ class fpdb:
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")
-    #end def tab_auto_import
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
@@ -502,7 +465,6 @@ class fpdb:
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
-    #end def tab_bulk_import
 
     def tab_player_stats(self, widget, data=None):
         new_ps_thread=GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
@@ -518,31 +480,25 @@ class fpdb:
 
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
-        #print "start of tab_main_help"
         mh_tab=gtk.Label("""Welcome to Fpdb!
 For documentation please visit our website at http://fpdb.sourceforge.net/ or check the docs directory in the fpdb folder.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml
 This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.add_and_display_tab(mh_tab, "Help")
-    #end def tab_main_help
 
     def tab_table_viewer(self, widget, data=None):
         """opens a table viewer tab"""
-        #print "start of tab_table_viewer"
         new_tv_thread = GuiTableViewer.GuiTableViewer(self.db, self.settings, self.config)
         self.threads.append(new_tv_thread)
         tv_tab=new_tv_thread.get_vbox()
         self.add_and_display_tab(tv_tab, "Table Viewer")
-    #end def tab_table_viewer
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
-        #print "start of tabGraphViewer"
         new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
         self.threads.append(new_gv_thread)
         gv_tab=new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")
-    #end def tabGraphViewer
 
     def __init__(self):
         self.threads = []
@@ -587,12 +543,10 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.window.show()
         self.load_profile()
         sys.stderr.write("fpdb starting ...")
-    #end def __init__
 
     def main(self):
         gtk.main()
         return 0
-    #end def main
 
 if __name__ == "__main__":
     me = fpdb()
