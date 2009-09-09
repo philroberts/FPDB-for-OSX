@@ -129,21 +129,20 @@ class fpdb:
         self.quit(widget)
 
     def dia_about(self, widget, data=None):
-        print "todo: implement dia_about",
-        print " version = %s, requires database version %s" % (VERSION, "118")
+        self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
 
     def dia_create_del_database(self, widget, data=None):
-        print "todo: implement dia_create_del_database"
+        self.warning_box("Unimplemented: Create/Delete Database")
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_create_del_user(self, widget, data=None):
-        print "todo: implement dia_create_del_user"
+        self.warning_box("Unimplemented: Create/Delete user")
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_database_stats(self, widget, data=None):
-        print "todo: implement dia_database_stats"
+        self.warning_box("Unimplemented: Database Stats")
 
     def dia_database_sessions(self, widget, data=None):
         new_sessions_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
@@ -152,23 +151,23 @@ class fpdb:
         self.add_and_display_tab(sessions_tab, "Sessions")
 
     def dia_delete_db_parts(self, widget, data=None):
-        print "todo: implement dia_delete_db_parts"
+        self.warning_box("Unimplemented: Delete Database Parts")
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
-        print "todo: implement dia_edit_profile"
+        self.warning_box("Unimplemented: Edit Profile")
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_export_db(self, widget, data=None):
-        print "todo: implement dia_export_db"
+        self.warning_box("Unimplemented: Export Database")
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_get_db_root_credentials(self):
         """obtains db root credentials from user"""
-        print "todo: implement dia_get_db_root_credentials"
+        self.warning_box("Unimplemented: Get Root Database Credentials")
 #        user, pw=None, None
 #        
 #        dialog=gtk.Dialog(title="DB Credentials needed", parent=None, flags=0,
@@ -186,12 +185,12 @@ class fpdb:
 #        return (user, pw, response)
 
     def dia_import_db(self, widget, data=None):
-        print "todo: implement dia_import_db"
+        self.warning_box("Unimplemented: Import Database")        
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_licensing(self, widget, data=None):
-        print "todo: implement dia_licensing"
+        self.warning_box("Unimplemented: Licensing")
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
@@ -260,16 +259,14 @@ class fpdb:
         self.release_global_lock()
     
     def dia_regression_test(self, widget, data=None):
-        print "todo: implement dia_regression_test"
+        self.warning_box("Unimplemented: Regression Test")
         self.obtain_global_lock()
         self.release_global_lock()
 
     def dia_save_profile(self, widget, data=None):
-        print "todo: implement dia_save_profile"
-
+        self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
+                         
     def diaSetupWizard(self, path):
-        print "todo: implement setup wizard"
-        print "setup wizard not implemented - please create the default configuration file:", path    
         diaSetupWizard = gtk.Dialog(title="Fatal Error - Config File Missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
 
         label = gtk.Label("Please copy the config file from the docs folder to:")
@@ -428,7 +425,7 @@ class fpdb:
         self.validate_config()
 
     def not_implemented(self, widget, data=None):
-        print "todo: called unimplemented menu entry (users: pls ignore this)"#remove this once more entries are implemented
+        self.warning_box("Unimplemented menu entry")
 
     def obtain_global_lock(self):
         ret = self.lock.acquire(False) # will return false if lock is already held
@@ -564,7 +561,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         hhdir       = hhbase
         if not os.path.isdir(hhdir):
             diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-            diastring = "WARNING: Unable to find output hh directory %s. Press YES to create this directory, or NO to select a new one." % hhdir
+            diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
             diapath.format_secondary_text(diastring)
             response = diapath.run()
             diapath.destroy()
