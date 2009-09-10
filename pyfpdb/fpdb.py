@@ -129,7 +129,18 @@ class fpdb:
         self.quit(widget)
 
     def dia_about(self, widget, data=None):
-        self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
+        #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
+        dia = gtk.AboutDialog()
+        dia.set_name("FPDB")
+        dia.set_version(VERSION)
+        dia.set_copyright("2008-2009, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
+        dia.set_comments("GTK AboutDialog comments here")
+        dia.set_license("GPL v3")
+        dia.set_website("http://fpdb.sourceforge.net/")
+        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
+        dia.set_program_name("FPDB")
+        dia.run()
+        dia.destroy()
 
     def dia_create_del_database(self, widget, data=None):
         self.warning_box("Unimplemented: Create/Delete Database")
