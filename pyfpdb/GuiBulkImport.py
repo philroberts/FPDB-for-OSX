@@ -27,11 +27,13 @@ import traceback
 import pygtk
 pygtk.require('2.0')
 import gtk
+import gobject
 
 #    fpdb/FreePokerTools modules
 import fpdb_simple
 import fpdb_import
 import Configuration
+import Exceptions
 
 class GuiBulkImport():
 
@@ -53,12 +55,22 @@ class GuiBulkImport():
         else:
             self.importer.RunImportThreaded()
 
+    def dopulse(self):
+        self.progressbar.pulse()
+        return True
+        
     def load_clicked(self, widget, data=None):
         # Does the lock acquisition need to be more sophisticated for multiple dirs?
         # (see comment above about what to do if pipe already open)
         if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
             try:
                 print "\nGlobal lock taken ..."
+                self.progressbar.set_text("Importing...")
+                self.progressbar.pulse()
+                while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
+                    gtk.main_iteration(False)                
+                self.timer = gobject.timeout_add(100, self.dopulse)
+                
                 #    get the dir to import from the chooser
                 self.inputFile = self.chooser.get_filename()
 
@@ -74,9 +86,7 @@ class GuiBulkImport():
                 cb_hmodel = self.cb_drophudcache.get_model()
                 cb_hindex = self.cb_drophudcache.get_active()
 
-                self.lab_info.set_markup('<span foreground="blue">Importing ...</span>') # uses pango markup!
-                while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
-                    gtk.main_iteration(False)
+                #self.lab_info.set_markup('<span foreground="blue">Importing ...</span>') # uses pango markup!
 
                 if cb_index:
                     self.importer.setDropIndexes(cb_model[cb_index][0])
@@ -91,7 +101,14 @@ class GuiBulkImport():
                 self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
                 self.importer.setCallHud(False)
                 starttime = time()
-                (stored, dups, partial, errs, ttime) = self.importer.runImport()
+                try:
+                    (stored, dups, partial, errs, ttime) = self.importer.runImport()
+                except:
+                    print "*** EXCEPTION DURING BULKIMPORT!!!"
+                    raise Exceptions.FpdbError
+                finally:
+                    gobject.source_remove(self.timer)
+                    
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
@@ -106,7 +123,8 @@ class GuiBulkImport():
                     self.cb_drophudcache.set_active(0)
                     self.lab_hdrop.set_sensitive(True)
 
-                self.lab_info.set_text("Import finished")
+                self.progressbar.set_text("Import Complete")
+                self.progressbar.set_fraction(0)
             except:
                 err = traceback.extract_tb(sys.exc_info()[2])[-1]
                 print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
@@ -251,9 +269,14 @@ class GuiBulkImport():
         self.lab_spacer.show()
 
 #    label - info
-        self.lab_info = gtk.Label()
-        self.table.attach(self.lab_info, 3, 5, 4, 5, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
-        self.lab_info.show()
+#        self.lab_info = gtk.Label()
+#        self.table.attach(self.lab_info, 3, 5, 4, 5, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+#        self.lab_info.show()
+        self.progressbar = gtk.ProgressBar()
+        self.table.attach(self.progressbar, 3, 5, 4, 5, xpadding = 0, ypadding = 0, yoptions = gtk.SHRINK)
+        self.progressbar.set_text("Waiting...")
+        self.progressbar.set_fraction(0)
+        self.progressbar.show()
 
 #    see how many hands are in the db and adjust accordingly
         tcursor = self.importer.database.cursor

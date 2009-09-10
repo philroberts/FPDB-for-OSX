@@ -40,6 +40,9 @@ import logging, logging.config
 logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger("parser")
 
+import pygtk
+import gtk
+
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file in tail mode
@@ -124,6 +127,9 @@ If in follow mode, wait for more data to turn up.
 Otherwise, finish at EOF.
 
 """
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
         starttime = time.time()
         if not self.sanityCheck():
             log.warning("Failed sanity check")
