@@ -133,7 +133,7 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("FPDB")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2009, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
+        dia.set_copyright("2008-2009, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, and others")
         dia.set_comments("GTK AboutDialog comments here")
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
