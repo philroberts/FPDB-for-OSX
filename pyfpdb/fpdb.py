@@ -297,6 +297,7 @@ class fpdb:
                   <menuitem action="Quit"/>
                 </menu>
                 <menu action="import">
+                  <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
                   <menuitem action="autoimp"/>
                   <menuitem action="autorate"/>
@@ -339,6 +340,7 @@ class fpdb:
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
                                  ('import', None, '_Import'),
+                                 ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
                                  ('autorate', None, 'Auto _Rating (todo)', '<control>R', 'Auto Rating (todo)', self.not_implemented),
                                  ('viewers', None, '_Viewers'),
@@ -553,7 +555,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             response = diaWarning.run()
             diaWarning.destroy()
             return response
-        
+                
     def validate_config(self):
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
@@ -571,8 +573,18 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
                 except:
                     self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
             elif response == gtk.RESPONSE_NO:
-                self.warning_box("UNIMPLEMENTED: selection of HH directory not yet implemented, please edit your HUD_config.xml file and set hhArchiveBase to a valid directory")
-
+               self.select_hhArchiveBase()
+               
+    def select_hhArchiveBase(self, widget=None):
+        fc = gtk.FileChooserDialog(title="Select HH Output Directory", parent=None, action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, buttons=(gtk.STOCK_OPEN,gtk.RESPONSE_OK), backend=None)
+        fc.run()
+        # TODO: We need to put in a Cancel button, and handle if the user presses that or the "Close" box without selecting anything as a cancel, and return to the prior setting
+        #self.warning_box("You selected %s" % fc.get_filename())
+        self.config.set_hhArchiveBase(fc.get_filename())
+        self.config.save()
+        self.load_profile() # we can't do this at the end of this func because load_profile calls this func
+        fc.destroy() # TODO: loop this to make sure we get valid data back from it, because the open directory thing in GTK lets you select files and not select things and other stupid bullshit
+        
     def main(self):
         gtk.main()
         return 0
