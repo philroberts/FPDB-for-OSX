@@ -40,6 +40,9 @@ import logging, logging.config
 logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger("parser")
 
+import pygtk
+import gtk
+
 class HandHistoryConverter():
 
     READ_CHUNK_SIZE = 10000 # bytes to read at a time from file in tail mode
@@ -82,13 +85,21 @@ follow :  whether to tail -f the input"""
             # TODO: out_path should be sanity checked.
             out_dir = os.path.dirname(self.out_path)
             if not os.path.isdir(out_dir) and out_dir != '':
-                log.info("Creating directory '%s'" % out_dir)
-                os.makedirs(out_dir)
+                try:
+                    os.makedirs(out_dir)
+                except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D
+                    log.error("Unable to create output directory %s for HHC!" % out_dir)
+                    print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir
+                    # TODO: pop up a box to allow person to choose output directory?
+                    # TODO: shouldn't that be done when we startup, actually?
+                else:
+                    log.info("Created directory '%s'" % out_dir)
             try:
                 self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
-                log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
             except:
                 log.error("out_path %s couldn't be opened" % (self.out_path))
+            else:
+                log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
 
         self.follow = follow
         self.compiledPlayers   = set()
@@ -116,6 +127,9 @@ If in follow mode, wait for more data to turn up.
 Otherwise, finish at EOF.
 
 """
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+
         starttime = time.time()
         if not self.sanityCheck():
             log.warning("Failed sanity check")
@@ -412,10 +426,8 @@ or None if we fail to get the info """
                 log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
-                success = False
                 for kodec in self.__listof(self.codepage):
-                    if success: break
-                    print "trying", kodec
+                    #print "trying", kodec
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
                         in_fh.seek(self.index)
@@ -423,9 +435,11 @@ or None if we fail to get the info """
                         self.obs = in_fh.read()
                         self.index = in_fh.tell()
                         in_fh.close()
-                        success = True
+                        break
                     except:
                         pass
+                else:
+                    print "unable to read file with any codec in list!", self.in_path
         elif(self.filetype == "xml"):
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
