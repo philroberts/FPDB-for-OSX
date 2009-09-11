@@ -426,10 +426,8 @@ or None if we fail to get the info """
                 log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
-                success = False
                 for kodec in self.__listof(self.codepage):
-                    if success: break
-                    print "trying", kodec
+                    #print "trying", kodec
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
                         in_fh.seek(self.index)
@@ -437,9 +435,11 @@ or None if we fail to get the info """
                         self.obs = in_fh.read()
                         self.index = in_fh.tell()
                         in_fh.close()
-                        success = True
+                        break
                     except:
                         pass
+                else:
+                    print "unable to read file with any codec in list!", self.in_path
         elif(self.filetype == "xml"):
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
