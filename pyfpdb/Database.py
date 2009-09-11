@@ -1330,7 +1330,7 @@ class Database:
                     raise FpdbError("invalid category")
 
                 inserts.append( (
-                                 hands_id, player_ids[i], start_cashes[i], positions[i],
+                                 hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid - needed for hudcache
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
                                  hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
@@ -1361,7 +1361,7 @@ class Database:
             c = self.get_cursor()
             c.executemany ("""
         INSERT INTO HandsPlayers
-        (handId, playerId, startCash, position,
+        (handId, playerId, startCash, position,  tourneyTypeId,
          card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
          street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
          street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
@@ -1382,7 +1382,7 @@ class Database:
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
             result.append( self.get_last_insert_id(c) ) # wrong? not used currently
         except:
