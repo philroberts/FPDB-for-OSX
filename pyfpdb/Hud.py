@@ -374,6 +374,7 @@ class Stat_Window:
 #    This handles all callbacks from button presses on the event boxes in 
 #    the stat windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.
+        self.window.show_all()
 
         if event.button == 3:   # right button event
             newpopup = Popup_window(self.window, self)
@@ -388,7 +389,6 @@ class Stat_Window:
 
         if event.button == 1:   # left button event
             # TODO: make position saving save sizes as well?
-            self.window.show_all()
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
