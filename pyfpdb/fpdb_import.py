@@ -30,6 +30,9 @@ import Queue
 from collections import deque # using Queue for now
 import threading
 
+import pygtk
+import gtk
+
 #    fpdb/FreePokerTools modules
 
 import fpdb_simple
@@ -37,6 +40,7 @@ import fpdb_db
 import Database
 import fpdb_parse_logic
 import Configuration
+import Exceptions
 
 import logging, logging.config
 logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
@@ -149,6 +153,8 @@ class Importer:
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
+        if filename in self.filelist or not os.path.exists(filename):
+            return
         self.filelist[filename] = [site] + [filter]
         if site not in self.siteIds:
             # Get id from Sites table in DB
@@ -343,13 +349,14 @@ class Importer:
         #rulog.writelines("runUpdated ... ")
         for site in self.dirlist:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
-
+            
         for file in self.filelist:
             if os.path.exists(file):
                 stat_info = os.stat(file)
                 #rulog.writelines("path exists ")
                 if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
                     if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
+#                        print "file",counter," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
                         self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
                         self.updatedsize[file] = stat_info.st_size
                         self.updatedtime[file] = time()
@@ -362,6 +369,7 @@ class Importer:
                         self.updatedtime[file] = time()
             else:
                 self.removeFromFileList[file] = True
+                
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
 
         for file in self.removeFromFileList:
@@ -377,6 +385,7 @@ class Importer:
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, db, file, site, filter, q=None):
         #print "import_file_dict"
+        
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
@@ -485,7 +494,9 @@ class Importer:
         """Import an fpdb hand history held in the list lines, could be one hand or many"""
 
         #db.lock_for_insert() # should be ok when using one thread, but doesn't help??
-
+        while gtk.events_pending():
+            gtk.main_iteration(False)
+        
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = lines[0]
         except:
@@ -540,7 +551,7 @@ class Importer:
                             #pipe the Hands.id out to the HUD
                             #print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
-                    except fpdb_simple.DuplicateError:
+                    except Exceptions.DuplicateError:
                         duplicates += 1
                         db.rollback()
                     except (ValueError), fe:
