@@ -181,7 +181,7 @@ class Database:
     # create index indexname on tablename (col);
 
 
-    def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
+    def __init__(self, c, sql = None): 
         log.info("Creating Database instance, sql = %s" % sql)
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
