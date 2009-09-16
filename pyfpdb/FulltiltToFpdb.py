@@ -289,11 +289,12 @@ class Fulltilt(HandHistoryConverter):
 
 
     def readBlinds(self, hand):
+        m = self.re_PostBB.search(hand.handText)
         try:
-            m = self.re_PostSB.search(hand.handText)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except: # no small blind
+        except IndexError: # no small blind found 
             hand.addBlind(None, None, None)
+            
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
@@ -656,7 +657,9 @@ class Fulltilt(HandHistoryConverter):
             heroName = n.group('HERO_NAME')
             tourney.hero = heroName
             # Is this really useful ?
-            if (tourney.finishPositions[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):
+            if heroName not in tourney.finishPositions:
+                print heroName, "not found in tourney.finishPositions ..."
+            elif (tourney.finishPositions[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):
                 print "Bad parsing : finish position incoherent : %s / %s" % (tourney.finishPositions[heroName], n.group('HERO_FINISHING_POS'))
 
         return True
