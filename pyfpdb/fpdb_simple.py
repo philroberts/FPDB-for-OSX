@@ -53,8 +53,9 @@ def checkPositions(positions):
     ### RHH modified to allow for "position 9" here (pos==9 is when you're a dead hand before the BB
     ### eric - position 8 could be valid - if only one blind is posted, but there's still 10 people, ie a sitout is present, and the small is dead...
  
-#classifies each line for further processing in later code. Manipulates the passed arrays.
 def classifyLines(hand, category, lineTypes, lineStreets):
+    """ makes a list of classifications for each line for further processing
+        manipulates passed arrays """
     currentStreet = "predeal"
     done = False #set this to true once we reach the last relevant line (the summary, except rake, is all repeats)
     for i, line in enumerate(hand):
@@ -114,61 +115,59 @@ def classifyLines(hand, category, lineTypes, lineStreets):
         else:
             raise FpdbError("unrecognised linetype in:"+hand[i])
         lineStreets.append(currentStreet)
-#end def classifyLines
  
 def convert3B4B(category, limit_type, actionTypes, actionAmounts):
     """calculates the actual bet amounts in the given amount array and changes it accordingly."""
     for i in xrange(len(actionTypes)):
         for j in xrange(len(actionTypes[i])):
-            bets=[]
+            bets = []
             for k in xrange(len(actionTypes[i][j])):
-                if (actionTypes[i][j][k]=="bet"):
+                if (actionTypes[i][j][k] == "bet"):
                     bets.append((i,j,k))
             if (len(bets)>=2):
                 #print "len(bets) 2 or higher, need to correct it. bets:",bets,"len:",len(bets)
                 for betNo in reversed(xrange (1,len(bets))):
-                    amount2=actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]
-                    amount1=actionAmounts[bets[betNo-1][0]][bets[betNo-1][1]][bets[betNo-1][2]]
-                    actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]=amount2-amount1
-    #print "actionAmounts postConvert",actionAmounts
-#end def convert3B4B(actionTypes, actionAmounts)
+                    amount2 = actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]]
+                    amount1 = actionAmounts[bets[betNo-1][0]][bets[betNo-1][1]][bets[betNo-1][2]]
+                    actionAmounts[bets[betNo][0]][bets[betNo][1]][bets[betNo][2]] = amount2 - amount1
  
-#Corrects the bet amount if the player had to pay blinds
 def convertBlindBet(actionTypes, actionAmounts):
-    i=0#setting street to pre-flop
+    """ Corrects the bet amount if the player had to pay blinds """
+    i = 0#setting street to pre-flop
     for j in xrange(len(actionTypes[i])):#playerloop
-        blinds=[]
-        bets=[]
+        blinds = []
+        bets = []
         for k in xrange(len(actionTypes[i][j])):
             if actionTypes[i][j][k] == "blind":
                 blinds.append((i,j,k))
             
             if blinds and actionTypes[i][j][k] == "bet":
-#            if (len(blinds)>0 and actionTypes[i][j][k]=="bet"):
                 bets.append((i,j,k))
                 if len(bets) == 1:
                     blind_amount=actionAmounts[blinds[0][0]][blinds[0][1]][blinds[0][2]]
                     bet_amount=actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]
-                    actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]]=bet_amount-blind_amount
-#end def convertBlindBet
+                    actionAmounts[bets[0][0]][bets[0][1]][bets[0][2]] = bet_amount - blind_amount
  
 #converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 #todo: make this use convertCardValuesBoard
 def convertCardValues(arr):
     map(convertCardValuesBoard, arr)
-#end def convertCardValues
 
 # a 0-card is one in a stud game that we did not see or was not shown
-card_map = { 0: 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8, "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
+card_map = { 0: 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8,
+            "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
  
-#converts the strings in the given array to ints (changes the passed array, no returning). see table design for conversion details
 def convertCardValuesBoard(arr):
+    """ converts the strings in the given array to ints
+        (changes the passed array, no returning). see table design for
+        conversion details """
     for i in xrange(len(arr)):
         arr[i] = card_map[arr[i]]
-#end def convertCardValuesBoard
  
-#this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.
-def createArrays(category, seats, card_values, card_suits, antes, winnings, rakes, action_types, allIns, action_amounts, actionNos, actionTypeByNo):
+def createArrays(category, seats, card_values, card_suits, antes, winnings,
+                 rakes, action_types, allIns, action_amounts, actionNos,
+                 actionTypeByNo):
+    """ this creates the 2D/3D arrays. manipulates the passed arrays instead of returning.    """
     for i in xrange(seats):#create second dimension arrays
         card_values.append( [] )
         card_suits.append( [] )
@@ -176,7 +175,8 @@ def createArrays(category, seats, card_values, card_suits, antes, winnings, rake
         winnings.append(0)
         rakes.append(0)
     
-    streetCount = 4 if category == "holdem" or category == "omahahi" or category == "omahahilo" else 5
+    streetCount = 4 if (category == "holdem" or category == "omahahi" or
+                        category == "omahahilo") else 5
     
     for i in xrange(streetCount): #build the first dimension array, for streets
         action_types.append([])
