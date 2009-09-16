@@ -201,7 +201,7 @@ class Database:
 
 
         # where possible avoid creating new SQL instance by using the global one passed in
-        if sql == None:
+        if sql is None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
         else:
             self.sql = sql
