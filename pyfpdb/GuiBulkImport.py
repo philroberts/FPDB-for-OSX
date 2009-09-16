@@ -60,6 +60,11 @@ class GuiBulkImport():
         return True
         
     def load_clicked(self, widget, data=None):
+        stored = None
+        dups = None
+        partial = None
+        errs = None
+        ttime = None
         # Does the lock acquisition need to be more sophisticated for multiple dirs?
         # (see comment above about what to do if pipe already open)
         if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
@@ -101,13 +106,13 @@ class GuiBulkImport():
                 self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
                 self.importer.setCallHud(False)
                 starttime = time()
-                try:
-                    (stored, dups, partial, errs, ttime) = self.importer.runImport()
-                except:
-                    print "*** EXCEPTION DURING BULKIMPORT!!!"
-                    raise Exceptions.FpdbError
-                finally:
-                    gobject.source_remove(self.timer)
+#                try:
+                (stored, dups, partial, errs, ttime) = self.importer.runImport()
+#                except:
+#                    print "*** EXCEPTION DURING BULKIMPORT!!!"
+#                    raise Exceptions.FpdbError
+#                finally:
+                gobject.source_remove(self.timer)
                     
                 ttime = time() - starttime
                 if ttime == 0:
