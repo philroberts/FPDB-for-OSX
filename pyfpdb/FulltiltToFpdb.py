@@ -289,8 +289,8 @@ class Fulltilt(HandHistoryConverter):
 
 
     def readBlinds(self, hand):
-        m = self.re_PostBB.search(hand.handText)
         try:
+            m = self.re_PostBB.search(hand.handText)    
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except IndexError: # no small blind found 
             hand.addBlind(None, None, None)
