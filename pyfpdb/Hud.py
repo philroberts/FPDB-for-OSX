@@ -334,11 +334,16 @@ class Hud:
             self.update_table_position()
 
         for s in self.stat_dict:
-            statd = self.stat_dict[s]
+            try:
+                statd = self.stat_dict[s]
+            except KeyError:
+                print "KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"
+                print "(btw, the key was ", s, " and statd is...", statd
+                continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
                 #self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
-            except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
+            except KeyError: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
