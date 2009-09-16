@@ -49,22 +49,20 @@ log = logging.getLogger('importer')
 #    database interface modules
 try:
     import MySQLdb
-    mysqlLibFound=True
-    log.debug("Import module: MySQLdb")
 except:
-    log.debug("Import module: MySQLdb not found")
-   
+    log.debug("Import database module: MySQLdb not found")
+else:
+    mysqlLibFound = True
+    
 try:
     import psycopg2
-    pgsqlLibFound=True
+except:
+    log.debug("Import database module: psycopg2 not found")
+else:
     import psycopg2.extensions
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-    log.debug("Import module: psycopg2")
-except:
-    log.debug("Import module: psycopg2 not found")
 
 class Importer:
-
     def __init__(self, caller, settings, config, sql = None):
         """Constructor"""
         self.settings   = settings
