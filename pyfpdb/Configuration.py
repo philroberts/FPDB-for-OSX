@@ -316,8 +316,8 @@ class Config:
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
+        log.info("Reading configuration file %s" % file)
         try:
-            log.info("Reading configuration file %s" % (file))
             doc = xml.dom.minidom.parse(file)
         except: 
             log.error("Error parsing %s.  See error log file." % (file))
@@ -353,19 +353,21 @@ class Config:
         for db_node in doc.getElementsByTagName("database"):
             try:
                 db = Database(node = db_node)
+            except:
+                raise FpdbError("Unable to create database object")
+            else:
                 if db.db_name in self.supported_databases:
                     raise FpdbError("Database names must be unique")
-                # If there is only one Database node, or none are marked default, the first is selected
-                if len(self.supported_databases) == 0:
+                # If there is only one Database node, or none are marked
+                # default, use first
+                if not self.supported_databases:
                     self.db_selected = db.db_name
                 self.supported_databases[db.db_name] = db
                 if db.db_selected:
                     self.db_selected = db.db_name
-            except:
-                raise
+                    
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
-
 
 #       s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
@@ -535,6 +537,7 @@ class Config:
     def get_db_parameters(self):
         db = {}
         name = self.db_selected
+        # TODO: What's up with all the exception handling here?!
         try:    db['db-databaseName'] = name
         except: pass
 
