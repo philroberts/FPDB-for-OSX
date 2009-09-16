@@ -24,6 +24,7 @@ Handles HUD configuration files.
 ########################################################################
 
 #    Standard Library modules
+from __future__ import with_statement
 import os
 import sys
 import inspect
@@ -444,12 +445,11 @@ class Config:
 
     def read_default_conf(self, file):
         parms = {}
-        fh = open(file, "r")
-        for line in fh:
-            line = string.strip(line)
-            (key, value) = line.split('=')
-            parms[key] = value
-        fh.close
+        with open(file, "r") as fh:
+            for line in fh:
+                line = string.strip(line)
+                (key, value) = line.split('=')
+                parms[key] = value
         return parms
                 
     def find_example_config(self):
@@ -498,14 +498,12 @@ class Config:
 
     def save(self, file = None):
         if file != None:
-            f = open(file, 'w')
-            self.doc.writexml(f)
-            f.close()
+            with open(file, 'w') as f:
+                self.doc.writexml(f)
         else:
             shutil.move(self.file, self.file+".backup")
-            f = open(self.file, 'w')
-            self.doc.writexml(f)
-            f.close
+            with open(self.file, 'w'):
+                self.doc.writexml(f)
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
