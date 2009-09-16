@@ -49,14 +49,14 @@ log = logging.getLogger('importer')
 #    database interface modules
 try:
     import MySQLdb
-except:
+except ImportError:
     log.debug("Import database module: MySQLdb not found")
 else:
     mysqlLibFound = True
     
 try:
     import psycopg2
-except:
+except ImportError:
     log.debug("Import database module: psycopg2 not found")
 else:
     import psycopg2.extensions
