@@ -502,7 +502,7 @@ class Config:
                 self.doc.writexml(f)
         else:
             shutil.move(self.file, self.file+".backup")
-            with open(self.file, 'w'):
+            with open(self.file, 'w') as f:
                 self.doc.writexml(f)
 
     def edit_layout(self, site_name, max, width = None, height = None,
