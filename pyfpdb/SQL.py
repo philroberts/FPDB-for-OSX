@@ -400,7 +400,7 @@ class Sql:
                             endTime timestamp without time zone,
                             buyinChips INT,
                             tourneyName varchar(40),
-                            matrixIdProcessed SMALLINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
+                            matrixIdProcessed SMALLINT DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                             rebuyChips INT DEFAULT 0,
                             addonChips INT DEFAULT 0,
                             rebuyAmount INT DEFAULT 0,
