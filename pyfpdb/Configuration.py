@@ -33,6 +33,11 @@ import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+import logging, logging.config
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+log = logging.getLogger("config")
+log.debug("config logger initialised")
+
 def fix_tf(x, default = True):
 #    The xml parser doesn't translate "True" to True. Therefore, we never get
 #    True or False from the parser only "True" or "False". So translate the 
@@ -201,6 +206,9 @@ class Database:
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
+        self.db_selected = fix_tf(node.getAttribute("default"),"False")
+        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
+                  % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
         
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
@@ -208,7 +216,7 @@ class Database:
             if key.startswith('__'): continue
             value = getattr(self, key)
             if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
+            temp = temp + '    ' + key + " = " + repr(value) + "\n"
         return temp
 
 class Aux_window:
@@ -258,6 +266,7 @@ class Popup:
 
 class Import:
     def __init__(self, node):
+        self.node = node
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
@@ -279,11 +288,10 @@ class Tv:
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
 class Config:
-    def __init__(self, file = None, dbname = 'fpdb'):
+    def __init__(self, file = None, dbname = ''):
 
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
-        self.dbname = dbname
 
         self.default_config_path = self.get_default_config_path()
         if file != None: # configuration file path has been passed
@@ -309,10 +317,10 @@ class Config:
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
         try:
-            print "Reading configuration file %s\n" % (file)
+            log.info("Reading configuration file %s" % (file))
             doc = xml.dom.minidom.parse(file)
         except: 
-            print "Error parsing %s.  See error log file." % (file)
+            log.error("Error parsing %s.  See error log file." % (file))
             traceback.print_exc(file=sys.stderr)
             print "press enter to continue"
             sys.stdin.readline()
@@ -338,9 +346,26 @@ class Config:
             self.supported_games[game.game_name] = game
             
 #        s_dbs = doc.getElementsByTagName("supported_databases")
+        # select database from those defined in config by:
+        #    1) command line option
+        # or 2) selected="True" in config element
+        # or 3) just choose the first we come across
         for db_node in doc.getElementsByTagName("database"):
-            db = Database(node = db_node)
-            self.supported_databases[db.db_name] = db
+            try:
+                db = Database(node = db_node)
+                if db.db_name in self.supported_databases:
+                    raise FpdbError("Database names must be unique")
+                # If there is only one Database node, or none are marked default, the first is selected
+                if len(self.supported_databases) == 0:
+                    self.db_selected = db.db_name
+                self.supported_databases[db.db_name] = db
+                if db.db_selected:
+                    self.db_selected = db.db_name
+            except:
+                raise
+        if dbname and dbname in self.supported_databases:
+            self.db_selected = dbname
+
 
 #       s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
@@ -377,7 +402,9 @@ class Config:
                                        db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
 
-                
+    def set_hhArchiveBase(self, path):
+        self.imp.node.setAttribute("hhArchiveBase", path)
+        
     def find_config(self):
         """Looks in cwd and in self.default_config_path for a config file."""
         if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
@@ -507,7 +534,7 @@ class Config:
 
     def get_db_parameters(self):
         db = {}
-        name = self.dbname
+        name = self.db_selected
         try:    db['db-databaseName'] = name
         except: pass
 

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
@@ -63,6 +64,15 @@ class Hand(object):
         self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
+        # Some attributes for hand from a tourney
+        self.speed = "Normal"
+        self.isRebuy = False
+        self.isKO = False
+        self.isHU = False
+        self.isMatrix = False
+        self.isShootout = False
+        self.tourneyComment = None
+
         self.seating = []
         self.players = []
         self.posted = []
@@ -471,7 +481,6 @@ Add a raise on [street] by [player] to [amountTo]
 For when a player shows cards for any reason (for showdown or out of choice).
 Card ranks will be uppercased
 """
-        import sys; sys.exit(1)
         log.debug("addShownCards %s hole=%s all=%s" % (player, cards,  holeandboard))
         if cards is not None:
             self.addHoleCards(cards,player,shown, mucked)
@@ -583,8 +592,15 @@ Map the tuple self.gametype onto the pokerstars string describing it
         else: # non-mixed cash games
             gs = gs + " %s (%s) - " % (self.getGameTypeAsString(), self.getStakesAsString())
 
-        return gs + datetime.datetime.strftime(self.starttime,'%Y/%m/%d %H:%M:%S ET')
-
+        try:
+            timestr = datetime.datetime.strftime(self.starttime, '%Y/%m/%d %H:%M:%S ET')
+        except TypeError:
+            print "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, expecting datetime.date object, received:", self.starttime
+            print "*** Make sure your HandHistoryConverter is setting hand.starttime properly!"
+            print "*** Game String:", gs
+            return gs
+        else:
+            return gs + timestr
 
     def writeTableLine(self):
         table_string = "Table \'%s\' %s-max" % (self.tablename, self.maxseats)
@@ -672,7 +688,7 @@ class HoldemOmahaHand(Hand):
         tmp5 = 0
         return (tmp1,tmp2,tmp3,tmp4,tmp5)
 
-    def writeHTMLHand(self, fh=sys.__stdout__):
+    def writeHTMLHand(self):
         from nevow import tags as T
         from nevow import flat
         players_who_act_preflop = (([x[0] for x in self.actions['PREFLOP']]+[x[0] for x in self.actions['BLINDSANTES']]))
