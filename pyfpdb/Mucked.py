@@ -345,6 +345,22 @@ class Aux_Seats(Aux_Window):
     def create_contents(self): pass
     def update_contents(self): pass
 
+    def update_card_positions(self):
+        # self.adj does not exist until .create() has been run
+        try:
+            adj = self.adj
+        except AttributeError:
+            return
+        loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
+        for i in (range(1, self.hud.max + 1) + ['common']):
+            if i == 'common':
+                (x, y) = self.params['layout'][self.hud.max].common
+            else:
+                (x, y) = loc[adj[i]]
+            self.positions[i] = self.card_positions(x, self.hud.table.x, y, self.hud.table.y)
+            self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
+
+
     def create(self):
         self.adj = self.hud.adj_seats(0, self.config)  # move adj_seats to aux and get rid of it in Hud.py
         loc = self.config.get_aux_locations(self.params['name'], int(self.hud.max))
@@ -362,7 +378,7 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].set_transient_for(self.hud.main_window)
             self.m_windows[i].set_focus_on_map(False)
             self.m_windows[i].connect("configure_event", self.configure_event_cb, i)
-            self.positions[i] = (int(x) + self.hud.table.x, int(y) + self.hud.table.y)
+            self.positions[i] = self.card_positions(x, self.hud.table.x, y, self.hud.table.y)
             self.m_windows[i].move(self.positions[i][0], self.positions[i][1])
             if self.params.has_key('opacity'):
                 self.m_windows[i].set_opacity(float(self.params['opacity']))
@@ -373,6 +389,13 @@ class Aux_Seats(Aux_Window):
             self.m_windows[i].show_all()
             if self.uses_timer:
                 self.m_windows[i].hide()
+
+
+    def card_positions(self, x, table_x, y, table_y):
+        _x = int(x) + int(table_x)
+        _y = int(y) + int(table_y)
+        return (_x, _y)
+
 
     def update_gui(self, new_hand_id):
         """Update the gui, LDO."""

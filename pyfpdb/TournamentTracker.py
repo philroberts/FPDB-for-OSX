@@ -1,10 +1,8 @@
 #!/usr/bin/env python
-
-"""Hud_main.py
-
-Main for FreePokerTools HUD.
+"""TourneyTracker.py
+    Based on HUD_main .. who knows if we want to actually use this or not
 """
-#    Copyright 2008, 2009,  Ray E. Barker
+#    Copyright 2008, 2009,  Eric Blade
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -37,7 +35,7 @@ import traceback
 
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('HUD-error.txt', 'w', 0)
+    errorFile = open('tourneyerror.txt', 'w', 0)
     sys.stderr = errorFile
 
 import thread
@@ -53,35 +51,84 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 import Database
-import Tables
-import Hud
+import SummaryEverleaf
 
-# To add to config:
-aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult
-hud_style = 'A'       # A=All-time 
-                      # S=Session
-                      # T=timed (last n days - set hud_days to required value)
-                      # Future values may also include: 
-                      #                                 H=Hands (last n hands)
-hud_days  = 90        # Max number of days from each player to use for hud stats
-agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds
-                      # must be < (agg_bb_mult * smaller blinds) to be aggregated
-                      # ie. 100 will aggregate almost everything, 2 will probably agg just the 
-                      # next higher and lower levels into the current one, try 3/10/30/100
-hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
-                      # (hands every 2 mins for 1 hour = one session, if followed
-                      # by a 40 minute gap and then more hands on same table that is
-                      # a new session)
-#hud_hands = 0        # Max number of hands from each player to use for hud stats (not used)
+class Tournament:
+    """Tournament will hold the information about a tournament, I guess ? Remember I'm new to this language, so I don't know the best ways to do things"""
+    
+    def __init__(self, parent, site, tid): # site should probably be something in the config object, but i don't know how the config object works right now, so we're going to make it a str ..
+        print "Tournament init"
+        self.parent = parent
+        self.window = None
+        self.site = site
+        self.id = tid
+        self.starttime = time.time()
+        self.endtime = None
+        self.game = None
+        self.structure = None
+        self.buyin = 0
+        self.fee = 0
+        self.rebuys = False
+        self.numrebuys = 0 # this should probably be attached to the players list...
+        self.numplayers = 0
+        self.prizepool = 0
+        self.players = {} # eventually i'd guess we'd probably want to fill this with playername:playerid's
+        self.results = {} # i'd guess we'd want to load this up with playerid's instead of playernames, too, as well, also
+        
+        # if site == "Everleaf": # this should be attached to a button that says "retrieve tournament info" or something for sites that we know how to do it for
+        summary = SummaryEverleaf.EverleafSummary()
+        self.site = summary.parser.SiteName
+        self.id = summary.parser.TourneyId
+        self.starttime = summary.parser.TourneyStartTime
+        self.endtime = summary.parser.TourneyEndTime
+        self.game = summary.parser.TourneyGameType
+        self.structure = summary.parser.TourneyStructure
+        self.buyin = summary.parser.TourneyBuyIn # need to remember to parse the Fee out of this and move it to self.fee
+        self.rebuys = (summary.parser.TourneyRebuys == "yes")
+        self.prizepool = summary.parser.TourneyPool
+        self.numplayers = summary.parser.TourneyPlayers
+        
+        self.openwindow() # let's start by getting any info we need.. meh
+        
+    def openwindow(self, widget=None):
+        if self.window is not None:
+            self.window.show() # isn't there a better way to bring something to the front? not that GTK focus works right anyway, ever
+        else:
+            self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+            print "tournament edit window=", self.window
+            self.window.connect("delete_event", self.delete_event)
+            self.window.connect("destroy", self.destroy)
+            self.window.set_title("FPDB Tournament Entry")
+            self.window.set_border_width(1)
+            self.window.set_default_size(480,640)
+            self.window.set_resizable(True)
+    
+            self.main_vbox = gtk.VBox(False, 1)
+            self.main_vbox.set_border_width(1)
+            self.window.add(self.main_vbox)
+            self.window.show()
+            
+    def addrebuy(self, widget=None):
+        t = self
+        t.numrebuys += 1
+        t.mylabel.set_label("%s - %s - %s - %s - %s %s - %s - %s - %s - %s - %s" % (t.site, t.id, t.starttime, t.endtime, t.structure, t.game, t.buyin, t.fee, t.numrebuys, t.numplayers, t.prizepool))
+        
+    def delete_event(self, widget, event, data=None):
+        return False
+    
+    def destroy(self, widget, data=None):
+        return False
+    #end def destroy        
+        
 
-class HUD_main(object):
+class ttracker_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
 
     def __init__(self, db_name = 'fpdb'):
         self.db_name = db_name
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
-        self.hud_dict = {}
+        self.tourney_list = []
 
 #    a thread to read stdin
         gobject.threads_init()                       # this is required
@@ -91,23 +138,51 @@ class HUD_main(object):
         self.main_window = gtk.Window()
         self.main_window.connect("destroy", self.destroy)
         self.vb = gtk.VBox()
-        self.label = gtk.Label('Closing this window will exit from the HUD.')
+        self.label = gtk.Label('Closing this window will stop the Tournament Tracker')
         self.vb.add(self.label)
+        self.addbutton = gtk.Button(label="Enter Tournament")
+        self.addbutton.connect("clicked", self.addClicked, "add tournament")
+        self.vb.add(self.addbutton)
+        
         self.main_window.add(self.vb)
-        self.main_window.set_title("HUD Main Window")
+        self.main_window.set_title("FPDB Tournament Tracker")
         self.main_window.show_all()
-
+        
+    def addClicked(self, widget, data): # what is "data"? i'm guessing anything i pass in after the function name in connect() but unsure because the documentation sucks
+        print "addClicked", widget, data
+        t = Tournament(self, None, None)
+        if t is not None:
+            print "new tournament=", t
+            self.tourney_list.append(t)
+            mylabel = gtk.Label("%s - %s - %s - %s - %s %s - %s - %s - %s - %s - %s" % (t.site, t.id, t.starttime, t.endtime, t.structure, t.game, t.buyin, t.fee, t.numrebuys, t.numplayers, t.prizepool))
+            print "new label=", mylabel
+            editbutton = gtk.Button(label="Edit")
+            print "new button=", editbutton
+            editbutton.connect("clicked", t.openwindow)
+            rebuybutton = gtk.Button(label="Rebuy")
+            rebuybutton.connect("clicked", t.addrebuy)
+            self.vb.add(rebuybutton)
+            self.vb.add(editbutton) # These should probably be put in.. a.. h-box? i don't know.. 
+            self.vb.add(mylabel)
+            self.main_window.resize_children()
+            self.main_window.show()
+            mylabel.show()
+            editbutton.show()
+            rebuybutton.show()
+            t.mylabel = mylabel
+            t.editbutton = editbutton
+            t.rebuybutton = rebuybutton
+            self.vb.show()            
+            print self.tourney_list
+          
+            return True
+        else:
+            return False
+        # when we move the start command over to the main program, we can have the main program ask for the tourney id, and pipe it into the stdin here
+        # at least that was my initial thought on it
+           
     def destroy(*args):             # call back for terminating the main eventloop
         gtk.main_quit()
-
-    def kill_hud(self, event, table):
-#    called by an event in the HUD, to kill this specific HUD
-        if table in self.hud_dict:
-            self.hud_dict[table].kill()
-            self.hud_dict[table].main_window.destroy()
-            self.vb.remove(self.hud_dict[table].tablehudlabel)
-            del(self.hud_dict[table])
-        self.main_window.resize(1,1)
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, stat_dict, cards):
         
@@ -161,7 +236,7 @@ class HUD_main(object):
 #    need their own access to the database, but should open their own
 #    if it is required.
         self.db_connection = Database.Database(self.config, self.db_name, 'temp')
-        self.db_connection.init_hud_stat_vars(hud_days)
+#        self.db_connection.init_hud_stat_vars(hud_days)
         tourny_finder = re.compile('(\d+) (\d+)')
     
         while 1: # wait for a new hand number on stdin
@@ -195,7 +270,7 @@ class HUD_main(object):
                     temp_key = tour_number
                 else:   # tourney, but can't get number and table
                     print "could not find tournament: skipping "
-                    #sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
+                    sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
                     continue
                     
             else:
@@ -225,11 +300,11 @@ class HUD_main(object):
 
 if __name__== "__main__":
 
-    sys.stderr.write("HUD_main starting\n")
+    sys.stderr.write("tournament tracker starting\n")
     sys.stderr.write("Using db name = %s\n" % (options.dbname))
 
 #    start the HUD_main object
-    hm = HUD_main(db_name = options.dbname)
+    hm = ttracker_main(db_name = options.dbname)
 
 #    start the event loop
     gtk.main()

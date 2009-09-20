@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Configuration.py
 
 Handles HUD configuration files.
@@ -31,6 +32,11 @@ import traceback
 import shutil
 import xml.dom.minidom
 from xml.dom.minidom import Node
+
+import logging, logging.config
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+log = logging.getLogger("config")
+log.debug("config logger initialised")
 
 def fix_tf(x, default = True):
 #    The xml parser doesn't translate "True" to True. Therefore, we never get
@@ -73,11 +79,17 @@ class Layout:
 
 class Site:
     def __init__(self, node):
+        def normalizePath(path):
+            "Normalized existing pathes"
+            if os.path.exists(path):
+                return os.path.abspath(path)
+            return path
+        
         self.site_name    = node.getAttribute("site_name")
         self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
-        self.site_path    = node.getAttribute("site_path")
-        self.HH_path      = node.getAttribute("HH_path")
+        self.site_path    = normalizePath(node.getAttribute("site_path"))
+        self.HH_path      = normalizePath(node.getAttribute("HH_path"))
         self.decoder      = node.getAttribute("decoder")
         self.hudopacity   = node.getAttribute("hudopacity")
         self.hudbgcolor   = node.getAttribute("bgcolor")
@@ -91,6 +103,8 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
+            
+        print self.site_name, self.HH_path
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -192,6 +206,9 @@ class Database:
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
+        self.db_selected = fix_tf(node.getAttribute("default"),"False")
+        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
+                  % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
         
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
@@ -199,7 +216,7 @@ class Database:
             if key.startswith('__'): continue
             value = getattr(self, key)
             if callable(value): continue
-            temp = temp + '    ' + key + " = " + value + "\n"
+            temp = temp + '    ' + key + " = " + repr(value) + "\n"
         return temp
 
 class Aux_window:
@@ -270,11 +287,10 @@ class Tv:
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
 class Config:
-    def __init__(self, file = None, dbname = 'fpdb'):
+    def __init__(self, file = None, dbname = ''):
 
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
-        self.dbname = dbname
 
         self.default_config_path = self.get_default_config_path()
         if file != None: # configuration file path has been passed
@@ -300,10 +316,10 @@ class Config:
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
         try:
-            print "Reading configuration file %s\n" % (file)
+            log.info("Reading configuration file %s" % (file))
             doc = xml.dom.minidom.parse(file)
-        except:
-            print "Error parsing %s.  See error log file." % (file)
+        except: 
+            log.error("Error parsing %s.  See error log file." % (file))
             traceback.print_exc(file=sys.stderr)
             print "press enter to continue"
             sys.stdin.readline()
@@ -329,9 +345,21 @@ class Config:
             self.supported_games[game.game_name] = game
             
 #        s_dbs = doc.getElementsByTagName("supported_databases")
+        if dbname and dbname in self.supported_databases:
+            self.db_selected = dbname
         for db_node in doc.getElementsByTagName("database"):
-            db = Database(node = db_node)
-            self.supported_databases[db.db_name] = db
+            try:
+                db = Database(node = db_node)
+                if db.db_name in self.supported_databases:
+                    raise FpdbError("Database names must be unique")
+                # If there is only one Database node, or none are marked default, the first is selected
+                if len(self.supported_databases) == 0:
+                    self.db_selected = db.db_name
+                self.supported_databases[db.db_name] = db
+                if db.db_selected:
+                    self.db_selected = db.db_name
+            except:
+                raise
 
 #       s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
@@ -498,7 +526,7 @@ class Config:
 
     def get_db_parameters(self):
         db = {}
-        name = self.dbname
+        name = self.db_selected
         try:    db['db-databaseName'] = name
         except: pass
 
@@ -542,6 +570,13 @@ class Config:
             if db_server != None: self.supported_databases[db_name].dp_server = db_server
             if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
         return
+    
+    def getDefaultSite(self):
+        "Returns first enabled site or None"
+        for site_name,site in self.supported_sites.iteritems():
+            if site.enabled:
+                return site_name
+        return None
 
     def get_tv_parameters(self):
         tv = {}
@@ -573,30 +608,32 @@ class Config:
         except:  imp['fastStoreHudCache'] = True
         return imp
 
-    def get_default_paths(self, site = "PokerStars"):
+    def get_default_paths(self, site = None):
+        if site is None: site = self.getDefaultSite()
         paths = {}
         try:
-            paths['hud-defaultPath']        = os.path.expanduser(self.supported_sites[site].HH_path)
-            paths['bulkImport-defaultPath'] = os.path.expanduser(self.supported_sites[site].HH_path)
-        except:
-            paths['hud-defaultPath']        = "default"
-            paths['bulkImport-defaultPath'] = "default"
+            path = os.path.expanduser(self.supported_sites[site].HH_path)
+            assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
+        except AssertionError: 
+            paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
     
     def get_frames(self, site = "PokerStars"):
+        if site not in self.supported_sites: return False
         return self.supported_sites[site].use_frames == True
 
     def get_default_colors(self, site = "PokerStars"):
         colors = {}
-        if self.supported_sites[site].hudopacity == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudopacity == "":
             colors['hudopacity'] = 0.90
         else:
             colors['hudopacity'] = float(self.supported_sites[site].hudopacity)
-        if self.supported_sites[site].hudbgcolor == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudbgcolor == "":
             colors['hudbgcolor'] = "#FFFFFF"
         else:
             colors['hudbgcolor'] = self.supported_sites[site].hudbgcolor
-        if self.supported_sites[site].hudfgcolor == "":
+        if site not in self.supported_sites or self.supported_sites[site].hudfgcolor == "":
             colors['hudfgcolor'] = "#000000"
         else:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
@@ -604,6 +641,8 @@ class Config:
     
     def get_default_font(self, site = 'PokerStars'):
         (font, font_size) = ("Sans", "8")
+        if site not in self.supported_sites:
+            return ("Sans", "8")
         if self.supported_sites[site].font == "":
             font = "Sans"
         else:

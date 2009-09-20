@@ -26,6 +26,11 @@ from HandHistoryConverter import *
 
 class Betfair(HandHistoryConverter):
 
+    sitename = 'Betfair'
+    filetype = "text"
+    codepage = "cp1252"
+    siteId   = 7 # Needs to match id entry in Sites database
+
     # Static regexes
     re_GameInfo      = re.compile("^(?P<LIMIT>NL|PL|) (?P<CURRENCY>\$|)?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) (?P<GAME>(Texas Hold\'em|Omaha Hi|Razz))", re.MULTILINE)
     re_SplitHands    = re.compile(r'\n\n+')
@@ -33,19 +38,6 @@ class Betfair(HandHistoryConverter):
     re_Button        = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo    = re.compile("Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*)\s\(\s(\$(?P<CASH>[.0-9]+)) \)")
     re_Board         = re.compile(ur"\[ (?P<CARDS>.+) \]")
-
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input"""
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Betfair", follow=follow, index) # Call super class init.
-        logging.info("Initialising Betfair converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.siteId   = 7 # Needs to match id entry in Sites database
-        if autostart:
-            self.start()
 
 
     def compilePlayerRegexs(self,  hand):

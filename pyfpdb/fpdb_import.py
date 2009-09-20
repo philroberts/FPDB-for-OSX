@@ -22,7 +22,6 @@
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
 from time import time, strftime, sleep
-import logging
 import traceback
 import math
 import datetime
@@ -39,21 +38,26 @@ import Database
 import fpdb_parse_logic
 import Configuration
 
+import logging, logging.config
+logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+log = logging.getLogger('importer')
+
 #    database interface modules
 try:
     import MySQLdb
     mysqlLibFound=True
+    log.debug("Import module: MySQLdb")
 except:
-    pass
+    log.debug("Import module: MySQLdb not found")
    
 try:
     import psycopg2
     pgsqlLibFound=True
     import psycopg2.extensions
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
-
+    log.debug("Import module: psycopg2")
 except:
-    pass
+    log.debug("Import module: psycopg2 not found")
 
 class Importer:
 
@@ -153,9 +157,9 @@ class Importer:
                 self.siteIds[site] = result[0][0]
             else:
                 if len(result) == 0:
-                    print "[ERROR] Database ID for %s not found" % site
+                    log.error("Database ID for %s not found" % site)
                 else:
-                    print "[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet" % site
+                    log.error("[ERROR] More than 1 Database ID found for %s - Multiple currencies not implemented yet" % site)
 
 
     # Called from GuiBulkImport to add a file or directory.
@@ -168,7 +172,7 @@ class Importer:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(inputPath, subdir[0], file), site=site, filter=filter)
+                    self.addImportFile(os.path.join(subdir[0], file), site=site, filter=filter)
         else:
             self.addImportFile(inputPath, site=site, filter=filter)
     #Add a directory of files to filelist
@@ -189,7 +193,7 @@ class Importer:
                 #print "                    adding file ", file
                 self.addImportFile(os.path.join(dir, file), site, filter)
         else:
-            print "Warning: Attempted to add non-directory: '" + str(dir) + "' as an import directory"
+            log.warning("Attempted to add non-directory: '" + str(dir) + "' as an import directory")
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
@@ -199,7 +203,7 @@ class Importer:
         # Initial setup
         start = datetime.datetime.now()
         starttime = time()
-        print "Started at", start, "--", len(self.filelist), "files to import.", self.settings['dropIndexes']
+        log.info("Started at %s -- %d files to import. indexes: %s" % (start, len(self.filelist), self.settings['dropIndexes']))
         if self.settings['dropIndexes'] == 'auto':
             self.settings['dropIndexes'] = self.calculate_auto2(self.database, 12.0, 500.0)
         if 'dropHudCache' in self.settings and self.settings['dropHudCache'] == 'auto':
@@ -208,7 +212,7 @@ class Importer:
         if self.settings['dropIndexes'] == 'drop':
             self.database.prepareBulkImport()
         else:
-            print "No need to drop indexes."
+            log.debug("No need to drop indexes.")
         #print "dropInd =", self.settings['dropIndexes'], "  dropHudCache =", self.settings['dropHudCache']
 
         if self.settings['threads'] <= 0:
@@ -380,12 +384,13 @@ class Importer:
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
 
+        file =  file.decode(fpdb_simple.LOCALE_ENCODING) 
+
         # Load filter, process file, pass returned filename to import_fpdb_file
-            
         if self.settings['threads'] > 0 and self.writeq != None:
-            print "\nConverting " + file + " (" + str(q.qsize()) + ")"
+            log.info("Converting " + file + " (" + str(q.qsize()) + ")")
         else:
-            print "\nConverting " + file
+            log.info("Converting " + file)
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
         hhdir     = os.path.join(hhbase,site)
@@ -413,10 +418,10 @@ class Importer:
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
-                return (0, 0, 0, 1, 0, -1)
+                return (0, 0, 0, 1, 0)
         else:
-            print "Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter)
-            return (0, 0, 0, 1, 0, -1)
+            log.warning("Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter))
+            return (0, 0, 0, 1, 0)
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
@@ -458,7 +463,7 @@ class Importer:
         db.commit()
         ttime = time() - starttime
         if q == None:
-            print "\rTotal stored:", stored, "   duplicates:", duplicates, "errors:", errors, " time:", ttime
+            log.info("Total stored: %(stored)d\tduplicates:%(duplicates)d\terrors:%(errors)d\ttime:%(ttime)s" % locals())
        
         if not stored:
             if duplicates:
@@ -533,7 +538,7 @@ class Importer:
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
-                            print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
+                            #print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except fpdb_simple.DuplicateError:
                         duplicates += 1

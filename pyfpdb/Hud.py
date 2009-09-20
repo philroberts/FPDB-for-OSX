@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Hud.py
 
 Create and manage the hud overlays.
@@ -60,6 +61,8 @@ class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
+        if parent == None: # running from cli ..
+            self.parent = self
         self.parent        = parent
         self.table         = table
         self.config        = config
@@ -77,6 +80,10 @@ class Hud:
         
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
+        
+        self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
+        self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
+
 
         if font == None:
             font = "Sans"
@@ -93,91 +100,107 @@ class Hud:
                 if my_import == None:
                     continue
                 self.aux_windows.append(my_import(self, config, aux_params))
+        
+        self.creation_attrs = None
 
     def create_mw(self):
 
 #	Set up a main window for this this instance of the HUD
-        self.main_window = gtk.Window()
-        self.main_window.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        self.main_window.set_title("%s FPDBHUD" % (self.table.name))
-        self.main_window.set_decorated(False)
-        self.main_window.set_opacity(self.colors["hudopacity"])
-        self.main_window.set_focus_on_map(False)
+        win = gtk.Window()
+        win.set_gravity(gtk.gdk.GRAVITY_STATIC)
+        win.set_title("%s FPDBHUD" % (self.table.name))
+        win.set_decorated(False)
+        win.set_opacity(self.colors["hudopacity"])
+        
+        eventbox = gtk.EventBox()
+        label = gtk.Label("FPDB Menu - Right click\nLeft-Drag to Move")
+        
+        win.add(eventbox)
+        eventbox.add(label)
+                        
+        label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
+        label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
+        
+        eventbox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
+        eventbox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
 
-        self.ebox = gtk.EventBox()
-        self.label = gtk.Label("FPDB Menu (Right Click)\nLeft-drag to move")
-        
-        self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
-        self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
-        
-        self.label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
-        self.label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
-        
-        self.main_window.add(self.ebox)
-        self.ebox.add(self.label)
-        
-        self.ebox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
-        self.ebox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
-
+        self.main_window = win
         self.main_window.move(self.table.x, self.table.y)
 
 #    A popup menu for the main window
-        self.menu = gtk.Menu()
-        self.item1 = gtk.MenuItem('Kill this HUD')
-        self.menu.append(self.item1)
-        self.item1.connect("activate", self.parent.kill_hud, self.table_name)
-        self.item1.show()
+        menu = gtk.Menu()
         
-        self.item2 = gtk.MenuItem('Save Layout')
-        self.menu.append(self.item2)
-        self.item2.connect("activate", self.save_layout)
-        self.item2.show()
+        killitem = gtk.MenuItem('Kill This HUD')
+        menu.append(killitem)
+        if self.parent != None:
+            killitem.connect("activate", self.parent.kill_hud, self.table_name)
         
-        self.item3 = gtk.MenuItem('Reposition Stats')
-        self.menu.append(self.item3)
-        self.item3.connect("activate", self.reposition_windows)
-        self.item3.show()
+        saveitem = gtk.MenuItem('Save HUD Layout')
+        menu.append(saveitem)
+        saveitem.connect("activate", self.save_layout)
         
-        self.item4 = gtk.MenuItem('Debug Stat Windows')
-        self.menu.append(self.item4)
-        self.item4.connect("activate", self.debug_stat_windows)
-        self.item4.show()
+        repositem = gtk.MenuItem('Reposition StatWindows')
+        menu.append(repositem)
+        repositem.connect("activate", self.reposition_windows)
         
-        self.ebox.connect_object("button-press-event", self.on_button_press, self.menu)
+        debugitem = gtk.MenuItem('Debug StatWindows')
+        menu.append(debugitem)
+        debugitem.connect("activate", self.debug_stat_windows)
+                
+        item5 = gtk.MenuItem('Set max seats')
+        menu.append(item5)
+        maxSeatsMenu = gtk.Menu()
+        item5.set_submenu(maxSeatsMenu)
+        for i in range(2, 11, 1):
+            item = gtk.MenuItem('%d-max' % i)
+            item.ms = i
+            maxSeatsMenu.append(item)
+            item.connect("activate", self.change_max_seats)
+            setattr(self, 'maxSeatsMenuItem%d' % (i-1), item) 
+        
+        eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
-        self.main_window.show_all()
         self.mw_created = True
-
-# TODO: fold all uses of this type of 'topify' code into a single function, if the differences between the versions don't
-# create adverse effects?
-
-        if os.name == 'nt':
-            self.topify_window(self.main_window)
-        else:
-            self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(int(self.table.number))  # gets a gdk handle for poker client
-            self.main_window.gdkhandle = gtk.gdk.window_foreign_new(self.main_window.window.xid) # gets a gdk handle for the hud table window
-            self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle) #
-            
-        self.update_table_position()
-               
+        self.label = label
+        menu.show_all()
+        self.main_window.show_all()
+        self.topify_window(self.main_window)
+          
+    def change_max_seats(self, widget):
+        if self.max != widget.ms:
+            print 'change_max_seats', widget.ms
+            self.max = widget.ms
+            try:
+                self.kill()
+                self.create(*self.creation_attrs)
+                self.update(self.hand, self.config)
+            except Exception, e:
+                print "Expcetion:",str(e)
+                pass
+        
     def update_table_position(self):
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
                 self.parent.kill_hud(self, self.table.name)
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
-        
-        (x, y) = self.main_window.parentgdkhandle.get_origin()
-        if self.table.x != x or self.table.y != y:
-            self.table.x = x
-            self.table.y = y
-            self.main_window.move(x, y)
-            adj = self.adj_seats(self.hand, self.config)
-            loc = self.config.get_locations(self.table.site, self.max)
-            # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
-            for i, w in enumerate(self.stat_windows.itervalues()):
-                (x, y) = loc[adj[i+1]]
-                w.relocate(x, y)
+        if self.table.gdkhandle is not None:
+            (x, y) = self.table.gdkhandle.get_origin()
+            if self.table.x != x or self.table.y != y:
+                self.table.x = x
+                self.table.y = y
+                self.main_window.move(x, y)
+                adj = self.adj_seats(self.hand, self.config)
+                loc = self.config.get_locations(self.table.site, self.max)
+                # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
+                for i, w in enumerate(self.stat_windows.itervalues()):
+                    (x, y) = loc[adj[i+1]]
+                    w.relocate(x, y)
+
+        # While we're at it, fix the positions of mucked cards too
+        for aux in self.aux_windows:
+            aux.update_card_positions()
+
         return True
 
     def on_button_press(self, widget, event):
@@ -202,6 +225,7 @@ class Hud:
         self.aux_windows = []
 
     def reposition_windows(self, *args):
+        self.update_table_position()
         for w in self.stat_windows.itervalues():
             if type(w) == int:
 #                print "in reposition, w =", w
@@ -233,7 +257,7 @@ class Hud:
 #        Need range here, not xrange -> need the actual list        
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
-        if int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
+        if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
                 actual_seat = self.get_actual_seat(config.supported_sites[self.table.site].screen_name)
@@ -261,6 +285,8 @@ class Hud:
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
+        self.creation_attrs = hand, config, stat_dict, cards 
+
         self.hand = hand  
         if not self.mw_created:
             self.create_mw()
@@ -333,30 +359,22 @@ class Hud:
                     Stats.do_tip(window.e_box[r][c], tip)
 
     def topify_window(self, window):
-#        """Set the specified gtk window to stayontop in MS Windows."""
-#
-#        def windowEnumerationHandler(hwnd, resultList):
-#            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-#            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-#        unique_name = 'unique name for finding this window'
-#        real_name = window.get_title()
-#        window.set_title(unique_name)
-#        tl_windows = []
-#        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-#        
-#        for w in tl_windows:
-#            if w[1] == unique_name:
-                self.main_window.parentgdkhandle = gtk.gdk.window_foreign_new(long(self.table.number))
-#                self.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
-                self.main_window.gdkhandle = self.main_window.window
-                self.main_window.gdkhandle.set_transient_for(self.main_window.parentgdkhandle)
-                
-                style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
-                style |= win32con.WS_CLIPCHILDREN
-                win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
-#                break
-            
-#        window.set_title(real_name)
+        window.set_focus_on_map(False)
+        window.set_accept_focus(False)
+        
+        if not self.table.gdkhandle:
+            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
+#        window.window.reparent(self.table.gdkhandle, 0, 0)
+#        window.map()
+#        window.window.set_transient_for(self.table.gdkhandle)
+#        if os.name == "nt":
+#            print "window.window.handle=",window.window.handle
+#            oldparent = win32gui.SetParent(window.window.handle, self.table.number)
+#            print "oldparent=",oldparent
+#            win32gui.SendMessage(self.table.number, 0x0127) # WM_CHANGEUISTATE
+#            win32gui.SendMessage(self.table.number, 0x0128) # WM_UPDATEUISTATE
+#        window.present()
+        
 
 class Stat_Window:
 
@@ -366,21 +384,33 @@ class Stat_Window:
 #    and double-clicks.
 
         if event.button == 3:   # right button event
-            self.popups.append(Popup_window(widget, self))
+            newpopup = Popup_window(self.window, self)
+            #print "added popup", newpopup
+            # TODO: how should we go about making sure it doesn't open a dozen popups if you click?
+            self.popups.append(newpopup)
+            return True
 
         if event.button == 2:   # middle button event
             self.window.hide()
+            return True
 
         if event.button == 1:   # left button event
             # TODO: make position saving save sizes as well?
+            self.window.show_all()
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:
                 self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
-
+            return True
+        return False
+    
+    def noop(self, arga=None, argb=None): # i'm going to try to connect the focus-in and focus-out events here, to see if that fixes any of the focus problems.
+        return True
+    
     def kill_popup(self, popup):
+        print "remove popup", popup
+        self.popups.remove(popup)        
         popup.window.destroy()
-        self.popups.remove(popup)
         
     def kill_popups(self):
         map(lambda x: x.window.destroy(), self.popups)
@@ -410,7 +440,6 @@ class Stat_Window:
 
         self.window.set_title("%s" % seat)
         self.window.set_property("skip-taskbar-hint", True)
-        self.window.set_transient_for(parent.main_window)
         self.window.set_focus_on_map(False)
 
         grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
@@ -452,13 +481,35 @@ class Stat_Window:
 
                 e_box[r][c].add(self.label[r][c])
                 e_box[r][c].connect("button_press_event", self.button_press_cb)
+                e_box[r][c].connect("focus-in-event", self.noop)
+                e_box[r][c].connect("focus", self.noop)
+                e_box[r][c].connect("focus-out-event", self.noop)
                 label[r][c].modify_font(font)
 
         self.window.set_opacity(parent.colors['hudopacity'])
+        self.window.connect("focus", self.noop)
+        self.window.connect("focus-in-event", self.noop)
+        self.window.connect("focus-out-event", self.noop)
+        self.window.connect("button_press_event", self.button_press_cb)
+        self.window.set_focus_on_map(False)
+        self.window.set_accept_focus(False)
+
         
         self.window.move(self.x, self.y)
+        self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window.. 
+        self.topify_window(self.window)
                    
         self.window.hide()
+        
+    def topify_window(self, window):
+        window.set_focus_on_map(False)
+        window.set_accept_focus(False)
+        
+        if not self.table.gdkhandle:
+            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
+#        window.window.reparent(self.table.gdkhandle, 0, 0)
+        window.window.set_transient_for(self.table.gdkhandle)
+#        window.present()
 
 def destroy(*args):             # call back for terminating the main eventloop
     gtk.main_quit()
@@ -475,6 +526,8 @@ class Popup_window:
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
         self.window.set_title("popup")
         self.window.set_property("skip-taskbar-hint", True)
+        self.window.set_focus_on_map(False)
+        self.window.set_accept_focus(False)        
         self.window.set_transient_for(parent.get_toplevel())
         
         self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
@@ -540,9 +593,6 @@ class Popup_window:
         
         self.window.set_transient_for(stat_window.window)
 
-        if os.name == 'nt':
-            self.topify_window(self.window)
-
     def button_press_cb(self, widget, event, *args):
 #    This handles all callbacks from button presses on the event boxes in 
 #    the popup windows.  There is a bit of an ugly kludge to separate single-
@@ -555,7 +605,9 @@ class Popup_window:
 
         if event.button == 3:   # right button event
             self.stat_window.kill_popup(self)
+            return True
 #            self.window.destroy()
+        return False
 
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
@@ -569,27 +621,15 @@ class Popup_window:
             top.move(x, y)
 
     def topify_window(self, window):
-        """Set the specified gtk window to stayontop in MS Windows."""
-
-#        def windowEnumerationHandler(hwnd, resultList):
-#            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
-#            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-
-#        unique_name = 'unique name for finding this window'
-#        real_name = window.get_title()
-#        window.set_title(unique_name)
-#        tl_windows = []
-#        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
+        window.set_focus_on_map(False)
+        window.set_accept_focus(False)
         
-#        for w in tl_windows:
-#            if w[1] == unique_name:
-        window.set_transient_for(self.parent.main_window)               
-        style = win32gui.GetWindowLong(self.table.number, win32con.GWL_EXSTYLE)
-        style |= win32con.WS_CLIPCHILDREN
-        win32gui.SetWindowLong(self.table.number, win32con.GWL_EXSTYLE, style)
-#                break
-                
-#        window.set_title(real_name)
+        if not self.table.gdkhandle:
+            self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
+#        window.window.reparent(self.table.gdkhandle, 0, 0)
+        window.window.set_transient_for(self.table.gdkhandle)
+#        window.present()
+        
 
 if __name__== "__main__":
     main_window = gtk.Window()
@@ -604,11 +644,13 @@ if __name__== "__main__":
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
+    
+    stat_dict = db.get_stats_from_hand(1)
 
 #    for t in tables:
-    win = Hud(t, 10, 'holdem', c, db)
-    win.create(1, c)
+    win = Hud(None, t, 10, 'holdem', c, db) # parent, table, max, poker_game, config, db_connection
+    win.create(1, c, stat_dict, None) # hand, config, stat_dict, cards):
 #        t.get_details()
-    win.update(8300, db, c)
+    win.update(8300, c) # self, hand, config):
 
     gtk.main()

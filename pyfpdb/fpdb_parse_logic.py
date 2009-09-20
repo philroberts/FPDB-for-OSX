@@ -22,6 +22,7 @@ import sys
 import fpdb_simple
 import Database
 from time import time, strftime
+from Exceptions import *
 
 
 #parses a holdem hand
@@ -67,7 +68,8 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         tourneyStartTime= handStartTime #todo: read tourney start time
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
-        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db.get_cursor(), siteID, buyin, fee, knockout, rebuyOrAddon)
+        ## The tourney site id has to be searched because it may already be in db with a TourneyTypeId which is different from the one automatically calculated (Summary import first) 
+        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db, siteID, siteTourneyNo, buyin, fee, knockout, rebuyOrAddon)
     else:
         siteTourneyNo   = -1
         buyin           = -1
@@ -126,7 +128,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         elif lineTypes[i]=="table":
             tableResult=fpdb_simple.parseTableLine(base, line)
         else:
-            raise fpdb_simple.FpdbError("unrecognised lineType:"+lineTypes[i])
+            raise FpdbError("unrecognised lineType:"+lineTypes[i])
 
     maxSeats    = tableResult['maxSeats']
     tableName   = tableResult['tableName']

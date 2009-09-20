@@ -39,6 +39,7 @@ if os.name == 'nt':
 
 #    FreePokerTools modules
 import Configuration
+from fpdb_simple import LOCALE_ENCODING
 
 #    Each TableWindow object must have the following attributes correctly populated:
 #    tw.name = the table name from the title bar, which must to match the table name
@@ -68,6 +69,7 @@ class Table_Window:
         if 'site' in info:      self.site   = info['site']
         if 'title' in info:     self.title  = info['title']
         if 'name' in info:      self.name   = info['name']
+        self.gdkhandle = None
 
     def __str__(self):
 #    __str__ method for testing
@@ -230,16 +232,21 @@ def discover_nt_by_name(c, tablename):
     """Finds poker client window with the given table name."""
     titles = {}
     win32gui.EnumWindows(win_enum_handler, titles)
+        
     for hwnd in titles:
         #print "Tables.py: tablename =", tablename, "title =", titles[hwnd]
         try:
+            # maybe it's better to make global titles[hwnd] decoding?
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
-            if not tablename in titles[hwnd]: continue
+            if not tablename.lower() in titles[hwnd].decode(LOCALE_ENCODING).lower(): continue
         except:
             continue
         if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
         if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
         if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
+        if ' - Table ' in titles[hwnd]: continue # Absolute table Chat window.. sigh. TODO: Can we tell what site we're trying to discover for somehow in here, so i can limit this check just to AP searches?
+        temp = decode_windows(c, titles[hwnd], hwnd)
+        #print "attach to window", temp
         return decode_windows(c, titles[hwnd], hwnd)
     return None
 
@@ -302,7 +309,9 @@ def decode_windows(c, title, hwnd):
     return info
 
 def win_enum_handler(hwnd, titles):
-    titles[hwnd] = win32gui.GetWindowText(hwnd)
+    str = win32gui.GetWindowText(hwnd)
+    if str != "":
+        titles[hwnd] = win32gui.GetWindowText(hwnd)
   
 ###################################################################
 #    Utility routines used by all the discoverers.

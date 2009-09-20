@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Steffen Jobbagy-Felso
 #This program is free software: you can redistribute it and/or modify
@@ -21,8 +22,18 @@ import sys
 import logging
 from time import time, strftime
 
+use_pool = False
+try:
+    import sqlalchemy.pool as pool
+    use_pool = True
+except:
+    logging.info("Not using sqlalchemy connection pool.")
+
+
 import fpdb_simple
 import FpdbSQLQueries
+from Exceptions import *
+
 
 class fpdb_db:
     MYSQL_INNODB = 2
@@ -63,13 +74,17 @@ class fpdb_db:
         self.database=database
         if backend==fpdb_db.MYSQL_INNODB:
             import MySQLdb
+            if use_pool:
+                MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
-                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True, charset="utf8")
+                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
             except:
-                raise fpdb_simple.FpdbError("MySQL connection failed")
+                raise FpdbError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
             import psycopg2
-            import psycopg2.extensions 
+            import psycopg2.extensions
+            if use_pool:
+                psycopg2 = pool.manage(psycopg2, pool_size=5)
             psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
             # If DB connection is made over TCP, then the variables
             # host, user and password are required
@@ -87,7 +102,7 @@ class fpdb_db:
                     pass
                     #msg = "PostgreSQL direct connection to database (%s) failed, trying with user ..." % (database,)
                     #print msg
-                    #raise fpdb_simple.FpdbError(msg)
+                    #raise FpdbError(msg)
             if not connected:
                 try:
                     self.db = psycopg2.connect(host = host,
@@ -97,16 +112,19 @@ class fpdb_db:
                 except:
                     msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
                     print msg
-                    raise fpdb_simple.FpdbError(msg)
+                    raise FpdbError(msg)
         elif backend==fpdb_db.SQLITE:
             logging.info("Connecting to SQLite:%(database)s" % {'database':database})
             import sqlite3
+            if use_pool:
+                sqlite3 = pool.manage(sqlite3, pool_size=1)
+            else:
+                logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
             self.db = sqlite3.connect(database,detect_types=sqlite3.PARSE_DECLTYPES)
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
-
         else:
-            raise fpdb_simple.FpdbError("unrecognised database backend:"+backend)
+            raise FpdbError("unrecognised database backend:"+backend)
         self.cursor=self.db.cursor()
         # Set up query dictionary as early in the connection process as we can.
         self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
@@ -148,7 +166,7 @@ class fpdb_db:
         elif self.backend==4:
             return "SQLite"
         else:
-            raise fpdb_simple.FpdbError("invalid backend")
+            raise FpdbError("invalid backend")
     #end def get_backend_name
     
     def get_db_info(self):

@@ -26,6 +26,13 @@ from HandHistoryConverter import *
 # Class for converting Absolute HH format.
 
 class Absolute(HandHistoryConverter):
+
+    # Class Variables
+    sitename = "Absolute"
+    filetype = "text"
+    codepage = "cp1252"
+    siteid   = 8
+    HORSEHand = False
     
     # Static regexes
     re_SplitHands  = re.compile(r"\n\n\n+")
@@ -35,8 +42,11 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|)  (?P<LIMIT>No Limit|) (?P<CURRENCY>\$| €|)(?P<BB>[0-9]*[.0-9]+)", re.MULTILINE)
-    re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\nTable: (?P<TABLE>.*) \(Real Money\)", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|HORSE)(?: \(1 on 1\)|)?  ?(?P<LIMIT>No Limit|Pot Limit|Normal|)? ?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/?(?:\$| €|)(?P<BB>[.0-9]+)?", re.MULTILINE)
+    re_HorseGameInfo = re.compile(ur"^Game Type: (?P<LIMIT>Limit) (?P<GAME>Holdem)", re.MULTILINE)
+    # TODO: can set max seats via (1 on 1) to a known 2 .. 
+    re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\n(Table: (?P<TABLE>.*) \(Real Money\))?", re.MULTILINE)
+    re_TableFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -") # on HORSE STUD games, the table name isn't in the hand info!
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
     re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
     re_Board        = re.compile(ur"\[(?P<CARDS>[^\]]*)\]? *$", re.MULTILINE)
@@ -48,24 +58,6 @@ class Absolute(HandHistoryConverter):
 #    re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     
     
-    def __init__(self, in_path = '-', out_path = '-', follow = False, autostart=True, debugging=False, index=0):
-        """\
-in_path   (default '-' = sys.stdin)
-out_path  (default '-' = sys.stdout)
-follow :  whether to tail -f the input
-autostart: whether to run the thread (or you can call start() yourself)
-debugging: if False, pass on partially supported game types. If true, have a go and error..."""
-        #print "DEBUG: XXXXXXXXXXXXXXX"
-        HandHistoryConverter.__init__(self, in_path, out_path, sitename="Absolute", follow=follow, index=index)
-        logging.info("Initialising Absolute converter class")
-        self.filetype = "text"
-        self.codepage = "cp1252"
-        self.siteId   = 3 # Needs to match id entry in Sites database
-        self.debugging = debugging
-        if autostart:
-            self.start()
-            # otherwise you need to call start yourself.
-
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -79,13 +71,13 @@ debugging: if False, pass on partially supported game types. If true, have a go 
             # TODO: Absolute posting when coming in new: %s - Posts $0.02 .. should that be a new Post line? where do we need to add support for that? *confused*
             self.re_PostBoth        = re.compile(ur"^%s - Posts dead (?:\$| €|)(?P<SBBB>[0-9]*[.0-9]+)" % player_re, re.MULTILINE)
             self.re_Action          = re.compile(ur"^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re, re.MULTILINE)
-            print "^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re
+#            print "^%s - (?P<ATYPE>Bets |Raises |All-In |All-In\(Raise\) |Calls |Folds|Checks)?\$?(?P<BET>[0-9]*[.0-9]+)?" % player_re
             self.re_ShowdownAction  = re.compile(ur"^%s - Shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)| \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^Seat [0-9]: %s(?: \(dealer\)|)(?: \(big blind\)| \(small blind\)|) (?:won|collected) Total \((?:\$| €|)(?P<POT>[0-9]*[.0-9]+)\)" % player_re, re.MULTILINE)
             #self.re_PostSB          = re.compile(ur"^%s: posts small blind \[(?:\$| €|) (?P<SB>[.0-9]+)" % player_re, re.MULTILINE)
             #self.re_PostBB          = re.compile(ur"^%s: posts big blind \[(?:\$| €|) (?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
             #self.re_PostBoth        = re.compile(ur"^%s: posts both blinds \[(?:\$| €|) (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
-            #self.re_Antes           = re.compile(ur"^%s: posts ante \[(?:\$| €|) (?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_Antes           = re.compile(ur"^%s - Ante \[(?:\$| €|)(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
             #self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             #self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
@@ -124,7 +116,7 @@ or None if we fail to get the info """
         mg = m.groupdict()
         
         # translations from captured groups to our info strings
-        limits = { 'No Limit':'nl', 'PL':'pl', '':'fl' }
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Normal':'fl', 'Limit':'fl'}
         games = {              # base, category
                   "Holdem" : ('hold','holdem'), 
                     'Omaha' : ('hold','omahahi'), 
@@ -132,14 +124,26 @@ or None if we fail to get the info """
               '7 Card Stud' : ('stud','studhi')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
-        if 'LIMIT' in mg:
-            info['limitType'] = limits[mg['LIMIT']]
+        if 'GAME' in mg and mg['GAME'] == "HORSE": # if we're a HORSE game, the game type is on the next line
+            self.HORSEHand = True
+            m = self.re_HorseGameInfo.search(handText)
+            if not m:
+                return None # it's a HORSE game and we don't understand the game type
+            temp = m.groupdict()
+            #print "AP HORSE processing"
+            if 'GAME' not in temp or 'LIMIT' not in temp:
+                return None # sort of understood it but not really
+            #print "temp=", temp
+            mg['GAME'] = temp['GAME']
+            mg['LIMIT'] = temp['LIMIT']
         if 'GAME' in mg:
             (info['base'], info['category']) = games[mg['GAME']]
+        if 'LIMIT' in mg:
+            info['limitType'] = limits[mg['LIMIT']]            
         if 'SB' in mg:
             info['sb'] = mg['SB']
         else:
-            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: Apparently AP doesn't provide small blind info!? must search to see if it's posted, I guess
+            info['sb'] = str(float(mg['BB']) * 0.5) # TODO: Apparently AP doesn't provide small blind info!? must search to see if it's posted, I guess 
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
@@ -147,6 +151,11 @@ or None if we fail to get the info """
             if info['currency'] == 'T$':
                 info['type'] = 'tour'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
+        if info['bb'] is None:
+            info['bb'] = mg['SB']
+            info['sb'] = str(float(mg['SB']) * 0.5) # TODO: AP does provide Small BET for Limit .. I think? at least 1-on-1 limit they do.. sigh
+                
+        #print info;
         
         return info
 
@@ -159,9 +168,15 @@ or None if we fail to get the info """
             return None
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid =  m.group('HID')
-        hand.tablename = m.group('TABLE')
+        if m.group('TABLE'):
+            hand.tablename = m.group('TABLE')
+        else:
+            t = self.re_TableFromFilename.search(self.in_path)
+            hand.tablename = t.group('TABLE')
         hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since absolute doesn't give seat max info
-
+                                # TODO: (1-on-1) does have that info in the game type line
+        if self.HORSEHand:
+            hand.maxseats = 8
         hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
         return
 
@@ -248,8 +263,7 @@ or None if we fail to get the info """
         else:
             #Not involved in hand
             hand.involved = False
-
-
+    
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
         logging.warning("Absolute readStudPlayerCards is only a stub.")
@@ -283,7 +297,7 @@ or None if we fail to get the info """
         logging.debug("readShowdownActions")
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
-            cards = [validCard(card) for card in cards.split(' ')]
+            cards = [validCard(card) for card in cards.split(' ')]            
             logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
             hand.addShownCards(cards, shows.group('PNAME'))
 

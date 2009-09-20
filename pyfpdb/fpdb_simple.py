@@ -25,6 +25,8 @@ import datetime
 import time
 import re
 import sys
+from Exceptions import *
+import locale
 
 import Card
  
@@ -37,18 +39,8 @@ MYSQL_INNODB    = 2
 PGSQL           = 3
 SQLITE          = 4
 
-class DuplicateError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
- 
-class FpdbError(Exception):
-    def __init__(self, value):
-        self.value = value
-    def __str__(self):
-        return repr(self.value)
- 
+LOCALE_ENCODING = locale.getdefaultlocale()[1]
+
 #returns an array of the total money paid. intending to add rebuys/addons here
 def calcPayin(count, buyin, fee):
     return [buyin + fee for i in xrange(count)]
@@ -224,7 +216,7 @@ def fillCardArrays(player_count, base, category, card_values, card_suits):
     elif base=="stud":
         cardCount = 7
     else:
-        raise fpdb_simple.FpdbError("invalid category:", category)
+        raise FpdbError("invalid category:", category)
     
     for i in xrange(player_count):
         while (len(card_values[i]) < cardCount):
@@ -543,7 +535,7 @@ def parseActionType(line):
 #parses the ante out of the given line and checks which player paid it, updates antes accordingly.
 def parseAnteLine(line, isTourney, names, antes):
     for i, name in enumerate(names):
-        if line.startswith(name.encode("latin-1")):
+        if line.startswith(name.encode(LOCALE_ENCODING)):
             pos = line.rfind("$") + 1
             if not isTourney:
                 antes[i] += float2int(line[pos:])
@@ -705,7 +697,7 @@ def parseHandStartTime(topline):
 def findName(line):
     pos1 = line.find(":") + 2
     pos2 = line.rfind("(") - 1
-    return unicode(line[pos1:pos2], "latin-1")
+    return unicode(line[pos1:pos2], LOCALE_ENCODING)
 
 def parseNames(lines):
     return [findName(line) for line in lines]
@@ -822,7 +814,7 @@ def parseTourneyNo(topline):
 def parseWinLine(line, names, winnings, isTourney):
     #print "parseWinLine: line:",line
     for i,n in enumerate(names):
-        n = n.encode("latin-1")
+        n = n.encode(LOCALE_ENCODING)
         if line.startswith(n):
             if isTourney:
                 pos1 = line.rfind("collected ") + 10
@@ -951,17 +943,28 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
     return result[0]
 #end def recogniseGametypeID
  
-def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
-    cursor.execute ("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
+def recogniseTourneyTypeId(db, siteId, tourneySiteId, buyin, fee, knockout, rebuyOrAddon):
+    cursor = db.get_cursor()
+    # First we try to find the tourney itself (by its tourneySiteId) in case it has already been inserted before (by a summary file for instance)
+    # The reason is that some tourneys may not be identified correctly in the HH toplines (especially Buy-In and Fee which are used to search/create the TourneyTypeId)
+    #TODO: When the summary file will be dumped to BD, if the tourney is already in, Buy-In/Fee may need an update (e.g. creation of a new type and link to the Tourney)
+    cursor.execute (db.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', db.sql.query['placeholder']), (tourneySiteId, siteId))
     result=cursor.fetchone()
-    #print "tried SELECTing gametypes.id, result:",result
     
     try:
         len(result)
-    except TypeError:#this means we need to create a new entry
-        cursor.execute("""INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) VALUES (%s, %s, %s, %s, %s)""", (siteId, buyin, fee, knockout, rebuyOrAddon))
-        cursor.execute("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
+    except:
+        cursor.execute ("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
         result=cursor.fetchone()
+        #print "tried SELECTing gametypes.id, result:",result
+    
+        try:
+            len(result)
+        except TypeError:#this means we need to create a new entry
+            cursor.execute("""INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) VALUES (%s, %s, %s, %s, %s)""", (siteId, buyin, fee, knockout, rebuyOrAddon))
+            cursor.execute("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
+            result=cursor.fetchone()
+            
     return result[0]
 #end def recogniseTourneyTypeId
  
@@ -985,17 +988,17 @@ def recogniseTourneyTypeId(cursor, siteId, buyin, fee, knockout, rebuyOrAddon):
 #    return result
 
 def recognisePlayerIDs(db, names, site_id):
-    q = "SELECT name,id FROM Players WHERE name=" + " OR name=".join([db.sql.query['placeholder'] for n in names])
     c = db.get_cursor()
+    q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" %(site_id, " OR name=".join([db.sql.query['placeholder'] for n in names]))
     c.execute(q, names) # get all playerids by the names passed in
     ids = dict(c.fetchall()) # convert to dict
     if len(ids) != len(names):
         notfound = [n for n in names if n not in ids] # make list of names not in database
         if notfound: # insert them into database
-            #q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
-            #q_ins = q_ins.replace('%s', db.sql.query['placeholder'])
-            c.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", [(n,) for n in notfound])
-            q2 = "SELECT name,id FROM Players WHERE name=%s" % " OR name=".join(["%s" for n in notfound])
+            q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
+            q_ins = q_ins.replace('%s', db.sql.query['placeholder'])
+            c.executemany(q_ins, [(n,) for n in notfound])
+            q2 = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in notfound]))
             q2 = q2.replace('%s', db.sql.query['placeholder'])
             c.execute(q2, notfound) # get their new ids
             tmp = c.fetchall()
@@ -1032,14 +1035,15 @@ def recognisePlayerIDs(db, names, site_id):
 def recognisePlayerNo(line, names, atype):
     #print "recogniseplayerno, names:",names
     for i in xrange(len(names)):
+        encodedName = names[i].encode(LOCALE_ENCODING)
         if (atype=="unbet"):
-            if (line.endswith(names[i].encode("latin-1"))):
+            if (line.endswith(encodedName)):
                 return (i)
         elif (line.startswith("Dealt to ")):
             #print "recognisePlayerNo, card precut, line:",line
             tmp=line[9:]
             #print "recognisePlayerNo, card postcut, tmp:",tmp
-            if (tmp.startswith(names[i].encode("latin-1"))):
+            if (tmp.startswith(encodedName)):
                 return (i)
         elif (line.startswith("Seat ")):
             if (line.startswith("Seat 10")):
@@ -1047,10 +1051,10 @@ def recognisePlayerNo(line, names, atype):
             else:
                 tmp=line[8:]
             
-            if (tmp.startswith(names[i].encode("latin-1"))):
+            if (tmp.startswith(encodedName)):
                 return (i)
         else:
-            if (line.startswith(names[i].encode("latin-1"))):
+            if (line.startswith(encodedName)):
                 return (i)
     #if we're here we mustve failed
     raise FpdbError ("failed to recognise player in: "+line+" atype:"+atype)

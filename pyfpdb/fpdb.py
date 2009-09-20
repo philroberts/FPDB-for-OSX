@@ -76,6 +76,7 @@ import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
+from Exceptions import *
 
 VERSION = "0.11"
 
@@ -98,7 +99,7 @@ class fpdb:
         for i in self.tab_names: #todo: check this is valid
             if i==new_tab_name:
                 return # we depend on this to not create duplicate tabs, there's no reason to raise an error here?
-#                raise fpdb_simple.FpdbError("duplicate tab_name not permitted")
+#                raise FpdbError("duplicate tab_name not permitted")
 
         self.tabs.append(new_tab)
         self.tab_names.append(new_tab_name)
@@ -120,7 +121,7 @@ class fpdb:
                 break
 
         if tab_no == -1:
-            raise fpdb_simple.FpdbError("invalid tab_no")
+            raise FpdbError("invalid tab_no")
         else:
             self.main_vbox.remove(self.current_tab)
             #self.current_tab.destroy()
@@ -243,30 +244,27 @@ class fpdb:
         if self.obtain_global_lock():  # returns true if successful
 
             #lock_released = False
-            try:
-                dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
-                        buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-                diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
-                            +self.db.fdb.database+" on "+self.db.fdb.host+" they will be deleted."
-                dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+                    buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
+            diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
+                        +self.db.fdb.database+" on "+self.db.fdb.host+" they will be deleted."
+            dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
-                response = dia_confirm.run()
-                dia_confirm.destroy()
-                if response == gtk.RESPONSE_YES:
-                    #if self.db.fdb.backend == self.fdb_lock.fdb.MYSQL_INNODB:
-                        # mysql requires locks on all tables or none - easier to release this lock 
-                        # than lock all the other tables
-                        # ToDo: lock all other tables so that lock doesn't have to be released
-                    #    self.release_global_lock()
-                    #    lock_released = True
-                    self.db.recreate_tables()
-                    #else:
-                        # for other dbs use same connection as holds global lock
-                    #    self.fdb_lock.fdb.recreate_tables()
-                elif response == gtk.RESPONSE_NO:
-                    print 'User cancelled recreating tables'
-            except:
-                pass
+            response = dia_confirm.run()
+            dia_confirm.destroy()
+            if response == gtk.RESPONSE_YES:
+                #if self.db.fdb.backend == self.fdb_lock.fdb.MYSQL_INNODB:
+                    # mysql requires locks on all tables or none - easier to release this lock 
+                    # than lock all the other tables
+                    # ToDo: lock all other tables so that lock doesn't have to be released
+                #    self.release_global_lock()
+                #    lock_released = True
+                self.db.recreate_tables()
+                #else:
+                    # for other dbs use same connection as holds global lock
+                #    self.fdb_lock.fdb.recreate_tables()
+            elif response == gtk.RESPONSE_NO:
+                print 'User cancelled recreating tables'
             #if not lock_released:
             self.release_global_lock()
     #end def dia_recreate_tables
