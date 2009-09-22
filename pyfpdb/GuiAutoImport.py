@@ -34,6 +34,7 @@ import string
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config, sql):
         """Constructor for GuiAutoImport"""
+        self.importtimer = 0
         self.settings=settings
         self.config=config
         self.sql = sql
@@ -196,11 +197,14 @@ class GuiAutoImport (threading.Thread):
                             self.do_import()
                             
                             interval = int(self.intervalEntry.get_text())
-                            gobject.timeout_add(interval*1000, self.do_import)
+                    if self.importtimer != 0:
+                        gobject.source_remove(self.importtimer)
+                    self.importtimer = gobject.timeout_add(interval*1000, self.do_import)
                         
             else:
                 print "auto-import aborted - global lock not available"
         else: # toggled off
+            gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
             print "Stopping autoimport - global lock released."

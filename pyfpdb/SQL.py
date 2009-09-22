@@ -377,7 +377,7 @@ class Sql:
                             startTime DATETIME NOT NULL,
                             endTime DATETIME,
                             buyinChips INT,
-                            tourneyName varchar(20),
+                            tourneyName varchar(40),
                             matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                             rebuyChips INT DEFAULT 0,
                             addonChips INT DEFAULT 0,
@@ -399,7 +399,7 @@ class Sql:
                             startTime timestamp without time zone,
                             endTime timestamp without time zone,
                             buyinChips INT,
-                            tourneyName varchar(20),
+                            tourneyName varchar(40),
                             matrixIdProcessed SMALLINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
                             rebuyChips INT DEFAULT 0,
                             addonChips INT DEFAULT 0,

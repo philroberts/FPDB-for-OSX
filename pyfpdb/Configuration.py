@@ -266,6 +266,7 @@ class Popup:
 
 class Import:
     def __init__(self, node):
+        self.node = node
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
@@ -345,8 +346,10 @@ class Config:
             self.supported_games[game.game_name] = game
             
 #        s_dbs = doc.getElementsByTagName("supported_databases")
-        if dbname and dbname in self.supported_databases:
-            self.db_selected = dbname
+        # select database from those defined in config by:
+        #    1) command line option
+        # or 2) selected="True" in config element
+        # or 3) just choose the first we come across
         for db_node in doc.getElementsByTagName("database"):
             try:
                 db = Database(node = db_node)
@@ -360,6 +363,9 @@ class Config:
                     self.db_selected = db.db_name
             except:
                 raise
+        if dbname and dbname in self.supported_databases:
+            self.db_selected = dbname
+
 
 #       s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
@@ -396,7 +402,9 @@ class Config:
                                        db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
 
-                
+    def set_hhArchiveBase(self, path):
+        self.imp.node.setAttribute("hhArchiveBase", path)
+        
     def find_config(self):
         """Looks in cwd and in self.default_config_path for a config file."""
         if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
