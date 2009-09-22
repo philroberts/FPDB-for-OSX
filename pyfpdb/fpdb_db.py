@@ -21,19 +21,18 @@ import re
 import sys
 import logging
 from time import time, strftime
+from Exceptions import *
 
-use_pool = False
 try:
     import sqlalchemy.pool as pool
     use_pool = True
-except:
+except ImportError:
     logging.info("Not using sqlalchemy connection pool.")
+    use_pool = False
 
 
 import fpdb_simple
 import FpdbSQLQueries
-from Exceptions import *
-
 
 class fpdb_db:
     MYSQL_INNODB = 2
@@ -67,12 +66,12 @@ class fpdb_db:
         """Connects a database with the given parameters"""
         if backend is None:
             raise FpdbError('Database backend not defined')
-        self.backend=backend
-        self.host=host
-        self.user=user
-        self.password=password
-        self.database=database
-        if backend==fpdb_db.MYSQL_INNODB:
+        self.backend = backend
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
+        if backend == fpdb_db.MYSQL_INNODB:
             import MySQLdb
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
@@ -113,7 +112,7 @@ class fpdb_db:
                     msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
                     print msg
                     raise FpdbError(msg)
-        elif backend==fpdb_db.SQLITE:
+        elif backend == fpdb_db.SQLITE:
             logging.info("Connecting to SQLite:%(database)s" % {'database':database})
             import sqlite3
             if use_pool:
@@ -125,20 +124,20 @@ class fpdb_db:
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
         else:
             raise FpdbError("unrecognised database backend:"+backend)
-        self.cursor=self.db.cursor()
+        self.cursor = self.db.cursor()
         # Set up query dictionary as early in the connection process as we can.
         self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())
         self.cursor.execute(self.sql.query['set tx level'])
-        self.wrongDbVersion=False
+        self.wrongDbVersion = False
         try:
             self.cursor.execute("SELECT * FROM Settings")
-            settings=self.cursor.fetchone()
-            if settings[0]!=118:
+            settings = self.cursor.fetchone()
+            if settings[0] != 118:
                 print "outdated or too new database version - please recreate tables"
-                self.wrongDbVersion=True
+                self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:": print "failed to read settings table - please recreate tables"
-            self.wrongDbVersion=True
+            self.wrongDbVersion = True
     #end def connect
 
     def disconnect(self, due_to_error=False):

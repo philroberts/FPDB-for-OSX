@@ -181,7 +181,7 @@ class Database:
     # create index indexname on tablename (col);
 
 
-    def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
+    def __init__(self, c, sql = None): 
         log.info("Creating Database instance, sql = %s" % sql)
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
@@ -201,7 +201,7 @@ class Database:
 
 
         # where possible avoid creating new SQL instance by using the global one passed in
-        if sql == None:
+        if sql is None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
         else:
             self.sql = sql
@@ -370,23 +370,20 @@ class Database:
     def init_hud_stat_vars(self, hud_days):
         """Initialise variables used by Hud to fetch stats."""
 
+        self.hand_1day_ago = 1
         try:
-            # self.hand_1day_ago used to fetch stats for current session (i.e. if hud_style = 'S')
-            self.hand_1day_ago = 1
             c = self.get_cursor()
             c.execute(self.sql.query['get_hand_1day_ago'])
             row = c.fetchone()
+        except: # TODO: what error is a database error?!
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+        else:
             if row and row[0]:
-                self.hand_1day_ago = row[0]
-            #print "hand 1day ago =", self.hand_1day_ago
-
-            # self.date_ndays_ago used if hud_style = 'T'
+                self.hand_1_day_ago = row[0]
             d = timedelta(days=hud_days)
             now = datetime.utcnow() - d
-            self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...

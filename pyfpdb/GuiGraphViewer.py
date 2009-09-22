@@ -32,7 +32,7 @@ try:
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
     from numpy import arange, cumsum
     from pylab import *
-except:
+except ImportError:
     print """Failed to load libs for graphing, graphing will not function. Please in
                  stall numpy and matplotlib if you want to use graphs."""
     print """This is of no consequence for other parts of the program, e.g. import 
