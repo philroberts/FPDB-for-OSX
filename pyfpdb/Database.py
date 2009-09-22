@@ -1017,7 +1017,7 @@ class Database:
         else:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (0, 1, 0, 0, 0, False, False, null, False, False, False);""")
+                         values (1, 1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
