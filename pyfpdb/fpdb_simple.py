@@ -968,68 +968,6 @@ def recogniseTourneyTypeId(db, siteId, tourneySiteId, buyin, fee, knockout, rebu
     return result[0]
 #end def recogniseTourneyTypeId
  
-#returns the SQL ids of the names given in an array
-# TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
-# { playername: id } instead of depending on it's relation to the positions list
-# then this can be reduced in complexity a bit
-
-#def recognisePlayerIDs(cursor, names, site_id):
-#    result = []
-#    for i in xrange(len(names)):
-#        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-#        tmp=cursor.fetchall()
-#        if (len(tmp)==0): #new player
-#            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
-#            #print "Number of players rows inserted: %d" % cursor.rowcount
-#            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-#            tmp=cursor.fetchall()
-#        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-#        result.append(tmp[0][0])
-#    return result
-
-def recognisePlayerIDs(db, names, site_id):
-    c = db.get_cursor()
-    q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" %(site_id, " OR name=".join([db.sql.query['placeholder'] for n in names]))
-    c.execute(q, names) # get all playerids by the names passed in
-    ids = dict(c.fetchall()) # convert to dict
-    if len(ids) != len(names):
-        notfound = [n for n in names if n not in ids] # make list of names not in database
-        if notfound: # insert them into database
-            q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
-            q_ins = q_ins.replace('%s', db.sql.query['placeholder'])
-            c.executemany(q_ins, [(n,) for n in notfound])
-            q2 = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in notfound]))
-            q2 = q2.replace('%s', db.sql.query['placeholder'])
-            c.execute(q2, notfound) # get their new ids
-            tmp = c.fetchall()
-            for n,id in tmp: # put them all into the same dict
-                ids[n] = id
-    # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
-    return [ids[n] for n in names]
-#end def recognisePlayerIDs
-
-
-# Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
-# this version could also be improved upon using list comprehensions, etc
-
-#def recognisePlayerIDs(cursor, names, site_id):
-#    result = []
-#    notfound = []
-#    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-#    tmp = dict(cursor.fetchall())
-#    for n in names:
-#        if n not in tmp:
-#            notfound.append(n)
-#        else:
-#            result.append(tmp[n])
-#    if notfound:
-#        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-#        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-#        tmp = cursor.fetchall()
-#        for n in tmp:
-#            result.append(n[0])
-#        
-#    return result
  
 #recognises the name in the given line and returns its array position in the given array
 def recognisePlayerNo(line, names, atype):
