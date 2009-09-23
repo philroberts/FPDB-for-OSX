@@ -1011,8 +1011,6 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
-        elif self.backend == self.PGSQL:
-            c.execute("insert into TourneyTypes values (0,1,0,0,0,False,False,null,False,False,False);")
         else:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
