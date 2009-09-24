@@ -1012,9 +1012,9 @@ class Database:
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         else:
-            c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
+            c.execute("""insert into TourneyTypes(siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (1, 1, 0, 0, 0, False, False, null, False, False, False);""")
+                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
