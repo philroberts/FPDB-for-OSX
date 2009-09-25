@@ -954,16 +954,20 @@ def recogniseTourneyTypeId(db, siteId, tourneySiteId, buyin, fee, knockout, rebu
     try:
         len(result)
     except:
-        cursor.execute ("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
+        cursor.execute( """SELECT id FROM TourneyTypes 
+                           WHERE siteId=%s AND buyin=%s AND fee=%s 
+                           AND knockout=%s AND rebuyOrAddon=%s"""
+                      , (siteId, buyin, fee, knockout, rebuyOrAddon) )
         result=cursor.fetchone()
         #print "tried SELECTing gametypes.id, result:",result
     
         try:
             len(result)
         except TypeError:#this means we need to create a new entry
-            cursor.execute("""INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) VALUES (%s, %s, %s, %s, %s)""", (siteId, buyin, fee, knockout, rebuyOrAddon))
-            cursor.execute("SELECT id FROM TourneyTypes WHERE siteId=%s AND buyin=%s AND fee=%s AND knockout=%s AND rebuyOrAddon=%s", (siteId, buyin, fee, knockout, rebuyOrAddon))
-            result=cursor.fetchone()
+            cursor.execute( """INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) 
+                               VALUES (%s, %s, %s, %s, %s)"""
+                          , (siteId, buyin, fee, knockout, rebuyOrAddon) )
+            result = db.get_last_insert_id(cursor)
             
     return result[0]
 #end def recogniseTourneyTypeId

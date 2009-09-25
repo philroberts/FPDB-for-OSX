@@ -70,19 +70,19 @@ class Database:
                 [ ] # no db with index 0
               , [ ] # no db with index 1
               , [ # indexes for mysql (list index 2)
-                  {'tab':'Players',         'col':'name',              'drop':0}
-                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-                , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
+                #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
+                #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
+                  {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} # not needed, handled by fk
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0} # not needed, handled by fk
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0} created elsewhere - needs to be unique
+                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 ]
               , [ # indexes for postgres (list index 3)
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
-                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
+                #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                 , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -91,22 +91,22 @@ class Database:
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'Players',         'col':'siteId',            'drop':1}
-                , {'tab':'Players',         'col':'name',              'drop':0}
+                #, {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
-                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0} created elsewhere - needs to be unique
+                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
-                , {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}
+                #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
-                  {'tab':'Players',         'col':'name',              'drop':0}
-                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-                , {'tab':'Hands',           'col':'gametypeId',        'drop':0} 
+                #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
+                #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
+                  {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0} created elsewhere - needs to be unique
+                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 ]
               ]
 
@@ -921,6 +921,7 @@ class Database:
             log.debug(self.sql.query['createSettingsTable'])
             c = self.get_cursor()
             c.execute(self.sql.query['createSettingsTable'])
+
             log.debug(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
@@ -933,9 +934,14 @@ class Database:
             c.execute(self.sql.query['createHandsPlayersTable'])
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
+
+            # create unique indexes:
             c.execute(self.sql.query['addTourneyIndex'])
-            #c.execute(self.sql.query['addHandsIndex'])
-            #c.execute(self.sql.query['addPlayersIndex'])
+            c.execute(self.sql.query['addHandsIndex'])
+            c.execute(self.sql.query['addPlayersIndex'])
+            c.execute(self.sql.query['addTPlayersIndex'])
+            c.execute(self.sql.query['addTTypesIndex'])
+
             self.fillDefaultData()
             self.commit()
         except:
@@ -1847,23 +1853,19 @@ class Database:
             #print "ranks:",ranks
             #print "winnings:",winnings
             for i in xrange(len(player_ids)):
-                cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
-                              ,(tourney_id, player_ids[i]))
-                tmp=cursor.fetchone()
-                #print "tried SELECTing tourneys_players.id:",tmp
-                
                 try:
-                    len(tmp)
-                except TypeError:
                     cursor.execute("""INSERT INTO TourneysPlayers
-        (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
+                    (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                     (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
                     
-                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder']),
-                                   (tourney_id, player_ids[i]))
-                    tmp=cursor.fetchone()
+                    tmp = self.get_last_insert_id(cursor)
                     #print "created new tourneys_players.id:",tmp
-                result.append(tmp[0])
+                except:
+                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
+                                  ,(tourney_id, player_ids[i]))
+                    tmp=cursor.fetchone()[0]
+                    #print "tried SELECTing tourneys_players.id:",tmp
+                result.append(tmp)
         except:
             raise FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
         
