@@ -73,6 +73,7 @@ class Hud:
         self.stacked       = True
         self.site          = table.site
         self.mw_created    = False
+        self.hud_params    = parent.hud_params
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -218,7 +219,11 @@ class Hud:
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
             s.kill_popups()
-            s.window.destroy()    
+            try:
+                # throws "invalid window handle" in WinXP (sometimes?)
+                s.window.destroy()
+            except:
+                pass
         self.stat_windows = {}
 #    also kill any aux windows
         for aux in self.aux_windows:
@@ -621,7 +626,57 @@ class Popup_window:
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
         window.window.set_transient_for(self.table.gdkhandle)
 #        window.present()
-        
+
+   
+
+class HUD_Params:
+
+    def __init__(self, hud):
+        self.aggregate_stats = hud.def_aggregate_stats
+        self.hud_style       = hud.def_hud_style
+        self.hud_days        = hud.def_hud_days
+        self.agg_bb_mult     = hud.def_agg_bb_mult
+        self.hud_session_gap = hud.def_hud_session_gap
+
+        self.h_aggregate_stats = hud.def_h_aggregate_stats
+        self.h_hud_style       = hud.def_h_hud_style
+        self.h_hud_days        = hud.def_h_hud_days
+        self.h_agg_bb_mult     = hud.def_h_agg_bb_mult
+        self.h_hud_session_gap = hud.def_h_hud_session_gap
+
+    def set_aggregate_stats(self, agg):
+        self.aggregate_stats = agg
+    def set_hud_style(self, style):
+        self.hud_style = style
+    def set_hud_days(self, days):
+        self.hud_days = days
+    def set_agg_bb_mult(self, mult):
+        self.agg_bb_mult = mult
+    def set_hud_session_gap(self, gap):
+        self.hud_session_gap = gap
+
+    def set_aggregate_stats(self, agg):
+        self.aggregate_stats = agg
+    def set_hud_style(self, style):
+        self.hud_style = style
+    def set_hud_days(self, days):
+        self.hud_days = days
+    def set_agg_bb_mult(self, mult):
+        self.agg_bb_mult = mult
+    def set_hud_session_gap(self, gap):
+        self.hud_session_gap = gap
+
+    def get_aggregate_stats(self):
+        return self.aggregate_stats
+    def get_hud_style(self):
+        return self.hud_style
+    def get_hud_days(self):
+        return self.hud_days
+    def get_agg_bb_mult(self):
+        return self.agg_bb_mult
+    def get_hud_session_gap(self):
+        return self.hud_session_gap
+
 
 if __name__== "__main__":
     main_window = gtk.Window()

@@ -1581,10 +1581,11 @@ class Sql:
                 """
 
             self.query['get_table_name'] = """
-                    select tableName, maxSeats, category, type
-                    from Hands,Gametypes
-                    where Hands.id = %s
-                    and Gametypes.id = Hands.gametypeId
+                    select h.tableName, h.maxSeats, gt.category, gt.type, gt.siteId
+                    from Hands h
+                        ,Gametypes gt
+                    where h.id = %s
+                    and   gt.id = h.gametypeId
                 """
 
             self.query['get_actual_seat'] = """

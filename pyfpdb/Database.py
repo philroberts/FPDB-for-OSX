@@ -406,10 +406,19 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
-    def get_stats_from_hand(self, hand, aggregate = False, hud_style = 'A', agg_bb_mult = 100):
+    def get_stats_from_hand( self, hand
+                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'agg_bb_mult':100}
+                           , hero_ids = {}
+                           ):
+        aggregate = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
+        hud_style = hud_params['hud_style']
+        agg_bb_mult = hud_params['agg_bb_mult']
+        stat_dict = {}
+
         if hud_style == 'S':
 
-            return( self.get_stats_from_hand_session(hand) )
+            self.get_stats_from_hand_session(hand, stat_dict)
+            return stat_dict
 
         else:   # hud_style == A
 
@@ -433,7 +442,6 @@ class Database:
 #       now get the stats
         c.execute(self.sql.query[query], subs)
         colnames = [desc[0] for desc in c.description]
-        stat_dict = {}
         for row in c.fetchall():
             t_dict = {}
             for name, val in zip(colnames, row):
@@ -444,7 +452,7 @@ class Database:
         return stat_dict
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
-    def get_stats_from_hand_session(self, hand):
+    def get_stats_from_hand_session(self, hand, stat_dict):
 
         query = self.sql.query['get_stats_from_hand_session']
         if self.db_server == 'mysql':
@@ -459,31 +467,32 @@ class Database:
         #print "sess_stats: subs =", subs, "subs[0] =", subs[0]
         c.execute(query, subs)
         colnames = [desc[0] for desc in c.description]
-        n,stat_dict = 0,{}
-        row = c.fetchone()
-        while row:
-            if colnames[0].lower() == 'player_id':
-                playerid = row[0]
-            else:
-                log.error("ERROR: query %s result does not have player_id as first column" % (query,))
-                break
+        n = 0
 
-            for name, val in zip(colnames, row):
-                if not playerid in stat_dict:
-                    stat_dict[playerid] = {}
-                    stat_dict[playerid][name.lower()] = val
-                elif not name.lower() in stat_dict[playerid]:
-                    stat_dict[playerid][name.lower()] = val
-                elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
-                    stat_dict[playerid][name.lower()] += val
-            n += 1
-            if n >= 4000: break  # todo: don't think this is needed so set nice and high 
-                                 #       for now - comment out or remove?
-            row = c.fetchone()
+        row = c.fetchone()
+        if colnames[0].lower() == 'player_id':
+            playerid = row[0]
+
+            while row:
+                for name, val in zip(colnames, row):
+                    if not playerid in stat_dict:
+                        stat_dict[playerid] = {}
+                        stat_dict[playerid][name.lower()] = val
+                    elif not name.lower() in stat_dict[playerid]:
+                        stat_dict[playerid][name.lower()] = val
+                    elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
+                        stat_dict[playerid][name.lower()] += val
+                n += 1
+                if n >= 10000: break  # todo: don't think this is needed so set nice and high 
+                                     #       for now - comment out or remove?
+                row = c.fetchone()
+        else:
+            log.error("ERROR: query %s result does not have player_id as first column" % (query,))
+
         #print "   %d rows fetched, len(stat_dict) = %d" % (n, len(stat_dict))
 
         #print "session stat_dict =", stat_dict
-        return stat_dict
+        #return stat_dict
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
