@@ -339,11 +339,16 @@ class Hud:
             self.update_table_position()
 
         for s in self.stat_dict:
-            statd = self.stat_dict[s]
+            try:
+                statd = self.stat_dict[s]
+            except KeyError:
+                print "KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"
+                print "(btw, the key was ", s, " and statd is...", statd
+                continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
                 #self.stat_windows[self.stat_dict[s]['seat']].player_id = self.stat_dict[s]['player_id']
-            except: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
+            except KeyError: # omg, we have more seats than stat windows .. damn poker sites with incorrect max seating info .. let's force 10 here
                 self.max = 10
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
@@ -379,6 +384,7 @@ class Stat_Window:
 #    This handles all callbacks from button presses on the event boxes in 
 #    the stat windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.
+        self.window.show_all()
 
         if event.button == 3:   # right button event
             newpopup = Popup_window(self.window, self)
@@ -393,7 +399,6 @@ class Stat_Window:
 
         if event.button == 1:   # left button event
             # TODO: make position saving save sizes as well?
-            self.window.show_all()
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
             else:

@@ -18,46 +18,63 @@
 #parses an in-memory fpdb hand history and calls db routine to store it
 
 import sys
-
-import fpdb_simple
-import Database
 from time import time, strftime
 from Exceptions import *
 
+import fpdb_simple
+import Database
 
-#parses a holdem hand
 def mainParser(settings, siteID, category, hand, config, db = None, writeq = None):
-
+    """ mainParser for Holdem Hands """
     t0 = time()
-    #print "mainparser"
     backend = settings['db-backend']
-    # Ideally db connection is passed in, if not use sql list if passed in, otherwise start from scratch
+    # Ideally db connection is passed in, if not use sql list if passed in,
+    # otherwise start from scratch
     if db == None:
         db = Database.Database(c = config, sql = None)
     category = fpdb_simple.recogniseCategory(hand[0])
 
-    base = "hold" if category == "holdem" or category == "omahahi" or category == "omahahilo" else "stud"
+    base = "hold" if (category == "holdem" or category == "omahahi" or
+                      category == "omahahilo") else "stud"
 
     #part 0: create the empty arrays
-    lineTypes   = [] #char, valid values: header, name, cards, action, win, rake, ignore
-    lineStreets = [] #char, valid values: (predeal, preflop, flop, turn, river)
-
-    cardValues, cardSuits, boardValues, boardSuits, antes, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo, seatLines, winnings, rakes=[],[],[],[],[],[],[],[],[],[],[],[],[]
+    # lineTypes valid values: header, name, cards, action, win, rake, ignore
+    # lineStreets valid values: predeal, preflop, flop, turn, river
+    lineTypes   = [] 
+    lineStreets = [] 
+    cardValues = []
+    cardSuits = []
+    boardValues = []
+    boardSuits = []
+    antes = []
+    allIns = []
+    actionAmounts = []
+    actionNos = []
+    actionTypes = []
+    actionTypeByNo = []
+    seatLines = []
+    winnings = []
+    rakes = []
 
     #part 1: read hand no and check for duplicate
     siteHandNo      = fpdb_simple.parseSiteHandNo(hand[0])
-    #print "siteHandNo =", siteHandNo
-    handStartTime   = fpdb_simple.parseHandStartTime(hand[0])
-    
+    handStartTime   = fpdb_simple.parseHandStartTime(hand[0])    
     isTourney       = fpdb_simple.isTourney(hand[0])
-    smallBlindLine  = 0
+    
+    smallBlindLine  = None
     for i, line in enumerate(hand):
         if 'posts small blind' in line or 'posts the small blind' in line:
             if line[-2:] == "$0": continue
             smallBlindLine = i
             break
+    else:
+        smallBlindLine = 0
+        # If we did not find a small blind line, what happens?
+        # if we leave it at None, it errors two lines down.
 
-    gametypeID = fpdb_simple.recogniseGametypeID(backend, db, db.get_cursor(), hand[0], hand[smallBlindLine], siteID, category, isTourney)
+    gametypeID = fpdb_simple.recogniseGametypeID(backend, db, db.get_cursor(),
+                                                 hand[0], hand[smallBlindLine],
+                                                 siteID, category, isTourney)
     if isTourney:
         siteTourneyNo   = fpdb_simple.parseTourneyNo(hand[0])
         buyin           = fpdb_simple.parseBuyin(hand[0])
@@ -68,8 +85,14 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         tourneyStartTime= handStartTime #todo: read tourney start time
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
-        ## The tourney site id has to be searched because it may already be in db with a TourneyTypeId which is different from the one automatically calculated (Summary import first) 
-        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db, siteID, siteTourneyNo, buyin, fee, knockout, rebuyOrAddon)
+        # The tourney site id has to be searched because it may already be in
+        # db with a TourneyTypeId which is different from the one automatically
+        # calculated (Summary import first) 
+        tourneyTypeId   = fpdb_simple.recogniseTourneyTypeId(db, siteID,
+                                                             siteTourneyNo,
+                                                             buyin, fee,
+                                                             knockout,
+                                                             rebuyOrAddon)
     else:
         siteTourneyNo   = -1
         buyin           = -1
@@ -100,7 +123,9 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
     
-    fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes, winnings, rakes, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
+    fpdb_simple.createArrays(category, len(names), cardValues, cardSuits, antes,
+                             winnings, rakes, actionTypes, allIns,
+                             actionAmounts, actionNos, actionTypeByNo)
     
     #3b read positions
     if base == "hold":
@@ -109,27 +134,32 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
     #part 4: take appropriate action for each line based on linetype
     for i, line in enumerate(hand):
         if lineTypes[i] == "cards":
-            fpdb_simple.parseCardLine(category, lineStreets[i], line, names, cardValues, cardSuits, boardValues, boardSuits)
+            fpdb_simple.parseCardLine(category, lineStreets[i], line, names,
+                                      cardValues, cardSuits, boardValues,
+                                      boardSuits)
             #if category=="studhilo":
             #    print "hand[i]:", hand[i]
             #    print "cardValues:", cardValues
             #    print "cardSuits:", cardSuits
         elif lineTypes[i] == "action":
-            fpdb_simple.parseActionLine(base, isTourney, line, lineStreets[i], playerIDs, names, actionTypes, allIns, actionAmounts, actionNos, actionTypeByNo)
+            fpdb_simple.parseActionLine(base, isTourney, line, lineStreets[i],
+                                        playerIDs, names, actionTypes, allIns,
+                                        actionAmounts, actionNos, actionTypeByNo)
         elif lineTypes[i] == "win":
             fpdb_simple.parseWinLine(line, names, winnings, isTourney)
         elif lineTypes[i] == "rake":
             totalRake = 0 if isTourney else fpdb_simple.parseRake(line)
             fpdb_simple.splitRake(winnings, rakes, totalRake)
-        elif lineTypes[i]=="header" or lineTypes[i]=="rake" or lineTypes[i]=="name" or lineTypes[i]=="ignore":
+        elif (lineTypes[i] == "header" or lineTypes[i] == "rake" or
+              lineTypes[i] == "name" or lineTypes[i] == "ignore"):
             pass
-        elif lineTypes[i]=="ante":
+        elif lineTypes[i] == "ante":
             fpdb_simple.parseAnteLine(line, isTourney, names, antes)
-        elif lineTypes[i]=="table":
+        elif lineTypes[i] == "table":
             tableResult=fpdb_simple.parseTableLine(base, line)
         else:
-            raise FpdbError("unrecognised lineType:"+lineTypes[i])
-
+            raise FpdbError("unrecognised lineType:" + lineTypes[i])
+            
     maxSeats    = tableResult['maxSeats']
     tableName   = tableResult['tableName']
     #print "before part5, antes:", antes
@@ -152,26 +182,34 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
     # if hold'em, use positions and not antes, if stud do not use positions, use antes
     # this is used for handsplayers inserts, so still needed even if hudcache update is being skipped
     if base == "hold":
-        hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
-                                     , allIns, actionTypeByNo, winnings, totalWinnings, positions
-                                     , actionTypes, actionAmounts, None)
+        hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base,
+                                                         category, actionTypes,
+                                                         allIns, actionTypeByNo,
+                                                         winnings,
+                                                         totalWinnings,
+                                                         positions, actionTypes,
+                                                         actionAmounts, None)
     else:
-        hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base, category, actionTypes
-                                     , allIns, actionTypeByNo, winnings, totalWinnings, None
-                                     , actionTypes, actionAmounts, antes)
+        hudImportData = fpdb_simple.generateHudCacheData(playerIDs, base,
+                                                         category, actionTypes,
+                                                         allIns, actionTypeByNo,
+                                                         winnings,
+                                                         totalWinnings, None,
+                                                         actionTypes,
+                                                         actionAmounts, antes)
 
-    #print "parse: hand data prepared"    # only reads up to here apart from inserting new players
     try:
         db.commit()  # need to commit new players as different db connection used 
                          # for other writes. maybe this will change maybe not ...
-    except:
+    except: # TODO: this really needs to be narrowed down
         print "parse: error during commit: " + str(sys.exc_value)
 
 #    HERE's an ugly kludge to keep from failing when positions is undef
 #    We'll fix this by getting rid of the legacy importer.  REB
     try:
-        if positions: pass
-    except:
+        if positions:
+            pass
+    except NameError:
         positions = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     # save data structures in a HandToWrite instance and then insert into database: 
     htw = Database.HandToWrite()

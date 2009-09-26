@@ -181,7 +181,7 @@ class Database:
     # create index indexname on tablename (col);
 
 
-    def __init__(self, c, db_name = None, game = None, sql = None): # db_name and game not used any more
+    def __init__(self, c, sql = None): 
         log.info("Creating Database instance, sql = %s" % sql)
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
@@ -201,7 +201,7 @@ class Database:
 
 
         # where possible avoid creating new SQL instance by using the global one passed in
-        if sql == None:
+        if sql is None:
             self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
         else:
             self.sql = sql
@@ -370,23 +370,20 @@ class Database:
     def init_hud_stat_vars(self, hud_days):
         """Initialise variables used by Hud to fetch stats."""
 
+        self.hand_1day_ago = 1
         try:
-            # self.hand_1day_ago used to fetch stats for current session (i.e. if hud_style = 'S')
-            self.hand_1day_ago = 1
             c = self.get_cursor()
             c.execute(self.sql.query['get_hand_1day_ago'])
             row = c.fetchone()
+        except: # TODO: what error is a database error?!
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+        else:
             if row and row[0]:
-                self.hand_1day_ago = row[0]
-            #print "hand 1day ago =", self.hand_1day_ago
-
-            # self.date_ndays_ago used if hud_style = 'T'
+                self.hand_1_day_ago = row[0]
             d = timedelta(days=hud_days)
             now = datetime.utcnow() - d
-            self.date_ndays_ago = "d%02d%02d%02d" % (now.year-2000, now.month, now.day)
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
@@ -1092,6 +1089,8 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
+        elif self.backend == self.PGSQL:
+            c.execute("insert into TourneyTypes values (0,1,0,0,0,False,False,null,False,False,False);")
         else:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
@@ -1263,6 +1262,10 @@ class Database:
         return result
     #end def store_the_hand
 
+###########################
+# NEWIMPORT CODE
+###########################
+
     def storeHand(self, p):
         #stores into table hands:
         q = """INSERT INTO Hands ( 
@@ -1337,6 +1340,109 @@ class Database:
         ))
         #return getLastInsertId(backend, conn, cursor)
     # def storeHand
+
+    def storeHandsPlayers(self, p):
+    #def store_hands_players_holdem_omaha(self, backend, category, hands_id, player_ids, start_cashes
+    #                                    ,positions, card_values, card_suits, winnings, rakes, seatNos, hudCache):
+    #    result=[]
+    #
+    #    # postgres (and others?) needs the booleans converted to ints before saving:
+    #    # (or we could just save them as boolean ... but then we can't sum them so easily in sql ???)
+    #    # NO - storing booleans for now so don't need this
+    #    #hudCacheInt = {}
+    #    #for k,v in hudCache.iteritems():
+    #    #    if k in ('wonWhenSeenStreet1', 'wonAtSD', 'totalProfit'):
+    #    #        hudCacheInt[k] = v
+    #    #    else:
+    #    #        hudCacheInt[k] = map(lambda x: 1 if x else 0, v)
+    #
+    #    try:
+    #        inserts = []
+    #        for i in xrange(len(player_ids)):
+    #            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+    #            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
+    #
+    #            if (category=="holdem"):
+    #                startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
+    #                card3 = None
+    #                card4 = None
+    #            elif (category=="omahahi" or category=="omahahilo"):
+    #                startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1]
+    #                                                ,card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
+    #                card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
+    #                card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
+    #            else:
+    #                raise FpdbError("invalid category")
+    #
+    #            inserts.append( (
+    #                             hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid - needed for hudcache
+    #                             card1, card2, card3, card4, startCards,
+    #                             winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
+    #                             hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
+    #                             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
+    #                             hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
+    #                             hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
+    #                             hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
+    #                             hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
+    #                             hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
+    #                             hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
+    #                             hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
+    #                             hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
+    #                             hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
+    #                             hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
+    #                             hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
+    #                             hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
+    #                             hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
+    #                             hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
+    #                             hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
+    #                             hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
+    #                             hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
+    #                             hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
+    #                             hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
+    #                             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
+    #                             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
+    #                             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
+    #                            ) )
+    #        c = self.get_cursor()
+    #        c.executemany ("""
+    #    INSERT INTO HandsPlayers
+    #    (handId, playerId, startCash, position,  tourneyTypeId,
+    #     card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
+    #     street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+    #     street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+    #     street1Aggr, street2Aggr, street3Aggr, street4Aggr,
+    #     otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
+    #     foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
+    #     wonWhenSeenStreet1, wonAtSD,
+    #     stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+    #     street1CBChance, street1CBDone, street2CBChance, street2CBDone,
+    #     street3CBChance, street3CBDone, street4CBChance, street4CBDone,
+    #     foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
+    #     foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
+    #     street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
+    #     street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
+    #     street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+    #     street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
+    #    )
+    #    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+    #                                      ,inserts )
+    #        result.append( self.get_last_insert_id(c) ) # wrong? not used currently
+    #    except:
+    #        raise FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
+    #
+    #    return result
+
+        pass
+
+
+#################################
+# Finish of NEWIMPORT CODE
+#################################
+
+
 
     def storeHands(self, backend, site_hand_no, gametype_id
                   ,hand_start_time, names, tableName, maxSeats, hudCache
