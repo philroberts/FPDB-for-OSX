@@ -182,7 +182,7 @@ class HUD_main(object):
 #    need their own access to the database, but should open their own
 #    if it is required.
         try:
-            self.db_connection = Database.Database(self.config, self.db_name, 'temp')
+            self.db_connection = Database.Database(self.config)
             self.db_connection.init_hud_stat_vars(hud_days)
             tourny_finder = re.compile('(\d+) (\d+)')
             
