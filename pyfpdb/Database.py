@@ -49,11 +49,14 @@ import logging, logging.config
 logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger('db')
 
+
 class Database:
 
     MYSQL_INNODB = 2
     PGSQL = 3
     SQLITE = 4
+
+    hero_hudstart_def = '1999-12-31'   # default for length of Hero's stats in HUD
 
     # Data Structures for index and foreign key creation
     # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -183,6 +186,7 @@ class Database:
 
     def __init__(self, c, sql = None): 
         log.info("Creating Database instance, sql = %s" % sql)
+        self.config = c
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
         self.connection = self.fdb.db
@@ -1098,13 +1102,28 @@ class Database:
 
     #end def fillDefaultData
 
-    def rebuild_hudcache(self):
+    def rebuild_hudcache(self, start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
 
         try:
             stime = time()
+            #  get hero's screen names and player ids
+            self.hero, self.hero_ids = {}, {}
+            if start == None:
+                start = self.hero_hudstart_def
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    self.hero_ids[site_id] = self.get_player_id(self.config, site, self.hero[site_id])
+
+            where = "where hp.playerId not in (-53, " + ", ".join(map(str, self.hero_ids.values())) \
+                    + ") or h.handStart > '" + start + "'"
+            rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
+
             self.get_cursor().execute(self.sql.query['clearHudCache'])
-            self.get_cursor().execute(self.sql.query['rebuildHudCache'])
+            self.get_cursor().execute(rebuild_sql)
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:

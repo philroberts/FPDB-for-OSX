@@ -2511,6 +2511,7 @@ class Sql:
                           ,sum(street4CheckCallRaiseDone)
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2659,6 +2660,7 @@ class Sql:
                           ,sum(CAST(street4CheckCallRaiseDone as integer))
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2807,6 +2809,7 @@ class Sql:
                           ,sum(CAST(street4CheckCallRaiseDone as integer))
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
