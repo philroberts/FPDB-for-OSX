@@ -1120,7 +1120,6 @@ class Database:
                     if p_id:
                         self.hero_ids[site_id] = p_id
 
-            print "hero_ids =", self.hero_ids
             if self.hero_ids == {}:
                 where = ""
             else:
