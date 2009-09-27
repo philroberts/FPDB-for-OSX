@@ -26,17 +26,17 @@ def twoStartCards(value1, suit1, value2, suit2):
     if value1 < 2 or value2 < 2:
         ret = 0
     if value1 == value2: # pairs
-        ret = (13 * (value2-2) + (value2-1) )
+        ret = (13 * (value2-2) + (value2-2) )
     elif suit1 == suit2:
         if value1 > value2:
-            ret = 13 * (value1-2) + (value2-1)
+            ret = 13 * (value1-2) + (value2-2)
         else:
-            ret = 13 * (value2-2) + (value1-1)
+            ret = 13 * (value2-2) + (value1-2)
     else:
         if value1 > value2:
-            ret = 13 * (value2-2) + (value2-1)
+            ret = 13 * (value2-2) + (value1-2)
         else:
-            ret = 13 * (value1-2) + (value2-1)
+            ret = 13 * (value1-2) + (value2-2)
             
 #    print "twoStartCards(", value1, suit1, value2, suit2, ")=", ret
     return ret
@@ -46,7 +46,6 @@ def twoStartCardString(card):
         into a string like AQo """
     ret = 'xx'
     if card > 0:
-        card -= 1
         s = ('2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
         x = card / 13
         y = card - 13 * x
