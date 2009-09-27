@@ -1116,10 +1116,16 @@ class Database:
                 if result:
                     site_id = result[0][0]
                     self.hero[site_id] = self.config.supported_sites[site].screen_name
-                    self.hero_ids[site_id] = self.get_player_id(self.config, site, self.hero[site_id])
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        self.hero_ids[site_id] = p_id
 
-            where = "where hp.playerId not in (-53, " + ", ".join(map(str, self.hero_ids.values())) \
-                    + ") or h.handStart > '" + start + "'"
+            print "hero_ids =", self.hero_ids
+            if self.hero_ids == {}:
+                where = ""
+            else:
+                where = "where hp.playerId not in (-53, " + ", ".join(map(str, self.hero_ids.values())) \
+                        + ") or h.handStart > '" + start + "'"
             rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
 
             self.get_cursor().execute(self.sql.query['clearHudCache'])
