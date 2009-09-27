@@ -144,6 +144,47 @@ class Hud:
         repositem = gtk.MenuItem('Reposition StatWindows')
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
+                
+        aggitem = gtk.MenuItem('Show Stats')
+        menu.append(aggitem)
+        aggMenu = gtk.Menu()
+        aggitem.set_submenu(aggMenu)
+        # set agg_bb_mult to 1 to stop aggregation
+        item = gtk.MenuItem('For This Blind Level')
+        item.ms = 1
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem1', item) 
+        # 
+        item = gtk.MenuItem('For Multiple Blind Levels')
+        aggMenu.append(item)
+        setattr(self, 'showStatsMenuItem2', item) 
+        # 
+        item = gtk.MenuItem('0.5 to 2.0 x Current Blinds')
+        item.ms = 2.01
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem3', item) 
+        # 
+        item = gtk.MenuItem('0.33 to 3.0 x Current Blinds')
+        item.ms = 3.01
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem4', item) 
+        # 
+        item = gtk.MenuItem('0.1 to 10 x Current Blinds')
+        item.ms = 10.01
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem5', item) 
+        # 
+        item = gtk.MenuItem('All Levels')
+        item.ms = 10000
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem6', item) 
+        
+        eventbox.connect_object("button-press-event", self.on_button_press, menu)
         
         debugitem = gtk.MenuItem('Debug StatWindows')
         menu.append(debugitem)
@@ -177,9 +218,18 @@ class Hud:
                 self.create(*self.creation_attrs)
                 self.update(self.hand, self.config)
             except Exception, e:
-                print "Expcetion:",str(e)
+                print "Exception:",str(e)
                 pass
-        
+
+    def set_aggregation(self, widget):
+        # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
+        self.hud_params['h_aggregate_ring'] = True
+        self.hud_params['h_aggregate_tour'] = True
+
+        if self.hud_params['agg_bb_mult'] != widget.ms:
+            print 'set_aggregation', widget.ms
+            self.hud_params['agg_bb_mult'] = widget.ms
+
     def update_table_position(self):
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
@@ -631,56 +681,6 @@ class Popup_window:
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
         window.window.set_transient_for(self.table.gdkhandle)
 #        window.present()
-
-   
-
-class HUD_Params:
-
-    def __init__(self, hud):
-        self.aggregate_stats = hud.def_aggregate_stats
-        self.hud_style       = hud.def_hud_style
-        self.hud_days        = hud.def_hud_days
-        self.agg_bb_mult     = hud.def_agg_bb_mult
-        self.hud_session_gap = hud.def_hud_session_gap
-
-        self.h_aggregate_stats = hud.def_h_aggregate_stats
-        self.h_hud_style       = hud.def_h_hud_style
-        self.h_hud_days        = hud.def_h_hud_days
-        self.h_agg_bb_mult     = hud.def_h_agg_bb_mult
-        self.h_hud_session_gap = hud.def_h_hud_session_gap
-
-    def set_aggregate_stats(self, agg):
-        self.aggregate_stats = agg
-    def set_hud_style(self, style):
-        self.hud_style = style
-    def set_hud_days(self, days):
-        self.hud_days = days
-    def set_agg_bb_mult(self, mult):
-        self.agg_bb_mult = mult
-    def set_hud_session_gap(self, gap):
-        self.hud_session_gap = gap
-
-    def set_aggregate_stats(self, agg):
-        self.aggregate_stats = agg
-    def set_hud_style(self, style):
-        self.hud_style = style
-    def set_hud_days(self, days):
-        self.hud_days = days
-    def set_agg_bb_mult(self, mult):
-        self.agg_bb_mult = mult
-    def set_hud_session_gap(self, gap):
-        self.hud_session_gap = gap
-
-    def get_aggregate_stats(self):
-        return self.aggregate_stats
-    def get_hud_style(self):
-        return self.hud_style
-    def get_hud_days(self):
-        return self.hud_days
-    def get_agg_bb_mult(self):
-        return self.agg_bb_mult
-    def get_hud_session_gap(self):
-        return self.hud_session_gap
 
 
 if __name__== "__main__":

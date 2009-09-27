@@ -57,36 +57,46 @@ import Tables
 import Hud
 
 # To add to config:
-aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult
-hud_style = 'A'       # A=All-time 
+#aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult           *** this var now replaced by def_hud_params list
+#hud_style = 'A'       # A=All-time                                            *** this var now replaced by def_hud_params list
                       # S=Session
                       # T=timed (last n days - set hud_days to required value)
                       # Future values may also include: 
                       #                                 H=Hands (last n hands)
-hud_days  = 90        # Max number of days from each player to use for hud stats
-agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds
+#hud_days  = 90        # Max number of days from each player to use for hud stats                         *** this var now replaced by def_hud_params list
+#agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds           *** this var now replaced by def_hud_params list
                       # must be < (agg_bb_mult * smaller blinds) to be aggregated
                       # ie. 100 will aggregate almost everything, 2 will probably agg just the 
                       # next higher and lower levels into the current one, try 3/10/30/100
-hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
+#hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
                       # (hands every 2 mins for 1 hour = one session, if followed
                       # by a 40 minute gap and then more hands on same table that is
                       # a new session)
 #hud_hands = 0        # Max number of hands from each player to use for hud stats (not used)
 
-def_hud_params = { 'aggregate_ring' : False
-                 , 'aggregate_tour' : False
-                 , 'hud_style'  : 'A'
-                 , 'hud_days '  : 90
-                 , 'agg_bb_mult' : 100
-                 , 'hud_session_gap' : 30
-                 # second set of variables for hero
+# New list to hold all HUD params
+# - Set aggregate_ring and/or aggregate_tour to True is you want to include stats from other blind levels in the HUD display
+# - If aggregation is used, the value of agg_bb_mult determines how what levels are included, e.g.
+#   if agg_bb_mult is 100, almost all levels are included in all HUD displays
+#   if agg_bb_mult is 2.1, levels from half to double the current blind level are included in the HUD
+# - Set hud_style to A to see stats for all-time
+#   Set hud_style to S to only see stats for current session (currently this shows stats for the last 24 hours)
+#   Set hud_style to T to only see stats for the last N days (uses value in hud_days)
+# - Set hud_days to N to see stats for the last N days in the HUD (only applies if hud_style is T)
+def_hud_params = { # Settings for all players apart from program owner ('hero')
+                   'aggregate_ring' : False
+                 , 'aggregate_tour' : True
+                 , 'hud_style'      : 'A'
+                 , 'hud_days'       : 90
+                 , 'agg_bb_mult'    : 1                    # 1 means no aggregation
+                 # , 'hud_session_gap' : 30             not currently used
+                   # Second set of variables for hero - these settings only apply to the program owner
                  , 'h_aggregate_ring' : False
-                 , 'h_aggreagte_tour' : False
-                 , 'h_hud_style' : 'A'
-                 , 'h_hud_days ' : 90
-                 , 'h_agg_bb_mult' : 100
-                 , 'h_hud_session_gap' : 30
+                 , 'h_aggreagte_tour' : True
+                 , 'h_hud_style'      : 'A'
+                 , 'h_hud_days'       : 90
+                 , 'h_agg_bb_mult'    : 1                  # 1 means no aggregation
+                 # , 'h_hud_session_gap' : 30           not currently used
                  }
 
 
@@ -183,7 +193,6 @@ class HUD_main(object):
 #    if it is required.
         try:
             self.db_connection = Database.Database(self.config)
-            self.db_connection.init_hud_stat_vars(hud_days)
             tourny_finder = re.compile('(\d+) (\d+)')
             
 #       get hero's screen names and player ids
@@ -205,11 +214,6 @@ class HUD_main(object):
 #        if there is a db error, complain, skip hand, and proceed
                 try:
                     (table_name, max, poker_game, type, site_id) = self.db_connection.get_table_name(new_hand_id)
-                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_params, self.hero_ids)
-                                    #self.hud_params['aggregate_tour'] if type = "tour" 
-                                    #    else self.hud_params['aggregate_ring'],
-                                    #hud_style,
-                                    #agg_bb_mult)
 
                     cards      = self.db_connection.get_cards(new_hand_id)
                     comm_cards = self.db_connection.get_common_cards(new_hand_id)
@@ -237,6 +241,16 @@ class HUD_main(object):
 
 #        Update an existing HUD
                 if temp_key in self.hud_dict:
+                    try:
+                        # get stats using hud's specific params
+                        self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days'] )
+                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_dict[temp_key].hud_params, self.hero_ids)
+                    except:
+                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                        print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                        if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                            sys.stderr.write("Database get_stats error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                        continue
                     self.hud_dict[temp_key].stat_dict = stat_dict
                     self.hud_dict[temp_key].cards = cards
                     [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
@@ -244,6 +258,16 @@ class HUD_main(object):
         
 #        Or create a new HUD
                 else:
+                    try:
+                        # get stats using default params
+                        self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'] )
+                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_params, self.hero_ids)
+                    except:
+                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                        print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                        if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                            sys.stderr.write("Database get_stats error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                        continue
                     if type == "tour":
                         tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
                     else:
