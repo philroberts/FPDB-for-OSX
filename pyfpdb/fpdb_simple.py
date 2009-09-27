@@ -913,32 +913,52 @@ def recogniseGametypeID(backend, db, cursor, topline, smallBlindLine, site_id, c
 #end def recogniseGametypeID
  
 def recogniseTourneyTypeId(db, siteId, tourneySiteId, buyin, fee, knockout, rebuyOrAddon):
+    ret = -1
     cursor = db.get_cursor()
     # First we try to find the tourney itself (by its tourneySiteId) in case it has already been inserted before (by a summary file for instance)
     # The reason is that some tourneys may not be identified correctly in the HH toplines (especially Buy-In and Fee which are used to search/create the TourneyTypeId)
     #TODO: When the summary file will be dumped to BD, if the tourney is already in, Buy-In/Fee may need an update (e.g. creation of a new type and link to the Tourney)
     cursor.execute (db.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', db.sql.query['placeholder']), (tourneySiteId, siteId))
-    result=cursor.fetchone()
+    result = cursor.fetchone()
     
     try:
         len(result)
+        ret = result[0]
     except:
         cursor.execute( """SELECT id FROM TourneyTypes 
                            WHERE siteId=%s AND buyin=%s AND fee=%s 
                            AND knockout=%s AND rebuyOrAddon=%s"""
                       , (siteId, buyin, fee, knockout, rebuyOrAddon) )
-        result=cursor.fetchone()
-        #print "tried SELECTing gametypes.id, result:",result
+        result = cursor.fetchone()
+        #print "tried selecting tourneytypes.id, result:", result
     
         try:
             len(result)
+            ret = result[0]
         except TypeError:#this means we need to create a new entry
-            cursor.execute( """INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) 
-                               VALUES (%s, %s, %s, %s, %s)"""
-                          , (siteId, buyin, fee, knockout, rebuyOrAddon) )
-            result = db.get_last_insert_id(cursor)
+            #print "insert new tourneytype record ..."
+            try:
+                cursor.execute( """INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) 
+                                   VALUES (%s, %s, %s, %s, %s)"""
+                              , (siteId, buyin, fee, knockout, rebuyOrAddon) )
+                ret = db.get_last_insert_id(cursor)
+            except:
+                #print "maybe tourneytype was created since select, try selecting again ..."
+                cursor.execute( """SELECT id FROM TourneyTypes 
+                                   WHERE siteId=%s AND buyin=%s AND fee=%s 
+                                   AND knockout=%s AND rebuyOrAddon=%s"""
+                              , (siteId, buyin, fee, knockout, rebuyOrAddon) )
+                result = cursor.fetchone()
+                try:
+                    len(result)
+                    ret = result[0]
+                except:
+                    print "Failed to find or insert TourneyTypes record"
+                    ret = -1   # failed to find or insert record
+                #print "tried selecting tourneytypes.id again, result:", result
             
-    return result[0]
+    #print "recogniseTourneyTypeId: returning", ret
+    return ret
 #end def recogniseTourneyTypeId
  
  

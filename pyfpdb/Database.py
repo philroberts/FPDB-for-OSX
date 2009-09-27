@@ -1098,8 +1098,10 @@ class Database:
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         elif self.backend == self.PGSQL:
-            c.execute("insert into TourneyTypes values (1,1,0,0,0,False,False,null,False,False,False);")
-        else:
+            c.execute("""insert into TourneyTypes(siteId, buyin, fee, maxSeats, knockout
+                                                 ,rebuyOrAddon, speed, headsUp, shootout, matrix)
+                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
+        elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
                          values (1, 1, 0, 0, 0, False, False, null, False, False, False);""")
@@ -1768,6 +1770,8 @@ class Database:
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
         except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error storing hand: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise FpdbError( "store_hands_players_holdem_omaha_tourney error: " + str(sys.exc_value) )
         
         return result
@@ -2000,27 +2004,40 @@ class Database:
     #end def storeHudCache
  
     def store_tourneys(self, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
+        ret = -1
         try:
             # try and create tourney record, fetch id if it already exists
             # avoids race condition when doing the select first
+            cursor = self.get_cursor()
+            cursor.execute("savepoint ins_tourney")
             cursor.execute("""INSERT INTO Tourneys
                           (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime)
                           VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                           ,(tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
-            tmp = self.get_last_insert_id(cursor)
-            #cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
-            #tmp=cursor.fetchone()
-            #print "created new tourneys.id:",tmp
+            ret = self.get_last_insert_id(cursor)
+            #print "created new tourneys.id:",ret
         except:
-            #if   str(sys.exc_value)  .... not unique index error:
+            #if   str(sys.exc_value) contains 'sitetourneyno':
             #    raise FpdbError( "store_tourneys error: " + str(sys.exc_value) )
             #else:
-            cursor = self.get_cursor()
-            cursor.execute( "SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s".replace('%s', self.sql.query['placeholder'])
-                          , (siteTourneyNo, tourneyTypeId) )
-            tmp = cursor.fetchone()[0]
-        
-        return tmp
+            #print "error insert tourney (%s) trying select ..." % (str(sys.exc_value),)
+            cursor.execute("rollback to savepoint ins_tourney")
+            try:
+                cursor.execute( "SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s".replace('%s', self.sql.query['placeholder'])
+                              , (siteTourneyNo, tourneyTypeId) )
+                rec = cursor.fetchone()
+                #print "select tourney result: ", rec
+                try:
+                    len(rec)
+                    ret = rec[0]
+                except:
+                    print "Tourney id not found"
+            except:
+                print "Error selecting tourney id:", str(sys.exc_info()[1])
+
+        cursor.execute("release savepoint ins_tourney")
+        #print "store_tourneys returning", ret
+        return ret
     #end def store_tourneys
 
     def store_tourneys_players(self, tourney_id, player_ids, payin_amounts, ranks, winnings):
@@ -2034,21 +2051,31 @@ class Database:
             #print "winnings:",winnings
             for i in xrange(len(player_ids)):
                 try:
+                    cursor.execute("savepoint ins_tplayer")
                     cursor.execute("""INSERT INTO TourneysPlayers
                     (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                     (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
                     
                     tmp = self.get_last_insert_id(cursor)
-                    #print "created new tourneys_players.id:",tmp
+                    result.append(tmp)
+                    #print "created new tourneys_players.id:", tmp
                 except:
+                    cursor.execute("rollback to savepoint ins_tplayer")
                     cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
                                   ,(tourney_id, player_ids[i]))
-                    tmp=cursor.fetchone()[0]
-                    #print "tried SELECTing tourneys_players.id:",tmp
-                result.append(tmp)
+                    tmp = cursor.fetchone()
+                    #print "tried SELECTing tourneys_players.id:", tmp
+                    try:
+                        len(tmp)
+                        result.append(tmp[0])
+                    except:
+                        print "tplayer id not found for tourney,player %s,%s" % (tourney_id, player_ids[i])
+                        pass
         except:
             raise FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
-        
+
+        cursor.execute("release savepoint ins_tplayer")
+        #print "store_tourneys_players returning", result
         return result
     #end def store_tourneys_players
 
