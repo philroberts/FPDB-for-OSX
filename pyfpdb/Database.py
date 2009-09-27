@@ -372,7 +372,10 @@ class Database:
         return winners
 
     def init_hud_stat_vars(self, hud_days):
-        """Initialise variables used by Hud to fetch stats."""
+        """Initialise variables used by Hud to fetch stats:
+           self.hand_1day_ago   handId of latest hand played more than a day ago
+           self.date_ndays_ago  date n days ago
+        """
 
         self.hand_1day_ago = 1
         try:
@@ -385,9 +388,10 @@ class Database:
         else:
             if row and row[0]:
                 self.hand_1_day_ago = row[0]
-            d = timedelta(days=hud_days)
-            now = datetime.utcnow() - d
-            self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
+
+        d = timedelta(days=hud_days)
+        now = datetime.utcnow() - d
+        self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
