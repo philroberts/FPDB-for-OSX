@@ -56,15 +56,15 @@ import Database
 import Tables
 import Hud
 
-# To add to config:
-#aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult           *** this var now replaced by def_hud_params list
-#hud_style = 'A'       # A=All-time                                            *** this var now replaced by def_hud_params list
+# To add to config:           *** these vars now replaced by def_hud_params list
+#aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult
+#hud_style = 'A'       # A=All-time
                       # S=Session
                       # T=timed (last n days - set hud_days to required value)
                       # Future values may also include: 
                       #                                 H=Hands (last n hands)
-#hud_days  = 90        # Max number of days from each player to use for hud stats                         *** this var now replaced by def_hud_params list
-#agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds           *** this var now replaced by def_hud_params list
+#hud_days  = 90        # Max number of days from each player to use for hud stats
+#agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds
                       # must be < (agg_bb_mult * smaller blinds) to be aggregated
                       # ie. 100 will aggregate almost everything, 2 will probably agg just the 
                       # next higher and lower levels into the current one, try 3/10/30/100
@@ -92,7 +92,7 @@ def_hud_params = { # Settings for all players apart from program owner ('hero')
                  # , 'hud_session_gap' : 30             not currently used
                    # Second set of variables for hero - these settings only apply to the program owner
                  , 'h_aggregate_ring' : False
-                 , 'h_aggreagte_tour' : True
+                 , 'h_aggregate_tour' : True
                  , 'h_hud_style'      : 'A'
                  , 'h_hud_days'       : 90
                  , 'h_agg_bb_mult'    : 1                  # 1 means no aggregation

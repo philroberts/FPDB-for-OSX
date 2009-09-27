@@ -156,29 +156,29 @@ class Hud:
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem1', item) 
         # 
-        item = gtk.MenuItem('For Multiple Blind Levels')
+        item = gtk.MenuItem('For Multiple Blind Levels:')
         aggMenu.append(item)
         setattr(self, 'showStatsMenuItem2', item) 
         # 
-        item = gtk.MenuItem('0.5 to 2.0 x Current Blinds')
+        item = gtk.MenuItem('  0.5 to 2.0 x Current Blinds')
         item.ms = 2.01
         aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem3', item) 
         # 
-        item = gtk.MenuItem('0.33 to 3.0 x Current Blinds')
+        item = gtk.MenuItem('  0.33 to 3.0 x Current Blinds')
         item.ms = 3.01
         aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem4', item) 
         # 
-        item = gtk.MenuItem('0.1 to 10 x Current Blinds')
+        item = gtk.MenuItem('  0.1 to 10 x Current Blinds')
         item.ms = 10.01
         aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem5', item) 
         # 
-        item = gtk.MenuItem('All Levels')
+        item = gtk.MenuItem('  All Levels')
         item.ms = 10000
         aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
@@ -223,8 +223,8 @@ class Hud:
 
     def set_aggregation(self, widget):
         # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
-        self.hud_params['h_aggregate_ring'] = True
-        self.hud_params['h_aggregate_tour'] = True
+        self.hud_params['aggregate_ring'] = True
+        self.hud_params['aggregate_tour'] = True
 
         if self.hud_params['agg_bb_mult'] != widget.ms:
             print 'set_aggregation', widget.ms
