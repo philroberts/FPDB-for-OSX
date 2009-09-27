@@ -1107,10 +1107,12 @@ class Database:
 
         try:
             stime = time()
-            #  get hero's screen names and player ids
-            self.hero, self.hero_ids = {}, {}
-            if start == None:
-                start = self.hero_hudstart_def
+            # derive list of program owner's player ids
+            self.hero = {}                               # name of program owner indexed by site id
+            self.hero_ids = {'dummy':-53, 'dummy2':-52}  # playerid of owner indexed by site id
+                                                         # make sure at least two values in list
+                                                         # so that tuple generation creates doesn't use
+                                                         # () or (1,) style
             for site in self.config.get_supported_sites():
                 result = self.get_site_id(site)
                 if result:
@@ -1118,13 +1120,15 @@ class Database:
                     self.hero[site_id] = self.config.supported_sites[site].screen_name
                     p_id = self.get_player_id(self.config, site, self.hero[site_id])
                     if p_id:
-                        self.hero_ids[site_id] = p_id
-
+                        self.hero_ids[site_id] = int(p_id)
+            
+            if start == None:
+                start = self.hero_hudstart_def
             if self.hero_ids == {}:
                 where = ""
             else:
-                where = "where hp.playerId not in (-53, " + ", ".join(map(str, self.hero_ids.values())) \
-                        + ") or h.handStart > '" + start + "'"
+                where = "where hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                        + " or h.handStart > '" + start + "'"
             rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
 
             self.get_cursor().execute(self.sql.query['clearHudCache'])
@@ -1141,19 +1145,26 @@ class Database:
         """fetches earliest stylekey from hudcache for one of hero's player ids"""
 
         try:
-            self.hero, self.hero_ids = {}, {'dummy':-53}   # make sure at least one value is used in sql
+            # derive list of program owner's player ids
+            self.hero = {}                               # name of program owner indexed by site id
+            self.hero_ids = {'dummy':-53, 'dummy2':-52}  # playerid of owner indexed by site id
+                                                         # make sure at least two values in list
+                                                         # so that tuple generation creates doesn't use
+                                                         # () or (1,) style
             for site in self.config.get_supported_sites():
                 result = self.get_site_id(site)
                 if result:
                     site_id = result[0][0]
                     self.hero[site_id] = self.config.supported_sites[site].screen_name
-                    self.hero_ids[site_id] = self.get_player_id(self.config, site, self.hero[site_id])
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        self.hero_ids[site_id] = int(p_id)
             
             q = self.sql.query['get_hero_hudcache_start'].replace("<playerid_list>", str(tuple(self.hero_ids.values())))
             c = self.get_cursor()
             c.execute(q)
             tmp = c.fetchone()
-            if tmp == None:
+            if tmp == (None,):
                 return self.hero_hudstart_def
             else:
                 return "20"+tmp[0][1:3] + "-" + tmp[0][3:5] + "-" + tmp[0][5:7]
