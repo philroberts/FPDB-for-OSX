@@ -2818,9 +2818,14 @@ class Sql:
                             ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
 """
 
+            self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
+                                                       from HudCache hc
+                                                       where hc.playerId in <playerid_list>
+                                                       and   hc.styleKey like 'd%'"""
+
             if db_server == 'mysql':
                 self.query['analyze'] = """
-                analyze table Autorates, GameTypes, Hands, HandsPlayers, Hudcache, Players
+                analyze table Autorates, GameTypes, Hands, HandsPlayers, HudCache, Players
                             , Settings, Sites, Tourneys, TourneysPlayers, TourneyTypes
                 """
             else:  # assume postgres

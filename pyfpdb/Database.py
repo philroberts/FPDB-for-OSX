@@ -1132,6 +1132,32 @@ class Database:
             print err
     #end def rebuild_hudcache
 
+    def get_hero_hudcache_start(self):
+        """fetches earliest stylekey from hudcache for one of hero's player ids"""
+
+        try:
+            self.hero, self.hero_ids = {}, {'dummy':-53}   # make sure at least one value is used in sql
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    self.hero_ids[site_id] = self.get_player_id(self.config, site, self.hero[site_id])
+            
+            q = self.sql.query['get_hero_hudcache_start'].replace("<playerid_list>", str(tuple(self.hero_ids.values())))
+            c = self.get_cursor()
+            c.execute(q)
+            tmp = c.fetchone()
+            if tmp == None:
+                return self.hero_hudstart_def
+            else:
+                return "20"+tmp[0][1:3] + "-" + tmp[0][3:5] + "-" + tmp[0][5:7]
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "Error rebuilding hudcache:", str(sys.exc_value)
+            print err
+    #end def get_hero_hudcache_start
+
 
     def analyzeDB(self):
         """Do whatever the DB can offer to update index/table statistics"""

@@ -263,7 +263,7 @@ class fpdb:
 
             hb = gtk.HBox(True, 1)
             self.start_date = gtk.Entry(max=12)
-            self.start_date.set_text(self.db.hero_hudstart_def)
+            self.start_date.set_text( self.db.get_hero_hudcache_start() )
             lbl = gtk.Label(" Hero's cache starts: ")
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
