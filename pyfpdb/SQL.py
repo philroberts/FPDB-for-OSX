@@ -331,7 +331,8 @@ class Sql:
                                 speed varchar(10),
                                 headsUp BOOLEAN NOT NULL DEFAULT False,
                                 shootout BOOLEAN NOT NULL DEFAULT False,
-                                matrix BOOLEAN NOT NULL DEFAULT False
+                                matrix BOOLEAN NOT NULL DEFAULT False,
+                                sng BOOLEAN NOT NULL DEFAULT False
                                 )
                             ENGINE=INNODB"""
             elif db_server == 'postgresql':
@@ -346,7 +347,8 @@ class Sql:
                             speed varchar(10),
                             headsUp BOOLEAN NOT NULL DEFAULT False,
                             shootout BOOLEAN NOT NULL DEFAULT False,
-                            matrix BOOLEAN NOT NULL DEFAULT False
+                            matrix BOOLEAN NOT NULL DEFAULT False,
+                            sng BOOLEAN NOT NULL DEFAULT False
                             )"""
             elif db_server == 'sqlite':
                 self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
@@ -360,7 +362,8 @@ class Sql:
                             speed TEXT,
                             headsUp BOOLEAN NOT NULL DEFAULT 0,
                             shootout BOOLEAN NOT NULL DEFAULT 0,
-                            matrix BOOLEAN NOT NULL DEFAULT 0
+                            matrix BOOLEAN NOT NULL DEFAULT 0,
+                            sng BOOLEAN NOT NULL DEFAULT 0
                             )"""
 
             ################################
@@ -820,7 +823,21 @@ class Sql:
                             comment TEXT,
                             commentTs timestamp without time zone)"""
             elif db_server == 'sqlite':
-                self.query['createTourneysPlayersTable'] = """ """
+                self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
+                            id INT PRIMARY KEY,
+                            tourneyId INT,
+                            playerId INT,
+                            payinAmount INT,
+                            rank INT,
+                            winnings INT,
+                            nbRebuys INT DEFAULT 0,
+                            nbAddons INT DEFAULT 0,
+                            nbKO INT DEFAULT 0,
+                            comment TEXT,
+                            commentTs timestamp without time zone,
+                            FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+                            FOREIGN KEY (playerId) REFERENCES Players(id)
+                            )"""
 
 
             ################################
@@ -851,7 +868,18 @@ class Sql:
                             comment TEXT,
                             commentTs timestamp without time zone)"""
             elif db_server == 'sqlite':
-                self.query['createHandsActionsTable'] = """ """
+                self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
+                            id INT PRIMARY KEY,
+                            handsPlayerId BIGINT,
+                            street SMALLINT,
+                            actionNo SMALLINT,
+                            action CHAR(5),
+                            allIn INT,
+                            amount INT,
+                            comment TEXT,
+                            commentTs timestamp without time zone,
+                            FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id)
+                            )"""
 
 
             ################################
@@ -1160,26 +1188,42 @@ class Sql:
 
 
             if db_server == 'mysql':
-                self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
+                self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD UNIQUE INDEX siteTourneyNo(siteTourneyNo, tourneyTypeId)"""
             elif db_server == 'postgresql':
-                self.query['addTourneyIndex'] = """CREATE INDEX siteTourneyNo ON Tourneys (siteTourneyNo)"""
+                self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
             elif db_server == 'sqlite':
-                self.query['addHandsIndex'] = """ """
+                self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
 
             if db_server == 'mysql':
-                self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
+                self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(siteHandNo, gameTypeId)"""
             elif db_server == 'postgresql':
-                self.query['addHandsIndex'] = """CREATE INDEX siteHandNo ON Hands (siteHandNo)"""
+                self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gameTypeId)"""
             elif db_server == 'sqlite':
-                self.query['addHandsIndex'] = """ """
+                self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gameTypeId)"""
 
             if db_server == 'mysql':
-                self.query['addPlayersIndex'] = """ALTER TABLE Players ADD INDEX name(name)"""
+                self.query['addPlayersIndex'] = """ALTER TABLE Players ADD UNIQUE INDEX name(name, siteId)"""
             elif db_server == 'postgresql':
-                self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
+                self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
             elif db_server == 'sqlite':
-                self.query['addPlayersIndex'] = """ """
+                self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
 
+            if db_server == 'mysql':
+                self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX tourneyId(tourneyId, playerId)"""
+            elif db_server == 'postgresql':
+                self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
+            elif db_server == 'sqlite':
+                self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
+
+            if db_server == 'mysql':
+                self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(buyin, fee
+                                                 , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            elif db_server == 'postgresql':
+                self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
+                                                 , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            elif db_server == 'sqlite':
+                self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
+                                                 , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
 
             self.query['get_last_hand'] = "select max(id) from Hands"
 
@@ -1188,7 +1232,7 @@ class Sql:
                     from Players, Sites
                     where Players.name = %s
                     and Sites.name = %s
-                    and Players.SiteId = Sites.id
+                    and Players.siteId = Sites.id
                 """
 
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
@@ -1537,10 +1581,11 @@ class Sql:
                 """
 
             self.query['get_table_name'] = """
-                    select tableName, maxSeats, category, type
-                    from Hands,Gametypes
-                    where Hands.id = %s
-                    and Gametypes.id = Hands.gametypeId
+                    select h.tableName, h.maxSeats, gt.category, gt.type, gt.siteId
+                    from Hands h
+                        ,Gametypes gt
+                    where h.id = %s
+                    and   gt.id = h.gametypeId
                 """
 
             self.query['get_actual_seat'] = """
@@ -2466,6 +2511,7 @@ class Sql:
                           ,sum(street4CheckCallRaiseDone)
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2614,6 +2660,7 @@ class Sql:
                           ,sum(CAST(street4CheckCallRaiseDone as integer))
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2762,6 +2809,7 @@ class Sql:
                           ,sum(CAST(street4CheckCallRaiseDone as integer))
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2770,9 +2818,14 @@ class Sql:
                             ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
 """
 
+            self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
+                                                       from HudCache hc
+                                                       where hc.playerId in <playerid_list>
+                                                       and   hc.styleKey like 'd%'"""
+
             if db_server == 'mysql':
                 self.query['analyze'] = """
-                analyze table Autorates, GameTypes, Hands, HandsPlayers, Hudcache, Players
+                analyze table Autorates, GameTypes, Hands, HandsPlayers, HudCache, Players
                             , Settings, Sites, Tourneys, TourneysPlayers, TourneyTypes
                 """
             else:  # assume postgres

@@ -73,6 +73,7 @@ class Hud:
         self.stacked       = True
         self.site          = table.site
         self.mw_created    = False
+        self.hud_params    = parent.hud_params
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -143,6 +144,47 @@ class Hud:
         repositem = gtk.MenuItem('Reposition StatWindows')
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
+                
+        aggitem = gtk.MenuItem('Show Stats')
+        menu.append(aggitem)
+        aggMenu = gtk.Menu()
+        aggitem.set_submenu(aggMenu)
+        # set agg_bb_mult to 1 to stop aggregation
+        item = gtk.MenuItem('For This Blind Level')
+        item.ms = 1
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem1', item) 
+        # 
+        item = gtk.MenuItem('For Multiple Blind Levels:')
+        aggMenu.append(item)
+        setattr(self, 'showStatsMenuItem2', item) 
+        # 
+        item = gtk.MenuItem('  0.5 to 2.0 x Current Blinds')
+        item.ms = 2.01
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem3', item) 
+        # 
+        item = gtk.MenuItem('  0.33 to 3.0 x Current Blinds')
+        item.ms = 3.01
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem4', item) 
+        # 
+        item = gtk.MenuItem('  0.1 to 10 x Current Blinds')
+        item.ms = 10.01
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem5', item) 
+        # 
+        item = gtk.MenuItem('  All Levels')
+        item.ms = 10000
+        aggMenu.append(item)
+        item.connect("activate", self.set_aggregation)
+        setattr(self, 'showStatsMenuItem6', item) 
+        
+        eventbox.connect_object("button-press-event", self.on_button_press, menu)
         
         debugitem = gtk.MenuItem('Debug StatWindows')
         menu.append(debugitem)
@@ -176,9 +218,18 @@ class Hud:
                 self.create(*self.creation_attrs)
                 self.update(self.hand, self.config)
             except Exception, e:
-                print "Expcetion:",str(e)
+                print "Exception:",str(e)
                 pass
-        
+
+    def set_aggregation(self, widget):
+        # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
+        self.hud_params['aggregate_ring'] = True
+        self.hud_params['aggregate_tour'] = True
+
+        if self.hud_params['agg_bb_mult'] != widget.ms:
+            print 'set_aggregation', widget.ms
+            self.hud_params['agg_bb_mult'] = widget.ms
+
     def update_table_position(self):
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
@@ -218,7 +269,11 @@ class Hud:
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
             s.kill_popups()
-            s.window.destroy()    
+            try:
+                # throws "invalid window handle" in WinXP (sometimes?)
+                s.window.destroy()
+            except:
+                pass
         self.stat_windows = {}
 #    also kill any aux windows
         for aux in self.aux_windows:
@@ -626,7 +681,7 @@ class Popup_window:
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
         window.window.set_transient_for(self.table.gdkhandle)
 #        window.present()
-        
+
 
 if __name__== "__main__":
     main_window = gtk.Window()

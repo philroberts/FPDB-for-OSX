@@ -673,7 +673,14 @@ class HoldemOmahaHand(Hand):
             if shown:  self.shown.add(player)
             if mucked: self.mucked.add(player)
         else:
-            self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+            if len(cards) in (2, 4):  # avoid adding board by mistake (Everleaf problem)
+                self.addHoleCards('PREFLOP', player, open=[], closed=cards, shown=shown, mucked=mucked, dealt=dealt)
+            elif len(cards) == 5:     # cards holds a winning hand, not hole cards
+                # filter( lambda x: x not in b, a )		# calcs a - b where a and b are lists
+                # so diff is set to the winning hand minus the board cards, if we're lucky that leaves the hole cards
+                diff = filter( lambda x: x not in self.board['FLOP']+self.board['TURN']+self.board['RIVER'], cards )
+                if len(diff) == 2 and self.gametype['category'] in ('holdem'):
+                    self.addHoleCards('PREFLOP', player, open=[], closed=diff, shown=shown, mucked=mucked, dealt=dealt)
 
     def getStreetTotals(self):
         # street1Pot INT,                  /* pot size at flop/street4 */
