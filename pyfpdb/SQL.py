@@ -1384,28 +1384,45 @@ class Sql:
                          INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
                          INNER JOIN Players p       ON (p.id = hc.playerId)
                     WHERE h.id = %s
-                    AND   hc.styleKey > %s
-                          /* styleKey is currently 'd' (for date) followed by a yyyymmdd
-                             date key. Set it to 0000000 or similar to get all records  */
-                    /* Note: s means the placeholder 'percent's but we can't include that
-                       in comments. (db api thinks they are actual arguments)
-                       Could also check activeseats here even if only 3 groups eg 2-3/4-6/7+ 
-                       e.g. could use a multiplier:
-                       AND   h.seats > s / 1.25  and  hp.seats < s * 1.25
-                       where s is the number of active players at the current table (and
-                       1.25 would be a config value so user could change it)
-                    */
-                    AND   hc.gametypeId+0 in
-                          (SELECT gt1.id from Gametypes gt1, Gametypes gt2
-                           WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
-                           AND    gt1.type = gt2.type               /* ring/tourney */
-                           AND    gt1.category = gt2.category       /* holdem/stud*/
-                           AND    gt1.limittype = gt2.limittype     /* fl/nl */
-                           AND    gt1.bigblind < gt2.bigblind * %s  /* bigblind similar size */
-                           AND    gt1.bigblind > gt2.bigblind / %s
-                           AND    gt2.id = h.gametypeId)
+                    AND   (   /* 2 separate parts for hero and opponents */
+                              (    hp.playerId != %s
+                               AND hc.styleKey > %s
+                               AND hc.gametypeId+0 in
+                                     (SELECT gt1.id from Gametypes gt1, Gametypes gt2
+                                      WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
+                                      AND    gt1.type = gt2.type               /* ring/tourney */
+                                      AND    gt1.category = gt2.category       /* holdem/stud*/
+                                      AND    gt1.limittype = gt2.limittype     /* fl/nl */
+                                      AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
+                                      AND    gt1.bigblind >= gt2.bigblind / %s
+                                      AND    gt2.id = h.gametypeId)
+                              )
+                           OR
+                              (    hp.playerId = %s
+                               AND hc.styleKey > %s
+                               AND hc.gametypeId+0 in
+                                     (SELECT gt1.id from Gametypes gt1, Gametypes gt2
+                                      WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
+                                      AND    gt1.type = gt2.type               /* ring/tourney */
+                                      AND    gt1.category = gt2.category       /* holdem/stud*/
+                                      AND    gt1.limittype = gt2.limittype     /* fl/nl */
+                                      AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
+                                      AND    gt1.bigblind >= gt2.bigblind / %s
+                                      AND    gt2.id = h.gametypeId)
+                              )
+                          )
                     GROUP BY hc.PlayerId, p.name
                 """
+                    #  NOTES on above cursor:
+                    #  - Do NOT include %s inside query in a comment - the db api thinks 
+                    #  they are actual arguments.
+                    #  - styleKey is currently 'd' (for date) followed by a yyyymmdd
+                    #  date key. Set it to 0000000 or similar to get all records
+                    #  Could also check activeseats here even if only 3 groups eg 2-3/4-6/7+ 
+                    #  e.g. could use a multiplier:
+                    #  AND   h.seats > %s / 1.25  and  hp.seats < %s * 1.25
+                    #  where %s is the number of active players at the current table (and
+                    #  1.25 would be a config value so user could change it)
 
             if db_server == 'mysql':
                 self.query['get_stats_from_hand_session'] = """
