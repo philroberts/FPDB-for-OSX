@@ -123,7 +123,8 @@ class HUD_main(object):
             del(self.hud_dict[table])
         self.main_window.resize(1,1)
 
-    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, stat_dict, cards):
+    def create_HUD(self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
+        """type is "ring" or "tour" used to set hud_params"""
         
         def idle_func():
             
@@ -149,6 +150,18 @@ class HUD_main(object):
         self.hud_dict[table_name].table_name = table_name
         self.hud_dict[table_name].stat_dict = stat_dict
         self.hud_dict[table_name].cards = cards
+
+        if type == "tour" and self.hud_params['aggregate_tour'] == False:
+            self.hud_dict[table_name].hud_params['agg_bb_mult'] = 1
+        elif type == "ring" and self.hud_params['aggregate_ring'] == False:
+            self.hud_dict[table_name].hud_params['agg_bb_mult'] = 1
+        if type == "tour" and self.hud_params['h_aggregate_tour'] == False:
+            self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
+        elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
+            self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
+        self.hud_params['aggregate_ring'] == True
+        self.hud_params['h_aggregate_ring'] == True
+
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
     
@@ -228,7 +241,7 @@ class HUD_main(object):
                         # get stats using hud's specific params
                         self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                              , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
+                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
@@ -245,7 +258,7 @@ class HUD_main(object):
                     try:
                         # get stats using default params
                         self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_params, self.hero_ids[site_id])
+                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
@@ -262,7 +275,7 @@ class HUD_main(object):
                             table_name = "%s %s" % (tour_number, tab_number)
                         sys.stderr.write("table name "+table_name+" not found, skipping.\n")
                     else:
-                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, stat_dict, cards)
+                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                 self.db_connection.connection.rollback()
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
