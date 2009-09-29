@@ -227,9 +227,10 @@ class Database:
         #self.hud_hero_days  = 30   # but last T days or last H hands for yourself
 
         # vars for hand ids or dates fetched according to above config:
-        self.hand_1day_ago = 0           # max hand id more than 24 hrs earlier than now
-        self.date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD)
-        self.date_nhands_ago = {}        # dates N hands ago per player - not used yet
+        self.hand_1day_ago = 0             # max hand id more than 24 hrs earlier than now
+        self.date_ndays_ago = 'd000000'    # date N days ago ('d' + YYMMDD)
+        self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
+        self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
 
         self.cursor = self.fdb.cursor
 
@@ -371,10 +372,11 @@ class Database:
             winners[row[0]] = row[1]
         return winners
 
-    def init_hud_stat_vars(self, hud_days):
+    def init_hud_stat_vars(self, hud_days, h_hud_days):
         """Initialise variables used by Hud to fetch stats:
-           self.hand_1day_ago   handId of latest hand played more than a day ago
-           self.date_ndays_ago  date n days ago
+           self.hand_1day_ago     handId of latest hand played more than a day ago
+           self.date_ndays_ago    date n days ago
+           self.h_date_ndays_ago  date n days ago for hero (different n)
         """
 
         self.hand_1day_ago = 1
@@ -392,6 +394,10 @@ class Database:
         d = timedelta(days=hud_days)
         now = datetime.utcnow() - d
         self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
+
+        d = timedelta(days=h_hud_days)
+        now = datetime.utcnow() - d
+        self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
@@ -413,33 +419,46 @@ class Database:
 
     def get_stats_from_hand( self, hand
                            , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'agg_bb_mult':100}
-                           , hero_ids = {}
+                           , hero_id = -1
                            ):
-        aggregate = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
-        hud_style = hud_params['hud_style']
-        agg_bb_mult = hud_params['agg_bb_mult']
+        aggregate   = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
+        hud_style   = hud_params['hud_style']
+        agg_bb_mult = hud_params['agg_bb_mult'] if aggregate else 1
+        h_aggregate   = hud_params['h_aggregate_tour'] if type == "tour" else hud_params['h_aggregate_ring']
+        h_hud_style   = hud_params['h_hud_style']
+        h_agg_bb_mult = hud_params['h_agg_bb_mult'] if h_aggregate else 1
         stat_dict = {}
 
-        if hud_style == 'S':
+        if hud_style == 'S' or h_hud_style == 'S':
+            self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
+            if hud_style == 'S' and h_hud_style == 'S':
+                return stat_dict
 
-            self.get_stats_from_hand_session(hand, stat_dict)
-            return stat_dict
+        if hud_style == 'T':
+            stylekey = self.date_ndays_ago
+        elif hud_style == 'A':
+            stylekey = '0000000'  # all stylekey values should be higher than this
+        elif hud_style == 'S':
+            stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        #elif hud_style == 'H':
+        #    stylekey = date_nhands_ago  needs array by player here ...
 
-        else:   # hud_style == A
+        if h_hud_style == 'T':
+            h_stylekey = self.h_date_ndays_ago
+        elif h_hud_style == 'A':
+            h_stylekey = '0000000'  # all stylekey values should be higher than this
+        elif h_hud_style == 'S':
+            h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        #elif h_hud_style == 'H':
+        #    h_stylekey = date_nhands_ago  needs array by player here ...
 
-            if hud_style == 'T':
-                stylekey = self.date_ndays_ago
-            #elif hud_style == 'H':
-            #    stylekey = date_nhands_ago  needs array by player here ...
-            else:  # assume A (all-time)
-                stylekey = '0000000'  # all stylekey values should be higher than this
-
-            if aggregate:
-                query = 'get_stats_from_hand_aggregated'
-                subs = (hand, stylekey, agg_bb_mult, agg_bb_mult)
-            else:
-                query = 'get_stats_from_hand'
-                subs = (hand, stylekey)
+        #if aggregate:      always use aggreagte query now: use agg_bb_mult of 1 for no aggregation:
+        query = 'get_stats_from_hand_aggregated'
+        subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
+        print "agg query subs:", subs
+        #else:
+        #    query = 'get_stats_from_hand'
+        #    subs = (hand, stylekey)
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -457,7 +476,13 @@ class Database:
         return stat_dict
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
-    def get_stats_from_hand_session(self, hand, stat_dict):
+    def get_stats_from_hand_session(self, hand, stat_dict, hero_id, hud_style, h_hud_style):
+        """Get stats for just this session (currently defined as any play in the last 24 hours - to
+           be improved at some point ...)
+           h_hud_style and hud_style params indicate whether to get stats for hero and/or others
+           - only fetch heros stats if h_hud_style == 'S',
+             and only fetch others stats if hud_style == 'S'
+        """
 
         query = self.sql.query['get_stats_from_hand_session']
         if self.db_server == 'mysql':
@@ -478,18 +503,20 @@ class Database:
         if colnames[0].lower() == 'player_id':
             playerid = row[0]
 
+            # Loop through stats adding them to appropriate stat_dict:
             while row:
-                for name, val in zip(colnames, row):
-                    if not playerid in stat_dict:
-                        stat_dict[playerid] = {}
-                        stat_dict[playerid][name.lower()] = val
-                    elif not name.lower() in stat_dict[playerid]:
-                        stat_dict[playerid][name.lower()] = val
-                    elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
-                        stat_dict[playerid][name.lower()] += val
-                n += 1
-                if n >= 10000: break  # todo: don't think this is needed so set nice and high 
-                                     #       for now - comment out or remove?
+                if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
+                    for name, val in zip(colnames, row):
+                        if not playerid in stat_dict:
+                            stat_dict[playerid] = {}
+                            stat_dict[playerid][name.lower()] = val
+                        elif not name.lower() in stat_dict[playerid]:
+                            stat_dict[playerid][name.lower()] = val
+                        elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
+                            stat_dict[playerid][name.lower()] += val
+                    n += 1
+                    if n >= 10000: break  # todo: don't think this is needed so set nice and high 
+                                         #       for now - comment out or remove?
                 row = c.fetchone()
         else:
             log.error("ERROR: query %s result does not have player_id as first column" % (query,))

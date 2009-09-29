@@ -56,25 +56,8 @@ import Database
 import Tables
 import Hud
 
-# To add to config:           *** these vars now replaced by def_hud_params list
-#aggregate_stats = {"ring": False, "tour": False} # uses agg_bb_mult
-#hud_style = 'A'       # A=All-time
-                      # S=Session
-                      # T=timed (last n days - set hud_days to required value)
-                      # Future values may also include: 
-                      #                                 H=Hands (last n hands)
-#hud_days  = 90        # Max number of days from each player to use for hud stats
-#agg_bb_mult = 100     # 1 = no aggregation. When aggregating stats across levels larger blinds
-                      # must be < (agg_bb_mult * smaller blinds) to be aggregated
-                      # ie. 100 will aggregate almost everything, 2 will probably agg just the 
-                      # next higher and lower levels into the current one, try 3/10/30/100
-#hud_session_gap = 30  # Gap (minutes) between hands that indicates a change of session
-                      # (hands every 2 mins for 1 hour = one session, if followed
-                      # by a 40 minute gap and then more hands on same table that is
-                      # a new session)
-#hud_hands = 0        # Max number of hands from each player to use for hud stats (not used)
 
-# New list to hold all HUD params
+# HUD params:
 # - Set aggregate_ring and/or aggregate_tour to True is you want to include stats from other blind levels in the HUD display
 # - If aggregation is used, the value of agg_bb_mult determines how what levels are included, e.g.
 #   if agg_bb_mult is 100, almost all levels are included in all HUD displays
@@ -88,14 +71,14 @@ def_hud_params = { # Settings for all players apart from program owner ('hero')
                  , 'aggregate_tour' : True
                  , 'hud_style'      : 'A'
                  , 'hud_days'       : 90
-                 , 'agg_bb_mult'    : 1                    # 1 means no aggregation
+                 , 'agg_bb_mult'    : 1                 # 1 means no aggregation
                  # , 'hud_session_gap' : 30             not currently used
                    # Second set of variables for hero - these settings only apply to the program owner
                  , 'h_aggregate_ring' : False
                  , 'h_aggregate_tour' : True
-                 , 'h_hud_style'      : 'A'
-                 , 'h_hud_days'       : 90
-                 , 'h_agg_bb_mult'    : 1                  # 1 means no aggregation
+                 , 'h_hud_style'      : 'S'             # A(ll) / S(ession) / T(ime in days)
+                 , 'h_hud_days'       : 30
+                 , 'h_agg_bb_mult'    : 1               # 1 means no aggregation
                  # , 'h_hud_session_gap' : 30           not currently used
                  }
 
@@ -243,8 +226,9 @@ class HUD_main(object):
                 if temp_key in self.hud_dict:
                     try:
                         # get stats using hud's specific params
-                        self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days'] )
-                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_dict[temp_key].hud_params, self.hero_ids)
+                        self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
+                                                             , self.hud_dict[temp_key].hud_params['h_hud_days'])
+                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
@@ -260,8 +244,8 @@ class HUD_main(object):
                 else:
                     try:
                         # get stats using default params
-                        self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'] )
-                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_params, self.hero_ids)
+                        self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
+                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, self.hud_params, self.hero_ids[site_id])
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
