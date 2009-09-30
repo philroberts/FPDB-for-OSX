@@ -74,6 +74,7 @@ class Hud:
         self.site          = table.site
         self.mw_created    = False
         self.hud_params    = parent.hud_params
+        
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -150,7 +151,7 @@ class Hud:
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
         # set agg_bb_mult to 1 to stop aggregation
-        item = gtk.MenuItem('For This Blind Level')
+        item = gtk.CheckMenuItem('For This Blind Level Only')
         item.ms = 1
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
@@ -160,25 +161,25 @@ class Hud:
         self.aggMenu.append(item)
         setattr(self, 'showStatsMenuItem2', item) 
         # 
-        item = gtk.MenuItem('  0.5 to 2.0 x Current Blinds')
-        item.ms = 2.01
+        item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
+        item.ms = 2
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem3', item) 
         # 
-        item = gtk.MenuItem('  0.33 to 3.0 x Current Blinds')
-        item.ms = 3.01
+        item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
+        item.ms = 3
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem4', item) 
         # 
-        item = gtk.MenuItem('  0.1 to 10 x Current Blinds')
-        item.ms = 10.01
+        item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
+        item.ms = 10
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
         setattr(self, 'showStatsMenuItem5', item) 
         # 
-        item = gtk.MenuItem('  All Levels')
+        item = gtk.CheckMenuItem('  All Levels')
         item.ms = 10000
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation)
@@ -188,23 +189,26 @@ class Hud:
         self.aggMenu.append(item)
         setattr(self, 'showStatsMenuItem7', item) 
         # 
-        item = gtk.MenuItem('  All Time')
-        item.ms = 'HA'
+        item = gtk.CheckMenuItem('  All Time')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style)
-        setattr(self, 'showStatsMenuItem8', item) 
+        item.connect("activate", self.set_hud_style, 'HA')
+        setattr(self, 'HAStyleOption', item)
         # 
-        item = gtk.MenuItem('  Session')
-        item.ms = 'HS'
+        item = gtk.CheckMenuItem('  Session')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style)
-        setattr(self, 'showStatsMenuItem9', item) 
+        item.connect("activate", self.set_hud_style, 'HS')
+        setattr(self, 'HSStyleOption', item) 
         # 
-        item = gtk.MenuItem('  %s Days' % (self.hud_params['h_hud_days']))
-        item.ms = 'HT'
+        item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style)
-        setattr(self, 'showStatsMenuItem11', item) 
+        item.connect("activate", self.set_hud_style, 'HT')
+        setattr(self, 'HTStyleOption', item) 
+        if self.hud_params['h_hud_style'] == 'A':
+            item.set_active(True)
+        if self.hud_params['h_hud_style'] == 'S':
+            item.set_active(True)
+        if self.hud_params['h_hud_style'] == 'T':
+            item.set_active(True)
         
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
         
@@ -252,14 +256,26 @@ class Hud:
             print 'set_aggregation', widget.ms
             self.hud_params['agg_bb_mult'] = widget.ms
 
-    def set_hud_style(self, widget):
+    def set_hud_style(self, widget, val):
         # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
-        if widget.ms[0] == 'H':
+        if val[0] == 'H':
             param = 'h_hud_style'
         else:
             param = 'hud_style'
-        self.hud_params[param] = widget.ms[1]
-        print "setting self.hud_params[%s] = %s" % (param,widget.ms[1])
+        
+        if val[1] == 'A' and getattr(self, 'HAStyleOption').get_active():
+            self.hud_params[param] = 'A'
+            getattr(self, 'HSStyleOption').set_active(False)
+            getattr(self, 'HTStyleOption').set_active(False)
+        elif val[1] == 'S' and getattr(self, 'HSStyleOption').get_active():
+            self.hud_params[param] = 'S'
+            getattr(self, 'HAStyleOption').set_active(False)
+            getattr(self, 'HTStyleOption').set_active(False)
+        elif val[1] == 'T' and self.HTStyleOption.get_active():
+            self.hud_params[param] = 'T'
+            getattr(self, 'HAStyleOption').set_active(False)
+            getattr(self, 'HSStyleOption').set_active(False)
+        print "setting self.hud_params[%s] = %s" % (param, val[1])
 
     def update_table_position(self):
         if os.name == 'nt':

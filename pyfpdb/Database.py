@@ -417,7 +417,7 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
-    def get_stats_from_hand( self, hand
+    def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'agg_bb_mult':100}
                            , hero_id = -1
                            ):
@@ -2542,12 +2542,12 @@ if __name__=="__main__":
     if hero:
         print "nutOmatic is id_player = %d" % hero
     
-    stat_dict = db_connection.get_stats_from_hand(h)
+    stat_dict = db_connection.get_stats_from_hand(h, "ring")
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
     #print "nutOmatics stats:"
-    #stat_dict = db_connection.get_stats_from_hand(h, hero)
+    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
     #for p in stat_dict.keys():
     #    print p, "  ", stat_dict[p]
 
