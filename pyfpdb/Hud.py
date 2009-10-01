@@ -177,7 +177,7 @@ class Hud:
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, 10000)
-        setattr(self, 'aggBBmultItemAll', item) 
+        setattr(self, 'aggBBmultItem10000', item) 
         # 
         item = gtk.MenuItem('For Hero:')
         self.aggMenu.append(item)
@@ -253,14 +253,21 @@ class Hud:
                 print "Exception:",str(e)
                 pass
 
-    def set_aggregation(self, widget):
+    def set_aggregation(self, widget, val):
         # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
         self.hud_params['aggregate_ring'] = True
         self.hud_params['aggregate_tour'] = True
+        self.hud_params['h_aggregate_ring'] = True
+        self.hud_params['h_aggregate_tour'] = True
 
-        if self.hud_params['agg_bb_mult'] != widget.ms:
-            print 'set_aggregation', widget.ms
-            self.hud_params['agg_bb_mult'] = widget.ms
+        if     self.hud_params['agg_bb_mult'] != val \
+           and getattr(self, 'aggBBmultItem'+str(val)).get_active():
+            print 'set_aggregation', val
+            self.hud_params['agg_bb_mult'] = val
+            self.hud_params['h_agg_bb_mult'] = val
+            for mult in ('1', '2', '3', '10', '10000'):
+                if mult != str(val):
+                    getattr(self, 'aggBBmultItem'+mult).set_active(False)
 
     def set_hud_style(self, widget, val):
         # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
