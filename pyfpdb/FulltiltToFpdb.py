@@ -40,6 +40,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<SB>[.0-9]+)/
                                     \$?(?P<BB>[.0-9]+)\s
                                     (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
+                                    \$?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
                                  ''', re.VERBOSE)
@@ -52,6 +53,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<TABLE>[-\s\da-zA-Z]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
+                                    \$?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>\d+:\d+:\d+\s\w+\s-\s\d+/\d+/\d+)\s?
                                     (?P<PARTIAL>\(partial\))?\n
@@ -143,6 +145,7 @@ class Fulltilt(HandHistoryConverter):
         return [["ring", "hold", "nl"], 
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
+                ["ring", "hold", "cn"],
 
                 ["ring", "stud", "fl"],
 
@@ -175,7 +178,10 @@ class Fulltilt(HandHistoryConverter):
                  'Stud H/L' : ('stud','studhilo')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
-        info['limitType'] = limits[mg['LIMIT']]
+        if mg['CAP']:
+            info['limitType'] = 'cn'
+        else:
+            info['limitType'] = limits[mg['LIMIT']]
         info['sb'] = mg['SB']
         info['bb'] = mg['BB']
         if mg['GAME'] != None:
