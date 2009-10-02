@@ -1,0 +1,24 @@
+Source: free-poker-tools
+Maintainer: Mika Bostrom <bostik+fpdb@bostik.iki.fi>
+Section: games
+Priority: extra
+Build-Depends: debhelper, python-support
+Standards-Version: 3.8.0
+
+Package: python-fpdb
+Architecture: any
+Section: games
+Priority: extra
+Depends: ${python:Depends}, python-gtk2, python-matplotlib,
+	python-support, mysql-server | postgresql | python-pysqlite2,
+	python-psycopg2 | python-mysqldb
+Suggests: wine
+Description: free poker database with HUD
+ FPDB is a statistics tool for online poker. It supports most sites
+ and several games. Most prominent feature is its heads-up display
+ (HUD) which shows statistical details for players in real time.
+ .
+ Due to the fact that most online poker clients are Windows-only,
+ you may need to install wine.
+ .
+ FPDB is under heavy development.

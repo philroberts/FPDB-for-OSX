@@ -49,11 +49,14 @@ import logging, logging.config
 logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
 log = logging.getLogger('db')
 
+
 class Database:
 
     MYSQL_INNODB = 2
     PGSQL = 3
     SQLITE = 4
+
+    hero_hudstart_def = '1999-12-31'   # default for length of Hero's stats in HUD
 
     # Data Structures for index and foreign key creation
     # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -70,19 +73,19 @@ class Database:
                 [ ] # no db with index 0
               , [ ] # no db with index 1
               , [ # indexes for mysql (list index 2)
-                  {'tab':'Players',         'col':'name',              'drop':0}
-                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-                , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
+                #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
+                #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
+                  {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} # not needed, handled by fk
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0} # not needed, handled by fk
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
+                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 ]
               , [ # indexes for postgres (list index 3)
                   {'tab':'Gametypes',       'col':'siteId',            'drop':0}
                 , {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
-                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
+                #, {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                 , {'tab':'HandsActions',    'col':'handsPlayerId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':1}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':1}
@@ -91,22 +94,22 @@ class Database:
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
                 , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'Players',         'col':'siteId',            'drop':1}
-                , {'tab':'Players',         'col':'name',              'drop':0}
+                #, {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
-                , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
+                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
-                , {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}
+                #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
-                  {'tab':'Players',         'col':'name',              'drop':0}
-                , {'tab':'Hands',           'col':'siteHandNo',        'drop':0}
-                , {'tab':'Hands',           'col':'gametypeId',        'drop':0} 
+                #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
+                #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
+                  {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                , {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}
+                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 ]
               ]
 
@@ -183,6 +186,7 @@ class Database:
 
     def __init__(self, c, sql = None): 
         log.info("Creating Database instance, sql = %s" % sql)
+        self.config = c
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.fdb.do_connect(c)
         self.connection = self.fdb.db
@@ -223,9 +227,10 @@ class Database:
         #self.hud_hero_days  = 30   # but last T days or last H hands for yourself
 
         # vars for hand ids or dates fetched according to above config:
-        self.hand_1day_ago = 0           # max hand id more than 24 hrs earlier than now
-        self.date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD)
-        self.date_nhands_ago = {}        # dates N hands ago per player - not used yet
+        self.hand_1day_ago = 0             # max hand id more than 24 hrs earlier than now
+        self.date_ndays_ago = 'd000000'    # date N days ago ('d' + YYMMDD)
+        self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
+        self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
 
         self.cursor = self.fdb.cursor
 
@@ -367,8 +372,12 @@ class Database:
             winners[row[0]] = row[1]
         return winners
 
-    def init_hud_stat_vars(self, hud_days):
-        """Initialise variables used by Hud to fetch stats."""
+    def init_hud_stat_vars(self, hud_days, h_hud_days):
+        """Initialise variables used by Hud to fetch stats:
+           self.hand_1day_ago     handId of latest hand played more than a day ago
+           self.date_ndays_ago    date n days ago
+           self.h_date_ndays_ago  date n days ago for hero (different n)
+        """
 
         self.hand_1day_ago = 1
         try:
@@ -381,9 +390,14 @@ class Database:
         else:
             if row and row[0]:
                 self.hand_1_day_ago = row[0]
-            d = timedelta(days=hud_days)
-            now = datetime.utcnow() - d
-            self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
+
+        d = timedelta(days=hud_days)
+        now = datetime.utcnow() - d
+        self.date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
+
+        d = timedelta(days=h_hud_days)
+        now = datetime.utcnow() - d
+        self.h_date_ndays_ago = "d%02d%02d%02d" % (now.year - 2000, now.month, now.day)
 
     def init_player_hud_stat_vars(self, playerid):
         # not sure if this is workable, to be continued ...
@@ -403,26 +417,48 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
-    def get_stats_from_hand(self, hand, aggregate = False, hud_style = 'A', agg_bb_mult = 100):
-        if hud_style == 'S':
+    def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
+                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'agg_bb_mult':100}
+                           , hero_id = -1
+                           ):
+        aggregate   = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
+        hud_style   = hud_params['hud_style']
+        agg_bb_mult = hud_params['agg_bb_mult'] if aggregate else 1
+        h_aggregate   = hud_params['h_aggregate_tour'] if type == "tour" else hud_params['h_aggregate_ring']
+        h_hud_style   = hud_params['h_hud_style']
+        h_agg_bb_mult = hud_params['h_agg_bb_mult'] if h_aggregate else 1
+        stat_dict = {}
 
-            return( self.get_stats_from_hand_session(hand) )
+        if hud_style == 'S' or h_hud_style == 'S':
+            self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
+            if hud_style == 'S' and h_hud_style == 'S':
+                return stat_dict
 
-        else:   # hud_style == A
+        if hud_style == 'T':
+            stylekey = self.date_ndays_ago
+        elif hud_style == 'A':
+            stylekey = '0000000'  # all stylekey values should be higher than this
+        elif hud_style == 'S':
+            stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        #elif hud_style == 'H':
+        #    stylekey = date_nhands_ago  needs array by player here ...
 
-            if hud_style == 'T':
-                stylekey = self.date_ndays_ago
-            #elif hud_style == 'H':
-            #    stylekey = date_nhands_ago  needs array by player here ...
-            else:  # assume A (all-time)
-                stylekey = '0000000'  # all stylekey values should be higher than this
+        if h_hud_style == 'T':
+            h_stylekey = self.h_date_ndays_ago
+        elif h_hud_style == 'A':
+            h_stylekey = '0000000'  # all stylekey values should be higher than this
+        elif h_hud_style == 'S':
+            h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        #elif h_hud_style == 'H':
+        #    h_stylekey = date_nhands_ago  needs array by player here ...
 
-            if aggregate:
-                query = 'get_stats_from_hand_aggregated'
-                subs = (hand, stylekey, agg_bb_mult, agg_bb_mult)
-            else:
-                query = 'get_stats_from_hand'
-                subs = (hand, stylekey)
+        #if aggregate:      always use aggreagte query now: use agg_bb_mult of 1 for no aggregation:
+        query = 'get_stats_from_hand_aggregated'
+        subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
+        print "agg query subs:", subs
+        #else:
+        #    query = 'get_stats_from_hand'
+        #    subs = (hand, stylekey)
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -430,7 +466,6 @@ class Database:
 #       now get the stats
         c.execute(self.sql.query[query], subs)
         colnames = [desc[0] for desc in c.description]
-        stat_dict = {}
         for row in c.fetchall():
             t_dict = {}
             for name, val in zip(colnames, row):
@@ -441,7 +476,13 @@ class Database:
         return stat_dict
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
-    def get_stats_from_hand_session(self, hand):
+    def get_stats_from_hand_session(self, hand, stat_dict, hero_id, hud_style, h_hud_style):
+        """Get stats for just this session (currently defined as any play in the last 24 hours - to
+           be improved at some point ...)
+           h_hud_style and hud_style params indicate whether to get stats for hero and/or others
+           - only fetch heros stats if h_hud_style == 'S',
+             and only fetch others stats if hud_style == 'S'
+        """
 
         query = self.sql.query['get_stats_from_hand_session']
         if self.db_server == 'mysql':
@@ -456,31 +497,34 @@ class Database:
         #print "sess_stats: subs =", subs, "subs[0] =", subs[0]
         c.execute(query, subs)
         colnames = [desc[0] for desc in c.description]
-        n,stat_dict = 0,{}
-        row = c.fetchone()
-        while row:
-            if colnames[0].lower() == 'player_id':
-                playerid = row[0]
-            else:
-                log.error("ERROR: query %s result does not have player_id as first column" % (query,))
-                break
+        n = 0
 
-            for name, val in zip(colnames, row):
-                if not playerid in stat_dict:
-                    stat_dict[playerid] = {}
-                    stat_dict[playerid][name.lower()] = val
-                elif not name.lower() in stat_dict[playerid]:
-                    stat_dict[playerid][name.lower()] = val
-                elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
-                    stat_dict[playerid][name.lower()] += val
-            n += 1
-            if n >= 4000: break  # todo: don't think this is needed so set nice and high 
-                                 #       for now - comment out or remove?
-            row = c.fetchone()
+        row = c.fetchone()
+        if colnames[0].lower() == 'player_id':
+            playerid = row[0]
+
+            # Loop through stats adding them to appropriate stat_dict:
+            while row:
+                if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
+                    for name, val in zip(colnames, row):
+                        if not playerid in stat_dict:
+                            stat_dict[playerid] = {}
+                            stat_dict[playerid][name.lower()] = val
+                        elif not name.lower() in stat_dict[playerid]:
+                            stat_dict[playerid][name.lower()] = val
+                        elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
+                            stat_dict[playerid][name.lower()] += val
+                    n += 1
+                    if n >= 10000: break  # todo: don't think this is needed so set nice and high 
+                                         #       for now - comment out or remove?
+                row = c.fetchone()
+        else:
+            log.error("ERROR: query %s result does not have player_id as first column" % (query,))
+
         #print "   %d rows fetched, len(stat_dict) = %d" % (n, len(stat_dict))
 
         #print "session stat_dict =", stat_dict
-        return stat_dict
+        #return stat_dict
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
@@ -491,6 +535,69 @@ class Database:
         else:
             return None
             
+    #returns the SQL ids of the names given in an array
+    # TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
+    # { playername: id } instead of depending on it's relation to the positions list
+    # then this can be reduced in complexity a bit
+
+    #def recognisePlayerIDs(cursor, names, site_id):
+    #    result = []
+    #    for i in xrange(len(names)):
+    #        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+    #        tmp=cursor.fetchall()
+    #        if (len(tmp)==0): #new player
+    #            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
+    #            #print "Number of players rows inserted: %d" % cursor.rowcount
+    #            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
+    #            tmp=cursor.fetchall()
+    #        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
+    #        result.append(tmp[0][0])
+    #    return result
+
+    def recognisePlayerIDs(self, names, site_id):
+        c = self.get_cursor()
+        q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" %(site_id, " OR name=".join([self.sql.query['placeholder'] for n in names]))
+        c.execute(q, names) # get all playerids by the names passed in
+        ids = dict(c.fetchall()) # convert to dict
+        if len(ids) != len(names):
+            notfound = [n for n in names if n not in ids] # make list of names not in database
+            if notfound: # insert them into database
+                q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
+                q_ins = q_ins.replace('%s', self.sql.query['placeholder'])
+                c.executemany(q_ins, [(n,) for n in notfound])
+                q2 = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in notfound]))
+                q2 = q2.replace('%s', self.sql.query['placeholder'])
+                c.execute(q2, notfound) # get their new ids
+                tmp = c.fetchall()
+                for n,id in tmp: # put them all into the same dict
+                    ids[n] = id
+        # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
+        return [ids[n] for n in names]
+    #end def recognisePlayerIDs
+
+    # Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
+    # this version could also be improved upon using list comprehensions, etc
+
+    #def recognisePlayerIDs(cursor, names, site_id):
+    #    result = []
+    #    notfound = []
+    #    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
+    #    tmp = dict(cursor.fetchall())
+    #    for n in names:
+    #        if n not in tmp:
+    #            notfound.append(n)
+    #        else:
+    #            result.append(tmp[n])
+    #    if notfound:
+    #        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
+    #        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
+    #        tmp = cursor.fetchall()
+    #        for n in tmp:
+    #            result.append(n[0])
+    #        
+    #    return result
+
+
     def get_site_id(self, site):
         c = self.get_cursor()
         c.execute(self.sql.query['getSiteId'], (site,))
@@ -855,6 +962,7 @@ class Database:
             log.debug(self.sql.query['createSettingsTable'])
             c = self.get_cursor()
             c.execute(self.sql.query['createSettingsTable'])
+
             log.debug(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
@@ -867,9 +975,14 @@ class Database:
             c.execute(self.sql.query['createHandsPlayersTable'])
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
-            #c.execute(self.sql.query['addTourneyIndex'])
-            #c.execute(self.sql.query['addHandsIndex'])
-            #c.execute(self.sql.query['addPlayersIndex'])
+
+            # create unique indexes:
+            c.execute(self.sql.query['addTourneyIndex'])
+            c.execute(self.sql.query['addHandsIndex'])
+            c.execute(self.sql.query['addPlayersIndex'])
+            c.execute(self.sql.query['addTPlayersIndex'])
+            c.execute(self.sql.query['addTTypesIndex'])
+
             self.fillDefaultData()
             self.commit()
         except:
@@ -1011,20 +1124,48 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
-        else:
+        elif self.backend == self.PGSQL:
+            c.execute("""insert into TourneyTypes(siteId, buyin, fee, maxSeats, knockout
+                                                 ,rebuyOrAddon, speed, headsUp, shootout, matrix)
+                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
+        elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
                          values (1, 1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
-    def rebuild_hudcache(self):
+    def rebuild_hudcache(self, start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
 
         try:
             stime = time()
+            # derive list of program owner's player ids
+            self.hero = {}                               # name of program owner indexed by site id
+            self.hero_ids = {'dummy':-53, 'dummy2':-52}  # playerid of owner indexed by site id
+                                                         # make sure at least two values in list
+                                                         # so that tuple generation creates doesn't use
+                                                         # () or (1,) style
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        self.hero_ids[site_id] = int(p_id)
+            
+            if start == None:
+                start = self.hero_hudstart_def
+            if self.hero_ids == {}:
+                where = ""
+            else:
+                where = "where hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                        + " or h.handStart > '" + start + "'"
+            rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
+
             self.get_cursor().execute(self.sql.query['clearHudCache'])
-            self.get_cursor().execute(self.sql.query['rebuildHudCache'])
+            self.get_cursor().execute(rebuild_sql)
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
@@ -1032,6 +1173,39 @@ class Database:
             print "Error rebuilding hudcache:", str(sys.exc_value)
             print err
     #end def rebuild_hudcache
+
+    def get_hero_hudcache_start(self):
+        """fetches earliest stylekey from hudcache for one of hero's player ids"""
+
+        try:
+            # derive list of program owner's player ids
+            self.hero = {}                               # name of program owner indexed by site id
+            self.hero_ids = {'dummy':-53, 'dummy2':-52}  # playerid of owner indexed by site id
+                                                         # make sure at least two values in list
+                                                         # so that tuple generation creates doesn't use
+                                                         # () or (1,) style
+            for site in self.config.get_supported_sites():
+                result = self.get_site_id(site)
+                if result:
+                    site_id = result[0][0]
+                    self.hero[site_id] = self.config.supported_sites[site].screen_name
+                    p_id = self.get_player_id(self.config, site, self.hero[site_id])
+                    if p_id:
+                        self.hero_ids[site_id] = int(p_id)
+            
+            q = self.sql.query['get_hero_hudcache_start'].replace("<playerid_list>", str(tuple(self.hero_ids.values())))
+            c = self.get_cursor()
+            c.execute(q)
+            tmp = c.fetchone()
+            if tmp == (None,):
+                return self.hero_hudstart_def
+            else:
+                return "20"+tmp[0][1:3] + "-" + tmp[0][3:5] + "-" + tmp[0][5:7]
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "Error rebuilding hudcache:", str(sys.exc_value)
+            print err
+    #end def get_hero_hudcache_start
 
 
     def analyzeDB(self):
@@ -1182,6 +1356,10 @@ class Database:
         return result
     #end def store_the_hand
 
+###########################
+# NEWIMPORT CODE
+###########################
+
     def storeHand(self, p):
         #stores into table hands:
         q = """INSERT INTO Hands ( 
@@ -1256,6 +1434,109 @@ class Database:
         ))
         #return getLastInsertId(backend, conn, cursor)
     # def storeHand
+
+    def storeHandsPlayers(self, p):
+    #def store_hands_players_holdem_omaha(self, backend, category, hands_id, player_ids, start_cashes
+    #                                    ,positions, card_values, card_suits, winnings, rakes, seatNos, hudCache):
+    #    result=[]
+    #
+    #    # postgres (and others?) needs the booleans converted to ints before saving:
+    #    # (or we could just save them as boolean ... but then we can't sum them so easily in sql ???)
+    #    # NO - storing booleans for now so don't need this
+    #    #hudCacheInt = {}
+    #    #for k,v in hudCache.iteritems():
+    #    #    if k in ('wonWhenSeenStreet1', 'wonAtSD', 'totalProfit'):
+    #    #        hudCacheInt[k] = v
+    #    #    else:
+    #    #        hudCacheInt[k] = map(lambda x: 1 if x else 0, v)
+    #
+    #    try:
+    #        inserts = []
+    #        for i in xrange(len(player_ids)):
+    #            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
+    #            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
+    #
+    #            if (category=="holdem"):
+    #                startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
+    #                card3 = None
+    #                card4 = None
+    #            elif (category=="omahahi" or category=="omahahilo"):
+    #                startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1]
+    #                                                ,card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
+    #                card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
+    #                card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
+    #            else:
+    #                raise FpdbError("invalid category")
+    #
+    #            inserts.append( (
+    #                             hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid - needed for hudcache
+    #                             card1, card2, card3, card4, startCards,
+    #                             winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
+    #                             hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
+    #                             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
+    #                             hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
+    #                             hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
+    #                             hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
+    #                             hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
+    #                             hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
+    #                             hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
+    #                             hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
+    #                             hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
+    #                             hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
+    #                             hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
+    #                             hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
+    #                             hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
+    #                             hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
+    #                             hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
+    #                             hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
+    #                             hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
+    #                             hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
+    #                             hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
+    #                             hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
+    #                             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
+    #                             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
+    #                             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
+    #                            ) )
+    #        c = self.get_cursor()
+    #        c.executemany ("""
+    #    INSERT INTO HandsPlayers
+    #    (handId, playerId, startCash, position,  tourneyTypeId,
+    #     card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
+    #     street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
+    #     street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
+    #     street1Aggr, street2Aggr, street3Aggr, street4Aggr,
+    #     otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
+    #     foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
+    #     wonWhenSeenStreet1, wonAtSD,
+    #     stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
+    #     street1CBChance, street1CBDone, street2CBChance, street2CBDone,
+    #     street3CBChance, street3CBDone, street4CBChance, street4CBDone,
+    #     foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
+    #     foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
+    #     street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
+    #     street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
+    #     street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+    #     street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
+    #    )
+    #    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+    #                                      ,inserts )
+    #        result.append( self.get_last_insert_id(c) ) # wrong? not used currently
+    #    except:
+    #        raise FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
+    #
+    #    return result
+
+        pass
+
+
+#################################
+# Finish of NEWIMPORT CODE
+#################################
+
+
 
     def storeHands(self, backend, site_hand_no, gametype_id
                   ,hand_start_time, names, tableName, maxSeats, hudCache
@@ -1516,6 +1797,8 @@ class Database:
             #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
             #result.append(cursor.fetchall()[0][0])
         except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error storing hand: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise FpdbError( "store_hands_players_holdem_omaha_tourney error: " + str(sys.exc_value) )
         
         return result
@@ -1748,27 +2031,40 @@ class Database:
     #end def storeHudCache
  
     def store_tourneys(self, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
+        ret = -1
         try:
+            # try and create tourney record, fetch id if it already exists
+            # avoids race condition when doing the select first
             cursor = self.get_cursor()
-            cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s".replace('%s', self.sql.query['placeholder'])
-                          , (siteTourneyNo, tourneyTypeId))
-            tmp=cursor.fetchone()
-            #print "tried SELECTing tourneys.id, result:",tmp
-            
-            try:
-                len(tmp)
-            except TypeError:#means we have to create new one
-                cursor.execute("""INSERT INTO Tourneys
-        (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime)
-        VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
-                              ,(tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
-                cursor.execute("SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s", (siteTourneyNo, tourneyTypeId))
-                tmp=cursor.fetchone()
-                #print "created new tourneys.id:",tmp
+            cursor.execute("savepoint ins_tourney")
+            cursor.execute("""INSERT INTO Tourneys
+                          (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime)
+                          VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
+                          ,(tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
+            ret = self.get_last_insert_id(cursor)
+            #print "created new tourneys.id:",ret
         except:
-            raise FpdbError( "store_tourneys error: " + str(sys.exc_value) )
-        
-        return tmp[0]
+            #if   str(sys.exc_value) contains 'sitetourneyno':
+            #    raise FpdbError( "store_tourneys error: " + str(sys.exc_value) )
+            #else:
+            #print "error insert tourney (%s) trying select ..." % (str(sys.exc_value),)
+            cursor.execute("rollback to savepoint ins_tourney")
+            try:
+                cursor.execute( "SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s".replace('%s', self.sql.query['placeholder'])
+                              , (siteTourneyNo, tourneyTypeId) )
+                rec = cursor.fetchone()
+                #print "select tourney result: ", rec
+                try:
+                    len(rec)
+                    ret = rec[0]
+                except:
+                    print "Tourney id not found"
+            except:
+                print "Error selecting tourney id:", str(sys.exc_info()[1])
+
+        cursor.execute("release savepoint ins_tourney")
+        #print "store_tourneys returning", ret
+        return ret
     #end def store_tourneys
 
     def store_tourneys_players(self, tourney_id, player_ids, payin_amounts, ranks, winnings):
@@ -1781,26 +2077,32 @@ class Database:
             #print "ranks:",ranks
             #print "winnings:",winnings
             for i in xrange(len(player_ids)):
-                cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
-                              ,(tourney_id, player_ids[i]))
-                tmp=cursor.fetchone()
-                #print "tried SELECTing tourneys_players.id:",tmp
-                
                 try:
-                    len(tmp)
-                except TypeError:
+                    cursor.execute("savepoint ins_tplayer")
                     cursor.execute("""INSERT INTO TourneysPlayers
-        (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
+                    (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                     (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
                     
-                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder']),
-                                   (tourney_id, player_ids[i]))
-                    tmp=cursor.fetchone()
-                    #print "created new tourneys_players.id:",tmp
-                result.append(tmp[0])
+                    tmp = self.get_last_insert_id(cursor)
+                    result.append(tmp)
+                    #print "created new tourneys_players.id:", tmp
+                except:
+                    cursor.execute("rollback to savepoint ins_tplayer")
+                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
+                                  ,(tourney_id, player_ids[i]))
+                    tmp = cursor.fetchone()
+                    #print "tried SELECTing tourneys_players.id:", tmp
+                    try:
+                        len(tmp)
+                        result.append(tmp[0])
+                    except:
+                        print "tplayer id not found for tourney,player %s,%s" % (tourney_id, player_ids[i])
+                        pass
         except:
             raise FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
-        
+
+        cursor.execute("release savepoint ins_tplayer")
+        #print "store_tourneys_players returning", result
         return result
     #end def store_tourneys_players
 
@@ -2023,10 +2325,10 @@ class Database:
     def tStoreTourneyPlayers(self, tourney, dbTourneyId):
         logging.debug("Database.tStoreTourneyPlayers")
         # First, get playerids for the players and specifically the one for hero : 
-        playersIds = fpdb_simple.recognisePlayerIDs(self, tourney.players, tourney.siteId)
+        playersIds = self.recognisePlayerIDs(tourney.players, tourney.siteId)
         # hero may be None for matrix tourneys summaries
 #        hero = [ tourney.hero ]
-#        heroId = fpdb_simple.recognisePlayerIDs(self, hero , tourney.siteId)
+#        heroId = self.recognisePlayerIDs(hero , tourney.siteId)
 #        logging.debug("hero Id = %s - playersId = %s" % (heroId , playersIds))
 
         tourneyPlayersIds=[]
@@ -2240,12 +2542,12 @@ if __name__=="__main__":
     if hero:
         print "nutOmatic is id_player = %d" % hero
     
-    stat_dict = db_connection.get_stats_from_hand(h)
+    stat_dict = db_connection.get_stats_from_hand(h, "ring")
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
     #print "nutOmatics stats:"
-    #stat_dict = db_connection.get_stats_from_hand(h, hero)
+    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
     #for p in stat_dict.keys():
     #    print p, "  ", stat_dict[p]
 

@@ -81,7 +81,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
         fee             = fpdb_simple.parseFee(hand[0])
         entries         = -1 #todo: parse this
         prizepool       = -1 #todo: parse this
-        knockout        = 0
+        knockout        = False
         tourneyStartTime= handStartTime #todo: read tourney start time
         rebuyOrAddon    = fpdb_simple.isRebuyOrAddon(hand[0])
 
@@ -118,7 +118,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
             seatLines.append(line)
 
     names       = fpdb_simple.parseNames(seatLines)
-    playerIDs   = fpdb_simple.recognisePlayerIDs(db, names, siteID)  # inserts players as needed
+    playerIDs   = db.recognisePlayerIDs(names, siteID)  # inserts players as needed
     tmp         = fpdb_simple.parseCashesAndSeatNos(seatLines)
     startCashes = tmp['startCashes']
     seatNos     = tmp['seatNos']
