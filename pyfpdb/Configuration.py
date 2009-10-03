@@ -278,6 +278,15 @@ class Import:
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
              % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
+class HudUI:
+    def __init__(self, node):
+        self.node = node
+        self.label  = node.getAttribute('label')
+
+    def __str__(self):
+        return "    label = %s\n" % self.label
+
+
 class Tv:
     def __init__(self, node):
         self.combinedStealFold = node.getAttribute("combinedStealFold")
@@ -388,6 +397,10 @@ class Config:
         for imp_node in doc.getElementsByTagName("import"):
             imp = Import(node = imp_node)
             self.imp = imp
+
+        for hui_node in doc.getElementsByTagName('hud_ui'):
+            hui = HudUI(node = hui_node)
+            self.ui = hui
 
         for tv_node in doc.getElementsByTagName("tv"):
             tv = Tv(node = tv_node)
@@ -598,6 +611,19 @@ class Config:
         try:    tv['combinedPostflop']  = self.tv.combinedPostflop
         except: tv['combinedPostflop']  = True
         return tv
+
+    # Allow to change the menu appearance
+    def get_hud_ui_parameters(self):
+        hui = {}
+        default_text = 'FPDB Menu - Right click\nLeft-Drag to Move'
+        try:
+            hui['label'] = self.ui.label
+            if self.ui.label == '':     # Empty menu label is a big no-no
+                hui['label'] = default_text
+        except:
+            hui['label'] = default_text
+        return hui
+
     
     def get_import_parameters(self):
         imp = {}
