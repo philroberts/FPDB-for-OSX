@@ -4,6 +4,9 @@
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
+    <hud_ui label="FPDB Menu - Right-click
+Left-Drag to Move" />
+
 	<supported_sites>
 
 	    <site enabled="True" 
