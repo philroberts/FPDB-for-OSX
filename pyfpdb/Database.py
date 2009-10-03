@@ -467,11 +467,13 @@ class Database:
         c.execute(self.sql.query[query], subs)
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
-            t_dict = {}
-            for name, val in zip(colnames, row):
-                t_dict[name.lower()] = val
-#                print t_dict
-            stat_dict[t_dict['player_id']] = t_dict
+            playerid = row[0]
+            if (playerid == hero_id and h_hud_style != 'S') or (playerid != hero_id and hud_style != 'S'):
+                t_dict = {}
+                for name, val in zip(colnames, row):
+                    t_dict[name.lower()] = val
+#                    print t_dict
+                stat_dict[t_dict['player_id']] = t_dict
 
         return stat_dict
 
@@ -501,10 +503,10 @@ class Database:
 
         row = c.fetchone()
         if colnames[0].lower() == 'player_id':
-            playerid = row[0]
 
             # Loop through stats adding them to appropriate stat_dict:
             while row:
+                playerid = row[0]
                 if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
                     for name, val in zip(colnames, row):
                         if not playerid in stat_dict:
