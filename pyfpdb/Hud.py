@@ -80,6 +80,7 @@ class Hud:
         
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
+        self.hud_ui     = config.get_hud_ui_parameters()
         
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
@@ -114,7 +115,7 @@ class Hud:
         win.set_opacity(self.colors["hudopacity"])
         
         eventbox = gtk.EventBox()
-        label = gtk.Label("FPDB Menu - Right click\nLeft-Drag to Move")
+        label = gtk.Label(self.hud_ui['label'])
         
         win.add(eventbox)
         eventbox.add(label)
