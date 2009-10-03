@@ -6,7 +6,7 @@ Build-Depends: debhelper, python-support
 Standards-Version: 3.8.0
 
 Package: python-fpdb
-Architecture: any
+Architecture: all
 Section: games
 Priority: extra
 Depends: ${python:Depends}, python-gtk2, python-matplotlib,
