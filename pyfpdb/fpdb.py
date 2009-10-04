@@ -453,7 +453,14 @@ class fpdb:
             self.db.disconnect()
 
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
-        self.db = Database.Database(self.config, sql = self.sql)
+        try:
+            self.db = Database.Database(self.config, sql = self.sql)
+        except FpdbError:
+            print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
+        except:
+            print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
         if self.db.fdb.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
