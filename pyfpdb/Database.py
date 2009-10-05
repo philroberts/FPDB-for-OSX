@@ -537,6 +537,16 @@ class Database:
         else:
             return None
             
+    def get_player_names(self, config, site_id=None, like_player_name="%"):
+        """Fetch player names from players. Use site_id and like_player_name if provided"""
+
+        if site_id == None:
+            site_id = -1
+        c = self.get_cursor()
+        c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
+        rows = c.fetchall()
+        return rows
+            
     #returns the SQL ids of the names given in an array
     # TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
     # { playername: id } instead of depending on it's relation to the positions list
