@@ -106,6 +106,9 @@ class DerivedStats():
         print "hands =", self.hands
         print "handsplayers =", self.handsplayers
 
+    def getHands(self):
+        return self.hands
+
     def assembleHands(self, hand):
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
@@ -114,17 +117,53 @@ class DerivedStats():
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats
-        self.hands['boardcard1'] = None
-        self.hands['boardcard2'] = None
-        self.hands['boardcard3'] = None
-        self.hands['boardcard4'] = None
-        self.hands['boardcard5'] = None
 
-        boardCard = 1
-        for street in hand.communityStreets:
-            for card in hand.board[street]:
-                self.hands['boardcard%s' % str(boardCard)] = Card.encodeCard(card)
-                boardCard += 1
+        # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
+        # those values remain default in stud.
+        boardcards = hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
+        cards = [Card.encodeCard(c) for c in boardcards[0:5]]
+        self.hands['boardcard1'] = cards[0]
+        self.hands['boardcard2'] = cards[1]
+        self.hands['boardcard3'] = cards[2]
+        self.hands['boardcard4'] = cards[3]
+        self.hands['boardcard5'] = cards[4]
+
+        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  hand.getStreetTotals()
+        #FIXME: Pot size still in decimal, needs to be converted to cents
+        (self.hands['street1Pot'],
+         self.hands['street2Pot'],
+         self.hands['street3Pot'],
+         self.hands['street4Pot'],
+         self.hands['showdownPot']) = hand.getStreetTotals()
+
+
+        self.vpip(hand) # Gives playersVpi (num of players vpip)
+             # texture smallint,
+             # playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
+                # Needs to be recorded
+             # playersAtStreet2 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtStreet3 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtStreet4 SMALLINT NOT NULL,
+                # Needs to be recorded
+             # playersAtShowdown SMALLINT NOT NULL,
+                # Needs to be recorded
+             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                # Needs to be recorded
+             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
+                # Needs to be recorded
+             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
+                # Needs to be recorded
+             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
+                # Needs to be recorded
+             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
+                # Needs to be recorded
+
+             # comment TEXT,
+             # commentTs DATETIME
+
+
 
     def assembleHandsPlayers(self, hand):
         self.vpip(self.hand)

@@ -1382,6 +1382,7 @@ class Database:
             importtime,
             seats,
             maxseats,
+           playersVpi,
             boardcard1, 
             boardcard2, 
             boardcard3, 
@@ -1395,9 +1396,8 @@ class Database:
              ) 
              VALUES 
               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s, %s, %s, %s, %s)"""
+               %s, %s, %s, %s, %s, %s, %s, %s)"""
 #---            texture,
-#--            playersVpi,
 #--            playersAtStreet1, 
 #--            playersAtStreet2,
 #--            playersAtStreet3, 
