@@ -1419,9 +1419,8 @@ class Database:
                 p['siteHandNo'], 
                 p['handStart'], 
                 datetime.today(), #importtime
-#                len(p['names']), #seats
-                p['maxSeats'],
                 p['seats'],
+                p['maxSeats'],
                 p['boardcard1'], 
                 p['boardcard2'], 
                 p['boardcard3'], 
