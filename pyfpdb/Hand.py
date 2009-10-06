@@ -603,7 +603,11 @@ Map the tuple self.gametype onto the pokerstars string describing it
             return gs + timestr
 
     def writeTableLine(self):
-        table_string = "Table \'%s\' %s-max" % (self.tablename, self.maxseats)
+        table_string = "Table "
+        if self.gametype['type'] == 'tour':
+            table_string = table_string + "\'%s %s\' %s-max" % (self.tourNo, self.tablename, self.maxseats)
+        else:
+            table_string = table_string + "\'%s\' %s-max" % (self.tablename, self.maxseats)
         if self.gametype['currency'] == 'play':
             table_string = table_string + " (Play Money)"
         if self.buttonpos != None and self.buttonpos != 0:

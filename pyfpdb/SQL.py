@@ -1235,6 +1235,13 @@ class Sql:
                     and Players.siteId = Sites.id
                 """
 
+            self.query['get_player_names'] = """
+                    select p.name
+                    from Players p
+                    where lower(p.name) like lower(%s)
+                    and   (p.siteId = %s or %s = -1)
+                """
+
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
 
             self.query['get_stats_from_hand'] = """
