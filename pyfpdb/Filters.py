@@ -23,6 +23,7 @@ import os
 import sys
 from optparse import OptionParser
 from time import *
+import gobject
 #import pokereval
 
 import Configuration
@@ -228,7 +229,16 @@ class Filters(threading.Thread):
         pname.set_width_chars(20)
         hbox.pack_start(pname, False, True, 0)
         pname.connect("changed", self.__set_hero_name, site)
-        #TODO: Look at GtkCompletion - to fill out usernames
+
+        # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
+        completion = gtk.EntryCompletion()
+        pname.set_completion(completion)
+        liststore = gtk.ListStore(gobject.TYPE_STRING)
+        completion.set_model(liststore)
+        completion.set_text_column(0)
+        names = self.db.get_player_names(self.conf)  # (config=self.conf, site_id=None, like_player_name="%")
+        for n in names:
+            liststore.append(n)
 
         self.__set_hero_name(pname, site)
 

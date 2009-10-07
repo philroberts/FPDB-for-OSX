@@ -320,13 +320,21 @@ class Config:
                 pass
             
         if file == None: # that didn't work either, just die
-            print "No HUD_config_xml found.  Exiting"
-            sys.stderr.write("No HUD_config_xml found.  Exiting")
+            print "No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting"
+            sys.stderr.write("No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting")
+            print "press enter to continue"
+            sys.stdin.readline()
             sys.exit()
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
+#    sc 2009/10/04 Example already copied to main filename, is this ok?
         log.info("Reading configuration file %s" % file)
+        if os.sep in file:
+            print "\nReading configuration file %s\n" % file
+        else:
+            print "\nReading configuration file %s" % file
+            print "in %s\n" % os.getcwd()
         try:
             doc = xml.dom.minidom.parse(file)
         except: 
@@ -418,6 +426,8 @@ class Config:
                                        db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
 
+        print ""
+
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
         
@@ -467,11 +477,15 @@ class Config:
                 
     def find_example_config(self):
         if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
-            file = 'HUD_config.xml.example'             # so we use it
+            file = 'HUD_config.xml'             # so we use it
+            try:
+                shutil.copyfile(file+'.example', file)
+            except:
+                file = ''
             print "No HUD_config.xml found, using HUD_config.xml.example.\n", \
-                "A HUD_config.xml will be written.  You will probably have to edit it."
+                "A HUD_config.xml has been created.  You will probably have to edit it."
             sys.stderr.write("No HUD_config.xml found, using HUD_config.xml.example.\n" + \
-                "A HUD_config.xml will be written.  You will probably have to edit it.")
+                "A HUD_config.xml has been created.  You will probably have to edit it.")
         else:
             file = None
         return file

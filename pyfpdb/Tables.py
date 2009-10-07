@@ -257,6 +257,10 @@ def discover_nt_tournament(c, tour_number, tab_number):
     titles ={}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
+        if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
+        if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
+        if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
+
         if re.search(search_string, titles[hwnd]):
             return decode_windows(c, titles[hwnd], hwnd)
     return None
