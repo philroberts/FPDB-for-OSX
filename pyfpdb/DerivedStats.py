@@ -68,17 +68,10 @@ class DerivedStats():
 
 
         self.vpip(hand) # Gives playersVpi (num of players vpip)
+        self.playersAtStreetX(hand) # Gives playersAtStreet1..4 and Showdown
+
              # texture smallint,
-             # playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
-                # Needs to be recorded
-             # playersAtStreet2 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtStreet3 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtStreet4 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtShowdown SMALLINT NOT NULL,
-                # Needs to be recorded
+
              # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
                 # Needs to be recorded
              # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
@@ -112,6 +105,47 @@ class DerivedStats():
             else:
                 self.handsplayers[player[1]]['vpip'] = False
         self.hands['playersVpi'] = len(vpipers)
+
+    def playersAtStreetX(self, hand):
+    """playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
+        # self.actions[street] is a list of all actions in a tuple, contining the player name first
+        # [ (player, action, ....), (player2, action, ...) ]
+        # The number of unique players in the list per street gives the value for playersAtStreetXXX
+
+        self.hands['playersAtStreet1']  = 0
+        self.hands['playersAtStreet2']  = 0
+        self.hands['playersAtStreet3']  = 0
+        self.hands['playersAtStreet4']  = 0
+        self.hands['playersAtShowdown'] = 0
+
+        for street in hand.actionStreets:
+            actors = {}
+            for act in a[street]:
+                actors[act[0]] = 1
+            #print "len(actors.keys(%s)): %s" % ( street, len(actors.keys()))
+            if hand.gametype['base'] in ("hold"):
+                if street in "FLOP": self.hands['playersAtStreet1'] = len(actors.keys())
+                elif street in "TURN": self.hands['playersAtStreet2'] = len(actors.keys())
+                elif street in "RIVER": self.hands['playersAtStreet3'] = len(actors.keys())
+            elif hand.gametype['base'] in ("stud"):
+                if street in "FOURTH": self.hands['playersAtStreet1'] = len(actors.keys())
+                elif street in "FIFTH": self.hands['playersAtStreet2'] = len(actors.keys())
+                elif street in "SIXTH": self.hands['playersAtStreet3'] = len(actors.keys())
+                elif street in "SEVENTH": self.hands['playersAtStreet4'] = len(actors.keys())
+            elif hand.gametype['base'] in ("draw"):
+                if street in "DRAWONE": self.hands['playersAtStreet1'] = len(actors.keys())
+                elif street in "DRAWTWO": self.hands['playersAtStreet2'] = len(actors.keys())
+                elif street in "DRAWTHREE": self.hands['playersAtStreet3'] = len(actors.keys())
+
+        #Need playersAtShowdown
+
+
+    def streetXRaises(self, hand):
+        # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
+        # [ (player, action, ....), (player2, action, ...) ]
+        # No idea what this value is actually supposed to be
+        # In theory its "num small bets paid to see flop/street4, including blind" which makes sense for limit. Not so useful for nl
+
 
     def aggr(self, hand, i):
         aggrers = set()
