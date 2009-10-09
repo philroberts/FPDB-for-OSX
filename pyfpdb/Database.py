@@ -537,6 +537,16 @@ class Database:
         else:
             return None
             
+    def get_player_names(self, config, site_id=None, like_player_name="%"):
+        """Fetch player names from players. Use site_id and like_player_name if provided"""
+
+        if site_id == None:
+            site_id = -1
+        c = self.get_cursor()
+        c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
+        rows = c.fetchall()
+        return rows
+            
     #returns the SQL ids of the names given in an array
     # TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
     # { playername: id } instead of depending on it's relation to the positions list
@@ -1133,7 +1143,7 @@ class Database:
         elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (1, 1, 0, 0, 0, False, False, null, False, False, False);""")
+                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
@@ -1372,11 +1382,17 @@ class Database:
             importtime,
             seats,
             maxseats,
+            playersVpi,
             boardcard1, 
             boardcard2, 
             boardcard3, 
             boardcard4, 
             boardcard5,
+            playersAtStreet1,
+            playersAtStreet2,
+            playersAtStreet3,
+            playersAtStreet4,
+            playersAtShowdown,
             street1Pot,
             street2Pot,
             street3Pot,
@@ -1385,20 +1401,14 @@ class Database:
              ) 
              VALUES 
               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s, %s, %s, %s, %s)"""
+               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+               %s, %s, %s)"""
 #---            texture,
-#--            playersVpi,
-#--            playersAtStreet1, 
-#--            playersAtStreet2,
-#--            playersAtStreet3, 
-#--            playersAtStreet4, 
-#--            playersAtShowdown,
 #--            street0Raises,
 #--            street1Raises,
 #--            street2Raises,
 #--            street3Raises,
 #--            street4Raises,
-#--            seats, 
 
         q = q.replace('%s', self.sql.query['placeholder'])
         print "DEBUG: p: %s" %p
@@ -1409,20 +1419,19 @@ class Database:
                 p['siteHandNo'], 
                 p['handStart'], 
                 datetime.today(), #importtime
-#                len(p['names']), #seats
-                p['maxSeats'],
                 p['seats'],
+                p['maxSeats'],
+                p['playersVpi'],
                 p['boardcard1'], 
                 p['boardcard2'], 
                 p['boardcard3'], 
                 p['boardcard4'], 
                 p['boardcard5'],
-#                hudCache['playersVpi'], 
-#                hudCache['playersAtStreet1'], 
-#                hudCache['playersAtStreet2'],
-#                hudCache['playersAtStreet3'], 
-#                hudCache['playersAtStreet4'], 
-#                hudCache['playersAtShowdown'],
+                p['playersAtStreet1'],
+                p['playersAtStreet2'],
+                p['playersAtStreet3'],
+                p['playersAtStreet4'],
+                p['playersAtShowdown'],
 #                hudCache['street0Raises'], 
 #                hudCache['street1Raises'], 
 #                hudCache['street2Raises'],

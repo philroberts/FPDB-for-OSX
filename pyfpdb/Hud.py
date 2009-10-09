@@ -82,6 +82,7 @@ class Hud:
         
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
+        self.hud_ui     = config.get_hud_ui_parameters()
         
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
@@ -116,7 +117,7 @@ class Hud:
         win.set_opacity(self.colors["hudopacity"])
         
         eventbox = gtk.EventBox()
-        label = gtk.Label("FPDB Menu - Right click\nLeft-Drag to Move")
+        label = gtk.Label(self.hud_ui['label'])
         
         win.add(eventbox)
         eventbox.add(label)
@@ -146,14 +147,65 @@ class Hud:
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
                 
-        aggitem = gtk.MenuItem('Show Stats')
+        aggitem = gtk.MenuItem('Show Player Stats')
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
         # set agg_bb_mult to 1 to stop aggregation
         item = gtk.CheckMenuItem('For This Blind Level Only')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, 1)
+        item.connect("activate", self.set_aggregation, ('P',1))
+        setattr(self, 'h_aggBBmultItem1', item) 
+        # 
+        item = gtk.MenuItem('For Multiple Blind Levels:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',2))
+        setattr(self, 'h_aggBBmultItem2', item) 
+        # 
+        item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',3))
+        setattr(self, 'h_aggBBmultItem3', item) 
+        # 
+        item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',10))
+        setattr(self, 'h_aggBBmultItem10', item) 
+        # 
+        item = gtk.CheckMenuItem('  All Levels')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',10000))
+        setattr(self, 'h_aggBBmultItem10000', item) 
+        # 
+        item = gtk.MenuItem('Since:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  All Time')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('P','A'))
+        setattr(self, 'h_hudStyleOptionA', item)
+        # 
+        item = gtk.CheckMenuItem('  Session')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('P','S'))
+        setattr(self, 'h_hudStyleOptionS', item) 
+        # 
+        item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('P','T'))
+        setattr(self, 'h_hudStyleOptionT', item) 
+                
+        aggitem = gtk.MenuItem('Show Opponent Stats')
+        menu.append(aggitem)
+        self.aggMenu = gtk.Menu()
+        aggitem.set_submenu(self.aggMenu)
+        # set agg_bb_mult to 1 to stop aggregation
+        item = gtk.CheckMenuItem('For This Blind Level Only')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('O',1))
         setattr(self, 'aggBBmultItem1', item) 
         # 
         item = gtk.MenuItem('For Multiple Blind Levels:')
@@ -161,44 +213,54 @@ class Hud:
         # 
         item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, 2)
+        item.connect("activate", self.set_aggregation, ('O',2))
         setattr(self, 'aggBBmultItem2', item) 
         # 
         item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, 3)
+        item.connect("activate", self.set_aggregation, ('O',3))
         setattr(self, 'aggBBmultItem3', item) 
         # 
         item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, 10)
+        item.connect("activate", self.set_aggregation, ('O',10))
         setattr(self, 'aggBBmultItem10', item) 
         # 
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, 10000)
+        item.connect("activate", self.set_aggregation, ('O',10000))
         setattr(self, 'aggBBmultItem10000', item) 
         # 
-        item = gtk.MenuItem('For Hero:')
+        item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
-        setattr(self, 'showStatsMenuItem7', item) 
         # 
         item = gtk.CheckMenuItem('  All Time')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, 'HA')
-        setattr(self, 'HAStyleOption', item)
+        item.connect("activate", self.set_hud_style, ('O','A'))
+        setattr(self, 'hudStyleOptionA', item)
         # 
         item = gtk.CheckMenuItem('  Session')
         self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, 'HS')
-        setattr(self, 'HSStyleOption', item) 
+        item.connect("activate", self.set_hud_style, ('O','S'))
+        setattr(self, 'hudStyleOptionS', item) 
         # 
         item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
-        item.connect("activate", self.set_hud_style, 'HT')
-        setattr(self, 'HTStyleOption', item) 
+        item.connect("activate", self.set_hud_style, ('O','T'))
+        setattr(self, 'hudStyleOptionT', item) 
 
         # set active on current options:
+        if self.hud_params['h_agg_bb_mult'] == 1:
+            getattr(self, 'h_aggBBmultItem1').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 2:
+            getattr(self, 'h_aggBBmultItem2').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 3:
+            getattr(self, 'h_aggBBmultItem3').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 10:
+            getattr(self, 'h_aggBBmultItem10').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] > 9000:
+            getattr(self, 'h_aggBBmultItemAll').set_active(True)
+        #
         if self.hud_params['agg_bb_mult'] == 1:
             getattr(self, 'aggBBmultItem1').set_active(True)
         elif self.hud_params['agg_bb_mult'] == 2:
@@ -209,12 +271,20 @@ class Hud:
             getattr(self, 'aggBBmultItem10').set_active(True)
         elif self.hud_params['agg_bb_mult'] > 9000:
             getattr(self, 'aggBBmultItemAll').set_active(True)
+        #
         if self.hud_params['h_hud_style'] == 'A':
-            getattr(self, 'HAStyleOption').set_active(True)
+            getattr(self, 'h_hudStyleOptionA').set_active(True)
         elif self.hud_params['h_hud_style'] == 'S':
-            getattr(self, 'HSStyleOption').set_active(True)
+            getattr(self, 'h_hudStyleOptionS').set_active(True)
         elif self.hud_params['h_hud_style'] == 'T':
-            getattr(self, 'HTStyleOption').set_active(True)
+            getattr(self, 'h_hudStyleOptionT').set_active(True)
+        #
+        if self.hud_params['hud_style'] == 'A':
+            getattr(self, 'hudStyleOptionA').set_active(True)
+        elif self.hud_params['hud_style'] == 'S':
+            getattr(self, 'hudStyleOptionS').set_active(True)
+        elif self.hud_params['hud_style'] == 'T':
+            getattr(self, 'hudStyleOptionT').set_active(True)
         
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
         
@@ -254,41 +324,53 @@ class Hud:
                 pass
 
     def set_aggregation(self, widget, val):
-        # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
-        self.hud_params['aggregate_ring'] = True
-        self.hud_params['aggregate_tour'] = True
-        self.hud_params['h_aggregate_ring'] = True
-        self.hud_params['h_aggregate_tour'] = True
+        (player_opp, num) = val
+        if player_opp == 'P':
+            # set these true all the time, set the multiplier to 1 to turn agg off:
+            self.hud_params['h_aggregate_ring'] = True
+            self.hud_params['h_aggregate_tour'] = True
 
-        if     self.hud_params['agg_bb_mult'] != val \
-           and getattr(self, 'aggBBmultItem'+str(val)).get_active():
-            print 'set_aggregation', val
-            self.hud_params['agg_bb_mult'] = val
-            self.hud_params['h_agg_bb_mult'] = val
-            for mult in ('1', '2', '3', '10', '10000'):
-                if mult != str(val):
-                    getattr(self, 'aggBBmultItem'+mult).set_active(False)
+            if     self.hud_params['h_agg_bb_mult'] != num \
+               and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
+                print 'set_player_aggregation', num
+                self.hud_params['h_agg_bb_mult'] = num
+                for mult in ('1', '2', '3', '10', '10000'):
+                    if mult != str(num):
+                        getattr(self, 'h_aggBBmultItem'+mult).set_active(False)
+        else:
+            self.hud_params['aggregate_ring'] = True
+            self.hud_params['aggregate_tour'] = True
+
+            if     self.hud_params['agg_bb_mult'] != num \
+               and getattr(self, 'aggBBmultItem'+str(num)).get_active():
+                print 'set_opponent_aggregation', num
+                self.hud_params['agg_bb_mult'] = num
+                for mult in ('1', '2', '3', '10', '10000'):
+                    if mult != str(num):
+                        getattr(self, 'aggBBmultItem'+mult).set_active(False)
 
     def set_hud_style(self, widget, val):
-        # try setting these to true all the time, and set the multiplier to 1 to turn agg off:
-        if val[0] == 'H':
+        (player_opp, style) = val
+        if player_opp == 'P':
             param = 'h_hud_style'
+            prefix = 'h_'
         else:
             param = 'hud_style'
+            prefix = ''
         
-        if val[1] == 'A' and getattr(self, 'HAStyleOption').get_active():
+        if style == 'A' and getattr(self, prefix+'hudStyleOptionA').get_active():
             self.hud_params[param] = 'A'
-            getattr(self, 'HSStyleOption').set_active(False)
-            getattr(self, 'HTStyleOption').set_active(False)
-        elif val[1] == 'S' and getattr(self, 'HSStyleOption').get_active():
+            getattr(self, prefix+'hudStyleOptionS').set_active(False)
+            getattr(self, prefix+'hudStyleOptionT').set_active(False)
+        elif style == 'S' and getattr(self, prefix+'hudStyleOptionS').get_active():
             self.hud_params[param] = 'S'
-            getattr(self, 'HAStyleOption').set_active(False)
-            getattr(self, 'HTStyleOption').set_active(False)
-        elif val[1] == 'T' and self.HTStyleOption.get_active():
+            getattr(self, prefix+'hudStyleOptionA').set_active(False)
+            getattr(self, prefix+'hudStyleOptionT').set_active(False)
+        elif style == 'T' and getattr(self, prefix+'hudStyleOptionT').get_active():
             self.hud_params[param] = 'T'
-            getattr(self, 'HAStyleOption').set_active(False)
-            getattr(self, 'HSStyleOption').set_active(False)
-        print "setting self.hud_params[%s] = %s" % (param, val[1])
+            getattr(self, prefix+'hudStyleOptionA').set_active(False)
+            getattr(self, prefix+'hudStyleOptionS').set_active(False)
+        print "setting self.hud_params[%s] = %s" % (param, style)
 
     def update_table_position(self):
         if os.name == 'nt':
