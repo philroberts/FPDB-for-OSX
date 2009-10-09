@@ -76,7 +76,7 @@ import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
-from Exceptions import *
+import Exceptions
 
 VERSION = "0.11"
 
@@ -453,7 +453,12 @@ class fpdb:
             self.db.disconnect()
 
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
-        self.db = Database.Database(self.config, sql = self.sql)
+        try:
+            self.db = Database.Database(self.config, sql = self.sql)
+        except Exceptions.FpdbMySQLFailedError:
+            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
+            exit()
+            
 
         if self.db.fdb.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
