@@ -107,7 +107,7 @@ class DerivedStats():
         self.hands['playersVpi'] = len(vpipers)
 
     def playersAtStreetX(self, hand):
-    """playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
+        """ playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
         # self.actions[street] is a list of all actions in a tuple, contining the player name first
         # [ (player, action, ....), (player2, action, ...) ]
         # The number of unique players in the list per street gives the value for playersAtStreetXXX
@@ -145,7 +145,7 @@ class DerivedStats():
         # [ (player, action, ....), (player2, action, ...) ]
         # No idea what this value is actually supposed to be
         # In theory its "num small bets paid to see flop/street4, including blind" which makes sense for limit. Not so useful for nl
-
+        pass
 
     def aggr(self, hand, i):
         aggrers = set()
