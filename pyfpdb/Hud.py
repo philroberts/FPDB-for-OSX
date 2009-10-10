@@ -259,7 +259,7 @@ class Hud:
         elif self.hud_params['h_agg_bb_mult'] == 10:
             getattr(self, 'h_aggBBmultItem10').set_active(True)
         elif self.hud_params['h_agg_bb_mult'] > 9000:
-            getattr(self, 'h_aggBBmultItemAll').set_active(True)
+            getattr(self, 'h_aggBBmultItem10000').set_active(True)
         #
         if self.hud_params['agg_bb_mult'] == 1:
             getattr(self, 'aggBBmultItem1').set_active(True)
@@ -270,7 +270,7 @@ class Hud:
         elif self.hud_params['agg_bb_mult'] == 10:
             getattr(self, 'aggBBmultItem10').set_active(True)
         elif self.hud_params['agg_bb_mult'] > 9000:
-            getattr(self, 'aggBBmultItemAll').set_active(True)
+            getattr(self, 'aggBBmultItem10000').set_active(True)
         #
         if self.hud_params['h_hud_style'] == 'A':
             getattr(self, 'h_hudStyleOptionA').set_active(True)
