@@ -76,7 +76,7 @@ import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
-from Exceptions import *
+import Exceptions
 
 VERSION = "0.11"
 
@@ -455,6 +455,9 @@ class fpdb:
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
         try:
             self.db = Database.Database(self.config, sql = self.sql)
+        except Exceptions.FpdbMySQLFailedError:
+            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
+            exit()
         except FpdbError:
             print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
             sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
