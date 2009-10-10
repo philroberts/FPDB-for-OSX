@@ -22,76 +22,6 @@ class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
 
-        self.activeSeats                     = 0
-        self.position                        = 0
-        self.tourneyTypeId                   = 0
-
-        self.HDs                             = 0
-        self.street0VPI                      = 0
-        self.street0Aggr                     = 0
-        self.street0_3BChance                = 0
-        self.street0_3BDone                  = 0
-        self.street0_4BChance                = 0
-        self.street0_4BDone                  = 0
-
-        self.street1Seen                     = 0
-        self.street2Seen                     = 0
-        self.street3Seen                     = 0
-        self.street4Seen                     = 0
-        self.sawShowdown                     = 0
-
-        self.street1Aggr                     = 0
-        self.street2Aggr                     = 0
-        self.street3Aggr                     = 0
-        self.street4Aggr                     = 0
-
-        self.otherRaisedStreet1              = 0
-        self.otherRaisedStreet2              = 0
-        self.otherRaisedStreet3              = 0
-        self.otherRaisedStreet4              = 0
-        self.foldToOtherRaisedStreet1        = 0
-        self.foldToOtherRaisedStreet2        = 0
-        self.foldToOtherRaisedStreet3        = 0
-        self.foldToOtherRaisedStreet4        = 0
-        self.wonWhenSeenStreet1              = 0
-        self.wonAtSD                         = 0
-
-        self.stealAttemptChance              = 0
-        self.stealAttempted                  = 0
-        self.foldBbToStealChance             = 0
-        self.foldedBbToSteal                 = 0
-        self.foldSbToStealChance             = 0
-        self.foldedSbToSteal                 = 0
-
-        self.street1CBChance                 = 0
-        self.street1CBDone                   = 0
-        self.street2CBChance                 = 0
-        self.street2CBDone                   = 0
-        self.street3CBChance                 = 0
-        self.street3CBDone                   = 0
-        self.street4CBChance                 = 0
-        self.street4CBDone                   = 0
-
-        self.foldToStreet1CBChance           = 0
-        self.foldToStreet1CBDone             = 0
-        self.foldToStreet2CBChance           = 0
-        self.foldToStreet2CBDone             = 0
-        self.foldToStreet3CBChance           = 0
-        self.foldToStreet3CBDone             = 0
-        self.foldToStreet4CBChance           = 0
-        self.foldToStreet4CBDone             = 0
-
-        self.totalProfit                     = 0
-
-        self.street1CheckCallRaiseChance     = 0
-        self.street1CheckCallRaiseDone       = 0
-        self.street2CheckCallRaiseChance     = 0
-        self.street2CheckCallRaiseDone       = 0
-        self.street3CheckCallRaiseChance     = 0
-        self.street3CheckCallRaiseDone       = 0
-        self.street4CheckCallRaiseChance     = 0
-        self.street4CheckCallRaiseDone       = 0
-        
         self.hands = {}
         self.handsplayers = {}
 
@@ -106,6 +36,9 @@ class DerivedStats():
         print "hands =", self.hands
         print "handsplayers =", self.handsplayers
 
+    def getHands(self):
+        return self.hands
+
     def assembleHands(self, hand):
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
@@ -114,17 +47,46 @@ class DerivedStats():
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats
-        self.hands['boardcard1'] = None
-        self.hands['boardcard2'] = None
-        self.hands['boardcard3'] = None
-        self.hands['boardcard4'] = None
-        self.hands['boardcard5'] = None
 
-        boardCard = 1
-        for street in hand.communityStreets:
-            for card in hand.board[street]:
-                self.hands['boardcard%s' % str(boardCard)] = Card.encodeCard(card)
-                boardCard += 1
+        # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
+        # those values remain default in stud.
+        boardcards = hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
+        cards = [Card.encodeCard(c) for c in boardcards[0:5]]
+        self.hands['boardcard1'] = cards[0]
+        self.hands['boardcard2'] = cards[1]
+        self.hands['boardcard3'] = cards[2]
+        self.hands['boardcard4'] = cards[3]
+        self.hands['boardcard5'] = cards[4]
+
+        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  hand.getStreetTotals()
+        #FIXME: Pot size still in decimal, needs to be converted to cents
+        (self.hands['street1Pot'],
+         self.hands['street2Pot'],
+         self.hands['street3Pot'],
+         self.hands['street4Pot'],
+         self.hands['showdownPot']) = hand.getStreetTotals()
+
+
+        self.vpip(hand) # Gives playersVpi (num of players vpip)
+        self.playersAtStreetX(hand) # Gives playersAtStreet1..4 and Showdown
+
+             # texture smallint,
+
+             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
+                # Needs to be recorded
+             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
+                # Needs to be recorded
+             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
+                # Needs to be recorded
+             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
+                # Needs to be recorded
+             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
+                # Needs to be recorded
+
+             # comment TEXT,
+             # commentTs DATETIME
+
+
 
     def assembleHandsPlayers(self, hand):
         self.vpip(self.hand)
@@ -143,6 +105,47 @@ class DerivedStats():
             else:
                 self.handsplayers[player[1]]['vpip'] = False
         self.hands['playersVpi'] = len(vpipers)
+
+    def playersAtStreetX(self, hand):
+    """playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
+        # self.actions[street] is a list of all actions in a tuple, contining the player name first
+        # [ (player, action, ....), (player2, action, ...) ]
+        # The number of unique players in the list per street gives the value for playersAtStreetXXX
+
+        self.hands['playersAtStreet1']  = 0
+        self.hands['playersAtStreet2']  = 0
+        self.hands['playersAtStreet3']  = 0
+        self.hands['playersAtStreet4']  = 0
+        self.hands['playersAtShowdown'] = 0
+
+        for street in hand.actionStreets:
+            actors = {}
+            for act in a[street]:
+                actors[act[0]] = 1
+            #print "len(actors.keys(%s)): %s" % ( street, len(actors.keys()))
+            if hand.gametype['base'] in ("hold"):
+                if street in "FLOP": self.hands['playersAtStreet1'] = len(actors.keys())
+                elif street in "TURN": self.hands['playersAtStreet2'] = len(actors.keys())
+                elif street in "RIVER": self.hands['playersAtStreet3'] = len(actors.keys())
+            elif hand.gametype['base'] in ("stud"):
+                if street in "FOURTH": self.hands['playersAtStreet1'] = len(actors.keys())
+                elif street in "FIFTH": self.hands['playersAtStreet2'] = len(actors.keys())
+                elif street in "SIXTH": self.hands['playersAtStreet3'] = len(actors.keys())
+                elif street in "SEVENTH": self.hands['playersAtStreet4'] = len(actors.keys())
+            elif hand.gametype['base'] in ("draw"):
+                if street in "DRAWONE": self.hands['playersAtStreet1'] = len(actors.keys())
+                elif street in "DRAWTWO": self.hands['playersAtStreet2'] = len(actors.keys())
+                elif street in "DRAWTHREE": self.hands['playersAtStreet3'] = len(actors.keys())
+
+        #Need playersAtShowdown
+
+
+    def streetXRaises(self, hand):
+        # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
+        # [ (player, action, ....), (player2, action, ...) ]
+        # No idea what this value is actually supposed to be
+        # In theory its "num small bets paid to see flop/street4, including blind" which makes sense for limit. Not so useful for nl
+
 
     def aggr(self, hand, i):
         aggrers = set()
