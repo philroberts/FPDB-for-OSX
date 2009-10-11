@@ -54,6 +54,7 @@ class Filters(threading.Thread):
                           ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
                           ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
                           ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
+                          ,'limitsFL':'FL', 'limitsNL':'NL'
                           }
 
         # For use in date ranges.
@@ -98,6 +99,8 @@ class Filters(threading.Thread):
         self.cbLimits = {}
         self.cbNoLimits = None
         self.cbAllLimits = None
+        self.cbFL = None
+        self.cbNL = None
 
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
@@ -288,12 +291,29 @@ class Filters(threading.Thread):
                     self.cbAllLimits.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
-                for cb in self.cbLimits.values():
-                    cb.set_active(True)
+                #for cb in self.cbLimits.values():
+                #    cb.set_active(True)
+                if self.cbFL != None:
+                    self.cbFL.set_active(True)
+                if self.cbNL != None:
+                    self.cbNL.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
                 for cb in self.cbLimits.values():
                     cb.set_active(False)
+                self.cbNL.set_active(False)
+                self.cbFL.set_active(False)
+        elif limit == "fl":
+            for cb in self.cbLimits.values():
+                #print "cb label: ", cb.children()[0].get_text()
+                if cb.get_children()[0].get_text().isdigit():
+                    cb.set_active(self.limits[limit])
+                        
+        elif limit == "nl":
+            for cb in self.cbLimits.values():
+                t = cb.get_children()[0].get_text()
+                if "nl" in t and len(t) > 2:
+                    cb.set_active(self.limits[limit])
 
     def __set_seat_select(self, w, seat):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
@@ -352,8 +372,10 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
-        self.cursor.execute(self.sql.query['getLimits'])
+        self.cursor.execute(self.sql.query['getLimits2'])
+        # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
+        fl, nl = False, False
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
             vbox1.pack_start(hbox, False, False, 0)
@@ -367,17 +389,37 @@ class Filters(threading.Thread):
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
-                self.cbLimits[line[0]] = self.createLimitLine(hbox, line[0], line[0])
+                if line[0] == 'fl':
+                    self.cbLimits[line[1]] = self.createLimitLine(hbox, str(line[1]), str(line[1]))
+                    fl = True
+                else:
+                    self.cbLimits[str(line[1])+line[0]] = self.createLimitLine(hbox, str(line[1])+line[0], str(line[1])+line[0])
+                    nl = True
             if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
                 hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
+                vbox2.pack_start(hbox, False, False, 0)
                 self.cbAllLimits = self.createLimitLine(hbox, 'all', self.filterText['limitsall'])
                 hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
+                vbox2.pack_start(hbox, False, False, 0)
                 self.cbNoLimits = self.createLimitLine(hbox, 'none', self.filterText['limitsnone'])
-                hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
-                cb = self.createLimitLine(hbox, 'show', self.filterText['limitsshow'])
+
+                if "LimitType" in display and display["LimitType"] == True and len(result) >= 2:
+                    if fl:
+                        hbox = gtk.HBox(False, 0)
+                        vbox3.pack_start(hbox, False, False, 0)
+                        self.cbFL = self.createLimitLine(hbox, 'fl', self.filterText['limitsFL'])
+                    if nl:
+                        hbox = gtk.HBox(False, 0)
+                        vbox3.pack_start(hbox, False, False, 0)
+                        self.cbNL = self.createLimitLine(hbox, 'nl', self.filterText['limitsNL'])
+                        
         else:
             print "INFO: No games returned from database"
 
@@ -439,8 +481,11 @@ class Filters(threading.Thread):
         self.boxes['groups'] = vbox1
 
         hbox = gtk.HBox(False, 0)
-        vbox1.pack_start(hbox, False, True, 0)
+        vbox1.pack_start(hbox, False, False, 0)
+        cb = self.createLimitLine(hbox, 'show', self.filterText['limitsshow'])
 
+        hbox = gtk.HBox(False, 0)
+        vbox1.pack_start(hbox, False, True, 0)
         cb = gtk.CheckButton(self.filterText['posnshow'])
         cb.connect('clicked', self.__set_group_select, 'posn')
         hbox.pack_start(cb, False, False, 0)

@@ -54,17 +54,18 @@ class GuiPlayerStats (threading.Thread):
         self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
                           }
 
-        filters_display = { "Heroes"   :  True,
-                            "Sites"    :  True,
-                            "Games"    :  False,
-                            "Limits"   :  True,
-                            "LimitSep" :  True,
-                            "Seats"    :  True,
-                            "SeatSep"  :  True,
-                            "Dates"    :  True,
-                            "Groups"   :  True,
-                            "Button1"  :  True,
-                            "Button2"  :  True
+        filters_display = { "Heroes"    : True,
+                            "Sites"     : True,
+                            "Games"     : False,
+                            "Limits"    : True,
+                            "LimitSep"  : True,
+                            "LimitType" : True,
+                            "Seats"     : True,
+                            "SeatSep"   : True,
+                            "Dates"     : True,
+                            "Groups"    : True,
+                            "Button1"   : True,
+                            "Button2"   : True
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
@@ -344,13 +345,26 @@ class GuiPlayerStats (threading.Thread):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        if [x for x in limits if str(x).isdigit()]:
-            blindtest = str(tuple([x for x in limits if str(x).isdigit()]))
+        lims = [int(x) for x in limits if x.isdigit()]
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
+                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
+        if lims:
+            blindtest = str(tuple(lims))
             blindtest = blindtest.replace("L", "")
             blindtest = blindtest.replace(",)",")")
-            query = query.replace("<gtbigBlind_test>", " and gt.bigBlind in " +  blindtest + " ")
+            bbtest = bbtest + blindtest + ' ) '
         else:
-            query = query.replace("<gtbigBlind_test>", "")
+            bbtest = bbtest + '(-1) ) '
+        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
+        if nolims:
+            blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) )'
+        else:
+            bbtest = bbtest + '(-1) ) )'
+        query = query.replace("<gtbigBlind_test>", bbtest)
 
         if holecards:  # pinch level variables for hole card query
             query = query.replace("<hgameTypeId>", "hp.startcards")
