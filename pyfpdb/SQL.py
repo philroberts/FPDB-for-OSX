@@ -1721,8 +1721,8 @@ class Sql:
             self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
             self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
             self.query['getLimits2'] = """SELECT DISTINCT limitType, bigBlind 
-			                              from Gametypes
-										  ORDER by bigBlind DESC"""
+                                          from Gametypes
+                                          ORDER by limitType DESC, bigBlind DESC"""
 
             if db_server == 'mysql':
                 self.query['playerDetailedStats'] = """
@@ -1800,8 +1800,8 @@ class Sql:
                                                    else concat('Z', <position>)
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
             elif db_server == 'postgresql':
@@ -1881,8 +1881,8 @@ class Sql:
                                                    else 'Z'||<position>
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
             elif db_server == 'sqlite':
@@ -1962,8 +1962,8 @@ class Sql:
                                                    else 'Z'||<position>
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
 

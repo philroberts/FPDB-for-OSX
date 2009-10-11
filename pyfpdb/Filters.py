@@ -453,15 +453,6 @@ class Filters(threading.Thread):
         hbox.pack_start(lbl_to, expand=False, padding=3)
         hbox.pack_start(sb2, False, False, 0)
 
-        if "SeatSep" in display and display["SeatSep"] == True:
-            hbox = gtk.HBox(False, 0)
-            vbox1.pack_start(hbox, False, True, 0)
-            cb = gtk.CheckButton(self.filterText['seatsshow'])
-            cb.connect('clicked', self.__set_seat_select, 'show')
-            hbox.pack_start(cb, False, False, 0)
-            self.sbSeats['show'] = cb
-            self.seats['show'] = False
-
         self.sbSeats['from'] = sb1
         self.sbSeats['to']   = sb2
 
@@ -491,6 +482,15 @@ class Filters(threading.Thread):
         hbox.pack_start(cb, False, False, 0)
         self.sbGroups['posn'] = cb
         self.groups['posn'] = False
+
+        if "SeatSep" in display and display["SeatSep"] == True:
+            hbox = gtk.HBox(False, 0)
+            vbox1.pack_start(hbox, False, True, 0)
+            cb = gtk.CheckButton(self.filterText['seatsshow'])
+            cb.connect('clicked', self.__set_seat_select, 'show')
+            hbox.pack_start(cb, False, False, 0)
+            self.sbSeats['show'] = cb
+            self.seats['show'] = False
 
     def fillCardsFrame(self, vbox):
         hbox1 = gtk.HBox(True,0)
