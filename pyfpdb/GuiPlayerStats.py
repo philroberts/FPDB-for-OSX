@@ -60,6 +60,7 @@ class GuiPlayerStats (threading.Thread):
                             "Limits"    : True,
                             "LimitSep"  : True,
                             "LimitType" : True,
+                            "Type"      : True,
                             "Seats"     : True,
                             "SeatSep"   : True,
                             "Dates"     : True,
@@ -158,6 +159,7 @@ class GuiPlayerStats (threading.Thread):
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
         limits  = self.filters.getLimits()
+        type   = self.filters.getType()
         seats  = self.filters.getSeats()
         groups = self.filters.getGroups()
         dates = self.filters.getDates()
@@ -186,16 +188,16 @@ class GuiPlayerStats (threading.Thread):
             print "No limits found"
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, seats, groups, dates)
+        self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, seats, groups, dates):
+    def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates):
         starttime = time()
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
         # holecards - whether to display card breakdown (True/False)
         flags = [False]
-        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
+        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
         # Separator
         sep = gtk.HSeparator()
@@ -218,13 +220,13 @@ class GuiPlayerStats (threading.Thread):
 
         # Detailed table
         flags = [True]
-        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats, groups, dates)
+        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
-    def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats, groups, dates):
+    def addTable(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
         row = 0
         sqlrow = 0
         colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
@@ -232,7 +234,7 @@ class GuiPlayerStats (threading.Thread):
         else:          holecards = flags[0]
 
         tmp = self.sql.query[query]
-        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, seats, groups, dates)
+        tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates)
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -318,9 +320,9 @@ class GuiPlayerStats (threading.Thread):
             row += 1
         vbox.show_all()
         
-    #end def addTable(self, query, vars, playerids, sitenos, limits, seats):
+    #end def addTable(self, query, vars, playerids, sitenos, limits, type, seats, groups, dates):
 
-    def refineQuery(self, query, flags, playerids, sitenos, limits, seats, groups, dates):
+    def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
@@ -364,6 +366,10 @@ class GuiPlayerStats (threading.Thread):
             bbtest = bbtest + blindtest + ' ) )'
         else:
             bbtest = bbtest + '(-1) ) )'
+        if type == 'ring':
+            bbtest = bbtest + " and gt.type = 'ring' "
+        elif type == 'tour':
+            bbtest = bbtest + " and gt.type = 'tour' "
         query = query.replace("<gtbigBlind_test>", bbtest)
 
         if holecards:  # pinch level variables for hole card query

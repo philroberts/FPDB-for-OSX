@@ -1720,9 +1720,9 @@ class Sql:
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
             self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
             self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
-            self.query['getLimits2'] = """SELECT DISTINCT limitType, bigBlind 
+            self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                           from Gametypes
-                                          ORDER by limitType DESC, bigBlind DESC"""
+                                          ORDER by type, limitType DESC, bigBlind DESC"""
 
             if db_server == 'mysql':
                 self.query['playerDetailedStats'] = """
