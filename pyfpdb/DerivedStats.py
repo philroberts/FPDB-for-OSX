@@ -47,6 +47,7 @@ class DerivedStats():
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats
+        self.hands['texture']    = None                     # No calculation done for this yet.
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
@@ -66,27 +67,11 @@ class DerivedStats():
          self.hands['street4Pot'],
          self.hands['showdownPot']) = hand.getStreetTotals()
 
-
         self.vpip(hand) # Gives playersVpi (num of players vpip)
         self.playersAtStreetX(hand) # Gives playersAtStreet1..4 and Showdown
 
-             # texture smallint,
-
-             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
-                # Needs to be recorded
-             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
-                # Needs to be recorded
-             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
-                # Needs to be recorded
-             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
-                # Needs to be recorded
-             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
-                # Needs to be recorded
-
-             # comment TEXT,
-             # commentTs DATETIME
-
-
+        # comment TEXT,
+        # commentTs DATETIME
 
     def assembleHandsPlayers(self, hand):
         self.vpip(self.hand)
@@ -145,7 +130,12 @@ class DerivedStats():
         # [ (player, action, ....), (player2, action, ...) ]
         # No idea what this value is actually supposed to be
         # In theory its "num small bets paid to see flop/street4, including blind" which makes sense for limit. Not so useful for nl
-        pass
+        # Leaving empty for the moment,
+        self.hands['street0Raises'] = 0 # /* num small bets paid to see flop/street4, including blind */
+        self.hands['street1Raises'] = 0 # /* num small bets paid to see turn/street5 */
+        self.hands['street2Raises'] = 0 # /* num big bets paid to see river/street6 */
+        self.hands['street3Raises'] = 0 # /* num big bets paid to see sd/street7 */
+        self.hands['street4Raises'] = 0 # /* num big bets paid to see showdown */
 
     def aggr(self, hand, i):
         aggrers = set()

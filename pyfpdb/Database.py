@@ -1391,6 +1391,7 @@ class Database:
             importtime,
             seats,
             maxseats,
+            texture,
             playersVpi,
             boardcard1, 
             boardcard2, 
@@ -1402,6 +1403,11 @@ class Database:
             playersAtStreet3,
             playersAtStreet4,
             playersAtShowdown,
+            street0Raises,
+            street1Raises,
+            street2Raises,
+            street3Raises,
+            street4Raises,
             street1Pot,
             street2Pot,
             street3Pot,
@@ -1411,13 +1417,7 @@ class Database:
              VALUES 
               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s)"""
-#---            texture,
-#--            street0Raises,
-#--            street1Raises,
-#--            street2Raises,
-#--            street3Raises,
-#--            street4Raises,
+               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         q = q.replace('%s', self.sql.query['placeholder'])
         print "DEBUG: p: %s" %p
@@ -1430,6 +1430,7 @@ class Database:
                 datetime.today(), #importtime
                 p['seats'],
                 p['maxSeats'],
+                p['texture'],
                 p['playersVpi'],
                 p['boardcard1'], 
                 p['boardcard2'], 
@@ -1441,11 +1442,11 @@ class Database:
                 p['playersAtStreet3'],
                 p['playersAtStreet4'],
                 p['playersAtShowdown'],
-#                hudCache['street0Raises'], 
-#                hudCache['street1Raises'], 
-#                hudCache['street2Raises'],
-#                hudCache['street3Raises'], 
-#                hudCache['street4Raises'], 
+                p['street0Raises'],
+                p['street1Raises'],
+                p['street2Raises'],
+                p['street3Raises'],
+                p['street4Raises'],
                 p['street1Pot'],
                 p['street2Pot'],
                 p['street3Pot'],
