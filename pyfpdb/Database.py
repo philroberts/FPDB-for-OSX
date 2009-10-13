@@ -1152,7 +1152,7 @@ class Database:
         elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
+                         values (DEFAULT, 1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
