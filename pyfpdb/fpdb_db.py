@@ -111,7 +111,7 @@ class fpdb_db:
                                                password = password, 
                                                database = database)
                 except:
-                    msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
+                    msg = "PostgreSQL connection to database (%s) user (%s) failed. Are you sure the DB is running?" % (database, user)
                     print msg
                     raise FpdbError(msg)
         elif backend == fpdb_db.SQLITE:
