@@ -68,7 +68,10 @@ class DerivedStats():
          self.hands['showdownPot']) = hand.getStreetTotals()
 
         self.vpip(hand) # Gives playersVpi (num of players vpip)
+        #print "DEBUG: vpip: %s" %(self.hands['playersVpi'])
         self.playersAtStreetX(hand) # Gives playersAtStreet1..4 and Showdown
+        #print "DEBUG: playersAtStreet 1:'%s' 2:'%s' 3:'%s' 4:'%s'" %(self.hands['playersAtStreet1'],self.hands['playersAtStreet2'],self.hands['playersAtStreet3'],self.hands['playersAtStreet4'])
+        self.streetXRaises(hand) # Empty function currently
 
         # comment TEXT,
         # commentTs DATETIME
@@ -84,11 +87,12 @@ class DerivedStats():
             if act[1] in ('calls','bets', 'raises'):
                 vpipers.add(act[0])
 
-        for player in hand.players:
-            if player[1] in vpipers:
-                self.handsplayers[player[1]]['vpip'] = True
-            else:
-                self.handsplayers[player[1]]['vpip'] = False
+        #for player in hand.players:
+        #    print "DEBUG: '%s' '%s' '%s'" %(player, player[1], vpipers)
+        #    if player[1] in vpipers:
+        #        self.handsplayers[player[1]]['vpip'] = True
+        #    else:
+        #        self.handsplayers[player[1]]['vpip'] = False
         self.hands['playersVpi'] = len(vpipers)
 
     def playersAtStreetX(self, hand):
@@ -105,7 +109,7 @@ class DerivedStats():
 
         for street in hand.actionStreets:
             actors = {}
-            for act in a[street]:
+            for act in hand.actions[street]:
                 actors[act[0]] = 1
             #print "len(actors.keys(%s)): %s" % ( street, len(actors.keys()))
             if hand.gametype['base'] in ("hold"):
