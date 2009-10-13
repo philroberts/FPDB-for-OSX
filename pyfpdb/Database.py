@@ -188,14 +188,7 @@ class Database:
         log.info("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
-        self.fdb.do_connect(c)
-        self.connection = self.fdb.db
-
-        db_params = c.get_db_parameters()
-        self.import_options = c.get_import_parameters()
-        self.type = db_params['db-type']
-        self.backend = db_params['db-backend']
-        self.db_server = db_params['db-server']
+        self.do_connect(c)
         
         if self.backend == self.PGSQL:
             from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
@@ -206,14 +199,14 @@ class Database:
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
-            self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
+            self.sql = SQL.Sql(type = self.type, db_server = self.db_server)
         else:
             self.sql = sql
 
-        if self.backend == self.SQLITE and db_params['db-databaseName'] == ':memory:' and self.fdb.wrongDbVersion:
+        if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
             log.info("sqlite/:memory: - creating")
             self.recreate_tables()
-            self.fdb.wrongDbVersion = False
+            self.wrongDbVersion = False
 
         self.pcache      = None     # PlayerId cache
         self.cachemiss   = 0        # Delete me later - using to count player cache misses
@@ -245,6 +238,16 @@ class Database:
 
     def do_connect(self, c):
         self.fdb.do_connect(c)
+        self.connection = self.fdb.db
+        self.wrongDbVersion = self.fdb.wrongDbVersion
+
+        db_params = c.get_db_parameters()
+        self.import_options = c.get_import_parameters()
+        self.type = db_params['db-type']
+        self.backend = db_params['db-backend']
+        self.db_server = db_params['db-server']
+        self.database = db_params['db-databaseName']
+        self.host = db_params['db-host']
 
     def commit(self):
         self.fdb.db.commit()
