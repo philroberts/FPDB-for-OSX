@@ -39,6 +39,9 @@ class DerivedStats():
     def getHands(self):
         return self.hands
 
+    def getHandsPlayers(self):
+        return self.handsplayers
+
     def assembleHands(self, hand):
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
@@ -77,9 +80,17 @@ class DerivedStats():
         # commentTs DATETIME
 
     def assembleHandsPlayers(self, hand):
-        self.vpip(self.hand)
+        #self.vpip(self.hand)
+
+        #hand.players = [[seat, name, chips],[seat, name, chips]]
+        for player in hand.players:
+            self.handsplayers[player[1]] = {}
+            self.handsplayers[player[1]]['seatNo'] = player[0]
+            self.handsplayers[player[1]]['startCash'] = player[2]
+
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
+
 
     def assembleHudCache(self, hand):
 #       # def generateHudCacheData(player_ids, base, category, action_types, allIns, actionTypeByNo
