@@ -205,8 +205,7 @@ db: a connected fpdb_db object"""
         #Gametypes
         gtid = db.getGameTypeId(self.siteId, self.gametype)
 
-        self.stats.assembleHands(self)
-        self.stats.assembleHandsPlayers(self)
+        self.stats.getStats(self)
 
         #####
         # End prep functions

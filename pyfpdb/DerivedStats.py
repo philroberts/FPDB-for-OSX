@@ -80,11 +80,8 @@ class DerivedStats():
         # commentTs DATETIME
 
     def assembleHandsPlayers(self, hand):
-        #self.vpip(self.hand)
-
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
-            self.handsplayers[player[1]] = {}
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = player[2]
 
@@ -788,13 +785,13 @@ class DerivedStats():
             if act[1] in ('calls','bets', 'raises'):
                 vpipers.add(act[0])
 
-        #for player in hand.players:
-        #    print "DEBUG: '%s' '%s' '%s'" %(player, player[1], vpipers)
-        #    if player[1] in vpipers:
-        #        self.handsplayers[player[1]]['vpip'] = True
-        #    else:
-        #        self.handsplayers[player[1]]['vpip'] = False
         self.hands['playersVpi'] = len(vpipers)
+
+        for player in hand.players:
+            if player[1] in vpipers:
+                self.handsplayers[player[1]]['vpip'] = True
+            else:
+                self.handsplayers[player[1]]['vpip'] = False
 
     def playersAtStreetX(self, hand):
         """ playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
