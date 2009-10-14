@@ -29,6 +29,8 @@ class DerivedStats():
         
         for player in hand.players:
             self.handsplayers[player[1]] = {}
+            #Init vars that may not be used, but still need to be inserted.
+            self.handsplayers[player[1]]['street4Aggr'] = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)

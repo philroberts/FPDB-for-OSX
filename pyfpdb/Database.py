@@ -1431,16 +1431,27 @@ class Database:
             inserts.append( (hid,
                              pids[p],
                              pdata[p]['startCash'],
-                             pdata[p]['seatNo']
+                             pdata[p]['seatNo'],
+                             pdata[p]['street0Aggr'],
+                             pdata[p]['street1Aggr'],
+                             pdata[p]['street2Aggr'],
+                             pdata[p]['street3Aggr'],
+                             pdata[p]['street4Aggr']
                             ) )
 
         q = """INSERT INTO HandsPlayers (
             handId,
             playerId,
             startCash,
-            seatNo
+            seatNo,
+            street0Aggr,
+            street1Aggr,
+            street2Aggr,
+            street3Aggr,
+            street4Aggr
            )
            VALUES (
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s
             )"""
 
@@ -1455,7 +1466,6 @@ class Database:
 #            rake,
 #            totalProfit,
 #            street0VPI,
-#            street0Aggr,
 #            street0_3BChance,
 #            street0_3BDone,
 #            street1Seen,
@@ -1463,10 +1473,6 @@ class Database:
 #            street3Seen,
 #            street4Seen,
 #            sawShowdown,
-#            street1Aggr,
-#            street2Aggr,
-#            street3Aggr,
-#            street4Aggr,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
 #            otherRaisedStreet3,
