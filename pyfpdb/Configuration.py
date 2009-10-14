@@ -660,7 +660,7 @@ class Config:
         try:    hui['hud_style']        = self.ui.hud_style
         except: hui['hud_style']        = 'A'
 
-        try:    hui['hud_days']         = self.ui.hud_days
+        try:    hui['hud_days']         = int(self.ui.hud_days)
         except: hui['hud_days']         = 90
 
         try:    hui['agg_bb_mult']      = self.ui.agg_bb_mult
@@ -677,7 +677,7 @@ class Config:
         try:    hui['h_hud_style']      = self.ui.h_hud_style
         except: hui['h_hud_style']      = 'S'
 
-        try:    hui['h_hud_days']       = self.ui.h_hud_days
+        try:    hui['h_hud_days']       = int(self.ui.h_hud_days)
         except: hui['h_hud_days']       = 30
 
         try:    hui['h_agg_bb_mult']    = self.ui.h_agg_bb_mult

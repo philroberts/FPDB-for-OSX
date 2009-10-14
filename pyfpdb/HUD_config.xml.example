@@ -82,7 +82,7 @@
     <hud_ui
     aggregate_ring_game_stats="False"
     aggregate_tourney_stats="False"
-    stat_aggregation_style="A"
+    stat_aggregation_range="A"
     aggregation_days="90"
     aggregation_level_multiplier="1"
 
