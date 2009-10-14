@@ -53,20 +53,26 @@ class GuiGraphViewer (threading.Thread):
         self.db = Database.Database(self.conf, sql=self.sql)
 
 
-        filters_display = { "Heroes"  :  True,
-                            "Sites"   :  True,
-                            "Games"   :  True,
-                            "Limits"  :  True,
-                            "Seats"   :  False,
-                            "Dates"   :  True,
-                            "Button1" :  True,
-                            "Button2" :  True
+        filters_display = { "Heroes"    : True,
+                            "Sites"     : True,
+                            "Games"     : True,
+                            "Limits"    : True,
+                            "LimitSep"  : True,
+                            "LimitType" : True,
+                            "Type"      : False,
+                            "UseType"   : 'ring',
+                            "Seats"     : False,
+                            "SeatSep"   : False,
+                            "Dates"     : True,
+                            "Groups"    : False,
+                            "Button1"   : True,
+                            "Button2"   : True
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton1Name("Refresh Graph")
+        self.filters.registerButton1Name("Refresh _Graph")
         self.filters.registerButton1Callback(self.generateGraph)
-        self.filters.registerButton2Name("Export to File")
+        self.filters.registerButton2Name("_Export to File")
         self.filters.registerButton2Callback(self.exportGraph)
 
         self.mainHBox = gtk.HBox(False, 0)
@@ -146,10 +152,8 @@ class GuiGraphViewer (threading.Thread):
             raise
 
     def generateGraph(self, widget, data):
-        print "generateGraph: start"
         try:
             self.clearGraphData()
-            print "after cleardata"
 
             sitenos = []
             playerids = []
@@ -158,15 +162,18 @@ class GuiGraphViewer (threading.Thread):
             heroes  = self.filters.getHeroes()
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
-            print "got filter data"
+            for i in ('show', 'none'):
+                if i in limits:
+                    limits.remove(i)
             # Which sites are selected?
             for site in sites:
                 if sites[site] == True:
                     sitenos.append(siteids[site])
-                    self.db.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
-                    result = self.db.cursor.fetchall()
+                    c = self.db.get_cursor()
+                    c.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                    result = c.fetchall()
                     if len(result) == 1:
-                        playerids.append(result[0][0])
+                        playerids.append( int(result[0][0]) )
 
             if not sitenos:
                 #Should probably pop up here.
@@ -182,12 +189,10 @@ class GuiGraphViewer (threading.Thread):
                 return
 
             #Set graph properties
-            print "add_subplot"
             self.ax = self.fig.add_subplot(111)
 
             #Get graph data from DB
             starttime = time()
-            print "get line: playerids =", playerids, "sitenos =", sitenos, "limits =", limits
             line = self.getRingProfitGraph(playerids, sitenos, limits)
             print "Graph generated in: %s" %(time() - starttime)
 
@@ -234,12 +239,31 @@ class GuiGraphViewer (threading.Thread):
         # [5L] into (5) not (5,) and [5L, 2829L] into (5, 2829)
         nametest = str(tuple(names))
         sitetest = str(tuple(sites))
-        limittest = str(tuple(limits))
-        nametest = nametest.replace("L", "")
-        nametest = nametest.replace(",)",")")
-        sitetest = sitetest.replace(",)",")")
-        limittest = limittest.replace("L", "")
-        limittest = limittest.replace(",)",")")
+        #nametest = nametest.replace("L", "")
+
+        lims = [int(x) for x in limits if x.isdigit()]
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        limittest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
+                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
+        if lims:
+            blindtest = str(tuple(lims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) '
+        else:
+            limittest = limittest + '(-1) ) '
+        limittest = limittest + " or (gt.limitType = 'nl' and gt.bigBlind in "
+        if nolims:
+            blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            limittest = limittest + blindtest + ' ) )'
+        else:
+            limittest = limittest + '(-1) ) )'
+        if type == 'ring':
+            limittest = limittest + " and gt.type = 'ring' "
+        elif type == 'tour':
+            limittest = limittest + " and gt.type = 'tour' "
 
         #Must be a nicer way to deal with tuples of size 1 ie. (2,) - which makes sql barf
         tmp = tmp.replace("<player_test>", nametest)
@@ -247,6 +271,7 @@ class GuiGraphViewer (threading.Thread):
         tmp = tmp.replace("<startdate_test>", start_date)
         tmp = tmp.replace("<enddate_test>", end_date)
         tmp = tmp.replace("<limit_test>", limittest)
+        tmp = tmp.replace(",)", ")")
 
         #print "DEBUG: sql query:"
         #print tmp
@@ -255,10 +280,10 @@ class GuiGraphViewer (threading.Thread):
         winnings = self.db.cursor.fetchall()
         self.db.rollback()
 
-        if(winnings == ()):
+        if winnings == ():
             return None
 
-        y=map(lambda x:float(x[3]), winnings)
+        y = map(lambda x:float(x[1]), winnings)
         line = cumsum(y)
         return line/100
         #end of def getRingProfitGraph

@@ -32,19 +32,20 @@ import FpdbSQLQueries
 
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):
-        self.debug=debug
+        # config and qdict are now redundant
+        self.debug = debug
         #print "start of GraphViewer constructor"
-        self.db=db
-        self.cursor=db.cursor
-        self.sql=qdict
-        self.conf = config
+        self.db = db
+        self.cursor = db.cursor
+        self.sql = db.sql
+        self.conf = db.config
         self.display = display
 
         self.sites  = {}
         self.games  = {}
         self.limits = {}
         self.seats  = {}
-        self.groups  = {}
+        self.groups = {}
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
@@ -451,6 +452,9 @@ class Filters(threading.Thread):
             hbox.pack_start(vbox3, False, False, 0)
             found = {'nl':False, 'fl':False, 'ring':False, 'tour':False}
             for i, line in enumerate(result):
+                if "UseType" in self.display:
+                    if line[0] != self.display["UseType"]:
+                        continue
                 hbox = gtk.HBox(False, 0)
                 if i <= len(result)/2:
                     vbox2.pack_start(hbox, False, False, 0)

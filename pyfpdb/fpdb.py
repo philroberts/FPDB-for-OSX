@@ -44,6 +44,7 @@ else:
 
 print "Python " + sys.version[0:3] + '...\n'
 
+import traceback
 import threading
 import Options
 import string
@@ -64,7 +65,6 @@ import gtk
 import interlocks
 
 
-import fpdb_simple
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -76,7 +76,7 @@ import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
-import Exceptions
+from Exceptions import *
 
 VERSION = "0.11"
 
@@ -234,13 +234,13 @@ class fpdb:
             dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
             diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
-                        +self.db.fdb.database+" on "+self.db.fdb.host+" they will be deleted."
+                        +self.db.database+" on "+self.db.host+" they will be deleted."
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
             response = dia_confirm.run()
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                #if self.db.fdb.backend == self.fdb_lock.fdb.MYSQL_INNODB:
+                #if self.db.backend == self.fdb_lock.fdb.MYSQL_INNODB:
                     # mysql requires locks on all tables or none - easier to release this lock 
                     # than lock all the other tables
                     # ToDo: lock all other tables so that lock doesn't have to be released
@@ -455,17 +455,23 @@ class fpdb:
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
         try:
             self.db = Database.Database(self.config, sql = self.sql)
-        except Exceptions.FpdbMySQLFailedError:
+        except FpdbMySQLFailedError:
             self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
             exit()
         except FpdbError:
-            print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
             sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
         except:
-            print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
             sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
-        if self.db.fdb.wrongDbVersion:
+        if self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
             label = gtk.Label("An invalid DB version or missing tables have been detected.")
@@ -484,14 +490,14 @@ class fpdb:
             diaDbVersionWarning.destroy()
 
         if self.status_bar == None:
-            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
         else:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.database, self.db.host))
 
         # Database connected to successfully, load queries to pass on to other classes
-        self.db.connection.rollback()
+        self.db.rollback()
         
         self.validate_config()
 

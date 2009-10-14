@@ -2455,16 +2455,16 @@ class Sql:
             #    self.query['playerStatsByPosition'] = """ """
 
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
-                SELECT hp.handId, hp.totalProfit, hp.totalProfit, hp.totalProfit
+                SELECT hp.handId, hp.totalProfit
                 FROM HandsPlayers hp
-                INNER JOIN Players pl      ON  (hp.playerId  = pl.id)
-                INNER JOIN Hands h         ON  (h.id         = hp.handId)
-                INNER JOIN Gametypes g     ON  (h.gametypeId = g.id)
-                where pl.id in <player_test>
+                INNER JOIN Players pl      ON  (pl.id = hp.playerId)
+                INNER JOIN Hands h         ON  (h.id  = hp.handId)
+                INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
+                WHERE pl.id in <player_test>
                 AND   pl.siteId in <site_test>
                 AND   h.handStart > '<startdate_test>'
                 AND   h.handStart < '<enddate_test>'
-                AND   g.bigBlind in <limit_test>
+                <limit_test>
                 AND   hp.tourneysPlayersId IS NULL
                 GROUP BY h.handStart, hp.handId, hp.totalProfit
                 ORDER BY h.handStart"""
