@@ -188,14 +188,7 @@ class Database:
         log.info("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
-        self.fdb.do_connect(c)
-        self.connection = self.fdb.db
-
-        db_params = c.get_db_parameters()
-        self.import_options = c.get_import_parameters()
-        self.type = db_params['db-type']
-        self.backend = db_params['db-backend']
-        self.db_server = db_params['db-server']
+        self.do_connect(c)
         
         if self.backend == self.PGSQL:
             from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
@@ -206,14 +199,14 @@ class Database:
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
-            self.sql = SQL.Sql(type = self.type, db_server = db_params['db-server'])
+            self.sql = SQL.Sql(type = self.type, db_server = self.db_server)
         else:
             self.sql = sql
 
-        if self.backend == self.SQLITE and db_params['db-databaseName'] == ':memory:' and self.fdb.wrongDbVersion:
+        if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
             log.info("sqlite/:memory: - creating")
             self.recreate_tables()
-            self.fdb.wrongDbVersion = False
+            self.wrongDbVersion = False
 
         self.pcache      = None     # PlayerId cache
         self.cachemiss   = 0        # Delete me later - using to count player cache misses
@@ -245,6 +238,16 @@ class Database:
 
     def do_connect(self, c):
         self.fdb.do_connect(c)
+        self.connection = self.fdb.db
+        self.wrongDbVersion = self.fdb.wrongDbVersion
+
+        db_params = c.get_db_parameters()
+        self.import_options = c.get_import_parameters()
+        self.type = db_params['db-type']
+        self.backend = db_params['db-backend']
+        self.db_server = db_params['db-server']
+        self.database = db_params['db-databaseName']
+        self.host = db_params['db-host']
 
     def commit(self):
         self.fdb.db.commit()
@@ -1152,7 +1155,7 @@ class Database:
         elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
                                                  ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
+                         values (DEFAULT, 1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
@@ -1391,6 +1394,7 @@ class Database:
             importtime,
             seats,
             maxseats,
+            texture,
             playersVpi,
             boardcard1, 
             boardcard2, 
@@ -1402,6 +1406,11 @@ class Database:
             playersAtStreet3,
             playersAtStreet4,
             playersAtShowdown,
+            street0Raises,
+            street1Raises,
+            street2Raises,
+            street3Raises,
+            street4Raises,
             street1Pot,
             street2Pot,
             street3Pot,
@@ -1411,17 +1420,10 @@ class Database:
              VALUES 
               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s)"""
-#---            texture,
-#--            street0Raises,
-#--            street1Raises,
-#--            street2Raises,
-#--            street3Raises,
-#--            street4Raises,
+               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         q = q.replace('%s', self.sql.query['placeholder'])
-        print "DEBUG: p: %s" %p
-        print "DEBUG: gtid: %s" % p['gameTypeId']
+
         self.cursor.execute(q, (
                 p['tableName'], 
                 p['gameTypeId'], 
@@ -1430,6 +1432,7 @@ class Database:
                 datetime.today(), #importtime
                 p['seats'],
                 p['maxSeats'],
+                p['texture'],
                 p['playersVpi'],
                 p['boardcard1'], 
                 p['boardcard2'], 
@@ -1441,11 +1444,11 @@ class Database:
                 p['playersAtStreet3'],
                 p['playersAtStreet4'],
                 p['playersAtShowdown'],
-#                hudCache['street0Raises'], 
-#                hudCache['street1Raises'], 
-#                hudCache['street2Raises'],
-#                hudCache['street3Raises'], 
-#                hudCache['street4Raises'], 
+                p['street0Raises'],
+                p['street1Raises'],
+                p['street2Raises'],
+                p['street3Raises'],
+                p['street4Raises'],
                 p['street1Pot'],
                 p['street2Pot'],
                 p['street3Pot'],
@@ -1455,101 +1458,312 @@ class Database:
         #return getLastInsertId(backend, conn, cursor)
     # def storeHand
 
-    def storeHandsPlayers(self, p):
-    #def store_hands_players_holdem_omaha(self, backend, category, hands_id, player_ids, start_cashes
-    #                                    ,positions, card_values, card_suits, winnings, rakes, seatNos, hudCache):
-    #    result=[]
-    #
-    #    # postgres (and others?) needs the booleans converted to ints before saving:
-    #    # (or we could just save them as boolean ... but then we can't sum them so easily in sql ???)
-    #    # NO - storing booleans for now so don't need this
-    #    #hudCacheInt = {}
-    #    #for k,v in hudCache.iteritems():
-    #    #    if k in ('wonWhenSeenStreet1', 'wonAtSD', 'totalProfit'):
-    #    #        hudCacheInt[k] = v
-    #    #    else:
-    #    #        hudCacheInt[k] = map(lambda x: 1 if x else 0, v)
-    #
-    #    try:
-    #        inserts = []
-    #        for i in xrange(len(player_ids)):
-    #            card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
-    #            card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
-    #
-    #            if (category=="holdem"):
-    #                startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
-    #                card3 = None
-    #                card4 = None
-    #            elif (category=="omahahi" or category=="omahahilo"):
-    #                startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1]
-    #                                                ,card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
-    #                card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
-    #                card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
-    #            else:
-    #                raise FpdbError("invalid category")
-    #
-    #            inserts.append( (
-    #                             hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid - needed for hudcache
-    #                             card1, card2, card3, card4, startCards,
-    #                             winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
-    #                             hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
-    #                             hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
-    #                             hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
-    #                             hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
-    #                             hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
-    #                             hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
-    #                             hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
-    #                             hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
-    #                             hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
-    #                             hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
-    #                             hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
-    #                             hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
-    #                             hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
-    #                             hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
-    #                             hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
-    #                             hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
-    #                             hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
-    #                             hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
-    #                             hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
-    #                             hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
-    #                             hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
-    #                             hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
-    #                             hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
-    #                             hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
-    #                            ) )
-    #        c = self.get_cursor()
-    #        c.executemany ("""
-    #    INSERT INTO HandsPlayers
-    #    (handId, playerId, startCash, position,  tourneyTypeId,
-    #     card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
-    #     street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
-    #     street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
-    #     street1Aggr, street2Aggr, street3Aggr, street4Aggr,
-    #     otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
-    #     foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
-    #     wonWhenSeenStreet1, wonAtSD,
-    #     stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
-    #     street1CBChance, street1CBDone, street2CBChance, street2CBDone,
-    #     street3CBChance, street3CBDone, street4CBChance, street4CBDone,
-    #     foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
-    #     foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
-    #     street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
-    #     street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
-    #     street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
-    #     street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
-    #    )
-    #    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-    #     %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
-    #                                      ,inserts )
-    #        result.append( self.get_last_insert_id(c) ) # wrong? not used currently
-    #    except:
-    #        raise FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
-    #
-    #    return result
+    def storeHandsPlayers(self, hid, pid, p):
+        q = """INSERT INTO HandsPlayers (
+            handId,
+            playerId
+           )
+           VALUES (
+                %s, %s
+            )"""
 
-        pass
+#            startCash,
+#            position,
+#            tourneyTypeId,
+#            card1,
+#            card2,
+#            card3,
+#            card4,
+#            startCards,
+#            winnings,
+#            rake,
+#            seatNo,
+#            totalProfit,
+#            street0VPI,
+#            street0Aggr,
+#            street0_3BChance,
+#            street0_3BDone,
+#            street1Seen,
+#            street2Seen,
+#            street3Seen,
+#            street4Seen,
+#            sawShowdown,
+#            street1Aggr,
+#            street2Aggr,
+#            street3Aggr,
+#            street4Aggr,
+#            otherRaisedStreet1,
+#            otherRaisedStreet2,
+#            otherRaisedStreet3,
+#            otherRaisedStreet4,
+#            foldToOtherRaisedStreet1,
+#            foldToOtherRaisedStreet2,
+#            foldToOtherRaisedStreet3,
+#            foldToOtherRaisedStreet4,
+#            wonWhenSeenStreet1,
+#            wonAtSD,
+#            stealAttemptChance,
+#            stealAttempted,
+#            foldBbToStealChance,
+#            foldedBbToSteal,
+#            foldSbToStealChance,
+#            foldedSbToSteal,
+#            street1CBChance,
+#            street1CBDone,
+#            street2CBChance,
+#            street2CBDone,
+#            street3CBChance,
+#            street3CBDone,
+#            street4CBChance,
+#            street4CBDone,
+#            foldToStreet1CBChance,
+#            foldToStreet1CBDone,
+#            foldToStreet2CBChance,
+#            foldToStreet2CBDone,
+#            foldToStreet3CBChance,
+#            foldToStreet3CBDone,
+#            foldToStreet4CBChance,
+#            foldToStreet4CBDone,
+#            street1CheckCallRaiseChance,
+#            street1CheckCallRaiseDone,
+#            street2CheckCallRaiseChance,
+#            street2CheckCallRaiseDone,
+#            street3CheckCallRaiseChance,
+#            street3CheckCallRaiseDone,
+#            street4CheckCallRaiseChance,
+#            street4CheckCallRaiseDone,
+#            street0Calls,
+#            street1Calls,
+#            street2Calls,
+#            street3Calls,
+#            street4Calls,
+#            street0Bets,
+#            street1Bets,
+#            street2Bets,
+#            street3Bets,
+#            street4Bets
+
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        self.cursor.execute(q, (
+            hid,
+            pid
+        ))
+#            startCash,
+#            position,
+#            tourneyTypeId,
+#            card1,
+#            card2,
+#            card3,
+#            card4,
+#            startCards,
+#            winnings,
+#            rake,
+#            seatNo,
+#            totalProfit,
+#            street0VPI,
+#            street0Aggr,
+#            street0_3BChance,
+#            street0_3BDone,
+#            street1Seen,
+#            street2Seen,
+#            street3Seen,
+#            street4Seen,
+#            sawShowdown,
+#            street1Aggr,
+#            street2Aggr,
+#            street3Aggr,
+#            street4Aggr,
+#            otherRaisedStreet1,
+#            otherRaisedStreet2,
+#            otherRaisedStreet3,
+#            otherRaisedStreet4,
+#            foldToOtherRaisedStreet1,
+#            foldToOtherRaisedStreet2,
+#            foldToOtherRaisedStreet3,
+#            foldToOtherRaisedStreet4,
+#            wonWhenSeenStreet1,
+#            wonAtSD,
+#            stealAttemptChance,
+#            stealAttempted,
+#            foldBbToStealChance,
+#            foldedBbToSteal,
+#            foldSbToStealChance,
+#            foldedSbToSteal,
+#            street1CBChance,
+#            street1CBDone,
+#            street2CBChance,
+#            street2CBDone,
+#            street3CBChance,
+#            street3CBDone,
+#            street4CBChance,
+#            street4CBDone,
+#            foldToStreet1CBChance,
+#            foldToStreet1CBDone,
+#            foldToStreet2CBChance,
+#            foldToStreet2CBDone,
+#            foldToStreet3CBChance,
+#            foldToStreet3CBDone,
+#            foldToStreet4CBChance,
+#            foldToStreet4CBDone,
+#            street1CheckCallRaiseChance,
+#            street1CheckCallRaiseDone,
+#            street2CheckCallRaiseChance,
+#            street2CheckCallRaiseDone,
+#            street3CheckCallRaiseChance,
+#            street3CheckCallRaiseDone,
+#            street4CheckCallRaiseChance,
+#            street4CheckCallRaiseDone,
+#            street0Calls,
+#            street1Calls,
+#            street2Calls,
+#            street3Calls,
+#            street4Calls,
+#            street0Bets,
+#            street1Bets,
+#            street2Bets,
+#            street3Bets,
+#            street4Bets
+
+    def storeHudCacheNew(self, gid, pid, hc):
+        q = """INSERT INTO HudCache (
+            gametypeId,
+            playerId
+           )
+           VALUES (
+                %s, %s
+            )"""
+
+#            gametypeId,
+#            playerId,
+#            activeSeats,
+#            position,
+#            tourneyTypeId,
+#            styleKey,
+#            HDs,
+#            street0VPI,
+#            street0Aggr,
+#            street0_3BChance,
+#            street0_3BDone,
+#            street1Seen,
+#            street2Seen,
+#            street3Seen,
+#            street4Seen,
+#            sawShowdown,
+#            street1Aggr,
+#            street2Aggr,
+#            street3Aggr,
+#            street4Aggr,
+#            otherRaisedStreet1,
+#            otherRaisedStreet2,
+#            otherRaisedStreet3,
+#            otherRaisedStreet4,
+#            foldToOtherRaisedStreet1,
+#            foldToOtherRaisedStreet2,
+#            foldToOtherRaisedStreet3,
+#            foldToOtherRaisedStreet4,
+#            wonWhenSeenStreet1,
+#            wonAtSD,
+#            stealAttemptChance,
+#            stealAttempted,
+#            foldBbToStealChance,
+#            foldedBbToSteal,
+#            foldSbToStealChance,
+#            foldedSbToSteal,
+#            street1CBChance,
+#            street1CBDone,
+#            street2CBChance,
+#            street2CBDone,
+#            street3CBChance,
+#            street3CBDone,
+#            street4CBChance,
+#            street4CBDone,
+#            foldToStreet1CBChance,
+#            foldToStreet1CBDone,
+#            foldToStreet2CBChance,
+#            foldToStreet2CBDone,
+#            foldToStreet3CBChance,
+#            foldToStreet3CBDone,
+#            foldToStreet4CBChance,
+#            foldToStreet4CBDone,
+#            totalProfit,
+#            street1CheckCallRaiseChance,
+#            street1CheckCallRaiseDone,
+#            street2CheckCallRaiseChance,
+#            street2CheckCallRaiseDone,
+#            street3CheckCallRaiseChance,
+#            street3CheckCallRaiseDone,
+#            street4CheckCallRaiseChance,
+#            street4CheckCallRaiseDone)
+
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        self.cursor.execute(q, (
+            gid,
+            pid
+        ))
+
+#            gametypeId,
+#            playerId,
+#            activeSeats,
+#            position,
+#            tourneyTypeId,
+#            styleKey,
+#            HDs,
+#            street0VPI,
+#            street0Aggr,
+#            street0_3BChance,
+#            street0_3BDone,
+#            street1Seen,
+#            street2Seen,
+#            street3Seen,
+#            street4Seen,
+#            sawShowdown,
+#            street1Aggr,
+#            street2Aggr,
+#            street3Aggr,
+#            street4Aggr,
+#            otherRaisedStreet1,
+#            otherRaisedStreet2,
+#            otherRaisedStreet3,
+#            otherRaisedStreet4,
+#            foldToOtherRaisedStreet1,
+#            foldToOtherRaisedStreet2,
+#            foldToOtherRaisedStreet3,
+#            foldToOtherRaisedStreet4,
+#            wonWhenSeenStreet1,
+#            wonAtSD,
+#            stealAttemptChance,
+#            stealAttempted,
+#            foldBbToStealChance,
+#            foldedBbToSteal,
+#            foldSbToStealChance,
+#            foldedSbToSteal,
+#            street1CBChance,
+#            street1CBDone,
+#            street2CBChance,
+#            street2CBDone,
+#            street3CBChance,
+#            street3CBDone,
+#            street4CBChance,
+#            street4CBDone,
+#            foldToStreet1CBChance,
+#            foldToStreet1CBDone,
+#            foldToStreet2CBChance,
+#            foldToStreet2CBDone,
+#            foldToStreet3CBChance,
+#            foldToStreet3CBDone,
+#            foldToStreet4CBChance,
+#            foldToStreet4CBDone,
+#            totalProfit,
+#            street1CheckCallRaiseChance,
+#            street1CheckCallRaiseDone,
+#            street2CheckCallRaiseChance,
+#            street2CheckCallRaiseDone,
+#            street3CheckCallRaiseChance,
+#            street3CheckCallRaiseDone,
+#            street4CheckCallRaiseChance,
+#            street4CheckCallRaiseDone)
 
 
 #################################
