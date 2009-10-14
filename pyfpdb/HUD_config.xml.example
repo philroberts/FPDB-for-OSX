@@ -4,8 +4,97 @@
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
-    <hud_ui label="FPDB Menu - Right-click
-Left-Drag to Move" />
+
+<!-- These values need some explaining
+
+     aggregate_ring_game_stats :
+        - True/False
+        - if set to True, includes data from other blind levels
+        - defaults to False
+
+    aggregate_tourney_stats :
+        - True/False
+        - if set to True, includes data from other blind levels
+        - defaults to True
+
+    stat_aggregation_range :
+        - A/S/T
+        - if set to A, includes stats from all time
+        - if set to S, includes stats from current sessions
+        - if set to T, includes stats from last N days; set value in hud_days
+        - defaults to A
+
+    aggregation_days :
+        - a numeric value
+        - if hud_style is set to 'T', this value tells how many days are
+          included in the stat calculation
+        - defaults to 90
+        - value not used by default, as depends on hud_style setting
+
+    aggregation_level_multiplier :
+        - float value
+        - defines how many blind levels are used for aggregation
+        - the logic is weird, at best
+        - if value is 100, almost all levels are included
+        - if value is 2.1, levels from half to double the current blind
+          level are included
+        - if value it 1, no aggregation is performed
+        - defaults to 1
+
+
+    The following values define how hero's stats are done
+
+
+    aggregate_hero_ring_game_stats :
+        - True/False
+        - if set to True, hero's data is calculated over multiple blind levels
+        - defaults to False
+
+    aggregate_hero_tourney_stats :
+        - True/False
+        - if set to True, hero's data is calculated over multiple blind levels
+        - defaults to False
+
+    hero_stat_aggregation_range :
+        - A/S/T
+        - if set to A, includes stats from all time
+        - if set to S, includes stats from current sessions
+        - if set to T, includes stats from last N days; set value in hud_days
+        - defaults to S
+
+    hero_aggregation_days :
+        - a numeric value
+        - if hero_stat_aggregation_range is set to 'T', this value tells
+          how many days are included in the stat calculation
+        - defaults to 30
+        - value not used by default, as depends on hud_style setting
+
+    hero_aggregation_level_multiplier :
+        - float value
+        - defines how many blind levels are used for aggregation
+        - the logic is weird, at best
+        - if value is 100, almost all levels are included
+        - if value is 2.1, levels from half to double the current blind
+          level are included
+        - if value it 1, no aggregation is performed
+        - defaults to 1
+-->
+    <hud_ui
+    aggregate_ring_game_stats="False"
+    aggregate_tourney_stats="False"
+    stat_aggregation_style="A"
+    aggregation_days="90"
+    aggregation_level_multiplier="1"
+
+    aggregate_hero_ring_game_stats="False"
+    aggregate_hero_tourney_stats="True"
+    hero_stat_aggregation_range="S"
+    hero_aggregation_days="30"
+    hero_aggregation_level_multiplier="1"
+
+    label="FPDB Menu - Right-click
+Left-Drag to Move"
+    />
 
 	<supported_sites>
 
