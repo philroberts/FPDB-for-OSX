@@ -1383,41 +1383,7 @@ class Database:
 
     def storeHand(self, p):
         #stores into table hands:
-        q = """INSERT INTO Hands ( 
-            tablename, 
-            gametypeid, 
-            sitehandno,
-            handstart, 
-            importtime,
-            seats,
-            maxseats,
-            texture,
-            playersVpi,
-            boardcard1, 
-            boardcard2, 
-            boardcard3, 
-            boardcard4, 
-            boardcard5,
-            playersAtStreet1,
-            playersAtStreet2,
-            playersAtStreet3,
-            playersAtStreet4,
-            playersAtShowdown,
-            street0Raises,
-            street1Raises,
-            street2Raises,
-            street3Raises,
-            street4Raises,
-            street1Pot,
-            street2Pot,
-            street3Pot,
-            street4Pot,
-            showdownPot
-             ) 
-             VALUES 
-              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        q = self.sql.query['store_hand']
 
         q = q.replace('%s', self.sql.query['placeholder'])
 

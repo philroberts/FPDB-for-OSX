@@ -3110,6 +3110,44 @@ class Sql:
             self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
             self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
 
+            self.query['store_hand'] = """INSERT INTO Hands (
+                                                tablename,
+                                                gametypeid,
+                                                sitehandno,
+                                                handstart,
+                                                importtime,
+                                                seats,
+                                                maxseats,
+                                                texture,
+                                                playersVpi,
+                                                boardcard1,
+                                                boardcard2,
+                                                boardcard3,
+                                                boardcard4,
+                                                boardcard5,
+                                                playersAtStreet1,
+                                                playersAtStreet2,
+                                                playersAtStreet3,
+                                                playersAtStreet4,
+                                                playersAtShowdown,
+                                                street0Raises,
+                                                street1Raises,
+                                                street2Raises,
+                                                street3Raises,
+                                                street4Raises,
+                                                street1Pot,
+                                                street2Pot,
+                                                street3Pot,
+                                                street4Pot,
+                                                showdownPot
+                                                 )
+                                                 VALUES
+                                                  (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                   %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                   %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+
+
             
             
             if db_server == 'mysql':
