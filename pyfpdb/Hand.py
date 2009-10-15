@@ -205,14 +205,14 @@ db: a connected fpdb_db object"""
         #Gametypes
         gtid = db.getGameTypeId(self.siteId, self.gametype)
 
-        self.stats.assembleHands(self)
+        self.stats.getStats(self)
 
         #####
         # End prep functions
         #####
 
-        # HudCache data to come from DerivedStats class
         # HandsActions - all actions for all players for all streets - self.actions
+        # HudCache data can be generated from HandsActions (HandsPlayers?)
 
         # Hands - Summary information of hand indexed by handId - gameinfo
         hh = self.stats.getHands()
@@ -223,6 +223,7 @@ db: a connected fpdb_db object"""
         #print hh
         handid = db.storeHand(hh)
         # HandsPlayers - ? ... Do we fix winnings?
+        db.storeHandsPlayers(handid, sqlids, self.stats.getHandsPlayers())
         # Tourneys ?
         # TourneysPlayers
 

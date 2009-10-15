@@ -282,6 +282,19 @@ class HudUI:
     def __init__(self, node):
         self.node = node
         self.label  = node.getAttribute('label')
+        #
+        self.aggregate_ring = fix_tf(node.getAttribute('aggregate_ring_game_stats'))
+        self.aggregate_tour = fix_tf(node.getAttribute('aggregate_tourney_stats'))
+        self.hud_style      = node.getAttribute('stat_aggregation_range')
+        self.hud_days       = node.getAttribute('aggregation_days')
+        self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
+        #
+        self.h_aggregate_ring   = fix_tf(node.getAttribute('aggregate_hero_ring_game_stats'))
+        self.h_aggregate_tour   = fix_tf(node.getAttribute('aggregate_hero_tourney_stats'))
+        self.h_hud_style        = node.getAttribute('hero_stat_aggregation_range')
+        self.h_hud_days         = node.getAttribute('hero_aggregation_days')
+        self.h_agg_bb_mult      = node.getAttribute('hero_aggregation_level_multiplier')
+
 
     def __str__(self):
         return "    label = %s\n" % self.label
@@ -629,6 +642,7 @@ class Config:
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
         hui = {}
+
         default_text = 'FPDB Menu - Right click\nLeft-Drag to Move'
         try:
             hui['label'] = self.ui.label
@@ -636,6 +650,39 @@ class Config:
                 hui['label'] = default_text
         except:
             hui['label'] = default_text
+
+        try:    hui['aggregate_ring']   = self.ui.aggregate_ring
+        except: hui['aggregate_ring']   = False
+
+        try:    hui['aggregate_tour']   = self.ui.aggregate_tour
+        except: hui['aggregate_tour']   = True
+
+        try:    hui['hud_style']        = self.ui.hud_style
+        except: hui['hud_style']        = 'A'
+
+        try:    hui['hud_days']         = int(self.ui.hud_days)
+        except: hui['hud_days']         = 90
+
+        try:    hui['agg_bb_mult']      = self.ui.agg_bb_mult
+        except: hui['agg_bb_mult']      = 1
+
+        # Hero specific
+
+        try:    hui['h_aggregate_ring'] = self.ui.h_aggregate_ring
+        except: hui['h_aggregate_ring'] = False
+
+        try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
+        except: hui['h_aggregate_tour'] = True
+
+        try:    hui['h_hud_style']      = self.ui.h_hud_style
+        except: hui['h_hud_style']      = 'S'
+
+        try:    hui['h_hud_days']       = int(self.ui.h_hud_days)
+        except: hui['h_hud_days']       = 30
+
+        try:    hui['h_agg_bb_mult']    = self.ui.h_agg_bb_mult
+        except: hui['h_agg_bb_mult']    = 1
+
         return hui
 
     
