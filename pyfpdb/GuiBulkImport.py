@@ -337,8 +337,10 @@ def main(argv=None):
         importer.setThreads(-1)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
-        importer.runImport()
+        (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
+        print 'GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
 
 
 if __name__ == '__main__':
