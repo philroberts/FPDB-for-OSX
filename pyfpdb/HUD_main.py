@@ -91,7 +91,7 @@ class HUD_main(object):
         self.db_name = db_name
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.hud_dict = {}
-        self.hud_params = def_hud_params
+        self.hud_params = self.config.get_hud_ui_parameters()
 
 #    a thread to read stdin
         gobject.threads_init()                       # this is required
