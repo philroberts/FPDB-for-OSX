@@ -40,21 +40,6 @@ class GuiBulkImport():
     # CONFIGURATION  -  update these as preferred:
     allowThreads = True  # set to True to try out the threads field
 
-    # not used
-    def import_dir(self):
-        """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
-
-        self.path = self.inputFile
-        self.importer.addImportDirectory(self.path)
-        self.importer.setCallHud(False)
-        starttime = time()
-        if not self.importer.settings['threads'] > 1:
-            (stored, dups, partial, errs, ttime) = self.importer.runImport()
-            print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
-                 % (stored, dups, partial, errs, ttime, stored / ttime)
-        else:
-            self.importer.RunImportThreaded()
-
     def dopulse(self):
         self.progressbar.pulse()
         return True
@@ -77,7 +62,7 @@ class GuiBulkImport():
                 self.timer = gobject.timeout_add(100, self.dopulse)
                 
                 #    get the dir to import from the chooser
-                self.inputFile = self.chooser.get_filename()
+                selected = self.chooser.get_filenames()
 
                 #    get the import settings from the gui and save in the importer
                 self.importer.setHandCount(int(self.spin_hands.get_text()))
@@ -103,7 +88,8 @@ class GuiBulkImport():
                     self.importer.setDropHudCache("auto")
                 sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
                 
-                self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
+                for selection in selected:
+                    self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
                 self.importer.setCallHud(False)
                 starttime = time()
 #                try:
@@ -151,6 +137,7 @@ class GuiBulkImport():
 
         self.chooser = gtk.FileChooserWidget()
         self.chooser.set_filename(self.settings['bulkImport-defaultPath'])
+        self.chooser.set_select_multiple(True)
         self.vbox.add(self.chooser)
         self.chooser.show()
 
