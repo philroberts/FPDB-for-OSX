@@ -801,6 +801,8 @@ class DerivedStats():
         # [ (player, action, ....), (player2, action, ...) ]
         # The number of unique players in the list per street gives the value for playersAtStreetXXX
 
+        # FIXME?? - This isn't couting people that are all in - at least showdown needs to reflect this
+
         self.hands['playersAtStreet1']  = 0
         self.hands['playersAtStreet2']  = 0
         self.hands['playersAtStreet3']  = 0
