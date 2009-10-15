@@ -304,7 +304,19 @@ def main(argv=None):
                     help="If this option is passed it quits when it encounters any error")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
                     help="How often to print a one-line status report (0 (default) means never)")
+    parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False, 
+                    help="Print some useful one liners")
     (options, sys.argv) = parser.parse_args(args = argv)
+
+    if options.usage == True:
+        #Print usage examples and exit
+        print "USAGE:"
+        print 'PokerStars converter: ./GuiBulkImport -c PokerStars -f filename'
+        print 'Full Tilt  converter: ./GuiBulkImport -c "Full Tilt Poker" -f filename'
+        print "Everleaf   converter: ./GuiBulkImport -c Everleaf -f filename"
+        print "Absolute   converter: ./GuiBulkImport -c Absolute -f filename"
+        print "PartyPoker converter: ./GuiBulkImport -c PartyPoker -f filename"
+        sys.exit(0)
 
     config = Configuration.Config()
     
