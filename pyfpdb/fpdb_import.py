@@ -547,7 +547,7 @@ class Importer:
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
-                            #print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
+                            print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except Exceptions.DuplicateError:
                         duplicates += 1

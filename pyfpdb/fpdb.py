@@ -44,6 +44,7 @@ else:
 
 print "Python " + sys.version[0:3] + '...\n'
 
+import traceback
 import threading
 import Options
 import string
@@ -64,7 +65,6 @@ import gtk
 import interlocks
 
 
-import fpdb_simple
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -234,13 +234,13 @@ class fpdb:
             dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
             diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
-                        +self.db.fdb.database+" on "+self.db.fdb.host+" they will be deleted."
+                        +self.db.database+" on "+self.db.host+" they will be deleted."
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
 
             response = dia_confirm.run()
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                #if self.db.fdb.backend == self.fdb_lock.fdb.MYSQL_INNODB:
+                #if self.db.backend == self.fdb_lock.fdb.MYSQL_INNODB:
                     # mysql requires locks on all tables or none - easier to release this lock 
                     # than lock all the other tables
                     # ToDo: lock all other tables so that lock doesn't have to be released
@@ -257,17 +257,65 @@ class fpdb:
     
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
-            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+            self.dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = "Please confirm that you want to re-create the HUD cache."
-            dia_confirm.format_secondary_text(diastring)
-            
-            response = dia_confirm.run()
-            dia_confirm.destroy()
+            self.dia_confirm.format_secondary_text(diastring)
+
+            hb = gtk.HBox(True, 1)
+            self.start_date = gtk.Entry(max=12)
+            self.start_date.set_text( self.db.get_hero_hudcache_start() )
+            lbl = gtk.Label(" Hero's cache starts: ")
+            btn = gtk.Button()
+            btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
+            btn.connect('clicked', self.__calendar_dialog, self.start_date)
+
+            hb.pack_start(lbl, expand=True, padding=3)
+            hb.pack_start(self.start_date, expand=True, padding=2)
+            hb.pack_start(btn, expand=False, padding=3)
+            self.dia_confirm.vbox.add(hb)
+            hb.show_all()
+
+            response = self.dia_confirm.run()
+            self.dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                self.db.rebuild_hudcache()
-            elif response == gtk.REPSONSE_NO:
+                self.db.rebuild_hudcache( self.start_date.get_text() )
+            elif response == gtk.RESPONSE_NO:
                 print 'User cancelled rebuilding hud cache'
+
         self.release_global_lock()
+
+    def __calendar_dialog(self, widget, entry):
+        self.dia_confirm.set_modal(False)
+        d = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        d.set_title('Pick a date')
+
+        vb = gtk.VBox()
+        cal = gtk.Calendar()
+        vb.pack_start(cal, expand=False, padding=0)
+
+        btn = gtk.Button('Done')
+        btn.connect('clicked', self.__get_date, cal, entry, d)
+
+        vb.pack_start(btn, expand=False, padding=4)
+
+        d.add(vb)
+        d.set_position(gtk.WIN_POS_MOUSE)
+        d.show_all()
+
+    def __get_dates(self):
+        t1 = self.start_date.get_text()
+        if t1 == '':
+            t1 = '1970-01-01'
+        return (t1)
+
+    def __get_date(self, widget, calendar, entry, win):
+        # year and day are correct, month is 0..11
+        (year, month, day) = calendar.get_date()
+        month += 1
+        ds = '%04d-%02d-%02d' % (year, month, day)
+        entry.set_text(ds)
+        win.destroy()
+        self.dia_confirm.set_modal(True)
     
     def dia_regression_test(self, widget, data=None):
         self.warning_box("Unimplemented: Regression Test")
@@ -405,9 +453,25 @@ class fpdb:
             self.db.disconnect()
 
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
-        self.db = Database.Database(self.config, sql = self.sql)
+        try:
+            self.db = Database.Database(self.config, sql = self.sql)
+        except FpdbMySQLFailedError:
+            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
+            exit()
+        except FpdbError:
+            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
+        except:
+            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
-        if self.db.fdb.wrongDbVersion:
+        if self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
             label = gtk.Label("An invalid DB version or missing tables have been detected.")
@@ -426,14 +490,14 @@ class fpdb:
             diaDbVersionWarning.destroy()
 
         if self.status_bar == None:
-            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
         else:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.fdb.database, self.db.fdb.host))
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.database, self.db.host))
 
         # Database connected to successfully, load queries to pass on to other classes
-        self.db.connection.rollback()
+        self.db.rollback()
         
         self.validate_config()
 

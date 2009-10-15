@@ -73,6 +73,8 @@ class Hud:
         self.stacked       = True
         self.site          = table.site
         self.mw_created    = False
+        self.hud_params    = parent.hud_params
+        
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -144,6 +146,147 @@ class Hud:
         repositem = gtk.MenuItem('Reposition StatWindows')
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
+                
+        aggitem = gtk.MenuItem('Show Player Stats')
+        menu.append(aggitem)
+        self.aggMenu = gtk.Menu()
+        aggitem.set_submenu(self.aggMenu)
+        # set agg_bb_mult to 1 to stop aggregation
+        item = gtk.CheckMenuItem('For This Blind Level Only')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',1))
+        setattr(self, 'h_aggBBmultItem1', item) 
+        # 
+        item = gtk.MenuItem('For Multiple Blind Levels:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',2))
+        setattr(self, 'h_aggBBmultItem2', item) 
+        # 
+        item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',3))
+        setattr(self, 'h_aggBBmultItem3', item) 
+        # 
+        item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',10))
+        setattr(self, 'h_aggBBmultItem10', item) 
+        # 
+        item = gtk.CheckMenuItem('  All Levels')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('P',10000))
+        setattr(self, 'h_aggBBmultItem10000', item) 
+        # 
+        item = gtk.MenuItem('Since:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  All Time')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('P','A'))
+        setattr(self, 'h_hudStyleOptionA', item)
+        # 
+        item = gtk.CheckMenuItem('  Session')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('P','S'))
+        setattr(self, 'h_hudStyleOptionS', item) 
+        # 
+        item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('P','T'))
+        setattr(self, 'h_hudStyleOptionT', item) 
+                
+        aggitem = gtk.MenuItem('Show Opponent Stats')
+        menu.append(aggitem)
+        self.aggMenu = gtk.Menu()
+        aggitem.set_submenu(self.aggMenu)
+        # set agg_bb_mult to 1 to stop aggregation
+        item = gtk.CheckMenuItem('For This Blind Level Only')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('O',1))
+        setattr(self, 'aggBBmultItem1', item) 
+        # 
+        item = gtk.MenuItem('For Multiple Blind Levels:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('O',2))
+        setattr(self, 'aggBBmultItem2', item) 
+        # 
+        item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('O',3))
+        setattr(self, 'aggBBmultItem3', item) 
+        # 
+        item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('O',10))
+        setattr(self, 'aggBBmultItem10', item) 
+        # 
+        item = gtk.CheckMenuItem('  All Levels')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_aggregation, ('O',10000))
+        setattr(self, 'aggBBmultItem10000', item) 
+        # 
+        item = gtk.MenuItem('Since:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  All Time')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('O','A'))
+        setattr(self, 'hudStyleOptionA', item)
+        # 
+        item = gtk.CheckMenuItem('  Session')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('O','S'))
+        setattr(self, 'hudStyleOptionS', item) 
+        # 
+        item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_hud_style, ('O','T'))
+        setattr(self, 'hudStyleOptionT', item) 
+
+        # set active on current options:
+        if self.hud_params['h_agg_bb_mult'] == 1:
+            getattr(self, 'h_aggBBmultItem1').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 2:
+            getattr(self, 'h_aggBBmultItem2').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 3:
+            getattr(self, 'h_aggBBmultItem3').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] == 10:
+            getattr(self, 'h_aggBBmultItem10').set_active(True)
+        elif self.hud_params['h_agg_bb_mult'] > 9000:
+            getattr(self, 'h_aggBBmultItem10000').set_active(True)
+        #
+        if self.hud_params['agg_bb_mult'] == 1:
+            getattr(self, 'aggBBmultItem1').set_active(True)
+        elif self.hud_params['agg_bb_mult'] == 2:
+            getattr(self, 'aggBBmultItem2').set_active(True)
+        elif self.hud_params['agg_bb_mult'] == 3:
+            getattr(self, 'aggBBmultItem3').set_active(True)
+        elif self.hud_params['agg_bb_mult'] == 10:
+            getattr(self, 'aggBBmultItem10').set_active(True)
+        elif self.hud_params['agg_bb_mult'] > 9000:
+            getattr(self, 'aggBBmultItem10000').set_active(True)
+        #
+        if self.hud_params['h_hud_style'] == 'A':
+            getattr(self, 'h_hudStyleOptionA').set_active(True)
+        elif self.hud_params['h_hud_style'] == 'S':
+            getattr(self, 'h_hudStyleOptionS').set_active(True)
+        elif self.hud_params['h_hud_style'] == 'T':
+            getattr(self, 'h_hudStyleOptionT').set_active(True)
+        #
+        if self.hud_params['hud_style'] == 'A':
+            getattr(self, 'hudStyleOptionA').set_active(True)
+        elif self.hud_params['hud_style'] == 'S':
+            getattr(self, 'hudStyleOptionS').set_active(True)
+        elif self.hud_params['hud_style'] == 'T':
+            getattr(self, 'hudStyleOptionT').set_active(True)
+        
+        eventbox.connect_object("button-press-event", self.on_button_press, menu)
         
         debugitem = gtk.MenuItem('Debug StatWindows')
         menu.append(debugitem)
@@ -177,9 +320,58 @@ class Hud:
                 self.create(*self.creation_attrs)
                 self.update(self.hand, self.config)
             except Exception, e:
-                print "Expcetion:",str(e)
+                print "Exception:",str(e)
                 pass
+
+    def set_aggregation(self, widget, val):
+        (player_opp, num) = val
+        if player_opp == 'P':
+            # set these true all the time, set the multiplier to 1 to turn agg off:
+            self.hud_params['h_aggregate_ring'] = True
+            self.hud_params['h_aggregate_tour'] = True
+
+            if     self.hud_params['h_agg_bb_mult'] != num \
+               and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
+                print 'set_player_aggregation', num
+                self.hud_params['h_agg_bb_mult'] = num
+                for mult in ('1', '2', '3', '10', '10000'):
+                    if mult != str(num):
+                        getattr(self, 'h_aggBBmultItem'+mult).set_active(False)
+        else:
+            self.hud_params['aggregate_ring'] = True
+            self.hud_params['aggregate_tour'] = True
+
+            if     self.hud_params['agg_bb_mult'] != num \
+               and getattr(self, 'aggBBmultItem'+str(num)).get_active():
+                print 'set_opponent_aggregation', num
+                self.hud_params['agg_bb_mult'] = num
+                for mult in ('1', '2', '3', '10', '10000'):
+                    if mult != str(num):
+                        getattr(self, 'aggBBmultItem'+mult).set_active(False)
+
+    def set_hud_style(self, widget, val):
+        (player_opp, style) = val
+        if player_opp == 'P':
+            param = 'h_hud_style'
+            prefix = 'h_'
+        else:
+            param = 'hud_style'
+            prefix = ''
         
+        if style == 'A' and getattr(self, prefix+'hudStyleOptionA').get_active():
+            self.hud_params[param] = 'A'
+            getattr(self, prefix+'hudStyleOptionS').set_active(False)
+            getattr(self, prefix+'hudStyleOptionT').set_active(False)
+        elif style == 'S' and getattr(self, prefix+'hudStyleOptionS').get_active():
+            self.hud_params[param] = 'S'
+            getattr(self, prefix+'hudStyleOptionA').set_active(False)
+            getattr(self, prefix+'hudStyleOptionT').set_active(False)
+        elif style == 'T' and getattr(self, prefix+'hudStyleOptionT').get_active():
+            self.hud_params[param] = 'T'
+            getattr(self, prefix+'hudStyleOptionA').set_active(False)
+            getattr(self, prefix+'hudStyleOptionS').set_active(False)
+        print "setting self.hud_params[%s] = %s" % (param, style)
+
     def update_table_position(self):
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
@@ -219,7 +411,11 @@ class Hud:
 #    heap dead, burnt bodies, blood 'n guts, veins between my teeth
         for s in self.stat_windows.itervalues():
             s.kill_popups()
-            s.window.destroy()    
+            try:
+                # throws "invalid window handle" in WinXP (sometimes?)
+                s.window.destroy()
+            except:
+                pass
         self.stat_windows = {}
 #    also kill any aux windows
         for aux in self.aux_windows:
@@ -627,7 +823,7 @@ class Popup_window:
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
         window.window.set_transient_for(self.table.gdkhandle)
 #        window.present()
-        
+
 
 if __name__== "__main__":
     main_window = gtk.Window()

@@ -331,7 +331,8 @@ class Sql:
                                 speed varchar(10),
                                 headsUp BOOLEAN NOT NULL DEFAULT False,
                                 shootout BOOLEAN NOT NULL DEFAULT False,
-                                matrix BOOLEAN NOT NULL DEFAULT False
+                                matrix BOOLEAN NOT NULL DEFAULT False,
+                                sng BOOLEAN NOT NULL DEFAULT False
                                 )
                             ENGINE=INNODB"""
             elif db_server == 'postgresql':
@@ -346,7 +347,8 @@ class Sql:
                             speed varchar(10),
                             headsUp BOOLEAN NOT NULL DEFAULT False,
                             shootout BOOLEAN NOT NULL DEFAULT False,
-                            matrix BOOLEAN NOT NULL DEFAULT False
+                            matrix BOOLEAN NOT NULL DEFAULT False,
+                            sng BOOLEAN NOT NULL DEFAULT False
                             )"""
             elif db_server == 'sqlite':
                 self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
@@ -360,7 +362,8 @@ class Sql:
                             speed TEXT,
                             headsUp BOOLEAN NOT NULL DEFAULT 0,
                             shootout BOOLEAN NOT NULL DEFAULT 0,
-                            matrix BOOLEAN NOT NULL DEFAULT 0
+                            matrix BOOLEAN NOT NULL DEFAULT 0,
+                            sng BOOLEAN NOT NULL DEFAULT 0
                             )"""
 
             ################################
@@ -820,7 +823,21 @@ class Sql:
                             comment TEXT,
                             commentTs timestamp without time zone)"""
             elif db_server == 'sqlite':
-                self.query['createTourneysPlayersTable'] = """ """
+                self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
+                            id INT PRIMARY KEY,
+                            tourneyId INT,
+                            playerId INT,
+                            payinAmount INT,
+                            rank INT,
+                            winnings INT,
+                            nbRebuys INT DEFAULT 0,
+                            nbAddons INT DEFAULT 0,
+                            nbKO INT DEFAULT 0,
+                            comment TEXT,
+                            commentTs timestamp without time zone,
+                            FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
+                            FOREIGN KEY (playerId) REFERENCES Players(id)
+                            )"""
 
 
             ################################
@@ -851,7 +868,18 @@ class Sql:
                             comment TEXT,
                             commentTs timestamp without time zone)"""
             elif db_server == 'sqlite':
-                self.query['createHandsActionsTable'] = """ """
+                self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
+                            id INT PRIMARY KEY,
+                            handsPlayerId BIGINT,
+                            street SMALLINT,
+                            actionNo SMALLINT,
+                            action CHAR(5),
+                            allIn INT,
+                            amount INT,
+                            comment TEXT,
+                            commentTs timestamp without time zone,
+                            FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id)
+                            )"""
 
 
             ################################
@@ -1160,26 +1188,42 @@ class Sql:
 
 
             if db_server == 'mysql':
-                self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD INDEX siteTourneyNo(siteTourneyNo)"""
+                self.query['addTourneyIndex'] = """ALTER TABLE Tourneys ADD UNIQUE INDEX siteTourneyNo(siteTourneyNo, tourneyTypeId)"""
             elif db_server == 'postgresql':
-                self.query['addTourneyIndex'] = """CREATE INDEX siteTourneyNo ON Tourneys (siteTourneyNo)"""
+                self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
             elif db_server == 'sqlite':
-                self.query['addHandsIndex'] = """ """
+                self.query['addTourneyIndex'] = """CREATE UNIQUE INDEX siteTourneyNo ON Tourneys (siteTourneyNo, tourneyTypeId)"""
 
             if db_server == 'mysql':
-                self.query['addHandsIndex'] = """ALTER TABLE Hands ADD INDEX siteHandNo(siteHandNo)"""
+                self.query['addHandsIndex'] = """ALTER TABLE Hands ADD UNIQUE INDEX siteHandNo(siteHandNo, gameTypeId)"""
             elif db_server == 'postgresql':
-                self.query['addHandsIndex'] = """CREATE INDEX siteHandNo ON Hands (siteHandNo)"""
+                self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gameTypeId)"""
             elif db_server == 'sqlite':
-                self.query['addHandsIndex'] = """ """
+                self.query['addHandsIndex'] = """CREATE UNIQUE INDEX siteHandNo ON Hands (siteHandNo, gameTypeId)"""
 
             if db_server == 'mysql':
-                self.query['addPlayersIndex'] = """ALTER TABLE Players ADD INDEX name(name)"""
+                self.query['addPlayersIndex'] = """ALTER TABLE Players ADD UNIQUE INDEX name(name, siteId)"""
             elif db_server == 'postgresql':
-                self.query['addPlayersIndex'] = """CREATE INDEX name ON Players (name)"""
+                self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
             elif db_server == 'sqlite':
-                self.query['addPlayersIndex'] = """ """
+                self.query['addPlayersIndex'] = """CREATE UNIQUE INDEX name ON Players (name, siteId)"""
 
+            if db_server == 'mysql':
+                self.query['addTPlayersIndex'] = """ALTER TABLE TourneysPlayers ADD UNIQUE INDEX tourneyId(tourneyId, playerId)"""
+            elif db_server == 'postgresql':
+                self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
+            elif db_server == 'sqlite':
+                self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
+
+            if db_server == 'mysql':
+                self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(buyin, fee
+                                                 , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            elif db_server == 'postgresql':
+                self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
+                                                 , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            elif db_server == 'sqlite':
+                self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
+                                                 , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
 
             self.query['get_last_hand'] = "select max(id) from Hands"
 
@@ -1188,7 +1232,14 @@ class Sql:
                     from Players, Sites
                     where Players.name = %s
                     and Sites.name = %s
-                    and Players.SiteId = Sites.id
+                    and Players.siteId = Sites.id
+                """
+
+            self.query['get_player_names'] = """
+                    select p.name
+                    from Players p
+                    where lower(p.name) like lower(%s)
+                    and   (p.siteId = %s or %s = -1)
                 """
 
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
@@ -1340,28 +1391,45 @@ class Sql:
                          INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
                          INNER JOIN Players p       ON (p.id = hc.playerId)
                     WHERE h.id = %s
-                    AND   hc.styleKey > %s
-                          /* styleKey is currently 'd' (for date) followed by a yyyymmdd
-                             date key. Set it to 0000000 or similar to get all records  */
-                    /* Note: s means the placeholder 'percent's but we can't include that
-                       in comments. (db api thinks they are actual arguments)
-                       Could also check activeseats here even if only 3 groups eg 2-3/4-6/7+ 
-                       e.g. could use a multiplier:
-                       AND   h.seats > s / 1.25  and  hp.seats < s * 1.25
-                       where s is the number of active players at the current table (and
-                       1.25 would be a config value so user could change it)
-                    */
-                    AND   hc.gametypeId+0 in
-                          (SELECT gt1.id from Gametypes gt1, Gametypes gt2
-                           WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
-                           AND    gt1.type = gt2.type               /* ring/tourney */
-                           AND    gt1.category = gt2.category       /* holdem/stud*/
-                           AND    gt1.limittype = gt2.limittype     /* fl/nl */
-                           AND    gt1.bigblind < gt2.bigblind * %s  /* bigblind similar size */
-                           AND    gt1.bigblind > gt2.bigblind / %s
-                           AND    gt2.id = h.gametypeId)
+                    AND   (   /* 2 separate parts for hero and opponents */
+                              (    hp.playerId != %s
+                               AND hc.styleKey > %s
+                               AND hc.gametypeId+0 in
+                                     (SELECT gt1.id from Gametypes gt1, Gametypes gt2
+                                      WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
+                                      AND    gt1.type = gt2.type               /* ring/tourney */
+                                      AND    gt1.category = gt2.category       /* holdem/stud*/
+                                      AND    gt1.limittype = gt2.limittype     /* fl/nl */
+                                      AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
+                                      AND    gt1.bigblind >= gt2.bigblind / %s
+                                      AND    gt2.id = h.gametypeId)
+                              )
+                           OR
+                              (    hp.playerId = %s
+                               AND hc.styleKey > %s
+                               AND hc.gametypeId+0 in
+                                     (SELECT gt1.id from Gametypes gt1, Gametypes gt2
+                                      WHERE  gt1.siteid = gt2.siteid  /* find gametypes where these match: */
+                                      AND    gt1.type = gt2.type               /* ring/tourney */
+                                      AND    gt1.category = gt2.category       /* holdem/stud*/
+                                      AND    gt1.limittype = gt2.limittype     /* fl/nl */
+                                      AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
+                                      AND    gt1.bigblind >= gt2.bigblind / %s
+                                      AND    gt2.id = h.gametypeId)
+                              )
+                          )
                     GROUP BY hc.PlayerId, p.name
                 """
+                    #  NOTES on above cursor:
+                    #  - Do NOT include %s inside query in a comment - the db api thinks 
+                    #  they are actual arguments.
+                    #  - styleKey is currently 'd' (for date) followed by a yyyymmdd
+                    #  date key. Set it to 0000000 or similar to get all records
+                    #  Could also check activeseats here even if only 3 groups eg 2-3/4-6/7+ 
+                    #  e.g. could use a multiplier:
+                    #  AND   h.seats > %s / 1.25  and  hp.seats < %s * 1.25
+                    #  where %s is the number of active players at the current table (and
+                    #  1.25 would be a config value so user could change it)
 
             if db_server == 'mysql':
                 self.query['get_stats_from_hand_session'] = """
@@ -1537,10 +1605,11 @@ class Sql:
                 """
 
             self.query['get_table_name'] = """
-                    select tableName, maxSeats, category, type
-                    from Hands,Gametypes
-                    where Hands.id = %s
-                    and Gametypes.id = Hands.gametypeId
+                    select h.tableName, h.maxSeats, gt.category, gt.type, gt.siteId
+                    from Hands h
+                        ,Gametypes gt
+                    where h.id = %s
+                    and   gt.id = h.gametypeId
                 """
 
             self.query['get_actual_seat'] = """
@@ -1651,6 +1720,9 @@ class Sql:
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
             self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
             self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+            self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
+                                          from Gametypes
+                                          ORDER by type, limitType DESC, bigBlind DESC"""
 
             if db_server == 'mysql':
                 self.query['playerDetailedStats'] = """
@@ -1706,7 +1778,7 @@ class Sql:
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
                           where hp.playerId in <player_test>
-                          and   hp.tourneysPlayersId IS NULL
+                          /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
                           <flagtest>
                           <gtbigBlind_test>
@@ -1728,11 +1800,11 @@ class Sql:
                                                    else concat('Z', <position>)
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
-            else:   # assume postgresql
+            elif db_server == 'postgresql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
                                 ,gt.base
@@ -1786,7 +1858,7 @@ class Sql:
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
                           where hp.playerId in <player_test>
-                          and   hp.tourneysPlayersId IS NULL
+                          /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
                           <flagtest>
                           <gtbigBlind_test>
@@ -1809,12 +1881,91 @@ class Sql:
                                                    else 'Z'||<position>
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
-            #elif db_server == 'sqlite':
-            #    self.query['playerDetailedStats'] = """ """
+            elif db_server == 'sqlite':
+                self.query['playerDetailedStats'] = """
+                         select  <hgameTypeId>                                                          AS hgametypeid
+                                ,gt.base
+                                ,gt.category
+                                ,upper(gt.limitType)                                                    AS limittype
+                                ,s.name
+                                ,min(gt.bigBlind)                                                       AS minbigblind
+                                ,max(gt.bigBlind)                                                       AS maxbigblind
+                                /*,<hcgametypeId>                                                       AS gtid*/
+                                ,<position>                                                             AS plposition
+                                ,count(1)                                                               AS n
+                                ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
+                                ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
+                                ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
+                                 end                                                                    AS pf3
+                                ,case when sum(cast(hp.stealattemptchance as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.stealattempted as <signed>integer))/sum(cast(hp.stealattemptchance as <signed>integer))
+                                 end                                                                    AS steals
+                                ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
+                                ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
+                                ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                                 end                                                                    AS wtsdwsf
+                                ,case when sum(cast(hp.sawShowdown as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.wonAtSD as <signed>integer))/sum(cast(hp.sawShowdown as <signed>integer))
+                                 end                                                                    AS wmsd
+                                ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.street1Aggr as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                                 end                                                                    AS flafq
+                                ,case when sum(cast(hp.street2Seen as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.street2Aggr as <signed>integer))/sum(cast(hp.street2Seen as <signed>integer))
+                                 end                                                                    AS tuafq
+                                ,case when sum(cast(hp.street3Seen as <signed>integer)) = 0 then -999
+                                     else 100.0*sum(cast(hp.street3Aggr as <signed>integer))/sum(cast(hp.street3Seen as <signed>integer))
+                                 end                                                                    AS rvafq
+                                ,case when sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)) = 0 then -999
+                                     else 100.0*(sum(cast(hp.street1Aggr as <signed>integer))+sum(cast(hp.street2Aggr as <signed>integer))+sum(cast(hp.street3Aggr as <signed>integer)))
+                                              /(sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)))
+                                 end                                                                    AS pofafq
+                                ,sum(hp.totalProfit)/100.0                                              AS net
+                                ,sum(hp.rake)/100.0                                                     AS rake
+                                ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
+                                ,avg(hp.totalProfit)/100.0                                              AS profitperhand
+                                ,100.0*avg((hp.totalProfit+hp.rake)/(gt.bigBlind+0.0))                  AS bb100xr
+                                ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
+                                ,avg(h.seats+0.0)                                                       AS avgseats
+                                ,variance(hp.totalProfit/100.0)                                         AS variance
+                          from HandsPlayers hp
+                               inner join Hands h       on  (h.id = hp.handId)
+                               inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+                               inner join Sites s       on  (s.Id = gt.siteId)
+                          where hp.playerId in <player_test>
+                          /*and   hp.tourneysPlayersId IS NULL*/
+                          and   h.seats <seats_test>
+                          <flagtest>
+                          <gtbigBlind_test>
+                          and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                          group by hgameTypeId
+                                  ,hp.playerId
+                                  ,gt.base
+                                  ,gt.category
+                                  <groupbyseats>
+                                  ,plposition
+                                  ,upper(gt.limitType)
+                                  ,s.name
+                          order by hp.playerId
+                                  ,gt.base
+                                  ,gt.category
+                                  <orderbyseats>
+                                  ,case <position> when 'B' then 'B'
+                                                   when 'S' then 'S'
+                                                   when '0' then 'Y'
+                                                   else 'Z'||<position>
+                                   end
+                                  <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
+                                  ,maxbigblind desc
+                                  ,s.name
+                          """
 
             if db_server == 'mysql':
                 self.query['playerStats'] = """
@@ -2304,16 +2455,16 @@ class Sql:
             #    self.query['playerStatsByPosition'] = """ """
 
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
-                SELECT hp.handId, hp.totalProfit, hp.totalProfit, hp.totalProfit
+                SELECT hp.handId, hp.totalProfit
                 FROM HandsPlayers hp
-                INNER JOIN Players pl      ON  (hp.playerId  = pl.id)
-                INNER JOIN Hands h         ON  (h.id         = hp.handId)
-                INNER JOIN Gametypes g     ON  (h.gametypeId = g.id)
-                where pl.id in <player_test>
+                INNER JOIN Players pl      ON  (pl.id = hp.playerId)
+                INNER JOIN Hands h         ON  (h.id  = hp.handId)
+                INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
+                WHERE pl.id in <player_test>
                 AND   pl.siteId in <site_test>
                 AND   h.handStart > '<startdate_test>'
                 AND   h.handStart < '<enddate_test>'
-                AND   g.bigBlind in <limit_test>
+                <limit_test>
                 AND   hp.tourneysPlayersId IS NULL
                 GROUP BY h.handStart, hp.handId, hp.totalProfit
                 ORDER BY h.handStart"""
@@ -2466,6 +2617,7 @@ class Sql:
                           ,sum(street4CheckCallRaiseDone)
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2614,6 +2766,7 @@ class Sql:
                           ,sum(CAST(street4CheckCallRaiseDone as integer))
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2762,6 +2915,7 @@ class Sql:
                           ,sum(CAST(street4CheckCallRaiseDone as integer))
                     FROM HandsPlayers hp
                     INNER JOIN Hands h ON (h.id = hp.handId)
+                    <where_clause>
                     GROUP BY h.gametypeId
                             ,hp.playerId
                             ,h.seats
@@ -2770,9 +2924,14 @@ class Sql:
                             ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
 """
 
+            self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
+                                                       from HudCache hc
+                                                       where hc.playerId in <playerid_list>
+                                                       and   hc.styleKey like 'd%'"""
+
             if db_server == 'mysql':
                 self.query['analyze'] = """
-                analyze table Autorates, GameTypes, Hands, HandsPlayers, Hudcache, Players
+                analyze table Autorates, GameTypes, Hands, HandsPlayers, HudCache, Players
                             , Settings, Sites, Tourneys, TourneysPlayers, TourneyTypes
                 """
             else:  # assume postgres

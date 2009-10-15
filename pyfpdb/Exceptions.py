@@ -17,5 +17,8 @@ class FpdbParseError(FpdbError):
 class FpdbDatabaseError(FpdbError):
     pass
 
+class FpdbMySQLFailedError(FpdbDatabaseError):
+    pass
+
 class DuplicateError(FpdbError):
     pass

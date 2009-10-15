@@ -38,6 +38,8 @@ class fpdb_db:
     MYSQL_INNODB = 2
     PGSQL = 3
     SQLITE = 4
+    sqlite_db_dir = ".." + os.sep + "database"
+
     def __init__(self):
         """Simple constructor, doesnt really do anything"""
         self.db             = None
@@ -78,7 +80,7 @@ class fpdb_db:
             try:
                 self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
             except:
-                raise FpdbError("MySQL connection failed")
+                raise FpdbMySQLFailedError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
             import psycopg2
             import psycopg2.extensions
@@ -109,7 +111,7 @@ class fpdb_db:
                                                password = password, 
                                                database = database)
                 except:
-                    msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
+                    msg = "PostgreSQL connection to database (%s) user (%s) failed. Are you sure the DB is running?" % (database, user)
                     print msg
                     raise FpdbError(msg)
         elif backend == fpdb_db.SQLITE:
@@ -119,7 +121,12 @@ class fpdb_db:
                 sqlite3 = pool.manage(sqlite3, pool_size=1)
             else:
                 logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
-            self.db = sqlite3.connect(database,detect_types=sqlite3.PARSE_DECLTYPES)
+
+            if not os.path.isdir(self.sqlite_db_dir):
+                print "Creating directory: '%s'" % (self.sqlite_db_dir)
+                os.mkdir(self.sqlite_db_dir)
+            self.db = sqlite3.connect( self.sqlite_db_dir + os.sep + database
+                                     , detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
         else:
