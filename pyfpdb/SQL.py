@@ -1807,6 +1807,7 @@ class Sql:
             elif db_server == 'postgresql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
+                                ,p.name                                                                 AS pname
                                 ,gt.base
                                 ,gt.category
                                 ,upper(gt.limitType)                                                    AS limittype
@@ -1857,6 +1858,7 @@ class Sql:
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
+                               inner join Players p     on  (p.Id = hp.playerId)
                           where hp.playerId in <player_test>
                           /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
@@ -1864,6 +1866,7 @@ class Sql:
                           <gtbigBlind_test>
                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
                           group by hgameTypeId
+                                  ,pname
                                   ,hp.playerId
                                   ,gt.base
                                   ,gt.category
@@ -1871,7 +1874,8 @@ class Sql:
                                   ,plposition
                                   ,upper(gt.limitType)
                                   ,s.name
-                          order by hp.playerId
+                          order by pname
+                                  ,hp.playerId
                                   ,gt.base
                                   ,gt.category
                                   <orderbyseats>

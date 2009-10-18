@@ -82,6 +82,7 @@ class GuiPlayerStats (threading.Thread):
         self.columns = [ ["game",       True,  "Game",     0.0, "%s"]
                        , ["hand",       False, "Hand",     0.0, "%s"]   # true not allowed for this line
                        , ["plposition", False, "Posn",     1.0, "%s"]   # true not allowed for this line (set in code)
+                       , ["pname",      False, "Name",     0.0, "%s"]   # true not allowed for this line (set in code)
                        , ["n",          True,  "Hds",      1.0, "%d"]
                        , ["avgseats",   False,  "Seats",    1.0, "%3.1f"]
                        , ["vpip",       True,  "VPIP",     1.0, "%3.1f"]
@@ -125,8 +126,9 @@ class GuiPlayerStats (threading.Thread):
         self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
         
-        self.main_hbox = gtk.HBox(False, 0)
-        self.main_hbox.show()
+        #self.main_hbox = gtk.HBox(False, 0)
+        #self.main_hbox.show()
+        self.main_hbox = gtk.HPaned()
 
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
@@ -136,8 +138,11 @@ class GuiPlayerStats (threading.Thread):
         self.stats_frame.add(self.stats_vbox)
         # self.fillStatsFrame(self.stats_vbox)
 
-        self.main_hbox.pack_start(self.filters.get_vbox())
-        self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
+        #self.main_hbox.pack_start(self.filters.get_vbox())
+        #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
+        self.main_hbox.pack1(self.filters.get_vbox())
+        self.main_hbox.pack2(self.stats_frame)
+        self.main_hbox.show()
 
         # make sure Hand column is not displayed
         [x for x in self.columns if x[0] == 'hand'][0][1] = False
@@ -149,7 +154,8 @@ class GuiPlayerStats (threading.Thread):
     def refreshStats(self, widget, data):
         try: self.stats_vbox.destroy()
         except AttributeError: pass
-        self.stats_vbox = gtk.VBox(False, 0)
+        #self.stats_vbox = gtk.VBox(False, 0)
+        self.stats_vbox = gtk.VPaned()
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
         self.fillStatsFrame(self.stats_vbox)
@@ -192,27 +198,44 @@ class GuiPlayerStats (threading.Thread):
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates):
         starttime = time()
+        #groups['allplayers'] = True  # testing
+
+        # Scrolled window for summary table
+        swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        swin.show()
+        #vbox.pack_start(swin, expand=True, padding=3)
+        vbox.pack1(swin)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox1.show()
+        swin.add_with_viewport(vbox1)
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
         # holecards - whether to display card breakdown (True/False)
         flags = [False]
-        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
+        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
+
+        # Only display one section if all players being shown (query currently too slow for startcards)
+        if 'allplayers' in groups and groups['allplayers']:
+            return
 
         # Separator
-        sep = gtk.HSeparator()
-        vbox.pack_start(sep, expand=False, padding=3)
-        sep.show_now()
-        vbox.show_now()
-        heading = gtk.Label(self.filterText['handhead'])
-        heading.show()
-        vbox.pack_start(heading, expand=False, padding=3)
+        #sep = gtk.HSeparator()
+        #vbox.pack_start(sep, expand=False, padding=3)
+        #sep.show_now()
+        #vbox.show_now()
+        #heading = gtk.Label(self.filterText['handhead'])
+        #heading.show()
+        #vbox.pack_start(heading, expand=False, padding=3)
 
         # Scrolled window for detailed table (display by hand)
         swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         swin.show()
-        vbox.pack_start(swin, expand=True, padding=3)
+        #vbox.pack_start(swin, expand=True, padding=3)
+        vbox.pack2(swin)
 
         vbox1 = gtk.VBox(False, 0)
         vbox1.show()
@@ -326,13 +349,18 @@ class GuiPlayerStats (threading.Thread):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
-        if playerids:
-            nametest = str(tuple(playerids))
-            nametest = nametest.replace("L", "")
-            nametest = nametest.replace(",)",")")
-            query = query.replace("<player_test>", nametest)
+        if 'allplayers' in groups and groups['allplayers']:
+            nametest = "(select id from players)"
+            # set flag in self.columns to show player name column
+            [x for x in self.columns if x[0] == 'pname'][0][1] = True
         else:
-            query = query.replace("<player_test>", "1 = 2")
+            if playerids:
+                nametest = str(tuple(playerids))
+                nametest = nametest.replace("L", "")
+                nametest = nametest.replace(",)",")")
+            else:
+                nametest = "1 = 2"
+        query = query.replace("<player_test>", nametest)
 
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
