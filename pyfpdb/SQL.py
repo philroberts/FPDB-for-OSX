@@ -1807,7 +1807,7 @@ class Sql:
             elif db_server == 'postgresql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
-                                ,p.name                                                                 AS pname
+                                ,<playerName>                                                           AS pname
                                 ,gt.base
                                 ,gt.category
                                 ,upper(gt.limitType)                                                    AS limittype
@@ -1867,15 +1867,14 @@ class Sql:
                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
                           group by hgameTypeId
                                   ,pname
-                                  ,hp.playerId
                                   ,gt.base
                                   ,gt.category
                                   <groupbyseats>
                                   ,plposition
                                   ,upper(gt.limitType)
                                   ,s.name
+                          having 1 = 1 <havingclause>
                           order by pname
-                                  ,hp.playerId
                                   ,gt.base
                                   ,gt.category
                                   <orderbyseats>

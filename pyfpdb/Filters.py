@@ -55,6 +55,7 @@ class Filters(threading.Thread):
                           ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
                           ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
                           ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
+                          ,'groupsall':'All Players'
                           ,'limitsFL':'FL', 'limitsNL':'NL', 'ring':'Ring', 'tour':'Tourney'
                           }
 
@@ -64,6 +65,10 @@ class Filters(threading.Thread):
         self.start_date.set_property('editable', False)
         self.end_date.set_property('editable', False)
 
+        # For use in groups etc
+        self.sbGroups = {}
+        self.numHands = 0
+
         # Outer Packing box        
         self.mainVBox = gtk.VBox(False, 0)
 
@@ -71,7 +76,7 @@ class Filters(threading.Thread):
         playerFrame.set_label_align(0.0, 0.0)
         vbox = gtk.VBox(False, 0)
 
-        self.fillPlayerFrame(vbox)
+        self.fillPlayerFrame(vbox, self.display)
         playerFrame.add(vbox)
         self.boxes['player'] = vbox
 
@@ -122,7 +127,6 @@ class Filters(threading.Thread):
         groupsFrame = gtk.Frame()
         groupsFrame.show()
         vbox = gtk.VBox(False, 0)
-        self.sbGroups = {}
 
         self.fillGroupsFrame(vbox, self.display)
         groupsFrame.add(vbox)
@@ -180,6 +184,9 @@ class Filters(threading.Thread):
         """returns the vbox of this thread"""
         return self.mainVBox
     #end def get_vbox
+
+    def getNumHands(self):
+        return self.numHands
 
     def getSites(self):
         return self.sites
@@ -255,6 +262,13 @@ class Filters(threading.Thread):
     def __set_hero_name(self, w, site):
         self.heroes[site] = w.get_text()
 #        print "DEBUG: setting heroes[%s]: %s"%(site, self.heroes[site])
+
+    def __set_num_hands(self, w, val):
+        try:
+            self.numHands = int(w.get_text())
+        except:
+            self.numHands = 0
+        print "DEBUG: setting numHands:", self.numHands
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -393,13 +407,32 @@ class Filters(threading.Thread):
         self.groups[group] = w.get_active()
         print "self.groups[%s] set to %s" %(group, self.groups[group])
 
-    def fillPlayerFrame(self, vbox):
+    def fillPlayerFrame(self, vbox, display):
         for site in self.conf.get_supported_sites():
-            pathHBox = gtk.HBox(False, 0)
-            vbox.pack_start(pathHBox, False, True, 0)
+            hBox = gtk.HBox(False, 0)
+            vbox.pack_start(hBox, False, True, 0)
 
             player = self.conf.supported_sites[site].screen_name
-            self.createPlayerLine(pathHBox, site, player)
+            self.createPlayerLine(hBox, site, player)
+
+        if "GroupsAll" in display and display["GroupsAll"] == True:
+            hbox = gtk.HBox(False, 0)
+            vbox.pack_start(hbox, False, False, 0)
+            cb = gtk.CheckButton(self.filterText['groupsall'])
+            cb.connect('clicked', self.__set_group_select, 'allplayers')
+            hbox.pack_start(cb, False, False, 0)
+            self.sbGroups['allplayers'] = cb
+            self.groups['allplayers'] = False
+
+            lbl = gtk.Label('Min # Hands:')
+            lbl.set_alignment(xalign=1.0, yalign=0.5)
+            hbox.pack_start(lbl, expand=True, padding=3)
+
+            phands = gtk.Entry()
+            phands.set_text('0')
+            phands.set_width_chars(8)
+            hbox.pack_start(phands, False, False, 0)
+            phands.connect("changed", self.__set_num_hands, site)
 
     def fillSitesFrame(self, vbox):
         for site in self.conf.get_supported_sites():

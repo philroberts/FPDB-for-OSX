@@ -65,6 +65,7 @@ class GuiPlayerStats (threading.Thread):
                             "SeatSep"   : True,
                             "Dates"     : True,
                             "Groups"    : True,
+                            "GroupsAll" : True,
                             "Button1"   : True,
                             "Button2"   : True
                           }
@@ -198,7 +199,6 @@ class GuiPlayerStats (threading.Thread):
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates):
         starttime = time()
-        #groups['allplayers'] = True  # testing
 
         # Scrolled window for summary table
         swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
@@ -214,35 +214,38 @@ class GuiPlayerStats (threading.Thread):
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
         # holecards - whether to display card breakdown (True/False)
-        flags = [False]
+        # numhands  - min number hands required when displaying all players
+        flags = [False, self.filters.getNumHands()]
         self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
         # Only display one section if all players being shown (query currently too slow for startcards)
-        if 'allplayers' in groups and groups['allplayers']:
-            return
+        #if 'allplayers' in groups and groups['allplayers'] and 1==2:
+        #    return
 
         # Separator
         #sep = gtk.HSeparator()
         #vbox.pack_start(sep, expand=False, padding=3)
         #sep.show_now()
         #vbox.show_now()
-        #heading = gtk.Label(self.filterText['handhead'])
-        #heading.show()
-        #vbox.pack_start(heading, expand=False, padding=3)
+        vbox2 = gtk.VBox(False, 0)
+        heading = gtk.Label(self.filterText['handhead'])
+        heading.show()
+        vbox2.pack_start(heading, expand=False, padding=3)
 
         # Scrolled window for detailed table (display by hand)
         swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         swin.show()
-        #vbox.pack_start(swin, expand=True, padding=3)
-        vbox.pack2(swin)
+        vbox2.pack_start(swin, expand=True, padding=3)
+        vbox.pack2(vbox2)
+        vbox2.show()
 
         vbox1 = gtk.VBox(False, 0)
         vbox1.show()
         swin.add_with_viewport(vbox1)
 
         # Detailed table
-        flags = [True]
+        flags[0] = True
         self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
         self.db.rollback()
@@ -346,13 +349,29 @@ class GuiPlayerStats (threading.Thread):
     #end def addTable(self, query, vars, playerids, sitenos, limits, type, seats, groups, dates):
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
-        if not flags:  holecards = False
-        else:          holecards = flags[0]
+        having = ''
+        if not flags:
+            holecards = False
+            numhands = 0
+        else:
+            holecards = flags[0]
+            numhands = flags[1]
 
         if 'allplayers' in groups and groups['allplayers']:
-            nametest = "(select id from players)"
-            # set flag in self.columns to show player name column
-            [x for x in self.columns if x[0] == 'pname'][0][1] = True
+            nametest = "(hp.playerId)"
+            if holecards or groups['posn']:
+                pname = "'all players'"
+                # set flag in self.columns to not show player name column
+                [x for x in self.columns if x[0] == 'pname'][0][1] = False
+                # can't do this yet (re-write doing more maths in python instead of sql?)
+                if numhands:
+                    nametest = "(-1)"
+            else:
+                pname = "p.name"
+                # set flag in self.columns to show player name column
+                [x for x in self.columns if x[0] == 'pname'][0][1] = True
+                if numhands:
+                    having = ' and count(1) > %d ' % (numhands,)
         else:
             if playerids:
                 nametest = str(tuple(playerids))
@@ -360,7 +379,12 @@ class GuiPlayerStats (threading.Thread):
                 nametest = nametest.replace(",)",")")
             else:
                 nametest = "1 = 2"
+            pname = "p.name"
+            # set flag in self.columns to not show player name column
+            [x for x in self.columns if x[0] == 'pname'][0][1] = False
         query = query.replace("<player_test>", nametest)
+        query = query.replace("<playerName>", pname)
+        query = query.replace("<havingclause>", having)
 
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
