@@ -424,9 +424,12 @@ class GuiPlayerStats (threading.Thread):
             bbtest = bbtest + " and gt.type = 'tour' "
         query = query.replace("<gtbigBlind_test>", bbtest)
 
-        if holecards:  # pinch level variables for hole card query
+        if holecards:  # re-use level variables for hole card query
             query = query.replace("<hgameTypeId>", "hp.startcards")
-            query = query.replace("<orderbyhgameTypeId>", ",hgameTypeId desc")
+            query = query.replace("<orderbyhgameTypeId>"
+                                 , ",case when hp.startcards/13 >= mod(hp.startcards,13) then hp.startcards + 0.1 "
+                                   +    " else 13*mod(hp.startcards,13) + hp.startcards/13 "
+                                   +    " end desc ")
         else:
             query = query.replace("<orderbyhgameTypeId>", "")
             groupLevels = "show" not in str(limits)
