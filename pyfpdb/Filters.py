@@ -268,7 +268,7 @@ class Filters(threading.Thread):
             self.numHands = int(w.get_text())
         except:
             self.numHands = 0
-        print "DEBUG: setting numHands:", self.numHands
+#        print "DEBUG: setting numHands:", self.numHands
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
