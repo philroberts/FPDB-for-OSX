@@ -392,7 +392,7 @@ class Database:
             print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
         else:
             if row and row[0]:
-                self.hand_1_day_ago = row[0]
+                self.hand_1day_ago = int(row[0])
 
         d = timedelta(days=hud_days)
         now = datetime.utcnow() - d
@@ -434,10 +434,6 @@ class Database:
 
         if hud_style == 'S' or h_hud_style == 'S':
             self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
-            try:
-                print "Session: hero_id =", hero_id, "hds =", stat_dict[hero_id]['n']
-            except:
-                pass
 
             if hud_style == 'S' and h_hud_style == 'S':
                 return stat_dict
@@ -463,7 +459,7 @@ class Database:
         #if aggregate:      always use aggregate query now: use agg_bb_mult of 1 for no aggregation:
         query = 'get_stats_from_hand_aggregated'
         subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
-        print "agg query subs:", subs
+        #print "agg query subs:", subs
         #else:
         #    query = 'get_stats_from_hand'
         #    subs = (hand, stylekey)
@@ -482,10 +478,6 @@ class Database:
                     t_dict[name.lower()] = val
 #                    print t_dict
                 stat_dict[t_dict['player_id']] = t_dict
-        try:
-            print "get_stats end: hero_id =", hero_id, "hds =", stat_dict[hero_id]['n']
-        except:
-            pass
 
         return stat_dict
 
