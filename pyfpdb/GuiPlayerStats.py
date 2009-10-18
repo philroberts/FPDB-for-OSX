@@ -204,29 +204,16 @@ class GuiPlayerStats (threading.Thread):
         swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         swin.show()
-        #vbox.pack_start(swin, expand=True, padding=3)
         vbox.pack1(swin)
-
-        vbox1 = gtk.VBox(False, 0)
-        vbox1.show()
-        swin.add_with_viewport(vbox1)
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
         # holecards - whether to display card breakdown (True/False)
         # numhands  - min number hands required when displaying all players
         flags = [False, self.filters.getNumHands()]
-        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
-
-        # Only display one section if all players being shown (query currently too slow for startcards)
-        #if 'allplayers' in groups and groups['allplayers'] and 1==2:
-        #    return
+        self.addTable(swin, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
         # Separator
-        #sep = gtk.HSeparator()
-        #vbox.pack_start(sep, expand=False, padding=3)
-        #sep.show_now()
-        #vbox.show_now()
         vbox2 = gtk.VBox(False, 0)
         heading = gtk.Label(self.filterText['handhead'])
         heading.show()
@@ -240,13 +227,9 @@ class GuiPlayerStats (threading.Thread):
         vbox.pack2(vbox2)
         vbox2.show()
 
-        vbox1 = gtk.VBox(False, 0)
-        vbox1.show()
-        swin.add_with_viewport(vbox1)
-
         # Detailed table
         flags[0] = True
-        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
+        self.addTable(swin, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
@@ -272,7 +255,8 @@ class GuiPlayerStats (threading.Thread):
         liststore = gtk.ListStore(*([str] * len(cols_to_show)))
         view = gtk.TreeView(model=liststore)
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        vbox.pack_start(view, expand=False, padding=3)
+        #vbox.pack_start(view, expand=False, padding=3)
+        vbox.add(view)
         textcell = gtk.CellRendererText()
         textcell50 = gtk.CellRendererText()
         textcell50.set_property('xalign', 0.5)
