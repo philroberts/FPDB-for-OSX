@@ -1727,6 +1727,7 @@ class Sql:
             if db_server == 'mysql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
+                                ,<playerName>                                                           AS pname
                                 ,gt.base
                                 ,gt.category
                                 ,upper(gt.limitType)                                                    AS limittype
@@ -1777,6 +1778,7 @@ class Sql:
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
+                               inner join Players p     on  (p.Id = hp.playerId)
                           where hp.playerId in <player_test>
                           /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
@@ -1784,14 +1786,15 @@ class Sql:
                           <gtbigBlind_test>
                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
                           group by hgameTypeId
-                                  ,hp.playerId
+                                  ,pname
                                   ,gt.base
                                   ,gt.category
                                   <groupbyseats>
                                   ,plposition
                                   ,upper(gt.limitType)
                                   ,s.name
-                          order by hp.playerId
+                          having 1 = 1 <havingclause>
+                          order by pname
                                   ,gt.base
                                   ,gt.category
                                   <orderbyseats>
