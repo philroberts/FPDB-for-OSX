@@ -36,6 +36,8 @@ class GuiPlayerStats (threading.Thread):
         self.main_window = mainwin
         self.sql = querylist
 
+        self.liststore = None
+
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
@@ -238,10 +240,8 @@ class GuiPlayerStats (threading.Thread):
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
         cell.set_property('foreground', 'black')
 
-    def ledger_style_render_func(self, treeviewcolumn, cell, model, iter):
+    def ledger_style_render_func(self, tvcol, cell, model, iter):
         str = cell.get_property('text')
-        #Weird, if you set for one cell it affects all others unless you set explicitly
-        cell.set_property('foreground', 'black')
         if '-' in str:
             str = str.replace("-", "")
             str = "(%s)" %(str)
@@ -252,6 +252,16 @@ class GuiPlayerStats (threading.Thread):
 
         return
 
+    def sortcols(self, col, n):
+        #This doesn't actually work yet
+        if n == 0:
+            # Card values can stay the same for the moment.
+            return
+        if col.get_sort_order() == gtk.SORT_ASCENDING:
+            col.set_sort_order(gtk.SORT_DESCENDING)
+        else:
+            col.set_sort_order(gtk.SORT_ASCENDING)
+        self.liststore.set_sort_column_id(n, col.get_sort_order())
 
     def addTable(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
         counter = 0
@@ -271,8 +281,8 @@ class GuiPlayerStats (threading.Thread):
         cols_to_show = [x for x in self.columns if x[colshow]]
         hgametypeid_idx = colnames.index('hgametypeid')
 
-        liststore = gtk.ListStore(*([str] * len(cols_to_show)))
-        view = gtk.TreeView(model=liststore)
+        self.liststore = gtk.ListStore(*([str] * len(cols_to_show)))
+        view = gtk.TreeView(model=self.liststore)
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         #vbox.pack_start(view, expand=False, padding=3)
         vbox.add(view)
@@ -282,6 +292,7 @@ class GuiPlayerStats (threading.Thread):
         numcell = gtk.CellRendererText()
         numcell.set_property('xalign', 1.0)
         listcols = []
+        idx = 0
 
         # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
         for col, column in enumerate(cols_to_show):
@@ -291,6 +302,9 @@ class GuiPlayerStats (threading.Thread):
                 s = column[colheading]
             listcols.append(gtk.TreeViewColumn(s))
             view.append_column(listcols[col])
+            #listcols[col].set_clickable(True)
+            #listcols[col].set_sort_indicator(True)
+            #listcols[col].connect("clicked", self.sortcols, idx)
             if column[colformat] == '%s':
                 if column[colxalign] == 0.0:
                     listcols[col].pack_start(textcell, expand=True)
@@ -308,6 +322,7 @@ class GuiPlayerStats (threading.Thread):
                 listcols[col].set_cell_data_func(numcell, self.ledger_style_render_func)
             else:
                 listcols[col].set_cell_data_func(numcell, self.reset_style_render_func)
+            idx = idx+1
 
         rows = len(result) # +1 for title row
 
@@ -348,7 +363,7 @@ class GuiPlayerStats (threading.Thread):
                     treerow.append(column[colformat] % value)
                 else:
                     treerow.append(' ')
-            iter = liststore.append(treerow)
+            iter = self.liststore.append(treerow)
             sqlrow += 1
             row += 1
         vbox.show_all()
