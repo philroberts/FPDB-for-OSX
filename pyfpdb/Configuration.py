@@ -278,6 +278,28 @@ class Import:
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
              % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
+class HudUI:
+    def __init__(self, node):
+        self.node = node
+        self.label  = node.getAttribute('label')
+        #
+        self.aggregate_ring = fix_tf(node.getAttribute('aggregate_ring_game_stats'))
+        self.aggregate_tour = fix_tf(node.getAttribute('aggregate_tourney_stats'))
+        self.hud_style      = node.getAttribute('stat_aggregation_range')
+        self.hud_days       = node.getAttribute('aggregation_days')
+        self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
+        #
+        self.h_aggregate_ring   = fix_tf(node.getAttribute('aggregate_hero_ring_game_stats'))
+        self.h_aggregate_tour   = fix_tf(node.getAttribute('aggregate_hero_tourney_stats'))
+        self.h_hud_style        = node.getAttribute('hero_stat_aggregation_range')
+        self.h_hud_days         = node.getAttribute('hero_aggregation_days')
+        self.h_agg_bb_mult      = node.getAttribute('hero_aggregation_level_multiplier')
+
+
+    def __str__(self):
+        return "    label = %s\n" % self.label
+
+
 class Tv:
     def __init__(self, node):
         self.combinedStealFold = node.getAttribute("combinedStealFold")
@@ -311,13 +333,21 @@ class Config:
                 pass
             
         if file == None: # that didn't work either, just die
-            print "No HUD_config_xml found.  Exiting"
-            sys.stderr.write("No HUD_config_xml found.  Exiting")
+            print "No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting"
+            sys.stderr.write("No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting")
+            print "press enter to continue"
+            sys.stdin.readline()
             sys.exit()
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
+#    sc 2009/10/04 Example already copied to main filename, is this ok?
         log.info("Reading configuration file %s" % file)
+        if os.sep in file:
+            print "\nReading configuration file %s\n" % file
+        else:
+            print "\nReading configuration file %s" % file
+            print "in %s\n" % os.getcwd()
         try:
             doc = xml.dom.minidom.parse(file)
         except: 
@@ -389,6 +419,10 @@ class Config:
             imp = Import(node = imp_node)
             self.imp = imp
 
+        for hui_node in doc.getElementsByTagName('hud_ui'):
+            hui = HudUI(node = hui_node)
+            self.ui = hui
+
         for tv_node in doc.getElementsByTagName("tv"):
             tv = Tv(node = tv_node)
             self.tv = tv
@@ -404,6 +438,8 @@ class Config:
                                        db_user = df_parms['db-user'],
                                        db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
+
+        print ""
 
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
@@ -454,11 +490,15 @@ class Config:
                 
     def find_example_config(self):
         if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
-            file = 'HUD_config.xml.example'             # so we use it
+            file = 'HUD_config.xml'             # so we use it
+            try:
+                shutil.copyfile(file+'.example', file)
+            except:
+                file = ''
             print "No HUD_config.xml found, using HUD_config.xml.example.\n", \
-                "A HUD_config.xml will be written.  You will probably have to edit it."
+                "A HUD_config.xml has been created.  You will probably have to edit it."
             sys.stderr.write("No HUD_config.xml found, using HUD_config.xml.example.\n" + \
-                "A HUD_config.xml will be written.  You will probably have to edit it.")
+                "A HUD_config.xml has been created.  You will probably have to edit it.")
         else:
             file = None
         return file
@@ -598,6 +638,53 @@ class Config:
         try:    tv['combinedPostflop']  = self.tv.combinedPostflop
         except: tv['combinedPostflop']  = True
         return tv
+
+    # Allow to change the menu appearance
+    def get_hud_ui_parameters(self):
+        hui = {}
+
+        default_text = 'FPDB Menu - Right click\nLeft-Drag to Move'
+        try:
+            hui['label'] = self.ui.label
+            if self.ui.label == '':     # Empty menu label is a big no-no
+                hui['label'] = default_text
+        except:
+            hui['label'] = default_text
+
+        try:    hui['aggregate_ring']   = self.ui.aggregate_ring
+        except: hui['aggregate_ring']   = False
+
+        try:    hui['aggregate_tour']   = self.ui.aggregate_tour
+        except: hui['aggregate_tour']   = True
+
+        try:    hui['hud_style']        = self.ui.hud_style
+        except: hui['hud_style']        = 'A'
+
+        try:    hui['hud_days']         = int(self.ui.hud_days)
+        except: hui['hud_days']         = 90
+
+        try:    hui['agg_bb_mult']      = self.ui.agg_bb_mult
+        except: hui['agg_bb_mult']      = 1
+
+        # Hero specific
+
+        try:    hui['h_aggregate_ring'] = self.ui.h_aggregate_ring
+        except: hui['h_aggregate_ring'] = False
+
+        try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
+        except: hui['h_aggregate_tour'] = True
+
+        try:    hui['h_hud_style']      = self.ui.h_hud_style
+        except: hui['h_hud_style']      = 'S'
+
+        try:    hui['h_hud_days']       = int(self.ui.h_hud_days)
+        except: hui['h_hud_days']       = 30
+
+        try:    hui['h_agg_bb_mult']    = self.ui.h_agg_bb_mult
+        except: hui['h_agg_bb_mult']    = 1
+
+        return hui
+
     
     def get_import_parameters(self):
         imp = {}

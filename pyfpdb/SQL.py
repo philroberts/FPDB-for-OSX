@@ -1235,6 +1235,13 @@ class Sql:
                     and Players.siteId = Sites.id
                 """
 
+            self.query['get_player_names'] = """
+                    select p.name
+                    from Players p
+                    where lower(p.name) like lower(%s)
+                    and   (p.siteId = %s or %s = -1)
+                """
+
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
 
             self.query['get_stats_from_hand'] = """
@@ -1713,10 +1720,14 @@ class Sql:
             self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
             self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
             self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+            self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
+                                          from Gametypes
+                                          ORDER by type, limitType DESC, bigBlind DESC"""
 
             if db_server == 'mysql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
+                                ,<playerName>                                                           AS pname
                                 ,gt.base
                                 ,gt.category
                                 ,upper(gt.limitType)                                                    AS limittype
@@ -1767,21 +1778,23 @@ class Sql:
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
+                               inner join Players p     on  (p.Id = hp.playerId)
                           where hp.playerId in <player_test>
-                          and   hp.tourneysPlayersId IS NULL
+                          /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
                           <flagtest>
                           <gtbigBlind_test>
                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
                           group by hgameTypeId
-                                  ,hp.playerId
+                                  ,pname
                                   ,gt.base
                                   ,gt.category
                                   <groupbyseats>
                                   ,plposition
                                   ,upper(gt.limitType)
                                   ,s.name
-                          order by hp.playerId
+                          having 1 = 1 <havingclause>
+                          order by pname
                                   ,gt.base
                                   ,gt.category
                                   <orderbyseats>
@@ -1790,11 +1803,95 @@ class Sql:
                                                    else concat('Z', <position>)
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
-            else:   # assume postgresql
+            elif db_server == 'postgresql':
+                self.query['playerDetailedStats'] = """
+                         select  <hgameTypeId>                                                          AS hgametypeid
+                                ,<playerName>                                                           AS pname
+                                ,gt.base
+                                ,gt.category
+                                ,upper(gt.limitType)                                                    AS limittype
+                                ,s.name
+                                ,min(gt.bigBlind)                                                       AS minbigblind
+                                ,max(gt.bigBlind)                                                       AS maxbigblind
+                                /*,<hcgametypeId>                                                       AS gtid*/
+                                ,<position>                                                             AS plposition
+                                ,count(1)                                                               AS n
+                                ,100.0*sum(cast(hp.street0VPI as <signed>integer))/count(1)             AS vpip
+                                ,100.0*sum(cast(hp.street0Aggr as <signed>integer))/count(1)            AS pfr
+                                ,case when sum(cast(hp.street0_3Bchance as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.street0_3Bdone as <signed>integer))/sum(cast(hp.street0_3Bchance as <signed>integer))
+                                 end                                                                    AS pf3
+                                ,case when sum(cast(hp.stealattemptchance as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.stealattempted as <signed>integer))/sum(cast(hp.stealattemptchance as <signed>integer))
+                                 end                                                                    AS steals
+                                ,100.0*sum(cast(hp.street1Seen as <signed>integer))/count(1)            AS saw_f
+                                ,100.0*sum(cast(hp.sawShowdown as <signed>integer))/count(1)            AS sawsd
+                                ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.sawShowdown as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                                 end                                                                    AS wtsdwsf
+                                ,case when sum(cast(hp.sawShowdown as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.wonAtSD as <signed>integer))/sum(cast(hp.sawShowdown as <signed>integer))
+                                 end                                                                    AS wmsd
+                                ,case when sum(cast(hp.street1Seen as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.street1Aggr as <signed>integer))/sum(cast(hp.street1Seen as <signed>integer))
+                                 end                                                                    AS flafq
+                                ,case when sum(cast(hp.street2Seen as <signed>integer)) = 0 then -999
+                                      else 100.0*sum(cast(hp.street2Aggr as <signed>integer))/sum(cast(hp.street2Seen as <signed>integer))
+                                 end                                                                    AS tuafq
+                                ,case when sum(cast(hp.street3Seen as <signed>integer)) = 0 then -999
+                                     else 100.0*sum(cast(hp.street3Aggr as <signed>integer))/sum(cast(hp.street3Seen as <signed>integer))
+                                 end                                                                    AS rvafq
+                                ,case when sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)) = 0 then -999
+                                     else 100.0*(sum(cast(hp.street1Aggr as <signed>integer))+sum(cast(hp.street2Aggr as <signed>integer))+sum(cast(hp.street3Aggr as <signed>integer)))
+                                              /(sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)))
+                                 end                                                                    AS pofafq
+                                ,sum(hp.totalProfit)/100.0                                              AS net
+                                ,sum(hp.rake)/100.0                                                     AS rake
+                                ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
+                                ,avg(hp.totalProfit)/100.0                                              AS profitperhand
+                                ,100.0*avg((hp.totalProfit+hp.rake)/(gt.bigBlind+0.0))                  AS bb100xr
+                                ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
+                                ,avg(h.seats+0.0)                                                       AS avgseats
+                                ,variance(hp.totalProfit/100.0)                                         AS variance
+                          from HandsPlayers hp
+                               inner join Hands h       on  (h.id = hp.handId)
+                               inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+                               inner join Sites s       on  (s.Id = gt.siteId)
+                               inner join Players p     on  (p.Id = hp.playerId)
+                          where hp.playerId in <player_test>
+                          /*and   hp.tourneysPlayersId IS NULL*/
+                          and   h.seats <seats_test>
+                          <flagtest>
+                          <gtbigBlind_test>
+                          and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                          group by hgameTypeId
+                                  ,pname
+                                  ,gt.base
+                                  ,gt.category
+                                  <groupbyseats>
+                                  ,plposition
+                                  ,upper(gt.limitType)
+                                  ,s.name
+                          having 1 = 1 <havingclause>
+                          order by pname
+                                  ,gt.base
+                                  ,gt.category
+                                  <orderbyseats>
+                                  ,case <position> when 'B' then 'B'
+                                                   when 'S' then 'S'
+                                                   when '0' then 'Y'
+                                                   else 'Z'||<position>
+                                   end
+                                  <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
+                                  ,maxbigblind desc
+                                  ,s.name
+                          """
+            elif db_server == 'sqlite':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
                                 ,gt.base
@@ -1848,7 +1945,7 @@ class Sql:
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
                           where hp.playerId in <player_test>
-                          and   hp.tourneysPlayersId IS NULL
+                          /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
                           <flagtest>
                           <gtbigBlind_test>
@@ -1871,12 +1968,10 @@ class Sql:
                                                    else 'Z'||<position>
                                    end
                                   <orderbyhgameTypeId>
+                                  ,upper(gt.limitType) desc
                                   ,maxbigblind desc
-                                  ,upper(gt.limitType)
                                   ,s.name
                           """
-            #elif db_server == 'sqlite':
-            #    self.query['playerDetailedStats'] = """ """
 
             if db_server == 'mysql':
                 self.query['playerStats'] = """
@@ -2366,16 +2461,16 @@ class Sql:
             #    self.query['playerStatsByPosition'] = """ """
 
             self.query['getRingProfitAllHandsPlayerIdSite'] = """
-                SELECT hp.handId, hp.totalProfit, hp.totalProfit, hp.totalProfit
+                SELECT hp.handId, hp.totalProfit
                 FROM HandsPlayers hp
-                INNER JOIN Players pl      ON  (hp.playerId  = pl.id)
-                INNER JOIN Hands h         ON  (h.id         = hp.handId)
-                INNER JOIN Gametypes g     ON  (h.gametypeId = g.id)
-                where pl.id in <player_test>
+                INNER JOIN Players pl      ON  (pl.id = hp.playerId)
+                INNER JOIN Hands h         ON  (h.id  = hp.handId)
+                INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
+                WHERE pl.id in <player_test>
                 AND   pl.siteId in <site_test>
                 AND   h.handStart > '<startdate_test>'
                 AND   h.handStart < '<enddate_test>'
-                AND   g.bigBlind in <limit_test>
+                <limit_test>
                 AND   hp.tourneysPlayersId IS NULL
                 GROUP BY h.handStart, hp.handId, hp.totalProfit
                 ORDER BY h.handStart"""
@@ -3020,6 +3115,44 @@ class Sql:
 
             self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
             self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
+
+            self.query['store_hand'] = """INSERT INTO Hands (
+                                                tablename,
+                                                gametypeid,
+                                                sitehandno,
+                                                handstart,
+                                                importtime,
+                                                seats,
+                                                maxseats,
+                                                texture,
+                                                playersVpi,
+                                                boardcard1,
+                                                boardcard2,
+                                                boardcard3,
+                                                boardcard4,
+                                                boardcard5,
+                                                playersAtStreet1,
+                                                playersAtStreet2,
+                                                playersAtStreet3,
+                                                playersAtStreet4,
+                                                playersAtShowdown,
+                                                street0Raises,
+                                                street1Raises,
+                                                street2Raises,
+                                                street3Raises,
+                                                street4Raises,
+                                                street1Pot,
+                                                street2Pot,
+                                                street3Pot,
+                                                street4Pot,
+                                                showdownPot
+                                                 )
+                                                 VALUES
+                                                  (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                   %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                   %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+
 
             
             

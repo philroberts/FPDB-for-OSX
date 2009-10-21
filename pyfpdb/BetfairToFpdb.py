@@ -105,7 +105,7 @@ class Betfair(HandHistoryConverter):
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.starttime = time.strptime(m.group('DATETIME'), "%A, %B %d, %H:%M:%S GMT %Y")
+        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%A, %B %d, %H:%M:%S GMT %Y")
         #hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
@@ -144,6 +144,7 @@ class Betfair(HandHistoryConverter):
 
     def readAntes(self, hand):
         logging.debug("reading antes")
+        m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
             hand.addAnte(player.group('PNAME'), player.group('ANTE'))
@@ -160,17 +161,15 @@ class Betfair(HandHistoryConverter):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
-            hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
-            # Also works with Omaha hands.
-            cards = m.group('CARDS')
-            cards = [c.strip() for c in cards.split(',')]
-            hand.addHoleCards(cards, m.group('PNAME'))
+        #    streets PREFLOP, PREDRAW, and THIRD are special cases beacause
+        #    we need to grab hero's cards
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+                for found in m:
+                    hand.hero = found.group('PNAME')
+                    newcards = [c.strip() for c in found.group('CARDS').split(',')]
+                    hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
     def readStudPlayerCards(self, hand, street):
         # balh blah blah

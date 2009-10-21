@@ -80,7 +80,7 @@ class fpdb_db:
             try:
                 self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
             except:
-                raise FpdbError("MySQL connection failed")
+                raise FpdbMySQLFailedError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
             import psycopg2
             import psycopg2.extensions
@@ -111,7 +111,7 @@ class fpdb_db:
                                                password = password, 
                                                database = database)
                 except:
-                    msg = "PostgreSQL connection to database (%s) user (%s) failed." % (database, user)
+                    msg = "PostgreSQL connection to database (%s) user (%s) failed. Are you sure the DB is running?" % (database, user)
                     print msg
                     raise FpdbError(msg)
         elif backend == fpdb_db.SQLITE:

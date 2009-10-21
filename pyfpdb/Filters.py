@@ -23,6 +23,7 @@ import os
 import sys
 from optparse import OptionParser
 from time import *
+import gobject
 #import pokereval
 
 import Configuration
@@ -31,19 +32,20 @@ import FpdbSQLQueries
 
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):
-        self.debug=debug
+        # config and qdict are now redundant
+        self.debug = debug
         #print "start of GraphViewer constructor"
-        self.db=db
-        self.cursor=db.cursor
-        self.sql=qdict
-        self.conf = config
+        self.db = db
+        self.cursor = db.cursor
+        self.sql = db.sql
+        self.conf = db.config
         self.display = display
 
         self.sites  = {}
         self.games  = {}
         self.limits = {}
         self.seats  = {}
-        self.groups  = {}
+        self.groups = {}
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
@@ -53,6 +55,8 @@ class Filters(threading.Thread):
                           ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
                           ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
                           ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
+                          ,'groupsall':'All Players'
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'ring':'Ring', 'tour':'Tourney'
                           }
 
         # For use in date ranges.
@@ -61,6 +65,10 @@ class Filters(threading.Thread):
         self.start_date.set_property('editable', False)
         self.end_date.set_property('editable', False)
 
+        # For use in groups etc
+        self.sbGroups = {}
+        self.numHands = 0
+
         # Outer Packing box        
         self.mainVBox = gtk.VBox(False, 0)
 
@@ -68,7 +76,7 @@ class Filters(threading.Thread):
         playerFrame.set_label_align(0.0, 0.0)
         vbox = gtk.VBox(False, 0)
 
-        self.fillPlayerFrame(vbox)
+        self.fillPlayerFrame(vbox, self.display)
         playerFrame.add(vbox)
         self.boxes['player'] = vbox
 
@@ -97,6 +105,11 @@ class Filters(threading.Thread):
         self.cbLimits = {}
         self.cbNoLimits = None
         self.cbAllLimits = None
+        self.cbFL = None
+        self.cbNL = None
+        self.rb = {}     # radio buttons for ring/tour
+        self.type = None # ring/tour
+        self.types = {}  # list of all ring/tour values
 
         self.fillLimitsFrame(vbox, self.display)
         limitsFrame.add(vbox)
@@ -114,7 +127,6 @@ class Filters(threading.Thread):
         groupsFrame = gtk.Frame()
         groupsFrame.show()
         vbox = gtk.VBox(False, 0)
-        self.sbGroups = {}
 
         self.fillGroupsFrame(vbox, self.display)
         groupsFrame.add(vbox)
@@ -173,6 +185,9 @@ class Filters(threading.Thread):
         return self.mainVBox
     #end def get_vbox
 
+    def getNumHands(self):
+        return self.numHands
+
     def getSites(self):
         return self.sites
 
@@ -188,6 +203,9 @@ class Filters(threading.Thread):
             if self.limits[l] == True:
                 ltuple.append(l)
         return ltuple
+
+    def getType(self):
+        return(self.type)
 
     def getSeats(self):
         if 'from' in self.sbSeats:
@@ -228,13 +246,29 @@ class Filters(threading.Thread):
         pname.set_width_chars(20)
         hbox.pack_start(pname, False, True, 0)
         pname.connect("changed", self.__set_hero_name, site)
-        #TODO: Look at GtkCompletion - to fill out usernames
+
+        # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
+        completion = gtk.EntryCompletion()
+        pname.set_completion(completion)
+        liststore = gtk.ListStore(gobject.TYPE_STRING)
+        completion.set_model(liststore)
+        completion.set_text_column(0)
+        names = self.db.get_player_names(self.conf)  # (config=self.conf, site_id=None, like_player_name="%")
+        for n in names:
+            liststore.append(n)
 
         self.__set_hero_name(pname, site)
 
     def __set_hero_name(self, w, site):
         self.heroes[site] = w.get_text()
 #        print "DEBUG: setting heroes[%s]: %s"%(site, self.heroes[site])
+
+    def __set_num_hands(self, w, val):
+        try:
+            self.numHands = int(w.get_text())
+        except:
+            self.numHands = 0
+#        print "DEBUG: setting numHands:", self.numHands
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -269,21 +303,99 @@ class Filters(threading.Thread):
         #print w.get_active()
         self.limits[limit] = w.get_active()
         print "self.limit[%s] set to %s" %(limit, self.limits[limit])
-        if str(limit).isdigit():
+        if limit.isdigit() or (len(limit) > 2 and limit[-2:] == 'nl'):
             if self.limits[limit]:
                 if self.cbNoLimits != None:
                     self.cbNoLimits.set_active(False)
             else:
                 if self.cbAllLimits != None:
                     self.cbAllLimits.set_active(False)
+            if not self.limits[limit]:
+                if limit.isdigit():
+                    self.cbFL.set_active(False)
+                else:
+                    self.cbNL.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
-                for cb in self.cbLimits.values():
-                    cb.set_active(True)
+                #for cb in self.cbLimits.values():
+                #    cb.set_active(True)
+                if self.cbFL != None:
+                    self.cbFL.set_active(True)
+                if self.cbNL != None:
+                    self.cbNL.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
                 for cb in self.cbLimits.values():
                     cb.set_active(False)
+                self.cbNL.set_active(False)
+                self.cbFL.set_active(False)
+        elif limit == "fl":
+            if not self.limits[limit]:
+                # only toggle all fl limits off if they are all currently on
+                # this stops turning one off from cascading into 'fl' box off 
+                # and then all fl limits being turned off
+                all_fl_on = True
+                for cb in self.cbLimits.values():
+                    t = cb.get_children()[0].get_text()
+                    if t.isdigit():
+                        if not cb.get_active():
+                            all_fl_on = False
+            found = {'ring':False, 'tour':False}
+            for cb in self.cbLimits.values():
+                #print "cb label: ", cb.children()[0].get_text()
+                t = cb.get_children()[0].get_text()
+                if t.isdigit():
+                    if self.limits[limit] or all_fl_on:
+                        cb.set_active(self.limits[limit])
+                    found[self.types[t]] = True
+            if self.limits[limit]:
+                if not found[self.type]:
+                    if self.type == 'ring':
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
+                    elif self.type == 'tour':
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
+        elif limit == "nl":
+            if not self.limits[limit]:
+                # only toggle all nl limits off if they are all currently on
+                # this stops turning one off from cascading into 'nl' box off 
+                # and then all nl limits being turned off
+                all_nl_on = True
+                for cb in self.cbLimits.values():
+                    t = cb.get_children()[0].get_text()
+                    if "nl" in t and len(t) > 2:
+                        if not cb.get_active():
+                            all_nl_on = False
+            found = {'ring':False, 'tour':False}
+            for cb in self.cbLimits.values():
+                t = cb.get_children()[0].get_text()
+                if "nl" in t and len(t) > 2:
+                    if self.limits[limit] or all_nl_on:
+                        cb.set_active(self.limits[limit])
+                    found[self.types[t]] = True
+            if self.limits[limit]:
+                if not found[self.type]:
+                    if self.type == 'ring':
+                        self.rb['tour'].set_active(True)
+                    elif self.type == 'tour':
+                        self.rb['ring'].set_active(True)
+        elif limit == "ring":
+            print "set", limit, "to", self.limits[limit]
+            if self.limits[limit]:
+                self.type = "ring"
+                for cb in self.cbLimits.values():
+                    #print "cb label: ", cb.children()[0].get_text()
+                    if self.types[cb.get_children()[0].get_text()] == 'tour':
+                        cb.set_active(False)
+        elif limit == "tour":
+            print "set", limit, "to", self.limits[limit]
+            if self.limits[limit]:
+                self.type = "tour"
+                for cb in self.cbLimits.values():
+                    #print "cb label: ", cb.children()[0].get_text()
+                    if self.types[cb.get_children()[0].get_text()] == 'ring':
+                        cb.set_active(False)
 
     def __set_seat_select(self, w, seat):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
@@ -295,13 +407,32 @@ class Filters(threading.Thread):
         self.groups[group] = w.get_active()
         print "self.groups[%s] set to %s" %(group, self.groups[group])
 
-    def fillPlayerFrame(self, vbox):
+    def fillPlayerFrame(self, vbox, display):
         for site in self.conf.get_supported_sites():
-            pathHBox = gtk.HBox(False, 0)
-            vbox.pack_start(pathHBox, False, True, 0)
+            hBox = gtk.HBox(False, 0)
+            vbox.pack_start(hBox, False, True, 0)
 
             player = self.conf.supported_sites[site].screen_name
-            self.createPlayerLine(pathHBox, site, player)
+            self.createPlayerLine(hBox, site, player)
+
+        if "GroupsAll" in display and display["GroupsAll"] == True:
+            hbox = gtk.HBox(False, 0)
+            vbox.pack_start(hbox, False, False, 0)
+            cb = gtk.CheckButton(self.filterText['groupsall'])
+            cb.connect('clicked', self.__set_group_select, 'allplayers')
+            hbox.pack_start(cb, False, False, 0)
+            self.sbGroups['allplayers'] = cb
+            self.groups['allplayers'] = False
+
+            lbl = gtk.Label('Min # Hands:')
+            lbl.set_alignment(xalign=1.0, yalign=0.5)
+            hbox.pack_start(lbl, expand=True, padding=3)
+
+            phands = gtk.Entry()
+            phands.set_text('0')
+            phands.set_width_chars(8)
+            hbox.pack_start(phands, False, False, 0)
+            phands.connect("changed", self.__set_num_hands, site)
 
     def fillSitesFrame(self, vbox):
         for site in self.conf.get_supported_sites():
@@ -328,22 +459,23 @@ class Filters(threading.Thread):
             print "INFO: No games returned from database"
 
     def fillLimitsFrame(self, vbox, display):
-        hbox = gtk.HBox(False, 0)
-        vbox.pack_start(hbox, False, False, 0)
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
         lbl_title = gtk.Label(self.filterText['limitstitle'])
         lbl_title.set_alignment(xalign=0.0, yalign=0.5)
-        hbox.pack_start(lbl_title, expand=True, padding=3)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
         showb = gtk.Button(label="hide", stock=None, use_underline=True)
         showb.set_alignment(xalign=1.0, yalign=0.5)
         showb.connect('clicked', self.__toggle_box, 'limits')
-        hbox.pack_start(showb, expand=False, padding=1)
 
         vbox1 = gtk.VBox(False, 0)
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
-        self.cursor.execute(self.sql.query['getLimits'])
+        self.cursor.execute(self.sql.query['getLimits2'])
+        # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
+        fl, nl = False, False
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
             vbox1.pack_start(hbox, False, False, 0)
@@ -351,25 +483,71 @@ class Filters(threading.Thread):
             hbox.pack_start(vbox2, False, False, 0)
             vbox3 = gtk.VBox(False, 0)
             hbox.pack_start(vbox3, False, False, 0)
+            found = {'nl':False, 'fl':False, 'ring':False, 'tour':False}
             for i, line in enumerate(result):
+                if "UseType" in self.display:
+                    if line[0] != self.display["UseType"]:
+                        continue
                 hbox = gtk.HBox(False, 0)
                 if i <= len(result)/2:
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
-                self.cbLimits[line[0]] = self.createLimitLine(hbox, line[0], line[0])
+                if line[1] == 'fl':
+                    name = str(line[2])
+                    found['fl'] = True
+                else:
+                    name = str(line[2])+line[1]
+                    found['nl'] = True
+                self.cbLimits[name] = self.createLimitLine(hbox, name, name)
+                self.types[name] = line[0]
+                found[line[0]] = True      # type is ring/tour
+                self.type = line[0]        # if only one type, set it now
             if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
+                hbox = gtk.HBox(True, 0)
+                vbox1.pack_start(hbox, False, False, 0)
+                vbox2 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox2, False, False, 0)
+                vbox3 = gtk.VBox(False, 0)
+                hbox.pack_start(vbox3, False, False, 0)
+
                 hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
+                vbox2.pack_start(hbox, False, False, 0)
                 self.cbAllLimits = self.createLimitLine(hbox, 'all', self.filterText['limitsall'])
                 hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
+                vbox2.pack_start(hbox, False, False, 0)
                 self.cbNoLimits = self.createLimitLine(hbox, 'none', self.filterText['limitsnone'])
-                hbox = gtk.HBox(False, 0)
-                vbox1.pack_start(hbox, False, True, 0)
-                cb = self.createLimitLine(hbox, 'show', self.filterText['limitsshow'])
+
+                dest = vbox3  # for ring/tour buttons
+                if "LimitType" in display and display["LimitType"] == True and found['nl'] and found['fl']:
+                    #if found['fl']:
+                    hbox = gtk.HBox(False, 0)
+                    vbox3.pack_start(hbox, False, False, 0)
+                    self.cbFL = self.createLimitLine(hbox, 'fl', self.filterText['limitsFL'])
+                    #if found['nl']:
+                    hbox = gtk.HBox(False, 0)
+                    vbox3.pack_start(hbox, False, False, 0)
+                    self.cbNL = self.createLimitLine(hbox, 'nl', self.filterText['limitsNL'])
+                    dest = vbox2  # for ring/tour buttons
         else:
             print "INFO: No games returned from database"
+
+        if "Type" in display and display["Type"] == True and found['ring'] and found['tour']:
+            rb1 = gtk.RadioButton(None, self.filterText['ring'])
+            rb1.connect('clicked', self.__set_limit_select, 'ring')
+            rb2 = gtk.RadioButton(rb1, self.filterText['tour'])
+            rb2.connect('clicked', self.__set_limit_select, 'tour')
+            top_hbox.pack_start(rb1, False, False, 0)  # (child, expand, fill, padding)
+            top_hbox.pack_start(rb2, True, True, 0)   # child uses expand space if fill is true
+
+            self.rb['ring'] = rb1
+            self.rb['tour'] = rb2
+            #print "about to set ring to true"
+            rb1.set_active(True)
+            # set_active doesn't seem to call this for some reason so call manually:
+            self.__set_limit_select(rb1, 'ring')
+            self.type = 'ring'
+        top_hbox.pack_start(showb, expand=False, padding=1)
 
     def fillSeatsFrame(self, vbox, display):
         hbox = gtk.HBox(False, 0)
@@ -401,15 +579,6 @@ class Filters(threading.Thread):
         hbox.pack_start(lbl_to, expand=False, padding=3)
         hbox.pack_start(sb2, False, False, 0)
 
-        if "SeatSep" in display and display["SeatSep"] == True:
-            hbox = gtk.HBox(False, 0)
-            vbox1.pack_start(hbox, False, True, 0)
-            cb = gtk.CheckButton(self.filterText['seatsshow'])
-            cb.connect('clicked', self.__set_seat_select, 'show')
-            hbox.pack_start(cb, False, False, 0)
-            self.sbSeats['show'] = cb
-            self.seats['show'] = False
-
         self.sbSeats['from'] = sb1
         self.sbSeats['to']   = sb2
 
@@ -429,13 +598,25 @@ class Filters(threading.Thread):
         self.boxes['groups'] = vbox1
 
         hbox = gtk.HBox(False, 0)
-        vbox1.pack_start(hbox, False, True, 0)
+        vbox1.pack_start(hbox, False, False, 0)
+        cb = self.createLimitLine(hbox, 'show', self.filterText['limitsshow'])
 
+        hbox = gtk.HBox(False, 0)
+        vbox1.pack_start(hbox, False, True, 0)
         cb = gtk.CheckButton(self.filterText['posnshow'])
         cb.connect('clicked', self.__set_group_select, 'posn')
         hbox.pack_start(cb, False, False, 0)
         self.sbGroups['posn'] = cb
         self.groups['posn'] = False
+
+        if "SeatSep" in display and display["SeatSep"] == True:
+            hbox = gtk.HBox(False, 0)
+            vbox1.pack_start(hbox, False, True, 0)
+            cb = gtk.CheckButton(self.filterText['seatsshow'])
+            cb.connect('clicked', self.__set_seat_select, 'show')
+            hbox.pack_start(cb, False, False, 0)
+            self.sbSeats['show'] = cb
+            self.seats['show'] = False
 
     def fillCardsFrame(self, vbox):
         hbox1 = gtk.HBox(True,0)

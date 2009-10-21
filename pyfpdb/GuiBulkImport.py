@@ -40,21 +40,6 @@ class GuiBulkImport():
     # CONFIGURATION  -  update these as preferred:
     allowThreads = True  # set to True to try out the threads field
 
-    # not used
-    def import_dir(self):
-        """imports a directory, non-recursive. todo: move this to fpdb_import so CLI can use it"""
-
-        self.path = self.inputFile
-        self.importer.addImportDirectory(self.path)
-        self.importer.setCallHud(False)
-        starttime = time()
-        if not self.importer.settings['threads'] > 1:
-            (stored, dups, partial, errs, ttime) = self.importer.runImport()
-            print 'GuiBulkImport.import_dir done: Stored: %d Duplicates: %d Partial: %d Errors: %d in %s seconds - %d/sec'\
-                 % (stored, dups, partial, errs, ttime, stored / ttime)
-        else:
-            self.importer.RunImportThreaded()
-
     def dopulse(self):
         self.progressbar.pulse()
         return True
@@ -77,7 +62,7 @@ class GuiBulkImport():
                 self.timer = gobject.timeout_add(100, self.dopulse)
                 
                 #    get the dir to import from the chooser
-                self.inputFile = self.chooser.get_filename()
+                selected = self.chooser.get_filenames()
 
                 #    get the import settings from the gui and save in the importer
                 self.importer.setHandCount(int(self.spin_hands.get_text()))
@@ -103,7 +88,8 @@ class GuiBulkImport():
                     self.importer.setDropHudCache("auto")
                 sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
                 
-                self.importer.addBulkImportImportFileOrDir(self.inputFile, site = sitename)
+                for selection in selected:
+                    self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
                 self.importer.setCallHud(False)
                 starttime = time()
 #                try:
@@ -151,6 +137,7 @@ class GuiBulkImport():
 
         self.chooser = gtk.FileChooserWidget()
         self.chooser.set_filename(self.settings['bulkImport-defaultPath'])
+        self.chooser.set_select_multiple(True)
         self.vbox.add(self.chooser)
         self.chooser.show()
 
@@ -317,7 +304,19 @@ def main(argv=None):
                     help="If this option is passed it quits when it encounters any error")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
                     help="How often to print a one-line status report (0 (default) means never)")
+    parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False, 
+                    help="Print some useful one liners")
     (options, sys.argv) = parser.parse_args(args = argv)
+
+    if options.usage == True:
+        #Print usage examples and exit
+        print "USAGE:"
+        print 'PokerStars converter: ./GuiBulkImport -c PokerStars -f filename'
+        print 'Full Tilt  converter: ./GuiBulkImport -c "Full Tilt Poker" -f filename'
+        print "Everleaf   converter: ./GuiBulkImport -c Everleaf -f filename"
+        print "Absolute   converter: ./GuiBulkImport -c Absolute -f filename"
+        print "PartyPoker converter: ./GuiBulkImport -c PartyPoker -f filename"
+        sys.exit(0)
 
     config = Configuration.Config()
     
@@ -350,8 +349,10 @@ def main(argv=None):
         importer.setThreads(-1)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
-        importer.runImport()
+        (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
+        print 'GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+                     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
 
 
 if __name__ == '__main__':
