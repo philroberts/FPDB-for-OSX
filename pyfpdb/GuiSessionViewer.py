@@ -15,6 +15,7 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+import sys
 import threading
 import pygtk
 pygtk.require('2.0')
@@ -22,7 +23,10 @@ import gtk
 import os
 from time import time, strftime, localtime
 try:
-    from numpy import diff, nonzero
+    from numpy import diff, nonzero, sum
+#    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
+#     DayLocator, MONDAY, timezone
+
 except:
     print """Failed to load numpy in Session Viewer"""
     print """This is of no consequence as the module currently doesn't do anything."""
@@ -34,10 +38,13 @@ import Filters
 import FpdbSQLQueries
 
 class GuiSessionViewer (threading.Thread):
-    def __init__(self, config, querylist, debug=True):
+    def __init__(self, config, querylist, mainwin, debug=True):
         self.debug = debug
         self.conf = config
         self.sql = querylist
+
+        self.liststore = None
+
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
@@ -56,55 +63,63 @@ class GuiSessionViewer (threading.Thread):
         self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
                           }
 
-        filters_display = { "Heroes"   :  True,
-                            "Sites"    :  True,
-                            "Games"    :  False,
-                            "Limits"   :  True,
-                            "LimitSep" :  True,
-                            "Seats"    :  True,
-                            "SeatSep"  :  True,
-                            "Dates"    :  False,
-                            "Groups"   :  True,
-                            "Button1"  :  True,
-                            "Button2"  :  True
+        filters_display = { "Heroes"    : True,
+                            "Sites"     : True,
+                            "Games"     : False,
+                            "Limits"    : True,
+                            "LimitSep"  : True,
+                            "LimitType" : True,
+                            "Type"      : True,
+                            "Seats"     : True,
+                            "SeatSep"   : True,
+                            "Dates"     : True,
+                            "Groups"    : True,
+                            "GroupsAll" : True,
+                            "Button1"   : True,
+                            "Button2"   : True
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
-        self.filters.registerButton2Name("_Refresh")
-        self.filters.registerButton2Callback(self.refreshStats)
+        self.filters.registerButton1Name("_Refresh")
+        self.filters.registerButton1Callback(self.refreshStats)
 
         # ToDo: store in config
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed, column heading, xalignment, formatting
-        self.columns = [ ("game",     True,  "Game",     0.0, "%s")
+        self.columns = [ ("sid",      True,  "SID",      0.0, "%s")
                        , ("hand",     False, "Hand",     0.0, "%s")   # true not allowed for this line
                        , ("n",        True,  "Hds",      1.0, "%d")
-                       , ("avgseats", True,  "Seats",    1.0, "%3.1f")
-                       , ("vpip",     True,  "VPIP",     1.0, "%3.1f")
-                       , ("pfr",      True,  "PFR",      1.0, "%3.1f")
-                       , ("pf3",      True,  "PF3",      1.0, "%3.1f")
-                       , ("steals",   True,  "Steals",   1.0, "%3.1f")
-                       , ("saw_f",    True,  "Saw_F",    1.0, "%3.1f")
-                       , ("sawsd",    True,  "SawSD",    1.0, "%3.1f")
-                       , ("wtsdwsf",  True,  "WtSDwsF",  1.0, "%3.1f")
-                       , ("wmsd",     True,  "W$SD",     1.0, "%3.1f")
-                       , ("flafq",    True,  "FlAFq",    1.0, "%3.1f")
-                       , ("tuafq",    True,  "TuAFq",    1.0, "%3.1f")
-                       , ("rvafq",    True,  "RvAFq",    1.0, "%3.1f")
-                       , ("pofafq",   False, "PoFAFq",   1.0, "%3.1f")
-                       , ("net",      True,  "Net($)",   1.0, "%6.2f")
-                       , ("bbper100", True,  "BB/100",   1.0, "%4.2f")
-                       , ("rake",     True,  "Rake($)",  1.0, "%6.2f")
-                       , ("variance", True,  "Variance", 1.0, "%5.2f")
+                       , ("start",    True,  "Start",    1.0, "%d")
+                       , ("end",      True,  "End",      1.0, "%d")
+                       , ("hph",      True,  "Hands/h",  1.0, "%d")
+                       , ("profit",   True,  "Profit",   1.0, "%s")
+                       #, ("avgseats", True,  "Seats",    1.0, "%3.1f")
+                       #, ("vpip",     True,  "VPIP",     1.0, "%3.1f")
+                       #, ("pfr",      True,  "PFR",      1.0, "%3.1f")
+                       #, ("pf3",      True,  "PF3",      1.0, "%3.1f")
+                       #, ("steals",   True,  "Steals",   1.0, "%3.1f")
+                       #, ("saw_f",    True,  "Saw_F",    1.0, "%3.1f")
+                       #, ("sawsd",    True,  "SawSD",    1.0, "%3.1f")
+                       #, ("wtsdwsf",  True,  "WtSDwsF",  1.0, "%3.1f")
+                       #, ("wmsd",     True,  "W$SD",     1.0, "%3.1f")
+                       #, ("flafq",    True,  "FlAFq",    1.0, "%3.1f")
+                       #, ("tuafq",    True,  "TuAFq",    1.0, "%3.1f")
+                       #, ("rvafq",    True,  "RvAFq",    1.0, "%3.1f")
+                       #, ("pofafq",   False, "PoFAFq",   1.0, "%3.1f")
+                       #, ("net",      True,  "Net($)",   1.0, "%6.2f")
+                       #, ("bbper100", True,  "BB/100",   1.0, "%4.2f")
+                       #, ("rake",     True,  "Rake($)",  1.0, "%6.2f")
+                       #, ("variance", True,  "Variance", 1.0, "%5.2f")
                        ]
 
         self.stats_frame = None
         self.stats_vbox = None
         self.detailFilters = []   # the data used to enhance the sql select
-        
-        self.main_hbox = gtk.HBox(False, 0)
-        self.main_hbox.show()
+
+        #self.main_hbox = gtk.HBox(False, 0)
+        #self.main_hbox.show()
+        self.main_hbox = gtk.HPaned()
 
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
@@ -112,20 +127,45 @@ class GuiSessionViewer (threading.Thread):
         self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
-        self.fillStatsFrame(self.stats_vbox)
+        # self.fillStatsFrame(self.stats_vbox)
 
-        self.main_hbox.pack_start(self.filters.get_vbox())
-        self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
-
-################################
-
+        #self.main_hbox.pack_start(self.filters.get_vbox())
+        #self.main_hbox.pack_start(self.stats_frame, expand=True, fill=True)
+        self.main_hbox.pack1(self.filters.get_vbox())
+        self.main_hbox.pack2(self.stats_frame)
+        self.main_hbox.show()
 
         # make sure Hand column is not displayed
-        [x for x in self.columns if x[0] == 'hand'][0][1] == False
+        #[x for x in self.columns if x[0] == 'hand'][0][1] = False
 
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.main_hbox
+
+    def generateGraph(self):
+        fig = figure()
+        fig.subplots_adjust(bottom=0.2)
+        ax = fig.add_subplot(111)
+        ax.xaxis.set_major_locator(mondays)
+        ax.xaxis.set_minor_locator(alldays)
+        ax.xaxis.set_major_formatter(weekFormatter)
+        #ax.xaxis.set_minor_formatter(dayFormatter)
+        #plot_day_summary(ax, quotes, ticksize=3)
+#        candlestick(ax, quotes, width=0.6)
+#        candlestick2(ax, opens, closes, highs, lows, width=4, colorup='k', colordown='r', alpha=0.75)
+#    Represent the open, close as a bar line and high low range as a vertical line.
+#    ax          : an Axes instance to plot to
+#    width       : the bar width in points
+#    colorup     : the color of the lines where close >= open
+#    colordown   : the color of the lines where close <  open
+#    alpha       : bar transparency
+#    return value is lineCollection, barCollection
+        ax.xaxis_date()
+        ax.autoscale_view()
+        setp( gca().get_xticklabels(), rotation=45, horizontalalignment='right')
+
+        show()
+
 
     def refreshStats(self, widget, data):
         try: self.stats_vbox.destroy()
@@ -209,105 +249,97 @@ class GuiSessionViewer (threading.Thread):
         if not flags:  holecards = False
         else:          holecards = flags[0]
 
+        # pre-fetch some constant values:
+        cols_to_show = [x for x in self.columns if x[colshow]]
 
-        self.stats_table = gtk.Table(1, 1, False)
-        self.stats_table.set_col_spacings(4)
-        self.stats_table.show()
-        
-        self.db.cursor.execute("""select UNIX_TIMESTAMP(handStart) as time, id from Hands ORDER BY time""")
+        self.liststore = gtk.ListStore(*([str] * len(cols_to_show)))
+
+        view = gtk.TreeView(model=self.liststore)
+        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        vbox.add(view)
+        textcell = gtk.CellRendererText()
+        textcell50 = gtk.CellRendererText()
+        textcell50.set_property('xalign', 0.5)
+        numcell = gtk.CellRendererText()
+        numcell.set_property('xalign', 1.0)
+        listcols = []
+
+        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
+        for col, column in enumerate(cols_to_show):
+            s = column[colheading]
+            listcols.append(gtk.TreeViewColumn(s))
+            view.append_column(listcols[col])
+            if column[colformat] == '%s':
+                if column[colxalign] == 0.0:
+                    listcols[col].pack_start(textcell, expand=True)
+                    listcols[col].add_attribute(textcell, 'text', col)
+                else:
+                    listcols[col].pack_start(textcell50, expand=True)
+                    listcols[col].add_attribute(textcell50, 'text', col)
+                listcols[col].set_expand(True)
+            else:
+                listcols[col].pack_start(numcell, expand=True)
+                listcols[col].add_attribute(numcell, 'text', col)
+                listcols[col].set_expand(True)
+
+        # Get a list of all handids and their timestampts
+        # FIXME: Will probably want to be able to filter this list eventually
+        # FIXME: Join on handsplayers for Hero to get other useful stuff like total profit?
+        q = """
+select UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+from HandsPlayers hp
+     inner join Hands h       on  (h.id = hp.handId)
+     inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
+     inner join Sites s       on  (s.Id = gt.siteId)
+     inner join Players p     on  (p.Id = hp.playerId)
+where hp.playerId in (2)
+order by time
+"""
+        self.db.cursor.execute(q)
         THRESHOLD = 1800
         hands = self.db.cursor.fetchall()
 
+        # Take that list and create an array of the time between hands
         times = map(lambda x:long(x[0]), hands)
         handids = map(lambda x:int(x[1]), hands)
+        winnings = map(lambda x:int(x[4]), hands)
         print "DEBUG: len(times) %s" %(len(times))
-        diffs = diff(times)
-        print "DEBUG: len(diffs) %s" %(len(diffs))
-        index = nonzero(diff(times) > THRESHOLD)
-        print "DEBUG: len(index[0]) %s" %(len(index[0]))
-        print "DEBUG: index %s" %(index)
-        print "DEBUG: index[0][0] %s" %(index[0][0])
+        diffs = diff(times) # This array is the difference in starttime between consecutive hands
+        index = nonzero(diff(times) > THRESHOLD) # This array represents the indexes into 'times' for start/end times of sessions
+                                                 # ie. times[index[0][0]] is the end of the first session
+        #print "DEBUG: len(index[0]) %s" %(len(index[0]))
+        #print "DEBUG: index %s" %(index)
+        #print "DEBUG: index[0][0] %s" %(index[0][0])
 
         total = 0
-
         last_idx = 0
+        lowidx = 0
+        uppidx = 0
+        results = []
+        # Take all results and format them into a list for feeding into gui model.
         for i in range(len(index[0])):
-            print "Hands in session %4s: %4s  Start: %s End: %s Total: %s" %(i, index[0][i] - last_idx, strftime("%d/%m/%Y %H:%M", localtime(times[last_idx])), strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]])), times[index[0][i]] - times[last_idx])
+            sid = i                                                             # Session id
+            hds = index[0][i] - last_idx                                        # Number of hands in session
+            stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
+            etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
+            hph = (times[index[0][i]] - times[last_idx])/60                     # Hands per hour
+            won = sum(winnings[last_idx:index[0][i]])
+            print "DEBUG: range: %s - %s" %(last_idx, index[0][i])
+            
+            results.append([sid, hds, stime, etime, hph, won])
+            print "Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
             total = total + (index[0][i] - last_idx)
             last_idx = index[0][i] + 1
 
-        print "Total: ", total
-#
-#        colnames = [desc[0].lower() for desc in self.cursor.description]
-#
-#        # pre-fetch some constant values:
-#        cols_to_show = [x for x in self.columns if x[colshow]]
-#        hgametypeid_idx = colnames.index('hgametypeid')
-#
-#        liststore = gtk.ListStore(*([str] * len(cols_to_show)))
-#        view = gtk.TreeView(model=liststore)
-#        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-#        vbox.pack_start(view, expand=False, padding=3)
-#        textcell = gtk.CellRendererText()
-#        numcell = gtk.CellRendererText()
-#        numcell.set_property('xalign', 1.0)
-#        listcols = []
-#
-#        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
-#        for col, column in enumerate(cols_to_show):
-#            if column[colalias] == 'game' and holecards:
-#                s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
-#            else:
-#                s = column[colheading]
-#            listcols.append(gtk.TreeViewColumn(s))
-#            view.append_column(listcols[col])
-#            if column[colformat] == '%s':
-#                if col == 1 and holecards:
-#                    listcols[col].pack_start(textcell, expand=True)
-#                else:
-#                    listcols[col].pack_start(textcell, expand=False)
-#                listcols[col].add_attribute(textcell, 'text', col)
-#            else:
-#                listcols[col].pack_start(numcell, expand=False)
-#                listcols[col].add_attribute(numcell, 'text', col)
-#
-#        rows = len(result) # +1 for title row
-#
-#        while sqlrow < rows:
-#            treerow = []
-#            if(row%2 == 0):
-#                bgcolor = "white"
-#            else:
-#                bgcolor = "lightgrey"
-#            for col,column in enumerate(cols_to_show):
-#                if column[colalias] in colnames:
-#                    value = result[sqlrow][colnames.index(column[colalias])]
-#                else:
-#                    if column[colalias] == 'game':
-#                        if holecards:
-#                            value = Card.twoStartCardString( result[sqlrow][hgametypeid_idx] )
-#                        else:
-#                            minbb = result[sqlrow][colnames.index('minbigblind')]
-#                            maxbb = result[sqlrow][colnames.index('maxbigblind')]
-#                            value = result[sqlrow][colnames.index('limittype')] + ' ' \
-#                                    + result[sqlrow][colnames.index('category')].title() + ' ' \
-#                                    + result[sqlrow][colnames.index('name')] + ' $'
-#                            if 100 * int(minbb/100.0) != minbb:
-#                                value += '%.2f' % (minbb/100.0)
-#                            else:
-#                                value += '%.0f' % (minbb/100.0)
-#                            if minbb != maxbb:
-#                                if 100 * int(maxbb/100.0) != maxbb:
-#                                    value += ' - $' + '%.2f' % (maxbb/100.0)
-#                                else:
-#                                    value += ' - $' + '%.0f' % (maxbb/100.0)
-#                    else:
-#                        continue
-#                if value and value != -999:
-#                    treerow.append(column[colformat] % value)
-#                else:
-#                    treerow.append(' ')
-#            iter = liststore.append(treerow)
-#            sqlrow += 1
-#            row += 1
+        for row in results:
+            iter = self.liststore.append(row)
+
         vbox.show_all()
+
+def main(argv=None):
+    config = Configuration.Config()
+    i = GuiBulkImport(settings, config)
+
+if __name__ == '__main__':
+    sys.exit(main())
+

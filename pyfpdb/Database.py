@@ -398,7 +398,7 @@ class Database:
             print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
         else:
             if row and row[0]:
-                self.hand_1_day_ago = row[0]
+                self.hand_1day_ago = int(row[0])
 
         d = timedelta(days=hud_days)
         now = datetime.utcnow() - d
@@ -440,10 +440,6 @@ class Database:
 
         if hud_style == 'S' or h_hud_style == 'S':
             self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
-            try:
-                print "Session: hero_id =", hero_id, "hds =", stat_dict[hero_id]['n']
-            except:
-                pass
 
             if hud_style == 'S' and h_hud_style == 'S':
                 return stat_dict
@@ -469,7 +465,7 @@ class Database:
         #if aggregate:      always use aggregate query now: use agg_bb_mult of 1 for no aggregation:
         query = 'get_stats_from_hand_aggregated'
         subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
-        print "agg query subs:", subs
+        #print "agg query subs:", subs
         #else:
         #    query = 'get_stats_from_hand'
         #    subs = (hand, stylekey)
@@ -488,10 +484,6 @@ class Database:
                     t_dict[name.lower()] = val
 #                    print t_dict
                 stat_dict[t_dict['player_id']] = t_dict
-        try:
-            print "get_stats end: hero_id =", hero_id, "hds =", stat_dict[hero_id]['n']
-        except:
-            pass
 
         return stat_dict
 
@@ -1392,41 +1384,7 @@ class Database:
 
     def storeHand(self, p):
         #stores into table hands:
-        q = """INSERT INTO Hands ( 
-            tablename, 
-            gametypeid, 
-            sitehandno,
-            handstart, 
-            importtime,
-            seats,
-            maxseats,
-            texture,
-            playersVpi,
-            boardcard1, 
-            boardcard2, 
-            boardcard3, 
-            boardcard4, 
-            boardcard5,
-            playersAtStreet1,
-            playersAtStreet2,
-            playersAtStreet3,
-            playersAtStreet4,
-            playersAtShowdown,
-            street0Raises,
-            street1Raises,
-            street2Raises,
-            street3Raises,
-            street4Raises,
-            street1Pot,
-            street2Pot,
-            street3Pot,
-            street4Pot,
-            showdownPot
-             ) 
-             VALUES 
-              (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        q = self.sql.query['store_hand']
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
@@ -1461,19 +1419,40 @@ class Database:
                 p['street4Pot'],
                 p['showdownPot']
         ))
-        #return getLastInsertId(backend, conn, cursor)
+        return self.get_last_insert_id(self.cursor)
     # def storeHand
 
-    def storeHandsPlayers(self, hid, pid, p):
+    def storeHandsPlayers(self, hid, pids, pdata):
+        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        inserts = []
+        for p in pdata:
+            inserts.append( (hid,
+                             pids[p],
+                             pdata[p]['startCash'],
+                             pdata[p]['seatNo'],
+                             pdata[p]['street0Aggr'],
+                             pdata[p]['street1Aggr'],
+                             pdata[p]['street2Aggr'],
+                             pdata[p]['street3Aggr'],
+                             pdata[p]['street4Aggr']
+                            ) )
+
         q = """INSERT INTO HandsPlayers (
             handId,
-            playerId
+            playerId,
+            startCash,
+            seatNo,
+            street0Aggr,
+            street1Aggr,
+            street2Aggr,
+            street3Aggr,
+            street4Aggr
            )
            VALUES (
-                %s, %s
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s
             )"""
 
-#            startCash,
 #            position,
 #            tourneyTypeId,
 #            card1,
@@ -1483,10 +1462,8 @@ class Database:
 #            startCards,
 #            winnings,
 #            rake,
-#            seatNo,
 #            totalProfit,
 #            street0VPI,
-#            street0Aggr,
 #            street0_3BChance,
 #            street0_3BDone,
 #            street1Seen,
@@ -1494,10 +1471,6 @@ class Database:
 #            street3Seen,
 #            street4Seen,
 #            sawShowdown,
-#            street1Aggr,
-#            street2Aggr,
-#            street3Aggr,
-#            street4Aggr,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
 #            otherRaisedStreet3,
@@ -1551,85 +1524,8 @@ class Database:
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        self.cursor.execute(q, (
-            hid,
-            pid
-        ))
-#            startCash,
-#            position,
-#            tourneyTypeId,
-#            card1,
-#            card2,
-#            card3,
-#            card4,
-#            startCards,
-#            winnings,
-#            rake,
-#            seatNo,
-#            totalProfit,
-#            street0VPI,
-#            street0Aggr,
-#            street0_3BChance,
-#            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
-#            sawShowdown,
-#            street1Aggr,
-#            street2Aggr,
-#            street3Aggr,
-#            street4Aggr,
-#            otherRaisedStreet1,
-#            otherRaisedStreet2,
-#            otherRaisedStreet3,
-#            otherRaisedStreet4,
-#            foldToOtherRaisedStreet1,
-#            foldToOtherRaisedStreet2,
-#            foldToOtherRaisedStreet3,
-#            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
-#            wonAtSD,
-#            stealAttemptChance,
-#            stealAttempted,
-#            foldBbToStealChance,
-#            foldedBbToSteal,
-#            foldSbToStealChance,
-#            foldedSbToSteal,
-#            street1CBChance,
-#            street1CBDone,
-#            street2CBChance,
-#            street2CBDone,
-#            street3CBChance,
-#            street3CBDone,
-#            street4CBChance,
-#            street4CBDone,
-#            foldToStreet1CBChance,
-#            foldToStreet1CBDone,
-#            foldToStreet2CBChance,
-#            foldToStreet2CBDone,
-#            foldToStreet3CBChance,
-#            foldToStreet3CBDone,
-#            foldToStreet4CBChance,
-#            foldToStreet4CBDone,
-#            street1CheckCallRaiseChance,
-#            street1CheckCallRaiseDone,
-#            street2CheckCallRaiseChance,
-#            street2CheckCallRaiseDone,
-#            street3CheckCallRaiseChance,
-#            street3CheckCallRaiseDone,
-#            street4CheckCallRaiseChance,
-#            street4CheckCallRaiseDone,
-#            street0Calls,
-#            street1Calls,
-#            street2Calls,
-#            street3Calls,
-#            street4Calls,
-#            street0Bets,
-#            street1Bets,
-#            street2Bets,
-#            street3Bets,
-#            street4Bets
+        #print "DEBUG: inserts: %s" %inserts
+        self.cursor.executemany(q, inserts)
 
     def storeHudCacheNew(self, gid, pid, hc):
         q = """INSERT INTO HudCache (

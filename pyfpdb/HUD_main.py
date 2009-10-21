@@ -59,9 +59,11 @@ import Hud
 
 # HUD params:
 # - Set aggregate_ring and/or aggregate_tour to True is you want to include stats from other blind levels in the HUD display
-# - If aggregation is used, the value of agg_bb_mult determines how what levels are included, e.g.
+# - If aggregation is used, the value of agg_bb_mult determines what levels are included. If
+#   agg_bb_mult is M and current blind level is L, blinds between L/M and L*M are included. e.g.
 #   if agg_bb_mult is 100, almost all levels are included in all HUD displays
-#   if agg_bb_mult is 2.1, levels from half to double the current blind level are included in the HUD
+#   if agg_bb_mult is 2, levels from half to double the current blind level are included in the HUD
+#   if agg_bb_mult is 1 only the current level is included
 # - Set hud_style to A to see stats for all-time
 #   Set hud_style to S to only see stats for current session (currently this shows stats for the last 24 hours)
 #   Set hud_style to T to only see stats for the last N days (uses value in hud_days)
@@ -71,14 +73,14 @@ def_hud_params = { # Settings for all players apart from program owner ('hero')
                  , 'aggregate_tour' : True
                  , 'hud_style'      : 'A'
                  , 'hud_days'       : 90
-                 , 'agg_bb_mult'    : 1                 # 1 means no aggregation
+                 , 'agg_bb_mult'    : 10000                 # 1 means no aggregation
                  # , 'hud_session_gap' : 30             not currently used
                    # Second set of variables for hero - these settings only apply to the program owner
                  , 'h_aggregate_ring' : False
                  , 'h_aggregate_tour' : True
                  , 'h_hud_style'      : 'S'             # A(ll) / S(ession) / T(ime in days)
-                 , 'h_hud_days'       : 30
-                 , 'h_agg_bb_mult'    : 1               # 1 means no aggregation
+                 , 'h_hud_days'       : 60
+                 , 'h_agg_bb_mult'    : 10000               # 1 means no aggregation
                  # , 'h_hud_session_gap' : 30           not currently used
                  }
 

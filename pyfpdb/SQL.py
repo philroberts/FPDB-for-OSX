@@ -1727,6 +1727,7 @@ class Sql:
             if db_server == 'mysql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
+                                ,<playerName>                                                           AS pname
                                 ,gt.base
                                 ,gt.category
                                 ,upper(gt.limitType)                                                    AS limittype
@@ -1777,6 +1778,7 @@ class Sql:
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
+                               inner join Players p     on  (p.Id = hp.playerId)
                           where hp.playerId in <player_test>
                           /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
@@ -1784,14 +1786,15 @@ class Sql:
                           <gtbigBlind_test>
                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
                           group by hgameTypeId
-                                  ,hp.playerId
+                                  ,pname
                                   ,gt.base
                                   ,gt.category
                                   <groupbyseats>
                                   ,plposition
                                   ,upper(gt.limitType)
                                   ,s.name
-                          order by hp.playerId
+                          having 1 = 1 <havingclause>
+                          order by pname
                                   ,gt.base
                                   ,gt.category
                                   <orderbyseats>
@@ -1807,6 +1810,7 @@ class Sql:
             elif db_server == 'postgresql':
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
+                                ,<playerName>                                                           AS pname
                                 ,gt.base
                                 ,gt.category
                                 ,upper(gt.limitType)                                                    AS limittype
@@ -1857,6 +1861,7 @@ class Sql:
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                                inner join Sites s       on  (s.Id = gt.siteId)
+                               inner join Players p     on  (p.Id = hp.playerId)
                           where hp.playerId in <player_test>
                           /*and   hp.tourneysPlayersId IS NULL*/
                           and   h.seats <seats_test>
@@ -1864,14 +1869,15 @@ class Sql:
                           <gtbigBlind_test>
                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
                           group by hgameTypeId
-                                  ,hp.playerId
+                                  ,pname
                                   ,gt.base
                                   ,gt.category
                                   <groupbyseats>
                                   ,plposition
                                   ,upper(gt.limitType)
                                   ,s.name
-                          order by hp.playerId
+                          having 1 = 1 <havingclause>
+                          order by pname
                                   ,gt.base
                                   ,gt.category
                                   <orderbyseats>
@@ -3109,6 +3115,44 @@ class Sql:
 
             self.query['handsPlayersTTypeId_joiner'] = " OR TourneysPlayersId+0="
             self.query['handsPlayersTTypeId_joiner_id'] = " OR id="
+
+            self.query['store_hand'] = """INSERT INTO Hands (
+                                                tablename,
+                                                gametypeid,
+                                                sitehandno,
+                                                handstart,
+                                                importtime,
+                                                seats,
+                                                maxseats,
+                                                texture,
+                                                playersVpi,
+                                                boardcard1,
+                                                boardcard2,
+                                                boardcard3,
+                                                boardcard4,
+                                                boardcard5,
+                                                playersAtStreet1,
+                                                playersAtStreet2,
+                                                playersAtStreet3,
+                                                playersAtStreet4,
+                                                playersAtShowdown,
+                                                street0Raises,
+                                                street1Raises,
+                                                street2Raises,
+                                                street3Raises,
+                                                street4Raises,
+                                                street1Pot,
+                                                street2Pot,
+                                                street3Pot,
+                                                street4Pot,
+                                                showdownPot
+                                                 )
+                                                 VALUES
+                                                  (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                   %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                                                   %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+
+
 
             
             
