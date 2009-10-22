@@ -23,7 +23,8 @@ import gtk
 import os
 from time import time, strftime, localtime
 try:
-    from numpy import diff, nonzero, sum
+    from numpy import diff, nonzero, sum, cumsum, max, mina
+    import matplotlib.finance
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
@@ -142,29 +143,6 @@ class GuiSessionViewer (threading.Thread):
         """returns the vbox of this thread"""
         return self.main_hbox
 
-    def generateGraph(self):
-        fig = figure()
-        fig.subplots_adjust(bottom=0.2)
-        ax = fig.add_subplot(111)
-        ax.xaxis.set_major_locator(mondays)
-        ax.xaxis.set_minor_locator(alldays)
-        ax.xaxis.set_major_formatter(weekFormatter)
-        #ax.xaxis.set_minor_formatter(dayFormatter)
-        #plot_day_summary(ax, quotes, ticksize=3)
-#        candlestick(ax, quotes, width=0.6)
-#        candlestick2(ax, opens, closes, highs, lows, width=4, colorup='k', colordown='r', alpha=0.75)
-#    Represent the open, close as a bar line and high low range as a vertical line.
-#    ax          : an Axes instance to plot to
-#    width       : the bar width in points
-#    colorup     : the color of the lines where close >= open
-#    colordown   : the color of the lines where close <  open
-#    alpha       : bar transparency
-#    return value is lineCollection, barCollection
-        ax.xaxis_date()
-        ax.autoscale_view()
-        setp( gca().get_xticklabels(), rotation=45, horizontalalignment='right')
-
-        show()
 
 
     def refreshStats(self, widget, data):
@@ -242,6 +220,31 @@ class GuiSessionViewer (threading.Thread):
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
+    def generateGraph(self, vbox, data):
+        fig = figure()
+        fig.subplots_adjust(bottom=0.2)
+        ax = fig.add_subplot(111)
+        ax.xaxis.set_major_locator(mondays)
+        ax.xaxis.set_minor_locator(alldays)
+        ax.xaxis.set_major_formatter(weekFormatter)
+        #ax.xaxis.set_minor_formatter(dayFormatter)
+        #plot_day_summary(ax, quotes, ticksize=3)
+#        candlestick(ax, quotes, width=0.6)
+#        candlestick2(ax, opens, closes, highs, lows, width=4, colorup='k', colordown='r', alpha=0.75)
+#    Represent the open, close as a bar line and high low range as a vertical line.
+#    ax          : an Axes instance to plot to
+#    width       : the bar width in points
+#    colorup     : the color of the lines where close >= open
+#    colordown   : the color of the lines where close <  open
+#    alpha       : bar transparency
+#    return value is lineCollection, barCollection
+        ax.xaxis_date()
+        ax.autoscale_view()
+        setp( gca().get_xticklabels(), rotation=45, horizontalalignment='right')
+
+        show()
+
+
     def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats):
         row = 0
         sqlrow = 0
@@ -302,7 +305,7 @@ order by time
         # Take that list and create an array of the time between hands
         times = map(lambda x:long(x[0]), hands)
         handids = map(lambda x:int(x[1]), hands)
-        winnings = map(lambda x:int(x[4]), hands)
+        winnings = map(lambda x:float(x[4]), hands)
         print "DEBUG: len(times) %s" %(len(times))
         diffs = diff(times) # This array is the difference in starttime between consecutive hands
         index = nonzero(diff(times) > THRESHOLD) # This array represents the indexes into 'times' for start/end times of sessions
@@ -315,7 +318,13 @@ order by time
         last_idx = 0
         lowidx = 0
         uppidx = 0
+        opens = []
+        closes = []
+        highs = []
+        lows = []
         results = []
+        cum_sum = cumsum(winnings)
+        cum_sum = cum_sum/100
         # Take all results and format them into a list for feeding into gui model.
         for i in range(len(index[0])):
             sid = i                                                             # Session id
@@ -323,16 +332,27 @@ order by time
             stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
             etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
             hph = (times[index[0][i]] - times[last_idx])/60                     # Hands per hour
-            won = sum(winnings[last_idx:index[0][i]])
-            print "DEBUG: range: %s - %s" %(last_idx, index[0][i])
+            won = sum(winnings[last_idx:index[0][i]])/100.0
+            hwm = max(cum_sum[last_idx:index[0][i]])
+            lwm = min(cum_sum[last_idx:index[0][i]])
+            print "DEBUG: range: (%s, %s) - (min, max): (%s, %s)" %(last_idx, index[0][i], hwm, lwm)
             
             results.append([sid, hds, stime, etime, hph, won])
+            opens.append((sum(winnings[:last_idx]))/100)
+            closes.append((sum(winnings[:index[0][i]]))/100)
+            highs.append(hwm)
+            lows.append(lwm)
             print "Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
             total = total + (index[0][i] - last_idx)
             last_idx = index[0][i] + 1
 
         for row in results:
             iter = self.liststore.append(row)
+
+        print "DEBUG: highs = %s" % highs
+        print "DEBUG: lows = %s" % lows
+        print "DEBUG: opens = %s" % opens
+        print "DEBUG: closes = %s" % closes
 
         vbox.show_all()
 
