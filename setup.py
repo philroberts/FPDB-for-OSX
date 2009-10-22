@@ -19,6 +19,6 @@ setup(name = 'fpdb',
         ('/usr/share/applications',
             ['files/fpdb.desktop']),
         ('/usr/share/python-fpdb',
-            ['pyfpdb/logging.conf'])
+            ['pyfpdb/logging.conf', 'pyfpdb/Cards01.png'])
         ]
 )
