@@ -79,17 +79,17 @@ class GuiSessionViewer (threading.Thread):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : False,
-                            "Limits"    : True,
-                            "LimitSep"  : True,
-                            "LimitType" : True,
+                            "Limits"    : False,
+                            "LimitSep"  : False,
+                            "LimitType" : False,
                             "Type"      : True,
-                            "Seats"     : True,
-                            "SeatSep"   : True,
+                            "Seats"     : False,
+                            "SeatSep"   : False,
                             "Dates"     : True,
-                            "Groups"    : True,
-                            "GroupsAll" : True,
+                            "Groups"    : False,
+                            "GroupsAll" : False,
                             "Button1"   : True,
-                            "Button2"   : True
+                            "Button2"   : False
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
@@ -201,18 +201,11 @@ class GuiSessionViewer (threading.Thread):
 
         (results, opens, closes, highs, lows) = self.generateDatasets(playerids, sitenos, limits, seats)
 
-        print "DEBUG:"
-        print "highs = %s" % highs
-        print "lows = %s" % lows
-        print "opens = %s" % opens
-        print "closes = %s" % closes
-        print "len(highs): %s == len(lows): %s" %(len(highs), len(lows))
-        print "len(opens): %s == len(closes): %s" %(len(opens), len(closes))
 
 
         self.graphBox = gtk.VBox(False, 0)
         self.graphBox.show()
-        self.generateGraph(opens[:5], closes[:5], highs[:5], lows[:5])
+        self.generateGraph(opens, closes, highs, lows)
 
         vbox.pack_start(self.graphBox)
         # Separator
@@ -254,9 +247,17 @@ from HandsPlayers hp
      inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
      inner join Sites s       on  (s.Id = gt.siteId)
      inner join Players p     on  (p.Id = hp.playerId)
-where hp.playerId in (2)
+where hp.playerId in <player_test>
+and   date_format(h.handStart, '%Y-%m-%d') <datestest>
 order by time
 """
+        start_date, end_date = self.filters.getDates()
+        q = q.replace("<datestest>", " between '" + start_date + "' and '" + end_date + "'")
+
+        nametest = str(tuple(playerids))
+        nametest = nametest.replace("L", "")
+        nametest = nametest.replace(",)",")")
+        q = q.replace("<player_test>", nametest)
         self.db.cursor.execute(q)
         THRESHOLD = 1800
         hands = self.db.cursor.fetchall()
@@ -333,11 +334,22 @@ order by time
     def generateGraph(self, opens, closes, highs, lows):
         self.clearGraphData()
 
-        highs = [7.0999999999999996, -48.200000000000003, -79.400000000000006, -75.549999999999997, -66.700000000000003, -72.549999999999997, -64.799999999999997, -75.150000000000006, -61.350000000000001, -32.049999999999997, -19.899999999999999, -49.5, -172.75, -176.0, -230.56, -243.41]
-        lows = [-75.0, -84.900000000000006, -104.7, -131.0, -95.650000000000006, -136.65000000000001, -127.7, -113.59999999999999, -158.19999999999999, -66.349999999999994, -72.599999999999994, -171.84999999999999, -203.0, -257.94999999999999, -251.99000000000001, -246.56]
-        opens = [0.0, -64.349999999999994, -105.55, -79.400000000000006, -78.25, -75.700000000000003, -83.599999999999994, -81.950000000000003, -100.59999999999999, -60.299999999999997, -36.299999999999997, -49.600000000000001, -172.5, -197.55000000000001, -251.59999999999999, -246.93000000000001]
-        closes = [-64.450000000000003, -83.099999999999994, -79.400000000000006, -78.25, -75.700000000000003, -83.599999999999994, -81.950000000000003, -100.59999999999999, -61.350000000000001, -32.799999999999997, -49.950000000000003, -171.75, -197.55000000000001, -251.59999999999999, -247.84999999999999, -245.87]
-
+        #FIXME: Weird - first data entry is crashing this for me
+        opens = opens[1:]
+        closes = closes[1:]
+        highs = highs[1:]
+        lows = lows[1:]
+#        print "DEBUG:"
+#        print "highs = %s" % highs
+#        print "lows = %s" % lows
+#        print "opens = %s" % opens
+#        print "closes = %s" % closes
+#        print "len(highs): %s == len(lows): %s" %(len(highs), len(lows))
+#        print "len(opens): %s == len(closes): %s" %(len(opens), len(closes))
+#
+#        for i in range(len(highs)):
+#            print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
+#            print "DEBUG: diffs h/l: %s o/c: %s" %(lows[i] - highs[i], opens[i] - closes[i])
 
         self.ax = self.fig.add_subplot(111)
 
