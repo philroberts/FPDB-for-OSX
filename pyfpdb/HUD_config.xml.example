@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
+	<supported_sites>
+	    <site enabled="True" site_name="PokerStars" table_finder="PokerStars.exe" screen_name="ENTER HERO NAME" site_path="~/.wine/drive_c/Program Files/PokerStars/" HH_path="~/.wine/drive_c/Program Files/PokerStars/HandHistory/abc/" decoder="pokerstars_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+	        <layout max="8" width="792" height="546" fav_seat="0">
+	        	<location seat="1" x="684" y="61">  </location>
+	        	<location seat="2" x="689" y="239"> </location>
+	        	<location seat="3" x="692" y="346"> </location>
+	        	<location seat="4" x="525" y="402"> </location>
+	        	<location seat="5" x="259" y="402"> </location>
+	        	<location seat="6" x="0"   y="348"> </location>
+	        	<location seat="7" x="0"   y="240"> </location>
+	        	<location seat="8" x="0"   y="35">  </location>
+	        </layout>
+	        <layout max="6" width="792" height="546" fav_seat="0">
+	        	<location seat="1" x="681" y="119"> </location>
+	        	<location seat="2" x="681" y="301"> </location>
+	        	<location seat="3" x="487" y="369"> </location>
+	        	<location seat="4" x="226" y="369"> </location>
+	        	<location seat="5" x="0"   y="301"> </location>
+	        	<location seat="6" x="0"   y="119"> </location>
+	        </layout>
+	        <layout max="10" width="792" height="546" fav_seat="0">
+	        	<location seat="1" x="684" y="61">  </location>
+	        	<location seat="2" x="689" y="239"> </location>
+	        	<location seat="3" x="692" y="346"> </location>
+	        	<location seat="4" x="586" y="393"> </location>
+	        	<location seat="5" x="421" y="440"> </location>
+	        	<location seat="6" x="267" y="440"> </location>
+	        	<location seat="7" x="0"   y="361"> </location>
+	        	<location seat="8" x="0"   y="280">  </location>
+	        	<location seat="9" x="121" y="280">  </location>
+	        	<location seat="10" x="46"  y="30">  </location>
+	        </layout>
+	        <layout max="9" width="792" height="546" fav_seat="0">
+	        	<location seat="1" x="560" y="0">  </location>
+	        	<location seat="2" x="679" y="123"> </location>
+	        	<location seat="3" x="688" y="309"> </location>
+	        	<location seat="4" x="483" y="370"> </location>
+	        	<location seat="5" x="444" y="413"> </location>
+	        	<location seat="6" x="224" y="372"> </location>
+	        	<location seat="7" x="0"   y="307"> </location>
+	        	<location seat="8" x="0"   y="121">  </location>
+	        	<location seat="9" x="140" y="0">  </location>
+	        </layout>
+	        <layout fav_seat="0" height="546" max="2" width="792">
+	        	<location seat="1" x="651" y="288"> </location>
+	        	<location seat="2" x="10"  y="288"> </location>
+	        </layout>
+	    </site>
+	    <site enabled="True" site_name="Full Tilt" table_finder="FullTiltPoker.exe" screen_name="ENTER HERO NAME" site_path="~/.wine/drive_c/Program Files/Full Tilt Poker/" HH_path="~/.wine/drive_c/Program Files/Full Tilt Poker/HandHistory/abc/" decoder="fulltilt_decode_table" converter="passthrough" supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
+	        <layout fav_seat="0" height="547" max="8" width="794">
+	        	<location seat="1" x="640" y="64">  </location>
+	        	<location seat="2" x="650" y="230"> </location>
+	        	<location seat="3" x="650" y="385"> </location>
+	        	<location seat="4" x="588" y="425"> </location>
+	        	<location seat="5" x="92" y="425"> </location>
+	        	<location seat="6" x="0" y="373"> </location>
+	        	<location seat="7" x="0" y="223"> </location>
+	        	<location seat="8" x="25" y="50">  </location>
+	        </layout>
+	        <layout fav_seat="0" height="547" max="6" width="794">
+	        	<location seat="1" x="640" y="58"> </location>
+	        	<location seat="2" x="654" y="288"> </location>
+	        	<location seat="3" x="615" y="424"> </location>
+	        	<location seat="4" x="70" y="421"> </location>
+	        	<location seat="5" x="0" y="280"> </location>
+	        	<location seat="6" x="70" y="58"> </location>
+	        </layout>
+	        <layout fav_seat="0" height="547" max="2" width="794">
+	        	<location seat="1" x="651" y="288"> </location>
+	        	<location seat="2" x="10"  y="288"> </location>
+	        </layout>
+	        <layout fav_seat="0" height="547" max="9" width="794">
+	        	<location seat="1" x="634" y="38">  </location>
+	        	<location seat="2" x="667" y="184"> </location>
+	        	<location seat="3" x="667" y="321"> </location>
+	        	<location seat="4" x="667" y="445"> </location>
+	        	<location seat="5" x="337" y="459"> </location>
+	        	<location seat="6" x="0" y="400"> </location>
+	        	<location seat="7" x="0" y="322"> </location>
+	        	<location seat="8" x="0" y="181">  </location>
+	        	<location seat="9" x="70" y="53">  </location>
+	        </layout>
+	    </site>
+	    <site enabled="False" site_name="Everleaf" table_finder="Poker.exe" screen_name="ENTER HERO NAME" site_path="" HH_path="" decoder="Unknown" converter="EverleafToFpdb" supported_games="holdem,razz,omahahi,omahahilo,studhi" fgcolor="#48D1CC" bgcolor="#000000" opacity="0.75">
+		<layout fav_seat="0" height="546" max="6" width="792">
+	        	<location seat="1" x="581" y="109"> </location>
+	        	<location seat="2" x="605" y="287"> </location>
+	        	<location seat="3" x="544" y="423"> </location>
+	        	<location seat="4" x="80" y="393"> </location>
+	        	<location seat="5" x="5" y="284"> </location>
+	        	<location seat="6" x="38" y="108"> </location>
+	        </layout>
+	        <layout fav_seat="0" height="546" max="10" width="792">
+	        	<location seat="1" x="473" y="78">  </location>
+	        	<location seat="2" x="650" y="93"> </location>
+	        	<location seat="3" x="670" y="219"> </location>
+	        	<location seat="4" x="633" y="358"> </location>
+	        	<location seat="5" x="437" y="393"> </location>
+	        	<location seat="6" x="249" y="396"> </location>
+	        	<location seat="7" x="42" y="357"> </location>
+	        	<location seat="8" x="8" y="218">  </location>
+	        	<location seat="9" x="35" y="89">  </location>
+	        	<location seat="10" x="217" y="78">  </location>
+	        </layout>
+	        <layout fav_seat="0" height="546" max="2" width="792">
+	        	<location seat="1" x="651" y="288"> </location>
+	        	<location seat="2" x="10" y="288"> </location>
+	        </layout>
+	    </site>
+    </supported_sites>
+    <supported_games>
+    	<game cols="3" db="fpdb" game_name="holdem" rows="2">
+    		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+    	</game>    	
+    	<game cols="3" db="fpdb" game_name="razz" rows="2">
+    		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+    	</game>    	
+    	<game cols="3" db="fpdb" game_name="omahahi" rows="2">
+    		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+    	</game>    	 	
+    	<game cols="3" db="fpdb" game_name="omahahilo" rows="2">
+    		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+    	</game>    	
+    	<game cols="3" db="fpdb" game_name="studhi" rows="2">
+    		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+    	</game>    	
+    	<game cols="3" db="fpdb" game_name="studhilo" rows="2">
+    		<stat click="tog_decorate" col="0" popup="default" row="0" stat_name="vpip" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="0" stat_name="pfr" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="0" stat_name="ffreq_1" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="0" popup="default" row="1" stat_name="n" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="1" popup="default" row="1" stat_name="wtsd" tip="tip1"> </stat>
+    		<stat click="tog_decorate" col="2" popup="default" row="1" stat_name="wmsd" tip="tip1"> </stat>
+    	</game>    	
+    </supported_games>
+    <popup_windows>
+    	<pu pu_name="default">
+            <pu_stat pu_stat_name="n"> </pu_stat>
+            <pu_stat pu_stat_name="vpip"> </pu_stat>
+    	    <pu_stat pu_stat_name="pfr"> </pu_stat>
+            <pu_stat pu_stat_name="three_B_0"> </pu_stat>
+            <pu_stat pu_stat_name="steal"> </pu_stat>
+            <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
+            <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>
+            <pu_stat pu_stat_name="wmsd"> </pu_stat>
+            <pu_stat pu_stat_name="wtsd"> </pu_stat>
+            <pu_stat pu_stat_name="WMsF"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_1"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_2"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_3"> </pu_stat>
+            <pu_stat pu_stat_name="a_freq_4"> </pu_stat>
+            <pu_stat pu_stat_name="cb_1"> </pu_stat>
+            <pu_stat pu_stat_name="cb_2"> </pu_stat>
+            <pu_stat pu_stat_name="cb_3"> </pu_stat>
+            <pu_stat pu_stat_name="cb_4"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_1"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_2"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_3"> </pu_stat>
+            <pu_stat pu_stat_name="ffreq_4"> </pu_stat>
+    	</pu>
+    </popup_windows>
+    <import callFpdbHud = "True" interval = "10" hhArchiveBase="~/.fpdb/HandHistories/"></import>
+    <tv combinedStealFold = "True" combined2B3B = "True" combinedPostflop = "True"></tv>
+
+    <supported_databases>
+    	<database db_name="fpdb"         db_server="mysql"      db_ip="localhost" db_user="fpdb"   db_pass="YOUR MYSQL PASSWORD" db_type="fpdb">    </database>
+    </supported_databases>
+    <mucked_windows>
+    	<mw mw_name="stud1" format="stud" rows="8" cols="11" deck="Cards01.png" card_wd="30" card_ht="42"> </mw>
+    </mucked_windows>
+</FreePokerToolsConfig>
+
+    
