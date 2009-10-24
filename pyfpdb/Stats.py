@@ -93,7 +93,7 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
 #    functions that return individual stats
 
 def totalprofit(stat_dict, player):
-    """     Total Profit."""
+    """    Total Profit."""
     if stat_dict[player]['net'] != 0:
         stat = float(stat_dict[player]['net']) / 100
         return (stat, '$%.2f' % stat, 'tp=$%.2f' % stat, 'totalprofit=$%.2f' % stat, str(stat), 'Total Profit')
@@ -663,11 +663,9 @@ if __name__== "__main__":
     
     for player in stat_dict.keys():
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'profit100_0') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'profit100') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'saw_f') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'n') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'fold_f') 
@@ -675,14 +673,13 @@ if __name__== "__main__":
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'steal') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_SB_steal') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_BB_steal') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_B_0') 
+        print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_B')
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'WMsF') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq1') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq2') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq3') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq4') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_123') 
-        print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq_123_0') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb1') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb2') 
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'cb3') 
@@ -694,13 +691,15 @@ if __name__== "__main__":
         print "\n" 
 
     print "\n\nLegal stats:"
+    print "(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n"
     for attr in dir():
         if attr.startswith('__'): continue
         if attr in ("Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
                     "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                    "h"): continue
+                    "h", "re", "re_Percent", "re_Places"): continue
         print "%-14s %s" % (attr, eval("%s.__doc__" % (attr)))
 #        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)
+    print
 
     db_connection.close_connection
 
