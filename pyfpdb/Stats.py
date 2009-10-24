@@ -657,9 +657,9 @@ def ffreq4(stat_dict, player):
     
 if __name__== "__main__":
     c = Configuration.Config()
-    db_connection = Database.Database(c, 'fpdb', 'holdem')
+    db_connection = Database.Database(c)
     h = db_connection.get_last_hand()
-    stat_dict = db_connection.get_stats_from_hand(h)
+    stat_dict = db_connection.get_stats_from_hand(h, "ring")
     
     for player in stat_dict.keys():
         print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
