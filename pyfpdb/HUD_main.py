@@ -127,7 +127,7 @@ class HUD_main(object):
         def idle_func():
             
             gtk.gdk.threads_enter()
-            try:
+            try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
@@ -170,12 +170,13 @@ class HUD_main(object):
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-            try:
-                self.hud_dict[table_name].update(new_hand_id, config)
-                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
-                return False
-            finally:
-                gtk.gdk.threads_leave()
+#            try: 
+            self.hud_dict[table_name].update(new_hand_id, config)
+            [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+#            finally:
+            gtk.gdk.threads_leave()
+            return False
+                
         gobject.idle_add(idle_func)
      
     def read_stdin(self):            # This is the thread function
