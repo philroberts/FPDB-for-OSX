@@ -116,11 +116,7 @@ class HUD_main(object):
 #    called by an event in the HUD, to kill this specific HUD
         if table in self.hud_dict:
             self.hud_dict[table].kill()
-            try:
-                # throws exception in windows sometimes (when closing using main_window menu?)
-                self.hud_dict[table].main_window.destroy()
-            except:
-                pass
+            self.hud_dict[table].main_window.destroy()
             self.vb.remove(self.hud_dict[table].tablehudlabel)
             del(self.hud_dict[table])
         self.main_window.resize(1,1)
