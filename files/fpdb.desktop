@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Free Poker Database
+Comment=Online Poker Tracker + HUD
+Exec=/usr/bin/fpdb
+Icon=fpdb-icon.png
+Terminal=true
+Type=Application
+Categories=Utility
+

@@ -1,3 +1,9 @@
+free-poker-tools (0.11.3+git20091023) unstable; urgency=low
+
+  * Snapshot release
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Wed, 21 Oct 2009 16:47:12 +0300
+
 free-poker-tools (0.10.99) unstable; urgency=low
 
   * Initial packaging release.

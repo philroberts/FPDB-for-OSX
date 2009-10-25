@@ -155,12 +155,6 @@ class fpdb:
     def dia_database_stats(self, widget, data=None):
         self.warning_box("Unimplemented: Database Stats")
 
-    def dia_database_sessions(self, widget, data=None):
-        new_sessions_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
-        self.threads.append(new_sessions_thread)
-        sessions_tab=new_sessions_thread.get_vbox()
-        self.add_and_display_tab(sessions_tab, "Sessions")
-
     def dia_delete_db_parts(self, widget, data=None):
         self.warning_box("Unimplemented: Delete Database Parts")
         self.obtain_global_lock()
@@ -368,6 +362,7 @@ class fpdb:
                   <menuitem action="playerdetails"/>
                   <menuitem action="playerstats"/>
                   <menuitem action="posnstats"/>
+                  <menuitem action="sessionstats"/>
                   <menuitem action="sessionreplay"/>
                   <menuitem action="tableviewer"/>
                 </menu>
@@ -377,7 +372,6 @@ class fpdb:
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="stats"/>
-                  <menuitem action="sessions"/>
                 </menu>
                 <menu action="help">
                   <menuitem action="Abbrev"/>
@@ -409,6 +403,7 @@ class fpdb:
                                  ('playerdetails', None, 'Player _Details (todo)', None, 'Player Details (todo)', self.not_implemented),
                                  ('playerstats', None, '_Player Stats (tabulated view)', '<control>P', 'Player Stats (tabulated view)', self.tab_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
@@ -417,7 +412,6 @@ class fpdb:
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
-                                 ('sessions', None, 'Sessions', None, 'View Sessions', self.dia_database_sessions),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
@@ -553,6 +547,12 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
+
+    def tab_session_stats(self, widget, data=None):
+        new_ps_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql, self.window)
+        self.threads.append(new_ps_thread)
+        ps_tab=new_ps_thread.get_vbox()
+        self.add_and_display_tab(ps_tab, "Session Stats")
 
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""

@@ -46,7 +46,13 @@ import Tourney
 from Exceptions import *
 
 import logging, logging.config
-logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+import ConfigParser
+
+try: # local path
+    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+except ConfigParser.NoSectionError: # debian package path
+    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
+
 log = logging.getLogger('db')
 
 
