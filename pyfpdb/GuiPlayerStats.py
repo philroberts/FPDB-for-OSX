@@ -248,7 +248,7 @@ class GuiPlayerStats (threading.Thread):
             cell.set_property('text', str)
             cell.set_property('foreground', 'red')
         else:
-            cell.set_property('foreground', 'green')
+            cell.set_property('foreground', 'darkgreen')
 
         return
 

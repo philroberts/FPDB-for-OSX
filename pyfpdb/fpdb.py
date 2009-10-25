@@ -78,7 +78,7 @@ import FpdbSQLQueries
 import Configuration
 from Exceptions import *
 
-VERSION = "0.11"
+VERSION = "0.12"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
