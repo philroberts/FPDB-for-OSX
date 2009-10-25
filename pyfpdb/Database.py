@@ -427,7 +427,8 @@ class Database:
             print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
-                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'agg_bb_mult':100}
+                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'hud_days':30, 'agg_bb_mult':100
+                                          ,'h_aggregate_tour':False, 'h_aggregate_ring':False, 'h_hud_style':'S', 'h_hud_days':30, 'h_agg_bb_mult':100}
                            , hero_id = -1
                            ):
         aggregate   = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
