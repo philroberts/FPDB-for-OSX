@@ -215,8 +215,8 @@ class GuiPlayerStats (threading.Thread):
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
-        # holecards - whether to display card breakdown (True/False)
-        # numhands  - min number hands required when displaying all players
+        #   holecards - whether to display card breakdown (True/False)
+        #   numhands  - min number hands required when displaying all players
         flags = [False, self.filters.getNumHands()]
         self.addTable(swin, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
 
@@ -298,6 +298,11 @@ class GuiPlayerStats (threading.Thread):
                 col.set_sort_order(gtk.SORT_ASCENDING)
             self.liststore.set_sort_column_id(n, col.get_sort_order())
             self.liststore.set_sort_func(n, self.sortnums, n)
+            for i in xrange(len(self.listcols)):
+                self.listcols[i].set_sort_indicator(False)
+            self.listcols[n].set_sort_indicator(True)
+            # use this   listcols[col].set_sort_indicator(True)
+            # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
             print "***sortcols error: " + str(sys.exc_info()[1])
@@ -330,7 +335,7 @@ class GuiPlayerStats (threading.Thread):
         textcell50.set_property('xalign', 0.5)
         numcell = gtk.CellRendererText()
         numcell.set_property('xalign', 1.0)
-        listcols = []
+        self.listcols = []
 
         # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
         for col, column in enumerate(self.cols_to_show):
@@ -338,28 +343,31 @@ class GuiPlayerStats (threading.Thread):
                 s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
             else:
                 s = column[colheading]
-            listcols.append(gtk.TreeViewColumn(s))
-            view.append_column(listcols[col])
+            self.listcols.append(gtk.TreeViewColumn(s))
+            view.append_column(self.listcols[col])
             if column[colformat] == '%s':
                 if column[colxalign] == 0.0:
-                    listcols[col].pack_start(textcell, expand=True)
-                    listcols[col].add_attribute(textcell, 'text', col)
+                    self.listcols[col].pack_start(textcell, expand=True)
+                    self.listcols[col].add_attribute(textcell, 'text', col)
                 else:
-                    listcols[col].pack_start(textcell50, expand=True)
-                    listcols[col].add_attribute(textcell50, 'text', col)
-                listcols[col].set_expand(True)
+                    self.listcols[col].pack_start(textcell50, expand=True)
+                    self.listcols[col].add_attribute(textcell50, 'text', col)
+                self.listcols[col].set_expand(True)
             else:
-                listcols[col].pack_start(numcell, expand=True)
-                listcols[col].add_attribute(numcell, 'text', col)
-                listcols[col].set_expand(True)
-                #listcols[col].set_alignment(column[colxalign]) # no effect?
+                self.listcols[col].pack_start(numcell, expand=True)
+                self.listcols[col].add_attribute(numcell, 'text', col)
+                self.listcols[col].set_expand(True)
+                #self.listcols[col].set_alignment(column[colxalign]) # no effect?
+            if holecards:
+                self.listcols[col].set_clickable(True)
+                self.listcols[col].connect("clicked", self.sortcols, col)
+                if col == 0:
+                    self.listcols[col].set_sort_order(gtk.SORT_DESCENDING)
+                    self.listcols[col].set_sort_indicator(True)
             if column[coltype] == 'cash':
-                listcols[col].set_clickable(True)
-                listcols[col].set_sort_indicator(True)
-                listcols[col].connect("clicked", self.sortcols, col)
-                listcols[col].set_cell_data_func(numcell, self.ledger_style_render_func)
+                self.listcols[col].set_cell_data_func(numcell, self.ledger_style_render_func)
             else:
-                listcols[col].set_cell_data_func(numcell, self.reset_style_render_func)
+                self.listcols[col].set_cell_data_func(numcell, self.reset_style_render_func)
 
         rows = len(result) # +1 for title row
 
