@@ -41,6 +41,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
 else:
     pass
     #print "debug - not changing path"
+    
+if os.name == 'nt':
+    import win32api
+    import win32con
 
 print "Python " + sys.version[0:3] + '...\n'
 
@@ -639,12 +643,17 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def window_state_event_cb(self, window, event):
         print "window_state_event", event
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
+            # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
+            #bits = win32api.GetWindowLong(self.window.window.handle, -20)
+            #bits = bits ^ (win32con.WS_EX_TOOLWINDOW | win32con.WS_EX_APPWINDOW)
+            
+            #win32api.SetWindowLong(self.window.window.handle, -20, bits)
+            
             if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
-                print "FPDB minimized"
+                self.window.hide()
                 self.window.set_skip_taskbar_hint(True)
                 self.window.set_skip_pager_hint(True)
             else:
-                print "FPDB unminimized"
                 self.window.set_skip_taskbar_hint(False)
                 self.window.set_skip_pager_hint(False)
         
@@ -660,6 +669,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         pass
     
     def statusicon_activate(self, widget, data = None):
+        self.window.show()
         self.window.present()
         
     def warning_box(self, str, diatitle="FPDB WARNING"):
