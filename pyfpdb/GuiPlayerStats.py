@@ -360,14 +360,17 @@ class GuiPlayerStats (threading.Thread):
                 if column[colxalign] == 0.0:
                     self.listcols[grid][col].pack_start(textcell, expand=True)
                     self.listcols[grid][col].add_attribute(textcell, 'text', col)
+                    cellrend = textcell
                 else:
                     self.listcols[grid][col].pack_start(textcell50, expand=True)
                     self.listcols[grid][col].add_attribute(textcell50, 'text', col)
+                    cellrend = textcell50
                 self.listcols[grid][col].set_expand(True)
             else:
                 self.listcols[grid][col].pack_start(numcell, expand=True)
                 self.listcols[grid][col].add_attribute(numcell, 'text', col)
                 self.listcols[grid][col].set_expand(True)
+                cellrend = numcell
                 #self.listcols[grid][col].set_alignment(column[colxalign]) # no effect?
             self.listcols[grid][col].set_clickable(True)
             self.listcols[grid][col].connect("clicked", self.sortcols, (col,grid))
@@ -377,7 +380,7 @@ class GuiPlayerStats (threading.Thread):
             if column[coltype] == 'cash':
                 self.listcols[grid][col].set_cell_data_func(numcell, self.ledger_style_render_func)
             else:
-                self.listcols[grid][col].set_cell_data_func(numcell, self.reset_style_render_func)
+                self.listcols[grid][col].set_cell_data_func(cellrend, self.reset_style_render_func)
 
         rows = len(result) # +1 for title row
 
