@@ -1,8 +1,5 @@
 #!/usr/bin/python
-<<<<<<< HEAD:pyfpdb/HandHistoryConverter.py
 # -*- coding: utf-8 -*-
-=======
->>>>>>> 1efdd7fc68d3c9ce013f4d42730bece8075e2272:pyfpdb/HandHistoryConverter.py
 
 #Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
