@@ -235,22 +235,9 @@ class GuiSessionViewer (threading.Thread):
 
     def generateDatasets(self, playerids, sitenos, limits, seats):
         # Get a list of all handids and their timestampts
-        # FIXME: Will probably want to be able to filter this list eventually
-        # FIXME: Join on handsplayers for Hero to get other useful stuff like total profit?
+        #FIXME: Query still need to filter on blind levels
 
-
-        # Postgres version requires - EXTRACT(epoch from h.handStart)
-        q = """
-select UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
-from HandsPlayers hp
-     inner join Hands h       on  (h.id = hp.handId)
-     inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
-     inner join Sites s       on  (s.Id = gt.siteId)
-     inner join Players p     on  (p.Id = hp.playerId)
-where hp.playerId in <player_test>
-and   date_format(h.handStart, '%Y-%m-%d') <datestest>
-order by time
-"""
+        q = self.sql.query['sessionStats']
         start_date, end_date = self.filters.getDates()
         q = q.replace("<datestest>", " between '" + start_date + "' and '" + end_date + "'")
 

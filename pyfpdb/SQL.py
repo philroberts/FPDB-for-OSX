@@ -2475,6 +2475,33 @@ class Sql:
                 GROUP BY h.handStart, hp.handId, hp.totalProfit
                 ORDER BY h.handStart"""
 
+            ####################################
+            # Session stats query
+            ####################################
+            if db_server == 'mysql':
+                self.query['sessionStats'] = """
+                    SELECT UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                    FROM HandsPlayers hp
+                     INNER JOIN Hands h       on  (h.id = hp.handId)
+                     INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
+                     INNER JOIN Sites s       on  (s.Id = gt.siteId)
+                     INNER JOIN Players p     on  (p.Id = hp.playerId)
+                    WHERE hp.playerId in <player_test>
+                     AND  date_format(h.handStart, '%Y-%m-%d') <datestest>
+                    ORDER by time"""
+            elif db_server == 'postgresql':
+                self.query['sessionStats'] = """
+                    SELECT EXTRACT(epoch from h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                    FROM HandsPlayers hp
+                     INNER JOIN Hands h       on  (h.id = hp.handId)
+                     INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
+                     INNER JOIN Sites s       on  (s.Id = gt.siteId)
+                     INNER JOIN Players p     on  (p.Id = hp.playerId)
+                    WHERE hp.playerId in <player_test>
+                     AND  date_format(h.handStart, '%Y-%m-%d') <datestest>
+                    ORDER by time"""
+            elif db_server == 'sqlite':
+                self.query['sessionStats'] = """ """
 
             ####################################
             # Queries to rebuild/modify hudcache
