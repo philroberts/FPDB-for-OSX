@@ -340,9 +340,6 @@ class GuiPlayerStats (threading.Thread):
                 s = column[colheading]
             listcols.append(gtk.TreeViewColumn(s))
             view.append_column(listcols[col])
-            #listcols[col].set_clickable(True)
-            #listcols[col].set_sort_indicator(True)
-            #listcols[col].connect("clicked", self.sortcols, col)
             if column[colformat] == '%s':
                 if column[colxalign] == 0.0:
                     listcols[col].pack_start(textcell, expand=True)
@@ -357,6 +354,9 @@ class GuiPlayerStats (threading.Thread):
                 listcols[col].set_expand(True)
                 #listcols[col].set_alignment(column[colxalign]) # no effect?
             if column[coltype] == 'cash':
+                listcols[col].set_clickable(True)
+                listcols[col].set_sort_indicator(True)
+                listcols[col].connect("clicked", self.sortcols, col)
                 listcols[col].set_cell_data_func(numcell, self.ledger_style_render_func)
             else:
                 listcols[col].set_cell_data_func(numcell, self.reset_style_render_func)
