@@ -116,11 +116,7 @@ class HUD_main(object):
 #    called by an event in the HUD, to kill this specific HUD
         if table in self.hud_dict:
             self.hud_dict[table].kill()
-            try:
-                # throws exception in windows sometimes (when closing using main_window menu?)
-                self.hud_dict[table].main_window.destroy()
-            except:
-                pass
+            self.hud_dict[table].main_window.destroy()
             self.vb.remove(self.hud_dict[table].tablehudlabel)
             del(self.hud_dict[table])
         self.main_window.resize(1,1)
@@ -131,7 +127,7 @@ class HUD_main(object):
         def idle_func():
             
             gtk.gdk.threads_enter()
-            try:
+            try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
@@ -174,12 +170,13 @@ class HUD_main(object):
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-            try:
-                self.hud_dict[table_name].update(new_hand_id, config)
-                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
-                return False
-            finally:
-                gtk.gdk.threads_leave()
+#            try: 
+            self.hud_dict[table_name].update(new_hand_id, config)
+            [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+#            finally:
+            gtk.gdk.threads_leave()
+            return False
+                
         gobject.idle_add(idle_func)
      
     def read_stdin(self):            # This is the thread function
