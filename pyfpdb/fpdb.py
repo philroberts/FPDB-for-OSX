@@ -41,6 +41,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
 else:
     pass
     #print "debug - not changing path"
+    
+if os.name == 'nt':
+    import win32api
+    import win32con
 
 print "Python " + sys.version[0:3] + '...\n'
 
@@ -618,7 +622,55 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.window.show()
         self.load_profile()
+        
+        self.statusIcon = gtk.StatusIcon()
+        self.statusIcon.set_from_stock(gtk.STOCK_HOME)
+        self.statusIcon.set_tooltip("Free Poker Database")
+        self.statusIcon.connect('activate', self.statusicon_activate)
+        self.statusMenu = gtk.Menu()
+        menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
+        menuItem.connect('activate', self.dia_about)
+        self.statusMenu.append(menuItem)
+        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+        menuItem.connect('activate', self.quit)
+        self.statusMenu.append(menuItem)
+        self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
+        self.statusIcon.set_visible(True)
+        
+        self.window.connect('window-state-event', self.window_state_event_cb)
         sys.stderr.write("fpdb starting ...")
+                
+    def window_state_event_cb(self, window, event):
+        print "window_state_event", event
+        if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
+            # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
+            #bits = win32api.GetWindowLong(self.window.window.handle, -20)
+            #bits = bits ^ (win32con.WS_EX_TOOLWINDOW | win32con.WS_EX_APPWINDOW)
+            
+            #win32api.SetWindowLong(self.window.window.handle, -20, bits)
+            
+            if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
+                self.window.hide()
+                self.window.set_skip_taskbar_hint(True)
+                self.window.set_skip_pager_hint(True)
+            else:
+                self.window.set_skip_taskbar_hint(False)
+                self.window.set_skip_pager_hint(False)
+        
+    def statusicon_menu(self, widget, button, time, data = None):
+        # we don't need to pass data here, since we do keep track of most all
+        # our variables .. the example code that i looked at for this
+        # didn't use any long scope variables.. which might be an alright
+        # idea too sometime
+        if button == 3:
+            if data:
+                data.show_all()
+                data.popup(None, None, None, 3, time)
+        pass
+    
+    def statusicon_activate(self, widget, data = None):
+        self.window.show()
+        self.window.present()
         
     def warning_box(self, str, diatitle="FPDB WARNING"):
             diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
