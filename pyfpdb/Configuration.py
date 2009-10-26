@@ -35,7 +35,13 @@ import xml.dom.minidom
 from xml.dom.minidom import Node
 
 import logging, logging.config
-logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+import ConfigParser
+
+try: # local path
+    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+except ConfigParser.NoSectionError: # debian package path
+    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
+
 log = logging.getLogger("config")
 log.debug("config logger initialised")
 
@@ -104,7 +110,7 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
-            
+
         print self.site_name, self.HH_path
 
         for layout_node in node.getElementsByTagName('layout'):

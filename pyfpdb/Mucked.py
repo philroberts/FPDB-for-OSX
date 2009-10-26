@@ -63,7 +63,12 @@ class Aux_Window(object):
         card_images = 53 * [0]
         suits = ('s', 'h', 'd', 'c')
         ranks = (14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2)
-        pb  = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(self.params['deck']))
+        deckimg = self.params['deck']
+        try:
+            pb = gtk.gdk.pixbuf_new_from_file(self.config.execution_path(deckimg))
+        except:
+            stockpath = '/usr/share/python-fpdb/' + deckimg
+            pb = gtk.gdk.pixbuf_new_from_file(stockpath)
         
         for j in range(0, 13):
             for i in range(0, 4):

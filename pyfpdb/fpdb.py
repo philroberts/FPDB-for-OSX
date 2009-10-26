@@ -41,6 +41,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
 else:
     pass
     #print "debug - not changing path"
+    
+if os.name == 'nt':
+    import win32api
+    import win32con
 
 print "Python " + sys.version[0:3] + '...\n'
 
@@ -78,7 +82,7 @@ import FpdbSQLQueries
 import Configuration
 from Exceptions import *
 
-VERSION = "0.11"
+VERSION = "0.12"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -154,12 +158,6 @@ class fpdb:
 
     def dia_database_stats(self, widget, data=None):
         self.warning_box("Unimplemented: Database Stats")
-
-    def dia_database_sessions(self, widget, data=None):
-        new_sessions_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql)
-        self.threads.append(new_sessions_thread)
-        sessions_tab=new_sessions_thread.get_vbox()
-        self.add_and_display_tab(sessions_tab, "Sessions")
 
     def dia_delete_db_parts(self, widget, data=None):
         self.warning_box("Unimplemented: Delete Database Parts")
@@ -368,6 +366,7 @@ class fpdb:
                   <menuitem action="playerdetails"/>
                   <menuitem action="playerstats"/>
                   <menuitem action="posnstats"/>
+                  <menuitem action="sessionstats"/>
                   <menuitem action="sessionreplay"/>
                   <menuitem action="tableviewer"/>
                 </menu>
@@ -377,7 +376,6 @@ class fpdb:
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="stats"/>
-                  <menuitem action="sessions"/>
                 </menu>
                 <menu action="help">
                   <menuitem action="Abbrev"/>
@@ -409,6 +407,7 @@ class fpdb:
                                  ('playerdetails', None, 'Player _Details (todo)', None, 'Player Details (todo)', self.not_implemented),
                                  ('playerstats', None, '_Player Stats (tabulated view)', '<control>P', 'Player Stats (tabulated view)', self.tab_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
@@ -417,7 +416,6 @@ class fpdb:
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
-                                 ('sessions', None, 'Sessions', None, 'View Sessions', self.dia_database_sessions),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
@@ -554,6 +552,12 @@ class fpdb:
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Positional Stats")
 
+    def tab_session_stats(self, widget, data=None):
+        new_ps_thread = GuiSessionViewer.GuiSessionViewer(self.config, self.sql, self.window)
+        self.threads.append(new_ps_thread)
+        ps_tab=new_ps_thread.get_vbox()
+        self.add_and_display_tab(ps_tab, "Session Stats")
+
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         mh_tab=gtk.Label("""Welcome to Fpdb!
@@ -618,7 +622,57 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.window.show()
         self.load_profile()
+        
+        self.statusIcon = gtk.StatusIcon()
+        self.statusIcon.set_from_stock(gtk.STOCK_HOME)
+        self.statusIcon.set_tooltip("Free Poker Database")
+        self.statusIcon.connect('activate', self.statusicon_activate)
+        self.statusMenu = gtk.Menu()
+        menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
+        menuItem.connect('activate', self.dia_about)
+        self.statusMenu.append(menuItem)
+        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+        menuItem.connect('activate', self.quit)
+        self.statusMenu.append(menuItem)
+        self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
+        self.statusIcon.set_visible(True)
+        
+        self.window.connect('window-state-event', self.window_state_event_cb)
         sys.stderr.write("fpdb starting ...")
+                
+    def window_state_event_cb(self, window, event):
+        print "window_state_event", event
+        if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
+            # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
+            #bits = win32api.GetWindowLong(self.window.window.handle, -20)
+            #bits = bits ^ (win32con.WS_EX_TOOLWINDOW | win32con.WS_EX_APPWINDOW)
+            
+            #win32api.SetWindowLong(self.window.window.handle, -20, bits)
+            
+            if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
+                self.window.hide()
+                self.window.set_skip_taskbar_hint(True)
+                self.window.set_skip_pager_hint(True)
+            else:
+                self.window.set_skip_taskbar_hint(False)
+                self.window.set_skip_pager_hint(False)
+        # Tell GTK not to propagate this signal any further
+        return True
+        
+    def statusicon_menu(self, widget, button, time, data = None):
+        # we don't need to pass data here, since we do keep track of most all
+        # our variables .. the example code that i looked at for this
+        # didn't use any long scope variables.. which might be an alright
+        # idea too sometime
+        if button == 3:
+            if data:
+                data.show_all()
+                data.popup(None, None, None, 3, time)
+        pass
+    
+    def statusicon_activate(self, widget, data = None):
+        self.window.show()
+        self.window.present()
         
     def warning_box(self, str, diatitle="FPDB WARNING"):
             diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))

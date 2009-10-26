@@ -97,34 +97,6 @@ class GuiGraphViewer (threading.Thread):
 
         self.db.rollback()
 
-#################################
-#
-#        self.db.cursor.execute("""select UNIX_TIMESTAMP(handStart) as time, id from Hands ORDER BY time""")
-#        THRESHOLD = 1800
-#        hands = self.db.cursor.fetchall()
-#
-#        times = map(lambda x:long(x[0]), hands)
-#        handids = map(lambda x:int(x[1]), hands)
-#        print "DEBUG: len(times) %s" %(len(times))
-#        diffs = diff(times)
-#        print "DEBUG: len(diffs) %s" %(len(diffs))
-#        index = nonzero(diff(times) > THRESHOLD)
-#        print "DEBUG: len(index[0]) %s" %(len(index[0]))
-#        print "DEBUG: index %s" %(index)
-#        print "DEBUG: index[0][0] %s" %(index[0][0])
-#
-#        total = 0
-#
-#        last_idx = 0
-#        for i in range(len(index[0])):
-#            print "Hands in session %4s: %4s  Start: %s End: %s Total: %s" %(i, index[0][i] - last_idx, strftime("%d/%m/%Y %H:%M", localtime(times[last_idx])), strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]])), times[index[0][i]] - times[last_idx])
-#            total = total + (index[0][i] - last_idx)
-#            last_idx = index[0][i] + 1
-#
-#        print "Total: ", total
-#################################
-
-
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.mainHBox
