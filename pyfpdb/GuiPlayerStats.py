@@ -41,7 +41,8 @@ class GuiPlayerStats (threading.Thread):
         self.main_window = mainwin
         self.sql = querylist
 
-        self.liststore = None
+        self.liststore = []   # gtk.ListStore[]         stores the contents of the grids
+        self.listcols = []    # gtk.TreeViewColumn[][]  stores the columns in the grids
 
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
@@ -162,6 +163,8 @@ class GuiPlayerStats (threading.Thread):
     def refreshStats(self, widget, data):
         try: self.stats_vbox.destroy()
         except AttributeError: pass
+        self.liststore = []
+        self.listcols = []
         #self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox = gtk.VPaned()
         self.stats_vbox.show()
@@ -217,8 +220,10 @@ class GuiPlayerStats (threading.Thread):
         # 3rd parameter passes extra flags, currently includes:
         #   holecards - whether to display card breakdown (True/False)
         #   numhands  - min number hands required when displaying all players
-        flags = [False, self.filters.getNumHands()]
-        self.addTable(swin, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
+        #   gridnum   - index for grid data structures
+        flags = [False, self.filters.getNumHands(), 0]
+        self.addGrid(swin, 'playerDetailedStats', flags, playerids
+                    ,sitenos, limits, type, seats, groups, dates)
 
         # Separator
         vbox2 = gtk.VBox(False, 0)
@@ -236,7 +241,9 @@ class GuiPlayerStats (threading.Thread):
 
         # Detailed table
         flags[0] = True
-        self.addTable(swin, 'playerDetailedStats', flags, playerids, sitenos, limits, type, seats, groups, dates)
+        flags[2] = 1
+        self.addGrid(swin, 'playerDetailedStats', flags, playerids
+                    ,sitenos, limits, type, seats, groups, dates)
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
@@ -257,11 +264,12 @@ class GuiPlayerStats (threading.Thread):
 
         return
 
-    def sortnums(self, model, iter1, iter2, n):
+    def sortnums(self, model, iter1, iter2, nums):
         try:
             ret = 0
-            a = self.liststore.get_value(iter1, n)
-            b = self.liststore.get_value(iter2, n)
+            (n, grid) = nums
+            a = self.liststore[grid].get_value(iter1, n)
+            b = self.liststore[grid].get_value(iter2, n)
             if 'f' in self.cols_to_show[n][4]:
                 try:     a = float(a)
                 except:  a = 0.0
@@ -281,7 +289,7 @@ class GuiPlayerStats (threading.Thread):
                     ret = 0
                 else:
                     ret = 1
-            #print "n =", n, "iter1[n] =", self.liststore.get_value(iter1,n), "iter2[n] =", self.liststore.get_value(iter2,n), "ret =", ret
+            #print "n =", n, "iter1[n] =", self.liststore[grid].get_value(iter1,n), "iter2[n] =", self.liststore[grid].get_value(iter2,n), "ret =", ret
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
             print "***sortnums error: " + str(sys.exc_info()[1])
@@ -289,18 +297,19 @@ class GuiPlayerStats (threading.Thread):
 
         return(ret)
 
-    def sortcols(self, col, n):
+    def sortcols(self, col, nums):
         try:
             #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
-            if col.get_sort_order() == gtk.SORT_ASCENDING:
+            (n, grid) = nums
+            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
                 col.set_sort_order(gtk.SORT_DESCENDING)
             else:
                 col.set_sort_order(gtk.SORT_ASCENDING)
-            self.liststore.set_sort_column_id(n, col.get_sort_order())
-            self.liststore.set_sort_func(n, self.sortnums, n)
-            for i in xrange(len(self.listcols)):
-                self.listcols[i].set_sort_indicator(False)
-            self.listcols[n].set_sort_indicator(True)
+            self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
+            self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
+            for i in xrange(len(self.listcols[grid])):
+                self.listcols[grid][i].set_sort_indicator(False)
+            self.listcols[grid][n].set_sort_indicator(True)
             # use this   listcols[col].set_sort_indicator(True)
             # to turn indicator off for other cols
         except:
@@ -308,12 +317,12 @@ class GuiPlayerStats (threading.Thread):
             print "***sortcols error: " + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
 
-    def addTable(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
+    def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
         counter = 0
         row = 0
         sqlrow = 0
-        if not flags:  holecards = False
-        else:          holecards = flags[0]
+        if not flags:  holecards,grid = False,0
+        else:          holecards,grid = flags[0],flags[2]
 
         tmp = self.sql.query[query]
         tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates)
@@ -325,8 +334,9 @@ class GuiPlayerStats (threading.Thread):
         self.cols_to_show = [x for x in self.columns if x[colshow]]
         hgametypeid_idx = colnames.index('hgametypeid')
 
-        self.liststore = gtk.ListStore(*([str] * len(self.cols_to_show)))
-        view = gtk.TreeView(model=self.liststore)
+        assert len(self.liststore) == grid, "len(self.liststore)="+str(len(self.liststore))+" grid-1="+str(grid)
+        self.liststore.append( gtk.ListStore(*([str] * len(self.cols_to_show))) )
+        view = gtk.TreeView(model=self.liststore[grid])
         view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
         #vbox.pack_start(view, expand=False, padding=3)
         vbox.add(view)
@@ -335,7 +345,8 @@ class GuiPlayerStats (threading.Thread):
         textcell50.set_property('xalign', 0.5)
         numcell = gtk.CellRendererText()
         numcell.set_property('xalign', 1.0)
-        self.listcols = []
+        assert len(self.listcols) == grid
+        self.listcols.append( [] )
 
         # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
         for col, column in enumerate(self.cols_to_show):
@@ -343,31 +354,30 @@ class GuiPlayerStats (threading.Thread):
                 s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
             else:
                 s = column[colheading]
-            self.listcols.append(gtk.TreeViewColumn(s))
-            view.append_column(self.listcols[col])
+            self.listcols[grid].append(gtk.TreeViewColumn(s))
+            view.append_column(self.listcols[grid][col])
             if column[colformat] == '%s':
                 if column[colxalign] == 0.0:
-                    self.listcols[col].pack_start(textcell, expand=True)
-                    self.listcols[col].add_attribute(textcell, 'text', col)
+                    self.listcols[grid][col].pack_start(textcell, expand=True)
+                    self.listcols[grid][col].add_attribute(textcell, 'text', col)
                 else:
-                    self.listcols[col].pack_start(textcell50, expand=True)
-                    self.listcols[col].add_attribute(textcell50, 'text', col)
-                self.listcols[col].set_expand(True)
+                    self.listcols[grid][col].pack_start(textcell50, expand=True)
+                    self.listcols[grid][col].add_attribute(textcell50, 'text', col)
+                self.listcols[grid][col].set_expand(True)
             else:
-                self.listcols[col].pack_start(numcell, expand=True)
-                self.listcols[col].add_attribute(numcell, 'text', col)
-                self.listcols[col].set_expand(True)
-                #self.listcols[col].set_alignment(column[colxalign]) # no effect?
-            if holecards:
-                self.listcols[col].set_clickable(True)
-                self.listcols[col].connect("clicked", self.sortcols, col)
-                if col == 0:
-                    self.listcols[col].set_sort_order(gtk.SORT_DESCENDING)
-                    self.listcols[col].set_sort_indicator(True)
+                self.listcols[grid][col].pack_start(numcell, expand=True)
+                self.listcols[grid][col].add_attribute(numcell, 'text', col)
+                self.listcols[grid][col].set_expand(True)
+                #self.listcols[grid][col].set_alignment(column[colxalign]) # no effect?
+            self.listcols[grid][col].set_clickable(True)
+            self.listcols[grid][col].connect("clicked", self.sortcols, (col,grid))
+            if col == 0:
+                self.listcols[grid][col].set_sort_order(gtk.SORT_DESCENDING)
+                self.listcols[grid][col].set_sort_indicator(True)
             if column[coltype] == 'cash':
-                self.listcols[col].set_cell_data_func(numcell, self.ledger_style_render_func)
+                self.listcols[grid][col].set_cell_data_func(numcell, self.ledger_style_render_func)
             else:
-                self.listcols[col].set_cell_data_func(numcell, self.reset_style_render_func)
+                self.listcols[grid][col].set_cell_data_func(numcell, self.reset_style_render_func)
 
         rows = len(result) # +1 for title row
 
@@ -408,12 +418,12 @@ class GuiPlayerStats (threading.Thread):
                     treerow.append(column[colformat] % value)
                 else:
                     treerow.append(' ')
-            iter = self.liststore.append(treerow)
+            iter = self.liststore[grid].append(treerow)
             sqlrow += 1
             row += 1
         vbox.show_all()
         
-    #end def addTable(self, query, vars, playerids, sitenos, limits, type, seats, groups, dates):
+    #end def addGrid(self, query, vars, playerids, sitenos, limits, type, seats, groups, dates):
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates):
         having = ''
