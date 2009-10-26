@@ -2498,7 +2498,7 @@ class Sql:
                      INNER JOIN Sites s       on  (s.Id = gt.siteId)
                      INNER JOIN Players p     on  (p.Id = hp.playerId)
                     WHERE hp.playerId in <player_test>
-                     AND  date_format(h.handStart, '%Y-%m-%d') <datestest>
+                     AND  h.handStart <datestest>
                     ORDER by time"""
             elif db_server == 'sqlite':
                 self.query['sessionStats'] = """ """
