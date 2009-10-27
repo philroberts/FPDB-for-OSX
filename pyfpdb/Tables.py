@@ -132,7 +132,7 @@ def discover_posix(c):
 #    xwininfo -root -tree -id 0xnnnnn    gets the info on a single window
         for s in c.get_supported_sites():
             params = c.get_site_parameters(s)
- 
+            
 # TODO: We need to make a list of phrases, shared between the WIndows and Unix code!!!!!!       
             if re.search(params['table_finder'], listing):
                 if 'Lobby' in listing:   continue

@@ -110,7 +110,7 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
-
+            
         print self.site_name, self.HH_path
 
         for layout_node in node.getElementsByTagName('layout'):
