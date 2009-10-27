@@ -128,6 +128,9 @@ class HUD_main(object):
             
             gtk.gdk.threads_enter()
             try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
+                 # TODO: The purpose of this try/finally block is to make darn sure that threads_leave()
+                 # TODO: gets called. If there is an exception and threads_leave() doesn't get called we 
+                 # TODO: lock up.  REB
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
