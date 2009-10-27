@@ -162,7 +162,7 @@ class fpdb_db:
         #print "started fpdb_db.reconnect"
         self.disconnect(due_to_error)
         self.connect(self.backend, self.host, self.database, self.user, self.password)
-
+    
     def get_backend_name(self):
         """Returns the name of the currently used backend"""
         if self.backend==2:
@@ -178,4 +178,5 @@ class fpdb_db:
     def get_db_info(self):
         return (self.host, self.database, self.user, self.password)
     #end def get_db_info
+
 #end class fpdb_db
