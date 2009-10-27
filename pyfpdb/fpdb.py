@@ -628,7 +628,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.statusIcon = gtk.StatusIcon()
         if os.path.exists('../gfx/fpdb-cards.png'):
             self.statusIcon.set_from_file('../gfx/fpdb-cards.png')
-        elif os.path.exits('/usr/share/pixmaps/fpdb-cards.png'):
+        elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:
             self.statusIcon.set_from_stock(gtk.STOCK_HOME)
