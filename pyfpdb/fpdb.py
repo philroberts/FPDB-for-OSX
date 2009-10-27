@@ -626,7 +626,12 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.load_profile()
         
         self.statusIcon = gtk.StatusIcon()
-        self.statusIcon.set_from_stock(gtk.STOCK_HOME)
+        if os.path.exists('../gfx/fpdb-cards.png'):
+            self.statusIcon.set_from_file('../gfx/fpdb-cards.png')
+        elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
+            self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
+        else:
+            self.statusIcon.set_from_stock(gtk.STOCK_HOME)
         self.statusIcon.set_tooltip("Free Poker Database")
         self.statusIcon.connect('activate', self.statusicon_activate)
         self.statusMenu = gtk.Menu()
