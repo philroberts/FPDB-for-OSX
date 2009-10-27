@@ -21,10 +21,17 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+import traceback
 from time import time, strftime, localtime
 try:
+    import matplotlib
+    matplotlib.use('GTK')
+    from matplotlib.figure import Figure
+    from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
+    from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
+    from matplotlib.finance import candlestick2
+
     from numpy import diff, nonzero, sum, cumsum, max, mina
-    import matplotlib.finance
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
@@ -49,6 +56,11 @@ class GuiSessionViewer (threading.Thread):
         self.MYSQL_INNODB   = 2
         self.PGSQL          = 3
         self.SQLITE         = 4
+
+        self.fig = None
+        self.canvas = None
+        self.ax = None
+        self.graphBox = None
         
         # create new db connection to avoid conflicts with other threads
         self.db = Database.Database(self.conf, sql=self.sql)
@@ -67,17 +79,17 @@ class GuiSessionViewer (threading.Thread):
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             "Games"     : False,
-                            "Limits"    : True,
-                            "LimitSep"  : True,
-                            "LimitType" : True,
+                            "Limits"    : False,
+                            "LimitSep"  : False,
+                            "LimitType" : False,
                             "Type"      : True,
-                            "Seats"     : True,
-                            "SeatSep"   : True,
+                            "Seats"     : False,
+                            "SeatSep"   : False,
                             "Dates"     : True,
-                            "Groups"    : True,
-                            "GroupsAll" : True,
+                            "Groups"    : False,
+                            "GroupsAll" : False,
                             "Button1"   : True,
-                            "Button2"   : True
+                            "Button2"   : False
                           }
 
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
@@ -182,17 +194,20 @@ class GuiSessionViewer (threading.Thread):
             print "No limits found"
             return
 
-        self.createStatsTable(vbox, playerids, sitenos, limits, seats)
+        self.createStatsPane(vbox, playerids, sitenos, limits, seats)
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, seats):
+    def createStatsPane(self, vbox, playerids, sitenos, limits, seats):
         starttime = time()
 
-        # Display summary table at top of page
-        # 3rd parameter passes extra flags, currently includes:
-        # holecards - whether to display card breakdown (True/False)
-        flags = [False]
-        self.addTable(vbox, 'playerDetailedStats', flags, playerids, sitenos, limits, seats)
+        (results, opens, closes, highs, lows) = self.generateDatasets(playerids, sitenos, limits, seats)
 
+
+
+        self.graphBox = gtk.VBox(False, 0)
+        self.graphBox.show()
+        self.generateGraph(opens, closes, highs, lows)
+
+        vbox.pack_start(self.graphBox)
         # Separator
         sep = gtk.HSeparator()
         vbox.pack_start(sep, expand=False, padding=3)
@@ -212,92 +227,24 @@ class GuiSessionViewer (threading.Thread):
         vbox1.show()
         swin.add_with_viewport(vbox1)
 
-        # Detailed table
-        flags = [True]
-        self.addTable(vbox1, 'playerDetailedStats', flags, playerids, sitenos, limits, seats)
+        self.addTable(vbox1, results)
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
-    def generateGraph(self, vbox, data):
-        fig = figure()
-        fig.subplots_adjust(bottom=0.2)
-        ax = fig.add_subplot(111)
-        ax.xaxis.set_major_locator(mondays)
-        ax.xaxis.set_minor_locator(alldays)
-        ax.xaxis.set_major_formatter(weekFormatter)
-        #ax.xaxis.set_minor_formatter(dayFormatter)
-        #plot_day_summary(ax, quotes, ticksize=3)
-#        candlestick(ax, quotes, width=0.6)
-#        candlestick2(ax, opens, closes, highs, lows, width=4, colorup='k', colordown='r', alpha=0.75)
-#    Represent the open, close as a bar line and high low range as a vertical line.
-#    ax          : an Axes instance to plot to
-#    width       : the bar width in points
-#    colorup     : the color of the lines where close >= open
-#    colordown   : the color of the lines where close <  open
-#    alpha       : bar transparency
-#    return value is lineCollection, barCollection
-        ax.xaxis_date()
-        ax.autoscale_view()
-        setp( gca().get_xticklabels(), rotation=45, horizontalalignment='right')
-
-        show()
-
-
-    def addTable(self, vbox, query, flags, playerids, sitenos, limits, seats):
-        row = 0
-        sqlrow = 0
-        colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
-        if not flags:  holecards = False
-        else:          holecards = flags[0]
-
-        # pre-fetch some constant values:
-        cols_to_show = [x for x in self.columns if x[colshow]]
-
-        self.liststore = gtk.ListStore(*([str] * len(cols_to_show)))
-
-        view = gtk.TreeView(model=self.liststore)
-        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
-        vbox.add(view)
-        textcell = gtk.CellRendererText()
-        textcell50 = gtk.CellRendererText()
-        textcell50.set_property('xalign', 0.5)
-        numcell = gtk.CellRendererText()
-        numcell.set_property('xalign', 1.0)
-        listcols = []
-
-        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
-        for col, column in enumerate(cols_to_show):
-            s = column[colheading]
-            listcols.append(gtk.TreeViewColumn(s))
-            view.append_column(listcols[col])
-            if column[colformat] == '%s':
-                if column[colxalign] == 0.0:
-                    listcols[col].pack_start(textcell, expand=True)
-                    listcols[col].add_attribute(textcell, 'text', col)
-                else:
-                    listcols[col].pack_start(textcell50, expand=True)
-                    listcols[col].add_attribute(textcell50, 'text', col)
-                listcols[col].set_expand(True)
-            else:
-                listcols[col].pack_start(numcell, expand=True)
-                listcols[col].add_attribute(numcell, 'text', col)
-                listcols[col].set_expand(True)
-
+    def generateDatasets(self, playerids, sitenos, limits, seats):
         # Get a list of all handids and their timestampts
-        # FIXME: Will probably want to be able to filter this list eventually
-        # FIXME: Join on handsplayers for Hero to get other useful stuff like total profit?
-        q = """
-select UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
-from HandsPlayers hp
-     inner join Hands h       on  (h.id = hp.handId)
-     inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
-     inner join Sites s       on  (s.Id = gt.siteId)
-     inner join Players p     on  (p.Id = hp.playerId)
-where hp.playerId in (2)
-order by time
-"""
+        #FIXME: Query still need to filter on blind levels
+
+        q = self.sql.query['sessionStats']
+        start_date, end_date = self.filters.getDates()
+        q = q.replace("<datestest>", " between '" + start_date + "' and '" + end_date + "'")
+
+        nametest = str(tuple(playerids))
+        nametest = nametest.replace("L", "")
+        nametest = nametest.replace(",)",")")
+        q = q.replace("<player_test>", nametest)
         self.db.cursor.execute(q)
         THRESHOLD = 1800
         hands = self.db.cursor.fetchall()
@@ -329,30 +276,121 @@ order by time
         for i in range(len(index[0])):
             sid = i                                                             # Session id
             hds = index[0][i] - last_idx                                        # Number of hands in session
-            stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
-            etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
-            hph = (times[index[0][i]] - times[last_idx])/60                     # Hands per hour
-            won = sum(winnings[last_idx:index[0][i]])/100.0
-            hwm = max(cum_sum[last_idx:index[0][i]])
-            lwm = min(cum_sum[last_idx:index[0][i]])
-            print "DEBUG: range: (%s, %s) - (min, max): (%s, %s)" %(last_idx, index[0][i], hwm, lwm)
+            if hds > 0:
+                stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
+                etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
+                hph = (times[index[0][i]] - times[last_idx])/60                     # Hands per hour
+                won = sum(winnings[last_idx:index[0][i]])/100.0
+                hwm = max(cum_sum[last_idx:index[0][i]])
+                lwm = min(cum_sum[last_idx:index[0][i]])
+                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s)" %(last_idx, index[0][i], hwm, lwm)
             
-            results.append([sid, hds, stime, etime, hph, won])
-            opens.append((sum(winnings[:last_idx]))/100)
-            closes.append((sum(winnings[:index[0][i]]))/100)
-            highs.append(hwm)
-            lows.append(lwm)
-            print "Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
-            total = total + (index[0][i] - last_idx)
-            last_idx = index[0][i] + 1
+                results.append([sid, hds, stime, etime, hph, won])
+                opens.append((sum(winnings[:last_idx]))/100)
+                closes.append((sum(winnings[:index[0][i]]))/100)
+                highs.append(hwm)
+                lows.append(lwm)
+                #print "Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
+                total = total + (index[0][i] - last_idx)
+                last_idx = index[0][i] + 1
 
+        return (results, opens, closes, highs, lows)
+
+    def clearGraphData(self):
+
+        try:
+            try:
+                if self.canvas:
+                    self.graphBox.remove(self.canvas)
+            except:
+                pass
+
+            if self.fig != None:
+                self.fig.clear()
+            self.fig = Figure(figsize=(5,4), dpi=100)
+            if self.canvas is not None:
+                self.canvas.destroy()
+
+            self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            raise
+
+
+    def generateGraph(self, opens, closes, highs, lows):
+        self.clearGraphData()
+
+        #FIXME: Weird - first data entry is crashing this for me
+        opens = opens[1:]
+        closes = closes[1:]
+        highs = highs[1:]
+        lows = lows[1:]
+#        print "DEBUG:"
+#        print "highs = %s" % highs
+#        print "lows = %s" % lows
+#        print "opens = %s" % opens
+#        print "closes = %s" % closes
+#        print "len(highs): %s == len(lows): %s" %(len(highs), len(lows))
+#        print "len(opens): %s == len(closes): %s" %(len(opens), len(closes))
+#
+#        for i in range(len(highs)):
+#            print "DEBUG: (%s, %s, %s, %s)" %(lows[i], opens[i], closes[i], highs[i])
+#            print "DEBUG: diffs h/l: %s o/c: %s" %(lows[i] - highs[i], opens[i] - closes[i])
+
+        self.ax = self.fig.add_subplot(111)
+
+        self.ax.set_title("Session candlestick graph")
+
+        #Set axis labels and grid overlay properites
+        self.ax.set_xlabel("Sessions", fontsize = 12)
+        self.ax.set_ylabel("$", fontsize = 12)
+        self.ax.grid(color='g', linestyle=':', linewidth=0.2)
+
+        candlestick2(self.ax, opens, closes, highs, lows, width=0.50, colordown='r', colorup='g', alpha=1.00)
+        self.graphBox.add(self.canvas)
+        self.canvas.show()
+        self.canvas.draw()
+
+    def addTable(self, vbox, results):
+        row = 0
+        sqlrow = 0
+        colalias,colshow,colheading,colxalign,colformat = 0,1,2,3,4
+
+        # pre-fetch some constant values:
+        cols_to_show = [x for x in self.columns if x[colshow]]
+
+        self.liststore = gtk.ListStore(*([str] * len(cols_to_show)))
         for row in results:
             iter = self.liststore.append(row)
 
-        print "DEBUG: highs = %s" % highs
-        print "DEBUG: lows = %s" % lows
-        print "DEBUG: opens = %s" % opens
-        print "DEBUG: closes = %s" % closes
+        view = gtk.TreeView(model=self.liststore)
+        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        vbox.add(view)
+        textcell = gtk.CellRendererText()
+        textcell50 = gtk.CellRendererText()
+        textcell50.set_property('xalign', 0.5)
+        numcell = gtk.CellRendererText()
+        numcell.set_property('xalign', 1.0)
+        listcols = []
+
+        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
+        for col, column in enumerate(cols_to_show):
+            s = column[colheading]
+            listcols.append(gtk.TreeViewColumn(s))
+            view.append_column(listcols[col])
+            if column[colformat] == '%s':
+                if column[colxalign] == 0.0:
+                    listcols[col].pack_start(textcell, expand=True)
+                    listcols[col].add_attribute(textcell, 'text', col)
+                else:
+                    listcols[col].pack_start(textcell50, expand=True)
+                    listcols[col].add_attribute(textcell50, 'text', col)
+                listcols[col].set_expand(True)
+            else:
+                listcols[col].pack_start(numcell, expand=True)
+                listcols[col].add_attribute(numcell, 'text', col)
+                listcols[col].set_expand(True)
 
         vbox.show_all()
 

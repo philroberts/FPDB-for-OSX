@@ -82,7 +82,7 @@ import FpdbSQLQueries
 import Configuration
 from Exceptions import *
 
-VERSION = "0.11"
+VERSION = "0.12"
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -656,6 +656,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             else:
                 self.window.set_skip_taskbar_hint(False)
                 self.window.set_skip_pager_hint(False)
+        # Tell GTK not to propagate this signal any further
+        return True
         
     def statusicon_menu(self, widget, button, time, data = None):
         # we don't need to pass data here, since we do keep track of most all
