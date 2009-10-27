@@ -5,7 +5,7 @@ from distutils.core import setup
 
 setup(name = 'fpdb',
     description = 'Free Poker Database',
-    version = '0.11.3',
+    version = '0.12',
     author = 'FPDB team',
     author_email = 'fpdb-main@lists.sourceforge.net',
     packages = ['fpdb'],
