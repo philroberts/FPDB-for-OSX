@@ -77,10 +77,11 @@ class fpdb_db:
             import MySQLdb
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
-            try:
-                self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
-            except:
-                raise FpdbMySQLFailedError("MySQL connection failed")
+#            try:
+            self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+            #TODO: Add port option
+#            except:
+#                raise FpdbMySQLFailedError("MySQL connection failed")
         elif backend==fpdb_db.PGSQL:
             import psycopg2
             import psycopg2.extensions
