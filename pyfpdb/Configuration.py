@@ -132,8 +132,8 @@ class Site:
 
         if self.use_frames == "": self.use_frames = False
         if self.font       == "": self.font = "Sans" 
-        if self.hudbgcolor == "": self.hudbgcolor = "000000"
-        if self.hudfgcolor == "": self.hudfgcolor = "FFFFFF"
+        if self.hudbgcolor == "": self.hudbgcolor = "#000000"
+        if self.hudfgcolor == "": self.hudfgcolor = "#FFFFFF"
 
     def __str__(self):
         temp = "Site = " + self.site_name + "\n"
