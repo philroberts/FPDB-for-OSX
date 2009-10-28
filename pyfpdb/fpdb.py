@@ -516,6 +516,8 @@ class fpdb:
         print "Quitting normally"
         #check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
+        # hide icon as it doesn't go away immediately in Windows - is this ok in Linux Eric?
+        self.statusIcon.set_visible(False)
         gtk.main_quit()
 
     def release_global_lock(self):
