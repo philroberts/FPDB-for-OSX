@@ -78,7 +78,7 @@ class fpdb_db:
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
 #            try:
-            self.db = MySQLdb.connect(host = host, user = user, passwd = password, db = database, use_unicode=True)
+            self.db = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
             #TODO: Add port option
 #            except:
 #                raise FpdbMySQLFailedError("MySQL connection failed")
