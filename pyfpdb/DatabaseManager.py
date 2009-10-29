@@ -8,13 +8,40 @@ import gtk
 class DatabaseManager(object):
     DatabaseTypes = {}
     
-    def __init__(self, defaultDatabaseType=None):
+    @classmethod
+    def from_fpdb(klass, data, defaultDatabaseType=None):
+        #TODO: parse whatever data is
+        databases = (
+                DatabaseTypePostgres(name='myDb'),
+                DatabaseTypeSqLite(name='myDb2'),
+                
+                )
+        return klass(databases=databases, defaultDatabaseType=defaultDatabaseType)
+    
+    
+    def __init__(self, databases=None, defaultDatabaseType=None):
         self._defaultDatabaseType = defaultDatabaseType
+        self._databases = [] if databases is None else list(databases)
+    def __iter__(self):
+        return iter(self._databases)
     def set_default_database_type(self, databaseType):
         self._defaultDatabaseType = defaultDatabaseType
     def get_default_database_type(self):
         return self._defaultDatabaseType
-        
+    def database_from_id(self, idDatabase):
+        for database in self._databases:
+            if idDatabase == id(database):
+                return database
+    def database_id(self, database):
+        return id(database)
+    def create_database(self, databaseType, **kws):
+        databaseKlass = self.DatabaseTypes[databaseType]
+        database = databaseType(**kws)
+        self._databases.append(database)
+        return database
+    def remove_database(self, database):
+        self._databases.remove(database)
+
 class DatabaseTypeMeta(type):
     def __new__(klass, name, bases, kws):
         newKlass = type.__new__(klass, name, bases, kws)
@@ -30,29 +57,29 @@ class DatabaseTypeBase(object):
 
 class DatabaseTypePostgres(DatabaseTypeBase):
     Type = 'postgres'
-    def __init__(self, host='localhost', port=5432, user='postgres', password='', database='fpdb', name=''):
+    def __init__(self, name='', host='localhost', port=5432, user='postgres', password='', database='fpdb'):
+        self.name = name
         self.host = host
         self.port = port
         self.user = user
         self.password = password
         self.database = database
-        self.name = name
-
+        
 class DatabaseTypeMysql(DatabaseTypeBase):
     Type = 'mysql'
-    def __init__(self, host='localhost', port=3306, user='root', password='', database='fpdb', name=''):
+    def __init__(self, name='', host='localhost', port=3306, user='root', password='', database='fpdb'):
+        self.name = name
         self.host = host
         self.port = port
         self.user = user
         self.password = password
         self.database = database
-        self.name = name
         
 class DatabaseTypeSqLite(DatabaseTypeBase):
     Type = 'sqlite'
-    def __init__(self, host='', file='', name=''):
-        self.file = file
+    def __init__(self, name='', host='', file=''):
         self.name = name
+        self.file = file
 
 #***************************************************************************************************************************
 class MyFileChooserButton(gtk.HBox):
@@ -111,7 +138,7 @@ class MyFileChooserButton(gtk.HBox):
         gtk.FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
         #
         
-        
+#TODO: rewrite to use idDatabase + create and remove databases through DatabaseManager        
 class WidgetDatabaseProperties(gtk.VBox):
     ModeEdit = 0x1
     ModeAdd = 0x2
@@ -156,7 +183,7 @@ class WidgetDatabaseProperties(gtk.VBox):
             gtk.VBox.__init__(self)
                         
             self.flags = flags
-            self.fieldWidgets = (        #fieldName--> fieldHandler
+            self.fieldWidgets = (
                         self.FieldWidget(
                                 text='Name:',
                                 attrDatabase='name', 
@@ -394,14 +421,27 @@ class DialogDatabase(gtk.Dialog):
         self.buttonDatabaseDelete.set_tooltip_text('removes the database from the list and deletes it')
         self.buttonDatabaseDelete.set_sensitive(False)
             
-        # database tree        
+        # init database tree        
         self.treeDatabases = gtk.TreeView()
-        store = gtk.ListStore(str, str, str)
+        self.treeDatabaseColumns = (        #NOTE: column names starting with '_' will be hidden
+                'Name', 
+                'Status', 
+                'Type', 
+                '_id',
+                )
+        
+        store = gtk.ListStore(str, str, str, int)
         self.treeDatabases.set_model(store)
-        columns = ('Name', 'Status', 'Type')
+        columns = ('Name', 'Status', 'Type', '_id')
         for i, column in enumerate(columns):
             col = gtk.TreeViewColumn(column, gtk.CellRendererText(), text=i)
             self.treeDatabases.append_column(col)
+            if column.startswith('_'):
+                col.set_visible(False)
+        
+        self.treeDatabaseColumns = dict([(name, i) for (i, name) in enumerate(self.treeDatabaseColumns)])
+        
+        
         self.treeDatabases.get_selection().connect('changed', self.on_tree_databases_selection_changed)
                 
         # layout widgets
@@ -425,6 +465,11 @@ class DialogDatabase(gtk.Dialog):
         hbox.pack_end(self.treeDatabases, True, True, 2)
         
         self.show_all()
+        
+        # init widget
+        for database in self.databaseManager:
+            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
+        
             
             
     #TODO: for some reason i have to click OK/Cancel twice to close the dialog        
@@ -434,7 +479,7 @@ class DialogDatabase(gtk.Dialog):
             pass
         if dlg.run() == gtk.RESPONSE_ACCEPT:
             database = dlg.get_database()
-            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type) )
+            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
         dlg.destroy()
 
     def on_button_database_add_clicked(self, button):
@@ -443,11 +488,19 @@ class DialogDatabase(gtk.Dialog):
             pass
         if dlg.run() == gtk.RESPONSE_ACCEPT:
             database = dlg.get_database()
-            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type) )
+            print self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
         dlg.destroy()
         
     def on_button_database_edit_clicked(self, button):
-        dlg = DialogDatabaseProperties(self.databaseManager, parent=self, flags=WidgetDatabaseProperties.ModeEdit)
+        selection = self.treeDatabases.get_selection()
+        if selection is None:
+                return
+                
+        model, iter = selection.get_selected()
+        idDatabase = model.get_value(iter, self.treeDatabaseColumns['_id'])
+        database = self.databaseManager.database_from_id(idDatabase)
+        
+        dlg = DialogDatabaseProperties(self.databaseManager, database=database, parent=self, flags=WidgetDatabaseProperties.ModeEdit)
         if dlg.run() == gtk.RESPONSE_REJECT:
             pass
         if dlg.run() == gtk.RESPONSE_ACCEPT:
@@ -471,12 +524,14 @@ class DialogDatabase(gtk.Dialog):
 
 #**************************************************************************************************
 if __name__ == '__main__':
+    databaseManager = DatabaseManager.from_fpdb('', defaultDatabaseType=DatabaseTypeSqLite)
+    
     #d = DialogDatabaseProperties(
     #        DatabaseManager(defaultDatabaseType=DatabaseTypeSqLite),
             #database=DatabaseTypePostgres(),
     #        database=None,
     #        )
-    d = DialogDatabase(DatabaseManager(defaultDatabaseType=DatabaseTypeSqLite))
+    d = DialogDatabase(databaseManager)
     d.connect("destroy", gtk.main_quit)
     d.run()
     #gtk.main()
