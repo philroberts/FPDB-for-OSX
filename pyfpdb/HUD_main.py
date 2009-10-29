@@ -189,99 +189,95 @@ class HUD_main(object):
 #    be passed to HUDs for use in the gui thread. HUD objects should not
 #    need their own access to the database, but should open their own
 #    if it is required.
-        try:
-            self.db_connection = Database.Database(self.config)
-            tourny_finder = re.compile('(\d+) (\d+)')
-            
-#       get hero's screen names and player ids
-            self.hero, self.hero_ids = {}, {}
-            for site in self.config.get_supported_sites():
-                result = self.db_connection.get_site_id(site)
-                if result:
-                    site_id = result[0][0]
-                    self.hero[site_id] = self.config.supported_sites[site].screen_name
-                    self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
+        self.db_connection = Database.Database(self.config)
+        tourny_finder = re.compile('(\d+) (\d+)')
         
-            while 1: # wait for a new hand number on stdin
-                new_hand_id = sys.stdin.readline()
-                new_hand_id = string.rstrip(new_hand_id)
-                if new_hand_id == "":           # blank line means quit
-                    self.destroy()
-                    break # this thread is not always killed immediately with gtk.main_quit()
+#       get hero's screen names and player ids
+        self.hero, self.hero_ids = {}, {}
+        for site in self.config.get_supported_sites():
+            result = self.db_connection.get_site_id(site)
+            if result:
+                site_id = result[0][0]
+                self.hero[site_id] = self.config.supported_sites[site].screen_name
+                self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
+    
+        while 1: # wait for a new hand number on stdin
+            new_hand_id = sys.stdin.readline()
+            new_hand_id = string.rstrip(new_hand_id)
+            if new_hand_id == "":           # blank line means quit
+                self.destroy()
+                break # this thread is not always killed immediately with gtk.main_quit()
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-                try:
-                    (table_name, max, poker_game, type, site_id) = self.db_connection.get_table_name(new_hand_id)
+            try:
+                (table_name, max, poker_game, type, site_id) = self.db_connection.get_table_name(new_hand_id)
 
-                    cards      = self.db_connection.get_cards(new_hand_id)
-                    comm_cards = self.db_connection.get_common_cards(new_hand_id)
-                    if comm_cards != {}: # stud!
-                        cards['common'] = comm_cards['common']
-                except Exception, err:
-                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                    print "db error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-                    if new_hand_id: # new_hand_id is none if we had an error prior to the store
-                        sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                cards      = self.db_connection.get_cards(new_hand_id)
+                comm_cards = self.db_connection.get_common_cards(new_hand_id)
+                if comm_cards != {}: # stud!
+                    cards['common'] = comm_cards['common']
+            except Exception, err:
+                err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                print "db error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                    sys.stderr.write("Database error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                continue
+
+            if type == "tour":   # hand is from a tournament
+                mat_obj = tourny_finder.search(table_name)
+                if mat_obj:
+                    (tour_number, tab_number) = mat_obj.group(1, 2)
+                    temp_key = tour_number
+                else:   # tourney, but can't get number and table
+                    print "could not find tournament: skipping "
+                    #sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
                     continue
-
-                if type == "tour":   # hand is from a tournament
-                    mat_obj = tourny_finder.search(table_name)
-                    if mat_obj:
-                        (tour_number, tab_number) = mat_obj.group(1, 2)
-                        temp_key = tour_number
-                    else:   # tourney, but can't get number and table
-                        print "could not find tournament: skipping "
-                        #sys.stderr.write("Could not find tournament %d in hand %d. Skipping.\n" % (int(tour_number), int(new_hand_id)))
-                        continue
-                        
-                else:
-                    temp_key = table_name
+                    
+            else:
+                temp_key = table_name
 
 #        Update an existing HUD
-                if temp_key in self.hud_dict:
-                    try:
-                        # get stats using hud's specific params
-                        self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
-                                                             , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
-                    except:
-                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-                        if new_hand_id: # new_hand_id is none if we had an error prior to the store
-                            sys.stderr.write("Database get_stats error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
-                        continue
-                    self.hud_dict[temp_key].stat_dict = stat_dict
-                    self.hud_dict[temp_key].cards = cards
-                    [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
-                    self.update_HUD(new_hand_id, temp_key, self.config)
-        
+            if temp_key in self.hud_dict:
+                try:
+                    # get stats using hud's specific params
+                    self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
+                                                         , self.hud_dict[temp_key].hud_params['h_hud_days'])
+                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
+                except:
+                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                    print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                    if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                        sys.stderr.write("Database get_stats error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                    continue
+                self.hud_dict[temp_key].stat_dict = stat_dict
+                self.hud_dict[temp_key].cards = cards
+                [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
+                self.update_HUD(new_hand_id, temp_key, self.config)
+    
 #        Or create a new HUD
+            else:
+                try:
+                    # get stats using default params
+                    self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
+                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
+                except:
+                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                    print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                    if new_hand_id: # new_hand_id is none if we had an error prior to the store
+                        sys.stderr.write("Database get_stats error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
+                    continue
+                if type == "tour":
+                    tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
                 else:
-                    try:
-                        # get stats using default params
-                        self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                        stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
-                    except:
-                        err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        print "db get_stats error: skipping "+str(new_hand_id)+" "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-                        if new_hand_id: # new_hand_id is none if we had an error prior to the store
-                            sys.stderr.write("Database get_stats error %s in hand %d. Skipping.\n" % (err, int(new_hand_id)))
-                        continue
-                    if type == "tour":
-                        tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
-                    else:
-                        tablewindow = Tables.discover_table_by_name(self.config, table_name)
-                    if tablewindow == None:
+                    tablewindow = Tables.discover_table_by_name(self.config, table_name)
+                if tablewindow == None:
 #        If no client window is found on the screen, complain and continue
-                        if type == "tour":
-                            table_name = "%s %s" % (tour_number, tab_number)
-                        sys.stderr.write("table name "+table_name+" not found, skipping.\n")
-                    else:
-                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
-                self.db_connection.connection.rollback()
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                    if type == "tour":
+                        table_name = "%s %s" % (tour_number, tab_number)
+                    sys.stderr.write("table name "+table_name+" not found, skipping.\n")
+                else:
+                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+            self.db_connection.connection.rollback()
 
 if __name__== "__main__":
 
