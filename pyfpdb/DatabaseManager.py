@@ -12,7 +12,7 @@ class DatabaseManager(object):
     def from_fpdb(klass, data, defaultDatabaseType=None):
         #TODO: parse whatever data is
         databases = (
-                DatabaseTypePostgres(name='myDb'),
+                DatabaseTypeSqLite(name='myDb'),
                 DatabaseTypeSqLite(name='myDb2'),
                 
                 )
@@ -34,11 +34,10 @@ class DatabaseManager(object):
                 return database
     def database_id(self, database):
         return id(database)
-    def create_database(self, databaseType, **kws):
-        databaseKlass = self.DatabaseTypes[databaseType]
-        database = databaseType(**kws)
+    def add_database(self, database):
+        if database in self._databases:
+            raise ValueError('database already registered')
         self._databases.append(database)
-        return database
     def remove_database(self, database):
         self._databases.remove(database)
 
@@ -54,9 +53,13 @@ class DatabaseTypeMeta(type):
 class DatabaseTypeBase(object):
     __metaclass__ = DatabaseTypeMeta
     Type = None
+    Params = ()
 
 class DatabaseTypePostgres(DatabaseTypeBase):
     Type = 'postgres'
+    @classmethod
+    def display_name(klass):
+        return 'Postgres'
     def __init__(self, name='', host='localhost', port=5432, user='postgres', password='', database='fpdb'):
         self.name = name
         self.host = host
@@ -64,9 +67,12 @@ class DatabaseTypePostgres(DatabaseTypeBase):
         self.user = user
         self.password = password
         self.database = database
-        
+
 class DatabaseTypeMysql(DatabaseTypeBase):
     Type = 'mysql'
+    @classmethod
+    def display_name(klass):
+        return 'MySql'
     def __init__(self, name='', host='localhost', port=3306, user='root', password='', database='fpdb'):
         self.name = name
         self.host = host
@@ -74,12 +80,24 @@ class DatabaseTypeMysql(DatabaseTypeBase):
         self.user = user
         self.password = password
         self.database = database
-        
+
 class DatabaseTypeSqLite(DatabaseTypeBase):
     Type = 'sqlite'
+    @classmethod
+    def display_name(klass):
+        return 'SqLite'
     def __init__(self, name='', host='', file=''):
         self.name = name
         self.file = file
+
+#TODO: how do we want to handle unsupported database types?
+# ..uncomment to remove unsupported database types
+#try: import psycopg2
+#except ImportError: del DatabaseManager.DatabaseTypes['postgres']
+#try: import MySQLdb
+#except ImportError: del DatabaseManager.DatabaseTypes['mysql']
+#try: import sqlite3
+#except ImportError: del DatabaseManager.DatabaseTypes['sqlite']
 
 #***************************************************************************************************************************
 class MyFileChooserButton(gtk.HBox):
@@ -124,8 +142,9 @@ class MyFileChooserButton(gtk.HBox):
     #    1. user types in a new filename. easy one, create the file
     #    2. user selectes a file with the intention to overwrite it
     #    3. user selects a file with the intention to plug an existing database file in
-    #IDEA: impl open_existing as plug in, never overwrite, cos we can not guess
-    #PROBLEMS: how to validate an existing file is a database?
+    #
+    # if we create a new one, choice is create_new or overwrite
+    # if we add a database we may have to sanity check user picked one
     def on_dialog_confirm_overwrite(self, dlg):
         print dlg.get_filename()
         
@@ -138,12 +157,14 @@ class MyFileChooserButton(gtk.HBox):
         gtk.FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
         #
         
-#TODO: rewrite to use idDatabase + create and remove databases through DatabaseManager        
+
+#TODO: derrive from gtk.VBox?
 class WidgetDatabaseProperties(gtk.VBox):
-    ModeEdit = 0x1
-    ModeAdd = 0x2
-    ModeNew = 0x4
         
+    ModeNew = 0
+    ModeEdit = 1
+    ModeAdd = 2
+    
     class FieldWidget(object):
         def __init__(self, text='', attrDatabase='', widget=None, attrGet=None, attrSet=None, defaultValue=None, canEdit=False, tooltip=''):
             """
@@ -179,10 +200,13 @@ class WidgetDatabaseProperties(gtk.VBox):
         def reset_value(self):
             getattr(self._widget, self._attrSet)(self._defaultValue)
         
-    def __init__(self, databaseManager, database=None, flags=ModeEdit):
+    def __init__(self, databaseManager, database, mode=ModeEdit):
             gtk.VBox.__init__(self)
                         
-            self.flags = flags
+            self.databaseManager = databaseManager
+            self.database = database
+            self.mode = mode
+                
             self.fieldWidgets = (
                         self.FieldWidget(
                                 text='Name:',
@@ -263,10 +287,18 @@ class WidgetDatabaseProperties(gtk.VBox):
             cell = gtk.CellRendererText()
             self.comboType.pack_start(cell, True)
             self.comboType.add_attribute(cell, 'text', 0)
-            # fill out combo with database type. we store (displayName, databaseType) in our model for later lookup
-            for dbType, dbDisplayName in sorted([(klass.Type, klass.Type) for klass in databaseManager.DatabaseTypes.values()]):
-                listStore.append( (dbDisplayName, dbType) )
             self.comboType.connect('changed', self.on_combo_type_changed)
+                    
+            # fill database type combo with available database klasses. we store (databaseDisplayName, databaseType) in our model for later lookup
+            iCurrentDatabase = 0
+            databaseTypes = [(klass.display_name(), klass.Type) for klass in databaseManager.DatabaseTypes.values()]
+            databaseTypes.sort()
+            for i, (databaseDisplayName, databaseType) in enumerate(databaseTypes):
+                listStore.append( (databaseDisplayName, databaseType) )
+                if databaseType == self.database.Type:
+                    iCurrentDatabase = i
+            if self.mode == self.ModeEdit or len(databaseTypes) < 2:
+                self.comboType.set_button_sensitivity(gtk.SENSITIVITY_OFF)
                 
             # init and layout field widgets
             self.pack_start(self.comboType, False, False, 2)
@@ -277,60 +309,37 @@ class WidgetDatabaseProperties(gtk.VBox):
                 table.attach(fieldWidget.widget(), 1, 2, i, i+1)
                 
             # init widget
-            
-            # if a database has been passed user is not allowed to change database type
-            if database is None:
-                self.comboType.set_button_sensitivity(gtk.SENSITIVITY_ON)
+            self.comboType.set_active(iCurrentDatabase)
+            self._adjust_widgets(self.database)
+    
+    def _adjust_widgets(self, database):
+        for fieldWidget in self.fieldWidgets:
+            isSensitive = fieldWidget.is_sensitive(database)
+            if isSensitive:
+                fieldWidget.value_from_database(database)
             else:
-                self.comboType.set_button_sensitivity(gtk.SENSITIVITY_OFF)
-                
-            # set current database
-            self.databaseManager = databaseManager
-            self.database= None
-            if database is None:
-                databaseType = self.databaseManager.get_default_database_type()
-                if databaseType is not None:
-                    database = databaseType()
-            if database is not None:
-                self.set_database(database)
+                fieldWidget.reset_value()
+            if self.mode == self.ModeEdit:
+                isSensitive = isSensitive and fieldWidget.can_edit()
+            fieldWidget.set_sensitive(isSensitive)
+    
     
     def on_combo_type_changed(self, combo):
         i = self.comboType.get_active()
-        if i > -1:
-            # change database if necessary
-            currentDatabaseType = self.comboType.get_model()[i][1]
-            if currentDatabaseType != self.database.Type:
-                newDatabase = self.databaseManager.DatabaseTypes[currentDatabaseType]()
-                self.set_database(newDatabase)
-        
-    def set_database(self, database):
-        self.database = database
-        
-        # adjust database type combo if necessary
-        i = self.comboType.get_active()
-        if i == -1:
-            currentDatabaseType = None
-        else:
-            currentDatabaseType = self.comboType.get_model()[i][1]
-        if currentDatabaseType != self.database.Type:
-            for i, row in enumerate(self.comboType.get_model()): 
-                if row[1] == self.database.Type:
-                    self.comboType.set_active(i)
-                    break
-            else:
-                raise ValueError('unknown database type')
-                
-        # adjust field widgets to database
-        for fieldWidget in self.fieldWidgets:
-            isSensitive = fieldWidget.is_sensitive(self.database)
-            if isSensitive:
-                fieldWidget.value_from_database(self.database)
-            else:
-                fieldWidget.reset_value()
-            if self.flags & self.ModeEdit:
-                isSensitive = isSensitive and fieldWidget.can_edit()
-            fieldWidget.set_sensitive(isSensitive)
-                    
+        if i < 0:
+            return
+            
+        # check if we need to init a new database
+        currentDatabaseType = self.comboType.get_model()[i][1]
+        if currentDatabaseType == self.database.Type:
+            return
+            
+        # create new empty database
+        #NOTE: we dont register it in DatabaseManager
+        self.database = self.databaseManager.DatabaseTypes[currentDatabaseType]()
+        self._adjust_widgets(self.database)
+            
+    
     def get_database(self):
         for fieldWidget in self.fieldWidgets:
             if fieldWidget.is_sensitive(self.database):
@@ -339,16 +348,7 @@ class WidgetDatabaseProperties(gtk.VBox):
 
 
 class DialogDatabaseProperties(gtk.Dialog):
-    def __init__(self, databaseManager, database=None,parent=None, flags=WidgetDatabaseProperties.ModeEdit):
-        if flags & WidgetDatabaseProperties.ModeEdit:
-            title = '[Edit database] - database properties'
-        elif flags & WidgetDatabaseProperties.ModeAdd:
-            title = '[Add database] - database properties'
-        elif flags & WidgetDatabaseProperties.ModeNew:
-            title = '[New database] - database properties'
-        else:
-                title = 'database properties'    
-        
+    def __init__(self, databaseManager, database, parent=None,  mode=WidgetDatabaseProperties.ModeEdit, title=''):
         gtk.Dialog.__init__(self,
                 title=title, 
                 parent=parent,
@@ -361,13 +361,12 @@ class DialogDatabaseProperties(gtk.Dialog):
         self.connect('response', self.on_dialog_response)
         
         # setup widget
-        self.flags = flags
-        self.widgetDatabaseProperties = WidgetDatabaseProperties(databaseManager,database=database, flags=self.flags)
+        self.widgetDatabaseProperties = WidgetDatabaseProperties(databaseManager,database, mode=mode)
         self.vbox.pack_start(self.widgetDatabaseProperties, True, True)
-        self.widgetDatabaseProperties.show_all()
+        self.show_all()
 
-    def get_database(self):
-        return self.widgetDatabaseProperties.get_database()
+    def get_widget_database_properties(self):
+        return self.widgetDatabaseProperties
     
     def on_dialog_response(self, dlg, responseId):
         if responseId == gtk.RESPONSE_REJECT:
@@ -375,21 +374,15 @@ class DialogDatabaseProperties(gtk.Dialog):
         elif responseId == gtk.RESPONSE_ACCEPT:
             pass
             
-    
-#TODO: just boilerplate code
-class DialogDatabase(gtk.Dialog):
-    def __init__(self, databaseManager, parent=None):
-        gtk.Dialog.__init__(self,
-        title="My dialog", 
-                parent=parent,
-                flags=gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                buttons=(
-                        gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                        gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
-                        ))
-        #self.set_size_request(260, 250)
+
+#TODO: derrive from gtk.VBox?    
+# ..is there a way to derrive from gtk.Widget or similar? this would make parentWidget kw obsolete
+class WidgetDatabaseManager(gtk.VBox):
+    def __init__(self, databaseManager, parentWidget=None):
+        gtk.VBox.__init__(self)
         
         self.databaseManager = databaseManager
+        self.parentWidget = parentWidget
             
         #TODO: dono how to make word wrap work as expected
         self.labelInfo = gtk.Label('database management')
@@ -440,16 +433,14 @@ class DialogDatabase(gtk.Dialog):
                 col.set_visible(False)
         
         self.treeDatabaseColumns = dict([(name, i) for (i, name) in enumerate(self.treeDatabaseColumns)])
-        
-        
         self.treeDatabases.get_selection().connect('changed', self.on_tree_databases_selection_changed)
                 
         # layout widgets
-        self.vbox.pack_start(self.labelInfo, False, False, 2)
-        self.vbox.pack_start(gtk.HSeparator(), False, False, 2)
-        
+        vbox = gtk.VBox(self)
+        vbox.pack_start(self.labelInfo, False, False, 2)
+        vbox.pack_start(gtk.HSeparator(), False, False, 2)
         hbox = gtk.HBox()
-        self.vbox.add(hbox)
+        self.add(hbox)
         hbox.set_homogeneous(False)
         vbox = gtk.VBox()
         hbox.pack_start(vbox, False, False, 2)
@@ -470,25 +461,45 @@ class DialogDatabase(gtk.Dialog):
         for database in self.databaseManager:
             self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
         
-            
-            
     #TODO: for some reason i have to click OK/Cancel twice to close the dialog        
     def on_button_database_new_clicked(self, button):
-        dlg = DialogDatabaseProperties(self.databaseManager, parent=self, flags=WidgetDatabaseProperties.ModeNew)
+        databaseType = self.databaseManager.get_default_database_type()
+        if databaseType is None:
+            raise ValueError('no defult database type set')
+        dlg = DialogDatabaseProperties(
+                self.databaseManager, 
+                databaseType(), 
+                parent=self.parentWidget, 
+                mode=WidgetDatabaseProperties.ModeNew,
+                title='[New database] - database properties'
+                )
         if dlg.run() == gtk.RESPONSE_REJECT:
             pass
         if dlg.run() == gtk.RESPONSE_ACCEPT:
-            database = dlg.get_database()
+            database = dlg.get_widget_database_properties().get_database()
+            #TODO: sanity checks + init databse if necessary
+            self.databaseManager.add_database(database)
             self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
         dlg.destroy()
 
     def on_button_database_add_clicked(self, button):
-        dlg = DialogDatabaseProperties(self.databaseManager, parent=self, flags=WidgetDatabaseProperties.ModeAdd)
+        databaseType = self.databaseManager.get_default_database_type()
+        if databaseType is None:
+            raise ValueError('no defult database type set')
+        dlg = DialogDatabaseProperties(
+                self.databaseManager, 
+                databaseType(), 
+                parent=self.parentWidget, 
+                mode=WidgetDatabaseProperties.ModeAdd,
+                title='[Add database] - database properties'
+                )
         if dlg.run() == gtk.RESPONSE_REJECT:
             pass
         if dlg.run() == gtk.RESPONSE_ACCEPT:
-            database = dlg.get_database()
-            print self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
+            database = dlg.get_widget_database_properties().get_database()
+            #TODO: sanity checks
+            self.databaseManager.add_database(database)
+            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
         dlg.destroy()
         
     def on_button_database_edit_clicked(self, button):
@@ -499,8 +510,13 @@ class DialogDatabase(gtk.Dialog):
         model, iter = selection.get_selected()
         idDatabase = model.get_value(iter, self.treeDatabaseColumns['_id'])
         database = self.databaseManager.database_from_id(idDatabase)
-        
-        dlg = DialogDatabaseProperties(self.databaseManager, database=database, parent=self, flags=WidgetDatabaseProperties.ModeEdit)
+        dlg = DialogDatabaseProperties(
+                self.databaseManager, 
+                database=database, 
+                parent=self.parentWidget, 
+                mode=WidgetDatabaseProperties.ModeEdit, 
+                title='[Edit database] - database properties'
+                )
         if dlg.run() == gtk.RESPONSE_REJECT:
             pass
         if dlg.run() == gtk.RESPONSE_ACCEPT:
@@ -519,9 +535,22 @@ class DialogDatabase(gtk.Dialog):
         self.buttonDatabaseRemove.set_sensitive(hasSelection)
         self.buttonDatabaseDelete.set_sensitive(hasSelection)
         
-        
-        
 
+class DialogDatabaseManager(gtk.Dialog):
+    def __init__(self, databaseManager, parent=None):
+        gtk.Dialog.__init__(self,
+        title="My dialog", 
+                parent=parent,
+                flags=gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                buttons=(
+                        gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                        gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
+                        ))
+        #self.set_size_request(260, 250)
+        self.widgetDatabaseManager = WidgetDatabaseManager(databaseManager, parentWidget=self)
+        self.vbox.pack_start(self.widgetDatabaseManager, True, True)
+        self.show_all()
+        
 #**************************************************************************************************
 if __name__ == '__main__':
     databaseManager = DatabaseManager.from_fpdb('', defaultDatabaseType=DatabaseTypeSqLite)
@@ -531,7 +560,7 @@ if __name__ == '__main__':
             #database=DatabaseTypePostgres(),
     #        database=None,
     #        )
-    d = DialogDatabase(databaseManager)
+    d = DialogDatabaseManager(databaseManager)
     d.connect("destroy", gtk.main_quit)
     d.run()
     #gtk.main()
