@@ -648,7 +648,7 @@ class Config:
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
         hui = {}
-
+        
         default_text = 'FPDB Menu - Right click\nLeft-Drag to Move'
         try:
             hui['label'] = self.ui.label

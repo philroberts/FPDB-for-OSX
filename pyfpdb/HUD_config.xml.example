@@ -4,7 +4,6 @@
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
-
 <!-- These values need some explaining
 
      aggregate_ring_game_stats :
