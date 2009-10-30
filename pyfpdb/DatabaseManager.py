@@ -11,6 +11,7 @@ class DatabaseManager(object):
     @classmethod
     def from_fpdb(klass, data, defaultDatabaseType=None):
         #TODO: parse whatever data is
+        #TODO: sort out unsupported databases passed by user and log
         databases = (
                 DatabaseTypeSqLite(name='myDb'),
                 DatabaseTypeSqLite(name='myDb2'),
@@ -40,6 +41,8 @@ class DatabaseManager(object):
         self._databases.append(database)
     def remove_database(self, database):
         self._databases.remove(database)
+    def init_database(self, database):
+        pass
 
 class DatabaseTypeMeta(type):
     def __new__(klass, name, bases, kws):
@@ -86,9 +89,10 @@ class DatabaseTypeSqLite(DatabaseTypeBase):
     @classmethod
     def display_name(klass):
         return 'SqLite'
-    def __init__(self, name='', host='', file=''):
+    def __init__(self, name='', host='', file='', database='fpdb'):
         self.name = name
         self.file = file
+        self.database = database
 
 #TODO: how do we want to handle unsupported database types?
 # ..uncomment to remove unsupported database types
@@ -100,70 +104,60 @@ class DatabaseTypeSqLite(DatabaseTypeBase):
 #except ImportError: del DatabaseManager.DatabaseTypes['sqlite']
 
 #***************************************************************************************************************************
-class MyFileChooserButton(gtk.HBox):
-    #NOTE: for some weird reason it is impossible to let the user choose a non exiting filename with gtk.FileChooserButton, so impl our own on the fly
-    def __init__(self):
-        gtk.HBox.__init__(self)
-        self.set_homogeneous(False)
-        
-        self.entry = gtk.Entry()
-        self.button = gtk.Button('...')
-        self.button.connect('clicked', self.on_button_clicked)
-        
-        # layout widgets
-        self.pack_start(self.entry, True, True)
-        self.pack_start(self.button, False, False)
-        
-    def get_filename(self):
-        return self.entry.get_text()
-        
-    def set_filename(self, name):
-        self.entry.set_text(name)
-        
-    def on_button_clicked(self, button):
-        dlg = gtk.FileChooserDialog(
-                title='Choose an exiting database file or type in name of a new one', 
-                parent=None, 
-                action=gtk.FILE_CHOOSER_ACTION_SAVE, 
-                buttons=(
-                        gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
-                        gtk.STOCK_OK, gtk.RESPONSE_OK,
-                        ), 
-                backend=None
-                )
-        dlg.connect('confirm-overwrite', self.on_dialog_confirm_overwrite)
-        dlg.set_default_response(gtk.RESPONSE_OK)
-        dlg.set_do_overwrite_confirmation(True)
-        if dlg.run() == gtk.RESPONSE_OK:
-            self.set_filename(dlg.get_filename())
-        dlg.destroy()
-        
-    #TODO: when the user selects a sqLite database file we got three possible actions
-    #    1. user types in a new filename. easy one, create the file
-    #    2. user selectes a file with the intention to overwrite it
-    #    3. user selects a file with the intention to plug an existing database file in
-    #
-    # if we create a new one, choice is create_new or overwrite
-    # if we add a database we may have to sanity check user picked one
-    def on_dialog_confirm_overwrite(self, dlg):
-        print dlg.get_filename()
-        
-        gtk.FILE_CHOOSER_CONFIRMATION_CONFIRM
-        #The file chooser will present its stock dialog to confirm overwriting an existing file.
-
-        gtk.FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME
-        #The file chooser will terminate and accept the user's choice of a file name.
-
-        gtk.FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN
-        #
-        
-
 #TODO: derrive from gtk.VBox?
 class WidgetDatabaseProperties(gtk.VBox):
         
     ModeNew = 0
     ModeEdit = 1
     ModeAdd = 2
+        
+    class SqLiteFileChooserButton(gtk.HBox):
+        #NOTE: for some weird reason it is impossible to let the user choose a non exiting filename with gtk.FileChooserButton, so impl our own on the fly
+        def __init__(self, widgetDatabaseProperties, parentWidget):
+            gtk.HBox.__init__(self)
+            self.set_homogeneous(False)
+            
+            self.parentWidget = parentWidget
+            self.widgetDatabaseProperties = widgetDatabaseProperties
+            self.entry = gtk.Entry()
+            self.button = gtk.Button('...')
+            self.button.connect('clicked', self.on_button_clicked)
+            
+            # layout widgets
+            self.pack_start(self.entry, True, True)
+            self.pack_start(self.button, False, False)
+            
+        def get_filename(self):
+            return self.entry.get_text()
+            
+        def set_filename(self, name):
+            self.entry.set_text(name)
+            
+        def on_button_clicked(self, button):
+            if self.widgetDatabaseProperties.mode == WidgetDatabaseProperties.ModeAdd:
+                action = gtk.FILE_CHOOSER_ACTION_OPEN
+            elif self.widgetDatabaseProperties.mode == WidgetDatabaseProperties.ModeNew:
+                action = gtk.FILE_CHOOSER_ACTION_SAVE
+            else:
+                raise ValueError('unsupported dialog mode')
+            dlg = gtk.FileChooserDialog(
+                    title='Choose an exiting database file or type in name of a new one', 
+                    parent=self.parentWidget, 
+                    action=action, 
+                    buttons=(
+                            gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                            gtk.STOCK_OK, gtk.RESPONSE_OK,
+                            ), 
+                    backend=None
+                    )
+            dlg.set_default_response(gtk.RESPONSE_OK)
+            dlg.set_do_overwrite_confirmation(True)
+            if dlg.run() == gtk.RESPONSE_OK:
+                fileName = dlg.get_filename()
+                self.set_filename(fileName)
+            dlg.destroy()
+            
+    
     
     class FieldWidget(object):
         def __init__(self, text='', attrDatabase='', widget=None, attrGet=None, attrSet=None, defaultValue=None, canEdit=False, tooltip=''):
@@ -200,13 +194,13 @@ class WidgetDatabaseProperties(gtk.VBox):
         def reset_value(self):
             getattr(self._widget, self._attrSet)(self._defaultValue)
         
-    def __init__(self, databaseManager, database, mode=ModeEdit):
+    def __init__(self, databaseManager, database, mode=ModeEdit, parentWidget=None):
             gtk.VBox.__init__(self)
                         
             self.databaseManager = databaseManager
             self.database = database
             self.mode = mode
-                
+            self.parentWidget = parentWidget
             self.fieldWidgets = (
                         self.FieldWidget(
                                 text='Name:',
@@ -216,57 +210,7 @@ class WidgetDatabaseProperties(gtk.VBox):
                                 attrGet='get_text', 
                                 attrSet='set_text', 
                                 canEdit=True,
-                                tooltip=''
-                        ),
-                        self.FieldWidget(
-                            text='File:', 
-                            attrDatabase='file', 
-                            widget=MyFileChooserButton(), 
-                            defaultValue='',
-                            attrGet='get_filename', 
-                            attrSet='set_filename', 
-                            canEdit=False, 
-                            tooltip=''
-                        ),
-                        self.FieldWidget(
-                            text='Host:', 
-                            attrDatabase='host', 
-                            widget=gtk.Entry(), 
-                            defaultValue='',
-                            attrGet='get_text', 
-                            attrSet='set_text', 
-                            canEdit=False, 
-                            tooltip=''
-                        ),
-                        self.FieldWidget(
-                            text='Port:', 
-                            attrDatabase='port', 
-                            widget=gtk.SpinButton(adjustment=gtk.Adjustment(value=0, lower=0, upper=999999, step_incr=1, page_incr=10) ), 
-                            defaultValue=0,
-                            attrGet='get_value', 
-                            attrSet='set_value', 
-                            canEdit=False, 
-                            tooltip=''
-                        ),
-                        self.FieldWidget(
-                            text='User:', 
-                            attrDatabase='user', 
-                            widget=gtk.Entry(), 
-                            defaultValue='',
-                            attrGet='get_text', 
-                            attrSet='set_text', 
-                            canEdit=False, 
-                            tooltip=''
-                        ),
-                        self.FieldWidget(
-                            text='Pwd:', 
-                            attrDatabase='password', 
-                            widget=gtk.Entry(), 
-                            defaultValue='',
-                            attrGet='get_text', 
-                            attrSet='set_text', 
-                            canEdit=False, 
-                            tooltip=''
+                                tooltip='Any name you like to name the database '
                         ),
                         self.FieldWidget(
                             text='Db:', 
@@ -276,7 +220,57 @@ class WidgetDatabaseProperties(gtk.VBox):
                             attrGet='get_text', 
                             attrSet='set_text', 
                             canEdit=False,
-                            tooltip=''
+                            tooltip='Name of the database to create'
+                        ),
+                        self.FieldWidget(
+                            text='File:', 
+                            attrDatabase='file', 
+                            widget=self.SqLiteFileChooserButton(self, self.parentWidget), 
+                            defaultValue='',
+                            attrGet='get_filename', 
+                            attrSet='set_filename', 
+                            canEdit=False, 
+                            tooltip='Fully qualified path of the file to hold the database '
+                        ),
+                        self.FieldWidget(
+                            text='Host:', 
+                            attrDatabase='host', 
+                            widget=gtk.Entry(), 
+                            defaultValue='',
+                            attrGet='get_text', 
+                            attrSet='set_text', 
+                            canEdit=False, 
+                            tooltip='Host the database is located at'
+                        ),
+                        self.FieldWidget(
+                            text='Port:', 
+                            attrDatabase='port', 
+                            widget=gtk.SpinButton(adjustment=gtk.Adjustment(value=0, lower=0, upper=999999, step_incr=1, page_incr=10) ), 
+                            defaultValue=0,
+                            attrGet='get_value', 
+                            attrSet='set_value', 
+                            canEdit=False, 
+                            tooltip='Port to use to connect to the host'
+                        ),
+                        self.FieldWidget(
+                            text='User:', 
+                            attrDatabase='user', 
+                            widget=gtk.Entry(), 
+                            defaultValue='',
+                            attrGet='get_text', 
+                            attrSet='set_text', 
+                            canEdit=False, 
+                            tooltip='User name used to login to the host'
+                        ),
+                        self.FieldWidget(
+                            text='Pwd:', 
+                            attrDatabase='password', 
+                            widget=gtk.Entry(), 
+                            defaultValue='',
+                            attrGet='get_text', 
+                            attrSet='set_text', 
+                            canEdit=False, 
+                            tooltip='Password used to login to the host'
                         ),
                     )
             
@@ -361,7 +355,7 @@ class DialogDatabaseProperties(gtk.Dialog):
         self.connect('response', self.on_dialog_response)
         
         # setup widget
-        self.widgetDatabaseProperties = WidgetDatabaseProperties(databaseManager,database, mode=mode)
+        self.widgetDatabaseProperties = WidgetDatabaseProperties(databaseManager,database, mode=mode, parentWidget=self)
         self.vbox.pack_start(self.widgetDatabaseProperties, True, True)
         self.show_all()
 
