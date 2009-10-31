@@ -3,9 +3,10 @@ import os
 import pygtk
 pygtk.require('2.0')
 import gtk
+import gobject
 
 #*******************************************************************************************************
-class DatabaseManager(object):
+class DatabaseManager(gobject.GObject):
     DatabaseTypes = {}
     
     @classmethod
@@ -19,10 +20,16 @@ class DatabaseManager(object):
                 )
         return klass(databases=databases, defaultDatabaseType=defaultDatabaseType)
     
+    def to_fpdb(self):
+        pass
+    
     
     def __init__(self, databases=None, defaultDatabaseType=None):
+        gobject.GObject.__init__(self)
+        
         self._defaultDatabaseType = defaultDatabaseType
         self._databases = [] if databases is None else list(databases)
+        self._activeDatabase = None
     def __iter__(self):
         return iter(self._databases)
     def set_default_database_type(self, databaseType):
@@ -31,7 +38,7 @@ class DatabaseManager(object):
         return self._defaultDatabaseType
     def database_from_id(self, idDatabase):
         for database in self._databases:
-            if idDatabase == id(database):
+            if idDatabase == self.database_id(database):
                 return database
     def database_id(self, database):
         return id(database)
@@ -43,6 +50,25 @@ class DatabaseManager(object):
         self._databases.remove(database)
     def init_database(self, database):
         pass
+    def activate_database(self, database):
+        if self._activeDatabase is not None:
+            self._activeDatabase.status = self._activeDatabase.StatusInactive
+            #TODO: finalize database
+            self.emit('database-deactivated', self.database_id(self._activeDatabase) )
+                        
+        database.status = database.StatusActive
+        #TODO: activate database
+        self._activeDatabase = database
+        self.emit('database-activated', self.database_id(database) )
+        
+    def active_database(self):
+        return self._activeDatabase
+        
+# register DatabaseManager signals
+gobject.type_register(DatabaseManager)
+gobject.signal_new('database-activated', DatabaseManager, gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (int, ))
+gobject.signal_new('database-deactivated', DatabaseManager, gobject.SIGNAL_RUN_FIRST, gobject.TYPE_NONE, (int, ))
+
 
 class DatabaseTypeMeta(type):
     def __new__(klass, name, bases, kws):
@@ -56,8 +82,10 @@ class DatabaseTypeMeta(type):
 class DatabaseTypeBase(object):
     __metaclass__ = DatabaseTypeMeta
     Type = None
-    Params = ()
-
+    StatusActive = 'active'
+    StatusInactive = 'inactive'
+    StatusError = 'error'        #TODO: not implemented
+    
 class DatabaseTypePostgres(DatabaseTypeBase):
     Type = 'postgres'
     @classmethod
@@ -70,7 +98,8 @@ class DatabaseTypePostgres(DatabaseTypeBase):
         self.user = user
         self.password = password
         self.database = database
-
+        self.status = self.StatusInactive
+        
 class DatabaseTypeMysql(DatabaseTypeBase):
     Type = 'mysql'
     @classmethod
@@ -83,6 +112,7 @@ class DatabaseTypeMysql(DatabaseTypeBase):
         self.user = user
         self.password = password
         self.database = database
+        self.status = self.StatusInactive
 
 class DatabaseTypeSqLite(DatabaseTypeBase):
     Type = 'sqlite'
@@ -93,6 +123,7 @@ class DatabaseTypeSqLite(DatabaseTypeBase):
         self.name = name
         self.file = file
         self.database = database
+        self.status = self.StatusInactive
 
 #TODO: how do we want to handle unsupported database types?
 # ..uncomment to remove unsupported database types
@@ -375,8 +406,16 @@ class WidgetDatabaseManager(gtk.VBox):
     def __init__(self, databaseManager, parentWidget=None):
         gtk.VBox.__init__(self)
         
-        self.databaseManager = databaseManager
         self.parentWidget = parentWidget
+        self.databaseManager = databaseManager
+        self.databaseManager.connect('database-activated', self.on_database_activated)
+        self.databaseManager.connect('database-deactivated', self.on_database_deactivated)
+        self.databaseStatusNames = {
+                DatabaseTypeBase.StatusActive: 'Active',
+                DatabaseTypeBase.StatusInactive: 'Inactive',
+                DatabaseTypeBase.StatusError: 'Error',
+                }
+        
             
         #TODO: dono how to make word wrap work as expected
         self.labelInfo = gtk.Label('database management')
@@ -389,6 +428,10 @@ class WidgetDatabaseManager(gtk.VBox):
         
         #TODO: bit messy the distinction New/Add/Edit. we'd have to pass three flags to DialogDatabaseProperties
         # to handle this. maybe drop Edit (is just a Remove + Add), to keep things simple
+        self.buttonDatabaseActivate = gtk.Button("Activate")
+        self.buttonDatabaseActivate.set_tooltip_text('activates the database')
+        self.buttonDatabaseActivate.connect('clicked', self.on_button_database_activate_clicked)
+        self.buttonDatabaseActivate.set_sensitive(False)
         self.buttonDatabaseNew = gtk.Button("New..")
         self.buttonDatabaseNew.set_tooltip_text('creates a new database')
         self.buttonDatabaseNew.connect('clicked', self.on_button_database_new_clicked)
@@ -402,31 +445,30 @@ class WidgetDatabaseManager(gtk.VBox):
         self.buttonDatabaseRemove = gtk.Button("Remove")
         self.buttonDatabaseRemove.set_tooltip_text('removes the database from the list')
         self.buttonDatabaseRemove.set_sensitive(False)
+        self.buttonDatabaseRemove.connect('clicked', self.on_button_database_remove_clicked)
         
         #TODO: i dont think we should do any real database management here. maybe drop it
-        self.buttonDatabaseDelete = gtk.Button("Delete")
-        self.buttonDatabaseDelete.set_tooltip_text('removes the database from the list and deletes it')
-        self.buttonDatabaseDelete.set_sensitive(False)
+        #self.buttonDatabaseDelete = gtk.Button("Delete")
+        #self.buttonDatabaseDelete.set_tooltip_text('removes the database from the list and deletes it')
+        #self.buttonDatabaseDelete.set_sensitive(False)
             
         # init database tree        
         self.treeDatabases = gtk.TreeView()
-        self.treeDatabaseColumns = (        #NOTE: column names starting with '_' will be hidden
-                'Name', 
-                'Status', 
-                'Type', 
-                '_id',
+        treeDatabaseColumns = (    # name, displayName, dataType
+                ('name', 'Name', str),
+                ('status', 'Status', str),
+                ('type', 'Type', str),
+                ('_id', '', int),
                 )
-        
-        store = gtk.ListStore(str, str, str, int)
+        self.treeDatabaseColumns = {}    # name --> index
+        store = gtk.ListStore( *[i[2] for i in treeDatabaseColumns]  )
         self.treeDatabases.set_model(store)
-        columns = ('Name', 'Status', 'Type', '_id')
-        for i, column in enumerate(columns):
-            col = gtk.TreeViewColumn(column, gtk.CellRendererText(), text=i)
+        for i, (name, displayName, dataType) in enumerate(treeDatabaseColumns):
+            col = gtk.TreeViewColumn(displayName, gtk.CellRendererText(), text=i)
             self.treeDatabases.append_column(col)
-            if column.startswith('_'):
+            if name.startswith('_'):
                 col.set_visible(False)
-        
-        self.treeDatabaseColumns = dict([(name, i) for (i, name) in enumerate(self.treeDatabaseColumns)])
+            self.treeDatabaseColumns[name] = i
         self.treeDatabases.get_selection().connect('changed', self.on_tree_databases_selection_changed)
                 
         # layout widgets
@@ -438,11 +480,12 @@ class WidgetDatabaseManager(gtk.VBox):
         hbox.set_homogeneous(False)
         vbox = gtk.VBox()
         hbox.pack_start(vbox, False, False, 2)
+        vbox.pack_start(self.buttonDatabaseActivate, False, False, 2)
         vbox.pack_start(self.buttonDatabaseNew, False, False, 2)
         vbox.pack_start(self.buttonDatabaseAdd, False, False, 2)
         vbox.pack_start(self.buttonDatabaseEdit, False, False, 2)
         vbox.pack_start(self.buttonDatabaseRemove, False, False, 2)
-        vbox.pack_start(self.buttonDatabaseDelete, False, False, 2)
+        #vbox.pack_start(self.buttonDatabaseDelete, False, False, 2)
         box = gtk.VBox()
         vbox.pack_start(box, True, True, 0)
         
@@ -452,9 +495,48 @@ class WidgetDatabaseManager(gtk.VBox):
         self.show_all()
         
         # init widget
+        model = self.treeDatabases.get_model()
         for database in self.databaseManager:
-            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
+            it = model.append()
+            model.set_value(it, self.treeDatabaseColumns['name'], database.name)
+            model.set_value(it, self.treeDatabaseColumns['status'], self.databaseStatusNames[database.status] )
+            model.set_value(it, self.treeDatabaseColumns['type'], database.display_name() )
+            model.set_value(it, self.treeDatabaseColumns['_id'], self.databaseManager.database_id(database))
         
+    
+    def on_database_activated(self, databaseManager, idDatabase):
+        database = self.databaseManager.database_from_id(idDatabase)
+        model = self.treeDatabases.get_model()
+        for row in iter(model):
+            if row[self.treeDatabaseColumns['_id']] == idDatabase:
+                row[self.treeDatabaseColumns['status']] = self.databaseStatusNames[database.StatusActive]
+                break
+        else:
+            raise ValueError('database not found')
+        
+    
+    def on_database_deactivated(self, databaseManager, idDatabase):
+        database = self.databaseManager.database_from_id(idDatabase)
+        model = self.treeDatabases.get_model()
+        for row in iter(model):
+            if row[self.treeDatabaseColumns['_id']] == idDatabase:
+                row[self.treeDatabaseColumns['status']] = self.databaseStatusNames[database.StatusInactive]
+                break
+        else:
+            raise ValueError('database not found')
+    
+    
+    def on_button_database_activate_clicked(self, button):
+        selection = self.treeDatabases.get_selection()
+        if selection is None:
+                return
+                
+        model, it = selection.get_selected()
+        idDatabase = model.get_value(it, self.treeDatabaseColumns['_id'])
+        database = self.databaseManager.database_from_id(idDatabase)
+        self.databaseManager.activate_database(database)
+        
+    
     #TODO: for some reason i have to click OK/Cancel twice to close the dialog        
     def on_button_database_new_clicked(self, button):
         databaseType = self.databaseManager.get_default_database_type()
@@ -476,6 +558,7 @@ class WidgetDatabaseManager(gtk.VBox):
             self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
         dlg.destroy()
 
+    
     def on_button_database_add_clicked(self, button):
         databaseType = self.databaseManager.get_default_database_type()
         if databaseType is None:
@@ -493,7 +576,13 @@ class WidgetDatabaseManager(gtk.VBox):
             database = dlg.get_widget_database_properties().get_database()
             #TODO: sanity checks
             self.databaseManager.add_database(database)
-            self.treeDatabases.get_model().append( (database.name, 'foo', database.Type, self.databaseManager.database_id(database)) )
+            model = self.treeDatabases.get_model()
+            it = model.append()
+            print database.name
+            model.set_value(it, self.treeDatabaseColumns['name'], database.name)
+            model.set_value(it, self.treeDatabaseColumns['status'], self.databaseStatusNames[database.status] )
+            model.set_value(it, self.treeDatabaseColumns['type'], database.display_name() )
+            model.set_value(it, self.treeDatabaseColumns['_id'], self.databaseManager.database_id(database))
         dlg.destroy()
         
     def on_button_database_edit_clicked(self, button):
@@ -501,12 +590,12 @@ class WidgetDatabaseManager(gtk.VBox):
         if selection is None:
                 return
                 
-        model, iter = selection.get_selected()
-        idDatabase = model.get_value(iter, self.treeDatabaseColumns['_id'])
+        model, it = selection.get_selected()
+        idDatabase = model.get_value(it, self.treeDatabaseColumns['_id'])
         database = self.databaseManager.database_from_id(idDatabase)
         dlg = DialogDatabaseProperties(
                 self.databaseManager, 
-                database=database, 
+                database, 
                 parent=self.parentWidget, 
                 mode=WidgetDatabaseProperties.ModeEdit, 
                 title='[Edit database] - database properties'
@@ -517,17 +606,29 @@ class WidgetDatabaseManager(gtk.VBox):
             database = dlg.get_database()
             selection = self.treeDatabases.get_selection()
             if selection is not None:
-                model, iter = selection.get_selected()
-                model.set_value(iter, 0, database.name)
+                model, it = selection.get_selected()
+                model.set_value(it, self.treeDatabaseColumns['name'], database.name)
         dlg.destroy()
 
+    
+    def on_button_database_remove_clicked(self, button):
+        selection = self.treeDatabases.get_selection()
+        if selection is None:
+                return
+        
+        model, it = selection.get_selected()
+        #TODO: finalize database
+        model.remove(it)
+            
+    
     def on_tree_databases_selection_changed(self, treeSelection):
         hasSelection = bool(treeSelection.count_selected_rows())
         
-            # enable/disable selection dependend widgets
+        # enable/disable selection dependend widgets
+        self.buttonDatabaseActivate.set_sensitive(hasSelection)
         self.buttonDatabaseEdit.set_sensitive(hasSelection)
         self.buttonDatabaseRemove.set_sensitive(hasSelection)
-        self.buttonDatabaseDelete.set_sensitive(hasSelection)
+        #self.buttonDatabaseDelete.set_sensitive(hasSelection)
         
 
 class DialogDatabaseManager(gtk.Dialog):
