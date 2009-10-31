@@ -24,18 +24,22 @@ import os
 import traceback
 from time import time, strftime, localtime
 try:
+    calluse = not 'matplotlib' in sys.modules
     import matplotlib
-    matplotlib.use('GTK')
+    if calluse:
+        matplotlib.use('GTK')
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
     from matplotlib.finance import candlestick2
 
-    from numpy import diff, nonzero, sum, cumsum, max, mina
+    from numpy import diff, nonzero, sum, cumsum, max, min
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
 except:
+    err = traceback.extract_tb(sys.exc_info()[2])[-1]
+    print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     print """Failed to load numpy in Session Viewer"""
     print """This is of no consequence as the module currently doesn't do anything."""
 
