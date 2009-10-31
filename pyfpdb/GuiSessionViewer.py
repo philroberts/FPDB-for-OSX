@@ -37,7 +37,7 @@ try:
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
-except ImportError as inst:
+except ImportError, inst:
     print """Failed to load numpy in Session Viewer"""
     print """This is of no consequence as the page is broken and only of interest to developers."""
     print "ImportError: %s" % inst.args
