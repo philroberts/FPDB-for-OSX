@@ -215,7 +215,7 @@ def test_construct():
     ...            import win32con
     ...            import pywintypes
     ...            handle = win32api.OpenProcess(win32con.PROCESS_TERMINATE , pywintypes.FALSE, pid)
-    ...            return (0 != win32api.TerminateProcess(handle, 0))
+    ...            #return (0 != win32api.TerminateProcess(handle, 0))
 
     # Test to acquire the lock in another process.
     >>> def execute(cmd):
