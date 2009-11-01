@@ -555,7 +555,9 @@ class Config:
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
-        if layout_node == None: return
+        # TODO: how do we support inserting new layouts?
+        if layout_node == None:
+            return
         for i in range(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))

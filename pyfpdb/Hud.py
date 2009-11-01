@@ -455,6 +455,9 @@ class Hud:
 #        Need range here, not xrange -> need the actual list        
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
+        if self.max not in config.supported_sites[self.table.site].layout:
+            sys.stderr.write("No layout found for %d-max games for site %s\n" % (self.max, self.table.site) )
+            return adj
         if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
                 fav_seat = config.supported_sites[self.table.site].layout[self.max].fav_seat
@@ -494,6 +497,10 @@ class Hud:
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
+        if loc is None and self.max != 10:
+            loc = self.config.get_locations(self.table.site, 10)
+        if loc is None and self.max != 9:
+            loc = self.config.get_locations(self.table.site, 9)
 
 #    create the stat windows
         for i in xrange(1, self.max + 1):           

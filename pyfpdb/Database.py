@@ -761,14 +761,18 @@ class Database:
 
         hands_id = self.storeHands( self.backend, siteHandNo, gametypeId
                                   , handStartTime, names, tableName, maxSeats
-                                  , hudImportData, board_values, board_suits )
+                                  , hudImportData, (None, None, None, None, None), (None, None, None, None, None) )
+        # changed board_values and board_suits to arrays of None, just like the
+        # cash game version of this function does - i don't believe this to be
+        # the correct thing to do (tell me if i'm wrong) but it should keep the
+        # importer from crashing
 
         hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
                                                  , playerIds, startCashes, antes, cardValues, cardSuits
                                                  , winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId)
 
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-            self.storeHudCache(self.backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
+            self.storeHudCache(self.backend, base, category, gametypeId, handStartTime, playerIds, hudImportData)
 
         return hands_id
     #end def tourney_stud
@@ -1946,7 +1950,7 @@ class Database:
     def store_hands_players_stud_tourney(self, backend, hands_id, player_ids, start_cashes,
                 antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId):
         #stores hands_players for tourney stud/razz hands
-
+        return # TODO: stubbed out until someone updates it for current database structuring
         try:
             result=[]
             for i in xrange(len(player_ids)):

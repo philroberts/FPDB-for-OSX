@@ -451,7 +451,10 @@ or None if we fail to get the info """
             self.doc = doc
 
     def guessMaxSeats(self, hand):
-        """Return a guess at max_seats when not specified in HH."""
+        """Return a guess at maxseats when not specified in HH."""
+        # if some other code prior to this has already set it, return it
+        if maxseats > 1 and maxseats < 11:
+            return maxseats
         mo = self.maxOccSeat(hand)
 
         if mo == 10: return 10 #that was easy

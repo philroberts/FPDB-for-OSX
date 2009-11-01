@@ -513,10 +513,10 @@ class fpdb:
         # self.lock.release()
 
     def quit(self, widget, data=None):
+        # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         print "Quitting normally"
-        #check if current settings differ from profile, if so offer to save or abort
+        # TODO: check if current settings differ from profile, if so offer to save or abort
         self.db.disconnect()
-        # hide icon as it doesn't go away immediately in Windows - is this ok in Linux Eric?
         self.statusIcon.set_visible(False)
         gtk.main_quit()
 
