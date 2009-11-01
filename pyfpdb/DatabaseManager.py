@@ -2,6 +2,7 @@
 
 @todo: (gtk) how to validate user input in gtk.Dialog? as soon as the user clicks ok the dialog is dead. we use a while loop as workaround. not nice 
 @todo: (fpdb) we need the application name 'fpdb' from somewhere to put it in dialog titles
+@todo: (fpdb) config object should be initialized globally and accessible from all modules via Configuration.py
 
 @todo: (all dialogs) save/restore size and pos
 
@@ -26,13 +27,47 @@ class DatabaseManager(gobject.GObject):
     
     @classmethod
     def from_fpdb(klass, data, defaultDatabaseType=None):
-        #TODO: parse whatever data is
-        #TODO: sort out unsupported databases passed by user and log
-        databases = (
-                DatabaseTypeSqLite(name='myDb'),
-                DatabaseTypeSqLite(name='myDb2'),
-                
-                )
+        
+        #NOTE: if no databases are present in config fpdb fails with
+        #    Traceback (most recent call last):
+        #      File "/home/me2/Scr/Repos/fpdb-mme/pyfpdb/DatabaseManager.py", line 783, in <module>
+        #        databaseManager = DatabaseManager.from_fpdb('', defaultDatabaseType=DatabaseTypeSqLite)
+        #      File "/home/me2/Scr/Repos/fpdb-mme/pyfpdb/DatabaseManager.py", line 36, in from_fpdb
+        #        config = Configuration.Config(file=options.config, dbname=options.dbname)
+        #      File "/home/me2/Scr/Repos/fpdb-mme/pyfpdb/Configuration.py", line 436, in __init__
+        #        db = self.get_db_parameters()
+        #      File "/home/me2/Scr/Repos/fpdb-mme/pyfpdb/Configuration.py", line 583, in get_db_parameters
+        #        name = self.db_selected
+        #    AttributeError: Config instance has no attribute 'db_selected'        
+        import sys
+        import Options
+        import Configuration
+        #NOTE: fpdb should perform this globally
+        (options, sys.argv) = Options.fpdb_options()
+        config = Configuration.Config(file=options.config, dbname=options.dbname)
+        #TODO: handle no database present
+        defaultDatabaseName = config.get_db_parameters().get('db-databaseName', None)
+        #TODO: fpdb stores databases in no particular order. this has to be fixed somehow
+        databases = []
+        for name, fpdbDatabase in config.supported_databases.items():
+            databaseKlass = klass.DatabaseTypes.get(fpdbDatabase.db_type, None)
+            #NOTE: Config does not seem to validate user input, so anything may end up here
+            if databaseKlass is None:
+                raise ValueError('Unknown databasetype: %s' % fpdbDatabase.db_type)
+            
+            database = databaseKlass()
+            if database.Type == 'sqlite':
+                database.name = fpdbDatabase.db_name
+                database.file = fpdbDatabase.db_server
+            else:
+                database.name = fpdbDatabase.db_name
+                database.host = fpdbDatabase.db_server
+                #NOTE: fpdbDatabase.db_ip is no is a string
+                database.port = int(fpdbDatabase.db_ip)
+                database.user = fpdbDatabase.db_user
+                database.password = fpdbDatabase.db_pass
+            databases.append(database)            
+        
         return klass(databases=databases, defaultDatabaseType=defaultDatabaseType)
     
     def to_fpdb(self):
@@ -114,7 +149,7 @@ class DatabaseTypeBase(object):
         raise NotImplementedError()
     
 class DatabaseTypePostgres(DatabaseTypeBase):
-    Type = 'postgres'
+    Type = 'postgresql'
     @classmethod
     def display_name(klass):
         return 'Postgres'
@@ -197,7 +232,7 @@ class DatabaseTypeSqLite(DatabaseTypeBase):
 #except ImportError: del DatabaseManager.DatabaseTypes['sqlite']
 
 #***************************************************************************************************************************
-#TODO: there is not title (on linux), wtf?
+#TODO: there is no title (on linux), wtf?
 def DialogError(parent=None, msg=''):
     dlg = gtk.MessageDialog(
                 parent=parent, 
