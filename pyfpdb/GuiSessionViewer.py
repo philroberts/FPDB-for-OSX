@@ -37,11 +37,10 @@ try:
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
-except:
-    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-    print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+except ImportError, inst:
     print """Failed to load numpy in Session Viewer"""
-    print """This is of no consequence as the module currently doesn't do anything."""
+    print """This is of no consequence as the page is broken and only of interest to developers."""
+    print "ImportError: %s" % inst.args
 
 import Card
 import fpdb_import

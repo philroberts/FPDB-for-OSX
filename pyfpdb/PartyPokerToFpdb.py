@@ -28,11 +28,12 @@ from HandHistoryConverter import *
 
 class PartyPokerParseError(FpdbParseError):
     "Usage: raise PartyPokerParseError(<msg>[, hh=<hh>][, hid=<hid>])"
+
     def __init__(self, msg='', hh=None, hid=None):
         if hh is not None:
             msg += "\n\nHand history attached below:\n" + self.wrapHh(hh)
-        return super(PartyPokerParseError, self).__init__(hid=hid)
-        #return super(PartyPokerParseError, self).__init__(msg, hid=hid)
+        return super(PartyPokerParseError, self).__init__(msg, hid=hid)
+
     def wrapHh(self, hh):
         return ("%(DELIMETER)s\n%(HH)s\n%(DELIMETER)s") % \
                 {'DELIMETER': '#'*50, 'HH': hh}
@@ -93,7 +94,7 @@ class PartyPoker(HandHistoryConverter):
             """,
           re.MULTILINE|re.VERBOSE)
 
-    re_TotalPlayers = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<MAXSEATS>\d+)", re.MULTILINE)
+#    re_TotalPlayers = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<MAXSEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\x00+')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
@@ -229,7 +230,6 @@ class PartyPoker(HandHistoryConverter):
                 "Unknown game type '%s'" % mg['GAME'],
                 hh = handText)
 
-
         if 'TOURNO' in mg:
             info['type'] = 'tour'
         else:
@@ -237,15 +237,12 @@ class PartyPoker(HandHistoryConverter):
 
         if info['type'] == 'ring':
             info['sb'], info['bb'] = ringBlinds(mg['RINGLIMIT'])
-            # FIXME: there are only $ and play money availible for cash
-            # to be honest, party doesn't save play money hh
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
             info['bb'] = clearMoneyString(mg['BB'])
             info['currency'] = 'T$'
 
-        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
 
@@ -269,8 +266,8 @@ class PartyPoker(HandHistoryConverter):
             hh=hand.handText, hid = info['HID'])
 
 
-        m = self.re_TotalPlayers.search(hand.handText)
-        if m: info.update(m.groupdict())
+#        m = self.re_TotalPlayers.search(hand.handText)
+#        if m: info.update(m.groupdict())
 
 
         # FIXME: it's dirty hack
@@ -318,7 +315,7 @@ class PartyPoker(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 # FIXME: it's dirty hack T_T
-                # code below assumes that rake is equal to zero
+                # code below assumes that tournament rake is equal to zero
                 cur = info[key][0] if info[key][0] not in '0123456789' else ''
                 hand.buyin = info[key] + '+%s0' % cur
             if key == 'LEVEL':
@@ -474,11 +471,9 @@ class PartyPoker(HandHistoryConverter):
             if m.group('CARDS') is not None:
                 cards = renderCards(m.group('CARDS'))
 
-                (shown, mucked) = (False, False)
-                if m.group('SHOWED') == "show": shown = True
-                else: mucked = True
+                mucked = m.group('SHOWED') != "show"
 
-                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=True, mucked=mucked)
 
 def ringBlinds(ringLimit):
     "Returns blinds for current limit in cash games"
