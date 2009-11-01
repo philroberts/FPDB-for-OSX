@@ -304,5 +304,5 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True, debugging=True)
+    e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True)
 
