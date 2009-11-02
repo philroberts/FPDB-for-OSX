@@ -248,6 +248,8 @@ class GuiSessionViewer (threading.Thread):
         nametest = nametest.replace("L", "")
         nametest = nametest.replace(",)",")")
         q = q.replace("<player_test>", nametest)
+        q = q.replace("<ampersand_s>", "%s")
+
         self.db.cursor.execute(q)
         THRESHOLD = 1800
         hands = self.db.cursor.fetchall()
