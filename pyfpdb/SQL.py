@@ -1895,9 +1895,9 @@ class Sql:
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
                                 ,gt.base
-                                ,gt.category
+                                ,gt.category                                                            AS category
                                 ,upper(gt.limitType)                                                    AS limittype
-                                ,s.name
+                                ,s.name                                                                 AS name
                                 ,min(gt.bigBlind)                                                       AS minbigblind
                                 ,max(gt.bigBlind)                                                       AS maxbigblind
                                 /*,<hcgametypeId>                                                       AS gtid*/
@@ -1939,7 +1939,8 @@ class Sql:
                                 ,100.0*avg((hp.totalProfit+hp.rake)/(gt.bigBlind+0.0))                  AS bb100xr
                                 ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                                 ,avg(h.seats+0.0)                                                       AS avgseats
-                                ,variance(hp.totalProfit/100.0)                                         AS variance
+                                /*,variance(hp.totalProfit/100.0)                                         AS variance*/
+                                ,0.0                                                                    AS variance
                           from HandsPlayers hp
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
@@ -2501,7 +2502,17 @@ class Sql:
                      AND  h.handStart <datestest>
                     ORDER by time"""
             elif db_server == 'sqlite':
-                self.query['sessionStats'] = """ """
+                self.query['sessionStats'] = """
+                    SELECT STRFTIME('<ampersand_s>', h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                    FROM HandsPlayers hp
+                     INNER JOIN Hands h       on  (h.id = hp.handId)
+                     INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
+                     INNER JOIN Sites s       on  (s.Id = gt.siteId)
+                     INNER JOIN Players p     on  (p.Id = hp.playerId)
+                    WHERE hp.playerId in <player_test>
+                     AND  h.handStart <datestest>
+                    ORDER by time"""
+
 
             ####################################
             # Queries to rebuild/modify hudcache
