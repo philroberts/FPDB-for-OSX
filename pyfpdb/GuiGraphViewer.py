@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
+import sys
 import traceback
 from time import *
 #import pokereval
@@ -32,11 +33,12 @@ try:
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
     from numpy import arange, cumsum
     from pylab import *
-except ImportError:
+except ImportError, inst:
     print """Failed to load libs for graphing, graphing will not function. Please in
                  stall numpy and matplotlib if you want to use graphs."""
     print """This is of no consequence for other parts of the program, e.g. import 
          and HUD are NOT affected by this problem."""
+    print "ImportError: %s" % inst.args
 
 import fpdb_import
 import Database
