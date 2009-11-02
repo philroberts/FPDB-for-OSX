@@ -391,20 +391,17 @@ class Config:
         #TODO: do we want to take all <database> tags or all <database> tags contained in <supported_databases>
         #           ..this may break stuff for some users. so leave it unchanged for now untill there is a decission
         for db_node in doc.getElementsByTagName("database"):
-            try:
-                db = Database(node = db_node)
-            except:
-                raise FpdbError("Unable to create database object")
-            else:
-                if db.db_name in self.supported_databases:
-                    raise FpdbError("Database names must be unique")
-                # If there is only one Database node, or none are marked
-                # default, use first
-                if not self.supported_databases:
-                    self.db_selected = db.db_name
-                self.supported_databases[db.db_name] = db
-                if db.db_selected:
-                    self.db_selected = db.db_name
+            db = Database(node=db_node)
+            if db.db_name in self.supported_databases:
+                raise FpdbError("Database names must be unique")
+            # If there is only one Database node, or none are marked
+            # default, use first
+            # default, use first
+            if not self.supported_databases:
+                self.db_selected = db.db_name
+            self.supported_databases[db.db_name] = db
+            if db.db_selected:
+                self.db_selected = db.db_name
                     
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
