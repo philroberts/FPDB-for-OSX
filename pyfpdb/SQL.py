@@ -1895,9 +1895,9 @@ class Sql:
                 self.query['playerDetailedStats'] = """
                          select  <hgameTypeId>                                                          AS hgametypeid
                                 ,gt.base
-                                ,gt.category
+                                ,gt.category                                                            AS category
                                 ,upper(gt.limitType)                                                    AS limittype
-                                ,s.name
+                                ,s.name                                                                 AS name
                                 ,min(gt.bigBlind)                                                       AS minbigblind
                                 ,max(gt.bigBlind)                                                       AS maxbigblind
                                 /*,<hcgametypeId>                                                       AS gtid*/
@@ -1939,7 +1939,8 @@ class Sql:
                                 ,100.0*avg((hp.totalProfit+hp.rake)/(gt.bigBlind+0.0))                  AS bb100xr
                                 ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                                 ,avg(h.seats+0.0)                                                       AS avgseats
-                                ,variance(hp.totalProfit/100.0)                                         AS variance
+                                /*,variance(hp.totalProfit/100.0)                                         AS variance*/
+                                ,0.0                                                                    AS variance
                           from HandsPlayers hp
                                inner join Hands h       on  (h.id = hp.handId)
                                inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
