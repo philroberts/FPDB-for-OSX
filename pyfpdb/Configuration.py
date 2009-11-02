@@ -45,13 +45,15 @@ except ConfigParser.NoSectionError: # debian package path
 log = logging.getLogger("config")
 log.debug("config logger initialised")
 
-def fix_tf(x, default = True):
-#    The xml parser doesn't translate "True" to True. Therefore, we never get
-#    True or False from the parser only "True" or "False". So translate the 
-#    string to the python boolean representation.
-    if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
+def string_to_bool(string, default=True):
+    """converts a string representation of a boolean value to boolean True or False
+    @param string: (str) the string to convert
+    @param default: value to return if the string can not be converted to a boolean value
+    """
+    string = string.lower()
+    if string in ('1', 'true', 't'):
         return True
-    if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
+    elif string in ('0', 'false', 'f'):
         return False
     return default
 
@@ -106,7 +108,7 @@ class Site:
         self.font         = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
         self.use_frames   = node.getAttribute("use_frames")
-        self.enabled      = fix_tf(node.getAttribute("enabled"), default = True)
+        self.enabled      = string_to_bool(node.getAttribute("enabled"), default = True)
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
@@ -213,7 +215,7 @@ class Database:
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
-        self.db_selected = fix_tf(node.getAttribute("default"),"False")
+        self.db_selected = string_to_bool(node.getAttribute("default"),"False")
         log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
                   % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
         
@@ -277,8 +279,8 @@ class Import:
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
-        self.saveActions = fix_tf(node.getAttribute("saveActions"), True)
-        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), False)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), True)
+        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
@@ -289,14 +291,14 @@ class HudUI:
         self.node = node
         self.label  = node.getAttribute('label')
         #
-        self.aggregate_ring = fix_tf(node.getAttribute('aggregate_ring_game_stats'))
-        self.aggregate_tour = fix_tf(node.getAttribute('aggregate_tourney_stats'))
+        self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
+        self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
         self.hud_style      = node.getAttribute('stat_aggregation_range')
         self.hud_days       = node.getAttribute('aggregation_days')
         self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
         #
-        self.h_aggregate_ring   = fix_tf(node.getAttribute('aggregate_hero_ring_game_stats'))
-        self.h_aggregate_tour   = fix_tf(node.getAttribute('aggregate_hero_tourney_stats'))
+        self.h_aggregate_ring   = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
+        self.h_aggregate_tour   = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
         self.h_hud_style        = node.getAttribute('hero_stat_aggregation_range')
         self.h_hud_days         = node.getAttribute('hero_aggregation_days')
         self.h_agg_bb_mult      = node.getAttribute('hero_aggregation_level_multiplier')
