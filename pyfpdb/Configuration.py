@@ -394,7 +394,7 @@ class Config:
         for db_node in doc.getElementsByTagName("database"):
             db = Database(node=db_node)
             if db.db_name in self.supported_databases:
-                raise FpdbError("Database names must be unique")
+                raise ValueError("Database names must be unique")
             if self.db_selected is None or db.db_selected:
                 self.db_selected = db.db_name
             self.supported_databases[db.db_name] = db
