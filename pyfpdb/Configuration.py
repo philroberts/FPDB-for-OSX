@@ -108,7 +108,7 @@ class Site:
         self.font         = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
         self.use_frames   = node.getAttribute("use_frames")
-        self.enabled      = string_to_bool(node.getAttribute("enabled"), default = True)
+        self.enabled      = string_to_bool(node.getAttribute("enabled"), default=True)
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
@@ -215,7 +215,7 @@ class Database:
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
-        self.db_selected = string_to_bool(node.getAttribute("default"),"False")
+        self.db_selected = string_to_bool(node.getAttribute("default"), defaukt=False)
         log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
                   % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
         
@@ -279,8 +279,8 @@ class Import:
         self.interval      = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), True)
-        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), False)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
