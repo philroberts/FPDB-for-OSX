@@ -371,6 +371,7 @@ class Config:
         self.aux_windows = {}
         self.hhcs = {}
         self.popup_windows = {}
+        self.db_selected = None    # database the user would like to use
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
