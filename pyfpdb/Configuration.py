@@ -215,7 +215,7 @@ class Database:
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
-        self.db_selected = string_to_bool(node.getAttribute("default"), defaukt=False)
+        self.db_selected = string_to_bool(node.getAttribute("default"), default=False)
         log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
                   % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
         
