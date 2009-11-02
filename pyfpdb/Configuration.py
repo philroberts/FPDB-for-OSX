@@ -367,7 +367,7 @@ class Config:
         self.file = file
         self.supported_sites = {}
         self.supported_games = {}
-        self.supported_databases = {}
+        self.supported_databases = {}        # databaseName --> Database instance
         self.aux_windows = {}
         self.hhcs = {}
         self.popup_windows = {}
