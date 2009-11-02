@@ -388,6 +388,8 @@ class Config:
         #    1) command line option
         # or 2) selected="True" in config element
         # or 3) just choose the first we come across
+        #TODO: do we want to take all <database> tags or all <database> tags contained in <supported_databases>
+        #           ..this may break stuff for some users. so leave it unchanged for now untill there is a decission
         for db_node in doc.getElementsByTagName("database"):
             try:
                 db = Database(node = db_node)
