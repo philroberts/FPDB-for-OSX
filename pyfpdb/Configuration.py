@@ -401,7 +401,9 @@ class Config:
             
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
-
+        #NOTE: fpdb can not handle the case when no database is defined in xml, so we throw an exception for now
+        if self.db_selected is None:
+            raise ValueError('There must be at least one database defined')
 
 #     s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
