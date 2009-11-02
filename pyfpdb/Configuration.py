@@ -593,6 +593,13 @@ class Config:
             else:
                 self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
+    #NOTE: we got a nice Database class, so why map it again here?
+    #            user input validation should be done when initializing the Database class. this allows to give appropriate feddback when something goes wrong
+    #            try ..except is evil here. it swallows all kinds of errors. dont do this
+    #            naming database types 2, 3, 4 on the fly is no good idea. i see this all over the code. better use some globally defined consts (see DATABASE_TYPE_*)
+    #            i would like to drop this method entirely and replace it by get_selected_database() or better get_active_database(), returning one of our Database instances
+    #            thus we can drop self.db_selected (holding database name) entirely and replace it with self._active_database = Database, avoiding to define the same
+    #            thing multiple times
     def get_db_parameters(self):
         db = {}
         name = self.db_selected
