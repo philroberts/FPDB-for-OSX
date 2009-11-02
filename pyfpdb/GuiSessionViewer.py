@@ -37,11 +37,10 @@ try:
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
-except:
-    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-    print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+except ImportError, inst:
     print """Failed to load numpy in Session Viewer"""
-    print """This is of no consequence as the module currently doesn't do anything."""
+    print """This is of no consequence as the page is broken and only of interest to developers."""
+    print "ImportError: %s" % inst.args
 
 import Card
 import fpdb_import
@@ -249,6 +248,8 @@ class GuiSessionViewer (threading.Thread):
         nametest = nametest.replace("L", "")
         nametest = nametest.replace(",)",")")
         q = q.replace("<player_test>", nametest)
+        q = q.replace("<ampersand_s>", "%s")
+
         self.db.cursor.execute(q)
         THRESHOLD = 1800
         hands = self.db.cursor.fetchall()

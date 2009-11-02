@@ -56,7 +56,10 @@ class DerivedStats():
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
-        boardcards = hand.board['FLOP'] + hand.board['TURN'] + hand.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
+        boardcards = []
+        for street in hand.communityStreets:
+            boardcards += hand.board[street]
+        boardcards += [u'0x', u'0x', u'0x', u'0x', u'0x']
         cards = [Card.encodeCard(c) for c in boardcards[0:5]]
         self.hands['boardcard1'] = cards[0]
         self.hands['boardcard2'] = cards[1]
@@ -809,24 +812,11 @@ class DerivedStats():
         self.hands['playersAtStreet4']  = 0
         self.hands['playersAtShowdown'] = 0
 
-        for street in hand.actionStreets:
+        for (i, street) in enumerate(hand.actionStreets[2:]):
             actors = {}
             for act in hand.actions[street]:
                 actors[act[0]] = 1
-            #print "len(actors.keys(%s)): %s" % ( street, len(actors.keys()))
-            if hand.gametype['base'] in ("hold"):
-                if street in "FLOP": self.hands['playersAtStreet1'] = len(actors.keys())
-                elif street in "TURN": self.hands['playersAtStreet2'] = len(actors.keys())
-                elif street in "RIVER": self.hands['playersAtStreet3'] = len(actors.keys())
-            elif hand.gametype['base'] in ("stud"):
-                if street in "FOURTH": self.hands['playersAtStreet1'] = len(actors.keys())
-                elif street in "FIFTH": self.hands['playersAtStreet2'] = len(actors.keys())
-                elif street in "SIXTH": self.hands['playersAtStreet3'] = len(actors.keys())
-                elif street in "SEVENTH": self.hands['playersAtStreet4'] = len(actors.keys())
-            elif hand.gametype['base'] in ("draw"):
-                if street in "DRAWONE": self.hands['playersAtStreet1'] = len(actors.keys())
-                elif street in "DRAWTWO": self.hands['playersAtStreet2'] = len(actors.keys())
-                elif street in "DRAWTHREE": self.hands['playersAtStreet3'] = len(actors.keys())
+            self.hands['playersAtStreet%s' % str(i+1)] = len(actors.keys())
 
         #Need playersAtShowdown
 
