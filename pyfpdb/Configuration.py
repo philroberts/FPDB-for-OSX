@@ -384,27 +384,21 @@ class Config:
         for game_node in doc.getElementsByTagName("game"):
             game = Game(node = game_node)
             self.supported_games[game.game_name] = game
-            
+        
+        # parse databases defined by user in the <supported_databases> section
+        # the user may select the actual database to use via commandline or by setting the selected="bool" 
+        # attribute of the tag. if no database is explicitely selected, we use the first one we come across
 #        s_dbs = doc.getElementsByTagName("supported_databases")
-        # select database from those defined in config by:
-        #    1) command line option
-        # or 2) selected="True" in config element
-        # or 3) just choose the first we come across
         #TODO: do we want to take all <database> tags or all <database> tags contained in <supported_databases>
         #           ..this may break stuff for some users. so leave it unchanged for now untill there is a decission
         for db_node in doc.getElementsByTagName("database"):
             db = Database(node=db_node)
             if db.db_name in self.supported_databases:
                 raise FpdbError("Database names must be unique")
-            # If there is only one Database node, or none are marked
-            # default, use first
-            # default, use first
-            if not self.supported_databases:
+            if self.db_selected is None or db.db_selected:
                 self.db_selected = db.db_name
             self.supported_databases[db.db_name] = db
-            if db.db_selected:
-                self.db_selected = db.db_name
-                    
+            
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
 
