@@ -44,7 +44,22 @@ except ConfigParser.NoSectionError: # debian package path
 
 log = logging.getLogger("config")
 log.debug("config logger initialised")
+########################################################################
+# application wide consts
 
+APPLICATION_NAME_SHORT = 'fpdb'
+APPLICATION_VERSION = 'xx.xx.xx'
+
+DATABASE_TYPE_POSTGRESQL = 'postgresql'
+DATABASE_TYPE_SQLITE = 'sqlite'
+DATABASE_TYPE_MYSQL = 'mysql'
+DATABASE_TYPES = (
+        DATABASE_TYPE_POSTGRESQL,
+        DATABASE_TYPE_SQLITE,
+        DATABASE_TYPE_MYSQL,
+        )
+
+########################################################################
 def string_to_bool(string, default=True):
     """converts a string representation of a boolean value to boolean True or False
     @param string: (str) the string to convert
