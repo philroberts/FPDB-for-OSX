@@ -399,7 +399,7 @@ class Config:
                 self.db_selected = db.db_name
             self.supported_databases[db.db_name] = db
         #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored 
-        # when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
+        #           ..when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
         #NOTE: fpdb can not handle the case when no database is defined in xml, so we throw an exception for now
