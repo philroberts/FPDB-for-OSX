@@ -121,7 +121,7 @@ class Site:
         self.xpad = 1 if self.xpad == "" else int(self.xpad)
         self.ypad = 0 if self.ypad == "" else int(self.ypad)
         self.font_size = 7 if self.font_size == "" else int(self.font_size)
-        self.hudopacity = 1.0 if self.hud_opacity == "" else float(self.hudopacity)
+        self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
 
         if self.use_frames == "": self.use_frames = False
         if self.font       == "": self.font = "Sans" 
