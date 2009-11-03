@@ -110,25 +110,18 @@ class Site:
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
-            
-        print self.site_name, self.HH_path
+        
+        print "Loading site", self.site_name    
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
 
 #   Site defaults
-        if self.xpad       == "": self.xpad = 1
-        else: self.xpad = int(self.xpad)
-
-        if self.ypad       == "": self.ypad = 0
-        else: self.ypad = int(self.ypad)
-
-        if self.font_size  == "": self.font_size = 7
-        else: self.font_size = int(self.font_size)
-
-        if self.hudopacity == "": self.hudopacity = 1.0
-        else: self.hudopacity = float(self.hudopacity)
+        self.xpad = 1 if self.xpad == "" else int(self.xpad)
+        self.ypad = 0 if self.ypad == "" else int(self.ypad)
+        self.font_size = 7 if self.font_size == "" else int(self.font_size)
+        self.hudopacity = 1.0 if self.hud_opacity == "" else float(self.hudopacity)
 
         if self.use_frames == "": self.use_frames = False
         if self.font       == "": self.font = "Sans" 
@@ -436,7 +429,7 @@ class Config:
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
             df_file = self.find_default_conf()
-            if df_file == None: # this is bad
+            if df_file is None: # this is bad
                 pass
             else:
                 df_parms = self.read_default_conf(df_file)
@@ -769,7 +762,7 @@ class Config:
         return locations
 
     def get_aux_locations(self, aux = "mucked", max = "9"):
-        
+    
         try:
             locations = self.aux_windows[aux].layout[max].location
         except:
