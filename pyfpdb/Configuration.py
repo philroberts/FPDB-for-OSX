@@ -59,6 +59,14 @@ DATABASE_TYPES = (
 logging.config.fileConfig(os.path.join(DIR_SELF,"logging.conf"))
 log = logging.getLogger("config")
 
+# setup application wide exception handler
+def excepthook(Type, value, tb):
+        p = traceback.format_exception(type, value, tb)
+        log.critical(p)
+        raise Type(value)
+
+sys.excepthook = excepthook
+
 ########################################################################
 def string_to_bool(string, default=True):
     """converts a string representation of a boolean value to boolean True or False
@@ -140,7 +148,7 @@ class Site:
 
         if self.ypad     == "": self.ypad = 0
         else: self.ypad = int(self.ypad)
-
+        
         if self.font_size  == "": self.font_size = 7
         else: self.font_size = int(self.font_size)
 
