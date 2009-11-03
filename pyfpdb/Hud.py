@@ -61,7 +61,7 @@ class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
-        if parent == None: # running from cli ..
+        if parent is None: # running from cli ..
             self.parent = self
         self.parent        = parent
         self.table         = table
@@ -87,11 +87,6 @@ class Hud:
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
 
-
-        if font == None:
-            font = "Sans"
-        if font_size == None:
-            font_size = "8"
         self.font = pango.FontDescription("%s %s" % (font, font_size))
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
@@ -136,7 +131,7 @@ class Hud:
         
         killitem = gtk.MenuItem('Kill This HUD')
         menu.append(killitem)
-        if self.parent != None:
+        if self.parent is not None:
             killitem.connect("activate", self.parent.kill_hud, self.table_name)
         
         saveitem = gtk.MenuItem('Save HUD Layout')

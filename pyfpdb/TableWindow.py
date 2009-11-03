@@ -95,12 +95,12 @@ gobject.signal_new("client_destroyed", gtk.Window,
 class Table_Window(object):
     def __init__(self, table_name = None, tournament = None, table_number = None):
 
-        if table_name != None:
+        if table_name is not None:
             search_string = table_name
             self.name = table_name
             self.tournament = None
             self.table = None
-        elif tournament != None and table_number != None:
+        elif tournament is not None and table_number is not None:
             print "tournament %s, table %s" % (tournament, table_number)
             self.tournament = int(tournament)
             self.table = int(table_number)
@@ -133,7 +133,7 @@ class Table_Window(object):
     def check_geometry(self):
         new_geo = self.get_geometry()
 
-        if new_geo == None:   # window destroyed
+        if new_geo is None:   # window destroyed
             return "client_destroyed"
 
         elif  self.x != new_geo['x'] or self.y != new_geo['y']: # window moved

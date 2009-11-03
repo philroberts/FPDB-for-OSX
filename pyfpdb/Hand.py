@@ -550,12 +550,12 @@ Map the tuple self.gametype onto the pokerstars string describing it
         """Return the first HH line for the current hand."""
         gs = "PokerStars Game #%s: " % self.handid
 
-        if self.tourNo != None and self.mixed != None: # mixed tournament
+        if self.tourNo is not None and self.mixed is not None: # mixed tournament
             gs = gs + "Tournament #%s, %s %s (%s) - Level %s (%s) - " % (self.tourNo, self.buyin, self.MS[self.mixed], self.getGameTypeAsString(), self.level, self.getStakesAsString())
-        elif self.tourNo != None: # all other tournaments
+        elif self.tourNo is not None: # all other tournaments
             gs = gs + "Tournament #%s, %s %s - Level %s (%s) - " % (self.tourNo,
                             self.buyin, self.getGameTypeAsString(), self.level, self.getStakesAsString())
-        elif self.mixed != None: # all other mixed games
+        elif self.mixed is not None: # all other mixed games
             gs = gs + " %s (%s, %s) - " % (self.MS[self.mixed],
                             self.getGameTypeAsString(), self.getStakesAsString())
         else: # non-mixed cash games
@@ -628,7 +628,7 @@ class HoldemOmahaHand(Hand):
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
-            if self.maxseats == None:
+            if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
         elif builtFrom == "DB":
@@ -897,7 +897,7 @@ class DrawHand(Hand):
             hhc.readShownCards(self)
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
-            if self.maxseats == None:
+            if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
         elif builtFrom == "DB":
@@ -1073,7 +1073,7 @@ class StudHand(Hand):
             hhc.readShownCards(self) # not done yet
             self.totalPot() # finalise it (total the pot)
             hhc.getRake(self)
-            if self.maxseats == None:
+            if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
         elif builtFrom == "DB":

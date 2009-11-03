@@ -447,7 +447,7 @@ class fpdb:
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db != None and self.db.fdb != None:
+        if self.db is not None and self.db.fdb is not None:
             self.db.disconnect()
 
         self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
@@ -487,7 +487,7 @@ class fpdb:
             response = diaDbVersionWarning.run()
             diaDbVersionWarning.destroy()
 
-        if self.status_bar == None:
+        if self.status_bar is None:
             self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()

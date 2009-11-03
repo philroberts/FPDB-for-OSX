@@ -400,7 +400,7 @@ class Importer:
         file =  file.decode(fpdb_simple.LOCALE_ENCODING) 
 
         # Load filter, process file, pass returned filename to import_fpdb_file
-        if self.settings['threads'] > 0 and self.writeq != None:
+        if self.settings['threads'] > 0 and self.writeq is not None:
             log.info("Converting " + file + " (" + str(q.qsize()) + ")")
         else:
             log.info("Converting " + file)
@@ -475,7 +475,7 @@ class Importer:
 
         db.commit()
         ttime = time() - starttime
-        if q == None:
+        if q is None:
             log.info("Total stored: %(stored)d\tduplicates:%(duplicates)d\terrors:%(errors)d\ttime:%(ttime)s" % locals())
        
         if not stored:

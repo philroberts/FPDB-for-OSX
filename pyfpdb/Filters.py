@@ -305,10 +305,10 @@ class Filters(threading.Thread):
         print "self.limit[%s] set to %s" %(limit, self.limits[limit])
         if limit.isdigit() or (len(limit) > 2 and limit[-2:] == 'nl'):
             if self.limits[limit]:
-                if self.cbNoLimits != None:
+                if self.cbNoLimits is not None:
                     self.cbNoLimits.set_active(False)
             else:
-                if self.cbAllLimits != None:
+                if self.cbAllLimits is not None:
                     self.cbAllLimits.set_active(False)
             if not self.limits[limit]:
                 if limit.isdigit():
@@ -319,9 +319,9 @@ class Filters(threading.Thread):
             if self.limits[limit]:
                 #for cb in self.cbLimits.values():
                 #    cb.set_active(True)
-                if self.cbFL != None:
+                if self.cbFL is not None:
                     self.cbFL.set_active(True)
-                if self.cbNL != None:
+                if self.cbNL is not None:
                     self.cbNL.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
