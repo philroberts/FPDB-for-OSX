@@ -205,7 +205,7 @@ class Database:
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
-            self.sql = SQL.Sql(type = self.type, db_server = self.db_server)
+            self.sql = SQL.Sql(db_server = self.db_server)
         else:
             self.sql = sql
 
@@ -249,7 +249,6 @@ class Database:
 
         db_params = c.get_db_parameters()
         self.import_options = c.get_import_parameters()
-        self.type = db_params['db-type']
         self.backend = db_params['db-backend']
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']

@@ -236,11 +236,10 @@ class Database:
         self.db_server = node.getAttribute("db_server").lower()
         self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
-        self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
         self.db_selected = string_to_bool(node.getAttribute("default"), default=False)
-        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
-                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
+        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_pass (not logged)  selected:'%(sel)s'" \
+                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'sel':self.db_selected} )
         
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
@@ -627,9 +626,6 @@ class Config:
         try:    db['db-server'] = self.supported_databases[name].db_server
         except: pass
 
-        try:    db['db-type'] = self.supported_databases[name].db_type
-        except: pass
-
         if self.supported_databases[name].db_server== DATABASE_TYPE_MYSQL:
             db['db-backend'] = 2
         elif self.supported_databases[name].db_server== DATABASE_TYPE_POSTGRESQL:
@@ -641,20 +637,18 @@ class Config:
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
-                        db_pass = None, db_server = None, db_type = None):
+                        db_pass = None, db_server = None):
         db_node = self.get_db_node(db_name)
         if db_node != None:
             if db_ip    != None: db_node.setAttribute("db_ip", db_ip)
             if db_user   != None: db_node.setAttribute("db_user", db_user)
             if db_pass   != None: db_node.setAttribute("db_pass", db_pass)
             if db_server != None: db_node.setAttribute("db_server", db_server)
-            if db_type   != None: db_node.setAttribute("db_type", db_type)
         if self.supported_databases.has_key(db_name):
             if db_ip    != None: self.supported_databases[db_name].dp_ip    = db_ip
             if db_user   != None: self.supported_databases[db_name].dp_user   = db_user
             if db_pass   != None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server != None: self.supported_databases[db_name].dp_server = db_server
-            if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
         return
     
     def getDefaultSite(self):
