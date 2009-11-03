@@ -229,7 +229,7 @@ class Game:
 class Database:
     def __init__(self, node):
         self.db_name   = node.getAttribute("db_name")
-        self.db_server = node.getAttribute("db_server")
+        self.db_server = node.getAttribute("db_server").lower()
         self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
         self.db_type   = node.getAttribute("db_type")
@@ -626,13 +626,14 @@ class Config:
         try:    db['db-type'] = self.supported_databases[name].db_type
         except: pass
 
-        if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+        if self.supported_databases[name].db_server== DATABASE_TYPE_MYSQL:
             db['db-backend'] = 2
-        elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+        elif self.supported_databases[name].db_server== DATABASE_TYPE_POSTGRESQL:
             db['db-backend'] = 3
-        elif string.lower(self.supported_databases[name].db_server) == 'sqlite':
+        elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
             db['db-backend'] = 4 
-        else: db['db-backend'] = None # this is big trouble
+        else:
+            raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
