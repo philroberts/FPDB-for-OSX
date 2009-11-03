@@ -118,7 +118,7 @@ class GuiBulkImport():
                 self.progressbar.set_fraction(0)
             except:
                 err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                print "*** BulkImport Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             self.settings['global_lock'].release()
         else:
             print "bulk-import aborted - global lock not available"

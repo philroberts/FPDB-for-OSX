@@ -30,7 +30,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
     backend = settings['db-backend']
     # Ideally db connection is passed in, if not use sql list if passed in,
     # otherwise start from scratch
-    if db == None:
+    if db is None:
         db = Database.Database(c = config, sql = None)
     category = fpdb_simple.recogniseCategory(hand[0])
 
@@ -222,7 +222,7 @@ def mainParser(settings, siteID, category, hand, config, db = None, writeq = Non
                , actionNos, hudImportData, maxSeats, tableName, seatNos)
 
     # save hand in db via direct call or via q if in a thread
-    if writeq == None:
+    if writeq is None:
         result = db.store_the_hand(htw)
     else:
         writeq.put(htw)

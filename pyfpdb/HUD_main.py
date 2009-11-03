@@ -270,11 +270,11 @@ class HUD_main(object):
                     tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
                 else:
                     tablewindow = Tables.discover_table_by_name(self.config, table_name)
-                if tablewindow == None:
+                if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write("table name "+table_name+" not found, skipping.\n")
+                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
                 else:
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
             self.db_connection.connection.rollback()

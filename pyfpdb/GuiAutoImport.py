@@ -41,8 +41,8 @@ class GuiAutoImport (threading.Thread):
 
         imp = self.config.get_import_parameters()
 
-        print "Import parameters"
-        print imp
+#        print "Import parameters"
+#        print imp
 
         self.input_settings = {}
         self.pipe_to_hud = None
@@ -130,7 +130,8 @@ class GuiAutoImport (threading.Thread):
             data[1].set_text(dia_chooser.get_filename())
             self.input_settings[data[0]][0] = dia_chooser.get_filename()
         elif response == gtk.RESPONSE_CANCEL:
-            print 'Closed, no files selected'
+            #print 'Closed, no files selected'
+            pass
         dia_chooser.destroy()
     #end def GuiAutoImport.browseClicked
 
@@ -184,22 +185,24 @@ class GuiAutoImport (threading.Thread):
                         command = os.path.join(sys.path[0], 'HUD_main.py')
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
+                        
                     try:
-                        self.pipe_to_hud = subprocess.Popen(command, bufsize = bs, stdin = subprocess.PIPE,
-                                                            universal_newlines = True)
+                        self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
+                                                            stdin=subprocess.PIPE,
+                                                            universal_newlines=True)
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+                        print "*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
                     else:                    
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
+                            print " * Add", site, " import directory", str(self.input_settings[site][0])
                             print "+Import directory - Site: " + site + " dir: " + str(self.input_settings[site][0])
-                            self.do_import()
-                            
+                            self.do_import()                            
                             interval = int(self.intervalEntry.get_text())
                     if self.importtimer != 0:
                         gobject.source_remove(self.importtimer)
-                    self.importtimer = gobject.timeout_add(interval*1000, self.do_import)
+                    self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
                         
             else:
                 print "auto-import aborted - global lock not available"
@@ -209,7 +212,7 @@ class GuiAutoImport (threading.Thread):
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
             print "Stopping autoimport - global lock released."
             if self.pipe_to_hud.poll() is not None:
-                print "HUD already terminated"
+                print " * Stop Autoimport: HUD already terminated"
             else:
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate

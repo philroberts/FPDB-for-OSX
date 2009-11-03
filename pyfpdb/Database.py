@@ -353,7 +353,7 @@ class Database:
 #            else:
 #                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
             cv = "card%dvalue" % i
-            if cv not in d or d[cv] == None:
+            if cv not in d or d[cv] is None:
                 break
             elif d[cv] == 0:
                 cards += "xx"
@@ -551,7 +551,7 @@ class Database:
     def get_player_names(self, config, site_id=None, like_player_name="%"):
         """Fetch player names from players. Use site_id and like_player_name if provided"""
 
-        if site_id == None:
+        if site_id is None:
             site_id = -1
         c = self.get_cursor()
         c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
@@ -1183,7 +1183,7 @@ class Database:
                     if p_id:
                         self.hero_ids[site_id] = int(p_id)
             
-            if start == None:
+            if start is None:
                 start = self.hero_hudstart_def
             if self.hero_ids == {}:
                 where = ""

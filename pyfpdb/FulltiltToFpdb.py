@@ -184,11 +184,11 @@ class Fulltilt(HandHistoryConverter):
             info['limitType'] = limits[mg['LIMIT']]
         info['sb'] = mg['SB']
         info['bb'] = mg['BB']
-        if mg['GAME'] != None:
+        if mg['GAME'] is not None:
             (info['base'], info['category']) = games[mg['GAME']]
-        if mg['CURRENCY'] != None:
+        if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
-        if mg['TOURNO'] == None:  info['type'] = "ring"
+        if mg['TOURNO'] is None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
 #        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
@@ -196,7 +196,7 @@ class Fulltilt(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText)
-        if(m == None):
+        if m is None:
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
             return None
@@ -212,7 +212,7 @@ class Fulltilt(HandHistoryConverter):
             if m2: hand.maxseats = int(m2.group('MAX'))
 
         hand.tourNo = m.group('TOURNO')
-        if m.group('PLAY') != None:
+        if m.group('PLAY') is not None:
             hand.gametype['currency'] = 'play'
             
         # Done: if there's a way to figure these out, we should.. otherwise we have to stuff it with unknowns
@@ -240,9 +240,9 @@ class Fulltilt(HandHistoryConverter):
                         hand.isShootout = True
                  
 
-        if hand.buyin == None:
+        if hand.buyin is None:
             hand.buyin = "$0.00+$0.00"
-        if hand.level == None:
+        if hand.level is None:
             hand.level = "0"            
 
 # These work, but the info is already in the Hand class - should be used for tourneys though.
@@ -343,11 +343,11 @@ class Fulltilt(HandHistoryConverter):
             m = self.re_HeroCards.finditer(hand.streets[street])
             for found in m:
                 player = found.group('PNAME')
-                if found.group('NEWCARDS') == None:
+                if found.group('NEWCARDS') is None:
                     newcards = []
                 else:
                     newcards = found.group('NEWCARDS').split(' ')
-                if found.group('OLDCARDS') == None:
+                if found.group('OLDCARDS') is None:
                     oldcards = []
                 else:
                     oldcards = found.group('OLDCARDS').split(' ')
@@ -416,7 +416,8 @@ class Fulltilt(HandHistoryConverter):
 
     def readOther(self, hand):
         m = self.re_Mixed.search(self.in_path)
-        if m == None: hand.mixed = None
+        if m is None:
+            hand.mixed = None
         else:
             hand.mixed = self.mixes[m.groupdict()['MIXED']]
 
@@ -472,8 +473,10 @@ class Fulltilt(HandHistoryConverter):
             (info['base'], info['category']) = games[mg['GAME']]
         if mg['CURRENCY'] is not None:
             info['currency'] = currencies[mg['CURRENCY']]
-        if mg['TOURNO'] == None:  info['type'] = "ring"
-        else:                     info['type'] = "tour"
+        if mg['TOURNO'] is None:
+            info['type'] = "ring"
+        else:
+            info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
 
         # Info is now ready to be copied in the tourney object        

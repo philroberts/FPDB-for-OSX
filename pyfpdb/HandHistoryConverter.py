@@ -256,7 +256,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.readFile()
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
-        if self.obs == "" or self.obs == None:
+        if self.obs is None or self.obs == "":
             log.info("Read no hands.")
             return []
         return re.split(self.re_SplitHands,  self.obs)
