@@ -33,10 +33,9 @@ import string
 
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config, sql):
-        """Constructor for GuiAutoImport"""
         self.importtimer = 0
-        self.settings=settings
-        self.config=config
+        self.settings = settings
+        self.config = config
         self.sql = sql
 
         imp = self.config.get_import_parameters()
@@ -55,12 +54,12 @@ class GuiAutoImport (threading.Thread):
         self.importer.setHandCount(0)
 #        self.importer.setWatchTime()
         
-        self.server=settings['db-host']
-        self.user=settings['db-user']
-        self.password=settings['db-password']
-        self.database=settings['db-databaseName']
+        self.server = settings['db-host']
+        self.user = settings['db-user']
+        self.password = settings['db-password']
+        self.database = settings['db-databaseName']
 
-        self.mainVBox=gtk.VBox(False,1)
+        self.mainVBox = gtk.VBox(False,1)
 
         hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
         self.mainVBox.pack_start(hbox, False, False, 0)
@@ -144,8 +143,7 @@ class GuiAutoImport (threading.Thread):
             sys.stdout.flush()
             gobject.timeout_add(1000, self.reset_startbutton)
             return True
-        else:
-            return False
+        return False
         
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
@@ -230,7 +228,7 @@ class GuiAutoImport (threading.Thread):
     #enabling and disabling sites from this interface not possible
     #expects a box to layout the line horizontally
     def createSiteLine(self, hbox1, hbox2, site, iconpath, hhpath, filter_name, active = True):
-        label = gtk.Label(site + " auto-import:")
+        label = gtk.Label("%s auto-import:" % site)
         hbox1.pack_start(label, False, False, 3)
         label.show()
 
@@ -244,7 +242,7 @@ class GuiAutoImport (threading.Thread):
         hbox2.pack_start(browseButton, False, False, 3)
         browseButton.show()
 
-        label = gtk.Label(' ' + site + " filter:")
+        label = gtk.Label("%s filter:" % site)
         hbox2.pack_start(label, False, False, 3)
         label.show()
 

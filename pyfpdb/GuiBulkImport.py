@@ -142,32 +142,38 @@ class GuiBulkImport():
         self.chooser.show()
 
 #    Table widget to hold the settings
-        self.table = gtk.Table(rows = 5, columns = 5, homogeneous = False)
+        self.table = gtk.Table(rows=5, columns=5, homogeneous=False)
         self.vbox.add(self.table)
         self.table.show()
 
 #    checkbox - print start/stop?
         self.chk_st_st = gtk.CheckButton('Print Start/Stop Info')
-        self.table.attach(self.chk_st_st, 0, 1, 0, 1, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.chk_st_st, 0, 1, 0, 1, xpadding=10, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.chk_st_st.show()
         self.chk_st_st.set_active(True)
 
 #    label - status
         self.lab_status = gtk.Label("Hands/status print:")
-        self.table.attach(self.lab_status, 1, 2, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_status, 1, 2, 0, 1, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.lab_status.show()
         self.lab_status.set_justify(gtk.JUSTIFY_RIGHT)
         self.lab_status.set_alignment(1.0, 0.5)
 
 #    spin button - status
-        status_adj = gtk.Adjustment(value=100, lower=0, upper=300, step_incr=10, page_incr=1, page_size=0) #not sure what upper value should be!
-        self.spin_status = gtk.SpinButton(adjustment=status_adj, climb_rate=0.0, digits=0)
-        self.table.attach(self.spin_status, 2, 3, 0, 1, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        status_adj = gtk.Adjustment(value=100, lower=0, upper=300, step_incr=10,
+                                    page_incr=1, page_size=0) #not sure what upper value should be!
+        self.spin_status = gtk.SpinButton(adjustment=status_adj, climb_rate=0.0,
+                                          digits=0)
+        self.table.attach(self.spin_status, 2, 3, 0, 1, xpadding=10, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.spin_status.show()
 
 #    label - threads
         self.lab_threads = gtk.Label("Number of threads:")
-        self.table.attach(self.lab_threads, 3, 4, 0, 1, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_threads, 3, 4, 0, 1, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.lab_threads.show()
         if not self.allowThreads:
             self.lab_threads.set_sensitive(False)
@@ -175,34 +181,39 @@ class GuiBulkImport():
         self.lab_threads.set_alignment(1.0, 0.5)
 
 #    spin button - threads
-        threads_adj = gtk.Adjustment(value=0, lower=0, upper=32, step_incr=1, page_incr=1, page_size=0) #not sure what upper value should be!
+        threads_adj = gtk.Adjustment(value=0, lower=0, upper=32, step_incr=1,
+                                     page_incr=1, page_size=0) #not sure what upper value should be!
         self.spin_threads = gtk.SpinButton(adjustment=threads_adj, climb_rate=0.0, digits=0)
-        self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.spin_threads, 4, 5, 0, 1, xpadding=10, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.spin_threads.show()
         if not self.allowThreads:
             self.spin_threads.set_sensitive(False)
 
 #    checkbox - fail on error?
         self.chk_fail = gtk.CheckButton('Fail on error')
-        self.table.attach(self.chk_fail, 0, 1, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.chk_fail, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
         self.chk_fail.show()
 
 #    label - hands
         self.lab_hands = gtk.Label("Hands/file:")
-        self.table.attach(self.lab_hands, 1, 2, 1, 2, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_hands, 1, 2, 1, 2, xpadding=0, ypadding=0, yoptions=gtk.SHRINK)
         self.lab_hands.show()
         self.lab_hands.set_justify(gtk.JUSTIFY_RIGHT)
         self.lab_hands.set_alignment(1.0, 0.5)
 
 #    spin button - hands to import
-        hands_adj = gtk.Adjustment(value=0, lower=0, upper=10, step_incr=1, page_incr=1, page_size=0) #not sure what upper value should be!
+        hands_adj = gtk.Adjustment(value=0, lower=0, upper=10, step_incr=1,
+                                   page_incr=1, page_size=0) #not sure what upper value should be!
         self.spin_hands = gtk.SpinButton(adjustment=hands_adj, climb_rate=0.0, digits=0)
-        self.table.attach(self.spin_hands, 2, 3, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.spin_hands, 2, 3, 1, 2, xpadding=10, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.spin_hands.show()
 
 #    label - drop indexes
         self.lab_drop = gtk.Label("Drop indexes:")
-        self.table.attach(self.lab_drop, 3, 4, 1, 2, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_drop, 3, 4, 1, 2, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.lab_drop.show()
         self.lab_drop.set_justify(gtk.JUSTIFY_RIGHT)
         self.lab_drop.set_alignment(1.0, 0.5)
@@ -213,12 +224,14 @@ class GuiBulkImport():
         self.cb_dropindexes.append_text("don't drop")
         self.cb_dropindexes.append_text('drop')
         self.cb_dropindexes.set_active(0)
-        self.table.attach(self.cb_dropindexes, 4, 5, 1, 2, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.cb_dropindexes, 4, 5, 1, 2, xpadding=10,
+                          ypadding=0, yoptions=gtk.SHRINK)
         self.cb_dropindexes.show()
 
 #    label - filter
         self.lab_filter = gtk.Label("Site filter:")
-        self.table.attach(self.lab_filter, 1, 2, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_filter, 1, 2, 2, 3, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.lab_filter.show()
         self.lab_filter.set_justify(gtk.JUSTIFY_RIGHT)
         self.lab_filter.set_alignment(1.0, 0.5)
@@ -229,12 +242,14 @@ class GuiBulkImport():
             print w
             self.cbfilter.append_text(w)
         self.cbfilter.set_active(0)
-        self.table.attach(self.cbfilter, 2, 3, 2, 3, xpadding = 10, ypadding = 1, yoptions=gtk.SHRINK)
+        self.table.attach(self.cbfilter, 2, 3, 2, 3, xpadding=10, ypadding=1,
+                          yoptions=gtk.SHRINK)
         self.cbfilter.show()
 
 #    label - drop hudcache
         self.lab_hdrop = gtk.Label("Drop HudCache:")
-        self.table.attach(self.lab_hdrop, 3, 4, 2, 3, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_hdrop, 3, 4, 2, 3, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.lab_hdrop.show()
         self.lab_hdrop.set_justify(gtk.JUSTIFY_RIGHT)
         self.lab_hdrop.set_alignment(1.0, 0.5)
@@ -245,19 +260,22 @@ class GuiBulkImport():
         self.cb_drophudcache.append_text("don't drop")
         self.cb_drophudcache.append_text('drop')
         self.cb_drophudcache.set_active(0)
-        self.table.attach(self.cb_drophudcache, 4, 5, 2, 3, xpadding = 10, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.cb_drophudcache, 4, 5, 2, 3, xpadding=10,
+                          ypadding=0, yoptions=gtk.SHRINK)
         self.cb_drophudcache.show()
 
 #    button - Import
         self.load_button = gtk.Button('Import')  # todo: rename variables to import too
         self.load_button.connect('clicked', self.load_clicked,
                                  'Import clicked')
-        self.table.attach(self.load_button, 2, 3, 4, 5, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.load_button, 2, 3, 4, 5, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.load_button.show()
 
 #    label - spacer (keeps rows 3 & 5 apart)
         self.lab_spacer = gtk.Label()
-        self.table.attach(self.lab_spacer, 3, 5, 3, 4, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
+        self.table.attach(self.lab_spacer, 3, 5, 3, 4, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.lab_spacer.show()
 
 #    label - info
@@ -265,7 +283,8 @@ class GuiBulkImport():
 #        self.table.attach(self.lab_info, 3, 5, 4, 5, xpadding = 0, ypadding = 0, yoptions=gtk.SHRINK)
 #        self.lab_info.show()
         self.progressbar = gtk.ProgressBar()
-        self.table.attach(self.progressbar, 3, 5, 4, 5, xpadding = 0, ypadding = 0, yoptions = gtk.SHRINK)
+        self.table.attach(self.progressbar, 3, 5, 4, 5, xpadding=0, ypadding=0,
+                          yoptions=gtk.SHRINK)
         self.progressbar.set_text("Waiting...")
         self.progressbar.set_fraction(0)
         self.progressbar.show()
