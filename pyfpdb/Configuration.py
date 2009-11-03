@@ -50,6 +50,10 @@ log.debug("config logger initialised")
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
+DIR_SELF = os.path.dirname(os.path.abspath(__file__))
+#TODO: imo no good idea to place 'database' in parent dir
+DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
+
 DATABASE_TYPE_POSTGRESQL = 'postgresql'
 DATABASE_TYPE_SQLITE = 'sqlite'
 DATABASE_TYPE_MYSQL = 'mysql'
