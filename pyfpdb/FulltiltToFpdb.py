@@ -376,7 +376,7 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
 
 
     def readShowdownActions(self, hand):
@@ -654,7 +654,7 @@ class Fulltilt(HandHistoryConverter):
 
                 tourney.addPlayer(rank, a.group('PNAME'), winnings, 0, 0, 0, 0)
             else:
-                print "Player finishing stats unreadable : %s" % a
+                print "FullTilt: Player finishing stats unreadable : %s" % a
 
         # Find Hero
         n = self.re_TourneyHeroFinishingP.search(playersText)
@@ -663,9 +663,9 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.finishPositions:
-                print heroName, "not found in tourney.finishPositions ..."
+                print "FullTilt:", heroName, "not found in tourney.finishPositions ..."
             elif (tourney.finishPositions[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print "Bad parsing : finish position incoherent : %s / %s" % (tourney.finishPositions[heroName], n.group('HERO_FINISHING_POS'))
+                print "FullTilt: Bad parsing : finish position incoherent : %s / %s" % (tourney.finishPositions[heroName], n.group('HERO_FINISHING_POS'))
 
         return True
 
