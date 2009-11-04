@@ -4,7 +4,6 @@
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
-
 <!-- These values need some explaining
 
      aggregate_ring_game_stats :
@@ -567,6 +566,7 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
+        <hhc site="Partouche" converter="PartoucheToFpdb"/>
     </hhcs>
 
     <supported_databases>

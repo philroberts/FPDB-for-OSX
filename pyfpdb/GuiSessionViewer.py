@@ -37,7 +37,7 @@ try:
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
-except ImportError as inst:
+except ImportError, inst:
     print """Failed to load numpy in Session Viewer"""
     print """This is of no consequence as the page is broken and only of interest to developers."""
     print "ImportError: %s" % inst.args
@@ -248,6 +248,8 @@ class GuiSessionViewer (threading.Thread):
         nametest = nametest.replace("L", "")
         nametest = nametest.replace(",)",")")
         q = q.replace("<player_test>", nametest)
+        q = q.replace("<ampersand_s>", "%s")
+
         self.db.cursor.execute(q)
         THRESHOLD = 1800
         hands = self.db.cursor.fetchall()

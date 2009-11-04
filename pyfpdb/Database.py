@@ -1144,6 +1144,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Betfair', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Partouche', 'EUR')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         elif self.backend == self.PGSQL:
@@ -1262,63 +1263,6 @@ class Database:
         except:
             print "Error during fdb.lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
-
-    def getGameTypeId(self, siteid, game):
-        c = self.get_cursor()
-        #FIXME: Fixed for NL at the moment
-        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], 
-                        int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
-        tmp = c.fetchone()
-        if (tmp == None):
-            hilo = "h"
-            if game['category'] in ['studhilo', 'omahahilo']:
-                hilo = "s"
-            elif game['category'] in ['razz','27_3draw','badugi']:
-                hilo = "l"
-            tmp  = self.insertGameTypes( (siteid, game['type'], game['base'], game['category'], game['limitType'], hilo,
-                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
-        return tmp[0]
-
-    def getSqlPlayerIDs(self, pnames, siteid):
-        result = {}
-        if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key, siteid))
- 
-        for player in pnames:
-            result[player] = self.pcache[player]
-            # NOTE: Using the LambdaDict does the same thing as:
-            #if player in self.pcache:
-            #    #print "DEBUG: cachehit"
-            #    pass
-            #else:
-            #    self.pcache[player] = self.insertPlayer(player, siteid)
-            #result[player] = self.pcache[player]
-
-        return result
-
-    def insertPlayer(self, name, site_id):
-        result = None
-        c = self.get_cursor()
-        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
-        q = q.replace('%s', self.sql.query['placeholder'])
-
-        #print "DEBUG: name: %s site: %s" %(name, site_id)
-
-        c.execute (q, (site_id, name))
-
-        tmp = c.fetchone()
-        if (tmp == None): #new player
-            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(name, site_id))
-            #Get last id might be faster here.
-            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            tmp = [self.get_last_insert_id(c)]
-        return tmp[0]
-
-    def insertGameTypes(self, row):
-        c = self.get_cursor()
-        c.execute( self.sql.query['insertGameTypes'], row )
-        return [self.get_last_insert_id(c)]
 
     def store_the_hand(self, h):
         """Take a HandToWrite object and store it in the db"""
@@ -1666,6 +1610,64 @@ class Database:
 #            street3CheckCallRaiseDone,
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone)
+
+    def getGameTypeId(self, siteid, game):
+        c = self.get_cursor()
+        #FIXME: Fixed for NL at the moment
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], 
+                        int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
+        tmp = c.fetchone()
+        if (tmp == None):
+            hilo = "h"
+            if game['category'] in ['studhilo', 'omahahilo']:
+                hilo = "s"
+            elif game['category'] in ['razz','27_3draw','badugi']:
+                hilo = "l"
+            tmp  = self.insertGameTypes( (siteid, game['type'], game['base'], game['category'], game['limitType'], hilo,
+                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
+        return tmp[0]
+
+    def getSqlPlayerIDs(self, pnames, siteid):
+        result = {}
+        if(self.pcache == None):
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key, siteid))
+ 
+        for player in pnames:
+            result[player] = self.pcache[player]
+            # NOTE: Using the LambdaDict does the same thing as:
+            #if player in self.pcache:
+            #    #print "DEBUG: cachehit"
+            #    pass
+            #else:
+            #    self.pcache[player] = self.insertPlayer(player, siteid)
+            #result[player] = self.pcache[player]
+
+        return result
+
+    def insertPlayer(self, name, site_id):
+        result = None
+        c = self.get_cursor()
+        q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
+        q = q.replace('%s', self.sql.query['placeholder'])
+
+        #print "DEBUG: name: %s site: %s" %(name, site_id)
+
+        c.execute (q, (site_id, name))
+
+        tmp = c.fetchone()
+        if (tmp == None): #new player
+            c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
+                      ,(name, site_id))
+            #Get last id might be faster here.
+            #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
+            tmp = [self.get_last_insert_id(c)]
+        return tmp[0]
+
+    def insertGameTypes(self, row):
+        c = self.get_cursor()
+        c.execute( self.sql.query['insertGameTypes'], row )
+        return [self.get_last_insert_id(c)]
+
 
 
 #################################

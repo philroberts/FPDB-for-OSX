@@ -238,7 +238,8 @@ def discover_nt_by_name(c, tablename):
         try:
             # maybe it's better to make global titles[hwnd] decoding?
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
-            if not tablename.lower() in titles[hwnd].decode(LOCALE_ENCODING).lower(): continue
+            if not tablename.lower() in titles[hwnd].decode(LOCALE_ENCODING).lower():
+                continue
         except:
             continue
         if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
@@ -246,8 +247,8 @@ def discover_nt_by_name(c, tablename):
         if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
         if ' - Table ' in titles[hwnd]: continue # Absolute table Chat window.. sigh. TODO: Can we tell what site we're trying to discover for somehow in here, so i can limit this check just to AP searches?
         temp = decode_windows(c, titles[hwnd], hwnd)
-        #print "attach to window", temp
-        return decode_windows(c, titles[hwnd], hwnd)
+        print "attach to window", temp
+        return temp
     return None
 
 def discover_nt_tournament(c, tour_number, tab_number):
@@ -257,9 +258,12 @@ def discover_nt_tournament(c, tour_number, tab_number):
     titles ={}
     win32gui.EnumWindows(win_enum_handler, titles)
     for hwnd in titles:
-        if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
-        if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
-        if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
+        # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
+        if 'Chat:' in titles[hwnd]: continue
+        # Everleaf Network HH viewer window
+        if 'History for table:' in titles[hwnd]: continue
+        # FPDB HUD window
+        if 'HUD:' in titles[hwnd]: continue
 
         if re.search(search_string, titles[hwnd]):
             return decode_windows(c, titles[hwnd], hwnd)
@@ -268,22 +272,34 @@ def discover_nt_tournament(c, tour_number, tab_number):
 def get_nt_exe(hwnd):
     """Finds the name of the executable that the given window handle belongs to."""
     
-    # Request privileges to enable "debug process", so we can later use PROCESS_VM_READ, retardedly required to GetModuleFileNameEx()
+    # Request privileges to enable "debug process", so we can later use
+    # PROCESS_VM_READ, retardedly required to GetModuleFileNameEx()
     priv_flags = win32security.TOKEN_ADJUST_PRIVILEGES | win32security.TOKEN_QUERY
-    hToken = win32security.OpenProcessToken (win32api.GetCurrentProcess(), priv_flags)
+    hToken = win32security.OpenProcessToken (win32api.GetCurrentProcess(),
+                                             priv_flags)
     # enable "debug process"
-    privilege_id = win32security.LookupPrivilegeValue (None, win32security.SE_DEBUG_NAME)
-    old_privs = win32security.AdjustTokenPrivileges (hToken, 0, [(privilege_id, win32security.SE_PRIVILEGE_ENABLED)])
+    privilege_id = win32security.LookupPrivilegeValue(None,
+                                                      win32security.SE_DEBUG_NAME)
+    old_privs = win32security.AdjustTokenPrivileges(hToken, 0,
+                                                    [(privilege_id,
+                                                      win32security.SE_PRIVILEGE_ENABLED)])
     
     # Open the process, and query it's filename
     processid = win32process.GetWindowThreadProcessId(hwnd)
-    pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
-    exename = win32process.GetModuleFileNameEx(pshandle, 0)
-    
-    # clean up
-    win32api.CloseHandle(pshandle)
-    win32api.CloseHandle(hToken)
-    
+    pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION |
+                                    win32con.PROCESS_VM_READ, False,
+                                    processid[1])
+    try:
+        exename = win32process.GetModuleFileNameEx(pshandle, 0)
+    except pywintypes.error:
+        # insert code to call GetProcessImageName if we can find it..
+        # returning None from here will hopefully break all following code
+        exename = None 
+    finally:
+        # clean up
+        win32api.CloseHandle(pshandle)
+        win32api.CloseHandle(hToken)
+        
     return exename
 
 def decode_windows(c, title, hwnd):
@@ -305,6 +321,8 @@ def decode_windows(c, title, hwnd):
     info['width']  = int( width ) - 2*b_width
     info['height'] = int( height ) - b_width - tb_height
     info['exe']    = get_nt_exe(hwnd)
+    print "get_nt_exe returned ", info['exe']
+    # TODO: 'width' here is all sorts of screwed up.
 
     title_bits = re.split(' - ', info['title'])
     info['name'] = title_bits[0]

@@ -156,9 +156,9 @@ class Site:
         else: self.hudopacity = float(self.hudopacity)
 
         if self.use_frames == "": self.use_frames = False
-        if self.font     == "": self.font = "Sans" 
-        if self.hudbgcolor == "": self.hudbgcolor = "000000"
-        if self.hudfgcolor == "": self.hudfgcolor = "FFFFFF"
+        if self.font       == "": self.font = "Sans" 
+        if self.hudbgcolor == "": self.hudbgcolor = "#000000"
+        if self.hudfgcolor == "": self.hudfgcolor = "#FFFFFF"
 
     def __str__(self):
         temp = "Site = " + self.site_name + "\n"
@@ -673,7 +673,7 @@ class Config:
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
         hui = {}
-
+        
         default_text = 'FPDB Menu - Right click\nLeft-Drag to Move'
         try:
             hui['label'] = self.ui.label
