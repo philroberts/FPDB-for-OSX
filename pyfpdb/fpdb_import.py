@@ -182,14 +182,15 @@ class Importer:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(subdir[0], file), site=site, filter=filter)
+                    self.addImportFile(os.path.join(subdir[0], file), site=site,
+                                       filter=filter)
         else:
             self.addImportFile(inputPath, site=site, filter=filter)
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
     #dirlist{ 'PokerStars' => ["/path/to/import/", "filtername"] }
-    def addImportDirectory(self,dir,monitor = False, site = "default", filter = "passthrough"):
+    def addImportDirectory(self,dir,monitor=False, site="default", filter="passthrough"):
         #gets called by GuiAutoImport.
         #This should really be using os.walk
         #http://docs.python.org/library/os.html
@@ -203,7 +204,7 @@ class Importer:
                 #print "                    adding file ", file
                 self.addImportFile(os.path.join(dir, file), site, filter)
         else:
-            log.warning("Attempted to add non-directory: '" + str(dir) + "' as an import directory")
+            log.warning("Attempted to add non-directory: '%s' as an import directory" % str(dir))
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
@@ -250,6 +251,9 @@ class Importer:
                 #self.writeq.join()
                 #using empty() might be more reliable:
                 while not self.writeq.empty() and len(threading.enumerate()) > 1:
+                    # TODO: Do we need to actually tell the progress indicator to move, or is it already moving, and we just need to process events... 
+                    while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
+                        gtk.main_iteration(False)                
                     sleep(0.5)
                 print "                              ... writers finished"
 
@@ -418,9 +422,9 @@ class Importer:
         obj = getattr(mod, filter_name, None)
         if callable(obj):
             hhc = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
-            if(hhc.getStatus() and self.NEWIMPORT == False):
+            if hhc.getStatus() and self.NEWIMPORT == False:
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
-            elif (hhc.getStatus() and self.NEWIMPORT == True):
+            elif hhc.getStatus() and self.NEWIMPORT == True:
                 #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
@@ -458,7 +462,7 @@ class Importer:
                 loc = self.pos_in_file[file]
                 #size = os.path.getsize(file)
                 #print "loc =", loc, 'size =', size
-            except:
+            except IndexError:
                 pass
         # Read input file into class and close file
         inputFile.seek(loc)
@@ -481,14 +485,14 @@ class Importer:
         if not stored:
             if duplicates:
                 for line_no in xrange(len(self.lines)):
-                    if self.lines[line_no].find("Game #")!=-1:
-                        final_game_line=self.lines[line_no]
+                    if self.lines[line_no].find("Game #") != -1:
+                        final_game_line = self.lines[line_no]
                 handsId=fpdb_simple.parseSiteHandNo(final_game_line)
             else:
                 print "failed to read a single hand from file:", inputFile
-                handsId=0
+                handsId = 0
             #todo: this will cause return of an unstored hand number if the last hand was error
-        self.handsId=handsId
+        self.handsId = handsId
 
         return (stored, duplicates, partial, errors, ttime)
     # end def import_fpdb_file
@@ -508,13 +512,13 @@ class Importer:
             #print "DEBUG: import_fpdb_file: failed on lines[0]: '%s' '%s' '%s' '%s' " %( file, site, lines, loc)
             return (0,0,0,1,0,0)
 
-        if firstline.find("Tournament Summary")!=-1:
+        if "Tournament Summary" in firstline:
             print "TODO: implement importing tournament summaries"
             #self.faobs = readfile(inputFile)
             #self.parseTourneyHistory()
             return (0,0,0,1,0,0)
 
-        category=fpdb_simple.recogniseCategory(firstline)
+        category = fpdb_simple.recogniseCategory(firstline)
 
         startpos = 0
         stored = 0 #counter
@@ -524,24 +528,23 @@ class Importer:
         ttime = 0
         handsId = 0
 
-        for i in xrange (len(lines)):
-            if (len(lines[i])<2): #Wierd way to detect for '\r\n' or '\n'
-                endpos=i
-                hand=lines[startpos:endpos]
+        for i in xrange(len(lines)):
+            if len(lines[i]) < 2: #Wierd way to detect for '\r\n' or '\n'
+                endpos = i
+                hand = lines[startpos:endpos]
        
-                if (len(hand[0])<2):
+                if len(hand[0]) < 2:
                     hand=hand[1:]
 
-       
-                if (len(hand)<3):
+                if len(hand) < 3:
                     pass
                     #TODO: This is ugly - we didn't actually find the start of the
                     # hand with the outer loop so we test again...
                 else:
-                    isTourney=fpdb_simple.isTourney(hand[0])
+                    isTourney = fpdb_simple.isTourney(hand[0])
                     if not isTourney:
                         hand = fpdb_simple.filterAnteBlindFold(hand)
-                    self.hand=hand
+                    self.hand = hand
 
                     try:
                         handsId = fpdb_parse_logic.mainParser( self.settings, self.siteIds[site]
@@ -553,7 +556,7 @@ class Importer:
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
-                            print "sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
+                            print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except Exceptions.DuplicateError:
                         duplicates += 1
