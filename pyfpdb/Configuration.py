@@ -848,10 +848,7 @@ class Config:
 
     def get_aux_windows(self):
         """Gets the list of mucked window formats in the configuration."""
-        mw = []
-        for w in self.aux_windows.keys():
-            mw.append(w)
-        return mw
+        return self.aux_windows.keys()
 
     def get_aux_parameters(self, name):
         """Gets a dict of mucked window parameters from the named mw."""
