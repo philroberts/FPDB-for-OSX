@@ -561,15 +561,13 @@ class Config:
                 if int( location_node.getAttribute("seat") ) == int( seat ):
                     return location_node
 
-    def save(self, file = None):
-        if file != None:
-            with open(file, 'w') as f:
-                self.doc.writexml(f)
-        else:
+    def save(self, file=None):
+        if file is None:
+            file = self.file
             shutil.move(self.file, self.file+".backup")
-            with open(self.file, 'w') as f:
-                self.doc.writexml(f)
-
+        with open(file, 'w') as f:
+            self.doc.writexml(f)
+    
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
