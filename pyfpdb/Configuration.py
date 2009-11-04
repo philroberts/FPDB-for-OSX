@@ -793,15 +793,13 @@ class Config:
                         (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
-    def get_supported_sites(self, all = False):
+    def get_supported_sites(self, all=False):
         """Returns the list of supported sites."""
-        the_sites = []
-        for site in self.supported_sites.keys():
-            params = self.get_site_parameters(site)
-            if all or params['enabled']:
-                the_sites.append(site)
-        return the_sites
-
+        if all:
+            return self.supported_sites.keys()
+        else:
+            return [site_name for (site_name, site) in self.supported_sites.items() if site.enabled]
+        
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
