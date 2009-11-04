@@ -164,14 +164,13 @@ class PokerStars(HandHistoryConverter):
         if 'CURRENCY' in mg:
             info['currency'] = currencies[mg['CURRENCY']]
 
-        if 'TOURNO' in mg and mg['TOURNO'] == None:
+        if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
-
 
     def readHandInfo(self, hand):
         info = {}
@@ -182,7 +181,8 @@ class PokerStars(HandHistoryConverter):
         else:
             pass  # throw an exception here, eh?
         m = self.re_GameInfo.search(hand.handText)
-        if m: info.update(m.groupdict())
+        if m:
+            info.update(m.groupdict())
 #        m = self.re_Button.search(hand.handText)
 #        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
@@ -205,8 +205,7 @@ class PokerStars(HandHistoryConverter):
                 hand.maxseats = int(info[key])
 
             if key == 'MIXED':
-                if info[key] == None: hand.mixed = None
-                else:   hand.mixed = self.mixes[info[key]]
+                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
 
             if key == 'TOURNO':
                 hand.tourNo = info[key]
@@ -214,7 +213,7 @@ class PokerStars(HandHistoryConverter):
                 hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]
-            if key == 'PLAY' and info['PLAY'] != None:
+            if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
 
@@ -304,11 +303,11 @@ class PokerStars(HandHistoryConverter):
             m = self.re_HeroCards.finditer(hand.streets[street])
             for found in m:
                 player = found.group('PNAME')
-                if found.group('NEWCARDS') == None:
+                if found.group('NEWCARDS') is None:
                     newcards = []
                 else:
                     newcards = found.group('NEWCARDS').split(' ')
-                if found.group('OLDCARDS') == None:
+                if found.group('OLDCARDS') is None:
                     oldcards = []
                 else:
                     oldcards = found.group('OLDCARDS').split(' ')

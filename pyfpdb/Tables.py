@@ -105,7 +105,7 @@ def discover_table_by_name(c, tablename):
         info = discover_mac_by_name(c, tablename)
     else:
         return None
-    if info == None:
+    if info is None:
         return None
     return Table_Window(info)
 
@@ -141,7 +141,7 @@ def discover_posix(c):
                 if 'History for table:' in listing: continue
                 if 'has no name' in listing: continue
                 info = decode_xwininfo(c, listing)
-                if info['site'] == None:                       continue
+                if info['site'] is None:                       continue
                 if info['title'] == info['exe']:               continue
 #    this appears to be a poker client, so make a table object for it
                 tw = Table_Window(info)

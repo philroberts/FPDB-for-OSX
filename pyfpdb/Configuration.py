@@ -124,28 +124,21 @@ class Site:
         self.font_size    = node.getAttribute("font_size")
         self.use_frames   = node.getAttribute("use_frames")
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
-        self.xpad        = node.getAttribute("xpad")
-        self.ypad        = node.getAttribute("ypad")
-        self.layout     = {}
-            
-        print self.site_name, self.HH_path
+        self.xpad         = node.getAttribute("xpad")
+        self.ypad         = node.getAttribute("ypad")
+        self.layout       = {}
+
+        print "Loading site", self.site_name    
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
 
 #   Site defaults
-        if self.xpad     == "": self.xpad = 1
-        else: self.xpad = int(self.xpad)
-
-        if self.ypad     == "": self.ypad = 0
-        else: self.ypad = int(self.ypad)
-
-        if self.font_size  == "": self.font_size = 7
-        else: self.font_size = int(self.font_size)
-
-        if self.hudopacity == "": self.hudopacity = 1.0
-        else: self.hudopacity = float(self.hudopacity)
+        self.xpad = 1 if self.xpad == "" else int(self.xpad)
+        self.ypad = 0 if self.ypad == "" else int(self.ypad)
+        self.font_size = 7 if self.font_size == "" else int(self.font_size)
+        self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
 
         if self.use_frames == "": self.use_frames = False
         if self.font       == "": self.font = "Sans" 
@@ -340,22 +333,20 @@ class Config:
 #    we check the existence of "file" and try to recover if it doesn't exist
 
         self.default_config_path = self.get_default_config_path()
-        if file != None: # configuration file path has been passed
+        if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
                 print "Configuration file %s not found.  Using defaults." % (file)
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file == None: # configuration file path not passed or invalid
+        if file is None: # configuration file path not passed or invalid
             file = self.find_config() #Look for a config file in the normal places
 
-        if file == None: # no config file in the normal places
+        if file is None: # no config file in the normal places
             file = self.find_example_config() #Look for an example file to edit
-            if file != None:
-                pass
             
-        if file == None: # that didn't work either, just die
+        if file is None: # that didn't work either, just die
             print "No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting"
             sys.stderr.write("No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting")
             print "press enter to continue"
@@ -451,7 +442,7 @@ class Config:
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
             df_file = self.find_default_conf()
-            if df_file == None: # this is bad
+            if df_file is None: # this is bad
                 pass
             else:
                 df_parms = self.read_default_conf(df_file)
@@ -542,7 +533,7 @@ class Config:
 
     def get_layout_node(self, site_node, layout):
         for layout_node in site_node.getElementsByTagName("layout"):
-            if layout_node.getAttribute("max") == None: 
+            if layout_node.getAttribute("max") is None: 
                 return None
             if int( layout_node.getAttribute("max") ) == int( layout ):
                 return layout_node
@@ -558,7 +549,7 @@ class Config:
                     return location_node
 
     def save(self, file = None):
-        if file != None:
+        if file is not None:
             with open(file, 'w') as f:
                 self.doc.writexml(f)
         else:
@@ -570,7 +561,9 @@ class Config:
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
         layout_node = self.get_layout_node(site_node, max)
-        if layout_node == None: return
+        # TODO: how do we support inserting new layouts?
+        if layout_node is None:
+            return
         for i in range(1, max + 1):
             location_node = self.get_location_node(layout_node, i)
             location_node.setAttribute("x", str( locations[i-1][0] ))
@@ -580,7 +573,7 @@ class Config:
     def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
         aux_node   = self.get_aux_node(aux_name)
         layout_node = self.get_layout_node(aux_node, max)
-        if layout_node == None:
+        if layout_node is None:
             print "aux node not found"
             return
         print "editing locations =", locations
@@ -635,17 +628,17 @@ class Config:
                         db_pass = None, db_server = None, db_type = None):
         db_node = self.get_db_node(db_name)
         if db_node != None:
-            if db_ip    != None: db_node.setAttribute("db_ip", db_ip)
-            if db_user   != None: db_node.setAttribute("db_user", db_user)
-            if db_pass   != None: db_node.setAttribute("db_pass", db_pass)
-            if db_server != None: db_node.setAttribute("db_server", db_server)
-            if db_type   != None: db_node.setAttribute("db_type", db_type)
+            if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   is not None: db_node.setAttribute("db_user", db_user)
+            if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
+            if db_server is not None: db_node.setAttribute("db_server", db_server)
+            if db_type   is not None: db_node.setAttribute("db_type", db_type)
         if self.supported_databases.has_key(db_name):
-            if db_ip    != None: self.supported_databases[db_name].dp_ip    = db_ip
-            if db_user   != None: self.supported_databases[db_name].dp_user   = db_user
-            if db_pass   != None: self.supported_databases[db_name].dp_pass   = db_pass
-            if db_server != None: self.supported_databases[db_name].dp_server = db_server
-            if db_type   != None: self.supported_databases[db_name].dp_type   = db_type
+            if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
+            if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
+            if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
+            if db_server is not None: self.supported_databases[db_name].dp_server = db_server
+            if db_type   is not None: self.supported_databases[db_name].dp_type   = db_type
         return
     
     def getDefaultSite(self):
@@ -789,7 +782,7 @@ class Config:
         return locations
 
     def get_aux_locations(self, aux = "mucked", max = "9"):
-        
+    
         try:
             locations = self.aux_windows[aux].layout[max].location
         except:
@@ -836,19 +829,19 @@ class Config:
                             font = None, font_size = None):
         """Sets the specified site parameters for the specified site."""
         site_node = self.get_site_node(site_name)
-        if db_node != None:
-            if converter    != None: site_node.setAttribute("converter", converter)
-            if decoder        != None: site_node.setAttribute("decoder", decoder)
-            if hudbgcolor    != None: site_node.setAttribute("hudbgcolor", hudbgcolor)
-            if hudfgcolor    != None: site_node.setAttribute("hudfgcolor", hudfgcolor)
-            if hudopacity    != None: site_node.setAttribute("hudopacity", hudopacity)
-            if screen_name    != None: site_node.setAttribute("screen_name", screen_name)
-            if site_path    != None: site_node.setAttribute("site_path", site_path)
-            if table_finder   != None: site_node.setAttribute("table_finder", table_finder)
-            if HH_path        != None: site_node.setAttribute("HH_path", HH_path)
-            if enabled        != None: site_node.setAttribute("enabled", enabled)
-            if font         != None: site_node.setAttribute("font", font)
-            if font_size    != None: site_node.setAttribute("font_size", font_size)
+        if db_node is not None:
+            if converter      is not None: site_node.setAttribute("converter", converter)
+            if decoder        is not None: site_node.setAttribute("decoder", decoder)
+            if hudbgcolor     is not None: site_node.setAttribute("hudbgcolor", hudbgcolor)
+            if hudfgcolor     is not None: site_node.setAttribute("hudfgcolor", hudfgcolor)
+            if hudopacity     is not None: site_node.setAttribute("hudopacity", hudopacity)
+            if screen_name    is not None: site_node.setAttribute("screen_name", screen_name)
+            if site_path      is not None: site_node.setAttribute("site_path", site_path)
+            if table_finder   is not None: site_node.setAttribute("table_finder", table_finder)
+            if HH_path        is not None: site_node.setAttribute("HH_path", HH_path)
+            if enabled        is not None: site_node.setAttribute("enabled", enabled)
+            if font           is not None: site_node.setAttribute("font", font)
+            if font_size      is not None: site_node.setAttribute("font_size", font_size)
         return
 
     def get_aux_windows(self):

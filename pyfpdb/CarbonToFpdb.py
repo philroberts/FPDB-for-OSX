@@ -67,7 +67,7 @@ class CarbonPoker(HandHistoryConverter):
 		if(type == "Holdem"):
 			gametype = gametype + ["hold"]
 		else:
-			print "Unknown gametype: '%s'" % (type)
+			print "Carbon: Unknown gametype: '%s'" % (type)
 
 		stakes = desc_node[0].getAttribute("stakes")
 		#TODO: no examples of anything except nlhe

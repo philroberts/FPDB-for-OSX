@@ -353,7 +353,7 @@ class Database:
 #            else:
 #                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
             cv = "card%dvalue" % i
-            if cv not in d or d[cv] == None:
+            if cv not in d or d[cv] is None:
                 break
             elif d[cv] == 0:
                 cards += "xx"
@@ -395,7 +395,7 @@ class Database:
             row = c.fetchone()
         except: # TODO: what error is a database error?!
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+            print "*** Database Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
         else:
             if row and row[0]:
                 self.hand_1day_ago = int(row[0])
@@ -421,10 +421,10 @@ class Database:
             if row and row[0]:
                 self.date_nhands_ago[str(playerid)] = row[0]
             c.close()
-            print "date n hands ago = " + self.date_nhands_ago[str(playerid)] + "(playerid "+str(playerid)+")"
+            print "Database: date n hands ago = " + self.date_nhands_ago[str(playerid)] + "(playerid "+str(playerid)+")"
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print "*** Database Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'hud_days':30, 'agg_bb_mult':100
@@ -551,7 +551,7 @@ class Database:
     def get_player_names(self, config, site_id=None, like_player_name="%"):
         """Fetch player names from players. Use site_id and like_player_name if provided"""
 
-        if site_id == None:
+        if site_id is None:
             site_id = -1
         c = self.get_cursor()
         c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
@@ -657,7 +657,7 @@ class Database:
         except:
             ret = -1
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***get_last_insert_id error: " + str(sys.exc_info()[1])
+            print "*** Database get_last_insert_id error: " + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
             raise
         return ret
@@ -761,14 +761,18 @@ class Database:
 
         hands_id = self.storeHands( self.backend, siteHandNo, gametypeId
                                   , handStartTime, names, tableName, maxSeats
-                                  , hudImportData, board_values, board_suits )
+                                  , hudImportData, (None, None, None, None, None), (None, None, None, None, None) )
+        # changed board_values and board_suits to arrays of None, just like the
+        # cash game version of this function does - i don't believe this to be
+        # the correct thing to do (tell me if i'm wrong) but it should keep the
+        # importer from crashing
 
         hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
                                                  , playerIds, startCashes, antes, cardValues, cardSuits
                                                  , winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId)
 
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-            self.storeHudCache(self.backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData)
+            self.storeHudCache(self.backend, base, category, gametypeId, handStartTime, playerIds, hudImportData)
 
         return hands_id
     #end def tourney_stud
@@ -1179,7 +1183,7 @@ class Database:
                     if p_id:
                         self.hero_ids[site_id] = int(p_id)
             
-            if start == None:
+            if start is None:
                 start = self.hero_hudstart_def
             if self.hero_ids == {}:
                 where = ""
@@ -1946,7 +1950,7 @@ class Database:
     def store_hands_players_stud_tourney(self, backend, hands_id, player_ids, start_cashes,
                 antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId):
         #stores hands_players for tourney stud/razz hands
-
+        return # TODO: stubbed out until someone updates it for current database structuring
         try:
             result=[]
             for i in xrange(len(player_ids)):

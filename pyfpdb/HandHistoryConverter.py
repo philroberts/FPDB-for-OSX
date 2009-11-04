@@ -150,9 +150,9 @@ Otherwise, finish at EOF.
                 for handText in self.tailHands():
                     try:
                         self.processHand(handText)
-                        numHands+=1
+                        numHands += 1
                     except FpdbParseError, e:
-                        numErrors+=1
+                        numErrors += 1
                         log.warning("Failed to convert hand %s" % e.hid)
                         log.debug(handText)
             else:
@@ -166,7 +166,7 @@ Otherwise, finish at EOF.
                         try:
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
-                            numErrors+=1
+                            numErrors += 1
                             log.warning("Failed to convert hand %s" % e.hid)
                             log.debug(handText)
                     numHands = len(handsList)
@@ -195,7 +195,8 @@ This requires a regex that greedily groups and matches the 'splitter' between ha
 which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
 
 """
-        if self.in_path == '-': raise StopIteration
+        if self.in_path == '-':
+            raise StopIteration
         interval = 1.0 # seconds to sleep between reads for new data
         fd = codecs.open(self.in_path,'r', self.codepage)
         data = ''
@@ -256,7 +257,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.readFile()
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
-        if self.obs == "" or self.obs == None:
+        if self.obs is None or self.obs == "":
             log.info("Read no hands.")
             return []
         return re.split(self.re_SplitHands,  self.obs)
@@ -396,7 +397,7 @@ or None if we fail to get the info """
         if True: # basically.. I don't know
             sane = True
         
-        if(self.in_path != '-' and self.out_path == self.in_path):
+        if self.in_path != '-' and self.out_path == self.in_path:
             print "HH Sanity Check: output and input files are the same, check config"
             sane = False
 
@@ -417,16 +418,19 @@ or None if we fail to get the info """
         for l in list:
 #           print "'" + l + "'"
             hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
+        # TODO: This looks like it could be replaced with a list comp.. ?
         return hands
 
     def __listof(self, x):
-        if isinstance(x, list) or isinstance(x, tuple): return x
-        else: return [x]
+        if isinstance(x, list) or isinstance(x, tuple):
+            return x
+        else:
+            return [x]
 
     def readFile(self):
         """Open in_path according to self.codepage. Exceptions caught further up"""
         
-        if(self.filetype == "text"):
+        if self.filetype == "text":
             if self.in_path == '-':
                 # read from stdin
                 log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
@@ -446,12 +450,15 @@ or None if we fail to get the info """
                         pass
                 else:
                     print "unable to read file with any codec in list!", self.in_path
-        elif(self.filetype == "xml"):
+        elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
 
     def guessMaxSeats(self, hand):
-        """Return a guess at max_seats when not specified in HH."""
+        """Return a guess at maxseats when not specified in HH."""
+        # if some other code prior to this has already set it, return it
+        if maxseats > 1 and maxseats < 11:
+            return maxseats
         mo = self.maxOccSeat(hand)
 
         if mo == 10: return 10 #that was easy
@@ -471,7 +478,8 @@ or None if we fail to get the info """
     def maxOccSeat(self, hand):
         max = 0
         for player in hand.players:
-            if player[0] > max: max = player[0]
+            if player[0] > max:
+                max = player[0]
         return max
 
     def getStatus(self):

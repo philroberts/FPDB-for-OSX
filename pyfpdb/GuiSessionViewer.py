@@ -310,7 +310,7 @@ class GuiSessionViewer (threading.Thread):
             except:
                 pass
 
-            if self.fig != None:
+            if self.fig is not None:
                 self.fig.clear()
             self.fig = Figure(figsize=(5,4), dpi=100)
             if self.canvas is not None:
