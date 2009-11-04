@@ -36,6 +36,14 @@ from xml.dom.minidom import Node
 
 import logging, logging.config
 import ConfigParser
+
+try: # local path
+    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
+except ConfigParser.NoSectionError: # debian package path
+    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
+
+log = logging.getLogger("config")
+log.debug("config logger initialised")
 ########################################################################
 # application wide consts
 
@@ -54,18 +62,6 @@ DATABASE_TYPES = (
         DATABASE_TYPE_SQLITE,
         DATABASE_TYPE_MYSQL,
         )
-
-# setup logging
-logging.config.fileConfig(os.path.join(DIR_SELF,"logging.conf"))
-log = logging.getLogger("config")
-
-# setup application wide exception handler
-def excepthook(Type, value, tb):
-        p = traceback.format_exception(type, value, tb)
-        log.critical(p)
-        raise Type(value)
-
-sys.excepthook = excepthook
 
 ########################################################################
 def string_to_bool(string, default=True):
