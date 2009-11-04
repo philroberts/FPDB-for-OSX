@@ -292,6 +292,21 @@ class Database:
         row = c.fetchone()
         return row
     
+    def get_table_info(self, hand_id):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['get_table_name'], (hand_id, ))
+        row = c.fetchone()
+        l = list(row)
+        if row[3] == "ring":   # cash game
+            l.append(None)
+            l.append(None)
+            return l
+        else:    # tournament
+            tour_no, tab_no = re.split(" ", row[0])
+            l.append(tour_no)
+            l.append(tab_no)
+            return l
+
     def get_last_hand(self):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_last_hand'])
