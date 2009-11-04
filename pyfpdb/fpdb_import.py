@@ -462,7 +462,7 @@ class Importer:
                 loc = self.pos_in_file[file]
                 #size = os.path.getsize(file)
                 #print "loc =", loc, 'size =', size
-            except IndexError:
+            except KeyError:
                 pass
         # Read input file into class and close file
         inputFile.seek(loc)
