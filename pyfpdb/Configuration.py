@@ -762,20 +762,16 @@ class Config:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
         return colors
     
-    def get_default_font(self, site = 'PokerStars'):
-        (font, font_size) = ("Sans", "8")
-        if site not in self.supported_sites:
-            return ("Sans", "8")
-        if self.supported_sites[site].font == "":
-            font = "Sans"
-        else:
-            font = self.supported_sites[site].font
-
-        if self.supported_sites[site].font_size == "":
-            font_size = "8"
-        else:
-            font_size = self.supported_sites[site].font_size
-        return (font, font_size)
+    def get_default_font(self, site='PokerStars'):
+        font = "Sans"
+        font_size = "8"
+        site = self.supported_sites.get(site, None)
+        if site is not None:
+            if site.font:
+                font = site.font
+            if site.font_size:
+                font_size = site.font_size
+        return font, font_size
 
     def get_locations(self, site = "PokerStars", max = "8"):
         
