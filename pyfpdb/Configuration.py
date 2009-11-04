@@ -328,9 +328,9 @@ class HudUI:
 
 class Tv:
     def __init__(self, node):
-        self.combinedStealFold = node.getAttribute("combinedStealFold")
-        self.combined2B3B    = node.getAttribute("combined2B3B")
-        self.combinedPostflop  = node.getAttribute("combinedPostflop")
+        self.combinedStealFold = string_to_bool(node.getAttribute("combinedStealFold"), default=True)
+        self.combined2B3B    = string_to_bool(node.getAttribute("combined2B3B"), default=True)
+        self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
 
     def __str__(self):
         return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" % 
@@ -392,6 +392,8 @@ class Config:
         self.hhcs = {}
         self.popup_windows = {}
         self.db_selected = None    # database the user would like to use
+        self.tv = None
+
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -448,8 +450,7 @@ class Config:
             self.ui = hui
 
         for tv_node in doc.getElementsByTagName("tv"):
-            tv = Tv(node = tv_node)
-            self.tv = tv
+            self.tv = Tv(node = tv_node)
 
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
@@ -655,16 +656,13 @@ class Config:
         return None
 
     def get_tv_parameters(self):
-        tv = {}
-        try:    tv['combinedStealFold'] = self.tv.combinedStealFold
-        except: tv['combinedStealFold'] = True
-
-        try:    tv['combined2B3B']    = self.tv.combined2B3B
-        except: tv['combined2B3B']    = True
-
-        try:    tv['combinedPostflop']  = self.tv.combinedPostflop
-        except: tv['combinedPostflop']  = True
-        return tv
+        if self.tv is not None:
+            return {
+                    'combinedStealFold': self.tv.combinedStealFold,
+                    'combined2B3B': self.tv.combined2B3B,
+                    'combinedPostflop': self.tv.combinedPostflop
+                    }
+        return {}
 
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
