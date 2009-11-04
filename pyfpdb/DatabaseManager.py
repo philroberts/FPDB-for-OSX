@@ -50,10 +50,10 @@ class DatabaseManager(gobject.GObject):
         #TODO: fpdb stores databases in no particular order. this has to be fixed somehow
         databases = []
         for name, fpdbDatabase in config.supported_databases.items():
-            databaseKlass = klass.DatabaseTypes.get(fpdbDatabase.db_type, None)
+            databaseKlass = klass.DatabaseTypes.get(fpdbDatabase.db_server, None)
             #NOTE: Config does not seem to validate user input, so anything may end up here
             if databaseKlass is None:
-                raise ValueError('Unknown databasetype: %s' % fpdbDatabase.db_type)
+                raise ValueError('Unknown databasetype: %s' % fpdbDatabase.db_server)
             
             database = databaseKlass()
             if database.Type == 'sqlite':
