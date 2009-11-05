@@ -197,15 +197,6 @@ class PokerStars(HandHistoryConverter):
                 hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
-            if key == 'TABLE':
-                hand.tablename = info[key]
-            if key == 'BUTTON':
-                hand.buttonpos = info[key]
-            if key == 'MAX':
-                hand.maxseats = int(info[key])
-
-            if key == 'MIXED':
-                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
 
             if key == 'TOURNO':
                 hand.tourNo = info[key]
@@ -213,6 +204,19 @@ class PokerStars(HandHistoryConverter):
                 hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]
+
+            if key == 'TABLE':
+                if hand.tourNo != None:
+                    hand.tablename = re.split(" ", info[key])[1]
+                else:
+                    hand.tablename = info[key]
+            if key == 'BUTTON':
+                hand.buttonpos = info[key]
+            if key == 'MAX':
+                hand.maxseats = int(info[key])
+
+            if key == 'MIXED':
+                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
