@@ -50,6 +50,10 @@ log.debug("config logger initialised")
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
+DIR_SELF = os.path.dirname(os.path.abspath(__file__))
+#TODO: imo no good idea to place 'database' in parent dir
+DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
+
 DATABASE_TYPE_POSTGRESQL = 'postgresql'
 DATABASE_TYPE_SQLITE = 'sqlite'
 DATABASE_TYPE_MYSQL = 'mysql'
@@ -218,14 +222,13 @@ class Game:
 class Database:
     def __init__(self, node):
         self.db_name   = node.getAttribute("db_name")
-        self.db_server = node.getAttribute("db_server")
+        self.db_server = node.getAttribute("db_server").lower()
         self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
-        self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
         self.db_selected = string_to_bool(node.getAttribute("default"), default=False)
-        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
-                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
+        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_pass (not logged)  selected:'%(sel)s'" \
+                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'sel':self.db_selected} )
         
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
@@ -318,9 +321,9 @@ class HudUI:
 
 class Tv:
     def __init__(self, node):
-        self.combinedStealFold = node.getAttribute("combinedStealFold")
-        self.combined2B3B    = node.getAttribute("combined2B3B")
-        self.combinedPostflop  = node.getAttribute("combinedPostflop")
+        self.combinedStealFold = string_to_bool(node.getAttribute("combinedStealFold"), default=True)
+        self.combined2B3B    = string_to_bool(node.getAttribute("combined2B3B"), default=True)
+        self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
 
     def __str__(self):
         return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" % 
@@ -380,6 +383,8 @@ class Config:
         self.hhcs = {}
         self.popup_windows = {}
         self.db_selected = None    # database the user would like to use
+        self.tv = None
+
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -436,8 +441,7 @@ class Config:
             self.ui = hui
 
         for tv_node in doc.getElementsByTagName("tv"):
-            tv = Tv(node = tv_node)
-            self.tv = tv
+            self.tv = Tv(node = tv_node)
 
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
@@ -554,8 +558,8 @@ class Config:
                 self.doc.writexml(f)
         else:
             shutil.move(self.file, self.file+".backup")
-            with open(self.file, 'w') as f:
-                self.doc.writexml(f)
+        with open(file, 'w') as f:
+            self.doc.writexml(f)
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
@@ -612,20 +616,18 @@ class Config:
         try:    db['db-server'] = self.supported_databases[name].db_server
         except: pass
 
-        try:    db['db-type'] = self.supported_databases[name].db_type
-        except: pass
-
-        if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+        if self.supported_databases[name].db_server== DATABASE_TYPE_MYSQL:
             db['db-backend'] = 2
-        elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+        elif self.supported_databases[name].db_server== DATABASE_TYPE_POSTGRESQL:
             db['db-backend'] = 3
-        elif string.lower(self.supported_databases[name].db_server) == 'sqlite':
+        elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
             db['db-backend'] = 4 
-        else: db['db-backend'] = None # this is big trouble
+        else:
+            raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
-                        db_pass = None, db_server = None, db_type = None):
+                        db_pass = None, db_server = None):
         db_node = self.get_db_node(db_name)
         if db_node != None:
             if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
@@ -649,16 +651,13 @@ class Config:
         return None
 
     def get_tv_parameters(self):
-        tv = {}
-        try:    tv['combinedStealFold'] = self.tv.combinedStealFold
-        except: tv['combinedStealFold'] = True
-
-        try:    tv['combined2B3B']    = self.tv.combined2B3B
-        except: tv['combined2B3B']    = True
-
-        try:    tv['combinedPostflop']  = self.tv.combinedPostflop
-        except: tv['combinedPostflop']  = True
-        return tv
+        if self.tv is not None:
+            return {
+                    'combinedStealFold': self.tv.combinedStealFold,
+                    'combined2B3B': self.tv.combined2B3B,
+                    'combinedPostflop': self.tv.combinedPostflop
+                    }
+        return {}
 
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
@@ -756,31 +755,29 @@ class Config:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
         return colors
     
-    def get_default_font(self, site = 'PokerStars'):
-        (font, font_size) = ("Sans", "8")
-        if site not in self.supported_sites:
-            return ("Sans", "8")
-        if self.supported_sites[site].font == "":
-            font = "Sans"
-        else:
-            font = self.supported_sites[site].font
+    def get_default_font(self, site='PokerStars'):
+        font = "Sans"
+        font_size = "8"
+        site = self.supported_sites.get(site, None)
+        if site is not None:
+            if site.font:
+                font = site.font
+            if site.font_size:
+                font_size = site.font_size
+        return font, font_size
 
-        if self.supported_sites[site].font_size == "":
-            font_size = "8"
-        else:
-            font_size = self.supported_sites[site].font_size
-        return (font, font_size)
-
-    def get_locations(self, site = "PokerStars", max = "8"):
-        
-        try:
-            locations = self.supported_sites[site].layout[max].location
-        except:
-            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
-                        (586, 393), (421, 440), (267, 440), (  0, 361),
-                        (  0, 280), (121, 280), ( 46,  30) )
-        return locations
-
+    def get_locations(self, site_name="PokerStars", max=8):
+        site = self.supported_sites.get(site_name, None)
+        if site is not None:
+            location = site.layout.get(max, None)
+            if location is not None:
+                return location.location
+        return (
+                    (  0,   0), (684,  61), (689, 239), (692, 346), 
+                    (586, 393), (421, 440), (267, 440), (  0, 361),
+                    (  0, 280), (121, 280), ( 46,  30) 
+                )
+    
     def get_aux_locations(self, aux = "mucked", max = "9"):
     
         try:
@@ -791,15 +788,13 @@ class Config:
                         (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
-    def get_supported_sites(self, all = False):
+    def get_supported_sites(self, all=False):
         """Returns the list of supported sites."""
-        the_sites = []
-        for site in self.supported_sites.keys():
-            params = self.get_site_parameters(site)
-            if all or params['enabled']:
-                the_sites.append(site)
-        return the_sites
-
+        if all:
+            return self.supported_sites.keys()
+        else:
+            return [site_name for (site_name, site) in self.supported_sites.items() if site.enabled]
+        
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
@@ -846,10 +841,7 @@ class Config:
 
     def get_aux_windows(self):
         """Gets the list of mucked window formats in the configuration."""
-        mw = []
-        for w in self.aux_windows.keys():
-            mw.append(w)
-        return mw
+        return self.aux_windows.keys()
 
     def get_aux_parameters(self, name):
         """Gets a dict of mucked window parameters from the named mw."""
