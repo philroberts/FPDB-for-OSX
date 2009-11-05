@@ -769,16 +769,18 @@ class Config:
                 font_size = site.font_size
         return font, font_size
 
-    def get_locations(self, site = "PokerStars", max = "8"):
-        
-        try:
-            locations = self.supported_sites[site].layout[max].location
-        except:
-            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
-                        (586, 393), (421, 440), (267, 440), (  0, 361),
-                        (  0, 280), (121, 280), ( 46,  30) )
-        return locations
-
+    def get_locations(self, site_name="PokerStars", max=8):
+        site = self.supported_sites.get(site_name, None)
+        if site is not None:
+            location = site.layout.get(max, None)
+            if location is not None:
+                return location.location
+        return (
+                    (  0,   0), (684,  61), (689, 239), (692, 346), 
+                    (586, 393), (421, 440), (267, 440), (  0, 361),
+                    (  0, 280), (121, 280), ( 46,  30) 
+                )
+    
     def get_aux_locations(self, aux = "mucked", max = "9"):
         
         try:
