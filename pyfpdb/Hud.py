@@ -386,9 +386,9 @@ class Hud:
                     (x, y) = loc[adj[i+1]]
                     w.relocate(x, y)
 
-        # While we're at it, fix the positions of mucked cards too
-        for aux in self.aux_windows:
-            aux.update_card_positions()
+                # While we're at it, fix the positions of mucked cards too
+                for aux in self.aux_windows:
+                    aux.update_card_positions()
 
         return True
 
