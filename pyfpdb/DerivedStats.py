@@ -37,7 +37,9 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]] = {}
             #Init vars that may not be used, but still need to be inserted.
+            # All stud street4 need this when importing holdem
             self.handsplayers[player[1]]['winnings']    = 0
+            self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
 
         self.assembleHands(self.hand)
@@ -105,6 +107,9 @@ class DerivedStats():
         # rake taken out. hand.collectees is Decimal, database requires cents
         for player in hand.collectees:
             self.handsplayers[player]['winnings'] = int(100 * hand.collectees[player])
+
+        for i, street in enumerate(hand.actionStreets[2:]):
+            self.seen(self.hand, i+2)
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
@@ -848,6 +853,17 @@ class DerivedStats():
         self.hands['street2Raises'] = 0 # /* num big bets paid to see river/street6 */
         self.hands['street3Raises'] = 0 # /* num big bets paid to see sd/street7 */
         self.hands['street4Raises'] = 0 # /* num big bets paid to see showdown */
+
+    def seen(self, hand, i):
+        pas = set()
+        for act in hand.actions[hand.actionStreets[i]]:
+            pas.add(act[0])
+
+        for player in hand.players:
+            if player[1] in pas:
+                self.handsplayers[player[1]]['street%sSeen' % i] = True
+            else:
+                self.handsplayers[player[1]]['street%sSeen' % i] = False
 
     def aggr(self, hand, i):
         aggrers = set()
