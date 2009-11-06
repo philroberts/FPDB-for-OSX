@@ -98,6 +98,7 @@ class DerivedStats():
         # commentTs DATETIME
 
     def assembleHandsPlayers(self, hand):
+        #street0VPI/vpip already called in Hand
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
@@ -109,7 +110,7 @@ class DerivedStats():
             self.handsplayers[player]['winnings'] = int(100 * hand.collectees[player])
 
         for i, street in enumerate(hand.actionStreets[2:]):
-            self.seen(self.hand, i+2)
+            self.seen(self.hand, i+1)
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
@@ -815,9 +816,9 @@ class DerivedStats():
 
         for player in hand.players:
             if player[1] in vpipers:
-                self.handsplayers[player[1]]['vpip'] = True
+                self.handsplayers[player[1]]['street0VPI'] = True
             else:
-                self.handsplayers[player[1]]['vpip'] = False
+                self.handsplayers[player[1]]['street0VPI'] = False
 
     def playersAtStreetX(self, hand):
         """ playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
@@ -856,7 +857,7 @@ class DerivedStats():
 
     def seen(self, hand, i):
         pas = set()
-        for act in hand.actions[hand.actionStreets[i]]:
+        for act in hand.actions[hand.actionStreets[i+1]]:
             pas.add(act[0])
 
         for player in hand.players:
