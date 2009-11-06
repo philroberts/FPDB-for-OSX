@@ -18,6 +18,13 @@
 #fpdb modules
 import Card
 
+DEBUG = True
+
+if DEBUG:
+    import pprint
+    pp = pprint.PrettyPrinter(indent=4)
+
+
 class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
@@ -30,13 +37,17 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]] = {}
             #Init vars that may not be used, but still need to be inserted.
+            self.handsplayers[player[1]]['winnings']    = 0
             self.handsplayers[player[1]]['street4Aggr'] = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
-        
-        print "hands =", self.hands
-        print "handsplayers =", self.handsplayers
+
+        if DEBUG:
+            print "Hands:"
+            pp.pprint(self.hands)
+            print "HandsPlayers:"
+            pp.pprint(self.handsplayers)
 
     def getHands(self):
         return self.hands
@@ -89,6 +100,11 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = player[2]
+
+        # Winnings is a non-negative value of money collected from the pot, which already includes the
+        # rake taken out. hand.collectees is Decimal, database requires cents
+        for player in hand.collectees:
+            self.handsplayers[player]['winnings'] = int(100 * hand.collectees[player])
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
