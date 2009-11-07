@@ -154,6 +154,7 @@ Otherwise, finish at EOF.
                     except FpdbParseError, e:
                         numErrors += 1
                         log.warning("Failed to convert hand %s" % e.hid)
+                        log.warning("Exception msg: '%s'" % str(e))
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
@@ -168,6 +169,7 @@ Otherwise, finish at EOF.
                         except FpdbParseError, e:
                             numErrors += 1
                             log.warning("Failed to convert hand %s" % e.hid)
+                            log.warning("Exception msg: '%s'" % str(e))
                             log.debug(handText)
                     numHands = len(handsList)
                     endtime = time.time()
