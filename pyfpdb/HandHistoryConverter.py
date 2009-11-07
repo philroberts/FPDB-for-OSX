@@ -506,3 +506,26 @@ or None if we fail to get the info """
     
     def getTourney(self):
         return self.tourney
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        if type=="tour":
+            return "%s.+Table\s%s" % (tournament, table_number)
+        else:
+            return table_name
+
+
+
+def getTableTitleRe(config, sitename, *args, **kwargs):
+    "Returns string to search in windows titles for current site"
+    return getSiteHhc(config, sitename).getTableTitleRe(*args, **kwargs)
+
+def getSiteHhc(config, sitename):
+    "Returns HHC class for current site"
+    hhcName = config.supported_sites[sitename].converter
+    hhcModule = __import__(hhcName)
+    return getattr(hhcModule, hhcName[:-6])
+    
+    
+

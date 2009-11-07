@@ -53,6 +53,7 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 import Database
+from HandHistoryConverter import getTableTitleRe
 #    get the correct module for the current os
 if os.name == 'posix':
     import XTables as Tables
@@ -253,10 +254,10 @@ class HUD_main(object):
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
 
-                if type == "tour":
-                    tablewindow = Tables.Table(tournament = tour_number, table_number = tab_number)
-                else:
-                    tablewindow = Tables.Table(table_name = table_name)
+                table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
+                search_string = getTableTitleRe(self.config, site, type, **table_kwargs)
+                tablewindow = Tables.Table(search_string, **table_kwargs)
+
                 if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
