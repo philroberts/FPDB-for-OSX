@@ -79,7 +79,8 @@ class Table(Table_Window):
             self.gdk_handle = None
         else:
             self.number = int( mo.group(1), 0)
-            self.gdk_handle = gtk.gdk.window_foreign_new(int(self.number))
+            print "number =", self.number
+#            self.gdk_handle = gtk.gdk.window_foreign_new(int(self.number))
 
     def get_geometry(self):
         try:
