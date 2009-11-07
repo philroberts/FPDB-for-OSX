@@ -113,12 +113,12 @@ class Table_Window(object):
 
     def __str__(self):
 #    __str__ method for testing
+        likely_attrs = ("site", "number", "title", "width", "height", "x", "y", 
+                        "tournament", "table", "gdkhandle")
         temp = 'TableWindow object\n'
-        temp = temp + "    name = %s\n    site = %s\n    number = %s\n    title = %s\n" % (self.name, self.site, self.number, self.title)
-#        temp = temp + "    game = %s\n    structure = %s\n    max = %s\n" % (self.game, self.structure, self.max)
-        temp = temp + "    width = %d\n    height = %d\n    x = %d\n    y = %d\n" % (self.width, self.height, self.x, self.y)
-        if getattr(self, 'tournament', 0):
-            temp = temp + "    tournament = %d\n    table = %d" % (self.tournament, self.table)
+        for a in likely_attrs:
+            if getattr(self, a, 0):
+                temp += "    %s = %s\n" % (a, getattr(self, a))
         return temp
 
     def get_game(self):
