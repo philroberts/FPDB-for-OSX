@@ -68,14 +68,14 @@ def do_tip(widget, tip):
 
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
     match = re_Places.search(stat)
-    if match == None:
+    if match is None:
         result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': stat, 'player': player})
     else:
         base = stat[0:-2]
         places = int(stat[-1:])
         result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': base, 'player': player})
         match = re_Percent.search(result[1])
-        if match == None:
+        if match is None:
             result = (result[0], "%.*f" % (places, result[0]), result[2], result[3], result[4], result[5])
         else:
             result = (result[0], "%.*f%%" % (places, 100*result[0]), result[2], result[3], result[4], result[5])

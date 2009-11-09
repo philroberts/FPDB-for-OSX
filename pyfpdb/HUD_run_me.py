@@ -37,7 +37,8 @@ if __name__== "__main__":
     HUD_main.config = Configuration.Config()
 
     gobject.threads_init()                # this is required
-    thread.start_new_thread(HUD_main.read_stdin, ()) # starts the thread
+    hud = HUD_main.HUD_main()
+    thread.start_new_thread(hud.read_stdin, ()) # starts the thread
 
     HUD_main.main_window = gtk.Window()
     HUD_main.main_window.connect("destroy", destroy)
