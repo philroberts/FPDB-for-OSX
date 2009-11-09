@@ -205,7 +205,7 @@ class Database:
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
-            self.sql = SQL.Sql(type = self.type, db_server = self.db_server)
+            self.sql = SQL.Sql(db_server = self.db_server)
         else:
             self.sql = sql
 
@@ -249,7 +249,6 @@ class Database:
 
         db_params = c.get_db_parameters()
         self.import_options = c.get_import_parameters()
-        self.type = db_params['db-type']
         self.backend = db_params['db-backend']
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
@@ -1394,6 +1393,12 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['winnings'],
+                             pdata[p]['street0VPI'],
+                             pdata[p]['street1Seen'],
+                             pdata[p]['street2Seen'],
+                             pdata[p]['street3Seen'],
+                             pdata[p]['street4Seen'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
@@ -1406,6 +1411,12 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            winnings,
+            street0VPI,
+            street1Seen,
+            street2Seen,
+            street3Seen,
+            street4Seen,
             street0Aggr,
             street1Aggr,
             street2Aggr,
@@ -1414,7 +1425,8 @@ class Database:
            )
            VALUES (
                 %s, %s, %s, %s, %s,
-                %s, %s, %s, %s
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s
             )"""
 
 #            position,
@@ -1424,16 +1436,10 @@ class Database:
 #            card3,
 #            card4,
 #            startCards,
-#            winnings,
 #            rake,
 #            totalProfit,
-#            street0VPI,
 #            street0_3BChance,
 #            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
 #            sawShowdown,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,

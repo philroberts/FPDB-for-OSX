@@ -18,6 +18,13 @@
 #fpdb modules
 import Card
 
+DEBUG = True
+
+if DEBUG:
+    import pprint
+    pp = pprint.PrettyPrinter(indent=4)
+
+
 class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
@@ -30,13 +37,19 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]] = {}
             #Init vars that may not be used, but still need to be inserted.
+            # All stud street4 need this when importing holdem
+            self.handsplayers[player[1]]['winnings']    = 0
+            self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
-        
-        print "hands =", self.hands
-        print "handsplayers =", self.handsplayers
+
+        if DEBUG:
+            print "Hands:"
+            pp.pprint(self.hands)
+            print "HandsPlayers:"
+            pp.pprint(self.handsplayers)
 
     def getHands(self):
         return self.hands
@@ -85,10 +98,19 @@ class DerivedStats():
         # commentTs DATETIME
 
     def assembleHandsPlayers(self, hand):
+        #street0VPI/vpip already called in Hand
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = player[2]
+
+        # Winnings is a non-negative value of money collected from the pot, which already includes the
+        # rake taken out. hand.collectees is Decimal, database requires cents
+        for player in hand.collectees:
+            self.handsplayers[player]['winnings'] = int(100 * hand.collectees[player])
+
+        for i, street in enumerate(hand.actionStreets[2:]):
+            self.seen(self.hand, i+1)
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
@@ -794,9 +816,9 @@ class DerivedStats():
 
         for player in hand.players:
             if player[1] in vpipers:
-                self.handsplayers[player[1]]['vpip'] = True
+                self.handsplayers[player[1]]['street0VPI'] = True
             else:
-                self.handsplayers[player[1]]['vpip'] = False
+                self.handsplayers[player[1]]['street0VPI'] = False
 
     def playersAtStreetX(self, hand):
         """ playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4/draw1 */"""
@@ -832,6 +854,17 @@ class DerivedStats():
         self.hands['street2Raises'] = 0 # /* num big bets paid to see river/street6 */
         self.hands['street3Raises'] = 0 # /* num big bets paid to see sd/street7 */
         self.hands['street4Raises'] = 0 # /* num big bets paid to see showdown */
+
+    def seen(self, hand, i):
+        pas = set()
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            pas.add(act[0])
+
+        for player in hand.players:
+            if player[1] in pas:
+                self.handsplayers[player[1]]['street%sSeen' % i] = True
+            else:
+                self.handsplayers[player[1]]['street%sSeen' % i] = False
 
     def aggr(self, hand, i):
         aggrers = set()

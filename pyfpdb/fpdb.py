@@ -450,7 +450,7 @@ class fpdb:
         if self.db is not None and self.db.fdb is not None:
             self.db.disconnect()
 
-        self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
+        self.sql = SQL.Sql(db_server = self.settings['db-server'])
         try:
             self.db = Database.Database(self.config, sql = self.sql)
         except FpdbMySQLFailedError:
