@@ -53,14 +53,8 @@ def get_default_config_path():
 def get_exec_path():
     """Returns the path to the fpdb.(py|exe) file we are executing"""
     if hasattr(sys, "frozen"):  # compiled by py2exe
-        print "executable path is", os.path.dirname(sys.executable)
-        print "exec path is", os.path.dirname(sys.executable)
-        print "0 path is", os.path.dirname(sys.path[0])
         return os.path.dirname(sys.executable)
     else: 
-        print "executable path is", os.path.dirname(sys.executable)
-        print "exec path is", os.path.dirname(sys.argv[0])
-        print "0 path is", os.path.dirname(sys.path[0])
         return os.path.dirname(sys.path[0])
 
 def get_config(file_name, fallback = True):
@@ -116,7 +110,7 @@ log.error("FARTS")
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
-DIR_SELF = os.path.dirname(os.path.abspath(__file__))
+DIR_SELF = os.path.dirname(get_exec_path())
 #TODO: imo no good idea to place 'database' in parent dir
 DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
 
