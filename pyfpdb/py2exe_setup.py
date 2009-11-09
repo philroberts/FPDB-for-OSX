@@ -64,7 +64,7 @@ setup(
                   }
               },
 
-    data_files = ['HUD_config.xml',
+    data_files = ['HUD_config.xml.example',
                   'Cards01.png',
                   'logging.conf'
                  ]
