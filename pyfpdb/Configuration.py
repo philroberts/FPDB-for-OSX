@@ -84,13 +84,13 @@ def get_config(file_name, fallback = True):
             sys.exit()
     return file_name
 
-def get_logger(file_name, fallback = False):
+def get_logger(file_name, config = "config", fallback = False):
     conf = get_config(file_name, fallback = fallback)
     if conf:
         try:
             logging.config.fileConfig(conf)
-            log = logging.getLogger("config")
-            log.debug("config logger initialised")
+            log = logging.getLogger(config)
+            log.debug("%s logger initialised" % config)
             return log
         except:
             pass
@@ -102,7 +102,6 @@ def get_logger(file_name, fallback = False):
 
 #    find a logging.conf file and set up logging
 log = get_logger("logging.conf")
-log.error("FARTS")
 
 ########################################################################
 # application wide consts

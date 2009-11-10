@@ -46,8 +46,6 @@ import Tourney
 from Exceptions import *
 
 log = Configuration.get_logger("logging.conf")
-log.error("TURDS")
-
 
 class Database:
 
