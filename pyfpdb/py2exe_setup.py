@@ -66,7 +66,8 @@ setup(
 
     data_files = ['HUD_config.xml.example',
                   'Cards01.png',
-                  'logging.conf'
+                  'logging.conf',
+                  (r'matplotlibdata', glob.glob(r'c:\python26\Lib\site-packages\matplotlib\mpl-data\*'))
                  ]
 )
 
