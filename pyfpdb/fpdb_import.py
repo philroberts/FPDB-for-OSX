@@ -42,15 +42,7 @@ import fpdb_parse_logic
 import Configuration
 import Exceptions
 
-import logging, logging.config
-import ConfigParser
-
-try:
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger('importer')
+log = Configuration.get_logger("logging.conf", "importer")
 
 #    database interface modules
 try:

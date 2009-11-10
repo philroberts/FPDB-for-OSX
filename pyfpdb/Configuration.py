@@ -37,28 +37,108 @@ from xml.dom.minidom import Node
 import logging, logging.config
 import ConfigParser
 
-try: # local path
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
+##############################################################################
+#    Functions for finding config files and setting up logging
+#    Also used in other modules that use logging.
 
-log = logging.getLogger("config")
-log.debug("config logger initialised")
+def get_default_config_path():
+    """Returns the path where the fpdb config file _should_ be stored."""
+    if os.name == 'posix':
+        config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
+    elif os.name == 'nt':
+        config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
+    else: config_path = False
+    return config_path
 
-def fix_tf(x, default = True):
-#    The xml parser doesn't translate "True" to True. Therefore, we never get
-#    True or False from the parser only "True" or "False". So translate the 
-#    string to the python boolean representation.
-    if x == "1" or x == 1 or string.lower(x) == "true"  or string.lower(x) == "t":
+def get_exec_path():
+    """Returns the path to the fpdb.(py|exe) file we are executing"""
+    if hasattr(sys, "frozen"):  # compiled by py2exe
+        return os.path.dirname(sys.executable)
+    else: 
+        return os.path.dirname(sys.path[0])
+
+def get_config(file_name, fallback = True):
+    """Looks in cwd and in self.default_config_path for a config file."""
+    config_path = os.path.join(get_exec_path(), file_name)
+    if os.path.exists(config_path):    # there is a file in the cwd
+        return config_path             # so we use it
+    else: # no file in the cwd, look where it should be in the first place
+        config_path = os.path.join(get_default_config_path(), file_name)
+        if os.path.exists(config_path):
+            return config_path
+
+#    No file found
+    if not fallback:
+        return False
+
+#    OK, fall back to the .example file, should be in the start dir
+    if os.path.exists(file_name + ".example"):
+        try:
+            shutil.copyfile(file_name + ".example", file_name)
+            print "No %s found, using %s.example.\n" % (file_name, file_name)
+            print "A %s file has been created.  You will probably have to edit it." % file_name
+            sys.stderr.write("No %s found, using %s.example.\n" % (file_name, file_name) )
+        except:
+            print "No %s found, cannot fall back. Exiting.\n" % file_name
+            sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+            sys.exit()
+    return file_name
+
+def get_logger(file_name, config = "config", fallback = False):
+    conf = get_config(file_name, fallback = fallback)
+    if conf:
+        try:
+            logging.config.fileConfig(conf)
+            log = logging.getLogger(config)
+            log.debug("%s logger initialised" % config)
+            return log
+        except:
+            pass
+
+    log = logging.basicConfig()
+    log = logging.getLogger()
+    log.debug("config logger initialised")
+    return log
+
+#    find a logging.conf file and set up logging
+log = get_logger("logging.conf")
+
+########################################################################
+# application wide consts
+
+APPLICATION_NAME_SHORT = 'fpdb'
+APPLICATION_VERSION = 'xx.xx.xx'
+
+DIR_SELF = os.path.dirname(get_exec_path())
+#TODO: imo no good idea to place 'database' in parent dir
+DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
+
+DATABASE_TYPE_POSTGRESQL = 'postgresql'
+DATABASE_TYPE_SQLITE = 'sqlite'
+DATABASE_TYPE_MYSQL = 'mysql'
+DATABASE_TYPES = (
+        DATABASE_TYPE_POSTGRESQL,
+        DATABASE_TYPE_SQLITE,
+        DATABASE_TYPE_MYSQL,
+        )
+
+########################################################################
+def string_to_bool(string, default=True):
+    """converts a string representation of a boolean value to boolean True or False
+    @param string: (str) the string to convert
+    @param default: value to return if the string can not be converted to a boolean value
+    """
+    string = string.lower()
+    if string in ('1', 'true', 't'):
         return True
-    if x == "0" or x == 0 or string.lower(x) == "false" or string.lower(x) == "f":
+    elif string in ('0', 'false', 'f'):
         return False
     return default
 
 class Layout:
     def __init__(self, node):
 
-        self.max      = int( node.getAttribute('max') )
+        self.max    = int( node.getAttribute('max') )
         if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
         self.width    = int( node.getAttribute('width') )
         self.height   = int( node.getAttribute('height') )
@@ -96,21 +176,21 @@ class Site:
         self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
         self.site_path    = normalizePath(node.getAttribute("site_path"))
-        self.HH_path      = normalizePath(node.getAttribute("HH_path"))
-        self.decoder      = node.getAttribute("decoder")
+        self.HH_path    = normalizePath(node.getAttribute("HH_path"))
+        self.decoder    = node.getAttribute("decoder")
         self.hudopacity   = node.getAttribute("hudopacity")
         self.hudbgcolor   = node.getAttribute("bgcolor")
         self.hudfgcolor   = node.getAttribute("fgcolor")
         self.converter    = node.getAttribute("converter")
         self.aux_window   = node.getAttribute("aux_window")
-        self.font         = node.getAttribute("font")
+        self.font        = node.getAttribute("font")
         self.font_size    = node.getAttribute("font_size")
         self.use_frames   = node.getAttribute("use_frames")
-        self.enabled      = fix_tf(node.getAttribute("enabled"), default = True)
+        self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
-        
+
         print "Loading site", self.site_name    
 
         for layout_node in node.getElementsByTagName('layout'):
@@ -153,10 +233,10 @@ class Stat:
 class Game:
     def __init__(self, node):
         self.game_name = node.getAttribute("game_name")
-        self.rows      = int( node.getAttribute("rows") )
-        self.cols      = int( node.getAttribute("cols") )
-        self.xpad      = node.getAttribute("xpad")
-        self.ypad      = node.getAttribute("ypad")
+        self.rows    = int( node.getAttribute("rows") )
+        self.cols    = int( node.getAttribute("cols") )
+        self.xpad    = node.getAttribute("xpad")
+        self.ypad    = node.getAttribute("ypad")
 
 #    Defaults
         if self.xpad == "": self.xpad = 1
@@ -170,15 +250,15 @@ class Game:
             aux_list[i] = aux_list[i].strip()
         self.aux = aux_list
 
-        self.stats     = {}
+        self.stats    = {}
         for stat_node in node.getElementsByTagName('stat'):
             stat = Stat()
             stat.stat_name = stat_node.getAttribute("stat_name")
-            stat.row       = int( stat_node.getAttribute("row") )
-            stat.col       = int( stat_node.getAttribute("col") )
-            stat.tip       = stat_node.getAttribute("tip")
-            stat.click     = stat_node.getAttribute("click")
-            stat.popup     = stat_node.getAttribute("popup")
+            stat.row     = int( stat_node.getAttribute("row") )
+            stat.col     = int( stat_node.getAttribute("col") )
+            stat.tip     = stat_node.getAttribute("tip")
+            stat.click    = stat_node.getAttribute("click")
+            stat.popup    = stat_node.getAttribute("popup")
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
             stat.hudcolor  = stat_node.getAttribute("hudcolor")
@@ -197,18 +277,17 @@ class Game:
             temp = temp + "%s" % self.stats[stat]
             
         return temp
-             
+            
 class Database:
     def __init__(self, node):
         self.db_name   = node.getAttribute("db_name")
-        self.db_server = node.getAttribute("db_server")
-        self.db_ip     = node.getAttribute("db_ip")
+        self.db_server = node.getAttribute("db_server").lower()
+        self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
-        self.db_type   = node.getAttribute("db_type")
         self.db_pass   = node.getAttribute("db_pass")
-        self.db_selected = fix_tf(node.getAttribute("default"),"False")
-        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_type:'%(type)s'  db_pass (not logged)  selected:'%(sel)s'" \
-                  % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'type':self.db_type, 'sel':self.db_selected} )
+        self.db_selected = string_to_bool(node.getAttribute("default"), default=False)
+        log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_pass (not logged)  selected:'%(sel)s'" \
+                % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'sel':self.db_selected} )
         
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
@@ -244,7 +323,7 @@ class Aux_window:
 
 class HHC:
     def __init__(self, node):
-        self.site      = node.getAttribute("site")
+        self.site    = node.getAttribute("site")
         self.converter = node.getAttribute("converter")
 
     def __str__(self):
@@ -254,7 +333,7 @@ class HHC:
 class Popup:
     def __init__(self, node):
         self.name  = node.getAttribute("pu_name")
-        self.pu_stats     = []
+        self.pu_stats    = []
         for stat_node in node.getElementsByTagName('pu_stat'):
             self.pu_stats.append(stat_node.getAttribute("pu_stat_name"))
         
@@ -267,32 +346,32 @@ class Popup:
 class Import:
     def __init__(self, node):
         self.node = node
-        self.interval      = node.getAttribute("interval")
+        self.interval    = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
-        self.saveActions = fix_tf(node.getAttribute("saveActions"), True)
-        self.fastStoreHudCache = fix_tf(node.getAttribute("fastStoreHudCache"), False)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
-             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
+            % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
 class HudUI:
     def __init__(self, node):
         self.node = node
         self.label  = node.getAttribute('label')
         #
-        self.aggregate_ring = fix_tf(node.getAttribute('aggregate_ring_game_stats'))
-        self.aggregate_tour = fix_tf(node.getAttribute('aggregate_tourney_stats'))
-        self.hud_style      = node.getAttribute('stat_aggregation_range')
-        self.hud_days       = node.getAttribute('aggregation_days')
+        self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
+        self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
+        self.hud_style    = node.getAttribute('stat_aggregation_range')
+        self.hud_days     = node.getAttribute('aggregation_days')
         self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
         #
-        self.h_aggregate_ring   = fix_tf(node.getAttribute('aggregate_hero_ring_game_stats'))
-        self.h_aggregate_tour   = fix_tf(node.getAttribute('aggregate_hero_tourney_stats'))
+        self.h_aggregate_ring   = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
+        self.h_aggregate_tour   = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
         self.h_hud_style        = node.getAttribute('hero_stat_aggregation_range')
-        self.h_hud_days         = node.getAttribute('hero_aggregation_days')
-        self.h_agg_bb_mult      = node.getAttribute('hero_aggregation_level_multiplier')
+        self.h_hud_days        = node.getAttribute('hero_aggregation_days')
+        self.h_agg_bb_mult    = node.getAttribute('hero_aggregation_level_multiplier')
 
 
     def __str__(self):
@@ -301,9 +380,9 @@ class HudUI:
 
 class Tv:
     def __init__(self, node):
-        self.combinedStealFold = node.getAttribute("combinedStealFold")
-        self.combined2B3B      = node.getAttribute("combined2B3B")
-        self.combinedPostflop  = node.getAttribute("combinedPostflop")
+        self.combinedStealFold = string_to_bool(node.getAttribute("combinedStealFold"), default=True)
+        self.combined2B3B    = string_to_bool(node.getAttribute("combined2B3B"), default=True)
+        self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
 
     def __str__(self):
         return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" % 
@@ -315,7 +394,7 @@ class Config:
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
-        self.default_config_path = self.get_default_config_path()
+#        self.default_config_path = self.get_default_config_path()
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
@@ -323,28 +402,12 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: # configuration file path not passed or invalid
-            file = self.find_config() #Look for a config file in the normal places
-
-        if file is None: # no config file in the normal places
-            file = self.find_example_config() #Look for an example file to edit
-            
-        if file is None: # that didn't work either, just die
-            print "No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting"
-            sys.stderr.write("No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting")
-            print "press enter to continue"
-            sys.stdin.readline()
-            sys.exit()
+        file = get_config("HUD_config.xml")
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
-#    sc 2009/10/04 Example already copied to main filename, is this ok?
         log.info("Reading configuration file %s" % file)
-        if os.sep in file:
-            print "\nReading configuration file %s\n" % file
-        else:
-            print "\nReading configuration file %s" % file
-            print "in %s\n" % os.getcwd()
+        print "\nReading configuration file %s\n" % file
         try:
             doc = xml.dom.minidom.parse(file)
         except: 
@@ -358,10 +421,13 @@ class Config:
         self.file = file
         self.supported_sites = {}
         self.supported_games = {}
-        self.supported_databases = {}
+        self.supported_databases = {}        # databaseName --> Database instance
         self.aux_windows = {}
         self.hhcs = {}
         self.popup_windows = {}
+        self.db_selected = None    # database the user would like to use
+        self.tv = None
+
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -372,37 +438,34 @@ class Config:
         for game_node in doc.getElementsByTagName("game"):
             game = Game(node = game_node)
             self.supported_games[game.game_name] = game
-            
+        
+        # parse databases defined by user in the <supported_databases> section
+        # the user may select the actual database to use via commandline or by setting the selected="bool" 
+        # attribute of the tag. if no database is explicitely selected, we use the first one we come across
 #        s_dbs = doc.getElementsByTagName("supported_databases")
-        # select database from those defined in config by:
-        #    1) command line option
-        # or 2) selected="True" in config element
-        # or 3) just choose the first we come across
+        #TODO: do we want to take all <database> tags or all <database> tags contained in <supported_databases>
+        #         ..this may break stuff for some users. so leave it unchanged for now untill there is a decission
         for db_node in doc.getElementsByTagName("database"):
-            try:
-                db = Database(node = db_node)
-            except:
-                raise FpdbError("Unable to create database object")
-            else:
-                if db.db_name in self.supported_databases:
-                    raise FpdbError("Database names must be unique")
-                # If there is only one Database node, or none are marked
-                # default, use first
-                if not self.supported_databases:
-                    self.db_selected = db.db_name
-                self.supported_databases[db.db_name] = db
-                if db.db_selected:
-                    self.db_selected = db.db_name
-                    
+            db = Database(node=db_node)
+            if db.db_name in self.supported_databases:
+                raise ValueError("Database names must be unique")
+            if self.db_selected is None or db.db_selected:
+                self.db_selected = db.db_name
+            self.supported_databases[db.db_name] = db
+        #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored 
+        #           ..when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
+        #NOTE: fpdb can not handle the case when no database is defined in xml, so we throw an exception for now
+        if self.db_selected is None:
+            raise ValueError('There must be at least one database defined')
 
-#       s_dbs = doc.getElementsByTagName("mucked_windows")
+#     s_dbs = doc.getElementsByTagName("mucked_windows")
         for aw_node in doc.getElementsByTagName("aw"):
             aw = Aux_window(node = aw_node)
             self.aux_windows[aw.name] = aw
 
-#       s_dbs = doc.getElementsByTagName("mucked_windows")
+#     s_dbs = doc.getElementsByTagName("mucked_windows")
         for hhc_node in doc.getElementsByTagName("hhc"):
             hhc = HHC(node = hhc_node)
             self.hhcs[hhc.site] = hhc
@@ -421,8 +484,7 @@ class Config:
             self.ui = hui
 
         for tv_node in doc.getElementsByTagName("tv"):
-            tv = Tv(node = tv_node)
-            self.tv = tv
+            self.tv = Tv(node = tv_node)
 
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
@@ -432,8 +494,8 @@ class Config:
             else:
                 df_parms = self.read_default_conf(df_file)
                 self.set_db_parameters(db_name = 'fpdb', db_ip = df_parms['db-host'],
-                                       db_user = df_parms['db-user'],
-                                       db_pass = df_parms['db-password'])
+                                     db_user = df_parms['db-user'],
+                                     db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
 
         print ""
@@ -441,28 +503,6 @@ class Config:
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
         
-    def find_config(self):
-        """Looks in cwd and in self.default_config_path for a config file."""
-        if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
-            file = 'HUD_config.xml'             # so we use it
-        else: # no HUD_config in the cwd, look where it should be in the first place
-            config_path = os.path.join(self.default_config_path, 'HUD_config.xml')
-            if os.path.exists(config_path):
-                file = config_path
-            else:
-                file = None
-        return file
-
-    def get_default_config_path(self):
-        """Returns the path where the fpdb config file _should_ be stored."""
-        if os.name == 'posix':
-            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
-        elif os.name == 'nt':
-            config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
-        else: config_path = None
-        return config_path
-
-
     def find_default_conf(self):
         if os.name == 'posix':
             config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'default.conf')
@@ -472,30 +512,6 @@ class Config:
 
         if config_path and os.path.exists(config_path):
             file = config_path
-        else:
-            file = None
-        return file
-
-    def read_default_conf(self, file):
-        parms = {}
-        with open(file, "r") as fh:
-            for line in fh:
-                line = string.strip(line)
-                (key, value) = line.split('=')
-                parms[key] = value
-        return parms
-                
-    def find_example_config(self):
-        if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
-            file = 'HUD_config.xml'             # so we use it
-            try:
-                shutil.copyfile(file+'.example', file)
-            except:
-                file = ''
-            print "No HUD_config.xml found, using HUD_config.xml.example.\n", \
-                "A HUD_config.xml has been created.  You will probably have to edit it."
-            sys.stderr.write("No HUD_config.xml found, using HUD_config.xml.example.\n" + \
-                "A HUD_config.xml has been created.  You will probably have to edit it.")
         else:
             file = None
         return file
@@ -539,8 +555,8 @@ class Config:
                 self.doc.writexml(f)
         else:
             shutil.move(self.file, self.file+".backup")
-            with open(self.file, 'w') as f:
-                self.doc.writexml(f)
+        with open(file, 'w') as f:
+            self.doc.writexml(f)
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
@@ -571,6 +587,13 @@ class Config:
             else:
                 self.aux_windows[aux_name].layout[max].location[i] = ( locations[i][0], locations[i][1] )
 
+    #NOTE: we got a nice Database class, so why map it again here?
+    #            user input validation should be done when initializing the Database class. this allows to give appropriate feddback when something goes wrong
+    #            try ..except is evil here. it swallows all kinds of errors. dont do this
+    #            naming database types 2, 3, 4 on the fly is no good idea. i see this all over the code. better use some globally defined consts (see DATABASE_TYPE_*)
+    #            i would like to drop this method entirely and replace it by get_selected_database() or better get_active_database(), returning one of our Database instances
+    #            thus we can drop self.db_selected (holding database name) entirely and replace it with self._active_database = Database, avoiding to define the same
+    #            thing multiple times
     def get_db_parameters(self):
         db = {}
         name = self.db_selected
@@ -590,20 +613,18 @@ class Config:
         try:    db['db-server'] = self.supported_databases[name].db_server
         except: pass
 
-        try:    db['db-type'] = self.supported_databases[name].db_type
-        except: pass
-
-        if   string.lower(self.supported_databases[name].db_server) == 'mysql':
+        if self.supported_databases[name].db_server== DATABASE_TYPE_MYSQL:
             db['db-backend'] = 2
-        elif string.lower(self.supported_databases[name].db_server) == 'postgresql':
+        elif self.supported_databases[name].db_server== DATABASE_TYPE_POSTGRESQL:
             db['db-backend'] = 3
-        elif string.lower(self.supported_databases[name].db_server) == 'sqlite':
+        elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
             db['db-backend'] = 4 
-        else: db['db-backend'] = None # this is big trouble
+        else:
+            raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
-                          db_pass = None, db_server = None, db_type = None):
+                        db_pass = None, db_server = None):
         db_node = self.get_db_node(db_name)
         if db_node != None:
             if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
@@ -627,25 +648,22 @@ class Config:
         return None
 
     def get_tv_parameters(self):
-        tv = {}
-        try:    tv['combinedStealFold'] = self.tv.combinedStealFold
-        except: tv['combinedStealFold'] = True
-
-        try:    tv['combined2B3B']      = self.tv.combined2B3B
-        except: tv['combined2B3B']      = True
-
-        try:    tv['combinedPostflop']  = self.tv.combinedPostflop
-        except: tv['combinedPostflop']  = True
-        return tv
+        if self.tv is not None:
+            return {
+                    'combinedStealFold': self.tv.combinedStealFold,
+                    'combined2B3B': self.tv.combined2B3B,
+                    'combinedPostflop': self.tv.combinedPostflop
+                    }
+        return {}
 
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
         hui = {}
-        
+
         default_text = 'FPDB Menu - Right click\nLeft-Drag to Move'
         try:
             hui['label'] = self.ui.label
-            if self.ui.label == '':     # Empty menu label is a big no-no
+            if self.ui.label == '':    # Empty menu label is a big no-no
                 hui['label'] = default_text
         except:
             hui['label'] = default_text
@@ -659,11 +677,11 @@ class Config:
         try:    hui['hud_style']        = self.ui.hud_style
         except: hui['hud_style']        = 'A'
 
-        try:    hui['hud_days']         = int(self.ui.hud_days)
-        except: hui['hud_days']         = 90
+        try:    hui['hud_days']        = int(self.ui.hud_days)
+        except: hui['hud_days']        = 90
 
-        try:    hui['agg_bb_mult']      = self.ui.agg_bb_mult
-        except: hui['agg_bb_mult']      = 1
+        try:    hui['agg_bb_mult']    = self.ui.agg_bb_mult
+        except: hui['agg_bb_mult']    = 1
 
         # Hero specific
 
@@ -673,11 +691,11 @@ class Config:
         try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
         except: hui['h_aggregate_tour'] = True
 
-        try:    hui['h_hud_style']      = self.ui.h_hud_style
-        except: hui['h_hud_style']      = 'S'
+        try:    hui['h_hud_style']    = self.ui.h_hud_style
+        except: hui['h_hud_style']    = 'S'
 
-        try:    hui['h_hud_days']       = int(self.ui.h_hud_days)
-        except: hui['h_hud_days']       = 30
+        try:    hui['h_hud_days']     = int(self.ui.h_hud_days)
+        except: hui['h_hud_days']     = 30
 
         try:    hui['h_agg_bb_mult']    = self.ui.h_agg_bb_mult
         except: hui['h_agg_bb_mult']    = 1
@@ -687,19 +705,19 @@ class Config:
     
     def get_import_parameters(self):
         imp = {}
-        try:     imp['callFpdbHud']       = self.imp.callFpdbHud
-        except:  imp['callFpdbHud']       = True
+        try:    imp['callFpdbHud']     = self.imp.callFpdbHud
+        except:  imp['callFpdbHud']     = True
 
-        try:     imp['interval']          = self.imp.interval
-        except:  imp['interval']          = 10
+        try:    imp['interval']        = self.imp.interval
+        except:  imp['interval']        = 10
 
-        try:     imp['hhArchiveBase']     = self.imp.hhArchiveBase
-        except:  imp['hhArchiveBase']     = "~/.fpdb/HandHistories/"
+        try:    imp['hhArchiveBase']    = self.imp.hhArchiveBase
+        except:  imp['hhArchiveBase']    = "~/.fpdb/HandHistories/"
 
-        try:     imp['saveActions']       = self.imp.saveActions
-        except:  imp['saveActions']       = True
+        try:    imp['saveActions']     = self.imp.saveActions
+        except:  imp['saveActions']     = True
 
-        try:     imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
+        try:    imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
         except:  imp['fastStoreHudCache'] = True
         return imp
 
@@ -734,69 +752,65 @@ class Config:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
         return colors
     
-    def get_default_font(self, site = 'PokerStars'):
-        (font, font_size) = ("Sans", "8")
-        if site not in self.supported_sites:
-            return ("Sans", "8")
-        if self.supported_sites[site].font == "":
-            font = "Sans"
-        else:
-            font = self.supported_sites[site].font
+    def get_default_font(self, site='PokerStars'):
+        font = "Sans"
+        font_size = "8"
+        site = self.supported_sites.get(site, None)
+        if site is not None:
+            if site.font:
+                font = site.font
+            if site.font_size:
+                font_size = site.font_size
+        return font, font_size
 
-        if self.supported_sites[site].font_size == "":
-            font_size = "8"
-        else:
-            font_size = self.supported_sites[site].font_size
-        return (font, font_size)
-
-    def get_locations(self, site = "PokerStars", max = "8"):
-        
-        try:
-            locations = self.supported_sites[site].layout[max].location
-        except:
-            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
-                          (586, 393), (421, 440), (267, 440), (  0, 361),
-                          (  0, 280), (121, 280), ( 46,  30) )
-        return locations
-
+    def get_locations(self, site_name="PokerStars", max=8):
+        site = self.supported_sites.get(site_name, None)
+        if site is not None:
+            location = site.layout.get(max, None)
+            if location is not None:
+                return location.location
+        return (
+                    (  0,   0), (684,  61), (689, 239), (692, 346), 
+                    (586, 393), (421, 440), (267, 440), (  0, 361),
+                    (  0, 280), (121, 280), ( 46,  30) 
+                )
+    
     def get_aux_locations(self, aux = "mucked", max = "9"):
     
         try:
             locations = self.aux_windows[aux].layout[max].location
         except:
             locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
-                          (586, 393), (421, 440), (267, 440), (  0, 361),
-                          (  0, 280), (121, 280), ( 46,  30) )
+                        (586, 393), (421, 440), (267, 440), (  0, 361),
+                        (  0, 280), (121, 280), ( 46,  30) )
         return locations
 
-    def get_supported_sites(self, all = False):
+    def get_supported_sites(self, all=False):
         """Returns the list of supported sites."""
-        the_sites = []
-        for site in self.supported_sites.keys():
-            params = self.get_site_parameters(site)
-            if all or params['enabled']:
-                the_sites.append(site)
-        return the_sites
-
+        if all:
+            return self.supported_sites.keys()
+        else:
+            return [site_name for (site_name, site) in self.supported_sites.items() if site.enabled]
+        
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
         parms["converter"]    = self.supported_sites[site].converter
-        parms["decoder"]      = self.supported_sites[site].decoder
+        parms["decoder"]    = self.supported_sites[site].decoder
         parms["hudbgcolor"]   = self.supported_sites[site].hudbgcolor
         parms["hudfgcolor"]   = self.supported_sites[site].hudfgcolor
         parms["hudopacity"]   = self.supported_sites[site].hudopacity
         parms["screen_name"]  = self.supported_sites[site].screen_name
         parms["site_path"]    = self.supported_sites[site].site_path
         parms["table_finder"] = self.supported_sites[site].table_finder
-        parms["HH_path"]      = self.supported_sites[site].HH_path
+        parms["HH_path"]    = self.supported_sites[site].HH_path
         parms["site_name"]    = self.supported_sites[site].site_name
         parms["aux_window"]   = self.supported_sites[site].aux_window
-        parms["font"]         = self.supported_sites[site].font
+        parms["font"]        = self.supported_sites[site].font
         parms["font_size"]    = self.supported_sites[site].font_size
-        parms["enabled"]      = self.supported_sites[site].enabled
-        parms["xpad"]         = self.supported_sites[site].xpad
-        parms["ypad"]         = self.supported_sites[site].ypad
+        parms["enabled"]    = self.supported_sites[site].enabled
+        parms["xpad"]        = self.supported_sites[site].xpad
+        parms["ypad"]        = self.supported_sites[site].ypad
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
@@ -824,10 +838,7 @@ class Config:
 
     def get_aux_windows(self):
         """Gets the list of mucked window formats in the configuration."""
-        mw = []
-        for w in self.aux_windows.keys():
-            mw.append(w)
-        return mw
+        return self.aux_windows.keys()
 
     def get_aux_parameters(self, name):
         """Gets a dict of mucked window parameters from the named mw."""
@@ -847,11 +858,11 @@ class Config:
         param = {}
         if self.supported_games.has_key(name):
             param['game_name'] = self.supported_games[name].game_name
-            param['rows']      = self.supported_games[name].rows
-            param['cols']      = self.supported_games[name].cols
-            param['xpad']      = self.supported_games[name].xpad
-            param['ypad']      = self.supported_games[name].ypad
-            param['aux']       = self.supported_games[name].aux
+            param['rows']    = self.supported_games[name].rows
+            param['cols']    = self.supported_games[name].cols
+            param['xpad']    = self.supported_games[name].xpad
+            param['ypad']    = self.supported_games[name].ypad
+            param['aux']     = self.supported_games[name].aux
         return param
 
     def get_supported_games(self):
@@ -911,8 +922,8 @@ if __name__== "__main__":
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
     
-    print "db     = ", c.get_db_parameters()
-#    print "tv     = ", c.get_tv_parameters()
+    print "db    = ", c.get_db_parameters()
+#    print "tv    = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")

@@ -32,19 +32,12 @@ from xml.dom.minidom import Node
 import time
 import datetime
 from Exceptions import FpdbParseError
+import Configuration
 
 import gettext
 gettext.install('fpdb')
 
-import logging, logging.config
-import ConfigParser
-
-try:
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger("parser")
+log = Configuration.get_logger("logging.conf")
 
 import pygtk
 import gtk

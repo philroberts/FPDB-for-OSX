@@ -60,14 +60,10 @@ class InterProcessLockBase:
         self._has_lock = False
 
     def locked(self):
-        if self._has_lock:
-            return True
-        try:
-            self.acquire()
+        if self.acquire():
             self.release()
             return False
-        except SingleInstanceError:
-            return True    
+        return True    
 
 LOCK_FILE_DIRECTORY = '/tmp'
 
@@ -162,38 +158,33 @@ def test_construct():
 
     >>> lock1 = InterProcessLock(name=test_name)
     >>> lock1.acquire()
+    True
 
     >>> lock2 = InterProcessLock(name=test_name)
     >>> lock3 = InterProcessLock(name=test_name)
 
     # Since lock1 is locked, other attempts to acquire it fail.
     >>> lock2.acquire()
-    Traceback (most recent call last):
-    ...
-    SingleInstanceError: Could not acquire exclusive lock on /tmp/test.lck
+    False
 
     >>> lock3.acquire()
-    Traceback (most recent call last):
-    ...
-    SingleInstanceError: Could not acquire exclusive lock on /tmp/test.lck
+    False
 
     # Release the lock and let lock2 have it.
     >>> lock1.release()
     >>> lock2.acquire()
+    True
 
     >>> lock3.acquire()
-    Traceback (most recent call last):
-    ...
-    SingleInstanceError: Could not acquire exclusive lock on /tmp/test.lck
+    False
 
     # Release it and give it back to lock1
     >>> lock2.release()
     >>> lock1.acquire()
+    True
 
     >>> lock2.acquire()
-    Traceback (most recent call last):
-    ...
-    SingleInstanceError: Could not acquire exclusive lock on /tmp/test.lck
+    False
 
     # Test lock status
     >>> lock2.locked()
@@ -224,7 +215,7 @@ def test_construct():
     ...            import win32con
     ...            import pywintypes
     ...            handle = win32api.OpenProcess(win32con.PROCESS_TERMINATE , pywintypes.FALSE, pid)
-    ...            return (0 != win32api.TerminateProcess(handle, 0))
+    ...            #return (0 != win32api.TerminateProcess(handle, 0))
 
     # Test to acquire the lock in another process.
     >>> def execute(cmd):
@@ -237,15 +228,14 @@ def test_construct():
     >>> pid = execute('import interlocks;a=interlocks.InterProcessLock(name=\\''+test_name+ '\\');a.acquire();')
 
     >>> lock1.acquire()
-    Traceback (most recent call last):
-    ...
-    SingleInstanceError: Could not acquire exclusive lock on /tmp/test.lck
+    False
 
     >>> os_independent_kill(pid)
 
     >>> time.sleep(1)
 
     >>> lock1.acquire()
+    True
     >>> lock1.release()
 
     # Testing wait
@@ -253,13 +243,12 @@ def test_construct():
     >>> pid = execute('import interlocks;a=interlocks.InterProcessLock(name=\\''+test_name+ '\\');a.acquire();')
 
     >>> lock1.acquire()
-    Traceback (most recent call last):
-    ...
-    SingleInstanceError: Could not acquire exclusive lock on /tmp/test.lck
+    False
 
     >>> os_independent_kill(pid)
 
     >>> lock1.acquire(True)
+    True
     >>> lock1.release()
 
     """

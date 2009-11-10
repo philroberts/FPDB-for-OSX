@@ -45,16 +45,7 @@ import Card
 import Tourney
 from Exceptions import *
 
-import logging, logging.config
-import ConfigParser
-
-try: # local path
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger('db')
-
+log = Configuration.get_logger("logging.conf")
 
 class Database:
 
@@ -205,7 +196,7 @@ class Database:
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
-            self.sql = SQL.Sql(type = self.type, db_server = self.db_server)
+            self.sql = SQL.Sql(db_server = self.db_server)
         else:
             self.sql = sql
 
@@ -249,7 +240,6 @@ class Database:
 
         db_params = c.get_db_parameters()
         self.import_options = c.get_import_parameters()
-        self.type = db_params['db-type']
         self.backend = db_params['db-backend']
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
@@ -1394,6 +1384,12 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['winnings'],
+                             pdata[p]['street0VPI'],
+                             pdata[p]['street1Seen'],
+                             pdata[p]['street2Seen'],
+                             pdata[p]['street3Seen'],
+                             pdata[p]['street4Seen'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
@@ -1406,6 +1402,12 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            winnings,
+            street0VPI,
+            street1Seen,
+            street2Seen,
+            street3Seen,
+            street4Seen,
             street0Aggr,
             street1Aggr,
             street2Aggr,
@@ -1414,7 +1416,8 @@ class Database:
            )
            VALUES (
                 %s, %s, %s, %s, %s,
-                %s, %s, %s, %s
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s
             )"""
 
 #            position,
@@ -1424,16 +1427,10 @@ class Database:
 #            card3,
 #            card4,
 #            startCards,
-#            winnings,
 #            rake,
 #            totalProfit,
-#            street0VPI,
 #            street0_3BChance,
 #            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
 #            sawShowdown,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
@@ -2684,13 +2681,11 @@ class HandToWrite:
 if __name__=="__main__":
     c = Configuration.Config()
 
-    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
+    db_connection = Database(c) # mysql fpdb holdem
 #    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
-    print "database type = ", db_connection.type
-    
     db_connection.recreate_tables()
     
     h = db_connection.get_last_hand()
@@ -2704,17 +2699,11 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    #print "nutOmatics stats:"
-    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
-    #for p in stat_dict.keys():
-    #    print p, "  ", stat_dict[p]
-
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
 
     print "press enter to continue"
     sys.stdin.readline()
-
 
 #Code borrowed from http://push.cx/2008/caching-dictionaries-in-python-vs-ruby
 class LambdaDict(dict):

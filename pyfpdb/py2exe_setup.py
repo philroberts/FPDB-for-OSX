@@ -27,6 +27,22 @@ Py2exe script for fpdb.
 #        get rid of all the uneeded libraries (e.g., pyQT)
 #        think about an installer
 
+#HOW TO USE this script:
+#
+#  cd to the folder where this script is stored, usually .../pyfpdb.
+#  If there are build and dist subfolders present , delete them to get
+#  rid of earlier builds.
+#  Run the script with "py2exe_setup.py py2exe"
+#  You will frequently get messages about missing .dll files. E. g., 
+#  MSVCP90.dll. These are somewhere in your windows install, so you 
+#  can just copy them to your working folder.
+#  If it works, you'll have 2 new folders, build and dist. Build is 
+#  working space and should be deleted. Dist contains the files to be
+#  distributed. Last, you must copy the etc/, lib/ and share/ folders 
+# from your gtk/bin/ folder to the dist folder. (the whole folders, not 
+# just the contents) You can (should) then prune the etc/, lib/ and 
+# share/ folders to remove components we don't need. 
+
 from distutils.core import setup
 import py2exe
 
@@ -36,7 +52,8 @@ setup(
     version     = '0.12',
 
     console = [   {'script': 'fpdb.py', },
-                  {'script': 'HUD_main.py', }
+                  {'script': 'HUD_main.py', },
+                  {'script': 'Configuration.py', }
               ],
 
     options = {'py2exe': {
@@ -47,8 +64,9 @@ setup(
                   }
               },
 
-    data_files = ['HUD_config.xml',
-                  'Cards01.png'
+    data_files = ['HUD_config.xml.example',
+                  'Cards01.png',
+                  'logging.conf'
                  ]
 )
 
