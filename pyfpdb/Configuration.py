@@ -946,6 +946,6 @@ if __name__== "__main__":
 
     print "start up path = ", c.execution_path("")
 
-from xml.dom.ext import PrettyPrint
-for site_node in c.doc.getElementsByTagName("site"):
-    PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
+    from xml.dom.ext import PrettyPrint
+    for site_node in c.doc.getElementsByTagName("site"):
+        PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
