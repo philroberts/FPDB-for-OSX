@@ -402,7 +402,7 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        file = get_config("HUD_config.xml")
+        if file is None: file = get_config("HUD_config.xml")
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
@@ -945,3 +945,7 @@ if __name__== "__main__":
         print c.get_game_parameters(game)
 
     print "start up path = ", c.execution_path("")
+
+    from xml.dom.ext import PrettyPrint
+    for site_node in c.doc.getElementsByTagName("site"):
+        PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
