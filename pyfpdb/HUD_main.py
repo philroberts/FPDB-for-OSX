@@ -234,7 +234,12 @@ class HUD_main(object):
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
-                self.hud_dict[temp_key].stat_dict = stat_dict
+                try:
+                    self.hud_dict[temp_key].stat_dict = stat_dict
+                except KeyError:    # HUD instance has been killed off, key is stale
+                    sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
+                    sys.stderr.write('will not send hand\n')
+                    return
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
