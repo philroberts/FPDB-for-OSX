@@ -40,6 +40,7 @@ from TableWindow import Table_Window
 #    We might as well do this once and make them globals
 disp = Xlib.display.Display()
 root = disp.screen().root
+name_atom = disp.get_atom("WM_NAME", 1)
 
 class Table(Table_Window):
 
@@ -49,8 +50,14 @@ class Table(Table_Window):
         for outside in root.query_tree().children:
             for inside in outside.query_tree().children:
                 if done_looping: break
-                if inside.get_wm_name() and re.search(search_string, inside.get_wm_name()):
-                    if self.check_bad_words(inside.get_wm_name()): continue
+                prop = inside.get_property(name_atom, Xlib.Xatom.STRING, 0, 1000)
+                if prop is None: continue
+                if prop.value and re.search(search_string, prop.value):
+                    if self.check_bad_words(prop.value): continue
+#                if inside.get_wm_name() and re.search(search_string, inside.get_wm_name()):
+#                    if self.check_bad_words(inside.get_wm_name()):
+#                        print "bad word =", inside.get_wm_name() 
+#                        continue
                     self.window = inside
                     self.parent = outside
                     done_looping = True
