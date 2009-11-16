@@ -82,11 +82,12 @@ if __name__=="__main__":
         (tour_no, tab_no) = table_name.split(",", 1)
         tour_no = tour_no.rstrip()
         tab_no = tab_no.rstrip()
-        table = Tables.Table(tournament = tour_no, table_number = tab_no)
+        table = Tables.Table(None, tournament = tour_no, table_number = tab_no)
     else:   # not a tournament
         print "cash game"
         table_name = table_name.rstrip()
-        table = Tables.Table(table_name = table_name)
+        table = Tables.Table(None, table_name = table_name)
+    table.gdk_handle = gtk.gdk.window_foreign_new(table.number)
 
     print "table =", table
     print "game =", table.get_game()
