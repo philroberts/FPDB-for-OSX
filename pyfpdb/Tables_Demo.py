@@ -90,11 +90,11 @@ if __name__=="__main__":
     table.gdk_handle = gtk.gdk.window_foreign_new(table.number)
 
     print "table =", table
-    print "game =", table.get_game()
+#    print "game =", table.get_game()
 
     fake = fake_hud(table)
     print "fake =", fake
-    gobject.timeout_add(100, check_on_table, table, fake)
+#    gobject.timeout_add(100, check_on_table, table, fake)
     print "calling main"
     gtk.main()
 
