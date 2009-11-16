@@ -1604,11 +1604,11 @@ class Sql:
             """
 
         self.query['get_table_name'] = """
-                select h.tableName, h.maxSeats, gt.category, gt.type, gt.siteId
-                from Hands h
-                    ,Gametypes gt
-                where h.id = %s
-                and   gt.id = h.gametypeId
+                SELECT h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
+                FROM Hands h, Gametypes gt, Sites s
+                WHERE h.id = %s
+                    AND   gt.id = h.gametypeId
+                    AND   s.id = gt.siteID
             """
 
         self.query['get_actual_seat'] = """
@@ -2942,8 +2942,9 @@ class Sql:
                         ,hc_position
                         ,hp.tourneyTypeId
                         ,date_format(h.handStart, 'd%y%m%d')
->>>>>>> 28ca49d592c8e706ad6ee58dd26655bcc33fc5fb:pyfpdb/SQL.py
 """
+#>>>>>>> 28ca49d592c8e706ad6ee58dd26655bcc33fc5fb:pyfpdb/SQL.py
+#"""
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
                 INSERT INTO HudCache

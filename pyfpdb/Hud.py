@@ -386,9 +386,9 @@ class Hud:
                     (x, y) = loc[adj[i+1]]
                     w.relocate(x, y)
 
-        # While we're at it, fix the positions of mucked cards too
-        for aux in self.aux_windows:
-            aux.update_card_positions()
+                # While we're at it, fix the positions of mucked cards too
+                for aux in self.aux_windows:
+                    aux.update_card_positions()
 
         return True
 
@@ -440,7 +440,7 @@ class Hud:
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
 #    ask each aux to save its layout back to the config object
-        (aux.save_layout() for aux in self.aux_windows)
+        [aux.save_layout() for aux in self.aux_windows]
 #    save the config object back to the file
         print "saving new xml file"
         self.config.save()

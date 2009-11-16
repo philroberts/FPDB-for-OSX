@@ -92,7 +92,7 @@ class PokerStars(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
-            logging.debug("player_re: " + player_re)
+            log.debug("player_re: " + player_re)
             self.re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
@@ -186,7 +186,7 @@ class PokerStars(HandHistoryConverter):
 #        m = self.re_Button.search(hand.handText)
 #        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
-        logging.debug("readHandInfo: %s" % info)
+        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
@@ -197,15 +197,6 @@ class PokerStars(HandHistoryConverter):
                 hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
-            if key == 'TABLE':
-                hand.tablename = info[key]
-            if key == 'BUTTON':
-                hand.buttonpos = info[key]
-            if key == 'MAX':
-                hand.maxseats = int(info[key])
-
-            if key == 'MIXED':
-                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
 
             if key == 'TOURNO':
                 hand.tourNo = info[key]
@@ -213,6 +204,19 @@ class PokerStars(HandHistoryConverter):
                 hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]
+
+            if key == 'TABLE':
+                if hand.tourNo != None:
+                    hand.tablename = re.split(" ", info[key])[1]
+                else:
+                    hand.tablename = info[key]
+            if key == 'BUTTON':
+                hand.buttonpos = info[key]
+            if key == 'MAX':
+                hand.maxseats = int(info[key])
+
+            if key == 'MIXED':
+                hand.mixed = self.mixes[info[key]] if info[key] is not None else None
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
@@ -222,10 +226,10 @@ class PokerStars(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            logging.info('readButton: not found')
+            log.info('readButton: not found')
 
     def readPlayerStacks(self, hand):
-        logging.debug("readPlayerStacks")
+        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
@@ -261,7 +265,7 @@ class PokerStars(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        log.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
