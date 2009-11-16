@@ -51,6 +51,7 @@ class Table(Table_Window):
             for inside in outside.query_tree().children:
                 if done_looping: break
                 prop = inside.get_property(name_atom, Xlib.Xatom.STRING, 0, 1000)
+                print prop
                 if prop is None: continue
                 if prop.value and re.search(search_string, prop.value):
                     if self.check_bad_words(prop.value): continue
