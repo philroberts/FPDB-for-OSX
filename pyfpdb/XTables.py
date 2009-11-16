@@ -25,6 +25,7 @@ of Table_Window objects representing the windows found.
 
 #    Standard Library modules
 import re
+import os
 
 #    pyGTK modules
 import pygtk
@@ -40,23 +41,48 @@ from TableWindow import Table_Window
 #    We might as well do this once and make them globals
 disp = Xlib.display.Display()
 root = disp.screen().root
+name_atom = disp.get_atom("WM_NAME", 1)
 
 class Table(Table_Window):
 
     def find_table_parameters(self, search_string):
-        self.window = None
+#        self.window = None
+#        done_looping = False
+#        for outside in root.query_tree().children:
+#            for inside in outside.query_tree().children:
+#                if done_looping: break
+#                prop = inside.get_property(name_atom, Xlib.Xatom.STRING, 0, 1000)
+#                print prop
+#                if prop is None: continue
+#                if prop.value and re.search(search_string, prop.value):
+#                    if self.check_bad_words(prop.value): continue
+##                if inside.get_wm_name() and re.search(search_string, inside.get_wm_name()):
+##                    if self.check_bad_words(inside.get_wm_name()):
+##                        print "bad word =", inside.get_wm_name() 
+##                        continue
+#                    self.window = inside
+#                    self.parent = outside
+#                    done_looping = True
+#                    break
+
+        window_number = None
+        for listing in os.popen('xwininfo -root -tree').readlines():
+            if re.search(search_string, listing):
+                print listing
+                mo = re.match('\s+([\dxabcdef]+)\s', listing)
+                window_number = int( mo.group(1), 0)
+
         done_looping = False
         for outside in root.query_tree().children:
             for inside in outside.query_tree().children:
                 if done_looping: break
-                if inside.get_wm_name() and re.search(search_string, inside.get_wm_name()):
-                    if self.check_bad_words(inside.get_wm_name()): continue
+                if inside.id == window_number:
                     self.window = inside
                     self.parent = outside
                     done_looping = True
                     break
 
-        if self.window == None or self.parent == None:
+        if window_number is None:
             print "Window %s not found. Skipping." % search_string
             return None
 
