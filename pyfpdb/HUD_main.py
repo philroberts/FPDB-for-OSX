@@ -53,7 +53,13 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 import Database
-import Tables
+from HandHistoryConverter import getTableTitleRe
+#    get the correct module for the current os
+if os.name == 'posix':
+    import XTables as Tables
+elif os.name == 'nt':
+    import WinTables as Tables
+#import Tables
 import Hud
 
 
@@ -131,6 +137,7 @@ class HUD_main(object):
                  # TODO: The purpose of this try/finally block is to make darn sure that threads_leave()
                  # TODO: gets called. If there is an exception and threads_leave() doesn't get called we 
                  # TODO: lock up.  REB
+                table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
@@ -210,7 +217,7 @@ class HUD_main(object):
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game, type, site_id, tour_number, tab_number) = \
+                (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception, err:
                 print "db error: skipping %s" % new_hand_id 
@@ -247,16 +254,18 @@ class HUD_main(object):
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
 
-                if type == "tour":
-                    tablewindow = Tables.discover_tournament_table(self.config, tour_number, tab_number)
-                else:
-                    tablewindow = Tables.discover_table_by_name(self.config, table_name)
+                table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
+                search_string = getTableTitleRe(self.config, site, type, **table_kwargs)
+                tablewindow = Tables.Table(search_string, **table_kwargs)
+
                 if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
                     sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
                 else:
+                    tablewindow.max = max
+                    tablewindow.site = site_name
                     self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
             self.db_connection.connection.rollback()
 

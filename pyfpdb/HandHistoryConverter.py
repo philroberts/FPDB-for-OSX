@@ -32,19 +32,12 @@ from xml.dom.minidom import Node
 import time
 import datetime
 from Exceptions import FpdbParseError
+import Configuration
 
 import gettext
 gettext.install('fpdb')
 
-import logging, logging.config
-import ConfigParser
-
-try:
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger("parser")
+log = Configuration.get_logger("logging.conf")
 
 import pygtk
 import gtk
@@ -154,6 +147,7 @@ Otherwise, finish at EOF.
                     except FpdbParseError, e:
                         numErrors += 1
                         log.warning("Failed to convert hand %s" % e.hid)
+                        log.warning("Exception msg: '%s'" % str(e))
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
@@ -168,6 +162,7 @@ Otherwise, finish at EOF.
                         except FpdbParseError, e:
                             numErrors += 1
                             log.warning("Failed to convert hand %s" % e.hid)
+                            log.warning("Exception msg: '%s'" % str(e))
                             log.debug(handText)
                     numHands = len(handsList)
                     endtime = time.time()
@@ -506,3 +501,26 @@ or None if we fail to get the info """
     
     def getTourney(self):
         return self.tourney
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        if type=="tour":
+            return "%s.+Table\s%s" % (tournament, table_number)
+        else:
+            return table_name
+
+
+
+def getTableTitleRe(config, sitename, *args, **kwargs):
+    "Returns string to search in windows titles for current site"
+    return getSiteHhc(config, sitename).getTableTitleRe(*args, **kwargs)
+
+def getSiteHhc(config, sitename):
+    "Returns HHC class for current site"
+    hhcName = config.supported_sites[sitename].converter
+    hhcModule = __import__(hhcName)
+    return getattr(hhcModule, hhcName[:-6])
+    
+    
+
