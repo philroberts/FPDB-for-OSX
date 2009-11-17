@@ -361,16 +361,16 @@ class HudUI:
         self.node = node
         self.label  = node.getAttribute('label')
         #
+        self.hud_style      = node.getAttribute('stat_range')
+        self.hud_days       = node.getAttribute('stat_days')
         self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
         self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
-        self.hud_style    = node.getAttribute('stat_aggregation_range')
-        self.hud_days     = node.getAttribute('aggregation_days')
         self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
         #
-        self.h_aggregate_ring   = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
-        self.h_aggregate_tour   = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
-        self.h_hud_style        = node.getAttribute('hero_stat_aggregation_range')
-        self.h_hud_days        = node.getAttribute('hero_aggregation_days')
+        self.h_hud_style      = node.getAttribute('hero_stat_range')
+        self.h_hud_days       = node.getAttribute('hero_stat_days')
+        self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
+        self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
         self.h_agg_bb_mult    = node.getAttribute('hero_aggregation_level_multiplier')
 
 
