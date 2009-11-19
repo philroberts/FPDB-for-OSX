@@ -20,6 +20,7 @@ import os
 import re
 import sys
 import logging
+import math
 from time import time, strftime
 from Exceptions import *
 
@@ -52,6 +53,10 @@ class VARIANCE:
 
     def finalize(self):
         return float(var(self.store))
+
+class sqlitemath:
+    def mod(self, a, b):
+        return a%b
 
 class fpdb_db:
     MYSQL_INNODB = 2
@@ -148,6 +153,9 @@ class fpdb_db:
                                      , detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+            self.db.create_function("floor", 1, math.floor)
+            tmp = sqlitemath()
+            self.db.create_function("mod", 2, tmp.mod)
             if use_numpy:
                 self.db.create_aggregate("variance", 1, VARIANCE)
             else:

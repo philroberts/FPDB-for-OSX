@@ -69,36 +69,42 @@ class Table(Table_Window):
         for listing in os.popen('xwininfo -root -tree').readlines():
             if re.search(search_string, listing):
                 print listing
-                mo = re.match('\s+([\dxabcdef]+)\s', listing)
-                window_number = int( mo.group(1), 0)
-
-        done_looping = False
-        for outside in root.query_tree().children:
-            for inside in outside.query_tree().children:
-                if done_looping: break
-                if inside.id == window_number:
-                    self.window = inside
-                    self.parent = outside
-                    done_looping = True
-                    break
+                mo = re.match('\s+([\dxabcdef]+) (.+):\s\(\"([a-zA-Z.]+)\".+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
+                self.number = int( mo.group(1), 0)
+                self.width  = int( mo.group(4) )
+                self.height = int( mo.group(5) )
+                self.x      = int( mo.group(6) )
+                self.y      = int( mo.group(7) )
+                self.title  = re.sub('\"', '', mo.group(2))
+                self.exe    = "" # not used?
+                self.hud    = None
+#        done_looping = False
+#        for outside in root.query_tree().children:
+#            for inside in outside.query_tree().children:
+#                if done_looping: break
+#                if inside.id == window_number:
+#                    self.window = inside
+#                    self.parent = outside
+#                    done_looping = True
+#                    break
 
         if window_number is None:
             print "Window %s not found. Skipping." % search_string
             return None
 
-        my_geo = self.window.get_geometry()
-        pa_geo = self.parent.get_geometry()
+#        my_geo = self.window.get_geometry()
+#        pa_geo = self.parent.get_geometry()
+#
+#        self.x      = pa_geo.x + my_geo.x
+#        self.y      = pa_geo.y + my_geo.y
+#        self.width  = my_geo.width
+#        self.height = my_geo.height
+#        self.exe    = self.window.get_wm_class()[0]
+#        self.title  = self.window.get_wm_name()
+#        self.site   = ""
+#        self.hud    = None
 
-        self.x      = pa_geo.x + my_geo.x
-        self.y      = pa_geo.y + my_geo.y
-        self.width  = my_geo.width
-        self.height = my_geo.height
-        self.exe    = self.window.get_wm_class()[0]
-        self.title  = self.window.get_wm_name()
-        self.site   = ""
-        self.hud    = None
-
-        window_string = str(self.window)
+#        window_string = str(self.window)
         mo = re.match('Xlib\.display\.Window\(([\dxabcdef]+)', window_string)
         if not mo:
             print "Not matched"
