@@ -49,3 +49,18 @@ def testSQLiteFloorFunction():
         print "DEBUG: int(var): %s" % int(i[0])
         assert answer == int(i[0])
         answer = answer + 1
+    cur.execute("DROP TABLE test")
+
+def testSQLiteModFunction():
+    vars    = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ,17, 18]
+    cur.execute("CREATE TABLE test(i float)")
+    for var in vars:
+        cur.execute("INSERT INTO test(i) values(%i)" % var)
+    cur.execute("SELECT mod(i,13) from test")
+    result = cur.fetchall()
+    answer = 0
+    for i in result:
+        print "DEBUG: int(var): %s" % i[0]
+        assert answer == i[0]
+        answer = answer + 1
+    cur.execute("DROP TABLE test")
