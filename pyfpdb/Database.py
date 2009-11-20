@@ -454,6 +454,10 @@ class Database:
             stylekey = '0000000'  # all stylekey values should be higher than this
         elif hud_style == 'S':
             stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        else:
+            stylekey = '0000000'
+            log.info('hud_style: %s' % hud_style)
+
         #elif hud_style == 'H':
         #    stylekey = date_nhands_ago  needs array by player here ...
 
@@ -463,6 +467,10 @@ class Database:
             h_stylekey = '0000000'  # all stylekey values should be higher than this
         elif h_hud_style == 'S':
             h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        else:
+            h_stylekey = '000000'
+            log.info('h_hud_style: %s' % h_hud_style)
+
         #elif h_hud_style == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
