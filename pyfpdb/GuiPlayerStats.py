@@ -544,7 +544,7 @@ class GuiPlayerStats (threading.Thread):
             # set flag in self.columns to show posn column
             [x for x in self.columns if x[0] == 'plposition'][0][1] = True
         else:
-            query = query.replace("<position>", "'1'")
+            query = query.replace("<position>", "gt.base")
             # unset flag in self.columns to hide posn column
             [x for x in self.columns if x[0] == 'plposition'][0][1] = False
 

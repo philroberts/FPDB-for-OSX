@@ -92,7 +92,7 @@ class PokerStars(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
-            logging.debug("player_re: " + player_re)
+            log.debug("player_re: " + player_re)
             self.re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
@@ -186,7 +186,7 @@ class PokerStars(HandHistoryConverter):
 #        m = self.re_Button.search(hand.handText)
 #        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
-        logging.debug("readHandInfo: %s" % info)
+        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
@@ -226,10 +226,10 @@ class PokerStars(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            logging.info('readButton: not found')
+            log.info('readButton: not found')
 
     def readPlayerStacks(self, hand):
-        logging.debug("readPlayerStacks")
+        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
@@ -265,7 +265,7 @@ class PokerStars(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        log.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))

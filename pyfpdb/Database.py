@@ -45,16 +45,7 @@ import Card
 import Tourney
 from Exceptions import *
 
-import logging, logging.config
-import ConfigParser
-
-try: # local path
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger('db')
-
+log = Configuration.get_logger("logging.conf")
 
 class Database:
 
@@ -441,16 +432,14 @@ class Database:
             print "*** Database Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
-                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'hud_days':30, 'agg_bb_mult':100
-                                          ,'h_aggregate_tour':False, 'h_aggregate_ring':False, 'h_hud_style':'S', 'h_hud_days':30, 'h_agg_bb_mult':100}
+                           , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
+                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000}
                            , hero_id = -1
                            ):
-        aggregate   = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
         hud_style   = hud_params['hud_style']
-        agg_bb_mult = hud_params['agg_bb_mult'] if aggregate else 1
-        h_aggregate   = hud_params['h_aggregate_tour'] if type == "tour" else hud_params['h_aggregate_ring']
+        agg_bb_mult = hud_params['agg_bb_mult']
         h_hud_style   = hud_params['h_hud_style']
-        h_agg_bb_mult = hud_params['h_agg_bb_mult'] if h_aggregate else 1
+        h_agg_bb_mult = hud_params['h_agg_bb_mult']
         stat_dict = {}
 
         if hud_style == 'S' or h_hud_style == 'S':
@@ -477,13 +466,8 @@ class Database:
         #elif h_hud_style == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
-        #if aggregate:      always use aggregate query now: use agg_bb_mult of 1 for no aggregation:
         query = 'get_stats_from_hand_aggregated'
         subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
-        #print "agg query subs:", subs
-        #else:
-        #    query = 'get_stats_from_hand'
-        #    subs = (hand, stylekey)
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -1393,6 +1377,12 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['winnings'],
+                             pdata[p]['street0VPI'],
+                             pdata[p]['street1Seen'],
+                             pdata[p]['street2Seen'],
+                             pdata[p]['street3Seen'],
+                             pdata[p]['street4Seen'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
@@ -1405,6 +1395,12 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            winnings,
+            street0VPI,
+            street1Seen,
+            street2Seen,
+            street3Seen,
+            street4Seen,
             street0Aggr,
             street1Aggr,
             street2Aggr,
@@ -1413,7 +1409,8 @@ class Database:
            )
            VALUES (
                 %s, %s, %s, %s, %s,
-                %s, %s, %s, %s
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s
             )"""
 
 #            position,
@@ -1423,16 +1420,10 @@ class Database:
 #            card3,
 #            card4,
 #            startCards,
-#            winnings,
 #            rake,
 #            totalProfit,
-#            street0VPI,
 #            street0_3BChance,
 #            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
 #            sawShowdown,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
@@ -2683,13 +2674,11 @@ class HandToWrite:
 if __name__=="__main__":
     c = Configuration.Config()
 
-    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
+    db_connection = Database(c) # mysql fpdb holdem
 #    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
-    print "database type = ", db_connection.type
-    
     db_connection.recreate_tables()
     
     h = db_connection.get_last_hand()
@@ -2703,17 +2692,11 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    #print "nutOmatics stats:"
-    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
-    #for p in stat_dict.keys():
-    #    print p, "  ", stat_dict[p]
-
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
 
     print "press enter to continue"
     sys.stdin.readline()
-
 
 #Code borrowed from http://push.cx/2008/caching-dictionaries-in-python-vs-ruby
 class LambdaDict(dict):

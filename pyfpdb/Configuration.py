@@ -37,20 +37,79 @@ from xml.dom.minidom import Node
 import logging, logging.config
 import ConfigParser
 
-try: # local path
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
+##############################################################################
+#    Functions for finding config files and setting up logging
+#    Also used in other modules that use logging.
 
-log = logging.getLogger("config")
-log.debug("config logger initialised")
+def get_default_config_path():
+    """Returns the path where the fpdb config file _should_ be stored."""
+    if os.name == 'posix':
+        config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
+    elif os.name == 'nt':
+        config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
+    else: config_path = False
+    return config_path
+
+def get_exec_path():
+    """Returns the path to the fpdb.(py|exe) file we are executing"""
+    if hasattr(sys, "frozen"):  # compiled by py2exe
+        return os.path.dirname(sys.executable)
+    else: 
+        return os.path.dirname(sys.path[0])
+
+def get_config(file_name, fallback = True):
+    """Looks in cwd and in self.default_config_path for a config file."""
+    config_path = os.path.join(get_exec_path(), file_name)
+    if os.path.exists(config_path):    # there is a file in the cwd
+        return config_path             # so we use it
+    else: # no file in the cwd, look where it should be in the first place
+        config_path = os.path.join(get_default_config_path(), file_name)
+        if os.path.exists(config_path):
+            return config_path
+
+#    No file found
+    if not fallback:
+        return False
+
+#    OK, fall back to the .example file, should be in the start dir
+    if os.path.exists(file_name + ".example"):
+        try:
+            shutil.copyfile(file_name + ".example", file_name)
+            print "No %s found, using %s.example.\n" % (file_name, file_name)
+            print "A %s file has been created.  You will probably have to edit it." % file_name
+            sys.stderr.write("No %s found, using %s.example.\n" % (file_name, file_name) )
+        except:
+            print "No %s found, cannot fall back. Exiting.\n" % file_name
+            sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+            sys.exit()
+    return file_name
+
+def get_logger(file_name, config = "config", fallback = False):
+    conf = get_config(file_name, fallback = fallback)
+    if conf:
+        try:
+            logging.config.fileConfig(conf)
+            log = logging.getLogger(config)
+            log.debug("%s logger initialised" % config)
+            return log
+        except:
+            pass
+
+    log = logging.basicConfig()
+    log = logging.getLogger()
+    log.debug("config logger initialised")
+    return log
+
+#    find a logging.conf file and set up logging
+log = get_logger("logging.conf")
+
 ########################################################################
 # application wide consts
 
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
-DIR_SELF = os.path.dirname(os.path.abspath(__file__))
+DIR_SELF = os.path.dirname(get_exec_path())
 #TODO: imo no good idea to place 'database' in parent dir
 DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
 
@@ -302,16 +361,16 @@ class HudUI:
         self.node = node
         self.label  = node.getAttribute('label')
         #
+        self.hud_style      = node.getAttribute('stat_range')
+        self.hud_days       = node.getAttribute('stat_days')
         self.aggregate_ring = string_to_bool(node.getAttribute('aggregate_ring_game_stats'))
         self.aggregate_tour = string_to_bool(node.getAttribute('aggregate_tourney_stats'))
-        self.hud_style    = node.getAttribute('stat_aggregation_range')
-        self.hud_days     = node.getAttribute('aggregation_days')
         self.agg_bb_mult    = node.getAttribute('aggregation_level_multiplier')
         #
-        self.h_aggregate_ring   = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
-        self.h_aggregate_tour   = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
-        self.h_hud_style        = node.getAttribute('hero_stat_aggregation_range')
-        self.h_hud_days        = node.getAttribute('hero_aggregation_days')
+        self.h_hud_style      = node.getAttribute('hero_stat_range')
+        self.h_hud_days       = node.getAttribute('hero_stat_days')
+        self.h_aggregate_ring = string_to_bool(node.getAttribute('aggregate_hero_ring_game_stats'))
+        self.h_aggregate_tour = string_to_bool(node.getAttribute('aggregate_hero_tourney_stats'))
         self.h_agg_bb_mult    = node.getAttribute('hero_aggregation_level_multiplier')
 
 
@@ -335,7 +394,7 @@ class Config:
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
-        self.default_config_path = self.get_default_config_path()
+#        self.default_config_path = self.get_default_config_path()
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
@@ -343,28 +402,12 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: # configuration file path not passed or invalid
-            file = self.find_config() #Look for a config file in the normal places
-
-        if file is None: # no config file in the normal places
-            file = self.find_example_config() #Look for an example file to edit
-            
-        if file is None: # that didn't work either, just die
-            print "No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting"
-            sys.stderr.write("No HUD_config_xml found after looking in current directory and "+self.default_config_path+"\nExiting")
-            print "press enter to continue"
-            sys.stdin.readline()
-            sys.exit()
+        if file is None: file = get_config("HUD_config.xml")
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
-#    sc 2009/10/04 Example already copied to main filename, is this ok?
         log.info("Reading configuration file %s" % file)
-        if os.sep in file:
-            print "\nReading configuration file %s\n" % file
-        else:
-            print "\nReading configuration file %s" % file
-            print "in %s\n" % os.getcwd()
+        print "\nReading configuration file %s\n" % file
         try:
             doc = xml.dom.minidom.parse(file)
         except: 
@@ -460,28 +503,6 @@ class Config:
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
         
-    def find_config(self):
-        """Looks in cwd and in self.default_config_path for a config file."""
-        if os.path.exists('HUD_config.xml'):    # there is a HUD_config in the cwd
-            file = 'HUD_config.xml'            # so we use it
-        else: # no HUD_config in the cwd, look where it should be in the first place
-            config_path = os.path.join(self.default_config_path, 'HUD_config.xml')
-            if os.path.exists(config_path):
-                file = config_path
-            else:
-                file = None
-        return file
-
-    def get_default_config_path(self):
-        """Returns the path where the fpdb config file _should_ be stored."""
-        if os.name == 'posix':
-            config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
-        elif os.name == 'nt':
-            config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
-        else: config_path = None
-        return config_path
-
-
     def find_default_conf(self):
         if os.name == 'posix':
             config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'default.conf')
@@ -491,30 +512,6 @@ class Config:
 
         if config_path and os.path.exists(config_path):
             file = config_path
-        else:
-            file = None
-        return file
-
-    def read_default_conf(self, file):
-        parms = {}
-        with open(file, "r") as fh:
-            for line in fh:
-                line = string.strip(line)
-                (key, value) = line.split('=')
-                parms[key] = value
-        return parms
-                
-    def find_example_config(self):
-        if os.path.exists('HUD_config.xml.example'):    # there is a HUD_config in the cwd
-            file = 'HUD_config.xml'            # so we use it
-            try:
-                shutil.copyfile(file+'.example', file)
-            except:
-                file = ''
-            print "No HUD_config.xml found, using HUD_config.xml.example.\n", \
-                "A HUD_config.xml has been created.  You will probably have to edit it."
-            sys.stderr.write("No HUD_config.xml found, using HUD_config.xml.example.\n" + \
-                "A HUD_config.xml has been created.  You will probably have to edit it.")
         else:
             file = None
         return file
@@ -948,3 +945,7 @@ if __name__== "__main__":
         print c.get_game_parameters(game)
 
     print "start up path = ", c.execution_path("")
+
+    from xml.dom.ext import PrettyPrint
+    for site_node in c.doc.getElementsByTagName("site"):
+        PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")

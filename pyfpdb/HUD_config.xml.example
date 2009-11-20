@@ -4,91 +4,95 @@
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
-<!-- These values need some explaining
+<!-- These values determine what stats are displayed in the HUD
 
-     aggregate_ring_game_stats :
+    The following values define how opponents' stats are done, the first 2 determine
+    the time period stats are displayed for, the next 3 determine what blind levels
+    are included (i.e. aggregated):
+
+    stat_range :
+        - A/S/T
+        - if set to A, includes stats from all time
+        - if set to S, includes stats from current session
+        - if set to T, includes stats from last N days; set value in stat_days
+        - defaults to A
+
+    stat_days :
+        - a numeric value
+        - only used if stat_range is set to 'T', this value tells how many days are
+          included in the stat calculation
+        - defaults to 90
+        - value not used by default as it depends on stat_range setting
+
+    aggregate_ring_game_stats :
         - True/False
-        - if set to True, includes data from other blind levels
+        - if set to True, opponents stats include other blind levels during ring games
         - defaults to False
 
     aggregate_tourney_stats :
         - True/False
-        - if set to True, includes data from other blind levels
+        - if set to True, opponents stats include other blind levels during tourneys
         - defaults to True
-
-    stat_aggregation_range :
-        - A/S/T
-        - if set to A, includes stats from all time
-        - if set to S, includes stats from current sessions
-        - if set to T, includes stats from last N days; set value in hud_days
-        - defaults to A
-
-    aggregation_days :
-        - a numeric value
-        - if hud_style is set to 'T', this value tells how many days are
-          included in the stat calculation
-        - defaults to 90
-        - value not used by default, as depends on hud_style setting
 
     aggregation_level_multiplier :
         - float value
-        - defines how many blind levels are used for aggregation
-        - the logic is weird, at best
-        - if value is 100, almost all levels are included
-        - if value is 2.1, levels from half to double the current blind
-          level are included
-        - if value it 1, no aggregation is performed
-        - defaults to 1
+        - defines how many blind levels are included in stats displayed in HUD
+        - if value is M, stats for blind levels are combined if the higher level
+          is less than or equal to M times the lower blind level
+        - defaults to 3, meaning blind levels from 1/3 of the current level to 3
+          times the current level are included in the stats displayed in the HUD
+        - e.g. if current big blind is 50, stats for blind levels from big blind
+          of 16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
 
 
-    The following values define how hero's stats are done
+    The following values define how hero's stats are done, the first 2 determine
+    the time period stats are displayed for, the next 3 determine what blind levels
+    are included (i.e. aggregated):
 
+    hero_stat_range :
+        - A/S/T
+        - if set to A, includes stats from all time
+        - if set to S, includes stats from current session
+        - if set to T, includes stats from last N days; set value in hero_stat_days
+        - defaults to S
+
+    hero_stat_days :
+        - a numeric value
+        - if hero_stat_range is set to 'T', this value tells how many days are 
+          included in the stat calculation
+        - defaults to 30
+        - value not used by default as it depends on hero_stat_range setting
 
     aggregate_hero_ring_game_stats :
         - True/False
-        - if set to True, hero's data is calculated over multiple blind levels
+        - if set to True, hero's stats are calculated over multiple blind levels
         - defaults to False
 
     aggregate_hero_tourney_stats :
         - True/False
-        - if set to True, hero's data is calculated over multiple blind levels
+        - if set to True, hero's stats are calculated over multiple blind levels
         - defaults to False
-
-    hero_stat_aggregation_range :
-        - A/S/T
-        - if set to A, includes stats from all time
-        - if set to S, includes stats from current sessions
-        - if set to T, includes stats from last N days; set value in hud_days
-        - defaults to S
-
-    hero_aggregation_days :
-        - a numeric value
-        - if hero_stat_aggregation_range is set to 'T', this value tells
-          how many days are included in the stat calculation
-        - defaults to 30
-        - value not used by default, as depends on hud_style setting
 
     hero_aggregation_level_multiplier :
         - float value
-        - defines how many blind levels are used for aggregation
-        - the logic is weird, at best
-        - if value is 100, almost all levels are included
-        - if value is 2.1, levels from half to double the current blind
-          level are included
-        - if value it 1, no aggregation is performed
-        - defaults to 1
+        - defines how many blind levels are included in stats displayed in HUD
+        - if value is M, stats for blind levels are combined if the higher level
+          is less than or equal to M times the lower blind level
+        - defaults to 1, meaning only stats from current blind level are included
+        - e.g. if set to 3 and current big blind is 50, stats for blind levels from 
+          16.7 (50 divided by 3) to big blind of 150 (50 times 3) are included
 -->
     <hud_ui
+    stat_range="A"
+    stat_days="90"
     aggregate_ring_game_stats="False"
-    aggregate_tourney_stats="False"
-    stat_aggregation_range="A"
-    aggregation_days="90"
-    aggregation_level_multiplier="1"
+    aggregate_tourney_stats="True"
+    aggregation_level_multiplier="3"
 
+    hero_stat_range="S"
+    hero_stat_days="30"
     aggregate_hero_ring_game_stats="False"
-    aggregate_hero_tourney_stats="True"
-    hero_stat_aggregation_range="S"
-    hero_aggregation_days="30"
+    aggregate_hero_tourney_stats="False"
     hero_aggregation_level_multiplier="1"
 
     label="FPDB Menu - Right-click

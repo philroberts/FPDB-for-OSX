@@ -20,6 +20,7 @@ import os
 import re
 import sys
 import logging
+import math
 from time import time, strftime
 from Exceptions import *
 
@@ -30,10 +31,32 @@ except ImportError:
     logging.info("Not using sqlalchemy connection pool.")
     use_pool = False
 
+try:
+    from numpy import var
+    use_numpy = True
+except ImportError:
+    logging.info("Not using numpy to define variance in sqlite.")
+    use_numpy = False
 
 import fpdb_simple
 import FpdbSQLQueries
 import Configuration
+
+# Variance created as sqlite has a bunch of undefined aggregate functions.
+
+class VARIANCE:
+    def __init__(self):
+        self.store = []
+
+    def step(self, value):
+        self.store.append(value)
+
+    def finalize(self):
+        return float(var(self.store))
+
+class sqlitemath:
+    def mod(self, a, b):
+        return a%b
 
 class fpdb_db:
     MYSQL_INNODB = 2
@@ -130,6 +153,13 @@ class fpdb_db:
                                      , detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+            self.db.create_function("floor", 1, math.floor)
+            tmp = sqlitemath()
+            self.db.create_function("mod", 2, tmp.mod)
+            if use_numpy:
+                self.db.create_aggregate("variance", 1, VARIANCE)
+            else:
+                logging.warning("Some database functions will not work without NumPy support")
         else:
             raise FpdbError("unrecognised database backend:"+backend)
         self.cursor = self.db.cursor()
