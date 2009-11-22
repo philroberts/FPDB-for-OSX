@@ -117,8 +117,10 @@ class DerivedStats():
             self.aggr(self.hand, i)
 
         default_holecards = ["Xx", "Xx", "Xx", "Xx"]
+
         for street in hand.holeStreets:
             for player in hand.players:
+                for i in range(1,8): self.handsplayers[player[1]]['card%d' % i] = 0
                 if player[1] in hand.holecards[street].keys():
                     self.handsplayers[player[1]]['card1'] = Card.encodeCard(hand.holecards[street][player[1]][1][0])
                     self.handsplayers[player[1]]['card2'] = Card.encodeCard(hand.holecards[street][player[1]][1][1])
@@ -126,16 +128,8 @@ class DerivedStats():
                         self.handsplayers[player[1]]['card3'] = Card.encodeCard(hand.holecards[street][player[1]][1][2])
                         self.handsplayers[player[1]]['card4'] = Card.encodeCard(hand.holecards[street][player[1]][1][3])
                     except IndexError:
-                        self.handsplayers[player[1]]['card3'] = 0
-                        self.handsplayers[player[1]]['card4'] = 0
-                    #print "DEBUG: hand.holecards[%s][%s][0]: %s" % (street, player[1], hand.holecards[street][player[1]][1])
-                else:
-                    #print "DEBUG: player doesn't exist, setting card1-4 to 0"
-                    self.handsplayers[player[1]]['card1'] = 0
-                    self.handsplayers[player[1]]['card2'] = 0
-                    self.handsplayers[player[1]]['card3'] = 0
-                    self.handsplayers[player[1]]['card4'] = 0
-
+                        # Just means no player cards for that street/game - continue
+                        pass 
 
     def assembleHudCache(self, hand):
         pass
