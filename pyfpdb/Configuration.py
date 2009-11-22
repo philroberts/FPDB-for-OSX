@@ -6,17 +6,17 @@ Handles HUD configuration files.
 """
 #    Copyright 2008, 2009,  Ray E. Barker
 
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -54,16 +54,20 @@ def get_exec_path():
     """Returns the path to the fpdb.(py|exe) file we are executing"""
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
-    else: 
-        return os.path.dirname(sys.path[0])
+    else:
+        print "argv=", sys.argv
+        pathname = os.path.dirname(sys.argv[0])
+        return os.path.abspath(pathname)
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     config_path = os.path.join(get_exec_path(), file_name)
+    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         return config_path             # so we use it
     else: # no file in the cwd, look where it should be in the first place
         config_path = os.path.join(get_default_config_path(), file_name)
+        print "config path 2=", config_path
         if os.path.exists(config_path):
             return config_path
 
@@ -142,7 +146,7 @@ class Layout:
         if node.hasAttribute('fav_seat'): self.fav_seat = int( node.getAttribute('fav_seat') )
         self.width    = int( node.getAttribute('width') )
         self.height   = int( node.getAttribute('height') )
-        
+
         self.location = []
         self.location = map(lambda x: None, range(self.max+1)) # fill array with max seats+1 empty entries
 
@@ -161,7 +165,7 @@ class Layout:
         temp = temp + "        Locations = "
         for i in range(1, len(self.location)):
             temp = temp + "(%d,%d)" % self.location[i]
-        
+
         return temp + "\n"
 
 class Site:
@@ -171,7 +175,7 @@ class Site:
             if os.path.exists(path):
                 return os.path.abspath(path)
             return path
-        
+
         self.site_name    = node.getAttribute("site_name")
         self.table_finder = node.getAttribute("table_finder")
         self.screen_name  = node.getAttribute("screen_name")
@@ -191,7 +195,7 @@ class Site:
         self.ypad         = node.getAttribute("ypad")
         self.layout       = {}
 
-        print "Loading site", self.site_name    
+        print "Loading site", self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -204,7 +208,7 @@ class Site:
         self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
 
         if self.use_frames == "": self.use_frames = False
-        if self.font       == "": self.font = "Sans" 
+        if self.font       == "": self.font = "Sans"
         if self.hudbgcolor == "": self.hudbgcolor = "#000000"
         if self.hudfgcolor == "": self.hudfgcolor = "#FFFFFF"
 
@@ -216,20 +220,20 @@ class Site:
             value = getattr(self, key)
             if callable(value): continue
             temp = temp + '    ' + key + " = " + str(value) + "\n"
-            
+
         for layout in self.layout:
             temp = temp + "%s" % self.layout[layout]
-            
+
         return temp
-        
+
 class Stat:
     def __init__(self):
         pass
-    
+
     def __str__(self):
         temp = "        stat_name = %s, row = %d, col = %d, tip = %s, click = %s, popup = %s\n" % (self.stat_name, self.row, self.col, self.tip, self.click, self.popup)
         return temp
-                
+
 class Game:
     def __init__(self, node):
         self.game_name = node.getAttribute("game_name")
@@ -262,9 +266,9 @@ class Game:
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
             stat.hudcolor  = stat_node.getAttribute("hudcolor")
-            
+
             self.stats[stat.stat_name] = stat
-            
+
     def __str__(self):
         temp = "Game = " + self.game_name + "\n"
         temp = temp + "    rows = %d\n" % self.rows
@@ -272,12 +276,12 @@ class Game:
         temp = temp + "    xpad = %d\n" % self.xpad
         temp = temp + "    ypad = %d\n" % self.ypad
         temp = temp + "    aux = %s\n" % self.aux
-        
+
         for stat in self.stats.keys():
             temp = temp + "%s" % self.stats[stat]
-            
+
         return temp
-            
+
 class Database:
     def __init__(self, node):
         self.db_name   = node.getAttribute("db_name")
@@ -288,7 +292,7 @@ class Database:
         self.db_selected = string_to_bool(node.getAttribute("default"), default=False)
         log.debug("Database db_name:'%(name)s'  db_server:'%(server)s'  db_ip:'%(ip)s'  db_user:'%(user)s'  db_pass (not logged)  selected:'%(sel)s'" \
                 % { 'name':self.db_name, 'server':self.db_server, 'ip':self.db_ip, 'user':self.db_user, 'sel':self.db_selected} )
-        
+
     def __str__(self):
         temp = 'Database = ' + self.db_name + '\n'
         for key in dir(self):
@@ -336,7 +340,7 @@ class Popup:
         self.pu_stats    = []
         for stat_node in node.getElementsByTagName('pu_stat'):
             self.pu_stats.append(stat_node.getAttribute("pu_stat_name"))
-        
+
     def __str__(self):
         temp = "Popup = " + self.name + "\n"
         for stat in self.pu_stats:
@@ -385,7 +389,7 @@ class Tv:
         self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
 
     def __str__(self):
-        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" % 
+        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" %
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
 class Config:
@@ -410,7 +414,7 @@ class Config:
         print "\nReading configuration file %s\n" % file
         try:
             doc = xml.dom.minidom.parse(file)
-        except: 
+        except:
             log.error("Error parsing %s.  See error log file." % (file))
             traceback.print_exc(file=sys.stderr)
             print "press enter to continue"
@@ -438,9 +442,9 @@ class Config:
         for game_node in doc.getElementsByTagName("game"):
             game = Game(node = game_node)
             self.supported_games[game.game_name] = game
-        
+
         # parse databases defined by user in the <supported_databases> section
-        # the user may select the actual database to use via commandline or by setting the selected="bool" 
+        # the user may select the actual database to use via commandline or by setting the selected="bool"
         # attribute of the tag. if no database is explicitely selected, we use the first one we come across
 #        s_dbs = doc.getElementsByTagName("supported_databases")
         #TODO: do we want to take all <database> tags or all <database> tags contained in <supported_databases>
@@ -452,7 +456,7 @@ class Config:
             if self.db_selected is None or db.db_selected:
                 self.db_selected = db.db_name
             self.supported_databases[db.db_name] = db
-        #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored 
+        #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored
         #           ..when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
         if dbname and dbname in self.supported_databases:
             self.db_selected = dbname
@@ -502,7 +506,7 @@ class Config:
 
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
-        
+
     def find_default_conf(self):
         if os.name == 'posix':
             config_path = os.path.join(os.path.expanduser("~"), '.fpdb', 'default.conf')
@@ -534,7 +538,7 @@ class Config:
 
     def get_layout_node(self, site_node, layout):
         for layout_node in site_node.getElementsByTagName("layout"):
-            if layout_node.getAttribute("max") is None: 
+            if layout_node.getAttribute("max") is None:
                 return None
             if int( layout_node.getAttribute("max") ) == int( layout ):
                 return layout_node
@@ -618,7 +622,7 @@ class Config:
         elif self.supported_databases[name].db_server== DATABASE_TYPE_POSTGRESQL:
             db['db-backend'] = 3
         elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
-            db['db-backend'] = 4 
+            db['db-backend'] = 4
         else:
             raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
         return db
@@ -639,7 +643,7 @@ class Config:
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
             if db_type   is not None: self.supported_databases[db_name].dp_type   = db_type
         return
-    
+
     def getDefaultSite(self):
         "Returns first enabled site or None"
         for site_name,site in self.supported_sites.iteritems():
@@ -702,7 +706,7 @@ class Config:
 
         return hui
 
-    
+
     def get_import_parameters(self):
         imp = {}
         try:    imp['callFpdbHud']     = self.imp.callFpdbHud
@@ -728,10 +732,10 @@ class Config:
             path = os.path.expanduser(self.supported_sites[site].HH_path)
             assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
-        except AssertionError: 
+        except AssertionError:
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
-    
+
     def get_frames(self, site = "PokerStars"):
         if site not in self.supported_sites: return False
         return self.supported_sites[site].use_frames == True
@@ -751,7 +755,7 @@ class Config:
         else:
             colors['hudfgcolor'] = self.supported_sites[site].hudfgcolor
         return colors
-    
+
     def get_default_font(self, site='PokerStars'):
         font = "Sans"
         font_size = "8"
@@ -770,17 +774,17 @@ class Config:
             if location is not None:
                 return location.location
         return (
-                    (  0,   0), (684,  61), (689, 239), (692, 346), 
+                    (  0,   0), (684,  61), (689, 239), (692, 346),
                     (586, 393), (421, 440), (267, 440), (  0, 361),
-                    (  0, 280), (121, 280), ( 46,  30) 
+                    (  0, 280), (121, 280), ( 46,  30)
                 )
-    
+
     def get_aux_locations(self, aux = "mucked", max = "9"):
-    
+
         try:
             locations = self.aux_windows[aux].layout[max].location
         except:
-            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346), 
+            locations = ( (  0,   0), (684,  61), (689, 239), (692, 346),
                         (586, 393), (421, 440), (267, 440), (  0, 361),
                         (  0, 280), (121, 280), ( 46,  30) )
         return locations
@@ -791,7 +795,7 @@ class Config:
             return self.supported_sites.keys()
         else:
             return [site_name for (site_name, site) in self.supported_sites.items() if site.enabled]
-        
+
     def get_site_parameters(self, site):
         """Returns a dict of the site parameters for the specified site"""
         parms = {}
@@ -814,7 +818,7 @@ class Config:
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
-                            hudbgcolor = None, hudfgcolor = None, 
+                            hudbgcolor = None, hudfgcolor = None,
                             hudopacity = None, screen_name = None,
                             site_path = None, table_finder = None,
                             HH_path = None, enabled = None,
@@ -852,7 +856,7 @@ class Config:
 
             return param
         return None
-    
+
     def get_game_parameters(self, name):
         """Get the configuration parameters for the named game."""
         param = {}
@@ -878,7 +882,7 @@ class Config:
 
 if __name__== "__main__":
     c = Config()
-    
+
     print "\n----------- SUPPORTED SITES -----------"
     for s in c.supported_sites.keys():
         print c.supported_sites[s]
@@ -905,7 +909,7 @@ if __name__== "__main__":
     for w in c.hhcs.keys():
         print c.hhcs[w]
     print "----------- END HAND HISTORY CONVERTERS -----------"
-    
+
     print "\n----------- POPUP WINDOW FORMATS -----------"
     for w in c.popup_windows.keys():
         print c.popup_windows[w]
@@ -921,7 +925,7 @@ if __name__== "__main__":
 
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
-    
+
     print "db    = ", c.get_db_parameters()
 #    print "tv    = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
@@ -932,7 +936,7 @@ if __name__== "__main__":
         print c.get_aux_parameters(mw)
 
     print "mucked locations =", c.get_aux_locations('mucked', 9)
-#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345), 
+#    c.edit_aux_layout('mucked', 9, locations = [(487, 113), (555, 469), (572, 276), (522, 345),
 #                                                (333, 354), (217, 341), (150, 273), (150, 169), (230, 115)])
 #    print "mucked locations =", c.get_aux_locations('mucked', 9)
 
