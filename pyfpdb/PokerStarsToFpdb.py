@@ -31,18 +31,18 @@ class PokerStars(HandHistoryConverter):
 
     sitename = "PokerStars"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = ("utf8", "cp1252")
     siteId   = 2 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\x80", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\x80|\xa3"        # legal currency symbols  ADD Euro, Sterling, etc HERE
+                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
     # Static regexes
-    re_GameInfo     = re.compile("""
+    re_GameInfo     = re.compile(u"""
           PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
@@ -62,7 +62,7 @@ class PokerStars(HandHistoryConverter):
           (?P<DATETIME>.*$)""" % substitutions,
           re.MULTILINE|re.VERBOSE)
 
-    re_PlayerInfo   = re.compile("""
+    re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
           \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
@@ -373,12 +373,9 @@ if __name__ == "__main__":
     parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
-    parser.add_option("-q", "--quiet",
-                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose",
-                  action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv",
-                  action="store_const", const=logging.DEBUG, dest="verbosity")
+    #parser.add_option("-q", "--quiet", action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
+    #parser.add_option("-v", "--verbose", action="store_const", const=logging.INFO, dest="verbosity")
+    #parser.add_option("--vv", action="store_const", const=logging.DEBUG, dest="verbosity")
 
     (options, args) = parser.parse_args()
 
