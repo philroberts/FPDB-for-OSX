@@ -1385,6 +1385,13 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['card1'],
+                             pdata[p]['card2'],
+                             pdata[p]['card3'],
+                             pdata[p]['card4'],
+                             pdata[p]['card5'],
+                             pdata[p]['card6'],
+                             pdata[p]['card7'],
                              pdata[p]['winnings'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
@@ -1403,6 +1410,13 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            card1,
+            card2,
+            card3,
+            card4,
+            card5,
+            card6,
+            card7,
             winnings,
             street0VPI,
             street1Seen,
@@ -1416,6 +1430,8 @@ class Database:
             street4Aggr
            )
            VALUES (
+                %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s
@@ -1423,10 +1439,6 @@ class Database:
 
 #            position,
 #            tourneyTypeId,
-#            card1,
-#            card2,
-#            card3,
-#            card4,
 #            startCards,
 #            rake,
 #            totalProfit,
