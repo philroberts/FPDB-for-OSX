@@ -81,12 +81,13 @@ class DerivedStats():
         self.hands['boardcard5'] = cards[4]
 
         #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  hand.getStreetTotals()
-        #FIXME: Pot size still in decimal, needs to be converted to cents
-        (self.hands['street1Pot'],
-         self.hands['street2Pot'],
-         self.hands['street3Pot'],
-         self.hands['street4Pot'],
-         self.hands['showdownPot']) = hand.getStreetTotals()
+        totals = hand.getStreetTotals()
+        totals = [int(100*i) for i in totals]
+        self.hands['street1Pot']  = totals[0]
+        self.hands['street2Pot']  = totals[1]
+        self.hands['street3Pot']  = totals[2]
+        self.hands['street4Pot']  = totals[3]
+        self.hands['showdownPot'] = totals[4]
 
         self.vpip(hand) # Gives playersVpi (num of players vpip)
         #print "DEBUG: vpip: %s" %(self.hands['playersVpi'])
@@ -114,6 +115,26 @@ class DerivedStats():
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
+
+        default_holecards = ["Xx", "Xx", "Xx", "Xx"]
+        for street in hand.holeStreets:
+            for player in hand.players:
+                if player[1] in hand.holecards[street].keys():
+                    self.handsplayers[player[1]]['card1'] = Card.encodeCard(hand.holecards[street][player[1]][1][0])
+                    self.handsplayers[player[1]]['card2'] = Card.encodeCard(hand.holecards[street][player[1]][1][1])
+                    try:
+                        self.handsplayers[player[1]]['card3'] = Card.encodeCard(hand.holecards[street][player[1]][1][2])
+                        self.handsplayers[player[1]]['card4'] = Card.encodeCard(hand.holecards[street][player[1]][1][3])
+                    except IndexError:
+                        self.handsplayers[player[1]]['card3'] = 0
+                        self.handsplayers[player[1]]['card4'] = 0
+                    #print "DEBUG: hand.holecards[%s][%s][0]: %s" % (street, player[1], hand.holecards[street][player[1]][1])
+                else:
+                    #print "DEBUG: player doesn't exist, setting card1-4 to 0"
+                    self.handsplayers[player[1]]['card1'] = 0
+                    self.handsplayers[player[1]]['card2'] = 0
+                    self.handsplayers[player[1]]['card3'] = 0
+                    self.handsplayers[player[1]]['card4'] = 0
 
 
     def assembleHudCache(self, hand):
@@ -147,14 +168,19 @@ class DerivedStats():
         self.hands['playersAtStreet4']  = 0
         self.hands['playersAtShowdown'] = 0
 
+        alliners = set()
         for (i, street) in enumerate(hand.actionStreets[2:]):
-            actors = {}
-            for act in hand.actions[street]:
-                actors[act[0]] = 1
-            self.hands['playersAtStreet%s' % str(i+1)] = len(actors.keys())
+            actors = set()
+            for action in hand.actions[street]:
+                if len(action) > 2 and action[-1]: # allin
+                    alliners.add(action[0])
+                actors.add(action[0])
+            if len(actors)==0 and len(alliners)<2:
+                alliners = set()
+            self.hands['playersAtStreet%d' % (i+1)] = len(set.union(alliners, actors))
 
-        #Need playersAtShowdown
-
+        actions = hand.actions[hand.actionStreets[-1]]
+        self.hands['playersAtShowdown'] = len(set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners))
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
@@ -162,11 +188,11 @@ class DerivedStats():
         # No idea what this value is actually supposed to be
         # In theory its "num small bets paid to see flop/street4, including blind" which makes sense for limit. Not so useful for nl
         # Leaving empty for the moment,
-        self.hands['street0Raises'] = 0 # /* num small bets paid to see flop/street4, including blind */
-        self.hands['street1Raises'] = 0 # /* num small bets paid to see turn/street5 */
-        self.hands['street2Raises'] = 0 # /* num big bets paid to see river/street6 */
-        self.hands['street3Raises'] = 0 # /* num big bets paid to see sd/street7 */
-        self.hands['street4Raises'] = 0 # /* num big bets paid to see showdown */
+
+        for i in range(5): self.hands['street%dRaises' % i] = 0
+
+        for (i, street) in enumerate(hand.actionStreets[1:]):
+            self.hands['street%dRaises' % i] = len(filter( lambda action: action[1] in ('raises','bets'), hand.actions[street]))
 
     def seen(self, hand, i):
         pas = set()
@@ -193,3 +219,16 @@ class DerivedStats():
 
     def countPlayers(self, hand):
         pass
+
+    def pfba(self, actions, f=None, l=None):
+        """Helper method. Returns set of PlayersFilteredByActions
+
+        f - forbidden actions
+        l - limited to actions
+        """
+        players = set()
+        for action in actions:
+            if l is not None and action[1] not in l: continue
+            if f is not None and action[1] in f: continue
+            players.add(action[0])
+        return players
