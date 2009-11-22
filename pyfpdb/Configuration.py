@@ -55,19 +55,18 @@ def get_exec_path():
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
     else:
-        print "argv=", sys.argv
         pathname = os.path.dirname(sys.argv[0])
         return os.path.abspath(pathname)
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     config_path = os.path.join(get_exec_path(), file_name)
-    print "config_path=", config_path
+#    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         return config_path             # so we use it
     else: # no file in the cwd, look where it should be in the first place
         config_path = os.path.join(get_default_config_path(), file_name)
-        print "config path 2=", config_path
+#        print "config path 2=", config_path
         if os.path.exists(config_path):
             return config_path
 
