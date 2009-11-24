@@ -219,6 +219,8 @@ class HUD_main(object):
                 except KeyError:    # HUD instance has been killed off, key is stale
                     sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
                     sys.stderr.write('will not send hand\n')
+                    # Unlocks table, copied from end of function
+                    self.db_connection.connection.rollback()
                     return
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
