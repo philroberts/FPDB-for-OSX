@@ -1402,6 +1402,7 @@ class Database:
                              pdata[p]['street2Seen'],
                              pdata[p]['street3Seen'],
                              pdata[p]['street4Seen'],
+                             pdata[p]['sawShowdown'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
@@ -1430,6 +1431,7 @@ class Database:
             street2Seen,
             street3Seen,
             street4Seen,
+            sawShowdown,
             street0Aggr,
             street1Aggr,
             street2Aggr,
@@ -1438,6 +1440,7 @@ class Database:
             wonWhenSeenStreet1
            )
            VALUES (
+                %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1450,7 +1453,6 @@ class Database:
 #            startCards,
 #            street0_3BChance,
 #            street0_3BDone,
-#            sawShowdown,
 #            wonAtSD,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,

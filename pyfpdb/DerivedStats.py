@@ -44,6 +44,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
             self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
+            self.handsplayers[player[1]]['sawShowdown'] = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -100,6 +101,8 @@ class DerivedStats():
 
     def assembleHandsPlayers(self, hand):
         #street0VPI/vpip already called in Hand
+        # sawShowdown is calculated in playersAtStreetX, as that calculation gives us a convenient list of names
+
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
@@ -193,7 +196,11 @@ class DerivedStats():
             self.hands['playersAtStreet%d' % (i+1)] = len(set.union(alliners, actors))
 
         actions = hand.actions[hand.actionStreets[-1]]
-        self.hands['playersAtShowdown'] = len(set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners))
+        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
+        self.hands['playersAtShowdown'] = len(pas)
+
+        for player in pas:
+            self.handsplayers[player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
