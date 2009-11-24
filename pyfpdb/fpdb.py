@@ -69,6 +69,7 @@ import gtk
 import interlocks
 
 
+import GuiPrefs
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -144,6 +145,20 @@ class fpdb:
         dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
         dia.set_program_name("FPDB")
         dia.run()
+        dia.destroy()
+
+    def dia_preferences(self, widget, data=None):
+        dia = gtk.Dialog("Preferences",
+                         self.window,
+                         gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                         (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                          gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+        dia.set_default_size(500, 500)
+        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
+        response = dia.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            # save updated config
+            self.config.save()
         dia.destroy()
 
     def dia_create_del_database(self, widget, data=None):
@@ -350,6 +365,7 @@ class fpdb:
                   <menuitem action="LoadProf"/>
                   <menuitem action="EditProf"/>
                   <menuitem action="SaveProf"/>
+                  <menuitem action="Preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
                 </menu>
@@ -396,6 +412,7 @@ class fpdb:
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
+                                 ('Preferences', None, '_Preferences', None, 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
