@@ -40,6 +40,7 @@ class DerivedStats():
             # All stud street4 need this when importing holdem
             self.handsplayers[player[1]]['winnings']    = 0
             self.handsplayers[player[1]]['rake']        = 0
+            self.handsplayers[player[1]]['totalProfit'] = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
 
@@ -96,9 +97,6 @@ class DerivedStats():
         #print "DEBUG: playersAtStreet 1:'%s' 2:'%s' 3:'%s' 4:'%s'" %(self.hands['playersAtStreet1'],self.hands['playersAtStreet2'],self.hands['playersAtStreet3'],self.hands['playersAtStreet4'])
         self.streetXRaises(hand) # Empty function currently
 
-        # comment TEXT,
-        # commentTs DATETIME
-
     def assembleHandsPlayers(self, hand):
         #street0VPI/vpip already called in Hand
         #hand.players = [[seat, name, chips],[seat, name, chips]]
@@ -115,6 +113,9 @@ class DerivedStats():
             # different sites calculate rake differently.
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
+
+        for player in hand.pot.committed:
+            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
 
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)

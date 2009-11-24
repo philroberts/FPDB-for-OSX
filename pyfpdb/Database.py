@@ -1396,6 +1396,7 @@ class Database:
                              pdata[p]['card7'],
                              pdata[p]['winnings'],
                              pdata[p]['rake'],
+                             pdata[p]['totalProfit'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
                              pdata[p]['street2Seen'],
@@ -1422,6 +1423,7 @@ class Database:
             card7,
             winnings,
             rake,
+            totalProfit,
             street0VPI,
             street1Seen,
             street2Seen,
@@ -1434,7 +1436,7 @@ class Database:
             street4Aggr
            )
            VALUES (
-                %s, %s, %s,
+                %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1444,7 +1446,6 @@ class Database:
 #            position,
 #            tourneyTypeId,
 #            startCards,
-#            totalProfit,
 #            street0_3BChance,
 #            street0_3BDone,
 #            sawShowdown,
