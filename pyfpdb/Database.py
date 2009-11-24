@@ -1343,7 +1343,9 @@ class Database:
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        self.cursor.execute(q, (
+        c = self.connection.cursor()
+
+        c.execute(q, (
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
@@ -1374,7 +1376,7 @@ class Database:
                 p['street4Pot'],
                 p['showdownPot']
         ))
-        return self.get_last_insert_id(self.cursor)
+        return self.get_last_insert_id(c)
     # def storeHand
 
     def storeHandsPlayers(self, hid, pids, pdata):
@@ -1393,6 +1395,7 @@ class Database:
                              pdata[p]['card6'],
                              pdata[p]['card7'],
                              pdata[p]['winnings'],
+                             pdata[p]['rake'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
                              pdata[p]['street2Seen'],
@@ -1418,6 +1421,7 @@ class Database:
             card6,
             card7,
             winnings,
+            rake,
             street0VPI,
             street1Seen,
             street2Seen,
@@ -1430,7 +1434,7 @@ class Database:
             street4Aggr
            )
            VALUES (
-                %s, %s,
+                %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1440,11 +1444,11 @@ class Database:
 #            position,
 #            tourneyTypeId,
 #            startCards,
-#            rake,
 #            totalProfit,
 #            street0_3BChance,
 #            street0_3BDone,
 #            sawShowdown,
+#            wonAtSD,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
 #            otherRaisedStreet3,
@@ -1454,7 +1458,6 @@ class Database:
 #            foldToOtherRaisedStreet3,
 #            foldToOtherRaisedStreet4,
 #            wonWhenSeenStreet1,
-#            wonAtSD,
 #            stealAttemptChance,
 #            stealAttempted,
 #            foldBbToStealChance,
@@ -1499,7 +1502,9 @@ class Database:
         q = q.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: inserts: %s" %inserts
-        self.cursor.executemany(q, inserts)
+        #print "DEBUG: q: %s" % q
+        c = self.connection.cursor()
+        c.executemany(q, inserts)
 
     def storeHudCacheNew(self, gid, pid, hc):
         q = """INSERT INTO HudCache (
