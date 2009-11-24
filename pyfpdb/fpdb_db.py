@@ -20,6 +20,7 @@ import os
 import re
 import sys
 import logging
+import math
 from time import time, strftime
 from Exceptions import *
 
@@ -53,6 +54,10 @@ class VARIANCE:
     def finalize(self):
         return float(var(self.store))
 
+class sqlitemath:
+    def mod(self, a, b):
+        return a%b
+
 class fpdb_db:
     MYSQL_INNODB = 2
     PGSQL = 3
@@ -77,10 +82,10 @@ class fpdb_db:
         self.connect(backend=db['db-backend'],
                      host=db['db-host'],
                      database=db['db-databaseName'],
-                     user=db['db-user'], 
+                     user=db['db-user'],
                      password=db['db-password'])
     #end def do_connect
-    
+
     def connect(self, backend=None, host=None, database=None,
                 user=None, password=None):
         """Connects a database with the given parameters"""
@@ -95,12 +100,15 @@ class fpdb_db:
             import MySQLdb
             if use_pool:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
-#            try:
-            self.db = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+            try:
+                self.db = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
             #TODO: Add port option
-#            except:
-#                raise FpdbMySQLFailedError("MySQL connection failed")
-        elif backend==fpdb_db.PGSQL:
+            except MySQLdb.Error, ex:
+                if ex.args[0] == 1045:
+                    raise FpdbMySQLAccessDenied(ex.args[0], ex.args[1])
+                else:
+                    print "*** WARNING UNKNOWN MYSQL ERROR", ex
+        elif backend == fpdb_db.PGSQL:
             import psycopg2
             import psycopg2.extensions
             if use_pool:
@@ -126,8 +134,8 @@ class fpdb_db:
             if not connected:
                 try:
                     self.db = psycopg2.connect(host = host,
-                                               user = user, 
-                                               password = password, 
+                                               user = user,
+                                               password = password,
                                                database = database)
                 except:
                     msg = "PostgreSQL connection to database (%s) user (%s) failed. Are you sure the DB is running?" % (database, user)
@@ -148,6 +156,9 @@ class fpdb_db:
                                      , detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+            self.db.create_function("floor", 1, math.floor)
+            tmp = sqlitemath()
+            self.db.create_function("mod", 2, tmp.mod)
             if use_numpy:
                 self.db.create_aggregate("variance", 1, VARIANCE)
             else:
@@ -179,13 +190,13 @@ class fpdb_db:
         self.cursor.close()
         self.db.close()
     #end def disconnect
-    
+
     def reconnect(self, due_to_error=False):
         """Reconnects the DB"""
         #print "started fpdb_db.reconnect"
         self.disconnect(due_to_error)
         self.connect(self.backend, self.host, self.database, self.user, self.password)
-    
+
     def get_backend_name(self):
         """Returns the name of the currently used backend"""
         if self.backend==2:
@@ -197,7 +208,7 @@ class fpdb_db:
         else:
             raise FpdbError("invalid backend")
     #end def get_backend_name
-    
+
     def get_db_info(self):
         return (self.host, self.database, self.user, self.password)
     #end def get_db_info

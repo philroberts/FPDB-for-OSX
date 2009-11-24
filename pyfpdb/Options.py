@@ -23,20 +23,20 @@ def fpdb_options():
 
     """Process command line options for fpdb and HUD_main."""
     parser = OptionParser()
-    parser.add_option("-x", "--errorsToConsole", 
-                      action="store_true", 
+    parser.add_option("-x", "--errorsToConsole",
+                      action="store_true",
                       help="If passed error output will go to the console rather than .")
-    parser.add_option("-d", "--databaseName", 
+    parser.add_option("-d", "--databaseName",
                       dest="dbname", default="fpdb",
                       help="Overrides the default database name")
-    parser.add_option("-c", "--configFile", 
+    parser.add_option("-c", "--configFile",
                       dest="config", default=None,
                       help="Specifies a configuration file.")
-    parser.add_option("-r", "--rerunPython", 
-                      action="store_true", 
+    parser.add_option("-r", "--rerunPython",
+                      action="store_true",
                       help="Indicates program was restarted with a different path (only allowed once).")
-    (options, sys.argv) = parser.parse_args()
-    return (options, sys.argv)
+    (options, argv) = parser.parse_args()
+    return (options, argv)
 
 if __name__== "__main__":
     (options, sys.argv) = fpdb_options()

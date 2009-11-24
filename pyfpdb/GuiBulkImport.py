@@ -53,7 +53,7 @@ class GuiBulkImport():
         # Does the lock acquisition need to be more sophisticated for multiple dirs?
         # (see comment above about what to do if pipe already open)
         if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
-            try:
+            #try:
                 print "\nGlobal lock taken ..."
                 self.progressbar.set_text("Importing...")
                 self.progressbar.pulse()
@@ -116,10 +116,11 @@ class GuiBulkImport():
 
                 self.progressbar.set_text("Import Complete")
                 self.progressbar.set_fraction(0)
-            except:
-                err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                print "*** BulkImport Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            self.settings['global_lock'].release()
+            #except:
+                #err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                #print "*** BulkImport Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            #self.settings['global_lock'].release()
+                self.settings['global_lock'].release()
         else:
             print "bulk-import aborted - global lock not available"
 

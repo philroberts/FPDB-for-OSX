@@ -432,16 +432,14 @@ class Database:
             print "*** Database Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
-                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'hud_days':30, 'agg_bb_mult':100
-                                          ,'h_aggregate_tour':False, 'h_aggregate_ring':False, 'h_hud_style':'S', 'h_hud_days':30, 'h_agg_bb_mult':100}
+                           , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
+                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000}
                            , hero_id = -1
                            ):
-        aggregate   = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
         hud_style   = hud_params['hud_style']
-        agg_bb_mult = hud_params['agg_bb_mult'] if aggregate else 1
-        h_aggregate   = hud_params['h_aggregate_tour'] if type == "tour" else hud_params['h_aggregate_ring']
+        agg_bb_mult = hud_params['agg_bb_mult']
         h_hud_style   = hud_params['h_hud_style']
-        h_agg_bb_mult = hud_params['h_agg_bb_mult'] if h_aggregate else 1
+        h_agg_bb_mult = hud_params['h_agg_bb_mult']
         stat_dict = {}
 
         if hud_style == 'S' or h_hud_style == 'S':
@@ -456,6 +454,10 @@ class Database:
             stylekey = '0000000'  # all stylekey values should be higher than this
         elif hud_style == 'S':
             stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        else:
+            stylekey = '0000000'
+            log.info('hud_style: %s' % hud_style)
+
         #elif hud_style == 'H':
         #    stylekey = date_nhands_ago  needs array by player here ...
 
@@ -465,16 +467,15 @@ class Database:
             h_stylekey = '0000000'  # all stylekey values should be higher than this
         elif h_hud_style == 'S':
             h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        else:
+            h_stylekey = '000000'
+            log.info('h_hud_style: %s' % h_hud_style)
+
         #elif h_hud_style == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
-        #if aggregate:      always use aggregate query now: use agg_bb_mult of 1 for no aggregation:
         query = 'get_stats_from_hand_aggregated'
         subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
-        #print "agg query subs:", subs
-        #else:
-        #    query = 'get_stats_from_hand'
-        #    subs = (hand, stylekey)
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -1384,6 +1385,13 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['card1'],
+                             pdata[p]['card2'],
+                             pdata[p]['card3'],
+                             pdata[p]['card4'],
+                             pdata[p]['card5'],
+                             pdata[p]['card6'],
+                             pdata[p]['card7'],
                              pdata[p]['winnings'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
@@ -1402,6 +1410,13 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            card1,
+            card2,
+            card3,
+            card4,
+            card5,
+            card6,
+            card7,
             winnings,
             street0VPI,
             street1Seen,
@@ -1415,6 +1430,8 @@ class Database:
             street4Aggr
            )
            VALUES (
+                %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s
@@ -1422,10 +1439,6 @@ class Database:
 
 #            position,
 #            tourneyTypeId,
-#            card1,
-#            card2,
-#            card3,
-#            card4,
 #            startCards,
 #            rake,
 #            totalProfit,
