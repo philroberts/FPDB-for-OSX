@@ -94,7 +94,7 @@ follow :  whether to tail -f the input"""
                 else:
                     log.info("Created directory '%s'" % out_dir)
             try:
-                self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
+                self.out_fh = codecs.open(self.out_path, 'w', 'utf8')
             except:
                 log.error("out_path %s couldn't be opened" % (self.out_path))
             else:

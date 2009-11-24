@@ -53,7 +53,7 @@ class GuiAutoImport (threading.Thread):
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
 #        self.importer.setWatchTime()
-        
+
         self.server = settings['db-host']
         self.user = settings['db-user']
         self.password = settings['db-password']
@@ -63,7 +63,7 @@ class GuiAutoImport (threading.Thread):
 
         hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
         self.mainVBox.pack_start(hbox, False, False, 0)
-        
+
         vbox1 = gtk.VBox(True, 0)
         hbox.pack_start(vbox1, True, True, 0)
         vbox2 = gtk.VBox(True, 0)
@@ -144,13 +144,13 @@ class GuiAutoImport (threading.Thread):
             gobject.timeout_add(1000, self.reset_startbutton)
             return True
         return False
-        
+
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
             self.startButton.set_label(u'  _Stop Autoimport  ')
         else:
             self.startButton.set_label(u'  _Start Autoimport  ')
-        
+
         return False
 
 
@@ -169,7 +169,7 @@ class GuiAutoImport (threading.Thread):
         if widget.get_active(): # toggled on
             # - Does the lock acquisition need to be more sophisticated for multiple dirs?
             # (see comment above about what to do if pipe already open)
-            # - Ideally we want to release the lock if the auto-import is killed by some 
+            # - Ideally we want to release the lock if the auto-import is killed by some
             # kind of exception - is this possible?
             if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
                 print "\nGlobal lock taken ..."
@@ -183,7 +183,7 @@ class GuiAutoImport (threading.Thread):
                         command = os.path.join(sys.path[0], 'HUD_main.py')
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
-                        
+
                     try:
                         self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                             stdin=subprocess.PIPE,
@@ -191,17 +191,17 @@ class GuiAutoImport (threading.Thread):
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         print "*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-                    else:                    
+                    else:
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
                             print " * Add", site, " import directory", str(self.input_settings[site][0])
                             print "+Import directory - Site: " + site + " dir: " + str(self.input_settings[site][0])
-                            self.do_import()                            
+                            self.do_import()
                             interval = int(self.intervalEntry.get_text())
                     if self.importtimer != 0:
                         gobject.source_remove(self.importtimer)
                     self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
-                        
+
             else:
                 print "auto-import aborted - global lock not available"
         else: # toggled off
@@ -258,7 +258,7 @@ class GuiAutoImport (threading.Thread):
             vbox1.pack_start(pathHBox1, False, True, 0)
             pathHBox2 = gtk.HBox(False, 0)
             vbox2.pack_start(pathHBox2, False, True, 0)
-    
+
             params = self.config.get_site_parameters(site)
             paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
@@ -281,7 +281,7 @@ if __name__== "__main__":
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
                     help="How often to print a one-line status report (0 (default) means never)")
-    (options, sys.argv) = parser.parse_args()
+    (options, argv) = parser.parse_args()
 
     config = Configuration.Config()
 #    db = fpdb_db.fpdb_db()
@@ -305,4 +305,3 @@ if __name__== "__main__":
         gtk.main()
     else:
         pass
-    
