@@ -45,6 +45,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['street4Aggr'] = False
             self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
             self.handsplayers[player[1]]['sawShowdown'] = False
+            self.handsplayers[player[1]]['wonAtSD']     = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -125,6 +126,8 @@ class DerivedStats():
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
                 self.handsplayers[player]['wonWhenSeenStreet1'] = True
+            if self.handsplayers[player]['sawShowdown'] == True:
+                self.handsplayers[player]['wonAtSD'] = True
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
