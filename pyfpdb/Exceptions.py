@@ -4,7 +4,7 @@ class FpdbError(Exception):
     def __str__(self):
         return repr(self.value)
 
-class FpdbParseError(FpdbError): 
+class FpdbParseError(FpdbError):
     def __init__(self,value='',hid=''):
         self.value = value
         self.hid = hid
@@ -17,8 +17,15 @@ class FpdbParseError(FpdbError):
 class FpdbDatabaseError(FpdbError):
     pass
 
-class FpdbMySQLFailedError(FpdbDatabaseError):
+class FpdbMySQLError(FpdbDatabaseError):
     pass
+
+class FpdbMySQLAccessDenied(FpdbDatabaseError):
+    def __init__(self, value='', errmsg=''):
+        self.value = value
+        self.errmsg = errmsg
+    def __str__(self):
+        return repr(self.value +" " + self.errmsg)
 
 class DuplicateError(FpdbError):
     pass

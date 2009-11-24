@@ -26,7 +26,7 @@ except:
 	diaSQLLibMissing = gtk.Dialog(title="Fatal Error - SQL interface library missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
 
 	print "Please note that the CLI importer only works with MySQL, if you use PostgreSQL this error is expected."
-	
+
 import fpdb_import
 import fpdb_db
 
@@ -36,9 +36,9 @@ if __name__ == "__main__":
 	parser.add_option("-c", "--handCount", default="0", type="int",
 					help="Number of hands to import (default 0 means unlimited)")
 	parser.add_option("-d", "--database", default="fpdb", help="The MySQL database to use (default fpdb)")
-	parser.add_option("-e", "--errorFile", default="failed.txt", 
+	parser.add_option("-e", "--errorFile", default="failed.txt",
 					help="File to store failed hands into. (default: failed.txt) Not implemented.")
-	parser.add_option("-f", "--inputFile", "--file", "--inputfile", default="stdin", 
+	parser.add_option("-f", "--inputFile", "--file", "--inputfile", default="stdin",
 					help="The file you want to import (remember to use quotes if necessary)")
 	parser.add_option("-m", "--minPrint", "--status", default="50", type="int",
 					help="How often to print a one-line status report (0 means never, default is 50)")
@@ -51,8 +51,8 @@ if __name__ == "__main__":
 	parser.add_option("-x", "--failOnError", action="store_true",
 					help="If this option is passed it quits when it encounters any error")
 
-	(options, sys.argv) = parser.parse_args()
-	
+	(options, argv) = parser.parse_args()
+
 	settings={'callFpdbHud':False, 'db-backend':2}
 	settings['db-host']=options.server
 	settings['db-user']=options.user
