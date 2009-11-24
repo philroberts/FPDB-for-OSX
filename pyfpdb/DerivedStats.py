@@ -39,6 +39,7 @@ class DerivedStats():
             #Init vars that may not be used, but still need to be inserted.
             # All stud street4 need this when importing holdem
             self.handsplayers[player[1]]['winnings']    = 0
+            self.handsplayers[player[1]]['rake']        = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
 
@@ -109,6 +110,11 @@ class DerivedStats():
         # rake taken out. hand.collectees is Decimal, database requires cents
         for player in hand.collectees:
             self.handsplayers[player]['winnings'] = int(100 * hand.collectees[player])
+            #FIXME: This is pretty dodgy, rake = hand.rake/#collectees
+            # You can really only pay rake when you collect money, but
+            # different sites calculate rake differently.
+            # Should be fine for split-pots, but won't be accurate for multi-way pots
+            self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
 
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
@@ -116,12 +122,20 @@ class DerivedStats():
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
 
-        default_holecards = ["Xx", "Xx", "Xx", "Xx"]
+        #default_holecards = ["Xx", "Xx", "Xx", "Xx"]
+        #if hand.gametype['base'] == "hold":
+        #    pass
+        #elif hand.gametype['base'] == "stud":
+        #    pass
+        #else:
+        #    # Flop hopefully...
+        #    pass
 
         for street in hand.holeStreets:
             for player in hand.players:
                 for i in range(1,8): self.handsplayers[player[1]]['card%d' % i] = 0
-                if player[1] in hand.holecards[street].keys():
+                #print "DEBUG: hand.holecards[%s]: %s" % (street, hand.holecards[street])
+                if player[1] in hand.holecards[street].keys() and hand.gametype['base'] == "hold":
                     self.handsplayers[player[1]]['card1'] = Card.encodeCard(hand.holecards[street][player[1]][1][0])
                     self.handsplayers[player[1]]['card2'] = Card.encodeCard(hand.holecards[street][player[1]][1][1])
                     try:
