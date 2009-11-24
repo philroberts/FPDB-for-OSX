@@ -1409,7 +1409,17 @@ class Database:
                              pdata[p]['street2Aggr'],
                              pdata[p]['street3Aggr'],
                              pdata[p]['street4Aggr'],
-                             pdata[p]['wonWhenSeenStreet1']
+                             pdata[p]['wonWhenSeenStreet1'],
+                             pdata[p]['street0Calls'],
+                             pdata[p]['street1Calls'],
+                             pdata[p]['street2Calls'],
+                             pdata[p]['street3Calls'],
+                             pdata[p]['street4Calls'],
+                             pdata[p]['street0Bets'],
+                             pdata[p]['street1Bets'],
+                             pdata[p]['street2Bets'],
+                             pdata[p]['street3Bets'],
+                             pdata[p]['street4Bets'],
                             ) )
 
         q = """INSERT INTO HandsPlayers (
@@ -1439,10 +1449,22 @@ class Database:
             street2Aggr,
             street3Aggr,
             street4Aggr,
-            wonWhenSeenStreet1
+            wonWhenSeenStreet1,
+            street0Calls,
+            street1Calls,
+            street2Calls,
+            street3Calls,
+            street4Calls,
+            street0Bets,
+            street1Bets,
+            street2Bets,
+            street3Bets,
+            street4Bets
            )
            VALUES (
                 %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1493,16 +1515,6 @@ class Database:
 #            street3CheckCallRaiseDone,
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone,
-#            street0Calls,
-#            street1Calls,
-#            street2Calls,
-#            street3Calls,
-#            street4Calls,
-#            street0Bets,
-#            street1Bets,
-#            street2Bets,
-#            street3Bets,
-#            street4Bets
 
         q = q.replace('%s', self.sql.query['placeholder'])
 

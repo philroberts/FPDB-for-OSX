@@ -46,6 +46,9 @@ class DerivedStats():
             self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
             self.handsplayers[player[1]]['sawShowdown'] = False
             self.handsplayers[player[1]]['wonAtSD']     = False
+            for i in range(5): 
+                self.handsplayers[player[1]]['street%dCalls' % i] = 0
+                self.handsplayers[player[1]]['street%dBets' % i] = 0
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -114,6 +117,8 @@ class DerivedStats():
 
         for i, street in enumerate(hand.actionStreets[1:]):
             self.aggr(self.hand, i)
+            self.calls(self.hand, i)
+            self.bets(self.hand, i)
 
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
@@ -131,7 +136,6 @@ class DerivedStats():
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
-
 
         #default_holecards = ["Xx", "Xx", "Xx", "Xx"]
         #if hand.gametype['base'] == "hold":
@@ -239,6 +243,20 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%sAggr' % i] = True
             else:
                 self.handsplayers[player[1]]['street%sAggr' % i] = False
+
+    def calls(self, hand, i):
+        callers = []
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            if act[1] in ('calls'):
+                self.handsplayers[act[0]]['street%sCalls' % i] = 1 + self.handsplayers[act[0]]['street%sCalls' % i]
+
+    # CG - I'm sure this stat is wrong
+    # Best guess is that raise = 2 bets
+    def bets(self, hand, i):
+        betters = []
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            if act[1] in ('bets'):
+                self.handsplayers[act[0]]['street%sBets' % i] = 1 + self.handsplayers[act[0]]['street%sBets' % i]
 
     def countPlayers(self, hand):
         pass
