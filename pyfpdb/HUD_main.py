@@ -252,7 +252,13 @@ class HUD_main(object):
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
-                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                    # Test that the table window still exists
+                    try:
+                        _n = tablewindow.name
+                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                    except AttributeError:
+                        sys.stderr.write('Table "%s" no longer exists\n', table_name)
+
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":
