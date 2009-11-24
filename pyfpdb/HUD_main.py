@@ -36,9 +36,7 @@ import traceback
 (options, sys.argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
-    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('HUD-error.txt', 'w', 0)
-    sys.stderr = errorFile
+    print "Note: error output is being logged. Any major error will be reported there _only_."
 
 import thread
 import time
@@ -52,6 +50,13 @@ import gobject
 
 #    FreePokerTools modules
 import Configuration
+
+print "start logging"
+log = Configuration.get_logger("logging.conf", config = 'hud')
+log.debug("%s logger initialized." % "dud")
+print "logging started"
+
+
 import Database
 from HandHistoryConverter import getTableTitleRe
 #    get the correct module for the current os
@@ -97,6 +102,7 @@ class HUD_main(object):
 
     def __init__(self, db_name = 'fpdb'):
         self.db_name = db_name
+        self.log = log
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.hud_dict = {}
         self.hud_params = self.config.get_hud_ui_parameters()
@@ -116,6 +122,7 @@ class HUD_main(object):
         self.main_window.show_all()
 
     def destroy(self, *args):             # call back for terminating the main eventloop
+        self.log.info("Terminating normally.")
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -180,11 +187,11 @@ class HUD_main(object):
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-#            try: 
-            self.hud_dict[table_name].update(new_hand_id, config)
-            [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
-#            finally:
-            gtk.gdk.threads_leave()
+            try: 
+                self.hud_dict[table_name].update(new_hand_id, config)
+                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+            finally:
+                gtk.gdk.threads_leave()
             return False
                 
         gobject.idle_add(idle_func)
@@ -197,7 +204,6 @@ class HUD_main(object):
 #    need their own access to the database, but should open their own
 #    if it is required.
         self.db_connection = Database.Database(self.config)
-        
 #       get hero's screen names and player ids
         self.hero, self.hero_ids = {}, {}
         for site in self.config.get_supported_sites():
@@ -206,10 +212,11 @@ class HUD_main(object):
                 site_id = result[0][0]
                 self.hero[site_id] = self.config.supported_sites[site].screen_name
                 self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
-    
+
         while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
+            self.log.debug("Received hand no %s" % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
@@ -220,8 +227,7 @@ class HUD_main(object):
                 (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception, err:
-                print "db error: skipping %s" % new_hand_id 
-                sys.stderr.write("Database error: could not find hand %s.\n" % new_hand_id)
+                self.log.error("db error: skipping %s" % new_hand_id)
                 continue
 
             if type == "tour":   # hand is from a tournament
@@ -262,7 +268,8 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
+#                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
+                    self.log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
@@ -271,8 +278,8 @@ class HUD_main(object):
 
 if __name__== "__main__":
 
-    sys.stderr.write("HUD_main starting\n")
-    sys.stderr.write("Using db name = %s\n" % (options.dbname))
+    log.info("HUD_main starting")
+    log.info("Using db name = %s" % (options.dbname))
 
 #    start the HUD_main object
     hm = HUD_main(db_name = options.dbname)
