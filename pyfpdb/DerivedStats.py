@@ -43,6 +43,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['totalProfit'] = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -104,6 +105,12 @@ class DerivedStats():
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = player[2]
 
+        for i, street in enumerate(hand.actionStreets[2:]):
+            self.seen(self.hand, i+1)
+
+        for i, street in enumerate(hand.actionStreets[1:]):
+            self.aggr(self.hand, i)
+
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
         for player in hand.collectees:
@@ -113,15 +120,12 @@ class DerivedStats():
             # different sites calculate rake differently.
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
+            if self.handsplayers[player]['street1Seen'] == True:
+                self.handsplayers[player]['wonWhenSeenStreet1'] = True
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
 
-        for i, street in enumerate(hand.actionStreets[2:]):
-            self.seen(self.hand, i+1)
-
-        for i, street in enumerate(hand.actionStreets[1:]):
-            self.aggr(self.hand, i)
 
         #default_holecards = ["Xx", "Xx", "Xx", "Xx"]
         #if hand.gametype['base'] == "hold":

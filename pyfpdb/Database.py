@@ -1406,7 +1406,8 @@ class Database:
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
                              pdata[p]['street3Aggr'],
-                             pdata[p]['street4Aggr']
+                             pdata[p]['street4Aggr'],
+                             pdata[p]['wonWhenSeenStreet1']
                             ) )
 
         q = """INSERT INTO HandsPlayers (
@@ -1433,10 +1434,11 @@ class Database:
             street1Aggr,
             street2Aggr,
             street3Aggr,
-            street4Aggr
+            street4Aggr,
+            wonWhenSeenStreet1
            )
            VALUES (
-                %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1458,7 +1460,6 @@ class Database:
 #            foldToOtherRaisedStreet2,
 #            foldToOtherRaisedStreet3,
 #            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
 #            stealAttemptChance,
 #            stealAttempted,
 #            foldBbToStealChance,
