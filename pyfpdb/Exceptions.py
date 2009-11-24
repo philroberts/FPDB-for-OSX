@@ -9,8 +9,8 @@ class FpdbParseError(FpdbError):
         self.value = value
         self.hid = hid
     def __str__(self):
-        if hid:
-            return repr("HID:"+hid+", "+self.value)
+        if self.hid:
+            return repr("HID:"+self.hid+", "+self.value)
         else:
             return repr(self.value)
 

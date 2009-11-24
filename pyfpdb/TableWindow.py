@@ -93,19 +93,17 @@ gobject.signal_new("client_destroyed", gtk.Window,
 #            screen location of (0, 0) in the working window.
 
 class Table_Window(object):
-    def __init__(self, table_name = None, tournament = None, table_number = None):
+    def __init__(self, search_string, table_name = None, tournament = None, table_number = None):
 
-        if table_name is not None:
-            search_string = table_name
-            self.name = table_name
-            self.tournament = None
-            self.table = None
-        elif tournament is not None and table_number is not None:
+        if tournament is not None and table_number is not None:
             print "tournament %s, table %s" % (tournament, table_number)
             self.tournament = int(tournament)
             self.table = int(table_number)
             self.name = "%s - %s" % (self.tournament, self.table)
-            search_string = "%s.+Table\s%s" % (tournament, table_number)
+        elif table_name is not None:
+            search_string = table_name
+            self.name = table_name
+            self.tournament = None
         else:
             return None
 

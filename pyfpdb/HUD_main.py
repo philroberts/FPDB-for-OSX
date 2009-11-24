@@ -53,6 +53,7 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 import Database
+from HandHistoryConverter import getTableTitleRe
 #    get the correct module for the current os
 if os.name == 'posix':
     import XTables as Tables
@@ -60,34 +61,6 @@ elif os.name == 'nt':
     import WinTables as Tables
 #import Tables
 import Hud
-
-
-# HUD params:
-# - Set aggregate_ring and/or aggregate_tour to True is you want to include stats from other blind levels in the HUD display
-# - If aggregation is used, the value of agg_bb_mult determines what levels are included. If
-#   agg_bb_mult is M and current blind level is L, blinds between L/M and L*M are included. e.g.
-#   if agg_bb_mult is 100, almost all levels are included in all HUD displays
-#   if agg_bb_mult is 2, levels from half to double the current blind level are included in the HUD
-#   if agg_bb_mult is 1 only the current level is included
-# - Set hud_style to A to see stats for all-time
-#   Set hud_style to S to only see stats for current session (currently this shows stats for the last 24 hours)
-#   Set hud_style to T to only see stats for the last N days (uses value in hud_days)
-# - Set hud_days to N to see stats for the last N days in the HUD (only applies if hud_style is T)
-def_hud_params = { # Settings for all players apart from program owner ('hero')
-                   'aggregate_ring' : False
-                 , 'aggregate_tour' : True
-                 , 'hud_style'      : 'A'
-                 , 'hud_days'       : 90
-                 , 'agg_bb_mult'    : 10000                 # 1 means no aggregation
-                 # , 'hud_session_gap' : 30             not currently used
-                   # Second set of variables for hero - these settings only apply to the program owner
-                 , 'h_aggregate_ring' : False
-                 , 'h_aggregate_tour' : True
-                 , 'h_hud_style'      : 'S'             # A(ll) / S(ession) / T(ime in days)
-                 , 'h_hud_days'       : 60
-                 , 'h_agg_bb_mult'    : 10000               # 1 means no aggregation
-                 # , 'h_hud_session_gap' : 30           not currently used
-                 }
 
 
 class HUD_main(object):
@@ -158,6 +131,8 @@ class HUD_main(object):
         self.hud_dict[table_name].stat_dict = stat_dict
         self.hud_dict[table_name].cards = cards
 
+        # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
+        # agg_bb_mult == 1 means no aggregation after these if statements:
         if type == "tour" and self.hud_params['aggregate_tour'] == False:
             self.hud_dict[table_name].hud_params['agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['aggregate_ring'] == False:
@@ -166,8 +141,13 @@ class HUD_main(object):
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
+        # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
+        # but I think it's needed:
         self.hud_params['aggregate_ring'] == True
         self.hud_params['h_aggregate_ring'] == True
+        # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
+        self.hud_params['aggregate_tour'] = True
+        self.hud_params['h_aggregate_tour'] == True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
@@ -258,10 +238,10 @@ class HUD_main(object):
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
 
-                if type == "tour":
-                    tablewindow = Tables.Table(tournament = tour_number, table_number = tab_number)
-                else:
-                    tablewindow = Tables.Table(table_name = table_name)
+                table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
+                search_string = getTableTitleRe(self.config, site, type, **table_kwargs)
+                tablewindow = Tables.Table(search_string, **table_kwargs)
+
                 if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
