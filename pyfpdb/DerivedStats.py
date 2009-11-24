@@ -18,7 +18,7 @@
 #fpdb modules
 import Card
 
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     import pprint
