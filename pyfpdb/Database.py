@@ -1343,7 +1343,9 @@ class Database:
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        self.cursor.execute(q, (
+        c = self.connection.cursor()
+
+        c.execute(q, (
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
@@ -1374,7 +1376,7 @@ class Database:
                 p['street4Pot'],
                 p['showdownPot']
         ))
-        return self.get_last_insert_id(self.cursor)
+        return self.get_last_insert_id(c)
     # def storeHand
 
     def storeHandsPlayers(self, hid, pids, pdata):
@@ -1385,17 +1387,39 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['card1'],
+                             pdata[p]['card2'],
+                             pdata[p]['card3'],
+                             pdata[p]['card4'],
+                             pdata[p]['card5'],
+                             pdata[p]['card6'],
+                             pdata[p]['card7'],
                              pdata[p]['winnings'],
+                             pdata[p]['rake'],
+                             pdata[p]['totalProfit'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
                              pdata[p]['street2Seen'],
                              pdata[p]['street3Seen'],
                              pdata[p]['street4Seen'],
+                             pdata[p]['sawShowdown'],
+                             pdata[p]['wonAtSD'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
                              pdata[p]['street3Aggr'],
-                             pdata[p]['street4Aggr']
+                             pdata[p]['street4Aggr'],
+                             pdata[p]['wonWhenSeenStreet1'],
+                             pdata[p]['street0Calls'],
+                             pdata[p]['street1Calls'],
+                             pdata[p]['street2Calls'],
+                             pdata[p]['street3Calls'],
+                             pdata[p]['street4Calls'],
+                             pdata[p]['street0Bets'],
+                             pdata[p]['street1Bets'],
+                             pdata[p]['street2Bets'],
+                             pdata[p]['street3Bets'],
+                             pdata[p]['street4Bets'],
                             ) )
 
         q = """INSERT INTO HandsPlayers (
@@ -1403,19 +1427,46 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            card1,
+            card2,
+            card3,
+            card4,
+            card5,
+            card6,
+            card7,
             winnings,
+            rake,
+            totalProfit,
             street0VPI,
             street1Seen,
             street2Seen,
             street3Seen,
             street4Seen,
+            sawShowdown,
+            wonAtSD,
             street0Aggr,
             street1Aggr,
             street2Aggr,
             street3Aggr,
-            street4Aggr
+            street4Aggr,
+            wonWhenSeenStreet1,
+            street0Calls,
+            street1Calls,
+            street2Calls,
+            street3Calls,
+            street4Calls,
+            street0Bets,
+            street1Bets,
+            street2Bets,
+            street3Bets,
+            street4Bets
            )
            VALUES (
+                %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s
@@ -1423,16 +1474,9 @@ class Database:
 
 #            position,
 #            tourneyTypeId,
-#            card1,
-#            card2,
-#            card3,
-#            card4,
 #            startCards,
-#            rake,
-#            totalProfit,
 #            street0_3BChance,
 #            street0_3BDone,
-#            sawShowdown,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
 #            otherRaisedStreet3,
@@ -1441,8 +1485,6 @@ class Database:
 #            foldToOtherRaisedStreet2,
 #            foldToOtherRaisedStreet3,
 #            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
-#            wonAtSD,
 #            stealAttemptChance,
 #            stealAttempted,
 #            foldBbToStealChance,
@@ -1473,21 +1515,13 @@ class Database:
 #            street3CheckCallRaiseDone,
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone,
-#            street0Calls,
-#            street1Calls,
-#            street2Calls,
-#            street3Calls,
-#            street4Calls,
-#            street0Bets,
-#            street1Bets,
-#            street2Bets,
-#            street3Bets,
-#            street4Bets
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: inserts: %s" %inserts
-        self.cursor.executemany(q, inserts)
+        #print "DEBUG: q: %s" % q
+        c = self.connection.cursor()
+        c.executemany(q, inserts)
 
     def storeHudCacheNew(self, gid, pid, hc):
         q = """INSERT INTO HudCache (
