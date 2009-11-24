@@ -45,7 +45,8 @@ import Card
 import Tourney
 from Exceptions import *
 
-log = Configuration.get_logger("logging.conf")
+log = Configuration.get_logger("logging.conf", config = "db")
+log.debug("db logger initialized.")
 
 class Database:
 
@@ -186,13 +187,12 @@ class Database:
         self.config = c
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.do_connect(c)
-        
+        print "connection =", self.connection
         if self.backend == self.PGSQL:
             from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
             #ISOLATION_LEVEL_AUTOCOMMIT     = 0
             #ISOLATION_LEVEL_READ_COMMITTED = 1 
             #ISOLATION_LEVEL_SERIALIZABLE   = 2
-
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
