@@ -90,7 +90,7 @@ class GuiPrefs:
         
         #iter = self.configStore.append( parent, [node.nodeValue, None] )
         iter = None
-        if node.nodeType != node.TEXT_NODE:
+        if node.nodeType != node.TEXT_NODE and node.nodeType != node.COMMENT_NODE:
             iter = self.configStore.append( parent, [node, setting, value] )
             if node.hasAttributes():
                 for i in xrange(node.attributes.length):
