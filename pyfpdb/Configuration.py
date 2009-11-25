@@ -519,6 +519,9 @@ class Config:
             file = None
         return file
 
+    def get_doc(self):
+        return self.doc
+
     def get_site_node(self, site):
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
@@ -553,11 +556,9 @@ class Config:
                     return location_node
 
     def save(self, file = None):
-        if file is not None:
-            with open(file, 'w') as f:
-                self.doc.writexml(f)
-        else:
-            shutil.move(self.file, self.file+".backup")
+        if file is None:
+            file = self.file
+        shutil.move(file, file+".backup")
         with open(file, 'w') as f:
             self.doc.writexml(f)
 
