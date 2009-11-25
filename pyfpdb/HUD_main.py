@@ -122,6 +122,7 @@ class HUD_main(object):
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
+                gtk.gdk.threads_leave()
                 return False
             finally:
                 gtk.gdk.threads_leave()
