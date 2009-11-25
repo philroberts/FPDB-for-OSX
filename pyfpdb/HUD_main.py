@@ -253,7 +253,7 @@ class HUD_main(object):
                     tablewindow.max = max
                     tablewindow.site = site_name
                     # Test that the table window still exists
-                    if hasattr(tablewindow, 'name'):
+                    if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
                         sys.stderr.write('Table "%s" no longer exists\n', table_name)
