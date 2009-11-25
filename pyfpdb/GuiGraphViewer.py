@@ -152,14 +152,17 @@ class GuiGraphViewer (threading.Thread):
             if not sitenos:
                 #Should probably pop up here.
                 print "No sites selected - defaulting to PokerStars"
+                self.db.rollback()
                 return
 
             if not playerids:
                 print "No player ids found"
+                self.db.rollback()
                 return
 
             if not limits:
                 print "No limits found"
+                self.db.rollback()
                 return
 
             #Set graph properties
