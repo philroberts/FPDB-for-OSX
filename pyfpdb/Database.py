@@ -1672,6 +1672,15 @@ class Database:
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone)
 
+    def isDuplicate(self, gametypeID, siteHandNo):
+        dup = False
+        c = self.get_cursor()
+        c.execute(self.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
+        result = c.fetchall()
+        if len(result) > 0:
+            dup = True
+        return dup
+
     def getGameTypeId(self, siteid, game):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
@@ -1710,6 +1719,13 @@ class Database:
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
 
