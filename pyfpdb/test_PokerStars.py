@@ -9,7 +9,6 @@ import fpdb_import
 
 config = Configuration.Config(file = "HUD_config.test.xml")
 db = Database.Database(config)
-db.recreate_tables()
 
 settings = {}
 settings.update(config.get_db_parameters())
@@ -60,6 +59,7 @@ def testGameInfo():
 
 
 def testFlopImport():
+    db.recreate_tables()
     importer = fpdb_import.Importer(False, settings, config)
     importer.setDropIndexes("don't drop")
     importer.setFailOnError(True)
@@ -70,8 +70,41 @@ def testFlopImport():
             """regression-test-files/cash/Stars/Flop/NLHE-6max-USD-0.05-0.10-200911.txt""", site="PokerStars")
     #importer.addBulkImportImportFileOrDir(
     #        """regression-test-files/tour/Stars/Flop/NLHE-USD-MTT-5r-200710.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Flop/PLO8-6max-USD-0.01-0.02-200911.txt""", site="PokerStars")
     importer.setCallHud(False)
     (stored, dups, partial, errs, ttime) = importer.runImport()
     importer.clearFileList()
-    
+
+    # Should actually do some testing here
     assert 1 == 1
+
+def testStudImport():
+    db.recreate_tables()
+    importer = fpdb_import.Importer(False, settings, config)
+    importer.setDropIndexes("don't drop")
+    importer.setFailOnError(True)
+    importer.setThreads(-1)
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Stud/7-Stud-USD-0.04-0.08-200911.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Stud/7-StudHL-USD-0.04-0.08-200911.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Stud/Razz-USD-0.04-0.08-200911.txt""", site="PokerStars")
+    importer.setCallHud(False)
+    (stored, dups, partial, errs, ttime) = importer.runImport()
+    importer.clearFileList()
+
+#def testDrawImport():
+#    db.recreate_tables()
+#    importer = fpdb_import.Importer(False, settings, config)
+#    importer.setDropIndexes("don't drop")
+#    importer.setFailOnError(True)
+#    importer.setThreads(-1)
+#    importer.addBulkImportImportFileOrDir(
+#            """regression-test-files/cash/Stars/Draw/3-Draw-Limit-USD-0.10-0.20-200911.txt""", site="PokerStars")
+#    importer.addBulkImportImportFileOrDir(
+#            """regression-test-files/cash/Stars/Draw/5-Carddraw-USD-0.10-0.20-200911.txt""", site="PokerStars")
+#    importer.setCallHud(False)
+#    (stored, dups, partial, errs, ttime) = importer.runImport()
+#    importer.clearFileList()
