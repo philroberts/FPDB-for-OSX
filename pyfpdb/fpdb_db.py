@@ -149,11 +149,11 @@ class fpdb_db:
             else:
                 logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
-            if not os.path.isdir(Configuration.DIR_DATABASES):
+            if not os.path.isdir(Configuration.DIR_DATABASES) and not database ==  ":memory:":
                 print "Creating directory: '%s'" % (Configuration.DIR_DATABASES)
                 os.mkdir(Configuration.DIR_DATABASES)
-            self.db = sqlite3.connect( os.path.join(Configuration.DIR_DATABASES, database)
-                                     , detect_types=sqlite3.PARSE_DECLTYPES )
+                database = os.path.join(Configuration.DIR_DATABASE, database)
+            self.db = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
             self.db.create_function("floor", 1, math.floor)
