@@ -68,6 +68,8 @@ def testFlopImport():
             """regression-test-files/cash/Stars/Flop/NLHE-6max-EUR-0.05-0.10-200911.txt""", site="PokerStars")
     importer.addBulkImportImportFileOrDir(
             """regression-test-files/cash/Stars/Flop/NLHE-6max-USD-0.05-0.10-200911.txt""", site="PokerStars")
+    #importer.addBulkImportImportFileOrDir(
+    #        """regression-test-files/tour/Stars/Flop/NLHE-USD-MTT-5r-200710.txt""", site="PokerStars")
     importer.setCallHud(False)
     (stored, dups, partial, errs, ttime) = importer.runImport()
     importer.clearFileList()
