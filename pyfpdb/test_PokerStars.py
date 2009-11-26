@@ -3,6 +3,19 @@ import PokerStarsToFpdb
 from Hand import *
 import py
 
+import Configuration
+import Database
+import fpdb_import
+
+config = Configuration.Config(file = "HUD_config.test.xml")
+db = Database.Database(config)
+
+settings = {}
+settings.update(config.get_db_parameters())
+settings.update(config.get_tv_parameters())
+settings.update(config.get_import_parameters())
+settings.update(config.get_default_paths())
+
 #regression-test-files/stars/badugi/ring-fl-badugi.txt
 #   s0rrow: input: $30.00 end: $22.65 total: ($7.35)
 #regression-test-files/stars/plo/PLO-6max.txt
@@ -45,37 +58,53 @@ def testGameInfo():
         yield checkGameInfo, hhc, header, info
 
 
-def testHandInfo():
-    text = u"""PokerStars Game #20461877044:  Hold'em No Limit ($1/$2) - 2008/09/16 18:58:01 ET"""
-    hhc = PokerStarsToFpdb.PokerStars(autostart=False)
-    h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
-    hhc.readHandInfo(h)
-    assert h.handid == '20461877044'
-    assert h.sitename == 'PokerStars'
-    assert h.starttime == (2008, 9, 16, 18, 58, 1, 1, 260, -1)
-    
-    text = u"""PokerStars Game #18707234955:  Razz Limit ($0.50/$1.00) - 2008/07/09 - 21:41:43 (ET)
-Table 'Lepus II' 8-max"""
-    hhc = PokerStarsToFpdb.PokerStars(autostart=False)
-    h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
-    hhc.readHandInfo(h)
-    assert h.handid == '18707234955'
-    assert h.sitename == 'PokerStars'
-    assert h.maxseats == 8
-    assert h.tablename == 'Lepus II'
-    assert h.starttime == (2008,7 , 9, 21, 41, 43, 2, 191, -1)
-    
-    
-    text = u"""PokerStars Game #22073591924:  Hold'em No Limit ($0.50/$1.00) - 2008/11/16 1:22:21 CET [2008/11/15 19:22:21 ET]
-Table 'Caia II' 6-max Seat #2 is the button"""
-    hhc = PokerStarsToFpdb.PokerStars(autostart=False)
-    h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
-    hhc.readHandInfo(h)
-    assert h.handid == '22073591924'
-    assert h.sitename == 'PokerStars'
-    assert h.maxseats == 6
-    assert h.tablename == 'Caia II'
-    assert h.buttonpos == '2' # TODO: should this be an int?
-    assert h.starttime == (2008,11 , 15, 19, 22, 21, 5, 320, -1)
-    
-    
+def testFlopImport():
+    db.recreate_tables()
+    importer = fpdb_import.Importer(False, settings, config)
+    importer.setDropIndexes("don't drop")
+    importer.setFailOnError(True)
+    importer.setThreads(-1)
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Flop/NLHE-6max-EUR-0.05-0.10-200911.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Flop/NLHE-6max-USD-0.05-0.10-200911.txt""", site="PokerStars")
+    #importer.addBulkImportImportFileOrDir(
+    #        """regression-test-files/tour/Stars/Flop/NLHE-USD-MTT-5r-200710.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Flop/PLO8-6max-USD-0.01-0.02-200911.txt""", site="PokerStars")
+    importer.setCallHud(False)
+    (stored, dups, partial, errs, ttime) = importer.runImport()
+    importer.clearFileList()
+
+    # Should actually do some testing here
+    assert 1 == 1
+
+def testStudImport():
+    db.recreate_tables()
+    importer = fpdb_import.Importer(False, settings, config)
+    importer.setDropIndexes("don't drop")
+    importer.setFailOnError(True)
+    importer.setThreads(-1)
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Stud/7-Stud-USD-0.04-0.08-200911.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Stud/7-StudHL-USD-0.04-0.08-200911.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Stud/Razz-USD-0.04-0.08-200911.txt""", site="PokerStars")
+    importer.setCallHud(False)
+    (stored, dups, partial, errs, ttime) = importer.runImport()
+    importer.clearFileList()
+
+#def testDrawImport():
+#    db.recreate_tables()
+#    importer = fpdb_import.Importer(False, settings, config)
+#    importer.setDropIndexes("don't drop")
+#    importer.setFailOnError(True)
+#    importer.setThreads(-1)
+#    importer.addBulkImportImportFileOrDir(
+#            """regression-test-files/cash/Stars/Draw/3-Draw-Limit-USD-0.10-0.20-200911.txt""", site="PokerStars")
+#    importer.addBulkImportImportFileOrDir(
+#            """regression-test-files/cash/Stars/Draw/5-Carddraw-USD-0.10-0.20-200911.txt""", site="PokerStars")
+#    importer.setCallHud(False)
+#    (stored, dups, partial, errs, ttime) = importer.runImport()
+#    importer.clearFileList()

@@ -312,9 +312,11 @@ class Filters(threading.Thread):
                     self.cbAllLimits.set_active(False)
             if not self.limits[limit]:
                 if limit.isdigit():
-                    self.cbFL.set_active(False)
+                    if self.cbFl is not None:
+                        self.cbFl.set_active(False)
                 else:
-                    self.cbNL.set_active(False)
+                    if self.cbNL is not None:
+                        self.cbNL.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
                 #for cb in self.cbLimits.values():

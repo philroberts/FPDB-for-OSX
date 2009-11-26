@@ -1449,6 +1449,14 @@ class Database:
                              pdata[p]['street2Aggr'],
                              pdata[p]['street3Aggr'],
                              pdata[p]['street4Aggr'],
+                             pdata[p]['street1CBChance'],
+                             pdata[p]['street2CBChance'],
+                             pdata[p]['street3CBChance'],
+                             pdata[p]['street4CBChance'],
+                             pdata[p]['street1CBDone'],
+                             pdata[p]['street2CBDone'],
+                             pdata[p]['street3CBDone'],
+                             pdata[p]['street4CBDone'],
                              pdata[p]['wonWhenSeenStreet1'],
                              pdata[p]['street0Calls'],
                              pdata[p]['street1Calls'],
@@ -1489,6 +1497,14 @@ class Database:
             street2Aggr,
             street3Aggr,
             street4Aggr,
+            street1CBChance,
+            street2CBChance,
+            street3CBChance,
+            street4CBChance,
+            street1CBDone,
+            street2CBDone,
+            street3CBDone,
+            street4CBDone,
             wonWhenSeenStreet1,
             street0Calls,
             street1Calls,
@@ -1502,7 +1518,8 @@ class Database:
             street4Bets
            )
            VALUES (
-                %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1531,14 +1548,6 @@ class Database:
 #            foldedBbToSteal,
 #            foldSbToStealChance,
 #            foldedSbToSteal,
-#            street1CBChance,
-#            street1CBDone,
-#            street2CBChance,
-#            street2CBDone,
-#            street3CBChance,
-#            street3CBDone,
-#            street4CBChance,
-#            street4CBDone,
 #            foldToStreet1CBChance,
 #            foldToStreet1CBDone,
 #            foldToStreet2CBChance,
@@ -1703,6 +1712,15 @@ class Database:
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone)
 
+    def isDuplicate(self, gametypeID, siteHandNo):
+        dup = False
+        c = self.get_cursor()
+        c.execute(self.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
+        result = c.fetchall()
+        if len(result) > 0:
+            dup = True
+        return dup
+
     def getGameTypeId(self, siteid, game):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
@@ -1741,6 +1759,13 @@ class Database:
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
 

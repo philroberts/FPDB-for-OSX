@@ -6,17 +6,17 @@ Create and manage the hud overlays.
 """
 #    Copyright 2008, 2009  Ray E. Barker
 
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -57,7 +57,7 @@ def importName(module_name, name):
     return(getattr(module, name))
 
 class Hud:
-    
+
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
@@ -74,16 +74,16 @@ class Hud:
         self.site          = table.site
         self.mw_created    = False
         self.hud_params    = parent.hud_params
-        
+
 
         self.stat_windows  = {}
         self.popup_windows = {}
         self.aux_windows   = []
-        
+
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
         self.hud_ui     = config.get_hud_ui_parameters()
-        
+
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
 
@@ -98,7 +98,7 @@ class Hud:
                 if my_import == None:
                     continue
                 self.aux_windows.append(my_import(self, config, aux_params))
-        
+
         self.creation_attrs = None
 
     def create_mw(self):
@@ -110,16 +110,16 @@ class Hud:
         win.set_skip_taskbar_hint(True)
         win.set_decorated(False)
         win.set_opacity(self.colors["hudopacity"])
-        
+
         eventbox = gtk.EventBox()
         label = gtk.Label(self.hud_ui['label'])
-        
+
         win.add(eventbox)
         eventbox.add(label)
-                        
+
         label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
         label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
-        
+
         eventbox.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
         eventbox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
 
@@ -128,20 +128,20 @@ class Hud:
 
 #    A popup menu for the main window
         menu = gtk.Menu()
-        
+
         killitem = gtk.MenuItem('Kill This HUD')
         menu.append(killitem)
         if self.parent is not None:
             killitem.connect("activate", self.parent.kill_hud, self.table_name)
-        
+
         saveitem = gtk.MenuItem('Save HUD Layout')
         menu.append(saveitem)
         saveitem.connect("activate", self.save_layout)
-        
+
         repositem = gtk.MenuItem('Reposition StatWindows')
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
-                
+
         aggitem = gtk.MenuItem('Show Player Stats')
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
@@ -150,26 +150,26 @@ class Hud:
         item = gtk.CheckMenuItem('For This Blind Level Only')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',1))
-        setattr(self, 'h_aggBBmultItem1', item) 
-        # 
+        setattr(self, 'h_aggBBmultItem1', item)
+        #
         item = gtk.MenuItem('For Multiple Blind Levels:')
         self.aggMenu.append(item)
-        # 
+        #
         item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',2))
-        setattr(self, 'h_aggBBmultItem2', item) 
-        # 
+        setattr(self, 'h_aggBBmultItem2', item)
+        #
         item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',3))
-        setattr(self, 'h_aggBBmultItem3', item) 
-        # 
+        setattr(self, 'h_aggBBmultItem3', item)
+        #
         item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10))
-        setattr(self, 'h_aggBBmultItem10', item) 
-        # 
+        setattr(self, 'h_aggBBmultItem10', item)
+        #
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10000))
@@ -195,22 +195,22 @@ class Hud:
         # 
         item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
-        # 
+        #
         item = gtk.CheckMenuItem('  All Time')
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','A'))
         setattr(self, 'h_hudStyleOptionA', item)
-        # 
+        #
         item = gtk.CheckMenuItem('  Session')
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','S'))
-        setattr(self, 'h_hudStyleOptionS', item) 
-        # 
+        setattr(self, 'h_hudStyleOptionS', item)
+        #
         item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','T'))
-        setattr(self, 'h_hudStyleOptionT', item) 
-                
+        setattr(self, 'h_hudStyleOptionT', item)
+
         aggitem = gtk.MenuItem('Show Opponent Stats')
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
@@ -219,26 +219,26 @@ class Hud:
         item = gtk.CheckMenuItem('For This Blind Level Only')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',1))
-        setattr(self, 'aggBBmultItem1', item) 
-        # 
+        setattr(self, 'aggBBmultItem1', item)
+        #
         item = gtk.MenuItem('For Multiple Blind Levels:')
         self.aggMenu.append(item)
-        # 
+        #
         item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',2))
-        setattr(self, 'aggBBmultItem2', item) 
-        # 
+        setattr(self, 'aggBBmultItem2', item)
+        #
         item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',3))
-        setattr(self, 'aggBBmultItem3', item) 
-        # 
+        setattr(self, 'aggBBmultItem3', item)
+        #
         item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10))
-        setattr(self, 'aggBBmultItem10', item) 
-        # 
+        setattr(self, 'aggBBmultItem10', item)
+        #
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10000))
@@ -264,21 +264,21 @@ class Hud:
         # 
         item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
-        # 
+        #
         item = gtk.CheckMenuItem('  All Time')
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','A'))
         setattr(self, 'hudStyleOptionA', item)
-        # 
+        #
         item = gtk.CheckMenuItem('  Session')
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','S'))
-        setattr(self, 'hudStyleOptionS', item) 
-        # 
+        setattr(self, 'hudStyleOptionS', item)
+        #
         item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','T'))
-        setattr(self, 'hudStyleOptionT', item) 
+        setattr(self, 'hudStyleOptionT', item)
 
         # set active on current options:
         if self.hud_params['h_agg_bb_mult'] == 1:
@@ -330,13 +330,13 @@ class Hud:
             getattr(self, 'hudStyleOptionS').set_active(True)
         elif self.hud_params['hud_style'] == 'T':
             getattr(self, 'hudStyleOptionT').set_active(True)
-        
+
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
-        
+
         debugitem = gtk.MenuItem('Debug StatWindows')
         menu.append(debugitem)
         debugitem.connect("activate", self.debug_stat_windows)
-                
+
         item5 = gtk.MenuItem('Set max seats')
         menu.append(item5)
         maxSeatsMenu = gtk.Menu()
@@ -346,8 +346,8 @@ class Hud:
             item.ms = i
             maxSeatsMenu.append(item)
             item.connect("activate", self.change_max_seats)
-            setattr(self, 'maxSeatsMenuItem%d' % (i-1), item) 
-        
+            setattr(self, 'maxSeatsMenuItem%d' % (i-1), item)
+
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
         self.mw_created = True
@@ -355,7 +355,7 @@ class Hud:
         menu.show_all()
         self.main_window.show_all()
         self.topify_window(self.main_window)
-          
+
     def change_max_seats(self, widget):
         if self.max != widget.ms:
             print 'change_max_seats', widget.ms
@@ -425,7 +425,7 @@ class Hud:
         else:
             param = 'hud_style'
             prefix = ''
-        
+
         if style == 'A' and getattr(self, prefix+'hudStyleOptionA').get_active():
             self.hud_params[param] = 'A'
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
@@ -504,7 +504,7 @@ class Hud:
 #        print self.table, "\n", self.main_window.window.get_transient_for()
         for w in self.stat_windows:
             print self.stat_windows[w].window.window.get_transient_for()
-                
+
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
         for sw in self.stat_windows:
@@ -520,7 +520,7 @@ class Hud:
 
     def adj_seats(self, hand, config):
 
-#        Need range here, not xrange -> need the actual list        
+#        Need range here, not xrange -> need the actual list
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         if self.max not in config.supported_sites[self.table.site].layout:
@@ -554,12 +554,12 @@ class Hud:
 #
 #    this method also manages the creating and destruction of stat
 #    windows via calls to the Stat_Window class
-        self.creation_attrs = hand, config, stat_dict, cards 
+        self.creation_attrs = hand, config, stat_dict, cards
 
-        self.hand = hand  
+        self.hand = hand
         if not self.mw_created:
             self.create_mw()
-            
+
         self.stat_dict = stat_dict
         self.cards = cards
         sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
@@ -571,24 +571,24 @@ class Hud:
             loc = self.config.get_locations(self.table.site, 9)
 
 #    create the stat windows
-        for i in xrange(1, self.max + 1):           
+        for i in xrange(1, self.max + 1):
             (x, y) = loc[adj[i]]
             if i in self.stat_windows:
                 self.stat_windows[i].relocate(x, y)
             else:
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
-                                               table = self.table, 
+                                               table = self.table,
                                                x = x,
                                                y = y,
                                                seat = i,
-                                               adj = adj[i], 
+                                               adj = adj[i],
                                                player_id = 'fake',
                                                font = self.font)
 
         self.stats = []
         game = config.supported_games[self.poker_game]
-        
+
         for i in xrange(0, game.rows + 1):
             row_list = [''] * game.cols
             self.stats.append(row_list)
@@ -596,14 +596,15 @@ class Hud:
             self.stats[config.supported_games[self.poker_game].stats[stat].row] \
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
-        
+
         if os.name == "nt":
             gobject.timeout_add(500, self.update_table_position)
-            
+
     def update(self, hand, config):
         self.hand = hand   # this is the last hand, so it is available later
         if os.name == 'nt':
-            self.update_table_position()
+            if self.update_table_position() == False: # we got killed by finding our table was gone
+                return
 
         for s in self.stat_dict:
             try:
@@ -619,18 +620,18 @@ class Hud:
                 self.max = 10
                 self.create(hand, config, self.stat_dict, self.cards)
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
-                
+
             for r in xrange(0, config.supported_games[self.poker_game].rows):
                 for c in xrange(0, config.supported_games[self.poker_game].cols):
                     this_stat = config.supported_games[self.poker_game].stats[self.stats[r][c]]
                     number = Stats.do_stat(self.stat_dict, player = statd['player_id'], stat = self.stats[r][c])
                     statstring = "%s%s%s" % (this_stat.hudprefix, str(number[1]), this_stat.hudsuffix)
                     window = self.stat_windows[statd['seat']]
-                    
+
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
-                    
+
                     window.label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
                         window.window.show_all()
@@ -640,7 +641,7 @@ class Hud:
     def topify_window(self, window):
         window.set_focus_on_map(False)
         window.set_accept_focus(False)
-        
+
         if not self.table.gdkhandle:
             self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
         window.window.set_transient_for(self.table.gdkhandle)
@@ -648,7 +649,7 @@ class Hud:
 class Stat_Window:
 
     def button_press_cb(self, widget, event, *args):
-#    This handles all callbacks from button presses on the event boxes in 
+#    This handles all callbacks from button presses on the event boxes in
 #    the stat windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.
         self.window.show_all()
@@ -672,15 +673,15 @@ class Stat_Window:
                 self.window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
             return True
         return False
-    
+
     def noop(self, arga=None, argb=None): # i'm going to try to connect the focus-in and focus-out events here, to see if that fixes any of the focus problems.
         return True
-    
+
     def kill_popup(self, popup):
         print "remove popup", popup
-        self.popups.remove(popup)        
+        self.popups.remove(popup)
         popup.window.destroy()
-        
+
     def kill_popups(self):
         map(lambda x: x.window.destroy(), self.popups)
         self.popups = { }
@@ -712,10 +713,10 @@ class Stat_Window:
         self.window.set_focus_on_map(False)
 
         grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
-        self.grid = grid    
+        self.grid = grid
         self.window.add(grid)
         self.window.modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
-        
+
         self.e_box = []
         self.frame = []
         self.label = []
@@ -731,10 +732,10 @@ class Stat_Window:
                 if usegtkframes:
                     self.frame[r].append( gtk.Frame() )
                 e_box[r].append( gtk.EventBox() )
-                
+
                 e_box[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 e_box[r][c].modify_fg(gtk.STATE_NORMAL, parent.foregroundcolor)
-                
+
                 Stats.do_tip(e_box[r][c], 'stuff')
                 if usegtkframes:
                     grid.attach(self.frame[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
@@ -742,7 +743,7 @@ class Stat_Window:
                 else:
                     grid.attach(e_box[r][c], c, c+1, r, r+1, xpadding = game.xpad, ypadding = game.ypad)
                 label[r].append( gtk.Label('xxx') )
-                
+
                 if usegtkframes:
                     self.frame[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
                 label[r][c].modify_bg(gtk.STATE_NORMAL, parent.backgroundcolor)
@@ -763,17 +764,17 @@ class Stat_Window:
         self.window.set_focus_on_map(False)
         self.window.set_accept_focus(False)
 
-        
+
         self.window.move(self.x, self.y)
         self.window.realize() # window must be realized before it has a gdkwindow so we can attach it to the table window..
         self.topify_window(self.window)
-                   
+
         self.window.hide()
-        
+
     def topify_window(self, window):
         window.set_focus_on_map(False)
         window.set_accept_focus(False)
-        
+
         if not self.table.gdkhandle:
             self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
@@ -796,11 +797,11 @@ class Popup_window:
         self.window.set_title("popup")
         self.window.set_property("skip-taskbar-hint", True)
         self.window.set_focus_on_map(False)
-        self.window.set_accept_focus(False)        
+        self.window.set_accept_focus(False)
         self.window.set_transient_for(parent.get_toplevel())
-        
+
         self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-        
+
         self.ebox = gtk.EventBox()
         self.ebox.connect("button_press_event", self.button_press_cb)
         self.lab  = gtk.Label("stuff\nstuff\nstuff")
@@ -808,14 +809,14 @@ class Popup_window:
 #    need an event box so we can respond to clicks
         self.window.add(self.ebox)
         self.ebox.add(self.lab)
-        
+
         self.ebox.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
         self.ebox.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
         self.window.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
         self.window.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
         self.lab.modify_bg(gtk.STATE_NORMAL, stat_window.parent.backgroundcolor)
         self.lab.modify_fg(gtk.STATE_NORMAL, stat_window.parent.foregroundcolor)
-        
+
 #    figure out the row, col address of the click that activated the popup
         row = 0
         col = 0
@@ -842,7 +843,7 @@ class Popup_window:
 
 #    get a database connection
 #        db_connection = Database.Database(stat_window.parent.config, stat_window.parent.db_name, 'temp')
-    
+
 #    calculate the stat_dict and then create the text for the pu
 #        stat_dict = db_connection.get_stats_from_hand(stat_window.parent.hand, stat_window.player_id)
 #        stat_dict = self.db_connection.get_stats_from_hand(stat_window.parent.hand)
@@ -854,16 +855,16 @@ class Popup_window:
             number = Stats.do_stat(stat_dict, player = int(stat_window.player_id), stat = s)
             mo_text += number[5] + " " + number[4] + "\n"
             pu_text += number[3] + "\n"
-            
+
 
         self.lab.set_text(pu_text)
         Stats.do_tip(self.lab, mo_text)
         self.window.show_all()
-        
+
         self.window.set_transient_for(stat_window.window)
 
     def button_press_cb(self, widget, event, *args):
-#    This handles all callbacks from button presses on the event boxes in 
+#    This handles all callbacks from button presses on the event boxes in
 #    the popup windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.  This is the same code as in the Stat_window class
         if event.button == 1:   # left button event
@@ -881,7 +882,7 @@ class Popup_window:
     def toggle_decorated(self, widget):
         top = widget.get_toplevel()
         (x, y) = top.get_position()
-                    
+
         if top.get_decorated():
             top.set_decorated(0)
             top.move(x, y)
@@ -892,7 +893,7 @@ class Popup_window:
     def topify_window(self, window):
         window.set_focus_on_map(False)
         window.set_accept_focus(False)
-        
+
         if not self.table.gdkhandle:
             self.table.gdkhandle = gtk.gdk.window_foreign_new(int(self.table.number)) # gtk handle to poker window
 #        window.window.reparent(self.table.gdkhandle, 0, 0)
@@ -906,14 +907,14 @@ if __name__== "__main__":
     label = gtk.Label('Fake main window, blah blah, blah\nblah, blah')
     main_window.add(label)
     main_window.show_all()
-    
+
     c = Configuration.Config()
     #tables = Tables.discover(c)
     t = Tables.discover_table_by_name(c, "Corona")
     if t is None:
         print "Table not found."
     db = Database.Database(c, 'fpdb', 'holdem')
-    
+
     stat_dict = db.get_stats_from_hand(1)
 
 #    for t in tables:

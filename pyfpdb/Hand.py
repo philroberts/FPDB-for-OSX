@@ -210,24 +210,24 @@ db: a connected fpdb_db object"""
         #####
         # End prep functions
         #####
-
-        # HandsActions - all actions for all players for all streets - self.actions
-        # HudCache data can be generated from HandsActions (HandsPlayers?)
-
-        # Hands - Summary information of hand indexed by handId - gameinfo
         hh = self.stats.getHands()
-        hh['gameTypeId'] = gtid
-        # seats TINYINT NOT NULL,
-        hh['seats'] = len(sqlids)
 
-        #print hh
-        handid = db.storeHand(hh)
-        # HandsPlayers - ? ... Do we fix winnings?
-        db.storeHandsPlayers(handid, sqlids, self.stats.getHandsPlayers())
-        # Tourneys ?
-        # TourneysPlayers
+        if not db.isDuplicate(gtid, hh['siteHandNo']):
+            # Hands - Summary information of hand indexed by handId - gameinfo
+            hh['gameTypeId'] = gtid
+            # seats TINYINT NOT NULL,
+            hh['seats'] = len(sqlids)
 
-        pass
+            handid = db.storeHand(hh)
+            db.storeHandsPlayers(handid, sqlids, self.stats.getHandsPlayers())
+            # HandsActions - all actions for all players for all streets - self.actions
+            # HudCache data can be generated from HandsActions (HandsPlayers?)
+            # Tourneys ?
+            # TourneysPlayers
+        else:
+            log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
+            #Raise Duplicate exception?
+            pass
 
     def select(self, handId):
         """ Function to create Hand object from database """

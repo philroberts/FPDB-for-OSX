@@ -1,0 +1,835 @@
+PokerStars Game #35874004239:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:08:43 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($1.60 in chips) 
+Seat 3: Nikolay Zem ($1.84 in chips) 
+Seat 4: totof51 ($1.34 in chips) 
+Seat 5: trs2758 ($1.76 in chips) 
+Seat 8: MasterTrini1 ($2.49 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+totof51: posts the ante $0.01
+trs2758: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [3d Th As]
+Dealt to Nikolay Zem [9s]
+Dealt to totof51 [Td]
+Dealt to trs2758 [7d]
+Dealt to MasterTrini1 [2c]
+MasterTrini1: brings in for $0.02
+s0rrow: calls $0.02
+Nikolay Zem: calls $0.02
+totof51: calls $0.02
+trs2758: calls $0.02
+*** 4th STREET ***
+Dealt to s0rrow [3d Th As] [Qc]
+Dealt to Nikolay Zem [9s] [6h]
+Dealt to totof51 [Td] [4s]
+Dealt to trs2758 [7d] [8d]
+Dealt to MasterTrini1 [2c] [8c]
+s0rrow: checks 
+Nikolay Zem: checks 
+totof51: checks 
+trs2758: checks 
+MasterTrini1: bets $0.04
+s0rrow: folds 
+Nikolay Zem: calls $0.04
+totof51: folds 
+trs2758: calls $0.04
+*** 5th STREET ***
+Dealt to Nikolay Zem [9s 6h] [7s]
+Dealt to trs2758 [7d 8d] [8h]
+Dealt to MasterTrini1 [2c 8c] [7h]
+RoadDevil joins the table at seat #6 
+trs2758: bets $0.08
+MasterTrini1: calls $0.08
+Nikolay Zem: calls $0.08
+*** 6th STREET ***
+Dealt to Nikolay Zem [9s 6h 7s] [Qh]
+Dealt to trs2758 [7d 8d 8h] [Ts]
+Dealt to MasterTrini1 [2c 8c 7h] [5d]
+trs2758: bets $0.08
+MasterTrini1: calls $0.08
+Nikolay Zem: folds 
+*** RIVER ***
+trs2758: bets $0.08
+MasterTrini1: folds 
+Uncalled bet ($0.08) returned to trs2758
+trs2758 collected $0.64 from pot
+*** SUMMARY ***
+Total pot $0.67 | Rake $0.03 
+Seat 1: s0rrow folded on the 4th Street
+Seat 3: Nikolay Zem folded on the 6th Street
+Seat 4: totof51 folded on the 4th Street
+Seat 5: trs2758 collected ($0.64)
+Seat 8: MasterTrini1 folded on the River
+
+
+
+PokerStars Game #35874039554:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:09:44 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($1.57 in chips) 
+Seat 3: Nikolay Zem ($1.69 in chips) 
+Seat 4: totof51 ($1.31 in chips) 
+Seat 5: trs2758 ($2.17 in chips) 
+Seat 6: RoadDevil ($1.60 in chips) 
+Seat 8: MasterTrini1 ($2.26 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+totof51: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [3s Qd 9h]
+Dealt to Nikolay Zem [7d]
+Dealt to totof51 [7c]
+Dealt to trs2758 [5h]
+Dealt to RoadDevil [5d]
+Dealt to MasterTrini1 [Ts]
+RoadDevil: brings in for $0.02
+MasterTrini1: calls $0.02
+s0rrow: folds 
+Nikolay Zem: calls $0.02
+totof51: calls $0.02
+trs2758: calls $0.02
+*** 4th STREET ***
+Dealt to Nikolay Zem [7d] [Td]
+Dealt to totof51 [7c] [Th]
+Dealt to trs2758 [5h] [8s]
+Dealt to RoadDevil [5d] [Js]
+Dealt to MasterTrini1 [Ts] [5c]
+RoadDevil: checks 
+MasterTrini1: checks 
+Nikolay Zem: checks 
+totof51: bets $0.04
+trs2758: calls $0.04
+RoadDevil: folds 
+MasterTrini1: calls $0.04
+Nikolay Zem: calls $0.04
+*** 5th STREET ***
+Dealt to Nikolay Zem [7d Td] [3d]
+Dealt to totof51 [7c Th] [9s]
+Dealt to trs2758 [5h 8s] [4s]
+Dealt to MasterTrini1 [Ts 5c] [6h]
+totof51: bets $0.08
+trs2758: folds 
+MasterTrini1: calls $0.08
+Nikolay Zem: calls $0.08
+*** 6th STREET ***
+Dealt to Nikolay Zem [7d Td 3d] [Tc]
+Dealt to totof51 [7c Th 9s] [Ah]
+Dealt to MasterTrini1 [Ts 5c 6h] [Jh]
+Nikolay Zem: checks 
+totof51: bets $0.08
+MasterTrini1: calls $0.08
+Nikolay Zem: calls $0.08
+*** RIVER ***
+Nikolay Zem: checks 
+totof51: checks 
+MasterTrini1: checks 
+*** SHOW DOWN ***
+Nikolay Zem: shows [Ac 4d 7d Td 3d Tc 2h] (a pair of Tens)
+totof51: mucks hand 
+totof51 is sitting out
+MasterTrini1: shows [4c 6d Ts 5c 6h Jh 9c] (a pair of Sixes)
+totof51 leaves the table
+Nikolay Zem collected $0.77 from pot
+*** SUMMARY ***
+Total pot $0.80 | Rake $0.03 
+Seat 1: s0rrow folded on the 3rd Street (didn't bet)
+Seat 3: Nikolay Zem showed [Ac 4d 7d Td 3d Tc 2h] and won ($0.77) with a pair of Tens
+Seat 4: totof51 mucked [3c 7s 7c Th 9s Ah Qc]
+Seat 5: trs2758 folded on the 5th Street
+Seat 6: RoadDevil folded on the 4th Street
+Seat 8: MasterTrini1 showed [4c 6d Ts 5c 6h Jh 9c] and lost with a pair of Sixes
+
+
+
+PokerStars Game #35874081088:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:10:56 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($1.56 in chips) 
+Seat 3: Nikolay Zem ($2.23 in chips) 
+Seat 5: trs2758 ($2.10 in chips) 
+Seat 6: RoadDevil ($1.57 in chips) 
+Seat 8: MasterTrini1 ($2.03 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [5h 5c 2s]
+Dealt to Nikolay Zem [Ad]
+Dealt to trs2758 [6h]
+Dealt to RoadDevil [4h]
+Dealt to MasterTrini1 [8h]
+s0rrow: bets $0.04
+Nikolay Zem: calls $0.04
+trs2758: folds 
+RoadDevil: calls $0.04
+MasterTrini1: raises $0.04 to $0.08
+s0rrow: calls $0.04
+Nikolay Zem: calls $0.04
+RoadDevil: calls $0.04
+*** 4th STREET ***
+Dealt to s0rrow [5h 5c 2s] [As]
+Dealt to Nikolay Zem [Ad] [4s]
+Dealt to RoadDevil [4h] [Tc]
+Dealt to MasterTrini1 [8h] [6d]
+Nikolay Zem: checks 
+RoadDevil: checks 
+MasterTrini1: bets $0.04
+s0rrow: calls $0.04
+Nikolay Zem: folds 
+RoadDevil: folds 
+*** 5th STREET ***
+Dealt to s0rrow [5h 5c 2s As] [5d]
+Dealt to MasterTrini1 [8h 6d] [Ac]
+MasterTrini1: bets $0.08
+s0rrow: raises $0.08 to $0.16
+MasterTrini1: calls $0.08
+*** 6th STREET ***
+Dealt to s0rrow [5h 5c 2s As 5d] [Ah]
+Dealt to MasterTrini1 [8h 6d Ac] [Js]
+s0rrow: bets $0.08
+MasterTrini1: calls $0.08
+*** RIVER ***
+Dealt to s0rrow [5h 5c 2s As 5d Ah] [4d]
+s0rrow: bets $0.08
+MasterTrini1: calls $0.08
+*** SHOW DOWN ***
+s0rrow: shows [5h 5c 2s As 5d Ah 4d] (a full house, Fives full of Aces)
+MasterTrini1: mucks hand 
+s0rrow collected $1.04 from pot
+*** SUMMARY ***
+Total pot $1.09 | Rake $0.05 
+Seat 1: s0rrow showed [5h 5c 2s As 5d Ah 4d] and won ($1.04) with a full house, Fives full of Aces
+Seat 3: Nikolay Zem folded on the 4th Street
+Seat 5: trs2758 folded on the 3rd Street (didn't bet)
+Seat 6: RoadDevil folded on the 4th Street
+Seat 8: MasterTrini1 mucked [Qs Qd 8h 6d Ac Js Jc]
+
+
+
+PokerStars Game #35874124553:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:12:11 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($2.15 in chips) 
+Seat 3: Nikolay Zem ($2.14 in chips) 
+Seat 5: trs2758 ($2.09 in chips) 
+Seat 6: RoadDevil ($1.48 in chips) 
+Seat 8: MasterTrini1 ($1.58 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [Js Kc 3d]
+Dealt to Nikolay Zem [6c]
+Dealt to trs2758 [4d]
+Dealt to RoadDevil [6d]
+Dealt to MasterTrini1 [9h]
+s0rrow: brings in for $0.02
+Nikolay Zem: folds 
+trs2758: folds 
+RoadDevil: calls $0.02
+MasterTrini1: calls $0.02
+*** 4th STREET ***
+Dealt to s0rrow [Js Kc 3d] [2h]
+Dealt to RoadDevil [6d] [Ah]
+Dealt to MasterTrini1 [9h] [8c]
+RoadDevil: checks 
+MasterTrini1: bets $0.04
+rv2020 joins the table at seat #4 
+s0rrow: folds 
+RoadDevil: calls $0.04
+*** 5th STREET ***
+Dealt to RoadDevil [6d Ah] [Td]
+Dealt to MasterTrini1 [9h 8c] [5s]
+RoadDevil: checks 
+MasterTrini1: bets $0.08
+RoadDevil: calls $0.08
+*** 6th STREET ***
+Dealt to RoadDevil [6d Ah Td] [4c]
+Dealt to MasterTrini1 [9h 8c 5s] [5h]
+MasterTrini1: bets $0.08
+RoadDevil: calls $0.08
+*** RIVER ***
+MasterTrini1: bets $0.08
+RoadDevil: calls $0.08
+*** SHOW DOWN ***
+MasterTrini1: shows [6s 7d 9h 8c 5s 5h 9d] (a straight, Five to Nine)
+RoadDevil: mucks hand 
+MasterTrini1 collected $0.64 from pot
+*** SUMMARY ***
+Total pot $0.67 | Rake $0.03 
+Seat 1: s0rrow folded on the 4th Street
+Seat 3: Nikolay Zem folded on the 3rd Street (didn't bet)
+Seat 5: trs2758 folded on the 3rd Street (didn't bet)
+Seat 6: RoadDevil mucked [4s 8d 6d Ah Td 4c 8h]
+Seat 8: MasterTrini1 showed [6s 7d 9h 8c 5s 5h 9d] and won ($0.64) with a straight, Five to Nine
+
+
+
+PokerStars Game #35874153086:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:13:01 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($2.12 in chips) 
+Seat 3: Nikolay Zem ($2.13 in chips) 
+Seat 4: rv2020 ($1 in chips) 
+Seat 5: trs2758 ($2.08 in chips) 
+Seat 6: RoadDevil ($1.17 in chips) 
+Seat 8: MasterTrini1 ($1.91 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [As 8s 6h]
+Dealt to Nikolay Zem [4c]
+Dealt to rv2020 [2s]
+Dealt to trs2758 [7s]
+Dealt to RoadDevil [7c]
+Dealt to MasterTrini1 [Qd]
+rv2020: brings in for $0.02
+trs2758: calls $0.02
+RoadDevil: calls $0.02
+MasterTrini1: calls $0.02
+s0rrow: calls $0.02
+Nikolay Zem: folds 
+*** 4th STREET ***
+Dealt to s0rrow [As 8s 6h] [3s]
+Dealt to rv2020 [2s] [6d]
+Dealt to trs2758 [7s] [Ah]
+Dealt to RoadDevil [7c] [4h]
+Dealt to MasterTrini1 [Qd] [Ad]
+MasterTrini1: checks 
+s0rrow: checks 
+rv2020: checks 
+trs2758: checks 
+RoadDevil: checks 
+*** 5th STREET ***
+Dealt to s0rrow [As 8s 6h 3s] [Jh]
+Dealt to rv2020 [2s 6d] [Qh]
+Dealt to trs2758 [7s Ah] [4d]
+Dealt to RoadDevil [7c 4h] [7h]
+Dealt to MasterTrini1 [Qd Ad] [5h]
+RoadDevil: checks 
+MasterTrini1: checks 
+s0rrow: checks 
+rv2020: checks 
+trs2758: checks 
+*** 6th STREET ***
+Dealt to s0rrow [As 8s 6h 3s Jh] [Tc]
+Dealt to rv2020 [2s 6d Qh] [9h]
+Dealt to trs2758 [7s Ah 4d] [3d]
+Dealt to RoadDevil [7c 4h 7h] [5c]
+Dealt to MasterTrini1 [Qd Ad 5h] [Td]
+RoadDevil: checks 
+MasterTrini1: checks 
+s0rrow: checks 
+rv2020: checks 
+trs2758: checks 
+*** RIVER ***
+Dealt to s0rrow [As 8s 6h 3s Jh Tc] [Qs]
+RoadDevil: checks 
+MasterTrini1: checks 
+s0rrow: checks 
+rv2020: checks 
+trs2758: checks 
+*** SHOW DOWN ***
+s0rrow: shows [As 8s 6h 3s Jh Tc Qs] (high card Ace)
+rv2020: shows [8c Ac 2s 6d Qh 9h 2d] (a pair of Deuces)
+trs2758: mucks hand 
+RoadDevil: shows [Jd Qc 7c 4h 7h 5c Kc] (a pair of Sevens)
+MasterTrini1: shows [Jc 2h Qd Ad 5h Td Ks] (a straight, Ten to Ace)
+MasterTrini1 collected $0.16 from pot
+*** SUMMARY ***
+Total pot $0.16 | Rake $0 
+Seat 1: s0rrow showed [As 8s 6h 3s Jh Tc Qs] and lost with high card Ace
+Seat 3: Nikolay Zem folded on the 3rd Street (didn't bet)
+Seat 4: rv2020 showed [8c Ac 2s 6d Qh 9h 2d] and lost with a pair of Deuces
+Seat 5: trs2758 mucked [2c 9s 7s Ah 4d 3d 8d]
+Seat 6: RoadDevil showed [Jd Qc 7c 4h 7h 5c Kc] and lost with a pair of Sevens
+Seat 8: MasterTrini1 showed [Jc 2h Qd Ad 5h Td Ks] and won ($0.16) with a straight, Ten to Ace
+
+
+
+PokerStars Game #35874195699:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:14:15 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($2.09 in chips) 
+Seat 3: Nikolay Zem ($2.12 in chips) 
+Seat 4: rv2020 ($0.97 in chips) 
+Seat 5: trs2758 ($2.05 in chips) 
+Seat 6: RoadDevil ($1.14 in chips) 
+Seat 8: MasterTrini1 ($2.04 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [6c 4c Th]
+Dealt to Nikolay Zem [9d]
+Dealt to rv2020 [4s]
+Dealt to trs2758 [3h]
+Dealt to RoadDevil [Ac]
+Dealt to MasterTrini1 [5d]
+trs2758: brings in for $0.02
+RoadDevil: folds 
+MasterTrini1: calls $0.02
+s0rrow: folds 
+Nikolay Zem: calls $0.02
+rv2020: folds 
+*** 4th STREET ***
+Dealt to Nikolay Zem [9d] [3s]
+Dealt to trs2758 [3h] [Jd]
+Dealt to MasterTrini1 [5d] [2d]
+trs2758: checks 
+MasterTrini1: checks 
+Nikolay Zem: checks 
+*** 5th STREET ***
+Dealt to Nikolay Zem [9d 3s] [9c]
+Dealt to trs2758 [3h Jd] [2h]
+Dealt to MasterTrini1 [5d 2d] [7d]
+Nikolay Zem: bets $0.08
+trs2758: folds 
+MasterTrini1: raises $0.08 to $0.16
+Nikolay Zem: calls $0.08
+*** 6th STREET ***
+Dealt to Nikolay Zem [9d 3s 9c] [Td]
+Dealt to MasterTrini1 [5d 2d 7d] [5h]
+Nikolay Zem: checks 
+MasterTrini1: checks 
+*** RIVER ***
+Nikolay Zem: bets $0.08
+MasterTrini1: folds 
+Uncalled bet ($0.08) returned to Nikolay Zem
+Nikolay Zem collected $0.42 from pot
+Nikolay Zem: doesn't show hand 
+*** SUMMARY ***
+Total pot $0.44 | Rake $0.02 
+Seat 1: s0rrow folded on the 3rd Street (didn't bet)
+Seat 3: Nikolay Zem collected ($0.42)
+Seat 4: rv2020 folded on the 3rd Street (didn't bet)
+Seat 5: trs2758 folded on the 5th Street
+Seat 6: RoadDevil folded on the 3rd Street (didn't bet)
+Seat 8: MasterTrini1 folded on the River
+
+
+
+PokerStars Game #35874220204:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:14:58 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($2.08 in chips) 
+Seat 3: Nikolay Zem ($2.35 in chips) 
+Seat 4: rv2020 ($0.96 in chips) 
+Seat 5: trs2758 ($2.02 in chips) 
+Seat 6: RoadDevil ($1.13 in chips) 
+Seat 8: MasterTrini1 ($1.85 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [Jd 9d 2h]
+Dealt to Nikolay Zem [Ad]
+Dealt to rv2020 [2c]
+Dealt to trs2758 [8c]
+Dealt to RoadDevil [3s]
+Dealt to MasterTrini1 [3h]
+rv2020: brings in for $0.02
+trs2758: calls $0.02
+RoadDevil: folds 
+MasterTrini1: calls $0.02
+s0rrow: folds 
+Nikolay Zem: calls $0.02
+*** 4th STREET ***
+Dealt to Nikolay Zem [Ad] [9h]
+Dealt to rv2020 [2c] [4d]
+Dealt to trs2758 [8c] [Qd]
+Dealt to MasterTrini1 [3h] [Qs]
+Nikolay Zem: checks 
+rv2020: bets $0.04
+trs2758: calls $0.04
+MasterTrini1: calls $0.04
+Nikolay Zem: folds 
+*** 5th STREET ***
+Dealt to rv2020 [2c 4d] [Jh]
+Dealt to trs2758 [8c Qd] [Js]
+Dealt to MasterTrini1 [3h Qs] [4h]
+trs2758: checks 
+MasterTrini1: bets $0.08
+rv2020: raises $0.08 to $0.16
+trs2758: calls $0.16
+MasterTrini1: calls $0.08
+*** 6th STREET ***
+Dealt to rv2020 [2c 4d Jh] [7c]
+Dealt to trs2758 [8c Qd Js] [5c]
+Dealt to MasterTrini1 [3h Qs 4h] [7h]
+trs2758: checks 
+MasterTrini1: checks 
+rv2020: bets $0.08
+trs2758: folds 
+MasterTrini1: calls $0.08
+*** RIVER ***
+MasterTrini1: checks 
+rv2020: checks 
+*** SHOW DOWN ***
+rv2020: shows [As Ac 2c 4d Jh 7c 3c] (a pair of Aces)
+MasterTrini1: mucks hand 
+rv2020 collected $0.86 from pot
+*** SUMMARY ***
+Total pot $0.90 | Rake $0.04 
+Seat 1: s0rrow folded on the 3rd Street (didn't bet)
+Seat 3: Nikolay Zem folded on the 4th Street
+Seat 4: rv2020 showed [As Ac 2c 4d Jh 7c 3c] and won ($0.86) with a pair of Aces
+Seat 5: trs2758 folded on the 6th Street
+Seat 6: RoadDevil folded on the 3rd Street (didn't bet)
+Seat 8: MasterTrini1 mucked [6s 8s 3h Qs 4h 7h 6d]
+
+
+
+PokerStars Game #35874259784:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:16:07 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($2.07 in chips) 
+Seat 3: Nikolay Zem ($2.32 in chips) 
+Seat 4: rv2020 ($1.51 in chips) 
+Seat 5: trs2758 ($1.79 in chips) 
+Seat 6: RoadDevil ($1.12 in chips) 
+Seat 8: MasterTrini1 ($1.54 in chips) 
+s0rrow: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [7d 6h 9s]
+Dealt to Nikolay Zem [Js]
+Dealt to rv2020 [3d]
+Dealt to trs2758 [7s]
+Dealt to RoadDevil [Qh]
+Dealt to MasterTrini1 [5d]
+rv2020: brings in for $0.02
+trs2758: folds 
+RoadDevil: calls $0.02
+MasterTrini1: calls $0.02
+s0rrow: calls $0.02
+Nikolay Zem: calls $0.02
+*** 4th STREET ***
+Dealt to s0rrow [7d 6h 9s] [Kc]
+Dealt to Nikolay Zem [Js] [6s]
+Dealt to rv2020 [3d] [Jd]
+Dealt to RoadDevil [Qh] [Th]
+Dealt to MasterTrini1 [5d] [8c]
+Katica65 was removed from the table for failing to post
+s0rrow: checks 
+Nikolay Zem: checks 
+danjr655 joins the table at seat #2 
+rv2020: checks 
+RoadDevil: checks 
+MasterTrini1: checks 
+*** 5th STREET ***
+Dealt to s0rrow [7d 6h 9s Kc] [Ah]
+Dealt to Nikolay Zem [Js 6s] [Ad]
+Dealt to rv2020 [3d Jd] [Tc]
+Dealt to RoadDevil [Qh Th] [Qc]
+Dealt to MasterTrini1 [5d 8c] [3h]
+RoadDevil: bets $0.08
+MasterTrini1: folds 
+s0rrow: raises $0.08 to $0.16
+Nikolay Zem: calls $0.16
+rv2020: folds 
+RoadDevil: calls $0.08
+*** 6th STREET ***
+Dealt to s0rrow [7d 6h 9s Kc Ah] [4d]
+Dealt to Nikolay Zem [Js 6s Ad] [4s]
+Dealt to RoadDevil [Qh Th Qc] [7h]
+RoadDevil: checks 
+s0rrow: checks 
+Nikolay Zem: bets $0.08
+RoadDevil: calls $0.08
+s0rrow: folds 
+*** RIVER ***
+RoadDevil: checks 
+Nikolay Zem: bets $0.08
+RoadDevil: calls $0.08
+*** SHOW DOWN ***
+Nikolay Zem: shows [Qs 3s Js 6s Ad 4s 2s] (a flush, Queen high)
+RoadDevil: mucks hand 
+Nikolay Zem collected $0.92 from pot
+*** SUMMARY ***
+Total pot $0.96 | Rake $0.04 
+Seat 1: s0rrow folded on the 6th Street
+Seat 3: Nikolay Zem showed [Qs 3s Js 6s Ad 4s 2s] and won ($0.92) with a flush, Queen high
+Seat 4: rv2020 folded on the 5th Street
+Seat 5: trs2758 folded on the 3rd Street (didn't bet)
+Seat 6: RoadDevil mucked [2h Ts Qh Th Qc 7h Kd]
+Seat 8: MasterTrini1 folded on the 5th Street
+
+
+
+PokerStars Game #35874289931:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:16:59 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($1.88 in chips) 
+Seat 2: danjr655 ($0.45 in chips) 
+Seat 3: Nikolay Zem ($2.89 in chips) 
+Seat 4: rv2020 ($1.48 in chips) 
+Seat 5: trs2758 ($1.78 in chips) 
+Seat 6: RoadDevil ($0.77 in chips) 
+Seat 8: MasterTrini1 ($1.51 in chips) 
+s0rrow: posts the ante $0.01
+danjr655: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [2d Qs 8c]
+Dealt to danjr655 [5d]
+Dealt to Nikolay Zem [Jc]
+Dealt to rv2020 [8d]
+Dealt to trs2758 [Kd]
+Dealt to RoadDevil [4s]
+Dealt to MasterTrini1 [6h]
+RoadDevil: brings in for $0.02
+Trackr21 joins the table at seat #7 
+MasterTrini1: calls $0.02
+s0rrow: folds 
+danjr655: folds 
+Nikolay Zem: calls $0.02
+rv2020: calls $0.02
+trs2758: calls $0.02
+*** 4th STREET ***
+Dealt to Nikolay Zem [Jc] [2h]
+Dealt to rv2020 [8d] [Jd]
+Dealt to trs2758 [Kd] [Ks]
+Dealt to RoadDevil [4s] [6c]
+Dealt to MasterTrini1 [6h] [4c]
+Pair on board - a double bet is allowed
+trs2758: bets $0.04
+RoadDevil: calls $0.04
+MasterTrini1: calls $0.04
+Nikolay Zem: folds 
+rv2020: folds 
+*** 5th STREET ***
+Dealt to trs2758 [Kd Ks] [7c]
+Dealt to RoadDevil [4s 6c] [9d]
+Dealt to MasterTrini1 [6h 4c] [3h]
+trs2758: bets $0.08
+RoadDevil: folds 
+MasterTrini1: raises $0.08 to $0.16
+trs2758: raises $0.08 to $0.24
+MasterTrini1: raises $0.08 to $0.32
+Betting is capped
+trs2758: calls $0.08
+*** 6th STREET ***
+Dealt to trs2758 [Kd Ks 7c] [9h]
+Dealt to MasterTrini1 [6h 4c 3h] [3c]
+trs2758: checks 
+MasterTrini1: bets $0.08
+trs2758: calls $0.08
+*** RIVER ***
+trs2758: checks 
+MasterTrini1: checks 
+*** SHOW DOWN ***
+trs2758: shows [Ac 2c Kd Ks 7c 9h 9c] (two pair, Kings and Nines)
+MasterTrini1: shows [5h 8h 6h 4c 3h 3c As] (a pair of Threes)
+trs2758 collected $1.04 from pot
+*** SUMMARY ***
+Total pot $1.09 | Rake $0.05 
+Seat 1: s0rrow folded on the 3rd Street (didn't bet)
+Seat 2: danjr655 folded on the 3rd Street (didn't bet)
+Seat 3: Nikolay Zem folded on the 4th Street
+Seat 4: rv2020 folded on the 4th Street
+Seat 5: trs2758 showed [Ac 2c Kd Ks 7c 9h 9c] and won ($1.04) with two pair, Kings and Nines
+Seat 6: RoadDevil folded on the 5th Street
+Seat 8: MasterTrini1 showed [5h 8h 6h 4c 3h 3c As] and lost with a pair of Threes
+
+
+
+PokerStars Game #35874334277:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:18:16 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($1.87 in chips) 
+Seat 2: danjr655 ($0.44 in chips) 
+Seat 3: Nikolay Zem ($2.86 in chips) 
+Seat 4: rv2020 ($1.45 in chips) 
+Seat 5: trs2758 ($2.35 in chips) 
+Seat 6: RoadDevil ($0.70 in chips) 
+Seat 7: Trackr21 ($1.60 in chips) 
+Seat 8: MasterTrini1 ($1.04 in chips) 
+s0rrow: posts the ante $0.01
+danjr655: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+Trackr21: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [7d Qs 8s]
+Dealt to danjr655 [8d]
+Dealt to Nikolay Zem [6d]
+Dealt to rv2020 [4d]
+Dealt to trs2758 [Ad]
+Dealt to RoadDevil [Td]
+Dealt to Trackr21 [Jh]
+Dealt to MasterTrini1 [5s]
+rv2020: brings in for $0.02
+trs2758: calls $0.02
+RoadDevil: folds 
+Trackr21: folds 
+MasterTrini1: calls $0.02
+s0rrow: calls $0.02
+danjr655: folds 
+Nikolay Zem: calls $0.02
+*** 4th STREET ***
+Dealt to s0rrow [7d Qs 8s] [2s]
+Dealt to Nikolay Zem [6d] [2h]
+Dealt to rv2020 [4d] [Kd]
+Dealt to trs2758 [Ad] [Kh]
+Dealt to MasterTrini1 [5s] [5c]
+Pair on board - a double bet is allowed
+MasterTrini1: bets $0.08
+s0rrow: calls $0.08
+Nikolay Zem: folds 
+rv2020: calls $0.08
+trs2758: calls $0.08
+*** 5th STREET ***
+Dealt to s0rrow [7d Qs 8s 2s] [As]
+Dealt to rv2020 [4d Kd] [Qd]
+Dealt to trs2758 [Ad Kh] [3h]
+Dealt to MasterTrini1 [5s 5c] [Js]
+MasterTrini1: checks 
+s0rrow: bets $0.08
+rv2020: folds 
+trs2758: folds 
+MasterTrini1: calls $0.08
+*** 6th STREET ***
+Dealt to s0rrow [7d Qs 8s 2s As] [5d]
+Dealt to MasterTrini1 [5s 5c Js] [2c]
+MasterTrini1: checks 
+s0rrow: bets $0.08
+MasterTrini1: calls $0.08
+*** RIVER ***
+Dealt to s0rrow [7d Qs 8s 2s As 5d] [7h]
+MasterTrini1: checks 
+s0rrow: bets $0.08
+MasterTrini1: calls $0.08
+*** SHOW DOWN ***
+s0rrow: shows [7d Qs 8s 2s As 5d 7h] (a pair of Sevens)
+MasterTrini1: mucks hand 
+s0rrow collected $0.94 from pot
+*** SUMMARY ***
+Total pot $0.98 | Rake $0.04 
+Seat 1: s0rrow showed [7d Qs 8s 2s As 5d 7h] and won ($0.94) with a pair of Sevens
+Seat 2: danjr655 folded on the 3rd Street (didn't bet)
+Seat 3: Nikolay Zem folded on the 4th Street
+Seat 4: rv2020 folded on the 5th Street
+Seat 5: trs2758 folded on the 5th Street
+Seat 6: RoadDevil folded on the 3rd Street (didn't bet)
+Seat 7: Trackr21 folded on the 3rd Street (didn't bet)
+Seat 8: MasterTrini1 mucked [Ac 9d 5s 5c Js 2c Kc]
+
+
+
+PokerStars Game #35874382643:  7 Card Stud Limit ($0.04/$0.08 USD) - 2009/11/26 10:19:39 ET
+Table 'Atalante II' 8-max
+Seat 1: s0rrow ($2.46 in chips) 
+Seat 2: danjr655 ($0.43 in chips) 
+Seat 3: Nikolay Zem ($2.83 in chips) 
+Seat 4: rv2020 ($1.34 in chips) 
+Seat 5: trs2758 ($2.24 in chips) 
+Seat 6: RoadDevil ($0.69 in chips) 
+Seat 7: Trackr21 ($1.59 in chips) 
+Seat 8: MasterTrini1 ($0.69 in chips) 
+s0rrow: posts the ante $0.01
+danjr655: posts the ante $0.01
+Nikolay Zem: posts the ante $0.01
+rv2020: posts the ante $0.01
+trs2758: posts the ante $0.01
+RoadDevil: posts the ante $0.01
+Trackr21: posts the ante $0.01
+MasterTrini1: posts the ante $0.01
+*** 3rd STREET ***
+Dealt to s0rrow [8d 3d 8c]
+Dealt to danjr655 [Kd]
+Dealt to Nikolay Zem [9c]
+Dealt to rv2020 [4h]
+Dealt to trs2758 [6c]
+Dealt to RoadDevil [6d]
+Dealt to Trackr21 [5d]
+Dealt to MasterTrini1 [8h]
+rv2020: brings in for $0.02
+trs2758: folds 
+RoadDevil: calls $0.02
+Trackr21: calls $0.02
+MasterTrini1: calls $0.02
+s0rrow: calls $0.02
+danjr655: calls $0.02
+Nikolay Zem: calls $0.02
+*** 4th STREET ***
+Dealt to s0rrow [8d 3d 8c] [Qc]
+Dealt to danjr655 [Kd] [Kc]
+Dealt to Nikolay Zem [9c] [Jd]
+Dealt to rv2020 [4h] [8s]
+Dealt to RoadDevil [6d] [4s]
+Dealt to Trackr21 [5d] [4d]
+Dealt to MasterTrini1 [8h] [As]
+Pair on board - a double bet is allowed
+danjr655: bets $0.04
+Nikolay Zem: calls $0.04
+rv2020: folds 
+RoadDevil: folds 
+Trackr21: calls $0.04
+MasterTrini1: calls $0.04
+s0rrow: folds 
+*** 5th STREET ***
+Dealt to danjr655 [Kd Kc] [2h]
+Dealt to Nikolay Zem [9c Jd] [Qs]
+Dealt to Trackr21 [5d 4d] [3h]
+Dealt to MasterTrini1 [8h As] [Th]
+danjr655: bets $0.08
+Nikolay Zem: calls $0.08
+Trackr21: calls $0.08
+s0rrow is sitting out
+MasterTrini1: calls $0.08
+*** 6th STREET ***
+Dealt to danjr655 [Kd Kc 2h] [7s]
+Dealt to Nikolay Zem [9c Jd Qs] [9d]
+Dealt to Trackr21 [5d 4d 3h] [5s]
+Dealt to MasterTrini1 [8h As Th] [9h]
+danjr655: checks 
+Nikolay Zem: checks 
+Trackr21: checks 
+MasterTrini1: checks 
+*** RIVER ***
+danjr655: checks 
+Nikolay Zem: checks 
+Trackr21: bets $0.08
+MasterTrini1: folds 
+danjr655: folds 
+Nikolay Zem: calls $0.08
+*** SHOW DOWN ***
+Trackr21: shows [6h Ah 5d 4d 3h 5s 5c] (three of a kind, Fives)
+Nikolay Zem: mucks hand 
+Trackr21 collected $0.82 from pot
+*** SUMMARY ***
+Total pot $0.86 | Rake $0.04 
+Seat 1: s0rrow folded on the 4th Street
+Seat 2: danjr655 folded on the River
+Seat 3: Nikolay Zem mucked [7c 7d 9c Jd Qs 9d Ad]
+Seat 4: rv2020 folded on the 4th Street
+Seat 5: trs2758 folded on the 3rd Street (didn't bet)
+Seat 6: RoadDevil folded on the 4th Street
+Seat 7: Trackr21 showed [6h Ah 5d 4d 3h 5s 5c] and won ($0.82) with three of a kind, Fives
+Seat 8: MasterTrini1 folded on the River
+
+
+
