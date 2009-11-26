@@ -433,17 +433,50 @@ class Database:
 
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
-                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000}
+                                          ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000
+                                          ,'h_seats_style':'A', 'h_seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          }
                            , hero_id = -1
+                           , num_seats = 6
                            ):
         hud_style   = hud_params['hud_style']
         agg_bb_mult = hud_params['agg_bb_mult']
+        seats_style = hud_params['seats_style']
+        seats_cust_nums = hud_params['seats_cust_nums']
         h_hud_style   = hud_params['h_hud_style']
         h_agg_bb_mult = hud_params['h_agg_bb_mult']
+        h_seats_style = hud_params['h_seats_style']
+        h_seats_cust_nums = hud_params['h_seats_cust_nums']
+
         stat_dict = {}
 
+        if seats_style == 'A':
+            seats_min, seats_max = 2, 10
+        elif seats_style == 'C':
+            seats_min, seats_max = seats_cust_nums[num_seats][0], seats_cust_nums[num_seats][1]
+        elif seats_style == 'E':
+            seats_min, seats_max = num_seats, num_seats
+        else:
+            seats_min, seats_max = 2, 10
+            print "bad seats_style value:", seats_style
+
+        if h_seats_style == 'A':
+            h_seats_min, h_seats_max = 2, 10
+        elif h_seats_style == 'C':
+            h_seats_min, h_seats_max = h_seats_cust_nums[num_seats][0], h_seats_cust_nums[num_seats][1]
+        elif h_seats_style == 'E':
+            h_seats_min, h_seats_max = num_seats, num_seats
+        else:
+            h_seats_min, h_seats_max = 2, 10
+            print "bad h_seats_style value:", h_seats_style
+        print "opp seats style", seats_style, "hero seats style", h_seats_style
+        print "opp seats:", seats_min, seats_max, " hero seats:", h_seats_min, h_seats_max
+
         if hud_style == 'S' or h_hud_style == 'S':
-            self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
+            self.get_stats_from_hand_session(hand, stat_dict, hero_id
+                                            ,hud_style, seats_min, seats_max
+                                            ,h_hud_style, h_seats_min, h_seats_max)
 
             if hud_style == 'S' and h_hud_style == 'S':
                 return stat_dict
@@ -475,7 +508,9 @@ class Database:
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
         query = 'get_stats_from_hand_aggregated'
-        subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
+        subs = (hand
+               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, seats_min, seats_max  # hero params
+               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -495,12 +530,15 @@ class Database:
         return stat_dict
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
-    def get_stats_from_hand_session(self, hand, stat_dict, hero_id, hud_style, h_hud_style):
+    def get_stats_from_hand_session(self, hand, stat_dict, hero_id
+                                   ,hud_style, seats_min, seats_max
+                                   ,h_hud_style, h_seats_min, h_seats_max):
         """Get stats for just this session (currently defined as any play in the last 24 hours - to
            be improved at some point ...)
            h_hud_style and hud_style params indicate whether to get stats for hero and/or others
            - only fetch heros stats if h_hud_style == 'S',
              and only fetch others stats if hud_style == 'S'
+           seats_min/max params give seats limits, only include stats if between these values
         """
 
         query = self.sql.query['get_stats_from_hand_session']
@@ -509,7 +547,8 @@ class Database:
         else:
             query = query.replace("<signed>", '')
         
-        subs = (self.hand_1day_ago, hand)
+        subs = (self.hand_1day_ago, hand, hero_id, seats_min, seats_max
+                                        , hero_id, h_seats_min, h_seats_max)
         c = self.get_cursor()
 
         # now get the stats
@@ -524,6 +563,7 @@ class Database:
             # Loop through stats adding them to appropriate stat_dict:
             while row:
                 playerid = row[0]
+                seats = row[1]
                 if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
                     for name, val in zip(colnames, row):
                         if not playerid in stat_dict:
@@ -535,7 +575,7 @@ class Database:
                             stat_dict[playerid][name.lower()] += val
                     n += 1
                     if n >= 10000: break  # todo: don't think this is needed so set nice and high 
-                                         #       for now - comment out or remove?
+                                          # prevents infinite loop so leave for now - comment out or remove?
                 row = c.fetchone()
         else:
             log.error("ERROR: query %s result does not have player_id as first column" % (query,))
@@ -2721,7 +2761,9 @@ if __name__=="__main__":
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
-    db_connection.recreate_tables()
+    # db_connection.recreate_tables()
+    db_connection.dropAllIndexes()
+    db_connection.createAllIndexes()
     
     h = db_connection.get_last_hand()
     print "last hand = ", h

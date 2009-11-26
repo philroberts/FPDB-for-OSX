@@ -1402,6 +1402,7 @@ class Sql:
                                   AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
                                   AND    gt1.bigblind >= gt2.bigblind / %s
                                   AND    gt2.id = h.gametypeId)
+                           AND hc.activeSeats between %s and %s
                           )
                        OR
                           (    hp.playerId = %s
@@ -1415,6 +1416,7 @@ class Sql:
                                   AND    gt1.bigblind <= gt2.bigblind * %s  /* bigblind similar size */
                                   AND    gt1.bigblind >= gt2.bigblind / %s
                                   AND    gt2.id = h.gametypeId)
+                           AND hc.activeSeats between %s and %s
                           )
                       )
                 GROUP BY hc.PlayerId, p.name
@@ -1432,11 +1434,11 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['get_stats_from_hand_session'] = """
-                    SELECT hp.playerId                                              AS player_id,
+                    SELECT hp.playerId                                              AS player_id, /* playerId and seats must */
+                           h.seats                                                  AS seats,     /* be first and second field */
                            hp.handId                                                AS hand_id,
                            hp.seatNo                                                AS seat,
                            p.name                                                   AS screen_name,
-                           h.seats                                                  AS seats,
                            1                                                        AS n,
                            cast(hp2.street0VPI as <signed>integer)                  AS vpip,
                            cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
@@ -1494,21 +1496,30 @@ class Sql:
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
                            cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
                     FROM
-                         Hands h         /* players in this hand */
+                         Hands h
                          INNER JOIN Hands h2         ON (h2.id > %s AND   h2.tableName = h.tableName)
-                         INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)
+                         INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)         /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (hp2.playerId+0 = hp.playerId+0 AND (hp2.handId = h2.id+0))  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
                     WHERE hp.handId = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
                     */
+                    AND   (   /* 2 separate parts for hero and opponents */
+                              (    hp2.playerId != %s
+                               AND h2.seats between %s and %s
+                              )
+                           OR
+                              (    hp2.playerId = %s
+                               AND h2.seats between %s and %s
+                              )
+                          )
                     ORDER BY h.handStart desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
                 """
-        else:  # assume postgresql
+        elif db_server == 'postgresql':
             self.query['get_stats_from_hand_session'] = """
                     SELECT hp.playerId                                              AS player_id,
                            hp.handId                                                AS hand_id,
@@ -1582,6 +1593,103 @@ class Sql:
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
                     */
+                    AND   (   /* 2 separate parts for hero and opponents */
+                              (    hp2.playerId != %s
+                               AND h2.seats between %s and %s
+                              )
+                           OR
+                              (    hp2.playerId = %s
+                               AND h2.seats between %s and %s
+                              )
+                          )
+                    ORDER BY h.handStart desc, hp2.PlayerId
+                    /* order rows by handstart descending so that we can stop reading rows when
+                       there's a gap over X minutes between hands (ie. when we get back to start of
+                       the session */
+                """
+        elif db_server == 'sqlite':
+            self.query['get_stats_from_hand_session'] = """
+                    SELECT hp.playerId                                              AS player_id,
+                           hp.handId                                                AS hand_id,
+                           hp.seatNo                                                AS seat,
+                           p.name                                                   AS screen_name,
+                           h.seats                                                  AS seats,
+                           1                                                        AS n,
+                           cast(hp2.street0VPI as <signed>integer)                  AS vpip,
+                           cast(hp2.street0Aggr as <signed>integer)                 AS pfr,
+                           cast(hp2.street0_3BChance as <signed>integer)            AS TB_opp_0,
+                           cast(hp2.street0_3BDone as <signed>integer)              AS TB_0,
+                           cast(hp2.street1Seen as <signed>integer)                 AS saw_f,
+                           cast(hp2.street1Seen as <signed>integer)                 AS saw_1,
+                           cast(hp2.street2Seen as <signed>integer)                 AS saw_2,
+                           cast(hp2.street3Seen as <signed>integer)                 AS saw_3,
+                           cast(hp2.street4Seen as <signed>integer)                 AS saw_4,
+                           cast(hp2.sawShowdown as <signed>integer)                 AS sd,
+                           cast(hp2.street1Aggr as <signed>integer)                 AS aggr_1,
+                           cast(hp2.street2Aggr as <signed>integer)                 AS aggr_2,
+                           cast(hp2.street3Aggr as <signed>integer)                 AS aggr_3,
+                           cast(hp2.street4Aggr as <signed>integer)                 AS aggr_4,
+                           cast(hp2.otherRaisedStreet1 as <signed>integer)          AS was_raised_1,
+                           cast(hp2.otherRaisedStreet2 as <signed>integer)          AS was_raised_2,
+                           cast(hp2.otherRaisedStreet3 as <signed>integer)          AS was_raised_3,
+                           cast(hp2.otherRaisedStreet4 as <signed>integer)          AS was_raised_4,
+                           cast(hp2.foldToOtherRaisedStreet1 as <signed>integer)    AS f_freq_1,
+                           cast(hp2.foldToOtherRaisedStreet2 as <signed>integer)    AS f_freq_2,
+                           cast(hp2.foldToOtherRaisedStreet3 as <signed>integer)    AS f_freq_3,
+                           cast(hp2.foldToOtherRaisedStreet4 as <signed>integer)    AS f_freq_4,
+                           cast(hp2.wonWhenSeenStreet1 as <signed>integer)          AS w_w_s_1,
+                           cast(hp2.wonAtSD as <signed>integer)                     AS wmsd,
+                           cast(hp2.stealAttemptChance as <signed>integer)          AS steal_opp,
+                           cast(hp2.stealAttempted as <signed>integer)              AS steal,
+                           cast(hp2.foldSbToStealChance as <signed>integer)         AS SBstolen,
+                           cast(hp2.foldedSbToSteal as <signed>integer)             AS SBnotDef,
+                           cast(hp2.foldBbToStealChance as <signed>integer)         AS BBstolen,
+                           cast(hp2.foldedBbToSteal as <signed>integer)             AS BBnotDef,
+                           cast(hp2.street1CBChance as <signed>integer)             AS CB_opp_1,
+                           cast(hp2.street1CBDone as <signed>integer)               AS CB_1,
+                           cast(hp2.street2CBChance as <signed>integer)             AS CB_opp_2,
+                           cast(hp2.street2CBDone as <signed>integer)               AS CB_2,
+                           cast(hp2.street3CBChance as <signed>integer)             AS CB_opp_3,
+                           cast(hp2.street3CBDone as <signed>integer)               AS CB_3,
+                           cast(hp2.street4CBChance as <signed>integer)             AS CB_opp_4,
+                           cast(hp2.street4CBDone as <signed>integer)               AS CB_4,
+                           cast(hp2.foldToStreet1CBChance as <signed>integer)       AS f_cb_opp_1,
+                           cast(hp2.foldToStreet1CBDone as <signed>integer)         AS f_cb_1,
+                           cast(hp2.foldToStreet2CBChance as <signed>integer)       AS f_cb_opp_2,
+                           cast(hp2.foldToStreet2CBDone as <signed>integer)         AS f_cb_2,
+                           cast(hp2.foldToStreet3CBChance as <signed>integer)       AS f_cb_opp_3,
+                           cast(hp2.foldToStreet3CBDone as <signed>integer)         AS f_cb_3,
+                           cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
+                           cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
+                           cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
+                           cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
+                           cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
+                           cast(hp2.street2CheckCallRaiseDone as <signed>integer)   AS ccr_2,
+                           cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
+                           cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
+                           cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
+                    FROM Hands h                                                  /* this hand */
+                         INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
+                                                         AND h2.tableName = h.tableName)
+                         INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
+                         INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
+                                                         AND hp2.handId = h2.id)  /* other hands by these players */
+                         INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                    WHERE h.id = %s
+                    /* check activeseats once this data returned (don't want to do that here as it might
+                       assume a session ended just because the number of seats dipped for a few hands)
+                    */
+                    AND   (   /* 2 separate parts for hero and opponents */
+                              (    hp2.playerId != %s
+                               AND h2.seats between %s and %s
+                              )
+                           OR
+                              (    hp2.playerId = %s
+                               AND h2.seats between %s and %s
+                              )
+                          )
                     ORDER BY h.handStart desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
@@ -1605,10 +1713,13 @@ class Sql:
 
         self.query['get_table_name'] = """
                 SELECT h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
-                FROM Hands h, Gametypes gt, Sites s
+                     , count(1) as numseats
+                FROM Hands h, Gametypes gt, Sites s, HandsPlayers hp
                 WHERE h.id = %s
                     AND   gt.id = h.gametypeId
                     AND   s.id = gt.siteID
+                    AND   hp.handId = h.id
+                GROUP BY h.tableName, h.maxSeats, gt.category, gt.type, s.id, s.name
             """
 
         self.query['get_actual_seat'] = """

@@ -672,28 +672,28 @@ class Config:
         except:
             hui['label'] = default_text
 
+        try:    hui['hud_style']        = self.ui.hud_style
+        except: hui['hud_style']        = 'A'  # default is show stats for All-time, also S(session) and T(ime)
+
+        try:    hui['hud_days']        = int(self.ui.hud_days)
+        except: hui['hud_days']        = 90
+
         try:    hui['aggregate_ring']   = self.ui.aggregate_ring
         except: hui['aggregate_ring']   = False
 
         try:    hui['aggregate_tour']   = self.ui.aggregate_tour
         except: hui['aggregate_tour']   = True
 
-        try:    hui['hud_style']        = self.ui.hud_style
-        except: hui['hud_style']        = 'A'
-
-        try:    hui['hud_days']        = int(self.ui.hud_days)
-        except: hui['hud_days']        = 90
-
         try:    hui['agg_bb_mult']    = self.ui.agg_bb_mult
         except: hui['agg_bb_mult']    = 1
 
+        try:    hui['seats_style']    = self.ui.seats_style
+        except: hui['seats_style']    = 'C'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
+
+        try:    hui['seats_cust_nums']    = self.ui.seats_cust_nums
+        except: hui['seats_cust_nums']    = ['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+
         # Hero specific
-
-        try:    hui['h_aggregate_ring'] = self.ui.h_aggregate_ring
-        except: hui['h_aggregate_ring'] = False
-
-        try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
-        except: hui['h_aggregate_tour'] = True
 
         try:    hui['h_hud_style']    = self.ui.h_hud_style
         except: hui['h_hud_style']    = 'S'
@@ -701,8 +701,20 @@ class Config:
         try:    hui['h_hud_days']     = int(self.ui.h_hud_days)
         except: hui['h_hud_days']     = 30
 
+        try:    hui['h_aggregate_ring'] = self.ui.h_aggregate_ring
+        except: hui['h_aggregate_ring'] = False
+
+        try:    hui['h_aggregate_tour'] = self.ui.h_aggregate_tour
+        except: hui['h_aggregate_tour'] = True
+
         try:    hui['h_agg_bb_mult']    = self.ui.h_agg_bb_mult
         except: hui['h_agg_bb_mult']    = 1
+
+        try:    hui['h_seats_style']    = self.ui.h_seats_style
+        except: hui['h_seats_style']    = 'E'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
+
+        try:    hui['h_seats_cust_nums']    = self.ui.h_seats_cust_nums
+        except: hui['h_seats_cust_nums']    = ['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
 
         return hui
 
