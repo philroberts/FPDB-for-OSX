@@ -260,7 +260,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        sys.stderr.write('Table "%s" no longer exists\n', table_name)
+                        sys.stderr.write('Table "%s" no longer exists\n' % table_name)
 
             self.db_connection.connection.rollback()
 
