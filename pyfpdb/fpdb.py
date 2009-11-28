@@ -101,14 +101,10 @@ class fpdb:
             if i == new_tab_name:
                 return # if tab already exists, just go to it
 
+        self.nb.append_page(new_tab, gtk.Label(new_tab_name))
         self.tabs.append(new_tab)
         self.tab_names.append(new_tab_name)
-
-        new_tab_sel_button = gtk.ToggleButton(new_tab_name)
-        new_tab_sel_button.connect("clicked", self.tab_clicked, new_tab_name)
-        self.tab_box.add(new_tab_sel_button)
-        new_tab_sel_button.show()
-        self.tab_buttons.append(new_tab_sel_button)
+        new_tab.show()
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
@@ -118,14 +114,10 @@ class fpdb:
                 tab_no = i
                 break
 
-        if tab_no == -1:
-            raise FpdbError("invalid tab_no")
+        if tab_no < 0 or tab_no >= self.nb.get_n_pages():
+            raise FpdbError("invalid tab_no " + str(tab_no))
         else:
-            self.main_vbox.remove(self.current_tab)
-            self.current_tab=self.tabs[tab_no]
-            self.main_vbox.add(self.current_tab)
-            self.tab_buttons[tab_no].set_active(True)
-            self.current_tab.show()
+            self.nb.set_current_page(tab_no)
 
     def delete_event(self, widget, event, data=None):
         return False
@@ -628,18 +620,12 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menubar.show()
         #done menubar
 
+        self.nb = gtk.Notebook()
+        self.nb.set_show_tabs(True)
+        self.nb.show()
+        self.main_vbox.pack_start(self.nb, True, True, 0)
         self.tabs=[]
         self.tab_names=[]
-        self.tab_buttons=[]
-        self.tab_box = gtk.HBox(True,1)
-        self.main_vbox.pack_start(self.tab_box, False, True, 0)
-        self.tab_box.show()
-        #done tab bar
-
-        self.current_tab = gtk.VBox(False,1)
-        self.current_tab.set_border_width(1)
-        self.main_vbox.add(self.current_tab)
-        self.current_tab.show()
 
         self.tab_main_help(None, None)
 
