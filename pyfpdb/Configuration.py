@@ -960,8 +960,14 @@ if __name__== "__main__":
     for game in c.get_supported_games():
         print c.get_game_parameters(game)
 
+    for hud_param, value in c.get_hud_ui_parameters().iteritems():
+        print "hud param %s = %s" % (hud_param, value)
+
     print "start up path = ", c.execution_path("")
 
-    from xml.dom.ext import PrettyPrint
-    for site_node in c.doc.getElementsByTagName("site"):
-        PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
+    try:
+        from xml.dom.ext import PrettyPrint
+        for site_node in c.doc.getElementsByTagName("site"):
+            PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
+    except:
+        print "xml.dom.ext needs PyXML to be installed!"
