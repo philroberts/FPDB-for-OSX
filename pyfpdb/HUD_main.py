@@ -159,11 +159,15 @@ class HUD_main(object):
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-#            try:
             self.hud_dict[table_name].update(new_hand_id, config)
-            [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
-#            finally:
-            gtk.gdk.threads_leave()
+            # The HUD could get destroyed in the above call ^^, which leaves us with a KeyError here vv
+            # if we ever get an error we need to expect ^^ then we need to handle it vv - Eric
+            try:
+                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+            except KeyError:
+                pass
+            finally:
+                gtk.gdk.threads_leave()
             return False
 
         gobject.idle_add(idle_func)
@@ -198,7 +202,7 @@ class HUD_main(object):
             try:
                 (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
-            except Exception, err:
+            except Exception, err: # TODO: we need to make this a much less generic Exception lulz
                 print "db error: skipping %s" % new_hand_id
                 sys.stderr.write("Database error: could not find hand %s.\n" % new_hand_id)
                 continue
@@ -256,7 +260,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        sys.stderr.write('Table "%s" no longer exists\n', table_name)
+                        sys.stderr.write('Table "%s" no longer exists\n' % table_name)
 
             self.db_connection.connection.rollback()
 
