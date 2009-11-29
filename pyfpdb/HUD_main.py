@@ -200,7 +200,7 @@ class HUD_main(object):
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
+                (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception, err: # TODO: we need to make this a much less generic Exception lulz
                 print "db error: skipping %s" % new_hand_id
@@ -217,7 +217,8 @@ class HUD_main(object):
                 # get stats using hud's specific params and get cards
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params
+                                                                  ,self.hero_ids[site_id], num_seats)
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
@@ -238,7 +239,8 @@ class HUD_main(object):
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
+                                                                  ,self.hero_ids[site_id], num_seats)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
