@@ -95,16 +95,16 @@ def testStudImport():
     (stored, dups, partial, errs, ttime) = importer.runImport()
     importer.clearFileList()
 
-#def testDrawImport():
-#    db.recreate_tables()
-#    importer = fpdb_import.Importer(False, settings, config)
-#    importer.setDropIndexes("don't drop")
-#    importer.setFailOnError(True)
-#    importer.setThreads(-1)
-#    importer.addBulkImportImportFileOrDir(
-#            """regression-test-files/cash/Stars/Draw/3-Draw-Limit-USD-0.10-0.20-200911.txt""", site="PokerStars")
-#    importer.addBulkImportImportFileOrDir(
-#            """regression-test-files/cash/Stars/Draw/5-Carddraw-USD-0.10-0.20-200911.txt""", site="PokerStars")
-#    importer.setCallHud(False)
-#    (stored, dups, partial, errs, ttime) = importer.runImport()
-#    importer.clearFileList()
+def testDrawImport():
+    db.recreate_tables()
+    importer = fpdb_import.Importer(False, settings, config)
+    importer.setDropIndexes("don't drop")
+    importer.setFailOnError(True)
+    importer.setThreads(-1)
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Draw/3-Draw-Limit-USD-0.10-0.20-200911.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Draw/5-Carddraw-USD-0.10-0.20-200911.txt""", site="PokerStars")
+    importer.setCallHud(False)
+    (stored, dups, partial, errs, ttime) = importer.runImport()
+    importer.clearFileList()

@@ -106,6 +106,8 @@ class fpdb_db:
             except MySQLdb.Error, ex:
                 if ex.args[0] == 1045:
                     raise FpdbMySQLAccessDenied(ex.args[0], ex.args[1])
+                elif ex.args[0] == 2002:
+                    raise FpdbMySQLNoDatabase(ex.args[0], ex.args[1])
                 else:
                     print "*** WARNING UNKNOWN MYSQL ERROR", ex
         elif backend == fpdb_db.PGSQL:
