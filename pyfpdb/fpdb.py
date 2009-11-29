@@ -669,8 +669,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         sys.stderr.write("fpdb starting ...")
 
     def window_state_event_cb(self, window, event):
-        print "window_state_event", event
-        if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
+        print "window_state_event: %s, mask=%s" % (event, event.changed_mask)
+        if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED & gtk.gdk.WINDOW_STATE_WITHDRAWN:
             # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
             #bits = win32api.GetWindowLong(self.window.window.handle, -20)
             #bits = bits ^ (win32con.WS_EX_TOOLWINDOW | win32con.WS_EX_APPWINDOW)
