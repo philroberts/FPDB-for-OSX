@@ -159,10 +159,10 @@ class fpdb:
     def add_icon_to_button(self, button):
         iconBox = gtk.HBox(False, 0)        
         image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
+        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
         settings = gtk.Widget.get_settings(button);
-        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_MENU);
+        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR);
         gtk.Widget.set_size_request (button, w + 4, h + 4);
         image.show()
         iconBox.pack_start(image, True, False, 0)
