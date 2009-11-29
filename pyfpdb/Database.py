@@ -21,6 +21,11 @@ Create and manage the database objects.
 
 ########################################################################
 
+# ToDo:  - vacuum for mysql
+#        - rebuild indexes / vacuum option
+#        - check speed of get_stats_from_hand()
+#        - investigate size of mysql db (200K for just 7K hands? 2GB for 140K hands?)
+
 # postmaster -D /var/lib/pgsql/data
 
 #    Standard Library modules
@@ -431,6 +436,7 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "*** Database Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
+    # is get_stats_from_hand slow?
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
                                           ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
