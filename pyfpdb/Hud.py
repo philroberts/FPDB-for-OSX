@@ -409,7 +409,7 @@ class Hud:
             try:
                 # throws "invalid window handle" in WinXP (sometimes?)
                 s.window.destroy()
-            except:
+            except: # TODO: what exception?
                 pass
         self.stat_windows = {}
 #    also kill any aux windows
