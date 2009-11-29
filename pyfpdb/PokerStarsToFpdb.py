@@ -50,7 +50,7 @@ class PokerStars(HandHistoryConverter):
           \s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?
           )\s)?                          # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
+          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
           (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
@@ -133,6 +133,7 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
+            print "DEBUG: determineGameType(): did not match"
             return None
 
         mg = m.groupdict()
@@ -147,6 +148,7 @@ class PokerStars(HandHistoryConverter):
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+                          '5 Card Draw' : ('draw','fivedraw')
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 #    I don't think this is doing what we think. mg will always have all 
