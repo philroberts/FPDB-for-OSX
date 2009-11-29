@@ -95,37 +95,97 @@ class fpdb:
         self.add_tab(new_tab, new_tab_name)
         self.display_tab(new_tab_name)
 
-    def add_tab(self, new_tab, new_tab_name):
+    def add_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
-        for i in self.tab_names: #todo: check this is valid
-            if i == new_tab_name:
+        for name in self.nb_tabs: #todo: check this is valid
+            if name == new_tab_name:
                 return # if tab already exists, just go to it
 
-        self.tabs.append(new_tab)
-        self.tab_names.append(new_tab_name)
+        used_before = False
+        for i, name in enumerate(self.tab_names): #todo: check this is valid
+            if name == new_tab_name:
+                used_before = True
+                event_box = self.tabs[i]
+                page = self.pages[i]
+                break
 
-        new_tab_sel_button = gtk.ToggleButton(new_tab_name)
-        new_tab_sel_button.connect("clicked", self.tab_clicked, new_tab_name)
-        self.tab_box.add(new_tab_sel_button)
-        new_tab_sel_button.show()
-        self.tab_buttons.append(new_tab_sel_button)
+        if not used_before:
+            event_box = self.create_custom_tab(new_tab_name, self.nb)
+            page = new_page
+            self.pages.append(new_page)
+            self.tabs.append(event_box)
+            self.tab_names.append(new_tab_name)
+        
+        #self.nb.append_page(new_page, gtk.Label(new_tab_name))
+        self.nb.append_page(page, event_box)
+        self.nb_tabs.append(new_tab_name)
+        page.show()
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
         tab_no = -1
-        for i, name in enumerate(self.tab_names):
-            if name == new_tab_name:
+        for i, name in enumerate(self.nb_tabs):
+            if new_tab_name == name:
                 tab_no = i
                 break
 
-        if tab_no == -1:
-            raise FpdbError("invalid tab_no")
+        if tab_no < 0 or tab_no >= self.nb.get_n_pages():
+            raise FpdbError("invalid tab_no " + str(tab_no))
         else:
-            self.main_vbox.remove(self.current_tab)
-            self.current_tab=self.tabs[tab_no]
-            self.main_vbox.add(self.current_tab)
-            self.tab_buttons[tab_no].set_active(True)
-            self.current_tab.show()
+            self.nb.set_current_page(tab_no)
+
+    def create_custom_tab(self, text, nb):
+        #create a custom tab for notebook containing a 
+        #label and a button with STOCK_ICON
+        eventBox = gtk.EventBox()
+        tabBox = gtk.HBox(False, 2)
+        tabLabel = gtk.Label(text)
+        tabBox.pack_start(tabLabel, False)       
+        eventBox.add(tabBox)
+
+        if nb.get_n_pages() > 0:
+            tabButton = gtk.Button()
+
+            tabButton.connect('clicked', self.remove_tab, (nb, text))
+            #Add a picture on a button
+            self.add_icon_to_button(tabButton)
+            tabBox.pack_start(tabButton, False)
+
+        # needed, otherwise even calling show_all on the notebook won't
+        # make the hbox contents appear.
+        tabBox.show_all()
+        return eventBox
+
+    def add_icon_to_button(self, button):
+        iconBox = gtk.HBox(False, 0)        
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
+        gtk.Button.set_relief(button, gtk.RELIEF_NONE)
+        settings = gtk.Widget.get_settings(button);
+        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_MENU);
+        gtk.Widget.set_size_request (button, w + 4, h + 4);
+        image.show()
+        iconBox.pack_start(image, True, False, 0)
+        button.add(iconBox)
+        iconBox.show()
+        return 
+    
+    # Remove a page from the notebook
+    def remove_tab(self, button, data):
+        (nb, text) = data
+        page = -1
+        #print "\n remove_tab: start", text
+        for i, tab in enumerate(self.nb_tabs):
+            if text == tab:
+                page = i
+        #print "   page =", page
+        if page >= 0 and page < self.nb.get_n_pages():
+            #print "   removing page", page
+            del self.nb_tabs[page]
+            nb.remove_page(page)
+        # Need to refresh the widget -- 
+        # This forces the widget to redraw itself.
+        #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
     def delete_event(self, widget, event, data=None):
         return False
@@ -632,18 +692,14 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menubar.show()
         #done menubar
 
+        self.nb = gtk.Notebook()
+        self.nb.set_show_tabs(True)
+        self.nb.show()
+        self.main_vbox.pack_start(self.nb, True, True, 0)
+        self.pages=[]
         self.tabs=[]
         self.tab_names=[]
-        self.tab_buttons=[]
-        self.tab_box = gtk.HBox(True,1)
-        self.main_vbox.pack_start(self.tab_box, False, True, 0)
-        self.tab_box.show()
-        #done tab bar
-
-        self.current_tab = gtk.VBox(False,1)
-        self.current_tab.set_border_width(1)
-        self.main_vbox.add(self.current_tab)
-        self.current_tab.show()
+        self.nb_tabs=[]
 
         self.tab_main_help(None, None)
 

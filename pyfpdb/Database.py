@@ -452,23 +452,23 @@ class Database:
         stat_dict = {}
 
         if seats_style == 'A':
-            seats_min, seats_max = 2, 10
+            seats_min, seats_max = 0, 10
         elif seats_style == 'C':
             seats_min, seats_max = seats_cust_nums[num_seats][0], seats_cust_nums[num_seats][1]
         elif seats_style == 'E':
             seats_min, seats_max = num_seats, num_seats
         else:
-            seats_min, seats_max = 2, 10
+            seats_min, seats_max = 0, 10
             print "bad seats_style value:", seats_style
 
         if h_seats_style == 'A':
-            h_seats_min, h_seats_max = 2, 10
+            h_seats_min, h_seats_max = 0, 10
         elif h_seats_style == 'C':
             h_seats_min, h_seats_max = h_seats_cust_nums[num_seats][0], h_seats_cust_nums[num_seats][1]
         elif h_seats_style == 'E':
             h_seats_min, h_seats_max = num_seats, num_seats
         else:
-            h_seats_min, h_seats_max = 2, 10
+            h_seats_min, h_seats_max = 0, 10
             print "bad h_seats_style value:", h_seats_style
         print "opp seats style", seats_style, "hero seats style", h_seats_style
         print "opp seats:", seats_min, seats_max, " hero seats:", h_seats_min, h_seats_max
