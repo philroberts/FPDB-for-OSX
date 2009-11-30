@@ -159,10 +159,10 @@ class fpdb:
     def add_icon_to_button(self, button):
         iconBox = gtk.HBox(False, 0)        
         image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_MENU)
+        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
         settings = gtk.Widget.get_settings(button);
-        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_MENU);
+        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR);
         gtk.Widget.set_size_request (button, w + 4, h + 4);
         image.show()
         iconBox.pack_start(image, True, False, 0)
@@ -357,6 +357,27 @@ class fpdb:
 
         self.release_global_lock()
 
+    def dia_rebuild_indexes(self, widget, data=None):
+        if self.obtain_global_lock():
+            self.dia_confirm = gtk.MessageDialog(parent=None
+                                                ,flags=0
+                                                ,type=gtk.MESSAGE_WARNING
+                                                ,buttons=(gtk.BUTTONS_YES_NO)
+                                                ,message_format="Confirm rebuilding database indexes")
+            diastring = "Please confirm that you want to rebuild the database indexes."
+            self.dia_confirm.format_secondary_text(diastring)
+
+            response = self.dia_confirm.run()
+            self.dia_confirm.destroy()
+            if response == gtk.RESPONSE_YES:
+                self.db.rebuild_indexes()
+                self.db.vacuumDB()
+                self.db.analyzeDB()
+            elif response == gtk.RESPONSE_NO:
+                print 'User cancelled rebuilding db indexes'
+
+        self.release_global_lock()
+
     def __calendar_dialog(self, widget, entry):
         self.dia_confirm.set_modal(False)
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -451,6 +472,7 @@ class fpdb:
                   <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
+                  <menuitem action="rebuildindexes"/>
                   <menuitem action="stats"/>
                 </menu>
                 <menu action="help">
@@ -492,6 +514,7 @@ class fpdb:
                                  ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
+                                 ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),

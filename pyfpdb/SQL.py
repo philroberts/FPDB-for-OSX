@@ -461,7 +461,7 @@ class Sql:
                         totalProfit INT,
                         comment text,
                         commentTs DATETIME,
-                        tourneysPlayersId BIGINT UNSIGNED,
+                        tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
                         tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT,
@@ -551,9 +551,7 @@ class Sql:
                         street3Raises TINYINT,
                         street4Raises TINYINT,
 
-                        actionString VARCHAR(15),
-
-                        FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))
+                        actionString VARCHAR(15))
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
@@ -3100,8 +3098,10 @@ class Sql:
             analyze table Autorates, GameTypes, Hands, HandsPlayers, HudCache, Players
                         , Settings, Sites, Tourneys, TourneysPlayers, TourneyTypes
             """
-        else:  # assume postgres
-            self.query['analyze'] = "vacuum analyze"
+        elif db_server == 'postgresql':
+            self.query['analyze'] = "analyze"
+        elif db_server == 'sqlite':
+            self.query['analyze'] = "analyze"
 
         if db_server == 'mysql':
             self.query['lockForInsert'] = """
@@ -3109,8 +3109,20 @@ class Sql:
                           , HudCache write, GameTypes write, Sites write, Tourneys write
                           , TourneysPlayers write, TourneyTypes write, Autorates write
                 """
-        else:  # assume postgres
+        elif db_server == 'postgresql':
             self.query['lockForInsert'] = ""
+        elif db_server == 'sqlite':
+            self.query['lockForInsert'] = ""
+
+        if db_server == 'mysql':
+            self.query['vacuum'] = """optimize table Hands, HandsPlayers, HandsActions, Players
+                                                   , HudCache, GameTypes, Sites, Tourneys
+                                                   , TourneysPlayers, TourneyTypes, Autorates
+                                      """
+        elif db_server == 'postgresql':
+            self.query['vacuum'] = """ vacuum """
+        elif db_server == 'sqlite':
+            self.query['vacuum'] = """ vacuum """
 
         self.query['getGametypeFL'] = """SELECT id
                                            FROM Gametypes
