@@ -21,7 +21,7 @@
 
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
-from time import time, strftime, sleep
+from time import time, strftime, sleep, clock
 import traceback
 import math
 import datetime
@@ -100,6 +100,8 @@ class Importer:
             self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
         self.NEWIMPORT = Configuration.NEWIMPORT
+
+        clock() # init clock in windows
 
     #Set functions
     def setCallHud(self, value):
@@ -365,7 +367,7 @@ class Importer:
                         (stored, duplicates, partial, errors, ttime) = self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
                         try:
                             if not os.path.isdir(file):
-                                self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %d)" % (stored, duplicates, partial, errors, ttime))
+                                self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))
                         except KeyError: # TODO: Again, what error happens here? fix when we find out ..
                             pass
                         self.updatedsize[file] = stat_info.st_size
@@ -477,10 +479,13 @@ class Importer:
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
 
+        x = clock()
         (stored, duplicates, partial, errors, ttime, handsId) = self.import_fpdb_lines(db, self.lines, starttime, file, site, q)
 
         db.commit()
-        ttime = time() - starttime
+        y = clock()
+        ttime = y - x
+        #ttime = time() - starttime
         if q is None:
             log.info("Total stored: %(stored)d\tduplicates:%(duplicates)d\terrors:%(errors)d\ttime:%(ttime)s" % locals())
 
