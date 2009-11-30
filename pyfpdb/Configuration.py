@@ -125,6 +125,8 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
+NEWIMPORT = False
+
 ########################################################################
 def string_to_bool(string, default=True):
     """converts a string representation of a boolean value to boolean True or False
