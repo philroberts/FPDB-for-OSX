@@ -99,7 +99,7 @@ class Importer:
         for i in xrange(self.settings['threads']):
             self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
-        self.NEWIMPORT = False
+        self.NEWIMPORT = Configuration.NEWIMPORT
 
     #Set functions
     def setCallHud(self, value):
