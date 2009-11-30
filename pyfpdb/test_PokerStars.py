@@ -5,10 +5,12 @@ import py
 
 import Configuration
 import Database
+import SQL
 import fpdb_import
 
 config = Configuration.Config(file = "HUD_config.test.xml")
 db = Database.Database(config)
+sql = SQL.Sql(db_server = 'sqlite')
 
 settings = {}
 settings.update(config.get_db_parameters())
