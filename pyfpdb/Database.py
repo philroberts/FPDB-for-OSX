@@ -58,7 +58,8 @@ class Database:
     PGSQL = 3
     SQLITE = 4
 
-    hero_hudstart_def = '1999-12-31'   # default for length of Hero's stats in HUD
+    hero_hudstart_def = '1999-12-31'      # default for length of Hero's stats in HUD
+    villain_hudstart_def = '1999-12-31'   # default for length of Villain's stats in HUD
 
     # Data Structures for index and foreign key creation
     # drop_code is an int with possible values:  0 - don't drop for bulk import
@@ -1324,7 +1325,7 @@ class Database:
         self.dropAllForeignKeys()
         self.createAllForeignKeys()
 
-    def rebuild_hudcache(self, start=None):
+    def rebuild_hudcache(self, h_start=None, v_start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
 
         try:
@@ -1344,13 +1345,17 @@ class Database:
                     if p_id:
                         self.hero_ids[site_id] = int(p_id)
             
-            if start is None:
-                start = self.hero_hudstart_def
+            if h_start is None:
+                h_start = self.hero_hudstart_def
+            if v_start is None:
+                v_start = self.villain_hudstart_def
             if self.hero_ids == {}:
                 where = ""
             else:
-                where = "where hp.playerId not in " + str(tuple(self.hero_ids.values())) \
-                        + " or h.handStart > '" + start + "'"
+                where =   "where (    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.handStart > '" + v_start + "')" \
+                        + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.handStart > '" + h_start + "')"
             rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
 
             self.get_cursor().execute(self.sql.query['clearHudCache'])
