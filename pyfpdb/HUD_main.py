@@ -105,10 +105,7 @@ class HUD_main(object):
         def idle_func():
 
             gtk.gdk.threads_enter()
-            try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
-                 # TODO: The purpose of this try/finally block is to make darn sure that threads_leave()
-                 # TODO: gets called. If there is an exception and threads_leave() doesn't get called we
-                 # TODO: lock up.  REB
+            try:
                 table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
@@ -122,9 +119,12 @@ class HUD_main(object):
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
+            except:
+                print "*** Exception in HUD_main::idle_func() *** "
+                traceback.print_stack()
             finally:
                 gtk.gdk.threads_leave()
-            return False
+                return False
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table_name].table_name = table_name
@@ -168,7 +168,7 @@ class HUD_main(object):
                 pass
             finally:
                 gtk.gdk.threads_leave()
-            return False
+                return False
 
         gobject.idle_add(idle_func)
 
