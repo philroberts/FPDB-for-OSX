@@ -94,7 +94,7 @@ follow :  whether to tail -f the input"""
                 else:
                     log.info("Created directory '%s'" % out_dir)
             try:
-                self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
+                self.out_fh = codecs.open(self.out_path, 'w', 'utf8')
             except:
                 log.error("out_path %s couldn't be opened" % (self.out_path))
             else:
@@ -261,8 +261,8 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         gametype = self.determineGameType(handText)
         log.debug("gametype %s" % gametype)
         hand = None
+        l = None
         if gametype is None: 
-            l = None
             gametype = "unmatched"
             # TODO: not ideal, just trying to not error.
             # TODO: Need to count failed hands.

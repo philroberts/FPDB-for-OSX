@@ -433,17 +433,50 @@ class Database:
 
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
                            , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
-                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000}
+                                          ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000
+                                          ,'h_seats_style':'A', 'h_seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          }
                            , hero_id = -1
+                           , num_seats = 6
                            ):
         hud_style   = hud_params['hud_style']
         agg_bb_mult = hud_params['agg_bb_mult']
+        seats_style = hud_params['seats_style']
+        seats_cust_nums = hud_params['seats_cust_nums']
         h_hud_style   = hud_params['h_hud_style']
         h_agg_bb_mult = hud_params['h_agg_bb_mult']
+        h_seats_style = hud_params['h_seats_style']
+        h_seats_cust_nums = hud_params['h_seats_cust_nums']
+
         stat_dict = {}
 
+        if seats_style == 'A':
+            seats_min, seats_max = 0, 10
+        elif seats_style == 'C':
+            seats_min, seats_max = seats_cust_nums[num_seats][0], seats_cust_nums[num_seats][1]
+        elif seats_style == 'E':
+            seats_min, seats_max = num_seats, num_seats
+        else:
+            seats_min, seats_max = 0, 10
+            print "bad seats_style value:", seats_style
+
+        if h_seats_style == 'A':
+            h_seats_min, h_seats_max = 0, 10
+        elif h_seats_style == 'C':
+            h_seats_min, h_seats_max = h_seats_cust_nums[num_seats][0], h_seats_cust_nums[num_seats][1]
+        elif h_seats_style == 'E':
+            h_seats_min, h_seats_max = num_seats, num_seats
+        else:
+            h_seats_min, h_seats_max = 0, 10
+            print "bad h_seats_style value:", h_seats_style
+        print "opp seats style", seats_style, "hero seats style", h_seats_style
+        print "opp seats:", seats_min, seats_max, " hero seats:", h_seats_min, h_seats_max
+
         if hud_style == 'S' or h_hud_style == 'S':
-            self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
+            self.get_stats_from_hand_session(hand, stat_dict, hero_id
+                                            ,hud_style, seats_min, seats_max
+                                            ,h_hud_style, h_seats_min, h_seats_max)
 
             if hud_style == 'S' and h_hud_style == 'S':
                 return stat_dict
@@ -475,7 +508,9 @@ class Database:
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
         query = 'get_stats_from_hand_aggregated'
-        subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
+        subs = (hand
+               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, seats_min, seats_max  # hero params
+               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -495,12 +530,15 @@ class Database:
         return stat_dict
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
-    def get_stats_from_hand_session(self, hand, stat_dict, hero_id, hud_style, h_hud_style):
+    def get_stats_from_hand_session(self, hand, stat_dict, hero_id
+                                   ,hud_style, seats_min, seats_max
+                                   ,h_hud_style, h_seats_min, h_seats_max):
         """Get stats for just this session (currently defined as any play in the last 24 hours - to
            be improved at some point ...)
            h_hud_style and hud_style params indicate whether to get stats for hero and/or others
            - only fetch heros stats if h_hud_style == 'S',
              and only fetch others stats if hud_style == 'S'
+           seats_min/max params give seats limits, only include stats if between these values
         """
 
         query = self.sql.query['get_stats_from_hand_session']
@@ -509,7 +547,8 @@ class Database:
         else:
             query = query.replace("<signed>", '')
         
-        subs = (self.hand_1day_ago, hand)
+        subs = (self.hand_1day_ago, hand, hero_id, seats_min, seats_max
+                                        , hero_id, h_seats_min, h_seats_max)
         c = self.get_cursor()
 
         # now get the stats
@@ -524,6 +563,7 @@ class Database:
             # Loop through stats adding them to appropriate stat_dict:
             while row:
                 playerid = row[0]
+                seats = row[1]
                 if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
                     for name, val in zip(colnames, row):
                         if not playerid in stat_dict:
@@ -535,7 +575,7 @@ class Database:
                             stat_dict[playerid][name.lower()] += val
                     n += 1
                     if n >= 10000: break  # todo: don't think this is needed so set nice and high 
-                                         #       for now - comment out or remove?
+                                          # prevents infinite loop so leave for now - comment out or remove?
                 row = c.fetchone()
         else:
             log.error("ERROR: query %s result does not have player_id as first column" % (query,))
@@ -1343,7 +1383,9 @@ class Database:
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        self.cursor.execute(q, (
+        c = self.connection.cursor()
+
+        c.execute(q, (
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
@@ -1374,7 +1416,7 @@ class Database:
                 p['street4Pot'],
                 p['showdownPot']
         ))
-        return self.get_last_insert_id(self.cursor)
+        return self.get_last_insert_id(c)
     # def storeHand
 
     def storeHandsPlayers(self, hid, pids, pdata):
@@ -1393,16 +1435,39 @@ class Database:
                              pdata[p]['card6'],
                              pdata[p]['card7'],
                              pdata[p]['winnings'],
+                             pdata[p]['rake'],
+                             pdata[p]['totalProfit'],
                              pdata[p]['street0VPI'],
                              pdata[p]['street1Seen'],
                              pdata[p]['street2Seen'],
                              pdata[p]['street3Seen'],
                              pdata[p]['street4Seen'],
+                             pdata[p]['sawShowdown'],
+                             pdata[p]['wonAtSD'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
                              pdata[p]['street3Aggr'],
-                             pdata[p]['street4Aggr']
+                             pdata[p]['street4Aggr'],
+                             pdata[p]['street1CBChance'],
+                             pdata[p]['street2CBChance'],
+                             pdata[p]['street3CBChance'],
+                             pdata[p]['street4CBChance'],
+                             pdata[p]['street1CBDone'],
+                             pdata[p]['street2CBDone'],
+                             pdata[p]['street3CBDone'],
+                             pdata[p]['street4CBDone'],
+                             pdata[p]['wonWhenSeenStreet1'],
+                             pdata[p]['street0Calls'],
+                             pdata[p]['street1Calls'],
+                             pdata[p]['street2Calls'],
+                             pdata[p]['street3Calls'],
+                             pdata[p]['street4Calls'],
+                             pdata[p]['street0Bets'],
+                             pdata[p]['street1Bets'],
+                             pdata[p]['street2Bets'],
+                             pdata[p]['street3Bets'],
+                             pdata[p]['street4Bets'],
                             ) )
 
         q = """INSERT INTO HandsPlayers (
@@ -1418,19 +1483,46 @@ class Database:
             card6,
             card7,
             winnings,
+            rake,
+            totalProfit,
             street0VPI,
             street1Seen,
             street2Seen,
             street3Seen,
             street4Seen,
+            sawShowdown,
+            wonAtSD,
             street0Aggr,
             street1Aggr,
             street2Aggr,
             street3Aggr,
-            street4Aggr
+            street4Aggr,
+            street1CBChance,
+            street2CBChance,
+            street3CBChance,
+            street4CBChance,
+            street1CBDone,
+            street2CBDone,
+            street3CBDone,
+            street4CBDone,
+            wonWhenSeenStreet1,
+            street0Calls,
+            street1Calls,
+            street2Calls,
+            street3Calls,
+            street4Calls,
+            street0Bets,
+            street1Bets,
+            street2Bets,
+            street3Bets,
+            street4Bets
            )
            VALUES (
-                %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
                 %s, %s, %s, %s, %s,
@@ -1440,11 +1532,8 @@ class Database:
 #            position,
 #            tourneyTypeId,
 #            startCards,
-#            rake,
-#            totalProfit,
 #            street0_3BChance,
 #            street0_3BDone,
-#            sawShowdown,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
 #            otherRaisedStreet3,
@@ -1453,22 +1542,12 @@ class Database:
 #            foldToOtherRaisedStreet2,
 #            foldToOtherRaisedStreet3,
 #            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
-#            wonAtSD,
 #            stealAttemptChance,
 #            stealAttempted,
 #            foldBbToStealChance,
 #            foldedBbToSteal,
 #            foldSbToStealChance,
 #            foldedSbToSteal,
-#            street1CBChance,
-#            street1CBDone,
-#            street2CBChance,
-#            street2CBDone,
-#            street3CBChance,
-#            street3CBDone,
-#            street4CBChance,
-#            street4CBDone,
 #            foldToStreet1CBChance,
 #            foldToStreet1CBDone,
 #            foldToStreet2CBChance,
@@ -1485,21 +1564,13 @@ class Database:
 #            street3CheckCallRaiseDone,
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone,
-#            street0Calls,
-#            street1Calls,
-#            street2Calls,
-#            street3Calls,
-#            street4Calls,
-#            street0Bets,
-#            street1Bets,
-#            street2Bets,
-#            street3Bets,
-#            street4Bets
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: inserts: %s" %inserts
-        self.cursor.executemany(q, inserts)
+        #print "DEBUG: q: %s" % q
+        c = self.connection.cursor()
+        c.executemany(q, inserts)
 
     def storeHudCacheNew(self, gid, pid, hc):
         q = """INSERT INTO HudCache (
@@ -1641,6 +1712,15 @@ class Database:
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone)
 
+    def isDuplicate(self, gametypeID, siteHandNo):
+        dup = False
+        c = self.get_cursor()
+        c.execute(self.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
+        result = c.fetchall()
+        if len(result) > 0:
+            dup = True
+        return dup
+
     def getGameTypeId(self, siteid, game):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
@@ -1679,6 +1759,13 @@ class Database:
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
 
@@ -2699,7 +2786,9 @@ if __name__=="__main__":
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
-    db_connection.recreate_tables()
+    # db_connection.recreate_tables()
+    db_connection.dropAllIndexes()
+    db_connection.createAllIndexes()
     
     h = db_connection.get_last_hand()
     print "last hand = ", h

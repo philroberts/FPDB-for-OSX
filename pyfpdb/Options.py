@@ -39,7 +39,7 @@ def fpdb_options():
     return (options, argv)
 
 if __name__== "__main__":
-    (options, sys.argv) = fpdb_options()
+    (options, argv) = fpdb_options()
     print "errorsToConsole =", options.errorsToConsole
     print "database name   =", options.dbname
     print "config file     =", options.config

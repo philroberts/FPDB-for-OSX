@@ -129,9 +129,9 @@ class HUD_main(object):
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
-                return False
             finally:
                 gtk.gdk.threads_leave()
+            return False
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table_name].table_name = table_name
@@ -166,9 +166,13 @@ class HUD_main(object):
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-            try: 
-                self.hud_dict[table_name].update(new_hand_id, config)
+            self.hud_dict[table_name].update(new_hand_id, config)
+            # The HUD could get destroyed in the above call ^^, which leaves us with a KeyError here vv
+            # if we ever get an error we need to expect ^^ then we need to handle it vv - Eric
+            try:
                 [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+            except KeyError:
+                pass
             finally:
                 gtk.gdk.threads_leave()
             return False
@@ -204,7 +208,7 @@ class HUD_main(object):
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
+                (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception, err:
                 self.log.error("db error: skipping %s" % new_hand_id)
@@ -220,8 +224,16 @@ class HUD_main(object):
                 # get stats using hud's specific params and get cards
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
-                self.hud_dict[temp_key].stat_dict = stat_dict
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params
+                                                                  ,self.hero_ids[site_id], num_seats)
+                try:
+                    self.hud_dict[temp_key].stat_dict = stat_dict
+                except KeyError:    # HUD instance has been killed off, key is stale
+                    sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
+                    sys.stderr.write('will not send hand\n')
+                    # Unlocks table, copied from end of function
+                    self.db_connection.connection.rollback()
+                    return
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
@@ -234,7 +246,8 @@ class HUD_main(object):
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
+                                                                  ,self.hero_ids[site_id], num_seats)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
@@ -253,7 +266,12 @@ class HUD_main(object):
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
-                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                    # Test that the table window still exists
+                    if hasattr(tablewindow, 'number'):
+                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                    else:
+                        sys.stderr.write('Table "%s" no longer exists\n', table_name)
+
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":

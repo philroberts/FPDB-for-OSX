@@ -64,5 +64,4 @@ def testSQLiteModFunction():
         assert vars[idx]%13 == int(i[0])
         idx = idx+1
 
-    assert 0 == 1
     cur.execute("DROP TABLE test")

@@ -51,7 +51,7 @@ except ImportError:
     log.debug("Import database module: MySQLdb not found")
 else:
     mysqlLibFound = True
-    
+
 try:
     import psycopg2
 except ImportError:
@@ -81,7 +81,7 @@ class Importer:
         self.pos_in_file = {}        # dict to remember how far we have read in the file
         #Set defaults
         self.callHud    = self.config.get_import_parameters().get("callFpdbHud")
-       
+
         # CONFIGURATION OPTIONS
         self.settings.setdefault("minPrint", 30)
         self.settings.setdefault("handCount", 0)
@@ -243,9 +243,9 @@ class Importer:
                 #self.writeq.join()
                 #using empty() might be more reliable:
                 while not self.writeq.empty() and len(threading.enumerate()) > 1:
-                    # TODO: Do we need to actually tell the progress indicator to move, or is it already moving, and we just need to process events... 
+                    # TODO: Do we need to actually tell the progress indicator to move, or is it already moving, and we just need to process events...
                     while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
-                        gtk.main_iteration(False)                
+                        gtk.main_iteration(False)
                     sleep(0.5)
                 print "                              ... writers finished"
 
@@ -267,7 +267,7 @@ class Importer:
         """"Read filenames in self.filelist and pass to import_file_dict().
             Uses a separate database connection if created as a thread (caller
             passes None or no param as db)."""
-        
+
         totstored = 0
         totdups = 0
         totpartial = 0
@@ -300,7 +300,7 @@ class Importer:
             except:
                 pass # if this fails we're probably doomed anyway
         if self.settings['handsInDB'] < 5000:  return "drop"
-        if len(self.filelist) < 50:            return "don't drop"     
+        if len(self.filelist) < 50:            return "don't drop"
         if self.settings['handsInDB'] > 50000: return "don't drop"
         return "drop"
 
@@ -313,7 +313,7 @@ class Importer:
         size_per_hand = 1300.0  # wag based on a PS 6-up FLHE file. Actual value not hugely important
                                 # as values of scale and increment compensate for it anyway.
                                 # decimal used to force float arithmetic
-        
+
         # get number of hands in db
         if 'handsInDB' not in self.settings:
             try:
@@ -322,7 +322,7 @@ class Importer:
                 self.settings['handsInDB'] = tmpcursor.fetchone()[0]
             except:
                 pass # if this fails we're probably doomed anyway
-        
+
         # add up size of import files
         total_size = 0.0
         for file in self.filelist:
@@ -344,12 +344,12 @@ class Importer:
         #Check for new files in monitored directories
         #todo: make efficient - always checks for new file, should be able to use mtime of directory
         # ^^ May not work on windows
-        
+
         #rulog = open('runUpdated.txt', 'a')
         #rulog.writelines("runUpdated ... ")
         for site in self.dirlist:
             self.addImportDirectory(self.dirlist[site][0], False, site, self.dirlist[site][1])
-            
+
         for file in self.filelist:
             if os.path.exists(file):
                 stat_info = os.stat(file)
@@ -369,13 +369,13 @@ class Importer:
                         self.updatedtime[file] = time()
             else:
                 self.removeFromFileList[file] = True
-                
+
         self.addToDirList = filter(lambda x: self.addImportDirectory(x, True, self.addToDirList[x][0], self.addToDirList[x][1]), self.addToDirList)
 
         for file in self.removeFromFileList:
             if file in self.filelist:
                 del self.filelist[file]
-       
+
         self.addToDirList = {}
         self.removeFromFileList = {}
         self.database.rollback()
@@ -385,7 +385,7 @@ class Importer:
     # This is now an internal function that should not be called directly.
     def import_file_dict(self, db, file, site, filter, q=None):
         #print "import_file_dict"
-        
+
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
             return
@@ -393,7 +393,7 @@ class Importer:
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
 
-        file =  file.decode(fpdb_simple.LOCALE_ENCODING) 
+        file =  file.decode(fpdb_simple.LOCALE_ENCODING)
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
@@ -473,7 +473,7 @@ class Importer:
         ttime = time() - starttime
         if q is None:
             log.info("Total stored: %(stored)d\tduplicates:%(duplicates)d\terrors:%(errors)d\ttime:%(ttime)s" % locals())
-       
+
         if not stored:
             if duplicates:
                 for line_no in xrange(len(self.lines)):
@@ -488,7 +488,7 @@ class Importer:
 
         return (stored, duplicates, partial, errors, ttime)
     # end def import_fpdb_file
-    
+
 
     def import_fpdb_lines(self, db, lines, starttime, file, site, q = None):
         """Import an fpdb hand history held in the list lines, could be one hand or many"""
@@ -496,7 +496,7 @@ class Importer:
         #db.lock_for_insert() # should be ok when using one thread, but doesn't help??
         while gtk.events_pending():
             gtk.main_iteration(False)
-        
+
         try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
             firstline = lines[0]
         except:
@@ -524,7 +524,7 @@ class Importer:
             if len(lines[i]) < 2: #Wierd way to detect for '\r\n' or '\n'
                 endpos = i
                 hand = lines[startpos:endpos]
-       
+
                 if len(hand[0]) < 2:
                     hand=hand[1:]
 
@@ -548,7 +548,7 @@ class Importer:
                         if self.callHud:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
-                            print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
+                            # print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
                             self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
                     except Exceptions.DuplicateError:
                         duplicates += 1
@@ -574,7 +574,7 @@ class Importer:
                     if self.settings['minPrint']:
                         if not ((stored+duplicates+errors) % self.settings['minPrint']):
                             print "stored:", stored, "   duplicates:", duplicates, "errors:", errors
-           
+
                     if self.settings['handCount']:
                         if ((stored+duplicates+errors) >= self.settings['handCount']):
                             if not self.settings['quiet']:
