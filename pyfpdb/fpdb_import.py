@@ -564,7 +564,11 @@ class Importer:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
                             # print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
-                            self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+                            try:
+                                self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+                            except IOError: # hud closed
+                                self.callHud = False
+                                pass # continue import without hud
                     except Exceptions.DuplicateError:
                         duplicates += 1
                         db.rollback()
