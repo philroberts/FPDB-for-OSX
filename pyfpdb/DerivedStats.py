@@ -143,28 +143,11 @@ class DerivedStats():
 
         self.calcCBets(hand)
 
-        #default_holecards = ["Xx", "Xx", "Xx", "Xx"]
-        #if hand.gametype['base'] == "hold":
-        #    pass
-        #elif hand.gametype['base'] == "stud":
-        #    pass
-        #else:
-        #    # Flop hopefully...
-        #    pass
-
-        for street in hand.holeStreets:
-            for player in hand.players:
-                for i in range(1,8): self.handsplayers[player[1]]['card%d' % i] = 0
-                #print "DEBUG: hand.holecards[%s]: %s" % (street, hand.holecards[street])
-                if player[1] in hand.holecards[street].keys() and hand.gametype['base'] == "hold":
-                    self.handsplayers[player[1]]['card1'] = Card.encodeCard(hand.holecards[street][player[1]][1][0])
-                    self.handsplayers[player[1]]['card2'] = Card.encodeCard(hand.holecards[street][player[1]][1][1])
-                    try:
-                        self.handsplayers[player[1]]['card3'] = Card.encodeCard(hand.holecards[street][player[1]][1][2])
-                        self.handsplayers[player[1]]['card4'] = Card.encodeCard(hand.holecards[street][player[1]][1][3])
-                    except IndexError:
-                        # Just means no player cards for that street/game - continue
-                        pass 
+        for player in hand.players:
+            hcs = hand.join_holecards(player[1], asList=True)
+            hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
+            for i, card in enumerate(hcs[:7], 1):
+                self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
 
     def assembleHudCache(self, hand):
         pass

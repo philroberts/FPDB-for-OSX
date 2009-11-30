@@ -312,8 +312,8 @@ class Filters(threading.Thread):
                     self.cbAllLimits.set_active(False)
             if not self.limits[limit]:
                 if limit.isdigit():
-                    if self.cbFl is not None:
-                        self.cbFl.set_active(False)
+                    if self.cbFL is not None:
+                        self.cbFL.set_active(False)
                 else:
                     if self.cbNL is not None:
                         self.cbNL.set_active(False)
@@ -329,8 +329,10 @@ class Filters(threading.Thread):
             if self.limits[limit]:
                 for cb in self.cbLimits.values():
                     cb.set_active(False)
-                self.cbNL.set_active(False)
-                self.cbFL.set_active(False)
+                if self.cbNL is not None:
+                    self.cbNL.set_active(False)
+                if self.cbFL is not None:
+                    self.cbFL.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on

@@ -142,6 +142,7 @@ log.info("DIR SELF = %s" % DIR_SELF)
 log.info("DIR CONFIG = %s" % DIR_CONFIG)
 log.info("DIR DATABASE = %s" % DIR_DATABASE)
 log.info("DIR LOG = %s" % DIR_LOG)
+NEWIMPORT = False
 
 ########################################################################
 def string_to_bool(string, default=True):
@@ -705,7 +706,7 @@ class Config:
         except: hui['agg_bb_mult']    = 1
 
         try:    hui['seats_style']    = self.ui.seats_style
-        except: hui['seats_style']    = 'C'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
+        except: hui['seats_style']    = 'A'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
 
         try:    hui['seats_cust_nums']    = self.ui.seats_cust_nums
         except: hui['seats_cust_nums']    = ['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
@@ -728,7 +729,7 @@ class Config:
         except: hui['h_agg_bb_mult']    = 1
 
         try:    hui['h_seats_style']    = self.ui.h_seats_style
-        except: hui['h_seats_style']    = 'E'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
+        except: hui['h_seats_style']    = 'A'  # A / C / E, use A(ll) / C(ustom) / E(xact) seat numbers
 
         try:    hui['h_seats_cust_nums']    = self.ui.h_seats_cust_nums
         except: hui['h_seats_cust_nums']    = ['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]

@@ -668,6 +668,27 @@ class HoldemOmahaHand(Hand):
         tmp5 = 0
         return (tmp1,tmp2,tmp3,tmp4,tmp5)
 
+    def join_holecards(self, player, asList=False):
+        """With asList = True it returns the set cards for a player including down cards if they aren't know"""
+        # FIXME: This should actually return
+        hcs = [u'0x', u'0x', u'0x', u'0x']
+
+        for street in self.holeStreets:
+            if player in self.holecards[street].keys():
+                hcs[0] = self.holecards[street][player][1][0]
+                hcs[1] = self.holecards[street][player][1][1]
+                try:
+                    hcs[2] = self.holecards[street][player][1][2]
+                    hcs[3] = self.holecards[street][player][1][3]
+                except IndexError:
+                    pass
+
+        if asList == False:
+            return " ".join(hcs)
+        else:
+            return hcs
+
+
     def writeHTMLHand(self):
         from nevow import tags as T
         from nevow import flat
@@ -967,6 +988,16 @@ class DrawHand(Hand):
         # street4Pot INT,                  /* pot size at sd/street7 */
         # showdownPot INT,                 /* pot size at sd/street7 */
         return (0,0,0,0,0)
+
+    def join_holecards(self, player, asList=False):
+        """With asList = True it returns the set cards for a player including down cards if they aren't know"""
+        # FIXME: This should actually return
+        holecards = [u'0x', u'0x', u'0x', u'0x', u'0x']
+
+        if asList == False:
+            return " ".join(holecards)
+        else:
+            return holecards
 
 
     def writeHand(self, fh=sys.__stdout__):
@@ -1294,7 +1325,9 @@ Add a complete on [street] by [player] to [amountTo]
         if street == 'SEVENTH' and player != self.hero: return # only write 7th st line for hero, LDO
         return hc + " ".join(self.holecards[street][player][1]) + "] [" + " ".join(self.holecards[street][player][0]) + "]"
 
-    def join_holecards(self, player):
+    def join_holecards(self, player, asList=False):
+        """Function returns a string for the stud writeHand method by default
+           With asList = True it returns the set cards for a player including down cards if they aren't know"""
         holecards = []
         for street in self.holeStreets:
             if self.holecards[street].has_key(player):
@@ -1307,7 +1340,20 @@ Add a complete on [street] by [player] to [amountTo]
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
-        return " ".join(holecards)
+
+        if asList == False:
+            return " ".join(holecards)
+        else:
+            if player == self.hero or len(holecards) == 7:
+                return holecards
+            elif len(holecards) <= 4:
+                #Non hero folded before showdown, add first two downcards
+                holecards = [u'0x', u'0x'] + holecards
+            else:
+                log.warning("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero")
+                log.warning("join_holcards: holecards(%s): %s" %(player, holecards))
+            return holecards
+
 
 class Pot(object):
 
