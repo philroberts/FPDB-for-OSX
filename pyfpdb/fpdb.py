@@ -115,7 +115,7 @@ class fpdb:
             self.pages.append(new_page)
             self.tabs.append(event_box)
             self.tab_names.append(new_tab_name)
-        
+
         #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
         self.nb_tabs.append(new_tab_name)
@@ -135,12 +135,12 @@ class fpdb:
             self.nb.set_current_page(tab_no)
 
     def create_custom_tab(self, text, nb):
-        #create a custom tab for notebook containing a 
+        #create a custom tab for notebook containing a
         #label and a button with STOCK_ICON
         eventBox = gtk.EventBox()
         tabBox = gtk.HBox(False, 2)
         tabLabel = gtk.Label(text)
-        tabBox.pack_start(tabLabel, False)       
+        tabBox.pack_start(tabLabel, False)
         eventBox.add(tabBox)
 
         if nb.get_n_pages() > 0:
@@ -157,7 +157,7 @@ class fpdb:
         return eventBox
 
     def add_icon_to_button(self, button):
-        iconBox = gtk.HBox(False, 0)        
+        iconBox = gtk.HBox(False, 0)
         image = gtk.Image()
         image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
@@ -168,8 +168,8 @@ class fpdb:
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
         iconBox.show()
-        return 
-    
+        return
+
     # Remove a page from the notebook
     def remove_tab(self, button, data):
         (nb, text) = data
@@ -183,7 +183,7 @@ class fpdb:
             #print "   removing page", page
             del self.nb_tabs[page]
             nb.remove_page(page)
-        # Need to refresh the widget -- 
+        # Need to refresh the widget --
         # This forces the widget to redraw itself.
         #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
@@ -752,7 +752,6 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         sys.stderr.write("fpdb starting ...")
 
     def window_state_event_cb(self, window, event):
-        print "window_state_event", event
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
             # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
             #bits = win32api.GetWindowLong(self.window.window.handle, -20)

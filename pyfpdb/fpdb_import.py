@@ -359,10 +359,15 @@ class Importer:
 #                        print "file",counter," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
                         try:
                             if not os.path.isdir(file):
-                                self.caller.addText("\n"+file)
+                                self.caller.addText("\n"+os.path.basename(file))
                         except KeyError: # TODO: What error happens here?
                             pass
-                        self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
+                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
+                        try:
+                            if not os.path.isdir(file):
+                                self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %d)" % (stored, duplicates, partial, errors, ttime))
+                        except KeyError: # TODO: Again, what error happens here? fix when we find out ..
+                            pass
                         self.updatedsize[file] = stat_info.st_size
                         self.updatedtime[file] = time()
                 else:
@@ -393,7 +398,7 @@ class Importer:
 
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
-            return
+            return (0,0,0,0,0)
 
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
