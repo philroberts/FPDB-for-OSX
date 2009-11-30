@@ -143,11 +143,11 @@ class HUD_main(object):
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
         # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
         # but I think it's needed:
-        self.hud_params['aggregate_ring'] == True
-        self.hud_params['h_aggregate_ring'] == True
+        self.hud_params['aggregate_ring'] = True
+        self.hud_params['h_aggregate_ring'] = True
         # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
         self.hud_params['aggregate_tour'] = True
-        self.hud_params['h_aggregate_tour'] == True
+        self.hud_params['h_aggregate_tour'] = True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
