@@ -69,7 +69,7 @@ class Filters(threading.Thread):
         self.sbGroups = {}
         self.numHands = 0
 
-        # Outer Packing box        
+        # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
 
         playerFrame = gtk.Frame("Hero:")
@@ -312,9 +312,11 @@ class Filters(threading.Thread):
                     self.cbAllLimits.set_active(False)
             if not self.limits[limit]:
                 if limit.isdigit():
-                    self.cbFL.set_active(False)
+                    if self.cbFL is not None:
+                        self.cbFL.set_active(False)
                 else:
-                    self.cbNL.set_active(False)
+                    if self.cbNL is not None:
+                        self.cbNL.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
                 #for cb in self.cbLimits.values():
@@ -327,12 +329,14 @@ class Filters(threading.Thread):
             if self.limits[limit]:
                 for cb in self.cbLimits.values():
                     cb.set_active(False)
-                self.cbNL.set_active(False)
-                self.cbFL.set_active(False)
+                if self.cbNL is not None:
+                    self.cbNL.set_active(False)
+                if self.cbFL is not None:
+                    self.cbFL.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on
-                # this stops turning one off from cascading into 'fl' box off 
+                # this stops turning one off from cascading into 'fl' box off
                 # and then all fl limits being turned off
                 all_fl_on = True
                 for cb in self.cbLimits.values():
@@ -359,7 +363,7 @@ class Filters(threading.Thread):
         elif limit == "nl":
             if not self.limits[limit]:
                 # only toggle all nl limits off if they are all currently on
-                # this stops turning one off from cascading into 'nl' box off 
+                # this stops turning one off from cascading into 'nl' box off
                 # and then all nl limits being turned off
                 all_nl_on = True
                 for cb in self.cbLimits.values():
@@ -731,11 +735,11 @@ def main(argv=None):
         gtk.main_quit()
 
     parser = OptionParser()
-    (options, sys.argv) = parser.parse_args(args = argv)
+    (options, argv) = parser.parse_args(args = argv)
 
     config = Configuration.Config()
     db = None
-    
+
     db = fpdb_db.fpdb_db()
     db.do_connect(config)
 
@@ -750,5 +754,3 @@ def main(argv=None):
 
 if __name__ == '__main__':
    sys.exit(main())
-
-

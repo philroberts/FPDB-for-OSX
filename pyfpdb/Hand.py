@@ -210,24 +210,24 @@ db: a connected fpdb_db object"""
         #####
         # End prep functions
         #####
-
-        # HandsActions - all actions for all players for all streets - self.actions
-        # HudCache data can be generated from HandsActions (HandsPlayers?)
-
-        # Hands - Summary information of hand indexed by handId - gameinfo
         hh = self.stats.getHands()
-        hh['gameTypeId'] = gtid
-        # seats TINYINT NOT NULL,
-        hh['seats'] = len(sqlids)
 
-        #print hh
-        handid = db.storeHand(hh)
-        # HandsPlayers - ? ... Do we fix winnings?
-        db.storeHandsPlayers(handid, sqlids, self.stats.getHandsPlayers())
-        # Tourneys ?
-        # TourneysPlayers
+        if not db.isDuplicate(gtid, hh['siteHandNo']):
+            # Hands - Summary information of hand indexed by handId - gameinfo
+            hh['gameTypeId'] = gtid
+            # seats TINYINT NOT NULL,
+            hh['seats'] = len(sqlids)
 
-        pass
+            handid = db.storeHand(hh)
+            db.storeHandsPlayers(handid, sqlids, self.stats.getHandsPlayers())
+            # HandsActions - all actions for all players for all streets - self.actions
+            # HudCache data can be generated from HandsActions (HandsPlayers?)
+            # Tourneys ?
+            # TourneysPlayers
+        else:
+            log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
+            #Raise Duplicate exception?
+            pass
 
     def select(self, handId):
         """ Function to create Hand object from database """
@@ -510,7 +510,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
     def printHand(self):
         self.writeHand(sys.stdout)
 
-    def actionString(self, act):
+    def actionString(self, act, street=None):
         if act[1] == 'folds':
             return ("%s: folds " %(act[0]))
         elif act[1] == 'checks':
@@ -535,7 +535,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         elif act[1] == 'bringin':
             return ("%s: brings in for %s%s%s" %(act[0], self.sym, act[2], ' and is all-in' if act[3] else ''))
         elif act[1] == 'discards':
-            return ("%s: discards %s %s%s" %(act[0], act[2], 'card' if act[2] == 1 else 'cards' , " [" + " ".join(self.discards[act[0]]['DRAWONE']) + "]" if self.hero == act[0] else ''))
+            return ("%s: discards %s %s%s" %(act[0], act[2], 'card' if act[2] == 1 else 'cards' , " [" + " ".join(self.discards[street][act[0]]) + "]" if self.hero == act[0] else ''))
         elif act[1] == 'stands pat':
             return ("%s: stands pat" %(act[0]))
 
@@ -667,6 +667,27 @@ class HoldemOmahaHand(Hand):
         tmp4 = 0
         tmp5 = 0
         return (tmp1,tmp2,tmp3,tmp4,tmp5)
+
+    def join_holecards(self, player, asList=False):
+        """With asList = True it returns the set cards for a player including down cards if they aren't know"""
+        # FIXME: This should actually return
+        hcs = [u'0x', u'0x', u'0x', u'0x']
+
+        for street in self.holeStreets:
+            if player in self.holecards[street].keys():
+                hcs[0] = self.holecards[street][player][1][0]
+                hcs[1] = self.holecards[street][player][1][1]
+                try:
+                    hcs[2] = self.holecards[street][player][1][2]
+                    hcs[3] = self.holecards[street][player][1][3]
+                except IndexError:
+                    pass
+
+        if asList == False:
+            return " ".join(hcs)
+        else:
+            return hcs
+
 
     def writeHTMLHand(self):
         from nevow import tags as T
@@ -872,7 +893,7 @@ class DrawHand(Hand):
         self.streetList = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.allStreets = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.holeStreets = ['DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
-        self.actionStreets =  ['PREDEAL', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
+        self.actionStreets =  ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.communityStreets = []
         Hand.__init__(self, sitename, gametype, handText)
         self.sb = gametype['sb']
@@ -953,6 +974,13 @@ class DrawHand(Hand):
             act = (player, 'discards', num)
         self.actions[street].append(act)
 
+    def holecardsAsSet(self, street, player):
+        """Return holdcards: (oc, nc) as set()"""
+        (nc,oc) = self.holecards[street][player]
+        nc = set(nc)
+        oc = set(oc)
+        return (nc, oc)
+
     def getStreetTotals(self):
         # street1Pot INT,                  /* pot size at flop/street4 */
         # street2Pot INT,                  /* pot size at turn/street5 */
@@ -960,6 +988,16 @@ class DrawHand(Hand):
         # street4Pot INT,                  /* pot size at sd/street7 */
         # showdownPot INT,                 /* pot size at sd/street7 */
         return (0,0,0,0,0)
+
+    def join_holecards(self, player, asList=False):
+        """With asList = True it returns the set cards for a player including down cards if they aren't know"""
+        # FIXME: This should actually return
+        holecards = [u'0x', u'0x', u'0x', u'0x', u'0x']
+
+        if asList == False:
+            return " ".join(holecards)
+        else:
+            return holecards
 
 
     def writeHand(self, fh=sys.__stdout__):
@@ -979,18 +1017,19 @@ class DrawHand(Hand):
         if 'DEAL' in self.actions:
             print >>fh, _("*** DEALING HANDS ***")
             for player in [x[1] for x in self.players if x[1] in players_who_act_ondeal]:
-                if 'DEAL' in self.holecards[player]:
-                    (nc,oc) = self.holecards[player]['DEAL']
-                    print >>fh, _("Dealt to %s: [%s]") % (player, " ".join(nc))
+                if 'DEAL' in self.holecards:
+                    if self.holecards['DEAL'].has_key(player):
+                        (nc,oc) = self.holecards['DEAL'][player]
+                        print >>fh, _("Dealt to %s: [%s]") % (player, " ".join(nc))
             for act in self.actions['DEAL']:
-                print >>fh, self.actionString(act)
+                print >>fh, self.actionString(act, 'DEAL')
 
         if 'DRAWONE' in self.actions:
             print >>fh, _("*** FIRST DRAW ***")
             for act in self.actions['DRAWONE']:
-                print >>fh, self.actionString(act)
+                print >>fh, self.actionString(act, 'DRAWONE')
                 if act[0] == self.hero and act[1] == 'discards':
-                    (nc,oc) = self.holecards['DRAWONE'][act[0]]
+                    (nc,oc) = self.holecardsAsSet('DRAWONE', act[0])
                     dc = self.discards['DRAWONE'][act[0]]
                     kc = oc - dc
                     print >>fh, _("Dealt to %s [%s] [%s]" % (act[0], " ".join(kc), " ".join(nc)))
@@ -998,9 +1037,9 @@ class DrawHand(Hand):
         if 'DRAWTWO' in self.actions:
             print >>fh, _("*** SECOND DRAW ***")
             for act in self.actions['DRAWTWO']:
-                print >>fh, self.actionString(act)
+                print >>fh, self.actionString(act, 'DRAWTWO')
                 if act[0] == self.hero and act[1] == 'discards':
-                    (nc,oc) = self.holecards['DRAWTWO'][act[0]]
+                    (nc,oc) = self.holecardsAsSet('DRAWONE', act[0])
                     dc = self.discards['DRAWTWO'][act[0]]
                     kc = oc - dc
                     print >>fh, _("Dealt to %s [%s] [%s]" % (act[0], " ".join(kc), " ".join(nc)))
@@ -1008,9 +1047,9 @@ class DrawHand(Hand):
         if 'DRAWTHREE' in self.actions:
             print >>fh, _("*** THIRD DRAW ***")
             for act in self.actions['DRAWTHREE']:
-                print >>fh, self.actionString(act)
+                print >>fh, self.actionString(act, 'DRAWTHREE')
                 if act[0] == self.hero and act[1] == 'discards':
-                    (nc,oc) = self.holecards['DRAWTHREE'][act[0]]
+                    (nc,oc) = self.holecardsAsSet('DRAWONE', act[0])
                     dc = self.discards['DRAWTHREE'][act[0]]
                     kc = oc - dc
                     print >>fh, _("Dealt to %s [%s] [%s]" % (act[0], " ".join(kc), " ".join(nc)))
@@ -1286,7 +1325,9 @@ Add a complete on [street] by [player] to [amountTo]
         if street == 'SEVENTH' and player != self.hero: return # only write 7th st line for hero, LDO
         return hc + " ".join(self.holecards[street][player][1]) + "] [" + " ".join(self.holecards[street][player][0]) + "]"
 
-    def join_holecards(self, player):
+    def join_holecards(self, player, asList=False):
+        """Function returns a string for the stud writeHand method by default
+           With asList = True it returns the set cards for a player including down cards if they aren't know"""
         holecards = []
         for street in self.holeStreets:
             if self.holecards[street].has_key(player):
@@ -1299,7 +1340,20 @@ Add a complete on [street] by [player] to [amountTo]
                         holecards = holecards + self.holecards[street][player][1]
                 else:
                     holecards = holecards + self.holecards[street][player][0]
-        return " ".join(holecards)
+
+        if asList == False:
+            return " ".join(holecards)
+        else:
+            if player == self.hero or len(holecards) == 7:
+                return holecards
+            elif len(holecards) <= 4:
+                #Non hero folded before showdown, add first two downcards
+                holecards = [u'0x', u'0x'] + holecards
+            else:
+                log.warning("join_holecards: # of holecards should be either < 4, 4 or 7 - 5 and 6 should be impossible for anyone who is not a hero")
+                log.warning("join_holcards: holecards(%s): %s" %(player, holecards))
+            return holecards
+
 
 class Pot(object):
 

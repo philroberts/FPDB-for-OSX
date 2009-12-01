@@ -927,7 +927,7 @@ def recogniseTourneyTypeId(db, siteId, tourneySiteId, buyin, fee, knockout, rebu
     except:
         cursor.execute( """SELECT id FROM TourneyTypes 
                            WHERE siteId=%s AND buyin=%s AND fee=%s 
-                           AND knockout=%s AND rebuyOrAddon=%s"""
+                           AND knockout=%s AND rebuyOrAddon=%s""".replace('%s', db.sql.query['placeholder'])
                       , (siteId, buyin, fee, knockout, rebuyOrAddon) )
         result = cursor.fetchone()
         #print "tried selecting tourneytypes.id, result:", result
@@ -939,14 +939,14 @@ def recogniseTourneyTypeId(db, siteId, tourneySiteId, buyin, fee, knockout, rebu
             #print "insert new tourneytype record ..."
             try:
                 cursor.execute( """INSERT INTO TourneyTypes (siteId, buyin, fee, knockout, rebuyOrAddon) 
-                                   VALUES (%s, %s, %s, %s, %s)"""
+                                   VALUES (%s, %s, %s, %s, %s)""".replace('%s', db.sql.query['placeholder'])
                               , (siteId, buyin, fee, knockout, rebuyOrAddon) )
                 ret = db.get_last_insert_id(cursor)
             except:
                 #print "maybe tourneytype was created since select, try selecting again ..."
                 cursor.execute( """SELECT id FROM TourneyTypes 
                                    WHERE siteId=%s AND buyin=%s AND fee=%s 
-                                   AND knockout=%s AND rebuyOrAddon=%s"""
+                                   AND knockout=%s AND rebuyOrAddon=%s""".replace('%s', db.sql.query['placeholder'])
                               , (siteId, buyin, fee, knockout, rebuyOrAddon) )
                 result = cursor.fetchone()
                 try:

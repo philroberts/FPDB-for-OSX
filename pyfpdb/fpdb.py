@@ -41,7 +41,7 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
 else:
     pass
     #print "debug - not changing path"
-    
+
 if os.name == 'nt':
     import win32api
     import win32con
@@ -53,7 +53,7 @@ import threading
 import Options
 import string
 cl_options = string.join(sys.argv[1:])
-(options, sys.argv) = Options.fpdb_options()
+(options, argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
@@ -69,6 +69,7 @@ import gtk
 import interlocks
 
 
+import GuiPrefs
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -80,7 +81,7 @@ import SQL
 import Database
 import FpdbSQLQueries
 import Configuration
-from Exceptions import *
+import Exceptions
 
 VERSION = "0.12"
 
@@ -94,37 +95,97 @@ class fpdb:
         self.add_tab(new_tab, new_tab_name)
         self.display_tab(new_tab_name)
 
-    def add_tab(self, new_tab, new_tab_name):
+    def add_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
-        for i in self.tab_names: #todo: check this is valid
-            if i == new_tab_name:
+        for name in self.nb_tabs: #todo: check this is valid
+            if name == new_tab_name:
                 return # if tab already exists, just go to it
 
-        self.tabs.append(new_tab)
-        self.tab_names.append(new_tab_name)
+        used_before = False
+        for i, name in enumerate(self.tab_names): #todo: check this is valid
+            if name == new_tab_name:
+                used_before = True
+                event_box = self.tabs[i]
+                page = self.pages[i]
+                break
 
-        new_tab_sel_button = gtk.ToggleButton(new_tab_name)
-        new_tab_sel_button.connect("clicked", self.tab_clicked, new_tab_name)
-        self.tab_box.add(new_tab_sel_button)
-        new_tab_sel_button.show()
-        self.tab_buttons.append(new_tab_sel_button)
+        if not used_before:
+            event_box = self.create_custom_tab(new_tab_name, self.nb)
+            page = new_page
+            self.pages.append(new_page)
+            self.tabs.append(event_box)
+            self.tab_names.append(new_tab_name)
+        
+        #self.nb.append_page(new_page, gtk.Label(new_tab_name))
+        self.nb.append_page(page, event_box)
+        self.nb_tabs.append(new_tab_name)
+        page.show()
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
         tab_no = -1
-        for i, name in enumerate(self.tab_names):
-            if name == new_tab_name:
+        for i, name in enumerate(self.nb_tabs):
+            if new_tab_name == name:
                 tab_no = i
                 break
 
-        if tab_no == -1:
-            raise FpdbError("invalid tab_no")
+        if tab_no < 0 or tab_no >= self.nb.get_n_pages():
+            raise FpdbError("invalid tab_no " + str(tab_no))
         else:
-            self.main_vbox.remove(self.current_tab)
-            self.current_tab=self.tabs[tab_no]
-            self.main_vbox.add(self.current_tab)
-            self.tab_buttons[tab_no].set_active(True)
-            self.current_tab.show()
+            self.nb.set_current_page(tab_no)
+
+    def create_custom_tab(self, text, nb):
+        #create a custom tab for notebook containing a 
+        #label and a button with STOCK_ICON
+        eventBox = gtk.EventBox()
+        tabBox = gtk.HBox(False, 2)
+        tabLabel = gtk.Label(text)
+        tabBox.pack_start(tabLabel, False)       
+        eventBox.add(tabBox)
+
+        if nb.get_n_pages() > 0:
+            tabButton = gtk.Button()
+
+            tabButton.connect('clicked', self.remove_tab, (nb, text))
+            #Add a picture on a button
+            self.add_icon_to_button(tabButton)
+            tabBox.pack_start(tabButton, False)
+
+        # needed, otherwise even calling show_all on the notebook won't
+        # make the hbox contents appear.
+        tabBox.show_all()
+        return eventBox
+
+    def add_icon_to_button(self, button):
+        iconBox = gtk.HBox(False, 0)        
+        image = gtk.Image()
+        image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
+        gtk.Button.set_relief(button, gtk.RELIEF_NONE)
+        settings = gtk.Widget.get_settings(button);
+        (w,h) = gtk.icon_size_lookup_for_settings(settings, gtk.ICON_SIZE_SMALL_TOOLBAR);
+        gtk.Widget.set_size_request (button, w + 4, h + 4);
+        image.show()
+        iconBox.pack_start(image, True, False, 0)
+        button.add(iconBox)
+        iconBox.show()
+        return 
+    
+    # Remove a page from the notebook
+    def remove_tab(self, button, data):
+        (nb, text) = data
+        page = -1
+        #print "\n remove_tab: start", text
+        for i, tab in enumerate(self.nb_tabs):
+            if text == tab:
+                page = i
+        #print "   page =", page
+        if page >= 0 and page < self.nb.get_n_pages():
+            #print "   removing page", page
+            del self.nb_tabs[page]
+            nb.remove_page(page)
+        # Need to refresh the widget -- 
+        # This forces the widget to redraw itself.
+        #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
     def delete_event(self, widget, event, data=None):
         return False
@@ -144,6 +205,20 @@ class fpdb:
         dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
         dia.set_program_name("FPDB")
         dia.run()
+        dia.destroy()
+
+    def dia_preferences(self, widget, data=None):
+        dia = gtk.Dialog("Preferences",
+                         self.window,
+                         gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                         (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                          gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+        dia.set_default_size(500, 500)
+        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
+        response = dia.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            # save updated config
+            self.config.save()
         dia.destroy()
 
     def dia_create_del_database(self, widget, data=None):
@@ -178,23 +253,23 @@ class fpdb:
         """obtains db root credentials from user"""
         self.warning_box("Unimplemented: Get Root Database Credentials")
 #        user, pw=None, None
-#        
+#
 #        dialog=gtk.Dialog(title="DB Credentials needed", parent=None, flags=0,
 #                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,"Connect and recreate",gtk.RESPONSE_OK))
-#        
+#
 #        label_warning1=gtk.Label("Please enter credentials for a database user for "+self.host+" that has permissions to create a database.")
-#        
-#        
+#
+#
 #        label_user=gtk.Label("Username")
 #        dialog.vbox.add(label_user)
 #        label_user.show()
-#        
+#
 #        response=dialog.run()
 #        dialog.destroy()
 #        return (user, pw, response)
 
     def dia_import_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Import Database")        
+        self.warning_box("Unimplemented: Import Database")
         self.obtain_global_lock()
         self.release_global_lock()
 
@@ -211,7 +286,7 @@ class fpdb:
             #    chooser.set_filename(self.profile)
 
             #    response = chooser.run()
-            #    chooser.destroy()    
+            #    chooser.destroy()
             #    if response == gtk.RESPONSE_OK:
             #        self.load_profile(chooser.get_filename())
             #    elif response == gtk.RESPONSE_CANCEL:
@@ -239,7 +314,7 @@ class fpdb:
             dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
                 #if self.db.backend == self.fdb_lock.fdb.MYSQL_INNODB:
-                    # mysql requires locks on all tables or none - easier to release this lock 
+                    # mysql requires locks on all tables or none - easier to release this lock
                     # than lock all the other tables
                     # ToDo: lock all other tables so that lock doesn't have to be released
                 #    self.release_global_lock()
@@ -252,7 +327,7 @@ class fpdb:
                 print 'User cancelled recreating tables'
             #if not lock_released:
             self.release_global_lock()
-    
+
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
             self.dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
@@ -279,6 +354,27 @@ class fpdb:
                 self.db.rebuild_hudcache( self.start_date.get_text() )
             elif response == gtk.RESPONSE_NO:
                 print 'User cancelled rebuilding hud cache'
+
+        self.release_global_lock()
+
+    def dia_rebuild_indexes(self, widget, data=None):
+        if self.obtain_global_lock():
+            self.dia_confirm = gtk.MessageDialog(parent=None
+                                                ,flags=0
+                                                ,type=gtk.MESSAGE_WARNING
+                                                ,buttons=(gtk.BUTTONS_YES_NO)
+                                                ,message_format="Confirm rebuilding database indexes")
+            diastring = "Please confirm that you want to rebuild the database indexes."
+            self.dia_confirm.format_secondary_text(diastring)
+
+            response = self.dia_confirm.run()
+            self.dia_confirm.destroy()
+            if response == gtk.RESPONSE_YES:
+                self.db.rebuild_indexes()
+                self.db.vacuumDB()
+                self.db.analyzeDB()
+            elif response == gtk.RESPONSE_NO:
+                print 'User cancelled rebuilding db indexes'
 
         self.release_global_lock()
 
@@ -314,7 +410,7 @@ class fpdb:
         entry.set_text(ds)
         win.destroy()
         self.dia_confirm.set_modal(True)
-    
+
     def dia_regression_test(self, widget, data=None):
         self.warning_box("Unimplemented: Regression Test")
         self.obtain_global_lock()
@@ -322,7 +418,7 @@ class fpdb:
 
     def dia_save_profile(self, widget, data=None):
         self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
-                         
+
     def diaSetupWizard(self, path):
         diaSetupWizard = gtk.Dialog(title="Fatal Error - Config File Missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
 
@@ -350,6 +446,7 @@ class fpdb:
                   <menuitem action="LoadProf"/>
                   <menuitem action="EditProf"/>
                   <menuitem action="SaveProf"/>
+                  <menuitem action="Preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
                 </menu>
@@ -375,6 +472,7 @@ class fpdb:
                   <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
+                  <menuitem action="rebuildindexes"/>
                   <menuitem action="stats"/>
                 </menu>
                 <menu action="help">
@@ -396,6 +494,7 @@ class fpdb:
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
+                                 ('Preferences', None, '_Preferences', None, 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
@@ -415,6 +514,7 @@ class fpdb:
                                  ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
+                                 ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
@@ -450,24 +550,32 @@ class fpdb:
         if self.db is not None and self.db.fdb is not None:
             self.db.disconnect()
 
-        self.sql = SQL.Sql(type = self.settings['db-type'], db_server = self.settings['db-server'])
+        self.sql = SQL.Sql(db_server = self.settings['db-server'])
         try:
             self.db = Database.Database(self.config, sql = self.sql)
-        except FpdbMySQLFailedError:
-            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
+        except Exceptions.FpdbMySQLAccessDenied:
+            self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
             exit()
-        except FpdbError:
-            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
-            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
-        except:
-            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
-            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
+        except Exceptions.FpdbMySQLNoDatabase:
+            msg = "MySQL client reports: 2002 error. Unable to connect - Please check that the MySQL service has been started"
+            self.warning_box(msg)
+            exit
+
+#        except FpdbMySQLFailedError:
+#            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
+#            exit()
+#        except FpdbError:
+#            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+#            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
+#            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+#            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+#            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
+#        except:
+#            #print "Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user'])
+#            self.warning_box("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']), "FPDB ERROR")
+#            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+#            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+#            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
         if self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
@@ -496,7 +604,7 @@ class fpdb:
 
         # Database connected to successfully, load queries to pass on to other classes
         self.db.rollback()
-        
+
         self.validate_config()
 
     def not_implemented(self, widget, data=None):
@@ -607,24 +715,20 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menubar.show()
         #done menubar
 
+        self.nb = gtk.Notebook()
+        self.nb.set_show_tabs(True)
+        self.nb.show()
+        self.main_vbox.pack_start(self.nb, True, True, 0)
+        self.pages=[]
         self.tabs=[]
         self.tab_names=[]
-        self.tab_buttons=[]
-        self.tab_box = gtk.HBox(True,1)
-        self.main_vbox.pack_start(self.tab_box, False, True, 0)
-        self.tab_box.show()
-        #done tab bar
-
-        self.current_tab = gtk.VBox(False,1)
-        self.current_tab.set_border_width(1)
-        self.main_vbox.add(self.current_tab)
-        self.current_tab.show()
+        self.nb_tabs=[]
 
         self.tab_main_help(None, None)
 
         self.window.show()
         self.load_profile()
-        
+
         self.statusIcon = gtk.StatusIcon()
         if os.path.exists('../gfx/fpdb-cards.png'):
             self.statusIcon.set_from_file('../gfx/fpdb-cards.png')
@@ -643,19 +747,19 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.statusMenu.append(menuItem)
         self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
         self.statusIcon.set_visible(True)
-        
+
         self.window.connect('window-state-event', self.window_state_event_cb)
         sys.stderr.write("fpdb starting ...")
-                
+
     def window_state_event_cb(self, window, event):
         print "window_state_event", event
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
             # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
             #bits = win32api.GetWindowLong(self.window.window.handle, -20)
             #bits = bits ^ (win32con.WS_EX_TOOLWINDOW | win32con.WS_EX_APPWINDOW)
-            
+
             #win32api.SetWindowLong(self.window.window.handle, -20, bits)
-            
+
             if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
                 self.window.hide()
                 self.window.set_skip_taskbar_hint(True)
@@ -665,7 +769,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
                 self.window.set_skip_pager_hint(False)
         # Tell GTK not to propagate this signal any further
         return True
-        
+
     def statusicon_menu(self, widget, button, time, data = None):
         # we don't need to pass data here, since we do keep track of most all
         # our variables .. the example code that i looked at for this
@@ -676,7 +780,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
                 data.show_all()
                 data.popup(None, None, None, 3, time)
         pass
-    
+
     def statusicon_activate(self, widget, data = None):
         # Let's allow the tray icon to toggle window visibility, the way
         # most other apps work
@@ -686,7 +790,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         else:
             self.window.show()
             self.window.present()
-        
+
     def warning_box(self, str, diatitle="FPDB WARNING"):
             diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
@@ -697,7 +801,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             response = diaWarning.run()
             diaWarning.destroy()
             return response
-                
+
     def validate_config(self):
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
@@ -716,7 +820,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
                     self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
             elif response == gtk.RESPONSE_NO:
                self.select_hhArchiveBase()
-               
+
     def select_hhArchiveBase(self, widget=None):
         fc = gtk.FileChooserDialog(title="Select HH Output Directory", parent=None, action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, buttons=(gtk.STOCK_OPEN,gtk.RESPONSE_OK), backend=None)
         fc.run()
@@ -726,7 +830,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.config.save()
         self.load_profile() # we can't do this at the end of this func because load_profile calls this func
         fc.destroy() # TODO: loop this to make sure we get valid data back from it, because the open directory thing in GTK lets you select files and not select things and other stupid bullshit
-        
+
     def main(self):
         gtk.main()
         return 0

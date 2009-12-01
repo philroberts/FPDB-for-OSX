@@ -9,12 +9,12 @@ Routines for detecting and handling poker client windows for MS Windows.
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -56,9 +56,13 @@ class Table(Table_Window):
                 if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
                 self.window = hwnd
                 break
-    
-        if self.window == None:
-            print "Window %s not found. Skipping." % search_string
+
+        try:
+            if self.window == None:
+                print "Window %s not found. Skipping." % search_string
+                return None
+        except AttributeError:
+            print "self.window doesn't exist? why?"
             return None
 
         (x, y, width, height) = win32gui.GetWindowRect(hwnd)
@@ -70,7 +74,7 @@ class Table(Table_Window):
         print "x = %s y = %s width = %s height = %s" % (self.x, self.y, self.width, self.height)
         #self.height = int(height) - b_width - tb_height
         #self.width  = int(width) - 2*b_width
-        
+
         self.exe    = self.get_nt_exe(hwnd)
         self.title  = titles[hwnd]
         self.site   = ""
@@ -99,37 +103,37 @@ class Table(Table_Window):
 
     def get_nt_exe(self, hwnd):
         """Finds the name of the executable that the given window handle belongs to."""
-        
+
         # Request privileges to enable "debug process", so we can later use PROCESS_VM_READ, retardedly required to GetModuleFileNameEx()
         priv_flags = win32security.TOKEN_ADJUST_PRIVILEGES | win32security.TOKEN_QUERY
         hToken = win32security.OpenProcessToken (win32api.GetCurrentProcess(), priv_flags)
         # enable "debug process"
         privilege_id = win32security.LookupPrivilegeValue (None, win32security.SE_DEBUG_NAME)
         old_privs = win32security.AdjustTokenPrivileges (hToken, 0, [(privilege_id, win32security.SE_PRIVILEGE_ENABLED)])
-        
+
         # Open the process, and query it's filename
         processid = win32process.GetWindowThreadProcessId(hwnd)
         pshandle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ, False, processid[1])
         exename = win32process.GetModuleFileNameEx(pshandle, 0)
-        
+
         # clean up
         win32api.CloseHandle(pshandle)
         win32api.CloseHandle(hToken)
-        
+
         return exename
     def topify(self, hud):
         """Set the specified gtk window to stayontop in MS Windows."""
-    
+
 #        def windowEnumerationHandler(hwnd, resultList):
 #            '''Callback for win32gui.EnumWindows() to generate list of window handles.'''
 #            resultList.append((hwnd, win32gui.GetWindowText(hwnd)))
-#    
+#
 #        unique_name = 'unique name for finding this window'
 #        real_name = hud.main_window.get_title()
 #        hud.main_window.set_title(unique_name)
 #        tl_windows = []
 #        win32gui.EnumWindows(windowEnumerationHandler, tl_windows)
-#            
+#
 #        for w in tl_windows:
 #            if w[1] == unique_name:
 #                hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(w[0])
@@ -139,14 +143,13 @@ class Table(Table_Window):
         (innerx, innery) = self.gdkhandle.get_origin()
         b_width = rect.x - innerx
         tb_height = rect.y - innery
-#                
+#
 #                style = win32gui.GetWindowLong(self.number, win32con.GWL_EXSTYLE)
 #                style |= win32con.WS_CLIPCHILDREN
 #                win32gui.SetWindowLong(self.number, win32con.GWL_EXSTYLE, style)
 #                break
-                
+
 #        hud.main_window.set_title(real_name)
 
 def win_enum_handler(hwnd, titles):
     titles[hwnd] = win32gui.GetWindowText(hwnd)
-

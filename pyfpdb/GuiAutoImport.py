@@ -53,7 +53,7 @@ class GuiAutoImport (threading.Thread):
         self.importer.setFailOnError(False)
         self.importer.setHandCount(0)
 #        self.importer.setWatchTime()
-        
+
         self.server = settings['db-host']
         self.user = settings['db-user']
         self.password = settings['db-password']
@@ -63,7 +63,7 @@ class GuiAutoImport (threading.Thread):
 
         hbox = gtk.HBox(True, 0) # contains 2 equal vboxes
         self.mainVBox.pack_start(hbox, False, False, 0)
-        
+
         vbox1 = gtk.VBox(True, 0)
         hbox.pack_start(vbox1, True, True, 0)
         vbox2 = gtk.VBox(True, 0)
@@ -71,22 +71,24 @@ class GuiAutoImport (threading.Thread):
 
         self.intervalLabel = gtk.Label("Time between imports in seconds:")
         self.intervalLabel.set_alignment(xalign=1.0, yalign=0.5)
-        vbox1.pack_start(self.intervalLabel, True, True, 0)
+        vbox1.pack_start(self.intervalLabel, False, True, 0)
 
         hbox = gtk.HBox(False, 0)
-        vbox2.pack_start(hbox, True, True, 0)
+        vbox2.pack_start(hbox, False, True, 0)
         self.intervalEntry = gtk.Entry()
         self.intervalEntry.set_text(str(self.config.get_import_parameters().get("interval")))
         hbox.pack_start(self.intervalEntry, False, False, 0)
         lbl1 = gtk.Label()
-        hbox.pack_start(lbl1, expand=True, fill=True)
+        hbox.pack_start(lbl1, expand=False, fill=True)
 
         lbl = gtk.Label('')
-        vbox1.pack_start(lbl, expand=True, fill=True)
+        vbox1.pack_start(lbl, expand=False, fill=True)
         lbl = gtk.Label('')
-        vbox2.pack_start(lbl, expand=True, fill=True)
+        vbox2.pack_start(lbl, expand=False, fill=True)
 
         self.addSites(vbox1, vbox2)
+        self.textbuffer = gtk.TextBuffer()
+        self.textview = gtk.TextView(self.textbuffer)
 
         hbox = gtk.HBox(False, 0)
         self.mainVBox.pack_start(hbox, expand=True, padding=3)
@@ -102,13 +104,27 @@ class GuiAutoImport (threading.Thread):
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
+
         lbl2 = gtk.Label()
         hbox.pack_start(lbl2, expand=True, fill=False)
 
         hbox = gtk.HBox(False, 0)
         hbox.show()
+
         self.mainVBox.pack_start(hbox, expand=True, padding=3)
+
+        scrolledwindow = gtk.ScrolledWindow()
+        scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        self.mainVBox.pack_end(scrolledwindow, expand=True)
+        scrolledwindow.add(self.textview)
+
         self.mainVBox.show_all()
+        self.addText("AutoImport Ready.")
+
+    def addText(self, text):
+        end_iter = self.textbuffer.get_end_iter()
+        self.textbuffer.insert(end_iter, text)
+        self.textview.scroll_to_mark(self.textbuffer.get_insert(), 0)
 
 
     #end of GuiAutoImport.__init__
@@ -139,18 +155,19 @@ class GuiAutoImport (threading.Thread):
         if self.doAutoImportBool:
             self.startButton.set_label(u' I M P O R T I N G  ')
             self.importer.runUpdated()
-            sys.stdout.write(".")
-            sys.stdout.flush()
+            self.addText(".")
+            #sys.stdout.write(".")
+            #sys.stdout.flush()
             gobject.timeout_add(1000, self.reset_startbutton)
             return True
         return False
-        
+
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
             self.startButton.set_label(u'  _Stop Autoimport  ')
         else:
             self.startButton.set_label(u'  _Start Autoimport  ')
-        
+
         return False
 
 
@@ -169,10 +186,10 @@ class GuiAutoImport (threading.Thread):
         if widget.get_active(): # toggled on
             # - Does the lock acquisition need to be more sophisticated for multiple dirs?
             # (see comment above about what to do if pipe already open)
-            # - Ideally we want to release the lock if the auto-import is killed by some 
+            # - Ideally we want to release the lock if the auto-import is killed by some
             # kind of exception - is this possible?
             if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
-                print "\nGlobal lock taken ..."
+                self.addText("\nGlobal lock taken ... Auto Import Started.\n")
                 self.doAutoImportBool = True
                 widget.set_label(u'  _Stop Autoimport  ')
                 if self.pipe_to_hud is None:
@@ -183,34 +200,33 @@ class GuiAutoImport (threading.Thread):
                         command = os.path.join(sys.path[0], 'HUD_main.py')
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
-                        
+
                     try:
                         self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                             stdin=subprocess.PIPE,
                                                             universal_newlines=True)
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        print "*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
-                    else:                    
+                        self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
+                    else:
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
-                            print " * Add", site, " import directory", str(self.input_settings[site][0])
-                            print "+Import directory - Site: " + site + " dir: " + str(self.input_settings[site][0])
-                            self.do_import()                            
+                            self.addText("\n * Add "+ site+ " import directory "+ str(self.input_settings[site][0]))
+                            self.do_import()
                             interval = int(self.intervalEntry.get_text())
                     if self.importtimer != 0:
                         gobject.source_remove(self.importtimer)
                     self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
-                        
+
             else:
-                print "auto-import aborted - global lock not available"
+                self.addText("\nauto-import aborted - global lock not available")
         else: # toggled off
             gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
-            print "Stopping autoimport - global lock released."
+            self.addText("\nStopping autoimport - global lock released.")
             if self.pipe_to_hud.poll() is not None:
-                print " * Stop Autoimport: HUD already terminated"
+                self.addText("\n * Stop Autoimport: HUD already terminated")
             else:
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate
@@ -258,7 +274,7 @@ class GuiAutoImport (threading.Thread):
             vbox1.pack_start(pathHBox1, False, True, 0)
             pathHBox2 = gtk.HBox(False, 0)
             vbox2.pack_start(pathHBox2, False, True, 0)
-    
+
             params = self.config.get_site_parameters(site)
             paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
@@ -281,7 +297,7 @@ if __name__== "__main__":
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True, help="don't start gui")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
                     help="How often to print a one-line status report (0 (default) means never)")
-    (options, sys.argv) = parser.parse_args()
+    (options, argv) = parser.parse_args()
 
     config = Configuration.Config()
 #    db = fpdb_db.fpdb_db()
@@ -305,4 +321,3 @@ if __name__== "__main__":
         gtk.main()
     else:
         pass
-    

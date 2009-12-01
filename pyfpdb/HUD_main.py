@@ -5,17 +5,17 @@
 Main for FreePokerTools HUD.
 """
 #    Copyright 2008, 2009,  Ray E. Barker
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -33,7 +33,7 @@ import os
 import Options
 import traceback
 
-(options, sys.argv) = Options.fpdb_options()
+(options, argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
     print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
@@ -61,34 +61,6 @@ elif os.name == 'nt':
     import WinTables as Tables
 #import Tables
 import Hud
-
-
-# HUD params:
-# - Set aggregate_ring and/or aggregate_tour to True is you want to include stats from other blind levels in the HUD display
-# - If aggregation is used, the value of agg_bb_mult determines what levels are included. If
-#   agg_bb_mult is M and current blind level is L, blinds between L/M and L*M are included. e.g.
-#   if agg_bb_mult is 100, almost all levels are included in all HUD displays
-#   if agg_bb_mult is 2, levels from half to double the current blind level are included in the HUD
-#   if agg_bb_mult is 1 only the current level is included
-# - Set hud_style to A to see stats for all-time
-#   Set hud_style to S to only see stats for current session (currently this shows stats for the last 24 hours)
-#   Set hud_style to T to only see stats for the last N days (uses value in hud_days)
-# - Set hud_days to N to see stats for the last N days in the HUD (only applies if hud_style is T)
-def_hud_params = { # Settings for all players apart from program owner ('hero')
-                   'aggregate_ring' : False
-                 , 'aggregate_tour' : True
-                 , 'hud_style'      : 'A'
-                 , 'hud_days'       : 90
-                 , 'agg_bb_mult'    : 10000                 # 1 means no aggregation
-                 # , 'hud_session_gap' : 30             not currently used
-                   # Second set of variables for hero - these settings only apply to the program owner
-                 , 'h_aggregate_ring' : False
-                 , 'h_aggregate_tour' : True
-                 , 'h_hud_style'      : 'S'             # A(ll) / S(ession) / T(ime in days)
-                 , 'h_hud_days'       : 60
-                 , 'h_agg_bb_mult'    : 10000               # 1 means no aggregation
-                 # , 'h_hud_session_gap' : 30           not currently used
-                 }
 
 
 class HUD_main(object):
@@ -129,20 +101,17 @@ class HUD_main(object):
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
-        
+
         def idle_func():
-            
+
             gtk.gdk.threads_enter()
-            try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
-                 # TODO: The purpose of this try/finally block is to make darn sure that threads_leave()
-                 # TODO: gets called. If there is an exception and threads_leave() doesn't get called we 
-                 # TODO: lock up.  REB
+            try:
                 table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
                 newlabel.show()
                 self.main_window.resize_children()
-    
+
                 self.hud_dict[table_name].tablehudlabel = newlabel
                 self.hud_dict[table_name].create(new_hand_id, self.config, stat_dict, cards)
                 for m in self.hud_dict[table_name].aux_windows:
@@ -150,15 +119,20 @@ class HUD_main(object):
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
-                return False
+            except:
+                print "*** Exception in HUD_main::idle_func() *** "
+                traceback.print_stack()
             finally:
                 gtk.gdk.threads_leave()
+                return False
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table_name].table_name = table_name
         self.hud_dict[table_name].stat_dict = stat_dict
         self.hud_dict[table_name].cards = cards
 
+        # set agg_bb_mult so that aggregate_tour and aggregate_ring can be ignored,
+        # agg_bb_mult == 1 means no aggregation after these if statements:
         if type == "tour" and self.hud_params['aggregate_tour'] == False:
             self.hud_dict[table_name].hud_params['agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['aggregate_ring'] == False:
@@ -167,28 +141,37 @@ class HUD_main(object):
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
         elif type == "ring" and self.hud_params['h_aggregate_ring'] == False:
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
-        self.hud_params['aggregate_ring'] == True
-        self.hud_params['h_aggregate_ring'] == True
+        # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
+        # but I think it's needed:
+        self.hud_params['aggregate_ring'] = True
+        self.hud_params['h_aggregate_ring'] = True
+        # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
+        self.hud_params['aggregate_tour'] = True
+        self.hud_params['h_aggregate_tour'] = True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
-    
+
     def update_HUD(self, new_hand_id, table_name, config):
         """Update a HUD gui from inside the non-gui read_stdin thread."""
 #    This is written so that only 1 thread can touch the gui--mainly
-#    for compatibility with Windows. This method dispatches the 
+#    for compatibility with Windows. This method dispatches the
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-#            try: 
             self.hud_dict[table_name].update(new_hand_id, config)
-            [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
-#            finally:
-            gtk.gdk.threads_leave()
-            return False
-                
+            # The HUD could get destroyed in the above call ^^, which leaves us with a KeyError here vv
+            # if we ever get an error we need to expect ^^ then we need to handle it vv - Eric
+            try:
+                [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
+            except KeyError:
+                pass
+            finally:
+                gtk.gdk.threads_leave()
+                return False
+
         gobject.idle_add(idle_func)
-     
+
     def read_stdin(self):            # This is the thread function
         """Do all the non-gui heavy lifting for the HUD program."""
 
@@ -197,7 +180,7 @@ class HUD_main(object):
 #    need their own access to the database, but should open their own
 #    if it is required.
         self.db_connection = Database.Database(self.config)
-        
+
 #       get hero's screen names and player ids
         self.hero, self.hero_ids = {}, {}
         for site in self.config.get_supported_sites():
@@ -206,7 +189,7 @@ class HUD_main(object):
                 site_id = result[0][0]
                 self.hero[site_id] = self.config.supported_sites[site].screen_name
                 self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
-    
+
         while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             new_hand_id = string.rstrip(new_hand_id)
@@ -217,10 +200,10 @@ class HUD_main(object):
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
+                (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
-            except Exception, err:
-                print "db error: skipping %s" % new_hand_id 
+            except Exception, err: # TODO: we need to make this a much less generic Exception lulz
+                print "db error: skipping %s" % new_hand_id
                 sys.stderr.write("Database error: could not find hand %s.\n" % new_hand_id)
                 continue
 
@@ -231,11 +214,18 @@ class HUD_main(object):
 
 #        Update an existing HUD
             if temp_key in self.hud_dict:
-                # get stats using hud's specific params and get cards 
-                self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
+                # get stats using hud's specific params and get cards
+                try:
+                    self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
-                self.hud_dict[temp_key].stat_dict = stat_dict
+                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
+                    self.hud_dict[temp_key].stat_dict = stat_dict
+                except KeyError:    # HUD instance has been killed off, key is stale
+                    sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
+                    sys.stderr.write('will not send hand\n')
+                    # Unlocks table, copied from end of function
+                    self.db_connection.connection.rollback()
+                    return
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
@@ -243,12 +233,13 @@ class HUD_main(object):
                 self.hud_dict[temp_key].cards = cards
                 [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[temp_key].aux_windows]
                 self.update_HUD(new_hand_id, temp_key, self.config)
-    
+
 #        Or create a new HUD
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
+                                                                  ,self.hero_ids[site_id], num_seats)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
@@ -266,7 +257,12 @@ class HUD_main(object):
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
-                    self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                    # Test that the table window still exists
+                    if hasattr(tablewindow, 'number'):
+                        self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
+                    else:
+                        sys.stderr.write('Table "%s" no longer exists\n' % table_name)
+
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":

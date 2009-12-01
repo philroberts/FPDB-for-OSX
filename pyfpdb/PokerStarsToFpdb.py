@@ -31,18 +31,18 @@ class PokerStars(HandHistoryConverter):
 
     sitename = "PokerStars"
     filetype = "text"
-    codepage = "cp1252"
+    codepage = ("utf8", "cp1252")
     siteId   = 2 # Needs to match id entry in Sites database
 
     mixes = { 'HORSE': 'horse', '8-Game': '8game', 'HOSE': 'hose'} # Legal mixed games
-    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\x80", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
+    sym = {'USD': "\$", 'CAD': "\$", 'T$': "", "EUR": "\xe2\x82\xac", "GBP": "\xa3"}         # ADD Euro, Sterling, etc HERE
     substitutions = {
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\x80|\xa3"        # legal currency symbols  ADD Euro, Sterling, etc HERE
+                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
     # Static regexes
-    re_GameInfo     = re.compile("""
+    re_GameInfo     = re.compile(u"""
           PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
@@ -50,7 +50,7 @@ class PokerStars(HandHistoryConverter):
           \s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?
           )\s)?                          # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball)\s
+          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
           (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
@@ -62,7 +62,7 @@ class PokerStars(HandHistoryConverter):
           (?P<DATETIME>.*$)""" % substitutions,
           re.MULTILINE|re.VERBOSE)
 
-    re_PlayerInfo   = re.compile("""
+    re_PlayerInfo   = re.compile(u"""
           ^Seat\s(?P<SEAT>[0-9]+):\s
           (?P<PNAME>.*)\s
           \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
@@ -92,7 +92,7 @@ class PokerStars(HandHistoryConverter):
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
-            logging.debug("player_re: " + player_re)
+            log.debug("player_re: " + player_re)
             self.re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
@@ -101,7 +101,7 @@ class PokerStars(HandHistoryConverter):
             self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
             self.re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s%(CUR)s(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
+                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
@@ -133,6 +133,7 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
+            print "DEBUG: determineGameType(): did not match"
             return None
 
         mg = m.groupdict()
@@ -147,6 +148,7 @@ class PokerStars(HandHistoryConverter):
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+                          '5 Card Draw' : ('draw','fivedraw')
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 #    I don't think this is doing what we think. mg will always have all 
@@ -186,7 +188,7 @@ class PokerStars(HandHistoryConverter):
 #        m = self.re_Button.search(hand.handText)
 #        if m: info.update(m.groupdict()) 
         # TODO : I rather like the idea of just having this dict as hand.info
-        logging.debug("readHandInfo: %s" % info)
+        log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
@@ -226,10 +228,10 @@ class PokerStars(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            logging.info('readButton: not found')
+            log.info('readButton: not found')
 
     def readPlayerStacks(self, hand):
-        logging.debug("readPlayerStacks")
+        log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
         players = []
         for a in m:
@@ -265,7 +267,7 @@ class PokerStars(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        log.debug("reading antes")
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -373,12 +375,9 @@ if __name__ == "__main__":
     parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
     parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
-    parser.add_option("-q", "--quiet",
-                  action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
-    parser.add_option("-v", "--verbose",
-                  action="store_const", const=logging.INFO, dest="verbosity")
-    parser.add_option("--vv",
-                  action="store_const", const=logging.DEBUG, dest="verbosity")
+    #parser.add_option("-q", "--quiet", action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
+    #parser.add_option("-v", "--verbose", action="store_const", const=logging.INFO, dest="verbosity")
+    #parser.add_option("--vv", action="store_const", const=logging.DEBUG, dest="verbosity")
 
     (options, args) = parser.parse_args()
 

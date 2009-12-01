@@ -32,19 +32,12 @@ from xml.dom.minidom import Node
 import time
 import datetime
 from Exceptions import FpdbParseError
+import Configuration
 
 import gettext
 gettext.install('fpdb')
 
-import logging, logging.config
-import ConfigParser
-
-try:
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger("parser")
+log = Configuration.get_logger("logging.conf")
 
 import pygtk
 import gtk
@@ -101,7 +94,7 @@ follow :  whether to tail -f the input"""
                 else:
                     log.info("Created directory '%s'" % out_dir)
             try:
-                self.out_fh = codecs.open(self.out_path, 'w', 'cp1252')
+                self.out_fh = codecs.open(self.out_path, 'w', 'utf8')
             except:
                 log.error("out_path %s couldn't be opened" % (self.out_path))
             else:
@@ -268,8 +261,8 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         gametype = self.determineGameType(handText)
         log.debug("gametype %s" % gametype)
         hand = None
+        l = None
         if gametype is None: 
-            l = None
             gametype = "unmatched"
             # TODO: not ideal, just trying to not error.
             # TODO: Need to count failed hands.
@@ -291,10 +284,8 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             log.info("Unsupported game type: %s" % gametype)
 
         if hand:
-#    uncomment these to calculate some stats
-#            print hand
-#            hand.stats.getStats(hand)
-            hand.writeHand(self.out_fh)
+            if Configuration.NEWIMPORT == False:
+                hand.writeHand(self.out_fh)
             return hand
         else:
             log.info("Unsupported game type: %s" % gametype)

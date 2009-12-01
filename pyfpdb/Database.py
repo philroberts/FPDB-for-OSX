@@ -21,6 +21,11 @@ Create and manage the database objects.
 
 ########################################################################
 
+# ToDo:  - rebuild indexes / vacuum option
+#        - check speed of get_stats_from_hand() - add log info
+#        - check size of db, seems big? (mysql)
+#        - investigate size of mysql db (200K for just 7K hands? 2GB for 140K hands?)
+
 # postmaster -D /var/lib/pgsql/data
 
 #    Standard Library modules
@@ -45,16 +50,7 @@ import Card
 import Tourney
 from Exceptions import *
 
-import logging, logging.config
-import ConfigParser
-
-try: # local path
-    logging.config.fileConfig(os.path.join(sys.path[0],"logging.conf"))
-except ConfigParser.NoSectionError: # debian package path
-    logging.config.fileConfig('/usr/share/python-fpdb/logging.conf')
-
-log = logging.getLogger('db')
-
+log = Configuration.get_logger("logging.conf")
 
 class Database:
 
@@ -78,14 +74,9 @@ class Database:
     indexes = [
                 [ ] # no db with index 0
               , [ ] # no db with index 1
-              , [ # indexes for mysql (list index 2)
+              , [ # indexes for mysql (list index 2) (foreign keys not here, in next data structure)
                 #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
                 #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
-                  {'tab':'Hands',           'col':'gametypeId',        'drop':0} # mct 22/3/09
-                , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} # not needed, handled by fk
-                , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0} # not needed, handled by fk
-                , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
-                , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
                 ]
               , [ # indexes for postgres (list index 3)
@@ -126,6 +117,8 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers', 'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
+                    , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':0}
@@ -205,7 +198,7 @@ class Database:
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
-            self.sql = SQL.Sql(type = self.type, db_server = self.db_server)
+            self.sql = SQL.Sql(db_server = self.db_server)
         else:
             self.sql = sql
 
@@ -249,7 +242,6 @@ class Database:
 
         db_params = c.get_db_parameters()
         self.import_options = c.get_import_parameters()
-        self.type = db_params['db-type']
         self.backend = db_params['db-backend']
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
@@ -441,21 +433,53 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "*** Database Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
+    # is get_stats_from_hand slow?
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
-                           , hud_params = {'aggregate_tour':False, 'aggregate_ring':False, 'hud_style':'A', 'hud_days':30, 'agg_bb_mult':100
-                                          ,'h_aggregate_tour':False, 'h_aggregate_ring':False, 'h_hud_style':'S', 'h_hud_days':30, 'h_agg_bb_mult':100}
+                           , hud_params = {'hud_style':'A', 'agg_bb_mult':1000
+                                          ,'seats_style':'A', 'seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          ,'h_hud_style':'S', 'h_agg_bb_mult':1000
+                                          ,'h_seats_style':'A', 'h_seats_cust_nums':['n/a', 'n/a', (2,2), (3,4), (3,5), (4,6), (5,7), (6,8), (7,9), (8,10), (8,10)]
+                                          }
                            , hero_id = -1
+                           , num_seats = 6
                            ):
-        aggregate   = hud_params['aggregate_tour'] if type == "tour" else hud_params['aggregate_ring']
         hud_style   = hud_params['hud_style']
-        agg_bb_mult = hud_params['agg_bb_mult'] if aggregate else 1
-        h_aggregate   = hud_params['h_aggregate_tour'] if type == "tour" else hud_params['h_aggregate_ring']
+        agg_bb_mult = hud_params['agg_bb_mult']
+        seats_style = hud_params['seats_style']
+        seats_cust_nums = hud_params['seats_cust_nums']
         h_hud_style   = hud_params['h_hud_style']
-        h_agg_bb_mult = hud_params['h_agg_bb_mult'] if h_aggregate else 1
+        h_agg_bb_mult = hud_params['h_agg_bb_mult']
+        h_seats_style = hud_params['h_seats_style']
+        h_seats_cust_nums = hud_params['h_seats_cust_nums']
+
         stat_dict = {}
 
+        if seats_style == 'A':
+            seats_min, seats_max = 0, 10
+        elif seats_style == 'C':
+            seats_min, seats_max = seats_cust_nums[num_seats][0], seats_cust_nums[num_seats][1]
+        elif seats_style == 'E':
+            seats_min, seats_max = num_seats, num_seats
+        else:
+            seats_min, seats_max = 0, 10
+            print "bad seats_style value:", seats_style
+
+        if h_seats_style == 'A':
+            h_seats_min, h_seats_max = 0, 10
+        elif h_seats_style == 'C':
+            h_seats_min, h_seats_max = h_seats_cust_nums[num_seats][0], h_seats_cust_nums[num_seats][1]
+        elif h_seats_style == 'E':
+            h_seats_min, h_seats_max = num_seats, num_seats
+        else:
+            h_seats_min, h_seats_max = 0, 10
+            print "bad h_seats_style value:", h_seats_style
+        print "opp seats style", seats_style, "hero seats style", h_seats_style
+        print "opp seats:", seats_min, seats_max, " hero seats:", h_seats_min, h_seats_max
+
         if hud_style == 'S' or h_hud_style == 'S':
-            self.get_stats_from_hand_session(hand, stat_dict, hero_id, hud_style, h_hud_style)
+            self.get_stats_from_hand_session(hand, stat_dict, hero_id
+                                            ,hud_style, seats_min, seats_max
+                                            ,h_hud_style, h_seats_min, h_seats_max)
 
             if hud_style == 'S' and h_hud_style == 'S':
                 return stat_dict
@@ -466,6 +490,10 @@ class Database:
             stylekey = '0000000'  # all stylekey values should be higher than this
         elif hud_style == 'S':
             stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        else:
+            stylekey = '0000000'
+            log.info('hud_style: %s' % hud_style)
+
         #elif hud_style == 'H':
         #    stylekey = date_nhands_ago  needs array by player here ...
 
@@ -475,16 +503,17 @@ class Database:
             h_stylekey = '0000000'  # all stylekey values should be higher than this
         elif h_hud_style == 'S':
             h_stylekey = 'zzzzzzz'  # all stylekey values should be lower than this
+        else:
+            h_stylekey = '000000'
+            log.info('h_hud_style: %s' % h_hud_style)
+
         #elif h_hud_style == 'H':
         #    h_stylekey = date_nhands_ago  needs array by player here ...
 
-        #if aggregate:      always use aggregate query now: use agg_bb_mult of 1 for no aggregation:
         query = 'get_stats_from_hand_aggregated'
-        subs = (hand, hero_id, stylekey, agg_bb_mult, agg_bb_mult, hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult)
-        #print "agg query subs:", subs
-        #else:
-        #    query = 'get_stats_from_hand'
-        #    subs = (hand, stylekey)
+        subs = (hand
+               ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, seats_min, seats_max  # hero params
+               ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
 
         #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
         c = self.connection.cursor()
@@ -504,12 +533,15 @@ class Database:
         return stat_dict
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
-    def get_stats_from_hand_session(self, hand, stat_dict, hero_id, hud_style, h_hud_style):
+    def get_stats_from_hand_session(self, hand, stat_dict, hero_id
+                                   ,hud_style, seats_min, seats_max
+                                   ,h_hud_style, h_seats_min, h_seats_max):
         """Get stats for just this session (currently defined as any play in the last 24 hours - to
            be improved at some point ...)
            h_hud_style and hud_style params indicate whether to get stats for hero and/or others
            - only fetch heros stats if h_hud_style == 'S',
              and only fetch others stats if hud_style == 'S'
+           seats_min/max params give seats limits, only include stats if between these values
         """
 
         query = self.sql.query['get_stats_from_hand_session']
@@ -518,7 +550,8 @@ class Database:
         else:
             query = query.replace("<signed>", '')
         
-        subs = (self.hand_1day_ago, hand)
+        subs = (self.hand_1day_ago, hand, hero_id, seats_min, seats_max
+                                        , hero_id, h_seats_min, h_seats_max)
         c = self.get_cursor()
 
         # now get the stats
@@ -533,6 +566,7 @@ class Database:
             # Loop through stats adding them to appropriate stat_dict:
             while row:
                 playerid = row[0]
+                seats = row[1]
                 if (playerid == hero_id and h_hud_style == 'S') or (playerid != hero_id and hud_style == 'S'):
                     for name, val in zip(colnames, row):
                         if not playerid in stat_dict:
@@ -544,7 +578,7 @@ class Database:
                             stat_dict[playerid][name.lower()] += val
                     n += 1
                     if n >= 10000: break  # todo: don't think this is needed so set nice and high 
-                                         #       for now - comment out or remove?
+                                          # prevents infinite loop so leave for now - comment out or remove?
                 row = c.fetchone()
         else:
             log.error("ERROR: query %s result does not have player_id as first column" % (query,))
@@ -1134,9 +1168,9 @@ class Database:
                 print "dropping mysql index ", idx['tab'], idx['col']
                 try:
                     self.get_cursor().execute( "alter table %s drop index %s"
-                                             , (idx['tab'],idx['col']) )
+                                             , (idx['tab'], idx['col']) )
                 except:
-                    pass
+                    print "    drop idx failed: " + str(sys.exc_info())
             elif self.backend == self.PGSQL:
                 print "dropping pg index ", idx['tab'], idx['col']
                 # mod to use tab_col for index name?
@@ -1144,13 +1178,119 @@ class Database:
                     self.get_cursor().execute( "drop index %s_%s_idx"
                                                % (idx['tab'],idx['col']) )
                 except:
-                    pass
+                    print "    drop idx failed: " + str(sys.exc_info())
             else:
                 print "Only MySQL and Postgres supported so far"
                 return -1
         if self.backend == self.PGSQL:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
     #end def dropAllIndexes
+
+    def createAllForeignKeys(self):
+        """Create foreign keys"""
+
+        try:
+            if self.backend == self.PGSQL:
+                self.connection.set_isolation_level(0)   # allow table/index operations to work
+            c = self.get_cursor()
+        except:
+            print "    set_isolation_level failed: " + str(sys.exc_info())
+
+        for fk in self.foreignKeys[self.backend]:
+            if self.backend == self.MYSQL_INNODB:
+                c.execute("SELECT constraint_name " +
+                          "FROM information_schema.KEY_COLUMN_USAGE " +
+                          #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                          "WHERE 1=1 " +
+                          "AND table_name = %s AND column_name = %s " + 
+                          "AND referenced_table_name = %s " +
+                          "AND referenced_column_name = %s ",
+                          (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                cons = c.fetchone()
+                #print "afterbulk: cons=", cons
+                if cons:
+                    pass
+                else:
+                    print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                    try:
+                        c.execute("alter table " + fk['fktab'] + " add foreign key (" 
+                                  + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
+                                  + fk['rcol'] + ")")
+                    except:
+                        print "    create fk failed: " + str(sys.exc_info())
+            elif self.backend == self.PGSQL:
+                print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
+                try:
+                    c.execute("alter table " + fk['fktab'] + " add constraint "
+                              + fk['fktab'] + '_' + fk['fkcol'] + '_fkey'
+                              + " foreign key (" + fk['fkcol']
+                              + ") references " + fk['rtab'] + "(" + fk['rcol'] + ")")
+                except:
+                    print "   create fk failed: " + str(sys.exc_info())
+            else:
+                print "Only MySQL and Postgres supported so far"
+
+        try:
+            if self.backend == self.PGSQL:
+                self.connection.set_isolation_level(1)   # go back to normal isolation level
+        except:
+            print "    set_isolation_level failed: " + str(sys.exc_info())
+    #end def createAllForeignKeys
+
+    def dropAllForeignKeys(self):
+        """Drop all standalone indexes (i.e. not including primary keys or foreign keys)
+           using list of indexes in indexes data structure"""
+        # maybe upgrade to use data dictionary?? (but take care to exclude PK and FK)
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(0)   # allow table/index operations to work
+        c = self.get_cursor()
+
+        for fk in self.foreignKeys[self.backend]:
+            if self.backend == self.MYSQL_INNODB:
+                c.execute("SELECT constraint_name " +
+                          "FROM information_schema.KEY_COLUMN_USAGE " +
+                          #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
+                          "WHERE 1=1 " +
+                          "AND table_name = %s AND column_name = %s " + 
+                          "AND referenced_table_name = %s " +
+                          "AND referenced_column_name = %s ",
+                          (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
+                cons = c.fetchone()
+                #print "preparebulk find fk: cons=", cons
+                if cons:
+                    print "dropping mysql fk", cons[0], fk['fktab'], fk['fkcol']
+                    try:
+                        c.execute("alter table " + fk['fktab'] + " drop foreign key " + cons[0])
+                    except:
+                        print "    drop failed: " + str(sys.exc_info())
+            elif self.backend == self.PGSQL:
+#    DON'T FORGET TO RECREATE THEM!!
+                print "dropping pg fk", fk['fktab'], fk['fkcol']
+                try:
+                    # try to lock table to see if index drop will work:
+                    # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
+                    # then drop still hangs :-(  does work in some tests though??
+                    # will leave code here for now pending further tests/enhancement ...
+                    c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
+                    #print "after lock, status:", c.statusmessage
+                    #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
+                    try:
+                        c.execute("alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol']))
+                        print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
+                    except:
+                        if "does not exist" not in str(sys.exc_value):
+                            print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
+                                  % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
+                except:
+                    print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
+                          % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
+            else:
+                print "Only MySQL and Postgres supported so far"
+        
+        if self.backend == self.PGSQL:
+            self.connection.set_isolation_level(1)   # go back to normal isolation level
+    #end def dropAllForeignKeys
+
     
     def fillDefaultData(self):
         c = self.get_cursor() 
@@ -1177,6 +1317,12 @@ class Database:
                          values (DEFAULT, 1, 0, 0, 0, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
+
+    def rebuild_indexes(self, start=None):
+        self.dropAllIndexes()
+        self.createAllIndexes()
+        self.dropAllForeignKeys()
+        self.createAllForeignKeys()
 
     def rebuild_hudcache(self, start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
@@ -1260,7 +1406,7 @@ class Database:
             except:
                 print "Error during analyze:", str(sys.exc_value)
         elif self.backend == self.PGSQL:
-            self.connection.set_isolation_level(0)   # allow vacuum to work
+            self.connection.set_isolation_level(0)   # allow analyze to work
             try:
                 self.get_cursor().execute(self.sql.query['analyze'])
             except:
@@ -1271,6 +1417,25 @@ class Database:
         print "Analyze took %.1f seconds" % (atime,)
     #end def analyzeDB
 
+    def vacuumDB(self):
+        """Do whatever the DB can offer to update index/table statistics"""
+        stime = time()
+        if self.backend == self.MYSQL_INNODB:
+            try:
+                self.get_cursor().execute(self.sql.query['vacuum'])
+            except:
+                print "Error during vacuum:", str(sys.exc_value)
+        elif self.backend == self.PGSQL:
+            self.connection.set_isolation_level(0)   # allow vacuum to work
+            try:
+                self.get_cursor().execute(self.sql.query['vacuum'])
+            except:
+                print "Error during vacuum:", str(sys.exc_value)
+            self.connection.set_isolation_level(1)   # go back to normal isolation level
+        self.commit()
+        atime = time() - stime
+        print "Vacuum took %.1f seconds" % (atime,)
+    #end def analyzeDB
 
 # Start of Hand Writing routines. Idea is to provide a mixture of routines to store Hand data
 # however the calling prog requires. Main aims:
@@ -1352,7 +1517,9 @@ class Database:
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
-        self.cursor.execute(q, (
+        c = self.get_cursor()
+
+        c.execute(q, (
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
@@ -1383,7 +1550,7 @@ class Database:
                 p['street4Pot'],
                 p['showdownPot']
         ))
-        return self.get_last_insert_id(self.cursor)
+        return self.get_last_insert_id(c)
     # def storeHand
 
     def storeHandsPlayers(self, hid, pids, pdata):
@@ -1394,11 +1561,47 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['card1'],
+                             pdata[p]['card2'],
+                             pdata[p]['card3'],
+                             pdata[p]['card4'],
+                             pdata[p]['card5'],
+                             pdata[p]['card6'],
+                             pdata[p]['card7'],
+                             pdata[p]['winnings'],
+                             pdata[p]['rake'],
+                             pdata[p]['totalProfit'],
+                             pdata[p]['street0VPI'],
+                             pdata[p]['street1Seen'],
+                             pdata[p]['street2Seen'],
+                             pdata[p]['street3Seen'],
+                             pdata[p]['street4Seen'],
+                             pdata[p]['sawShowdown'],
+                             pdata[p]['wonAtSD'],
                              pdata[p]['street0Aggr'],
                              pdata[p]['street1Aggr'],
                              pdata[p]['street2Aggr'],
                              pdata[p]['street3Aggr'],
-                             pdata[p]['street4Aggr']
+                             pdata[p]['street4Aggr'],
+                             pdata[p]['street1CBChance'],
+                             pdata[p]['street2CBChance'],
+                             pdata[p]['street3CBChance'],
+                             pdata[p]['street4CBChance'],
+                             pdata[p]['street1CBDone'],
+                             pdata[p]['street2CBDone'],
+                             pdata[p]['street3CBDone'],
+                             pdata[p]['street4CBDone'],
+                             pdata[p]['wonWhenSeenStreet1'],
+                             pdata[p]['street0Calls'],
+                             pdata[p]['street1Calls'],
+                             pdata[p]['street2Calls'],
+                             pdata[p]['street3Calls'],
+                             pdata[p]['street4Calls'],
+                             pdata[p]['street0Bets'],
+                             pdata[p]['street1Bets'],
+                             pdata[p]['street2Bets'],
+                             pdata[p]['street3Bets'],
+                             pdata[p]['street4Bets'],
                             ) )
 
         q = """INSERT INTO HandsPlayers (
@@ -1406,35 +1609,65 @@ class Database:
             playerId,
             startCash,
             seatNo,
+            card1,
+            card2,
+            card3,
+            card4,
+            card5,
+            card6,
+            card7,
+            winnings,
+            rake,
+            totalProfit,
+            street0VPI,
+            street1Seen,
+            street2Seen,
+            street3Seen,
+            street4Seen,
+            sawShowdown,
+            wonAtSD,
             street0Aggr,
             street1Aggr,
             street2Aggr,
             street3Aggr,
-            street4Aggr
+            street4Aggr,
+            street1CBChance,
+            street2CBChance,
+            street3CBChance,
+            street4CBChance,
+            street1CBDone,
+            street2CBDone,
+            street3CBDone,
+            street4CBDone,
+            wonWhenSeenStreet1,
+            street0Calls,
+            street1Calls,
+            street2Calls,
+            street3Calls,
+            street4Calls,
+            street0Bets,
+            street1Bets,
+            street2Bets,
+            street3Bets,
+            street4Bets
            )
            VALUES (
                 %s, %s, %s, %s, %s,
-                %s, %s, %s, %s
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s
             )"""
 
 #            position,
 #            tourneyTypeId,
-#            card1,
-#            card2,
-#            card3,
-#            card4,
 #            startCards,
-#            winnings,
-#            rake,
-#            totalProfit,
-#            street0VPI,
 #            street0_3BChance,
 #            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
-#            sawShowdown,
 #            otherRaisedStreet1,
 #            otherRaisedStreet2,
 #            otherRaisedStreet3,
@@ -1443,22 +1676,12 @@ class Database:
 #            foldToOtherRaisedStreet2,
 #            foldToOtherRaisedStreet3,
 #            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
-#            wonAtSD,
 #            stealAttemptChance,
 #            stealAttempted,
 #            foldBbToStealChance,
 #            foldedBbToSteal,
 #            foldSbToStealChance,
 #            foldedSbToSteal,
-#            street1CBChance,
-#            street1CBDone,
-#            street2CBChance,
-#            street2CBDone,
-#            street3CBChance,
-#            street3CBDone,
-#            street4CBChance,
-#            street4CBDone,
 #            foldToStreet1CBChance,
 #            foldToStreet1CBDone,
 #            foldToStreet2CBChance,
@@ -1475,21 +1698,13 @@ class Database:
 #            street3CheckCallRaiseDone,
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone,
-#            street0Calls,
-#            street1Calls,
-#            street2Calls,
-#            street3Calls,
-#            street4Calls,
-#            street0Bets,
-#            street1Bets,
-#            street2Bets,
-#            street3Bets,
-#            street4Bets
 
         q = q.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: inserts: %s" %inserts
-        self.cursor.executemany(q, inserts)
+        #print "DEBUG: q: %s" % q
+        c = self.get_cursor()
+        c.executemany(q, inserts)
 
     def storeHudCacheNew(self, gid, pid, hc):
         q = """INSERT INTO HudCache (
@@ -1631,6 +1846,15 @@ class Database:
 #            street4CheckCallRaiseChance,
 #            street4CheckCallRaiseDone)
 
+    def isDuplicate(self, gametypeID, siteHandNo):
+        dup = False
+        c = self.get_cursor()
+        c.execute(self.sql.query['isAlreadyInDB'], (gametypeID, siteHandNo))
+        result = c.fetchall()
+        if len(result) > 0:
+            dup = True
+        return dup
+
     def getGameTypeId(self, siteid, game):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
@@ -1669,6 +1893,13 @@ class Database:
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
+
+        #NOTE/FIXME?: MySQL has ON DUPLICATE KEY UPDATE
+        #Usage:
+        #        INSERT INTO `tags` (`tag`, `count`)
+        #         VALUES ($tag, 1)
+        #           ON DUPLICATE KEY UPDATE `count`=`count`+1;
+
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
 
@@ -2684,14 +2915,14 @@ class HandToWrite:
 if __name__=="__main__":
     c = Configuration.Config()
 
-    db_connection = Database(c, 'fpdb', 'holdem') # mysql fpdb holdem
+    db_connection = Database(c) # mysql fpdb holdem
 #    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
 #    db_connection = Database(c, 'PTrackSv2', 'razz') # mysql razz
 #    db_connection = Database(c, 'ptracks', 'razz') # postgres
     print "database connection object = ", db_connection.connection
-    print "database type = ", db_connection.type
-    
-    db_connection.recreate_tables()
+    # db_connection.recreate_tables()
+    db_connection.dropAllIndexes()
+    db_connection.createAllIndexes()
     
     h = db_connection.get_last_hand()
     print "last hand = ", h
@@ -2704,17 +2935,11 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    #print "nutOmatics stats:"
-    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
-    #for p in stat_dict.keys():
-    #    print p, "  ", stat_dict[p]
-
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
 
     print "press enter to continue"
     sys.stdin.readline()
-
 
 #Code borrowed from http://push.cx/2008/caching-dictionaries-in-python-vs-ruby
 class LambdaDict(dict):

@@ -43,7 +43,7 @@ class GuiBulkImport():
     def dopulse(self):
         self.progressbar.pulse()
         return True
-        
+
     def load_clicked(self, widget, data=None):
         stored = None
         dups = None
@@ -53,14 +53,14 @@ class GuiBulkImport():
         # Does the lock acquisition need to be more sophisticated for multiple dirs?
         # (see comment above about what to do if pipe already open)
         if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
-            try:
+            #try:
                 print "\nGlobal lock taken ..."
                 self.progressbar.set_text("Importing...")
                 self.progressbar.pulse()
                 while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
-                    gtk.main_iteration(False)                
+                    gtk.main_iteration(False)
                 self.timer = gobject.timeout_add(100, self.dopulse)
-                
+
                 #    get the dir to import from the chooser
                 selected = self.chooser.get_filenames()
 
@@ -87,7 +87,7 @@ class GuiBulkImport():
                 else:
                     self.importer.setDropHudCache("auto")
                 sitename = self.cbfilter.get_model()[self.cbfilter.get_active()][0]
-                
+
                 for selection in selected:
                     self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
                 self.importer.setCallHud(False)
@@ -99,7 +99,7 @@ class GuiBulkImport():
 #                    raise Exceptions.FpdbError
 #                finally:
                 gobject.source_remove(self.timer)
-                    
+
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
@@ -116,10 +116,11 @@ class GuiBulkImport():
 
                 self.progressbar.set_text("Import Complete")
                 self.progressbar.set_fraction(0)
-            except:
-                err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                print "*** BulkImport Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            self.settings['global_lock'].release()
+            #except:
+                #err = traceback.extract_tb(sys.exc_info()[2])[-1]
+                #print "*** BulkImport Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            #self.settings['global_lock'].release()
+                self.settings['global_lock'].release()
         else:
             print "bulk-import aborted - global lock not available"
 
@@ -323,9 +324,9 @@ def main(argv=None):
                     help="If this option is passed it quits when it encounters any error")
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
                     help="How often to print a one-line status report (0 (default) means never)")
-    parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False, 
+    parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help="Print some useful one liners")
-    (options, sys.argv) = parser.parse_args(args = argv)
+    (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
         #Print usage examples and exit
@@ -338,7 +339,7 @@ def main(argv=None):
         sys.exit(0)
 
     config = Configuration.Config()
-    
+
     settings = {}
     settings['minPrint'] = options.minPrint
     if os.name == 'nt': settings['os'] = 'windows'
@@ -361,7 +362,7 @@ def main(argv=None):
         gtk.main()
     else:
         #Do something useful
-        importer = fpdb_import.Importer(False,settings, config) 
+        importer = fpdb_import.Importer(False,settings, config)
         # importer.setDropIndexes("auto")
         importer.setDropIndexes("don't drop")
         importer.setFailOnError(options.failOnError)
@@ -376,4 +377,3 @@ def main(argv=None):
 
 if __name__ == '__main__':
     sys.exit(main())
-
