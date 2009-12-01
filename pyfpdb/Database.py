@@ -4,17 +4,17 @@
 Create and manage the database objects.
 """
 #    Copyright 2008, Ray E. Barker
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -63,7 +63,7 @@ class Database:
     # Data Structures for index and foreign key creation
     # drop_code is an int with possible values:  0 - don't drop for bulk import
     #                                            1 - drop during bulk import
-    # db differences: 
+    # db differences:
     # - note that mysql automatically creates indexes on constrained columns when
     #   foreign keys are created, while postgres does not. Hence the much longer list
     #   of indexes is required for postgres.
@@ -102,7 +102,7 @@ class Database:
                 #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
                 #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
-                , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
+                , {'tab':'HandsPlayers',    'col':'handId',            'drop':0}
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
@@ -147,7 +147,7 @@ class Database:
     # (fkcol is used for foreigh key name)
 
     # mysql to list indexes:
-    #   SELECT table_name, index_name, non_unique, column_name 
+    #   SELECT table_name, index_name, non_unique, column_name
     #   FROM INFORMATION_SCHEMA.STATISTICS
     #     WHERE table_name = 'tbl_name'
     #     AND table_schema = 'db_name'
@@ -183,16 +183,16 @@ class Database:
     # create index indexname on tablename (col);
 
 
-    def __init__(self, c, sql = None): 
+    def __init__(self, c, sql = None):
         log.info("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.do_connect(c)
-        
+
         if self.backend == self.PGSQL:
             from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
             #ISOLATION_LEVEL_AUTOCOMMIT     = 0
-            #ISOLATION_LEVEL_READ_COMMITTED = 1 
+            #ISOLATION_LEVEL_READ_COMMITTED = 1
             #ISOLATION_LEVEL_SERIALIZABLE   = 2
 
 
@@ -262,11 +262,11 @@ class Database:
     def disconnect(self, due_to_error=False):
         """Disconnects the DB (rolls back if param is true, otherwise commits"""
         self.fdb.disconnect(due_to_error)
-    
+
     def reconnect(self, due_to_error=False):
         """Reconnects the DB"""
         self.fdb.reconnect(due_to_error=False)
-    
+
     def get_backend_name(self):
         """Returns the name of the currently used backend"""
         if self.backend==2:
@@ -283,7 +283,7 @@ class Database:
         c.execute(self.sql.query['get_table_name'], (hand_id, ))
         row = c.fetchone()
         return row
-    
+
     def get_table_info(self, hand_id):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_table_name'], (hand_id, ))
@@ -304,18 +304,18 @@ class Database:
         c.execute(self.sql.query['get_last_hand'])
         row = c.fetchone()
         return row[0]
-    
+
     def get_xml(self, hand_id):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_xml'], (hand_id))
         row = c.fetchone()
         return row[0]
-    
+
     def get_recent_hands(self, last_hand):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_recent_hands'], {'last_hand': last_hand})
         return c.fetchall()
-    
+
     def get_hand_info(self, new_hand_id):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_hand_info'], new_hand_id)
@@ -549,7 +549,7 @@ class Database:
             query = query.replace("<signed>", 'signed ')
         else:
             query = query.replace("<signed>", '')
-        
+
         subs = (self.hand_1day_ago, hand, hero_id, seats_min, seats_max
                                         , hero_id, h_seats_min, h_seats_max)
         c = self.get_cursor()
@@ -577,7 +577,7 @@ class Database:
                         elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
                             stat_dict[playerid][name.lower()] += val
                     n += 1
-                    if n >= 10000: break  # todo: don't think this is needed so set nice and high 
+                    if n >= 10000: break  # todo: don't think this is needed so set nice and high
                                           # prevents infinite loop so leave for now - comment out or remove?
                 row = c.fetchone()
         else:
@@ -587,7 +587,7 @@ class Database:
 
         #print "session stat_dict =", stat_dict
         #return stat_dict
-            
+
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_player_id'], (player_name, site))
@@ -596,7 +596,7 @@ class Database:
             return row[0]
         else:
             return None
-            
+
     def get_player_names(self, config, site_id=None, like_player_name="%"):
         """Fetch player names from players. Use site_id and like_player_name if provided"""
 
@@ -606,7 +606,7 @@ class Database:
         c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
         rows = c.fetchall()
         return rows
-            
+
     #returns the SQL ids of the names given in an array
     # TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
     # { playername: id } instead of depending on it's relation to the positions list
@@ -666,7 +666,7 @@ class Database:
     #        tmp = cursor.fetchall()
     #        for n in tmp:
     #            result.append(n[0])
-    #        
+    #
     #    return result
 
 
@@ -760,7 +760,7 @@ class Database:
         if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
             self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
         t5 = time()
-        #print "fills=(%4.3f) saves=(%4.3f,%4.3f,%4.3f)" % (t2-t0, t3-t2, t4-t3, t5-t4)
+        print "fills=(%4.3f) saves=(%4.3f,%4.3f,%4.3f)" % (t2-t0, t3-t2, t4-t3, t5-t4)
         return hands_id
     #end def ring_holdem_omaha
 
@@ -827,7 +827,7 @@ class Database:
     #end def tourney_stud
 
     def prepareBulkImport(self):
-        """Drop some indexes/foreign keys to prepare for bulk import. 
+        """Drop some indexes/foreign keys to prepare for bulk import.
            Currently keeping the standalone indexes as needed to import quickly"""
         stime = time()
         c = self.get_cursor()
@@ -845,7 +845,7 @@ class Database:
                               "FROM information_schema.KEY_COLUMN_USAGE " +
                               #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
                               "WHERE 1=1 " +
-                              "AND table_name = %s AND column_name = %s " + 
+                              "AND table_name = %s AND column_name = %s " +
                               "AND referenced_table_name = %s " +
                               "AND referenced_column_name = %s ",
                               (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
@@ -862,7 +862,7 @@ class Database:
                     print "dropping pg fk", fk['fktab'], fk['fkcol']
                     try:
                         # try to lock table to see if index drop will work:
-                        # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
+                        # hmmm, tested by commenting out rollback in grapher. lock seems to work but
                         # then drop still hangs :-(  does work in some tests though??
                         # will leave code here for now pending further tests/enhancement ...
                         c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
@@ -881,13 +881,13 @@ class Database:
                 else:
                     print "Only MySQL and Postgres supported so far"
                     return -1
-        
+
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
                     print "dropping mysql index ", idx['tab'], idx['col']
                     try:
-                        # apparently nowait is not implemented in mysql so this just hangs if there are locks 
+                        # apparently nowait is not implemented in mysql so this just hangs if there are locks
                         # preventing the index drop :-(
                         c.execute( "alter table %s drop index %s;", (idx['tab'],idx['col']) )
                     except:
@@ -903,13 +903,13 @@ class Database:
                         #print "after lock, status:", c.statusmessage
                         try:
                             # table locked ok so index drop should work:
-                            #print "drop index %s_%s_idx" % (idx['tab'],idx['col']) 
+                            #print "drop index %s_%s_idx" % (idx['tab'],idx['col'])
                             c.execute( "drop index if exists %s_%s_idx" % (idx['tab'],idx['col']) )
                             #print "dropped  pg index ", idx['tab'], idx['col']
                         except:
                             if "does not exist" not in str(sys.exc_value):
                                 print "warning: drop index %s_%s_idx failed: %s, continuing ..." \
-                                      % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n')) 
+                                      % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
                     except:
                         print "warning: index %s_%s_idx not dropped %s, continuing ..." \
                               % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
@@ -927,7 +927,7 @@ class Database:
     def afterBulkImport(self):
         """Re-create any dropped indexes/foreign keys after bulk import"""
         stime = time()
-        
+
         c = self.get_cursor()
         if self.backend == self.MYSQL_INNODB:
             c.execute("SET foreign_key_checks=1")
@@ -943,7 +943,7 @@ class Database:
                               "FROM information_schema.KEY_COLUMN_USAGE " +
                               #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
                               "WHERE 1=1 " +
-                              "AND table_name = %s AND column_name = %s " + 
+                              "AND table_name = %s AND column_name = %s " +
                               "AND referenced_table_name = %s " +
                               "AND referenced_column_name = %s ",
                               (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
@@ -954,8 +954,8 @@ class Database:
                     else:
                         print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                         try:
-                            c.execute("alter table " + fk['fktab'] + " add foreign key (" 
-                                      + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
+                            c.execute("alter table " + fk['fktab'] + " add foreign key ("
+                                      + fk['fkcol'] + ") references " + fk['rtab'] + "("
                                       + fk['rcol'] + ")")
                         except:
                             print "    create fk failed: " + str(sys.exc_info())
@@ -971,7 +971,7 @@ class Database:
                 else:
                     print "Only MySQL and Postgres supported so far"
                     return -1
-        
+
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
@@ -1021,10 +1021,10 @@ class Database:
                     c.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
                 self.commit()
         #end drop_referential_inegrity
-    
+
     def recreate_tables(self):
         """(Re-)creates the tables of the current DB"""
-        
+
         self.drop_tables()
         self.create_tables()
         self.createAllIndexes()
@@ -1068,7 +1068,7 @@ class Database:
             self.rollback()
             raise
 #end def disconnect
-    
+
     def drop_tables(self):
         """Drops the fpdb tables from the current db"""
         try:
@@ -1202,7 +1202,7 @@ class Database:
                           "FROM information_schema.KEY_COLUMN_USAGE " +
                           #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
                           "WHERE 1=1 " +
-                          "AND table_name = %s AND column_name = %s " + 
+                          "AND table_name = %s AND column_name = %s " +
                           "AND referenced_table_name = %s " +
                           "AND referenced_column_name = %s ",
                           (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
@@ -1213,8 +1213,8 @@ class Database:
                 else:
                     print "creating fk ", fk['fktab'], fk['fkcol'], "->", fk['rtab'], fk['rcol']
                     try:
-                        c.execute("alter table " + fk['fktab'] + " add foreign key (" 
-                                  + fk['fkcol'] + ") references " + fk['rtab'] + "(" 
+                        c.execute("alter table " + fk['fktab'] + " add foreign key ("
+                                  + fk['fkcol'] + ") references " + fk['rtab'] + "("
                                   + fk['rcol'] + ")")
                     except:
                         print "    create fk failed: " + str(sys.exc_info())
@@ -1251,7 +1251,7 @@ class Database:
                           "FROM information_schema.KEY_COLUMN_USAGE " +
                           #"WHERE REFERENCED_TABLE_SCHEMA = 'fpdb'
                           "WHERE 1=1 " +
-                          "AND table_name = %s AND column_name = %s " + 
+                          "AND table_name = %s AND column_name = %s " +
                           "AND referenced_table_name = %s " +
                           "AND referenced_column_name = %s ",
                           (fk['fktab'], fk['fkcol'], fk['rtab'], fk['rcol']) )
@@ -1268,7 +1268,7 @@ class Database:
                 print "dropping pg fk", fk['fktab'], fk['fkcol']
                 try:
                     # try to lock table to see if index drop will work:
-                    # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
+                    # hmmm, tested by commenting out rollback in grapher. lock seems to work but
                     # then drop still hangs :-(  does work in some tests though??
                     # will leave code here for now pending further tests/enhancement ...
                     c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
@@ -1286,14 +1286,14 @@ class Database:
                           % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
             else:
                 print "Only MySQL and Postgres supported so far"
-        
+
         if self.backend == self.PGSQL:
             self.connection.set_isolation_level(1)   # go back to normal isolation level
     #end def dropAllForeignKeys
 
-    
+
     def fillDefaultData(self):
-        c = self.get_cursor() 
+        c = self.get_cursor()
         c.execute("INSERT INTO Settings (version) VALUES (118);")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
@@ -1343,7 +1343,7 @@ class Database:
                     p_id = self.get_player_id(self.config, site, self.hero[site_id])
                     if p_id:
                         self.hero_ids[site_id] = int(p_id)
-            
+
             if start is None:
                 start = self.hero_hudstart_def
             if self.hero_ids == {}:
@@ -1381,7 +1381,7 @@ class Database:
                     p_id = self.get_player_id(self.config, site, self.hero[site_id])
                     if p_id:
                         self.hero_ids[site_id] = int(p_id)
-            
+
             q = self.sql.query['get_hero_hudcache_start'].replace("<playerid_list>", str(tuple(self.hero_ids.values())))
             c = self.get_cursor()
             c.execute(q)
@@ -1458,7 +1458,7 @@ class Database:
             if h.isTourney:
                 ranks = map(lambda x: 0, h.names) # create an array of 0's equal to the length of names
                 payin_amounts = fpdb_simple.calcPayin(len(h.names), h.buyin, h.fee)
-                
+
                 if h.base == "hold":
                     result = self.tourney_holdem_omaha(
                                                h.config, h.settings, h.base, h.category, h.siteTourneyNo, h.buyin
@@ -1520,19 +1520,19 @@ class Database:
         c = self.get_cursor()
 
         c.execute(q, (
-                p['tableName'], 
-                p['gameTypeId'], 
-                p['siteHandNo'], 
-                p['handStart'], 
+                p['tableName'],
+                p['gameTypeId'],
+                p['siteHandNo'],
+                p['handStart'],
                 datetime.today(), #importtime
                 p['seats'],
                 p['maxSeats'],
                 p['texture'],
                 p['playersVpi'],
-                p['boardcard1'], 
-                p['boardcard2'], 
-                p['boardcard3'], 
-                p['boardcard4'], 
+                p['boardcard1'],
+                p['boardcard2'],
+                p['boardcard3'],
+                p['boardcard4'],
                 p['boardcard5'],
                 p['playersAtStreet1'],
                 p['playersAtStreet2'],
@@ -1858,7 +1858,7 @@ class Database:
     def getGameTypeId(self, siteid, game):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
-        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], 
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'],
                         int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
         tmp = c.fetchone()
         if (tmp == None):
@@ -1875,7 +1875,7 @@ class Database:
         result = {}
         if(self.pcache == None):
             self.pcache = LambdaDict(lambda  key:self.insertPlayer(key, siteid))
- 
+
         for player in pnames:
             result[player] = self.pcache[player]
             # NOTE: Using the LambdaDict does the same thing as:
@@ -1935,7 +1935,7 @@ class Database:
         #stores into table hands:
         try:
             c = self.get_cursor()
-            c.execute ("""INSERT INTO Hands 
+            c.execute ("""INSERT INTO Hands
                           (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
                           ,boardcard1,boardcard2,boardcard3,boardcard4,boardcard5
                           ,playersVpi, playersAtStreet1, playersAtStreet2
@@ -1944,8 +1944,8 @@ class Database:
                           ,street3Raises, street4Raises, street1Pot
                           ,street2Pot, street3Pot, street4Pot
                           ,showdownPot
-                          ) 
-                          VALUES 
+                          )
+                          VALUES
                           (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                           %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                        """.replace('%s', self.sql.query['placeholder'])
@@ -1965,7 +1965,7 @@ class Database:
 
         return ret
     #end def storeHands
-     
+
     def store_hands_players_holdem_omaha(self, backend, category, hands_id, player_ids, start_cashes
                                         ,positions, card_values, card_suits, winnings, rakes, seatNos, hudCache):
         result=[]
@@ -2002,27 +2002,27 @@ class Database:
                                  hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid - needed for hudcache
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
-                                 hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
+                                 hudCache['street0VPI'][i], hudCache['street0Aggr'][i],
                                  hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
-                                 hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
+                                 hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i],
                                  hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
                                  hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
-                                 hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
+                                 hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i],
                                  hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
-                                 hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
+                                 hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i],
                                  hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
                                  hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
-                                 hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
+                                 hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i],
                                  hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
                                  hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
                                  hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
-                                 hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
+                                 hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i],
                                  hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
-                                 hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
+                                 hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i],
                                  hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
-                                 hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
+                                 hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i],
                                  hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
-                                 hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
+                                 hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i],
                                  hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
                                  hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
                                  hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
@@ -2045,12 +2045,12 @@ class Database:
          foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
          street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
          street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
-         street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+         street0Calls, street1Calls, street2Calls, street3Calls, street4Calls,
          street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
         )
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
             result.append( self.get_last_insert_id(c) ) # wrong? not used currently
@@ -2084,7 +2084,7 @@ class Database:
         card5, card6,
         card7, winnings, rake, seatNo)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
-                (hands_id, player_ids[i], start_cashes[i], antes[i], 1, 
+                (hands_id, player_ids[i], start_cashes[i], antes[i], 1,
                 card1, card2,
                 card3, card4,
                 card5, card6,
@@ -2097,7 +2097,7 @@ class Database:
 
         return result
     #end def store_hands_players_stud
-     
+
     def store_hands_players_holdem_omaha_tourney(self, backend, category, hands_id, player_ids
                                                 ,start_cashes, positions, card_values, card_suits
                                                 ,winnings, rakes, seatNos, tourneys_players_ids
@@ -2126,31 +2126,31 @@ class Database:
                 inserts.append( (hands_id, player_ids[i], start_cashes[i], positions[i], tourneyTypeId,
                                  card1, card2, card3, card4, startCards,
                                  winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], hudCache['totalProfit'][i],
-                                 hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
+                                 hudCache['street0VPI'][i], hudCache['street0Aggr'][i],
                                  hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
-                                 hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
+                                 hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i],
                                  hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
                                  hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
-                                 hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
+                                 hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i],
                                  hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
-                                 hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
+                                 hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i],
                                  hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
                                  hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
-                                 hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
+                                 hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i],
                                  hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
                                  hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
                                  hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
-                                 hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
+                                 hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i],
                                  hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
-                                 hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
+                                 hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i],
                                  hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
-                                 hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
+                                 hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i],
                                  hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
-                                 hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
+                                 hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i],
                                  hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
-                                 hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], 
+                                 hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i],
                                  hudCache['street3Calls'][i], hudCache['street4Calls'][i],
-                                 hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], 
+                                 hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i],
                                  hudCache['street3Bets'][i], hudCache['street4Bets'][i]
                                 ) )
 
@@ -2172,13 +2172,13 @@ class Database:
          foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
          street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
          street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
-         street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
+         street0Calls, street1Calls, street2Calls, street3Calls, street4Calls,
          street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
         )
-        VALUES 
+        VALUES
         (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
+         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
                                           ,inserts )
 
@@ -2189,10 +2189,10 @@ class Database:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print "***Error storing hand: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise FpdbError( "store_hands_players_holdem_omaha_tourney error: " + str(sys.exc_value) )
-        
+
         return result
     #end def store_hands_players_holdem_omaha_tourney
-     
+
     def store_hands_players_stud_tourney(self, backend, hands_id, player_ids, start_cashes,
                 antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId):
         #stores hands_players for tourney stud/razz hands
@@ -2219,10 +2219,10 @@ class Database:
                 result.append( self.get_last_insert_id(c) )
         except:
             raise FpdbError( "store_hands_players_stud_tourney error: " + str(sys.exc_value) )
-        
+
         return result
     #end def store_hands_players_stud_tourney
- 
+
     def storeHudCache(self, backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData):
         """Update cached statistics. If update fails because no record exists, do an insert.
            Can't use array updates here (not easily anyway) because we need to insert any rows
@@ -2236,11 +2236,11 @@ class Database:
             else:
                 # hard-code styleKey as 'A000000' (all-time cache, no key) for now
                 styleKey = 'A000000'
-            
+
             #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
             #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
             for player in xrange(len(playerIds)):
-                
+
                 # Set up a clean row
                 row=[]
                 row.append(0)#blank for id
@@ -2249,7 +2249,7 @@ class Database:
                 row.append(len(playerIds))#seats
                 for i in xrange(len(hudImportData)+2):
                     row.append(0)
-                    
+
                 if base=="hold":
                     row[4]=hudImportData['position'][player]
                 else:
@@ -2285,7 +2285,7 @@ class Database:
                 if hudImportData['foldedBbToSteal'][player]: row[33]+=1
                 if hudImportData['foldSbToStealChance'][player]: row[34]+=1
                 if hudImportData['foldedSbToSteal'][player]: row[35]+=1
-                
+
                 if hudImportData['street1CBChance'][player]: row[36]+=1
                 if hudImportData['street1CBDone'][player]: row[37]+=1
                 if hudImportData['street2CBChance'][player]: row[38]+=1
@@ -2294,7 +2294,7 @@ class Database:
                 if hudImportData['street3CBDone'][player]: row[41]+=1
                 if hudImportData['street4CBChance'][player]: row[42]+=1
                 if hudImportData['street4CBDone'][player]: row[43]+=1
-                
+
                 if hudImportData['foldToStreet1CBChance'][player]: row[44]+=1
                 if hudImportData['foldToStreet1CBDone'][player]: row[45]+=1
                 if hudImportData['foldToStreet2CBChance'][player]: row[46]+=1
@@ -2303,12 +2303,12 @@ class Database:
                 if hudImportData['foldToStreet3CBDone'][player]: row[49]+=1
                 if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
                 if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
-     
+
                 #print "player=", player
                 #print "len(totalProfit)=", len(hudImportData['totalProfit'])
                 if hudImportData['totalProfit'][player]:
                     row[52]+=hudImportData['totalProfit'][player]
-     
+
                 if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
                 if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1
                 if hudImportData['street2CheckCallRaiseChance'][player]: row[55]+=1
@@ -2317,7 +2317,7 @@ class Database:
                 if hudImportData['street3CheckCallRaiseDone'][player]: row[58]+=1
                 if hudImportData['street4CheckCallRaiseChance'][player]: row[59]+=1
                 if hudImportData['street4CheckCallRaiseDone'][player]: row[60]+=1
-                
+
                 # Try to do the update first:
                 cursor = self.get_cursor()
                 num = cursor.execute("""UPDATE HudCache
@@ -2348,10 +2348,10 @@ class Database:
         street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s, street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
         street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s, street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
         street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
-    WHERE gametypeId+0=%s 
-    AND   playerId=%s 
-    AND   activeSeats=%s 
-    AND   position=%s 
+    WHERE gametypeId+0=%s
+    AND   playerId=%s
+    AND   activeSeats=%s
+    AND   position=%s
     AND   tourneyTypeId+0=%s
     AND   styleKey=%s
                                      """.replace('%s', self.sql.query['placeholder'])
@@ -2371,8 +2371,8 @@ class Database:
                 #print "storehud2, upd num =", num.rowcount
                 # num is a cursor in sqlite
                 if (   (backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (backend == self.MYSQL_INNODB and num == 0) 
-                    or (backend == self.SQLITE and num.rowcount == 0) 
+                    or (backend == self.MYSQL_INNODB and num == 0)
+                    or (backend == self.SQLITE and num.rowcount == 0)
                    ):
                     #print "playerid before insert:",row[2]," num = ", num
                     num = cursor.execute("""INSERT INTO HudCache
@@ -2416,9 +2416,9 @@ class Database:
 
         except:
             raise FpdbError( "storeHudCache error: " + str(sys.exc_value) )
-        
+
     #end def storeHudCache
- 
+
     def store_tourneys(self, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
         ret = -1
         try:
@@ -2471,7 +2471,7 @@ class Database:
                     cursor.execute("""INSERT INTO TourneysPlayers
                     (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
                     (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
-                    
+
                     tmp = self.get_last_insert_id(cursor)
                     result.append(tmp)
                     #print "created new tourneys_players.id:", tmp
@@ -2527,7 +2527,7 @@ class Database:
                         sendFinal = True
                     else:
                         self.store_the_hand(h)
-                        # optional commit, could be every hand / every N hands / every time a 
+                        # optional commit, could be every hand / every N hands / every time a
                         # commit message received?? mark flag to indicate if commits outstanding
                         if commitEachHand:
                             self.commit()
@@ -2581,7 +2581,7 @@ class Database:
                         )
         result=cursor.fetchone()
 
-        expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
+        expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed",
                            7 : "isHU", 8 : "isShootout", 9 : "isMatrix" }
         typeIdMatch = True
 
@@ -2597,17 +2597,17 @@ class Database:
         except:
             # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
             typeIdMatch = False
-    
+
         if typeIdMatch == False :
             # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
             # if not found create it
             logging.debug("Searching for a TourneyTypeId matching TourneyType data")
-            cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
+            cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']),
                             (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
                              tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
                             )
             result=cursor.fetchone()
-        
+
             try:
                 len(result)
                 typeId = result[0]
@@ -2623,7 +2623,7 @@ class Database:
         return typeId
     #end def tRecogniseTourneyType
 
-        
+
     def tRecognizeTourney(self, tourney, dbTourneyTypeId):
         logging.debug("Database.tRecognizeTourney")
         tourneyID = 1
@@ -2635,8 +2635,8 @@ class Database:
                         )
         result=cursor.fetchone()
 
-        expectedValuesDecimal = { 2  : "entries", 3 : "prizepool", 6  : "buyInChips", 9  : "rebuyChips", 
-                                  10 : "addOnChips", 11 : "rebuyAmount", 12 : "addOnAmount", 13 : "totalRebuys", 
+        expectedValuesDecimal = { 2  : "entries", 3 : "prizepool", 6  : "buyInChips", 9  : "rebuyChips",
+                                  10 : "addOnChips", 11 : "rebuyAmount", 12 : "addOnAmount", 13 : "totalRebuys",
                                   14 : "totalAddOns", 15 : "koBounty" }
         expectedValues = { 7 : "tourneyName", 16 : "tourneyComment"  }
 
@@ -2671,7 +2671,7 @@ class Database:
                     #break
 
             # TO DO : Deal with matrix summary mutliple parsings
-            
+
         except:
             # Tourney not found : create
             logging.debug("Tourney is not found : create")
@@ -2710,10 +2710,10 @@ class Database:
 
         return tourneyID
     #end def tRecognizeTourney
-    
+
     def tStoreTourneyPlayers(self, tourney, dbTourneyId):
         logging.debug("Database.tStoreTourneyPlayers")
-        # First, get playerids for the players and specifically the one for hero : 
+        # First, get playerids for the players and specifically the one for hero :
         playersIds = self.recognisePlayerIDs(tourney.players, tourney.siteId)
         # hero may be None for matrix tourneys summaries
 #        hero = [ tourney.hero ]
@@ -2723,22 +2723,22 @@ class Database:
         tourneyPlayersIds=[]
         try:
             cursor = self.get_cursor()
-    
+
             for i in xrange(len(playersIds)):
                 cursor.execute(self.sql.query['getTourneysPlayers'].replace('%s', self.sql.query['placeholder'])
                               ,(dbTourneyId, playersIds[i]))
                 result=cursor.fetchone()
                 #print "tried SELECTing tourneys_players.id:",tmp
-                
+
                 try:
                     len(result)
                     # checking data
                     logging.debug("TourneysPlayers found : checking data")
-                    expectedValuesDecimal = { 1  : "payinAmounts", 2 : "finishPositions", 3  : "winnings", 4 : "countRebuys", 
+                    expectedValuesDecimal = { 1  : "payinAmounts", 2 : "finishPositions", 3  : "winnings", 4 : "countRebuys",
                                               5  : "countAddOns", 6 : "countKO" }
-    
+
                     tourneyPlayersIds.append(result[0]);
-    
+
                     tourneysPlayersDataMatch = True
                     for evD in expectedValuesDecimal :
                         if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]] ) <> result[evD] ):
@@ -2765,10 +2765,10 @@ class Database:
                                          None, None)
                                         )
                     tourneyPlayersIds.append(self.get_last_insert_id(cursor))
-                                        
+
         except:
             raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
-    
+
         return tourneyPlayersIds
     #end def tStoreTourneyPlayers
 
@@ -2803,7 +2803,7 @@ class Database:
 
 
 # Class used to hold all the data needed to write a hand to the db
-# mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 
+# mainParser() in fpdb_parse_logic.py creates one of these and then passes it to
 # self.insert_queue_hands()
 
 class HandToWrite:
@@ -2860,7 +2860,7 @@ class HandToWrite:
                , positions, antes, cardValues, cardSuits, boardValues, boardSuits
                , winnings, rakes, actionTypes, allIns, actionAmounts
                , actionNos, hudImportData, maxSeats, tableName, seatNos):
-        
+
         try:
             self.config = config
             self.settings = settings
@@ -2906,7 +2906,7 @@ class HandToWrite:
     def get_finished(self):
         return( self.finished )
     # end def get_finished
-    
+
     def get_siteHandNo(self):
         return( self.siteHandNo )
     # end def get_siteHandNo
@@ -2923,18 +2923,18 @@ if __name__=="__main__":
     # db_connection.recreate_tables()
     db_connection.dropAllIndexes()
     db_connection.createAllIndexes()
-    
+
     h = db_connection.get_last_hand()
     print "last hand = ", h
-    
+
     hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
     if hero:
         print "nutOmatic is id_player = %d" % hero
-    
+
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
-        
+
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
 
