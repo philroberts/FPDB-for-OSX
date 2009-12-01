@@ -334,26 +334,47 @@ class fpdb:
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
 
-            hb = gtk.HBox(True, 1)
+            hb1 = gtk.HBox(True, 1)
+            self.h_start_date = gtk.Entry(max=12)
+            self.h_start_date.set_text( self.db.get_hero_hudcache_start() )
+            lbl = gtk.Label(" Hero's cache starts: ")
+            btn = gtk.Button()
+            btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
+            btn.connect('clicked', self.__calendar_dialog, self.h_start_date)
+
+            hb1.pack_start(lbl, expand=True, padding=3)
+            hb1.pack_start(self.h_start_date, expand=True, padding=2)
+            hb1.pack_start(btn, expand=False, padding=3)
+            self.dia_confirm.vbox.add(hb1)
+            hb1.show_all()
+
+            hb2 = gtk.HBox(True, 1)
             self.start_date = gtk.Entry(max=12)
             self.start_date.set_text( self.db.get_hero_hudcache_start() )
-            lbl = gtk.Label(" Hero's cache starts: ")
+            lbl = gtk.Label(" Villains' cache starts: ")
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
             btn.connect('clicked', self.__calendar_dialog, self.start_date)
 
-            hb.pack_start(lbl, expand=True, padding=3)
-            hb.pack_start(self.start_date, expand=True, padding=2)
-            hb.pack_start(btn, expand=False, padding=3)
-            self.dia_confirm.vbox.add(hb)
-            hb.show_all()
+            hb2.pack_start(lbl, expand=True, padding=3)
+            hb2.pack_start(self.start_date, expand=True, padding=2)
+            hb2.pack_start(btn, expand=False, padding=3)
+            self.dia_confirm.vbox.add(hb2)
+            hb2.show_all()
 
             response = self.dia_confirm.run()
-            self.dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                self.db.rebuild_hudcache( self.start_date.get_text() )
+                lbl = gtk.Label(" Rebuilding HUD Cache ... ")
+                self.dia_confirm.vbox.add(lbl)
+                lbl.show()
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
+
+                self.db.rebuild_hudcache( self.h_start_date.get_text(), self.start_date.get_text() )
             elif response == gtk.RESPONSE_NO:
                 print 'User cancelled rebuilding hud cache'
+
+            self.dia_confirm.destroy()
 
         self.release_global_lock()
 
@@ -368,13 +389,27 @@ class fpdb:
             self.dia_confirm.format_secondary_text(diastring)
 
             response = self.dia_confirm.run()
-            self.dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
+                lbl = gtk.Label(" Rebuilding Indexes ... ")
+                self.dia_confirm.vbox.add(lbl)
+                lbl.show()
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
                 self.db.rebuild_indexes()
+
+                lbl.set_text(" Cleaning Database ... ")
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
                 self.db.vacuumDB()
+
+                lbl.set_text(" Analyzing Database ... ")
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
                 self.db.analyzeDB()
             elif response == gtk.RESPONSE_NO:
                 print 'User cancelled rebuilding db indexes'
+
+            self.dia_confirm.destroy()
 
         self.release_global_lock()
 
@@ -397,10 +432,13 @@ class fpdb:
         d.show_all()
 
     def __get_dates(self):
-        t1 = self.start_date.get_text()
+        t1 = self.h_start_date.get_text()
         if t1 == '':
             t1 = '1970-01-01'
-        return (t1)
+        t2 = self.start_date.get_text()
+        if t2 == '':
+            t2 = '1970-01-01'
+        return (t1, t2)
 
     def __get_date(self, widget, calendar, entry, win):
         # year and day are correct, month is 0..11
@@ -833,6 +871,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def main(self):
         gtk.main()
         return 0
+
 
 if __name__ == "__main__":
     me = fpdb()
