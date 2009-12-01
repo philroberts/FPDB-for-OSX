@@ -595,7 +595,7 @@ class fpdb:
             self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
             exit()
         except Exceptions.FpdbMySQLNoDatabase:
-            msg = "MySQL client reports: 2002 error. Unable to connect - Please check that the MySQL service has been started"
+            msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started"
             self.warning_box(msg)
             exit
 
