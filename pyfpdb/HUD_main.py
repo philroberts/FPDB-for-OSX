@@ -105,10 +105,7 @@ class HUD_main(object):
         def idle_func():
 
             gtk.gdk.threads_enter()
-            try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
-                 # TODO: The purpose of this try/finally block is to make darn sure that threads_leave()
-                 # TODO: gets called. If there is an exception and threads_leave() doesn't get called we
-                 # TODO: lock up.  REB
+            try:
                 table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
@@ -122,9 +119,12 @@ class HUD_main(object):
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
+            except:
+                print "*** Exception in HUD_main::idle_func() *** "
+                traceback.print_stack()
             finally:
                 gtk.gdk.threads_leave()
-            return False
+                return False
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table_name].table_name = table_name
@@ -143,11 +143,11 @@ class HUD_main(object):
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
         # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
         # but I think it's needed:
-        self.hud_params['aggregate_ring'] == True
-        self.hud_params['h_aggregate_ring'] == True
+        self.hud_params['aggregate_ring'] = True
+        self.hud_params['h_aggregate_ring'] = True
         # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
         self.hud_params['aggregate_tour'] = True
-        self.hud_params['h_aggregate_tour'] == True
+        self.hud_params['h_aggregate_tour'] = True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
@@ -168,7 +168,7 @@ class HUD_main(object):
                 pass
             finally:
                 gtk.gdk.threads_leave()
-            return False
+                return False
 
         gobject.idle_add(idle_func)
 
@@ -200,7 +200,7 @@ class HUD_main(object):
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
             try:
-                (table_name, max, poker_game, type, site_id, site_name, tour_number, tab_number) = \
+                (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception, err: # TODO: we need to make this a much less generic Exception lulz
                 print "db error: skipping %s" % new_hand_id
@@ -238,7 +238,8 @@ class HUD_main(object):
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params, self.hero_ids[site_id])
+                stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
+                                                                  ,self.hero_ids[site_id], num_seats)
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!

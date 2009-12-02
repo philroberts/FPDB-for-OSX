@@ -173,8 +173,26 @@ class Hud:
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10000))
-        setattr(self, 'h_aggBBmultItem10000', item)
-        #
+        setattr(self, 'h_aggBBmultItem10000', item) 
+        # 
+        item = gtk.MenuItem('For #Seats:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  Any Number')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_seats_style, ('P','A'))
+        setattr(self, 'h_seatsStyleOptionA', item)
+        # 
+        item = gtk.CheckMenuItem('  Custom')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_seats_style, ('P','C'))
+        setattr(self, 'h_seatsStyleOptionC', item) 
+        # 
+        item = gtk.CheckMenuItem('  Exact')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_seats_style, ('P','E'))
+        setattr(self, 'h_seatsStyleOptionE', item) 
+        # 
         item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
         #
@@ -224,8 +242,26 @@ class Hud:
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10000))
-        setattr(self, 'aggBBmultItem10000', item)
-        #
+        setattr(self, 'aggBBmultItem10000', item) 
+        # 
+        item = gtk.MenuItem('For #Seats:')
+        self.aggMenu.append(item)
+        # 
+        item = gtk.CheckMenuItem('  Any Number')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_seats_style, ('O','A'))
+        setattr(self, 'seatsStyleOptionA', item)
+        # 
+        item = gtk.CheckMenuItem('  Custom')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_seats_style, ('O','C'))
+        setattr(self, 'seatsStyleOptionC', item) 
+        # 
+        item = gtk.CheckMenuItem('  Exact')
+        self.aggMenu.append(item)
+        item.connect("activate", self.set_seats_style, ('O','E'))
+        setattr(self, 'seatsStyleOptionE', item) 
+        # 
         item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
         #
@@ -266,6 +302,20 @@ class Hud:
             getattr(self, 'aggBBmultItem10').set_active(True)
         elif self.hud_params['agg_bb_mult'] > 9000:
             getattr(self, 'aggBBmultItem10000').set_active(True)
+        #
+        if self.hud_params['h_seats_style'] == 'A':
+            getattr(self, 'h_seatsStyleOptionA').set_active(True)
+        elif self.hud_params['h_seats_style'] == 'C':
+            getattr(self, 'h_seatsStyleOptionC').set_active(True)
+        elif self.hud_params['h_seats_style'] == 'E':
+            getattr(self, 'h_seatsStyleOptionE').set_active(True)
+        #
+        if self.hud_params['seats_style'] == 'A':
+            getattr(self, 'seatsStyleOptionA').set_active(True)
+        elif self.hud_params['seats_style'] == 'C':
+            getattr(self, 'seatsStyleOptionC').set_active(True)
+        elif self.hud_params['seats_style'] == 'E':
+            getattr(self, 'seatsStyleOptionE').set_active(True)
         #
         if self.hud_params['h_hud_style'] == 'A':
             getattr(self, 'h_hudStyleOptionA').set_active(True)
@@ -344,6 +394,29 @@ class Hud:
                     if mult != str(num):
                         getattr(self, 'aggBBmultItem'+mult).set_active(False)
 
+    def set_seats_style(self, widget, val):
+        (player_opp, style) = val
+        if player_opp == 'P':
+            param = 'h_seats_style'
+            prefix = 'h_'
+        else:
+            param = 'seats_style'
+            prefix = ''
+        
+        if style == 'A' and getattr(self, prefix+'seatsStyleOptionA').get_active():
+            self.hud_params[param] = 'A'
+            getattr(self, prefix+'seatsStyleOptionC').set_active(False)
+            getattr(self, prefix+'seatsStyleOptionE').set_active(False)
+        elif style == 'C' and getattr(self, prefix+'seatsStyleOptionC').get_active():
+            self.hud_params[param] = 'C'
+            getattr(self, prefix+'seatsStyleOptionA').set_active(False)
+            getattr(self, prefix+'seatsStyleOptionE').set_active(False)
+        elif style == 'E' and getattr(self, prefix+'seatsStyleOptionE').get_active():
+            self.hud_params[param] = 'E'
+            getattr(self, prefix+'seatsStyleOptionA').set_active(False)
+            getattr(self, prefix+'seatsStyleOptionC').set_active(False)
+        print "setting self.hud_params[%s] = %s" % (param, style)
+
     def set_hud_style(self, widget, val):
         (player_opp, style) = val
         if player_opp == 'P':
@@ -409,7 +482,7 @@ class Hud:
             try:
                 # throws "invalid window handle" in WinXP (sometimes?)
                 s.window.destroy()
-            except:
+            except: # TODO: what exception?
                 pass
         self.stat_windows = {}
 #    also kill any aux windows
