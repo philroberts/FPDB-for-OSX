@@ -2561,7 +2561,7 @@ class Sql:
         #    self.query['playerStatsByPosition'] = """ """
 
         self.query['getRingProfitAllHandsPlayerIdSite'] = """
-            SELECT hp.handId, hp.totalProfit
+            SELECT hp.handId, hp.totalProfit, hp.sawShowdown
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)
