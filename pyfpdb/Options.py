@@ -35,6 +35,9 @@ def fpdb_options():
     parser.add_option("-r", "--rerunPython",
                       action="store_true",
                       help="Indicates program was restarted with a different path (only allowed once).")
+    parser.add_option("-i", "--infile",
+                      dest="config", default=None,
+                      help="Input file")
     (options, argv) = parser.parse_args()
     return (options, argv)
 

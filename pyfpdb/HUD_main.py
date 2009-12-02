@@ -108,10 +108,7 @@ class HUD_main(object):
         def idle_func():
 
             gtk.gdk.threads_enter()
-            try: # TODO: seriously need to decrease the scope of this block.. what are we expecting to error?
-                 # TODO: The purpose of this try/finally block is to make darn sure that threads_leave()
-                 # TODO: gets called. If there is an exception and threads_leave() doesn't get called we
-                 # TODO: lock up.  REB
+            try:
                 table.gdkhandle = gtk.gdk.window_foreign_new(table.number)
                 newlabel = gtk.Label("%s - %s" % (table.site, table_name))
                 self.vb.add(newlabel)
@@ -125,9 +122,12 @@ class HUD_main(object):
                     m.update_gui(new_hand_id)
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
+            except:
+                print "*** Exception in HUD_main::idle_func() *** "
+                traceback.print_stack()
             finally:
                 gtk.gdk.threads_leave()
-            return False
+                return False
 
         self.hud_dict[table_name] = Hud.Hud(self, table, max, poker_game, self.config, self.db_connection)
         self.hud_dict[table_name].table_name = table_name
@@ -146,11 +146,11 @@ class HUD_main(object):
             self.hud_dict[table_name].hud_params['h_agg_bb_mult'] = 1
         # sqlcoder: I forget why these are set to true (aren't they ignored from now on?)
         # but I think it's needed:
-        self.hud_params['aggregate_ring'] == True
-        self.hud_params['h_aggregate_ring'] == True
+        self.hud_params['aggregate_ring'] = True
+        self.hud_params['h_aggregate_ring'] = True
         # so maybe the tour ones should be set as well? does this fix the bug I see mentioned?
         self.hud_params['aggregate_tour'] = True
-        self.hud_params['h_aggregate_tour'] == True
+        self.hud_params['h_aggregate_tour'] = True
 
         [aw.update_data(new_hand_id, self.db_connection) for aw in self.hud_dict[table_name].aux_windows]
         gobject.idle_add(idle_func)
@@ -171,7 +171,7 @@ class HUD_main(object):
                 pass
             finally:
                 gtk.gdk.threads_leave()
-            return False
+                return False
 
         gobject.idle_add(idle_func)
 
@@ -227,6 +227,9 @@ class HUD_main(object):
                                                                   ,self.hero_ids[site_id], num_seats)
                 t3 = time()
                 try:
+                    self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
+                                                     , self.hud_dict[temp_key].hud_params['h_hud_days'])
+                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
                     sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
@@ -271,7 +274,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        sys.stderr.write('Table "%s" no longer exists\n', table_name)
+                        sys.stderr.write('Table "%s" no longer exists\n' % table_name)
 
             t6 = time()
             log.info("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)"

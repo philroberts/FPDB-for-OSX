@@ -99,7 +99,7 @@ class Importer:
         for i in xrange(self.settings['threads']):
             self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
-        self.NEWIMPORT = False
+        self.NEWIMPORT = Configuration.NEWIMPORT
 
     #Set functions
     def setCallHud(self, value):
@@ -357,6 +357,11 @@ class Importer:
                 if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
                     if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
 #                        print "file",counter," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
+                        try:
+                            if not os.path.isdir(file):
+                                self.caller.addText("\n"+file)
+                        except KeyError: # TODO: What error happens here?
+                            pass
                         self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
                         self.updatedsize[file] = stat_info.st_size
                         self.updatedtime[file] = time()
