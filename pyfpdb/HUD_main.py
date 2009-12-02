@@ -63,6 +63,9 @@ elif os.name == 'nt':
 import Hud
 
 
+log = Configuration.get_logger("logging.conf")
+
+
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
@@ -192,6 +195,7 @@ class HUD_main(object):
 
         while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
+            t0 = time()
             new_hand_id = string.rstrip(new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
@@ -206,6 +210,7 @@ class HUD_main(object):
                 print "db error: skipping %s" % new_hand_id
                 sys.stderr.write("Database error: could not find hand %s.\n" % new_hand_id)
                 continue
+            t1 = time()
 
             if type == "tour":   # hand is from a tournament
                 temp_key = tour_number
@@ -217,8 +222,10 @@ class HUD_main(object):
                 # get stats using hud's specific params and get cards
                 self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
                                                      , self.hud_dict[temp_key].hud_params['h_hud_days'])
+                t2 = time()
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params
                                                                   ,self.hero_ids[site_id], num_seats)
+                t3 = time()
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
@@ -239,8 +246,10 @@ class HUD_main(object):
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
+                t4 = time()
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
                                                                   ,self.hero_ids[site_id], num_seats)
+                t5 = time()
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
@@ -264,6 +273,9 @@ class HUD_main(object):
                     else:
                         sys.stderr.write('Table "%s" no longer exists\n', table_name)
 
+            t6 = time()
+            log.info("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)"
+                     % (t6-t0,t1-t0,t2-t0,t3-t0,t4-t0,t5-t0,t6-t0))
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":
