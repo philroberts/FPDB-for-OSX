@@ -185,14 +185,12 @@ class GuiGraphViewer (threading.Thread):
                 #TODO: Do something useful like alert user
                 print "No hands returned by graph query"
             else:
-    #            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
-                text = "All Hands, " + "\nProfit: $" + str(green[-1]) + "\nTotal Hands: " + str(len(green))
-
-                self.ax.annotate(text,
-                                 xy=(10, -10),
-                                 xycoords='axes points',
-                                 horizontalalignment='left', verticalalignment='top',
-                                 fontsize=10)
+                #text = "Profit: $%.2f\nTotal Hands: %d" %(green[-1], len(green))
+                #self.ax.annotate(text,
+                #                 xy=(10, -10),
+                #                 xycoords='axes points',
+                #                 horizontalalignment='left', verticalalignment='top',
+                #                 fontsize=10)
 
                 #Draw plot
                 self.ax.plot(green, color='green', label='Hands: %d\nProfit: $%.2f' %(len(green), green[-1]))
