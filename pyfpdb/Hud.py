@@ -173,26 +173,26 @@ class Hud:
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10000))
-        setattr(self, 'h_aggBBmultItem10000', item) 
-        # 
+        setattr(self, 'h_aggBBmultItem10000', item)
+        #
         item = gtk.MenuItem('For #Seats:')
         self.aggMenu.append(item)
-        # 
+        #
         item = gtk.CheckMenuItem('  Any Number')
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','A'))
         setattr(self, 'h_seatsStyleOptionA', item)
-        # 
+        #
         item = gtk.CheckMenuItem('  Custom')
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','C'))
-        setattr(self, 'h_seatsStyleOptionC', item) 
-        # 
+        setattr(self, 'h_seatsStyleOptionC', item)
+        #
         item = gtk.CheckMenuItem('  Exact')
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','E'))
-        setattr(self, 'h_seatsStyleOptionE', item) 
-        # 
+        setattr(self, 'h_seatsStyleOptionE', item)
+        #
         item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
         #
@@ -242,26 +242,26 @@ class Hud:
         item = gtk.CheckMenuItem('  All Levels')
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10000))
-        setattr(self, 'aggBBmultItem10000', item) 
-        # 
+        setattr(self, 'aggBBmultItem10000', item)
+        #
         item = gtk.MenuItem('For #Seats:')
         self.aggMenu.append(item)
-        # 
+        #
         item = gtk.CheckMenuItem('  Any Number')
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','A'))
         setattr(self, 'seatsStyleOptionA', item)
-        # 
+        #
         item = gtk.CheckMenuItem('  Custom')
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','C'))
-        setattr(self, 'seatsStyleOptionC', item) 
-        # 
+        setattr(self, 'seatsStyleOptionC', item)
+        #
         item = gtk.CheckMenuItem('  Exact')
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','E'))
-        setattr(self, 'seatsStyleOptionE', item) 
-        # 
+        setattr(self, 'seatsStyleOptionE', item)
+        #
         item = gtk.MenuItem('Since:')
         self.aggMenu.append(item)
         #
@@ -358,7 +358,7 @@ class Hud:
 
     def change_max_seats(self, widget):
         if self.max != widget.ms:
-            print 'change_max_seats', widget.ms
+            #print 'change_max_seats', widget.ms
             self.max = widget.ms
             try:
                 self.kill()
@@ -402,7 +402,7 @@ class Hud:
         else:
             param = 'seats_style'
             prefix = ''
-        
+
         if style == 'A' and getattr(self, prefix+'seatsStyleOptionA').get_active():
             self.hud_params[param] = 'A'
             getattr(self, prefix+'seatsStyleOptionC').set_active(False)
@@ -681,7 +681,7 @@ class Stat_Window:
         return True
 
     def kill_popup(self, popup):
-        print "remove popup", popup
+        #print "remove popup", popup
         self.popups.remove(popup)
         popup.window.destroy()
 
