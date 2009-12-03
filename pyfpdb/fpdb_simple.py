@@ -1241,40 +1241,34 @@ sure to also change the following storage method and table_viewer.prepare_data i
 
 
         #calculate saw* values
-        isAllIn = False
-        if any(i for i in allIns[0][player]):
-            isAllIn = True
+        isAllIn = any(i for i in AllIns[0][player])
         if isAllIn or len(action_types[1][player]) > 0:
             myStreet1Seen = True
 
-            if any(i for i in allIns[1][player]):
-                isAllIn = True
-            if isAllIn or len(action_types[2][player]) > 0:
+            if not isAllIn:
+                isAllIn = any(i for i in allins[1][player])
+            elif len(action_types[2][player]) > 0:
                 if all(actiontype != "fold" for actiontype in action_types[1][player]):
                     myStreet2Seen = True
 
-                if any(i for i in allIns[2][player]):
-                    isAllIn = True
-                if isAllIn or len(action_types[3][player]) > 0:
+                if not isAllIn:
+                    isAllAin = any(i for i in allIns[2][player])
+                elif len(action_types[3][player]) > 0:
                     if all(actiontype != "fold" for actiontype in action_types[2][player]):
                         myStreet3Seen = True
 
                     #print "base:", base
                     if base == "hold":
-                        mySawShowdown = True
-                        if any(actiontype == "fold" for actiontype in action_types[3][player]):
-                            mySawShowdown = False
+                        mySawShowdown = not any(actiontype == "fold" for actiontype in action_types[3][player])
                     else:
                         #print "in else"
-                        if any(i for i in allIns[3][player]):
-                            isAllIn = True
-                        if isAllIn or len(action_types[4][player]) > 0:
+                        if not isAllIn:
+                            isAllIn = any(i for i in allins[3][player])
+                        elif len(action_types[4][player]) > 0:
                             #print "in if"
                             myStreet4Seen = True
 
-                            mySawShowdown = True
-                            if any(actiontype == "fold" for actiontype in action_types[4][player]):
-                                mySawShowdown = False
+                            mySawShowdown = not any(actiontype == "fold" for actiontype in action_types[4][player])
 
         if myStreet1Seen:
             result['playersAtStreet1'] += 1
@@ -1288,98 +1282,90 @@ sure to also change the following storage method and table_viewer.prepare_data i
             result['playersAtShowdown'] += 1
 
         #flop stuff
-        street=1
+        street = 1
         if myStreet1Seen:
-            if any(actiontype == "bet" for actiontype in action_types[street][player]):
-                myStreet1Aggr = True
-
+            myStreet1Aggr = any(actiontype == "bet" for actiontype in action_types[street][player])
             myStreet1Calls = action_types[street][player].count('call')
             myStreet1Bets = action_types[street][player].count('bet')
             # street1Raises = action_types[street][player].count('raise')  bet count includes raises for now
             result['street1Raises'] += myStreet1Bets
 
             for otherPlayer in xrange(len(player_ids)):
-                if player==otherPlayer:
+                if player == otherPlayer:
                     pass
                 else:
                     for countOther in xrange(len(action_types[street][otherPlayer])):
-                        if action_types[street][otherPlayer][countOther]=="bet":
-                            myOtherRaisedStreet1=True
+                        if action_types[street][otherPlayer][countOther] == "bet":
+                            myOtherRaisedStreet1 = True
                             for countOtherFold in xrange(len(action_types[street][player])):
-                                if action_types[street][player][countOtherFold]=="fold":
-                                    myFoldToOtherRaisedStreet1=True
+                                if action_types[street][player][countOtherFold] == "fold":
+                                    myFoldToOtherRaisedStreet1 = True
 
         #turn stuff - copy of flop with different vars
-        street=2
+        street = 2
         if myStreet2Seen:
-            if any(actiontype == "bet" for actiontype in action_types[street][player]):
-                myStreet2Aggr = True
-
+            myStreet2Aggr = any(actiontype == "bet" for actiontype in action_types[street][player])
             myStreet2Calls = action_types[street][player].count('call')
             myStreet2Bets = action_types[street][player].count('bet')
             # street2Raises = action_types[street][player].count('raise')  bet count includes raises for now
             result['street2Raises'] += myStreet2Bets
 
             for otherPlayer in xrange(len(player_ids)):
-                if player==otherPlayer:
+                if player == otherPlayer:
                     pass
                 else:
                     for countOther in xrange(len(action_types[street][otherPlayer])):
-                        if action_types[street][otherPlayer][countOther]=="bet":
-                            myOtherRaisedStreet2=True
+                        if action_types[street][otherPlayer][countOther] == "bet":
+                            myOtherRaisedStreet2 = True
                             for countOtherFold in xrange(len(action_types[street][player])):
-                                if action_types[street][player][countOtherFold]=="fold":
-                                    myFoldToOtherRaisedStreet2=True
+                                if action_types[street][player][countOtherFold] == "fold":
+                                    myFoldToOtherRaisedStreet2 = True
 
         #river stuff - copy of flop with different vars
-        street=3
+        street = 3
         if myStreet3Seen:
-            if any(actiontype == "bet" for actiontype in action_types[street][player]):
-                    myStreet3Aggr = True
-
+            myStreet3Aggr = any(actiontype == "bet" for actiontype in action_types[street][player])
             myStreet3Calls = action_types[street][player].count('call')
             myStreet3Bets = action_types[street][player].count('bet')
             # street3Raises = action_types[street][player].count('raise')  bet count includes raises for now
             result['street3Raises'] += myStreet3Bets
 
             for otherPlayer in xrange(len(player_ids)):
-                if player==otherPlayer:
+                if player == otherPlayer:
                     pass
                 else:
                     for countOther in xrange(len(action_types[street][otherPlayer])):
-                        if action_types[street][otherPlayer][countOther]=="bet":
-                            myOtherRaisedStreet3=True
+                        if action_types[street][otherPlayer][countOther] == "bet":
+                            myOtherRaisedStreet3 = True
                             for countOtherFold in xrange(len(action_types[street][player])):
-                                if action_types[street][player][countOtherFold]=="fold":
-                                    myFoldToOtherRaisedStreet3=True
+                                if action_types[street][player][countOtherFold] == "fold":
+                                    myFoldToOtherRaisedStreet3 = True
 
         #stud river stuff - copy of flop with different vars
-        street=4
+        street = 4
         if myStreet4Seen:
-            if any(actiontype == "bet" for actiontype in action_types[street][player]):
-                myStreet4Aggr=True
-
+            myStreet4Aggr = any(actiontype == "bet" for actiontype in action_types[street][player])
             myStreet4Calls = action_types[street][player].count('call')
             myStreet4Bets = action_types[street][player].count('bet')
             # street4Raises = action_types[street][player].count('raise')  bet count includes raises for now
             result['street4Raises'] += myStreet4Bets
 
             for otherPlayer in xrange(len(player_ids)):
-                if player==otherPlayer:
+                if player == otherPlayer:
                     pass
                 else:
                     for countOther in xrange(len(action_types[street][otherPlayer])):
-                        if action_types[street][otherPlayer][countOther]=="bet":
-                            myOtherRaisedStreet4=True
+                        if action_types[street][otherPlayer][countOther] == "bet":
+                            myOtherRaisedStreet4 = True
                             for countOtherFold in xrange(len(action_types[street][player])):
-                                if action_types[street][player][countOtherFold]=="fold":
-                                    myFoldToOtherRaisedStreet4=True
+                                if action_types[street][player][countOtherFold] == "fold":
+                                    myFoldToOtherRaisedStreet4 = True
 
         if winnings[player] != 0:
             if myStreet1Seen:
                 myWonWhenSeenStreet1 = winnings[player] / float(totalWinnings)
                 if mySawShowdown:
-                    myWonAtSD=myWonWhenSeenStreet1
+                    myWonAtSD = myWonWhenSeenStreet1
 
         #add each value to the appropriate array
         street0VPI.append(myStreet0VPI)
