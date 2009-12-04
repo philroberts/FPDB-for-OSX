@@ -37,14 +37,20 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.execvpe('python.exe', ('python.exe', 'fpdb.py', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
-        exit
+        raw_input("Press ENTER to continue.")
+        exit()
 else:
     pass
     #print "debug - not changing path"
 
 if os.name == 'nt':
-    import win32api
-    import win32con
+    try:
+        import win32api
+        import win32con
+    except ImportError:
+        print "We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"
+        raw_input("Press ENTER to continue.")
+        exit()
 
 print "Python " + sys.version[0:3] + '...\n'
 
@@ -62,9 +68,14 @@ if not options.errorsToConsole:
 
 import logging
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+try:
+    import pygtk
+    pygtk.require('2.0')
+    import gtk
+except:
+    print "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
+    raw_input("Press ENTER to continue.")
+    exit()
 
 import interlocks
 
@@ -196,14 +207,14 @@ class fpdb:
     def dia_about(self, widget, data=None):
         #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
         dia = gtk.AboutDialog()
-        dia.set_name("FPDB")
+        dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2009, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, and others")
+        dia.set_copyright("2008-2010, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
         dia.set_comments("GTK AboutDialog comments here")
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
-        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
-        dia.set_program_name("FPDB")
+        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
+        dia.set_program_name("Free Poker Database (FPDB)")
         dia.run()
         dia.destroy()
 
