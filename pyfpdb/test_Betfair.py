@@ -1,21 +1,34 @@
 # -*- coding: utf-8 -*-
 import BetfairToFpdb
+from Hand import *
 import py
 
+import Configuration
+import Database
+import SQL
+import fpdb_import
 
-def checkGameInfo(hhc, header, info):
-    assert hhc.determineGameType(header) == info
+config = Configuration.Config(file = "HUD_config.test.xml")
+db = Database.Database(config)
+sql = SQL.Sql(db_server = 'sqlite')
 
-def testGameInfo():
-    hhc = BetfairToFpdb.Betfair(autostart=False)    
-    pairs = (
-    (u"""***** Betfair Poker Hand History for Game 472386869 *****
-NL $0.02/$0.04 Texas Hold'em - Sunday, January 25, 10:10:42 GMT 2009
-Table Rookie 191 6-max (Real Money)
-Seat 1 is the button
-Total number of active players : 6""",
-    {'type':'ring', 'base':"hold", 'category':'holdem', 'limitType':'nl', 'sb':'0.02', 'bb':'0.04', 'currency':'USD'}),
-    )
+settings = {}
+settings.update(config.get_db_parameters())
+settings.update(config.get_tv_parameters())
+settings.update(config.get_import_parameters())
+settings.update(config.get_default_paths())
 
-    for (header, info) in pairs:
-        yield checkGameInfo, hhc, header, info
+def testFlopImport():
+    db.recreate_tables()
+    importer = fpdb_import.Importer(False, settings, config)
+    importer.setDropIndexes("don't drop")
+    importer.setFailOnError(True)
+    importer.setThreads(-1)
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Betfair/Flop/PLO-6max-USD-0.05-0.10-200909.All.in.river.splitpot.txt""", site="Betfair")
+    importer.setCallHud(False)
+    (stored, dups, partial, errs, ttime) = importer.runImport()
+    importer.clearFileList()
+
+    # Should actually do some testing here
+    assert 1 == 1
