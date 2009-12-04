@@ -71,6 +71,8 @@ follow :  whether to tail -f the input"""
         self.out_path = out_path
 
         self.processedHands = []
+        self.numHands = 0
+        self.numErrors = 0
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -135,17 +137,17 @@ Otherwise, finish at EOF.
             return
 
         try:
-            numHands = 0
-            numErrors = 0
+            self.numHands = 0
+            self.numErrors = 0
             if self.follow:
                 #TODO: See how summary files can be handled on the fly (here they should be rejected as before) 
                 log.info("Tailing '%s'" % self.in_path)
                 for handText in self.tailHands():
                     try:
                         self.processHand(handText)
-                        numHands += 1
+                        self.numHands += 1
                     except FpdbParseError, e:
-                        numErrors += 1
+                        self.numErrors += 1
                         log.warning("Failed to convert hand %s" % e.hid)
                         log.warning("Exception msg: '%s'" % str(e))
                         log.debug(handText)
@@ -160,13 +162,13 @@ Otherwise, finish at EOF.
                         try:
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
-                            numErrors += 1
+                            self.numErrors += 1
                             log.warning("Failed to convert hand %s" % e.hid)
                             log.warning("Exception msg: '%s'" % str(e))
                             log.debug(handText)
-                    numHands = len(handsList)
+                    self.numHands = len(handsList)
                     endtime = time.time()
-                    log.info("Read %d hands (%d failed) in %.3f seconds" % (numHands, numErrors, endtime - starttime))
+                    log.info("Read %d hands (%d failed) in %.3f seconds" % (self.numHands, self.numErrors, endtime - starttime))
                 else:
                         self.parsedObjectType = "Summary"
                         summaryParsingStatus = self.readSummaryInfo(handsList)
