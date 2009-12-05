@@ -434,8 +434,12 @@ class Importer:
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
 
                 for hand in handlist:
+                    #try, except duplicates here?
                     #hand.prepInsert()
                     hand.insert(self.database)
+
+                errors = getattr(hhc, 'numErrors')
+                stored = getattr(hhc, 'numHands')
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
