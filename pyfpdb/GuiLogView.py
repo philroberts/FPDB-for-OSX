@@ -30,6 +30,8 @@ import Configuration
 
 log = Configuration.get_logger("logging.conf", "logview")
 
+MAX_LINES = 1000
+
 class GuiLogView:
 
     def __init__(self, config, mainwin, vbox):
@@ -38,9 +40,19 @@ class GuiLogView:
         self.vbox = vbox
         gtk.Widget.set_size_request(self.vbox, 700, 400);
 
-        self.liststore = gtk.ListStore(str, str, str, str)  # date, module, level, text
+        self.liststore = gtk.ListStore(str, str, str, str, gobject.TYPE_BOOLEAN)  # date, module, level, text
+
+        # this is how to add a filter:
+        #
+        # # Creation of the filter, from the model
+        # filter = self.liststore.filter_new()
+        # filter.set_visible_column(1)
+        #
+        # # The TreeView gets the filter as model
+        # self.listview = gtk.TreeView(filter)
+
         self.listview = gtk.TreeView(model=self.liststore)
-        self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_NONE)
 
         scrolledwindow = gtk.ScrolledWindow()
         scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -60,46 +72,54 @@ class GuiLogView:
         #self.configView = gtk.TreeView(self.configStore)
         #self.configView.set_enable_tree_lines(True)
         self.liststore.clear()
+        self.listcols = []
 
-        col = gtk.TreeViewColumn("Date/Time")
-        self.listview.append_column(col)
-        cRender = gtk.CellRendererText()
-        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
-        col.pack_start(cRender, True)
-        col.add_attribute(cRender, 'text', 0)
-        col.set_max_width(1000)
+        col = self.addColumn("Date/Time", 0)
 
-        col = gtk.TreeViewColumn("Module")
-        self.listview.append_column(col)
-        cRender = gtk.CellRendererText()
-        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
-        col.pack_start(cRender, True)
-        col.add_attribute(cRender, 'text', 1)
-        col.set_max_width(1000)
-
-        col = gtk.TreeViewColumn("Level")
-        self.listview.append_column(col)
-        cRender = gtk.CellRendererText()
-        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
-        col.pack_start(cRender, True)
-        col.add_attribute(cRender, 'text', 2)
-        col.set_max_width(1000)
-
-        col = gtk.TreeViewColumn("Text")
-        self.listview.append_column(col)
-        cRender = gtk.CellRendererText()
-        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
-        col.pack_start(cRender, True)
-        col.add_attribute(cRender, 'text', 3)
-        col.set_max_width(1000)
+        col = self.addColumn("Module", 1)
+        col = self.addColumn("Level", 2)
+        col = self.addColumn("Text", 3)
 
         l = 0
         for line in open('logging.out', 'r'):
-            #self.addLogText(line)
-            iter = self.liststore.append([line.strip(), "", "", ""])
+            # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
+            if len(line) > 49:
+                iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
             l = l + 1
-            if l >= 100:
+            if l >= MAX_LINES:
                 break
+
+    def addColumn(self, title, n):
+        col = gtk.TreeViewColumn(title)
+        self.listview.append_column(col)
+        cRender = gtk.CellRendererText()
+        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
+        col.pack_start(cRender, True)
+        col.add_attribute(cRender, 'text', n)
+        col.set_max_width(1000)
+        col.set_spacing(0)  # no effect
+        self.listcols.append(col)
+        col.set_clickable(True)
+        col.connect("clicked", self.sortCols, n)
+        return(col)
+
+    def sortCols(self, col, n):
+        try:
+            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
+                col.set_sort_order(gtk.SORT_DESCENDING)
+            else:
+                col.set_sort_order(gtk.SORT_ASCENDING)
+            self.liststore.set_sort_column_id(n, col.get_sort_order())
+            #self.liststore.set_sort_func(n, self.sortnums, (n,grid))
+            for i in xrange(len(self.listcols)):
+                self.listcols[i].set_sort_indicator(False)
+            self.listcols[n].set_sort_indicator(True)
+            # use this   listcols[col].set_sort_indicator(True)
+            # to turn indicator off for other cols
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])
+            print "***sortCols error: " + str(sys.exc_info()[1])
+            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
 
 
 
