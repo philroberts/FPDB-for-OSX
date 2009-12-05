@@ -52,18 +52,43 @@ class GuiLogView:
 
         self.listview = gtk.TreeView(model=self.liststore)
         self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_NONE)
+        self.listcols = []
 
         scrolledwindow = gtk.ScrolledWindow()
         scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.vbox.pack_start(scrolledwindow, expand=True, fill=True, padding=0)
         scrolledwindow.add(self.listview)
+        self.vbox.pack_start(scrolledwindow, expand=True, fill=True, padding=0)
+
+        refreshbutton = gtk.Button("Refresh")
+        refreshbutton.connect("clicked", self.refresh, None)
+        self.vbox.pack_start(refreshbutton, False, False, 3)
+        refreshbutton.show()
 
         self.listview.show()
         scrolledwindow.show()
         self.vbox.show()
 
+        col = self.addColumn("Date/Time", 0)
+        col = self.addColumn("Module", 1)
+        col = self.addColumn("Level", 2)
+        col = self.addColumn("Text", 3)
+
         self.loadLog()
         self.vbox.show_all()
+
+    def addColumn(self, title, n):
+        col = gtk.TreeViewColumn(title)
+        self.listview.append_column(col)
+        cRender = gtk.CellRendererText()
+        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
+        col.pack_start(cRender, True)
+        col.add_attribute(cRender, 'text', n)
+        col.set_max_width(1000)
+        col.set_spacing(0)  # no effect
+        self.listcols.append(col)
+        col.set_clickable(True)
+        col.connect("clicked", self.sortCols, n)
+        return(col)
 
     def loadLog(self):
 
@@ -72,12 +97,6 @@ class GuiLogView:
         #self.configView.set_enable_tree_lines(True)
         self.liststore.clear()
         self.listcols = []
-
-        col = self.addColumn("Date/Time", 0)
-
-        col = self.addColumn("Module", 1)
-        col = self.addColumn("Level", 2)
-        col = self.addColumn("Text", 3)
 
         # count number of lines in file
         f = open('logging.out', "r+")
@@ -107,20 +126,6 @@ class GuiLogView:
             line = readline()
         f.close()
 
-    def addColumn(self, title, n):
-        col = gtk.TreeViewColumn(title)
-        self.listview.append_column(col)
-        cRender = gtk.CellRendererText()
-        cRender.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
-        col.pack_start(cRender, True)
-        col.add_attribute(cRender, 'text', n)
-        col.set_max_width(1000)
-        col.set_spacing(0)  # no effect
-        self.listcols.append(col)
-        col.set_clickable(True)
-        col.connect("clicked", self.sortCols, n)
-        return(col)
-
     def sortCols(self, col, n):
         try:
             if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
@@ -138,6 +143,9 @@ class GuiLogView:
             err = traceback.extract_tb(sys.exc_info()[2])
             print "***sortCols error: " + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+
+    def refresh(self, widget, data):
+        self.loadLog()
 
 
 
