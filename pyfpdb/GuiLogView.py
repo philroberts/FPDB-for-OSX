@@ -17,8 +17,7 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 
-import xml.dom.minidom
-from xml.dom.minidom import Node
+import mmap
 
 import pygtk
 pygtk.require('2.0')
@@ -30,7 +29,7 @@ import Configuration
 
 log = Configuration.get_logger("logging.conf", "logview")
 
-MAX_LINES = 1000
+MAX_LINES = 100000
 
 class GuiLogView:
 
@@ -80,14 +79,33 @@ class GuiLogView:
         col = self.addColumn("Level", 2)
         col = self.addColumn("Text", 3)
 
+        # count number of lines in file
+        f = open('logging.out', "r+")
+        buf = mmap.mmap(f.fileno(), 0)
+        readline = buf.readline
+        lines = 0
+        while readline():
+            lines += 1
+        f.close()
+
+        startline = 0
+        if lines > MAX_LINES:
+            # only display from startline if log file is large
+            startline = lines - MAX_LINES
+
+        f = open('logging.out', "r+")
+        buf = mmap.mmap(f.fileno(), 0)
+        readline = buf.readline
         l = 0
-        for line in open('logging.out', 'r'):
+        line = readline()
+        while line:
+            # eg line:
             # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
-            if len(line) > 49:
-                iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
             l = l + 1
-            if l >= MAX_LINES:
-                break
+            if l > startline and len(line) > 49:
+                iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
+            line = readline()
+        f.close()
 
     def addColumn(self, title, n):
         col = gtk.TreeViewColumn(title)
