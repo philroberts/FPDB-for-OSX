@@ -159,10 +159,10 @@ class HUD_main(object):
 #    function idle_func() to be run by the gui thread, at its leisure.
         def idle_func():
             gtk.gdk.threads_enter()
-            self.hud_dict[table_name].update(new_hand_id, config)
+            try:
+                self.hud_dict[table_name].update(new_hand_id, config)
             # The HUD could get destroyed in the above call ^^, which leaves us with a KeyError here vv
             # if we ever get an error we need to expect ^^ then we need to handle it vv - Eric
-            try:
                 [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
             except KeyError:
                 pass
