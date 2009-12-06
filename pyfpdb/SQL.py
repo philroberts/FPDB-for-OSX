@@ -1317,6 +1317,7 @@ class Sql:
                    1.25 would be a config value so user could change it)
                 */
                 GROUP BY hc.PlayerId, hp.seatNo, p.name
+                ORDER BY hc.PlayerId, hp.seatNo, p.name
             """
 
 #    same as above except stats are aggregated for all blind/limit levels
@@ -1418,6 +1419,7 @@ class Sql:
                           )
                       )
                 GROUP BY hc.PlayerId, p.name
+                ORDER BY hc.PlayerId, p.name
             """
                 #  NOTES on above cursor:
                 #  - Do NOT include %s inside query in a comment - the db api thinks 
