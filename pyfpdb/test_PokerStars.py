@@ -87,19 +87,12 @@ def testFlopImport():
     print "DEBUG: stored: %s dups: %s partial: %s errs: %s ttime: %s" %(stored, dups, partial, errs, ttime)
     importer.clearFileList()
 
+    col = { 'sawShowdown': 2
+          }
+
     q = """SELECT
     s.name,
-    g.category,
-    g.base,
-    g.type,
-    g.limitType,
-    g.hilo,
-    round(g.smallBlind / 100.0,2) as sb,
-    round(g.bigBlind / 100.0,2) as bb,
-    round(g.smallBet / 100.0,2) as SB,
-    round(g.bigBet / 100.0,2) as BB,
-    s.currency,
-    hp.playerId,
+    p.name,
     hp.sawShowdown
 FROM
     Hands as h,
@@ -116,10 +109,10 @@ and s.id = p.siteid"""
     c = db.get_cursor()
     c.execute(q)
     result = c.fetchall()
-    print "DEBUG: result: %s" %result
-
-
-    assert 1 == 0
+    for row, data in enumerate(result):
+        print "DEBUG: result[%s]: %s" %(row, result[row])
+        # Assert if any sawShowdown = True
+        assert result[row][col['sawShowdown']] == 0
 
 def testStudImport():
     db.recreate_tables()
