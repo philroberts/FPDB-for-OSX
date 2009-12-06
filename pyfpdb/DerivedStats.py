@@ -149,6 +149,42 @@ class DerivedStats():
             for i, card in enumerate(hcs[:7], 1):
                 self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
 
+        # position,
+            #Stud 3rd street card test
+            # denny501: brings in for $0.02
+            # s0rrow: calls $0.02
+            # TomSludge: folds
+            # Soroka69: calls $0.02
+            # rdiezchang: calls $0.02           (Seat 8)
+            # u.pressure: folds                 (Seat 1)
+            # 123smoothie: calls $0.02
+            # gashpor: calls $0.02
+        # tourneyTypeId,
+        # startCards,
+        # street0_3BChance,street0_3BDone,
+        # otherRaisedStreet1-4
+        # foldToOtherRaisedStreet1-4
+        # stealAttemptChance,stealAttempted,
+        # foldBbToStealChance,foldedBbToSteal,
+        # foldSbToStealChance,foldedSbToSteal,
+        # foldToStreet1-4CBChance, foldToStreet1-4CBDone,
+        # street1-4CheckCallRaiseChance, street1-4CheckCallRaiseDone,
+
+        # Additional stats
+        # 3betSB, 3betBB
+        # Squeeze, Ratchet?
+
+
+    def getPosition(hand, seat):
+        """Returns position value like 'B', 'S', 0, 1, ..."""
+        # Flop/Draw games with blinds
+        # Need a better system???
+        # -2 BB - B (all)
+        # -1 SB - S (all)
+        #  0 Button 
+        #  1 Cutoff
+        #  2 Hijack
+
     def assembleHudCache(self, hand):
         pass
 
