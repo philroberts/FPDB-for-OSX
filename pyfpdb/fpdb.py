@@ -37,14 +37,20 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.execvpe('python.exe', ('python.exe', 'fpdb.py', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
-        exit
+        raw_input("Press ENTER to continue.")
+        exit()
 else:
     pass
     #print "debug - not changing path"
 
 if os.name == 'nt':
-    import win32api
-    import win32con
+    try:
+        import win32api
+        import win32con
+    except ImportError:
+        print "We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"
+        raw_input("Press ENTER to continue.")
+        exit()
 
 print "Python " + sys.version[0:3] + '...\n'
 
@@ -63,9 +69,14 @@ if not options.errorsToConsole:
 #import logging
 import logging, logging.config
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+try:
+    import pygtk
+    pygtk.require('2.0')
+    import gtk
+except:
+    print "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
+    raw_input("Press ENTER to continue.")
+    exit()
 
 import interlocks
 
@@ -119,7 +130,7 @@ class fpdb:
             self.pages.append(new_page)
             self.tabs.append(event_box)
             self.tab_names.append(new_tab_name)
-        
+
         #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
         self.nb_tab_names.append(new_tab_name)
@@ -139,12 +150,12 @@ class fpdb:
             self.nb.set_current_page(tab_no)
 
     def create_custom_tab(self, text, nb):
-        #create a custom tab for notebook containing a 
+        #create a custom tab for notebook containing a
         #label and a button with STOCK_ICON
         eventBox = gtk.EventBox()
         tabBox = gtk.HBox(False, 2)
         tabLabel = gtk.Label(text)
-        tabBox.pack_start(tabLabel, False)       
+        tabBox.pack_start(tabLabel, False)
         eventBox.add(tabBox)
 
         if nb.get_n_pages() > 0:
@@ -161,7 +172,7 @@ class fpdb:
         return eventBox
 
     def add_icon_to_button(self, button):
-        iconBox = gtk.HBox(False, 0)        
+        iconBox = gtk.HBox(False, 0)
         image = gtk.Image()
         image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
@@ -172,8 +183,8 @@ class fpdb:
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
         iconBox.show()
-        return 
-    
+        return
+
     # Remove a page from the notebook
     def remove_tab(self, button, data):
         (nb, text) = data
@@ -187,7 +198,7 @@ class fpdb:
             #print "   removing page", page
             del self.nb_tab_names[page]
             nb.remove_page(page)
-        # Need to refresh the widget -- 
+        # Need to refresh the widget --
         # This forces the widget to redraw itself.
         #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
@@ -200,14 +211,14 @@ class fpdb:
     def dia_about(self, widget, data=None):
         #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
         dia = gtk.AboutDialog()
-        dia.set_name("FPDB")
+        dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2009, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, and others")
+        dia.set_copyright("2008-2010, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
         dia.set_comments("GTK AboutDialog comments here")
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
-        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
-        dia.set_program_name("FPDB")
+        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
+        dia.set_program_name("Free Poker Database (FPDB)")
         dia.run()
         dia.destroy()
         log.debug("Threads: ")
@@ -628,7 +639,7 @@ class fpdb:
             self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
             exit()
         except Exceptions.FpdbMySQLNoDatabase:
-            msg = "MySQL client reports: 2002 error. Unable to connect - Please check that the MySQL service has been started"
+            msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started"
             self.warning_box(msg)
             exit
 
@@ -824,7 +835,6 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         sys.stderr.write("fpdb starting ...")
 
     def window_state_event_cb(self, window, event):
-        print "window_state_event", event
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
             # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
             #bits = win32api.GetWindowLong(self.window.window.handle, -20)
