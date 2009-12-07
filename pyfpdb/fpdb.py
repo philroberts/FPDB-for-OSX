@@ -101,12 +101,12 @@ class fpdb:
 
     def add_tab(self, new_page, new_tab_name):
         """adds a tab, namely creates the button and displays it and appends all the relevant arrays"""
-        for name in self.nb_tabs: #todo: check this is valid
+        for name in self.nb_tab_names: #todo: check this is valid
             if name == new_tab_name:
                 return # if tab already exists, just go to it
 
         used_before = False
-        for i, name in enumerate(self.tab_names): #todo: check this is valid
+        for i, name in enumerate(self.tab_names):
             if name == new_tab_name:
                 used_before = True
                 event_box = self.tabs[i]
@@ -122,13 +122,13 @@ class fpdb:
         
         #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
-        self.nb_tabs.append(new_tab_name)
+        self.nb_tab_names.append(new_tab_name)
         page.show()
 
     def display_tab(self, new_tab_name):
         """displays the indicated tab"""
         tab_no = -1
-        for i, name in enumerate(self.nb_tabs):
+        for i, name in enumerate(self.nb_tab_names):
             if new_tab_name == name:
                 tab_no = i
                 break
@@ -179,13 +179,13 @@ class fpdb:
         (nb, text) = data
         page = -1
         #print "\n remove_tab: start", text
-        for i, tab in enumerate(self.nb_tabs):
+        for i, tab in enumerate(self.nb_tab_names):
             if text == tab:
                 page = i
         #print "   page =", page
         if page >= 0 and page < self.nb.get_n_pages():
             #print "   removing page", page
-            del self.nb_tabs[page]
+            del self.nb_tab_names[page]
             nb.remove_page(page)
         # Need to refresh the widget -- 
         # This forces the widget to redraw itself.
@@ -210,6 +210,9 @@ class fpdb:
         dia.set_program_name("FPDB")
         dia.run()
         dia.destroy()
+        log.debug("Threads: ")
+        for t in self.threads:
+            log.debug("........." + str(t.__class__))
 
     def dia_preferences(self, widget, data=None):
         dia = gtk.Dialog("Preferences",
@@ -418,22 +421,23 @@ class fpdb:
         self.release_global_lock()
 
     def dia_logs(self, widget, data=None):
-        lock_set = False
-        if self.obtain_global_lock():
-            lock_set = True
+        """opens the log viewer window"""
 
-        dia = gtk.Dialog(title="Log Messages"
-                                     ,parent=None
-                                     ,flags=0
-                                     ,buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_OK))
-        logviewer = GuiLogView.GuiLogView(self.config, self.window, dia.vbox)
-        response = dia.run()
-        if response == gtk.RESPONSE_ACCEPT:
-            pass
-        dia.destroy()
+        #lock_set = False
+        #if self.obtain_global_lock():
+        #    lock_set = True
 
-        if lock_set:
-            self.release_global_lock()
+        for i, t in enumerate(self.threads):
+            if str(t.__class__) == 'GuiLogView.GuiLogView':
+                # show existing log window
+                t.get_dialog().present()
+                return
+
+        new_thread = GuiLogView.GuiLogView(self.config, self.window)
+        self.threads.append(new_thread)
+
+        #if lock_set:
+        #    self.release_global_lock()
 
     def addLogText(self, text):
         end_iter = self.logbuffer.get_end_iter()
@@ -758,7 +762,6 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.add_and_display_tab(gv_tab, "Graphs")
 
     def __init__(self):
-        self.threads = []
         # no more than 1 process can this lock at a time:
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
         self.db = None
@@ -782,14 +785,16 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menubar.show()
         #done menubar
 
+        self.threads = []     # objects used by tabs - no need for threads, gtk handles it
+
         self.nb = gtk.Notebook()
         self.nb.set_show_tabs(True)
         self.nb.show()
         self.main_vbox.pack_start(self.nb, True, True, 0)
-        self.pages=[]
-        self.tabs=[]
-        self.tab_names=[]
-        self.nb_tabs=[]
+        self.tabs=[]          # the event_boxes forming the actual tabs
+        self.tab_names=[]     # names of tabs used since program started, not removed if tab is closed
+        self.pages=[]         # the contents of the page, not removed if tab is closed
+        self.nb_tab_names=[]  # list of tab names currently displayed in notebook
 
         self.tab_main_help(None, None)
 

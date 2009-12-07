@@ -18,6 +18,7 @@
 
 
 import mmap
+import threading
 
 import pygtk
 pygtk.require('2.0')
@@ -33,14 +34,20 @@ MAX_LINES = 100000
 
 class GuiLogView:
 
-    def __init__(self, config, mainwin, vbox):
+    def __init__(self, config, mainwin):
         self.config = config
         self.main_window = mainwin
-        self.vbox = vbox
+
+        self.dia = gtk.Dialog(title="Log Messages"
+                             ,parent=None
+                             ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                             ,buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_OK))
+        self.dia.set_modal(False)
+
+        self.vbox = self.dia.vbox
         gtk.Widget.set_size_request(self.vbox, 700, 400);
 
         self.liststore = gtk.ListStore(str, str, str, str, gobject.TYPE_BOOLEAN)  # date, module, level, text
-
         # this is how to add a filter:
         #
         # # Creation of the filter, from the model
@@ -49,7 +56,6 @@ class GuiLogView:
         #
         # # The TreeView gets the filter as model
         # self.listview = gtk.TreeView(filter)
-
         self.listview = gtk.TreeView(model=self.liststore)
         self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_NONE)
         self.listcols = []
@@ -67,6 +73,7 @@ class GuiLogView:
         self.listview.show()
         scrolledwindow.show()
         self.vbox.show()
+        self.dia.set_focus(self.listview)
 
         col = self.addColumn("Date/Time", 0)
         col = self.addColumn("Module", 1)
@@ -75,6 +82,16 @@ class GuiLogView:
 
         self.loadLog()
         self.vbox.show_all()
+        self.dia.show()
+
+        self.dia.connect('response', self.dialog_response_cb)
+
+    def dialog_response_cb(self, dialog, response_id):
+        # this is called whether close button is pressed or window is closed
+        dialog.destroy()
+
+    def get_dialog(self):
+        return self.dia
 
     def addColumn(self, title, n):
         col = gtk.TreeViewColumn(title)
