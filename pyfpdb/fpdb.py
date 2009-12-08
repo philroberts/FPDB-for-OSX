@@ -73,6 +73,7 @@ try:
     import pygtk
     pygtk.require('2.0')
     import gtk
+    import pango
 except:
     print "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
     raw_input("Press ENTER to continue.")
@@ -80,6 +81,24 @@ except:
 
 import interlocks
 
+# these imports not required in this module, imported here to report version in About dialog
+try:
+    import matplotlib
+    matplotlib_version = matplotlib.__version__
+except:
+    matplotlib_version = 'not found'
+try:
+    import numpy
+    numpy_version = numpy.__version__
+except:
+    numpy_version = 'not found'
+try:
+    import sqlite3
+    sqlite3_version = sqlite3.version
+    sqlite_version = sqlite3.sqlite_version
+except:
+    sqlite3_version = 'not found'
+    sqlite_version = 'not found'
 
 import GuiPrefs
 import GuiLogView
@@ -219,6 +238,34 @@ class fpdb:
         dia.set_website("http://fpdb.sourceforge.net/")
         dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
         dia.set_program_name("Free Poker Database (FPDB)")
+
+        db_version = ""
+        #if self.db is not None:
+        #    db_version = self.db.get_version()
+        nums = [ ('Operating System', os.name)
+               , ('Python',           sys.version[0:3])
+               , ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version]))
+               , ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version]))
+               , ('matplotlib',       matplotlib_version)
+               , ('numpy',            numpy_version)
+               , ('sqlite3',          sqlite3_version)
+               , ('sqlite',           sqlite_version)
+               , ('database',         self.settings['db-server'] + db_version)
+               ]
+        versions = gtk.TextBuffer()
+        w = 20  # width used for module names and version numbers
+        versions.set_text( '\n'.join( [x[0].rjust(w)+'  '+ x[1].ljust(w) for x in nums] ) )
+        view = gtk.TextView(versions)
+        view.set_editable(False)
+        view.set_justification(gtk.JUSTIFY_CENTER)
+        view.modify_font(pango.FontDescription('monospace 10'))
+        view.show()
+        dia.vbox.pack_end(view, True, True, 2)
+        l = gtk.Label('Version Information:')
+        l.set_alignment(0.5, 0.5)
+        l.show()
+        dia.vbox.pack_end(l, True, True, 2)
+
         dia.run()
         dia.destroy()
         log.debug("Threads: ")
@@ -636,9 +683,11 @@ class fpdb:
         try:
             self.db = Database.Database(self.config, sql = self.sql)
         except Exceptions.FpdbMySQLAccessDenied:
+            #self.db = None
             self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
             exit()
         except Exceptions.FpdbMySQLNoDatabase:
+            #self.db = None
             msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started"
             self.warning_box(msg)
             exit
