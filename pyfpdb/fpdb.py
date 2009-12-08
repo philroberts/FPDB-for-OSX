@@ -66,7 +66,8 @@ if not options.errorsToConsole:
     errorFile = open('fpdb-error-log.txt', 'w', 0)
     sys.stderr = errorFile
 
-import logging
+#import logging
+import logging, logging.config
 
 try:
     import pygtk
@@ -81,6 +82,7 @@ import interlocks
 
 
 import GuiPrefs
+import GuiLogView
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -95,6 +97,8 @@ import Configuration
 import Exceptions
 
 VERSION = "0.12"
+
+log = Configuration.get_logger("logging.conf", "fpdb")
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -424,6 +428,29 @@ class fpdb:
 
         self.release_global_lock()
 
+    def dia_logs(self, widget, data=None):
+        lock_set = False
+        if self.obtain_global_lock():
+            lock_set = True
+
+        dia = gtk.Dialog(title="Log Messages"
+                                     ,parent=None
+                                     ,flags=0
+                                     ,buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_OK))
+        logviewer = GuiLogView.GuiLogView(self.config, self.window, dia.vbox)
+        response = dia.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            pass
+        dia.destroy()
+
+        if lock_set:
+            self.release_global_lock()
+
+    def addLogText(self, text):
+        end_iter = self.logbuffer.get_end_iter()
+        self.logbuffer.insert(end_iter, text)
+        self.logview.scroll_to_mark(self.logbuffer.get_insert(), 0)
+
     def __calendar_dialog(self, widget, entry):
         self.dia_confirm.set_modal(False)
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -526,6 +553,7 @@ class fpdb:
                 </menu>
                 <menu action="help">
                   <menuitem action="Abbrev"/>
+                  <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
                   <menuitem action="License"/>
@@ -567,6 +595,7 @@ class fpdb:
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
+                                 ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
                                  ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
                                 ])
