@@ -18,6 +18,7 @@
 import os
 import sys
 import re
+import Queue
 
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
@@ -485,14 +486,22 @@ class fpdb:
         #if self.obtain_global_lock():
         #    lock_set = True
 
+        # remove members from self.threads if close messages received
+        self.process_close_messages()
+
+        viewer = None
         for i, t in enumerate(self.threads):
             if str(t.__class__) == 'GuiLogView.GuiLogView':
-                # show existing log window
-                t.get_dialog().present()
-                return
+                viewer = t
+                break
 
-        new_thread = GuiLogView.GuiLogView(self.config, self.window)
-        self.threads.append(new_thread)
+        if viewer is None:
+            #print "creating new log viewer"
+            new_thread = GuiLogView.GuiLogView(self.config, self.window, self.closeq)
+            self.threads.append(new_thread)
+        else:
+            #print "showing existing log viewer"
+            viewer.get_dialog().present()
 
         #if lock_set:
         #    self.release_global_lock()
@@ -501,6 +510,21 @@ class fpdb:
         end_iter = self.logbuffer.get_end_iter()
         self.logbuffer.insert(end_iter, text)
         self.logview.scroll_to_mark(self.logbuffer.get_insert(), 0)
+
+
+    def process_close_messages(self):
+        # check for close messages
+        try:
+            while True:
+                name = self.closeq.get(False)
+                for i, t in enumerate(self.threads):
+                    if str(t.__class__) == str(name):
+                        # thread has ended so remove from list:
+                        del self.threads[i]
+                        break
+        except Queue.Empty:
+            # no close messages on queue, do nothing
+            pass
 
     def __calendar_dialog(self, widget, entry):
         self.dia_confirm.set_modal(False)
@@ -846,6 +870,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         #done menubar
 
         self.threads = []     # objects used by tabs - no need for threads, gtk handles it
+        self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)
 
         self.nb = gtk.Notebook()
         self.nb.set_show_tabs(True)
