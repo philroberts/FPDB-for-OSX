@@ -231,8 +231,9 @@ class DerivedStats():
         pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
         self.hands['playersAtShowdown'] = len(pas)
 
-        for player in pas:
-            self.handsplayers[player]['sawShowdown'] = True
+        if self.hands['playersAtShowdown'] > 1:
+            for player in pas:
+                self.handsplayers[player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
