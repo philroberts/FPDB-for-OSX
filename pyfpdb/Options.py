@@ -36,8 +36,11 @@ def fpdb_options():
                       action="store_true",
                       help="Indicates program was restarted with a different path (only allowed once).")
     parser.add_option("-i", "--infile",
-                      dest="config", default=None,
+                      dest="infile", default="Slartibartfast",
                       help="Input file")
+    parser.add_option("-k", "--konverter",
+                      dest="hhc", default="PokerStarsToFpdb",
+                      help="Module name for Hand History Converter")
     (options, argv) = parser.parse_args()
     return (options, argv)
 
