@@ -700,21 +700,26 @@ class fpdb:
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db is not None and self.db.fdb is not None:
+        if self.db is not None and self.db.connected:
             self.db.disconnect()
 
         self.sql = SQL.Sql(db_server = self.settings['db-server'])
+        err_msg = None
         try:
             self.db = Database.Database(self.config, sql = self.sql)
         except Exceptions.FpdbMySQLAccessDenied:
-            #self.db = None
-            self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
-            exit()
+            err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
         except Exceptions.FpdbMySQLNoDatabase:
-            #self.db = None
-            msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started"
-            self.warning_box(msg)
-            exit
+            err_msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - " \
+                      + "Please check that the MySQL service has been started"
+        except Exceptions.FpdbPostgresqlAccessDenied:
+            err_msg = "Postgres Server reports: Access denied. Are your permissions set correctly?"
+        except Exceptions.FpdbPostgresqlNoDatabase:
+            err_msg = "Postgres client reports: Unable to connect - " \
+                      + "Please check that the Postgres service has been started"
+        if err_msg is not None:
+            self.db = None
+            self.warning_box(err_msg)
 
 #        except FpdbMySQLFailedError:
 #            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
@@ -732,7 +737,7 @@ class fpdb:
 #            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
 #            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
-        if self.db.wrongDbVersion:
+        if self.db is not None and self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
             label = gtk.Label("An invalid DB version or missing tables have been detected.")
@@ -751,14 +756,15 @@ class fpdb:
             diaDbVersionWarning.destroy()
 
         if self.status_bar is None:
-            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
+            self.status_bar = gtk.Label("")
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
-        else:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.database, self.db.host))
 
-        # Database connected to successfully, load queries to pass on to other classes
-        self.db.rollback()
+        if self.db is not None and self.db.connected:
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" 
+                                     % (self.db.get_backend_name(),self.db.database, self.db.host))
+            # rollback to make sure any locks are cleared:
+            self.db.rollback()
 
         self.validate_config()
 
@@ -779,7 +785,8 @@ class fpdb:
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        self.db.disconnect()
+        if self.db is not None and self.db.connected:
+            self.db.disconnect()
         self.statusIcon.set_visible(False)
         gtk.main_quit()
 
