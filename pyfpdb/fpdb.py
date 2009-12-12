@@ -224,7 +224,7 @@ class fpdb:
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
-        dia.set_default_size(500, 500)
+        dia.set_default_size(700, 500)
         prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
