@@ -74,12 +74,45 @@ def testFlopImport():
     #        """regression-test-files/tour/Stars/Flop/NLHE-USD-MTT-5r-200710.txt""", site="PokerStars")
     importer.addBulkImportImportFileOrDir(
             """regression-test-files/cash/Stars/Flop/PLO8-6max-USD-0.01-0.02-200911.txt""", site="PokerStars")
+    #HID - 36185273365
+    # Besides the horrible play it contains lots of useful cases
+    # Preflop: raise, then 3bet chance for seat 2
+    # Flop: Checkraise by hero, 4bet chance not taken by villain
+    # Turn: Turn continuation bet by hero, called
+    # River: hero (continuation bets?) all-in and is not called
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Flop/NLHE-6max-USD-0.05-0.10-200912.Stats-comparision.txt""", site="PokerStars")
     importer.setCallHud(False)
     (stored, dups, partial, errs, ttime) = importer.runImport()
+    print "DEBUG: stored: %s dups: %s partial: %s errs: %s ttime: %s" %(stored, dups, partial, errs, ttime)
     importer.clearFileList()
 
-    # Should actually do some testing here
-    assert 1 == 1
+    col = { 'sawShowdown': 2
+          }
+
+    q = """SELECT
+    s.name,
+    p.name,
+    hp.sawShowdown
+FROM
+    Hands as h,
+    Sites as s,
+    Gametypes as g,
+    HandsPlayers as hp,
+    Players as p
+WHERE
+    h.siteHandNo = 36185273365
+and g.id = h.gametypeid
+and hp.handid = h.id
+and p.id = hp.playerid
+and s.id = p.siteid"""
+    c = db.get_cursor()
+    c.execute(q)
+    result = c.fetchall()
+    for row, data in enumerate(result):
+        print "DEBUG: result[%s]: %s" %(row, result[row])
+        # Assert if any sawShowdown = True
+        assert result[row][col['sawShowdown']] == 0
 
 def testStudImport():
     db.recreate_tables()

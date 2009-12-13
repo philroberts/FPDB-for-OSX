@@ -37,14 +37,20 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.execvpe('python.exe', ('python.exe', 'fpdb.py', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
-        exit
+        raw_input("Press ENTER to continue.")
+        exit()
 else:
     pass
     #print "debug - not changing path"
 
 if os.name == 'nt':
-    import win32api
-    import win32con
+    try:
+        import win32api
+        import win32con
+    except ImportError:
+        print "We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"
+        raw_input("Press ENTER to continue.")
+        exit()
 
 print "Python " + sys.version[0:3] + '...\n'
 
@@ -60,16 +66,23 @@ if not options.errorsToConsole:
     errorFile = open('fpdb-error-log.txt', 'w', 0)
     sys.stderr = errorFile
 
-import logging
+#import logging
+import logging, logging.config
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+try:
+    import pygtk
+    pygtk.require('2.0')
+    import gtk
+except:
+    print "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
+    raw_input("Press ENTER to continue.")
+    exit()
 
 import interlocks
 
 
 import GuiPrefs
+import GuiLogView
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -84,6 +97,8 @@ import Configuration
 import Exceptions
 
 VERSION = "0.12"
+
+log = Configuration.get_logger("logging.conf", "fpdb")
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -115,7 +130,7 @@ class fpdb:
             self.pages.append(new_page)
             self.tabs.append(event_box)
             self.tab_names.append(new_tab_name)
-        
+
         #self.nb.append_page(new_page, gtk.Label(new_tab_name))
         self.nb.append_page(page, event_box)
         self.nb_tabs.append(new_tab_name)
@@ -135,12 +150,12 @@ class fpdb:
             self.nb.set_current_page(tab_no)
 
     def create_custom_tab(self, text, nb):
-        #create a custom tab for notebook containing a 
+        #create a custom tab for notebook containing a
         #label and a button with STOCK_ICON
         eventBox = gtk.EventBox()
         tabBox = gtk.HBox(False, 2)
         tabLabel = gtk.Label(text)
-        tabBox.pack_start(tabLabel, False)       
+        tabBox.pack_start(tabLabel, False)
         eventBox.add(tabBox)
 
         if nb.get_n_pages() > 0:
@@ -157,7 +172,7 @@ class fpdb:
         return eventBox
 
     def add_icon_to_button(self, button):
-        iconBox = gtk.HBox(False, 0)        
+        iconBox = gtk.HBox(False, 0)
         image = gtk.Image()
         image.set_from_stock(gtk.STOCK_CLOSE, gtk.ICON_SIZE_SMALL_TOOLBAR)
         gtk.Button.set_relief(button, gtk.RELIEF_NONE)
@@ -168,8 +183,8 @@ class fpdb:
         iconBox.pack_start(image, True, False, 0)
         button.add(iconBox)
         iconBox.show()
-        return 
-    
+        return
+
     # Remove a page from the notebook
     def remove_tab(self, button, data):
         (nb, text) = data
@@ -183,7 +198,7 @@ class fpdb:
             #print "   removing page", page
             del self.nb_tabs[page]
             nb.remove_page(page)
-        # Need to refresh the widget -- 
+        # Need to refresh the widget --
         # This forces the widget to redraw itself.
         #nb.queue_draw_area(0,0,-1,-1) needed or not??
 
@@ -196,14 +211,17 @@ class fpdb:
     def dia_about(self, widget, data=None):
         #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
         dia = gtk.AboutDialog()
-        dia.set_name("FPDB")
+        dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2009, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, and others")
+        dia.set_copyright("2008-2010, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
         dia.set_comments("GTK AboutDialog comments here")
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
-        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, and others")
+        dia.set_authors(['Steffen', 'Eratosthenes', 's0rrow',
+            'EricBlade', '_mt', 'and others'])
         dia.set_program_name("FPDB")
+        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
+        dia.set_program_name("Free Poker Database (FPDB)")
         dia.run()
         dia.destroy()
 
@@ -334,26 +352,47 @@ class fpdb:
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
 
-            hb = gtk.HBox(True, 1)
+            hb1 = gtk.HBox(True, 1)
+            self.h_start_date = gtk.Entry(max=12)
+            self.h_start_date.set_text( self.db.get_hero_hudcache_start() )
+            lbl = gtk.Label(" Hero's cache starts: ")
+            btn = gtk.Button()
+            btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
+            btn.connect('clicked', self.__calendar_dialog, self.h_start_date)
+
+            hb1.pack_start(lbl, expand=True, padding=3)
+            hb1.pack_start(self.h_start_date, expand=True, padding=2)
+            hb1.pack_start(btn, expand=False, padding=3)
+            self.dia_confirm.vbox.add(hb1)
+            hb1.show_all()
+
+            hb2 = gtk.HBox(True, 1)
             self.start_date = gtk.Entry(max=12)
             self.start_date.set_text( self.db.get_hero_hudcache_start() )
-            lbl = gtk.Label(" Hero's cache starts: ")
+            lbl = gtk.Label(" Villains' cache starts: ")
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
             btn.connect('clicked', self.__calendar_dialog, self.start_date)
 
-            hb.pack_start(lbl, expand=True, padding=3)
-            hb.pack_start(self.start_date, expand=True, padding=2)
-            hb.pack_start(btn, expand=False, padding=3)
-            self.dia_confirm.vbox.add(hb)
-            hb.show_all()
+            hb2.pack_start(lbl, expand=True, padding=3)
+            hb2.pack_start(self.start_date, expand=True, padding=2)
+            hb2.pack_start(btn, expand=False, padding=3)
+            self.dia_confirm.vbox.add(hb2)
+            hb2.show_all()
 
             response = self.dia_confirm.run()
-            self.dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
-                self.db.rebuild_hudcache( self.start_date.get_text() )
+                lbl = gtk.Label(" Rebuilding HUD Cache ... ")
+                self.dia_confirm.vbox.add(lbl)
+                lbl.show()
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
+
+                self.db.rebuild_hudcache( self.h_start_date.get_text(), self.start_date.get_text() )
             elif response == gtk.RESPONSE_NO:
                 print 'User cancelled rebuilding hud cache'
+
+            self.dia_confirm.destroy()
 
         self.release_global_lock()
 
@@ -368,15 +407,52 @@ class fpdb:
             self.dia_confirm.format_secondary_text(diastring)
 
             response = self.dia_confirm.run()
-            self.dia_confirm.destroy()
             if response == gtk.RESPONSE_YES:
+                lbl = gtk.Label(" Rebuilding Indexes ... ")
+                self.dia_confirm.vbox.add(lbl)
+                lbl.show()
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
                 self.db.rebuild_indexes()
+
+                lbl.set_text(" Cleaning Database ... ")
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
                 self.db.vacuumDB()
+
+                lbl.set_text(" Analyzing Database ... ")
+                while gtk.events_pending():
+                    gtk.main_iteration_do(False)
                 self.db.analyzeDB()
             elif response == gtk.RESPONSE_NO:
                 print 'User cancelled rebuilding db indexes'
 
+            self.dia_confirm.destroy()
+
         self.release_global_lock()
+
+    def dia_logs(self, widget, data=None):
+        lock_set = False
+        if self.obtain_global_lock():
+            lock_set = True
+
+        dia = gtk.Dialog(title="Log Messages"
+                                     ,parent=None
+                                     ,flags=0
+                                     ,buttons=(gtk.STOCK_CLOSE,gtk.RESPONSE_OK))
+        logviewer = GuiLogView.GuiLogView(self.config, self.window, dia.vbox)
+        response = dia.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            pass
+        dia.destroy()
+
+        if lock_set:
+            self.release_global_lock()
+
+    def addLogText(self, text):
+        end_iter = self.logbuffer.get_end_iter()
+        self.logbuffer.insert(end_iter, text)
+        self.logview.scroll_to_mark(self.logbuffer.get_insert(), 0)
 
     def __calendar_dialog(self, widget, entry):
         self.dia_confirm.set_modal(False)
@@ -397,10 +473,13 @@ class fpdb:
         d.show_all()
 
     def __get_dates(self):
-        t1 = self.start_date.get_text()
+        t1 = self.h_start_date.get_text()
         if t1 == '':
             t1 = '1970-01-01'
-        return (t1)
+        t2 = self.start_date.get_text()
+        if t2 == '':
+            t2 = '1970-01-01'
+        return (t1, t2)
 
     def __get_date(self, widget, calendar, entry, win):
         # year and day are correct, month is 0..11
@@ -477,6 +556,7 @@ class fpdb:
                 </menu>
                 <menu action="help">
                   <menuitem action="Abbrev"/>
+                  <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
                   <menuitem action="License"/>
@@ -518,6 +598,7 @@ class fpdb:
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
                                  ('help', None, '_Help'),
                                  ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
+                                 ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
                                  ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
                                 ])
@@ -557,7 +638,7 @@ class fpdb:
             self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
             exit()
         except Exceptions.FpdbMySQLNoDatabase:
-            msg = "MySQL client reports: 2002 error. Unable to connect - Please check that the MySQL service has been started"
+            msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started"
             self.warning_box(msg)
             exit
 
@@ -752,7 +833,6 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         sys.stderr.write("fpdb starting ...")
 
     def window_state_event_cb(self, window, event):
-        print "window_state_event", event
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
             # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
             #bits = win32api.GetWindowLong(self.window.window.handle, -20)
@@ -834,6 +914,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
     def main(self):
         gtk.main()
         return 0
+
 
 if __name__ == "__main__":
     me = fpdb()

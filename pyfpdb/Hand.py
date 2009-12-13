@@ -54,6 +54,7 @@ class Hand(object):
         self.starttime = 0
         self.handText = handText
         self.handid = 0
+        self.dbid_hands = 0
         self.tablename = ""
         self.hero = ""
         self.maxseats = None
@@ -218,8 +219,8 @@ db: a connected fpdb_db object"""
             # seats TINYINT NOT NULL,
             hh['seats'] = len(sqlids)
 
-            handid = db.storeHand(hh)
-            db.storeHandsPlayers(handid, sqlids, self.stats.getHandsPlayers())
+            self.dbid_hands = db.storeHand(hh)
+            db.storeHandsPlayers(self.dbid_hands, sqlids, self.stats.getHandsPlayers())
             # HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
             # Tourneys ?

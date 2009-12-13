@@ -574,7 +574,7 @@ Left-Drag to Move"
     </hhcs>
 
     <supported_databases>
-        <database db_ip="localhost" db_name=":memory:" db_pass="fpdb" db_server="sqlite" db_user="fpdb"/>
+        <database db_ip="localhost" db_name="fpdb" db_pass="fpdb" db_server="sqlite" db_user="fpdb"/>
     </supported_databases>
 
 </FreePokerToolsConfig>
