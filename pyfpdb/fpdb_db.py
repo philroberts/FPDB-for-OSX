@@ -129,18 +129,22 @@ class fpdb_db:
                     self.db = psycopg2.connect(database = database)
                     connected = True
                 except:
+                    # direct connection failed so try user/pass/... version
                     pass
-                    #msg = "PostgreSQL direct connection to database (%s) failed, trying with user ..." % (database,)
-                    #print msg
-                    #raise FpdbError(msg)
             if not connected:
                 try:
                     self.db = psycopg2.connect(host = host,
                                                user = user,
                                                password = password,
                                                database = database)
-                except:
-                    msg = "PostgreSQL connection to database (%s) user (%s) failed. Are you sure the DB is running?" % (database, user)
+                except Exception, ex:
+                    if 'Connection refused' in ex.args[0]:
+                        # meaning eg. db not running
+                        raise FpdbPostgresqlNoDatabase(errmsg = ex.args[0])
+                    elif 'password authentication' in ex.args[0]:
+                        raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
+                    else:
+                        msg = ex.args[0]
                     print msg
                     raise FpdbError(msg)
         elif backend == fpdb_db.SQLITE:
@@ -167,6 +171,7 @@ class fpdb_db:
                 logging.warning("Some database functions will not work without NumPy support")
         else:
             raise FpdbError("unrecognised database backend:"+backend)
+
         self.cursor = self.db.cursor()
         # Set up query dictionary as early in the connection process as we can.
         self.sql = FpdbSQLQueries.FpdbSQLQueries(self.get_backend_name())

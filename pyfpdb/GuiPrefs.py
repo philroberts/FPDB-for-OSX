@@ -91,10 +91,15 @@ class GuiPrefs:
         #iter = self.configStore.append( parent, [node.nodeValue, None] )
         iter = None
         if node.nodeType != node.TEXT_NODE and node.nodeType != node.COMMENT_NODE:
+            name = ""
             iter = self.configStore.append( parent, [node, setting, value] )
             if node.hasAttributes():
                 for i in xrange(node.attributes.length):
                     self.configStore.append( iter, [node, node.attributes.item(i).localName, node.attributes.item(i).value] )
+                    if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site'):
+                        name = " " + node.attributes.item(i).value
+            if name != "":
+                self.configStore.set_value(iter, 1, setting+name)
             if node.hasChildNodes():
                 for elem in node.childNodes:
                     self.addTreeRows(iter, elem)
@@ -156,7 +161,7 @@ if __name__=="__main__":
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                       gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
-    dia.set_default_size(500, 500)
+    dia.set_default_size(700, 500)
     prefs = GuiPrefs(config, win, dia.vbox)
     response = dia.run()
     if response == gtk.RESPONSE_ACCEPT:
