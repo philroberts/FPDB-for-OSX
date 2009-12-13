@@ -225,11 +225,19 @@ class fpdb:
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_default_size(700, 500)
+
         prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
             self.config.save()
+            if len(self.nb_tab_names) == 1:
+                # only main tab open, reload profile
+                self.load_profile()
+            else:
+                self.warning_box("Updated preferences have not been loaded because "
+                                 + "windows are open. Re-start fpdb to load them.")
+
         dia.destroy()
 
     def dia_create_del_database(self, widget, data=None):
@@ -543,7 +551,7 @@ class fpdb:
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
-                                 ('Preferences', None, '_Preferences', None, 'Edit your preferences', self.dia_preferences),
+                                 ('Preferences', None, 'Pre_ferences', '<control>F', 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
