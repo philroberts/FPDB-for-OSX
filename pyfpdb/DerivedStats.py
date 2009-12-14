@@ -55,7 +55,7 @@ class DerivedStats():
 
             #FIXME - Everything below this point is incomplete.
             self.handsplayers[player[1]]['position']            = 2
-            self.handsplayers[player[1]]['tourneyTypeId']       = 0
+            self.handsplayers[player[1]]['tourneyTypeId']       = 1
             self.handsplayers[player[1]]['startCards']          = 0
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
