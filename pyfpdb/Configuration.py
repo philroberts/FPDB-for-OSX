@@ -125,7 +125,7 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-NEWIMPORT = False
+NEWIMPORT = True
 
 ########################################################################
 def string_to_bool(string, default=True):
