@@ -218,9 +218,7 @@ class fpdb:
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
         dia.set_authors(['Steffen', 'Eratosthenes', 's0rrow',
-            'EricBlade', '_mt', 'and others'])
-        dia.set_program_name("FPDB")
-        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
+            'EricBlade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
         dia.set_program_name("Free Poker Database (FPDB)")
         dia.run()
         dia.destroy()
