@@ -18,6 +18,7 @@
 import os
 import sys
 import re
+import Queue
 
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
@@ -278,12 +279,20 @@ class fpdb:
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
-        dia.set_default_size(500, 500)
+        dia.set_default_size(700, 500)
+
         prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
             self.config.save()
+            if len(self.nb_tab_names) == 1:
+                # only main tab open, reload profile
+                self.load_profile()
+            else:
+                self.warning_box("Updated preferences have not been loaded because "
+                                 + "windows are open. Re-start fpdb to load them.")
+
         dia.destroy()
 
     def dia_create_del_database(self, widget, data=None):
@@ -485,14 +494,22 @@ class fpdb:
         #if self.obtain_global_lock():
         #    lock_set = True
 
+        # remove members from self.threads if close messages received
+        self.process_close_messages()
+
+        viewer = None
         for i, t in enumerate(self.threads):
             if str(t.__class__) == 'GuiLogView.GuiLogView':
-                # show existing log window
-                t.get_dialog().present()
-                return
+                viewer = t
+                break
 
-        new_thread = GuiLogView.GuiLogView(self.config, self.window)
-        self.threads.append(new_thread)
+        if viewer is None:
+            #print "creating new log viewer"
+            new_thread = GuiLogView.GuiLogView(self.config, self.window, self.closeq)
+            self.threads.append(new_thread)
+        else:
+            #print "showing existing log viewer"
+            viewer.get_dialog().present()
 
         #if lock_set:
         #    self.release_global_lock()
@@ -501,6 +518,21 @@ class fpdb:
         end_iter = self.logbuffer.get_end_iter()
         self.logbuffer.insert(end_iter, text)
         self.logview.scroll_to_mark(self.logbuffer.get_insert(), 0)
+
+
+    def process_close_messages(self):
+        # check for close messages
+        try:
+            while True:
+                name = self.closeq.get(False)
+                for i, t in enumerate(self.threads):
+                    if str(t.__class__) == str(name):
+                        # thread has ended so remove from list:
+                        del self.threads[i]
+                        break
+        except Queue.Empty:
+            # no close messages on queue, do nothing
+            pass
 
     def __calendar_dialog(self, widget, entry):
         self.dia_confirm.set_modal(False)
@@ -622,7 +654,7 @@ class fpdb:
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
                                  ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
-                                 ('Preferences', None, '_Preferences', None, 'Edit your preferences', self.dia_preferences),
+                                 ('Preferences', None, 'Pre_ferences', '<control>F', 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
@@ -676,21 +708,26 @@ class fpdb:
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db is not None and self.db.fdb is not None:
+        if self.db is not None and self.db.connected:
             self.db.disconnect()
 
         self.sql = SQL.Sql(db_server = self.settings['db-server'])
+        err_msg = None
         try:
             self.db = Database.Database(self.config, sql = self.sql)
         except Exceptions.FpdbMySQLAccessDenied:
-            #self.db = None
-            self.warning_box("MySQL Server reports: Access denied. Are your permissions set correctly?")
-            exit()
+            err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
         except Exceptions.FpdbMySQLNoDatabase:
-            #self.db = None
-            msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started"
-            self.warning_box(msg)
-            exit
+            err_msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - " \
+                      + "Please check that the MySQL service has been started"
+        except Exceptions.FpdbPostgresqlAccessDenied:
+            err_msg = "Postgres Server reports: Access denied. Are your permissions set correctly?"
+        except Exceptions.FpdbPostgresqlNoDatabase:
+            err_msg = "Postgres client reports: Unable to connect - " \
+                      + "Please check that the Postgres service has been started"
+        if err_msg is not None:
+            self.db = None
+            self.warning_box(err_msg)
 
 #        except FpdbMySQLFailedError:
 #            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
@@ -708,7 +745,7 @@ class fpdb:
 #            print "*** Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
 #            sys.stderr.write("Failed to connect to %s database with username %s." % (self.settings['db-server'], self.settings['db-user']))
 
-        if self.db.wrongDbVersion:
+        if self.db is not None and self.db.wrongDbVersion:
             diaDbVersionWarning = gtk.Dialog(title="Strong Warning - Invalid database version", parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
             label = gtk.Label("An invalid DB version or missing tables have been detected.")
@@ -727,14 +764,15 @@ class fpdb:
             diaDbVersionWarning.destroy()
 
         if self.status_bar is None:
-            self.status_bar = gtk.Label("Status: Connected to %s database named %s on host %s"%(self.db.get_backend_name(),self.db.database, self.db.host))
+            self.status_bar = gtk.Label("")
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
-        else:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" % (self.db.get_backend_name(),self.db.database, self.db.host))
 
-        # Database connected to successfully, load queries to pass on to other classes
-        self.db.rollback()
+        if self.db is not None and self.db.connected:
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" 
+                                     % (self.db.get_backend_name(),self.db.database, self.db.host))
+            # rollback to make sure any locks are cleared:
+            self.db.rollback()
 
         self.validate_config()
 
@@ -755,7 +793,8 @@ class fpdb:
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        self.db.disconnect()
+        if self.db is not None and self.db.connected:
+            self.db.disconnect()
         self.statusIcon.set_visible(False)
         gtk.main_quit()
 
@@ -846,6 +885,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         #done menubar
 
         self.threads = []     # objects used by tabs - no need for threads, gtk handles it
+        self.closeq = Queue.Queue(20)  # used to signal ending of a thread (only logviewer for now)
 
         self.nb = gtk.Notebook()
         self.nb.set_show_tabs(True)
