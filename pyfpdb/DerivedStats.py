@@ -53,6 +53,27 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%dCBChance' %i] = False
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
 
+            #FIXME - Everything below this point is incomplete.
+            self.handsplayers[player[1]]['position']            = 2
+            self.handsplayers[player[1]]['tourneyTypeId']       = 0
+            self.handsplayers[player[1]]['startCards']          = 0
+            self.handsplayers[player[1]]['street0_3BChance']    = False
+            self.handsplayers[player[1]]['street0_3BDone']      = False
+            self.handsplayers[player[1]]['stealAttemptChance']  = False
+            self.handsplayers[player[1]]['stealAttempted']      = False
+            self.handsplayers[player[1]]['foldBbToStealChance'] = False
+            self.handsplayers[player[1]]['foldBbToStealChance'] = False
+            self.handsplayers[player[1]]['foldSbToStealChance'] = False
+            self.handsplayers[player[1]]['foldedSbToSteal']     = False
+            self.handsplayers[player[1]]['foldedBbToSteal']     = False
+            for i in range(1,5):
+                self.handsplayers[player[1]]['otherRaisedStreet%d' %i]          = False
+                self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
+                self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
+                self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
+
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
@@ -149,6 +170,7 @@ class DerivedStats():
             for i, card in enumerate(hcs[:7], 1):
                 self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
 
+
         # position,
             #Stud 3rd street card test
             # denny501: brings in for $0.02
@@ -159,16 +181,6 @@ class DerivedStats():
             # u.pressure: folds                 (Seat 1)
             # 123smoothie: calls $0.02
             # gashpor: calls $0.02
-        # tourneyTypeId,
-        # startCards,
-        # street0_3BChance,street0_3BDone,
-        # otherRaisedStreet1-4
-        # foldToOtherRaisedStreet1-4
-        # stealAttemptChance,stealAttempted,
-        # foldBbToStealChance,foldedBbToSteal,
-        # foldSbToStealChance,foldedSbToSteal,
-        # foldToStreet1-4CBChance, foldToStreet1-4CBDone,
-        # street1-4CheckCallRaiseChance, street1-4CheckCallRaiseDone,
 
         # Additional stats
         # 3betSB, 3betBB
