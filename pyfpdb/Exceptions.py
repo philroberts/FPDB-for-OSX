@@ -34,5 +34,19 @@ class FpdbMySQLNoDatabase(FpdbDatabaseError):
     def __str__(self):
         return repr(self.value +" " + self.errmsg)
 
+class FpdbPostgresqlAccessDenied(FpdbDatabaseError):
+    def __init__(self, value='', errmsg=''):
+        self.value = value
+        self.errmsg = errmsg
+    def __str__(self):
+        return repr(self.value +" " + self.errmsg)
+
+class FpdbPostgresqlNoDatabase(FpdbDatabaseError):
+    def __init__(self, value='', errmsg=''):
+        self.value = value
+        self.errmsg = errmsg
+    def __str__(self):
+        return repr(self.value +" " + self.errmsg)
+
 class DuplicateError(FpdbError):
     pass

@@ -17,8 +17,8 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 
-import mmap
-import threading
+import os
+import Queue
 
 import pygtk
 pygtk.require('2.0')
@@ -30,13 +30,16 @@ import Configuration
 
 log = Configuration.get_logger("logging.conf", "logview")
 
-MAX_LINES = 100000
+MAX_LINES = 100000         # max lines to display in window
+EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
+logfile = 'logging.out'    # name of logfile
 
 class GuiLogView:
 
-    def __init__(self, config, mainwin):
+    def __init__(self, config, mainwin, closeq):
         self.config = config
         self.main_window = mainwin
+        self.closeq = closeq
 
         self.dia = gtk.Dialog(title="Log Messages"
                              ,parent=None
@@ -88,6 +91,7 @@ class GuiLogView:
 
     def dialog_response_cb(self, dialog, response_id):
         # this is called whether close button is pressed or window is closed
+        self.closeq.put(self.__class__)
         dialog.destroy()
 
     def get_dialog(self):
@@ -109,39 +113,28 @@ class GuiLogView:
 
     def loadLog(self):
 
-        #self.configStore = gtk.TreeStore(gobject.TYPE_PYOBJECT, gobject.TYPE_STRING, gobject.TYPE_STRING)
-        #self.configView = gtk.TreeView(self.configStore)
-        #self.configView.set_enable_tree_lines(True)
         self.liststore.clear()
         self.listcols = []
 
-        # count number of lines in file
-        f = open('logging.out', "r+")
-        buf = mmap.mmap(f.fileno(), 0)
-        readline = buf.readline
-        lines = 0
-        while readline():
-            lines += 1
-        f.close()
+        # guesstimate number of lines in file
+        if os.path.exists(logfile):
+            stat_info = os.stat(logfile)
+            lines = stat_info.st_size / EST_CHARS_PER_LINE
+            print "logview: size =", stat_info.st_size, "lines =", lines
 
-        startline = 0
-        if lines > MAX_LINES:
-            # only display from startline if log file is large
-            startline = lines - MAX_LINES
+            # set startline to line number to start display from
+            startline = 0
+            if lines > MAX_LINES:
+                # only display from startline if log file is large
+                startline = lines - MAX_LINES
 
-        f = open('logging.out', "r+")
-        buf = mmap.mmap(f.fileno(), 0)
-        readline = buf.readline
-        l = 0
-        line = readline()
-        while line:
-            # eg line:
-            # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
-            l = l + 1
-            if l > startline and len(line) > 49:
-                iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
-            line = readline()
-        f.close()
+            l = 0
+            for line in open(logfile):
+                # eg line:
+                # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
+                l = l + 1
+                if l > startline and len(line) > 49:
+                    iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
 
     def sortCols(self, col, n):
         try:

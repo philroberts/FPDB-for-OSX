@@ -1247,13 +1247,13 @@ sure to also change the following storage method and table_viewer.prepare_data i
 
             if not isAllIn:
                 isAllIn = any(i for i in allIns[1][player])
-            elif len(action_types[2][player]) > 0:
+            if isAllIn or len(action_types[2][player]) > 0:
                 if all(actiontype != "fold" for actiontype in action_types[1][player]):
                     myStreet2Seen = True
 
                 if not isAllIn:
                     isAllAin = any(i for i in allIns[2][player])
-                elif len(action_types[3][player]) > 0:
+                if isAllIn or len(action_types[3][player]) > 0:
                     if all(actiontype != "fold" for actiontype in action_types[2][player]):
                         myStreet3Seen = True
 
@@ -1264,7 +1264,7 @@ sure to also change the following storage method and table_viewer.prepare_data i
                         #print "in else"
                         if not isAllIn:
                             isAllIn = any(i for i in allIns[3][player])
-                        elif len(action_types[4][player]) > 0:
+                        if isAllIn or len(action_types[4][player]) > 0:
                             #print "in if"
                             myStreet4Seen = True
 
