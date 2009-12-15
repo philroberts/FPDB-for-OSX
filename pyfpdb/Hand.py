@@ -55,6 +55,8 @@ class Hand(object):
         self.handText = handText
         self.handid = 0
         self.dbid_hands = 0
+        self.dbid_pids = None
+        self.dbid_gt = 0
         self.tablename = ""
         self.hero = ""
         self.maxseats = None
@@ -189,22 +191,21 @@ dealt   whether they were seen in a 'dealt to' line
         self.holecards[street][player] = [open, closed]
 
     def prepInsert(self, db):
-        pass
+	#####
+        # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
+        # These functions are intended for prep insert eventually
+        #####
+        # Players - base playerid and siteid tuple
+        self.dbid_pids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
+
+        #Gametypes
+        self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
 
     def insert(self, db):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected fpdb_db object"""
 
-        #####
-        # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
-        # These functions are intended for prep insert eventually
-        #####
-        # Players - base playerid and siteid tuple
-        sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
-
-        #Gametypes
-        gtid = db.getGameTypeId(self.siteId, self.gametype)
 
         self.stats.getStats(self)
 
@@ -213,14 +214,14 @@ db: a connected fpdb_db object"""
         #####
         hh = self.stats.getHands()
 
-        if not db.isDuplicate(gtid, hh['siteHandNo']):
+        if not db.isDuplicate(self.dbid_gt, hh['siteHandNo']):
             # Hands - Summary information of hand indexed by handId - gameinfo
-            hh['gameTypeId'] = gtid
+            hh['gameTypeId'] = self.dbid_gt
             # seats TINYINT NOT NULL,
-            hh['seats'] = len(sqlids)
+            hh['seats'] = len(self.dbid_pids)
 
             self.dbid_hands = db.storeHand(hh)
-            db.storeHandsPlayers(self.dbid_hands, sqlids, self.stats.getHandsPlayers())
+            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers())
             # HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
             # Tourneys ?
