@@ -440,8 +440,8 @@ class Importer:
                     if self.callHud and hand.dbid_hands != 0:
                         #print "DEBUG: call to HUD: handsId: %s" % hand.dbid_hands
                         #pipe the Hands.id out to the HUD
-                        print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
-                        #self.caller.pipe_to_hud.stdin.write("%s" % (hand.dbid_hands) + os.linesep)
+                        print "fpdb_import: sending hand to hud", hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                        self.caller.pipe_to_hud.stdin.write("%s" % (hand.dbid_hands) + os.linesep)
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
