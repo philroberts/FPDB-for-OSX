@@ -432,17 +432,20 @@ class Importer:
                 #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
+                to_hud = []
 
                 for hand in handlist:
                     #try, except duplicates here?
                     hand.prepInsert(self.database)
                     hand.insert(self.database)
                     if self.callHud and hand.dbid_hands != 0:
-                        #print "DEBUG: call to HUD: handsId: %s" % hand.dbid_hands
-                        #pipe the Hands.id out to the HUD
-                        print "fpdb_import: sending hand to hud", hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
-                        self.caller.pipe_to_hud.stdin.write("%s" % (hand.dbid_hands) + os.linesep)
+                        to_hud.append(hand.dbid_hands)
                 self.database.commit()
+
+                #pipe the Hands.id out to the HUD
+                for hid in to_hud:
+                    print "fpdb_import: sending hand to hud", hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                    self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
