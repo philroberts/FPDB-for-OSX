@@ -237,7 +237,8 @@ class fpdb:
         dia.set_comments("GTK AboutDialog comments here")
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
-        dia.set_authors("Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
+        dia.set_authors(['Steffen', 'Eratosthenes', 's0rrow',
+            'EricBlade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
         dia.set_program_name("Free Poker Database (FPDB)")
 
         db_version = ""
