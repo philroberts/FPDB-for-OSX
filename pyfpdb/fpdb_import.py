@@ -442,6 +442,7 @@ class Importer:
                         #pipe the Hands.id out to the HUD
                         print "fpdb_import: sending hand to hud", hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
                         self.caller.pipe_to_hud.stdin.write("%s" % (hand.dbid_hands) + os.linesep)
+                self.database.commit()
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
