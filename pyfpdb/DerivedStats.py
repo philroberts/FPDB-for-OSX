@@ -17,6 +17,7 @@
 
 #fpdb modules
 import Card
+from decimal import Decimal
 
 DEBUG = False
 
@@ -135,7 +136,7 @@ class DerivedStats():
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
-            self.handsplayers[player[1]]['startCash'] = int(100 * player[2])
+            self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
 
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
