@@ -44,7 +44,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['totalProfit'] = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
-            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
             self.handsplayers[player[1]]['wonAtSD']     = 0.0
             for i in range(5): 
@@ -156,7 +156,7 @@ class DerivedStats():
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet1'] = True
+                self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
             if self.handsplayers[player]['sawShowdown'] == True:
                 self.handsplayers[player]['wonAtSD'] = 1.0
 
