@@ -187,6 +187,7 @@ class Database:
     def __init__(self, c, sql = None): 
         log.info("Creating Database instance, sql = %s" % sql)
         self.config = c
+        self.__connected = False
         self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
         self.do_connect(c)
         
@@ -237,7 +238,12 @@ class Database:
         self.hud_style = style
 
     def do_connect(self, c):
-        self.fdb.do_connect(c)
+        try:
+            self.fdb.do_connect(c)
+        except:
+            # error during connect
+            self.__connected = False
+            raise
         self.connection = self.fdb.db
         self.wrongDbVersion = self.fdb.wrongDbVersion
 
@@ -247,12 +253,16 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
+        self.__connected = True
 
     def commit(self):
         self.fdb.db.commit()
 
     def rollback(self):
         self.fdb.db.rollback()
+
+    def connected(self):
+        return self.__connected
 
     def get_cursor(self):
         return self.connection.cursor()
@@ -1608,103 +1618,43 @@ class Database:
                              pdata[p]['street2Bets'],
                              pdata[p]['street3Bets'],
                              pdata[p]['street4Bets'],
+                             pdata[p]['position'],
+                             pdata[p]['tourneyTypeId'],
+                             pdata[p]['startCards'],
+                             pdata[p]['street0_3BChance'],
+                             pdata[p]['street0_3BDone'],
+                             pdata[p]['otherRaisedStreet1'],
+                             pdata[p]['otherRaisedStreet2'],
+                             pdata[p]['otherRaisedStreet3'],
+                             pdata[p]['otherRaisedStreet4'],
+                             pdata[p]['foldToOtherRaisedStreet1'],
+                             pdata[p]['foldToOtherRaisedStreet2'],
+                             pdata[p]['foldToOtherRaisedStreet3'],
+                             pdata[p]['foldToOtherRaisedStreet4'],
+                             pdata[p]['stealAttemptChance'],
+                             pdata[p]['stealAttempted'],
+                             pdata[p]['foldBbToStealChance'],
+                             pdata[p]['foldedBbToSteal'],
+                             pdata[p]['foldSbToStealChance'],
+                             pdata[p]['foldedSbToSteal'],
+                             pdata[p]['foldToStreet1CBChance'],
+                             pdata[p]['foldToStreet1CBDone'],
+                             pdata[p]['foldToStreet2CBChance'],
+                             pdata[p]['foldToStreet2CBDone'],
+                             pdata[p]['foldToStreet3CBChance'],
+                             pdata[p]['foldToStreet3CBDone'],
+                             pdata[p]['foldToStreet4CBChance'],
+                             pdata[p]['foldToStreet4CBDone'],
+                             pdata[p]['street1CheckCallRaiseChance'],
+                             pdata[p]['street1CheckCallRaiseDone'],
+                             pdata[p]['street2CheckCallRaiseChance'],
+                             pdata[p]['street2CheckCallRaiseDone'],
+                             pdata[p]['street3CheckCallRaiseChance'],
+                             pdata[p]['street3CheckCallRaiseDone'],
+                             pdata[p]['street4CheckCallRaiseChance']
                             ) )
 
-        q = """INSERT INTO HandsPlayers (
-            handId,
-            playerId,
-            startCash,
-            seatNo,
-            card1,
-            card2,
-            card3,
-            card4,
-            card5,
-            card6,
-            card7,
-            winnings,
-            rake,
-            totalProfit,
-            street0VPI,
-            street1Seen,
-            street2Seen,
-            street3Seen,
-            street4Seen,
-            sawShowdown,
-            wonAtSD,
-            street0Aggr,
-            street1Aggr,
-            street2Aggr,
-            street3Aggr,
-            street4Aggr,
-            street1CBChance,
-            street2CBChance,
-            street3CBChance,
-            street4CBChance,
-            street1CBDone,
-            street2CBDone,
-            street3CBDone,
-            street4CBDone,
-            wonWhenSeenStreet1,
-            street0Calls,
-            street1Calls,
-            street2Calls,
-            street3Calls,
-            street4Calls,
-            street0Bets,
-            street1Bets,
-            street2Bets,
-            street3Bets,
-            street4Bets
-           )
-           VALUES (
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s,
-                %s, %s, %s, %s, %s
-            )"""
-
-#            position,
-#            tourneyTypeId,
-#            startCards,
-#            street0_3BChance,
-#            street0_3BDone,
-#            otherRaisedStreet1,
-#            otherRaisedStreet2,
-#            otherRaisedStreet3,
-#            otherRaisedStreet4,
-#            foldToOtherRaisedStreet1,
-#            foldToOtherRaisedStreet2,
-#            foldToOtherRaisedStreet3,
-#            foldToOtherRaisedStreet4,
-#            stealAttemptChance,
-#            stealAttempted,
-#            foldBbToStealChance,
-#            foldedBbToSteal,
-#            foldSbToStealChance,
-#            foldedSbToSteal,
-#            foldToStreet1CBChance,
-#            foldToStreet1CBDone,
-#            foldToStreet2CBChance,
-#            foldToStreet2CBDone,
-#            foldToStreet3CBChance,
-#            foldToStreet3CBDone,
-#            foldToStreet4CBChance,
-#            foldToStreet4CBDone,
-#            street1CheckCallRaiseChance,
-#            street1CheckCallRaiseDone,
-#            street2CheckCallRaiseChance,
-#            street2CheckCallRaiseDone,
-#            street3CheckCallRaiseChance,
-#            street3CheckCallRaiseDone,
-#            street4CheckCallRaiseChance,
-#            street4CheckCallRaiseDone,
-
+        q = self.sql.query['store_hands_players']
         q = q.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: inserts: %s" %inserts
