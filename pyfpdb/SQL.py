@@ -2787,8 +2787,6 @@ class Sql:
                         ,hp.tourneyTypeId
                         ,date_format(h.handStart, 'd%y%m%d')
 """
-#>>>>>>> 28ca49d592c8e706ad6ee58dd26655bcc33fc5fb:pyfpdb/SQL.py
-#"""
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
                 INSERT INTO HudCache

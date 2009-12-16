@@ -1857,8 +1857,10 @@ class Database:
                       ,(name, site_id))
             #Get last id might be faster here.
             #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
-            tmp = [self.get_last_insert_id(c)]
-        return tmp[0]
+            result = self.get_last_insert_id(c)
+        else:
+            result = tmp[1]
+        return result
 
     def insertGameTypes(self, row):
         c = self.get_cursor()
