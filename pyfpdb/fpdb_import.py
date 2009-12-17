@@ -91,6 +91,7 @@ class Importer:
         self.settings.setdefault("writeQMaxWait", 10)          # not used
         self.settings.setdefault("dropIndexes", "don't drop")
         self.settings.setdefault("dropHudCache", "don't drop")
+        self.settings.setdefault("starsArchive", False)
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
@@ -133,6 +134,9 @@ class Importer:
 
     def setDropHudCache(self, value):
         self.settings['dropHudCache'] = value
+
+    def setStarsArchive(self, value):
+        self.settings['starsArchive'] = value
 
 #   def setWatchTime(self):
 #       self.updated = time()
@@ -425,7 +429,7 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            hhc = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            hhc = obj(in_path = file, out_path = out_path, index = 0, starsArchive = self.settings['starsArchive']) # Index into file 0 until changeover
             if hhc.getStatus() and self.NEWIMPORT == False:
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
             elif hhc.getStatus() and self.NEWIMPORT == True:
@@ -435,11 +439,14 @@ class Importer:
                 to_hud = []
 
                 for hand in handlist:
-                    #try, except duplicates here?
-                    hand.prepInsert(self.database)
-                    hand.insert(self.database)
-                    if self.callHud and hand.dbid_hands != 0:
-                        to_hud.append(hand.dbid_hands)
+                    if hand is not None:
+                        #try, except duplicates here?
+                        hand.prepInsert(self.database)
+                        hand.insert(self.database)
+                        if self.callHud and hand.dbid_hands != 0:
+                            to_hud.append(hand.dbid_hands)
+                    else:
+                        log.error("Hand processed but empty")
                 self.database.commit()
 
                 #pipe the Hands.id out to the HUD

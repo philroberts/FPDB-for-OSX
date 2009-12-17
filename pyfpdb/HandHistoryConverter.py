@@ -57,7 +57,7 @@ class HandHistoryConverter():
     codepage = "cp1252"
 
 
-    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -66,6 +66,7 @@ follow :  whether to tail -f the input"""
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
         
         self.index     = 0
+        self.starsArchive = starsArchive
 
         self.in_path = in_path
         self.out_path = out_path
@@ -254,6 +255,11 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.readFile()
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
+        if self.starsArchive == True:
+            log.debug("Converting starsArchive format to readable")
+            m = re.compile('^Hand #\d+', re.MULTILINE)
+            self.obs = m.sub('', self.obs)
+
         if self.obs is None or self.obs == "":
             log.info("Read no hands.")
             return []
