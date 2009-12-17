@@ -54,6 +54,7 @@ class Hand(object):
         self.starttime = 0
         self.handText = handText
         self.handid = 0
+        self.cancelled = False
         self.dbid_hands = 0
         self.dbid_pids = None
         self.dbid_gt = 0
@@ -263,6 +264,8 @@ If a player has None chips he won't be added."""
             log.debug("markStreets:\n"+ str(self.streets))
         else:
             log.error("markstreets didn't match")
+            log.error("    - Assuming hand cancelled")
+            self.cancelled = True
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
@@ -613,6 +616,8 @@ class HoldemOmahaHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
+            if self.cancelled:
+                return
             hhc.readBlinds(self)
             hhc.readAntes(self)
             hhc.readButton(self)
