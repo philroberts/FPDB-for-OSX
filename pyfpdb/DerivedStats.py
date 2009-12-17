@@ -17,6 +17,7 @@
 
 #fpdb modules
 import Card
+from decimal import Decimal
 
 DEBUG = False
 
@@ -43,15 +44,36 @@ class DerivedStats():
             self.handsplayers[player[1]]['totalProfit'] = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
-            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
-            self.handsplayers[player[1]]['wonAtSD']     = False
+            self.handsplayers[player[1]]['wonAtSD']     = 0.0
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
             for i in range(1,5):
                 self.handsplayers[player[1]]['street%dCBChance' %i] = False
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
+
+            #FIXME - Everything below this point is incomplete.
+            self.handsplayers[player[1]]['position']            = 2
+            self.handsplayers[player[1]]['tourneyTypeId']       = 1
+            self.handsplayers[player[1]]['startCards']          = 0
+            self.handsplayers[player[1]]['street0_3BChance']    = False
+            self.handsplayers[player[1]]['street0_3BDone']      = False
+            self.handsplayers[player[1]]['stealAttemptChance']  = False
+            self.handsplayers[player[1]]['stealAttempted']      = False
+            self.handsplayers[player[1]]['foldBbToStealChance'] = False
+            self.handsplayers[player[1]]['foldBbToStealChance'] = False
+            self.handsplayers[player[1]]['foldSbToStealChance'] = False
+            self.handsplayers[player[1]]['foldedSbToSteal']     = False
+            self.handsplayers[player[1]]['foldedBbToSteal']     = False
+            for i in range(1,5):
+                self.handsplayers[player[1]]['otherRaisedStreet%d' %i]          = False
+                self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
+                self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
+                self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -114,7 +136,7 @@ class DerivedStats():
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
-            self.handsplayers[player[1]]['startCash'] = player[2]
+            self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
 
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
@@ -134,9 +156,9 @@ class DerivedStats():
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet1'] = True
+                self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
             if self.handsplayers[player]['sawShowdown'] == True:
-                self.handsplayers[player]['wonAtSD'] = True
+                self.handsplayers[player]['wonAtSD'] = 1.0
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
@@ -148,6 +170,33 @@ class DerivedStats():
             hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
             for i, card in enumerate(hcs[:7], 1):
                 self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
+
+
+        # position,
+            #Stud 3rd street card test
+            # denny501: brings in for $0.02
+            # s0rrow: calls $0.02
+            # TomSludge: folds
+            # Soroka69: calls $0.02
+            # rdiezchang: calls $0.02           (Seat 8)
+            # u.pressure: folds                 (Seat 1)
+            # 123smoothie: calls $0.02
+            # gashpor: calls $0.02
+
+        # Additional stats
+        # 3betSB, 3betBB
+        # Squeeze, Ratchet?
+
+
+    def getPosition(hand, seat):
+        """Returns position value like 'B', 'S', 0, 1, ..."""
+        # Flop/Draw games with blinds
+        # Need a better system???
+        # -2 BB - B (all)
+        # -1 SB - S (all)
+        #  0 Button 
+        #  1 Cutoff
+        #  2 Hijack
 
     def assembleHudCache(self, hand):
         pass
@@ -195,8 +244,9 @@ class DerivedStats():
         pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
         self.hands['playersAtShowdown'] = len(pas)
 
-        for player in pas:
-            self.handsplayers[player]['sawShowdown'] = True
+        if self.hands['playersAtShowdown'] > 1:
+            for player in pas:
+                self.handsplayers[player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element

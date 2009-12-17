@@ -21,7 +21,7 @@
 
 import os  # todo: remove this once import_dir is in fpdb_import
 import sys
-from time import time, strftime, sleep
+from time import time, strftime, sleep, clock
 import traceback
 import math
 import datetime
@@ -91,6 +91,7 @@ class Importer:
         self.settings.setdefault("writeQMaxWait", 10)          # not used
         self.settings.setdefault("dropIndexes", "don't drop")
         self.settings.setdefault("dropHudCache", "don't drop")
+        self.settings.setdefault("starsArchive", False)
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
@@ -100,6 +101,8 @@ class Importer:
             self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
         self.NEWIMPORT = Configuration.NEWIMPORT
+
+        clock() # init clock in windows
 
     #Set functions
     def setCallHud(self, value):
@@ -131,6 +134,9 @@ class Importer:
 
     def setDropHudCache(self, value):
         self.settings['dropHudCache'] = value
+
+    def setStarsArchive(self, value):
+        self.settings['starsArchive'] = value
 
 #   def setWatchTime(self):
 #       self.updated = time()
@@ -359,10 +365,15 @@ class Importer:
 #                        print "file",counter," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
                         try:
                             if not os.path.isdir(file):
-                                self.caller.addText("\n"+file)
+                                self.caller.addText("\n"+os.path.basename(file))
                         except KeyError: # TODO: What error happens here?
                             pass
-                        self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
+                        (stored, duplicates, partial, errors, ttime) = self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
+                        try:
+                            if not os.path.isdir(file):
+                                self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))
+                        except KeyError: # TODO: Again, what error happens here? fix when we find out ..
+                            pass
                         self.updatedsize[file] = stat_info.st_size
                         self.updatedtime[file] = time()
                 else:
@@ -393,7 +404,7 @@ class Importer:
 
         if os.path.isdir(file):
             self.addToDirList[file] = [site] + [filter]
-            return
+            return (0,0,0,0,0)
 
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
@@ -418,17 +429,33 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            hhc = obj(in_path = file, out_path = out_path, index = 0) # Index into file 0 until changeover
+            hhc = obj(in_path = file, out_path = out_path, index = 0, starsArchive = self.settings['starsArchive']) # Index into file 0 until changeover
             if hhc.getStatus() and self.NEWIMPORT == False:
                 (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
             elif hhc.getStatus() and self.NEWIMPORT == True:
                 #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
+                to_hud = []
 
                 for hand in handlist:
-                    #hand.prepInsert()
-                    hand.insert(self.database)
+                    if hand is not None:
+                        #try, except duplicates here?
+                        hand.prepInsert(self.database)
+                        hand.insert(self.database)
+                        if self.callHud and hand.dbid_hands != 0:
+                            to_hud.append(hand.dbid_hands)
+                    else:
+                        log.error("Hand processed but empty")
+                self.database.commit()
+
+                #pipe the Hands.id out to the HUD
+                for hid in to_hud:
+                    print "fpdb_import: sending hand to hud", hand.dbid_hands, "pipe =", self.caller.pipe_to_hud
+                    self.caller.pipe_to_hud.stdin.write("%s" % (hid) + os.linesep)
+
+                errors = getattr(hhc, 'numErrors')
+                stored = getattr(hhc, 'numHands')
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
@@ -472,10 +499,13 @@ class Importer:
         self.pos_in_file[file] = inputFile.tell()
         inputFile.close()
 
+        x = clock()
         (stored, duplicates, partial, errors, ttime, handsId) = self.import_fpdb_lines(db, self.lines, starttime, file, site, q)
 
         db.commit()
-        ttime = time() - starttime
+        y = clock()
+        ttime = y - x
+        #ttime = time() - starttime
         if q is None:
             log.info("Total stored: %(stored)d\tduplicates:%(duplicates)d\terrors:%(errors)d\ttime:%(ttime)s" % locals())
 
@@ -554,7 +584,11 @@ class Importer:
                             #print "call to HUD here. handsId:",handsId
                             #pipe the Hands.id out to the HUD
                             # print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
-                            self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+                            try:
+                                self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
+                            except IOError: # hud closed
+                                self.callHud = False
+                                pass # continue import without hud
                     except Exceptions.DuplicateError:
                         duplicates += 1
                         db.rollback()

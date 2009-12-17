@@ -57,7 +57,7 @@ class HandHistoryConverter():
     codepage = "cp1252"
 
 
-    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True):
+    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -66,11 +66,14 @@ follow :  whether to tail -f the input"""
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
         
         self.index     = 0
+        self.starsArchive = starsArchive
 
         self.in_path = in_path
         self.out_path = out_path
 
         self.processedHands = []
+        self.numHands = 0
+        self.numErrors = 0
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
@@ -135,17 +138,17 @@ Otherwise, finish at EOF.
             return
 
         try:
-            numHands = 0
-            numErrors = 0
+            self.numHands = 0
+            self.numErrors = 0
             if self.follow:
                 #TODO: See how summary files can be handled on the fly (here they should be rejected as before) 
                 log.info("Tailing '%s'" % self.in_path)
                 for handText in self.tailHands():
                     try:
                         self.processHand(handText)
-                        numHands += 1
+                        self.numHands += 1
                     except FpdbParseError, e:
-                        numErrors += 1
+                        self.numErrors += 1
                         log.warning("Failed to convert hand %s" % e.hid)
                         log.warning("Exception msg: '%s'" % str(e))
                         log.debug(handText)
@@ -160,13 +163,13 @@ Otherwise, finish at EOF.
                         try:
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
-                            numErrors += 1
+                            self.numErrors += 1
                             log.warning("Failed to convert hand %s" % e.hid)
                             log.warning("Exception msg: '%s'" % str(e))
                             log.debug(handText)
-                    numHands = len(handsList)
+                    self.numHands = len(handsList)
                     endtime = time.time()
-                    log.info("Read %d hands (%d failed) in %.3f seconds" % (numHands, numErrors, endtime - starttime))
+                    log.info("Read %d hands (%d failed) in %.3f seconds" % (self.numHands, self.numErrors, endtime - starttime))
                 else:
                         self.parsedObjectType = "Summary"
                         summaryParsingStatus = self.readSummaryInfo(handsList)
@@ -252,6 +255,11 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.readFile()
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
+        if self.starsArchive == True:
+            log.debug("Converting starsArchive format to readable")
+            m = re.compile('^Hand #\d+', re.MULTILINE)
+            self.obs = m.sub('', self.obs)
+
         if self.obs is None or self.obs == "":
             log.info("Read no hands.")
             return []

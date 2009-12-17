@@ -31,6 +31,7 @@ try:
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
+    from matplotlib.font_manager import FontProperties
     from numpy import arange, cumsum
     from pylab import *
 except ImportError, inst:
@@ -170,7 +171,7 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            line = self.getRingProfitGraph(playerids, sitenos, limits)
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits)
             print "Graph generated in: %s" %(time() - starttime)
 
             self.ax.set_title("Profit graph for ring games")
@@ -179,22 +180,27 @@ class GuiGraphViewer (threading.Thread):
             self.ax.set_xlabel("Hands", fontsize = 12)
             self.ax.set_ylabel("$", fontsize = 12)
             self.ax.grid(color='g', linestyle=':', linewidth=0.2)
-            if line == None or line == []:
+            if green == None or green == []:
 
                 #TODO: Do something useful like alert user
                 print "No hands returned by graph query"
             else:
-    #            text = "All Hands, " + sitename + str(name) + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
-                text = "All Hands, " + "\nProfit: $" + str(line[-1]) + "\nTotal Hands: " + str(len(line))
-
-                self.ax.annotate(text,
-                                 xy=(10, -10),
-                                 xycoords='axes points',
-                                 horizontalalignment='left', verticalalignment='top',
-                                 fontsize=10)
+                #text = "Profit: $%.2f\nTotal Hands: %d" %(green[-1], len(green))
+                #self.ax.annotate(text,
+                #                 xy=(10, -10),
+                #                 xycoords='axes points',
+                #                 horizontalalignment='left', verticalalignment='top',
+                #                 fontsize=10)
 
                 #Draw plot
-                self.ax.plot(line,)
+                self.ax.plot(green, color='green', label='Hands: %d\nProfit: $%.2f' %(len(green), green[-1]))
+                self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
+                self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
+                if sys.version[0:3] == '2.5':
+                    self.ax.legend(loc='best', shadow=True, prop=FontProperties(size='smaller'))
+                else:
+                    self.ax.legend(loc='best', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+
 
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
@@ -270,9 +276,13 @@ class GuiGraphViewer (threading.Thread):
         if winnings == ():
             return None
 
-        y = map(lambda x:float(x[1]), winnings)
-        line = cumsum(y)
-        return line/100
+        green = map(lambda x:float(x[1]), winnings)
+        blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
+        red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
+        greenline = cumsum(green)
+        blueline  = cumsum(blue)
+        redline   = cumsum(red)
+        return (greenline/100, blueline/100, redline/100)
         #end of def getRingProfitGraph
 
     def exportGraph (self, widget, data):

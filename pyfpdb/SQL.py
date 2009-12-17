@@ -1317,6 +1317,7 @@ class Sql:
                    1.25 would be a config value so user could change it)
                 */
                 GROUP BY hc.PlayerId, hp.seatNo, p.name
+                ORDER BY hc.PlayerId, hp.seatNo, p.name
             """
 
 #    same as above except stats are aggregated for all blind/limit levels
@@ -1418,6 +1419,7 @@ class Sql:
                           )
                       )
                 GROUP BY hc.PlayerId, p.name
+                ORDER BY hc.PlayerId, p.name
             """
                 #  NOTES on above cursor:
                 #  - Do NOT include %s inside query in a comment - the db api thinks 
@@ -2561,7 +2563,7 @@ class Sql:
         #    self.query['playerStatsByPosition'] = """ """
 
         self.query['getRingProfitAllHandsPlayerIdSite'] = """
-            SELECT hp.handId, hp.totalProfit
+            SELECT hp.handId, hp.totalProfit, hp.sawShowdown
             FROM HandsPlayers hp
             INNER JOIN Players pl      ON  (pl.id = hp.playerId)
             INNER JOIN Hands h         ON  (h.id  = hp.handId)
@@ -2572,7 +2574,7 @@ class Sql:
             AND   h.handStart < '<enddate_test>'
             <limit_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.handStart, hp.handId, hp.totalProfit
+            GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.handStart"""
 
         ####################################
@@ -2787,8 +2789,6 @@ class Sql:
                         ,hp.tourneyTypeId
                         ,date_format(h.handStart, 'd%y%m%d')
 """
-#>>>>>>> 28ca49d592c8e706ad6ee58dd26655bcc33fc5fb:pyfpdb/SQL.py
-#"""
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
                 INSERT INTO HudCache
@@ -3325,8 +3325,105 @@ class Sql:
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
-
-        
+        self.query['store_hands_players'] = """INSERT INTO HandsPlayers (
+                handId,
+                playerId,
+                startCash,
+                seatNo,
+                card1,
+                card2,
+                card3,
+                card4,
+                card5,
+                card6,
+                card7,
+                winnings,
+                rake,
+                totalProfit,
+                street0VPI,
+                street1Seen,
+                street2Seen,
+                street3Seen,
+                street4Seen,
+                sawShowdown,
+                wonAtSD,
+                street0Aggr,
+                street1Aggr,
+                street2Aggr,
+                street3Aggr,
+                street4Aggr,
+                street1CBChance,
+                street2CBChance,
+                street3CBChance,
+                street4CBChance,
+                street1CBDone,
+                street2CBDone,
+                street3CBDone,
+                street4CBDone,
+                wonWhenSeenStreet1,
+                street0Calls,
+                street1Calls,
+                street2Calls,
+                street3Calls,
+                street4Calls,
+                street0Bets,
+                street1Bets,
+                street2Bets,
+                street3Bets,
+                street4Bets,
+                position,
+                tourneyTypeId,
+                startCards,
+                street0_3BChance,
+                street0_3BDone,
+                otherRaisedStreet1,
+                otherRaisedStreet2,
+                otherRaisedStreet3,
+                otherRaisedStreet4,
+                foldToOtherRaisedStreet1,
+                foldToOtherRaisedStreet2,
+                foldToOtherRaisedStreet3,
+                foldToOtherRaisedStreet4,
+                stealAttemptChance,
+                stealAttempted,
+                foldBbToStealChance,
+                foldedBbToSteal,
+                foldSbToStealChance,
+                foldedSbToSteal,
+                foldToStreet1CBChance,
+                foldToStreet1CBDone,
+                foldToStreet2CBChance,
+                foldToStreet2CBDone,
+                foldToStreet3CBChance,
+                foldToStreet3CBDone,
+                foldToStreet4CBChance,
+                foldToStreet4CBDone,
+                street1CheckCallRaiseChance,
+                street1CheckCallRaiseDone,
+                street2CheckCallRaiseChance,
+                street2CheckCallRaiseDone,
+                street3CheckCallRaiseChance,
+                street3CheckCallRaiseDone,
+                street4CheckCallRaiseChance
+               )
+               VALUES (
+                    %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s
+                )"""
         
         if db_server == 'mysql':
             self.query['placeholder'] = u'%s'
