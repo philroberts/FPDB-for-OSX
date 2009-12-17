@@ -266,6 +266,7 @@ If a player has None chips he won't be added."""
             log.error("markstreets didn't match")
             log.error("    - Assuming hand cancelled")
             self.cancelled = True
+            raise FpdbParseError
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
