@@ -326,6 +326,8 @@ def main(argv=None):
                     help="How often to print a one-line status report (0 (default) means never)")
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
                     help="Print some useful one liners")
+    parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
+                    help="Do the required conversion for Stars Archive format (ie. as provided by support")
     (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
@@ -369,6 +371,8 @@ def main(argv=None):
         importer.setThreads(-1)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
         importer.setCallHud(False)
+        if options.starsArchive:
+            importer.setStarsArchive(True)
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
         print 'GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
