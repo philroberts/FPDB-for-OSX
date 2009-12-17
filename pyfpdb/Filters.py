@@ -479,7 +479,8 @@ class Filters(threading.Thread):
         self.cursor.execute(self.sql.query['getLimits2'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        fl, nl = False, False
+        found = {'nl':False, 'fl':False, 'ring':False, 'tour':False}
+
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
             vbox1.pack_start(hbox, False, False, 0)
@@ -487,7 +488,6 @@ class Filters(threading.Thread):
             hbox.pack_start(vbox2, False, False, 0)
             vbox3 = gtk.VBox(False, 0)
             hbox.pack_start(vbox3, False, False, 0)
-            found = {'nl':False, 'fl':False, 'ring':False, 'tour':False}
             for i, line in enumerate(result):
                 if "UseType" in self.display:
                     if line[0] != self.display["UseType"]:
