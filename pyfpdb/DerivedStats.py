@@ -17,6 +17,7 @@
 
 #fpdb modules
 import Card
+from decimal import Decimal
 
 DEBUG = False
 
@@ -43,9 +44,9 @@ class DerivedStats():
             self.handsplayers[player[1]]['totalProfit'] = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
-            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
-            self.handsplayers[player[1]]['wonAtSD']     = False
+            self.handsplayers[player[1]]['wonAtSD']     = 0.0
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
@@ -135,7 +136,7 @@ class DerivedStats():
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
-            self.handsplayers[player[1]]['startCash'] = player[2]
+            self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
 
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
@@ -155,9 +156,9 @@ class DerivedStats():
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet1'] = True
+                self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
             if self.handsplayers[player]['sawShowdown'] == True:
-                self.handsplayers[player]['wonAtSD'] = True
+                self.handsplayers[player]['wonAtSD'] = 1.0
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
