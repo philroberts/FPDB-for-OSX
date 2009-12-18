@@ -3402,10 +3402,11 @@ class Sql:
                 street2CheckCallRaiseDone,
                 street3CheckCallRaiseChance,
                 street3CheckCallRaiseDone,
-                street4CheckCallRaiseChance
+                street4CheckCallRaiseChance,
+                street4CheckCallRaiseDone
                )
                VALUES (
-                    %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,

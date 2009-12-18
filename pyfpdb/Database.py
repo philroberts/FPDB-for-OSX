@@ -1641,7 +1641,8 @@ class Database:
                              pdata[p]['street2CheckCallRaiseDone'],
                              pdata[p]['street3CheckCallRaiseChance'],
                              pdata[p]['street3CheckCallRaiseDone'],
-                             pdata[p]['street4CheckCallRaiseChance']
+                             pdata[p]['street4CheckCallRaiseChance'],
+                             pdata[p]['street4CheckCallRaiseDone']
                             ) )
 
         q = self.sql.query['store_hands_players']
