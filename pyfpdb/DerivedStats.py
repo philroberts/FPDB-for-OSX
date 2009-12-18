@@ -168,8 +168,10 @@ class DerivedStats():
         for player in hand.players:
             hcs = hand.join_holecards(player[1], asList=True)
             hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
-            for i, card in enumerate(hcs[:7], 1):
-                self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
+            #for i, card in enumerate(hcs[:7], 1): #Python 2.6 syntax
+            #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
+            for i, card in enumerate(hcs[:7]):
+                self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
 
 
         # position,
@@ -266,13 +268,17 @@ class DerivedStats():
         #   Then no bets before the player with initiatives first action on current street
         # ie. if player on street-1 had initiative
         #                and no donkbets occurred
-        for i, street in enumerate(hand.actionStreets[2:], start=1):
-            name = self.lastBetOrRaiser(hand.actionStreets[i])
+
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
+        # came there
+        #for i, street in enumerate(hand.actionStreets[2:], start=1):
+        for i, street in enumerate(hand.actionStreets[2:]:
+            name = self.lastBetOrRaiser(hand.actionStreets[i+1])
             if name:
-                chance = self.noBetsBefore(hand.actionStreets[i+1], name)
-                self.handsplayers[name]['street%dCBChance' %i] = True
+                chance = self.noBetsBefore(hand.actionStreets[i+2], name)
+                self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                 if chance == True:
-                    self.handsplayers[name]['street%dCBDone' %i] = self.betStreet(hand.actionStreets[i+1], name)
+                    self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
 
     def seen(self, hand, i):
         pas = set()
