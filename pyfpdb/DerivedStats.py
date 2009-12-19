@@ -272,7 +272,7 @@ class DerivedStats():
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         # came there
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
-        for i, street in enumerate(hand.actionStreets[2:]:
+        for i, street in enumerate(hand.actionStreets[2:]):
             name = self.lastBetOrRaiser(hand.actionStreets[i+1])
             if name:
                 chance = self.noBetsBefore(hand.actionStreets[i+2], name)
