@@ -17,6 +17,7 @@
 
 #fpdb modules
 import Card
+from decimal import Decimal
 
 DEBUG = False
 
@@ -43,15 +44,36 @@ class DerivedStats():
             self.handsplayers[player[1]]['totalProfit'] = 0
             self.handsplayers[player[1]]['street4Seen'] = False
             self.handsplayers[player[1]]['street4Aggr'] = False
-            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
-            self.handsplayers[player[1]]['wonAtSD']     = False
+            self.handsplayers[player[1]]['wonAtSD']     = 0.0
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
             for i in range(1,5):
                 self.handsplayers[player[1]]['street%dCBChance' %i] = False
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
+
+            #FIXME - Everything below this point is incomplete.
+            self.handsplayers[player[1]]['position']            = 2
+            self.handsplayers[player[1]]['tourneyTypeId']       = 1
+            self.handsplayers[player[1]]['startCards']          = 0
+            self.handsplayers[player[1]]['street0_3BChance']    = False
+            self.handsplayers[player[1]]['street0_3BDone']      = False
+            self.handsplayers[player[1]]['stealAttemptChance']  = False
+            self.handsplayers[player[1]]['stealAttempted']      = False
+            self.handsplayers[player[1]]['foldBbToStealChance'] = False
+            self.handsplayers[player[1]]['foldBbToStealChance'] = False
+            self.handsplayers[player[1]]['foldSbToStealChance'] = False
+            self.handsplayers[player[1]]['foldedSbToSteal']     = False
+            self.handsplayers[player[1]]['foldedBbToSteal']     = False
+            for i in range(1,5):
+                self.handsplayers[player[1]]['otherRaisedStreet%d' %i]          = False
+                self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
+                self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
+                self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -114,7 +136,7 @@ class DerivedStats():
         #hand.players = [[seat, name, chips],[seat, name, chips]]
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
-            self.handsplayers[player[1]]['startCash'] = player[2]
+            self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
 
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
@@ -134,9 +156,9 @@ class DerivedStats():
             # Should be fine for split-pots, but won't be accurate for multi-way pots
             self.handsplayers[player]['rake'] = int(100* hand.rake)/len(hand.collectees)
             if self.handsplayers[player]['street1Seen'] == True:
-                self.handsplayers[player]['wonWhenSeenStreet1'] = True
+                self.handsplayers[player]['wonWhenSeenStreet1'] = 1.0
             if self.handsplayers[player]['sawShowdown'] == True:
-                self.handsplayers[player]['wonAtSD'] = True
+                self.handsplayers[player]['wonAtSD'] = 1.0
 
         for player in hand.pot.committed:
             self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
@@ -146,8 +168,11 @@ class DerivedStats():
         for player in hand.players:
             hcs = hand.join_holecards(player[1], asList=True)
             hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
-            for i, card in enumerate(hcs[:7], 1):
-                self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
+            #for i, card in enumerate(hcs[:7], 1): #Python 2.6 syntax
+            #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
+            for i, card in enumerate(hcs[:7]):
+                self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
+
 
         # position,
             #Stud 3rd street card test
@@ -159,16 +184,6 @@ class DerivedStats():
             # u.pressure: folds                 (Seat 1)
             # 123smoothie: calls $0.02
             # gashpor: calls $0.02
-        # tourneyTypeId,
-        # startCards,
-        # street0_3BChance,street0_3BDone,
-        # otherRaisedStreet1-4
-        # foldToOtherRaisedStreet1-4
-        # stealAttemptChance,stealAttempted,
-        # foldBbToStealChance,foldedBbToSteal,
-        # foldSbToStealChance,foldedSbToSteal,
-        # foldToStreet1-4CBChance, foldToStreet1-4CBDone,
-        # street1-4CheckCallRaiseChance, street1-4CheckCallRaiseDone,
 
         # Additional stats
         # 3betSB, 3betBB
@@ -253,13 +268,17 @@ class DerivedStats():
         #   Then no bets before the player with initiatives first action on current street
         # ie. if player on street-1 had initiative
         #                and no donkbets occurred
-        for i, street in enumerate(hand.actionStreets[2:], start=1):
-            name = self.lastBetOrRaiser(hand.actionStreets[i])
+
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
+        # came there
+        #for i, street in enumerate(hand.actionStreets[2:], start=1):
+        for i, street in enumerate(hand.actionStreets[2:]):
+            name = self.lastBetOrRaiser(hand.actionStreets[i+1])
             if name:
-                chance = self.noBetsBefore(hand.actionStreets[i+1], name)
-                self.handsplayers[name]['street%dCBChance' %i] = True
+                chance = self.noBetsBefore(hand.actionStreets[i+2], name)
+                self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                 if chance == True:
-                    self.handsplayers[name]['street%dCBDone' %i] = self.betStreet(hand.actionStreets[i+1], name)
+                    self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
 
     def seen(self, hand, i):
         pas = set()

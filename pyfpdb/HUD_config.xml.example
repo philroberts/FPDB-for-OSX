@@ -387,6 +387,18 @@ Left-Drag to Move"
                 <location seat="8" x="0" y="181">  </location>
                 <location seat="9" x="70" y="53">  </location>
             </layout>
+            <layout fav_seat="6" height="547" max="10" width="794">
+                <location seat="1" x="698" y="69">  </location>
+                <location seat="2" x="716" y="243"> </location>
+                <location seat="3" x="699" y="301"> </location>
+                <location seat="4" x="456" y="391"> </location>
+                <location seat="5" x="338" y="369"> </location>
+                <location seat="6" x="98" y="363"> </location>
+                <location seat="7" x="15" y="242"> </location>
+                <location seat="8" x="11" y="55">  </location>
+                <location seat="9" x="341" y="30">  </location>
+                <location seat="10" x="562" y="8">  </location>
+            </layout>
         </site>
 
 
