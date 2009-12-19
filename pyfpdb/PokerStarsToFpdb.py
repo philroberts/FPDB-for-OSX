@@ -40,15 +40,13 @@ class PokerStars(HandHistoryConverter):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
-
     # Static regexes
     re_GameInfo     = re.compile(u"""
           PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
-          (?P<BUYIN>[%(LS)s\+\d\.]+      # here's how I plan to use LS
-          \s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?
-          )\s)?                          # close paren of tournament info
+          # here's how I plan to use LS
+          (?P<BUYIN>([%(LS)s\+\d\.]+\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?)|Freeroll)\s+)?                          # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
@@ -148,7 +146,7 @@ class PokerStars(HandHistoryConverter):
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
+                          '5 Card Draw' : ('draw','fivedraw'),
                }
         currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 #    I don't think this is doing what we think. mg will always have all 
@@ -203,7 +201,10 @@ class PokerStars(HandHistoryConverter):
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                hand.buyin = info[key]
+                if info[key] == 'Freeroll':
+                    hand.buyin = '$0+$0'
+                else:
+                    hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]
 
