@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: iso-8859-15 -*-
 
 #Copyright 2008 Steffen Jobbagy-Felso
 #This program is free software: you can redistribute it and/or modify
@@ -538,7 +539,11 @@ def parseAnteLine(line, isTourney, names, antes):
 #returns the buyin of a tourney in cents
 def parseBuyin(topline):
     pos1 = topline.find("$")+1
-    pos2 = topline.find("+")
+    if pos1 != 0:
+        pos2 = topline.find("+")
+    else:
+        pos1 = topline.find("€")+3
+        pos2 = topline.find("+")
     return float2int(topline[pos1:pos2])
 
 #parses a card line and changes the passed arrays accordingly
@@ -635,9 +640,14 @@ def parseCashesAndSeatNos(lines):
 
 #returns the buyin of a tourney in cents
 def parseFee(topline):
-    pos1=topline.find("$")+1
-    pos1=topline.find("$",pos1)+1
-    pos2=topline.find(" ", pos1)
+    pos1 = topline.find("$")+1
+    if pos1 != 0:
+        pos1 = topline.find("$", pos1)+1
+        pos2 = topline.find(" ", pos1)
+    else:
+        pos1 = topline.find("€")+3
+        pos1 = topline.find("€", pos1)+3
+        pos2 = topline.find(" ", pos1)
     return float2int(topline[pos1:pos2])
 
 #returns a datetime object with the starttime indicated in the given topline
