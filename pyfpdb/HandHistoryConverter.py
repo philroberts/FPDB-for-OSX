@@ -65,7 +65,7 @@ follow :  whether to tail -f the input"""
 
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
         
-        self.index     = 0
+        self.index     = index
         self.starsArchive = starsArchive
 
         self.in_path = in_path

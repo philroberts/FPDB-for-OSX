@@ -427,7 +427,12 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            hhc = obj(in_path = file, out_path = out_path, index = 0, starsArchive = self.settings['starsArchive']) # Index into file 0 until changeover
+            idx = 0
+            if file in self.pos_in_file:
+                idx = self.pos_in_file[file]
+            else:
+                self.pos_in_file[file] = 0
+            hhc = obj(in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive']) # Index into file 0 until changeover
             if hhc.getStatus() and self.NEWIMPORT == True:
                 #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
