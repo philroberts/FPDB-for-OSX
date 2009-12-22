@@ -449,6 +449,7 @@ class Importer:
                     else:
                         log.error("Hand processed but empty")
                 self.database.commit()
+                self.database.rebuild_hudcache()
 
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:
