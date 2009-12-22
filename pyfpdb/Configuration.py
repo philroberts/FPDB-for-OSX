@@ -31,6 +31,7 @@ import inspect
 import string
 import traceback
 import shutil
+import locale
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -126,6 +127,7 @@ DATABASE_TYPES = (
         )
 
 NEWIMPORT = True
+LOCALE_ENCODING = locale.getdefaultlocale()[1]
 
 ########################################################################
 def string_to_bool(string, default=True):
