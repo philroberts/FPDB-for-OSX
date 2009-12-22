@@ -89,6 +89,7 @@ class PartyPoker(HandHistoryConverter):
             (?P<TTYPE>[a-zA-Z0-9 ]+)\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
             (?:[^ ]+\s+\#(?P<MTTTABLE>\d+).+)? # table number for mtt
+            (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
             """,

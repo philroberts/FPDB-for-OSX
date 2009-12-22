@@ -47,6 +47,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
             self.handsplayers[player[1]]['wonAtSD']     = 0.0
+            self.handsplayers[player[1]]['startCards']  = 0
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
@@ -57,7 +58,6 @@ class DerivedStats():
             #FIXME - Everything below this point is incomplete.
             self.handsplayers[player[1]]['position']            = 2
             self.handsplayers[player[1]]['tourneyTypeId']       = 1
-            self.handsplayers[player[1]]['startCards']          = 0
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
             self.handsplayers[player[1]]['stealAttemptChance']  = False
@@ -168,9 +168,11 @@ class DerivedStats():
         for player in hand.players:
             hcs = hand.join_holecards(player[1], asList=True)
             hcs = hcs + [u'0x', u'0x', u'0x', u'0x', u'0x']
-            for i, card in enumerate(hcs[:7], 1):
-                self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
-
+            #for i, card in enumerate(hcs[:7], 1): #Python 2.6 syntax
+            #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
+            for i, card in enumerate(hcs[:7]):
+                self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
+            self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 
         # position,
             #Stud 3rd street card test
@@ -266,13 +268,17 @@ class DerivedStats():
         #   Then no bets before the player with initiatives first action on current street
         # ie. if player on street-1 had initiative
         #                and no donkbets occurred
-        for i, street in enumerate(hand.actionStreets[2:], start=1):
-            name = self.lastBetOrRaiser(hand.actionStreets[i])
+
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
+        # came there
+        #for i, street in enumerate(hand.actionStreets[2:], start=1):
+        for i, street in enumerate(hand.actionStreets[2:]):
+            name = self.lastBetOrRaiser(hand.actionStreets[i+1])
             if name:
-                chance = self.noBetsBefore(hand.actionStreets[i+1], name)
-                self.handsplayers[name]['street%dCBChance' %i] = True
+                chance = self.noBetsBefore(hand.actionStreets[i+2], name)
+                self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                 if chance == True:
-                    self.handsplayers[name]['street%dCBDone' %i] = self.betStreet(hand.actionStreets[i+1], name)
+                    self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
 
     def seen(self, hand, i):
         pas = set()
