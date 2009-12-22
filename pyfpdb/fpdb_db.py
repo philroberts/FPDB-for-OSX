@@ -38,7 +38,6 @@ except ImportError:
     logging.info("Not using numpy to define variance in sqlite.")
     use_numpy = False
 
-import fpdb_simple
 import FpdbSQLQueries
 import Configuration
 

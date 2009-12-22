@@ -35,10 +35,8 @@ import gtk
 
 #    fpdb/FreePokerTools modules
 
-import fpdb_simple
 import fpdb_db
 import Database
-import fpdb_parse_logic
 import Configuration
 import Exceptions
 
