@@ -203,6 +203,8 @@ class PokerStars(HandHistoryConverter):
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
+                #FIXME: The key looks like: '€0.82+€0.18 EUR'
+                #       This should be parsed properly and used
                 hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]

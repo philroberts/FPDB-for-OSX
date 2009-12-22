@@ -47,6 +47,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['wonWhenSeenStreet1'] = 0.0
             self.handsplayers[player[1]]['sawShowdown'] = False
             self.handsplayers[player[1]]['wonAtSD']     = 0.0
+            self.handsplayers[player[1]]['startCards']  = 0
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
@@ -57,7 +58,6 @@ class DerivedStats():
             #FIXME - Everything below this point is incomplete.
             self.handsplayers[player[1]]['position']            = 2
             self.handsplayers[player[1]]['tourneyTypeId']       = 1
-            self.handsplayers[player[1]]['startCards']          = 0
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
             self.handsplayers[player[1]]['stealAttemptChance']  = False
@@ -172,7 +172,7 @@ class DerivedStats():
             #    self.handsplayers[player[1]]['card%s' % i] = Card.encodeCard(card)
             for i, card in enumerate(hcs[:7]):
                 self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
-
+            self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 
         # position,
             #Stud 3rd street card test
