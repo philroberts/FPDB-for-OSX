@@ -1569,7 +1569,8 @@ class Database:
             line[55] = gid    # gametypeId
             line[56] = pids[p]    # playerId
             line[57] = len(pids)    # activeSeats
-            line[58] = pdata[p]['position']
+            pos = {-2:'B', -1:'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
+            line[58] = pos[pdata[p]['position']]
             line[59] = pdata[p]['tourneyTypeId']
             line[60] = styleKey    # styleKey
             inserts.append(line)
@@ -1580,19 +1581,20 @@ class Database:
         for row in inserts:
             # Try to do the update first:
             num = cursor.execute(update_hudcache, row)
-           # Test statusmessage to see if update worked, do insert if not
-           # num is a cursor in sqlite
+            #print "DEBUG: values: %s" % row[-6:]
+            # Test statusmessage to see if update worked, do insert if not
+            # num is a cursor in sqlite
             if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
                     or (self.backend == self.MYSQL_INNODB and num == 0) 
                     or (self.backend == self.SQLITE and num.rowcount == 0)):
                 #move the last 6 items in WHERE clause of row from the end of the array
                 # to the beginning for the INSERT statement
-                print "DEBUG: using INSERT: %s" % num
+                #print "DEBUG: using INSERT: %s" % num
                 row = row[-6:] + row[:-6]
                 num = cursor.execute(insert_hudcache, row)
-                print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
+                #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
             else:
-                print "DEBUG: Successfully updated HudCacho using UPDATE"
+                #print "DEBUG: Successfully updated HudCacho using UPDATE"
                 pass
 
     def isDuplicate(self, gametypeID, siteHandNo):

@@ -452,6 +452,7 @@ class Importer:
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
                     hand.updateHudCache(self.database)
+                    self.database.commit()
 
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:
