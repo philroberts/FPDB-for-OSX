@@ -512,7 +512,7 @@ or None if we fail to get the info """
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            return "%s.+Table\s%s" % (tournament, table_number)
+            return "%s.+Table.+%s" % (tournament, table_number)
         else:
             return table_name
 
