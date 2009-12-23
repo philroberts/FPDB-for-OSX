@@ -631,7 +631,10 @@ class Hud:
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
-
+                    else:
+                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse("#FFFFFF"))
+					
                     if this_stat.stat_loth != "":
                         if number[0] < (float(this_stat.stat_loth)/100):
                             self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
