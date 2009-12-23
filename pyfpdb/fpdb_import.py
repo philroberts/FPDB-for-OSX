@@ -432,9 +432,8 @@ class Importer:
                 idx = self.pos_in_file[file]
             else:
                 self.pos_in_file[file] = 0
-            hhc = obj(in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive']) # Index into file 0 until changeover
+            hhc = obj(in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
             if hhc.getStatus() and self.NEWIMPORT == True:
-                #This code doesn't do anything yet
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 to_hud = []
@@ -449,8 +448,10 @@ class Importer:
                     else:
                         log.error("Hand processed but empty")
                 self.database.commit()
+                # Call hudcache update if not in bulk import mode
+                # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
-                    self.database.rebuild_hudcache()
+                    hand.updateHudCache(self.database)
 
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:

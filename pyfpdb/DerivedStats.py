@@ -201,6 +201,7 @@ class DerivedStats():
         #  2 Hijack
 
     def assembleHudCache(self, hand):
+        # No real work to be done - HandsPlayers data already contains the correct info
         pass
 
     def vpip(self, hand):
@@ -443,4 +444,5 @@ class DerivedStats():
                 betOrRaise = True
             else:
                 break
+        return betOrRaise
 
