@@ -38,6 +38,7 @@ from decimal import Decimal
 import string
 import re
 import Queue
+import codecs
 
 #    pyGTK modules
 
@@ -50,6 +51,7 @@ import Tourney
 from Exceptions import *
 
 log = Configuration.get_logger("logging.conf")
+encoder = codecs.lookup('utf-8')
 
 class Database:
 
@@ -1578,6 +1580,7 @@ class Database:
 
     def insertPlayer(self, name, site_id):
         result = None
+        (_name, _len) = encoder.encode(unicode(name))
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
@@ -1591,12 +1594,12 @@ class Database:
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
 
-        c.execute (q, (site_id, name))
+        c.execute (q, (site_id, _name))
 
         tmp = c.fetchone()
         if (tmp == None): #new player
             c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(name, site_id))
+                      ,(_name, site_id))
             #Get last id might be faster here.
             #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
             result = self.get_last_insert_id(c)
