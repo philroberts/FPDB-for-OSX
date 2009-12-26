@@ -89,13 +89,14 @@ def testFlopImport():
     print "DEBUG: stored: %s dups: %s partial: %s errs: %s ttime: %s" %(stored, dups, partial, errs, ttime)
     importer.clearFileList()
 
-    col = { 'sawShowdown': 2
+    col = { 'sawShowdown': 2, 'street0Aggr':3
           }
 
     q = """SELECT
     s.name,
     p.name,
-    hp.sawShowdown
+    hp.sawShowdown,
+    hp.street0Aggr
 FROM
     Hands as h,
     Sites as s,
@@ -119,7 +120,8 @@ and s.id = p.siteid"""
     q = """SELECT
     s.name,
     p.name,
-    hp.sawShowdown
+    hp.sawShowdown,
+    hp.street0Aggr
 FROM
     Hands as h,
     Sites as s,
@@ -135,10 +137,10 @@ and s.id = p.siteid"""
     c = db.get_cursor()
     c.execute(q) 
     result = c.fetchall()
+    pstats = { u'Kinewma':0, u'Arbaz':0, u's0rrow':1, u'bys7':0, u'AAALISAAAA':1, u'Bl\xe5veis':0 }
     for row, data in enumerate(result):
-        print "DEBUG: result[%s]: %s" %(row, result[row])
-        # Assert if any sawShowdown = True
-        assert result[row][col['sawShowdown']] == 1
+        print "DEBUG: result[%s]: %s == %s" %(row, result[row], pstats[data[1]])
+        assert result[row][col['sawShowdown']] == pstats[data[1]]
 
     assert 0 == 1
 

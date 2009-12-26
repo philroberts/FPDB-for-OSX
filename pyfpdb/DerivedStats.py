@@ -363,7 +363,7 @@ class DerivedStats():
     def aggr(self, hand, i):
         aggrers = set()
         for act in hand.actions[hand.actionStreets[i]]:
-            if act[1] in ('completes', 'raises'):
+            if act[1] in ('completes', 'bets', 'raises'):
                 aggrers.add(act[0])
 
         for player in hand.players:
