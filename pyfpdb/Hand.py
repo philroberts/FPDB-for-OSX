@@ -480,8 +480,6 @@ Card ranks will be uppercased
                 self.totalcollected += Decimal(entry[1])
 
 
-
-
     def getGameTypeAsString(self):
         """\
 Map the tuple self.gametype onto the pokerstars string describing it
@@ -1406,6 +1404,8 @@ class Pot(object):
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
+        if len(committed)<2:
+            raise FpdbParseError("length of committed array is too small")
         lastbet = committed[-1][0] - committed[-2][0]
         if lastbet > 0: # uncalled
             returnto = committed[-1][1]
