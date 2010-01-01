@@ -631,6 +631,19 @@ class Hud:
                     if this_stat.hudcolor != "":
                         self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
+                    else:
+                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse("#FFFFFF"))
+					
+                    if this_stat.stat_loth != "":
+                        if number[0] < (float(this_stat.stat_loth)/100):
+                            self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
+
+                    if this_stat.stat_hith != "":
+                        if number[0] > (float(this_stat.stat_hith)/100):
+                            self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
+                            window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
 
                     window.label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?

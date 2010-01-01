@@ -161,7 +161,7 @@ def discover_posix_by_name(c, tablename):
 
 def discover_posix_tournament(c, t_number, s_number):
     """Finds the X window for a client, given tournament and table nos."""
-    search_string = "%s.+Table\s%s" % (t_number, s_number)
+    search_string = "%s.+Table.+%s" % (t_number, s_number)
     for listing in os.popen('xwininfo -root -tree').readlines():
         if re.search(search_string, listing):
             return decode_xwininfo(c, listing)
