@@ -516,8 +516,8 @@ class GuiPlayerStats (threading.Thread):
         if holecards:  # re-use level variables for hole card query
             query = query.replace("<hgameTypeId>", "hp.startcards")
             query = query.replace("<orderbyhgameTypeId>"
-                                 , ",case when floor(hp.startcards/13) >= mod(hp.startcards,13) then hp.startcards + 0.1 "
-                                   +    " else 13*mod(hp.startcards,13) + floor(hp.startcards/13) "
+                                 , ",case when floor((hp.startcards-1)/13) >= mod((hp.startcards-1),13) then hp.startcards + 0.1 "
+                                   +    " else 13*mod((hp.startcards-1),13) + floor((hp.startcards-1)/13) + 1 "
                                    +    " end desc ")
         else:
             query = query.replace("<orderbyhgameTypeId>", "")
