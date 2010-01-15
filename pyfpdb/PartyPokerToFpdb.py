@@ -78,11 +78,12 @@ class PartyPoker(HandHistoryConverter):
 
     re_HandInfo     = re.compile("""
             ^Table\s+
-            (?P<TABLE_TYPE>[^#()]+)\s+          # Regular, Speed, etc
-            (?P<TABLE_ID_WRAPPER>\(|\#| )        # \# means sng, ( - mtt, nothing - cash game
-            (?P<TABLE_ID>\d+)  \)?   \s+        # it's global unique id for this table
-            (?:Table\s+\#(?P<TABLE_NUM>\d+).+)? # table num for mtt tournaments
-            \((?P<PLAY>Real|Play)\s+Money\)\s*  
+            (?P<TTYPE>[a-zA-Z0-9 ]+)\s+
+            (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
+            (?:[^ ]+\s+\#(?P<MTTTABLE>\d+).+)? # table number for mtt
+            (\(No\sDP\)\s)?
+            \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
+            Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
             """,
           re.VERBOSE|re.MULTILINE)
 

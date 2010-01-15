@@ -284,6 +284,10 @@ class Game:
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
             stat.hudcolor  = stat_node.getAttribute("hudcolor")
+            stat.stat_loth = stat_node.getAttribute("stat_loth")
+            stat.stat_hith = stat_node.getAttribute("stat_hith")
+            stat.stat_locolor = stat_node.getAttribute("stat_locolor")
+            stat.stat_hicolor = stat_node.getAttribute("stat_hicolor")
 
             self.stats[stat.stat_name] = stat
 
