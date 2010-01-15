@@ -48,6 +48,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['sawShowdown'] = False
             self.handsplayers[player[1]]['wonAtSD']     = 0.0
             self.handsplayers[player[1]]['startCards']  = 0
+            self.handsplayers[player[1]]['position']            = 2
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
@@ -56,7 +57,6 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
 
             #FIXME - Everything below this point is incomplete.
-            self.handsplayers[player[1]]['position']            = 2
             self.handsplayers[player[1]]['tourneyTypeId']       = 1
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
@@ -174,31 +174,41 @@ class DerivedStats():
                 self.handsplayers[player[1]]['card%s' % (i+1)] = Card.encodeCard(card)
             self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 
-        # position,
-            #Stud 3rd street card test
-            # denny501: brings in for $0.02
-            # s0rrow: calls $0.02
-            # TomSludge: folds
-            # Soroka69: calls $0.02
-            # rdiezchang: calls $0.02           (Seat 8)
-            # u.pressure: folds                 (Seat 1)
-            # 123smoothie: calls $0.02
-            # gashpor: calls $0.02
-
+        self.setPositions(hand)
         # Additional stats
         # 3betSB, 3betBB
         # Squeeze, Ratchet?
 
 
-    def getPosition(hand, seat):
-        """Returns position value like 'B', 'S', 0, 1, ..."""
-        # Flop/Draw games with blinds
-        # Need a better system???
-        # -2 BB - B (all)
-        # -1 SB - S (all)
-        #  0 Button 
-        #  1 Cutoff
-        #  2 Hijack
+    def setPositions(self, hand):
+        """Sets the position for each player in HandsPlayers
+            any blinds are negative values, and the last person to act on the
+            first betting round is 0
+            NOTE: HU, both values are negative for non-stud games
+            NOTE2: I've never seen a HU stud match"""
+        # The position calculation must be done differently for Stud and other games as
+        # Stud the 'blind' acts first - in all other games they act last.
+        #
+        #This function is going to get it wrong when there in situations where there
+        # is no small blind. I can live with that.
+        positions = [7, 6, 5, 4, 3, 2, 1, 0, 'S', 'B']
+        actions = hand.actions[hand.holeStreets[0]]
+        players = self.pfbao(actions)
+        seats = len(players)
+        map = []
+        if hand.gametype['base'] == 'stud':
+            # Could posibly change this to be either -2 or -1 depending if they complete or bring-in
+            # First player to act is -1, last player is 0 for 6 players it should look like:
+            # ['S', 4, 3, 2, 1, 0]
+            map = positions[-seats-1:-1] # Copy required positions from postions array anding in -1
+            map = map[-1:] + map[0:-1] # and move the -1 to the start of that array
+        else:
+            # For 6 players is should look like:
+            # [3, 2, 1, 0, 'S', 'B']
+            map = positions[-seats:] # Copy required positions from array ending in -2
+
+        for i, player in enumerate(players):
+            self.handsplayers[player]['position'] = map[i]
 
     def assembleHudCache(self, hand):
         pass
@@ -293,11 +303,13 @@ class DerivedStats():
 
     def aggr(self, hand, i):
         aggrers = set()
-        for act in hand.actions[hand.actionStreets[i]]:
-            if act[1] in ('completes', 'raises'):
+        # Growl - actionStreets contains 'BLINDSANTES', which isn't actually an action street
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            if act[1] in ('completes', 'bets', 'raises'):
                 aggrers.add(act[0])
 
         for player in hand.players:
+            #print "DEBUG: actionStreet[%s]: %s" %(hand.actionStreets[i+1], i)
             if player[1] in aggrers:
                 self.handsplayers[player[1]]['street%sAggr' % i] = True
             else:
@@ -333,6 +345,44 @@ class DerivedStats():
             players.add(action[0])
         return players
 
+    def pfbao(self, actions, f=None, l=None, unique=True):
+        """Helper method. Returns set of PlayersFilteredByActionsOrdered
+
+        f - forbidden actions
+        l - limited to actions
+        """
+        # Note, this is an adaptation of function 5 from:
+        # http://www.peterbe.com/plog/uniqifiers-benchmark
+        seen = {}
+        players = []
+        for action in actions:
+            if l is not None and action[1] not in l: continue
+            if f is not None and action[1] in f: continue
+            if action[0] in seen and unique: continue
+            seen[action[0]] = 1
+            players.append(action[0])
+        return players
+
+    def firstsBetOrRaiser(self, actions):
+        """Returns player name that placed the first bet or raise.
+
+        None if there were no bets or raises on that street
+        """
+        for act in actions:
+            if act[1] in ('bets', 'raises'):
+                return act[0]
+        return None
+
+    def lastBetOrRaiser(self, street):
+        """Returns player name that placed the last bet or raise for that street.
+            None if there were no bets or raises on that street"""
+        lastbet = None
+        for act in self.hand.actions[street]:
+            if act[1] in ('bets', 'raises'):
+                lastbet = act[0]
+        return lastbet
+
+
     def noBetsBefore(self, street, player):
         """Returns true if there were no bets before the specified players turn, false otherwise"""
         betOrRaise = False
@@ -355,12 +405,3 @@ class DerivedStats():
                 break
         return betOrRaise
 
-
-    def lastBetOrRaiser(self, street):
-        """Returns player name that placed the last bet or raise for that street.
-            None if there were no bets or raises on that street"""
-        lastbet = None
-        for act in self.hand.actions[street]:
-            if act[1] in ('bets', 'raises'):
-                lastbet = act[0]
-        return lastbet
