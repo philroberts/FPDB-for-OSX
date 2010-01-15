@@ -55,6 +55,8 @@ class DerivedStats():
             for i in range(1,5):
                 self.handsplayers[player[1]]['street%dCBChance' %i] = False
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
+                self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
 
             #FIXME - Everything below this point is incomplete.
             self.handsplayers[player[1]]['tourneyTypeId']       = 1
@@ -72,8 +74,6 @@ class DerivedStats():
                 self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
                 self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
                 self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
-                self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
-                self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -175,6 +175,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['startCards'] = Card.calcStartCards(hand, player[1])
 
         self.setPositions(hand)
+        self.calcCheckCallRaise(hand)
         # Additional stats
         # 3betSB, 3betBB
         # Squeeze, Ratchet?
@@ -352,12 +353,11 @@ class DerivedStats():
                 pname, act = action[0], action[1]
                 if act in ('bets', 'raises') and initial_raiser is None:
                     initial_raiser = pname
-                elif act == 'check' and initial_raiser is None:
+                elif act == 'checks' and initial_raiser is None:
                     checkers.add(pname)
                 elif initial_raiser is not None and pname in checkers:
-                    hp = self.handplayers_by_name[pname]
-                    setattr(hp, 'street%dCheckCallRaiseChance' % i, True)
-                    setattr(hp, 'street%dCheckCallRaiseDone' % i, act!='folds')
+                    self.handsplayers[pname]['street%dCheckCallRaiseChance' % i] = True
+                    self.handsplayers[pname]['street%dCheckCallRaiseDone' % i] = act!='folds'
 
     def seen(self, hand, i):
         pas = set()
