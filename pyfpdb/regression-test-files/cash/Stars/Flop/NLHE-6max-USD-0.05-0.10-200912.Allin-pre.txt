@@ -1,0 +1,41 @@
+PokerStars Game #37165169101:  Hold'em No Limit ($0.10/$0.25 USD) - 2009/12/25 9:50:09 ET
+Table 'Lucretia IV' 6-max Seat #2 is the button
+Seat 1: Blåveis ($55.10 in chips) 
+Seat 2: Kinewma ($31.40 in chips) 
+Seat 3: AAALISAAAA ($20.20 in chips) 
+Seat 4: Arbaz ($25 in chips) 
+Seat 5: s0rrow ($29.85 in chips) 
+Seat 6: bys7 ($41.35 in chips) 
+AAALISAAAA: posts small blind $0.10
+Arbaz: posts big blind $0.25
+*** HOLE CARDS ***
+Dealt to s0rrow [Ac As]
+s0rrow: raises $0.50 to $0.75
+bys7: calls $0.75
+Blåveis: folds 
+Kinewma: folds 
+AAALISAAAA: raises $1.50 to $2.25
+Arbaz: folds 
+s0rrow: raises $3.50 to $5.75
+bys7: folds 
+AAALISAAAA: raises $14.45 to $20.20 and is all-in
+s0rrow: calls $14.45
+*** FLOP *** [3d 7h Kh]
+*** TURN *** [3d 7h Kh] [Ts]
+*** RIVER *** [3d 7h Kh Ts] [5c]
+*** SHOW DOWN ***
+AAALISAAAA: shows [Kd 5d] (two pair, Kings and Fives)
+s0rrow: shows [Ac As] (a pair of Aces)
+AAALISAAAA collected $39.35 from pot
+*** SUMMARY ***
+Total pot $41.40 | Rake $2.05 
+Board [3d 7h Kh Ts 5c]
+Seat 1: Blåveis folded before Flop (didn't bet)
+Seat 2: Kinewma (button) folded before Flop (didn't bet)
+Seat 3: AAALISAAAA (small blind) showed [Kd 5d] and won ($39.35) with two pair, Kings and Fives
+Seat 4: Arbaz (big blind) folded before Flop
+Seat 5: s0rrow showed [Ac As] and lost with a pair of Aces
+Seat 6: bys7 folded before Flop
+
+
+
