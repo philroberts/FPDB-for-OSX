@@ -31,6 +31,7 @@ import inspect
 import string
 import traceback
 import shutil
+import locale
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -125,7 +126,8 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-NEWIMPORT = False
+NEWIMPORT = True
+LOCALE_ENCODING = locale.getdefaultlocale()[1]
 
 ########################################################################
 def string_to_bool(string, default=True):
@@ -267,6 +269,10 @@ class Game:
             stat.hudprefix = stat_node.getAttribute("hudprefix")
             stat.hudsuffix = stat_node.getAttribute("hudsuffix")
             stat.hudcolor  = stat_node.getAttribute("hudcolor")
+            stat.stat_loth = stat_node.getAttribute("stat_loth")
+            stat.stat_hith = stat_node.getAttribute("stat_hith")
+            stat.stat_locolor = stat_node.getAttribute("stat_locolor")
+            stat.stat_hicolor = stat_node.getAttribute("stat_hicolor")
 
             self.stats[stat.stat_name] = stat
 

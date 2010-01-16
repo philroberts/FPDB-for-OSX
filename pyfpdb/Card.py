@@ -16,6 +16,25 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 
+# From fpdb_simple
+card_map = { "0": 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8,
+            "9" : 9, "T" : 10, "J" : 11, "Q" : 12, "K" : 13, "A" : 14}
+
+# FIXME: the following is a workaround until switching to newimport.
+#        This should be moved into DerivedStats
+#        I'd also like to change HandsPlayers.startCards to a different datatype
+#        so we can 'trivially' add different start card classifications
+
+def calcStartCards(hand, player):
+    if hand.gametype['category'] == 'holdem':
+        hcs = hand.join_holecards(player, asList=True)
+        #print "DEBUG: hcs: %s" % hcs
+        value1 = card_map[hcs[0][0]]
+        value2 = card_map[hcs[1][0]]
+        return twoStartCards(value1, hcs[0][1], value2, hcs[1][1])
+    else:
+        # FIXME: Only do startCards value for holdem at the moment
+        return 0
 
 
 def twoStartCards(value1, suit1, value2, suit2):

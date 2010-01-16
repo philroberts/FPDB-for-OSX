@@ -39,7 +39,6 @@ if os.name == 'nt':
 
 #    FreePokerTools modules
 import Configuration
-from fpdb_simple import LOCALE_ENCODING
 
 #    Each TableWindow object must have the following attributes correctly populated:
 #    tw.name = the table name from the title bar, which must to match the table name
@@ -161,7 +160,7 @@ def discover_posix_by_name(c, tablename):
 
 def discover_posix_tournament(c, t_number, s_number):
     """Finds the X window for a client, given tournament and table nos."""
-    search_string = "%s.+Table\s%s" % (t_number, s_number)
+    search_string = "%s.+Table.+%s" % (t_number, s_number)
     for listing in os.popen('xwininfo -root -tree').readlines():
         if re.search(search_string, listing):
             return decode_xwininfo(c, listing)
@@ -238,7 +237,7 @@ def discover_nt_by_name(c, tablename):
         try:
             # maybe it's better to make global titles[hwnd] decoding?
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
-            if not tablename.lower() in titles[hwnd].decode(LOCALE_ENCODING).lower():
+            if not tablename.lower() in titles[hwnd].decode(Configuration.LOCALE_ENCODING).lower():
                 continue
         except:
             continue
