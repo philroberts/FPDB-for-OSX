@@ -61,7 +61,7 @@ def twoStartCards(value1, suit1, value2, suit2):
         ret = (13 * (value2-2) + (value2-2) ) + 1
     elif suit1 == suit2:
         if value1 > value2:
-            ret = 13 * (value1-2) + (value2-2) + 1
+            ret = 13 * (value1-2) + (value2-2) + 1 
         else:
             ret = 13 * (value2-2) + (value1-2) + 1
     else:

@@ -81,6 +81,7 @@ class PokerStars(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
+    re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -97,7 +98,7 @@ class PokerStars(HandHistoryConverter):
             self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds \[%(CUR)s (?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
             self.re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
@@ -105,7 +106,7 @@ class PokerStars(HandHistoryConverter):
                         (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
@@ -194,12 +195,13 @@ class PokerStars(HandHistoryConverter):
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
-                m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), m2.group('M'),m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
+                m1 = self.re_DateTime.finditer(info[key])
+                # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
+                for a in m1:
+                    datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                 hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
-
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
