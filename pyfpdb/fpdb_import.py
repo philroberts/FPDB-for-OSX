@@ -35,10 +35,8 @@ import gtk
 
 #    fpdb/FreePokerTools modules
 
-import fpdb_simple
 import fpdb_db
 import Database
-import fpdb_parse_logic
 import Configuration
 import Exceptions
 
@@ -409,7 +407,7 @@ class Importer:
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
 
-        file =  file.decode(fpdb_simple.LOCALE_ENCODING)
+        file =  file.decode(Configuration.LOCALE_ENCODING)
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
@@ -429,11 +427,13 @@ class Importer:
         mod = __import__(filter)
         obj = getattr(mod, filter_name, None)
         if callable(obj):
-            hhc = obj(in_path = file, out_path = out_path, index = 0, starsArchive = self.settings['starsArchive']) # Index into file 0 until changeover
-            if hhc.getStatus() and self.NEWIMPORT == False:
-                (stored, duplicates, partial, errors, ttime) = self.import_fpdb_file(db, out_path, site, q)
-            elif hhc.getStatus() and self.NEWIMPORT == True:
-                #This code doesn't do anything yet
+            idx = 0
+            if file in self.pos_in_file:
+                idx = self.pos_in_file[file]
+            else:
+                self.pos_in_file[file] = 0
+            hhc = obj(in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
+            if hhc.getStatus() and self.NEWIMPORT == True:
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 to_hud = []
@@ -448,6 +448,11 @@ class Importer:
                     else:
                         log.error("Hand processed but empty")
                 self.database.commit()
+                # Call hudcache update if not in bulk import mode
+                # FIXME: Need to test for bulk import that isn't rebuilding the cache
+                if self.callHud:
+                    hand.updateHudCache(self.database)
+                    self.database.commit()
 
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:
@@ -467,162 +472,6 @@ class Importer:
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
 
-
-    def import_fpdb_file(self, db, file, site, q):
-        starttime = time()
-        last_read_hand = 0
-        loc = 0
-        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
-        # print "file =", file
-        if file == "stdin":
-            inputFile = sys.stdin
-        else:
-            if os.path.exists(file):
-                inputFile = open(file, "rU")
-            else:
-                self.removeFromFileList[file] = True
-                return (0, 0, 0, 1, 0)
-            try:
-                loc = self.pos_in_file[file]
-                #size = os.path.getsize(file)
-                #print "loc =", loc, 'size =', size
-            except KeyError:
-                pass
-        # Read input file into class and close file
-        inputFile.seek(loc)
-        #tmplines = inputFile.readlines()
-        #if tmplines == None or tmplines == []:
-        #    print "tmplines = ", tmplines
-        #else:
-        #    print "tmplines[0] =", tmplines[0]
-        self.lines = fpdb_simple.removeTrailingEOL(inputFile.readlines())
-        self.pos_in_file[file] = inputFile.tell()
-        inputFile.close()
-
-        x = clock()
-        (stored, duplicates, partial, errors, ttime, handsId) = self.import_fpdb_lines(db, self.lines, starttime, file, site, q)
-
-        db.commit()
-        y = clock()
-        ttime = y - x
-        #ttime = time() - starttime
-        if q is None:
-            log.info("Total stored: %(stored)d\tduplicates:%(duplicates)d\terrors:%(errors)d\ttime:%(ttime)s" % locals())
-
-        if not stored:
-            if duplicates:
-                for line_no in xrange(len(self.lines)):
-                    if self.lines[line_no].find("Game #") != -1:
-                        final_game_line = self.lines[line_no]
-                handsId=fpdb_simple.parseSiteHandNo(final_game_line)
-            else:
-                print "failed to read a single hand from file:", inputFile
-                handsId = 0
-            #todo: this will cause return of an unstored hand number if the last hand was error
-        self.handsId = handsId
-
-        return (stored, duplicates, partial, errors, ttime)
-    # end def import_fpdb_file
-
-
-    def import_fpdb_lines(self, db, lines, starttime, file, site, q = None):
-        """Import an fpdb hand history held in the list lines, could be one hand or many"""
-
-        #db.lock_for_insert() # should be ok when using one thread, but doesn't help??
-        while gtk.events_pending():
-            gtk.main_iteration(False)
-
-        try: # sometimes we seem to be getting an empty self.lines, in which case, we just want to return.
-            firstline = lines[0]
-        except:
-            # just skip the debug message and return silently:
-            #print "DEBUG: import_fpdb_file: failed on lines[0]: '%s' '%s' '%s' '%s' " %( file, site, lines, loc)
-            return (0,0,0,1,0,0)
-
-        if "Tournament Summary" in firstline:
-            print "TODO: implement importing tournament summaries"
-            #self.faobs = readfile(inputFile)
-            #self.parseTourneyHistory()
-            return (0,0,0,1,0,0)
-
-        category = fpdb_simple.recogniseCategory(firstline)
-
-        startpos = 0
-        stored = 0 #counter
-        duplicates = 0 #counter
-        partial = 0 #counter
-        errors = 0 #counter
-        ttime = 0
-        handsId = 0
-
-        for i in xrange(len(lines)):
-            if len(lines[i]) < 2: #Wierd way to detect for '\r\n' or '\n'
-                endpos = i
-                hand = lines[startpos:endpos]
-
-                if len(hand[0]) < 2:
-                    hand=hand[1:]
-
-                if len(hand) < 3:
-                    pass
-                    #TODO: This is ugly - we didn't actually find the start of the
-                    # hand with the outer loop so we test again...
-                else:
-                    isTourney = fpdb_simple.isTourney(hand[0])
-                    if not isTourney:
-                        hand = fpdb_simple.filterAnteBlindFold(hand)
-                    self.hand = hand
-
-                    try:
-                        handsId = fpdb_parse_logic.mainParser( self.settings, self.siteIds[site]
-                                                             , category, hand, self.config
-                                                             , db, q )
-                        db.commit()
-
-                        stored += 1
-                        if self.callHud:
-                            #print "call to HUD here. handsId:",handsId
-                            #pipe the Hands.id out to the HUD
-                            # print "fpdb_import: sending hand to hud", handsId, "pipe =", self.caller.pipe_to_hud
-                            try:
-                                self.caller.pipe_to_hud.stdin.write("%s" % (handsId) + os.linesep)
-                            except IOError: # hud closed
-                                self.callHud = False
-                                pass # continue import without hud
-                    except Exceptions.DuplicateError:
-                        duplicates += 1
-                        db.rollback()
-                    except (ValueError), fe:
-                        errors += 1
-                        self.printEmailErrorMessage(errors, file, hand)
-
-                        if (self.settings['failOnError']):
-                            db.commit() #dont remove this, in case hand processing was cancelled.
-                            raise
-                        else:
-                            db.rollback()
-                    except (fpdb_simple.FpdbError), fe:
-                        errors += 1
-                        self.printEmailErrorMessage(errors, file, hand)
-                        db.rollback()
-
-                        if self.settings['failOnError']:
-                            db.commit() #dont remove this, in case hand processing was cancelled.
-                            raise
-
-                    if self.settings['minPrint']:
-                        if not ((stored+duplicates+errors) % self.settings['minPrint']):
-                            print "stored:", stored, "   duplicates:", duplicates, "errors:", errors
-
-                    if self.settings['handCount']:
-                        if ((stored+duplicates+errors) >= self.settings['handCount']):
-                            if not self.settings['quiet']:
-                                print "quitting due to reaching the amount of hands to be imported"
-                                print "Total stored:", stored, "duplicates:", duplicates, "errors:", errors, " time:", (time() - starttime)
-                            sys.exit(0)
-                startpos = endpos
-        return (stored, duplicates, partial, errors, ttime, handsId)
-    # end def import_fpdb_lines
 
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
