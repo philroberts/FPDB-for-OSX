@@ -62,9 +62,13 @@ import Database
 re_Places = re.compile("_[0-9]$")
 re_Percent = re.compile("%$")
 
+# String manipulation
+import codecs
+encoder = codecs.lookup(Configuration.LOCALE_ENCODING)
 
 def do_tip(widget, tip):
-    widget.set_tooltip_text(tip)
+    (_tip, _len) = encoder.encode(tip)
+    widget.set_tooltip_text(_tip)
 
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
     match = re_Places.search(stat)
