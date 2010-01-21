@@ -605,8 +605,7 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        p_name = Charset.to_utf8(player_name)
-        c.execute(self.sql.query['get_player_id'], (p_name, site))
+        c.execute(self.sql.query['get_player_id'], (player_name, site))
         row = c.fetchone()
         if row:
             return row[0]
