@@ -31,11 +31,21 @@ if Configuration.LOCALE_ENCODING == 'utf-8':
 
 def to_utf8(s):
     if not_needed: return s
-    (_out, _len) = encoder_to_utf.encode(s)
-    return _out
+
+    try:
+        (_out, _len) = encoder_to_utf.encode(s)
+        return _out
+    except UnicodeDecodeError:
+        print 'Could not convert: "%s"' % s
+        raise
 
 def to_gui(s):
     if not_needed: return s
-    (_out, _len) = encoder_to_sys.encode(s)
-    return _out
+
+    try:
+        (_out, _len) = encoder_to_sys.encode(s)
+        return _out
+    except UnicodeDecodeError:
+        print 'Could not convert: "%s"' % s
+        raise
 
