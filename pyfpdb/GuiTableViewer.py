@@ -80,7 +80,8 @@ class GuiTableViewer (threading.Thread):
         #then the data rows
         for player in range(len(self.player_names)):
             tmp=[]
-            tmp.append(self.player_names[player][0])
+            p_name = Charset.to_gui(self.player_names[player][0])
+            tmp.append(p_name)
             
             seatCount=len(self.player_names)
             if seatCount>=8:

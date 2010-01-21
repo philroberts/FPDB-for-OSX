@@ -48,6 +48,7 @@ import Configuration
 import SQL
 import Card
 import Tourney
+import Charset
 from Exceptions import *
 
 log = Configuration.get_logger("logging.conf")
@@ -602,7 +603,8 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_player_id'], (player_name, site))
+        p_name = Charset.to_utf8(player_name)
+        c.execute(self.sql.query['get_player_id'], (p_name, site))
         row = c.fetchone()
         if row:
             return row[0]
@@ -615,7 +617,8 @@ class Database:
         if site_id is None:
             site_id = -1
         c = self.get_cursor()
-        c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
+        p_name = Charset.to_utf8(like_player_name)
+        c.execute(self.sql.query['get_player_names'], (p_name, site_id, site_id))
         rows = c.fetchall()
         return rows
             
