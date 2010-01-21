@@ -4,12 +4,12 @@
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
-#   
+#
 #This program is distributed in the hope that it will be useful,
 #but WITHOUT ANY WARRANTY; without even the implied warranty of
 #MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #GNU General Public License for more details.
-#       
+#
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in
@@ -61,7 +61,7 @@ def twoStartCards(value1, suit1, value2, suit2):
         ret = (13 * (value2-2) + (value2-2) ) + 1
     elif suit1 == suit2:
         if value1 > value2:
-            ret = 13 * (value1-2) + (value2-2) + 1 
+            ret = 13 * (value1-2) + (value2-2) + 1
         else:
             ret = 13 * (value2-2) + (value1-2) + 1
     else:
@@ -69,7 +69,7 @@ def twoStartCards(value1, suit1, value2, suit2):
             ret = 13 * (value2-2) + (value1-2) + 1
         else:
             ret = 13 * (value1-2) + (value2-2) + 1
-            
+
 #    print "twoStartCards(", value1, suit1, value2, suit2, ")=", ret
     return ret
 
@@ -108,7 +108,7 @@ def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
         # SSSS (K, J, 6, 3)
         # - 13C4 = 715 possibilities
         # SSSx (K, J, 6),(3)
-        # - 13C3 * 13 = 3718 possibilities 
+        # - 13C3 * 13 = 3718 possibilities
         # SSxy (K, J),(6),(3)
         # - 13C2 * 13*13 = 13182 possibilities
         # SSHH (K, J),(6, 3)
@@ -131,7 +131,7 @@ suitFromCardList = ['', '2h', '3h', '4h', '5h', '6h', '7h', '8h', '9h', 'Th', 'J
                      , '2s', '3s', '4s', '5s', '6s', '7s', '8s', '9s', 'Ts', 'Js', 'Qs', 'Ks', 'As'
                 ]
 def valueSuitFromCard(card):
-    """ Function to convert a card stored in the database (int 0-52) into value 
+    """ Function to convert a card stored in the database (int 0-52) into value
         and suit like 9s, 4c etc """
     global suitFromCardList
     if card < 0 or card > 52 or not card:
@@ -158,5 +158,5 @@ if __name__ == '__main__':
         print "card %2d = %s    card %2d = %s    card %2d = %s    card %2d = %s" % \
             (i, valueSuitFromCard(i), i+13, valueSuitFromCard(i+13), i+26, valueSuitFromCard(i+26), i+39, valueSuitFromCard(i+39))
 
-        print 
+        print
     print encodeCard('7c')
