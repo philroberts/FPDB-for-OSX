@@ -33,7 +33,8 @@ def to_utf8(s):
     if not_needed: return s
 
     try:
-        (_out, _len) = encoder_to_utf.encode(s)
+        #(_out, _len) = encoder_to_utf.encode(s)
+        _out = unicode(s, Configuration.LOCALE_ENCODING).encode('utf-8')
         return _out
     except UnicodeDecodeError:
         print 'Could not convert: "%s"' % s
