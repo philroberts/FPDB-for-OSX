@@ -20,7 +20,6 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
-import fpdb_simple
 
 import fpdb_import
 import fpdb_db
