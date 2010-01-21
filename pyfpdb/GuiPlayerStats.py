@@ -190,7 +190,8 @@ class GuiPlayerStats (threading.Thread):
                 sitenos.append(siteids[site])
                 # Nasty hack to deal with multiple sites + same player name -Eric
                 que = self.sql.query['getPlayerId'] + " AND siteId=%d" % siteids[site]
-                self.cursor.execute(que, (heroes[site],))
+                _hname = Charset.to_utf8(heroes[site])
+                self.cursor.execute(que, (_hname,))
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
