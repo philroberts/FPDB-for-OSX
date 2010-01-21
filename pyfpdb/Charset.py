@@ -24,11 +24,18 @@ import Configuration
 encoder_to_utf = codecs.lookup('utf-8')
 encoder_to_sys = codecs.lookup(Configuration.LOCALE_ENCODING)
 
+# I'm saving a few cycles with this one
+not_needed = False
+if Configuration.LOCALE_ENCODING == 'utf-8':
+    not_needed = True
+
 def to_utf8(s):
+    if not_needed: return s
     (_out, _len) = encoder_to_utf.encode(s)
     return _out
 
 def to_gui(s):
+    if not_needed: return s
     (_out, _len) = encoder_to_sys.encode(s)
     return _out
 
