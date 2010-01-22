@@ -46,9 +46,9 @@ class PokerStars(HandHistoryConverter):
           PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
-          (?P<BUYIN>[%(LS)s\+\d\.]+      # here's how I plan to use LS
-          \s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?
-          )\s)?                          # close paren of tournament info
+          # here's how I plan to use LS
+          (?P<BUYIN>([%(LS)s\+\d\.]+\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?)|Freeroll)\s+)?                          
+          # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
@@ -205,9 +205,12 @@ class PokerStars(HandHistoryConverter):
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                #FIXME: The key looks like: '€0.82+€0.18 EUR'
-                #       This should be parsed properly and used
-                hand.buyin = info[key]
+                if info[key] == 'Freeroll':
+                    hand.buyin = '$0+$0'
+                else:
+                    #FIXME: The key looks like: '€0.82+€0.18 EUR'
+                    #       This should be parsed properly and used
+                    hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]
 
