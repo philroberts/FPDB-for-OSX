@@ -606,6 +606,7 @@ class Hud:
             if self.update_table_position() == False: # we got killed by finding our table was gone
                 return
 
+        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
         for s in self.stat_dict:
             try:
                 statd = self.stat_dict[s]
@@ -629,20 +630,16 @@ class Hud:
                     window = self.stat_windows[statd['seat']]
 
                     if this_stat.hudcolor != "":
-                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                     else:
-                        self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse("#FFFFFF"))
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
 					
                     if this_stat.stat_loth != "":
                         if number[0] < (float(this_stat.stat_loth)/100):
-                            self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                             window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
 
                     if this_stat.stat_hith != "":
                         if number[0] > (float(this_stat.stat_hith)/100):
-                            self.label.modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
                             window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_hicolor))
 
                     window.label[r][c].set_text(statstring)

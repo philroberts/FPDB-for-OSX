@@ -39,7 +39,6 @@ if os.name == 'nt':
 
 #    FreePokerTools modules
 import Configuration
-from fpdb_simple import LOCALE_ENCODING
 
 #    Each TableWindow object must have the following attributes correctly populated:
 #    tw.name = the table name from the title bar, which must to match the table name
@@ -238,7 +237,7 @@ def discover_nt_by_name(c, tablename):
         try:
             # maybe it's better to make global titles[hwnd] decoding?
             # this can blow up in XP on some windows, eg firefox displaying http://docs.python.org/tutorial/classes.html
-            if not tablename.lower() in titles[hwnd].decode(LOCALE_ENCODING).lower():
+            if not tablename.lower() in titles[hwnd].decode(Configuration.LOCALE_ENCODING).lower():
                 continue
         except:
             continue
