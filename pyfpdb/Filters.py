@@ -29,6 +29,7 @@ import gobject
 import Configuration
 import fpdb_db
 import FpdbSQLQueries
+import Charset
 
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):
@@ -242,6 +243,7 @@ class Filters(threading.Thread):
         print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
 
     def createPlayerLine(self, hbox, site, player):
+        print 'DEBUG :: add:"%s"' % player
         label = gtk.Label(site +" id:")
         hbox.pack_start(label, False, False, 0)
 
@@ -258,13 +260,17 @@ class Filters(threading.Thread):
         completion.set_model(liststore)
         completion.set_text_column(0)
         names = self.db.get_player_names(self.conf)  # (config=self.conf, site_id=None, like_player_name="%")
-        for n in names:
-            liststore.append(n)
+        for n in names: # list of single-element "tuples"
+            _n = Charset.to_gui(n[0])
+            _nt = (_n, )
+            liststore.append(_nt)
 
         self.__set_hero_name(pname, site)
 
     def __set_hero_name(self, w, site):
-        self.heroes[site] = w.get_text()
+        _name = w.get_text()
+        _guiname = Charset.to_gui(_name)
+        self.heroes[site] = _guiname
 #        print "DEBUG: setting heroes[%s]: %s"%(site, self.heroes[site])
 
     def __set_num_hands(self, w, val):
@@ -452,7 +458,8 @@ class Filters(threading.Thread):
             vbox.pack_start(hBox, False, True, 0)
 
             player = self.conf.supported_sites[site].screen_name
-            self.createPlayerLine(hBox, site, player)
+            _pname = Charset.to_gui(player)
+            self.createPlayerLine(hBox, site, _pname)
 
         if "GroupsAll" in display and display["GroupsAll"] == True:
             hbox = gtk.HBox(False, 0)

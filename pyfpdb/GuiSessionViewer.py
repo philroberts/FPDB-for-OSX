@@ -47,6 +47,7 @@ import fpdb_import
 import Database
 import Filters
 import FpdbSQLQueries
+import Charset
 
 class GuiSessionViewer (threading.Thread):
     def __init__(self, config, querylist, mainwin, debug=True):
@@ -181,7 +182,10 @@ class GuiSessionViewer (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                _q = self.sql.query['getPlayerId']
+                _name = Charset.to_utf8(heroes[site])
+                print 'DEBUG(_name) :: %s' % _name
+                self.cursor.execute(_q, (_name,)) # arg = tuple
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
