@@ -575,15 +575,14 @@ class Hud:
             loc = self.config.get_locations(self.table.site, 9)
 
 #    create the stat windows
-#    get the width and height of the client window
-#    The x and Y positions are now made relative.
+        # get the width and height of the client window
+        # The x and Y positions are now made relative.
         
         for i in xrange(1, self.max + 1):
             (x, y) = loc[adj[i]]
             px = int(x * self.table.width  / 1000)
             py = int(y * self.table.height / 1000)
             if i in self.stat_windows:
-                self.stat_windows[i].relocate(x, y)
                 self.stat_windows[i].relocate(px, py)
             else:
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
@@ -686,6 +685,9 @@ class Stat_Window:
             return True
 
         if event.button == 1:   # left button event
+            if event.type == gtk.gdk._2BUTTON_PRESS:
+            	self.window.hide()
+            	return True
             # TODO: make position saving save sizes as well?
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
