@@ -474,11 +474,14 @@ class GuiPlayerStats (threading.Thread):
                 for n in games:
                     if games[n]:
                         q.append(n)
-                gametest = str(tuple(q))
-                gametest = gametest.replace("L", "")
-                gametest = gametest.replace(",)",")")
-                gametest = gametest.replace("u'","'")
-                gametest = "and gt.category in %s" % gametest
+                if len(q) > 0:
+                    gametest = str(tuple(q))
+                    gametest = gametest.replace("L", "")
+                    gametest = gametest.replace(",)",")")
+                    gametest = gametest.replace("u'","'")
+                    gametest = "and gt.category in %s" % gametest
+                else:
+                    gametest = "and gt.category IS NULL"
         query = query.replace("<game_test>", gametest)
 
         if seats:
