@@ -126,7 +126,6 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-NEWIMPORT = True
 LOCALE_ENCODING = locale.getdefaultlocale()[1]
 
 ########################################################################
