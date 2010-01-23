@@ -30,7 +30,6 @@ import gtk
 import gobject
 
 #    fpdb/FreePokerTools modules
-import fpdb_simple
 import fpdb_import
 import Configuration
 import Exceptions

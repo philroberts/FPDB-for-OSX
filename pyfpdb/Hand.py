@@ -232,6 +232,9 @@ db: a connected fpdb_db object"""
             #Raise Duplicate exception?
             pass
 
+    def updateHudCache(self, db):
+        db.storeHudCache(self.dbid_gt, self.dbid_pids, self.starttime, self.stats.getHandsPlayers())
+
     def select(self, handId):
         """ Function to create Hand object from database """
 
@@ -393,7 +396,7 @@ Add a raise on [street] by [player] to [amountTo]
         Bc = reduce(operator.add, self.bets[street][player], 0)
         Rt = Decimal(amountTo)
         C = Bp - Bc
-        Rb = Rt - C
+        Rb = Rt - C - Bc
         self._addRaise(street, player, C, Rb, Rt)
 
     def _addRaise(self, street, player, C, Rb, Rt):

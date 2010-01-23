@@ -31,6 +31,7 @@ import inspect
 import string
 import traceback
 import shutil
+import locale
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -142,7 +143,8 @@ log.info("DIR SELF = %s" % DIR_SELF)
 log.info("DIR CONFIG = %s" % DIR_CONFIG)
 log.info("DIR DATABASE = %s" % DIR_DATABASE)
 log.info("DIR LOG = %s" % DIR_LOG)
-NEWIMPORT = False
+NEWIMPORT = True
+LOCALE_ENCODING = locale.getdefaultlocale()[1]
 
 ########################################################################
 def string_to_bool(string, default=True):

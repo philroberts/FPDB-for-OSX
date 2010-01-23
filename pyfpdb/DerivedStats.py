@@ -216,6 +216,7 @@ class DerivedStats():
             self.handsplayers[player]['position'] = map[i]
 
     def assembleHudCache(self, hand):
+        # No real work to be done - HandsPlayers data already contains the correct info
         pass
 
     def vpip(self, hand):
@@ -349,8 +350,9 @@ class DerivedStats():
 
         CG: CheckCall would be a much better name for this.
         """
-        for i, street in enumerate(hand.actionStreets[2:], start=1):
-            actions = hand.actions[hand.actionStreets[i]]
+        #for i, street in enumerate(hand.actionStreets[2:], start=1):
+        for i, street in enumerate(hand.actionStreets[2:]):
+            actions = hand.actions[hand.actionStreets[i+1]]
             checkers = set()
             initial_raiser = None
             for action in actions:
@@ -360,8 +362,8 @@ class DerivedStats():
                 elif act == 'checks' and initial_raiser is None:
                     checkers.add(pname)
                 elif initial_raiser is not None and pname in checkers:
-                    self.handsplayers[pname]['street%dCheckCallRaiseChance' % i] = True
-                    self.handsplayers[pname]['street%dCheckCallRaiseDone' % i] = act!='folds'
+                    self.handsplayers[pname]['street%dCheckCallRaiseChance' % (i+1)] = True
+                    self.handsplayers[pname]['street%dCheckCallRaiseDone' % (i+1)] = act!='folds'
 
     def seen(self, hand, i):
         pas = set()
@@ -467,6 +469,7 @@ class DerivedStats():
             if act[1] in ('bets', 'raises'):
                 break
         return betOrRaise
+
 
     def betStreet(self, street, player):
         """Returns true if player bet/raised the street as their first action"""
