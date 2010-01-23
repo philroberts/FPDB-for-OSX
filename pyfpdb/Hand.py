@@ -192,7 +192,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.holecards[street][player] = [open, closed]
 
     def prepInsert(self, db):
-	#####
+        #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
