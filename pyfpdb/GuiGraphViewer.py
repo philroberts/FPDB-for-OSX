@@ -44,6 +44,7 @@ except ImportError, inst:
 import fpdb_import
 import Database
 import Filters
+import Charset
 
 class GuiGraphViewer (threading.Thread):
 
