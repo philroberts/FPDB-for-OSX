@@ -29,6 +29,7 @@ import fpdb_import
 import Database
 import fpdb_db
 import Filters
+import Charset
 
 colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
 ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
@@ -190,7 +191,8 @@ class GuiPlayerStats (threading.Thread):
                 sitenos.append(siteids[site])
                 # Nasty hack to deal with multiple sites + same player name -Eric
                 que = self.sql.query['getPlayerId'] + " AND siteId=%d" % siteids[site]
-                self.cursor.execute(que, (heroes[site],))
+                _hname = Charset.to_utf8(heroes[site])
+                self.cursor.execute(que, (_hname,))
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
@@ -474,11 +476,14 @@ class GuiPlayerStats (threading.Thread):
                 for n in games:
                     if games[n]:
                         q.append(n)
-                gametest = str(tuple(q))
-                gametest = gametest.replace("L", "")
-                gametest = gametest.replace(",)",")")
-                gametest = gametest.replace("u'","'")
-                gametest = "and gt.category in %s" % gametest
+                if len(q) > 0:
+                    gametest = str(tuple(q))
+                    gametest = gametest.replace("L", "")
+                    gametest = gametest.replace(",)",")")
+                    gametest = gametest.replace("u'","'")
+                    gametest = "and gt.category in %s" % gametest
+                else:
+                    gametest = "and gt.category IS NULL"
         query = query.replace("<game_test>", gametest)
 
         if seats:

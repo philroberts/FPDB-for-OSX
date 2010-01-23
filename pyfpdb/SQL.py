@@ -2576,6 +2576,7 @@ class Sql:
             AND   h.handStart > '<startdate_test>'
             AND   h.handStart < '<enddate_test>'
             <limit_test>
+            <game_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.handStart"""
