@@ -681,7 +681,6 @@ class HoldemOmahaHand(Hand):
 
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        # FIXME: This should actually return
         hcs = [u'0x', u'0x', u'0x', u'0x']
 
         for street in self.holeStreets:
