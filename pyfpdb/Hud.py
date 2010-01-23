@@ -457,7 +457,9 @@ class Hud:
                 # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
                 for i, w in enumerate(self.stat_windows.itervalues()):
                     (x, y) = loc[adj[i+1]]
-                    w.relocate(x, y)
+                    px = int(x * self.table.width  / 1000)
+                    py = int(y * self.table.height / 1000)
+                    w.relocate(px, py)
 
                 # While we're at it, fix the positions of mucked cards too
                 for aux in self.aux_windows:
@@ -507,9 +509,11 @@ class Hud:
 
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
+        width = self.table.width
+        height = self.table.height
         for sw in self.stat_windows:
-            loc = self.stat_windows[sw].window.get_position()
-            new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
+            (x,y) = self.stat_windows[sw].window.get_position()
+            new_loc = (int((x - self.table.x)*1000/width), int((y - self.table.y)*1000/height))
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
         self.config.edit_layout(self.table.site, self.max, locations = new_layout)
 #    ask each aux to save its layout back to the config object
@@ -571,16 +575,21 @@ class Hud:
             loc = self.config.get_locations(self.table.site, 9)
 
 #    create the stat windows
+        # get the width and height of the client window
+        # The x and Y positions are now made relative.
+        
         for i in xrange(1, self.max + 1):
             (x, y) = loc[adj[i]]
+            px = int(x * self.table.width  / 1000)
+            py = int(y * self.table.height / 1000)
             if i in self.stat_windows:
-                self.stat_windows[i].relocate(x, y)
+                self.stat_windows[i].relocate(px, py)
             else:
                 self.stat_windows[i] = Stat_Window(game = config.supported_games[self.poker_game],
                                                parent = self,
                                                table = self.table,
-                                               x = x,
-                                               y = y,
+                                               x = px,
+                                               y = py,
                                                seat = i,
                                                adj = adj[i],
                                                player_id = 'fake',
