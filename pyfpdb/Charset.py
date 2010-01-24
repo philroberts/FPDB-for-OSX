@@ -15,6 +15,9 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
+# Error logging
+import sys
+
 # String manipulation
 import codecs
 
@@ -37,7 +40,7 @@ def to_utf8(s):
         _out = unicode(s, Configuration.LOCALE_ENCODING).encode('utf-8')
         return _out
     except UnicodeDecodeError:
-        print 'Could not convert: "%s"' % s
+        sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
 
 def to_db_utf8(s):
@@ -47,7 +50,7 @@ def to_db_utf8(s):
         (_out, _len) = encoder_to_utf.encode(unicode(s))
         return _out
     except UnicodeDecodeError:
-        print 'Could not convert: "%s"' % s
+        sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
 
 def to_gui(s):
@@ -57,6 +60,6 @@ def to_gui(s):
         (_out, _len) = encoder_to_sys.encode(s)
         return _out
     except UnicodeDecodeError:
-        print 'Could not convert: "%s"' % s
+        sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
 
