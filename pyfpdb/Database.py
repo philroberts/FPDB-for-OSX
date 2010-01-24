@@ -1558,7 +1558,7 @@ class Database:
 
     def insertPlayer(self, name, site_id):
         result = None
-        _name = Charset.to_utf8(name)
+        _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
