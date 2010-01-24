@@ -40,6 +40,16 @@ def to_utf8(s):
         print 'Could not convert: "%s"' % s
         raise
 
+def to_db_utf8(s):
+    if not_needed: return s
+
+    try:
+        (_out, _len) = encoder_to_utf.encode(unicode(s))
+        return _out
+    except UnicodeDecodeError:
+        print 'Could not convert: "%s"' % s
+        raise
+
 def to_gui(s):
     if not_needed: return s
 
