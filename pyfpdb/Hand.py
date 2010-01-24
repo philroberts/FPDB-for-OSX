@@ -192,7 +192,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.holecards[street][player] = [open, closed]
 
     def prepInsert(self, db):
-	#####
+        #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
@@ -683,7 +683,6 @@ class HoldemOmahaHand(Hand):
 
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        # FIXME: This should actually return
         hcs = [u'0x', u'0x', u'0x', u'0x']
 
         for street in self.holeStreets:
