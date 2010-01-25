@@ -44,6 +44,7 @@ except ImportError, inst:
 import fpdb_import
 import Database
 import Filters
+import Charset
 
 class GuiGraphViewer (threading.Thread):
 
@@ -137,6 +138,8 @@ class GuiGraphViewer (threading.Thread):
             heroes  = self.filters.getHeroes()
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
+            games   = self.filters.getGames()
+            
             for i in ('show', 'none'):
                 if i in limits:
                     limits.remove(i)
@@ -172,7 +175,7 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits)
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games)
             print "Graph generated in: %s" %(time() - starttime)
 
             self.ax.set_title("Profit graph for ring games")
@@ -213,7 +216,7 @@ class GuiGraphViewer (threading.Thread):
 
     #end of def showClicked
 
-    def getRingProfitGraph(self, names, sites, limits):
+    def getRingProfitGraph(self, names, sites, limits, games):
         tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
         start_date, end_date = self.filters.getDates()
@@ -225,6 +228,22 @@ class GuiGraphViewer (threading.Thread):
         sitetest = str(tuple(sites))
         #nametest = nametest.replace("L", "")
 
+        q = []
+        for m in self.filters.display.items():
+            if m[0] == 'Games' and m[1]:
+                for n in games:
+                    if games[n]:
+                        q.append(n)
+                if len(q) > 0:
+                    gametest = str(tuple(q))
+                    gametest = gametest.replace("L", "")
+                    gametest = gametest.replace(",)",")")
+                    gametest = gametest.replace("u'","'")
+                    gametest = "and gt.category in %s" % gametest
+                else:
+                    gametest = "and gt.category IS NULL"
+        tmp = tmp.replace("<game_test>", gametest)
+        
         lims = [int(x) for x in limits if x.isdigit()]
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
         nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']

@@ -449,7 +449,9 @@ class Importer:
                 # Call hudcache update if not in bulk import mode
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
-                    hand.updateHudCache(self.database)
+                    for hand in handlist:
+                        if hand is not None:
+                            hand.updateHudCache(self.database)
                     self.database.commit()
 
                 #pipe the Hands.id out to the HUD
