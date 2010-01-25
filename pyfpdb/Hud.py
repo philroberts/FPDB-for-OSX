@@ -676,6 +676,11 @@ class Stat_Window:
             return True
 
         if event.button == 1:   # left button event
+            # close on double click for a stat window
+            # for those that don't have a mouse with middle button
+            if event.type == gtk.gdk._2BUTTON_PRESS:
+                self.window.hide()
+                return True
             # TODO: make position saving save sizes as well?
             if event.state & gtk.gdk.SHIFT_MASK:
                 self.window.begin_resize_drag(gtk.gdk.WINDOW_EDGE_SOUTH_EAST, event.button, int(event.x_root), int(event.y_root), event.time)
