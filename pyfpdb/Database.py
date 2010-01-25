@@ -48,6 +48,7 @@ import Configuration
 import SQL
 import Card
 import Tourney
+import Charset
 from Exceptions import *
 
 log = Configuration.get_logger("logging.conf", config = "db")
@@ -359,28 +360,6 @@ class Database:
         cards['common'] = c.fetchone()
         return cards
 
-    def convert_cards(self, d):
-        ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
-        cards = ""
-        for i in xrange(1, 8):
-#            key = 'card' + str(i) + 'Value'
-#            if not d.has_key(key): continue
-#            if d[key] == None:
-#                break
-#            elif d[key] == 0:
-#                cards += "xx"
-#            else:
-#                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
-            cv = "card%dvalue" % i
-            if cv not in d or d[cv] is None:
-                break
-            elif d[cv] == 0:
-                cards += "xx"
-            else:
-                cs = "card%dsuit" % i
-                cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
-        return cards
-
     def get_action_from_hand(self, hand_no):
         action = [ [], [], [], [], [] ]
         c = self.connection.cursor()
@@ -617,7 +596,8 @@ class Database:
         if site_id is None:
             site_id = -1
         c = self.get_cursor()
-        c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
+        p_name = Charset.to_utf8(like_player_name)
+        c.execute(self.sql.query['get_player_names'], (p_name, site_id, site_id))
         rows = c.fetchall()
         return rows
             

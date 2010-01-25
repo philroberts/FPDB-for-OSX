@@ -1,8 +1,8 @@
-free-poker-tools (0.12-1) unstable; urgency=low
+free-poker-tools (0.12~git20100122) unstable; urgency=low
 
-  * New release
+  * New snapshot release with reworked import code
 
- -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Mon, 26 Oct 2009 17:49:07 +0200
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Fri, 22 Jan 2010 09:25:27 +0200
 
 free-poker-tools (0.11.3+git20091023) unstable; urgency=low
 

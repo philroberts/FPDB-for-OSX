@@ -1881,6 +1881,7 @@ class Sql:
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
+                      <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -1964,6 +1965,7 @@ class Sql:
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
+                      <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2047,6 +2049,7 @@ class Sql:
                            inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
                       where hp.playerId in <player_test>
+                      <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2573,6 +2576,7 @@ class Sql:
             AND   h.handStart > '<startdate_test>'
             AND   h.handStart < '<enddate_test>'
             <limit_test>
+            <game_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.handStart"""

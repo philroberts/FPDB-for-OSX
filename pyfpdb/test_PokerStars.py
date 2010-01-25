@@ -178,11 +178,7 @@ def testDrawImport():
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
     except FpdbError:
-        if Configuration.NEWIMPORT == False:
-            #Old import code doesn't support draw
-            pass
-        else:
-            assert 0 == 1
+        assert 0 == 1
 
     # Should actually do some testing here
     assert 1 == 1

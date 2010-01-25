@@ -192,7 +192,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.holecards[street][player] = [open, closed]
 
     def prepInsert(self, db):
-	#####
+        #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
@@ -617,6 +617,8 @@ class HoldemOmahaHand(Hand):
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -681,7 +683,6 @@ class HoldemOmahaHand(Hand):
 
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        # FIXME: This should actually return
         hcs = [u'0x', u'0x', u'0x', u'0x']
 
         for street in self.holeStreets:
@@ -912,6 +913,8 @@ class DrawHand(Hand):
         # Populate the draw hand.
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -1106,6 +1109,8 @@ class StudHand(Hand):
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)

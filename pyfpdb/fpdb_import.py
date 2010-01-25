@@ -98,8 +98,6 @@ class Importer:
         for i in xrange(self.settings['threads']):
             self.writerdbs.append( Database.Database(self.config, sql = self.sql) )
 
-        self.NEWIMPORT = Configuration.NEWIMPORT
-
         clock() # init clock in windows
 
     #Set functions
@@ -433,7 +431,7 @@ class Importer:
             else:
                 self.pos_in_file[file] = 0
             hhc = obj(in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
-            if hhc.getStatus() and self.NEWIMPORT == True:
+            if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
                 to_hud = []
@@ -451,7 +449,9 @@ class Importer:
                 # Call hudcache update if not in bulk import mode
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
-                    hand.updateHudCache(self.database)
+                    for hand in handlist:
+                        if hand is not None:
+                            hand.updateHudCache(self.database)
                     self.database.commit()
 
                 #pipe the Hands.id out to the HUD
