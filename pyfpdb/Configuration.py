@@ -113,10 +113,6 @@ log = get_logger("logging.conf")
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
-DIR_SELF = os.path.dirname(get_exec_path())
-#TODO: imo no good idea to place 'database' in parent dir
-DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
-
 DATABASE_TYPE_POSTGRESQL = 'postgresql'
 DATABASE_TYPE_SQLITE = 'sqlite'
 DATABASE_TYPE_MYSQL = 'mysql'
@@ -429,6 +425,8 @@ class Config:
 
         self.doc = doc
         self.file = file
+        self.dir = os.path.dirname(self.file)
+        self.dir_databases = os.path.join(self.dir, 'database')
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance

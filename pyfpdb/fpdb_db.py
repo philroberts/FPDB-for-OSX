@@ -41,6 +41,10 @@ except ImportError:
 import FpdbSQLQueries
 import Configuration
 
+
+DB_VERSION = 118
+
+
 # Variance created as sqlite has a bunch of undefined aggregate functions.
 
 class VARIANCE:
@@ -74,6 +78,7 @@ class fpdb_db:
         if config is None:
             raise FpdbError('Configuration not defined')
 
+        self.config = config
         self.settings = {}
         self.settings['os'] = "linuxmac" if os.name != "nt" else "windows"
 
@@ -95,6 +100,8 @@ class fpdb_db:
         self.user = user
         self.password = password
         self.database = database
+        createTables = False
+        
         if backend == fpdb_db.MYSQL_INNODB:
             import MySQLdb
             if use_pool:
@@ -154,10 +161,12 @@ class fpdb_db:
             else:
                 logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
-            if not os.path.isdir(Configuration.DIR_DATABASES) and not database ==  ":memory:":
-                print "Creating directory: '%s'" % (Configuration.DIR_DATABASES)
-                os.mkdir(Configuration.DIR_DATABASES)
-                database = os.path.join(Configuration.DIR_DATABASES, database)
+            if not os.path.isdir(self.config.dir_databases) and not database ==  ":memory:":
+                print "Creating directory: '%s'" % (self.config.dir_databases)
+                logging.info("Creating directory: '%s'" % (self.config.dir_databases))
+                os.mkdir(self.config.dir_databases)
+                database = os.path.join(self.config.dir_databases, database)
+                createTables = True
             self.db = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
@@ -179,8 +188,9 @@ class fpdb_db:
         try:
             self.cursor.execute("SELECT * FROM Settings")
             settings = self.cursor.fetchone()
-            if settings[0] != 118:
-                print "outdated or too new database version - please recreate tables"
+            if settings[0] != DB_VERSION:
+                logging.error("outdated or too new database version (%s) - please recreate tables"
+                              % (settings[0]))
                 self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:": print "failed to read settings table - please recreate tables"
