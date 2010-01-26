@@ -56,8 +56,7 @@ def get_exec_path():
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
     else:
-        pathname = os.path.dirname(sys.argv[0])
-        return os.path.abspath(pathname)
+        return sys.path[0]
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
@@ -78,14 +77,19 @@ def get_config(file_name, fallback = True):
 #    OK, fall back to the .example file, should be in the start dir
     if os.path.exists(file_name + ".example"):
         try:
-            shutil.copyfile(file_name + ".example", file_name)
+            shutil.copyfile(file_name + ".example", config_path)
             print "No %s found, using %s.example.\n" % (file_name, file_name)
-            print "A %s file has been created.  You will probably have to edit it." % file_name
-            sys.stderr.write("No %s found, using %s.example.\n" % (file_name, file_name) )
+            print "Config file has been created at %s.\nYou will probably have to edit it." % config_path
+            sys.stderr.write("No %s found, copying %s.example.\n" % (file_name, file_name) )
+            file_name = config_path
         except:
-            print "No %s found, cannot fall back. Exiting.\n" % file_name
-            sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+            print "Error copying .example file, cannot fall back. Exiting.\n"
+            sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
             sys.exit()
+    else:
+        print "No %s found, cannot fall back. Exiting.\n" % file_name
+        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+        sys.exit()
     return file_name
 
 def get_logger(file_name, config = "config", fallback = False):
@@ -408,7 +412,7 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: file = get_config("HUD_config.xml")
+        if file is None: file = get_config("HUD_config.xml", True)
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
