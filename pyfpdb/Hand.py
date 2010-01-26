@@ -617,6 +617,8 @@ class HoldemOmahaHand(Hand):
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -911,6 +913,8 @@ class DrawHand(Hand):
         # Populate the draw hand.
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -1105,6 +1109,8 @@ class StudHand(Hand):
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
