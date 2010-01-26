@@ -147,14 +147,10 @@ class GuiGraphViewer (threading.Thread):
             for site in sites:
                 if sites[site] == True:
                     sitenos.append(siteids[site])
-                    c = self.db.get_cursor()
                     _hname = Charset.to_utf8(heroes[site])
-                    # Nasty hack to deal with multiple sites + same player name -Eric
-                    que = self.sql.query['getPlayerId'] + " AND siteId=%d" % siteids[site]
-                    c.execute(que, (_hname,))
-                    result = c.fetchall()
-                    if len(result) == 1:
-                        playerids.append( int(result[0][0]) )
+                    result = self.db.get_player_id(self.conf, site, _hname)
+                    if result is not None:
+                        playerids.append(int(result))
 
             if not sitenos:
                 #Should probably pop up here.
