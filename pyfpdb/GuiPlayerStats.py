@@ -278,7 +278,7 @@ class GuiPlayerStats (threading.Thread):
                 except:  a = 0.0
                 try:     b = float(b)
                 except:  b = 0.0
-            if n == 0:
+            if n == 0 and grid == 1: #make sure it only works on the starting hands
                 a1,a2,a3 = ranks[a[0]], ranks[a[1]], (a+'o')[2]
                 b1,b2,b3 = ranks[b[0]], ranks[b[1]], (b+'o')[2]
                 if a1 > b1 or ( a1 == b1 and (a2 > b2 or (a2 == b2 and a3 > b3) ) ):
