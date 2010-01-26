@@ -29,7 +29,7 @@ encoder_to_sys = codecs.lookup(Configuration.LOCALE_ENCODING)
 
 # I'm saving a few cycles with this one
 not_needed = False
-if Configuration.LOCALE_ENCODING == 'utf-8':
+if Configuration.LOCALE_ENCODING == 'UTF8':
     not_needed = True
 
 def to_utf8(s):
