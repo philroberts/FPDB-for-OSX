@@ -154,19 +154,21 @@ class fpdb_db:
                     print msg
                     raise FpdbError(msg)
         elif backend == fpdb_db.SQLITE:
-            logging.info("Connecting to SQLite:%(database)s" % {'database':database})
+            logging.info("Connecting to SQLite: %(database)s" % {'database':database})
             import sqlite3
             if use_pool:
                 sqlite3 = pool.manage(sqlite3, pool_size=1)
             else:
                 logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
-            if not os.path.isdir(self.config.dir_databases) and not database ==  ":memory:":
-                print "Creating directory: '%s'" % (self.config.dir_databases)
-                logging.info("Creating directory: '%s'" % (self.config.dir_databases))
-                os.mkdir(self.config.dir_databases)
+            if database != ":memory:":
+                if not os.path.isdir(self.config.dir_databases):
+                    print "Creating directory: '%s'" % (self.config.dir_databases)
+                    logging.info("Creating directory: '%s'" % (self.config.dir_databases))
+                    os.mkdir(self.config.dir_databases)
+                    createTables = True # not needed? just test for no settings table
                 database = os.path.join(self.config.dir_databases, database)
-                createTables = True
+            logging.info("  sqlite db: " + database)
             self.db = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")

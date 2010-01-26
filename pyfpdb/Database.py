@@ -1286,6 +1286,7 @@ class Database:
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
+                0, # tourneyId: 0 means not a tourney hand
                 p['handStart'], 
                 datetime.today(), #importtime
                 p['seats'],

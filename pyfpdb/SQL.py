@@ -214,6 +214,7 @@ class Sql:
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
+                            tourneyId INT UNSIGNED NOT NULL, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
@@ -249,6 +250,7 @@ class Sql:
                             id BIGSERIAL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
+                            tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
@@ -283,6 +285,7 @@ class Sql:
                             id INTEGER PRIMARY KEY,
                             tableName TEXT(22) NOT NULL,
                             siteHandNo INT NOT NULL,
+                            tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL,
                             handStart REAL NOT NULL,
                             importTime REAL NOT NULL,
@@ -3437,6 +3440,7 @@ class Sql:
                                             tablename,
                                             gametypeid,
                                             sitehandno,
+                                            tourneyId,
                                             handstart,
                                             importtime,
                                             seats,
@@ -3467,7 +3471,7 @@ class Sql:
                                              VALUES
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """INSERT INTO HandsPlayers (
