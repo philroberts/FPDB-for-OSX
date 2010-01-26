@@ -27,8 +27,8 @@ import gobject
 #import pokereval
 
 import Configuration
-import fpdb_db
-import FpdbSQLQueries
+import Database
+import SQL
 import Charset
 
 class Filters(threading.Thread):
@@ -790,10 +790,10 @@ def main(argv=None):
     config = Configuration.Config()
     db = None
 
-    db = fpdb_db.fpdb_db()
+    db = Database.Database()
     db.do_connect(config)
 
-    qdict = FpdbSQLQueries.FpdbSQLQueries(db.get_backend_name())
+    qdict = SQL.SQL(db.get_backend_name())
 
     i = Filters(db, config, qdict)
     main_window = gtk.Window()

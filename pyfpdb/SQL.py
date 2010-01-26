@@ -58,6 +58,27 @@ class Sql:
         self.query['drop_table'] = """DROP TABLE IF EXISTS """   
 
 
+        ##################################################################
+        # Set transaction isolation level
+        ##################################################################
+
+        if db_server == 'mysql' or db_server == 'postgresql':
+            self.query['set tx level'] = """SET SESSION TRANSACTION
+            ISOLATION LEVEL READ COMMITTED"""
+        elif db_server == 'sqlite':
+            self.query['set tx level'] = """ """
+
+
+        ################################
+        # Select basic info
+        ################################
+
+        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
+
+        self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
+        
+        self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+
         ################################
         # Create Settings
         ################################
