@@ -60,12 +60,14 @@ def get_exec_path():
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
-    config_path = os.path.join(get_exec_path(), file_name)
+    exec_dir = get_exec_path()
+    config_path = os.path.join(exec_dir, file_name)
 #    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         return config_path             # so we use it
     else: # no file in the cwd, look where it should be in the first place
-        config_path = os.path.join(get_default_config_path(), file_name)
+        default_dir = get_default_config_path()
+        config_path = os.path.join(default_dir, file_name)
 #        print "config path 2=", config_path
         if os.path.exists(config_path):
             return config_path
@@ -77,14 +79,24 @@ def get_config(file_name, fallback = True):
 #    OK, fall back to the .example file, should be in the start dir
     if os.path.exists(file_name + ".example"):
         try:
+            print ""
+            if not os.path.isdir(default_dir):
+                msg = "Creating directory: '%s'" % (default_dir)
+                print msg
+                logging.info(msg)
+                os.mkdir(default_dir)
             shutil.copyfile(file_name + ".example", config_path)
-            print "No %s found, using %s.example.\n" % (file_name, file_name)
-            print "Config file has been created at %s.\nYou will probably have to edit it." % config_path
-            sys.stderr.write("No %s found, copying %s.example.\n" % (file_name, file_name) )
+            msg = "No %s found in %s or %s\n" % (file_name, exec_dir, default_dir) \
+                  + "Config file has been created at %s.\n" % config_path \
+                  + "Edit your screen_name and hand history path in the supported_sites "\
+                  + "section of the \nPreferences window (Main menu) before trying to import hands."
+            print msg
+            logging.info(msg)
             file_name = config_path
         except:
             print "Error copying .example file, cannot fall back. Exiting.\n"
             sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
+            sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     else:
         print "No %s found, cannot fall back. Exiting.\n" % file_name

@@ -39,11 +39,20 @@ import string
 import re
 import Queue
 import codecs
-import logging
 import math
 
 
 #    pyGTK modules
+
+
+#    FreePokerTools modules
+import SQL
+import Card
+import Tourney
+import Charset
+from Exceptions import *
+import Configuration
+log = Configuration.get_logger("logging.conf","db")
 
 
 #    Other library modules
@@ -51,26 +60,15 @@ try:
     import sqlalchemy.pool as pool
     use_pool = True
 except ImportError:
-    logging.info("Not using sqlalchemy connection pool.")
+    log.info("Not using sqlalchemy connection pool.")
     use_pool = False
 
 try:
     from numpy import var
     use_numpy = True
 except ImportError:
-    logging.info("Not using numpy to define variance in sqlite.")
+    log.info("Not using numpy to define variance in sqlite.")
     use_numpy = False
-
-
-#    FreePokerTools modules
-import Configuration
-import SQL
-import Card
-import Tourney
-import Charset
-from Exceptions import *
-
-log = Configuration.get_logger("logging.conf")
 
 
 DB_VERSION = 119
@@ -374,20 +372,20 @@ class Database:
                     print msg
                     raise FpdbError(msg)
         elif backend == Database.SQLITE:
-            logging.info("Connecting to SQLite: %(database)s" % {'database':database})
+            log.info("Connecting to SQLite: %(database)s" % {'database':database})
             import sqlite3
             if use_pool:
                 sqlite3 = pool.manage(sqlite3, pool_size=1)
             else:
-                logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
+                log.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
             if database != ":memory:":
                 if not os.path.isdir(self.config.dir_databases):
                     print "Creating directory: '%s'" % (self.config.dir_databases)
-                    logging.info("Creating directory: '%s'" % (self.config.dir_databases))
+                    log.info("Creating directory: '%s'" % (self.config.dir_databases))
                     os.mkdir(self.config.dir_databases)
                 database = os.path.join(self.config.dir_databases, database)
-            logging.info("  sqlite db: " + database)
+            log.info("  sqlite db: " + database)
             self.connection = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
@@ -397,7 +395,10 @@ class Database:
             if use_numpy:
                 self.connection.create_aggregate("variance", 1, VARIANCE)
             else:
-                logging.warning("Some database functions will not work without NumPy support")
+                log.warning("Some database functions will not work without NumPy support")
+            self.cursor = self.connection.cursor()
+            self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
+            self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
         else:
             raise FpdbError("unrecognised database backend:"+backend)
 
@@ -412,7 +413,7 @@ class Database:
             self.cursor.execute("SELECT * FROM Settings")
             settings = self.cursor.fetchone()
             if settings[0] != DB_VERSION:
-                logging.error("outdated or too new database version (%s) - please recreate tables"
+                log.error("outdated or too new database version (%s) - please recreate tables"
                               % (settings[0]))
                 self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
@@ -422,11 +423,6 @@ class Database:
                     log.info("failed to read settings table - recreating tables")
                     self.recreate_tables()
                     self.check_version(database=database, create=False)
-                    if not self.wrongDbVersion:
-                        msg = "Edit your screen_name and hand history path in the supported_sites "\
-                              +"section of the \nPreferences window (Main menu) before trying to import hands"
-                        print "\n%s" % msg
-                        log.warning(msg)
                 else:
                     print "Failed to read settings table - please recreate tables"
                     log.info("failed to read settings table - please recreate tables")
@@ -436,7 +432,27 @@ class Database:
     #end def connect
 
     def commit(self):
-        self.connection.commit()
+        if self.backend != self.SQLITE:
+            self.connection.commit()
+        else:
+            # sqlite commits can fail because of shared locks on the database (SQLITE_BUSY)
+            # re-try commit if it fails in case this happened
+            maxtimes = 5
+            pause = 1
+            ok = False
+            for i in xrange(maxtimes):
+                try:
+                    ret = self.connection.commit()
+                    log.debug("commit finished ok, i = "+str(i))
+                    ok = True
+                except:
+                    log.debug("commit "+str(i)+" failed: info=" + str(sys.exc_info())
+                                  + " value=" + str(sys.exc_value))
+                    sleep(pause)
+                if ok: break
+            if not ok:
+                log.debug("commit failed")
+                raise FpdbError('sqlite commit failed')
 
     def rollback(self):
         self.connection.rollback()
@@ -1750,7 +1766,10 @@ class Database:
 
     def insertPlayer(self, name, site_id):
         result = None
-        _name = Charset.to_db_utf8(name)
+        if self.backend == self.SQLITE:
+            _name = name
+        else:
+            _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
@@ -1906,7 +1925,7 @@ class Database:
     # end def send_finish_msg():
 
     def tRecogniseTourneyType(self, tourney):
-        logging.debug("Database.tRecogniseTourneyType")
+        log.debug("Database.tRecogniseTourneyType")
         typeId = 1
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
@@ -1922,10 +1941,10 @@ class Database:
         try:
             len(result)
             typeId = result[0]
-            logging.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
+            log.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
             for ev in expectedValues :
                 if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
-                    logging.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
+                    log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
                     typeIdMatch = False
                     #break
         except:
@@ -1935,7 +1954,7 @@ class Database:
         if typeIdMatch == False :
             # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
             # if not found create it
-            logging.debug("Searching for a TourneyTypeId matching TourneyType data")
+            log.debug("Searching for a TourneyTypeId matching TourneyType data")
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
                              tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
@@ -1945,9 +1964,9 @@ class Database:
             try:
                 len(result)
                 typeId = result[0]
-                logging.debug("Existing Tourney Type Id found : %d" % typeId)
+                log.debug("Existing Tourney Type Id found : %d" % typeId)
             except TypeError: #this means we need to create a new entry
-                logging.debug("Tourney Type Id not found : create one")
+                log.debug("Tourney Type Id not found : create one")
                 cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
                                 (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
                                  tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
