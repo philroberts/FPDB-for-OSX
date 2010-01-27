@@ -112,6 +112,7 @@ class Fulltilt(HandHistoryConverter):
 # These regexes are for FTP only
     re_Mixed        = re.compile(r'\s\-\s(?P<MIXED>HA|HORSE|HOSE)\s\-\s', re.VERBOSE)
     re_Max          = re.compile("(?P<MAX>\d+)( max)?", re.MULTILINE)
+    re_Collected    = re.compile(" collected")
     # NB: if we ever match "Full Tilt Poker" we should also match "FullTiltPoker", which PT Stud erroneously exports.
 
 
@@ -255,7 +256,6 @@ class Fulltilt(HandHistoryConverter):
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         #hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
                             ##int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-#FIXME:        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
         if hand.gametype['type'] == "ring" :
@@ -264,7 +264,7 @@ class Fulltilt(HandHistoryConverter):
             m = self.re_TourneyPlayerInfo.finditer(hand.handText)
 
         for a in m:
-            if not re.search(" collected", a.group('PNAME')):
+            if not self.re_Collected.search(a.group('PNAME')):
                 hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
