@@ -18,12 +18,10 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
-import sys
 import logging
 from HandHistoryConverter import *
 
 # Fulltilt HH Format converter
-# TODO: cat tourno and table to make table name for tournaments
 
 class Fulltilt(HandHistoryConverter):
     
@@ -191,7 +189,6 @@ class Fulltilt(HandHistoryConverter):
         if mg['TOURNO'] is None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-#        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
     def readHandInfo(self, hand):
@@ -266,7 +263,6 @@ class Fulltilt(HandHistoryConverter):
         else:   #if hand.gametype['type'] == "tour"
             m = self.re_TourneyPlayerInfo.finditer(hand.handText)
 
-        players = []
         for a in m:
             if not re.search(" collected", a.group('PNAME')):
                 hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -423,7 +419,6 @@ class Fulltilt(HandHistoryConverter):
             hand.mixed = self.mixes[m.groupdict()['MIXED']]
 
     def readSummaryInfo(self, summaryInfoList):
-        starttime = time.time()
         self.status = True
 
         m = re.search("Tournament Summary", summaryInfoList[0])
@@ -543,14 +538,14 @@ class Fulltilt(HandHistoryConverter):
                         tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
                     else :
                         if 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN'])) != tourney.buyin:
-                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (touney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
+                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
                             tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
                         tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
                     else :
                         if 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE'])) != tourney.fee:
-                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (touney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
+                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (tourney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
                             tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
 
         if tourney.buyin is None:
