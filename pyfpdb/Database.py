@@ -74,7 +74,7 @@ log = Configuration.get_logger("logging.conf")
 encoder = codecs.lookup('utf-8')
 
 
-DB_VERSION = 118
+DB_VERSION = 119
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -404,6 +404,10 @@ class Database:
 
         self.cursor = self.connection.cursor()
         self.cursor.execute(self.sql.query['set tx level'])
+        self.check_version(database=database, create=True)
+
+
+    def check_version(self, database, create):
         self.wrongDbVersion = False
         try:
             self.cursor.execute("SELECT * FROM Settings")
@@ -413,8 +417,23 @@ class Database:
                               % (settings[0]))
                 self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
-            if database !=  ":memory:": print "failed to read settings table - please recreate tables"
-            self.wrongDbVersion = True
+            if database !=  ":memory:":
+                if create:
+                    print "Failed to read settings table - recreating tables"
+                    log.info("failed to read settings table - recreating tables")
+                    self.recreate_tables()
+                    self.check_version(database=database, create=False)
+                    if not self.wrongDbVersion:
+                        msg = "Edit your screen_name and hand history path in the supported_sites "\
+                              +"section of the \nPreferences window (Main menu) before trying to import hands"
+                        print "\n%s" % msg
+                        log.warning(msg)
+                else:
+                    print "Failed to read settings table - please recreate tables"
+                    log.info("failed to read settings table - please recreate tables")
+                    self.wrongDbVersion = True
+            else:
+                self.wrongDbVersion = True
     #end def connect
 
     def commit(self):
@@ -1016,6 +1035,7 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
+        print "Finished recreating tables"
         log.info("Finished recreating tables")
     #end def recreate_tables
 
@@ -1281,7 +1301,7 @@ class Database:
     
     def fillDefaultData(self):
         c = self.get_cursor() 
-        c.execute("INSERT INTO Settings (version) VALUES (118);")
+        c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
