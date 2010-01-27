@@ -74,7 +74,6 @@ log = Configuration.get_logger("logging.conf", config = "db")
 log.debug("db logger initialized.")
 encoder = codecs.lookup('utf-8')
 
-
 DB_VERSION = 119
 
 
@@ -1751,7 +1750,7 @@ class Database:
 
     def insertPlayer(self, name, site_id):
         result = None
-        (_name, _len) = encoder.encode(unicode(name))
+        _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])

@@ -40,7 +40,7 @@ class GuiPlayerStats (threading.Thread):
         self.conf = config
         self.main_window = mainwin
         self.sql = querylist
-
+        
         self.liststore = []   # gtk.ListStore[]         stores the contents of the grids
         self.listcols = []    # gtk.TreeViewColumn[][]  stores the columns in the grids
 
@@ -188,13 +188,10 @@ class GuiPlayerStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                # Nasty hack to deal with multiple sites + same player name -Eric
-                que = self.sql.query['getPlayerId'] + " AND siteId=%d" % siteids[site]
                 _hname = Charset.to_utf8(heroes[site])
-                self.cursor.execute(que, (_hname,))
-                result = self.db.cursor.fetchall()
-                if len(result) == 1:
-                    playerids.append(result[0][0])
+                result = self.db.get_player_id(self.conf, site, _hname)
+                if result is not None:
+                    playerids.append(int(result))
 
         if not sitenos:
             #Should probably pop up here.
