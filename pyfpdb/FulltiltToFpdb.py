@@ -268,7 +268,8 @@ class Fulltilt(HandHistoryConverter):
 
         players = []
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            if not re.search(" collected", a.group('PNAME')):
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
