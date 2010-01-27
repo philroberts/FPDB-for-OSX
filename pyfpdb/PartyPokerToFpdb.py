@@ -55,22 +55,22 @@ class PartyPoker(HandHistoryConverter):
     # $5 USD NL Texas Hold'em - Saturday, July 25, 07:53:52 EDT 2009
     # NL Texas Hold'em $1 USD Buy-in Trny:45685440 Level:8  Blinds-Antes(600/1 200 -50) - Sunday, May 17, 11:25:07 MSKS 2009
     re_GameInfoRing     = re.compile("""
-            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[0-9,]+)\s*(?:USD)?\s*
-            (?P<LIMIT>(NL|PL|))\s+
+            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
+            (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE)
     re_GameInfoTrny     = re.compile("""
-            (?P<LIMIT>(NL|PL|))\s+
+            (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
-            (?P<BUYIN>\$?[.0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+
+            (?:(?P<BUYIN>\$?[.,0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
-            Blinds(?:-Antes)?\(
-                (?P<SB>[.0-9 ]+)\s*
-                /(?P<BB>[.0-9 ]+)
-                (?:\s*-\s*(?P<ANTE>[.0-9 ]+)\$?)?
+            ((Blinds|Stakes)(?:-Antes)?)\(
+                (?P<SB>[.,0-9 ]+)\s*
+                /(?P<BB>[.,0-9 ]+)
+                (?:\s*-\s*(?P<ANTE>[.,0-9 ]+)\$?)?
             \)
             \s*\-\s*
             (?P<DATETIME>.+)
@@ -85,10 +85,9 @@ class PartyPoker(HandHistoryConverter):
           re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+
-            (?P<TTYPE>[a-zA-Z0-9 ]+)\s+
+            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
-            (?:[^ ]+\s+\#(?P<MTTTABLE>\d+).+)? # table number for mtt
+            (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
@@ -136,17 +135,17 @@ class PartyPoker(HandHistoryConverter):
             log.debug("CUR_SYM: '%s'" % subst['CUR_SYM'])
             log.debug("CUR: '%s'" % subst['CUR'])
             self.re_PostSB = re.compile(
-                r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst,
+                r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.,0-9]+) ?%(CUR)s\]\." %  subst,
                 re.MULTILINE)
             self.re_PostBB = re.compile(
-                r"^%(PLYR)s posts big blind \[%(CUR_SYM)s(?P<BB>[.0-9]+) ?%(CUR)s\]\." %  subst,
+                r"^%(PLYR)s posts big blind \[%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s\]\." %  subst,
                 re.MULTILINE)
             # NOTE: comma is used as a fraction part delimeter in re below
             self.re_PostDead = re.compile(
                 r"^%(PLYR)s posts big blind \+ dead \[(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s\]\." %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.0-9]+) ?%(CUR)s\]" %  subst,
+                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s\]" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
                 r"^Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
@@ -310,6 +309,10 @@ class PartyPoker(HandHistoryConverter):
                 hand.handid = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+            if key == 'MTTTABLE':
+            	if info[key] != None:
+            		hand.tablename = info[key]
+            		hand.tourNo = info['TABLE']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
@@ -317,8 +320,11 @@ class PartyPoker(HandHistoryConverter):
             if key == 'BUYIN':
                 # FIXME: it's dirty hack T_T
                 # code below assumes that tournament rake is equal to zero
-                cur = info[key][0] if info[key][0] not in '0123456789' else ''
-                hand.buyin = info[key] + '+%s0' % cur
+                if info[key] == None:
+                    hand.buyin = '$0+$0'
+                else:
+                    cur = info[key][0] if info[key][0] not in '0123456789' else ''
+                    hand.buyin = info[key] + '+%s0' % cur
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':

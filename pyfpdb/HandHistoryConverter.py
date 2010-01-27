@@ -440,10 +440,9 @@ or None if we fail to get the info """
                     #print "trying", kodec
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
-                        in_fh.seek(self.index)
-                        log.debug("Opened in_path: '%s' with %s" % (self.in_path, kodec))
-                        self.obs = in_fh.read()
-                        self.index = in_fh.tell()
+                        whole_file = in_fh.read()
+                        self.obs = whole_file[self.index:]
+                        self.index = len(whole_file)
                         in_fh.close()
                         break
                     except:
