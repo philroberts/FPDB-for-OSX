@@ -65,8 +65,8 @@ class Fulltilt(HandHistoryConverter):
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
                                     ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
-    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) (?! collected )?\(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
+    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) (?! collected )?\(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -264,8 +264,7 @@ class Fulltilt(HandHistoryConverter):
             m = self.re_TourneyPlayerInfo.finditer(hand.handText)
 
         for a in m:
-            if not self.re_Collected.search(a.group('PNAME')):
-                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
