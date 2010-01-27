@@ -205,7 +205,7 @@ dealt   whether they were seen in a 'dealt to' line
     def insert(self, db):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
-db: a connected fpdb_db object"""
+db: a connected Database object"""
 
 
         self.stats.getStats(self)

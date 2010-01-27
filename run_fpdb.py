@@ -19,8 +19,11 @@
 import os
 import sys
 
-# sys.path[0] holds the dir run_fpdb.py was in
+# sys.path[0] holds the directory run_fpdb.py is in
 sys.path[0] = sys.path[0]+os.sep+"pyfpdb"
+os.chdir(sys.path[0])
+#print "sys.path[0] =", sys.path[0], "cwd =", os.getcwd()
+
 
 import fpdb
 

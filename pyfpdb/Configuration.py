@@ -56,8 +56,7 @@ def get_exec_path():
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
     else:
-        pathname = os.path.dirname(sys.argv[0])
-        return os.path.abspath(pathname)
+        return sys.path[0]
 
 def get_config(file_name, fallback = True):
     """Looks in exec dir and in self.default_config_path for a config file."""
@@ -82,8 +81,11 @@ def get_config(file_name, fallback = True):
             log.error("No %s found, using %s.example.\n" % (file_name, file_name) )
         except:
             print "No %s found, cannot fall back. Exiting.\n" % file_name
-            log.critical("No %s found, cannot fall back. Exiting.\n" % file_name)
             sys.exit()
+    else:
+        print "No %s found, cannot fall back. Exiting.\n" % file_name
+        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+        sys.exit()
     return file_name
 
 def get_logger(file_name, config = "config", fallback = False):
@@ -429,7 +431,7 @@ class Config:
                 log.error("Specified configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: file = get_config("HUD_config.xml")
+        if file is None: file = get_config("HUD_config.xml", True)
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
@@ -446,6 +448,8 @@ class Config:
 
         self.doc = doc
         self.file = file
+        self.dir = os.path.dirname(self.file)
+        self.dir_databases = os.path.join(self.dir, 'database')
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance

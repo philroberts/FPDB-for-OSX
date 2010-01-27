@@ -58,6 +58,27 @@ class Sql:
         self.query['drop_table'] = """DROP TABLE IF EXISTS """   
 
 
+        ##################################################################
+        # Set transaction isolation level
+        ##################################################################
+
+        if db_server == 'mysql' or db_server == 'postgresql':
+            self.query['set tx level'] = """SET SESSION TRANSACTION
+            ISOLATION LEVEL READ COMMITTED"""
+        elif db_server == 'sqlite':
+            self.query['set tx level'] = """ """
+
+
+        ################################
+        # Select basic info
+        ################################
+
+        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
+
+        self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
+        
+        self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+
         ################################
         # Create Settings
         ################################
@@ -214,6 +235,7 @@ class Sql:
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
+                            tourneyId INT UNSIGNED NOT NULL, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
@@ -249,6 +271,7 @@ class Sql:
                             id BIGSERIAL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
+                            tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
@@ -283,6 +306,7 @@ class Sql:
                             id INTEGER PRIMARY KEY,
                             tableName TEXT(22) NOT NULL,
                             siteHandNo INT NOT NULL,
+                            tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL,
                             handStart REAL NOT NULL,
                             importTime REAL NOT NULL,
@@ -3437,6 +3461,7 @@ class Sql:
                                             tablename,
                                             gametypeid,
                                             sitehandno,
+                                            tourneyId,
                                             handstart,
                                             importtime,
                                             seats,
@@ -3467,7 +3492,7 @@ class Sql:
                                              VALUES
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """INSERT INTO HandsPlayers (

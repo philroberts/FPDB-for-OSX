@@ -39,11 +39,30 @@ import string
 import re
 import Queue
 import codecs
+import logging
+import math
+
 
 #    pyGTK modules
 
+
+#    Other library modules
+try:
+    import sqlalchemy.pool as pool
+    use_pool = True
+except ImportError:
+    logging.info("Not using sqlalchemy connection pool.")
+    use_pool = False
+
+try:
+    from numpy import var
+    use_numpy = True
+except ImportError:
+    logging.info("Not using numpy to define variance in sqlite.")
+    use_numpy = False
+
+
 #    FreePokerTools modules
-import fpdb_db
 import Configuration
 import SQL
 import Card
@@ -54,6 +73,27 @@ from Exceptions import *
 log = Configuration.get_logger("logging.conf", config = "db")
 log.debug("db logger initialized.")
 encoder = codecs.lookup('utf-8')
+
+
+DB_VERSION = 119
+
+
+# Variance created as sqlite has a bunch of undefined aggregate functions.
+
+class VARIANCE:
+    def __init__(self):
+        self.store = []
+
+    def step(self, value):
+        self.store.append(value)
+
+    def finalize(self):
+        return float(var(self.store))
+
+class sqlitemath:
+    def mod(self, a, b):
+        return a%b
+
 
 class Database:
 
@@ -191,7 +231,22 @@ class Database:
         log.info("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.__connected = False
-        self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
+        self.settings = {}
+        self.settings['os'] = "linuxmac" if os.name != "nt" else "windows"
+        db_params = c.get_db_parameters()
+        self.import_options = c.get_import_parameters()
+        self.backend = db_params['db-backend']
+        self.db_server = db_params['db-server']
+        self.database = db_params['db-databaseName']
+        self.host = db_params['db-host']
+
+        # where possible avoid creating new SQL instance by using the global one passed in
+        if sql is None:
+            self.sql = SQL.Sql(db_server = self.db_server)
+        else:
+            self.sql = sql
+
+        # connect to db
         self.do_connect(c)
         print "connection =", self.connection
         if self.backend == self.PGSQL:
@@ -199,12 +254,6 @@ class Database:
             #ISOLATION_LEVEL_AUTOCOMMIT     = 0
             #ISOLATION_LEVEL_READ_COMMITTED = 1 
             #ISOLATION_LEVEL_SERIALIZABLE   = 2
-
-        # where possible avoid creating new SQL instance by using the global one passed in
-        if sql is None:
-            self.sql = SQL.Sql(db_server = self.db_server)
-        else:
-            self.sql = sql
 
         if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
             log.info("sqlite/:memory: - creating")
@@ -228,8 +277,6 @@ class Database:
         self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
         self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
 
-        self.cursor = self.fdb.cursor
-
         self.saveActions = False if self.import_options['saveActions'] == False else True
 
         self.connection.rollback()  # make sure any locks taken so far are released
@@ -240,14 +287,20 @@ class Database:
         self.hud_style = style
 
     def do_connect(self, c):
+        if c is None:
+            raise FpdbError('Configuration not defined')
+
+        db = c.get_db_parameters()
         try:
-            self.fdb.do_connect(c)
+            self.connect(backend=db['db-backend'],
+                         host=db['db-host'],
+                         database=db['db-databaseName'],
+                         user=db['db-user'],
+                         password=db['db-password'])
         except:
             # error during connect
             self.__connected = False
             raise
-        self.connection = self.fdb.db
-        self.wrongDbVersion = self.fdb.wrongDbVersion
 
         db_params = c.get_db_parameters()
         self.import_options = c.get_import_parameters()
@@ -257,11 +310,137 @@ class Database:
         self.host = db_params['db-host']
         self.__connected = True
 
+    def connect(self, backend=None, host=None, database=None,
+                user=None, password=None):
+        """Connects a database with the given parameters"""
+        if backend is None:
+            raise FpdbError('Database backend not defined')
+        self.backend = backend
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
+        self.connection = None
+        self.cursor     = None
+        
+        if backend == Database.MYSQL_INNODB:
+            import MySQLdb
+            if use_pool:
+                MySQLdb = pool.manage(MySQLdb, pool_size=5)
+            try:
+                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+            #TODO: Add port option
+            except MySQLdb.Error, ex:
+                if ex.args[0] == 1045:
+                    raise FpdbMySQLAccessDenied(ex.args[0], ex.args[1])
+                elif ex.args[0] == 2002 or ex.args[0] == 2003: # 2002 is no unix socket, 2003 is no tcp socket
+                    raise FpdbMySQLNoDatabase(ex.args[0], ex.args[1])
+                else:
+                    print "*** WARNING UNKNOWN MYSQL ERROR", ex
+        elif backend == Database.PGSQL:
+            import psycopg2
+            import psycopg2.extensions
+            if use_pool:
+                psycopg2 = pool.manage(psycopg2, pool_size=5)
+            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+            # If DB connection is made over TCP, then the variables
+            # host, user and password are required
+            # For local domain-socket connections, only DB name is
+            # needed, and everything else is in fact undefined and/or
+            # flat out wrong
+            # sqlcoder: This database only connect failed in my windows setup??
+            # Modifed it to try the 4 parameter style if the first connect fails - does this work everywhere?
+            connected = False
+            if self.host == "localhost" or self.host == "127.0.0.1":
+                try:
+                    self.connection = psycopg2.connect(database = database)
+                    connected = True
+                except:
+                    # direct connection failed so try user/pass/... version
+                    pass
+            if not connected:
+                try:
+                    self.connection = psycopg2.connect(host = host,
+                                               user = user,
+                                               password = password,
+                                               database = database)
+                except Exception, ex:
+                    if 'Connection refused' in ex.args[0]:
+                        # meaning eg. db not running
+                        raise FpdbPostgresqlNoDatabase(errmsg = ex.args[0])
+                    elif 'password authentication' in ex.args[0]:
+                        raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
+                    else:
+                        msg = ex.args[0]
+                    print msg
+                    raise FpdbError(msg)
+        elif backend == Database.SQLITE:
+            logging.info("Connecting to SQLite: %(database)s" % {'database':database})
+            import sqlite3
+            if use_pool:
+                sqlite3 = pool.manage(sqlite3, pool_size=1)
+            else:
+                logging.warning("SQLite won't work well without 'sqlalchemy' installed.")
+
+            if database != ":memory:":
+                if not os.path.isdir(self.config.dir_databases):
+                    print "Creating directory: '%s'" % (self.config.dir_databases)
+                    logging.info("Creating directory: '%s'" % (self.config.dir_databases))
+                    os.mkdir(self.config.dir_databases)
+                database = os.path.join(self.config.dir_databases, database)
+            logging.info("  sqlite db: " + database)
+            self.connection = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
+            sqlite3.register_converter("bool", lambda x: bool(int(x)))
+            sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+            self.connection.create_function("floor", 1, math.floor)
+            tmp = sqlitemath()
+            self.connection.create_function("mod", 2, tmp.mod)
+            if use_numpy:
+                self.connection.create_aggregate("variance", 1, VARIANCE)
+            else:
+                logging.warning("Some database functions will not work without NumPy support")
+        else:
+            raise FpdbError("unrecognised database backend:"+backend)
+
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(self.sql.query['set tx level'])
+        self.check_version(database=database, create=True)
+
+
+    def check_version(self, database, create):
+        self.wrongDbVersion = False
+        try:
+            self.cursor.execute("SELECT * FROM Settings")
+            settings = self.cursor.fetchone()
+            if settings[0] != DB_VERSION:
+                logging.error("outdated or too new database version (%s) - please recreate tables"
+                              % (settings[0]))
+                self.wrongDbVersion = True
+        except:# _mysql_exceptions.ProgrammingError:
+            if database !=  ":memory:":
+                if create:
+                    print "Failed to read settings table - recreating tables"
+                    log.info("failed to read settings table - recreating tables")
+                    self.recreate_tables()
+                    self.check_version(database=database, create=False)
+                    if not self.wrongDbVersion:
+                        msg = "Edit your screen_name and hand history path in the supported_sites "\
+                              +"section of the \nPreferences window (Main menu) before trying to import hands"
+                        print "\n%s" % msg
+                        log.warning(msg)
+                else:
+                    print "Failed to read settings table - please recreate tables"
+                    log.info("failed to read settings table - please recreate tables")
+                    self.wrongDbVersion = True
+            else:
+                self.wrongDbVersion = True
+    #end def connect
+
     def commit(self):
-        self.fdb.db.commit()
+        self.connection.commit()
 
     def rollback(self):
-        self.fdb.db.rollback()
+        self.connection.rollback()
 
     def connected(self):
         return self.__connected
@@ -274,11 +453,18 @@ class Database:
 
     def disconnect(self, due_to_error=False):
         """Disconnects the DB (rolls back if param is true, otherwise commits"""
-        self.fdb.disconnect(due_to_error)
+        if due_to_error:
+            self.connection.rollback()
+        else:
+            self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
     
     def reconnect(self, due_to_error=False):
         """Reconnects the DB"""
-        self.fdb.reconnect(due_to_error=False)
+        #print "started reconnect"
+        self.disconnect(due_to_error)
+        self.connect(self.backend, self.host, self.database, self.user, self.password)
     
     def get_backend_name(self):
         """Returns the name of the currently used backend"""
@@ -290,6 +476,9 @@ class Database:
             return "SQLite"
         else:
             raise FpdbError("invalid backend")
+
+    def get_db_info(self):
+        return (self.host, self.database, self.user, self.password)
 
     def get_table_name(self, hand_id):
         c = self.connection.cursor()
@@ -846,6 +1035,7 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
+        print "Finished recreating tables"
         log.info("Finished recreating tables")
     #end def recreate_tables
 
@@ -1111,7 +1301,7 @@ class Database:
     
     def fillDefaultData(self):
         c = self.get_cursor() 
-        c.execute("INSERT INTO Settings (version) VALUES (118);")
+        c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
@@ -1267,7 +1457,7 @@ class Database:
         try:
             self.get_cursor().execute(self.sql.query['lockForInsert'])
         except:
-            print "Error during fdb.lock_for_insert:", str(sys.exc_value)
+            print "Error during lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
 
 ###########################
@@ -1286,6 +1476,7 @@ class Database:
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
+                0, # tourneyId: 0 means not a tourney hand
                 p['handStart'], 
                 datetime.today(), #importtime
                 p['seats'],
