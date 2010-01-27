@@ -112,7 +112,6 @@ import GuiGraphViewer
 import GuiSessionViewer
 import SQL
 import Database
-import FpdbSQLQueries
 import Configuration
 import Exceptions
 
