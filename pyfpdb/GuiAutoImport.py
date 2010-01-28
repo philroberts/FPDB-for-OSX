@@ -194,7 +194,7 @@ class GuiAutoImport (threading.Thread):
                 widget.set_label(u'  _Stop Autoimport  ')
                 if self.pipe_to_hud is None:
                     if os.name == 'nt':
-                        command = "python HUD_main.py " + self.settings['cl_options']
+                        command = "python "+sys.path[0]+"\\HUD_main.py " + self.settings['cl_options']
                         bs = 0
                     else:
                         command = os.path.join(sys.path[0], 'HUD_main.py')
