@@ -43,7 +43,7 @@ class Hand(object):
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
     SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
-    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9 }
+    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Carbon':10 }
 
 
     def __init__(self, sitename, gametype, handText, builtFrom = "HHC"):
@@ -288,6 +288,24 @@ If a player has None chips he won't be added."""
         for k,v in self.UPS.items():
             c = c.replace(k,v)
         return c
+
+    def addAllIn(self, street, player, amount):
+        """\
+For sites (currently only Carbon Poker) which record "all in" as a special action, which can mean either "calls and is all in" or "raises all in".
+"""
+        self.checkPlayerExists(player)
+        amount = re.sub(u',', u'', amount) #some sites have commas
+        Ai = Decimal(amount)
+        Bp = self.lastBet[street]
+        Bc = reduce(operator.add, self.bets[street][player], 0)
+        C = Bp - Bc
+        if Ai <= C:
+            self.addCall(street, player, amount)
+        elif Bp == 0:
+            self.addBet(street, player, amount)
+        else:
+            Rb = Ai - C
+            self._addRaise(street, player, C, Rb, Ai)
 
     def addAnte(self, player, ante):
         log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
