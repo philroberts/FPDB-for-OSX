@@ -437,13 +437,15 @@ class Importer:
 
                 for hand in handlist:
                     if hand is not None:
-                        #try, except duplicates here?
                         hand.prepInsert(self.database)
-                        hand.insert(self.database)
-
-                        if self.callHud and hand.dbid_hands != 0:
-                            to_hud.append(hand.dbid_hands)
-                    else:
+                        try:
+                            hand.insert(self.database)
+                        except Exceptions.FpdbHandDuplicate:
+                            duplicates += 1
+                        else:
+                            if self.callHud and hand.dbid_hands != 0:
+                                to_hud.append(hand.dbid_hands)
+                    else: # TODO: Treat empty as an error, or just ignore?
                         log.error("Hand processed but empty")
                 self.database.commit()
                 # Call hudcache update if not in bulk import mode
@@ -461,6 +463,7 @@ class Importer:
 
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
+                stored -= duplicates
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
