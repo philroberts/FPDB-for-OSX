@@ -185,7 +185,7 @@ class Tourney(object):
     def old_insert_from_Hand(self, db):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
-db: a connected fpdb_db object"""
+db: a connected Database object"""
         # TODO:
         # Players - base playerid and siteid tuple
         sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)

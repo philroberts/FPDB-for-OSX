@@ -27,7 +27,6 @@ from time import time, strftime
 import Card
 import fpdb_import
 import Database
-import fpdb_db
 import Filters
 import Charset
 

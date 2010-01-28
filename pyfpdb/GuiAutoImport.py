@@ -300,7 +300,6 @@ if __name__== "__main__":
     (options, argv) = parser.parse_args()
 
     config = Configuration.Config()
-#    db = fpdb_db.fpdb_db()
 
     settings = {}
     settings['minPrint'] = options.minPrint

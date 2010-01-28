@@ -56,36 +56,36 @@ def get_exec_path():
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
     else:
-        pathname = os.path.dirname(sys.argv[0])
-        return os.path.abspath(pathname)
+        return sys.path[0]
 
 def get_config(file_name, fallback = True):
-    """Looks in cwd and in self.default_config_path for a config file."""
-    config_path = os.path.join(get_exec_path(), file_name)
-#    print "config_path=", config_path
-    if os.path.exists(config_path):    # there is a file in the cwd
-        return config_path             # so we use it
-    else: # no file in the cwd, look where it should be in the first place
-        config_path = os.path.join(get_default_config_path(), file_name)
-#        print "config path 2=", config_path
-        if os.path.exists(config_path):
+    """Looks in exec dir and in self.default_config_path for a config file."""
+    config_path = os.path.join(DIR_SELF, file_name) # look in exec dir
+    if os.path.exists(config_path) and os.path.isfile(config_path):
+        return config_path # there is a file in the exec dir so we use it
+    else:
+        config_path = os.path.join(DIR_CONFIG, file_name) # look in config dir
+        if os.path.exists(config_path) and os.path.isfile(config_path):
             return config_path
 
 #    No file found
     if not fallback:
         return False
 
-#    OK, fall back to the .example file, should be in the start dir
-    if os.path.exists(file_name + ".example"):
+#    OK, fall back to the .example file, should be in the exec dir
+    if os.path.exists(os.path.join(DIR_SELF, file_name + ".example")):
         try:
-            shutil.copyfile(file_name + ".example", file_name)
+            shutil.copyfile(os.path.join(DIR_SELF, file_name + ".example"), os.path.join(DIR_CONFIG, file_name))
             print "No %s found, using %s.example.\n" % (file_name, file_name)
-            print "A %s file has been created.  You will probably have to edit it." % file_name
-            sys.stderr.write("No %s found, using %s.example.\n" % (file_name, file_name) )
+            print "A %s file has been created.  You will probably have to edit it." % os.path.join(DIR_CONFIG, file_name)
+            log.error("No %s found, using %s.example.\n" % (file_name, file_name) )
         except:
             print "No %s found, cannot fall back. Exiting.\n" % file_name
-            sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
             sys.exit()
+    else:
+        print "No %s found, cannot fall back. Exiting.\n" % file_name
+        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+        sys.exit()
     return file_name
 
 def get_logger(file_name, config = "config", fallback = False):
@@ -94,18 +94,26 @@ def get_logger(file_name, config = "config", fallback = False):
         try:
             logging.config.fileConfig(conf)
             log = logging.getLogger(config)
-            log.debug("%s logger initialised" % config)
             return log
         except:
             pass
 
     log = logging.basicConfig()
     log = logging.getLogger()
-    log.debug("config logger initialised")
+    log.error("basicConfig logger initialised")
     return log
 
-#    find a logging.conf file and set up logging
-log = get_logger("logging.conf")
+def check_dir(path, create = True):
+    """Check if a dir exists, optionally creates if not."""
+    if os.path.exists(path):
+        if os.path.isdir(path):
+            return path
+        else:
+            return False
+    if create:
+        print "creating directory %s" % path
+    else:
+        return False
 
 ########################################################################
 # application wide consts
@@ -113,19 +121,31 @@ log = get_logger("logging.conf")
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
-DIR_SELF = os.path.dirname(get_exec_path())
-#TODO: imo no good idea to place 'database' in parent dir
-DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
+DIR_SELF     = get_exec_path()
+DIR_CONFIG   = check_dir(get_default_config_path())
+DIR_DATABASE = check_dir(os.path.join(DIR_CONFIG, 'database'))
+DIR_LOG      = check_dir(os.path.join(DIR_CONFIG, 'log'))
 
 DATABASE_TYPE_POSTGRESQL = 'postgresql'
 DATABASE_TYPE_SQLITE = 'sqlite'
 DATABASE_TYPE_MYSQL = 'mysql'
+#TODO: should this be a tuple or a dict
 DATABASE_TYPES = (
         DATABASE_TYPE_POSTGRESQL,
         DATABASE_TYPE_SQLITE,
         DATABASE_TYPE_MYSQL,
         )
 
+#    find a logging.conf file and set up logging
+log = get_logger("logging.conf", config = "config")
+log.debug("config logger initialised")
+
+# and then log our consts
+log.info("DIR SELF = %s" % DIR_SELF)
+log.info("DIR CONFIG = %s" % DIR_CONFIG)
+log.info("DIR DATABASE = %s" % DIR_DATABASE)
+log.info("DIR LOG = %s" % DIR_LOG)
+NEWIMPORT = True
 LOCALE_ENCODING = locale.getdefaultlocale()[1]
 
 ########################################################################
@@ -408,11 +428,10 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print "Configuration file %s not found.  Using defaults." % (file)
-                sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
+                log.error("Specified configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: file = get_config("HUD_config.xml")
+        if file is None: file = get_config("HUD_config.xml", True)
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
@@ -429,6 +448,8 @@ class Config:
 
         self.doc = doc
         self.file = file
+        self.dir = os.path.dirname(self.file)
+        self.dir_databases = os.path.join(self.dir, 'database')
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance

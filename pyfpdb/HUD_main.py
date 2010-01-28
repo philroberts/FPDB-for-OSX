@@ -36,9 +36,7 @@ import traceback
 (options, argv) = Options.fpdb_options()
 
 if not options.errorsToConsole:
-    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('HUD-error.txt', 'w', 0)
-    sys.stderr = errorFile
+    print "Note: error output is being logged. Any major error will be reported there _only_."
 
 import thread
 import time
@@ -52,6 +50,13 @@ import gobject
 
 #    FreePokerTools modules
 import Configuration
+
+print "start logging"
+log = Configuration.get_logger("logging.conf", config = 'hud')
+log.debug("%s logger initialized." % "dud")
+print "logging started"
+
+
 import Database
 from HandHistoryConverter import getTableTitleRe
 #    get the correct module for the current os
@@ -72,6 +77,7 @@ class HUD_main(object):
 
     def __init__(self, db_name = 'fpdb'):
         self.db_name = db_name
+        self.log = log
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         self.hud_dict = {}
         self.hud_params = self.config.get_hud_ui_parameters()
@@ -91,6 +97,7 @@ class HUD_main(object):
         self.main_window.show_all()
 
     def destroy(self, *args):             # call back for terminating the main eventloop
+        self.log.info("Terminating normally.")
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -198,6 +205,7 @@ class HUD_main(object):
             t0 = time.time()
             t1 = t2 = t3 = t4 = t5 = t6 = t0
             new_hand_id = string.rstrip(new_hand_id)
+            self.log.debug("Received hand no %s" % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
@@ -207,9 +215,8 @@ class HUD_main(object):
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
-            except Exception, err: # TODO: we need to make this a much less generic Exception lulz
-                print "db error: skipping %s" % new_hand_id
-                sys.stderr.write("Database error: could not find hand %s.\n" % new_hand_id)
+            except Exception, err:
+                self.log.error("db error: skipping %s" % new_hand_id)
                 continue
             t1 = time.time()
 
@@ -267,7 +274,8 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
+#                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
+                    self.log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
@@ -284,8 +292,8 @@ class HUD_main(object):
 
 if __name__== "__main__":
 
-    sys.stderr.write("HUD_main starting\n")
-    sys.stderr.write("Using db name = %s\n" % (options.dbname))
+    log.info("HUD_main starting")
+    log.info("Using db name = %s" % (options.dbname))
 
 #    start the HUD_main object
     hm = HUD_main(db_name = options.dbname)
