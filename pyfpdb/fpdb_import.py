@@ -365,7 +365,7 @@ class Importer:
                             pass
                         (stored, duplicates, partial, errors, ttime) = self.import_file_dict(self.database, file, self.filelist[file][0], self.filelist[file][1], None)
                         try:
-                            if not os.path.isdir(file):
+                            if not os.path.isdir(file): # Note: This assumes that whatever calls us has an "addText" func
                                 self.caller.addText(" %d stored, %d duplicates, %d partial, %d errors (time = %f)" % (stored, duplicates, partial, errors, ttime))
                         except KeyError: # TODO: Again, what error happens here? fix when we find out ..
                             pass
@@ -402,7 +402,7 @@ class Importer:
             return (0,0,0,0,0)
 
         conv = None
-        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, 0)
+        (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
 
         file =  file.decode(Configuration.LOCALE_ENCODING)
 
@@ -440,6 +440,7 @@ class Importer:
                         #try, except duplicates here?
                         hand.prepInsert(self.database)
                         hand.insert(self.database)
+
                         if self.callHud and hand.dbid_hands != 0:
                             to_hud.append(hand.dbid_hands)
                     else:
@@ -463,10 +464,12 @@ class Importer:
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
-                return (0, 0, 0, 1, 0)
+                return (0, 0, 0, 1, time() - ttime)
         else:
             log.warning("Unknown filter filter_name:'%s' in filter:'%s'" %(filter_name, filter))
-            return (0, 0, 0, 1, 0)
+            return (0, 0, 0, 1, time() - ttime)
+
+        ttime = time() - ttime
 
         #This will barf if conv.getStatus != True
         return (stored, duplicates, partial, errors, ttime)
