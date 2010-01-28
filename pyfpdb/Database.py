@@ -1311,6 +1311,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Partouche', 'EUR')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Carbon', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         elif self.backend == self.PGSQL:
