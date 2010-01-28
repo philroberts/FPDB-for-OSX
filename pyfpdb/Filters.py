@@ -27,8 +27,8 @@ import gobject
 #import pokereval
 
 import Configuration
-import fpdb_db
-import FpdbSQLQueries
+import Database
+import SQL
 import Charset
 
 class Filters(threading.Thread):
@@ -50,6 +50,16 @@ class Filters(threading.Thread):
         self.siteid = {}
         self.heroes = {}
         self.boxes  = {}
+
+        for site in self.conf.get_supported_sites():
+            #Get db site id for filtering later
+            self.cursor.execute(self.sql.query['getSiteId'], (site,))
+            result = self.db.cursor.fetchall()
+            if len(result) == 1:
+                self.siteid[site] = result[0][0]
+            else:
+                print "Either 0 or more than one site matched - EEK"
+
 
         # text used on screen stored here so that it can be configured
         self.filterText = {'limitsall':'All', 'limitsnone':'None', 'limitsshow':'Show _Limits'
@@ -259,7 +269,7 @@ class Filters(threading.Thread):
         liststore = gtk.ListStore(gobject.TYPE_STRING)
         completion.set_model(liststore)
         completion.set_text_column(0)
-        names = self.db.get_player_names(self.conf)  # (config=self.conf, site_id=None, like_player_name="%")
+        names = self.db.get_player_names(self.conf, self.siteid[site])  # (config=self.conf, site_id=None, like_player_name="%")
         for n in names: # list of single-element "tuples"
             _n = Charset.to_gui(n[0])
             _nt = (_n, )
@@ -487,12 +497,12 @@ class Filters(threading.Thread):
             vbox.pack_start(hbox, False, True, 0)
             self.createSiteLine(hbox, site)
             #Get db site id for filtering later
-            self.cursor.execute(self.sql.query['getSiteId'], (site,))
-            result = self.db.cursor.fetchall()
-            if len(result) == 1:
-                self.siteid[site] = result[0][0]
-            else:
-                print "Either 0 or more than one site matched - EEK"
+            #self.cursor.execute(self.sql.query['getSiteId'], (site,))
+            #result = self.db.cursor.fetchall()
+            #if len(result) == 1:
+            #    self.siteid[site] = result[0][0]
+            #else:
+            #    print "Either 0 or more than one site matched - EEK"
 
     def fillGamesFrame(self, vbox):
         self.cursor.execute(self.sql.query['getGames'])
@@ -790,10 +800,10 @@ def main(argv=None):
     config = Configuration.Config()
     db = None
 
-    db = fpdb_db.fpdb_db()
+    db = Database.Database()
     db.do_connect(config)
 
-    qdict = FpdbSQLQueries.FpdbSQLQueries(db.get_backend_name())
+    qdict = SQL.SQL(db.get_backend_name())
 
     i = Filters(db, config, qdict)
     main_window = gtk.Window()

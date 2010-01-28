@@ -26,51 +26,43 @@ from HandHistoryConverter import *
 
 # PartyPoker HH Format
 
-class PartyPokerParseError(FpdbParseError):
-    "Usage: raise PartyPokerParseError(<msg>[, hh=<hh>][, hid=<hid>])"
+class FpdbParseError(FpdbParseError):
+    "Usage: raise FpdbParseError(<msg>[, hh=<hh>][, hid=<hid>])"
 
     def __init__(self, msg='', hh=None, hid=None):
-        if hh is not None:
-            msg += "\n\nHand history attached below:\n" + self.wrapHh(hh)
-        return super(PartyPokerParseError, self).__init__(msg, hid=hid)
+        return super(FpdbParseError, self).__init__(msg, hid=hid)
 
     def wrapHh(self, hh):
         return ("%(DELIMETER)s\n%(HH)s\n%(DELIMETER)s") % \
                 {'DELIMETER': '#'*50, 'HH': hh}
 
 class PartyPoker(HandHistoryConverter):
-
-############################################################
-#    Class Variables
-
     sitename = "PartyPoker"
     codepage = "cp1252"
-    siteId = 9 # TODO: automate; it's a class variable so shouldn't hit DB too often
-    filetype = "text" # "text" or "xml". I propose we subclass HHC to HHC_Text and HHC_XML.
-
-
+    siteId = 9 
+    filetype = "text" 
     sym = {'USD': "\$", }
 
     # Static regexes
     # $5 USD NL Texas Hold'em - Saturday, July 25, 07:53:52 EDT 2009
     # NL Texas Hold'em $1 USD Buy-in Trny:45685440 Level:8  Blinds-Antes(600/1 200 -50) - Sunday, May 17, 11:25:07 MSKS 2009
     re_GameInfoRing     = re.compile("""
-            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[0-9,]+)\s*(?:USD)?\s*
-            (?P<LIMIT>(NL|PL|))\s+
+            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
+            (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))
             \s*\-\s*
             (?P<DATETIME>.+)
             """, re.VERBOSE)
     re_GameInfoTrny     = re.compile("""
-            (?P<LIMIT>(NL|PL|))\s+
+            (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))\s+
-            (?P<BUYIN>\$?[.0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+
+            (?:(?P<BUYIN>\$?[.,0-9]+)\s*(?P<BUYIN_CURRENCY>USD)?\s*Buy-in\s+)?
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
-            Blinds(?:-Antes)?\(
-                (?P<SB>[.0-9 ]+)\s*
-                /(?P<BB>[.0-9 ]+)
-                (?:\s*-\s*(?P<ANTE>[.0-9 ]+)\$?)?
+            ((Blinds|Stakes)(?:-Antes)?)\(
+                (?P<SB>[.,0-9 ]+)\s*
+                /(?P<BB>[.,0-9 ]+)
+                (?:\s*-\s*(?P<ANTE>[.,0-9 ]+)\$?)?
             \)
             \s*\-\s*
             (?P<DATETIME>.+)
@@ -85,17 +77,16 @@ class PartyPoker(HandHistoryConverter):
           re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+
-            (?P<TTYPE>[a-zA-Z0-9 ]+)\s+
+            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
-            (?:[^ ]+\s+\#(?P<MTTTABLE>\d+).+)? # table number for mtt
+            (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
             """,
-          re.MULTILINE|re.VERBOSE)
+          re.VERBOSE|re.MULTILINE)
 
-#    re_TotalPlayers = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<MAXSEATS>\d+)", re.MULTILINE)
+    re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\x00+')
     re_TailSplitHands   = re.compile('(\x00+)')
     lineSplitter    = '\n'
@@ -132,21 +123,17 @@ class PartyPoker(HandHistoryConverter):
                 'CUR': hand.gametype['currency'] if hand.gametype['currency']!='T$' else ''}
             for key in ('CUR_SYM', 'CUR'):
                 subst[key] = re.escape(subst[key])
-            log.debug("player_re: '%s'" % subst['PLYR'])
-            log.debug("CUR_SYM: '%s'" % subst['CUR_SYM'])
-            log.debug("CUR: '%s'" % subst['CUR'])
             self.re_PostSB = re.compile(
-                r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.0-9]+) ?%(CUR)s\]\." %  subst,
+                r"^%(PLYR)s posts small blind \[%(CUR_SYM)s(?P<SB>[.,0-9]+) ?%(CUR)s\]\." %  subst,
                 re.MULTILINE)
             self.re_PostBB = re.compile(
-                r"^%(PLYR)s posts big blind \[%(CUR_SYM)s(?P<BB>[.0-9]+) ?%(CUR)s\]\." %  subst,
+                r"^%(PLYR)s posts big blind \[%(CUR_SYM)s(?P<BB>[.,0-9]+) ?%(CUR)s\]\." %  subst,
                 re.MULTILINE)
-            # NOTE: comma is used as a fraction part delimeter in re below
             self.re_PostDead = re.compile(
                 r"^%(PLYR)s posts big blind \+ dead \[(?P<BBNDEAD>[.,0-9]+) ?%(CUR_SYM)s\]\." %  subst,
                 re.MULTILINE)
             self.re_Antes = re.compile(
-                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.0-9]+) ?%(CUR)s\]" %  subst,
+                r"^%(PLYR)s posts ante \[%(CUR_SYM)s(?P<ANTE>[.,0-9]+) ?%(CUR)s\]" %  subst,
                 re.MULTILINE)
             self.re_HeroCards = re.compile(
                 r"^Dealt to %(PLYR)s \[\s*(?P<NEWCARDS>.+)\s*\]" % subst,
@@ -196,8 +183,6 @@ class PartyPoker(HandHistoryConverter):
         gametype dict is:
         {'limitType': xxx, 'base': xxx, 'category': xxx}"""
 
-        log.debug(PartyPokerParseError().wrapHh( handText ))
-
         info = {}
         m = self._getGameType(handText)
         if m is None:
@@ -214,22 +199,16 @@ class PartyPoker(HandHistoryConverter):
 
         for expectedField in ['LIMIT', 'GAME']:
             if mg[expectedField] is None:
-                raise PartyPokerParseError(
-                    "Cannot fetch field '%s'" % expectedField,
-                    hh = handText)
+                raise FpdbParseError( "Cannot fetch field '%s'" % expectedField)
         try:
             info['limitType'] = limits[mg['LIMIT'].strip()]
         except:
-            raise PartyPokerParseError(
-                "Unknown limit '%s'" % mg['LIMIT'],
-                hh = handText)
+            raise FpdbParseError("Unknown limit '%s'" % mg['LIMIT'])
 
         try:
             (info['base'], info['category']) = games[mg['GAME']]
         except:
-            raise PartyPokerParseError(
-                "Unknown game type '%s'" % mg['GAME'],
-                hh = handText)
+            raise FpdbParseError("Unknown game type '%s'" % mg['GAME'])
 
         if 'TOURNO' in mg:
             info['type'] = 'tour'
@@ -252,23 +231,21 @@ class PartyPoker(HandHistoryConverter):
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
         except:
-            raise PartyPokerParseError("Cannot read HID for current hand", hh=hand.handText)
+            raise FpdbParseError("Cannot read HID for current hand")
 
         try:
             info.update(self.re_HandInfo.search(hand.handText,re.DOTALL).groupdict())
         except:
-            raise PartyPokerParseError("Cannot read Handinfo for current hand",
-            hh=hand.handText, hid = info['HID'])
+            raise FpdbParseError("Cannot read Handinfo for current hand", hid = info['HID'])
 
         try:
             info.update(self._getGameType(hand.handText).groupdict())
         except:
-            raise PartyPokerParseError("Cannot read GameType for current hand",
-            hh=hand.handText, hid = info['HID'])
+            raise FpdbParseError("Cannot read GameType for current hand", hid = info['HID'])
 
 
-#        m = self.re_TotalPlayers.search(hand.handText)
-#        if m: info.update(m.groupdict())
+        m = self.re_CountedSeats.search(hand.handText)
+        if m: info.update(m.groupdict())
 
 
         # FIXME: it's dirty hack
@@ -295,6 +272,7 @@ class PartyPoker(HandHistoryConverter):
             if key == 'DATETIME':
                 #Saturday, July 25, 07:53:52 EDT 2009
                 #Thursday, July 30, 21:40:41 MSKS 2009
+                #Sunday, October 25, 13:39:07 MSK 2009
                 m2 = re.search("\w+, (?P<M>\w+) (?P<D>\d+), (?P<H>\d+):(?P<MIN>\d+):(?P<S>\d+) (?P<TZ>[A-Z]+) (?P<Y>\d+)", info[key])
                 # we cant use '%B' due to locale problems
                 months = ['January', 'February', 'March', 'April','May', 'June',
@@ -310,19 +288,30 @@ class PartyPoker(HandHistoryConverter):
                 hand.handid = info[key]
             if key == 'TABLE':
                 hand.tablename = info[key]
+            if key == 'MTTTABLE':
+            	if info[key] != None:
+            		hand.tablename = info[key]
+            		hand.tourNo = info['TABLE']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
                 hand.tourNo = info[key]
+            if key == 'TABLE_ID_WRAPPER':
+                if info[key] == '#':
+                    # FIXME: there is no such property in Hand class
+                    self.isSNG = True
             if key == 'BUYIN':
                 # FIXME: it's dirty hack T_T
                 # code below assumes that tournament rake is equal to zero
-                cur = info[key][0] if info[key][0] not in '0123456789' else ''
-                hand.buyin = info[key] + '+%s0' % cur
+                if info[key] == None:
+                    hand.buyin = '$0+$0'
+                else:
+                    cur = info[key][0] if info[key][0] not in '0123456789' else ''
+                    hand.buyin = info[key] + '+%s0' % cur
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
-                # if realy there's no play money hh on party
+                # if realy party doesn's save play money hh
                 hand.gametype['currency'] = 'play'
 
     def readButton(self, hand):
@@ -407,8 +396,6 @@ class PartyPoker(HandHistoryConverter):
             blind = smartMin(hand.bb, playersMap[bigBlindSeat][1])
             hand.addBlind(playersMap[bigBlindSeat][0], 'big blind', blind)
 
-
-
     def readHeroCards(self, hand):
         # we need to grab hero's cards
         for street in ('PREFLOP',):
@@ -418,7 +405,6 @@ class PartyPoker(HandHistoryConverter):
                     hand.hero = found.group('PNAME')
                     newcards = renderCards(found.group('NEWCARDS'))
                     hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
-
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
@@ -454,10 +440,9 @@ class PartyPoker(HandHistoryConverter):
             elif actionType == 'checks':
                 hand.addCheck( street, playerName )
             else:
-                raise PartyPokerParseError(
+                raise FpdbParseError(
                     "Unimplemented readAction: '%s' '%s'" % (playerName,actionType,),
-                    hid = hand.hid, hh = hand.handText )
-
+                    hid = hand.hid, )
 
     def readShowdownActions(self, hand):
         # all action in readShownCards
@@ -475,6 +460,17 @@ class PartyPoker(HandHistoryConverter):
                 mucked = m.group('SHOWED') != "show"
 
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=True, mucked=mucked)
+
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        "Returns string to search in windows titles"
+        if type=="tour":
+            print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (table_name, table_number)
+            return "%s.+Table\s#%s" % (table_name, table_number)
+        else:
+            print 'party', 'getTableTitleRe', table_number
+            return table_name
+
 
 def ringBlinds(ringLimit):
     "Returns blinds for current limit in cash games"
