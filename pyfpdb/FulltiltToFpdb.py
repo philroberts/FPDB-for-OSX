@@ -257,10 +257,13 @@ class Fulltilt(HandHistoryConverter):
                             ##int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
 
     def readPlayerStacks(self, hand):
+        # Split hand text for FTP, as the regex matches the player names incorrectly
+        # in the summary section
+        pre, post = hand.handText.split('SUMMARY')
         if hand.gametype['type'] == "ring" :
-            m = self.re_PlayerInfo.finditer(hand.handText)
+            m = self.re_PlayerInfo.finditer(pre)
         else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneyPlayerInfo.finditer(hand.handText)
+            m = self.re_TourneyPlayerInfo.finditer(pre)
 
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
