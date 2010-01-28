@@ -59,28 +59,44 @@ def get_exec_path():
         return sys.path[0]
 
 def get_config(file_name, fallback = True):
-    """Looks in exec dir and in self.default_config_path for a config file."""
-    config_path = os.path.join(DIR_SELF, file_name) # look in exec dir
-    if os.path.exists(config_path) and os.path.isfile(config_path):
-        return config_path # there is a file in the exec dir so we use it
-    else:
-        config_path = os.path.join(DIR_CONFIG, file_name) # look in config dir
-        if os.path.exists(config_path) and os.path.isfile(config_path):
+    """Looks in cwd and in self.default_config_path for a config file."""
+    exec_dir = get_exec_path()
+    config_path = os.path.join(exec_dir, file_name)
+#    print "config_path=", config_path
+    if os.path.exists(config_path):    # there is a file in the cwd
+        return config_path             # so we use it
+    else: # no file in the cwd, look where it should be in the first place
+        default_dir = get_default_config_path()
+        config_path = os.path.join(default_dir, file_name)
+#        print "config path 2=", config_path
+        if os.path.exists(config_path):
             return config_path
 
 #    No file found
     if not fallback:
         return False
 
-#    OK, fall back to the .example file, should be in the exec dir
-    if os.path.exists(os.path.join(DIR_SELF, file_name + ".example")):
+#    OK, fall back to the .example file, should be in the start dir
+    if os.path.exists(file_name + ".example"):
         try:
-            shutil.copyfile(os.path.join(DIR_SELF, file_name + ".example"), os.path.join(DIR_CONFIG, file_name))
-            print "No %s found, using %s.example.\n" % (file_name, file_name)
-            print "A %s file has been created.  You will probably have to edit it." % os.path.join(DIR_CONFIG, file_name)
-            log.error("No %s found, using %s.example.\n" % (file_name, file_name) )
+            print ""
+            if not os.path.isdir(default_dir):
+                msg = "Creating directory: '%s'" % (default_dir)
+                print msg
+                logging.info(msg)
+                os.mkdir(default_dir)
+            shutil.copyfile(file_name + ".example", config_path)
+            msg = "No %s found in %s or %s\n" % (file_name, exec_dir, default_dir) \
+                  + "Config file has been created at %s.\n" % config_path \
+                  + "Edit your screen_name and hand history path in the supported_sites "\
+                  + "section of the \nPreferences window (Main menu) before trying to import hands."
+            print msg
+            logging.info(msg)
+            file_name = config_path
         except:
-            print "No %s found, cannot fall back. Exiting.\n" % file_name
+            print "Error copying .example file, cannot fall back. Exiting.\n"
+            sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
+            sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     else:
         print "No %s found, cannot fall back. Exiting.\n" % file_name
@@ -94,26 +110,18 @@ def get_logger(file_name, config = "config", fallback = False):
         try:
             logging.config.fileConfig(conf)
             log = logging.getLogger(config)
+            log.debug("%s logger initialised" % config)
             return log
         except:
             pass
 
     log = logging.basicConfig()
     log = logging.getLogger()
-    log.error("basicConfig logger initialised")
+    log.debug("config logger initialised")
     return log
 
-def check_dir(path, create = True):
-    """Check if a dir exists, optionally creates if not."""
-    if os.path.exists(path):
-        if os.path.isdir(path):
-            return path
-        else:
-            return False
-    if create:
-        print "creating directory %s" % path
-    else:
-        return False
+#    find a logging.conf file and set up logging
+log = get_logger("logging.conf")
 
 ########################################################################
 # application wide consts
@@ -121,31 +129,15 @@ def check_dir(path, create = True):
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
 
-DIR_SELF     = get_exec_path()
-DIR_CONFIG   = check_dir(get_default_config_path())
-DIR_DATABASE = check_dir(os.path.join(DIR_CONFIG, 'database'))
-DIR_LOG      = check_dir(os.path.join(DIR_CONFIG, 'log'))
-
 DATABASE_TYPE_POSTGRESQL = 'postgresql'
 DATABASE_TYPE_SQLITE = 'sqlite'
 DATABASE_TYPE_MYSQL = 'mysql'
-#TODO: should this be a tuple or a dict
 DATABASE_TYPES = (
         DATABASE_TYPE_POSTGRESQL,
         DATABASE_TYPE_SQLITE,
         DATABASE_TYPE_MYSQL,
         )
 
-#    find a logging.conf file and set up logging
-log = get_logger("logging.conf", config = "config")
-log.debug("config logger initialised")
-
-# and then log our consts
-log.info("DIR SELF = %s" % DIR_SELF)
-log.info("DIR CONFIG = %s" % DIR_CONFIG)
-log.info("DIR DATABASE = %s" % DIR_DATABASE)
-log.info("DIR LOG = %s" % DIR_LOG)
-NEWIMPORT = True
 LOCALE_ENCODING = locale.getdefaultlocale()[1]
 
 ########################################################################
@@ -428,7 +420,8 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                log.error("Specified configuration file %s not found.  Using defaults." % (file))
+                print "Configuration file %s not found.  Using defaults." % (file)
+                sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
         if file is None: file = get_config("HUD_config.xml", True)
