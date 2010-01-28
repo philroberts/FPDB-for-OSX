@@ -48,5 +48,11 @@ class FpdbPostgresqlNoDatabase(FpdbDatabaseError):
     def __str__(self):
         return repr(self.value +" " + self.errmsg)
 
-class DuplicateError(FpdbError):
+class FpdbHandError(FpdbError):
+    pass
+
+class FpdbHandDuplicate(FpdbHandError):
+    pass
+
+class FpdbHandPartial(FpdbHandError):
     pass
