@@ -399,6 +399,11 @@ class Database:
             self.cursor = self.connection.cursor()
             self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
             self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
+            
+            # sqlcoder: this assignment fixes unicode problems for me with sqlite (windows, cp1252)
+            #           feel free to remove or improve this if you understand the problems
+            #           better than me (not hard!)
+            # Charset.not_needed = True
         else:
             raise FpdbError("unrecognised database backend:"+backend)
 
