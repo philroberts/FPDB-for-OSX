@@ -128,7 +128,8 @@ class Stud_mucked(Aux_Window):
         self.container.show_all()
 
     def update_data(self, new_hand_id, db_connection):
-        self.mucked_cards.update_data(new_hand_id, db_connection)
+#    uncomment next line when action is available in the db
+#        self.mucked_cards.update_data(new_hand_id, db_connection)
         self.mucked_list.update_data(new_hand_id, db_connection)
         
     def update_gui(self, new_hand_id):

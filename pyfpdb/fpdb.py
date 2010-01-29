@@ -769,7 +769,7 @@ class fpdb:
             self.status_bar.show()
 
         if self.db is not None and self.db.connected:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" 
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s"
                                      % (self.db.get_backend_name(),self.db.database, self.db.host))
             # rollback to make sure any locks are cleared:
             self.db.rollback()
@@ -902,8 +902,8 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.load_profile()
 
         self.statusIcon = gtk.StatusIcon()
-        if os.path.exists('../gfx/fpdb-cards.png'):
-            self.statusIcon.set_from_file('../gfx/fpdb-cards.png')
+        if os.path.exists(os.path.join(sys.path[0], '../gfx/fpdb-cards.png')):
+            self.statusIcon.set_from_file(os.path.join(sys.path[0], '../gfx/fpdb-cards.png'))
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:
