@@ -403,6 +403,8 @@ class Database:
             # sqlcoder: this assignment fixes unicode problems for me with sqlite (windows, cp1252)
             #           feel free to remove or improve this if you understand the problems
             #           better than me (not hard!)
+            #           I think maybe we need a separate "not_needed" flag for each of the routines
+            #           in Charset.py???
             # Charset.not_needed = True
         else:
             raise FpdbError("unrecognised database backend:"+backend)
