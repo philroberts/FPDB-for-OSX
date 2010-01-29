@@ -229,8 +229,7 @@ db: a connected Database object"""
             # TourneysPlayers
         else:
             log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
-            #Raise Duplicate exception?
-            pass
+            raise FpdbHandDuplicate(hh['siteHandNo'])
 
     def updateHudCache(self, db):
         db.storeHudCache(self.dbid_gt, self.dbid_pids, self.starttime, self.stats.getHandsPlayers())
@@ -636,7 +635,7 @@ class HoldemOmahaHand(Hand):
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
             if self.gametype['type'] == 'tour':
-                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -932,7 +931,7 @@ class DrawHand(Hand):
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
             if self.gametype['type'] == 'tour':
-                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -1128,7 +1127,7 @@ class StudHand(Hand):
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
             if self.gametype['type'] == 'tour':
-                self.tablename = "%s %s" % (self.tourNo, self.tablename)    
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -1220,7 +1219,7 @@ Add a complete on [street] by [player] to [amountTo]
         # showdownPot INT,                 /* pot size at sd/street7 */
         return (0,0,0,0,0)
 
-    
+
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
 
@@ -1615,4 +1614,3 @@ ORDER BY
 
 
     return h
-
