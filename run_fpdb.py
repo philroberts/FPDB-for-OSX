@@ -24,7 +24,6 @@ sys.path[0] = sys.path[0]+os.sep+"pyfpdb"
 os.chdir(sys.path[0])
 #print "sys.path[0] =", sys.path[0], "cwd =", os.getcwd()
 
-
 import fpdb
 
 

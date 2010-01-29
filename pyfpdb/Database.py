@@ -787,7 +787,8 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_player_id'], (player_name, site))
+        p_name = Charset.to_utf8(player_name)
+        c.execute(self.sql.query['get_player_id'], (p_name, site))
         row = c.fetchone()
         if row:
             return row[0]
@@ -1327,6 +1328,8 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Partouche', 'EUR')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Carbon', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('PKR', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         elif self.backend == self.PGSQL:
