@@ -89,7 +89,8 @@ class GuiBulkImport():
 
                 for selection in selected:
                     self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
-                self.importer.setCallHud(False)
+                self.importer.setCallHud(self.cb_testmode.get_active())
+                self.importer.bHudTest = self.cb_testmode.get_active()
                 starttime = time()
 #                try:
                 (stored, dups, partial, errs, ttime) = self.importer.runImport()
@@ -227,6 +228,10 @@ class GuiBulkImport():
         self.table.attach(self.cb_dropindexes, 4, 5, 1, 2, xpadding=10,
                           ypadding=0, yoptions=gtk.SHRINK)
         self.cb_dropindexes.show()
+
+        self.cb_testmode = gtk.CheckButton('HUD Test mode')
+        self.table.attach(self.cb_testmode, 0, 1, 2, 3, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
+        self.cb_testmode.show()
 
 #    label - filter
         self.lab_filter = gtk.Label("Site filter:")
