@@ -138,7 +138,11 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-LOCALE_ENCODING = locale.getdefaultlocale()[1]
+#LOCALE_ENCODING = locale.getdefaultlocale()[1]
+LOCALE_ENCODING = locale.getpreferredencoding()
+if LOCALE_ENCODING == "US-ASCII":
+    print "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+    LOCALE_ENCODING = "cp1252"
 
 ########################################################################
 def string_to_bool(string, default=True):
