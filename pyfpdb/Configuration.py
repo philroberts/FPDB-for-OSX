@@ -653,11 +653,10 @@ class Config:
             db['db-backend'] = 3
         elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
             db['db-backend'] = 4
-
             # sqlcoder: this assignment fixes unicode problems for me with sqlite (windows, cp1252)
             #           feel free to remove or improve this if you understand the problems
             #           better than me (not hard!)
-            #Charset.not_needed1, Charset.not_needed2, Charset.not_needed3 = True, True, True
+            Charset.not_needed1, Charset.not_needed2, Charset.not_needed3 = True, True, True
         else:
             raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
         return db
