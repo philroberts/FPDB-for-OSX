@@ -372,7 +372,6 @@ class Database:
                     print msg
                     raise FpdbError(msg)
         elif backend == Database.SQLITE:
-            log.info("Connecting to SQLite: %(database)s" % {'database':database})
             import sqlite3
             if use_pool:
                 sqlite3 = pool.manage(sqlite3, pool_size=1)
@@ -385,7 +384,8 @@ class Database:
                     log.info("Creating directory: '%s'" % (self.config.dir_databases))
                     os.mkdir(self.config.dir_databases)
                 database = os.path.join(self.config.dir_databases, database)
-            log.info("  sqlite db: " + database)
+            log.info("Connecting to SQLite: %(database)s" % {'database':database})
+            print "Connecting to SQLite: %(database)s" % {'database':database}
             self.connection = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
@@ -1769,10 +1769,7 @@ class Database:
 
     def insertPlayer(self, name, site_id):
         result = None
-        if self.backend == self.SQLITE:
-            _name = name
-        else:
-            _name = Charset.to_db_utf8(name)
+        _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
