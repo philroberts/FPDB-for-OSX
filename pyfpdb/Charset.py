@@ -28,12 +28,12 @@ encoder_to_utf = codecs.lookup('utf-8')
 encoder_to_sys = codecs.lookup(Configuration.LOCALE_ENCODING)
 
 # I'm saving a few cycles with this one
-not_needed = False
+not_needed1, not_needed2, not_needed3 = False, False, False
 if Configuration.LOCALE_ENCODING == 'UTF8':
-    not_needed = True
+    not_needed1, not_needed2, not_needed3 = True, True, True
 
 def to_utf8(s):
-    if not_needed: return s
+    if not_needed1: return s
 
     try:
         #(_out, _len) = encoder_to_utf.encode(s)
@@ -44,7 +44,7 @@ def to_utf8(s):
         raise
 
 def to_db_utf8(s):
-    if not_needed: return s
+    if not_needed2: return s
 
     try:
         (_out, _len) = encoder_to_utf.encode(unicode(s))
@@ -54,7 +54,7 @@ def to_db_utf8(s):
         raise
 
 def to_gui(s):
-    if not_needed: return s
+    if not_needed3: return s
 
     try:
         (_out, _len) = encoder_to_sys.encode(s)
