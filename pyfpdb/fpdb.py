@@ -695,6 +695,7 @@ class fpdb:
     def load_profile(self):
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
+        log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep=="/"):

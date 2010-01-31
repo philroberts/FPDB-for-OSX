@@ -65,6 +65,7 @@ class Importer:
         self.config     = config
         self.sql        = sql
 
+        log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
@@ -429,7 +430,7 @@ class Importer:
                 idx = self.pos_in_file[file]
             else:
                 self.pos_in_file[file] = 0
-            hhc = obj(in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
+            hhc = obj(self.config, in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
             if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()

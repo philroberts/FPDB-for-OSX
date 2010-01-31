@@ -52,16 +52,19 @@ def get_default_config_path():
     return config_path
 
 def get_exec_path():
-    """Returns the path to the fpdb.(py|exe) file we are executing"""
+    """Returns the path to the fpdb(dir|.exe) file we are executing"""
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
     else:
-        return sys.path[0]
+        return os.path.dirname(sys.path[0])  # should be path to /fpdb
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     exec_dir = get_exec_path()
-    config_path = os.path.join(exec_dir, file_name)
+    if file_name == 'logging.conf':
+        config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
+    else:
+        config_path = os.path.join(exec_dir, file_name)
 #    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
         return config_path             # so we use it
@@ -80,11 +83,7 @@ def get_config(file_name, fallback = True):
     if os.path.exists(file_name + ".example"):
         try:
             print ""
-            if not os.path.isdir(default_dir):
-                msg = "Creating directory: '%s'" % (default_dir)
-                print msg
-                logging.info(msg)
-                os.mkdir(default_dir)
+            check_dir(default_dir)
             shutil.copyfile(file_name + ".example", config_path)
             msg = "No %s found in %s or %s\n" % (file_name, exec_dir, default_dir) \
                   + "Config file has been created at %s.\n" % config_path \
@@ -104,11 +103,17 @@ def get_config(file_name, fallback = True):
         sys.exit()
     return file_name
 
-def get_logger(file_name, config = "config", fallback = False):
-    conf = get_config(file_name, fallback = fallback)
-    if conf:
+def get_logger(file_name, config = "config", fallback = False, log_dir=None):
+    conf_file = get_config(file_name, fallback = fallback)
+    if conf_file:
         try:
-            logging.config.fileConfig(conf)
+            if log_dir is None:
+                log_dir = os.path.join(get_exec_path(), 'log')
+            check_dir(log_dir)
+            file = os.path.join(log_dir, 'logging.out')
+            file = file.replace('\\', '\\\\')  # replace each \ with \\
+#            print "    ="+file+" "+ str(type(file))+" len="+str(len(file))+"\n"
+            logging.config.fileConfig(conf_file, {"logFile":file})
             log = logging.getLogger(config)
             log.debug("%s logger initialised" % config)
             return log
@@ -120,8 +125,23 @@ def get_logger(file_name, config = "config", fallback = False):
     log.debug("config logger initialised")
     return log
 
+def check_dir(path, create = True):
+    """Check if a dir exists, optionally creates if not."""
+    if os.path.exists(path):
+        if os.path.isdir(path):
+            return path
+        else:
+            return False
+    if create:
+        msg = "Creating directory: '%s'" % (path)
+        print msg
+        log.info(msg)
+        os.mkdir(path)
+    else:
+        return False
+
 #    find a logging.conf file and set up logging
-log = get_logger("logging.conf")
+log = get_logger("logging.conf", "config")
 
 ########################################################################
 # application wide consts
@@ -421,7 +441,6 @@ class Tv:
 
 class Config:
     def __init__(self, file = None, dbname = ''):
-
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
@@ -434,6 +453,13 @@ class Config:
                 file = None
 
         if file is None: file = get_config("HUD_config.xml", True)
+
+        self.file = file
+        self.dir_self = get_exec_path()
+        self.dir_config = os.path.dirname(self.file)
+        self.dir_log = os.path.join(self.dir_config, 'log')
+        self.dir_database = os.path.join(self.dir_config, 'database')
+        log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
@@ -449,9 +475,6 @@ class Config:
             sys.exit()
 
         self.doc = doc
-        self.file = file
-        self.dir = os.path.dirname(self.file)
-        self.dir_databases = os.path.join(self.dir, 'database')
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance

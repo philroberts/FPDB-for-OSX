@@ -28,12 +28,14 @@ from decimal import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
-from Exceptions import *
 import pprint
+
+import Configuration
+from Exceptions import *
 import DerivedStats
 import Card
 
-log = logging.getLogger("parser")
+log = Configuration.get_logger("logging.conf", "parser")
 
 class Hand(object):
 
@@ -46,7 +48,9 @@ class Hand(object):
     SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Partouche':10, 'Carbon':11 }
 
 
-    def __init__(self, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
+        self.config = config
+        log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.SITEIDS[sitename]
         self.stats = DerivedStats.DerivedStats(self)
@@ -617,7 +621,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
 
 class HoldemOmahaHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
+        self.config = config
         if gametype['base'] != 'hold':
             pass # or indeed don't pass and complain instead
         log.debug("HoldemOmahaHand")
@@ -625,7 +630,7 @@ class HoldemOmahaHand(Hand):
         self.holeStreets = ['PREFLOP']
         self.communityStreets = ['FLOP', 'TURN', 'RIVER']
         self.actionStreets = ['BLINDSANTES','PREFLOP','FLOP','TURN','RIVER']
-        Hand.__init__(self, sitename, gametype, handText, builtFrom = "HHC")
+        Hand.__init__(self, self.config, sitename, gametype, handText, builtFrom = "HHC")
         self.sb = gametype['sb']
         self.bb = gametype['bb']
 
@@ -916,7 +921,8 @@ class HoldemOmahaHand(Hand):
         print >>fh, "\n\n"
 
 class DrawHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+        self.config = config
         if gametype['base'] != 'draw':
             pass # or indeed don't pass and complain instead
         self.streetList = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
@@ -924,7 +930,7 @@ class DrawHand(Hand):
         self.holeStreets = ['DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.actionStreets =  ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.communityStreets = []
-        Hand.__init__(self, sitename, gametype, handText)
+        Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         # Populate the draw hand.
@@ -1108,7 +1114,8 @@ class DrawHand(Hand):
 
 
 class StudHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+        self.config = config
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
 
@@ -1118,7 +1125,7 @@ class StudHand(Hand):
 
         self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
-        Hand.__init__(self, sitename, gametype, handText)
+        Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         #Populate the StudHand
@@ -1511,7 +1518,8 @@ limit 1""", {'handid':handid})
     #TODO: siteid should be in hands table - we took the scenic route through players here.
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-    h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+    c = Configuration.Config()
+    h = HoldemOmahaHand(config = c, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
     cards = map(Card.valueSuitFromCard, res[11:16] )
     if cards[0]:
         h.setCommunityCards('FLOP', cards[0:3])
