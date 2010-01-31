@@ -176,17 +176,46 @@ class GuiGraphViewer (threading.Thread):
             (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games)
             print "Graph generated in: %s" %(time() - starttime)
 
-            self.ax.set_title("Profit graph for ring games")
 
             #Set axis labels and grid overlay properites
             self.ax.set_xlabel("Hands", fontsize = 12)
             self.ax.set_ylabel("$", fontsize = 12)
             self.ax.grid(color='g', linestyle=':', linewidth=0.2)
             if green == None or green == []:
+                self.ax.set_title("No Data for Player(s) Found")
+                green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                            500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
+                            1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
+                            625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+                red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                            0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                            375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
+                            500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+                blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                              700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                              0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                              375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
+                              625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+
+                self.ax.plot(green, color='green', label='Hands: %d\nProfit: $%.2f' %(len(green), green[-1]))
+                self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
+                self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
+                self.graphBox.add(self.canvas)
+                self.canvas.show()
+                self.canvas.draw()
 
                 #TODO: Do something useful like alert user
-                print "No hands returned by graph query"
+                #print "No hands returned by graph query"
             else:
+                self.ax.set_title("Profit graph for ring games")
                 #text = "Profit: $%.2f\nTotal Hands: %d" %(green[-1], len(green))
                 #self.ax.annotate(text,
                 #                 xy=(10, -10),
@@ -202,7 +231,6 @@ class GuiGraphViewer (threading.Thread):
                     self.ax.legend(loc='best', shadow=True, prop=FontProperties(size='smaller'))
                 else:
                     self.ax.legend(loc='best', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
-
 
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
@@ -292,7 +320,7 @@ class GuiGraphViewer (threading.Thread):
         self.db.rollback()
 
         if winnings == ():
-            return None
+            return (None, None, None)
 
         green = map(lambda x:float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
