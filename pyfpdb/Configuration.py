@@ -67,17 +67,17 @@ def get_config(file_name, fallback = True):
         config_path = os.path.join(exec_dir, file_name)
 #    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
-        return config_path             # so we use it
+        return (config_path,False)     # so we use it
     else: # no file in the cwd, look where it should be in the first place
         default_dir = get_default_config_path()
         config_path = os.path.join(default_dir, file_name)
 #        print "config path 2=", config_path
         if os.path.exists(config_path):
-            return config_path
+            return (config_path,False)
 
 #    No file found
     if not fallback:
-        return False
+        return (False,False)
 
 #    OK, fall back to the .example file, should be in the start dir
     if os.path.exists(file_name + ".example"):
@@ -85,10 +85,8 @@ def get_config(file_name, fallback = True):
             print ""
             check_dir(default_dir)
             shutil.copyfile(file_name + ".example", config_path)
-            msg = "No %s found in %s or %s\n" % (file_name, exec_dir, default_dir) \
-                  + "Config file has been created at %s.\n" % config_path \
-                  + "Edit your screen_name and hand history path in the supported_sites "\
-                  + "section of the \nPreferences window (Main menu) before trying to import hands."
+            msg = "No %s found\n  in %s\n  or %s\n" % (file_name, exec_dir, default_dir) \
+                  + "Config file has been created at %s.\n" % config_path
             print msg
             logging.info(msg)
             file_name = config_path
@@ -101,10 +99,10 @@ def get_config(file_name, fallback = True):
         print "No %s found, cannot fall back. Exiting.\n" % file_name
         sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
         sys.exit()
-    return file_name
+    return (file_name,True)
 
 def get_logger(file_name, config = "config", fallback = False, log_dir=None):
-    conf_file = get_config(file_name, fallback = fallback)
+    (conf_file,copied) = get_config(file_name, fallback = fallback)
     if conf_file:
         try:
             if log_dir is None:
@@ -445,6 +443,7 @@ class Config:
 #    we check the existence of "file" and try to recover if it doesn't exist
 
 #        self.default_config_path = self.get_default_config_path()
+        self.example_copy = False
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
@@ -452,7 +451,7 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: file = get_config("HUD_config.xml", True)
+        if file is None: (file,self.example_copy) = get_config("HUD_config.xml", True)
 
         self.file = file
         self.dir_self = get_exec_path()

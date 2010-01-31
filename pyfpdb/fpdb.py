@@ -696,6 +696,11 @@ class fpdb:
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        if self.config.example_copy:
+            self.info_box( "Config file"
+                         , "has been created at:\n%s.\n" % self.config.file
+                           + "Edit your screen_name and hand history path in the supported_sites "
+                           + "section of the Preferences window (Main menu) before trying to import hands.")
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep=="/"):
@@ -963,16 +968,24 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             self.window.show()
             self.window.present()
 
+    def info_box(self, str1, str2):
+        diapath = gtk.MessageDialog( parent=None, flags=0, type=gtk.MESSAGE_INFO
+                                   , buttons=(gtk.BUTTONS_OK), message_format=str1 )
+        diapath.format_secondary_text(str2)
+        response = diapath.run()
+        diapath.destroy()
+        return response
+
     def warning_box(self, str, diatitle="FPDB WARNING"):
-            diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
-            label = gtk.Label(str)
-            diaWarning.vbox.add(label)
-            label.show()
+        label = gtk.Label(str)
+        diaWarning.vbox.add(label)
+        label.show()
 
-            response = diaWarning.run()
-            diaWarning.destroy()
-            return response
+        response = diaWarning.run()
+        diaWarning.destroy()
+        return response
 
     def validate_config(self):
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
