@@ -26,13 +26,13 @@ import gtk
 import gobject
 import pango
 
-import Configuration
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("logview")
 
-log = Configuration.get_logger("logging.conf", "logview")
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
-logfile = 'logging.out'    # name of logfile
 
 class GuiLogView:
 
@@ -41,6 +41,7 @@ class GuiLogView:
         self.main_window = mainwin
         self.closeq = closeq
 
+        self.logfile = self.config.log_file    # name of logfile
         self.dia = gtk.Dialog(title="Log Messages"
                              ,parent=None
                              ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
@@ -117,10 +118,10 @@ class GuiLogView:
         self.listcols = []
 
         # guesstimate number of lines in file
-        if os.path.exists(logfile):
-            stat_info = os.stat(logfile)
+        if os.path.exists(self.logfile):
+            stat_info = os.stat(self.logfile)
             lines = stat_info.st_size / EST_CHARS_PER_LINE
-            print "logview: size =", stat_info.st_size, "lines =", lines
+            #print "logview: size =", stat_info.st_size, "lines =", lines
 
             # set startline to line number to start display from
             startline = 0
@@ -129,7 +130,7 @@ class GuiLogView:
                 startline = lines - MAX_LINES
 
             l = 0
-            for line in open(logfile):
+            for line in open(self.logfile):
                 # eg line:
                 # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
                 l = l + 1

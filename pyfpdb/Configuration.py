@@ -38,6 +38,10 @@ from xml.dom.minidom import Node
 import logging, logging.config
 import ConfigParser
 
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("config")
+
+
 ##############################################################################
 #    Functions for finding config files and setting up logging
 #    Also used in other modules that use logging.
@@ -138,8 +142,6 @@ def check_dir(path, create = True):
     else:
         return False
 
-#    find a logging.conf file and set up logging
-log = get_logger("logging.conf", "config")
 
 ########################################################################
 # application wide consts
@@ -458,6 +460,7 @@ class Config:
         self.dir_config = os.path.dirname(self.file)
         self.dir_log = os.path.join(self.dir_config, 'log')
         self.dir_database = os.path.join(self.dir_config, 'database')
+        self.log_file = os.path.join(self.dir_log, 'logging.out')
         log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
 #    Parse even if there was no real config file found and we are using the example
