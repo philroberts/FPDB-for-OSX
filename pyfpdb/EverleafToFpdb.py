@@ -38,7 +38,7 @@ class Everleaf(HandHistoryConverter):
                      #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
     re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
-    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|Chips)|new player|All-in) \)", re.MULTILINE)
+    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EURO|Chips)|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
     re_TourneyInfoFromFilename = re.compile(ur".*TID_(?P<TOURNO>[0-9]+)-(?P<TABLE>[0-9]+)\.txt")
 
@@ -56,10 +56,10 @@ class Everleaf(HandHistoryConverter):
             self.re_Antes           = re.compile(ur"^%s: posts ante \[(?:\$| €|) (?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EUR|Chips)\])?" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|Chips)\])?" % player_re, re.MULTILINE)
             #self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds| complete to)(\s\[?(?:\$| €|) ?(?P<BET>\d+\.?\d*)\.?\s?(USD|EUR|)\]?)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
+            self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EURO|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
