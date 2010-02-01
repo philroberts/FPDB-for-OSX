@@ -64,7 +64,7 @@ out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
 
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
-        
+
         self.index     = index
         self.starsArchive = starsArchive
 
@@ -77,7 +77,7 @@ follow :  whether to tail -f the input"""
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
-        
+
         if in_path == '-':
             self.in_fh = sys.stdin
 
@@ -106,7 +106,7 @@ follow :  whether to tail -f the input"""
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
-        
+
         self.status = True
 
         self.parsedObjectType = "HH"      #default behaviour : parsing HH files, can be "Summary" if the parsing encounters a Summary File
@@ -121,7 +121,7 @@ HandHistoryConverter: '%(sitename)s'
     in_path     '%(in_path)s'
     out_path    '%(out_path)s'
     follow      '%(follow)s'
-    """ %  locals() 
+    """ %  locals()
 
     def start(self):
         """Process a hand at a time from the input specified by in_path.
@@ -141,7 +141,7 @@ Otherwise, finish at EOF.
             self.numHands = 0
             self.numErrors = 0
             if self.follow:
-                #TODO: See how summary files can be handled on the fly (here they should be rejected as before) 
+                #TODO: See how summary files can be handled on the fly (here they should be rejected as before)
                 log.info("Tailing '%s'" % self.in_path)
                 for handText in self.tailHands():
                     try:
@@ -176,7 +176,7 @@ Otherwise, finish at EOF.
                         endtime = time.time()
                         if summaryParsingStatus :
                             log.info("Summary file '%s' correctly parsed  (took %.3f seconds)" % (self.in_path, endtime - starttime))
-                        else :                            
+                        else :
                             log.warning("Error converting summary file '%s' (took %.3f seconds)" % (self.in_path, endtime - starttime))
 
         except IOError, ioe:
@@ -230,7 +230,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
                 # x--       [x,--,]       x,--
                 # x--x      [x,--,x]      x,x
                 # x--x--    [x,--,x,--,]  x,x,--
-                
+
                 # The length is always odd.
                 # 'odd' indices are always splitters.
                 # 'even' indices are always paragraphs or ''
@@ -264,13 +264,13 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             log.info("Read no hands.")
             return []
         return re.split(self.re_SplitHands,  self.obs)
-        
+
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         log.debug("gametype %s" % gametype)
         hand = None
         l = None
-        if gametype is None: 
+        if gametype is None:
             gametype = "unmatched"
             # TODO: not ideal, just trying to not error.
             # TODO: Need to count failed hands.
@@ -304,7 +304,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
     # Showing all supported games limits and types
-    
+
     def readSupportedGames(self): abstract
 
     # should return a list
@@ -339,17 +339,17 @@ or None if we fail to get the info """
     # Needs to return a list of lists in the format
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
-    
+
     def compilePlayerRegexs(self): abstract
     """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
-    
+
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
     def markStreets(self, hand): abstract
 
     #Needs to return a list in the format
-    # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
+    # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
     def readAntes(self, hand): abstract
@@ -362,16 +362,16 @@ or None if we fail to get the info """
     def readShownCards(self, hand): abstract
 
     # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
-    # e.g., FTP doesn't put mixed game info in the HH, but puts in in the 
+    # e.g., FTP doesn't put mixed game info in the HH, but puts in in the
     # file name. Use readOther() to clean up those messes.
     def readOther(self, hand): pass
-    
+
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # an inheriting class can calculate it for the specific site if need be.
     def getRake(self, hand):
         hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
-    
-    
+
+
     def sanityCheck(self):
         """Check we aren't going to do some stupid things"""
         #TODO: the hhbase stuff needs to be in fpdb_import
@@ -396,7 +396,7 @@ or None if we fail to get the info """
         # Make sure input and output files are different or we'll overwrite the source file
         if True: # basically.. I don't know
             sane = True
-        
+
         if self.in_path != '-' and self.out_path == self.in_path:
             print "HH Sanity Check: output and input files are the same, check config"
             sane = False
@@ -429,7 +429,7 @@ or None if we fail to get the info """
 
     def readFile(self):
         """Open in_path according to self.codepage. Exceptions caught further up"""
-        
+
         if self.filetype == "text":
             if self.in_path == '-':
                 # read from stdin
@@ -464,7 +464,7 @@ or None if we fail to get the info """
 
         if hand.gametype['base'] == 'stud':
             if mo <= 8: return 8
-            else: return mo 
+            else: return mo
 
         if hand.gametype['base'] == 'draw':
             if mo <= 6: return 6
@@ -500,9 +500,9 @@ or None if we fail to get the info """
     def getParsedObjectType(self):
         return self.parsedObjectType
 
-    #returns a status (True/False) indicating wether the parsing could be done correctly or not    
+    #returns a status (True/False) indicating wether the parsing could be done correctly or not
     def readSummaryInfo(self, summaryInfoList): abstract
-    
+
     def getTourney(self):
         return self.tourney
 
@@ -525,6 +525,3 @@ def getSiteHhc(config, sitename):
     hhcName = config.supported_sites[sitename].converter
     hhcModule = __import__(hhcName)
     return getattr(hhcModule, hhcName[:-6])
-    
-    
-
