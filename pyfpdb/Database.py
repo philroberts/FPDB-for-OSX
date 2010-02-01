@@ -788,10 +788,11 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        #print "get_player_id: player_name =", player_name, type(player_name)
+        print "get_player_id: player_name =", player_name, type(player_name)
         p_name = Charset.to_utf8(player_name)
         c.execute(self.sql.query['get_player_id'], (p_name, site))
         row = c.fetchone()
+        print "player id =", row
         if row:
             return row[0]
         else:

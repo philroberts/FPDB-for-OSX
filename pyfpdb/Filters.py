@@ -594,7 +594,7 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
-        self.cursor.execute(self.sql.query['getLimits2'])
+        self.cursor.execute(self.sql.query['getLimits3'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
         found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
@@ -615,7 +615,7 @@ class Filters(threading.Thread):
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
-                if line[0] == 'ring':
+                if True:  #line[0] == 'ring':
                     if line[1] == 'fl':
                         name = str(line[2])
                         found['fl'] = True
