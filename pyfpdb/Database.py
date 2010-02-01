@@ -224,6 +224,7 @@ class Database:
 
 
     def __init__(self, c, sql = None): 
+        log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
         log.info("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.__connected = False
@@ -379,11 +380,11 @@ class Database:
                 log.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
             if database != ":memory:":
-                if not os.path.isdir(self.config.dir_databases):
-                    print "Creating directory: '%s'" % (self.config.dir_databases)
-                    log.info("Creating directory: '%s'" % (self.config.dir_databases))
-                    os.mkdir(self.config.dir_databases)
-                database = os.path.join(self.config.dir_databases, database)
+                if not os.path.isdir(self.config.dir_database):
+                    print "Creating directory: '%s'" % (self.config.dir_database)
+                    log.info("Creating directory: '%s'" % (self.config.dir_database))
+                    os.mkdir(self.config.dir_database)
+                database = os.path.join(self.config.dir_database, database)
             log.info("Connecting to SQLite: %(database)s" % {'database':database})
             print "Connecting to SQLite: %(database)s" % {'database':database}
             self.connection = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
@@ -787,9 +788,11 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
+        print "get_player_id: player_name =", player_name, type(player_name)
         p_name = Charset.to_utf8(player_name)
         c.execute(self.sql.query['get_player_id'], (p_name, site))
         row = c.fetchone()
+        print "player id =", row
         if row:
             return row[0]
         else:
