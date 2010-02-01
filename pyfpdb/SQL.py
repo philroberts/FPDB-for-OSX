@@ -2021,6 +2021,7 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['playerDetailedStats'] = """
                      select  <hgameTypeId>                                                          AS hgametypeid
+                            ,<playerName>                                                           AS pname
                             ,gt.base
                             ,gt.category                                                            AS category
                             ,upper(gt.limitType)                                                    AS limittype
@@ -2072,6 +2073,7 @@ class Sql:
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
+                           inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/

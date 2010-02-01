@@ -526,7 +526,7 @@ class GuiPlayerStats (threading.Thread):
         if type == 'ring':
             bbtest = bbtest + " and gt.type = 'ring' "
         elif type == 'tour':
-            bbtest = bbtest + " and gt.type = 'tour' "
+            bbtest = " and gt.type = 'tour' "
         query = query.replace("<gtbigBlind_test>", bbtest)
 
         if holecards:  # re-use level variables for hole card query
