@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sqlite3
-import fpdb_db
+import Database
 import math
 
 # Should probably use our wrapper classes - creating sqlite db in memory
@@ -14,11 +14,11 @@ con.isolation_level = None
 con.create_function("floor", 1, math.floor)
 
 #Mod function
-tmp = fpdb_db.sqlitemath()
+tmp = Database.sqlitemath()
 con.create_function("mod", 2, tmp.mod)
 
 # Aggregate function VARIANCE()
-con.create_aggregate("variance", 1, fpdb_db.VARIANCE)
+con.create_aggregate("variance", 1, Database.VARIANCE)
 
 
 cur = con.cursor()
