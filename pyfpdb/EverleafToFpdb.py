@@ -62,11 +62,6 @@ class Everleaf(HandHistoryConverter):
             self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
-        else:
-            print "*** EverleafToFpdb: compilePlayerRegexs failed"
-            print players
-            print self.compiledPlayers
-
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
