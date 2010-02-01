@@ -1849,13 +1849,13 @@ class Sql:
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
         self.query['getLimits3'] = """select DISTINCT type
-                                           , limittype
+                                           , limitType
                                            , case type 
-                                                 when 'ring' then bigblind 
+                                                 when 'ring' then bigBlind 
                                                  else buyin 
                                              end as bb_or_buyin
-                                      from gametypes gt
-                                      cross join tourneytypes tt
+                                      from Gametypes gt
+                                      cross join TourneyTypes tt
                                       order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
