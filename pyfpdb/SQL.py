@@ -1848,6 +1848,15 @@ class Sql:
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
+        self.query['getLimits3'] = """select DISTINCT type
+                                           , limitType
+                                           , case type 
+                                                 when 'ring' then bigBlind 
+                                                 else buyin 
+                                             end as bb_or_buyin
+                                      from Gametypes gt
+                                      cross join TourneyTypes tt
+                                      order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
