@@ -149,7 +149,6 @@ or None if we fail to get the info """
         t = self.re_TourneyInfoFromFilename.search(self.in_path)
         if t:
             tourno = t.group('TOURNO')
-        if tourno: # we're a tourney, yay
             hand.tourNo = tourno
             hand.tablename = t.group('TABLE')
 
