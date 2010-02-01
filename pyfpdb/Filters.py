@@ -26,16 +26,21 @@ from time import *
 import gobject
 #import pokereval
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("filter")
+
+
 import Configuration
 import Database
 import SQL
 import Charset
 
+
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):
         # config and qdict are now redundant
         self.debug = debug
-        #print "start of GraphViewer constructor"
         self.db = db
         self.cursor = db.cursor
         self.sql = db.sql
@@ -268,10 +273,10 @@ class Filters(threading.Thread):
         self.callback['button2'] = callback
 
     def cardCallback(self, widget, data=None):
-        print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+        log.debug( "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()]) )
 
     def createPlayerLine(self, hbox, site, player):
-        print 'DEBUG :: add:"%s"' % player
+        log.debug('add:"%s"' % player)
         label = gtk.Label(site +" id:")
         hbox.pack_start(label, False, False, 3)
 
@@ -300,14 +305,14 @@ class Filters(threading.Thread):
         # get_text() returns a str but we want internal variables to be unicode:
         _guiname = unicode(_name)
         self.heroes[site] = _guiname
-#        print "DEBUG: setting heroes[%s]: %s"%(site, self.heroes[site])
+#        log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
 
     def __set_num_hands(self, w, val):
         try:
             self.numHands = int(w.get_text())
         except:
             self.numHands = 0
-#        print "DEBUG: setting numHands:", self.numHands
+#        log.debug("setting numHands:", self.numHands)
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -332,17 +337,17 @@ class Filters(threading.Thread):
     def __set_site_select(self, w, site):
         #print w.get_active()
         self.sites[site] = w.get_active()
-        print "self.sites[%s] set to %s" %(site, self.sites[site])
+        log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
 
     def __set_game_select(self, w, game):
         #print w.get_active()
         self.games[game] = w.get_active()
-        print "self.games[%s] set to %s" %(game, self.games[game])
+        log.debug("self.games[%s] set to %s" %(game, self.games[game]))
 
     def __set_limit_select(self, w, limit):
         #print w.get_active()
         self.limits[limit] = w.get_active()
-        print "self.limit[%s] set to %s" %(limit, self.limits[limit])
+        log.debug("self.limit[%s] set to %s" %(limit, self.limits[limit]))
         if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
             if self.limits[limit]:
                 if self.cbNoLimits is not None:
@@ -428,9 +433,11 @@ class Filters(threading.Thread):
             if self.limits[limit]:
                 if not found[self.type]:
                     if self.type == 'ring':
-                        self.rb['tour'].set_active(True)
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
                     elif self.type == 'tour':
-                        self.rb['ring'].set_active(True)
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
         elif limit == "pl":
             if not self.limits[limit]:
                 # only toggle all nl limits off if they are all currently on
@@ -452,11 +459,13 @@ class Filters(threading.Thread):
             if self.limits[limit]:
                 if not found[self.type]:
                     if self.type == 'ring':
-                        self.rb['tour'].set_active(True)
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
                     elif self.type == 'tour':
-                        self.rb['ring'].set_active(True)
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
         elif limit == "ring":
-            print "set", limit, "to", self.limits[limit]
+            log.debug("set", limit, "to", self.limits[limit])
             if self.limits[limit]:
                 self.type = "ring"
                 for cb in self.cbLimits.values():
@@ -464,7 +473,7 @@ class Filters(threading.Thread):
                     if self.types[cb.get_children()[0].get_text()] == 'tour':
                         cb.set_active(False)
         elif limit == "tour":
-            print "set", limit, "to", self.limits[limit]
+            log.debug( "set", limit, "to", self.limits[limit] )
             if self.limits[limit]:
                 self.type = "tour"
                 for cb in self.cbLimits.values():
@@ -475,12 +484,12 @@ class Filters(threading.Thread):
     def __set_seat_select(self, w, seat):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.seats[seat] = w.get_active()
-        print "self.seats[%s] set to %s" %(seat, self.seats[seat])
+        log.debug( "self.seats[%s] set to %s" %(seat, self.seats[seat]) )
 
     def __set_group_select(self, w, group):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.groups[group] = w.get_active()
-        print "self.groups[%s] set to %s" %(group, self.groups[group])
+        log.debug( "self.groups[%s] set to %s" %(group, self.groups[group]) )
 
     def fillPlayerFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
@@ -579,6 +588,7 @@ class Filters(threading.Thread):
                 self.createGameLine(hbox, line[0])
         else:
             print "INFO: No games returned from database"
+            log.info("No games returned from database")
 
     def fillLimitsFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
@@ -660,6 +670,7 @@ class Filters(threading.Thread):
                     dest = vbox2  # for ring/tour buttons
         else:
             print "INFO: No games returned from database"
+            log.info("No games returned from database")
 
         if "Type" in display and display["Type"] == True and found['ring'] and found['tour']:
             rb1 = gtk.RadioButton(None, self.filterText['ring'])
