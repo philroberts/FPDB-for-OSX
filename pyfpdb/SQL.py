@@ -1854,8 +1854,8 @@ class Sql:
                                                  when 'ring' then bigblind 
                                                  else buyin 
                                              end as bb_or_buyin
-                                      from gametypes gt
-                                      cross join tourneytypes tt
+                                      from Gametypes gt
+                                      cross join TourneyTypes tt
                                       order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
