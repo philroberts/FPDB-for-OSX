@@ -38,8 +38,9 @@ class Everleaf(HandHistoryConverter):
                      #re.compile(ur"^(Blinds )?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/(?:\$| €)?(?P<BB>[.0-9]+) (?P<LIMIT>NL|PL|) (?P<GAME>(Hold\'em|Omaha|7 Card Stud))", re.MULTILINE)
     re_HandInfo    = re.compile(ur".*#(?P<HID>[0-9]+)\n.*\n(Blinds )?(?:\$| €|)(?P<SB>[.0-9]+)/(?:\$| €|)(?P<BB>[.0-9]+) (?P<GAMETYPE>.*) - (?P<DATETIME>\d\d\d\d/\d\d/\d\d - \d\d:\d\d:\d\d)\nTable (?P<TABLE>.+$)", re.MULTILINE)
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
-    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
+    re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|Chips)|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
+    re_TourneyInfoFromFilename = re.compile(ur".*TID_(?P<TOURNO>[0-9]+)-(?P<TABLE>[0-9]+)\.txt")
 
 
     def compilePlayerRegexs(self, hand):
@@ -55,18 +56,25 @@ class Everleaf(HandHistoryConverter):
             self.re_Antes           = re.compile(ur"^%s: posts ante \[(?:\$| €|) (?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn         = re.compile(ur"^%s posts bring-in (?:\$| €|)(?P<BRINGIN>[.0-9]+)\." % player_re, re.MULTILINE)
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
-            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.\d]+) (USD|EUR|)\])?" % player_re, re.MULTILINE)
+            self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EUR|Chips)\])?" % player_re, re.MULTILINE)
             #self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds| complete to)(\s\[?(?:\$| €|) ?(?P<BET>\d+\.?\d*)\.?\s?(USD|EUR|)\]?)?" % player_re, re.MULTILINE)
             self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^%s wins (?:\$| €|) (?P<POT>[.\d]+) (USD|EUR|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
+
+        else:
+            print "*** EverleafToFpdb: compilePlayerRegexs failed"
+            print players
+            print self.compiledPlayers
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"],
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
                 ["ring", "studhi", "fl"],
-                ["ring", "omahahi", "pl"]
+                ["ring", "omahahi", "pl"],
+                ["ring", "omahahilo", "pl"],
+                ["tour", "hold", "nl"]
                ]
 
     def determineGameType(self, handText):
@@ -137,6 +145,13 @@ or None if we fail to get the info """
         hand.handid =  m.group('HID')
         hand.tablename = m.group('TABLE')
         hand.maxseats = 6     # assume 6-max unless we have proof it's a larger/smaller game, since everleaf doesn't give seat max info
+
+        t = self.re_TourneyInfoFromFilename.search(self.in_path)
+        if t:
+            tourno = t.group('TOURNO')
+        if tourno: # we're a tourney, yay
+            hand.tourNo = tourno
+            hand.tablename = t.group('TABLE')
 
         # Believe Everleaf time is GMT/UTC, no transation necessary
         # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
@@ -287,7 +302,9 @@ or None if we fail to get the info """
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
-        return "^%s -" % (table_name)
+        if tournament:
+            return "%s - Tournament ID: %s -" % (table_number, tournament)
+        return "%s -" % (table_name)
 
 
 
