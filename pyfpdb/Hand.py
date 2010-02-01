@@ -21,7 +21,6 @@
 import re
 import sys
 import traceback
-import logging
 import os
 import os.path
 from decimal import Decimal
@@ -30,12 +29,16 @@ import time,datetime
 from copy import deepcopy
 import pprint
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
+
+
 import Configuration
 from Exceptions import *
 import DerivedStats
 import Card
 
-log = Configuration.get_logger("logging.conf", "parser")
 
 class Hand(object):
 
@@ -50,7 +53,7 @@ class Hand(object):
 
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
         self.config = config
-        log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
+        #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.SITEIDS[sitename]
         self.stats = DerivedStats.DerivedStats(self)

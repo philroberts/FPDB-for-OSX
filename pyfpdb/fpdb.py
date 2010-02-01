@@ -721,6 +721,9 @@ class fpdb:
         err_msg = None
         try:
             self.db = Database.Database(self.config, sql = self.sql)
+            if self.db.get_backend_name() == 'SQLite':
+                # tell sqlite users where the db file is
+                print "Connected to SQLite: %(database)s" % {'database':self.db.db_path}
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
         except Exceptions.FpdbMySQLNoDatabase:
