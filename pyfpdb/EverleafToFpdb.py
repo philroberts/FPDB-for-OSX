@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008, Carl Gherardi
-#    
+#
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
@@ -25,7 +25,7 @@ from HandHistoryConverter import *
 # Class for converting Everleaf HH format.
 
 class Everleaf(HandHistoryConverter):
-    
+
     sitename = 'Everleaf'
     filetype = "text"
     codepage = "cp1252"
@@ -40,8 +40,8 @@ class Everleaf(HandHistoryConverter):
     re_Button      = re.compile(ur"^Seat (?P<BUTTON>\d+) is the button", re.MULTILINE)
     re_PlayerInfo  = re.compile(ur"^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\s+((?:\$| €|) (?P<CASH>[.0-9]+) (USD|EUR|)|new player|All-in) \)", re.MULTILINE)
     re_Board       = re.compile(ur"\[ (?P<CARDS>.+) \]")
-    
-    
+
+
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
@@ -83,30 +83,30 @@ class Everleaf(HandHistoryConverter):
     'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
 or None if we fail to get the info """
         #(TODO: which parts are optional/required?)
-    
+
         # Blinds $0.50/$1 PL Omaha - 2008/12/07 - 21:59:48
         # Blinds $0.05/$0.10 NL Hold'em - 2009/02/21 - 11:21:57
         # $0.25/$0.50 7 Card Stud - 2008/12/05 - 21:43:59
-        
+
         # Tourney:
         # Everleaf Gaming Game #75065769
         # ***** Hand history for game #75065769 *****
         # Blinds 10/20 NL Hold'em - 2009/02/25 - 17:30:32
         # Table 2
         info = {'type':'ring'}
-        
+
         m = self.re_GameInfo.search(handText)
         if not m:
             return None
-        
+
         mg = m.groupdict()
-        
+
         # translations from captured groups to our info strings
         limits = { 'NL':'nl', 'PL':'pl', '':'fl' }
         games = {              # base, category
-                  "Hold'em" : ('hold','holdem'), 
-                    'Omaha' : ('hold','omahahi'), 
-                     'Razz' : ('stud','razz'), 
+                  "Hold'em" : ('hold','holdem'),
+                    'Omaha' : ('hold','omahahi'),
+                     'Razz' : ('stud','razz'),
               '7 Card Stud' : ('stud','studhi')
                }
         currencies = { u' €':'EUR', '$':'USD', '':'T$' }
@@ -123,7 +123,7 @@ or None if we fail to get the info """
             if info['currency'] == 'T$':
                 info['type'] = 'tour'
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-        
+
         return info
 
 
@@ -156,8 +156,8 @@ or None if we fail to get the info """
             if seatnum > 6:
                 hand.maxseats = 10 # everleaf currently does 2/6/10 games, so if seats > 6 are in use, it must be 10-max.
                 # TODO: implement lookup list by table-name to determine maxes, then fall back to 6 default/10 here, if there's no entry in the list?
-            
-        
+
+
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
@@ -196,7 +196,7 @@ or None if we fail to get the info """
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))        
+            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
             logging.warning("No bringin found.")
@@ -285,6 +285,10 @@ or None if we fail to get the info """
 #                hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'))
 
+    @staticmethod
+    def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
+        return "^%s -" % (table_name)
+
 
 
 if __name__ == "__main__":
@@ -305,4 +309,3 @@ if __name__ == "__main__":
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
     e = Everleaf(in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True)
-

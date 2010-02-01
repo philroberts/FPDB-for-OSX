@@ -42,6 +42,8 @@ def to_utf8(s):
     except UnicodeDecodeError:
         sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
+    except TypeError: # TypeError is raised when we give unicode() an already encoded string
+        return s
 
 def to_db_utf8(s):
     if not_needed2: return s
@@ -62,4 +64,3 @@ def to_gui(s):
     except UnicodeDecodeError:
         sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
-
