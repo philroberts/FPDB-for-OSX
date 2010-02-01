@@ -41,6 +41,10 @@ import Queue
 import codecs
 import math
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("db")
+
 
 #    pyGTK modules
 
@@ -52,7 +56,6 @@ import Tourney
 import Charset
 from Exceptions import *
 import Configuration
-log = Configuration.get_logger("logging.conf","db")
 
 
 #    Other library modules
@@ -225,7 +228,7 @@ class Database:
 
     def __init__(self, c, sql = None): 
         log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
-        log.info("Creating Database instance, sql = %s" % sql)
+        log.debug("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.__connected = False
         self.settings = {}
