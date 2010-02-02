@@ -30,6 +30,10 @@ import Queue
 from collections import deque # using Queue for now
 import threading
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
+
 import pygtk
 import gtk
 
@@ -39,7 +43,6 @@ import Database
 import Configuration
 import Exceptions
 
-log = Configuration.get_logger("logging.conf", "importer")
 
 #    database interface modules
 try:
@@ -65,7 +68,7 @@ class Importer:
         self.config     = config
         self.sql        = sql
 
-        log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
+        #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}

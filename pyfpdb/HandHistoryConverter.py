@@ -30,6 +30,11 @@ from xml.dom.minidom import Node
 import time
 import datetime
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
+
+
 import Hand
 import Tourney
 from Exceptions import FpdbParseError
@@ -38,7 +43,6 @@ import Configuration
 import gettext
 gettext.install('fpdb')
 
-log = Configuration.get_logger("logging.conf", "parser")
 
 import pygtk
 import gtk
@@ -65,7 +69,7 @@ out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
 
         self.config = config
-        log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
+        #log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
         
         self.index     = index
