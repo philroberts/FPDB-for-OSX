@@ -137,7 +137,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$?(?P<POT>[.,\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
+            self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
@@ -390,9 +390,10 @@ class Fulltilt(HandHistoryConverter):
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ')
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+                if m.group('ACT'):
+                    hand.addShownCards(cards=m.group('CARDS').split(' '), player=m.group('PNAME'), shown = False, mucked = True)
+                else:
+                    hand.addShownCards(cards=m.group('CARDS').split(' '), player=m.group('PNAME'), shown = True, mucked = False)
 
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""
