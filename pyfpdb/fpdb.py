@@ -117,7 +117,6 @@ import Exceptions
 
 VERSION = "0.12"
 
-log = Configuration.get_logger("logging.conf", "fpdb")
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -696,6 +695,7 @@ class fpdb:
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        print "Logfile is " + os.path.join(self.config.dir_log, 'logging.out') + "\n"
         if self.config.example_copy:
             self.info_box( "Config file"
                          , "has been created at:\n%s.\n" % self.config.file
@@ -721,6 +721,9 @@ class fpdb:
         err_msg = None
         try:
             self.db = Database.Database(self.config, sql = self.sql)
+            if self.db.get_backend_name() == 'SQLite':
+                # tell sqlite users where the db file is
+                print "Connected to SQLite: %(database)s" % {'database':self.db.db_path}
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
         except Exceptions.FpdbMySQLNoDatabase:

@@ -1849,9 +1849,9 @@ class Sql:
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
         self.query['getLimits3'] = """select DISTINCT type
-                                           , limittype
+                                           , limitType
                                            , case type 
-                                                 when 'ring' then bigblind 
+                                                 when 'ring' then bigBlind 
                                                  else buyin 
                                              end as bb_or_buyin
                                       from Gametypes gt
