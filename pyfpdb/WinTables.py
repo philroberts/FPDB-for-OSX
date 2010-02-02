@@ -50,10 +50,12 @@ class Table(Table_Window):
         titles = {}
         win32gui.EnumWindows(win_enum_handler, titles)
         for hwnd in titles:
+            # print "searching ", search_string, " in ", titles[hwnd]
             if re.search(search_string, titles[hwnd]):
                 if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
                 if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
                 if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
+                if 'FPDBHUD' in titles[hwnd]: continue # can't attach to ourselves!
                 self.window = hwnd
                 break
 
