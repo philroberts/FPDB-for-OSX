@@ -51,10 +51,8 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 
-print "start logging"
 log = Configuration.get_logger("logging.conf", config = 'hud')
-log.debug("%s logger initialized." % "dud")
-print "logging started"
+log.debug("%s logger initialized." % "hud")
 
 
 import Database
@@ -68,36 +66,40 @@ elif os.name == 'nt':
 import Hud
 
 
-log = Configuration.get_logger("logging.conf")
-
-
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
 
     def __init__(self, db_name = 'fpdb'):
-        self.db_name = db_name
-        self.log = log
-        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
-        self.hud_dict = {}
-        self.hud_params = self.config.get_hud_ui_parameters()
+        try:
+            print "HUD_main: starting ..."
+            self.db_name = db_name
+            self.config = Configuration.Config(file=options.config, dbname=options.dbname)
+            log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
+            log.debug("starting ...")
+            self.hud_dict = {}
+            self.hud_params = self.config.get_hud_ui_parameters()
 
-#    a thread to read stdin
-        gobject.threads_init()                       # this is required
-        thread.start_new_thread(self.read_stdin, ()) # starts the thread
+    #    a thread to read stdin
+            gobject.threads_init()                       # this is required
+            thread.start_new_thread(self.read_stdin, ()) # starts the thread
 
-#    a main window
-        self.main_window = gtk.Window()
-        self.main_window.connect("destroy", self.destroy)
-        self.vb = gtk.VBox()
-        self.label = gtk.Label('Closing this window will exit from the HUD.')
-        self.vb.add(self.label)
-        self.main_window.add(self.vb)
-        self.main_window.set_title("HUD Main Window")
-        self.main_window.show_all()
+    #    a main window
+            self.main_window = gtk.Window()
+            self.main_window.connect("destroy", self.destroy)
+            self.vb = gtk.VBox()
+            self.label = gtk.Label('Closing this window will exit from the HUD.')
+            self.vb.add(self.label)
+            self.main_window.add(self.vb)
+            self.main_window.set_title("HUD Main Window")
+            self.main_window.show_all()
+        except:
+            log.debug("commit "+str(i)+" failed: info=" + str(sys.exc_info())
+                          + " value=" + str(sys.exc_value))
+
 
     def destroy(self, *args):             # call back for terminating the main eventloop
-        self.log.info("Terminating normally.")
+        log.info("Terminating normally.")
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -204,7 +206,7 @@ class HUD_main(object):
             t0 = time.time()
             t1 = t2 = t3 = t4 = t5 = t6 = t0
             new_hand_id = string.rstrip(new_hand_id)
-            self.log.debug("Received hand no %s" % new_hand_id)
+            log.debug("Received hand no %s" % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
@@ -216,7 +218,7 @@ class HUD_main(object):
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception, err:
-                self.log.error("db error: skipping %s" % new_hand_id)
+                log.error("db error: skipping %s" % new_hand_id)
                 continue
             t1 = time.time()
 
@@ -275,7 +277,7 @@ class HUD_main(object):
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
 #                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
-                    self.log.error("HUD create: table name %s not found, skipping." % table_name)
+                    log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name

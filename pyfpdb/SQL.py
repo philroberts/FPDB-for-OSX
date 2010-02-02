@@ -1848,6 +1848,15 @@ class Sql:
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
+        self.query['getLimits3'] = """select DISTINCT type
+                                           , limittype
+                                           , case type 
+                                                 when 'ring' then bigblind 
+                                                 else buyin 
+                                             end as bb_or_buyin
+                                      from Gametypes gt
+                                      cross join TourneyTypes tt
+                                      order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
@@ -2021,6 +2030,7 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['playerDetailedStats'] = """
                      select  <hgameTypeId>                                                          AS hgametypeid
+                            ,<playerName>                                                           AS pname
                             ,gt.base
                             ,gt.category                                                            AS category
                             ,upper(gt.limitType)                                                    AS limittype
@@ -2072,6 +2082,7 @@ class Sql:
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
+                           inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/

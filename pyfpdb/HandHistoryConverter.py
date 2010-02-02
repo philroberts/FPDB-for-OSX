@@ -16,8 +16,6 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import Hand
-import Tourney
 import re
 import sys
 import traceback
@@ -31,13 +29,16 @@ import operator
 from xml.dom.minidom import Node
 import time
 import datetime
+
+import Hand
+import Tourney
 from Exceptions import FpdbParseError
 import Configuration
 
 import gettext
 gettext.install('fpdb')
 
-log = Configuration.get_logger("logging.conf")
+log = Configuration.get_logger("logging.conf", "parser")
 
 import pygtk
 import gtk
@@ -57,12 +58,14 @@ class HandHistoryConverter():
     codepage = "cp1252"
 
 
-    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
+    def __init__(self, config, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
 
+        self.config = config
+        log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
         
         self.index     = index
@@ -283,11 +286,11 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
                 log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
-                hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
+                hand = Hand.HoldemOmahaHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'stud':
-                hand = Hand.StudHand(self, self.sitename, gametype, handText)
+                hand = Hand.StudHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'draw':
-                hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+                hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
             log.info("Unsupported game type: %s" % gametype)
 
@@ -417,7 +420,7 @@ or None if we fail to get the info """
         list.pop() #Last entry is empty
         for l in list:
 #           print "'" + l + "'"
-            hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
+            hands = hands + [Hand.Hand(self.config, self.sitename, self.gametype, l)]
         # TODO: This looks like it could be replaced with a list comp.. ?
         return hands
 

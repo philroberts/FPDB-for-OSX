@@ -319,7 +319,7 @@ class GuiGraphViewer (threading.Thread):
         winnings = self.db.cursor.fetchall()
         self.db.rollback()
 
-        if winnings == ():
+        if len(winnings) == 0:
             return (None, None, None)
 
         green = map(lambda x:float(x[1]), winnings)
