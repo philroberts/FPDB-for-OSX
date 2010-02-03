@@ -35,9 +35,6 @@ import traceback
 
 (options, argv) = Options.fpdb_options()
 
-if not options.errorsToConsole:
-    print "Note: error output is being logged. Any major error will be reported there _only_."
-
 import thread
 import time
 import string
@@ -51,9 +48,6 @@ import gobject
 #    FreePokerTools modules
 import Configuration
 
-log = Configuration.get_logger("logging.conf", config = 'hud')
-log.debug("%s logger initialized." % "hud")
-
 
 import Database
 from HandHistoryConverter import getTableTitleRe
@@ -66,6 +60,10 @@ elif os.name == 'nt':
 import Hud
 
 
+# logger is set up in __init__, create temp logger here
+log = Configuration.get_logger("logging.conf", config = 'hud')
+
+
 class HUD_main(object):
     """A main() object to own both the read_stdin thread and the gui."""
 #    This class mainly provides state for controlling the multiple HUDs.
@@ -74,9 +72,18 @@ class HUD_main(object):
         try:
             print "HUD_main: starting ..."
             self.db_name = db_name
-            self.config = Configuration.Config(file=options.config, dbname=options.dbname)
+            self.config = Configuration.Config(file=options.config, dbname=db_name)
             log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
-            log.debug("starting ...")
+            log.info("HUD_main starting")
+            log.info("Using db name = %s" % (db_name))
+
+            if not options.errorsToConsole:
+                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
+                 print "Note: error output is being diverted to\n"+fileName \
+                       + "\nAny major error will be reported there _only_.\n" 
+                 errorFile = open(fileName, 'w', 0)
+                 sys.stderr = errorFile
+
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
 
@@ -294,9 +301,6 @@ class HUD_main(object):
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":
-
-    log.info("HUD_main starting")
-    log.info("Using db name = %s" % (options.dbname))
 
 #    start the HUD_main object
     hm = HUD_main(db_name = options.dbname)

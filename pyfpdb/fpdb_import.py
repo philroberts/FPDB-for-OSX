@@ -30,6 +30,10 @@ import Queue
 from collections import deque # using Queue for now
 import threading
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
+
 import pygtk
 import gtk
 
@@ -39,7 +43,6 @@ import Database
 import Configuration
 import Exceptions
 
-log = Configuration.get_logger("logging.conf", "importer")
 
 #    database interface modules
 try:
@@ -65,7 +68,7 @@ class Importer:
         self.config     = config
         self.sql        = sql
 
-        log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
+        #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
         self.dirlist    = {}
         self.siteIds    = {}
@@ -448,14 +451,14 @@ class Importer:
                                 to_hud.append(hand.dbid_hands)
                     else: # TODO: Treat empty as an error, or just ignore?
                         log.error("Hand processed but empty")
-                self.database.commit()
+
                 # Call hudcache update if not in bulk import mode
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
                     for hand in handlist:
                         if hand is not None:
                             hand.updateHudCache(self.database)
-                    self.database.commit()
+                self.database.commit()
 
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:

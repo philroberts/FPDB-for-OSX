@@ -56,7 +56,6 @@ class DerivedStats():
             self.handsplayers[player[1]]['stealAttemptChance']  = False
             self.handsplayers[player[1]]['stealAttempted']      = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
-            self.handsplayers[player[1]]['foldBbToStealChance'] = False
             self.handsplayers[player[1]]['foldSbToStealChance'] = False
             self.handsplayers[player[1]]['foldedSbToSteal']     = False
             self.handsplayers[player[1]]['foldedBbToSteal']     = False
@@ -281,33 +280,37 @@ class DerivedStats():
     def calcSteals(self, hand):
         """Fills stealAttempt(Chance|ed, fold(Bb|Sb)ToSteal(Chance|)
 
-        Steal attemp - open raise on positions 2 1 0 S - i.e. MP3, CO, BU, SB
+        Steal attempt - open raise on positions 1 0 S - i.e. MP3, CO, BU, SB
         Fold to steal - folding blind after steal attemp wo any other callers or raisers
         """
-        steal_attemp = False
-        steal_positions = ('2', '1', '0', 'S')
+        steal_attempt = False
+        steal_positions = (1, 0, 'S')
         if hand.gametype['base'] == 'stud':
-            steal_positions = ('2', '1', '0')
+            steal_positions = (2, 1, 0)
         for action in hand.actions[hand.actionStreets[1]]:
             pname, act = action[0], action[1]
-            #print action[0], hp.position, steal_attemp, act
-            if self.handsplayers[pname]['position'] == 'B':
+            posn = self.handsplayers[pname]['position']
+            #print "\naction:", action[0], posn, type(posn), steal_attempt, act
+            if posn == 'B':
                 #NOTE: Stud games will never hit this section
-                self.handsplayers[pname]['foldBbToStealChance'] = steal_attemp
-                self.handsplayers[pname]['foldBbToSteal'] = self.handsplayers[pname]['foldBbToStealChance'] and act == 'folds'
+                self.handsplayers[pname]['foldBbToStealChance'] = steal_attempt
+                self.handsplayers[pname]['foldedBbToSteal'] = steal_attempt and act == 'folds'
                 break
-            elif self.handsplayers[pname]['position'] == 'S':
-                self.handsplayers[pname]['foldSbToStealChance'] = steal_attemp
-                self.handsplayers[pname]['foldSbToSteal'] = self.handsplayers[pname]['foldSbToStealChance'] and act == 'folds'
+            elif posn == 'S':
+                self.handsplayers[pname]['foldSbToStealChance'] = steal_attempt
+                self.handsplayers[pname]['foldedSbToSteal'] = steal_attempt and act == 'folds'
 
-            if steal_attemp and act != 'folds':
+            if steal_attempt and act != 'folds':
                 break
 
-            if self.handsplayers[pname]['position'] in steal_positions and not steal_attemp:
+            if posn in steal_positions and not steal_attempt:
                 self.handsplayers[pname]['stealAttemptChance'] = True
                 if act in ('bets', 'raises'):
                     self.handsplayers[pname]['stealAttempted'] = True
-                    steal_attemp = True
+                    steal_attempt = True
+            
+            if posn not in steal_positions and act != 'folds':
+                break
 
     def calc34BetStreet0(self, hand):
         """Fills street0_(3|4)B(Chance|Done), other(3|4)BStreet0"""

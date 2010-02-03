@@ -53,7 +53,7 @@ if os.name == 'nt':
         raw_input("Press ENTER to continue.")
         exit()
 
-print "Python " + sys.version[0:3] + '...\n'
+print "Python " + sys.version[0:3] + '...'
 
 import traceback
 import threading
@@ -62,12 +62,6 @@ import string
 cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
-if not options.errorsToConsole:
-    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('fpdb-error-log.txt', 'w', 0)
-    sys.stderr = errorFile
-
-#import logging
 import logging, logging.config
 
 try:
@@ -117,7 +111,6 @@ import Exceptions
 
 VERSION = "0.12"
 
-log = Configuration.get_logger("logging.conf", "fpdb")
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -696,6 +689,7 @@ class fpdb:
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        print "Logfile is " + os.path.join(self.config.dir_log, 'logging.out') + "\n"
         if self.config.example_copy:
             self.info_box( "Config file"
                          , "has been created at:\n%s.\n" % self.config.file
@@ -721,6 +715,9 @@ class fpdb:
         err_msg = None
         try:
             self.db = Database.Database(self.config, sql = self.sql)
+            if self.db.get_backend_name() == 'SQLite':
+                # tell sqlite users where the db file is
+                print "Connected to SQLite: %(database)s" % {'database':self.db.db_path}
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
         except Exceptions.FpdbMySQLNoDatabase:
@@ -906,6 +903,13 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.window.show()
         self.load_profile()
+
+        if not options.errorsToConsole:
+            fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
+            print "\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in\n" \
+                  + self.config.dir_log + "Any major error will be reported there _only_.\n"
+            errorFile = open(fileName, 'w', 0)
+            sys.stderr = errorFile
 
         self.statusIcon = gtk.StatusIcon()
         if os.path.exists(os.path.join(sys.path[0], '../gfx/fpdb-cards.png')):

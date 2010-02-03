@@ -41,6 +41,10 @@ import Queue
 import codecs
 import math
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("db")
+
 
 #    pyGTK modules
 
@@ -52,7 +56,6 @@ import Tourney
 import Charset
 from Exceptions import *
 import Configuration
-log = Configuration.get_logger("logging.conf","db")
 
 
 #    Other library modules
@@ -224,8 +227,8 @@ class Database:
 
 
     def __init__(self, c, sql = None): 
-        log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
-        log.info("Creating Database instance, sql = %s" % sql)
+        #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
+        log.debug("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.__connected = False
         self.settings = {}
@@ -236,6 +239,7 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
+        self.db_path = ''
 
         # where possible avoid creating new SQL instance by using the global one passed in
         if sql is None:
@@ -385,9 +389,9 @@ class Database:
                     log.info("Creating directory: '%s'" % (self.config.dir_database))
                     os.mkdir(self.config.dir_database)
                 database = os.path.join(self.config.dir_database, database)
-            log.info("Connecting to SQLite: %(database)s" % {'database':database})
-            print "Connecting to SQLite: %(database)s" % {'database':database}
-            self.connection = sqlite3.connect(database, detect_types=sqlite3.PARSE_DECLTYPES )
+            self.db_path = database
+            log.info("Connecting to SQLite: %(database)s" % {'database':self.db_path})
+            self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
             sqlite3.register_converter("bool", lambda x: bool(int(x)))
             sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
             self.connection.create_function("floor", 1, math.floor)
@@ -788,11 +792,10 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        print "get_player_id: player_name =", player_name, type(player_name)
+        #print "get_player_id: player_name =", player_name, type(player_name)
         p_name = Charset.to_utf8(player_name)
         c.execute(self.sql.query['get_player_id'], (p_name, site))
         row = c.fetchone()
-        print "player id =", row
         if row:
             return row[0]
         else:
