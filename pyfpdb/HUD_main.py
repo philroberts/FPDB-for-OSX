@@ -35,9 +35,6 @@ import traceback
 
 (options, argv) = Options.fpdb_options()
 
-if not options.errorsToConsole:
-    print "Note: error output is being logged. Any major error will be reported there _only_."
-
 import thread
 import time
 import string
@@ -79,6 +76,14 @@ class HUD_main(object):
             log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
             log.info("HUD_main starting")
             log.info("Using db name = %s" % (db_name))
+
+            if not options.errorsToConsole:
+                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
+                 print "Note: error output is being diverted to\n"+fileName \
+                       + "\nAny major error will be reported there _only_.\n" 
+                 errorFile = open(fileName, 'w', 0)
+                 sys.stderr = errorFile
+
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
 

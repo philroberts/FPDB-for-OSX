@@ -53,7 +53,7 @@ if os.name == 'nt':
         raw_input("Press ENTER to continue.")
         exit()
 
-print "Python " + sys.version[0:3] + '...\n'
+print "Python " + sys.version[0:3] + '...'
 
 import traceback
 import threading
@@ -62,12 +62,6 @@ import string
 cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
-if not options.errorsToConsole:
-    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('fpdb-error-log.txt', 'w', 0)
-    sys.stderr = errorFile
-
-#import logging
 import logging, logging.config
 
 try:
@@ -909,6 +903,13 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         self.window.show()
         self.load_profile()
+
+        if not options.errorsToConsole:
+            fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
+            print "\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in\n" \
+                  + self.config.dir_log + "Any major error will be reported there _only_.\n"
+            errorFile = open(fileName, 'w', 0)
+            sys.stderr = errorFile
 
         self.statusIcon = gtk.StatusIcon()
         if os.path.exists(os.path.join(sys.path[0], '../gfx/fpdb-cards.png')):
