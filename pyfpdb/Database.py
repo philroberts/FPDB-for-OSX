@@ -1756,10 +1756,10 @@ class Database:
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
         if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key, siteid))
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
  
         for player in pnames:
-            result[player] = self.pcache[player]
+            result[player] = self.pcache[(player,siteid)]
             # NOTE: Using the LambdaDict does the same thing as:
             #if player in self.pcache:
             #    #print "DEBUG: cachehit"
