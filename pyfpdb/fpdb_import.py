@@ -451,14 +451,14 @@ class Importer:
                                 to_hud.append(hand.dbid_hands)
                     else: # TODO: Treat empty as an error, or just ignore?
                         log.error("Hand processed but empty")
-                self.database.commit()
+
                 # Call hudcache update if not in bulk import mode
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
                     for hand in handlist:
                         if hand is not None:
                             hand.updateHudCache(self.database)
-                    self.database.commit()
+                self.database.commit()
 
                 #pipe the Hands.id out to the HUD
                 for hid in to_hud:
