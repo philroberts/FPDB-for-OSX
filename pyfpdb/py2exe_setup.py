@@ -58,8 +58,8 @@ setup(
 
     options = {'py2exe': {
                       'packages'    :'encodings',
-                      'includes'    : 'cairo, pango, pangocairo, atk, gobject, PokerStarsToFpdb',
-		              'excludes'    : '_tkagg, _agg2, cocoaagg, fltkagg',
+                      'includes'    : 'cairo, pango, pangocairo, atk, gobject, PokerStarsToFpdb, FulltiltToFpdb',
+                      'excludes'    : '_tkagg, _agg2, cocoaagg, fltkagg',
                       'dll_excludes': 'libglade-2.0-0.dll',
                   }
               },
@@ -67,7 +67,9 @@ setup(
     data_files = ['HUD_config.xml.example',
                   'Cards01.png',
                   'logging.conf',
-                  (r'matplotlibdata', glob.glob(r'c:\python26\Lib\site-packages\matplotlib\mpl-data\*'))
+                  (r'mpl-data',                 [r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\matplotlibrc']),
+                  (r'mpl-data\images', glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\images\*.*')),
+                  (r'mpl-data\fonts',  glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\fonts\*.*')),)
                  ]
 )
 
