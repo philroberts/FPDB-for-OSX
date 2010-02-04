@@ -11,12 +11,12 @@ of Table_Window objects representing the windows found.
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation; either version 2 of the License, or
 #    (at your option) any later version.
-#    
+#
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 #    GNU General Public License for more details.
-#    
+#
 #    You should have received a copy of the GNU General Public License
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
@@ -58,7 +58,7 @@ bad_words = ('History for table:', 'HUD:', 'Chat:')
 
 #    Here are the custom signals we define for allowing the 'client watcher'
 #    thread to communicate with the gui thread. Any time a poker client is
-#    is moved, resized, or closed on of these signals is emitted to the 
+#    is moved, resized, or closed on of these signals is emitted to the
 #    HUD main window.
 gobject.signal_new("client_moved", gtk.Window,
                    gobject.SIGNAL_RUN_LAST,
@@ -80,16 +80,16 @@ gobject.signal_new("client_destroyed", gtk.Window,
 #              from the corresponding hand history.
 #    tw.site = the site name, e.g. PokerStars, FullTilt.  This must match the site
 #            name specified in the config file.
-#    tw.number = This is the system id number for the client table window in the 
+#    tw.number = This is the system id number for the client table window in the
 #                format that the system presents it.  This is Xid in Xwindows and
 #                hwnd in Microsoft Windows.
 #    tw.title = The full title from the window title bar.
-#    tw.width, tw.height = The width and height of the window in pixels.  This is 
-#            the internal width and height, not including the title bar and 
+#    tw.width, tw.height = The width and height of the window in pixels.  This is
+#            the internal width and height, not including the title bar and
 #            window borders.
-#    tw.x, tw.y = The x, y (horizontal, vertical) location of the window relative 
+#    tw.x, tw.y = The x, y (horizontal, vertical) location of the window relative
 #            to the top left of the display screen.  This also does not include the
-#            title bar and window borders.  To put it another way, this is the 
+#            title bar and window borders.  To put it another way, this is the
 #            screen location of (0, 0) in the working window.
 
 class Table_Window(object):
@@ -101,7 +101,7 @@ class Table_Window(object):
             self.table = int(table_number)
             self.name = "%s - %s" % (self.tournament, self.table)
         elif table_name is not None:
-            search_string = table_name
+            # search_string = table_name
             self.name = table_name
             self.tournament = None
         else:
@@ -111,7 +111,7 @@ class Table_Window(object):
 
     def __str__(self):
 #    __str__ method for testing
-        likely_attrs = ("site", "number", "title", "width", "height", "x", "y", 
+        likely_attrs = ("site", "number", "title", "width", "height", "x", "y",
                         "tournament", "table", "gdkhandle")
         temp = 'TableWindow object\n'
         for a in likely_attrs:
@@ -125,7 +125,7 @@ class Table_Window(object):
         for game, names in game_names.iteritems():
             for name in names:
                 if name in title:
-                    return game 
+                    return game
         return None
 
     def check_geometry(self):

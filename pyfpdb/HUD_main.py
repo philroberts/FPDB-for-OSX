@@ -273,6 +273,7 @@ class HUD_main(object):
 
                 table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
                 search_string = getTableTitleRe(self.config, site_name, type, **table_kwargs)
+                # print "getTableTitleRe ", self.config, site_name, type, "=", search_string
                 tablewindow = Tables.Table(search_string, **table_kwargs)
 
                 if tablewindow is None:
