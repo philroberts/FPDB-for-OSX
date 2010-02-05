@@ -27,9 +27,9 @@ settings.update(config.get_default_paths())
 gametype = {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'}
 text = ""
 
-hhc = PokerStarsToFpdb.PokerStars(autostart=False)
+hhc = PokerStarsToFpdb.PokerStars(config, autostart=False)
 
-h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
+h = HoldemOmahaHand(config, None, "PokerStars", gametype, text, builtFrom = "Test")
 h.addPlayer("1", "s0rrow", "100000")
 
 hhc.compilePlayerRegexs(h)
@@ -39,7 +39,7 @@ def checkGameInfo(hhc, header, info):
     assert hhc.determineGameType(header) == info
 
 def testGameInfo():
-    hhc = PokerStarsToFpdb.PokerStars(autostart=False)    
+    hhc = PokerStarsToFpdb.PokerStars(config, autostart=False)
     pairs = (
     (u"PokerStars Game #20461877044:  Hold'em No Limit ($1/$2) - 2008/09/16 18:58:01 ET",
     {'type':'ring', 'base':"hold", 'category':'holdem', 'limitType':'nl', 'sb':'1', 'bb':'2', 'currency':'USD'}),
