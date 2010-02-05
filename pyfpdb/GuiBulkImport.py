@@ -243,7 +243,17 @@ class GuiBulkImport():
 
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
+        disabled_sites = []                                # move disabled sites to bottom of list
         for w in self.config.hhcs:
+            try:
+                if self.config.supported_sites[w].enabled: # include enabled ones first
+                    print w
+                    self.cbfilter.append_text(w)
+                else:
+                    disabled_sites.append(w)
+            except: # self.supported_sites[w] may not exist if hud_config is bad
+                disabled_sites.append(w)
+        for w in disabled_sites:                           # then disabled ones
             print w
             self.cbfilter.append_text(w)
         self.cbfilter.set_active(0)
