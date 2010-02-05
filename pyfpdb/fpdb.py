@@ -802,8 +802,11 @@ class fpdb:
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        if self.db is not None and self.db.connected:
-            self.db.disconnect()
+        try:
+            if self.db is not None and self.db.connected:
+                self.db.disconnect()
+        except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+            pass
         self.statusIcon.set_visible(False)
         gtk.main_quit()
 
