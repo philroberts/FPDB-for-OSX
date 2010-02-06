@@ -50,6 +50,7 @@ class Table(Table_Window):
         titles = {}
         win32gui.EnumWindows(win_enum_handler, titles)
         for hwnd in titles:
+            if titles[hwnd] == "": continue
             # print "searching ", search_string, " in ", titles[hwnd]
             if re.search(search_string, titles[hwnd]):
                 if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
