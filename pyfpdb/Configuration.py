@@ -166,10 +166,6 @@ if LOCALE_ENCODING == "US-ASCII":
 
 
 # needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
-
-FROZEN = hasattr(sys, "frozen")
-EXEC_PATH = get_exec_path()
-
 import Charset
 
 
@@ -617,8 +613,7 @@ class Config:
     def save(self, file = None):
         if file is None:
             file = self.file
-            shutil.move(file, file+".backup", ignore_errors = True)
-
+        shutil.move(file, file+".backup")
         with open(file, 'w') as f:
             self.doc.writexml(f)
 
@@ -1035,9 +1030,3 @@ if __name__== "__main__":
             PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
     except:
         print "xml.dom.ext needs PyXML to be installed!"
-
-    print "FROZEN =", FROZEN
-    print "EXEC_PATH =", EXEC_PATH
-
-    print "press enter to end"
-    sys.stdin.readline()
