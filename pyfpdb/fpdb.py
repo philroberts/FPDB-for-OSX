@@ -907,7 +907,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
             print "\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in\n" \
-                  + self.config.dir_log + "Any major error will be reported there _only_.\n"
+                  + self.config.dir_log + "\nAny major error will be reported there _only_.\n"
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
