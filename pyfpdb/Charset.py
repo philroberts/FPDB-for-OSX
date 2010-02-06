@@ -42,6 +42,9 @@ def to_utf8(s):
     except UnicodeDecodeError:
         sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
+    except UnicodeEncodeError:
+        sys.stderr.write('Could not encode: "%s"\n' % s)
+        raise
     except TypeError: # TypeError is raised when we give unicode() an already encoded string
         return s
 
@@ -54,13 +57,21 @@ def to_db_utf8(s):
     except UnicodeDecodeError:
         sys.stderr.write('Could not convert: "%s"\n' % s)
         raise
+    except UnicodeEncodeError:
+        sys.stderr.write('Could not encode: "%s"\n' % s)
+        raise
 
 def to_gui(s):
     if not_needed3: return s
 
     try:
-        (_out, _len) = encoder_to_sys.encode(s)
+        # we usually don't want to use 'replace' but this is only for displaying
+        # in the gui so it doesn't matter if names are missing an accent or two
+        (_out, _len) = encoder_to_sys.encode(s, 'replace')
         return _out
     except UnicodeDecodeError:
         sys.stderr.write('Could not convert: "%s"\n' % s)
+        raise
+    except UnicodeEncodeError:
+        sys.stderr.write('Could not encode: "%s"\n' % s)
         raise
