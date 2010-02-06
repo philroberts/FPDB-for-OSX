@@ -912,8 +912,10 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             sys.stderr = errorFile
 
         self.statusIcon = gtk.StatusIcon()
-        if os.path.exists(os.path.join(sys.path[0], '../gfx/fpdb-cards.png')):
-            self.statusIcon.set_from_file(os.path.join(sys.path[0], '../gfx/fpdb-cards.png'))
+        # use getcwd() here instead of sys.path[0] so that py2exe works:
+        cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+        if os.path.exists(cards):
+            self.statusIcon.set_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:
