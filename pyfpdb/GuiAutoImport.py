@@ -193,7 +193,11 @@ class GuiAutoImport (threading.Thread):
                 self.doAutoImportBool = True
                 widget.set_label(u'  _Stop Autoimport  ')
                 if self.pipe_to_hud is None:
-                    if os.name == 'nt':
+                    if Configuration.FROZEN:
+                        path = Configuration.EXEC_PATH
+                        command = "HUD_main.exe"
+                        bs = 0
+                    elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
                         command = 'python "'+path+'\\HUD_main.py" ' + self.settings['cl_options']
                         bs = 0
@@ -203,6 +207,7 @@ class GuiAutoImport (threading.Thread):
                         bs = 1
 
                     try:
+                        print "opening pipe to HUD"
                         self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                             stdin=subprocess.PIPE,
                                                             universal_newlines=True)
