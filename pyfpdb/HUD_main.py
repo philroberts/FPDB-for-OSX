@@ -70,16 +70,15 @@ class HUD_main(object):
 
     def __init__(self, db_name = 'fpdb'):
         try:
-            print "HUD_main: starting ..."
+            print "\nHUD_main: starting ..."
             self.db_name = db_name
             self.config = Configuration.Config(file=options.config, dbname=db_name)
             log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
-            log.info("HUD_main starting")
-            log.info("Using db name = %s" % (db_name))
+            log.info("HUD_main starting: using db name = %s" % (db_name))
 
             if not options.errorsToConsole:
                  fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                 print "Note: error output is being diverted to\n"+fileName \
+                 print "Note: error output is being diverted to:\n"+fileName \
                        + "\nAny major error will be reported there _only_.\n" 
                  errorFile = open(fileName, 'w', 0)
                  sys.stderr = errorFile
@@ -139,8 +138,8 @@ class HUD_main(object):
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
             except:
-                print "*** Exception in HUD_main::idle_func() *** "
-                traceback.print_stack()
+                log.error( "*** Exception in HUD_main::idle_func() *** " )
+                log.error( traceback.format_stack() )
             finally:
                 gtk.gdk.threads_leave()
                 return False
@@ -247,8 +246,8 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
-                    sys.stderr.write('will not send hand\n')
+                    log.error('hud_dict[%s] was not found\n' % temp_key)
+                    log.error('will not send hand\n')
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
@@ -281,7 +280,7 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-#                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
+#                    log.error("HUD create: table name "+table_name+" not found, skipping.\n")
                     log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
                     tablewindow.max = max
@@ -290,7 +289,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        sys.stderr.write('Table "%s" no longer exists\n' % table_name)
+                        log.error('Table "%s" no longer exists\n' % table_name)
 
             t6 = time.time()
             log.info("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)"
