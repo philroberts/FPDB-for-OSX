@@ -91,7 +91,7 @@ today = date.today().strftime('%Y%m%d')
 print "\nOutput will be created in /dist/ and /fpdb_XXX_"+today+"/"
 print "Enter value for XXX (any length): ",     # the comma means no newline
 xxx = sys.stdin.readline().rstrip()
-dist_dir = r'..\fpdb_' + xxx + '_' + today
+dist_dir = r'..\fpdb-' + xxx + '-' + today
 print
 
 
