@@ -45,13 +45,14 @@ Py2exe script for fpdb.
 
 from distutils.core import setup
 import py2exe
+import glob
 
 setup(
     name        = 'fpdb',
     description = 'Free Poker DataBase',
     version     = '0.12',
 
-    console = [   {'script': 'fpdb.py', },
+    console = [   {'script': 'fpdb.py', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
                   {'script': 'HUD_main.py', },
                   {'script': 'Configuration.py', }
               ],
@@ -69,7 +70,7 @@ setup(
                   'logging.conf',
                   (r'mpl-data',                 [r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\matplotlibrc']),
                   (r'mpl-data\images', glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\images\*.*')),
-                  (r'mpl-data\fonts',  glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\fonts\*.*')),)
+                  (r'mpl-data\fonts',  glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\fonts\*.*')),
                  ]
 )
 
