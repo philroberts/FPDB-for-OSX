@@ -213,7 +213,8 @@ class GuiAutoImport (threading.Thread):
                                                             universal_newlines=True)
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
+                        #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
+                        self.addText( "\n*** GuiAutoImport Error opening pipe: " + traceback.format_exc() )
                     else:
                         for site in self.input_settings:
                             self.importer.addImportDirectory(self.input_settings[site][0], True, site, self.input_settings[site][1])
