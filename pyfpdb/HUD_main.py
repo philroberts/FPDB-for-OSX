@@ -244,10 +244,6 @@ class HUD_main(object):
                                                                   ,self.hero_ids[site_id], num_seats)
                 t3 = time.time()
                 try:
-                    self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
-                                                     , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                    t4 = time.time()
-                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
                     sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
@@ -255,9 +251,10 @@ class HUD_main(object):
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
-                t5 = time.time()
                 cards      = self.db_connection.get_cards(new_hand_id)
+                t4 = time.time()
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
+                t5 = time.time()
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
                 self.hud_dict[temp_key].cards = cards
@@ -276,7 +273,8 @@ class HUD_main(object):
                     cards['common'] = comm_cards['common']
 
                 table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
-                search_string = getTableTitleRe(self.config, site, type, **table_kwargs)
+                search_string = getTableTitleRe(self.config, site_name, type, **table_kwargs)
+                # print "getTableTitleRe ", self.config, site_name, type, "=", search_string
                 tablewindow = Tables.Table(search_string, **table_kwargs)
 
                 if tablewindow is None:
