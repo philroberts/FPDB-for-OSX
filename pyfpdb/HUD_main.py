@@ -185,8 +185,9 @@ class HUD_main(object):
                 [aw.update_gui(new_hand_id) for aw in self.hud_dict[table_name].aux_windows]
             except KeyError:
                 pass
-            gtk.gdk.threads_leave()
-            return False
+            finally:
+                gtk.gdk.threads_leave()
+                return False
 
         gobject.idle_add(idle_func)
 
