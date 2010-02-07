@@ -24,6 +24,10 @@ Routines for detecting and handling poker client windows for MS Windows.
 #    Standard Library modules
 import re
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("hud")
+
 #    pyGTK modules
 import pygtk
 import gtk
@@ -62,19 +66,19 @@ class Table(Table_Window):
 
         try:
             if self.window == None:
-                print "Window %s not found. Skipping." % search_string
+                log.error( "Window %s not found. Skipping." % search_string )
                 return None
         except AttributeError:
-            print "self.window doesn't exist? why?"
+            log.error( "self.window doesn't exist? why?" )
             return None
 
         (x, y, width, height) = win32gui.GetWindowRect(hwnd)
-        print "x = %s y = %s width = %s height = %s" % (x, y, width, height)
+        log.debug("x = %s y = %s width = %s height = %s" % (x, y, width, height))
         self.x      = int(x) + b_width
         self.y      = int(y) + tb_height
         self.width  = width - x
         self.height = height - y
-        print "x = %s y = %s width = %s height = %s" % (self.x, self.y, self.width, self.height)
+        log.debug("x = %s y = %s width = %s height = %s" % (self.x, self.y, self.width, self.height))
         #self.height = int(height) - b_width - tb_height
         #self.width  = int(width) - 2*b_width
 

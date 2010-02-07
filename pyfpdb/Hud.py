@@ -26,6 +26,10 @@ Create and manage the hud overlays.
 import os
 import sys
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("hud")
+
 #    pyGTK modules
 import pygtk
 import gtk
@@ -365,7 +369,7 @@ class Hud:
                 self.create(*self.creation_attrs)
                 self.update(self.hand, self.config)
             except Exception, e:
-                print "Exception:",str(e)
+                log.error("Exception:",str(e))
                 pass
 
     def set_aggregation(self, widget, val):
@@ -377,7 +381,7 @@ class Hud:
 
             if     self.hud_params['h_agg_bb_mult'] != num \
                and getattr(self, 'h_aggBBmultItem'+str(num)).get_active():
-                print 'set_player_aggregation', num
+                log.debug('set_player_aggregation', num)
                 self.hud_params['h_agg_bb_mult'] = num
                 for mult in ('1', '2', '3', '10', '10000'):
                     if mult != str(num):
@@ -388,7 +392,7 @@ class Hud:
 
             if     self.hud_params['agg_bb_mult'] != num \
                and getattr(self, 'aggBBmultItem'+str(num)).get_active():
-                print 'set_opponent_aggregation', num
+                log.debug('set_opponent_aggregation', num)
                 self.hud_params['agg_bb_mult'] = num
                 for mult in ('1', '2', '3', '10', '10000'):
                     if mult != str(num):
@@ -415,7 +419,7 @@ class Hud:
             self.hud_params[param] = 'E'
             getattr(self, prefix+'seatsStyleOptionA').set_active(False)
             getattr(self, prefix+'seatsStyleOptionC').set_active(False)
-        print "setting self.hud_params[%s] = %s" % (param, style)
+        log.debug("setting self.hud_params[%s] = %s" % (param, style))
 
     def set_hud_style(self, widget, val):
         (player_opp, style) = val
@@ -438,7 +442,7 @@ class Hud:
             self.hud_params[param] = 'T'
             getattr(self, prefix+'hudStyleOptionA').set_active(False)
             getattr(self, prefix+'hudStyleOptionS').set_active(False)
-        print "setting self.hud_params[%s] = %s" % (param, style)
+        log.debug("setting self.hud_params[%s] = %s" % (param, style))
 
     def update_table_position(self):
         if os.name == 'nt':
@@ -515,7 +519,7 @@ class Hud:
 #    ask each aux to save its layout back to the config object
         [aux.save_layout() for aux in self.aux_windows]
 #    save the config object back to the file
-        print "saving new xml file"
+        print "Updating config file"
         self.config.save()
 
     def adj_seats(self, hand, config):
@@ -611,8 +615,8 @@ class Hud:
             try:
                 statd = self.stat_dict[s]
             except KeyError:
-                print "KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"
-                print "(btw, the key was ", s, " and statd is...", statd
+                log.error("KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric")
+                log.error("(btw, the key was ", s, " and statd is...", statd)
                 continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
