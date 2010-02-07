@@ -88,10 +88,10 @@ test_and_remove('gfx')
 
 
 today = date.today().strftime('%Y%m%d')
-print "\nOutput will be created in /dist/ and /fpdb_XXX_"+today+"/"
+print "\n" + r"Output will be created in \dist\ and \fpdb_XXX_"+today+'\\'
 print "Enter value for XXX (any length): ",     # the comma means no newline
 xxx = sys.stdin.readline().rstrip()
-dist_dir = r'..\fpdb-' + xxx + '-' + today
+dist_dir = r'..\fpdb-' + xxx + '-' + today + '-exe'
 print
 
 
@@ -106,33 +106,26 @@ setup(
               ],
 
     options = {'py2exe': {
-                      'packages'    :'encodings',
-                      'includes'    : 'cairo, pango, pangocairo, atk, gobject, PokerStarsToFpdb, FulltiltToFpdb',
-                      'excludes'    : '_tkagg, _agg2, cocoaagg, fltkagg',
-                      'dll_excludes': 'libglade-2.0-0.dll',
+                      'packages'    : ['encodings', 'matplotlib'],
+                      'includes'    : ['cairo', 'pango', 'pangocairo', 'atk', 'gobject'
+                                      ,'PokerStarsToFpdb', 'matplotlib.numerix.random_array'],
+                      'excludes'    : ['_gtkagg', '_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
+                      'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
+                                      ,'libgobject-2.0-0.dll'],
                   }
               },
 
-#    REB's data_files
-#    data_files = ['HUD_config.xml.example',
-#                  'Cards01.png',
-#                  'logging.conf',
-#                  (r'mpl-data',                 [r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\matplotlibrc']),
-#                  (r'mpl-data\images', glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\images\*.*')),
-#                  (r'mpl-data\fonts',  glob.glob(r'C:\Python25\Lib\site-packages\matplotlib\mpl-data\fonts\*.*')),
-#                 ]
-
-#    sc's data_files
-    # files are moved from 2nd value in tuple to dir named in 1st
+    # files in 2nd value in tuple are moved to dir named in 1st value
     data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf'])
-                 ,(dist_dir, ['run_fpdb.bat'])
+                 ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
+                 # line below has problem with fonts subdir ('not a regular file')
                  #,(r'matplotlibdata', glob.glob(r'c:\python25\Lib\site-packages\matplotlib\mpl-data\*'))
                  ] + matplotlib.get_py2exe_datafiles()
 )
 
 
-print '\nIf py2exe was successful move the /dist/ directory '
-print 'into /'+dist_dir+'/ and rename it as /pyfpdb/'
-print "Don't forget to add the /etc /lib and /share dirs from your gtk dir\n"
+print '\n' + r'If py2exe was successful move the \dist\ directory '
+print 'into \\'+dist_dir+'\\ and rename it as \\pyfpdb\\'
+print "Don't forget to add the \\etc \\lib and \\share dirs from your gtk dir\n"
 

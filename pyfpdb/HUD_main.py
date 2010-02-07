@@ -69,13 +69,13 @@ class HUD_main(object):
 #    This class mainly provides state for controlling the multiple HUDs.
 
     def __init__(self, db_name = 'fpdb'):
-        try:
-            print "\nHUD_main: starting ..."
-            self.db_name = db_name
-            self.config = Configuration.Config(file=options.config, dbname=db_name)
-            log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
-            log.info("HUD_main starting: using db name = %s" % (db_name))
+        print "\nHUD_main: starting ..."
+        self.db_name = db_name
+        self.config = Configuration.Config(file=options.config, dbname=db_name)
+        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
+        log.info("HUD_main starting: using db name = %s" % (db_name))
 
+        try:
             if not options.errorsToConsole:
                  fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
                  print "Note: error output is being diverted to:\n"+fileName \
@@ -100,8 +100,9 @@ class HUD_main(object):
             self.main_window.set_title("HUD Main Window")
             self.main_window.show_all()
         except:
-            log.debug("commit "+str(i)+" failed: info=" + str(sys.exc_info())
-                          + " value=" + str(sys.exc_value))
+            log.error( "*** Exception in HUD_main.init() *** " )
+            for e in traceback.format_tb(sys.exc_info()[2]):
+                log.error(e)
 
 
     def destroy(self, *args):             # call back for terminating the main eventloop
@@ -139,7 +140,8 @@ class HUD_main(object):
                 self.hud_dict[table_name].reposition_windows()
             except:
                 log.error( "*** Exception in HUD_main::idle_func() *** " )
-                log.error( traceback.format_stack() )
+                for e in traceback.format_tb(sys.exc_info()[2]):
+                    log.error(e)
             finally:
                 gtk.gdk.threads_leave()
                 return False
