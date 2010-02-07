@@ -103,7 +103,7 @@ class PokerStars(HandHistoryConverter):
             self.re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
-                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
+                        (\s(cards)?(\s\[(?P<DISCARDED>.+?)\])?)?$"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
