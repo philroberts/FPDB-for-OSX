@@ -105,7 +105,7 @@ def get_config(file_name, fallback = True):
         sys.exit()
     return (file_name,True)
 
-def get_logger(file_name, module = "config", fallback = False, log_dir=None):
+def get_logger(file_name, config = "config", fallback = False, log_dir=None):
     (conf_file,copied) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
@@ -119,8 +119,8 @@ def get_logger(file_name, module = "config", fallback = False, log_dir=None):
             file = file.replace('\\', '\\\\')  # replace each \ with \\
 #            print "    ="+file+" "+ str(type(file))+" len="+str(len(file))+"\n"
             logging.config.fileConfig(conf_file, {"logFile":file})
-            log = logging.getLogger(module)
-            log.debug("%s logger initialised" % module)
+            log = logging.getLogger(config)
+            log.debug("%s logger initialised" % config)
             return log
         except:
             pass
