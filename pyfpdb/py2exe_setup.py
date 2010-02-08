@@ -48,6 +48,23 @@ Py2exe script for fpdb.
 #- You can (should) then prune the etc/, lib/ and share/ folders to 
 #  remove components we don't need. 
 
+# sqlcoder notes: this worked for me with the following notes:
+#- I used the following versions:
+#  python 2.5.4
+#  gtk+ 2.14.7
+#  pycairo 1.4.12-2
+#  pygobject 2.14.2-2
+#  pygtk 2.12.1-3
+#  matplotlib 0.98.3
+#  numpy 1.4.0
+#  py2exe-0.6.9 for python 2.5
+#  
+#- I also copied these dlls manually from <gtk>/bin to /dist :
+#  
+#  libgobject-2.0-0.dll
+#  libgdk-win32-2.0-0.dll
+
+
 import os
 import sys
 from distutils.core import setup
