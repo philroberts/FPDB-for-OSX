@@ -15,9 +15,9 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import os
 import sys
 from optparse import OptionParser
+#   http://docs.python.org/library/optparse.html
 
 def fpdb_options():
 
@@ -41,6 +41,14 @@ def fpdb_options():
     parser.add_option("-k", "--konverter",
                       dest="hhc", default="PokerStarsToFpdb",
                       help="Module name for Hand History Converter")
+    parser.add_option("-l", "--logging",
+                      dest = "log_level", 
+                      choices = ('DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL', 'EMPTY'),
+                      help = "Error logging level. (DEBUG, INFO, WARNING, ERROR, CRITICAL, EMPTY)",
+                      default = 'EMPTY')
+    parser.add_option("-v", "--version", action = "store_true", 
+                      help = "Print version information and exit.")
+
     (options, argv) = parser.parse_args()
     return (options, argv)
 
