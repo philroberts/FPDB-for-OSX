@@ -245,8 +245,20 @@ def saw_f(stat_dict, player):
 def n(stat_dict, player):
     """    Number of hands played."""
     try:
+        # If sample is large enough, use X.Yk notation instead
+        _n = stat_dict[player]['n']
+        fmt = '%d' % _n
+        if _n >= 1000:
+            k = _n / 1000
+            c = _n % 1000
+            _c = float(c) / 100.0
+            d = int(round(_c))
+            if d == 10:
+                k += 1
+                d = 0
+            fmt = '%d.%dk' % (k, d)
         return (stat_dict[player]['n'], 
-                '%d'        % (stat_dict[player]['n']), 
+                '%s'        % fmt,
                 'n=%d'      % (stat_dict[player]['n']), 
                 'n=%d'      % (stat_dict[player]['n']), 
                 '(%d)'      % (stat_dict[player]['n']),
