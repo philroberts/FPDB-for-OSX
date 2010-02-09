@@ -23,11 +23,11 @@ Py2exe script for fpdb.
 ########################################################################
 
 #TODO:   
-#        include the lib needed to handle png files in mucked
 #        get rid of all the uneeded libraries (e.g., pyQT)
 #        think about an installer
 
-# done: change GuiAutoImport so that it knows to start HUD_main.exe, when appropriate
+# done:  change GuiAutoImport so that it knows to start HUD_main.exe, when appropriate
+#        include the lib needed to handle png files in mucked
 
 #HOW TO USE this script:
 #
@@ -39,11 +39,13 @@ Py2exe script for fpdb.
 #  MSVCP90.dll. These are somewhere in your windows install, so you 
 #  can just copy them to your working folder. (or just assume other
 #  person will have them? any copyright issues with including them?)
-#- If it works, you'll have 3 new folders, build and dist and gfx. Build is 
-#  working space and should be deleted. Dist and gfx contain the files to be
-#  distributed. 
+#- [ If it works, you'll have 3 new folders, build and dist and gfx. Build is 
+#    working space and should be deleted. Dist and gfx contain the files to be
+#    distributed. ]
+#  If it works, you'll have a new dir  fpdb-XXX-YYYYMMDD-exe  which should
+#  contain 2 dirs; gfx and pyfpdb and run_fpdb.bat
 #- Last, you must copy the etc/, lib/ and share/ folders from your
-#  gtk/bin/ (just /gtk/?) folder to the dist folder. (the whole folders, 
+#  gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
 #  not just the contents) 
 #- You can (should) then prune the etc/, lib/ and share/ folders to 
 #  remove components we don't need. 
@@ -72,6 +74,14 @@ import py2exe
 import glob
 import matplotlib
 from datetime import date
+
+
+origIsSystemDLL = py2exe.build_exe.isSystemDLL
+def isSystemDLL(pathname):
+        if os.path.basename(pathname).lower() in ("msvcp71.dll", "dwmapi.dll"):
+                return 0
+        return origIsSystemDLL(pathname)
+py2exe.build_exe.isSystemDLL = isSystemDLL
 
 
 def remove_tree(top):
@@ -108,9 +118,11 @@ today = date.today().strftime('%Y%m%d')
 print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_XXX_"+today+'\\'
 print "Enter value for XXX (any length): ",     # the comma means no newline
 xxx = sys.stdin.readline().rstrip()
+dist_dirname = r'fpdb-' + xxx + '-' + today + '-exe'
 dist_dir = r'..\fpdb-' + xxx + '-' + today + '-exe'
 print
 
+test_and_remove(dist_dir)
 
 setup(
     name        = 'fpdb',
@@ -144,7 +156,15 @@ setup(
 
 os.rename('dist', 'pyfpdb')
 
-print '\n' + r'If py2exe was successful move the \pyfpdb\ directory '
-print 'into \\'+dist_dir
-print "Then add the \\etc \\lib and \\share dirs from your gtk dir to \\pyfpdb\\\n"
+print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
+print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
+print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
+print 'into there'
+
+dest = os.path.join(dist_dirname, 'pyfpdb')
+#print "try renaming pyfpdb to", dest
+dest = dest.replace('\\', '\\\\')
+#print "dest is now", dest
+os.rename( 'pyfpdb', dest )
+
 
