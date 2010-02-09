@@ -105,7 +105,7 @@ test_and_remove('gfx')
 
 
 today = date.today().strftime('%Y%m%d')
-print "\n" + r"Output will be created in \dist\ and \fpdb_XXX_"+today+'\\'
+print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_XXX_"+today+'\\'
 print "Enter value for XXX (any length): ",     # the comma means no newline
 xxx = sys.stdin.readline().rstrip()
 dist_dir = r'..\fpdb-' + xxx + '-' + today + '-exe'
@@ -126,7 +126,7 @@ setup(
                       'packages'    : ['encodings', 'matplotlib'],
                       'includes'    : ['cairo', 'pango', 'pangocairo', 'atk', 'gobject'
                                       ,'PokerStarsToFpdb', 'matplotlib.numerix.random_array'],
-                      'excludes'    : ['_gtkagg', '_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
+                      'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
                                       ,'libgobject-2.0-0.dll'],
                   }
@@ -142,7 +142,9 @@ setup(
 )
 
 
-print '\n' + r'If py2exe was successful move the \dist\ directory '
-print 'into \\'+dist_dir+'\\ and rename it as \\pyfpdb\\'
-print "Don't forget to add the \\etc \\lib and \\share dirs from your gtk dir\n"
+os.rename('dist', 'pyfpdb')
+
+print '\n' + r'If py2exe was successful move the \pyfpdb\ directory '
+print 'into \\'+dist_dir
+print "Then add the \\etc \\lib and \\share dirs from your gtk dir to \\pyfpdb\\\n"
 
