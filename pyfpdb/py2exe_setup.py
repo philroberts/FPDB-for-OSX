@@ -23,11 +23,11 @@ Py2exe script for fpdb.
 ########################################################################
 
 #TODO:   
-#        include the lib needed to handle png files in mucked
 #        get rid of all the uneeded libraries (e.g., pyQT)
 #        think about an installer
 
-# done: change GuiAutoImport so that it knows to start HUD_main.exe, when appropriate
+# done:  change GuiAutoImport so that it knows to start HUD_main.exe, when appropriate
+#        include the lib needed to handle png files in mucked
 
 #HOW TO USE this script:
 #
@@ -39,14 +39,33 @@ Py2exe script for fpdb.
 #  MSVCP90.dll. These are somewhere in your windows install, so you 
 #  can just copy them to your working folder. (or just assume other
 #  person will have them? any copyright issues with including them?)
-#- If it works, you'll have 3 new folders, build and dist and gfx. Build is 
-#  working space and should be deleted. Dist and gfx contain the files to be
-#  distributed. 
+#- [ If it works, you'll have 3 new folders, build and dist and gfx. Build is 
+#    working space and should be deleted. Dist and gfx contain the files to be
+#    distributed. ]
+#  If it works, you'll have a new dir  fpdb-XXX-YYYYMMDD-exe  which should
+#  contain 2 dirs; gfx and pyfpdb and run_fpdb.bat
 #- Last, you must copy the etc/, lib/ and share/ folders from your
-#  gtk/bin/ (just /gtk/?) folder to the dist folder. (the whole folders, 
+#  gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
 #  not just the contents) 
 #- You can (should) then prune the etc/, lib/ and share/ folders to 
 #  remove components we don't need. 
+
+# sqlcoder notes: this worked for me with the following notes:
+#- I used the following versions:
+#  python 2.5.4
+#  gtk+ 2.14.7
+#  pycairo 1.4.12-2
+#  pygobject 2.14.2-2
+#  pygtk 2.12.1-3
+#  matplotlib 0.98.3
+#  numpy 1.4.0
+#  py2exe-0.6.9 for python 2.5
+#  
+#- I also copied these dlls manually from <gtk>/bin to /dist :
+#  
+#  libgobject-2.0-0.dll
+#  libgdk-win32-2.0-0.dll
+
 
 import os
 import sys
@@ -55,6 +74,14 @@ import py2exe
 import glob
 import matplotlib
 from datetime import date
+
+
+origIsSystemDLL = py2exe.build_exe.isSystemDLL
+def isSystemDLL(pathname):
+        if os.path.basename(pathname).lower() in ("msvcp71.dll", "dwmapi.dll"):
+                return 0
+        return origIsSystemDLL(pathname)
+py2exe.build_exe.isSystemDLL = isSystemDLL
 
 
 def remove_tree(top):
@@ -88,12 +115,14 @@ test_and_remove('gfx')
 
 
 today = date.today().strftime('%Y%m%d')
-print "\n" + r"Output will be created in \dist\ and \fpdb_XXX_"+today+'\\'
+print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_XXX_"+today+'\\'
 print "Enter value for XXX (any length): ",     # the comma means no newline
 xxx = sys.stdin.readline().rstrip()
+dist_dirname = r'fpdb-' + xxx + '-' + today + '-exe'
 dist_dir = r'..\fpdb-' + xxx + '-' + today + '-exe'
 print
 
+test_and_remove(dist_dir)
 
 setup(
     name        = 'fpdb',
@@ -109,7 +138,7 @@ setup(
                       'packages'    : ['encodings', 'matplotlib'],
                       'includes'    : ['cairo', 'pango', 'pangocairo', 'atk', 'gobject'
                                       ,'PokerStarsToFpdb', 'matplotlib.numerix.random_array'],
-                      'excludes'    : ['_gtkagg', '_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],
+                      'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
                                       ,'libgobject-2.0-0.dll'],
                   }
@@ -125,7 +154,17 @@ setup(
 )
 
 
-print '\n' + r'If py2exe was successful move the \dist\ directory '
-print 'into \\'+dist_dir+'\\ and rename it as \\pyfpdb\\'
-print "Don't forget to add the \\etc \\lib and \\share dirs from your gtk dir\n"
+os.rename('dist', 'pyfpdb')
+
+print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
+print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
+print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
+print 'into there'
+
+dest = os.path.join(dist_dirname, 'pyfpdb')
+#print "try renaming pyfpdb to", dest
+dest = dest.replace('\\', '\\\\')
+#print "dest is now", dest
+os.rename( 'pyfpdb', dest )
+
 
