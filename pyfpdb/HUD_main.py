@@ -80,6 +80,8 @@ class HUD_main(object):
                  fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
                  print "Note: error output is being diverted to:\n"+fileName \
                        + "\nAny major error will be reported there _only_.\n" 
+                 log.info("Note: error output is being diverted to:"+fileName)
+                 log.info("Any major error will be reported there _only_.")
                  errorFile = open(fileName, 'w', 0)
                  sys.stderr = errorFile
 
