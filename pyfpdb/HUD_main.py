@@ -72,7 +72,8 @@ class HUD_main(object):
         print "\nHUD_main: starting ..."
         self.db_name = db_name
         self.config = Configuration.Config(file=options.config, dbname=db_name)
-        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
+        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log, log_file='HUD-log.txt')
+        print "Logfile is " + os.path.join(self.config.dir_log, 'HUD-log.txt')
         log.info("HUD_main starting: using db name = %s" % (db_name))
 
         try:

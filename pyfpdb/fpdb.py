@@ -689,7 +689,7 @@ class fpdb:
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
-        print "Logfile is " + os.path.join(self.config.dir_log, 'logging.out') + "\n"
+        print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
         if self.config.example_copy:
             self.info_box( "Config file"
                          , "has been created at:\n%s.\n" % self.config.file
