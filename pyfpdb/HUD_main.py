@@ -72,7 +72,8 @@ class HUD_main(object):
         print "\nHUD_main: starting ..."
         self.db_name = db_name
         self.config = Configuration.Config(file=options.config, dbname=db_name)
-        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log)
+        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log, log_file='HUD-log.txt')
+        print "Logfile is " + os.path.join(self.config.dir_log, 'HUD-log.txt')
         log.info("HUD_main starting: using db name = %s" % (db_name))
 
         try:
@@ -80,6 +81,8 @@ class HUD_main(object):
                  fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
                  print "Note: error output is being diverted to:\n"+fileName \
                        + "\nAny major error will be reported there _only_.\n" 
+                 log.info("Note: error output is being diverted to:"+fileName)
+                 log.info("Any major error will be reported there _only_.")
                  errorFile = open(fileName, 'w', 0)
                  sys.stderr = errorFile
 

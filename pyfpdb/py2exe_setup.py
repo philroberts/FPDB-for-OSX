@@ -53,7 +53,7 @@ Py2exe script for fpdb.
 # sqlcoder notes: this worked for me with the following notes:
 #- I used the following versions:
 #  python 2.5.4
-#  gtk+ 2.14.7
+#  gtk+ 2.14.7   (gtk_2.14.7-20090119)
 #  pycairo 1.4.12-2
 #  pygobject 2.14.2-2
 #  pygtk 2.12.1-3
@@ -137,7 +137,13 @@ setup(
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
                       'includes'    : ['cairo', 'pango', 'pangocairo', 'atk', 'gobject'
-                                      ,'PokerStarsToFpdb', 'matplotlib.numerix.random_array'],
+                                      ,'matplotlib.numerix.random_array'
+                                      ,'AbsoluteToFpdb',      'BetfairToFpdb'
+                                      ,'CarbonToFpdb',        'EverleafToFpdb'
+                                      ,'FulltiltToFpdb',      'OnGameToFpdb'
+                                      ,'PartyPokerToFpdb',    'PokerStarsToFpdb'
+                                      ,'UltimateBetToFpdb',   'Win2dayToFpdb'
+                                      ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
                                       ,'libgobject-2.0-0.dll'],
