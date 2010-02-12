@@ -60,8 +60,9 @@ elif os.name == 'nt':
 import Hud
 
 
-# logger is set up in __init__, create temp logger here
-log = Configuration.get_logger("logging.conf", config = 'hud')
+# get config and set up logger
+c = Configuration.Config(file=options.config)
+log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 
 class HUD_main(object):
@@ -71,8 +72,7 @@ class HUD_main(object):
     def __init__(self, db_name = 'fpdb'):
         print "\nHUD_main: starting ..."
         self.db_name = db_name
-        self.config = Configuration.Config(file=options.config, dbname=db_name)
-        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log, log_file='HUD-log.txt')
+        self.config = Configuration.Config(file=options.config, dbname = db_name)
         print "Logfile is " + os.path.join(self.config.dir_log, 'HUD-log.txt')
         log.info("HUD_main starting: using db name = %s" % (db_name))
 
@@ -85,6 +85,7 @@ class HUD_main(object):
                  log.info("Any major error will be reported there _only_.")
                  errorFile = open(fileName, 'w', 0)
                  sys.stderr = errorFile
+                 sys.stderr.write("HUD_main: starting ...\n")
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -142,7 +143,7 @@ class HUD_main(object):
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
             except:
-                log.error( "*** Exception in HUD_main::idle_func() *** " )
+                log.error( "*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()) )
                 for e in traceback.format_tb(sys.exc_info()[2]):
                     log.error(e)
             finally:
