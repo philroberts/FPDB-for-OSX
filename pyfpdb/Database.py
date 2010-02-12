@@ -380,8 +380,8 @@ class Database:
             import sqlite3
             if use_pool:
                 sqlite3 = pool.manage(sqlite3, pool_size=1)
-            else:
-                log.warning("SQLite won't work well without 'sqlalchemy' installed.")
+            #else:
+            #    log.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
             if database != ":memory:":
                 if not os.path.isdir(self.config.dir_database):

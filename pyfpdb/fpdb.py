@@ -796,8 +796,11 @@ class fpdb:
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        if self.db is not None and self.db.connected:
-            self.db.disconnect()
+        try:
+            if self.db is not None and self.db.connected:
+                self.db.disconnect()
+        except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+            pass
         self.statusIcon.set_visible(False)
         gtk.main_quit()
 
@@ -906,14 +909,16 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
 
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print "\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in\n" \
-                  + self.config.dir_log + "Any major error will be reported there _only_.\n"
+            print "\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in:\n" \
+                  + self.config.dir_log + "\nAny major error will be reported there _only_.\n"
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
         self.statusIcon = gtk.StatusIcon()
-        if os.path.exists(os.path.join(sys.path[0], '../gfx/fpdb-cards.png')):
-            self.statusIcon.set_from_file(os.path.join(sys.path[0], '../gfx/fpdb-cards.png'))
+        # use getcwd() here instead of sys.path[0] so that py2exe works:
+        cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+        if os.path.exists(cards):
+            self.statusIcon.set_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:

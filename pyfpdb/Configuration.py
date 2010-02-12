@@ -65,7 +65,7 @@ def get_exec_path():
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     exec_dir = get_exec_path()
-    if file_name == 'logging.conf':
+    if file_name == 'logging.conf' and sys.argv[0] != 'fpdb.exe':
         config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
     else:
         config_path = os.path.join(exec_dir, file_name)
@@ -107,12 +107,15 @@ def get_config(file_name, fallback = True):
 
 def get_logger(file_name, config = "config", fallback = False, log_dir=None):
     (conf_file,copied) = get_config(file_name, fallback = fallback)
+
+    if log_dir is None:
+        log_dir = os.path.join(get_exec_path(), 'log')
+    #print "\nget_logger: checking log_dir:", log_dir
+    check_dir(log_dir)
+    file = os.path.join(log_dir, 'logging.out')
+
     if conf_file:
         try:
-            if log_dir is None:
-                log_dir = os.path.join(get_exec_path(), 'log')
-            check_dir(log_dir)
-            file = os.path.join(log_dir, 'logging.out')
             file = file.replace('\\', '\\\\')  # replace each \ with \\
 #            print "    ="+file+" "+ str(type(file))+" len="+str(len(file))+"\n"
             logging.config.fileConfig(conf_file, {"logFile":file})
@@ -122,9 +125,11 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None):
         except:
             pass
 
-    log = logging.basicConfig()
+    log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
-    log.debug("config logger initialised")
+    # but it looks like default is no output :-(  maybe because all the calls name a module?
+    log.debug("Default logger initialised for "+file)
+    print "Default logger intialised for "+file
     return log
 
 def check_dir(path, create = True):
@@ -166,6 +171,10 @@ if LOCALE_ENCODING == "US-ASCII":
 
 
 # needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
+
+FROZEN = hasattr(sys, "frozen")
+EXEC_PATH = get_exec_path()
+
 import Charset
 
 
@@ -613,7 +622,11 @@ class Config:
     def save(self, file = None):
         if file is None:
             file = self.file
-        shutil.move(file, file+".backup")
+            try:
+                shutil.move(file, file+".backup")
+            except:
+                pass
+
         with open(file, 'w') as f:
             self.doc.writexml(f)
 
@@ -1030,3 +1043,9 @@ if __name__== "__main__":
             PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
     except:
         print "xml.dom.ext needs PyXML to be installed!"
+
+    print "FROZEN =", FROZEN
+    print "EXEC_PATH =", EXEC_PATH
+
+    print "press enter to end"
+    sys.stdin.readline()
