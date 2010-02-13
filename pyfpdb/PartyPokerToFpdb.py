@@ -465,8 +465,9 @@ class PartyPoker(HandHistoryConverter):
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
         "Returns string to search in windows titles"
         if type=="tour":
-            print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (table_name, table_number)
-            return "%s.+Table\s#%s" % (table_name, table_number)
+            TableName = table_name.split(" ")
+            print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
+            return "%s.+Table\s#%s" % (TableName[0], table_number)
         else:
             print 'party', 'getTableTitleRe', table_number
             return table_name
