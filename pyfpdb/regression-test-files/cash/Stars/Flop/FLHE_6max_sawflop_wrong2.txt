@@ -1,0 +1,38 @@
+
+
+PokerStars Game #39691211280:  Hold'em Limit ($0.25/$0.50 USD) - 2010/02/13 12:41:15 ET
+Table 'Triton IV' 6-max Seat #2 is the button
+Seat 1: vit-ivanov ($12.50 in chips) 
+Seat 2: Sub_Se7enxxx ($7.20 in chips) 
+Seat 3: OK @ PB ($14.95 in chips) 
+Seat 4: riterman ($10.25 in chips) 
+Seat 5: Slaviyaka ($13.85 in chips) 
+Seat 6: surething ($9.65 in chips) 
+OK @ PB: posts small blind $0.10
+riterman: posts big blind $0.25
+*** HOLE CARDS ***
+Dealt to surething [6h 7s]
+Slaviyaka: folds 
+surething: folds 
+vit-ivanov: raises $0.25 to $0.50
+Sub_Se7enxxx: folds 
+Sub_Se7enxxx leaves the table
+OK @ PB: folds 
+riterman: calls $0.25
+*** FLOP *** [Ac Kh 2d]
+riterman: checks 
+vit-ivanov: bets $0.25
+riterman: folds 
+Uncalled bet ($0.25) returned to vit-ivanov
+vit-ivanov collected $1.05 from pot
+vit-ivanov: doesn't show hand 
+*** SUMMARY ***
+Total pot $1.10 | Rake $0.05 
+Board [Ac Kh 2d]
+Seat 1: vit-ivanov collected ($1.05)
+Seat 2: Sub_Se7enxxx (button) folded before Flop (didn't bet)
+Seat 3: OK @ PB (small blind) folded before Flop
+Seat 4: riterman (big blind) folded on the Flop
+Seat 5: Slaviyaka folded before Flop (didn't bet)
+Seat 6: surething folded before Flop (didn't bet)
+

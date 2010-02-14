@@ -1,0 +1,49 @@
+
+
+PokerStars Game #39691143951:  Hold'em Limit ($0.25/$0.50 USD) - 2010/02/13 12:39:47 ET
+Table 'Triton IV' 6-max Seat #6 is the button
+Seat 1: vit-ivanov ($12.60 in chips) 
+Seat 2: Sub_Se7enxxx ($7 in chips) 
+Seat 3: OK @ PB ($17.70 in chips) 
+Seat 4: riterman ($7.90 in chips) 
+Seat 5: Slaviyaka ($13.85 in chips) 
+Seat 6: surething ($9.65 in chips) 
+vit-ivanov: posts small blind $0.10
+Sub_Se7enxxx: posts big blind $0.25
+*** HOLE CARDS ***
+Dealt to surething [3s 7c]
+OK @ PB: calls $0.25
+riterman: raises $0.25 to $0.50
+Slaviyaka: folds 
+surething: folds 
+vit-ivanov: folds 
+Sub_Se7enxxx: calls $0.25
+OK @ PB: calls $0.25
+*** FLOP *** [9d 8h 3d]
+Sub_Se7enxxx: bets $0.25
+OK @ PB: calls $0.25
+riterman: raises $0.25 to $0.50
+Sub_Se7enxxx: folds 
+OK @ PB: calls $0.25
+*** TURN *** [9d 8h 3d] [7d]
+OK @ PB: checks 
+riterman: bets $0.50
+OK @ PB: raises $0.50 to $1
+riterman: calls $0.50
+*** RIVER *** [9d 8h 3d 7d] [Kh]
+OK @ PB: bets $0.50
+riterman: calls $0.50
+*** SHOW DOWN ***
+OK @ PB: shows [9c 8d] (two pair, Nines and Eights)
+riterman: shows [Kd Kc] (three of a kind, Kings)
+riterman collected $5.60 from pot
+*** SUMMARY ***
+Total pot $5.85 | Rake $0.25 
+Board [9d 8h 3d 7d Kh]
+Seat 1: vit-ivanov (small blind) folded before Flop
+Seat 2: Sub_Se7enxxx (big blind) folded on the Flop
+Seat 3: OK @ PB showed [9c 8d] and lost with two pair, Nines and Eights
+Seat 4: riterman showed [Kd Kc] and won ($5.60) with three of a kind, Kings
+Seat 5: Slaviyaka folded before Flop (didn't bet)
+Seat 6: surething (button) folded before Flop (didn't bet)
+
