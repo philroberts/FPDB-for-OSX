@@ -212,6 +212,7 @@ class DerivedStats():
             map = positions[-seats:] # Copy required positions from array ending in -2
 
         for i, player in enumerate(players):
+            #print "player %s in posn %s" % (player, str(map[i]))
             self.handsplayers[player]['position'] = map[i]
 
     def assembleHudCache(self, hand):
@@ -308,6 +309,8 @@ class DerivedStats():
                 if act in ('bets', 'raises'):
                     self.handsplayers[pname]['stealAttempted'] = True
                     steal_attempt = True
+                if act == 'calls':
+                    break
             
             if posn not in steal_positions and act != 'folds':
                 break
