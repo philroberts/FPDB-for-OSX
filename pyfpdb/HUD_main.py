@@ -60,8 +60,9 @@ elif os.name == 'nt':
 import Hud
 
 
-# logger is set up in __init__, create temp logger here
-log = Configuration.get_logger("logging.conf", config = 'hud')
+# get config and set up logger
+c = Configuration.Config(file=options.config)
+log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 
 class HUD_main(object):
@@ -71,8 +72,7 @@ class HUD_main(object):
     def __init__(self, db_name = 'fpdb'):
         print "\nHUD_main: starting ..."
         self.db_name = db_name
-        self.config = Configuration.Config(file=options.config, dbname=db_name)
-        log = Configuration.get_logger("logging.conf", "hud", log_dir=self.config.dir_log, log_file='HUD-log.txt')
+        self.config = c
         print "Logfile is " + os.path.join(self.config.dir_log, 'HUD-log.txt')
         log.info("HUD_main starting: using db name = %s" % (db_name))
 
@@ -85,6 +85,7 @@ class HUD_main(object):
                  log.info("Any major error will be reported there _only_.")
                  errorFile = open(fileName, 'w', 0)
                  sys.stderr = errorFile
+                 sys.stderr.write("HUD_main: starting ...\n")
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -142,7 +143,7 @@ class HUD_main(object):
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
             except:
-                log.error( "*** Exception in HUD_main::idle_func() *** " )
+                log.error( "*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()) )
                 for e in traceback.format_tb(sys.exc_info()[2]):
                     log.error(e)
             finally:
@@ -206,12 +207,7 @@ class HUD_main(object):
 
 #       get hero's screen names and player ids
         self.hero, self.hero_ids = {}, {}
-        for site in self.config.get_supported_sites():
-            result = self.db_connection.get_site_id(site)
-            if result:
-                site_id = result[0][0]
-                self.hero[site_id] = self.config.supported_sites[site].screen_name
-                self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
+        found = False
 
         while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
@@ -222,6 +218,18 @@ class HUD_main(object):
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
+
+            if not found:
+                for site in self.config.get_supported_sites():
+                    result = self.db_connection.get_site_id(site)
+                    if result:
+                        site_id = result[0][0]
+                        self.hero[site_id] = self.config.supported_sites[site].screen_name
+                        self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
+                        if self.hero_ids[site_id] is not None:
+                            found = True
+                        else:
+                            self.hero_ids[site_id] = -1
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed

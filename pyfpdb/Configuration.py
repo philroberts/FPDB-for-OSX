@@ -65,7 +65,7 @@ def get_exec_path():
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     exec_dir = get_exec_path()
-    if file_name == 'logging.conf' and sys.argv[0] != 'fpdb.exe':
+    if file_name == 'logging.conf' and not hasattr(sys, "frozen"):
         config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
     else:
         config_path = os.path.join(exec_dir, file_name)
