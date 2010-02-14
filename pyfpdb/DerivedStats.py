@@ -264,10 +264,6 @@ class DerivedStats():
         if self.hands['playersAtShowdown'] > 1:
             for player in pas:
                 self.handsplayers[player]['sawShowdown'] = True
-                # streetXseenFix: streetXseen values miss out streets that were checked through,
-                # make sure all are set if showdown is seen
-                for i in xrange(1, len(hand.actionStreets)-1):
-                    self.handsplayers[player]['street%sSeen' % i] = True
 
     def streetXRaises(self, hand):
         # self.actions[street] is a list of all actions in a tuple, contining the action as the second element
@@ -379,10 +375,7 @@ class DerivedStats():
 
         for player in hand.players:
             if player[1] in pas:
-                # streetXseenFix: streetXseen values miss out streets that were checked through,
-                # make sure earlier ones are set if action on later street
-                for j in xrange(1,i+1):
-                    self.handsplayers[player[1]]['street%sSeen' % j] = True
+                self.handsplayers[player[1]]['street%sSeen' % i] = True
             else:
                 self.handsplayers[player[1]]['street%sSeen' % i] = False
 
