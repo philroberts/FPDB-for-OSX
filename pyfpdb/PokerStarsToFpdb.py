@@ -101,7 +101,7 @@ class PokerStars(HandHistoryConverter):
             self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
             self.re_Action           = re.compile(r"""
-                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
+                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)\s?
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
                         (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?$"""
                          %  subst, re.MULTILINE|re.VERBOSE)
@@ -336,6 +336,7 @@ class PokerStars(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
