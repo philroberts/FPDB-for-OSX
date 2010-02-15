@@ -288,8 +288,13 @@ class PokerStars(HandHistoryConverter):
         
     def readBlinds(self, hand):
         try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            count = 0
+            for a in self.re_PostSB.finditer(hand.handText):
+                if count == 0:
+                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                    count = 1
+                else:
+                    hand.addAnte(a.group('PNAME'), a.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
