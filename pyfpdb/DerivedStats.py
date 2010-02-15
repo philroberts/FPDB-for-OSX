@@ -254,6 +254,7 @@ class DerivedStats():
         # The number of unique players in the list per street gives the value for playersAtStreetXXX
 
         # FIXME?? - This isn't couting people that are all in - at least showdown needs to reflect this
+        #     ... new code below hopefully fixes this
 
         self.hands['playersAtStreet1']  = 0
         self.hands['playersAtStreet2']  = 0
@@ -261,23 +262,31 @@ class DerivedStats():
         self.hands['playersAtStreet4']  = 0
         self.hands['playersAtShowdown'] = 0
 
-        alliners = set()
-        for (i, street) in enumerate(hand.actionStreets[2:]):
-            actors = set()
-            for action in hand.actions[street]:
-                if len(action) > 2 and action[-1]: # allin
-                    alliners.add(action[0])
-                actors.add(action[0])
-            if len(actors)==0 and len(alliners)<2:
-                alliners = set()
-            self.hands['playersAtStreet%d' % (i+1)] = len(set.union(alliners, actors))
-
-        actions = hand.actions[hand.actionStreets[-1]]
-        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
-        self.hands['playersAtShowdown'] = len(pas)
+#        alliners = set()
+#        for (i, street) in enumerate(hand.actionStreets[2:]):
+#            actors = set()
+#            for action in hand.actions[street]:
+#                if len(action) > 2 and action[-1]: # allin
+#                    alliners.add(action[0])
+#                actors.add(action[0])
+#            if len(actors)==0 and len(alliners)<2:
+#                alliners = set()
+#            self.hands['playersAtStreet%d' % (i+1)] = len(set.union(alliners, actors))
+#
+#        actions = hand.actions[hand.actionStreets[-1]]
+#        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
+#        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
+        
+        p_in = set(x[1] for x in hand.players)
+        for (i, street) in enumerate(hand.actionStreets):
+            actions = hand.actions[street]
+            p_in = p_in - self.pfba(actions, l=('folds',))
+            self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
+        
+        self.hands['playersAtShowdown'] = len(p_in)
 
         if self.hands['playersAtShowdown'] > 1:
-            for player in pas:
+            for player in p_in:
                 self.handsplayers[player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
