@@ -520,7 +520,7 @@ class GuiPlayerStats (threading.Thread):
             blindtest = str(tuple(nolims))
             blindtest = blindtest.replace("L", "")
             blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) )'
+            bbtest = bbtest + blindtest + ' ) ) )'
         else:
             bbtest = bbtest + '(-1) ) )'
         if type == 'ring':
@@ -539,7 +539,7 @@ class GuiPlayerStats (threading.Thread):
             query = query.replace("<orderbyhgameTypeId>", "")
             groupLevels = "show" not in str(limits)
             if groupLevels:
-                query = query.replace("<hgameTypeId>", "-1")
+                query = query.replace("<hgameTypeId>", "p.name")
             else:
                 query = query.replace("<hgameTypeId>", "h.gameTypeId")
 
