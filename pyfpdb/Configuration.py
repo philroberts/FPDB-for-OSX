@@ -65,7 +65,7 @@ def get_exec_path():
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
     exec_dir = get_exec_path()
-    if file_name == 'logging.conf' and sys.argv[0] != 'fpdb.exe':
+    if file_name == 'logging.conf' and not hasattr(sys, "frozen"):
         config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
     else:
         config_path = os.path.join(exec_dir, file_name)
@@ -105,14 +105,17 @@ def get_config(file_name, fallback = True):
         sys.exit()
     return (file_name,True)
 
-def get_logger(file_name, config = "config", fallback = False, log_dir=None):
+def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None):
     (conf_file,copied) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
         log_dir = os.path.join(get_exec_path(), 'log')
     #print "\nget_logger: checking log_dir:", log_dir
     check_dir(log_dir)
-    file = os.path.join(log_dir, 'logging.out')
+    if log_file is None:
+        file = os.path.join(log_dir, 'fpdb-log.txt')
+    else:
+        file = os.path.join(log_dir, log_file)
 
     if conf_file:
         try:
@@ -469,7 +472,7 @@ class Config:
         self.dir_config = os.path.dirname(self.file)
         self.dir_log = os.path.join(self.dir_config, 'log')
         self.dir_database = os.path.join(self.dir_config, 'database')
-        self.log_file = os.path.join(self.dir_log, 'logging.out')
+        self.log_file = os.path.join(self.dir_log, 'fpdb-log.txt')
         log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
 #    Parse even if there was no real config file found and we are using the example

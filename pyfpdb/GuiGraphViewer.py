@@ -27,7 +27,7 @@ from time import *
 
 try:
     import matplotlib
-    matplotlib.use('GTK')
+    matplotlib.use('GTKCairo')
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
