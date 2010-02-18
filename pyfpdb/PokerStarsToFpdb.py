@@ -287,14 +287,16 @@ class PokerStars(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        liveBlind = True
-        for a in self.re_PostSB.finditer(hand.handText):
-            if liveBlind:
-                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
-                liveBlind = False
-            else:
-                # Post dead blinds as ante
-                hand.addAnte(a.group('PNAME'), a.group('SB'))
+        try:
+            count = 0
+            for a in self.re_PostSB.finditer(hand.handText):
+                if count == 0:
+                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                    count = 1
+                else:
+                    hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
+        except: # no small blind
+            hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
