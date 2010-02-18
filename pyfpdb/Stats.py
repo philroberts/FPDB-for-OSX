@@ -248,7 +248,7 @@ def n(stat_dict, player):
         # If sample is large enough, use X.Yk notation instead
         _n = stat_dict[player]['n']
         fmt = '%d' % _n
-        if _n >= 1000:
+        if _n >= 10000:
             k = _n / 1000
             c = _n % 1000
             _c = float(c) / 100.0

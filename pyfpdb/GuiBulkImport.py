@@ -106,6 +106,9 @@ class GuiBulkImport():
                 print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 self.importer.clearFileList()
+                # This file should really be 'logging'
+                #log.info('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+                #     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime))
                 if self.n_hands_in_db == 0 and stored > 0:
                     self.cb_dropindexes.set_sensitive(True)
                     self.cb_dropindexes.set_active(0)

@@ -102,8 +102,9 @@ class PokerStars(HandHistoryConverter):
             self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
             self.re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?(\sand\sis\sall-in)?  # the number discarded goes in <BET>
-                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?$"""
+                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
+                        \s*(and\sis\sall.in)?
+                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
@@ -287,8 +288,13 @@ class PokerStars(HandHistoryConverter):
         
     def readBlinds(self, hand):
         try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+            count = 0
+            for a in self.re_PostSB.finditer(hand.handText):
+                if count == 0:
+                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                    count = 1
+                else:
+                    hand.addAnte(a.group('PNAME'), a.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
@@ -336,6 +342,7 @@ class PokerStars(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
