@@ -195,25 +195,39 @@ class DerivedStats():
         #
         #This function is going to get it wrong when there in situations where there
         # is no small blind. I can live with that.
-        positions = [7, 6, 5, 4, 3, 2, 1, 0, 'S', 'B']
         actions = hand.actions[hand.holeStreets[0]]
+        # Note:  pfbao list may not include big blind if all others folded
         players = self.pfbao(actions)
-        seats = len(players)
-        map = []
+
         if hand.gametype['base'] == 'stud':
+            positions = [7, 6, 5, 4, 3, 2, 1, 0, 'S', 'B']
+            seats = len(players)
+            map = []
             # Could posibly change this to be either -2 or -1 depending if they complete or bring-in
             # First player to act is -1, last player is 0 for 6 players it should look like:
             # ['S', 4, 3, 2, 1, 0]
             map = positions[-seats-1:-1] # Copy required positions from postions array anding in -1
             map = map[-1:] + map[0:-1] # and move the -1 to the start of that array
-        else:
-            # For 6 players is should look like:
-            # [3, 2, 1, 0, 'S', 'B']
-            map = positions[-seats:] # Copy required positions from array ending in -2
 
-        for i, player in enumerate(players):
-            #print "player %s in posn %s" % (player, str(map[i]))
-            self.handsplayers[player]['position'] = map[i]
+            for i, player in enumerate(players):
+                #print "player %s in posn %s" % (player, str(map[i]))
+                self.handsplayers[player]['position'] = map[i]
+        else:
+            # set blinds first, then others from pfbao list, avoids problem if bb
+            # is missing from pfbao list or if there is no small blind
+            bb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[2] == 'big blind']
+            sb = [x[0] for x in hand.actions[hand.actionStreets[0]] if x[2] == 'small blind']
+            # if there are > 1 sb or bb only the first is used!
+            if bb:
+                self.handsplayers[bb[0]]['position'] = 'B'
+                if bb[0] in players:  players.remove(bb[0])
+            if sb:
+                self.handsplayers[sb[0]]['position'] = 'S'
+                if sb[0] in players:  players.remove(sb[0])
+
+            #print "bb =", bb, "sb =", sb, "players =", players
+            for i,player in enumerate(reversed(players)):
+                self.handsplayers[player]['position'] = i
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
@@ -240,6 +254,7 @@ class DerivedStats():
         # The number of unique players in the list per street gives the value for playersAtStreetXXX
 
         # FIXME?? - This isn't couting people that are all in - at least showdown needs to reflect this
+        #     ... new code below hopefully fixes this
 
         self.hands['playersAtStreet1']  = 0
         self.hands['playersAtStreet2']  = 0
@@ -247,23 +262,31 @@ class DerivedStats():
         self.hands['playersAtStreet4']  = 0
         self.hands['playersAtShowdown'] = 0
 
-        alliners = set()
-        for (i, street) in enumerate(hand.actionStreets[2:]):
-            actors = set()
-            for action in hand.actions[street]:
-                if len(action) > 2 and action[-1]: # allin
-                    alliners.add(action[0])
-                actors.add(action[0])
-            if len(actors)==0 and len(alliners)<2:
-                alliners = set()
-            self.hands['playersAtStreet%d' % (i+1)] = len(set.union(alliners, actors))
-
-        actions = hand.actions[hand.actionStreets[-1]]
-        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
-        self.hands['playersAtShowdown'] = len(pas)
+#        alliners = set()
+#        for (i, street) in enumerate(hand.actionStreets[2:]):
+#            actors = set()
+#            for action in hand.actions[street]:
+#                if len(action) > 2 and action[-1]: # allin
+#                    alliners.add(action[0])
+#                actors.add(action[0])
+#            if len(actors)==0 and len(alliners)<2:
+#                alliners = set()
+#            self.hands['playersAtStreet%d' % (i+1)] = len(set.union(alliners, actors))
+#
+#        actions = hand.actions[hand.actionStreets[-1]]
+#        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
+#        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
+        
+        p_in = set(x[1] for x in hand.players)
+        for (i, street) in enumerate(hand.actionStreets):
+            actions = hand.actions[street]
+            p_in = p_in - self.pfba(actions, l=('folds',))
+            self.hands['playersAtStreet%d' % (i-1)] = len(p_in)
+        
+        self.hands['playersAtShowdown'] = len(p_in)
 
         if self.hands['playersAtShowdown'] > 1:
-            for player in pas:
+            for player in p_in:
                 self.handsplayers[player]['sawShowdown'] = True
 
     def streetXRaises(self, hand):
@@ -282,6 +305,7 @@ class DerivedStats():
         """Fills stealAttempt(Chance|ed, fold(Bb|Sb)ToSteal(Chance|)
 
         Steal attempt - open raise on positions 1 0 S - i.e. MP3, CO, BU, SB
+                        (note: I don't think PT2 counts SB steals in HU hands, maybe we shouldn't?)
         Fold to steal - folding blind after steal attemp wo any other callers or raisers
         """
         steal_attempt = False
