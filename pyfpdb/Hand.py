@@ -344,6 +344,11 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
                 self.pot.addCommonMoney(Decimal(self.sb))
 
+            if blindtype == 'secondsb':
+                amount = Decimal(0)
+                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
+                self.pot.addCommonMoney(Decimal(self.sb))
+
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
             self.lastBet['PREFLOP'] = Decimal(amount)
@@ -1441,6 +1446,7 @@ class Pot(object):
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
+        print "DEBUG: committed: %s" % committed
         #ERROR below. lastbet is correct in most cases, but wrong when 
         #             additional money is committed to the pot in cash games
         #             due to an additional sb being posted. (Speculate that
