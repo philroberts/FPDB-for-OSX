@@ -162,7 +162,7 @@ class DerivedStats():
                 self.handsplayers[player]['wonAtSD'] = 1.0
 
         for player in hand.pot.committed:
-            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
+            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
 
         self.calcCBets(hand)
 
