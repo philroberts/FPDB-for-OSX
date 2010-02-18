@@ -140,6 +140,14 @@ class PokerStars(HandHistoryConverter):
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
+        Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.50': ('0.10', '0.25'),    '1.00': ('0.25', '0.50'),     '2.00': ('0.50', '1.00'), 
+                        '4.00': ('1.00', '2.00'),    '6.00': ('1.00', '3.00'),    '10.00': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),  '30.00': ('10.00', '15.00'),  '60.00': ('15.00', '30.00'),
+                      '100.00': ('25.00', '50.00'),'200.00': ('50.00', '100.00'),'400.00': ('100.00', '200.00'),
+                     '1000.00': ('250.00', '500.00')}
+
+
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
@@ -172,6 +180,10 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'ring'
         else:
             info['type'] = 'tour'
+
+        if info['limitType'] == 'fl' and info['bb'] != None:
+            info['sb'] = Lim_Blinds[mg['BB']][0] 
+            info['bb'] = Lim_Blinds[mg['BB']][1]
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
@@ -287,16 +299,14 @@ class PokerStars(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        try:
-            count = 0
-            for a in self.re_PostSB.finditer(hand.handText):
-                if count == 0:
-                    hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
-                    count = 1
-                else:
-                    hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
-        except: # no small blind
-            hand.addBlind(None, None, None)
+        liveBlind = True
+        for a in self.re_PostSB.finditer(hand.handText):
+            if liveBlind:
+                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                liveBlind = False
+            else:
+                # Post dead blinds as ante
+                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):

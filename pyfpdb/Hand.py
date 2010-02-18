@@ -344,15 +344,14 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             if blindtype == 'both':
                 # work with the real ammount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
-                amount = Decimal(amount)/3 
-                self.bets['BLINDSANTES'][player].append(amount)
-                self.pot.addCommonMoney(player, amount)
-                amount += amount
+                amount = self.bb 
+                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
+                self.pot.addCommonMoney(player, Decimal(self.sb))
 
             if blindtype == 'secondsb':
                 amount = Decimal(0)
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(Decimal(self.sb))
+                self.pot.addCommonMoney(player, Decimal(self.sb))
 
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
@@ -1450,7 +1449,7 @@ class Pot(object):
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
-        print "DEBUG: committed: %s" % committed
+        #print "DEBUG: committed: %s" % committed
         #ERROR below. lastbet is correct in most cases, but wrong when 
         #             additional money is committed to the pot in cash games
         #             due to an additional sb being posted. (Speculate that
