@@ -181,7 +181,7 @@ class PokerStars(HandHistoryConverter):
         else:
             info['type'] = 'tour'
 
-        if info['limitType'] == 'fl' and info['bb'] != None:
+        if info['limitType'] == 'fl' and info['bb'] != None and info['type'] == 'ring':
             info['sb'] = Lim_Blinds[mg['BB']][0] 
             info['bb'] = Lim_Blinds[mg['BB']][1]
 
