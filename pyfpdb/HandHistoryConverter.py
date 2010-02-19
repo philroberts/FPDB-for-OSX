@@ -69,6 +69,7 @@ out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
 
         self.config = config
+        self.import_parameters = self.config.get_import_parameters()
         #log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
 
@@ -87,28 +88,8 @@ follow :  whether to tail -f the input"""
 
         if in_path == '-':
             self.in_fh = sys.stdin
+        self.out_fh = get_out_fh(out_path, self.import_parameters)
 
-        if out_path == '-':
-            self.out_fh = sys.stdout
-        else:
-            # TODO: out_path should be sanity checked.
-            out_dir = os.path.dirname(self.out_path) 
-            if not os.path.isdir(out_dir) and out_dir != '': 
-                try: 
-                    os.makedirs(out_dir) 
-                except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
-                    log.error("Unable to create output directory %s for HHC!" % out_dir) 
-                    print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir 
-                    # TODO: pop up a box to allow person to choose output directory? 
-                    # TODO: shouldn't that be done when we startup, actually? 
-                else: 
-                    log.info("Created directory '%s'" % out_dir) 
-            try: 
-                self.out_fh = codecs.open(self.out_path, 'w', 'utf8') 
-            except: 
-                log.error("out_path %s couldn't be opened" % (self.out_path)) 
-            else: 
-                log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh)) 
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
@@ -531,3 +512,28 @@ def getSiteHhc(config, sitename):
     hhcName = config.supported_sites[sitename].converter
     hhcModule = __import__(hhcName)
     return getattr(hhcModule, hhcName[:-6])
+
+def get_out_fh(out_path, parameters):
+    if out_path == '-':
+        return(sys.stdout)
+    elif parameters['saveStarsHH']:
+        # TODO: out_path should be sanity checked.
+        out_dir = os.path.dirname(self.out_path) 
+        if not os.path.isdir(out_dir) and out_dir != '': 
+            try: 
+                os.makedirs(out_dir) 
+            except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
+                log.error("Unable to create output directory %s for HHC!" % out_dir) 
+                print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir 
+                # TODO: pop up a box to allow person to choose output directory? 
+                # TODO: shouldn't that be done when we startup, actually? 
+            else: 
+                log.info("Created directory '%s'" % out_dir) 
+        try: 
+            return(codecs.open(self.out_path, 'w', 'utf8')) 
+        except: 
+            log.error("out_path %s couldn't be opened" % (self.out_path)) 
+        else: 
+            log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
+    else:
+         return(sys.stdout)
