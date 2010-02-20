@@ -414,6 +414,7 @@ class Import:
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
+        self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
@@ -808,8 +809,12 @@ class Config:
         try:    imp['saveActions']     = self.imp.saveActions
         except:  imp['saveActions']     = True
 
+        try:    imp['saveStarsHH'] = self.imp.saveStarsHH
+        except:  imp['saveStarsHH'] = False
+
         try:    imp['fastStoreHudCache'] = self.imp.fastStoreHudCache
         except:  imp['fastStoreHudCache'] = True
+
         return imp
 
     def get_default_paths(self, site = None):
