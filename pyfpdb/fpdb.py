@@ -688,6 +688,12 @@ class fpdb:
     def load_profile(self):
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
+        if self.config.file_error:
+            self.warning_box( "There is an error in your config file\n" + self.config.file
+                              + "\n\nError is:  " + str(self.config.file_error)
+                            , diatitle="CONFIG FILE ERROR" )
+            exit()
+
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
         if self.config.example_copy:

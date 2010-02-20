@@ -481,12 +481,19 @@ class Config:
         print "\nReading configuration file %s\n" % file
         try:
             doc = xml.dom.minidom.parse(file)
+            self.file_error = None
         except:
             log.error("Error parsing %s.  See error log file." % (file))
             traceback.print_exc(file=sys.stderr)
-            print "press enter to continue"
-            sys.stdin.readline()
-            sys.exit()
+            self.file_error = sys.exc_info()[1]
+            # we could add a parameter to decide whether to return or read a line and exit?
+            return
+            #print "press enter to continue"
+            #sys.stdin.readline()
+            #sys.exit()
+#ExpatError: not well-formed (invalid token): line 511, column 4
+#sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
+# column 4',), <traceback object at 0x024503A0>)
 
         self.doc = doc
         self.supported_sites = {}
