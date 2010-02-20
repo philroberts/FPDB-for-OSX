@@ -443,8 +443,8 @@ or None if we fail to get the info """
     def guessMaxSeats(self, hand):
         """Return a guess at maxseats when not specified in HH."""
         # if some other code prior to this has already set it, return it
-        if maxseats > 1 and maxseats < 11:
-            return maxseats
+        if self.maxseats > 1 and self.maxseats < 11:
+            return self.maxseats
         mo = self.maxOccSeat(hand)
 
         if mo == 10: return 10 #that was easy
@@ -517,23 +517,18 @@ def get_out_fh(out_path, parameters):
     if out_path == '-':
         return(sys.stdout)
     elif parameters['saveStarsHH']:
-        # TODO: out_path should be sanity checked.
-        out_dir = os.path.dirname(self.out_path) 
+        out_dir = os.path.dirname(out_path) 
         if not os.path.isdir(out_dir) and out_dir != '': 
             try: 
                 os.makedirs(out_dir) 
             except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
                 log.error("Unable to create output directory %s for HHC!" % out_dir) 
                 print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir 
-                # TODO: pop up a box to allow person to choose output directory? 
-                # TODO: shouldn't that be done when we startup, actually? 
             else: 
                 log.info("Created directory '%s'" % out_dir) 
         try: 
-            return(codecs.open(self.out_path, 'w', 'utf8')) 
+            return(codecs.open(out_path, 'w', 'utf8')) 
         except: 
-            log.error("out_path %s couldn't be opened" % (self.out_path)) 
-        else: 
-            log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
+            log.error("out_path %s couldn't be opened" % (out_path)) 
     else:
-         return(sys.stdout)
+        return(sys.stdout)
