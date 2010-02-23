@@ -128,6 +128,7 @@ class Fulltilt(HandHistoryConverter):
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             logging.debug("player_re: " + player_re)
             self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
+            self.re_PostDead         = re.compile(r"^%s posts a dead small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
             self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
@@ -298,6 +299,8 @@ class Fulltilt(HandHistoryConverter):
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
+        for a in self.re_PostDead.finditer(hand.handText):
+            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
