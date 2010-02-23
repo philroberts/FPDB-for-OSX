@@ -1915,6 +1915,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -1999,6 +2000,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2085,6 +2087,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
