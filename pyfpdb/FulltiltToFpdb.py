@@ -18,12 +18,10 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
-import sys
 import logging
 from HandHistoryConverter import *
 
 # Fulltilt HH Format converter
-# TODO: cat tourno and table to make table name for tournaments
 
 class Fulltilt(HandHistoryConverter):
     
@@ -67,8 +65,8 @@ class Fulltilt(HandHistoryConverter):
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
                                     ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
-    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(\$?(?P<CASH>[,.0-9]+)\)', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{3,15}) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
+    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{3,15}) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -139,7 +137,7 @@ class Fulltilt(HandHistoryConverter):
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$?(?P<POT>[.,\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
-            self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s \(.*\) showed \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
+            self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
     def readSupportedGames(self):
         return [["ring", "hold", "nl"], 
@@ -191,7 +189,6 @@ class Fulltilt(HandHistoryConverter):
         if mg['TOURNO'] is None:  info['type'] = "ring"
         else:                     info['type'] = "tour"
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
-#        if info['type'] == "tour": return None # importer is screwed on tournies, pass on those hands so we don't interrupt other autoimporting
         return info
 
     def readHandInfo(self, hand):
@@ -258,15 +255,16 @@ class Fulltilt(HandHistoryConverter):
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         #hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
                             ##int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
-#FIXME:        hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):
+        # Split hand text for FTP, as the regex matches the player names incorrectly
+        # in the summary section
+        pre, post = hand.handText.split('SUMMARY')
         if hand.gametype['type'] == "ring" :
-            m = self.re_PlayerInfo.finditer(hand.handText)
+            m = self.re_PlayerInfo.finditer(pre)
         else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneyPlayerInfo.finditer(hand.handText)
+            m = self.re_TourneyPlayerInfo.finditer(pre)
 
-        players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
@@ -392,9 +390,10 @@ class Fulltilt(HandHistoryConverter):
     def readShownCards(self,hand):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
-                cards = m.group('CARDS')
-                cards = cards.split(' ')
-                hand.addShownCards(cards=cards, player=m.group('PNAME'))
+                if m.group('ACT'):
+                    hand.addShownCards(cards=m.group('CARDS').split(' '), player=m.group('PNAME'), shown = False, mucked = True)
+                else:
+                    hand.addShownCards(cards=m.group('CARDS').split(' '), player=m.group('PNAME'), shown = True, mucked = False)
 
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""
@@ -422,7 +421,6 @@ class Fulltilt(HandHistoryConverter):
             hand.mixed = self.mixes[m.groupdict()['MIXED']]
 
     def readSummaryInfo(self, summaryInfoList):
-        starttime = time.time()
         self.status = True
 
         m = re.search("Tournament Summary", summaryInfoList[0])
@@ -542,14 +540,14 @@ class Fulltilt(HandHistoryConverter):
                         tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
                     else :
                         if 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN'])) != tourney.buyin:
-                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (touney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
+                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
                             tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
                         tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
                     else :
                         if 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE'])) != tourney.fee:
-                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (touney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
+                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (tourney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
                             tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
 
         if tourney.buyin is None:

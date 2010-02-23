@@ -22,12 +22,39 @@ Test if gtk is working.
 ########################################################################
 
 import sys
+import os
+import Configuration
+
+config_path = Configuration.get_default_config_path()
 
 try:
+    import gobject as _gobject
+    print "Import of gobject:\tSuccess"
     import pygtk
+    print "Import of pygtk:\tSuccess"
     pygtk.require('2.0')
     import gtk
+    print "Import of gtk:\t\tSuccess"
+    import pango
+    print "Import of pango:\tSuccess"
 
+    if os.name == 'nt':
+        import win32
+        import win32api
+        print "Import of win32:\tSuccess"
+
+    try:
+        import matplotlib
+        matplotlib.use('GTK')
+        print "Import of matplotlib:\tSuccess"
+        import numpy
+        print "Import of numpy:\tSuccess"
+        import pylab
+        print "Import of pylab:\tSuccess"
+    except:
+        print "\nError:", sys.exc_info()
+        print "\npress return to finish"
+        sys.stdin.readline()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
     win.set_title("Test GTK")
@@ -42,7 +69,7 @@ try:
                      (gtk.STOCK_CLOSE, gtk.RESPONSE_OK))
     dia.set_default_size(500, 300)
 
-    l = gtk.Label("GTK is working!")
+    l = gtk.Label("GTK is working!\nConfig location: %s" %config_path)
     dia.vbox.add(l)
     l.show()
 

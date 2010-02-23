@@ -16,8 +16,6 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-import Hand
-import Tourney
 import re
 import sys
 import traceback
@@ -31,13 +29,20 @@ import operator
 from xml.dom.minidom import Node
 import time
 import datetime
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
+
+
+import Hand
+import Tourney
 from Exceptions import FpdbParseError
 import Configuration
 
 import gettext
 gettext.install('fpdb')
 
-log = Configuration.get_logger("logging.conf")
 
 import pygtk
 import gtk
@@ -57,15 +62,17 @@ class HandHistoryConverter():
     codepage = "cp1252"
 
 
-    def __init__(self, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
+    def __init__(self, config, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
 
+        self.config = config
+        #log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
-        
-        self.index     = 0
+
+        self.index     = index
         self.starsArchive = starsArchive
 
         self.in_path = in_path
@@ -77,7 +84,7 @@ follow :  whether to tail -f the input"""
 
         # Tourney object used to store TourneyInfo when called to deal with a Summary file
         self.tourney = None
-        
+
         if in_path == '-':
             self.in_fh = sys.stdin
 
@@ -85,28 +92,11 @@ follow :  whether to tail -f the input"""
             self.out_fh = sys.stdout
         else:
             # TODO: out_path should be sanity checked.
-            out_dir = os.path.dirname(self.out_path)
-            if not os.path.isdir(out_dir) and out_dir != '':
-                try:
-                    os.makedirs(out_dir)
-                except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D
-                    log.error("Unable to create output directory %s for HHC!" % out_dir)
-                    print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir
-                    # TODO: pop up a box to allow person to choose output directory?
-                    # TODO: shouldn't that be done when we startup, actually?
-                else:
-                    log.info("Created directory '%s'" % out_dir)
-            try:
-                self.out_fh = codecs.open(self.out_path, 'w', 'utf8')
-            except:
-                log.error("out_path %s couldn't be opened" % (self.out_path))
-            else:
-                log.debug("out_path %s opened as %s" % (self.out_path, self.out_fh))
-
+            self.out_fh = sys.stdout
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
-        
+
         self.status = True
 
         self.parsedObjectType = "HH"      #default behaviour : parsing HH files, can be "Summary" if the parsing encounters a Summary File
@@ -121,7 +111,7 @@ HandHistoryConverter: '%(sitename)s'
     in_path     '%(in_path)s'
     out_path    '%(out_path)s'
     follow      '%(follow)s'
-    """ %  locals() 
+    """ %  locals()
 
     def start(self):
         """Process a hand at a time from the input specified by in_path.
@@ -141,7 +131,7 @@ Otherwise, finish at EOF.
             self.numHands = 0
             self.numErrors = 0
             if self.follow:
-                #TODO: See how summary files can be handled on the fly (here they should be rejected as before) 
+                #TODO: See how summary files can be handled on the fly (here they should be rejected as before)
                 log.info("Tailing '%s'" % self.in_path)
                 for handText in self.tailHands():
                     try:
@@ -176,7 +166,7 @@ Otherwise, finish at EOF.
                         endtime = time.time()
                         if summaryParsingStatus :
                             log.info("Summary file '%s' correctly parsed  (took %.3f seconds)" % (self.in_path, endtime - starttime))
-                        else :                            
+                        else :
                             log.warning("Error converting summary file '%s' (took %.3f seconds)" % (self.in_path, endtime - starttime))
 
         except IOError, ioe:
@@ -230,7 +220,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
                 # x--       [x,--,]       x,--
                 # x--x      [x,--,x]      x,x
                 # x--x--    [x,--,x,--,]  x,x,--
-                
+
                 # The length is always odd.
                 # 'odd' indices are always splitters.
                 # 'even' indices are always paragraphs or ''
@@ -264,13 +254,13 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             log.info("Read no hands.")
             return []
         return re.split(self.re_SplitHands,  self.obs)
-        
+
     def processHand(self, handText):
         gametype = self.determineGameType(handText)
         log.debug("gametype %s" % gametype)
         hand = None
         l = None
-        if gametype is None: 
+        if gametype is None:
             gametype = "unmatched"
             # TODO: not ideal, just trying to not error.
             # TODO: Need to count failed hands.
@@ -283,17 +273,16 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
                 log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
-                hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handText)
+                hand = Hand.HoldemOmahaHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'stud':
-                hand = Hand.StudHand(self, self.sitename, gametype, handText)
+                hand = Hand.StudHand(self.config, self, self.sitename, gametype, handText)
             elif gametype['base'] == 'draw':
-                hand = Hand.DrawHand(self, self.sitename, gametype, handText)
+                hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
             log.info("Unsupported game type: %s" % gametype)
 
         if hand:
-            if Configuration.NEWIMPORT == False:
-                hand.writeHand(self.out_fh)
+            #hand.writeHand(self.out_fh)
             return hand
         else:
             log.info("Unsupported game type: %s" % gametype)
@@ -305,7 +294,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
     # This function should return a list of lists looking like:
     # return [["ring", "hold", "nl"], ["tour", "hold", "nl"]]
     # Showing all supported games limits and types
-    
+
     def readSupportedGames(self): abstract
 
     # should return a list
@@ -340,17 +329,17 @@ or None if we fail to get the info """
     # Needs to return a list of lists in the format
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
-    
+
     def compilePlayerRegexs(self): abstract
     """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
-    
+
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
     def markStreets(self, hand): abstract
 
     #Needs to return a list in the format
-    # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb, 
+    # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
     def readAntes(self, hand): abstract
@@ -363,16 +352,16 @@ or None if we fail to get the info """
     def readShownCards(self, hand): abstract
 
     # Some sites do odd stuff that doesn't fall in to the normal HH parsing.
-    # e.g., FTP doesn't put mixed game info in the HH, but puts in in the 
+    # e.g., FTP doesn't put mixed game info in the HH, but puts in in the
     # file name. Use readOther() to clean up those messes.
     def readOther(self, hand): pass
-    
+
     # Some sites don't report the rake. This will be called at the end of the hand after the pot total has been calculated
     # an inheriting class can calculate it for the specific site if need be.
     def getRake(self, hand):
         hand.rake = hand.totalpot - hand.totalcollected #  * Decimal('0.05') # probably not quite right
-    
-    
+
+
     def sanityCheck(self):
         """Check we aren't going to do some stupid things"""
         #TODO: the hhbase stuff needs to be in fpdb_import
@@ -397,7 +386,7 @@ or None if we fail to get the info """
         # Make sure input and output files are different or we'll overwrite the source file
         if True: # basically.. I don't know
             sane = True
-        
+
         if self.in_path != '-' and self.out_path == self.in_path:
             print "HH Sanity Check: output and input files are the same, check config"
             sane = False
@@ -418,7 +407,7 @@ or None if we fail to get the info """
         list.pop() #Last entry is empty
         for l in list:
 #           print "'" + l + "'"
-            hands = hands + [Hand.Hand(self.sitename, self.gametype, l)]
+            hands = hands + [Hand.Hand(self.config, self.sitename, self.gametype, l)]
         # TODO: This looks like it could be replaced with a list comp.. ?
         return hands
 
@@ -430,7 +419,7 @@ or None if we fail to get the info """
 
     def readFile(self):
         """Open in_path according to self.codepage. Exceptions caught further up"""
-        
+
         if self.filetype == "text":
             if self.in_path == '-':
                 # read from stdin
@@ -441,10 +430,9 @@ or None if we fail to get the info """
                     #print "trying", kodec
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
-                        in_fh.seek(self.index)
-                        log.debug("Opened in_path: '%s' with %s" % (self.in_path, kodec))
-                        self.obs = in_fh.read()
-                        self.index = in_fh.tell()
+                        whole_file = in_fh.read()
+                        self.obs = whole_file[self.index:]
+                        self.index = len(whole_file)
                         in_fh.close()
                         break
                     except:
@@ -466,7 +454,7 @@ or None if we fail to get the info """
 
         if hand.gametype['base'] == 'stud':
             if mo <= 8: return 8
-            else: return mo 
+            else: return mo
 
         if hand.gametype['base'] == 'draw':
             if mo <= 6: return 6
@@ -502,9 +490,9 @@ or None if we fail to get the info """
     def getParsedObjectType(self):
         return self.parsedObjectType
 
-    #returns a status (True/False) indicating wether the parsing could be done correctly or not    
+    #returns a status (True/False) indicating wether the parsing could be done correctly or not
     def readSummaryInfo(self, summaryInfoList): abstract
-    
+
     def getTourney(self):
         return self.tourney
 
@@ -527,6 +515,3 @@ def getSiteHhc(config, sitename):
     hhcName = config.supported_sites[sitename].converter
     hhcModule = __import__(hhcName)
     return getattr(hhcModule, hhcName[:-6])
-    
-    
-

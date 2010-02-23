@@ -20,7 +20,6 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 import os
-import fpdb_simple
 
 import fpdb_import
 import fpdb_db
@@ -80,7 +79,8 @@ class GuiTableViewer (threading.Thread):
         #then the data rows
         for player in range(len(self.player_names)):
             tmp=[]
-            tmp.append(self.player_names[player][0])
+            p_name = Charset.to_gui(self.player_names[player][0])
+            tmp.append(p_name)
             
             seatCount=len(self.player_names)
             if seatCount>=8:

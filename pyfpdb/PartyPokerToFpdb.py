@@ -47,7 +47,7 @@ class PartyPoker(HandHistoryConverter):
     # $5 USD NL Texas Hold'em - Saturday, July 25, 07:53:52 EDT 2009
     # NL Texas Hold'em $1 USD Buy-in Trny:45685440 Level:8  Blinds-Antes(600/1 200 -50) - Sunday, May 17, 11:25:07 MSKS 2009
     re_GameInfoRing     = re.compile("""
-            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)\s*(?:USD)?\s*
+            (?P<CURRENCY>\$|)\s*(?P<RINGLIMIT>[.,0-9]+)([.,0-9/$]+)?\s*(?:USD)?\s*
             (?P<LIMIT>(NL|PL|))\s*
             (?P<GAME>(Texas\ Hold\'em|Omaha))
             \s*\-\s*
@@ -60,9 +60,9 @@ class PartyPoker(HandHistoryConverter):
             Trny:\s?(?P<TOURNO>\d+)\s+
             Level:\s*(?P<LEVEL>\d+)\s+
             ((Blinds|Stakes)(?:-Antes)?)\(
-                (?P<SB>[,.0-9 ]+)\s*
-                /(?P<BB>[,.0-9 ]+)
-                (?:\s*-\s*(?P<ANTE>[,.0-9 ]+)\$?)?
+                (?P<SB>[.,0-9 ]+)\s*
+                /(?P<BB>[.,0-9 ]+)
+                (?:\s*-\s*(?P<ANTE>[.,0-9 ]+)\$?)?
             \)
             \s*\-\s*
             (?P<DATETIME>.+)
@@ -72,21 +72,17 @@ class PartyPoker(HandHistoryConverter):
     re_PlayerInfo   = re.compile("""
           Seat\s(?P<SEAT>\d+):\s
           (?P<PNAME>.*)\s
-          \(\s*\$?(?P<CASH>[.,0-9]+)\s*(?:USD|)\s*\)
+          \(\s*\$?(?P<CASH>[0-9,.]+)\s*(?:USD|)\s*\)
           """ ,
           re.VERBOSE)
 
-	# Table $250 Freeroll (1810210) Table #309 (Real Money)
-	# Table Speed #1465003 (Real Money)
-
     re_HandInfo     = re.compile("""
-            ^Table\s+
-            (?P<TABLE_TYPE>[^#()]+)\s+          # Regular, Speed, etc
-            (?P<TABLE_ID_WRAPPER>\(|\#| )        # \# means sng, ( - mtt, nothing - cash game
-            (?P<TABLE_ID>\d+)  \)?   \s+        # it's global unique id for this table
-            (?:Table\s+\#(?P<TABLE_NUM>\d+).+)? # table num for mtt tournaments
+            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)\s+
+            (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
+            (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
-            \((?P<PLAY>Real|Play)\s+Money\)\s*  
+            \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
+            Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
             """,
           re.VERBOSE|re.MULTILINE)
 
@@ -290,6 +286,14 @@ class PartyPoker(HandHistoryConverter):
 
             if key == 'HID':
                 hand.handid = info[key]
+            if key == 'TABLE':
+                hand.tablename = info[key]
+            if key == 'MTTTABLE':
+            	if info[key] != None:
+            		hand.tablename = info[key]
+            		hand.tourNo = info['TABLE']
+            if key == 'BUTTON':
+                hand.buttonpos = info[key]
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'TABLE_ID_WRAPPER':
@@ -299,29 +303,16 @@ class PartyPoker(HandHistoryConverter):
             if key == 'BUYIN':
                 # FIXME: it's dirty hack T_T
                 # code below assumes that tournament rake is equal to zero
-                # added handle for freeroll tourney's
-				# code added for freeroll the buyin is overwritten by $0+$0
-                if info[key] == None: #assume freeroll
-                	cur = '$'
-                	hand.buyin = "$0" + '+%s0' % cur
+                if info[key] == None:
+                    hand.buyin = '$0+$0'
                 else:
-                	cur = info[key][0] if info[key][0] not in '0123456789' else ''
-                	hand.buyin = info[key] + '+%s0' % cur
-            if key == 'TABLE_ID':
-                hand.tablename = info[key]
-            if key == 'TABLE_NUM':
-                # FIXME: there is no such property in Hand class
-                if info[key] != None:
-                	hand.tablename = info[key]
-                	hand.tourNo = info['TABLE_ID']
-            if key == 'COUNTED_SEATS':
-                hand.counted_seats  = info[key]
+                    cur = info[key][0] if info[key][0] not in '0123456789' else ''
+                    hand.buyin = info[key] + '+%s0' % cur
             if key == 'LEVEL':
                 hand.level = info[key]
             if key == 'PLAY' and info['PLAY'] != 'Real':
                 # if realy party doesn's save play money hh
-                hand.gametype['currency'] = 'play'            
-    
+                hand.gametype['currency'] = 'play'
 
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)

@@ -31,11 +31,16 @@ import inspect
 import string
 import traceback
 import shutil
+import locale
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
 import logging, logging.config
 import ConfigParser
+
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("config")
+
 
 ##############################################################################
 #    Functions for finding config files and setting up logging
@@ -51,70 +56,106 @@ def get_default_config_path():
     return config_path
 
 def get_exec_path():
-    """Returns the path to the fpdb.(py|exe) file we are executing"""
+    """Returns the path to the fpdb(dir|.exe) file we are executing"""
     if hasattr(sys, "frozen"):  # compiled by py2exe
         return os.path.dirname(sys.executable)
     else:
-        pathname = os.path.dirname(sys.argv[0])
-        return os.path.abspath(pathname)
+        return os.path.dirname(sys.path[0])  # should be path to /fpdb
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
-    config_path = os.path.join(get_exec_path(), file_name)
+    exec_dir = get_exec_path()
+    if file_name == 'logging.conf' and not hasattr(sys, "frozen"):
+        config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
+    else:
+        config_path = os.path.join(exec_dir, file_name)
 #    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
-        return config_path             # so we use it
+        return (config_path,False)     # so we use it
     else: # no file in the cwd, look where it should be in the first place
-        config_path = os.path.join(get_default_config_path(), file_name)
+        default_dir = get_default_config_path()
+        config_path = os.path.join(default_dir, file_name)
 #        print "config path 2=", config_path
         if os.path.exists(config_path):
-            return config_path
+            return (config_path,False)
 
 #    No file found
     if not fallback:
-        return False
+        return (False,False)
 
 #    OK, fall back to the .example file, should be in the start dir
     if os.path.exists(file_name + ".example"):
         try:
-            shutil.copyfile(file_name + ".example", file_name)
-            print "No %s found, using %s.example.\n" % (file_name, file_name)
-            print "A %s file has been created.  You will probably have to edit it." % file_name
-            sys.stderr.write("No %s found, using %s.example.\n" % (file_name, file_name) )
+            print ""
+            check_dir(default_dir)
+            shutil.copyfile(file_name + ".example", config_path)
+            msg = "No %s found\n  in %s\n  or %s\n" % (file_name, exec_dir, default_dir) \
+                  + "Config file has been created at %s.\n" % config_path
+            print msg
+            logging.info(msg)
+            file_name = config_path
         except:
-            print "No %s found, cannot fall back. Exiting.\n" % file_name
-            sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+            print "Error copying .example file, cannot fall back. Exiting.\n"
+            sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
+            sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
-    return file_name
+    else:
+        print "No %s found, cannot fall back. Exiting.\n" % file_name
+        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+        sys.exit()
+    return (file_name,True)
 
-def get_logger(file_name, config = "config", fallback = False):
-    conf = get_config(file_name, fallback = fallback)
-    if conf:
+def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None):
+    (conf_file,copied) = get_config(file_name, fallback = fallback)
+
+    if log_dir is None:
+        log_dir = os.path.join(get_exec_path(), 'log')
+    #print "\nget_logger: checking log_dir:", log_dir
+    check_dir(log_dir)
+    if log_file is None:
+        file = os.path.join(log_dir, 'fpdb-log.txt')
+    else:
+        file = os.path.join(log_dir, log_file)
+
+    if conf_file:
         try:
-            logging.config.fileConfig(conf)
+            file = file.replace('\\', '\\\\')  # replace each \ with \\
+#            print "    ="+file+" "+ str(type(file))+" len="+str(len(file))+"\n"
+            logging.config.fileConfig(conf_file, {"logFile":file})
             log = logging.getLogger(config)
             log.debug("%s logger initialised" % config)
             return log
         except:
             pass
 
-    log = logging.basicConfig()
+    log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
-    log.debug("config logger initialised")
+    # but it looks like default is no output :-(  maybe because all the calls name a module?
+    log.debug("Default logger initialised for "+file)
+    print "Default logger intialised for "+file
     return log
 
-#    find a logging.conf file and set up logging
-log = get_logger("logging.conf")
+def check_dir(path, create = True):
+    """Check if a dir exists, optionally creates if not."""
+    if os.path.exists(path):
+        if os.path.isdir(path):
+            return path
+        else:
+            return False
+    if create:
+        msg = "Creating directory: '%s'" % (path)
+        print msg
+        log.info(msg)
+        os.mkdir(path)
+    else:
+        return False
+
 
 ########################################################################
 # application wide consts
 
 APPLICATION_NAME_SHORT = 'fpdb'
 APPLICATION_VERSION = 'xx.xx.xx'
-
-DIR_SELF = os.path.dirname(get_exec_path())
-#TODO: imo no good idea to place 'database' in parent dir
-DIR_DATABASES = os.path.join(os.path.dirname(DIR_SELF), 'database')
 
 DATABASE_TYPE_POSTGRESQL = 'postgresql'
 DATABASE_TYPE_SQLITE = 'sqlite'
@@ -125,7 +166,20 @@ DATABASE_TYPES = (
         DATABASE_TYPE_MYSQL,
         )
 
-NEWIMPORT = False
+#LOCALE_ENCODING = locale.getdefaultlocale()[1]
+LOCALE_ENCODING = locale.getpreferredencoding()
+if LOCALE_ENCODING == "US-ASCII":
+    print "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+    LOCALE_ENCODING = "cp1252"
+
+
+# needs LOCALE_ENCODING (above), imported for sqlite setup in Config class below
+
+FROZEN = hasattr(sys, "frozen")
+EXEC_PATH = get_exec_path()
+
+import Charset
+
 
 ########################################################################
 def string_to_bool(string, default=True):
@@ -399,11 +453,11 @@ class Tv:
 
 class Config:
     def __init__(self, file = None, dbname = ''):
-
 #    "file" is a path to an xml file with the fpdb/HUD configuration
 #    we check the existence of "file" and try to recover if it doesn't exist
 
 #        self.default_config_path = self.get_default_config_path()
+        self.example_copy = False
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
@@ -411,7 +465,15 @@ class Config:
                 sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
                 file = None
 
-        if file is None: file = get_config("HUD_config.xml")
+        if file is None: (file,self.example_copy) = get_config("HUD_config.xml", True)
+
+        self.file = file
+        self.dir_self = get_exec_path()
+        self.dir_config = os.path.dirname(self.file)
+        self.dir_log = os.path.join(self.dir_config, 'log')
+        self.dir_database = os.path.join(self.dir_config, 'database')
+        self.log_file = os.path.join(self.dir_log, 'fpdb-log.txt')
+        log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
@@ -427,7 +489,6 @@ class Config:
             sys.exit()
 
         self.doc = doc
-        self.file = file
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance
@@ -564,7 +625,11 @@ class Config:
     def save(self, file = None):
         if file is None:
             file = self.file
-        shutil.move(file, file+".backup")
+            try:
+                shutil.move(file, file+".backup")
+            except:
+                pass
+
         with open(file, 'w') as f:
             self.doc.writexml(f)
 
@@ -629,6 +694,10 @@ class Config:
             db['db-backend'] = 3
         elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
             db['db-backend'] = 4
+            # sqlcoder: this assignment fixes unicode problems for me with sqlite (windows, cp1252)
+            #           feel free to remove or improve this if you understand the problems
+            #           better than me (not hard!)
+            Charset.not_needed1, Charset.not_needed2, Charset.not_needed3 = True, True, True
         else:
             raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
         return db
@@ -977,3 +1046,9 @@ if __name__== "__main__":
             PrettyPrint(site_node, stream=sys.stdout, encoding="utf-8")
     except:
         print "xml.dom.ext needs PyXML to be installed!"
+
+    print "FROZEN =", FROZEN
+    print "EXEC_PATH =", EXEC_PATH
+
+    print "press enter to end"
+    sys.stdin.readline()

@@ -38,19 +38,61 @@ from decimal import Decimal
 import string
 import re
 import Queue
+import codecs
+import math
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("db")
+
 
 #    pyGTK modules
 
+
 #    FreePokerTools modules
-import fpdb_db
-import fpdb_simple
-import Configuration
 import SQL
 import Card
 import Tourney
+import Charset
 from Exceptions import *
+import Configuration
 
-log = Configuration.get_logger("logging.conf")
+
+#    Other library modules
+try:
+    import sqlalchemy.pool as pool
+    use_pool = True
+except ImportError:
+    log.info("Not using sqlalchemy connection pool.")
+    use_pool = False
+
+try:
+    from numpy import var
+    use_numpy = True
+except ImportError:
+    log.info("Not using numpy to define variance in sqlite.")
+    use_numpy = False
+
+
+DB_VERSION = 119
+
+
+# Variance created as sqlite has a bunch of undefined aggregate functions.
+
+class VARIANCE:
+    def __init__(self):
+        self.store = []
+
+    def step(self, value):
+        self.store.append(value)
+
+    def finalize(self):
+        return float(var(self.store))
+
+class sqlitemath:
+    def mod(self, a, b):
+        return a%b
+
 
 class Database:
 
@@ -185,10 +227,27 @@ class Database:
 
 
     def __init__(self, c, sql = None): 
-        log.info("Creating Database instance, sql = %s" % sql)
+        #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
+        log.debug("Creating Database instance, sql = %s" % sql)
         self.config = c
         self.__connected = False
-        self.fdb = fpdb_db.fpdb_db()   # sets self.fdb.db self.fdb.cursor and self.fdb.sql
+        self.settings = {}
+        self.settings['os'] = "linuxmac" if os.name != "nt" else "windows"
+        db_params = c.get_db_parameters()
+        self.import_options = c.get_import_parameters()
+        self.backend = db_params['db-backend']
+        self.db_server = db_params['db-server']
+        self.database = db_params['db-databaseName']
+        self.host = db_params['db-host']
+        self.db_path = ''
+
+        # where possible avoid creating new SQL instance by using the global one passed in
+        if sql is None:
+            self.sql = SQL.Sql(db_server = self.db_server)
+        else:
+            self.sql = sql
+
+        # connect to db
         self.do_connect(c)
         
         if self.backend == self.PGSQL:
@@ -197,12 +256,6 @@ class Database:
             #ISOLATION_LEVEL_READ_COMMITTED = 1 
             #ISOLATION_LEVEL_SERIALIZABLE   = 2
 
-
-        # where possible avoid creating new SQL instance by using the global one passed in
-        if sql is None:
-            self.sql = SQL.Sql(db_server = self.db_server)
-        else:
-            self.sql = sql
 
         if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
             log.info("sqlite/:memory: - creating")
@@ -226,8 +279,6 @@ class Database:
         self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
         self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
 
-        self.cursor = self.fdb.cursor
-
         self.saveActions = False if self.import_options['saveActions'] == False else True
 
         self.connection.rollback()  # make sure any locks taken so far are released
@@ -238,14 +289,20 @@ class Database:
         self.hud_style = style
 
     def do_connect(self, c):
+        if c is None:
+            raise FpdbError('Configuration not defined')
+
+        db = c.get_db_parameters()
         try:
-            self.fdb.do_connect(c)
+            self.connect(backend=db['db-backend'],
+                         host=db['db-host'],
+                         database=db['db-databaseName'],
+                         user=db['db-user'],
+                         password=db['db-password'])
         except:
             # error during connect
             self.__connected = False
             raise
-        self.connection = self.fdb.db
-        self.wrongDbVersion = self.fdb.wrongDbVersion
 
         db_params = c.get_db_parameters()
         self.import_options = c.get_import_parameters()
@@ -255,11 +312,155 @@ class Database:
         self.host = db_params['db-host']
         self.__connected = True
 
+    def connect(self, backend=None, host=None, database=None,
+                user=None, password=None):
+        """Connects a database with the given parameters"""
+        if backend is None:
+            raise FpdbError('Database backend not defined')
+        self.backend = backend
+        self.host = host
+        self.user = user
+        self.password = password
+        self.database = database
+        self.connection = None
+        self.cursor     = None
+        
+        if backend == Database.MYSQL_INNODB:
+            import MySQLdb
+            if use_pool:
+                MySQLdb = pool.manage(MySQLdb, pool_size=5)
+            try:
+                self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+            #TODO: Add port option
+            except MySQLdb.Error, ex:
+                if ex.args[0] == 1045:
+                    raise FpdbMySQLAccessDenied(ex.args[0], ex.args[1])
+                elif ex.args[0] == 2002 or ex.args[0] == 2003: # 2002 is no unix socket, 2003 is no tcp socket
+                    raise FpdbMySQLNoDatabase(ex.args[0], ex.args[1])
+                else:
+                    print "*** WARNING UNKNOWN MYSQL ERROR", ex
+        elif backend == Database.PGSQL:
+            import psycopg2
+            import psycopg2.extensions
+            if use_pool:
+                psycopg2 = pool.manage(psycopg2, pool_size=5)
+            psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
+            # If DB connection is made over TCP, then the variables
+            # host, user and password are required
+            # For local domain-socket connections, only DB name is
+            # needed, and everything else is in fact undefined and/or
+            # flat out wrong
+            # sqlcoder: This database only connect failed in my windows setup??
+            # Modifed it to try the 4 parameter style if the first connect fails - does this work everywhere?
+            connected = False
+            if self.host == "localhost" or self.host == "127.0.0.1":
+                try:
+                    self.connection = psycopg2.connect(database = database)
+                    connected = True
+                except:
+                    # direct connection failed so try user/pass/... version
+                    pass
+            if not connected:
+                try:
+                    self.connection = psycopg2.connect(host = host,
+                                               user = user,
+                                               password = password,
+                                               database = database)
+                except Exception, ex:
+                    if 'Connection refused' in ex.args[0]:
+                        # meaning eg. db not running
+                        raise FpdbPostgresqlNoDatabase(errmsg = ex.args[0])
+                    elif 'password authentication' in ex.args[0]:
+                        raise FpdbPostgresqlAccessDenied(errmsg = ex.args[0])
+                    else:
+                        msg = ex.args[0]
+                    print msg
+                    raise FpdbError(msg)
+        elif backend == Database.SQLITE:
+            import sqlite3
+            if use_pool:
+                sqlite3 = pool.manage(sqlite3, pool_size=1)
+            #else:
+            #    log.warning("SQLite won't work well without 'sqlalchemy' installed.")
+
+            if database != ":memory:":
+                if not os.path.isdir(self.config.dir_database):
+                    print "Creating directory: '%s'" % (self.config.dir_database)
+                    log.info("Creating directory: '%s'" % (self.config.dir_database))
+                    os.mkdir(self.config.dir_database)
+                database = os.path.join(self.config.dir_database, database)
+            self.db_path = database
+            log.info("Connecting to SQLite: %(database)s" % {'database':self.db_path})
+            self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
+            sqlite3.register_converter("bool", lambda x: bool(int(x)))
+            sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+            self.connection.create_function("floor", 1, math.floor)
+            tmp = sqlitemath()
+            self.connection.create_function("mod", 2, tmp.mod)
+            if use_numpy:
+                self.connection.create_aggregate("variance", 1, VARIANCE)
+            else:
+                log.warning("Some database functions will not work without NumPy support")
+            self.cursor = self.connection.cursor()
+            self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
+            self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
+        else:
+            raise FpdbError("unrecognised database backend:"+backend)
+
+        self.cursor = self.connection.cursor()
+        self.cursor.execute(self.sql.query['set tx level'])
+        self.check_version(database=database, create=True)
+
+
+    def check_version(self, database, create):
+        self.wrongDbVersion = False
+        try:
+            self.cursor.execute("SELECT * FROM Settings")
+            settings = self.cursor.fetchone()
+            if settings[0] != DB_VERSION:
+                log.error("outdated or too new database version (%s) - please recreate tables"
+                              % (settings[0]))
+                self.wrongDbVersion = True
+        except:# _mysql_exceptions.ProgrammingError:
+            if database !=  ":memory:":
+                if create:
+                    print "Failed to read settings table - recreating tables"
+                    log.info("failed to read settings table - recreating tables")
+                    self.recreate_tables()
+                    self.check_version(database=database, create=False)
+                else:
+                    print "Failed to read settings table - please recreate tables"
+                    log.info("failed to read settings table - please recreate tables")
+                    self.wrongDbVersion = True
+            else:
+                self.wrongDbVersion = True
+    #end def connect
+
     def commit(self):
-        self.fdb.db.commit()
+        if self.backend != self.SQLITE:
+            self.connection.commit()
+        else:
+            # sqlite commits can fail because of shared locks on the database (SQLITE_BUSY)
+            # re-try commit if it fails in case this happened
+            maxtimes = 5
+            pause = 1
+            ok = False
+            for i in xrange(maxtimes):
+                try:
+                    ret = self.connection.commit()
+                    log.debug("commit finished ok, i = "+str(i))
+                    ok = True
+                except:
+                    log.debug("commit "+str(i)+" failed: info=" + str(sys.exc_info())
+                                  + " value=" + str(sys.exc_value))
+                    sleep(pause)
+                if ok: break
+            if not ok:
+                log.debug("commit failed")
+                raise FpdbError('sqlite commit failed')
 
     def rollback(self):
-        self.fdb.db.rollback()
+        self.connection.rollback()
 
     def connected(self):
         return self.__connected
@@ -272,11 +473,18 @@ class Database:
 
     def disconnect(self, due_to_error=False):
         """Disconnects the DB (rolls back if param is true, otherwise commits"""
-        self.fdb.disconnect(due_to_error)
+        if due_to_error:
+            self.connection.rollback()
+        else:
+            self.connection.commit()
+        self.cursor.close()
+        self.connection.close()
     
     def reconnect(self, due_to_error=False):
         """Reconnects the DB"""
-        self.fdb.reconnect(due_to_error=False)
+        #print "started reconnect"
+        self.disconnect(due_to_error)
+        self.connect(self.backend, self.host, self.database, self.user, self.password)
     
     def get_backend_name(self):
         """Returns the name of the currently used backend"""
@@ -288,6 +496,9 @@ class Database:
             return "SQLite"
         else:
             raise FpdbError("invalid backend")
+
+    def get_db_info(self):
+        return (self.host, self.database, self.user, self.password)
 
     def get_table_name(self, hand_id):
         c = self.connection.cursor()
@@ -356,28 +567,6 @@ class Database:
         c.execute(self.sql.query['get_common_cards'], [hand])
 #        row = c.fetchone()
         cards['common'] = c.fetchone()
-        return cards
-
-    def convert_cards(self, d):
-        ranks = ('', '', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A')
-        cards = ""
-        for i in xrange(1, 8):
-#            key = 'card' + str(i) + 'Value'
-#            if not d.has_key(key): continue
-#            if d[key] == None:
-#                break
-#            elif d[key] == 0:
-#                cards += "xx"
-#            else:
-#                cards += ranks[d['card' + str(i) + 'Value']] + d['card' +str(i) + 'Suit']
-            cv = "card%dvalue" % i
-            if cv not in d or d[cv] is None:
-                break
-            elif d[cv] == 0:
-                cards += "xx"
-            else:
-                cs = "card%dsuit" % i
-                cards = "%s%s%s" % (cards, ranks[d[cv]], d[cs])
         return cards
 
     def get_action_from_hand(self, hand_no):
@@ -587,6 +776,7 @@ class Database:
                         elif not name.lower() in stat_dict[playerid]:
                             stat_dict[playerid][name.lower()] = val
                         elif name.lower() not in ('hand_id', 'player_id', 'seat', 'screen_name', 'seats'):
+                            #print "DEBUG: stat_dict[%s][%s]: %s" %(playerid, name.lower(), val)
                             stat_dict[playerid][name.lower()] += val
                     n += 1
                     if n >= 10000: break  # todo: don't think this is needed so set nice and high 
@@ -602,7 +792,9 @@ class Database:
             
     def get_player_id(self, config, site, player_name):
         c = self.connection.cursor()
-        c.execute(self.sql.query['get_player_id'], (player_name, site))
+        #print "get_player_id: player_name =", player_name, type(player_name)
+        p_name = Charset.to_utf8(player_name)
+        c.execute(self.sql.query['get_player_id'], (p_name, site))
         row = c.fetchone()
         if row:
             return row[0]
@@ -615,73 +807,11 @@ class Database:
         if site_id is None:
             site_id = -1
         c = self.get_cursor()
-        c.execute(self.sql.query['get_player_names'], (like_player_name, site_id, site_id))
+        p_name = Charset.to_utf8(like_player_name)
+        c.execute(self.sql.query['get_player_names'], (p_name, site_id, site_id))
         rows = c.fetchall()
         return rows
             
-    #returns the SQL ids of the names given in an array
-    # TODO: if someone gets industrious, they should make the parts that use the output of this function deal with a dict
-    # { playername: id } instead of depending on it's relation to the positions list
-    # then this can be reduced in complexity a bit
-
-    #def recognisePlayerIDs(cursor, names, site_id):
-    #    result = []
-    #    for i in xrange(len(names)):
-    #        cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-    #        tmp=cursor.fetchall()
-    #        if (len(tmp)==0): #new player
-    #            cursor.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)", (names[i], site_id))
-    #            #print "Number of players rows inserted: %d" % cursor.rowcount
-    #            cursor.execute ("SELECT id FROM Players WHERE name=%s", (names[i],))
-    #            tmp=cursor.fetchall()
-    #        #print "recognisePlayerIDs, names[i]:",names[i],"tmp:",tmp
-    #        result.append(tmp[0][0])
-    #    return result
-
-    def recognisePlayerIDs(self, names, site_id):
-        c = self.get_cursor()
-        q = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" %(site_id, " OR name=".join([self.sql.query['placeholder'] for n in names]))
-        c.execute(q, names) # get all playerids by the names passed in
-        ids = dict(c.fetchall()) # convert to dict
-        if len(ids) != len(names):
-            notfound = [n for n in names if n not in ids] # make list of names not in database
-            if notfound: # insert them into database
-                q_ins = "INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")"
-                q_ins = q_ins.replace('%s', self.sql.query['placeholder'])
-                c.executemany(q_ins, [(n,) for n in notfound])
-                q2 = "SELECT name,id FROM Players WHERE siteid=%d and (name=%s)" % (site_id, " OR name=".join(["%s" for n in notfound]))
-                q2 = q2.replace('%s', self.sql.query['placeholder'])
-                c.execute(q2, notfound) # get their new ids
-                tmp = c.fetchall()
-                for n,id in tmp: # put them all into the same dict
-                    ids[n] = id
-        # return them in the SAME ORDER that they came in in the names argument, rather than the order they came out of the DB
-        return [ids[n] for n in names]
-    #end def recognisePlayerIDs
-
-    # Here's a version that would work if it wasn't for the fact that it needs to have the output in the same order as input
-    # this version could also be improved upon using list comprehensions, etc
-
-    #def recognisePlayerIDs(cursor, names, site_id):
-    #    result = []
-    #    notfound = []
-    #    cursor.execute("SELECT name,id FROM Players WHERE name='%s'" % "' OR name='".join(names))
-    #    tmp = dict(cursor.fetchall())
-    #    for n in names:
-    #        if n not in tmp:
-    #            notfound.append(n)
-    #        else:
-    #            result.append(tmp[n])
-    #    if notfound:
-    #        cursor.executemany("INSERT INTO Players (name, siteId) VALUES (%s, "+str(site_id)+")", (notfound))
-    #        cursor.execute("SELECT id FROM Players WHERE name='%s'" % "' OR name='".join(notfound))
-    #        tmp = cursor.fetchall()
-    #        for n in tmp:
-    #            result.append(n[0])
-    #        
-    #    return result
-
-
     def get_site_id(self, site):
         c = self.get_cursor()
         c.execute(self.sql.query['getSiteId'], (site,))
@@ -723,120 +853,6 @@ class Database:
             raise
         return ret
 
-
-    #stores a stud/razz hand into the database
-    def ring_stud(self, config, settings, base, category, site_hand_no, gametype_id, hand_start_time
-                 ,names, player_ids, start_cashes, antes, card_values, card_suits, winnings, rakes
-                 ,action_types, allIns, action_amounts, actionNos, hudImportData, maxSeats, tableName
-                 ,seatNos):
-
-        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-
-        hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
-                                  ,hand_start_time, names, tableName, maxSeats, hudImportData
-                                  ,(None, None, None, None, None), (None, None, None, None, None))
-
-        #print "before calling store_hands_players_stud, antes:", antes
-        hands_players_ids = self.store_hands_players_stud(self.backend, hands_id, player_ids
-                                                         ,start_cashes, antes, card_values
-                                                         ,card_suits, winnings, rakes, seatNos)
-
-        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-            self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-
-        return hands_id
-    #end def ring_stud
-
-    def ring_holdem_omaha(self, config, settings, base, category, site_hand_no, gametype_id
-                         ,hand_start_time, names, player_ids, start_cashes, positions, card_values
-                         ,card_suits, board_values, board_suits, winnings, rakes, action_types, allIns
-                         ,action_amounts, actionNos, hudImportData, maxSeats, tableName, seatNos):
-        """stores a holdem/omaha hand into the database"""
-
-        t0 = time()
-        #print "in ring_holdem_omaha"
-        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-        t1 = time()
-        fpdb_simple.fill_board_cards(board_values, board_suits)
-        t2 = time()
-
-        hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
-                                  ,hand_start_time, names, tableName, maxSeats
-                                  ,hudImportData, board_values, board_suits)
-        #TEMPORARY CALL! - Just until all functions are migrated
-        t3 = time()
-        hands_players_ids = self.store_hands_players_holdem_omaha(
-                                   self.backend, category, hands_id, player_ids, start_cashes
-                                 , positions, card_values, card_suits, winnings, rakes, seatNos, hudImportData)
-        t4 = time()
-        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-            self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-        t5 = time()
-        #print "fills=(%4.3f) saves=(%4.3f,%4.3f,%4.3f)" % (t2-t0, t3-t2, t4-t3, t5-t4)
-        return hands_id
-    #end def ring_holdem_omaha
-
-    def tourney_holdem_omaha(self, config, settings, base, category, siteTourneyNo, buyin, fee, knockout
-                            ,entries, prizepool, tourney_start, payin_amounts, ranks, tourneyTypeId
-                            ,siteId #end of tourney specific params
-                            ,site_hand_no, gametype_id, hand_start_time, names, player_ids
-                            ,start_cashes, positions, card_values, card_suits, board_values
-                            ,board_suits, winnings, rakes, action_types, allIns, action_amounts
-                            ,actionNos, hudImportData, maxSeats, tableName, seatNos):
-        """stores a tourney holdem/omaha hand into the database"""
-
-        fpdb_simple.fillCardArrays(len(names), base, category, card_values, card_suits)
-        fpdb_simple.fill_board_cards(board_values, board_suits)
-
-        tourney_id = self.store_tourneys(tourneyTypeId, siteTourneyNo, entries, prizepool, tourney_start)
-        tourneys_players_ids = self.store_tourneys_players(tourney_id, player_ids, payin_amounts, ranks, winnings)
-
-        hands_id = self.storeHands(self.backend, site_hand_no, gametype_id
-                                  ,hand_start_time, names, tableName, maxSeats
-                                  ,hudImportData, board_values, board_suits)
-
-        hands_players_ids = self.store_hands_players_holdem_omaha_tourney(
-                          self.backend, category, hands_id, player_ids, start_cashes, positions
-                        , card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids
-                        , hudImportData, tourneyTypeId)
-
-        #print "tourney holdem, backend=%d" % backend
-        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-            self.storeHudCache(self.backend, base, category, gametype_id, hand_start_time, player_ids, hudImportData)
-
-        return hands_id
-    #end def tourney_holdem_omaha
-
-    def tourney_stud(self, config, settings, base, category, siteTourneyNo, buyin, fee, knockout, entries
-                    ,prizepool, tourneyStartTime, payin_amounts, ranks, tourneyTypeId, siteId
-                    ,siteHandNo, gametypeId, handStartTime, names, playerIds, startCashes, antes
-                    ,cardValues, cardSuits, winnings, rakes, actionTypes, allIns, actionAmounts
-                    ,actionNos, hudImportData, maxSeats, tableName, seatNos):
-        #stores a tourney stud/razz hand into the database
-
-        fpdb_simple.fillCardArrays(len(names), base, category, cardValues, cardSuits)
-
-        tourney_id = self.store_tourneys(tourneyTypeId, siteTourneyNo, entries, prizepool, tourneyStartTime)
-
-        tourneys_players_ids = self.store_tourneys_players(tourney_id, playerIds, payin_amounts, ranks, winnings)
-
-        hands_id = self.storeHands( self.backend, siteHandNo, gametypeId
-                                  , handStartTime, names, tableName, maxSeats
-                                  , hudImportData, (None, None, None, None, None), (None, None, None, None, None) )
-        # changed board_values and board_suits to arrays of None, just like the
-        # cash game version of this function does - i don't believe this to be
-        # the correct thing to do (tell me if i'm wrong) but it should keep the
-        # importer from crashing
-
-        hands_players_ids = self.store_hands_players_stud_tourney(self.backend, hands_id
-                                                 , playerIds, startCashes, antes, cardValues, cardSuits
-                                                 , winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId)
-
-        if 'dropHudCache' not in settings or settings['dropHudCache'] != 'drop':
-            self.storeHudCache(self.backend, base, category, gametypeId, handStartTime, playerIds, hudImportData)
-
-        return hands_id
-    #end def tourney_stud
 
     def prepareBulkImport(self):
         """Drop some indexes/foreign keys to prepare for bulk import. 
@@ -1041,6 +1057,7 @@ class Database:
         self.create_tables()
         self.createAllIndexes()
         self.commit()
+        print "Finished recreating tables"
         log.info("Finished recreating tables")
     #end def recreate_tables
 
@@ -1306,7 +1323,7 @@ class Database:
     
     def fillDefaultData(self):
         c = self.get_cursor() 
-        c.execute("INSERT INTO Settings (version) VALUES (118);")
+        c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
@@ -1317,6 +1334,8 @@ class Database:
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
         c.execute("INSERT INTO Sites (name,currency) VALUES ('Partouche', 'EUR')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('Carbon', 'USD')")
+        c.execute("INSERT INTO Sites (name,currency) VALUES ('PKR', 'USD')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         elif self.backend == self.PGSQL:
@@ -1462,66 +1481,8 @@ class Database:
         try:
             self.get_cursor().execute(self.sql.query['lockForInsert'])
         except:
-            print "Error during fdb.lock_for_insert:", str(sys.exc_value)
+            print "Error during lock_for_insert:", str(sys.exc_value)
     #end def lock_for_insert
-
-    def store_the_hand(self, h):
-        """Take a HandToWrite object and store it in the db"""
-
-        # Following code writes hands to database and commits (or rolls back if there is an error)
-        try:
-            result = None
-            if h.isTourney:
-                ranks = map(lambda x: 0, h.names) # create an array of 0's equal to the length of names
-                payin_amounts = fpdb_simple.calcPayin(len(h.names), h.buyin, h.fee)
-                
-                if h.base == "hold":
-                    result = self.tourney_holdem_omaha(
-                                               h.config, h.settings, h.base, h.category, h.siteTourneyNo, h.buyin
-                                             , h.fee, h.knockout, h.entries, h.prizepool, h.tourneyStartTime
-                                             , payin_amounts, ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
-                                             , h.gametypeID, h.handStartTime, h.names, h.playerIDs, h.startCashes
-                                             , h.positions, h.cardValues, h.cardSuits, h.boardValues, h.boardSuits
-                                             , h.winnings, h.rakes, h.actionTypes, h.allIns, h.actionAmounts
-                                             , h.actionNos, h.hudImportData, h.maxSeats, h.tableName, h.seatNos)
-                elif h.base == "stud":
-                    result = self.tourney_stud(
-                                               h.config, h.settings, h.base, h.category, h.siteTourneyNo
-                                             , h.buyin, h.fee, h.knockout, h.entries, h.prizepool, h.tourneyStartTime
-                                             , payin_amounts, ranks, h.tourneyTypeId, h.siteID, h.siteHandNo
-                                             , h.gametypeID, h.handStartTime, h.names, h.playerIDs, h.startCashes
-                                             , h.antes, h.cardValues, h.cardSuits, h.winnings, h.rakes, h.actionTypes
-                                             , h.allIns, h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats
-                                             , h.tableName, h.seatNos)
-                else:
-                    raise FpdbError("unrecognised category")
-            else:
-                if h.base == "hold":
-                    result = self.ring_holdem_omaha(
-                                               h.config, h.settings, h.base, h.category, h.siteHandNo
-                                             , h.gametypeID, h.handStartTime, h.names, h.playerIDs
-                                             , h.startCashes, h.positions, h.cardValues, h.cardSuits
-                                             , h.boardValues, h.boardSuits, h.winnings, h.rakes
-                                             , h.actionTypes, h.allIns, h.actionAmounts, h.actionNos
-                                             , h.hudImportData, h.maxSeats, h.tableName, h.seatNos)
-                elif h.base == "stud":
-                    result = self.ring_stud(
-                                               h.config, h.settings, h.base, h.category, h.siteHandNo, h.gametypeID
-                                             , h.handStartTime, h.names, h.playerIDs, h.startCashes, h.antes
-                                             , h.cardValues, h.cardSuits, h.winnings, h.rakes, h.actionTypes, h.allIns
-                                             , h.actionAmounts, h.actionNos, h.hudImportData, h.maxSeats, h.tableName
-                                             , h.seatNos)
-                else:
-                    raise FpdbError("unrecognised category")
-        except:
-            print "Error storing hand: " + str(sys.exc_value)
-            self.rollback()
-            # re-raise the exception so that the calling routine can decide what to do:
-            # (e.g. a write thread might try again)
-            raise
-
-        return result
-    #end def store_the_hand
 
 ###########################
 # NEWIMPORT CODE
@@ -1539,6 +1500,7 @@ class Database:
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
+                0, # tourneyId: 0 means not a tourney hand
                 p['handStart'], 
                 datetime.today(), #importtime
                 p['seats'],
@@ -1663,145 +1625,111 @@ class Database:
         c = self.get_cursor()
         c.executemany(q, inserts)
 
-    def storeHudCacheNew(self, gid, pid, hc):
-        q = """INSERT INTO HudCache (
-            gametypeId,
-            playerId
-           )
-           VALUES (
-                %s, %s
-            )"""
+    def storeHudCache(self, gid, pids, starttime, pdata):
+        """Update cached statistics. If update fails because no record exists, do an insert."""
 
-#            gametypeId,
-#            playerId,
-#            activeSeats,
-#            position,
-#            tourneyTypeId,
-#            styleKey,
-#            HDs,
-#            street0VPI,
-#            street0Aggr,
-#            street0_3BChance,
-#            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
-#            sawShowdown,
-#            street1Aggr,
-#            street2Aggr,
-#            street3Aggr,
-#            street4Aggr,
-#            otherRaisedStreet1,
-#            otherRaisedStreet2,
-#            otherRaisedStreet3,
-#            otherRaisedStreet4,
-#            foldToOtherRaisedStreet1,
-#            foldToOtherRaisedStreet2,
-#            foldToOtherRaisedStreet3,
-#            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
-#            wonAtSD,
-#            stealAttemptChance,
-#            stealAttempted,
-#            foldBbToStealChance,
-#            foldedBbToSteal,
-#            foldSbToStealChance,
-#            foldedSbToSteal,
-#            street1CBChance,
-#            street1CBDone,
-#            street2CBChance,
-#            street2CBDone,
-#            street3CBChance,
-#            street3CBDone,
-#            street4CBChance,
-#            street4CBDone,
-#            foldToStreet1CBChance,
-#            foldToStreet1CBDone,
-#            foldToStreet2CBChance,
-#            foldToStreet2CBDone,
-#            foldToStreet3CBChance,
-#            foldToStreet3CBDone,
-#            foldToStreet4CBChance,
-#            foldToStreet4CBDone,
-#            totalProfit,
-#            street1CheckCallRaiseChance,
-#            street1CheckCallRaiseDone,
-#            street2CheckCallRaiseChance,
-#            street2CheckCallRaiseDone,
-#            street3CheckCallRaiseChance,
-#            street3CheckCallRaiseDone,
-#            street4CheckCallRaiseChance,
-#            street4CheckCallRaiseDone)
+        if self.use_date_in_hudcache:
+            styleKey = datetime.strftime(starttime, 'd%y%m%d')
+            #styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
+        else:
+            # hard-code styleKey as 'A000000' (all-time cache, no key) for now
+            styleKey = 'A000000'
 
-        q = q.replace('%s', self.sql.query['placeholder'])
+        update_hudcache = self.sql.query['update_hudcache']
+        update_hudcache = update_hudcache.replace('%s', self.sql.query['placeholder'])
+        insert_hudcache = self.sql.query['insert_hudcache']
+        insert_hudcache = insert_hudcache.replace('%s', self.sql.query['placeholder'])
+            
+        #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        inserts = []
+        for p in pdata:
+            line = [0]*61
+            
+            line[0] = 1 # HDs
+            if pdata[p]['street0VPI']:                  line[1] = 1
+            if pdata[p]['street0Aggr']:                 line[2] = 1
+            if pdata[p]['street0_3BChance']:            line[3] = 1
+            if pdata[p]['street0_3BDone']:              line[4] = 1
+            if pdata[p]['street1Seen']:                 line[5] = 1
+            if pdata[p]['street2Seen']:                 line[6] = 1
+            if pdata[p]['street3Seen']:                 line[7] = 1
+            if pdata[p]['street4Seen']:                 line[8] = 1
+            if pdata[p]['sawShowdown']:                 line[9] = 1
+            if pdata[p]['street1Aggr']:                 line[10] = 1
+            if pdata[p]['street2Aggr']:                 line[11] = 1
+            if pdata[p]['street3Aggr']:                 line[12] = 1
+            if pdata[p]['street4Aggr']:                 line[13] = 1
+            if pdata[p]['otherRaisedStreet1']:          line[14] = 1
+            if pdata[p]['otherRaisedStreet2']:          line[15] = 1
+            if pdata[p]['otherRaisedStreet3']:          line[16] = 1
+            if pdata[p]['otherRaisedStreet4']:          line[17] = 1
+            if pdata[p]['foldToOtherRaisedStreet1']:    line[18] = 1
+            if pdata[p]['foldToOtherRaisedStreet2']:    line[19] = 1
+            if pdata[p]['foldToOtherRaisedStreet3']:    line[20] = 1
+            if pdata[p]['foldToOtherRaisedStreet4']:    line[21] = 1
+            line[22] = pdata[p]['wonWhenSeenStreet1']
+            line[23] = pdata[p]['wonAtSD']
+            if pdata[p]['stealAttemptChance']:          line[24] = 1
+            if pdata[p]['stealAttempted']:              line[25] = 1
+            if pdata[p]['foldBbToStealChance']:         line[26] = 1
+            if pdata[p]['foldedBbToSteal']:             line[27] = 1
+            if pdata[p]['foldSbToStealChance']:         line[28] = 1
+            if pdata[p]['foldedSbToSteal']:             line[29] = 1
+            if pdata[p]['street1CBChance']:             line[30] = 1
+            if pdata[p]['street1CBDone']:               line[31] = 1
+            if pdata[p]['street2CBChance']:             line[32] = 1
+            if pdata[p]['street2CBDone']:               line[33] = 1
+            if pdata[p]['street3CBChance']:             line[34] = 1
+            if pdata[p]['street3CBDone']:               line[35] = 1
+            if pdata[p]['street4CBChance']:             line[36] = 1
+            if pdata[p]['street4CBDone']:               line[37] = 1
+            if pdata[p]['foldToStreet1CBChance']:       line[38] = 1
+            if pdata[p]['foldToStreet1CBDone']:         line[39] = 1
+            if pdata[p]['foldToStreet2CBChance']:       line[40] = 1
+            if pdata[p]['foldToStreet2CBDone']:         line[41] = 1
+            if pdata[p]['foldToStreet3CBChance']:       line[42] = 1
+            if pdata[p]['foldToStreet3CBDone']:         line[43] = 1
+            if pdata[p]['foldToStreet4CBChance']:       line[44] = 1
+            if pdata[p]['foldToStreet4CBDone']:         line[45] = 1
+            line[46] = pdata[p]['totalProfit']
+            if pdata[p]['street1CheckCallRaiseChance']: line[47] = 1
+            if pdata[p]['street1CheckCallRaiseDone']:   line[48] = 1
+            if pdata[p]['street2CheckCallRaiseChance']: line[49] = 1
+            if pdata[p]['street2CheckCallRaiseDone']:   line[50] = 1
+            if pdata[p]['street3CheckCallRaiseChance']: line[51] = 1
+            if pdata[p]['street3CheckCallRaiseDone']:   line[52] = 1
+            if pdata[p]['street4CheckCallRaiseChance']: line[53] = 1
+            if pdata[p]['street4CheckCallRaiseDone']:   line[54] = 1
+            line[55] = gid    # gametypeId
+            line[56] = pids[p]    # playerId
+            line[57] = len(pids)    # activeSeats
+            pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
+            line[58] = pos[pdata[p]['position']]
+            line[59] = pdata[p]['tourneyTypeId']
+            line[60] = styleKey    # styleKey
+            inserts.append(line)
 
-        self.cursor.execute(q, (
-            gid,
-            pid
-        ))
 
-#            gametypeId,
-#            playerId,
-#            activeSeats,
-#            position,
-#            tourneyTypeId,
-#            styleKey,
-#            HDs,
-#            street0VPI,
-#            street0Aggr,
-#            street0_3BChance,
-#            street0_3BDone,
-#            street1Seen,
-#            street2Seen,
-#            street3Seen,
-#            street4Seen,
-#            sawShowdown,
-#            street1Aggr,
-#            street2Aggr,
-#            street3Aggr,
-#            street4Aggr,
-#            otherRaisedStreet1,
-#            otherRaisedStreet2,
-#            otherRaisedStreet3,
-#            otherRaisedStreet4,
-#            foldToOtherRaisedStreet1,
-#            foldToOtherRaisedStreet2,
-#            foldToOtherRaisedStreet3,
-#            foldToOtherRaisedStreet4,
-#            wonWhenSeenStreet1,
-#            wonAtSD,
-#            stealAttemptChance,
-#            stealAttempted,
-#            foldBbToStealChance,
-#            foldedBbToSteal,
-#            foldSbToStealChance,
-#            foldedSbToSteal,
-#            street1CBChance,
-#            street1CBDone,
-#            street2CBChance,
-#            street2CBDone,
-#            street3CBChance,
-#            street3CBDone,
-#            street4CBChance,
-#            street4CBDone,
-#            foldToStreet1CBChance,
-#            foldToStreet1CBDone,
-#            foldToStreet2CBChance,
-#            foldToStreet2CBDone,
-#            foldToStreet3CBChance,
-#            foldToStreet3CBDone,
-#            foldToStreet4CBChance,
-#            foldToStreet4CBDone,
-#            totalProfit,
-#            street1CheckCallRaiseChance,
-#            street1CheckCallRaiseDone,
-#            street2CheckCallRaiseChance,
-#            street2CheckCallRaiseDone,
-#            street3CheckCallRaiseChance,
-#            street3CheckCallRaiseDone,
-#            street4CheckCallRaiseChance,
-#            street4CheckCallRaiseDone)
+        cursor = self.get_cursor()
+
+        for row in inserts:
+            # Try to do the update first:
+            num = cursor.execute(update_hudcache, row)
+            #print "DEBUG: values: %s" % row[-6:]
+            # Test statusmessage to see if update worked, do insert if not
+            # num is a cursor in sqlite
+            if ((self.backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
+                    or (self.backend == self.MYSQL_INNODB and num == 0) 
+                    or (self.backend == self.SQLITE and num.rowcount == 0)):
+                #move the last 6 items in WHERE clause of row from the end of the array
+                # to the beginning for the INSERT statement
+                #print "DEBUG: using INSERT: %s" % num
+                row = row[-6:] + row[:-6]
+                num = cursor.execute(insert_hudcache, row)
+                #print "DEBUG: Successfully(?: %s) updated HudCacho using INSERT" % num
+            else:
+                #print "DEBUG: Successfully updated HudCacho using UPDATE"
+                pass
 
     def isDuplicate(self, gametypeID, siteHandNo):
         dup = False
@@ -1831,10 +1759,10 @@ class Database:
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
         if(self.pcache == None):
-            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key, siteid))
+            self.pcache = LambdaDict(lambda  key:self.insertPlayer(key[0], key[1]))
  
         for player in pnames:
-            result[player] = self.pcache[player]
+            result[player] = self.pcache[(player,siteid)]
             # NOTE: Using the LambdaDict does the same thing as:
             #if player in self.pcache:
             #    #print "DEBUG: cachehit"
@@ -1847,6 +1775,7 @@ class Database:
 
     def insertPlayer(self, name, site_id):
         result = None
+        _name = Charset.to_db_utf8(name)
         c = self.get_cursor()
         q = "SELECT name, id FROM Players WHERE siteid=%s and name=%s"
         q = q.replace('%s', self.sql.query['placeholder'])
@@ -1860,12 +1789,12 @@ class Database:
 
         #print "DEBUG: name: %s site: %s" %(name, site_id)
 
-        c.execute (q, (site_id, name))
+        c.execute (q, (site_id, _name))
 
         tmp = c.fetchone()
         if (tmp == None): #new player
             c.execute ("INSERT INTO Players (name, siteId) VALUES (%s, %s)".replace('%s',self.sql.query['placeholder'])
-                      ,(name, site_id))
+                      ,(_name, site_id))
             #Get last id might be faster here.
             #c.execute ("SELECT id FROM Players WHERE name=%s", (name,))
             result = self.get_last_insert_id(c)
@@ -1885,535 +1814,6 @@ class Database:
 #################################
 
 
-
-    def storeHands(self, backend, site_hand_no, gametype_id
-                  ,hand_start_time, names, tableName, maxSeats, hudCache
-                  ,board_values, board_suits):
-
-        cards = [Card.cardFromValueSuit(v,s) for v,s in zip(board_values,board_suits)]
-        #stores into table hands:
-        try:
-            c = self.get_cursor()
-            c.execute ("""INSERT INTO Hands 
-                          (siteHandNo, gametypeId, handStart, seats, tableName, importTime, maxSeats
-                          ,boardcard1,boardcard2,boardcard3,boardcard4,boardcard5
-                          ,playersVpi, playersAtStreet1, playersAtStreet2
-                          ,playersAtStreet3, playersAtStreet4, playersAtShowdown
-                          ,street0Raises, street1Raises, street2Raises
-                          ,street3Raises, street4Raises, street1Pot
-                          ,street2Pot, street3Pot, street4Pot
-                          ,showdownPot
-                          ) 
-                          VALUES 
-                          (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                          %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                       """.replace('%s', self.sql.query['placeholder'])
-                      ,   (site_hand_no, gametype_id, hand_start_time, len(names), tableName, datetime.today(), maxSeats
-                          ,cards[0], cards[1], cards[2], cards[3], cards[4]
-                          ,hudCache['playersVpi'], hudCache['playersAtStreet1'], hudCache['playersAtStreet2']
-                          ,hudCache['playersAtStreet3'], hudCache['playersAtStreet4'], hudCache['playersAtShowdown']
-                          ,hudCache['street0Raises'], hudCache['street1Raises'], hudCache['street2Raises']
-                          ,hudCache['street3Raises'], hudCache['street4Raises'], hudCache['street1Pot']
-                          ,hudCache['street2Pot'], hudCache['street3Pot'], hudCache['street4Pot']
-                          ,hudCache['showdownPot']
-                          ))
-            ret = self.get_last_insert_id(c)
-        except:
-            ret = -1
-            raise FpdbError( "storeHands error: " + str(sys.exc_value) )
-
-        return ret
-    #end def storeHands
-     
-    def store_hands_players_holdem_omaha(self, backend, category, hands_id, player_ids, start_cashes
-                                        ,positions, card_values, card_suits, winnings, rakes, seatNos, hudCache):
-        result=[]
-
-        # postgres (and others?) needs the booleans converted to ints before saving:
-        # (or we could just save them as boolean ... but then we can't sum them so easily in sql ???)
-        # NO - storing booleans for now so don't need this
-        #hudCacheInt = {}
-        #for k,v in hudCache.iteritems():
-        #    if k in ('wonWhenSeenStreet1', 'wonAtSD', 'totalProfit'):
-        #        hudCacheInt[k] = v
-        #    else:
-        #        hudCacheInt[k] = map(lambda x: 1 if x else 0, v)
-
-        try:
-            inserts = []
-            for i in xrange(len(player_ids)):
-                card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
-                card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
-
-                if (category=="holdem"):
-                    startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
-                    card3 = None
-                    card4 = None
-                elif (category=="omahahi" or category=="omahahilo"):
-                    startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1]
-                                                    ,card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
-                    card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
-                    card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
-                else:
-                    raise FpdbError("invalid category")
-
-                inserts.append( (
-                                 hands_id, player_ids[i], start_cashes[i], positions[i], 1, # tourneytypeid - needed for hudcache
-                                 card1, card2, card3, card4, startCards,
-                                 winnings[i], rakes[i], seatNos[i], hudCache['totalProfit'][i],
-                                 hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
-                                 hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
-                                 hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
-                                 hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
-                                 hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
-                                 hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
-                                 hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
-                                 hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
-                                 hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
-                                 hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
-                                 hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
-                                 hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
-                                 hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
-                                 hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
-                                 hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
-                                 hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
-                                 hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
-                                 hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
-                                 hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
-                                 hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
-                                 hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
-                                 hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
-                                 hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], hudCache['street3Calls'][i], hudCache['street4Calls'][i],
-                                 hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], hudCache['street3Bets'][i], hudCache['street4Bets'][i]
-                                ) )
-            c = self.get_cursor()
-            c.executemany ("""
-        INSERT INTO HandsPlayers
-        (handId, playerId, startCash, position,  tourneyTypeId,
-         card1, card2, card3, card4, startCards, winnings, rake, seatNo, totalProfit,
-         street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
-         street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
-         street1Aggr, street2Aggr, street3Aggr, street4Aggr,
-         otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
-         foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
-         wonWhenSeenStreet1, wonAtSD,
-         stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
-         street1CBChance, street1CBDone, street2CBChance, street2CBDone,
-         street3CBChance, street3CBDone, street4CBChance, street4CBDone,
-         foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
-         foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
-         street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
-         street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
-         street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
-         street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
-        )
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
-                                          ,inserts )
-            result.append( self.get_last_insert_id(c) ) # wrong? not used currently
-        except:
-            raise FpdbError( "store_hands_players_holdem_omaha error: " + str(sys.exc_value) )
-
-        return result
-    #end def store_hands_players_holdem_omaha
-
-    def store_hands_players_stud(self, backend, hands_id, player_ids, start_cashes, antes,
-                                 card_values, card_suits, winnings, rakes, seatNos):
-        #stores hands_players rows for stud/razz games. returns an array of the resulting IDs
-
-        try:
-            result=[]
-            #print "before inserts in store_hands_players_stud, antes:", antes
-            for i in xrange(len(player_ids)):
-                card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
-                card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
-                card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
-                card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
-                card5 = Card.cardFromValueSuit(card_values[i][4], card_suits[i][4])
-                card6 = Card.cardFromValueSuit(card_values[i][5], card_suits[i][5])
-                card7 = Card.cardFromValueSuit(card_values[i][6], card_suits[i][6])
-
-                c = self.get_cursor()
-                c.execute ("""INSERT INTO HandsPlayers
-        (handId, playerId, startCash, ante, tourneyTypeId,
-        card1, card2,
-        card3, card4,
-        card5, card6,
-        card7, winnings, rake, seatNo)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
-                (hands_id, player_ids[i], start_cashes[i], antes[i], 1, 
-                card1, card2,
-                card3, card4,
-                card5, card6,
-                card7, winnings[i], rakes[i], seatNos[i]))
-                #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
-                #result.append(cursor.fetchall()[0][0])
-                result.append( self.get_last_insert_id(c) )
-        except:
-            raise FpdbError( "store_hands_players_stud error: " + str(sys.exc_value) )
-
-        return result
-    #end def store_hands_players_stud
-     
-    def store_hands_players_holdem_omaha_tourney(self, backend, category, hands_id, player_ids
-                                                ,start_cashes, positions, card_values, card_suits
-                                                ,winnings, rakes, seatNos, tourneys_players_ids
-                                                ,hudCache, tourneyTypeId):
-        #stores hands_players for tourney holdem/omaha hands
-
-        try:
-            result=[]
-            inserts = []
-            for i in xrange(len(player_ids)):
-                card1 = Card.cardFromValueSuit(card_values[i][0], card_suits[i][0])
-                card2 = Card.cardFromValueSuit(card_values[i][1], card_suits[i][1])
-
-                if len(card_values[0])==2:
-                    startCards = Card.twoStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1])
-                    card3 = None
-                    card4 = None
-                elif len(card_values[0])==4:
-                    startCards = Card.fourStartCards(card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1]
-                                                    ,card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3])
-                    card3 = Card.cardFromValueSuit(card_values[i][2], card_suits[i][2])
-                    card4 = Card.cardFromValueSuit(card_values[i][3], card_suits[i][3])
-                else:
-                    raise FpdbError ("invalid card_values length:"+str(len(card_values[0])))
-
-                inserts.append( (hands_id, player_ids[i], start_cashes[i], positions[i], tourneyTypeId,
-                                 card1, card2, card3, card4, startCards,
-                                 winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], hudCache['totalProfit'][i],
-                                 hudCache['street0VPI'][i], hudCache['street0Aggr'][i], 
-                                 hudCache['street0_3BChance'][i], hudCache['street0_3BDone'][i],
-                                 hudCache['street1Seen'][i], hudCache['street2Seen'][i], hudCache['street3Seen'][i], 
-                                 hudCache['street4Seen'][i], hudCache['sawShowdown'][i],
-                                 hudCache['street1Aggr'][i], hudCache['street2Aggr'][i], hudCache['street3Aggr'][i], hudCache['street4Aggr'][i],
-                                 hudCache['otherRaisedStreet1'][i], hudCache['otherRaisedStreet2'][i], 
-                                 hudCache['otherRaisedStreet3'][i], hudCache['otherRaisedStreet4'][i],
-                                 hudCache['foldToOtherRaisedStreet1'][i], hudCache['foldToOtherRaisedStreet2'][i], 
-                                 hudCache['foldToOtherRaisedStreet3'][i], hudCache['foldToOtherRaisedStreet4'][i],
-                                 hudCache['wonWhenSeenStreet1'][i], hudCache['wonAtSD'][i],
-                                 hudCache['stealAttemptChance'][i], hudCache['stealAttempted'][i], hudCache['foldBbToStealChance'][i], 
-                                 hudCache['foldedBbToSteal'][i], hudCache['foldSbToStealChance'][i], hudCache['foldedSbToSteal'][i],
-                                 hudCache['street1CBChance'][i], hudCache['street1CBDone'][i], hudCache['street2CBChance'][i], hudCache['street2CBDone'][i],
-                                 hudCache['street3CBChance'][i], hudCache['street3CBDone'][i], hudCache['street4CBChance'][i], hudCache['street4CBDone'][i],
-                                 hudCache['foldToStreet1CBChance'][i], hudCache['foldToStreet1CBDone'][i], 
-                                 hudCache['foldToStreet2CBChance'][i], hudCache['foldToStreet2CBDone'][i],
-                                 hudCache['foldToStreet3CBChance'][i], hudCache['foldToStreet3CBDone'][i], 
-                                 hudCache['foldToStreet4CBChance'][i], hudCache['foldToStreet4CBDone'][i],
-                                 hudCache['street1CheckCallRaiseChance'][i], hudCache['street1CheckCallRaiseDone'][i], 
-                                 hudCache['street2CheckCallRaiseChance'][i], hudCache['street2CheckCallRaiseDone'][i],
-                                 hudCache['street3CheckCallRaiseChance'][i], hudCache['street3CheckCallRaiseDone'][i], 
-                                 hudCache['street4CheckCallRaiseChance'][i], hudCache['street4CheckCallRaiseDone'][i],
-                                 hudCache['street0Calls'][i], hudCache['street1Calls'][i], hudCache['street2Calls'][i], 
-                                 hudCache['street3Calls'][i], hudCache['street4Calls'][i],
-                                 hudCache['street0Bets'][i], hudCache['street1Bets'][i], hudCache['street2Bets'][i], 
-                                 hudCache['street3Bets'][i], hudCache['street4Bets'][i]
-                                ) )
-
-            c = self.get_cursor()
-            c.executemany ("""
-        INSERT INTO HandsPlayers
-        (handId, playerId, startCash, position, tourneyTypeId,
-         card1, card2, card3, card4, startCards, winnings, rake, tourneysPlayersId, seatNo, totalProfit,
-         street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
-         street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
-         street1Aggr, street2Aggr, street3Aggr, street4Aggr,
-         otherRaisedStreet1, otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4,
-         foldToOtherRaisedStreet1, foldToOtherRaisedStreet2, foldToOtherRaisedStreet3, foldToOtherRaisedStreet4,
-         wonWhenSeenStreet1, wonAtSD,
-         stealAttemptChance, stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
-         street1CBChance, street1CBDone, street2CBChance, street2CBDone,
-         street3CBChance, street3CBDone, street4CBChance, street4CBDone,
-         foldToStreet1CBChance, foldToStreet1CBDone, foldToStreet2CBChance, foldToStreet2CBDone,
-         foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance, foldToStreet4CBDone,
-         street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance, street2CheckCallRaiseDone,
-         street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone,
-         street0Calls, street1Calls, street2Calls, street3Calls, street4Calls, 
-         street0Bets, street1Bets, street2Bets, street3Bets, street4Bets
-        )
-        VALUES 
-        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 
-         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
-                                          ,inserts )
-
-            result.append( self.get_last_insert_id(c) )
-            #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
-            #result.append(cursor.fetchall()[0][0])
-        except:
-            err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error storing hand: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
-            raise FpdbError( "store_hands_players_holdem_omaha_tourney error: " + str(sys.exc_value) )
-        
-        return result
-    #end def store_hands_players_holdem_omaha_tourney
-     
-    def store_hands_players_stud_tourney(self, backend, hands_id, player_ids, start_cashes,
-                antes, card_values, card_suits, winnings, rakes, seatNos, tourneys_players_ids, tourneyTypeId):
-        #stores hands_players for tourney stud/razz hands
-        return # TODO: stubbed out until someone updates it for current database structuring
-        try:
-            result=[]
-            for i in xrange(len(player_ids)):
-                c = self.get_cursor()
-                c.execute ("""INSERT INTO HandsPlayers
-        (handId, playerId, startCash, ante,
-        card1Value, card1Suit, card2Value, card2Suit,
-        card3Value, card3Suit, card4Value, card4Suit,
-        card5Value, card5Suit, card6Value, card6Suit,
-        card7Value, card7Suit, winnings, rake, tourneysPlayersId, seatNo, tourneyTypeId)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-        %s, %s, %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
-                (hands_id, player_ids[i], start_cashes[i], antes[i],
-                card_values[i][0], card_suits[i][0], card_values[i][1], card_suits[i][1],
-                card_values[i][2], card_suits[i][2], card_values[i][3], card_suits[i][3],
-                card_values[i][4], card_suits[i][4], card_values[i][5], card_suits[i][5],
-                card_values[i][6], card_suits[i][6], winnings[i], rakes[i], tourneys_players_ids[i], seatNos[i], tourneyTypeId))
-                #cursor.execute("SELECT id FROM HandsPlayers WHERE handId=%s AND playerId+0=%s", (hands_id, player_ids[i]))
-                #result.append(cursor.fetchall()[0][0])
-                result.append( self.get_last_insert_id(c) )
-        except:
-            raise FpdbError( "store_hands_players_stud_tourney error: " + str(sys.exc_value) )
-        
-        return result
-    #end def store_hands_players_stud_tourney
- 
-    def storeHudCache(self, backend, base, category, gametypeId, hand_start_time, playerIds, hudImportData):
-        """Update cached statistics. If update fails because no record exists, do an insert.
-           Can't use array updates here (not easily anyway) because we need to insert any rows
-           that don't get updated."""
-
-        # if (category=="holdem" or category=="omahahi" or category=="omahahilo"):
-        try:
-            if self.use_date_in_hudcache:
-                #print "key =", "d%02d%02d%02d " % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
-                styleKey = "d%02d%02d%02d" % (hand_start_time.year-2000, hand_start_time.month, hand_start_time.day)
-            else:
-                # hard-code styleKey as 'A000000' (all-time cache, no key) for now
-                styleKey = 'A000000'
-            
-            #print "storeHudCache, len(playerIds)=", len(playerIds), " len(vpip)=" \
-            #, len(hudImportData['street0VPI']), " len(totprof)=", len(hudImportData['totalProfit'])
-            for player in xrange(len(playerIds)):
-                
-                # Set up a clean row
-                row=[]
-                row.append(0)#blank for id
-                row.append(gametypeId)
-                row.append(playerIds[player])
-                row.append(len(playerIds))#seats
-                for i in xrange(len(hudImportData)+2):
-                    row.append(0)
-                    
-                if base=="hold":
-                    row[4]=hudImportData['position'][player]
-                else:
-                    row[4]=0
-                row[5]=1 #tourneysGametypeId
-                row[6]+=1 #HDs
-                if hudImportData['street0VPI'][player]: row[7]+=1
-                if hudImportData['street0Aggr'][player]: row[8]+=1
-                if hudImportData['street0_3BChance'][player]: row[9]+=1
-                if hudImportData['street0_3BDone'][player]: row[10]+=1
-                if hudImportData['street1Seen'][player]: row[11]+=1
-                if hudImportData['street2Seen'][player]: row[12]+=1
-                if hudImportData['street3Seen'][player]: row[13]+=1
-                if hudImportData['street4Seen'][player]: row[14]+=1
-                if hudImportData['sawShowdown'][player]: row[15]+=1
-                if hudImportData['street1Aggr'][player]: row[16]+=1
-                if hudImportData['street2Aggr'][player]: row[17]+=1
-                if hudImportData['street3Aggr'][player]: row[18]+=1
-                if hudImportData['street4Aggr'][player]: row[19]+=1
-                if hudImportData['otherRaisedStreet1'][player]: row[20]+=1
-                if hudImportData['otherRaisedStreet2'][player]: row[21]+=1
-                if hudImportData['otherRaisedStreet3'][player]: row[22]+=1
-                if hudImportData['otherRaisedStreet4'][player]: row[23]+=1
-                if hudImportData['foldToOtherRaisedStreet1'][player]: row[24]+=1
-                if hudImportData['foldToOtherRaisedStreet2'][player]: row[25]+=1
-                if hudImportData['foldToOtherRaisedStreet3'][player]: row[26]+=1
-                if hudImportData['foldToOtherRaisedStreet4'][player]: row[27]+=1
-                if hudImportData['wonWhenSeenStreet1'][player]!=0.0: row[28]+=hudImportData['wonWhenSeenStreet1'][player]
-                if hudImportData['wonAtSD'][player]!=0.0: row[29]+=hudImportData['wonAtSD'][player]
-                if hudImportData['stealAttemptChance'][player]: row[30]+=1
-                if hudImportData['stealAttempted'][player]: row[31]+=1
-                if hudImportData['foldBbToStealChance'][player]: row[32]+=1
-                if hudImportData['foldedBbToSteal'][player]: row[33]+=1
-                if hudImportData['foldSbToStealChance'][player]: row[34]+=1
-                if hudImportData['foldedSbToSteal'][player]: row[35]+=1
-                
-                if hudImportData['street1CBChance'][player]: row[36]+=1
-                if hudImportData['street1CBDone'][player]: row[37]+=1
-                if hudImportData['street2CBChance'][player]: row[38]+=1
-                if hudImportData['street2CBDone'][player]: row[39]+=1
-                if hudImportData['street3CBChance'][player]: row[40]+=1
-                if hudImportData['street3CBDone'][player]: row[41]+=1
-                if hudImportData['street4CBChance'][player]: row[42]+=1
-                if hudImportData['street4CBDone'][player]: row[43]+=1
-                
-                if hudImportData['foldToStreet1CBChance'][player]: row[44]+=1
-                if hudImportData['foldToStreet1CBDone'][player]: row[45]+=1
-                if hudImportData['foldToStreet2CBChance'][player]: row[46]+=1
-                if hudImportData['foldToStreet2CBDone'][player]: row[47]+=1
-                if hudImportData['foldToStreet3CBChance'][player]: row[48]+=1
-                if hudImportData['foldToStreet3CBDone'][player]: row[49]+=1
-                if hudImportData['foldToStreet4CBChance'][player]: row[50]+=1
-                if hudImportData['foldToStreet4CBDone'][player]: row[51]+=1
-     
-                #print "player=", player
-                #print "len(totalProfit)=", len(hudImportData['totalProfit'])
-                if hudImportData['totalProfit'][player]:
-                    row[52]+=hudImportData['totalProfit'][player]
-     
-                if hudImportData['street1CheckCallRaiseChance'][player]: row[53]+=1
-                if hudImportData['street1CheckCallRaiseDone'][player]: row[54]+=1
-                if hudImportData['street2CheckCallRaiseChance'][player]: row[55]+=1
-                if hudImportData['street2CheckCallRaiseDone'][player]: row[56]+=1
-                if hudImportData['street3CheckCallRaiseChance'][player]: row[57]+=1
-                if hudImportData['street3CheckCallRaiseDone'][player]: row[58]+=1
-                if hudImportData['street4CheckCallRaiseChance'][player]: row[59]+=1
-                if hudImportData['street4CheckCallRaiseDone'][player]: row[60]+=1
-                
-                # Try to do the update first:
-                cursor = self.get_cursor()
-                num = cursor.execute("""UPDATE HudCache
-    SET HDs=HDs+%s, street0VPI=street0VPI+%s, street0Aggr=street0Aggr+%s,
-        street0_3BChance=street0_3BChance+%s, street0_3BDone=street0_3BDone+%s,
-        street1Seen=street1Seen+%s, street2Seen=street2Seen+%s, street3Seen=street3Seen+%s,
-        street4Seen=street4Seen+%s, sawShowdown=sawShowdown+%s,
-        street1Aggr=street1Aggr+%s, street2Aggr=street2Aggr+%s, street3Aggr=street3Aggr+%s,
-        street4Aggr=street4Aggr+%s, otherRaisedStreet1=otherRaisedStreet1+%s,
-        otherRaisedStreet2=otherRaisedStreet2+%s, otherRaisedStreet3=otherRaisedStreet3+%s,
-        otherRaisedStreet4=otherRaisedStreet4+%s,
-        foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s, foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
-        foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s, foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
-        wonWhenSeenStreet1=wonWhenSeenStreet1+%s, wonAtSD=wonAtSD+%s, stealAttemptChance=stealAttemptChance+%s,
-        stealAttempted=stealAttempted+%s, foldBbToStealChance=foldBbToStealChance+%s,
-        foldedBbToSteal=foldedBbToSteal+%s,
-        foldSbToStealChance=foldSbToStealChance+%s, foldedSbToSteal=foldedSbToSteal+%s,
-        street1CBChance=street1CBChance+%s, street1CBDone=street1CBDone+%s, street2CBChance=street2CBChance+%s,
-        street2CBDone=street2CBDone+%s, street3CBChance=street3CBChance+%s,
-        street3CBDone=street3CBDone+%s, street4CBChance=street4CBChance+%s, street4CBDone=street4CBDone+%s,
-        foldToStreet1CBChance=foldToStreet1CBChance+%s, foldToStreet1CBDone=foldToStreet1CBDone+%s,
-        foldToStreet2CBChance=foldToStreet2CBChance+%s, foldToStreet2CBDone=foldToStreet2CBDone+%s,
-        foldToStreet3CBChance=foldToStreet3CBChance+%s,
-        foldToStreet3CBDone=foldToStreet3CBDone+%s, foldToStreet4CBChance=foldToStreet4CBChance+%s,
-        foldToStreet4CBDone=foldToStreet4CBDone+%s, totalProfit=totalProfit+%s,
-        street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
-        street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s, street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
-        street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s, street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
-        street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s, street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-        street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
-    WHERE gametypeId+0=%s 
-    AND   playerId=%s 
-    AND   activeSeats=%s 
-    AND   position=%s 
-    AND   tourneyTypeId+0=%s
-    AND   styleKey=%s
-                                     """.replace('%s', self.sql.query['placeholder'])
-                                    ,(row[6], row[7], row[8], row[9], row[10],
-                                      row[11], row[12], row[13], row[14], row[15],
-                                      row[16], row[17], row[18], row[19], row[20],
-                                      row[21], row[22], row[23], row[24], row[25],
-                                      row[26], row[27], row[28], row[29], row[30],
-                                      row[31], row[32], row[33], row[34], row[35],
-                                      row[36], row[37], row[38], row[39], row[40],
-                                      row[41], row[42], row[43], row[44], row[45],
-                                      row[46], row[47], row[48], row[49], row[50],
-                                      row[51], row[52], row[53], row[54], row[55],
-                                      row[56], row[57], row[58], row[59], row[60],
-                                      row[1], row[2], row[3], str(row[4]), row[5], styleKey))
-                # Test statusmessage to see if update worked, do insert if not
-                #print "storehud2, upd num =", num.rowcount
-                # num is a cursor in sqlite
-                if (   (backend == self.PGSQL and cursor.statusmessage != "UPDATE 1")
-                    or (backend == self.MYSQL_INNODB and num == 0) 
-                    or (backend == self.SQLITE and num.rowcount == 0) 
-                   ):
-                    #print "playerid before insert:",row[2]," num = ", num
-                    num = cursor.execute("""INSERT INTO HudCache
-    (gametypeId, playerId, activeSeats, position, tourneyTypeId, styleKey,
-    HDs, street0VPI, street0Aggr, street0_3BChance, street0_3BDone,
-    street1Seen, street2Seen, street3Seen, street4Seen, sawShowdown,
-    street1Aggr, street2Aggr, street3Aggr, street4Aggr, otherRaisedStreet1,
-    otherRaisedStreet2, otherRaisedStreet3, otherRaisedStreet4, foldToOtherRaisedStreet1, foldToOtherRaisedStreet2,
-    foldToOtherRaisedStreet3, foldToOtherRaisedStreet4, wonWhenSeenStreet1, wonAtSD, stealAttemptChance,
-    stealAttempted, foldBbToStealChance, foldedBbToSteal, foldSbToStealChance, foldedSbToSteal,
-    street1CBChance, street1CBDone, street2CBChance, street2CBDone, street3CBChance,
-    street3CBDone, street4CBChance, street4CBDone, foldToStreet1CBChance, foldToStreet1CBDone,
-    foldToStreet2CBChance, foldToStreet2CBDone, foldToStreet3CBChance, foldToStreet3CBDone, foldToStreet4CBChance,
-    foldToStreet4CBDone, totalProfit, street1CheckCallRaiseChance, street1CheckCallRaiseDone, street2CheckCallRaiseChance,
-    street2CheckCallRaiseDone, street3CheckCallRaiseChance, street3CheckCallRaiseDone, street4CheckCallRaiseChance, street4CheckCallRaiseDone)
-    VALUES (%s, %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s,
-    %s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
-                                  , (row[1], row[2], row[3], row[4], row[5], styleKey, row[6], row[7], row[8], row[9], row[10]
-                                    ,row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20]
-                                    ,row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30]
-                                    ,row[31], row[32], row[33], row[34], row[35], row[36], row[37], row[38], row[39], row[40]
-                                    ,row[41], row[42], row[43], row[44], row[45], row[46], row[47], row[48], row[49], row[50]
-                                    ,row[51], row[52], row[53], row[54], row[55], row[56], row[57], row[58], row[59], row[60]) )
-                    #print "hopefully inserted hud data line: ", cursor.rowcount
-                    # message seems to be "INSERT 0 1"
-                else:
-                    #print "updated(2) hud data line"
-                    pass
-        # else:
-        # print "todo: implement storeHudCache for stud base"
-
-        except:
-            raise FpdbError( "storeHudCache error: " + str(sys.exc_value) )
-        
-    #end def storeHudCache
- 
-    def store_tourneys(self, tourneyTypeId, siteTourneyNo, entries, prizepool, startTime):
-        ret = -1
-        try:
-            # try and create tourney record, fetch id if it already exists
-            # avoids race condition when doing the select first
-            cursor = self.get_cursor()
-            cursor.execute("savepoint ins_tourney")
-            cursor.execute("""INSERT INTO Tourneys
-                          (tourneyTypeId, siteTourneyNo, entries, prizepool, startTime)
-                          VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder'])
-                          ,(tourneyTypeId, siteTourneyNo, entries, prizepool, startTime))
-            ret = self.get_last_insert_id(cursor)
-            #print "created new tourneys.id:",ret
-        except:
-            #if   str(sys.exc_value) contains 'sitetourneyno':
-            #    raise FpdbError( "store_tourneys error: " + str(sys.exc_value) )
-            #else:
-            #print "error insert tourney (%s) trying select ..." % (str(sys.exc_value),)
-            cursor.execute("rollback to savepoint ins_tourney")
-            try:
-                cursor.execute( "SELECT id FROM Tourneys WHERE siteTourneyNo=%s AND tourneyTypeId+0=%s".replace('%s', self.sql.query['placeholder'])
-                              , (siteTourneyNo, tourneyTypeId) )
-                rec = cursor.fetchone()
-                #print "select tourney result: ", rec
-                try:
-                    len(rec)
-                    ret = rec[0]
-                except:
-                    print "Tourney id not found"
-            except:
-                print "Error selecting tourney id:", str(sys.exc_info()[1])
-
-        cursor.execute("release savepoint ins_tourney")
-        #print "store_tourneys returning", ret
-        return ret
-    #end def store_tourneys
 
     def store_tourneys_players(self, tourney_id, player_ids, payin_amounts, ranks, winnings):
         try:
@@ -2531,7 +1931,7 @@ class Database:
     # end def send_finish_msg():
 
     def tRecogniseTourneyType(self, tourney):
-        logging.debug("Database.tRecogniseTourneyType")
+        log.debug("Database.tRecogniseTourneyType")
         typeId = 1
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
@@ -2547,10 +1947,10 @@ class Database:
         try:
             len(result)
             typeId = result[0]
-            logging.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
+            log.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
             for ev in expectedValues :
                 if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
-                    logging.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
+                    log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
                     typeIdMatch = False
                     #break
         except:
@@ -2560,7 +1960,7 @@ class Database:
         if typeIdMatch == False :
             # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
             # if not found create it
-            logging.debug("Searching for a TourneyTypeId matching TourneyType data")
+            log.debug("Searching for a TourneyTypeId matching TourneyType data")
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
                              tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
@@ -2570,9 +1970,9 @@ class Database:
             try:
                 len(result)
                 typeId = result[0]
-                logging.debug("Existing Tourney Type Id found : %d" % typeId)
+                log.debug("Existing Tourney Type Id found : %d" % typeId)
             except TypeError: #this means we need to create a new entry
-                logging.debug("Tourney Type Id not found : create one")
+                log.debug("Tourney Type Id not found : create one")
                 cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
                                 (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
                                  tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
@@ -2583,183 +1983,6 @@ class Database:
     #end def tRecogniseTourneyType
 
         
-    def tRecognizeTourney(self, tourney, dbTourneyTypeId):
-        logging.debug("Database.tRecognizeTourney")
-        tourneyID = 1
-        # Check if tourney exists in db (based on tourney.siteId and tourney.tourNo)
-        # If so retrieve all data to check for consistency
-        cursor = self.get_cursor()
-        cursor.execute (self.sql.query['getTourney'].replace('%s', self.sql.query['placeholder']),
-                        (tourney.tourNo, tourney.siteId)
-                        )
-        result=cursor.fetchone()
-
-        expectedValuesDecimal = { 2  : "entries", 3 : "prizepool", 6  : "buyInChips", 9  : "rebuyChips", 
-                                  10 : "addOnChips", 11 : "rebuyAmount", 12 : "addOnAmount", 13 : "totalRebuys", 
-                                  14 : "totalAddOns", 15 : "koBounty" }
-        expectedValues = { 7 : "tourneyName", 16 : "tourneyComment"  }
-
-        tourneyDataMatch = True
-        tCommentTs = None
-        starttime = None
-        endtime = None
-
-        try:
-            len(result)
-            tourneyID = result[0]
-            logging.debug("Tourney found in db with TourneyID = %d" % tourneyID)
-            if result[1] <> dbTourneyTypeId:
-                tourneyDataMatch = False
-                logging.debug("Tourney has wrong type ID (expected : %s - found : %s)" % (dbTourneyTypeId, result[1]))
-            if (tourney.starttime is None and result[4] is not None) or ( tourney.starttime is not None and fpdb_simple.parseHandStartTime("- %s" % tourney.starttime) <> result[4]) :
-                tourneyDataMatch = False
-                logging.debug("Tourney data mismatch : wrong starttime : Tourney=%s / db=%s" % (tourney.starttime, result[4]))
-            if (tourney.endtime is None and result[5] is not None) or ( tourney.endtime is not None and fpdb_simple.parseHandStartTime("- %s" % tourney.endtime) <> result[5]) :
-                tourneyDataMatch = False
-                logging.debug("Tourney data mismatch : wrong endtime : Tourney=%s / db=%s" % (tourney.endtime, result[5]))
-
-            for ev in expectedValues :
-                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
-                    logging.debug("Tourney data mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
-                    tourneyDataMatch = False
-                    #break
-            for evD in expectedValuesDecimal :
-                if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD)) ) <> result[evD] ):
-                    logging.debug("Tourney data mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValuesDecimal.get(evD), getattr( tourney, expectedValuesDecimal.get(evD)), result[evD]) )
-                    tourneyDataMatch = False
-                    #break
-
-            # TO DO : Deal with matrix summary mutliple parsings
-            
-        except:
-            # Tourney not found : create
-            logging.debug("Tourney is not found : create")
-            if tourney.tourneyComment is not None :
-                tCommentTs = datetime.today()
-            if tourney.starttime is not None :
-                starttime = fpdb_simple.parseHandStartTime("- %s" % tourney.starttime)
-            if tourney.endtime is not None :
-                endtime = fpdb_simple.parseHandStartTime("- %s" % tourney.endtime)
-            # TODO : deal with matrix Id processed
-            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                                (dbTourneyTypeId, tourney.tourNo, tourney.entries, tourney.prizepool, starttime,
-                                 endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
-                                 tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
-                                 tourney.tourneyComment, tCommentTs)
-                                )
-            tourneyID = self.get_last_insert_id(cursor)
-
-
-        # Deal with inconsistent tourney in db
-        if tourneyDataMatch == False :
-            # Update Tourney
-            if result[16] <> tourney.tourneyComment :
-                tCommentTs = datetime.today()
-            if tourney.starttime is not None :
-                starttime = fpdb_simple.parseHandStartTime("- %s" % tourney.starttime)
-            if tourney.endtime is not None :
-                endtime = fpdb_simple.parseHandStartTime("- %s" % tourney.endtime)
-
-            cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
-                                (dbTourneyTypeId, tourney.entries, tourney.prizepool, starttime,
-                                 endtime, tourney.buyInChips, tourney.tourneyName, 0, tourney.rebuyChips, tourney.addOnChips,
-                                 tourney.rebuyAmount, tourney.addOnAmount, tourney.totalRebuys, tourney.totalAddOns, tourney.koBounty,
-                                 tourney.tourneyComment, tCommentTs, tourneyID)
-                            )
-
-        return tourneyID
-    #end def tRecognizeTourney
-    
-    def tStoreTourneyPlayers(self, tourney, dbTourneyId):
-        logging.debug("Database.tStoreTourneyPlayers")
-        # First, get playerids for the players and specifically the one for hero : 
-        playersIds = self.recognisePlayerIDs(tourney.players, tourney.siteId)
-        # hero may be None for matrix tourneys summaries
-#        hero = [ tourney.hero ]
-#        heroId = self.recognisePlayerIDs(hero , tourney.siteId)
-#        logging.debug("hero Id = %s - playersId = %s" % (heroId , playersIds))
-
-        tourneyPlayersIds=[]
-        try:
-            cursor = self.get_cursor()
-    
-            for i in xrange(len(playersIds)):
-                cursor.execute(self.sql.query['getTourneysPlayers'].replace('%s', self.sql.query['placeholder'])
-                              ,(dbTourneyId, playersIds[i]))
-                result=cursor.fetchone()
-                #print "tried SELECTing tourneys_players.id:",tmp
-                
-                try:
-                    len(result)
-                    # checking data
-                    logging.debug("TourneysPlayers found : checking data")
-                    expectedValuesDecimal = { 1  : "payinAmounts", 2 : "finishPositions", 3  : "winnings", 4 : "countRebuys", 
-                                              5  : "countAddOns", 6 : "countKO" }
-    
-                    tourneyPlayersIds.append(result[0]);
-    
-                    tourneysPlayersDataMatch = True
-                    for evD in expectedValuesDecimal :
-                        if ( Decimal(getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]] ) <> result[evD] ):
-                            logging.debug("TourneysPlayers data mismatch for TourneysPlayer id=%d, name=%s : wrong %s : Tourney=%s / db=%s" % (result[0], tourney.players[i], expectedValuesDecimal.get(evD), getattr( tourney, expectedValuesDecimal.get(evD))[tourney.players[i]], result[evD]) )
-                            tourneysPlayersDataMatch = False
-                            #break
-
-                    if tourneysPlayersDataMatch == False:
-                        logging.debug("TourneysPlayers data update needed")
-                        cursor.execute (self.sql.query['updateTourneysPlayers'].replace('%s', self.sql.query['placeholder']),
-                                            (tourney.payinAmounts[tourney.players[i]], tourney.finishPositions[tourney.players[i]],
-                                             tourney.winnings[tourney.players[i]] , tourney.countRebuys[tourney.players[i]],
-                                             tourney.countAddOns[tourney.players[i]] , tourney.countKO[tourney.players[i]],
-                                             result[7], result[8], result[0])
-                                        )
-
-                except TypeError:
-                    logging.debug("TourneysPlayers not found : need insert")
-                    cursor.execute (self.sql.query['insertTourneysPlayers'].replace('%s', self.sql.query['placeholder']),
-                                        (dbTourneyId, playersIds[i],
-                                         tourney.payinAmounts[tourney.players[i]], tourney.finishPositions[tourney.players[i]],
-                                         tourney.winnings[tourney.players[i]] , tourney.countRebuys[tourney.players[i]],
-                                         tourney.countAddOns[tourney.players[i]] , tourney.countKO[tourney.players[i]],
-                                         None, None)
-                                        )
-                    tourneyPlayersIds.append(self.get_last_insert_id(cursor))
-                                        
-        except:
-            raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
-    
-        return tourneyPlayersIds
-    #end def tStoreTourneyPlayers
-
-    def tUpdateTourneysHandsPlayers(self, tourney, dbTourneysPlayersIds, dbTourneyTypeId):
-        logging.debug("Database.tCheckTourneysHandsPlayers")
-        try:
-            # Massive update seems to take quite some time ...
-#            query = self.sql.query['updateHandsPlayersForTTypeId2'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner'].join([self.sql.query['placeholder'] for id in dbTourneysPlayersIds]) )
-#            cursor = self.get_cursor()
-#            cursor.execute (query, dbTourneysPlayersIds)
-
-            query = self.sql.query['selectHandsPlayersWithWrongTTypeId'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner'].join([self.sql.query['placeholder'] for id in dbTourneysPlayersIds]) )
-            #print "query : %s" % query
-            cursor = self.get_cursor()
-            cursor.execute (query, dbTourneysPlayersIds)
-            result=cursor.fetchall()
-
-            if (len(result) > 0):
-                logging.debug("%d lines need update : %s" % (len(result), result) )
-                listIds = []
-                for i in result:
-                    listIds.append(i[0])
-
-                query2 = self.sql.query['updateHandsPlayersForTTypeId'] % (dbTourneyTypeId, self.sql.query['handsPlayersTTypeId_joiner_id'].join([self.sql.query['placeholder'] for id in listIds]) )
-                cursor.execute (query2, listIds)
-            else:
-                logging.debug("No need to update, HandsPlayers are correct")
-
-        except:
-            raise fpdb_simple.FpdbError( "tStoreTourneyPlayers error: " + str(sys.exc_value) )
-    #end def tUpdateTourneysHandsPlayers
-
 
 # Class used to hold all the data needed to write a hand to the db
 # mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 

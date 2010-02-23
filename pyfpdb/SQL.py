@@ -58,6 +58,27 @@ class Sql:
         self.query['drop_table'] = """DROP TABLE IF EXISTS """   
 
 
+        ##################################################################
+        # Set transaction isolation level
+        ##################################################################
+
+        if db_server == 'mysql' or db_server == 'postgresql':
+            self.query['set tx level'] = """SET SESSION TRANSACTION
+            ISOLATION LEVEL READ COMMITTED"""
+        elif db_server == 'sqlite':
+            self.query['set tx level'] = """ """
+
+
+        ################################
+        # Select basic info
+        ################################
+
+        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
+
+        self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
+        
+        self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+
         ################################
         # Create Settings
         ################################
@@ -214,6 +235,7 @@ class Sql:
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
+                            tourneyId INT UNSIGNED NOT NULL, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
@@ -249,6 +271,7 @@ class Sql:
                             id BIGSERIAL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
+                            tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
                             handStart timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
@@ -283,6 +306,7 @@ class Sql:
                             id INTEGER PRIMARY KEY,
                             tableName TEXT(22) NOT NULL,
                             siteHandNo INT NOT NULL,
+                            tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL,
                             handStart REAL NOT NULL,
                             importTime REAL NOT NULL,
@@ -1824,6 +1848,15 @@ class Sql:
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
+        self.query['getLimits3'] = """select DISTINCT type
+                                           , limitType
+                                           , case type 
+                                                 when 'ring' then bigBlind 
+                                                 else buyin 
+                                             end as bb_or_buyin
+                                      from Gametypes gt
+                                      cross join TourneyTypes tt
+                                      order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
@@ -1881,6 +1914,7 @@ class Sql:
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
+                      <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -1964,6 +1998,7 @@ class Sql:
                            inner join Sites s       on  (s.Id = gt.siteId)
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
+                      <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -1995,6 +2030,7 @@ class Sql:
         elif db_server == 'sqlite':
             self.query['playerDetailedStats'] = """
                      select  <hgameTypeId>                                                          AS hgametypeid
+                            ,<playerName>                                                           AS pname
                             ,gt.base
                             ,gt.category                                                            AS category
                             ,upper(gt.limitType)                                                    AS limittype
@@ -2046,7 +2082,9 @@ class Sql:
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
                            inner join Sites s       on  (s.Id = gt.siteId)
+                           inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
+                      <game_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2573,6 +2611,7 @@ class Sql:
             AND   h.handStart > '<startdate_test>'
             AND   h.handStart < '<enddate_test>'
             <limit_test>
+            <game_test>
             AND   hp.tourneysPlayersId IS NULL
             GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.handStart"""
@@ -3088,6 +3127,147 @@ class Sql:
                         ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
 """
 
+        self.query['insert_hudcache'] = """
+            INSERT INTO HudCache (
+                gametypeId,
+                playerId,
+                activeSeats,
+                position,
+                tourneyTypeId,
+                styleKey,
+                HDs,
+                street0VPI,
+                street0Aggr,
+                street0_3BChance,
+                street0_3BDone,
+                street1Seen,
+                street2Seen,
+                street3Seen,
+                street4Seen,
+                sawShowdown,
+                street1Aggr,
+                street2Aggr,
+                street3Aggr,
+                street4Aggr,
+                otherRaisedStreet1,
+                otherRaisedStreet2,
+                otherRaisedStreet3,
+                otherRaisedStreet4,
+                foldToOtherRaisedStreet1,
+                foldToOtherRaisedStreet2,
+                foldToOtherRaisedStreet3,
+                foldToOtherRaisedStreet4,
+                wonWhenSeenStreet1,
+                wonAtSD,
+                stealAttemptChance,
+                stealAttempted,
+                foldBbToStealChance,
+                foldedBbToSteal,
+                foldSbToStealChance,
+                foldedSbToSteal,
+                street1CBChance,
+                street1CBDone,
+                street2CBChance,
+                street2CBDone,
+                street3CBChance,
+                street3CBDone,
+                street4CBChance,
+                street4CBDone,
+                foldToStreet1CBChance,
+                foldToStreet1CBDone,
+                foldToStreet2CBChance,
+                foldToStreet2CBDone,
+                foldToStreet3CBChance,
+                foldToStreet3CBDone,
+                foldToStreet4CBChance,
+                foldToStreet4CBDone,
+                totalProfit,
+                street1CheckCallRaiseChance,
+                street1CheckCallRaiseDone,
+                street2CheckCallRaiseChance,
+                street2CheckCallRaiseDone,
+                street3CheckCallRaiseChance,
+                street3CheckCallRaiseDone,
+                street4CheckCallRaiseChance,
+                street4CheckCallRaiseDone)
+            VALUES (%s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s)"""
+
+        self.query['update_hudcache'] = """
+            UPDATE HudCache SET
+            HDs=HDs+%s,
+            street0VPI=street0VPI+%s,
+            street0Aggr=street0Aggr+%s,
+            street0_3BChance=street0_3BChance+%s,
+            street0_3BDone=street0_3BDone+%s,
+            street1Seen=street1Seen+%s,
+            street2Seen=street2Seen+%s,
+            street3Seen=street3Seen+%s,
+            street4Seen=street4Seen+%s,
+            sawShowdown=sawShowdown+%s,
+            street1Aggr=street1Aggr+%s,
+            street2Aggr=street2Aggr+%s,
+            street3Aggr=street3Aggr+%s,
+            street4Aggr=street4Aggr+%s,
+            otherRaisedStreet1=otherRaisedStreet1+%s,
+            otherRaisedStreet2=otherRaisedStreet2+%s,
+            otherRaisedStreet3=otherRaisedStreet3+%s,
+            otherRaisedStreet4=otherRaisedStreet4+%s,
+            foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s,
+            foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
+            foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s,
+            foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
+            wonWhenSeenStreet1=wonWhenSeenStreet1+%s,
+            wonAtSD=wonAtSD+%s,
+            stealAttemptChance=stealAttemptChance+%s,
+            stealAttempted=stealAttempted+%s,
+            foldBbToStealChance=foldBbToStealChance+%s,
+            foldedBbToSteal=foldedBbToSteal+%s,
+            foldSbToStealChance=foldSbToStealChance+%s,
+            foldedSbToSteal=foldedSbToSteal+%s,
+            street1CBChance=street1CBChance+%s,
+            street1CBDone=street1CBDone+%s,
+            street2CBChance=street2CBChance+%s,
+            street2CBDone=street2CBDone+%s,
+            street3CBChance=street3CBChance+%s,
+            street3CBDone=street3CBDone+%s,
+            street4CBChance=street4CBChance+%s,
+            street4CBDone=street4CBDone+%s,
+            foldToStreet1CBChance=foldToStreet1CBChance+%s,
+            foldToStreet1CBDone=foldToStreet1CBDone+%s,
+            foldToStreet2CBChance=foldToStreet2CBChance+%s,
+            foldToStreet2CBDone=foldToStreet2CBDone+%s,
+            foldToStreet3CBChance=foldToStreet3CBChance+%s,
+            foldToStreet3CBDone=foldToStreet3CBDone+%s,
+            foldToStreet4CBChance=foldToStreet4CBChance+%s,
+            foldToStreet4CBDone=foldToStreet4CBDone+%s,
+            totalProfit=totalProfit+%s,
+            street1CheckCallRaiseChance=street1CheckCallRaiseChance+%s,
+            street1CheckCallRaiseDone=street1CheckCallRaiseDone+%s,
+            street2CheckCallRaiseChance=street2CheckCallRaiseChance+%s,
+            street2CheckCallRaiseDone=street2CheckCallRaiseDone+%s,
+            street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
+            street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
+            street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
+            street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
+        WHERE gametypeId+0=%s
+            AND   playerId=%s
+            AND   activeSeats=%s
+            AND   position=%s
+            AND   tourneyTypeId+0=%s
+            AND   styleKey=%s"""
+
         self.query['get_hero_hudcache_start'] = """select min(hc.styleKey)
                                                    from HudCache hc
                                                    where hc.playerId in <playerid_list>
@@ -3292,6 +3472,7 @@ class Sql:
                                             tablename,
                                             gametypeid,
                                             sitehandno,
+                                            tourneyId,
                                             handstart,
                                             importtime,
                                             seats,
@@ -3322,7 +3503,7 @@ class Sql:
                                              VALUES
                                               (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                               %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                               %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
 
         self.query['store_hands_players'] = """INSERT INTO HandsPlayers (

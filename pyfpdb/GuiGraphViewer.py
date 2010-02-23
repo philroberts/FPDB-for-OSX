@@ -27,7 +27,7 @@ from time import *
 
 try:
     import matplotlib
-    matplotlib.use('GTK')
+    matplotlib.use('GTKCairo')
     from matplotlib.figure import Figure
     from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
@@ -44,6 +44,7 @@ except ImportError, inst:
 import fpdb_import
 import Database
 import Filters
+import Charset
 
 class GuiGraphViewer (threading.Thread):
 
@@ -137,6 +138,8 @@ class GuiGraphViewer (threading.Thread):
             heroes  = self.filters.getHeroes()
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
+            games   = self.filters.getGames()
+            
             for i in ('show', 'none'):
                 if i in limits:
                     limits.remove(i)
@@ -144,11 +147,10 @@ class GuiGraphViewer (threading.Thread):
             for site in sites:
                 if sites[site] == True:
                     sitenos.append(siteids[site])
-                    c = self.db.get_cursor()
-                    c.execute(self.sql.query['getPlayerId'], (heroes[site],))
-                    result = c.fetchall()
-                    if len(result) == 1:
-                        playerids.append( int(result[0][0]) )
+                    _hname = Charset.to_utf8(heroes[site])
+                    result = self.db.get_player_id(self.conf, site, _hname)
+                    if result is not None:
+                        playerids.append(int(result))
 
             if not sitenos:
                 #Should probably pop up here.
@@ -171,20 +173,49 @@ class GuiGraphViewer (threading.Thread):
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits)
+            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games)
             print "Graph generated in: %s" %(time() - starttime)
 
-            self.ax.set_title("Profit graph for ring games")
 
             #Set axis labels and grid overlay properites
             self.ax.set_xlabel("Hands", fontsize = 12)
             self.ax.set_ylabel("$", fontsize = 12)
             self.ax.grid(color='g', linestyle=':', linewidth=0.2)
             if green == None or green == []:
+                self.ax.set_title("No Data for Player(s) Found")
+                green = ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                            500.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,  1000.,
+                            1000., 1000.,  1000.,  1000.,  1000.,  1000.,   875.,   750.,
+                            625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+                red   =  ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                            700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                            0.,   0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                            375.,   500.,   500.,   500.,   500.,   500.,   500.,   500.,
+                            500.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+                blue =    ([    0.,     0.,     0.,     0.,   500.,  1000.,   900.,   800.,
+                              700.,   600.,   500.,   400.,   300.,   200.,   100.,     0.,
+                              0.,     0.,     0.,     0.,     0.,     0.,   125.,   250.,
+                              375.,   500.,   625.,   750.,   875.,  1000.,   875.,   750.,
+                              625.,   500.,   375.,   250.,   125.,     0.,     0.,     0.,
+                            0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
+                            400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
+
+                self.ax.plot(green, color='green', label='Hands: %d\nProfit: $%.2f' %(len(green), green[-1]))
+                self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
+                self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
+                self.graphBox.add(self.canvas)
+                self.canvas.show()
+                self.canvas.draw()
 
                 #TODO: Do something useful like alert user
-                print "No hands returned by graph query"
+                #print "No hands returned by graph query"
             else:
+                self.ax.set_title("Profit graph for ring games")
                 #text = "Profit: $%.2f\nTotal Hands: %d" %(green[-1], len(green))
                 #self.ax.annotate(text,
                 #                 xy=(10, -10),
@@ -201,7 +232,6 @@ class GuiGraphViewer (threading.Thread):
                 else:
                     self.ax.legend(loc='best', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
-
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
@@ -212,7 +242,7 @@ class GuiGraphViewer (threading.Thread):
 
     #end of def showClicked
 
-    def getRingProfitGraph(self, names, sites, limits):
+    def getRingProfitGraph(self, names, sites, limits, games):
         tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
 #        print "DEBUG: getRingProfitGraph"
         start_date, end_date = self.filters.getDates()
@@ -224,6 +254,22 @@ class GuiGraphViewer (threading.Thread):
         sitetest = str(tuple(sites))
         #nametest = nametest.replace("L", "")
 
+        q = []
+        for m in self.filters.display.items():
+            if m[0] == 'Games' and m[1]:
+                for n in games:
+                    if games[n]:
+                        q.append(n)
+                if len(q) > 0:
+                    gametest = str(tuple(q))
+                    gametest = gametest.replace("L", "")
+                    gametest = gametest.replace(",)",")")
+                    gametest = gametest.replace("u'","'")
+                    gametest = "and gt.category in %s" % gametest
+                else:
+                    gametest = "and gt.category IS NULL"
+        tmp = tmp.replace("<game_test>", gametest)
+        
         lims = [int(x) for x in limits if x.isdigit()]
         potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
         nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
@@ -273,8 +319,8 @@ class GuiGraphViewer (threading.Thread):
         winnings = self.db.cursor.fetchall()
         self.db.rollback()
 
-        if winnings == ():
-            return None
+        if len(winnings) == 0:
+            return (None, None, None)
 
         green = map(lambda x:float(x[1]), winnings)
         blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
