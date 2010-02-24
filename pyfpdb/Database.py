@@ -643,6 +643,29 @@ class Database:
                            , hero_id = -1
                            , num_seats = 6
                            ):
+
+        (hud_style, h_hud_style, query, subs) = self.prep_aggregation(hand, hud_params, hero_id, num_seats)
+
+        c = self.connection.cursor()
+
+#       now get the stats
+        stat_dict = {}
+        c.execute(self.sql.query[query], subs)
+        colnames = [desc[0] for desc in c.description]
+        for row in c.fetchall():
+            playerid = row[0]
+            if (playerid == hero_id and h_hud_style != 'S') or (playerid != hero_id and hud_style != 'S'):
+                t_dict = {}
+                for name, val in zip(colnames, row):
+                    t_dict[name.lower()] = val
+#                    print t_dict
+                stat_dict[t_dict['player_id']] = t_dict
+
+        return stat_dict
+
+    def prep_aggregation(self, hand, hud_params, hero_id, num_seats):
+#    This sorts through the all the info having to do with aggregation
+#    and returns what get_stats needs. 
         hud_style   = hud_params['hud_style']
         agg_bb_mult = hud_params['agg_bb_mult']
         seats_style = hud_params['seats_style']
@@ -651,8 +674,6 @@ class Database:
         h_agg_bb_mult = hud_params['h_agg_bb_mult']
         h_seats_style = hud_params['h_seats_style']
         h_seats_cust_nums = hud_params['h_seats_cust_nums']
-
-        stat_dict = {}
 
         if seats_style == 'A':
             seats_min, seats_max = 0, 10
@@ -715,23 +736,7 @@ class Database:
         subs = (hand
                ,hero_id, stylekey, agg_bb_mult, agg_bb_mult, seats_min, seats_max  # hero params
                ,hero_id, h_stylekey, h_agg_bb_mult, h_agg_bb_mult, h_seats_min, h_seats_max)    # villain params
-
-        #print "get stats: hud style =", hud_style, "query =", query, "subs =", subs
-        c = self.connection.cursor()
-
-#       now get the stats
-        c.execute(self.sql.query[query], subs)
-        colnames = [desc[0] for desc in c.description]
-        for row in c.fetchall():
-            playerid = row[0]
-            if (playerid == hero_id and h_hud_style != 'S') or (playerid != hero_id and hud_style != 'S'):
-                t_dict = {}
-                for name, val in zip(colnames, row):
-                    t_dict[name.lower()] = val
-#                    print t_dict
-                stat_dict[t_dict['player_id']] = t_dict
-
-        return stat_dict
+        return (hud_style, h_hud_style, query, subs)
 
     # uses query on handsplayers instead of hudcache to get stats on just this session
     def get_stats_from_hand_session(self, hand, stat_dict, hero_id
