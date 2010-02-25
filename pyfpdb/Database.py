@@ -142,14 +142,18 @@ class Database:
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
-                #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
-                #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
+                , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
+                , {'tab':'HudCache',        'col':'playerId',          'drop':0}
+                , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'Players',         'col':'siteId',            'drop':1}
+                , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
+                , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
+                , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               ]
 
@@ -725,6 +729,8 @@ class Database:
 
 #       now get the stats
         c.execute(self.sql.query[query], subs)
+        #for row in c.fetchall():   # needs "explain query plan" in sql statement
+        #    print "query plan: ", row
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]
@@ -2100,6 +2106,7 @@ class HandToWrite:
 
 if __name__=="__main__":
     c = Configuration.Config()
+    sql = SQL.Sql(db_server = 'sqlite')
 
     db_connection = Database(c) # mysql fpdb holdem
 #    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
@@ -2117,12 +2124,25 @@ if __name__=="__main__":
     if hero:
         print "nutOmatic is id_player = %d" % hero
     
+    # example of displaying query plan in sqlite:
+    if db_connection.backend == 4:
+        print
+        c = db_connection.get_cursor()
+        c.execute('explain query plan '+sql.query['get_table_name'], (h, ))
+        for row in c.fetchall():
+            print "query plan: ", row
+        print
+    
+    t0 = time()
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    t1 = time()
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
+    
+    print "get_stats took:  %4.3f seconds" % (t1-t0)
 
     print "press enter to continue"
     sys.stdin.readline()
