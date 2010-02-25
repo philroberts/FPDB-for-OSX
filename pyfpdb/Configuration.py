@@ -696,18 +696,8 @@ class Config:
         try:    db['db-server'] = self.supported_databases[name].db_server
         except: pass
 
-        if self.supported_databases[name].db_server== DATABASE_TYPE_MYSQL:
-            db['db-backend'] = 2
-        elif self.supported_databases[name].db_server== DATABASE_TYPE_POSTGRESQL:
-            db['db-backend'] = 3
-        elif self.supported_databases[name].db_server== DATABASE_TYPE_SQLITE:
-            db['db-backend'] = 4
-            # sqlcoder: this assignment fixes unicode problems for me with sqlite (windows, cp1252)
-            #           feel free to remove or improve this if you understand the problems
-            #           better than me (not hard!)
-            Charset.not_needed1, Charset.not_needed2, Charset.not_needed3 = True, True, True
-        else:
-            raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
+        db['db-backend'] = self.get_backend(self.supported_databases[name].db_server)
+
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
@@ -726,6 +716,23 @@ class Config:
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
             if db_type   is not None: self.supported_databases[db_name].dp_type   = db_type
         return
+    
+    def get_backend(self, name):
+        """Returns the number of the currently used backend"""
+        if name == DATABASE_TYPE_MYSQL:
+            ret = 2
+        elif name == DATABASE_TYPE_POSTGRESQL:
+            ret = 3
+        elif name == DATABASE_TYPE_SQLITE:
+            ret = 4
+            # sqlcoder: this assignment fixes unicode problems for me with sqlite (windows, cp1252)
+            #           feel free to remove or improve this if you understand the problems
+            #           better than me (not hard!)
+            Charset.not_needed1, Charset.not_needed2, Charset.not_needed3 = True, True, True
+        else:
+            raise ValueError('Unsupported database backend: %s' % self.supported_databases[name].db_server)
+
+        return ret
 
     def getDefaultSite(self):
         "Returns first enabled site or None"

@@ -456,7 +456,7 @@ class Importer:
                 # FIXME: Need to test for bulk import that isn't rebuilding the cache
                 if self.callHud:
                     for hand in handlist:
-                        if hand is not None:
+                        if hand is not None and not hand.is_duplicate:
                             hand.updateHudCache(self.database)
                 self.database.commit()
 
