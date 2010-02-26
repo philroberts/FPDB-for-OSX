@@ -1346,6 +1346,7 @@ class Sql:
 
 #    same as above except stats are aggregated for all blind/limit levels
         self.query['get_stats_from_hand_aggregated'] = """
+                /* explain query plan */
                 SELECT hc.playerId                         AS player_id,
                        max(case when hc.gametypeId = h.gametypeId
                                 then hp.seatNo
