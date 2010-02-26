@@ -89,7 +89,6 @@ class Table(Table_Window):
 #                    break
 
         if window_number is None:
-            print "Window %s not found. Skipping." % search_string
             return None
 
 #        my_geo = self.window.get_geometry()

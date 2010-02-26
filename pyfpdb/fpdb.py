@@ -1025,23 +1025,24 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         return response
 
     def validate_config(self):
-        hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-        hhbase    = os.path.expanduser(hhbase)
-        #hhdir     = os.path.join(hhbase,site)
-        hhdir       = hhbase
-        if not os.path.isdir(hhdir):
-            diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-            diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
-            diapath.format_secondary_text(diastring)
-            response = diapath.run()
-            diapath.destroy()
-            if response == gtk.RESPONSE_YES:
-                try:
-                    os.makedirs(hhdir)
-                except:
-                    self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
-            elif response == gtk.RESPONSE_NO:
-               self.select_hhArchiveBase()
+        if self.config.get_import_parameters().get('saveStarsHH'):
+            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+            hhbase    = os.path.expanduser(hhbase)
+            #hhdir     = os.path.join(hhbase,site)
+            hhdir       = hhbase
+            if not os.path.isdir(hhdir):
+                diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
+                diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
+                diapath.format_secondary_text(diastring)
+                response = diapath.run()
+                diapath.destroy()
+                if response == gtk.RESPONSE_YES:
+                    try:
+                        os.makedirs(hhdir)
+                    except:
+                        self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
+                elif response == gtk.RESPONSE_NO:
+                    self.select_hhArchiveBase()
 
     def select_hhArchiveBase(self, widget=None):
         fc = gtk.FileChooserDialog(title="Select HH Output Directory", parent=None, action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, buttons=(gtk.STOCK_OPEN,gtk.RESPONSE_OK), backend=None)
