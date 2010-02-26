@@ -470,7 +470,8 @@ class Config:
 
         self.file = file
         self.dir_self = get_exec_path()
-        self.dir_config = os.path.dirname(self.file)
+#        self.dir_config = os.path.dirname(self.file)
+        self.dir_config = get_default_config_path()
         self.dir_log = os.path.join(self.dir_config, 'log')
         self.dir_database = os.path.join(self.dir_config, 'database')
         self.log_file = os.path.join(self.dir_log, 'fpdb-log.txt')
