@@ -1449,7 +1449,7 @@ class Pot(object):
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
-        print "DEBUG: committed: %s" % committed
+        #print "DEBUG: committed: %s" % committed
         #ERROR below. lastbet is correct in most cases, but wrong when 
         #             additional money is committed to the pot in cash games
         #             due to an additional sb being posted. (Speculate that
