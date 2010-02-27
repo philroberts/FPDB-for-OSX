@@ -125,6 +125,7 @@ class Hand(object):
         # currency symbol for this hand
         self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         self.pot.setSym(self.sym)
+        self.is_duplicate = False  # i.e. don't update hudcache if true
 
     def __str__(self):
         vars = ( ("BB", self.bb),
@@ -236,6 +237,7 @@ db: a connected Database object"""
             # TourneysPlayers
         else:
             log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
+            self.is_duplicate = True  # i.e. don't update hudcache
             raise FpdbHandDuplicate(hh['siteHandNo'])
 
     def updateHudCache(self, db):
@@ -675,6 +677,7 @@ class HoldemOmahaHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             if handid is not None:
                 self.select(handid) # Will need a handId
