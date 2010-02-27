@@ -211,6 +211,9 @@ class Filters(threading.Thread):
             self.Button2.connect("clicked", self.callback['button2'], "clicked")
             self.Button2.set_sensitive(True)
 
+        # make sure any locks on db are released:
+        self.db.rollback()
+
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.mainVBox

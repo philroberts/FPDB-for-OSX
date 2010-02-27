@@ -227,7 +227,7 @@ class DerivedStats():
 
             #print "bb =", bb, "sb =", sb, "players =", players
             for i,player in enumerate(reversed(players)):
-                self.handsplayers[player]['position'] = str(i)
+                self.handsplayers[player]['position'] = i
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
@@ -305,12 +305,13 @@ class DerivedStats():
         """Fills stealAttempt(Chance|ed, fold(Bb|Sb)ToSteal(Chance|)
 
         Steal attempt - open raise on positions 1 0 S - i.e. MP3, CO, BU, SB
+                        (note: I don't think PT2 counts SB steals in HU hands, maybe we shouldn't?)
         Fold to steal - folding blind after steal attemp wo any other callers or raisers
         """
         steal_attempt = False
-        steal_positions = ('1', '0', 'S')
+        steal_positions = (1, 0, 'S')
         if hand.gametype['base'] == 'stud':
-            steal_positions = ('2', '1', '0')
+            steal_positions = (2, 1, 0)
         for action in hand.actions[hand.actionStreets[1]]:
             pname, act = action[0], action[1]
             posn = self.handsplayers[pname]['position']

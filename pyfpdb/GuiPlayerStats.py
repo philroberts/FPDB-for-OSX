@@ -81,7 +81,7 @@ class GuiPlayerStats (threading.Thread):
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh")
+        self.filters.registerButton2Name("_Refresh Stats")
         self.filters.registerButton2Callback(self.refreshStats)
 
         # ToDo: store in config
@@ -520,7 +520,7 @@ class GuiPlayerStats (threading.Thread):
             blindtest = str(tuple(nolims))
             blindtest = blindtest.replace("L", "")
             blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) ) )'
+            bbtest = bbtest + blindtest + ' ) )'
         else:
             bbtest = bbtest + '(-1) ) )'
         if type == 'ring':
