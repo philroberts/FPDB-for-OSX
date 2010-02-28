@@ -917,7 +917,6 @@ class Database:
                         print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
                               % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
                 else:
-                    print "Only MySQL and Postgres supported so far"
                     return -1
         
         for idx in self.indexes[self.backend]:
@@ -952,7 +951,6 @@ class Database:
                         print "warning: index %s_%s_idx not dropped %s, continuing ..." \
                               % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
                 else:
-                    print "Error: Only MySQL and Postgres supported so far"
                     return -1
 
         if self.backend == self.PGSQL:
@@ -1007,7 +1005,6 @@ class Database:
                     except:
                         print "   create fk failed: " + str(sys.exc_info())
                 else:
-                    print "Only MySQL and Postgres supported so far"
                     return -1
         
         for idx in self.indexes[self.backend]:
@@ -1029,7 +1026,6 @@ class Database:
                     except:
                         print "   create index failed: " + str(sys.exc_info())
                 else:
-                    print "Only MySQL and Postgres supported so far"
                     return -1
 
         if self.backend == self.PGSQL:
