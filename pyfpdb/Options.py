@@ -27,7 +27,7 @@ def fpdb_options():
                       action="store_true",
                       help="If passed error output will go to the console rather than .")
     parser.add_option("-d", "--databaseName",
-                      dest="dbname", default="fpdb",
+                      dest="dbname",
                       help="Overrides the default database name")
     parser.add_option("-c", "--configFile",
                       dest="config", default=None,
