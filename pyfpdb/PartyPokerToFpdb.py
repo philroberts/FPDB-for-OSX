@@ -105,13 +105,20 @@ class PartyPoker(HandHistoryConverter):
 
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""
-        mo = self.maxOccSeat(hand)
-
-        if mo == 10: return mo
-        if mo == 2: return 2
-        if mo <= 6: return 6
-        # there are 9-max tables for cash and 10-max for tournaments
-        return 9 if hand.gametype['type']=='ring' else 10
+        # Total number of players : 4/6 
+        re_seats = re.compile("""Total\s+number\s+of\s+players\s+\:\s+\d+.{1}(?P<SEATS>\d+)""" , re.VERBOSE)
+        try:            
+            m = re_seats.search(hand.handText)
+            mo = m.groupdict()
+            mo = _mo['SEATS']
+            return mo
+        except:
+            mo = self.maxOccSeat(hand)
+            if mo == 10: return mo
+            if mo == 2: return 2
+            if mo <= 6: return 6
+            # there are 9-max tables for cash and 10-max for tournaments
+            return 9 if hand.gametype['type']=='ring' else 10
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
