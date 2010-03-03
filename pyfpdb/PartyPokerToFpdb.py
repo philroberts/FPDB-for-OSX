@@ -83,8 +83,9 @@ class PartyPoker(HandHistoryConverter):
             (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
+            \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """,
-          re.VERBOSE|re.MULTILINE)
+          re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\x00+')
@@ -105,8 +106,6 @@ class PartyPoker(HandHistoryConverter):
 
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""
-        # Total number of players : 4/6 
-        re_seats = re.compile("""Total\s+number\s+of\s+players\s+\:\s+\d+.{1}(?P<SEATS>\d+)""" , re.VERBOSE)
         try:            
             m = re_seats.search(hand.handText)
             mo = m.groupdict()
@@ -321,6 +320,9 @@ class PartyPoker(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] != 'Real':
                 # if realy party doesn's save play money hh
                 hand.gametype['currency'] = 'play'
+            if key == 'MAX':
+                hand.maxseats = int(info[key])
+
 
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
