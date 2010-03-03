@@ -77,7 +77,7 @@ class PartyPoker(HandHistoryConverter):
           re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)\s+
+            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)?\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
             (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
