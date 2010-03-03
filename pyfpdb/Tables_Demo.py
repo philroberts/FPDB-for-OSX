@@ -3,7 +3,7 @@
 
 Main program module to test/demo the Tables subclasses.
 """
-#    Copyright 2008 - 2009, Ray E. Barker
+#    Copyright 2008 - 2010, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -24,10 +24,8 @@ Main program module to test/demo the Tables subclasses.
 #    Standard Library modules
 import sys
 import os
-import re
 
 #    pyGTK modules
-import pygtk
 import gtk
 import gobject
 
@@ -103,7 +101,7 @@ if __name__=="__main__":
 
     fake = fake_hud(table)
     print "fake =", fake
-#    gobject.timeout_add(100, check_on_table, table, fake)
+    gobject.timeout_add(100, check_on_table, table, fake)
     print "calling main"
     gtk.main()
 
