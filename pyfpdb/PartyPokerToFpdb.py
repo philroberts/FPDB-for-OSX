@@ -320,7 +320,7 @@ class PartyPoker(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] != 'Real':
                 # if realy party doesn's save play money hh
                 hand.gametype['currency'] = 'play'
-            if key == 'MAX':
+            if key == 'MAX' and info[key] is not None:
                 hand.maxseats = int(info[key])
 
 
