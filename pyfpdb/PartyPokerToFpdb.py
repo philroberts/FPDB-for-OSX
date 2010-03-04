@@ -360,8 +360,14 @@ class PartyPoker(HandHistoryConverter):
         if hand.gametype['type'] == 'ring':
             try:
                 assert noSmallBlind==False
-                m = self.re_PostSB.search(hand.handText)
-                hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+                liveBlind = True
+                for m in self.re_PostSB.finditer(hand.handText):
+                    if liveBlind:
+                        hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+                        liveBlind = False
+                    else:
+                        # Post dead blinds as ante
+                        hand.addBlind(m.group('PNAME'), 'secondsb', m.group('SB'))
             except: # no small blind
                 hand.addBlind(None, None, None)
 
