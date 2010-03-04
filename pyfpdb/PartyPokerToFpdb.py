@@ -261,6 +261,7 @@ class PartyPoker(HandHistoryConverter):
                     if v[0] in self.pot.returned:
                         self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
                         self.collectees[v[0]] -= self.pot.returned[v[0]]
+                        self.pot.returned[v[0]] = 0
                 return origTotalPot()
             return totalPot
         instancemethod = type(hand.totalPot)
