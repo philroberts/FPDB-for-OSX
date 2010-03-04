@@ -162,7 +162,7 @@ class DerivedStats():
                 self.handsplayers[player]['wonAtSD'] = 1.0
 
         for player in hand.pot.committed:
-            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
+            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
 
         self.calcCBets(hand)
 
@@ -345,9 +345,9 @@ class DerivedStats():
         for action in hand.actions[hand.actionStreets[1]]:
             # FIXME: fill other(3|4)BStreet0 - i have no idea what does it mean
             pname, aggr = action[0], action[1] in ('raises', 'bets')
-            self.handsplayers[pname]['street0_3BChance'] = bet_level == 2
+            self.handsplayers[pname]['street0_3BChance'] = self.handsplayers[pname]['street0_3BChance'] or bet_level == 2
             self.handsplayers[pname]['street0_4BChance'] = bet_level == 3
-            self.handsplayers[pname]['street0_3BDone'] =  aggr and (self.handsplayers[pname]['street0_3BChance'])
+            self.handsplayers[pname]['street0_3BDone'] =  self.handsplayers[pname]['street0_3BDone'] or (aggr and self.handsplayers[pname]['street0_3BChance'])
             self.handsplayers[pname]['street0_4BDone'] =  aggr and (self.handsplayers[pname]['street0_4BChance'])
             if aggr:
                 bet_level += 1
