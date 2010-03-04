@@ -433,7 +433,7 @@ class PartyPoker(HandHistoryConverter):
                 if street == 'PREFLOP' and \
                     playerName in [item[0] for item in hand.actions['BLINDSANTES'] if item[2]!='ante']:
                     # preflop raise from blind
-                    hand.addRaiseBy( street, playerName, amount )
+                    hand.addCallandRaise( street, playerName, amount )
                 else:
                     hand.addCallandRaise( street, playerName, amount )
             elif actionType == 'calls':
