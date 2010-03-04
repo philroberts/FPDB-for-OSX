@@ -92,7 +92,7 @@ class GuiPlayerStats (threading.Thread):
                        , ["hand",       False, "Hand",     0.0, "%s", "str"]   # true not allowed for this line
                        , ["plposition", False, "Posn",     1.0, "%s", "str"]   # true not allowed for this line (set in code)
                        , ["pname",      False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
-                       , ["n",          True,  "Hds",      1.0, "%d", "str"]
+                       , ["n",          True,  "Hds",      1.0, "%1.0f", "str"]
                        , ["avgseats",   False,  "Seats",    1.0, "%3.1f", "str"]
                        , ["vpip",       True,  "VPIP",     1.0, "%3.1f", "str"]
                        , ["pfr",        True,  "PFR",      1.0, "%3.1f", "str"]
