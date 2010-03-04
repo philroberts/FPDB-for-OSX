@@ -142,14 +142,18 @@ class Database:
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
-                #  {'tab':'Players',         'col':'name',              'drop':0}  unique indexes not dropped
-                #  {'tab':'Hands',           'col':'siteHandNo',        'drop':0}  unique indexes not dropped
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
-                #, {'tab':'Tourneys',        'col':'siteTourneyNo',     'drop':0}  unique indexes not dropped
+                , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
+                , {'tab':'HudCache',        'col':'playerId',          'drop':0}
+                , {'tab':'HudCache',        'col':'tourneyTypeId',     'drop':0}
+                , {'tab':'Players',         'col':'siteId',            'drop':1}
+                , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
+                , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
+                , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 ]
               ]
 
@@ -226,7 +230,7 @@ class Database:
     # create index indexname on tablename (col);
 
 
-    def __init__(self, c, sql = None): 
+    def __init__(self, c, sql = None, autoconnect = True): 
         #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
         log.debug("Creating Database instance, sql = %s" % sql)
         self.config = c
@@ -247,41 +251,42 @@ class Database:
         else:
             self.sql = sql
 
-        # connect to db
-        self.do_connect(c)
-        
-        if self.backend == self.PGSQL:
-            from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
-            #ISOLATION_LEVEL_AUTOCOMMIT     = 0
-            #ISOLATION_LEVEL_READ_COMMITTED = 1 
-            #ISOLATION_LEVEL_SERIALIZABLE   = 2
+        if autoconnect:
+            # connect to db
+            self.do_connect(c)
+            
+            if self.backend == self.PGSQL:
+                from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT, ISOLATION_LEVEL_READ_COMMITTED, ISOLATION_LEVEL_SERIALIZABLE
+                #ISOLATION_LEVEL_AUTOCOMMIT     = 0
+                #ISOLATION_LEVEL_READ_COMMITTED = 1 
+                #ISOLATION_LEVEL_SERIALIZABLE   = 2
 
 
-        if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
-            log.info("sqlite/:memory: - creating")
-            self.recreate_tables()
-            self.wrongDbVersion = False
+            if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
+                log.info("sqlite/:memory: - creating")
+                self.recreate_tables()
+                self.wrongDbVersion = False
 
-        self.pcache      = None     # PlayerId cache
-        self.cachemiss   = 0        # Delete me later - using to count player cache misses
-        self.cachehit    = 0        # Delete me later - using to count player cache hits
+            self.pcache      = None     # PlayerId cache
+            self.cachemiss   = 0        # Delete me later - using to count player cache misses
+            self.cachehit    = 0        # Delete me later - using to count player cache hits
 
-        # config while trying out new hudcache mechanism
-        self.use_date_in_hudcache = True
+            # config while trying out new hudcache mechanism
+            self.use_date_in_hudcache = True
 
-        #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
-        #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
-        #self.hud_hero_days  = 30   # but last T days or last H hands for yourself
+            #self.hud_hero_style = 'T'  # Duplicate set of vars just for hero - not used yet.
+            #self.hud_hero_hands = 2000 # Idea is that you might want all-time stats for others
+            #self.hud_hero_days  = 30   # but last T days or last H hands for yourself
 
-        # vars for hand ids or dates fetched according to above config:
-        self.hand_1day_ago = 0             # max hand id more than 24 hrs earlier than now
-        self.date_ndays_ago = 'd000000'    # date N days ago ('d' + YYMMDD)
-        self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
-        self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
+            # vars for hand ids or dates fetched according to above config:
+            self.hand_1day_ago = 0             # max hand id more than 24 hrs earlier than now
+            self.date_ndays_ago = 'd000000'    # date N days ago ('d' + YYMMDD)
+            self.h_date_ndays_ago = 'd000000'  # date N days ago ('d' + YYMMDD) for hero
+            self.date_nhands_ago = {}          # dates N hands ago per player - not used yet
 
-        self.saveActions = False if self.import_options['saveActions'] == False else True
+            self.saveActions = False if self.import_options['saveActions'] == False else True
 
-        self.connection.rollback()  # make sure any locks taken so far are released
+            self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
     # could be used by hud to change hud style
@@ -313,7 +318,7 @@ class Database:
         self.__connected = True
 
     def connect(self, backend=None, host=None, database=None,
-                user=None, password=None):
+                user=None, password=None, create=False):
         """Connects a database with the given parameters"""
         if backend is None:
             raise FpdbError('Database backend not defined')
@@ -384,32 +389,35 @@ class Database:
             #    log.warning("SQLite won't work well without 'sqlalchemy' installed.")
 
             if database != ":memory:":
-                if not os.path.isdir(self.config.dir_database):
+                if not os.path.isdir(self.config.dir_database) and create:
                     print "Creating directory: '%s'" % (self.config.dir_database)
                     log.info("Creating directory: '%s'" % (self.config.dir_database))
                     os.mkdir(self.config.dir_database)
                 database = os.path.join(self.config.dir_database, database)
             self.db_path = database
             log.info("Connecting to SQLite: %(database)s" % {'database':self.db_path})
-            self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
-            sqlite3.register_converter("bool", lambda x: bool(int(x)))
-            sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
-            self.connection.create_function("floor", 1, math.floor)
-            tmp = sqlitemath()
-            self.connection.create_function("mod", 2, tmp.mod)
-            if use_numpy:
-                self.connection.create_aggregate("variance", 1, VARIANCE)
+            if os.path.exists(database) or create:
+                self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
+                sqlite3.register_converter("bool", lambda x: bool(int(x)))
+                sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
+                self.connection.create_function("floor", 1, math.floor)
+                tmp = sqlitemath()
+                self.connection.create_function("mod", 2, tmp.mod)
+                if use_numpy:
+                    self.connection.create_aggregate("variance", 1, VARIANCE)
+                else:
+                    log.warning("Some database functions will not work without NumPy support")
+                self.cursor = self.connection.cursor()
+                self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
+                self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
             else:
-                log.warning("Some database functions will not work without NumPy support")
-            self.cursor = self.connection.cursor()
-            self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
-            self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
+                raise FpdbError("sqlite database "+database+" does not exist")
         else:
-            raise FpdbError("unrecognised database backend:"+backend)
+            raise FpdbError("unrecognised database backend:"+str(backend))
 
         self.cursor = self.connection.cursor()
         self.cursor.execute(self.sql.query['set tx level'])
-        self.check_version(database=database, create=True)
+        self.check_version(database=database, create=create)
 
 
     def check_version(self, database, create):
@@ -721,6 +729,8 @@ class Database:
 
 #       now get the stats
         c.execute(self.sql.query[query], subs)
+        #for row in c.fetchall():   # needs "explain query plan" in sql statement
+        #    print "query plan: ", row
         colnames = [desc[0] for desc in c.description]
         for row in c.fetchall():
             playerid = row[0]
@@ -907,7 +917,6 @@ class Database:
                         print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
                               % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
                 else:
-                    print "Only MySQL and Postgres supported so far"
                     return -1
         
         for idx in self.indexes[self.backend]:
@@ -942,7 +951,6 @@ class Database:
                         print "warning: index %s_%s_idx not dropped %s, continuing ..." \
                               % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
                 else:
-                    print "Error: Only MySQL and Postgres supported so far"
                     return -1
 
         if self.backend == self.PGSQL:
@@ -997,7 +1005,6 @@ class Database:
                     except:
                         print "   create fk failed: " + str(sys.exc_info())
                 else:
-                    print "Only MySQL and Postgres supported so far"
                     return -1
         
         for idx in self.indexes[self.backend]:
@@ -1019,7 +1026,6 @@ class Database:
                     except:
                         print "   create index failed: " + str(sys.exc_info())
                 else:
-                    print "Only MySQL and Postgres supported so far"
                     return -1
 
         if self.backend == self.PGSQL:
@@ -2096,6 +2102,7 @@ class HandToWrite:
 
 if __name__=="__main__":
     c = Configuration.Config()
+    sql = SQL.Sql(db_server = 'sqlite')
 
     db_connection = Database(c) # mysql fpdb holdem
 #    db_connection = Database(c, 'fpdb-p', 'test') # mysql fpdb holdem
@@ -2113,12 +2120,25 @@ if __name__=="__main__":
     if hero:
         print "nutOmatic is id_player = %d" % hero
     
+    # example of displaying query plan in sqlite:
+    if db_connection.backend == 4:
+        print
+        c = db_connection.get_cursor()
+        c.execute('explain query plan '+sql.query['get_table_name'], (h, ))
+        for row in c.fetchall():
+            print "query plan: ", row
+        print
+    
+    t0 = time()
     stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    t1 = time()
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
     print "cards =", db_connection.get_cards(u'1')
     db_connection.close_connection
+    
+    print "get_stats took:  %4.3f seconds" % (t1-t0)
 
     print "press enter to continue"
     sys.stdin.readline()

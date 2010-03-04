@@ -1346,6 +1346,7 @@ class Sql:
 
 #    same as above except stats are aggregated for all blind/limit levels
         self.query['get_stats_from_hand_aggregated'] = """
+                /* explain query plan */
                 SELECT hc.playerId                         AS player_id,
                        max(case when hc.gametypeId = h.gametypeId
                                 then hp.seatNo
@@ -1915,6 +1916,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -1999,6 +2001,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2085,6 +2088,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>

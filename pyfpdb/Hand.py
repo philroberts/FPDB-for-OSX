@@ -125,6 +125,7 @@ class Hand(object):
         # currency symbol for this hand
         self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         self.pot.setSym(self.sym)
+        self.is_duplicate = False  # i.e. don't update hudcache if true
 
     def __str__(self):
         vars = ( ("BB", self.bb),
@@ -236,6 +237,7 @@ db: a connected Database object"""
             # TourneysPlayers
         else:
             log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
+            self.is_duplicate = True  # i.e. don't update hudcache
             raise FpdbHandDuplicate(hh['siteHandNo'])
 
     def updateHudCache(self, db):
@@ -321,8 +323,10 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.stacks[player] -= Decimal(ante)
             act = (player, 'posts', "ante", ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
-            self.pot.addMoney(player, Decimal(ante))
-
+#            self.pot.addMoney(player, Decimal(ante))
+            self.pot.addCommonMoney(player, Decimal(ante))
+#I think the antes should be common money, don't have enough hand history to check
+        
     def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
         # The situation we need to cover are:
@@ -340,14 +344,16 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.actions['BLINDSANTES'].append(act)
 
             if blindtype == 'both':
-                amount = self.bb
+                # work with the real ammount. limit games are listed as $1, $2, where
+                # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
+                amount = self.bb 
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(Decimal(self.sb))
+                self.pot.addCommonMoney(player, Decimal(self.sb))
 
             if blindtype == 'secondsb':
                 amount = Decimal(0)
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(Decimal(self.sb))
+                self.pot.addCommonMoney(player, Decimal(self.sb))
 
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
@@ -509,10 +515,7 @@ Card ranks will be uppercased
             self.totalcollected = 0;
             #self.collected looks like [[p1,amount][px,amount]]
             for entry in self.collected:
-                self.totalcollected += Decimal(entry[1])
-
-
-
+                self.totalcollected += Decimal(entry[1]) 
 
     def getGameTypeAsString(self):
         """\
@@ -674,6 +677,7 @@ class HoldemOmahaHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             if handid is not None:
                 self.select(handid) # Will need a handId
@@ -991,10 +995,11 @@ class DrawHand(Hand):
                 self.lastBet['DEAL'] = Decimal(amount)
             elif blindtype == 'both':
                 # extra small blind is 'dead'
-                self.lastBet['DEAL'] = Decimal(self.bb)
+                amount = Decimal(amount)/3
+                amount += amount
+                self.lastBet['DEAL'] = Decimal(amount)
         self.posted = self.posted + [[player,blindtype]]
         #print "DEBUG: self.posted: %s" %(self.posted)
-
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
         if player == self.hero: # we have hero's cards just update shown/mucked
@@ -1410,7 +1415,7 @@ class Pot(object):
         self.contenders   = set()
         self.committed    = {}
         self.streettotals = {}
-        self.common       = Decimal(0)
+        self.common       = {}
         self.total        = None
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
@@ -1420,13 +1425,14 @@ class Pot(object):
 
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
+        self.common[player] = Decimal(0)
 
     def addFold(self, player):
         # addFold must be called when a player folds
         self.contenders.discard(player)
 
-    def addCommonMoney(self, amount):
-        self.common += amount
+    def addCommonMoney(self, player, amount):
+        self.common[player] += amount
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
@@ -1434,7 +1440,7 @@ class Pot(object):
         self.committed[player] += amount
 
     def markTotal(self, street):
-        self.streettotals[street] = sum(self.committed.values()) + self.common
+        self.streettotals[street] = sum(self.committed.values()) + sum(self.common.values())
 
     def getTotalAtStreet(self, street):
         if street in self.streettotals:
@@ -1442,11 +1448,11 @@ class Pot(object):
         return 0
 
     def end(self):
-        self.total = sum(self.committed.values()) + self.common
+        self.total = sum(self.committed.values()) + sum(self.common.values())
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
-        print "DEBUG: committed: %s" % committed
+        #print "DEBUG: committed: %s" % committed
         #ERROR below. lastbet is correct in most cases, but wrong when 
         #             additional money is committed to the pot in cash games
         #             due to an additional sb being posted. (Speculate that

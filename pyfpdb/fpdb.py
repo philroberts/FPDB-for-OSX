@@ -97,6 +97,7 @@ except:
 
 import GuiPrefs
 import GuiLogView
+import GuiDatabase
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -288,10 +289,31 @@ class fpdb:
 
         dia.destroy()
 
-    def dia_create_del_database(self, widget, data=None):
-        self.warning_box("Unimplemented: Create/Delete Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
+    def dia_maintain_dbs(self, widget, data=None):
+        self.warning_box("Unimplemented: Maintain Databases")
+        return
+        if len(self.tab_names) == 1:
+            if self.obtain_global_lock():  # returns true if successful
+                # only main tab has been opened, open dialog
+                dia = gtk.Dialog("Maintain Databases",
+                                 self.window,
+                                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                                  gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+                dia.set_default_size(700, 320)
+
+                prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
+                response = dia.run()
+                if response == gtk.RESPONSE_ACCEPT:
+                    # save updated config
+                    self.config.save()
+
+                self.release_global_lock()
+
+            dia.destroy()
+        else:
+            self.warning_box("Cannot open Database Maintenance window because "
+                             + "other windows have been opened. Re-start fpdb to use this option.")
 
     def dia_create_del_user(self, widget, data=None):
         self.warning_box("Unimplemented: Create/Delete user")
@@ -620,7 +642,7 @@ class fpdb:
                   <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
-                  <menuitem action="createdb"/>
+                  <menuitem action="maintaindbs"/>
                   <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
@@ -663,7 +685,7 @@ class fpdb:
                                  ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
-                                 ('createdb', None, 'Create or Delete _Database (todo)', None, 'Create or Delete Database', self.dia_create_del_database),
+                                 ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
@@ -685,9 +707,15 @@ class fpdb:
         window.add_accel_group(accel_group)
         return menubar
 
-    def load_profile(self):
+    def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
+        if self.config.file_error:
+            self.warning_box( "There is an error in your config file\n" + self.config.file
+                              + "\n\nError is:  " + str(self.config.file_error)
+                            , diatitle="CONFIG FILE ERROR" )
+            exit()
+
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
         if self.config.example_copy:
@@ -905,7 +933,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.tab_main_help(None, None)
 
         self.window.show()
-        self.load_profile()
+        self.load_profile(create_db = True)
 
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
@@ -997,23 +1025,24 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         return response
 
     def validate_config(self):
-        hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-        hhbase    = os.path.expanduser(hhbase)
-        #hhdir     = os.path.join(hhbase,site)
-        hhdir       = hhbase
-        if not os.path.isdir(hhdir):
-            diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-            diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
-            diapath.format_secondary_text(diastring)
-            response = diapath.run()
-            diapath.destroy()
-            if response == gtk.RESPONSE_YES:
-                try:
-                    os.makedirs(hhdir)
-                except:
-                    self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
-            elif response == gtk.RESPONSE_NO:
-               self.select_hhArchiveBase()
+        if self.config.get_import_parameters().get('saveStarsHH'):
+            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+            hhbase    = os.path.expanduser(hhbase)
+            #hhdir     = os.path.join(hhbase,site)
+            hhdir       = hhbase
+            if not os.path.isdir(hhdir):
+                diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
+                diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
+                diapath.format_secondary_text(diastring)
+                response = diapath.run()
+                diapath.destroy()
+                if response == gtk.RESPONSE_YES:
+                    try:
+                        os.makedirs(hhdir)
+                    except:
+                        self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
+                elif response == gtk.RESPONSE_NO:
+                    self.select_hhArchiveBase()
 
     def select_hhArchiveBase(self, widget=None):
         fc = gtk.FileChooserDialog(title="Select HH Output Directory", parent=None, action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, buttons=(gtk.STOCK_OPEN,gtk.RESPONSE_OK), backend=None)
