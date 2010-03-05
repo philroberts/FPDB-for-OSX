@@ -1,5 +1,5 @@
 # Variable definitions
-VERSION = 0.12
+VERSION = 0.20
 DATE = $(shell date +%Y%m%d)
 
 all:

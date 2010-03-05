@@ -77,14 +77,15 @@ class PartyPoker(HandHistoryConverter):
           re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)\s+
+            ^Table\s+(?P<TTYPE>[$a-zA-Z0-9 ]+)?\s+
             (?: \#|\(|)(?P<TABLE>\d+)\)?\s+
             (?:[a-zA-Z0-9 ]+\s+\#(?P<MTTTABLE>\d+).+)?
             (\(No\sDP\)\s)?
             \((?P<PLAY>Real|Play)\s+Money\)\s+ # FIXME: check if play money is correct
             Seat\s+(?P<BUTTON>\d+)\sis\sthe\sbutton
+            \s+Total\s+number\s+of\s+players\s+\:\s+(?P<PLYRS>\d+)/?(?P<MAX>\d+)?
             """,
-          re.VERBOSE|re.MULTILINE)
+          re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_CountedSeats = re.compile("^Total\s+number\s+of\s+players\s*:\s*(?P<COUNTED_SEATS>\d+)", re.MULTILINE)
     re_SplitHands   = re.compile('\x00+')
@@ -106,7 +107,6 @@ class PartyPoker(HandHistoryConverter):
     def guessMaxSeats(self, hand):
         """Return a guess at max_seats when not specified in HH."""
         mo = self.maxOccSeat(hand)
-
         if mo == 10: return mo
         if mo == 2: return 2
         if mo <= 6: return 6
@@ -260,6 +260,7 @@ class PartyPoker(HandHistoryConverter):
                 for i,v in enumerate(self.collected):
                     if v[0] in self.pot.returned:
                         self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
+                        self.collectees[v[0]] -= self.pot.returned[v[0]]
                 return origTotalPot()
             return totalPot
         instancemethod = type(hand.totalPot)
@@ -313,6 +314,9 @@ class PartyPoker(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] != 'Real':
                 # if realy party doesn's save play money hh
                 hand.gametype['currency'] = 'play'
+            if key == 'MAX' and info[key] is not None:
+                hand.maxseats = int(info[key])
+
 
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
