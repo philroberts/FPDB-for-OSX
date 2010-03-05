@@ -1709,8 +1709,8 @@ class Database:
             line[55] = gid    # gametypeId
             line[56] = pids[p]    # playerId
             line[57] = len(pids)    # activeSeats
-            pos = {'B':'B', 'S':'S', '0':'D', '1':'C', '2':'M', '3':'M', '4':'M', '5':'E', '6':'E', '7':'E', '8':'E', '9':'E' }
-            line[58] = pos[str(pdata[p]['position'])]
+            pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
+            line[58] = pos[pdata[p]['position']]
             line[59] = pdata[p]['tourneyTypeId']
             line[60] = styleKey    # styleKey
             inserts.append(line)
