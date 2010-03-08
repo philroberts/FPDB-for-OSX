@@ -142,7 +142,7 @@ class GuiPlayerStats (threading.Thread):
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
 
-        self.stats_vbox = gtk.VBox(False, 0)
+        self.stats_vbox = gtk.VPaned()
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
         # self.fillStatsFrame(self.stats_vbox)
@@ -155,12 +155,15 @@ class GuiPlayerStats (threading.Thread):
 
         # make sure Hand column is not displayed
         [x for x in self.columns if x[0] == 'hand'][0][1] = False
+        self.last_pos = -1
+
 
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.main_hbox
 
     def refreshStats(self, widget, data):
+        self.last_pos = self.stats_vbox.get_position()
         try: self.stats_vbox.destroy()
         except AttributeError: pass
         self.liststore = []
@@ -170,6 +173,8 @@ class GuiPlayerStats (threading.Thread):
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
         self.fillStatsFrame(self.stats_vbox)
+        if self.last_pos > 0:
+            self.stats_vbox.set_position(self.last_pos)
 
     def fillStatsFrame(self, vbox):
         sites = self.filters.getSites()
