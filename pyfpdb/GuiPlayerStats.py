@@ -208,6 +208,7 @@ class GuiPlayerStats (threading.Thread):
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games):
         starttime = time()
+        show_detail = True
 
         # Scrolled window for summary table
         swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
@@ -224,25 +225,30 @@ class GuiPlayerStats (threading.Thread):
         self.addGrid(swin, 'playerDetailedStats', flags, playerids
                     ,sitenos, limits, type, seats, groups, dates, games)
 
-        # Separator
-        vbox2 = gtk.VBox(False, 0)
-        heading = gtk.Label(self.filterText['handhead'])
-        heading.show()
-        vbox2.pack_start(heading, expand=False, padding=3)
+        if 'allplayers' in groups and groups['allplayers']:
+            # can't currently do this combination so skip detailed table
+            show_detail = False
 
-        # Scrolled window for detailed table (display by hand)
-        swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        swin.show()
-        vbox2.pack_start(swin, expand=True, padding=3)
-        vbox.pack2(vbox2)
-        vbox2.show()
+        if show_detail: 
+            # Separator
+            vbox2 = gtk.VBox(False, 0)
+            heading = gtk.Label(self.filterText['handhead'])
+            heading.show()
+            vbox2.pack_start(heading, expand=False, padding=3)
 
-        # Detailed table
-        flags[0] = True
-        flags[2] = 1
-        self.addGrid(swin, 'playerDetailedStats', flags, playerids
-                    ,sitenos, limits, type, seats, groups, dates, games)
+            # Scrolled window for detailed table (display by hand)
+            swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+            swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            swin.show()
+            vbox2.pack_start(swin, expand=True, padding=3)
+            vbox.pack2(vbox2)
+            vbox2.show()
+
+            # Detailed table
+            flags[0] = True
+            flags[2] = 1
+            self.addGrid(swin, 'playerDetailedStats', flags, playerids
+                        ,sitenos, limits, type, seats, groups, dates, games)
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
@@ -421,6 +427,7 @@ class GuiPlayerStats (threading.Thread):
                 else:
                     treerow.append(' ')
             iter = self.liststore[grid].append(treerow)
+            #print treerow
             sqlrow += 1
             row += 1
         vbox.show_all()
