@@ -33,6 +33,11 @@ log = logging.getLogger("logview")
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
+LOGFILES = [ [ 'Fpdb Errors', 'fpdb-errors.txt', False ]  # label, filename, start value
+           , [ 'Fpdb Log',    'fpdb-log.txt',    True ]
+           , [ 'HUD Errors',  'HUD-errors.txt',  False ]
+           , [ 'HUD Log',     'HUD-log.txt',     False ]
+           ]
 
 class GuiLogView:
 
@@ -41,7 +46,7 @@ class GuiLogView:
         self.main_window = mainwin
         self.closeq = closeq
 
-        self.logfile = self.config.log_file    # name of logfile
+        self.logfile = os.path.join(self.config.dir_log, LOGFILES[1][1])
         self.dia = gtk.Dialog(title="Log Messages"
                              ,parent=None
                              ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
@@ -69,10 +74,19 @@ class GuiLogView:
         scrolledwindow.add(self.listview)
         self.vbox.pack_start(scrolledwindow, expand=True, fill=True, padding=0)
 
+        hb = gtk.HBox(False, 0)
+        grp = None
+        for logf in LOGFILES:
+            rb = gtk.RadioButton(group=grp, label=logf[0], use_underline=True)
+            if grp is None: grp = rb
+            rb.set_active(logf[2])
+            rb.connect('clicked', self.__set_logfile, logf[0])
+            hb.pack_start(rb, False, False, 3)
         refreshbutton = gtk.Button("Refresh")
         refreshbutton.connect("clicked", self.refresh, None)
-        self.vbox.pack_start(refreshbutton, False, False, 3)
+        hb.pack_start(refreshbutton, False, False, 3)
         refreshbutton.show()
+        self.vbox.pack_start(hb, False, False, 0)
 
         self.listview.show()
         scrolledwindow.show()
@@ -89,6 +103,14 @@ class GuiLogView:
         self.dia.show()
 
         self.dia.connect('response', self.dialog_response_cb)
+
+    def __set_logfile(self, w, file):
+        #print "w is", w, "file is", file, "active is", w.get_active()
+        if w.get_active():
+            for logf in LOGFILES:
+                if logf[0] == file:
+                    self.logfile = os.path.join(self.config.dir_log, logf[1])
+            self.refresh(w, file)  # params are not used
 
     def dialog_response_cb(self, dialog, response_id):
         # this is called whether close button is pressed or window is closed
@@ -131,11 +153,14 @@ class GuiLogView:
 
             l = 0
             for line in open(self.logfile):
-                # eg line:
+                # example line in logfile format:
                 # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
                 l = l + 1
-                if l > startline and len(line) > 49:
-                    iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
+                if l > startline:
+                    if len(line) > 49 and line[23:26] == ' - ' and line[34:39] == '     ':
+                        iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
+                    else:
+                        iter = self.liststore.append( ('', '', '', line.strip(), True) )
 
     def sortCols(self, col, n):
         try:
