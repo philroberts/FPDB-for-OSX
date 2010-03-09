@@ -132,7 +132,12 @@ setup(
 
     console = [   {'script': 'fpdb.py', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
                   {'script': 'HUD_main.py', },
-                  {'script': 'Configuration.py', }
+                  {'script': 'Configuration.py', },
+                  {'script': 'Tables.py', },
+                  {'script': 'Stats.py', },
+                  {'script': 'Hello.py', },
+                  {'script': 'GuiBulkImport.py', },
+                  {'script': 'GuiAutoImport.py', }
               ],
 
     options = {'py2exe': {
