@@ -32,12 +32,16 @@ import gtk
 import gobject
 
 #    fpdb/free poker tools modules
+import Configuration
+from HandHistoryConverter import getTableTitleRe
+
 #    get the correct module for the current os
 if os.name == 'posix':
     import XTables as Tables
 elif os.name == 'nt':
     import WinTables as Tables
 
+config = Configuration.Config()
 #   Main function used for testing
 if __name__=="__main__":
 #    c = Configuration.Config()
@@ -82,11 +86,16 @@ if __name__=="__main__":
         (tour_no, tab_no) = table_name.split(",", 1)
         tour_no = tour_no.rstrip()
         tab_no = tab_no.rstrip()
-        table = Tables.Table(None, tournament = tour_no, table_number = tab_no)
+        type = "tour"
+        table_kwargs = dict(tournament = tour_no, table_number = tab_no)
     else:   # not a tournament
         print "cash game"
         table_name = table_name.rstrip()
-        table = Tables.Table(None, table_name = table_name)
+        type = "cash"
+        table_kwargs = dict(table_name = table_name)
+
+    search_string = getTableTitleRe(config, "Full Tilt Poker", type, **table_kwargs)
+    table = Tables.Table(search_string, **table_kwargs)
     table.gdk_handle = gtk.gdk.window_foreign_new(table.number)
 
     print "table =", table

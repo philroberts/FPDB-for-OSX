@@ -1916,6 +1916,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2000,6 +2001,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>
@@ -2077,8 +2079,7 @@ class Sql:
                             ,100.0*avg((hp.totalProfit+hp.rake)/(gt.bigBlind+0.0))                  AS bb100xr
                             ,avg((hp.totalProfit+hp.rake)/100.0)                                    AS profhndxr
                             ,avg(h.seats+0.0)                                                       AS avgseats
-                            /*,variance(hp.totalProfit/100.0)                                         AS variance*/
-                            ,0.0                                                                    AS variance
+                            ,variance(hp.totalProfit/100.0)                                         AS variance
                       from HandsPlayers hp
                            inner join Hands h       on  (h.id = hp.handId)
                            inner join Gametypes gt  on  (gt.Id = h.gameTypeId)
@@ -2086,6 +2087,7 @@ class Sql:
                            inner join Players p     on  (p.Id = hp.playerId)
                       where hp.playerId in <player_test>
                       <game_test>
+                      <site_test>
                       /*and   hp.tourneysPlayersId IS NULL*/
                       and   h.seats <seats_test>
                       <flagtest>

@@ -81,7 +81,7 @@ class GuiPlayerStats (threading.Thread):
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh Stats")
+        self.filters.registerButton2Name("_Refresh")
         self.filters.registerButton2Callback(self.refreshStats)
 
         # ToDo: store in config
@@ -92,7 +92,7 @@ class GuiPlayerStats (threading.Thread):
                        , ["hand",       False, "Hand",     0.0, "%s", "str"]   # true not allowed for this line
                        , ["plposition", False, "Posn",     1.0, "%s", "str"]   # true not allowed for this line (set in code)
                        , ["pname",      False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
-                       , ["n",          True,  "Hds",      1.0, "%d", "str"]
+                       , ["n",          True,  "Hds",      1.0, "%1.0f", "str"]
                        , ["avgseats",   False,  "Seats",    1.0, "%3.1f", "str"]
                        , ["vpip",       True,  "VPIP",     1.0, "%3.1f", "str"]
                        , ["pfr",        True,  "PFR",      1.0, "%3.1f", "str"]
@@ -493,7 +493,23 @@ class GuiPlayerStats (threading.Thread):
                 else:
                     gametest = "and gt.category IS NULL"
         query = query.replace("<game_test>", gametest)
-
+        
+        sitetest = ""
+        q = []
+        for m in self.filters.display.items():
+            if m[0] == 'Sites' and m[1]:
+                for n in sitenos:
+                        q.append(n)
+                if len(q) > 0:
+                    sitetest = str(tuple(q))
+                    sitetest = sitetest.replace("L", "")
+                    sitetest = sitetest.replace(",)",")")
+                    sitetest = sitetest.replace("u'","'")
+                    sitetest = "and gt.siteId in %s" % sitetest
+                else:
+                    sitetest = "and gt.siteId IS NULL"
+        query = query.replace("<site_test>", sitetest)
+        
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
             if 'show' in seats and seats['show']:
@@ -551,7 +567,7 @@ class GuiPlayerStats (threading.Thread):
             query = query.replace("<orderbyhgameTypeId>", "")
             groupLevels = "show" not in str(limits)
             if groupLevels:
-                query = query.replace("<hgameTypeId>", "p.name")
+                query = query.replace("<hgameTypeId>", "-1")
             else:
                 query = query.replace("<hgameTypeId>", "h.gameTypeId")
 

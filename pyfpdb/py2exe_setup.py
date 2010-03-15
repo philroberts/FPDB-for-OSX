@@ -152,7 +152,7 @@ setup(
               },
 
     # files in 2nd value in tuple are moved to dir named in 1st value
-    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf'])
+    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../docs/readme.txt'])
                  ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
                  # line below has problem with fonts subdir ('not a regular file')
