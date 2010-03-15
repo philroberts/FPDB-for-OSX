@@ -382,6 +382,7 @@ class Database:
                     print msg
                     raise FpdbError(msg)
         elif backend == Database.SQLITE:
+            create = True
             import sqlite3
             if use_pool:
                 sqlite3 = pool.manage(sqlite3, pool_size=1)
