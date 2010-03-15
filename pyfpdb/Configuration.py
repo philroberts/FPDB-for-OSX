@@ -452,6 +452,24 @@ class Tv:
         return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" %
                 (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
 
+class General(dict):
+    def __init__(self):
+        super(General, self).__init__()
+
+    def add_elements(self, node):
+        # HH_bulk_path - if set, used as default path for bulk imports:
+        # day_start    - number n where 0.0 <= n < 24.0 representing start of day for user
+        #                e.g. user could set to 4.0 for day to start at 4am local time
+        for (name, value) in node.attributes.items():
+            log.debug("config.general: adding %s = %s" % (name,value))
+            self[name] = value
+
+    def __str__(self):
+        s = ""
+        for k in self:
+            s = s + "    %s = %s\n" % (k, self[k])
+        return(s)
+
 class Config:
     def __init__(self, file = None, dbname = ''):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
@@ -506,7 +524,10 @@ class Config:
         self.popup_windows = {}
         self.db_selected = None    # database the user would like to use
         self.tv = None
+        self.general = General()
 
+        for gen_node in doc.getElementsByTagName("general"):
+            self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -839,6 +860,8 @@ class Config:
             path = os.path.expanduser(self.supported_sites[site].HH_path)
             assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
+            if 'HH_bulk_path' in self.general and self.general['HH_bulk_path']:
+                paths['bulkImport-defaultPath'] = self.general['HH_bulk_path']
         except AssertionError:
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
@@ -986,6 +1009,9 @@ class Config:
     def execution_path(self, filename):
         """Join the fpdb path to filename."""
         return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(0))), filename)
+
+    def get_general_params(self):
+        return( self.general )
 
 if __name__== "__main__":
     c = Config()
