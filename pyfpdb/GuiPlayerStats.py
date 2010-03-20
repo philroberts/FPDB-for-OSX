@@ -567,7 +567,7 @@ class GuiPlayerStats (threading.Thread):
             query = query.replace("<orderbyhgameTypeId>", "")
             groupLevels = "show" not in str(limits)
             if groupLevels:
-                query = query.replace("<hgameTypeId>", "-1")
+                query = query.replace("<hgameTypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
             else:
                 query = query.replace("<hgameTypeId>", "h.gameTypeId")
 
