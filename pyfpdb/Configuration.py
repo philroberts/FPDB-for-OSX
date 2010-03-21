@@ -412,6 +412,7 @@ class Import:
         self.interval    = node.getAttribute("interval")
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
+        self.hhBulkPath = node.getAttribute("hhBulkPath")
         self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
@@ -457,9 +458,9 @@ class General(dict):
         super(General, self).__init__()
 
     def add_elements(self, node):
-        # HH_bulk_path - if set, used as default path for bulk imports:
         # day_start    - number n where 0.0 <= n < 24.0 representing start of day for user
         #                e.g. user could set to 4.0 for day to start at 4am local time
+        # [ HH_bulk_path was here - now moved to import section ]
         for (name, value) in node.attributes.items():
             log.debug("config.general: adding %s = %s" % (name,value))
             self[name] = value
@@ -839,8 +840,13 @@ class Config:
         try:    imp['interval']        = self.imp.interval
         except:  imp['interval']        = 10
 
+        # hhArchiveBase is the temp store for part-processed hand histories - should be redundant eventually
         try:    imp['hhArchiveBase']    = self.imp.hhArchiveBase
         except:  imp['hhArchiveBase']    = "~/.fpdb/HandHistories/"
+
+        # hhBulkPath is the default location for bulk imports (if set)
+        try:    imp['hhBulkPath']    = self.imp.hhBulkPath
+        except:  imp['hhBulkPath']    = ""
 
         try:    imp['saveActions']     = self.imp.saveActions
         except:  imp['saveActions']     = True
@@ -860,8 +866,8 @@ class Config:
             path = os.path.expanduser(self.supported_sites[site].HH_path)
             assert(os.path.isdir(path) or os.path.isfile(path)) # maybe it should try another site?
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = path
-            if 'HH_bulk_path' in self.general and self.general['HH_bulk_path']:
-                paths['bulkImport-defaultPath'] = self.general['HH_bulk_path']
+            if self.imp.hhBulkPath:
+                paths['bulkImport-defaultPath'] = self.imp.hhBulkPath
         except AssertionError:
             paths['hud-defaultPath'] = paths['bulkImport-defaultPath'] = "** ERROR DEFAULT PATH IN CONFIG DOES NOT EXIST **"
         return paths
