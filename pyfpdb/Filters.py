@@ -884,12 +884,13 @@ class Filters(threading.Thread):
         s2 = strptime(t2, "%Y-%m-%d")
         e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
         e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
+        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
 
         adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
-        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1))
+        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
         log.info("t1="+t1+" adj_t1="+adj_t1+'.')
 
-        return (t1, t2)
+        return (adj_t1, adj_t2)
 
     def __get_date(self, widget, calendar, entry, win):
         # year and day are correct, month is 0..11
