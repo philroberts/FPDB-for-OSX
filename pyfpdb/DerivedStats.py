@@ -505,9 +505,13 @@ class DerivedStats():
         """Returns true if player bet/raised the street as their first action"""
         betOrRaise = False
         for act in self.hand.actions[street]:
-            if act[0] == player and act[1] in ('bets', 'raises'):
-                betOrRaise = True
-            else:
+            if act[0] == player:
+                if act[1] in ('bets', 'raises'):
+                    betOrRaise = True
+                else:
+                    # player found but did not bet or raise as their first action
                 break
+            #else:
+                # haven't found player's first action yet
         return betOrRaise
 
