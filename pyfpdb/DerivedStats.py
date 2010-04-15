@@ -368,8 +368,8 @@ class DerivedStats():
             name = self.lastBetOrRaiser(hand.actionStreets[i+1])
             if name:
                 chance = self.noBetsBefore(hand.actionStreets[i+2], name)
-                self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                 if chance == True:
+                    self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                     self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
 
     def calcCheckCallRaise(self, hand):
