@@ -510,6 +510,7 @@ class DerivedStats():
                     betOrRaise = True
                 else:
                     # player found but did not bet or raise as their first action
+                    pass
                 break
             #else:
                 # haven't found player's first action yet
