@@ -50,8 +50,8 @@ class PokerStars(HandHistoryConverter):
           (?P<BUYIN>([%(LS)s\+\d\.]+\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?)|Freeroll)\s+)?                          
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
-          (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
+          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
+          (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -150,12 +150,13 @@ class PokerStars(HandHistoryConverter):
                      '1000.00': ('250.00', '500.00')}
 
 
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
         games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'), 
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
