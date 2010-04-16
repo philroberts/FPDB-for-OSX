@@ -2101,6 +2101,7 @@ class Sql:
                               ,plposition
                               ,upper(gt.limitType)
                               ,s.name
+                      having 1 = 1 <havingclause>
                       order by hp.playerId
                               ,gt.base
                               ,gt.category
