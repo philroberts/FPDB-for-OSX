@@ -135,8 +135,10 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            print "DEBUG: determineGameType(): did not match"
-            return None
+            tmp = handText[0:100]
+            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
+            log.error("determineGameType: Raising FpdbParseError")
+            raise FpdbParseError
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
@@ -154,7 +156,7 @@ class PokerStars(HandHistoryConverter):
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
@@ -183,8 +185,13 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'tour'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
-            info['sb'] = Lim_Blinds[mg['BB']][0] 
-            info['bb'] = Lim_Blinds[mg['BB']][1]
+            try:
+                info['sb'] = Lim_Blinds[mg['BB']][0]
+                info['bb'] = Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error("determineGameType: Raising FpdbParseError")
+                raise FpdbParseError
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
