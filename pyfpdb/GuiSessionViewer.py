@@ -33,7 +33,7 @@ try:
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
     from matplotlib.finance import candlestick2
 
-    from numpy import diff, nonzero, sum, cumsum, max, min
+    from numpy import diff, nonzero, sum, cumsum, max, min, append
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
@@ -241,6 +241,9 @@ class GuiSessionViewer (threading.Thread):
     #end def fillStatsFrame(self, vbox):
 
     def generateDatasets(self, playerids, sitenos, limits, seats):
+        THRESHOLD = 1800                    # Minimum number of seconds between consecutive hands before being considered a new session
+        PADDING   = 5                       # Additional time in minutes to add to a session, session startup, shutdown etc (FiXME: user configurable)
+
         # Get a list of all handids and their timestampts
         #FIXME: Query still need to filter on blind levels
 
@@ -255,7 +258,6 @@ class GuiSessionViewer (threading.Thread):
         q = q.replace("<ampersand_s>", "%s")
 
         self.db.cursor.execute(q)
-        THRESHOLD = 1800
         hands = self.db.cursor.fetchall()
 
         # Take that list and create an array of the time between hands
@@ -263,9 +265,11 @@ class GuiSessionViewer (threading.Thread):
         handids = map(lambda x:int(x[1]), hands)
         winnings = map(lambda x:float(x[4]), hands)
         #print "DEBUG: len(times) %s" %(len(times))
-        diffs = diff(times) # This array is the difference in starttime between consecutive hands
-        index = nonzero(diff(times) > THRESHOLD) # This array represents the indexes into 'times' for start/end times of sessions
-                                                 # ie. times[index[0][0]] is the end of the first session
+        diffs = diff(times)                      # This array is the difference in starttime between consecutive hands
+        diffs2 = append(diffs,THRESHOLD + 1)     # Append an additional session to the end of the diffs, so the next line
+                                                 # includes an index into the last 'session'
+        index = nonzero(diffs2 > THRESHOLD)      # This array represents the indexes into 'times' for start/end times of sessions
+                                                 # times[index[0][0]] is the end of the first session,
         #print "DEBUG: len(index[0]) %s" %(len(index[0]))
         if len(index[0]) > 0:
             #print "DEBUG: index[0][0] %s" %(index[0][0])
@@ -278,7 +282,7 @@ class GuiSessionViewer (threading.Thread):
             pass
 
         total = 0
-        last_idx = 0
+        first_idx = 0
         lowidx = 0
         uppidx = 0
         opens = []
@@ -288,23 +292,24 @@ class GuiSessionViewer (threading.Thread):
         results = []
         cum_sum = cumsum(winnings)
         cum_sum = cum_sum/100
-        sid = 0
+        sid = 1
         # Take all results and format them into a list for feeding into gui model.
         for i in range(len(index[0])):
-            hds = index[0][i] - last_idx                                        # Number of hands in session
+            hds = index[0][i] - first_idx + 1                                        # Number of hands in session
             if hds > 0:
-                stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
+                stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
-                minutesplayed = (times[index[0][i]] - times[last_idx])/60
+                minutesplayed = (times[index[0][i]] - times[first_idx])/60
                 if minutesplayed == 0:
                     minutesplayed = 1
+                minutesplayed = minutesplayed + PADDING
                 hph = hds*60/minutesplayed # Hands per hour
-                won = sum(winnings[last_idx:index[0][i]])/100.0
-                hwm = max(cum_sum[last_idx:index[0][i]])
-                lwm = min(cum_sum[last_idx:index[0][i]])
-                open = (sum(winnings[:last_idx]))/100
+                won = sum(winnings[first_idx:index[0][i]])/100.0
+                hwm = max(cum_sum[first_idx:index[0][i]])
+                lwm = min(cum_sum[first_idx:index[0][i]])
+                open = (sum(winnings[:first_idx]))/100
                 close = (sum(winnings[:index[0][i]]))/100
-                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(last_idx, index[0][i], lwm, hwm, open, close)
+                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, index[0][i], lwm, hwm, open, close)
             
                 results.append([sid, hds, stime, etime, hph, won])
                 opens.append(open)
@@ -312,33 +317,11 @@ class GuiSessionViewer (threading.Thread):
                 highs.append(hwm)
                 lows.append(lwm)
                 #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
-                total = total + (index[0][i] - last_idx)
-                last_idx = index[0][i] + 1
+                total = total + (index[0][i] - first_idx)
+                first_idx = index[0][i] + 1
                 sid = sid+1
             else:
                 print "hds <= 0"
-
-        #The last session is between times[last_idx:-1]
-        hds = len(times) - last_idx
-        stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
-        etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][-1]]))  # Formatted end time
-        minutesplayed = (times[-1] - times[last_idx])/60
-        if minutesplayed == 0:
-            minutesplayed = 1
-        hph = hds*60/minutesplayed # Hands per hour
-        won = sum(winnings[last_idx:-1])/100.0
-        hwm = max(cum_sum[last_idx:-1])
-        lwm = min(cum_sum[last_idx:-1])
-        open = (sum(winnings[:last_idx]))/100
-        close = (sum(winnings[:-1]))/100
-        #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(last_idx, index[0][i], lwm, hwm, open, close)
-
-        results.append([sid, hds, stime, etime, hph, won])
-        opens.append(open)
-        closes.append(close)
-        highs.append(hwm)
-        lows.append(lwm)
-        #print "Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
 
         return (results, opens, closes, highs, lows)
 
