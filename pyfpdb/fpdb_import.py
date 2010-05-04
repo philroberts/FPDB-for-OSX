@@ -468,6 +468,7 @@ class Importer:
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
                 stored -= duplicates
+                stored -= errors
             else:
                 # conversion didn't work
                 # TODO: appropriate response?

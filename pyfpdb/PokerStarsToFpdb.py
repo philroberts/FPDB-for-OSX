@@ -135,13 +135,16 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            print "DEBUG: determineGameType(): did not match"
-            return None
+            tmp = handText[0:100]
+            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
+            log.error("determineGameType: Raising FpdbParseError")
+            raise FpdbParseError
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
         Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
                         '0.50': ('0.10', '0.25'),    '1.00': ('0.25', '0.50'),     '2.00': ('0.50', '1.00'), 
+                        '2': ('0.50', '1.00'), '4': ('1.00', '2.00'), '6': ('1.00', '3.00'),
                         '4.00': ('1.00', '2.00'),    '6.00': ('1.00', '3.00'),    '10.00': ('2.00', '5.00'),
                        '20.00': ('5.00', '10.00'),  '30.00': ('10.00', '15.00'),  '60.00': ('15.00', '30.00'),
                       '100.00': ('25.00', '50.00'),'200.00': ('50.00', '100.00'),'400.00': ('100.00', '200.00'),
@@ -154,7 +157,7 @@ class PokerStars(HandHistoryConverter):
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
@@ -183,8 +186,13 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'tour'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
-            info['sb'] = Lim_Blinds[mg['BB']][0] 
-            info['bb'] = Lim_Blinds[mg['BB']][1]
+            try:
+                info['sb'] = Lim_Blinds[mg['BB']][0]
+                info['bb'] = Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error("determineGameType: Raising FpdbParseError")
+                raise FpdbParseError
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
