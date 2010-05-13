@@ -277,7 +277,7 @@ def fold_f(stat_dict, player):
     """    Folded flop/4th."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['fold_2'])/fold(stat_dict[player]['saw_f'])
+        stat = float(stat_dict[player]['fold_2'])/float(stat_dict[player]['saw_f'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'ff=%3.1f'     % (100*stat) + '%', 
