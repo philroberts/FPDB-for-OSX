@@ -868,7 +868,7 @@ class Filters(threading.Thread):
         t2 = self.end_date.get_text()
 
         if t1 == '':
-            t1 = '1970-01-01'
+            t1 = '1970-01-02'
         if t2 == '':
             t2 = '2020-12-12'
 
