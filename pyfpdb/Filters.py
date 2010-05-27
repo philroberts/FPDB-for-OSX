@@ -26,21 +26,47 @@ from time import *
 import gobject
 #import pokereval
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("filter")
+
+
 import Configuration
-import fpdb_db
-import FpdbSQLQueries
+import Database
+import SQL
+import Charset
+
 
 class Filters(threading.Thread):
     def __init__(self, db, config, qdict, display = {}, debug=True):
         # config and qdict are now redundant
         self.debug = debug
-        #print "start of GraphViewer constructor"
         self.db = db
         self.cursor = db.cursor
         self.sql = db.sql
         self.conf = db.config
         self.display = display
 
+        # text used on screen stored here so that it can be configured
+        self.filterText = {'limitsall':'All', 'limitsnone':'None', 'limitsshow':'Show _Limits'
+                          ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
+                          ,'playerstitle':'Hero:', 'sitestitle':'Sites:', 'gamestitle':'Games:'
+                          ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
+                          ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
+                          ,'datestitle':'Date:'
+                          ,'groupsall':'All Players'
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':'Ring', 'tour':'Tourney'
+                          }
+
+        # Outer Packing box
+        self.mainVBox = gtk.VBox(False, 0)
+
+        self.label = {}
+        self.callback = {}
+
+        self.make_filter()
+        
+    def make_filter(self):
         self.sites  = {}
         self.games  = {}
         self.limits = {}
@@ -50,14 +76,14 @@ class Filters(threading.Thread):
         self.heroes = {}
         self.boxes  = {}
 
-        # text used on screen stored here so that it can be configured
-        self.filterText = {'limitsall':'All', 'limitsnone':'None', 'limitsshow':'Show _Limits'
-                          ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
-                          ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
-                          ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
-                          ,'groupsall':'All Players'
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'ring':'Ring', 'tour':'Tourney'
-                          }
+        for site in self.conf.get_supported_sites():
+            #Get db site id for filtering later
+            self.cursor.execute(self.sql.query['getSiteId'], (site,))
+            result = self.db.cursor.fetchall()
+            if len(result) == 1:
+                self.siteid[site] = result[0][0]
+            else:
+                print "Either 0 or more than one site matched - EEK"
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)
@@ -69,34 +95,28 @@ class Filters(threading.Thread):
         self.sbGroups = {}
         self.numHands = 0
 
-        # Outer Packing box
-        self.mainVBox = gtk.VBox(False, 0)
-
-        playerFrame = gtk.Frame("Hero:")
+        playerFrame = gtk.Frame()
         playerFrame.set_label_align(0.0, 0.0)
         vbox = gtk.VBox(False, 0)
 
         self.fillPlayerFrame(vbox, self.display)
         playerFrame.add(vbox)
-        self.boxes['player'] = vbox
 
-        sitesFrame = gtk.Frame("Sites:")
+        sitesFrame = gtk.Frame()
         sitesFrame.set_label_align(0.0, 0.0)
         vbox = gtk.VBox(False, 0)
 
         self.fillSitesFrame(vbox)
         sitesFrame.add(vbox)
-        self.boxes['sites'] = vbox
 
         # Game types
-        gamesFrame = gtk.Frame("Games:")
+        gamesFrame = gtk.Frame()
         gamesFrame.set_label_align(0.0, 0.0)
         gamesFrame.show()
         vbox = gtk.VBox(False, 0)
 
         self.fillGamesFrame(vbox)
         gamesFrame.add(vbox)
-        self.boxes['games'] = vbox
 
         # Limits
         limitsFrame = gtk.Frame()
@@ -107,6 +127,7 @@ class Filters(threading.Thread):
         self.cbAllLimits = None
         self.cbFL = None
         self.cbNL = None
+        self.cbPL = None
         self.rb = {}     # radio buttons for ring/tour
         self.type = None # ring/tour
         self.types = {}  # list of all ring/tour values
@@ -132,14 +153,13 @@ class Filters(threading.Thread):
         groupsFrame.add(vbox)
 
         # Date
-        dateFrame = gtk.Frame("Date:")
+        dateFrame = gtk.Frame()
         dateFrame.set_label_align(0.0, 0.0)
         dateFrame.show()
         vbox = gtk.VBox(False, 0)
 
         self.fillDateFrame(vbox)
         dateFrame.add(vbox)
-        self.boxes['date'] = vbox
 
         # Buttons
         self.Button1=gtk.Button("Unnamed 1")
@@ -180,6 +200,20 @@ class Filters(threading.Thread):
         if "Button2" not in self.display or self.display["Button2"] == False:
             self.Button2.hide()
 
+        if 'button1' in self.label and self.label['button1']:
+            self.Button1.set_label( self.label['button1'] )
+        if 'button2' in self.label and self.label['button2']:
+            self.Button2.set_label( self.label['button2'] )
+        if 'button1' in self.callback and self.callback['button1']:
+            self.Button1.connect("clicked", self.callback['button1'], "clicked")
+            self.Button1.set_sensitive(True)
+        if 'button2' in self.callback and self.callback['button2']:
+            self.Button2.connect("clicked", self.callback['button2'], "clicked")
+            self.Button2.set_sensitive(True)
+
+        # make sure any locks on db are released:
+        self.db.rollback()
+
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.mainVBox
@@ -190,6 +224,9 @@ class Filters(threading.Thread):
 
     def getSites(self):
         return self.sites
+
+    def getGames(self):
+        return self.games
 
     def getSiteIds(self):
         return self.siteid
@@ -222,24 +259,29 @@ class Filters(threading.Thread):
 
     def registerButton1Name(self, title):
         self.Button1.set_label(title)
+        self.label['button1'] = title
 
     def registerButton1Callback(self, callback):
         self.Button1.connect("clicked", callback, "clicked")
         self.Button1.set_sensitive(True)
+        self.callback['button1'] = callback
 
     def registerButton2Name(self, title):
         self.Button2.set_label(title)
+        self.label['button2'] = title
 
     def registerButton2Callback(self, callback):
         self.Button2.connect("clicked", callback, "clicked")
         self.Button2.set_sensitive(True)
+        self.callback['button2'] = callback
 
     def cardCallback(self, widget, data=None):
-        print "DEBUG: %s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
+        log.debug( "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()]) )
 
     def createPlayerLine(self, hbox, site, player):
+        log.debug('add:"%s"' % player)
         label = gtk.Label(site +" id:")
-        hbox.pack_start(label, False, False, 0)
+        hbox.pack_start(label, False, False, 3)
 
         pname = gtk.Entry()
         pname.set_text(player)
@@ -253,22 +295,27 @@ class Filters(threading.Thread):
         liststore = gtk.ListStore(gobject.TYPE_STRING)
         completion.set_model(liststore)
         completion.set_text_column(0)
-        names = self.db.get_player_names(self.conf)  # (config=self.conf, site_id=None, like_player_name="%")
-        for n in names:
-            liststore.append(n)
+        names = self.db.get_player_names(self.conf, self.siteid[site])  # (config=self.conf, site_id=None, like_player_name="%")
+        for n in names: # list of single-element "tuples"
+            _n = Charset.to_gui(n[0])
+            _nt = (_n, )
+            liststore.append(_nt)
 
         self.__set_hero_name(pname, site)
 
     def __set_hero_name(self, w, site):
-        self.heroes[site] = w.get_text()
-#        print "DEBUG: setting heroes[%s]: %s"%(site, self.heroes[site])
+        _name = w.get_text()
+        # get_text() returns a str but we want internal variables to be unicode:
+        _guiname = unicode(_name)
+        self.heroes[site] = _guiname
+#        log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
 
     def __set_num_hands(self, w, val):
         try:
             self.numHands = int(w.get_text())
         except:
             self.numHands = 0
-#        print "DEBUG: setting numHands:", self.numHands
+#        log.debug("setting numHands:", self.numHands)
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -280,6 +327,7 @@ class Filters(threading.Thread):
         cb = gtk.CheckButton(game)
         cb.connect('clicked', self.__set_game_select, game)
         hbox.pack_start(cb, False, False, 0)
+        cb.set_active(True)
 
     def createLimitLine(self, hbox, limit, ltext):
         cb = gtk.CheckButton(str(ltext))
@@ -292,18 +340,18 @@ class Filters(threading.Thread):
     def __set_site_select(self, w, site):
         #print w.get_active()
         self.sites[site] = w.get_active()
-        print "self.sites[%s] set to %s" %(site, self.sites[site])
+        log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
 
     def __set_game_select(self, w, game):
         #print w.get_active()
         self.games[game] = w.get_active()
-        print "self.games[%s] set to %s" %(game, self.games[game])
+        log.debug("self.games[%s] set to %s" %(game, self.games[game]))
 
     def __set_limit_select(self, w, limit):
         #print w.get_active()
         self.limits[limit] = w.get_active()
-        print "self.limit[%s] set to %s" %(limit, self.limits[limit])
-        if limit.isdigit() or (len(limit) > 2 and limit[-2:] == 'nl'):
+        log.debug("self.limit[%s] set to %s" %(limit, self.limits[limit]))
+        if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
             if self.limits[limit]:
                 if self.cbNoLimits is not None:
                     self.cbNoLimits.set_active(False)
@@ -314,9 +362,12 @@ class Filters(threading.Thread):
                 if limit.isdigit():
                     if self.cbFL is not None:
                         self.cbFL.set_active(False)
-                else:
+                elif (len(limit) > 2 and (limit[-2:] == 'nl')):
                     if self.cbNL is not None:
                         self.cbNL.set_active(False)
+                else:
+                    if self.cbPL is not None:
+                        self.cbPL.set_active(False)
         elif limit == "all":
             if self.limits[limit]:
                 #for cb in self.cbLimits.values():
@@ -325,6 +376,8 @@ class Filters(threading.Thread):
                     self.cbFL.set_active(True)
                 if self.cbNL is not None:
                     self.cbNL.set_active(True)
+                if self.cbPL is not None:
+                    self.cbPL.set_active(True)
         elif limit == "none":
             if self.limits[limit]:
                 for cb in self.cbLimits.values():
@@ -333,6 +386,8 @@ class Filters(threading.Thread):
                     self.cbNL.set_active(False)
                 if self.cbFL is not None:
                     self.cbFL.set_active(False)
+                if self.cbPL is not None:
+                    self.cbPL.set_active(False)
         elif limit == "fl":
             if not self.limits[limit]:
                 # only toggle all fl limits off if they are all currently on
@@ -381,11 +436,39 @@ class Filters(threading.Thread):
             if self.limits[limit]:
                 if not found[self.type]:
                     if self.type == 'ring':
-                        self.rb['tour'].set_active(True)
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
                     elif self.type == 'tour':
-                        self.rb['ring'].set_active(True)
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
+        elif limit == "pl":
+            if not self.limits[limit]:
+                # only toggle all nl limits off if they are all currently on
+                # this stops turning one off from cascading into 'nl' box off
+                # and then all nl limits being turned off
+                all_nl_on = True
+                for cb in self.cbLimits.values():
+                    t = cb.get_children()[0].get_text()
+                    if "pl" in t and len(t) > 2:
+                        if not cb.get_active():
+                            all_nl_on = False
+            found = {'ring':False, 'tour':False}
+            for cb in self.cbLimits.values():
+                t = cb.get_children()[0].get_text()
+                if "pl" in t and len(t) > 2:
+                    if self.limits[limit] or all_nl_on:
+                        cb.set_active(self.limits[limit])
+                    found[self.types[t]] = True
+            if self.limits[limit]:
+                if not found[self.type]:
+                    if self.type == 'ring':
+                        if 'tour' in self.rb:
+                            self.rb['tour'].set_active(True)
+                    elif self.type == 'tour':
+                        if 'ring' in self.rb:
+                            self.rb['ring'].set_active(True)
         elif limit == "ring":
-            print "set", limit, "to", self.limits[limit]
+            log.debug("set", limit, "to", self.limits[limit])
             if self.limits[limit]:
                 self.type = "ring"
                 for cb in self.cbLimits.values():
@@ -393,7 +476,7 @@ class Filters(threading.Thread):
                     if self.types[cb.get_children()[0].get_text()] == 'tour':
                         cb.set_active(False)
         elif limit == "tour":
-            print "set", limit, "to", self.limits[limit]
+            log.debug( "set", limit, "to", self.limits[limit] )
             if self.limits[limit]:
                 self.type = "tour"
                 for cb in self.cbLimits.values():
@@ -404,24 +487,38 @@ class Filters(threading.Thread):
     def __set_seat_select(self, w, seat):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.seats[seat] = w.get_active()
-        print "self.seats[%s] set to %s" %(seat, self.seats[seat])
+        log.debug( "self.seats[%s] set to %s" %(seat, self.seats[seat]) )
 
     def __set_group_select(self, w, group):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.groups[group] = w.get_active()
-        print "self.groups[%s] set to %s" %(group, self.groups[group])
+        log.debug( "self.groups[%s] set to %s" %(group, self.groups[group]) )
 
     def fillPlayerFrame(self, vbox, display):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['playerstitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="refresh", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__refresh, 'players')
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['players'] = vbox1
+
         for site in self.conf.get_supported_sites():
             hBox = gtk.HBox(False, 0)
-            vbox.pack_start(hBox, False, True, 0)
+            vbox1.pack_start(hBox, False, True, 0)
 
             player = self.conf.supported_sites[site].screen_name
-            self.createPlayerLine(hBox, site, player)
+            _pname = Charset.to_gui(player)
+            self.createPlayerLine(hBox, site, _pname)
 
         if "GroupsAll" in display and display["GroupsAll"] == True:
             hbox = gtk.HBox(False, 0)
-            vbox.pack_start(hbox, False, False, 0)
+            vbox1.pack_start(hbox, False, False, 0)
             cb = gtk.CheckButton(self.filterText['groupsall'])
             cb.connect('clicked', self.__set_group_select, 'allplayers')
             hbox.pack_start(cb, False, False, 0)
@@ -437,30 +534,64 @@ class Filters(threading.Thread):
             phands.set_width_chars(8)
             hbox.pack_start(phands, False, False, 0)
             phands.connect("changed", self.__set_num_hands, site)
+        top_hbox.pack_start(showb, expand=False, padding=1)
 
     def fillSitesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        top_hbox.show()
+        vbox.pack_start(top_hbox, False, False, 0)
+
+        lbl_title = gtk.Label(self.filterText['sitestitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'sites')
+        showb.show()
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        self.boxes['sites'] = vbox1
+        vbox.pack_start(vbox1, False, False, 0)
+
         for site in self.conf.get_supported_sites():
             hbox = gtk.HBox(False, 0)
-            vbox.pack_start(hbox, False, True, 0)
+            vbox1.pack_start(hbox, False, True, 0)
             self.createSiteLine(hbox, site)
             #Get db site id for filtering later
-            self.cursor.execute(self.sql.query['getSiteId'], (site,))
-            result = self.db.cursor.fetchall()
-            if len(result) == 1:
-                self.siteid[site] = result[0][0]
-            else:
-                print "Either 0 or more than one site matched - EEK"
+            #self.cursor.execute(self.sql.query['getSiteId'], (site,))
+            #result = self.db.cursor.fetchall()
+            #if len(result) == 1:
+            #    self.siteid[site] = result[0][0]
+            #else:
+            #    print "Either 0 or more than one site matched - EEK"
 
     def fillGamesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['gamestitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'games')
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['games'] = vbox1
+
         self.cursor.execute(self.sql.query['getGames'])
         result = self.db.cursor.fetchall()
         if len(result) >= 1:
             for line in result:
                 hbox = gtk.HBox(False, 0)
-                vbox.pack_start(hbox, False, True, 0)
+                vbox1.pack_start(hbox, False, True, 0)
                 self.createGameLine(hbox, line[0])
         else:
             print "INFO: No games returned from database"
+            log.info("No games returned from database")
 
     def fillLimitsFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
@@ -476,10 +607,10 @@ class Filters(threading.Thread):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
-        self.cursor.execute(self.sql.query['getLimits2'])
+        self.cursor.execute(self.sql.query['getLimits3'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        found = {'nl':False, 'fl':False, 'ring':False, 'tour':False}
+        found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -497,14 +628,18 @@ class Filters(threading.Thread):
                     vbox2.pack_start(hbox, False, False, 0)
                 else:
                     vbox3.pack_start(hbox, False, False, 0)
-                if line[1] == 'fl':
-                    name = str(line[2])
-                    found['fl'] = True
-                else:
-                    name = str(line[2])+line[1]
-                    found['nl'] = True
-                self.cbLimits[name] = self.createLimitLine(hbox, name, name)
-                self.types[name] = line[0]
+                if True:  #line[0] == 'ring':
+                    if line[1] == 'fl':
+                        name = str(line[2])
+                        found['fl'] = True
+                    elif line[1] == 'pl':
+                        name = str(line[2])+line[1]
+                        found['pl'] = True
+                    else:
+                        name = str(line[2])+line[1]
+                        found['nl'] = True
+                    self.cbLimits[name] = self.createLimitLine(hbox, name, name)
+                    self.types[name] = line[0]
                 found[line[0]] = True      # type is ring/tour
                 self.type = line[0]        # if only one type, set it now
             if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
@@ -532,9 +667,13 @@ class Filters(threading.Thread):
                     hbox = gtk.HBox(False, 0)
                     vbox3.pack_start(hbox, False, False, 0)
                     self.cbNL = self.createLimitLine(hbox, 'nl', self.filterText['limitsNL'])
+                    hbox = gtk.HBox(False, 0)
+                    vbox3.pack_start(hbox, False, False, 0)
+                    self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
                     dest = vbox2  # for ring/tour buttons
         else:
             print "INFO: No games returned from database"
+            log.info("No games returned from database")
 
         if "Type" in display and display["Type"] == True and found['ring'] and found['tour']:
             rb1 = gtk.RadioButton(None, self.filterText['ring'])
@@ -645,8 +784,22 @@ class Filters(threading.Thread):
 
     def fillDateFrame(self, vbox):
         # Hat tip to Mika Bostrom - calendar code comes from PokerStats
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['datestitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'dates')
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['dates'] = vbox1
+
         hbox = gtk.HBox()
-        vbox.pack_start(hbox, False, True, 0)
+        vbox1.pack_start(hbox, False, True, 0)
 
         lbl_start = gtk.Label('From:')
 
@@ -660,7 +813,7 @@ class Filters(threading.Thread):
 
         #New row for end date
         hbox = gtk.HBox()
-        vbox.pack_start(hbox, False, True, 0)
+        vbox1.pack_start(hbox, False, True, 0)
 
         lbl_end = gtk.Label('  To:')
         btn_end = gtk.Button()
@@ -676,10 +829,13 @@ class Filters(threading.Thread):
 
         hbox.pack_start(btn_clear, expand=False, padding=15)
 
+    def __refresh(self, widget, entry):
+        for w in self.mainVBox.get_children():
+            w.destroy()
+        self.make_filter()
+
     def __toggle_box(self, widget, entry):
-        if "Limits" not in self.display or self.display["Limits"] == False:
-            self.boxes[entry].hide()
-        elif self.boxes[entry].props.visible:
+        if self.boxes[entry].props.visible:
             self.boxes[entry].hide()
             widget.set_label("show")
         else:
@@ -740,10 +896,10 @@ def main(argv=None):
     config = Configuration.Config()
     db = None
 
-    db = fpdb_db.fpdb_db()
+    db = Database.Database()
     db.do_connect(config)
 
-    qdict = FpdbSQLQueries.FpdbSQLQueries(db.get_backend_name())
+    qdict = SQL.SQL(db.get_backend_name())
 
     i = Filters(db, config, qdict)
     main_window = gtk.Window()

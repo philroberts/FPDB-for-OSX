@@ -30,7 +30,6 @@ import gtk
 import gobject
 
 #    fpdb/FreePokerTools modules
-import fpdb_simple
 import fpdb_import
 import Configuration
 import Exceptions
@@ -90,7 +89,8 @@ class GuiBulkImport():
 
                 for selection in selected:
                     self.importer.addBulkImportImportFileOrDir(selection, site = sitename)
-                self.importer.setCallHud(False)
+                self.importer.setCallHud(self.cb_testmode.get_active())
+                self.importer.bHudTest = self.cb_testmode.get_active()
                 starttime = time()
 #                try:
                 (stored, dups, partial, errs, ttime) = self.importer.runImport()
@@ -106,6 +106,9 @@ class GuiBulkImport():
                 print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 self.importer.clearFileList()
+                # This file should really be 'logging'
+                #log.info('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+                #     % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime))
                 if self.n_hands_in_db == 0 and stored > 0:
                     self.cb_dropindexes.set_sensitive(True)
                     self.cb_dropindexes.set_active(0)
@@ -229,6 +232,10 @@ class GuiBulkImport():
                           ypadding=0, yoptions=gtk.SHRINK)
         self.cb_dropindexes.show()
 
+        self.cb_testmode = gtk.CheckButton('HUD Test mode')
+        self.table.attach(self.cb_testmode, 0, 1, 2, 3, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
+        self.cb_testmode.show()
+
 #    label - filter
         self.lab_filter = gtk.Label("Site filter:")
         self.table.attach(self.lab_filter, 1, 2, 2, 3, xpadding=0, ypadding=0,
@@ -239,7 +246,17 @@ class GuiBulkImport():
 
 #    ComboBox - filter
         self.cbfilter = gtk.combo_box_new_text()
+        disabled_sites = []                                # move disabled sites to bottom of list
         for w in self.config.hhcs:
+            try:
+                if self.config.supported_sites[w].enabled: # include enabled ones first
+                    print w
+                    self.cbfilter.append_text(w)
+                else:
+                    disabled_sites.append(w)
+            except: # self.supported_sites[w] may not exist if hud_config is bad
+                disabled_sites.append(w)
+        for w in disabled_sites:                           # then disabled ones
             print w
             self.cbfilter.append_text(w)
         self.cbfilter.set_active(0)

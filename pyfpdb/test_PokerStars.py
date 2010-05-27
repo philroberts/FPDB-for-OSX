@@ -27,9 +27,9 @@ settings.update(config.get_default_paths())
 gametype = {'type':'ring', 'base':'draw', 'category':'badugi', 'limitType':'fl', 'sb':'0.25', 'bb':'0.50','currency':'USD'}
 text = ""
 
-hhc = PokerStarsToFpdb.PokerStars(autostart=False)
+hhc = PokerStarsToFpdb.PokerStars(config, autostart=False)
 
-h = HoldemOmahaHand(None, "PokerStars", gametype, text, builtFrom = "Test")
+h = HoldemOmahaHand(config, None, "PokerStars", gametype, text, builtFrom = "Test")
 h.addPlayer("1", "s0rrow", "100000")
 
 hhc.compilePlayerRegexs(h)
@@ -39,7 +39,7 @@ def checkGameInfo(hhc, header, info):
     assert hhc.determineGameType(header) == info
 
 def testGameInfo():
-    hhc = PokerStarsToFpdb.PokerStars(autostart=False)    
+    hhc = PokerStarsToFpdb.PokerStars(config, autostart=False)
     pairs = (
     (u"PokerStars Game #20461877044:  Hold'em No Limit ($1/$2) - 2008/09/16 18:58:01 ET",
     {'type':'ring', 'base':"hold", 'category':'holdem', 'limitType':'nl', 'sb':'1', 'bb':'2', 'currency':'USD'}),
@@ -82,18 +82,21 @@ def testFlopImport():
     # River: hero (continuation bets?) all-in and is not called
     importer.addBulkImportImportFileOrDir(
             """regression-test-files/cash/Stars/Flop/NLHE-6max-USD-0.05-0.10-200912.Stats-comparision.txt""", site="PokerStars")
+    importer.addBulkImportImportFileOrDir(
+            """regression-test-files/cash/Stars/Flop/NLHE-6max-USD-0.05-0.10-200912.Allin-pre.txt""", site="PokerStars")
     importer.setCallHud(False)
     (stored, dups, partial, errs, ttime) = importer.runImport()
     print "DEBUG: stored: %s dups: %s partial: %s errs: %s ttime: %s" %(stored, dups, partial, errs, ttime)
     importer.clearFileList()
 
-    col = { 'sawShowdown': 2
+    col = { 'sawShowdown': 2, 'street0Aggr':3
           }
 
     q = """SELECT
     s.name,
     p.name,
-    hp.sawShowdown
+    hp.sawShowdown,
+    hp.street0Aggr
 FROM
     Hands as h,
     Sites as s,
@@ -113,6 +116,33 @@ and s.id = p.siteid"""
         print "DEBUG: result[%s]: %s" %(row, result[row])
         # Assert if any sawShowdown = True
         assert result[row][col['sawShowdown']] == 0
+
+    q = """SELECT
+    s.name,
+    p.name,
+    hp.sawShowdown,
+    hp.street0Aggr
+FROM
+    Hands as h,
+    Sites as s,
+    Gametypes as g,
+    HandsPlayers as hp,
+    Players as p
+WHERE
+    h.siteHandNo = 37165169101
+and g.id = h.gametypeid
+and hp.handid = h.id
+and p.id = hp.playerid
+and s.id = p.siteid"""
+    c = db.get_cursor()
+    c.execute(q) 
+    result = c.fetchall()
+    pstats = { u'Kinewma':0, u'Arbaz':0, u's0rrow':1, u'bys7':0, u'AAALISAAAA':1, u'Bl\xe5veis':0 }
+    for row, data in enumerate(result):
+        print "DEBUG: result[%s]: %s == %s" %(row, result[row], pstats[data[1]])
+        assert result[row][col['sawShowdown']] == pstats[data[1]]
+
+    assert 0 == 1
 
 def testStudImport():
     db.recreate_tables()
@@ -148,11 +178,7 @@ def testDrawImport():
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
     except FpdbError:
-        if Configuration.NEWIMPORT == False:
-            #Old import code doesn't support draw
-            pass
-        else:
-            assert 0 == 1
+        assert 0 == 1
 
     # Should actually do some testing here
     assert 1 == 1

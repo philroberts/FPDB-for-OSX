@@ -1,7 +1,6 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -17,5 +16,18 @@
 #agpl-3.0.txt in the docs folder of the package.
 
 
+import os
+import sys
 
-#end class fpdb_db
+# sys.path[0] holds the directory run_fpdb.py is in
+sys.path[0] = sys.path[0]+os.sep+"pyfpdb"
+os.chdir(sys.path[0])
+#print "sys.path[0] =", sys.path[0], "cwd =", os.getcwd()
+
+import fpdb
+
+
+if __name__ == "__main__":
+    me = fpdb.fpdb()
+    me.main()
+    exit()

@@ -53,7 +53,7 @@ if os.name == 'nt':
         raw_input("Press ENTER to continue.")
         exit()
 
-print "Python " + sys.version[0:3] + '...\n'
+print "Python " + sys.version[0:3] + '...'
 
 import traceback
 import threading
@@ -62,12 +62,6 @@ import string
 cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
-if not options.errorsToConsole:
-    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('fpdb-error-log.txt', 'w', 0)
-    sys.stderr = errorFile
-
-#import logging
 import logging, logging.config
 
 try:
@@ -103,6 +97,7 @@ except:
 
 import GuiPrefs
 import GuiLogView
+import GuiDatabase
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
@@ -112,13 +107,11 @@ import GuiGraphViewer
 import GuiSessionViewer
 import SQL
 import Database
-import FpdbSQLQueries
 import Configuration
 import Exceptions
 
 VERSION = "0.12"
 
-log = Configuration.get_logger("logging.conf", "fpdb")
 
 class fpdb:
     def tab_clicked(self, widget, tab_name):
@@ -296,10 +289,31 @@ class fpdb:
 
         dia.destroy()
 
-    def dia_create_del_database(self, widget, data=None):
-        self.warning_box("Unimplemented: Create/Delete Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
+    def dia_maintain_dbs(self, widget, data=None):
+        self.warning_box("Unimplemented: Maintain Databases")
+        return
+        if len(self.tab_names) == 1:
+            if self.obtain_global_lock():  # returns true if successful
+                # only main tab has been opened, open dialog
+                dia = gtk.Dialog("Maintain Databases",
+                                 self.window,
+                                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                 (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                                  gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
+                dia.set_default_size(700, 320)
+
+                prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
+                response = dia.run()
+                if response == gtk.RESPONSE_ACCEPT:
+                    # save updated config
+                    self.config.save()
+
+                self.release_global_lock()
+
+            dia.destroy()
+        else:
+            self.warning_box("Cannot open Database Maintenance window because "
+                             + "other windows have been opened. Re-start fpdb to use this option.")
 
     def dia_create_del_user(self, widget, data=None):
         self.warning_box("Unimplemented: Create/Delete user")
@@ -628,7 +642,7 @@ class fpdb:
                   <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
-                  <menuitem action="createdb"/>
+                  <menuitem action="maintaindbs"/>
                   <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
@@ -671,7 +685,7 @@ class fpdb:
                                  ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
-                                 ('createdb', None, 'Create or Delete _Database (todo)', None, 'Create or Delete Database', self.dia_create_del_database),
+                                 ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
@@ -693,9 +707,22 @@ class fpdb:
         window.add_accel_group(accel_group)
         return menubar
 
-    def load_profile(self):
+    def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
         self.config = Configuration.Config(file=options.config, dbname=options.dbname)
+        if self.config.file_error:
+            self.warning_box( "There is an error in your config file\n" + self.config.file
+                              + "\n\nError is:  " + str(self.config.file_error)
+                            , diatitle="CONFIG FILE ERROR" )
+            exit()
+
+        log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
+        print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
+        if self.config.example_copy:
+            self.info_box( "Config file"
+                         , "has been created at:\n%s.\n" % self.config.file
+                           + "Edit your screen_name and hand history path in the supported_sites "
+                           + "section of the Preferences window (Main menu) before trying to import hands.")
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep=="/"):
@@ -716,6 +743,9 @@ class fpdb:
         err_msg = None
         try:
             self.db = Database.Database(self.config, sql = self.sql)
+            if self.db.get_backend_name() == 'SQLite':
+                # tell sqlite users where the db file is
+                print "Connected to SQLite: %(database)s" % {'database':self.db.db_path}
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
         except Exceptions.FpdbMySQLNoDatabase:
@@ -770,7 +800,7 @@ class fpdb:
             self.status_bar.show()
 
         if self.db is not None and self.db.connected:
-            self.status_bar.set_text("Status: Connected to %s database named %s on host %s" 
+            self.status_bar.set_text("Status: Connected to %s database named %s on host %s"
                                      % (self.db.get_backend_name(),self.db.database, self.db.host))
             # rollback to make sure any locks are cleared:
             self.db.rollback()
@@ -794,8 +824,11 @@ class fpdb:
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        if self.db is not None and self.db.connected:
-            self.db.disconnect()
+        try:
+            if self.db is not None and self.db.connected:
+                self.db.disconnect()
+        except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+            pass
         self.statusIcon.set_visible(False)
         gtk.main_quit()
 
@@ -900,11 +933,20 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.tab_main_help(None, None)
 
         self.window.show()
-        self.load_profile()
+        self.load_profile(create_db = True)
+
+        if not options.errorsToConsole:
+            fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
+            print "\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in:\n" \
+                  + self.config.dir_log + "\nAny major error will be reported there _only_.\n"
+            errorFile = open(fileName, 'w', 0)
+            sys.stderr = errorFile
 
         self.statusIcon = gtk.StatusIcon()
-        if os.path.exists('../gfx/fpdb-cards.png'):
-            self.statusIcon.set_from_file('../gfx/fpdb-cards.png')
+        # use getcwd() here instead of sys.path[0] so that py2exe works:
+        cards = os.path.join(os.getcwd(), '..','gfx','fpdb-cards.png')
+        if os.path.exists(cards):
+            self.statusIcon.set_from_file(cards)
         elif os.path.exists('/usr/share/pixmaps/fpdb-cards.png'):
             self.statusIcon.set_from_file('/usr/share/pixmaps/fpdb-cards.png')
         else:
@@ -963,35 +1005,44 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             self.window.show()
             self.window.present()
 
+    def info_box(self, str1, str2):
+        diapath = gtk.MessageDialog( parent=None, flags=0, type=gtk.MESSAGE_INFO
+                                   , buttons=(gtk.BUTTONS_OK), message_format=str1 )
+        diapath.format_secondary_text(str2)
+        response = diapath.run()
+        diapath.destroy()
+        return response
+
     def warning_box(self, str, diatitle="FPDB WARNING"):
-            diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
-            label = gtk.Label(str)
-            diaWarning.vbox.add(label)
-            label.show()
+        label = gtk.Label(str)
+        diaWarning.vbox.add(label)
+        label.show()
 
-            response = diaWarning.run()
-            diaWarning.destroy()
-            return response
+        response = diaWarning.run()
+        diaWarning.destroy()
+        return response
 
     def validate_config(self):
-        hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
-        hhbase    = os.path.expanduser(hhbase)
-        #hhdir     = os.path.join(hhbase,site)
-        hhdir       = hhbase
-        if not os.path.isdir(hhdir):
-            diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-            diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
-            diapath.format_secondary_text(diastring)
-            response = diapath.run()
-            diapath.destroy()
-            if response == gtk.RESPONSE_YES:
-                try:
-                    os.makedirs(hhdir)
-                except:
-                    self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
-            elif response == gtk.RESPONSE_NO:
-               self.select_hhArchiveBase()
+        if self.config.get_import_parameters().get('saveStarsHH'):
+            hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
+            hhbase    = os.path.expanduser(hhbase)
+            #hhdir     = os.path.join(hhbase,site)
+            hhdir       = hhbase
+            if not os.path.isdir(hhdir):
+                diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
+                diastring = "WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one." % hhdir
+                diapath.format_secondary_text(diastring)
+                response = diapath.run()
+                diapath.destroy()
+                if response == gtk.RESPONSE_YES:
+                    try:
+                        os.makedirs(hhdir)
+                    except:
+                        self.warning_box("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed.")
+                elif response == gtk.RESPONSE_NO:
+                    self.select_hhArchiveBase()
 
     def select_hhArchiveBase(self, widget=None):
         fc = gtk.FileChooserDialog(title="Select HH Output Directory", parent=None, action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, buttons=(gtk.STOCK_OPEN,gtk.RESPONSE_OK), backend=None)

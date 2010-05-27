@@ -33,7 +33,7 @@ try:
     from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
     from matplotlib.finance import candlestick2
 
-    from numpy import diff, nonzero, sum, cumsum, max, min
+    from numpy import diff, nonzero, sum, cumsum, max, min, append
 #    from matplotlib.dates import  DateFormatter, WeekdayLocator, HourLocator, \
 #     DayLocator, MONDAY, timezone
 
@@ -47,6 +47,7 @@ import fpdb_import
 import Database
 import Filters
 import FpdbSQLQueries
+import Charset
 
 class GuiSessionViewer (threading.Thread):
     def __init__(self, config, querylist, mainwin, debug=True):
@@ -181,7 +182,10 @@ class GuiSessionViewer (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                self.cursor.execute(self.sql.query['getPlayerId'], (heroes[site],))
+                _q = self.sql.query['getPlayerId']
+                _name = Charset.to_utf8(heroes[site])
+                #print 'DEBUG(_name) :: %s' % _name
+                self.cursor.execute(_q, (_name,)) # arg = tuple
                 result = self.db.cursor.fetchall()
                 if len(result) == 1:
                     playerids.append(result[0][0])
@@ -237,6 +241,9 @@ class GuiSessionViewer (threading.Thread):
     #end def fillStatsFrame(self, vbox):
 
     def generateDatasets(self, playerids, sitenos, limits, seats):
+        THRESHOLD = 1800                    # Minimum number of seconds between consecutive hands before being considered a new session
+        PADDING   = 5                       # Additional time in minutes to add to a session, session startup, shutdown etc (FiXME: user configurable)
+
         # Get a list of all handids and their timestampts
         #FIXME: Query still need to filter on blind levels
 
@@ -251,23 +258,31 @@ class GuiSessionViewer (threading.Thread):
         q = q.replace("<ampersand_s>", "%s")
 
         self.db.cursor.execute(q)
-        THRESHOLD = 1800
         hands = self.db.cursor.fetchall()
 
         # Take that list and create an array of the time between hands
         times = map(lambda x:long(x[0]), hands)
         handids = map(lambda x:int(x[1]), hands)
         winnings = map(lambda x:float(x[4]), hands)
-        print "DEBUG: len(times) %s" %(len(times))
-        diffs = diff(times) # This array is the difference in starttime between consecutive hands
-        index = nonzero(diff(times) > THRESHOLD) # This array represents the indexes into 'times' for start/end times of sessions
-                                                 # ie. times[index[0][0]] is the end of the first session
+        #print "DEBUG: len(times) %s" %(len(times))
+        diffs = diff(times)                      # This array is the difference in starttime between consecutive hands
+        diffs2 = append(diffs,THRESHOLD + 1)     # Append an additional session to the end of the diffs, so the next line
+                                                 # includes an index into the last 'session'
+        index = nonzero(diffs2 > THRESHOLD)      # This array represents the indexes into 'times' for start/end times of sessions
+                                                 # times[index[0][0]] is the end of the first session,
         #print "DEBUG: len(index[0]) %s" %(len(index[0]))
-        #print "DEBUG: index %s" %(index)
-        #print "DEBUG: index[0][0] %s" %(index[0][0])
+        if len(index[0]) > 0:
+            #print "DEBUG: index[0][0] %s" %(index[0][0])
+            #print "DEBUG: index %s" %(index)
+            pass
+        else:
+            index = [[0]]
+            #print "DEBUG: index %s" %(index)
+            #print "DEBUG: index[0][0] %s" %(index[0][0])
+            pass
 
         total = 0
-        last_idx = 0
+        first_idx = 0
         lowidx = 0
         uppidx = 0
         opens = []
@@ -277,27 +292,36 @@ class GuiSessionViewer (threading.Thread):
         results = []
         cum_sum = cumsum(winnings)
         cum_sum = cum_sum/100
+        sid = 1
         # Take all results and format them into a list for feeding into gui model.
         for i in range(len(index[0])):
-            sid = i                                                             # Session id
-            hds = index[0][i] - last_idx                                        # Number of hands in session
+            hds = index[0][i] - first_idx + 1                                        # Number of hands in session
             if hds > 0:
-                stime = strftime("%d/%m/%Y %H:%M", localtime(times[last_idx]))      # Formatted start time
+                stime = strftime("%d/%m/%Y %H:%M", localtime(times[first_idx]))      # Formatted start time
                 etime = strftime("%d/%m/%Y %H:%M", localtime(times[index[0][i]]))   # Formatted end time
-                hph = (times[index[0][i]] - times[last_idx])/60                     # Hands per hour
-                won = sum(winnings[last_idx:index[0][i]])/100.0
-                hwm = max(cum_sum[last_idx:index[0][i]])
-                lwm = min(cum_sum[last_idx:index[0][i]])
-                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s)" %(last_idx, index[0][i], hwm, lwm)
+                minutesplayed = (times[index[0][i]] - times[first_idx])/60
+                if minutesplayed == 0:
+                    minutesplayed = 1
+                minutesplayed = minutesplayed + PADDING
+                hph = hds*60/minutesplayed # Hands per hour
+                won = sum(winnings[first_idx:index[0][i]])/100.0
+                hwm = max(cum_sum[first_idx:index[0][i]])
+                lwm = min(cum_sum[first_idx:index[0][i]])
+                open = (sum(winnings[:first_idx]))/100
+                close = (sum(winnings[:index[0][i]]))/100
+                #print "DEBUG: range: (%s, %s) - (min, max): (%s, %s) - (open,close): (%s, %s)" %(first_idx, index[0][i], lwm, hwm, open, close)
             
                 results.append([sid, hds, stime, etime, hph, won])
-                opens.append((sum(winnings[:last_idx]))/100)
-                closes.append((sum(winnings[:index[0][i]]))/100)
+                opens.append(open)
+                closes.append(close)
                 highs.append(hwm)
                 lows.append(lwm)
-                #print "Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
-                total = total + (index[0][i] - last_idx)
-                last_idx = index[0][i] + 1
+                #print "DEBUG: Hands in session %4s: %4s  Start: %s End: %s HPH: %s Profit: %s" %(sid, hds, stime, etime, hph, won)
+                total = total + (index[0][i] - first_idx)
+                first_idx = index[0][i] + 1
+                sid = sid+1
+            else:
+                print "hds <= 0"
 
         return (results, opens, closes, highs, lows)
 
@@ -326,11 +350,6 @@ class GuiSessionViewer (threading.Thread):
     def generateGraph(self, opens, closes, highs, lows):
         self.clearGraphData()
 
-        #FIXME: Weird - first data entry is crashing this for me
-        opens = opens[1:]
-        closes = closes[1:]
-        highs = highs[1:]
-        lows = lows[1:]
 #        print "DEBUG:"
 #        print "highs = %s" % highs
 #        print "lows = %s" % lows

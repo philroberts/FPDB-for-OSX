@@ -21,19 +21,24 @@
 import re
 import sys
 import traceback
-import logging
 import os
 import os.path
 from decimal import Decimal
 import operator
 import time,datetime
 from copy import deepcopy
-from Exceptions import *
 import pprint
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
+
+
+import Configuration
+from Exceptions import *
 import DerivedStats
 import Card
 
-log = logging.getLogger("parser")
 
 class Hand(object):
 
@@ -43,10 +48,12 @@ class Hand(object):
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
     SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
-    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9 }
+    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Partouche':10, 'Carbon':11 }
 
 
-    def __init__(self, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
+        self.config = config
+        #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
         self.siteId = self.SITEIDS[sitename]
         self.stats = DerivedStats.DerivedStats(self)
@@ -118,6 +125,7 @@ class Hand(object):
         # currency symbol for this hand
         self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         self.pot.setSym(self.sym)
+        self.is_duplicate = False  # i.e. don't update hudcache if true
 
     def __str__(self):
         vars = ( ("BB", self.bb),
@@ -192,7 +200,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.holecards[street][player] = [open, closed]
 
     def prepInsert(self, db):
-	#####
+        #####
         # Players, Gametypes, TourneyTypes are all shared functions that are needed for additional tables
         # These functions are intended for prep insert eventually
         #####
@@ -205,7 +213,7 @@ dealt   whether they were seen in a 'dealt to' line
     def insert(self, db):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
-db: a connected fpdb_db object"""
+db: a connected Database object"""
 
 
         self.stats.getStats(self)
@@ -229,8 +237,11 @@ db: a connected fpdb_db object"""
             # TourneysPlayers
         else:
             log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
-            #Raise Duplicate exception?
-            pass
+            self.is_duplicate = True  # i.e. don't update hudcache
+            raise FpdbHandDuplicate(hh['siteHandNo'])
+
+    def updateHudCache(self, db):
+        db.storeHudCache(self.dbid_gt, self.dbid_pids, self.starttime, self.stats.getHandsPlayers())
 
     def select(self, handId):
         """ Function to create Hand object from database """
@@ -286,6 +297,24 @@ If a player has None chips he won't be added."""
             c = c.replace(k,v)
         return c
 
+    def addAllIn(self, street, player, amount):
+        """\
+For sites (currently only Carbon Poker) which record "all in" as a special action, which can mean either "calls and is all in" or "raises all in".
+"""
+        self.checkPlayerExists(player)
+        amount = re.sub(u',', u'', amount) #some sites have commas
+        Ai = Decimal(amount)
+        Bp = self.lastBet[street]
+        Bc = reduce(operator.add, self.bets[street][player], 0)
+        C = Bp - Bc
+        if Ai <= C:
+            self.addCall(street, player, amount)
+        elif Bp == 0:
+            self.addBet(street, player, amount)
+        else:
+            Rb = Ai - C
+            self._addRaise(street, player, C, Rb, Ai)
+
     def addAnte(self, player, ante):
         log.debug("%s %s antes %s" % ('BLINDSANTES', player, ante))
         if player is not None:
@@ -294,8 +323,10 @@ If a player has None chips he won't be added."""
             self.stacks[player] -= Decimal(ante)
             act = (player, 'posts', "ante", ante, self.stacks[player]==0)
             self.actions['BLINDSANTES'].append(act)
-            self.pot.addMoney(player, Decimal(ante))
-
+#            self.pot.addMoney(player, Decimal(ante))
+            self.pot.addCommonMoney(player, Decimal(ante))
+#I think the antes should be common money, don't have enough hand history to check
+        
     def addBlind(self, player, blindtype, amount):
         # if player is None, it's a missing small blind.
         # The situation we need to cover are:
@@ -313,9 +344,16 @@ If a player has None chips he won't be added."""
             self.actions['BLINDSANTES'].append(act)
 
             if blindtype == 'both':
-                amount = self.bb
+                # work with the real ammount. limit games are listed as $1, $2, where
+                # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
+                amount = self.bb 
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
-                self.pot.addCommonMoney(Decimal(self.sb))
+                self.pot.addCommonMoney(player, Decimal(self.sb))
+
+            if blindtype == 'secondsb':
+                amount = Decimal(0)
+                self.bets['BLINDSANTES'][player].append(Decimal(self.sb))
+                self.pot.addCommonMoney(player, Decimal(self.sb))
 
             self.bets['PREFLOP'][player].append(Decimal(amount))
             self.pot.addMoney(player, Decimal(amount))
@@ -393,7 +431,7 @@ Add a raise on [street] by [player] to [amountTo]
         Bc = reduce(operator.add, self.bets[street][player], 0)
         Rt = Decimal(amountTo)
         C = Bp - Bc
-        Rb = Rt - C
+        Rb = Rt - C - Bc
         self._addRaise(street, player, C, Rb, Rt)
 
     def _addRaise(self, street, player, C, Rb, Rt):
@@ -477,8 +515,7 @@ Card ranks will be uppercased
             self.totalcollected = 0;
             #self.collected looks like [[p1,amount][px,amount]]
             for entry in self.collected:
-                self.totalcollected += Decimal(entry[1])
-
+                self.totalcollected += Decimal(entry[1]) 
 
     def getGameTypeAsString(self):
         """\
@@ -595,7 +632,8 @@ Map the tuple self.gametype onto the pokerstars string describing it
 
 
 class HoldemOmahaHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC", handid=None):
+        self.config = config
         if gametype['base'] != 'hold':
             pass # or indeed don't pass and complain instead
         log.debug("HoldemOmahaHand")
@@ -603,7 +641,7 @@ class HoldemOmahaHand(Hand):
         self.holeStreets = ['PREFLOP']
         self.communityStreets = ['FLOP', 'TURN', 'RIVER']
         self.actionStreets = ['BLINDSANTES','PREFLOP','FLOP','TURN','RIVER']
-        Hand.__init__(self, sitename, gametype, handText, builtFrom = "HHC")
+        Hand.__init__(self, self.config, sitename, gametype, handText, builtFrom = "HHC")
         self.sb = gametype['sb']
         self.bb = gametype['bb']
 
@@ -612,6 +650,8 @@ class HoldemOmahaHand(Hand):
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -637,6 +677,7 @@ class HoldemOmahaHand(Hand):
             if self.maxseats is None:
                 self.maxseats = hhc.guessMaxSeats(self)
             hhc.readOther(self)
+            #print "\nHand:\n"+str(self)
         elif builtFrom == "DB":
             if handid is not None:
                 self.select(handid) # Will need a handId
@@ -676,7 +717,6 @@ class HoldemOmahaHand(Hand):
 
     def join_holecards(self, player, asList=False):
         """With asList = True it returns the set cards for a player including down cards if they aren't know"""
-        # FIXME: This should actually return
         hcs = [u'0x', u'0x', u'0x', u'0x']
 
         for street in self.holeStreets:
@@ -893,7 +933,8 @@ class HoldemOmahaHand(Hand):
         print >>fh, "\n\n"
 
 class DrawHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+        self.config = config
         if gametype['base'] != 'draw':
             pass # or indeed don't pass and complain instead
         self.streetList = ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
@@ -901,12 +942,14 @@ class DrawHand(Hand):
         self.holeStreets = ['DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.actionStreets =  ['BLINDSANTES', 'DEAL', 'DRAWONE', 'DRAWTWO', 'DRAWTHREE']
         self.communityStreets = []
-        Hand.__init__(self, sitename, gametype, handText)
+        Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         # Populate the draw hand.
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -952,10 +995,11 @@ class DrawHand(Hand):
                 self.lastBet['DEAL'] = Decimal(amount)
             elif blindtype == 'both':
                 # extra small blind is 'dead'
-                self.lastBet['DEAL'] = Decimal(self.bb)
+                amount = Decimal(amount)/3
+                amount += amount
+                self.lastBet['DEAL'] = Decimal(amount)
         self.posted = self.posted + [[player,blindtype]]
         #print "DEBUG: self.posted: %s" %(self.posted)
-
 
     def addShownCards(self, cards, player, shown=True, mucked=False, dealt=False):
         if player == self.hero: # we have hero's cards just update shown/mucked
@@ -1083,7 +1127,8 @@ class DrawHand(Hand):
 
 
 class StudHand(Hand):
-    def __init__(self, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+    def __init__(self, config, hhc, sitename, gametype, handText, builtFrom = "HHC"):
+        self.config = config
         if gametype['base'] != 'stud':
             pass # or indeed don't pass and complain instead
 
@@ -1093,7 +1138,7 @@ class StudHand(Hand):
 
         self.streetList = ['BLINDSANTES','THIRD','FOURTH','FIFTH','SIXTH','SEVENTH'] # a list of the observed street names in order
         self.holeStreets = ['THIRD','FOURTH','FIFTH','SIXTH','SEVENTH']
-        Hand.__init__(self, sitename, gametype, handText)
+        Hand.__init__(self, self.config, sitename, gametype, handText)
         self.sb = gametype['sb']
         self.bb = gametype['bb']
         #Populate the StudHand
@@ -1101,6 +1146,8 @@ class StudHand(Hand):
         # which then invokes a 'addXXX' callback
         if builtFrom == "HHC":
             hhc.readHandInfo(self)
+            if self.gametype['type'] == 'tour':
+                self.tablename = "%s %s" % (self.tourNo, self.tablename)
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
@@ -1192,7 +1239,7 @@ Add a complete on [street] by [player] to [amountTo]
         # showdownPot INT,                 /* pot size at sd/street7 */
         return (0,0,0,0,0)
 
-    
+
     def writeHand(self, fh=sys.__stdout__):
         # PokerStars format.
 
@@ -1368,7 +1415,7 @@ class Pot(object):
         self.contenders   = set()
         self.committed    = {}
         self.streettotals = {}
-        self.common       = Decimal(0)
+        self.common       = {}
         self.total        = None
         self.returned     = {}
         self.sym          = u'$' # this is the default currency symbol
@@ -1378,13 +1425,14 @@ class Pot(object):
 
     def addPlayer(self,player):
         self.committed[player] = Decimal(0)
+        self.common[player] = Decimal(0)
 
     def addFold(self, player):
         # addFold must be called when a player folds
         self.contenders.discard(player)
 
-    def addCommonMoney(self, amount):
-        self.common += amount
+    def addCommonMoney(self, player, amount):
+        self.common[player] += amount
 
     def addMoney(self, player, amount):
         # addMoney must be called for any actions that put money in the pot, in the order they occur
@@ -1392,7 +1440,7 @@ class Pot(object):
         self.committed[player] += amount
 
     def markTotal(self, street):
-        self.streettotals[street] = sum(self.committed.values()) + self.common
+        self.streettotals[street] = sum(self.committed.values()) + sum(self.common.values())
 
     def getTotalAtStreet(self, street):
         if street in self.streettotals:
@@ -1400,12 +1448,15 @@ class Pot(object):
         return 0
 
     def end(self):
-        self.total = sum(self.committed.values()) + self.common
+        self.total = sum(self.committed.values()) + sum(self.common.values())
 
         # Return any uncalled bet.
         committed = sorted([ (v,k) for (k,v) in self.committed.items()])
-        if len(committed)<2:
-            raise FpdbParseError("length of committed array is too small")
+        #print "DEBUG: committed: %s" % committed
+        #ERROR below. lastbet is correct in most cases, but wrong when 
+        #             additional money is committed to the pot in cash games
+        #             due to an additional sb being posted. (Speculate that
+        #             posting sb+bb is also potentially wrong)
         lastbet = committed[-1][0] - committed[-2][0]
         if lastbet > 0: # uncalled
             returnto = committed[-1][1]
@@ -1486,7 +1537,8 @@ limit 1""", {'handid':handid})
     #TODO: siteid should be in hands table - we took the scenic route through players here.
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-    h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+    c = Configuration.Config()
+    h = HoldemOmahaHand(config = c, hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
     cards = map(Card.valueSuitFromCard, res[11:16] )
     if cards[0]:
         h.setCommunityCards('FLOP', cards[0:3])
@@ -1589,4 +1641,3 @@ ORDER BY
 
 
     return h
-

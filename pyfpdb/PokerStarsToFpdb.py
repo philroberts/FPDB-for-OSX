@@ -46,12 +46,12 @@ class PokerStars(HandHistoryConverter):
           PokerStars\sGame\s\#(?P<HID>[0-9]+):\s+
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
-          (?P<BUYIN>[%(LS)s\+\d\.]+      # here's how I plan to use LS
-          \s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?
-          )\s)?                          # close paren of tournament info
+          # here's how I plan to use LS
+          (?P<BUYIN>([%(LS)s\+\d\.]+\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?)|Freeroll)\s+)?                          
+          # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
-          (?P<LIMIT>No\sLimit|Limit|Pot\sLimit)\)?,?\s
+          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
+          (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
@@ -69,7 +69,7 @@ class PokerStars(HandHistoryConverter):
           re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
-          ^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
+          ^Table\s\'(?P<TABLE>[-\ \#a-zA-Z\d]+)\'\s
           ((?P<MAX>\d+)-max\s)?
           (?P<PLAY>\(Play\sMoney\)\s)?
           (Seat\s\#(?P<BUTTON>\d+)\sis\sthe\sbutton)?""", 
@@ -81,6 +81,7 @@ class PokerStars(HandHistoryConverter):
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
+    re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -97,15 +98,16 @@ class PokerStars(HandHistoryConverter):
             self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
             self.re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds \[%(CUR)s (?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
             self.re_Action           = re.compile(r"""
                         ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
-                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
+                        \s*(and\sis\sall.in)?
+                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?\s*$"""
                          %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
@@ -133,17 +135,29 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            print "DEBUG: determineGameType(): did not match"
-            return None
+            tmp = handText[0:100]
+            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
+            log.error("determineGameType: Raising FpdbParseError")
+            raise FpdbParseError
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
+        Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.50': ('0.10', '0.25'),    '1.00': ('0.25', '0.50'),     '2.00': ('0.50', '1.00'), 
+                        '2': ('0.50', '1.00'), '4': ('1.00', '2.00'), '6': ('1.00', '3.00'),
+                        '4.00': ('1.00', '2.00'),    '6.00': ('1.00', '3.00'),    '10.00': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),  '30.00': ('10.00', '15.00'),  '60.00': ('15.00', '30.00'),
+                      '100.00': ('25.00', '50.00'),'200.00': ('50.00', '100.00'),'400.00': ('100.00', '200.00'),
+                     '1000.00': ('250.00', '500.00')}
+
+
+        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
         games = {                          # base, category
                               "Hold'em" : ('hold','holdem'), 
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
@@ -171,6 +185,15 @@ class PokerStars(HandHistoryConverter):
         else:
             info['type'] = 'tour'
 
+        if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
+            try:
+                info['sb'] = Lim_Blinds[mg['BB']][0]
+                info['bb'] = Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error("determineGameType: Raising FpdbParseError")
+                raise FpdbParseError
+
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
@@ -194,16 +217,22 @@ class PokerStars(HandHistoryConverter):
                 #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
-                m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), m2.group('M'),m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
+                m1 = self.re_DateTime.finditer(info[key])
+                # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
+                for a in m1:
+                    datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                 hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
-
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                hand.buyin = info[key]
+                if info[key] == 'Freeroll':
+                    hand.buyin = '$0+$0'
+                else:
+                    #FIXME: The key looks like: '€0.82+€0.18 EUR'
+                    #       This should be parsed properly and used
+                    hand.buyin = info[key]
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -233,7 +262,6 @@ class PokerStars(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
-        players = []
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
@@ -280,11 +308,14 @@ class PokerStars(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         
     def readBlinds(self, hand):
-        try:
-            m = self.re_PostSB.search(hand.handText)
-            hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except: # no small blind
-            hand.addBlind(None, None, None)
+        liveBlind = True
+        for a in self.re_PostSB.finditer(hand.handText):
+            if liveBlind:
+                hand.addBlind(a.group('PNAME'), 'small blind', a.group('SB'))
+                liveBlind = False
+            else:
+                # Post dead blinds as ante
+                hand.addBlind(a.group('PNAME'), 'secondsb', a.group('SB'))
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
@@ -330,6 +361,7 @@ class PokerStars(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            #print "DEBUG: acts: %s" %acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':

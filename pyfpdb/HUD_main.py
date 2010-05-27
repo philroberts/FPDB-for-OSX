@@ -35,11 +35,6 @@ import traceback
 
 (options, argv) = Options.fpdb_options()
 
-if not options.errorsToConsole:
-    print "Note: error output is being diverted to fpdb-error-log.txt and HUD-error.txt. Any major error will be reported there _only_."
-    errorFile = open('HUD-error.txt', 'w', 0)
-    sys.stderr = errorFile
-
 import thread
 import time
 import string
@@ -52,6 +47,8 @@ import gobject
 
 #    FreePokerTools modules
 import Configuration
+
+
 import Database
 from HandHistoryConverter import getTableTitleRe
 #    get the correct module for the current os
@@ -63,7 +60,9 @@ elif os.name == 'nt':
 import Hud
 
 
-log = Configuration.get_logger("logging.conf")
+# get config and set up logger
+c = Configuration.Config(file=options.config, dbname=options.dbname)
+log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 
 class HUD_main(object):
@@ -71,26 +70,47 @@ class HUD_main(object):
 #    This class mainly provides state for controlling the multiple HUDs.
 
     def __init__(self, db_name = 'fpdb'):
+        print "\nHUD_main: starting ..."
         self.db_name = db_name
-        self.config = Configuration.Config(file=options.config, dbname=options.dbname)
-        self.hud_dict = {}
-        self.hud_params = self.config.get_hud_ui_parameters()
+        self.config = c
+        print "Logfile is " + os.path.join(self.config.dir_log, 'HUD-log.txt')
+        log.info("HUD_main starting: using db name = %s" % (db_name))
 
-#    a thread to read stdin
-        gobject.threads_init()                       # this is required
-        thread.start_new_thread(self.read_stdin, ()) # starts the thread
+        try:
+            if not options.errorsToConsole:
+                fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
+                print "Note: error output is being diverted to:\n"+fileName \
+                      + "\nAny major error will be reported there _only_.\n" 
+                log.info("Note: error output is being diverted to:"+fileName)
+                log.info("Any major error will be reported there _only_.")
+                errorFile = open(fileName, 'w', 0)
+                sys.stderr = errorFile
+                sys.stderr.write("HUD_main: starting ...\n")
 
-#    a main window
-        self.main_window = gtk.Window()
-        self.main_window.connect("destroy", self.destroy)
-        self.vb = gtk.VBox()
-        self.label = gtk.Label('Closing this window will exit from the HUD.')
-        self.vb.add(self.label)
-        self.main_window.add(self.vb)
-        self.main_window.set_title("HUD Main Window")
-        self.main_window.show_all()
+            self.hud_dict = {}
+            self.hud_params = self.config.get_hud_ui_parameters()
+
+    #    a thread to read stdin
+            gobject.threads_init()                       # this is required
+            thread.start_new_thread(self.read_stdin, ()) # starts the thread
+
+    #    a main window
+            self.main_window = gtk.Window()
+            self.main_window.connect("destroy", self.destroy)
+            self.vb = gtk.VBox()
+            self.label = gtk.Label('Closing this window will exit from the HUD.')
+            self.vb.add(self.label)
+            self.main_window.add(self.vb)
+            self.main_window.set_title("HUD Main Window")
+            self.main_window.show_all()
+        except:
+            log.error( "*** Exception in HUD_main.init() *** " )
+            for e in traceback.format_tb(sys.exc_info()[2]):
+                log.error(e)
+
 
     def destroy(self, *args):             # call back for terminating the main eventloop
+        log.info("Terminating normally.")
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -123,8 +143,9 @@ class HUD_main(object):
                 self.hud_dict[table_name].update(new_hand_id, self.config)
                 self.hud_dict[table_name].reposition_windows()
             except:
-                print "*** Exception in HUD_main::idle_func() *** "
-                traceback.print_stack()
+                log.error( "*** Exception in HUD_main::idle_func() *** " + str(sys.exc_info()) )
+                for e in traceback.format_tb(sys.exc_info()[2]):
+                    log.error(e)
             finally:
                 gtk.gdk.threads_leave()
                 return False
@@ -186,30 +207,38 @@ class HUD_main(object):
 
 #       get hero's screen names and player ids
         self.hero, self.hero_ids = {}, {}
-        for site in self.config.get_supported_sites():
-            result = self.db_connection.get_site_id(site)
-            if result:
-                site_id = result[0][0]
-                self.hero[site_id] = self.config.supported_sites[site].screen_name
-                self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
+        found = False
 
         while 1: # wait for a new hand number on stdin
             new_hand_id = sys.stdin.readline()
             t0 = time.time()
             t1 = t2 = t3 = t4 = t5 = t6 = t0
             new_hand_id = string.rstrip(new_hand_id)
+            log.debug("Received hand no %s" % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
 
+            if not found:
+                for site in self.config.get_supported_sites():
+                    result = self.db_connection.get_site_id(site)
+                    if result:
+                        site_id = result[0][0]
+                        self.hero[site_id] = self.config.supported_sites[site].screen_name
+                        self.hero_ids[site_id] = self.db_connection.get_player_id(self.config, site, self.hero[site_id])
+                        if self.hero_ids[site_id] is not None:
+                            found = True
+                        else:
+                            self.hero_ids[site_id] = -1
+
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
+            log.info("HUD_main.read_stdin: hand processing starting ...")
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
-            except Exception, err: # TODO: we need to make this a much less generic Exception lulz
-                print "db error: skipping %s" % new_hand_id
-                sys.stderr.write("Database error: could not find hand %s.\n" % new_hand_id)
+            except Exception:
+                log.error("db error: skipping %s" % new_hand_id)
                 continue
             t1 = time.time()
 
@@ -228,18 +257,17 @@ class HUD_main(object):
                                                                   ,self.hero_ids[site_id], num_seats)
                 t3 = time.time()
                 try:
-                    self.db_connection.init_hud_stat_vars( self.hud_dict[temp_key].hud_params['hud_days']
-                                                     , self.hud_dict[temp_key].hud_params['h_hud_days'])
-                    stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params, self.hero_ids[site_id])
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    sys.stderr.write('hud_dict[%s] was not found\n' % temp_key)
-                    sys.stderr.write('will not send hand\n')
+                    log.error('hud_dict[%s] was not found\n' % temp_key)
+                    log.error('will not send hand\n')
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
                 cards      = self.db_connection.get_cards(new_hand_id)
+                t4 = time.time()
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
+                t5 = time.time()
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
                 self.hud_dict[temp_key].cards = cards
@@ -250,24 +278,24 @@ class HUD_main(object):
             else:
                 # get stats using default params--also get cards
                 self.db_connection.init_hud_stat_vars( self.hud_params['hud_days'], self.hud_params['h_hud_days'] )
-                t4 = time.time()
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_params
                                                                   ,self.hero_ids[site_id], num_seats)
-                t5 = time.time()
                 cards      = self.db_connection.get_cards(new_hand_id)
                 comm_cards = self.db_connection.get_common_cards(new_hand_id)
                 if comm_cards != {}: # stud!
                     cards['common'] = comm_cards['common']
 
                 table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
-                search_string = getTableTitleRe(self.config, site, type, **table_kwargs)
+                search_string = getTableTitleRe(self.config, site_name, type, **table_kwargs)
+                # print "getTableTitleRe ", self.config, site_name, type, "=", search_string
                 tablewindow = Tables.Table(search_string, **table_kwargs)
 
                 if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-                    sys.stderr.write("HUD create: table name "+table_name+" not found, skipping.\n")
+#                    log.error("HUD create: table name "+table_name+" not found, skipping.\n")
+                    log.error("HUD create: table name %s not found, skipping." % table_name)
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
@@ -275,7 +303,7 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        sys.stderr.write('Table "%s" no longer exists\n' % table_name)
+                        log.error('Table "%s" no longer exists\n' % table_name)
 
             t6 = time.time()
             log.info("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)"
@@ -283,9 +311,6 @@ class HUD_main(object):
             self.db_connection.connection.rollback()
 
 if __name__== "__main__":
-
-    sys.stderr.write("HUD_main starting\n")
-    sys.stderr.write("Using db name = %s\n" % (options.dbname))
 
 #    start the HUD_main object
     hm = HUD_main(db_name = options.dbname)

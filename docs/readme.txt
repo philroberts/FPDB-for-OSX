@@ -1,5 +1,5 @@
 README.txt
-updated 26 March 2009, REB
+updated 22 February 2010, REB
 
 fpdb - Free Poker Database
 
@@ -29,7 +29,7 @@ fpdb supports:
         Omaha (incl Hi/low)
         7 Card Stud (incl Hi/low)
         Razz
-        Draw support is under development
+        Triple Draw and Badugi
         Mixed Games -- HUD under development
 
     Operating Systems:
@@ -38,23 +38,38 @@ fpdb supports:
         Mac OS/X --  no support for HUD
 
     Databases:
+        SQLite configured by default
         MySQL
         PostgreSQL
-        SQLite under development
 
 Downloads:
     Releases: http://sourceforge.net/project/showfiles.php?group_id=226872
     Development code via git: http://www.assembla.com/spaces/free_poker_tools/trac_git_tool
 
 Developers:
-    At least 7 people have contributed code or patches. Others are welcome.
+    At least 10 people have contributed code or patches. Others are welcome.
 
+Source Code:
+    If you received fpdb as the Windows compressed exe, then you did not
+receive souce code for fpdb or the included libraries. If you wish, you can
+obtain the source code here:
+
+    fpdb:       see Downloads, above.
+    python:     http://python.org/
+    gtk:        http://www.gtk.org/download.html
+    pygtk:      http://www.pygtk.org/downloads.html
+    psycopg2:   http://initd.org/pub/software/psycopg/
+    mysqldb:    http://sourceforge.net/projects/mysql-python/files/
+    sqlalchemy: http://www.sqlalchemy.org/download.html
+    numpy:      http://www.scipy.org/Download
+    matplotlib: http://sourceforge.net/projects/matplotlib/files/
+    
 License
 =======
 Trademarks of third parties have been used under Fair Use or similar laws.
 
 Copyright 2008 Steffen Jobbagy-Felso
-Copyright 2009 Ray E. Barker
+Copyright 2009,2010 Ray E. Barker
 Permission is granted to copy, distribute and/or modify this
 document under the terms of the GNU Free Documentation License,
 Version 1.2 as published by the Free Software Foundation; with
