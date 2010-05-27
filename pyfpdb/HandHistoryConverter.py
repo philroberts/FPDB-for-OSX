@@ -98,6 +98,13 @@ follow :  whether to tail -f the input"""
         self.status = True
 
         self.parsedObjectType = "HH"      #default behaviour : parsing HH files, can be "Summary" if the parsing encounters a Summary File
+        
+        found=False
+        for item in self.codepage:
+        	if item=="utf-8":
+        		found=True
+        if not found:
+        	self.codepage.append("utf-8")
 
         if autostart:
             self.start()
