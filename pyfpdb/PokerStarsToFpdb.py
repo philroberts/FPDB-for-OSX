@@ -82,6 +82,8 @@ class PokerStars(HandHistoryConverter):
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
+    # revised re including timezone (not currently used):
+    #re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+) \(?(?P<TZ>[A-Z0-9]+)""", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -214,14 +216,28 @@ class PokerStars(HandHistoryConverter):
         log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
+                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]             # (both dates are parsed so ET date overrides the other)
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
                 m1 = self.re_DateTime.finditer(info[key])
                 # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but handstart will be wrong)
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                    #tz = a.group('TZ')  # just assume ET??
+                    #print "   tz = ", tz, " datetime =", datetimestr
+                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                # approximate rules for ET daylight savings time:
+                if (   hand.starttime.month == 12                                  # all of Dec
+                    or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
+                    or hand.starttime.month < 3                                    #    and all of Jan/Feb
+                    or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
+                    offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
+                else:
+                    offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
+                # adjust time into UTC:
+                hand.starttime = hand.starttime + offset
+                #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
