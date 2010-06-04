@@ -193,7 +193,7 @@ class Database:
     # alter table t add constraint c foreign key (fkcol) references tab(rcol)
     # (fkcol is used for foreigh key name)
 
-    # mysql to list indexes:
+    # mysql to list indexes: (CG - "LIST INDEXES" should work too)
     #   SELECT table_name, index_name, non_unique, column_name 
     #   FROM INFORMATION_SCHEMA.STATISTICS
     #     WHERE table_name = 'tbl_name'
@@ -223,6 +223,7 @@ class Database:
     #  Note: index names must be unique across a schema
     #  CREATE INDEX idx ON tab(col)
     #  DROP INDEX idx
+    #  SELECT * FROM PG_INDEXES
 
     # SQLite notes:
 
@@ -1075,7 +1076,7 @@ class Database:
             c = self.get_cursor()
             c.execute(self.sql.query['createSettingsTable'])
 
-            log.debug(self.sql.query['createSitesTable'])
+            log.debug("Creating tables")
             c.execute(self.sql.query['createSitesTable'])
             c.execute(self.sql.query['createGametypesTable'])
             c.execute(self.sql.query['createPlayersTable'])
@@ -1088,7 +1089,8 @@ class Database:
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
 
-            # create unique indexes:
+            # Create unique indexes:
+            log.debug("Creating unique indexes")
             c.execute(self.sql.query['addTourneyIndex'])
             c.execute(self.sql.query['addHandsIndex'])
             c.execute(self.sql.query['addPlayersIndex'])
