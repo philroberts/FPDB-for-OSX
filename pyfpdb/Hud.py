@@ -448,6 +448,8 @@ class Hud:
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
                 self.parent.kill_hud(self, self.table.name)
+                self.parent.kill_hud(self, self.table.name.split(" ")[0])
+                #table.name is only a valid handle for ring games ! we are not killing tourney tables here.
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
