@@ -58,6 +58,11 @@ class Filters(threading.Thread):
                           ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':'Ring', 'tour':'Tourney'
                           }
 
+        gen = self.conf.get_general_params()
+        self.day_start = 0
+        if 'day_start' in gen:
+            self.day_start = float(gen['day_start'])
+
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
 
@@ -864,6 +869,9 @@ class Filters(threading.Thread):
         self.end_date.set_text('')
 
     def __get_dates(self):
+        # self.day_start gives user's start of day in hours
+        offset = int(self.day_start * 3600)   # calc day_start in seconds
+
         t1 = self.start_date.get_text()
         t2 = self.end_date.get_text()
 
@@ -872,10 +880,20 @@ class Filters(threading.Thread):
         if t2 == '':
             t2 = '2020-12-12'
 
-        return (t1, t2)
+        s1 = strptime(t1, "%Y-%m-%d") # make time_struct
+        s2 = strptime(t2, "%Y-%m-%d")
+        e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
+        e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
+        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
+
+        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
+        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+        log.info("t1="+t1+" adj_t1="+adj_t1+'.')
+
+        return (adj_t1, adj_t2)
 
     def __get_date(self, widget, calendar, entry, win):
-# year and day are correct, month is 0..11
+        # year and day are correct, month is 0..11
         (year, month, day) = calendar.get_date()
         month += 1
         ds = '%04d-%02d-%02d' % (year, month, day)

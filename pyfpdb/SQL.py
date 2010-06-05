@@ -51,6 +51,18 @@ class Sql:
             WHERE type='table'
             ORDER BY name;"""
 
+        ################################
+        # List indexes
+        ################################
+        if db_server == 'mysql':
+            self.query['list_tables'] = """SHOW INDEXES"""
+        elif db_server == 'postgresql':
+            self.query['list_tables'] = """SELECT tablename, indexname FROM PG_INDEXES""" 
+        elif db_server == 'sqlite':
+            self.query['list_tables'] = """SELECT name FROM sqlite_master
+                                            WHERE type='index'
+                                            ORDER BY name;"""
+
         ##################################################################
         # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
         ##################################################################
@@ -1921,7 +1933,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   date_format(h.handStart, '%Y-%m-%d') <datestest>
+                      and   date_format(h.handStart, '%Y-%m-%d %T') <datestest>
                       group by hgameTypeId
                               ,pname
                               ,gt.base
@@ -2006,7 +2018,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                      and   to_char(h.handStart, 'YYYY-MM-DD HH24:MI:SS') <datestest>
                       group by hgameTypeId
                               ,pname
                               ,gt.base
@@ -2092,7 +2104,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   date(h.handStart) <datestest>
+                      and   datetime(h.handStart) <datestest>
                       group by hgameTypeId
                               ,hp.playerId
                               ,gt.base

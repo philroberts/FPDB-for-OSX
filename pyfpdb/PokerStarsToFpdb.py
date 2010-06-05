@@ -82,6 +82,8 @@ class PokerStars(HandHistoryConverter):
 #        self.re_setHandInfoRegex('.*#(?P<HID>[0-9]+): Table (?P<TABLE>[ a-zA-Z]+) - \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+) - (?P<GAMETYPE>.*) - (?P<HR>[0-9]+):(?P<MIN>[0-9]+) ET - (?P<YEAR>[0-9]+)/(?P<MON>[0-9]+)/(?P<DAY>[0-9]+)Table (?P<TABLE>[ a-zA-Z]+)\nSeat (?P<BUTTON>[0-9]+)')    
 
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
+    # revised re including timezone (not currently used):
+    #re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+) \(?(?P<TZ>[A-Z0-9]+)""", re.MULTILINE)
 
     def compilePlayerRegexs(self,  hand):
         players = set([player[1] for player in hand.players])
@@ -135,13 +137,16 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            print "DEBUG: determineGameType(): did not match"
-            return None
+            tmp = handText[0:100]
+            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
+            log.error("determineGameType: Raising FpdbParseError")
+            raise FpdbParseError("Unable to recognise gametype from: '%s'" % tmp)
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
         Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
                         '0.50': ('0.10', '0.25'),    '1.00': ('0.25', '0.50'),     '2.00': ('0.50', '1.00'), 
+                        '2': ('0.50', '1.00'), '4': ('1.00', '2.00'), '6': ('1.00', '3.00'),
                         '4.00': ('1.00', '2.00'),    '6.00': ('1.00', '3.00'),    '10.00': ('2.00', '5.00'),
                        '20.00': ('5.00', '10.00'),  '30.00': ('10.00', '15.00'),  '60.00': ('15.00', '30.00'),
                       '100.00': ('25.00', '50.00'),'200.00': ('50.00', '100.00'),'400.00': ('100.00', '200.00'),
@@ -154,7 +159,7 @@ class PokerStars(HandHistoryConverter):
                                 'Omaha' : ('hold','omahahi'),
                           'Omaha Hi/Lo' : ('hold','omahahilo'),
                                  'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
                           '7 Card Stud' : ('stud','studhi'),
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
@@ -183,8 +188,13 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'tour'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
-            info['sb'] = Lim_Blinds[mg['BB']][0] 
-            info['bb'] = Lim_Blinds[mg['BB']][1]
+            try:
+                info['sb'] = Lim_Blinds[mg['BB']][0]
+                info['bb'] = Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error("determineGameType: Raising FpdbParseError")
+                raise FpdbParseError("Lim_Blinds has no lookup for '%s'" % mg['BB'])
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
@@ -206,14 +216,28 @@ class PokerStars(HandHistoryConverter):
         log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]
+                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]             # (both dates are parsed so ET date overrides the other)
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
                 m1 = self.re_DateTime.finditer(info[key])
                 # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but handstart will be wrong)
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                    #tz = a.group('TZ')  # just assume ET??
+                    #print "   tz = ", tz, " datetime =", datetimestr
+                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                # approximate rules for ET daylight savings time:
+                if (   hand.starttime.month == 12                                  # all of Dec
+                    or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
+                    or hand.starttime.month < 3                                    #    and all of Jan/Feb
+                    or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
+                    offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
+                else:
+                    offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
+                # adjust time into UTC:
+                hand.starttime = hand.starttime + offset
+                #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':

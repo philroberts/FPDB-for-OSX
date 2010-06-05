@@ -81,7 +81,7 @@ class GuiPlayerStats (threading.Thread):
         self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh")
+        self.filters.registerButton2Name("_Refresh Stats")
         self.filters.registerButton2Callback(self.refreshStats)
 
         # ToDo: store in config
@@ -567,7 +567,7 @@ class GuiPlayerStats (threading.Thread):
             query = query.replace("<orderbyhgameTypeId>", "")
             groupLevels = "show" not in str(limits)
             if groupLevels:
-                query = query.replace("<hgameTypeId>", "-1")
+                query = query.replace("<hgameTypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
             else:
                 query = query.replace("<hgameTypeId>", "h.gameTypeId")
 
