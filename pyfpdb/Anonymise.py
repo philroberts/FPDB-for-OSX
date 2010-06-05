@@ -3,6 +3,7 @@ import re
 import codecs
 import Options
 import HandHistoryConverter
+import Configuration
 
 (options, argv) = Options.fpdb_options()
 config = Configuration.Config()
