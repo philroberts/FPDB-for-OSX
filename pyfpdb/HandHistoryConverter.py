@@ -137,8 +137,7 @@ Otherwise, finish at EOF.
                         self.numHands += 1
                     except FpdbParseError, e:
                         self.numErrors += 1
-                        log.warning("Failed to convert hand %s" % e.hid)
-                        log.warning("Exception msg: '%s'" % str(e))
+                        log.warning("HHC.start(follow): processHand failed: Exception msg: '%s'" % e)
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
@@ -152,8 +151,7 @@ Otherwise, finish at EOF.
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
                             self.numErrors += 1
-                            log.warning("Failed to convert hand %s" % e.hid)
-                            log.warning("Exception msg: '%s'" % str(e))
+                            log.warning("HHC.start(): processHand failed: Exception msg: '%s'" % e)
                             log.debug(handText)
                     self.numHands = len(handsList)
                     endtime = time.time()

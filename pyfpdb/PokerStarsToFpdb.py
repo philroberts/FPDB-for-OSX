@@ -140,7 +140,7 @@ class PokerStars(HandHistoryConverter):
             tmp = handText[0:100]
             log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
             log.error("determineGameType: Raising FpdbParseError")
-            raise FpdbParseError
+            raise FpdbParseError("Unable to recognise gametype from: '%s'" % tmp)
 
         mg = m.groupdict()
         # translations from captured groups to fpdb info strings
@@ -194,7 +194,7 @@ class PokerStars(HandHistoryConverter):
             except KeyError:
                 log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
                 log.error("determineGameType: Raising FpdbParseError")
-                raise FpdbParseError
+                raise FpdbParseError("Lim_Blinds has no lookup for '%s'" % mg['BB'])
 
         # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info

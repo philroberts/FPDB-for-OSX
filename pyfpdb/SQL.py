@@ -51,6 +51,18 @@ class Sql:
             WHERE type='table'
             ORDER BY name;"""
 
+        ################################
+        # List indexes
+        ################################
+        if db_server == 'mysql':
+            self.query['list_tables'] = """SHOW INDEXES"""
+        elif db_server == 'postgresql':
+            self.query['list_tables'] = """SELECT tablename, indexname FROM PG_INDEXES""" 
+        elif db_server == 'sqlite':
+            self.query['list_tables'] = """SELECT name FROM sqlite_master
+                                            WHERE type='index'
+                                            ORDER BY name;"""
+
         ##################################################################
         # Drop Tables - MySQL, PostgreSQL and SQLite all share same syntax
         ##################################################################
