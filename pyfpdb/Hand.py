@@ -274,15 +274,16 @@ If a player has None chips he won't be added."""
             self.streets.update(match.groupdict())
             log.debug("markStreets:\n"+ str(self.streets))
         else:
+            tmp = self.handText[0:100]
             log.error("markstreets didn't match")
             log.error("    - Assuming hand cancelled")
             self.cancelled = True
-            raise FpdbParseError
+            raise FpdbParseError("FpdbParseError: markStreets appeared to fail: First 100 chars: '%s'" % tmp)
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print "checkPlayerExists", player, "fail"
-            raise FpdbParseError
+            print "DEBUG: checkPlayerExists %s fail" % player
+            raise FpdbParseError("checkPlayerExists: '%s' failed." % player)
 
 
 
@@ -1487,9 +1488,9 @@ class Pot(object):
         if self.sym is None:
             self.sym = "C"
         if self.total is None:
-            print "call Pot.end() before printing pot total"
+            print "DEBUG: call Pot.end() before printing pot total"
             # NB if I'm sure end() is idempotent, call it here.
-            raise FpdbParseError
+            raise FpdbParseError("FpdbError in printing Hand object")
 
         ret = "Total pot %s%.2f" % (self.sym, self.total)
         if len(self.pots) < 2:

@@ -57,6 +57,7 @@ import re
 #    FreePokerTools modules
 import Configuration
 import Database
+import Charset
 
 
 re_Places = re.compile("_[0-9]$")
@@ -67,7 +68,7 @@ import codecs
 encoder = codecs.lookup(Configuration.LOCALE_ENCODING)
 
 def do_tip(widget, tip):
-    (_tip, _len) = encoder.encode(tip)
+    _tip = Charset.to_utf8(tip)
     widget.set_tooltip_text(_tip)
 
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
@@ -277,7 +278,7 @@ def fold_f(stat_dict, player):
     """    Folded flop/4th."""
     stat = 0.0
     try:
-        stat = float(stat_dict[player]['fold_2'])/fold(stat_dict[player]['saw_f'])
+        stat = float(stat_dict[player]['fold_2'])/float(stat_dict[player]['saw_f'])
         return (stat,
                 '%3.1f'        % (100*stat) + '%', 
                 'ff=%3.1f'     % (100*stat) + '%', 
