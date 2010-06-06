@@ -130,7 +130,7 @@ setup(
     description = 'Free Poker DataBase',
     version     = '0.12',
 
-    console = [   {'script': 'fpdb.py', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
+    windows = [   {'script': 'fpdb.pyw', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
                   {'script': 'HUD_main.py', },
                   {'script': 'Configuration.py', }
               ],

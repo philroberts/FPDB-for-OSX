@@ -3,5 +3,5 @@ rem  .bat script to run fpdb
 
 cd pyfpdb
 
-fpdb.exe
+start /b fpdb.exe >fpdb_output.txt
 
