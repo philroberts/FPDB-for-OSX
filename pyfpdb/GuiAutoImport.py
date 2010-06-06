@@ -210,7 +210,12 @@ class GuiAutoImport (threading.Thread):
                         print "opening pipe to HUD"
                         self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                             stdin=subprocess.PIPE,
-                                                            universal_newlines=True)
+                                                            stdout=subprocess.PIPE,  # only needed for py2exe
+                                                            stderr=subprocess.PIPE,  # only needed for py2exe
+                                                            universal_newlines=True
+                                                           )
+                        self.pipe_to_hud.stdout.close()
+                        self.pipe_to_hud.stderr.close()
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
