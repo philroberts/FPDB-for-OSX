@@ -55,11 +55,11 @@ class Sql:
         # List indexes
         ################################
         if db_server == 'mysql':
-            self.query['list_tables'] = """SHOW INDEXES"""
+            self.query['list_indexes'] = """SHOW INDEXES"""
         elif db_server == 'postgresql':
-            self.query['list_tables'] = """SELECT tablename, indexname FROM PG_INDEXES""" 
+            self.query['list_indexes'] = """SELECT tablename, indexname FROM PG_INDEXES""" 
         elif db_server == 'sqlite':
-            self.query['list_tables'] = """SELECT name FROM sqlite_master
+            self.query['list_indexes'] = """SELECT name FROM sqlite_master
                                             WHERE type='index'
                                             ORDER BY name;"""
 
