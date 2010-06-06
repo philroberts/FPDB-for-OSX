@@ -1,0 +1,45 @@
+PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/06/06 22:24:02 WET [2010/06/06 17:24:02 ET]
+Table '999999999' 9-max Seat #1 is the button
+Seat 1: Player2 ($0.88 in chips) 
+Seat 2: Player0 ($1.61 in chips) 
+Seat 3: Player5 ($5.27 in chips) 
+Seat 5: Player1 ($2.15 in chips) 
+Seat 6: Player3 ($2.55 in chips) 
+Seat 7: Player6 ($2.90 in chips) 
+Seat 9: Player4 ($1.93 in chips) 
+Player0: posts small blind $0.01
+Player5: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to Player0 [Td Qc]
+Player1: folds 
+Player3: calls $0.02
+Player3 said, "":D""
+Player6: folds 
+Player4: folds 
+Player2 has timed out
+Player2: folds 
+Player0: calls $0.01
+Player5: checks 
+*** FLOP *** [7d 2s Jc]
+Player0: checks 
+Player5: checks 
+Player3: checks 
+*** TURN *** [7d 2s Jc] [2h]
+Player0: folds 
+Player5: bets $0.06
+Player3: folds 
+Uncalled bet ($0.06) returned to Player5
+Player5 collected $0.06 from pot
+Player5: doesn't show hand 
+*** SUMMARY ***
+Total pot $0.06 | Rake $0 
+Board [7d 2s Jc 2h]
+Seat 1: Player2 (button) folded before Flop (didn't bet)
+Seat 2: Player0 (small blind) folded on the Turn
+Seat 3: Player5 (big blind) collected ($0.06)
+Seat 5: Player1 folded before Flop (didn't bet)
+Seat 6: Player3 folded on the Turn
+Seat 7: Player6 folded before Flop (didn't bet)
+Seat 9: Player4 folded before Flop (didn't bet)
+
+
