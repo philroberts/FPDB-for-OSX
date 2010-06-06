@@ -131,7 +131,7 @@ setup(
     version     = '0.12',
 
     windows = [   {'script': 'fpdb.pyw', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
-                  {'script': 'HUD_main.py', },
+                  {'script': 'HUD_main.pyw', },
                   {'script': 'Configuration.py', }
               ],
 

@@ -199,10 +199,10 @@ class GuiAutoImport (threading.Thread):
                         bs = 0
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
-                        command = 'python "'+path+'\\HUD_main.py" ' + self.settings['cl_options']
+                        command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
                         bs = 0
                     else:
-                        command = os.path.join(sys.path[0], 'HUD_main.py')
+                        command = os.path.join(sys.path[0], 'HUD_main.pyw')
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
 
