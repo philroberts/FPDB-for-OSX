@@ -139,6 +139,8 @@ class DerivedStats():
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
 
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
+        #for i, street in enumerate(hand.actionStreets[2:], start=1):
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
 
@@ -382,6 +384,7 @@ class DerivedStats():
 
         CG: CheckCall would be a much better name for this.
         """
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
         for i, street in enumerate(hand.actionStreets[2:]):
             actions = hand.actions[hand.actionStreets[i+1]]
@@ -412,7 +415,7 @@ class DerivedStats():
         aggrers = set()
         others = set()
         # Growl - actionStreets contains 'BLINDSANTES', which isn't actually an action street
-        
+
         firstAggrMade=False
         for act in hand.actions[hand.actionStreets[i+1]]:
             if firstAggrMade:
@@ -433,6 +436,12 @@ class DerivedStats():
                 self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
                 #print "otherRaised detected on handid "+str(hand.handid)+" for "+playername+" on street "+str(i)
 
+        if i > 0 and len(aggrers) > 0:
+            for playername in others:
+                self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
+                #print "DEBUG: otherRaised detected on handid %s for %s on actionStreet[%s]: %s" 
+                #                           %(hand.handid, playername, hand.actionStreets[i+1], i)
+
     def calls(self, hand, i):
         callers = []
         for act in hand.actions[hand.actionStreets[i+1]]:
@@ -446,14 +455,14 @@ class DerivedStats():
             if act[1] in ('bets'):
                 self.handsplayers[act[0]]['street%sBets' % i] = 1 + self.handsplayers[act[0]]['street%sBets' % i]
         
-
     def folds(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('folds'):
                 if self.handsplayers[act[0]]['otherRaisedStreet%s' % i] == True:
                     self.handsplayers[act[0]]['foldToOtherRaisedStreet%s' % i] = True
-                    #print "fold detected on handid "+str(hand.handid)+" for "+act[0]+" on street "+str(i)
-    
+                    #print "DEBUG: fold detected on handid %s for %s on actionStreet[%s]: %s"
+                    #                       %(hand.handid, act[0],hand.actionStreets[i+1], i)
+
     def countPlayers(self, hand):
         pass
 

@@ -3,8 +3,10 @@ import re
 import codecs
 import Options
 import HandHistoryConverter
+import Configuration
 
 (options, argv) = Options.fpdb_options()
+config = Configuration.Config()
 
 filter = options.hhc
 
@@ -13,7 +15,7 @@ filter_name = filter.replace("ToFpdb", "")
 mod = __import__(filter)
 obj = getattr(mod, filter_name, None)
 
-hhc = obj(autostart=False)
+hhc = obj(config, autostart=False)
 
 if os.path.exists(options.infile):
     in_fh = codecs.open(options.infile, 'r', "utf8")
@@ -31,7 +33,7 @@ for a in m:
 
 uniq = set(players)
 
-for i, name in enumerate(uniq, 1):
+for i, name in enumerate(uniq):
     filecontents = filecontents.replace(name, 'Player%d' %i)
 
 print filecontents
