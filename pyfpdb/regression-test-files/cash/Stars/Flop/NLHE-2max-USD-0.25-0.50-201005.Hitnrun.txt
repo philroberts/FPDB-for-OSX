@@ -1,4 +1,4 @@
-﻿PokerStars Game #99999999999:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:39:16 WET [2010/05/23 17:39:16 ET]
+﻿PokerStars Game #14732633821:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:39:16 WET [2010/05/23 17:39:16 ET]
 Table '99999999 II' 2-max Seat #1 is the button
 Seat 1: Player0 ($20 in chips) 
 Seat 2: Player1 ($50.50 in chips) 
@@ -26,7 +26,7 @@ Seat 2: Player1 (big blind) folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:39:59 WET [2010/05/23 17:39:59 ET]
+PokerStars Game #28140199921:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:39:59 WET [2010/05/23 17:39:59 ET]
 Table '99999999 II' 2-max Seat #2 is the button
 Seat 1: Player0 ($20.45 in chips) 
 Seat 2: Player1 ($50 in chips) 
@@ -46,7 +46,7 @@ Seat 2: Player1 (button) (small blind) collected ($1)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:40:22 WET [2010/05/23 17:40:22 ET]
+PokerStars Game #29402240709:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:40:22 WET [2010/05/23 17:40:22 ET]
 Table '99999999 II' 2-max Seat #1 is the button
 Seat 1: Player0 ($19.95 in chips) 
 Seat 2: Player1 ($50.50 in chips) 
@@ -65,7 +65,7 @@ Seat 2: Player1 (big blind) collected ($0.50)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:40:29 WET [2010/05/23 17:40:29 ET]
+PokerStars Game #31842149327:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:40:29 WET [2010/05/23 17:40:29 ET]
 Table '99999999 II' 2-max Seat #2 is the button
 Seat 1: Player0 ($19.70 in chips) 
 Seat 2: Player1 ($50.75 in chips) 
@@ -97,7 +97,7 @@ Seat 2: Player1 (button) (small blind) mucked [6c 5s]
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:41:10 WET [2010/05/23 17:41:10 ET]
+PokerStars Game #10697227103:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:41:10 WET [2010/05/23 17:41:10 ET]
 Table '99999999 II' 2-max Seat #1 is the button
 Seat 1: Player0 ($22.90 in chips) 
 Seat 2: Player1 ($50 in chips) 
@@ -116,7 +116,7 @@ Seat 2: Player1 (big blind) collected ($0.50)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:41:17 WET [2010/05/23 17:41:17 ET]
+PokerStars Game #27159326072:  Hold'em No Limit ($0.25/$0.50 USD) - 2010/05/23 22:41:17 WET [2010/05/23 17:41:17 ET]
 Table '99999999 II' 2-max Seat #2 is the button
 Seat 1: Player0 ($22.65 in chips) 
 Seat 2: Player1 ($50.25 in chips) 

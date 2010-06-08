@@ -1,4 +1,4 @@
-﻿PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:46:48 WET [2010/05/06 17:46:48 ET]
+﻿PokerStars Game #31900318973:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:46:48 WET [2010/05/06 17:46:48 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 2: Player14 ($0.97 in chips) 
 Seat 3: Player23 ($1.53 in chips) 
@@ -47,7 +47,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:47:57 WET [2010/05/06 17:47:57 ET]
+PokerStars Game #85321652824:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:47:57 WET [2010/05/06 17:47:57 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 2: Player14 ($0.89 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
@@ -91,7 +91,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:48:47 WET [2010/05/06 17:48:47 ET]
+PokerStars Game #30102275294:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:48:47 WET [2010/05/06 17:48:47 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 2: Player14 ($0.89 in chips) 
 Seat 3: Player23 ($1.51 in chips) 
@@ -130,7 +130,7 @@ Seat 9: Player21 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:49:11 WET [2010/05/06 17:49:11 ET]
+PokerStars Game #20107261170:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:49:11 WET [2010/05/06 17:49:11 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player11 ($1.60 in chips) 
 Seat 2: Player14 ($0.89 in chips) 
@@ -175,7 +175,7 @@ Seat 9: Player21 (small blind) collected ($0.04)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:49:41 WET [2010/05/06 17:49:41 ET]
+PokerStars Game #30246290211:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:49:41 WET [2010/05/06 17:49:41 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player11 ($1.58 in chips) 
 Seat 2: Player14 ($0.89 in chips) 
@@ -230,7 +230,7 @@ Seat 9: Player21 (button) folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:51:11 WET [2010/05/06 17:51:11 ET]
+PokerStars Game #31761373829:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:51:11 WET [2010/05/06 17:51:11 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player11 ($1.44 in chips) 
 Seat 2: Player14 ($1.19 in chips) 
@@ -278,7 +278,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:52:08 WET [2010/05/06 17:52:08 ET]
+PokerStars Game #30758254721:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:52:08 WET [2010/05/06 17:52:08 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.18 in chips) 
@@ -333,7 +333,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:52:57 WET [2010/05/06 17:52:57 ET]
+PokerStars Game #88562623320:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:52:57 WET [2010/05/06 17:52:57 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
@@ -380,7 +380,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:53:46 WET [2010/05/06 17:53:46 ET]
+PokerStars Game #16687242396:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:53:46 WET [2010/05/06 17:53:46 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
@@ -428,7 +428,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:54:17 WET [2010/05/06 17:54:17 ET]
+PokerStars Game #20006229758:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:54:17 WET [2010/05/06 17:54:17 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
@@ -478,7 +478,7 @@ Seat 9: Player21 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:55:36 WET [2010/05/06 17:55:36 ET]
+PokerStars Game #27303244902:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:55:36 WET [2010/05/06 17:55:36 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player11 ($1.81 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
@@ -526,7 +526,7 @@ Seat 9: Player21 showed [Ah Qh] and won ($1.14) with a flush, Ace high
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:56:24 WET [2010/05/06 17:56:24 ET]
+PokerStars Game #13363166481:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:56:24 WET [2010/05/06 17:56:24 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player11 ($1.23 in chips) 
 Seat 2: Player14 ($1.38 in chips) 
@@ -581,7 +581,7 @@ Seat 9: Player21 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:58:18 WET [2010/05/06 17:58:18 ET]
+PokerStars Game #27226323531:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:58:18 WET [2010/05/06 17:58:18 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 2: Player14 ($1.38 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
@@ -628,7 +628,7 @@ Seat 9: Player21 (small blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:59:14 WET [2010/05/06 17:59:14 ET]
+PokerStars Game #32657659628:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 22:59:14 WET [2010/05/06 17:59:14 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 2: Player14 ($1.43 in chips) 
 Seat 3: Player23 ($2.37 in chips) 
@@ -683,7 +683,7 @@ Seat 9: Player21 (button) folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:00:15 WET [2010/05/06 18:00:15 ET]
+PokerStars Game #22479236161:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:00:15 WET [2010/05/06 18:00:15 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 2: Player14 ($1.29 in chips) 
 Seat 3: Player23 ($2.57 in chips) 
@@ -722,7 +722,7 @@ Seat 8: Player3 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:00:44 WET [2010/05/06 18:00:44 ET]
+PokerStars Game #12335306021:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:00:44 WET [2010/05/06 18:00:44 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
@@ -759,7 +759,7 @@ Seat 8: Player3 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:01:00 WET [2010/05/06 18:01:00 ET]
+PokerStars Game #10841092831:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:01:00 WET [2010/05/06 18:01:00 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
@@ -814,7 +814,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:02:15 WET [2010/05/06 18:02:15 ET]
+PokerStars Game #13957140902:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:02:15 WET [2010/05/06 18:02:15 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
@@ -866,7 +866,7 @@ Seat 9: Player9 showed [Ac Qc] and won ($0.90) with a flush, Ace high
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:03:25 WET [2010/05/06 18:03:25 ET]
+PokerStars Game #91692634264:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:03:25 WET [2010/05/06 18:03:25 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
@@ -921,7 +921,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:04:28 WET [2010/05/06 18:04:28 ET]
+PokerStars Game #18556118881:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:04:28 WET [2010/05/06 18:04:28 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 2: Player14 ($1.27 in chips) 
 Seat 3: Player23 ($2.55 in chips) 
@@ -960,7 +960,7 @@ Seat 9: Player9 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:04:49 WET [2010/05/06 18:04:49 ET]
+PokerStars Game #31790741684:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:04:49 WET [2010/05/06 18:04:49 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.80 in chips) 
 Seat 2: Player14 ($1.27 in chips) 
@@ -1001,7 +1001,7 @@ Seat 9: Player9 (small blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:05:22 WET [2010/05/06 18:05:22 ET]
+PokerStars Game #23618143313:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:05:22 WET [2010/05/06 18:05:22 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.78 in chips) 
 Seat 2: Player14 ($1.27 in chips) 
@@ -1069,7 +1069,7 @@ Seat 9: Player9 (button) collected ($0.18)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:06:40 WET [2010/05/06 18:06:40 ET]
+PokerStars Game #20255202813:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:06:40 WET [2010/05/06 18:06:40 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.23 in chips) 
@@ -1128,7 +1128,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:07:56 WET [2010/05/06 18:07:56 ET]
+PokerStars Game #14690416916:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:07:56 WET [2010/05/06 18:07:56 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1178,7 +1178,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:08:58 WET [2010/05/06 18:08:58 ET]
+PokerStars Game #13559160472:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:08:58 WET [2010/05/06 18:08:58 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1234,7 +1234,7 @@ Seat 9: Player9 showed [Jc Js] and won ($0.78) with a pair of Jacks
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:10:14 WET [2010/05/06 18:10:14 ET]
+PokerStars Game #16011540019:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:10:14 WET [2010/05/06 18:10:14 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1282,7 +1282,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:11:04 WET [2010/05/06 18:11:04 ET]
+PokerStars Game #16588282642:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:11:04 WET [2010/05/06 18:11:04 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1324,7 +1324,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:11:29 WET [2010/05/06 18:11:29 ET]
+PokerStars Game #22736406243:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:11:29 WET [2010/05/06 18:11:29 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1366,7 +1366,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:12:06 WET [2010/05/06 18:12:06 ET]
+PokerStars Game #19953154592:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:12:06 WET [2010/05/06 18:12:06 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1418,7 +1418,7 @@ Seat 9: Player9 (big blind) folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:13:30 WET [2010/05/06 18:13:30 ET]
+PokerStars Game #74551611118:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:13:30 WET [2010/05/06 18:13:30 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.74 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1465,7 +1465,7 @@ Seat 9: Player9 (small blind) collected ($0.08)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:14:39 WET [2010/05/06 18:14:39 ET]
+PokerStars Game #64594322241:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:14:39 WET [2010/05/06 18:14:39 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.70 in chips) 
 Seat 2: Player14 ($1.61 in chips) 
@@ -1516,7 +1516,7 @@ Seat 9: Player9 (button) folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:16:08 WET [2010/05/06 18:16:08 ET]
+PokerStars Game #20220303142:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:16:08 WET [2010/05/06 18:16:08 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.59 in chips) 
@@ -1567,7 +1567,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:17:04 WET [2010/05/06 18:17:04 ET]
+PokerStars Game #15797308302:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:17:04 WET [2010/05/06 18:17:04 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1615,7 +1615,7 @@ Seat 9: Player9 folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:18:12 WET [2010/05/06 18:18:12 ET]
+PokerStars Game #22202259791:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:18:12 WET [2010/05/06 18:18:12 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1662,7 +1662,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:19:45 WET [2010/05/06 18:19:45 ET]
+PokerStars Game #23635931413:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:19:45 WET [2010/05/06 18:19:45 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1713,7 +1713,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:20:42 WET [2010/05/06 18:20:42 ET]
+PokerStars Game #16301246877:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:20:42 WET [2010/05/06 18:20:42 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1771,7 +1771,7 @@ Seat 9: Player9 showed [Qc Qd] and lost with a pair of Queens
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:22:02 WET [2010/05/06 18:22:02 ET]
+PokerStars Game #21693130641:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:22:02 WET [2010/05/06 18:22:02 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1823,7 +1823,7 @@ Seat 9: Player9 folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:23:16 WET [2010/05/06 18:23:16 ET]
+PokerStars Game #80731798515:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:23:16 WET [2010/05/06 18:23:16 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1865,7 +1865,7 @@ Seat 9: Player9 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:23:53 WET [2010/05/06 18:23:53 ET]
+PokerStars Game #12041521491:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:23:53 WET [2010/05/06 18:23:53 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.69 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1923,7 +1923,7 @@ Seat 9: Player9 (small blind) showed [8d Qh] and lost with a pair of Fives
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:25:21 WET [2010/05/06 18:25:21 ET]
+PokerStars Game #32267943121:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:25:21 WET [2010/05/06 18:25:21 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.67 in chips) 
 Seat 2: Player14 ($1.58 in chips) 
@@ -1984,7 +1984,7 @@ Seat 9: Player9 (button) showed [Ad 8h] and won ($1.76) with two pair, Aces and 
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:27:01 WET [2010/05/06 18:27:01 ET]
+PokerStars Game #21796253433:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:27:01 WET [2010/05/06 18:27:01 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.52 in chips) 
@@ -2032,7 +2032,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:27:44 WET [2010/05/06 18:27:44 ET]
+PokerStars Game #20106934129:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:27:44 WET [2010/05/06 18:27:44 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.51 in chips) 
@@ -2094,7 +2094,7 @@ Seat 9: Player9 showed [Ts 6s] and won ($0.34) with two pair, Sixes and Threes
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:28:40 WET [2010/05/06 18:28:40 ET]
+PokerStars Game #69512225343:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:28:40 WET [2010/05/06 18:28:40 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.51 in chips) 
@@ -2153,7 +2153,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:30:11 WET [2010/05/06 18:30:11 ET]
+PokerStars Game #69681723765:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:30:11 WET [2010/05/06 18:30:11 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
@@ -2211,7 +2211,7 @@ Seat 9: Player9 mucked [Ts Qs]
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:31:00 WET [2010/05/06 18:31:00 ET]
+PokerStars Game #30142164314:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:31:00 WET [2010/05/06 18:31:00 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
@@ -2271,7 +2271,7 @@ Seat 9: Player9 showed [Ah Kh] and lost with high card Ace
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:31:54 WET [2010/05/06 18:31:54 ET]
+PokerStars Game #10018305383:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:31:54 WET [2010/05/06 18:31:54 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
@@ -2328,7 +2328,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:33:01 WET [2010/05/06 18:33:01 ET]
+PokerStars Game #45323247626:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:33:01 WET [2010/05/06 18:33:01 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
@@ -2373,7 +2373,7 @@ Seat 9: Player9 (big blind) collected ($0.05)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:33:27 WET [2010/05/06 18:33:27 ET]
+PokerStars Game #56232290155:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:33:27 WET [2010/05/06 18:33:27 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player18 ($0.66 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
@@ -2417,7 +2417,7 @@ Seat 9: Player9 (small blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:34:30 WET [2010/05/06 18:34:30 ET]
+PokerStars Game #32171206783:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:34:30 WET [2010/05/06 18:34:30 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player18 ($0.64 in chips) 
 Seat 2: Player14 ($1.49 in chips) 
@@ -2462,7 +2462,7 @@ Seat 9: Player9 (button) folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:35:54 WET [2010/05/06 18:35:54 ET]
+PokerStars Game #58591999729:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:35:54 WET [2010/05/06 18:35:54 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player18 ($0.63 in chips) 
 Seat 2: Player14 ($1.47 in chips) 
@@ -2512,7 +2512,7 @@ Seat 9: Player9 collected ($0.11)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:37:19 WET [2010/05/06 18:37:19 ET]
+PokerStars Game #19663159832:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:37:19 WET [2010/05/06 18:37:19 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 2: Player14 ($1.46 in chips) 
 Seat 3: Player24 ($1.87 in chips) 
@@ -2554,7 +2554,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:38:08 WET [2010/05/06 18:38:08 ET]
+PokerStars Game #32364377323:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:38:08 WET [2010/05/06 18:38:08 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.85 in chips) 
@@ -2593,7 +2593,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:38:35 WET [2010/05/06 18:38:35 ET]
+PokerStars Game #23073312602:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:38:35 WET [2010/05/06 18:38:35 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.85 in chips) 
@@ -2644,7 +2644,7 @@ Seat 9: Player9 folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:40:14 WET [2010/05/06 18:40:14 ET]
+PokerStars Game #89372402099:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:40:14 WET [2010/05/06 18:40:14 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.79 in chips) 
@@ -2691,7 +2691,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:41:23 WET [2010/05/06 18:41:23 ET]
+PokerStars Game #27215384828:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:41:23 WET [2010/05/06 18:41:23 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
@@ -2747,7 +2747,7 @@ Seat 9: Player9 collected ($1.49)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:43:15 WET [2010/05/06 18:43:15 ET]
+PokerStars Game #32706209671:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:43:15 WET [2010/05/06 18:43:15 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 2: Player14 ($1.62 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
@@ -2787,7 +2787,7 @@ Seat 9: Player9 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:43:32 WET [2010/05/06 18:43:32 ET]
+PokerStars Game #99425634223:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:43:32 WET [2010/05/06 18:43:32 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5 in chips) 
 Seat 2: Player14 ($1.62 in chips) 
@@ -2844,7 +2844,7 @@ Seat 9: Player9 (small blind) mucked [Jh Qd]
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:44:18 WET [2010/05/06 18:44:18 ET]
+PokerStars Game #23826224249:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:44:18 WET [2010/05/06 18:44:18 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($4.96 in chips) 
 Seat 3: Player24 ($1.61 in chips) 
@@ -2902,7 +2902,7 @@ Seat 9: Player9 (button) collected ($0.49)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:45:42 WET [2010/05/06 18:45:42 ET]
+PokerStars Game #28582235522:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:45:42 WET [2010/05/06 18:45:42 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($4.95 in chips) 
 Seat 3: Player24 ($1.55 in chips) 
@@ -2949,7 +2949,7 @@ Seat 9: Player9 folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:46:22 WET [2010/05/06 18:46:22 ET]
+PokerStars Game #11849119171:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:46:22 WET [2010/05/06 18:46:22 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.12 in chips) 
 Seat 2: Player2 ($1 in chips) 
@@ -2992,7 +2992,7 @@ Seat 9: Player9 folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:46:53 WET [2010/05/06 18:46:53 ET]
+PokerStars Game #71932031318:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:46:53 WET [2010/05/06 18:46:53 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.12 in chips) 
 Seat 2: Player2 ($0.98 in chips) 
@@ -3047,7 +3047,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:47:50 WET [2010/05/06 18:47:50 ET]
+PokerStars Game #24227136121:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:47:50 WET [2010/05/06 18:47:50 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.08 in chips) 
 Seat 2: Player2 ($0.98 in chips) 
@@ -3102,7 +3102,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:48:42 WET [2010/05/06 18:48:42 ET]
+PokerStars Game #31395250833:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:48:42 WET [2010/05/06 18:48:42 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.13 in chips) 
 Seat 2: Player2 ($0.98 in chips) 
@@ -3153,7 +3153,7 @@ Seat 9: Player9 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:49:27 WET [2010/05/06 18:49:27 ET]
+PokerStars Game #12179306192:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:49:27 WET [2010/05/06 18:49:27 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.13 in chips) 
 Seat 2: Player2 ($2.04 in chips) 
@@ -3199,7 +3199,7 @@ Seat 9: Player9 (small blind) folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:50:39 WET [2010/05/06 18:50:39 ET]
+PokerStars Game #51091236980:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:50:39 WET [2010/05/06 18:50:39 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.11 in chips) 
 Seat 2: Player2 ($2.40 in chips) 
@@ -3248,7 +3248,7 @@ Seat 9: Player9 (button) mucked [8d Ah]
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:51:46 WET [2010/05/06 18:51:46 ET]
+PokerStars Game #27086240062:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:51:46 WET [2010/05/06 18:51:46 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.10 in chips) 
 Seat 2: Player2 ($2.38 in chips) 
@@ -3301,7 +3301,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:52:23 WET [2010/05/06 18:52:23 ET]
+PokerStars Game #25223712121:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:52:23 WET [2010/05/06 18:52:23 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 3: Player24 ($1.50 in chips) 
@@ -3351,7 +3351,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:53:15 WET [2010/05/06 18:53:15 ET]
+PokerStars Game #73402790620:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:53:15 WET [2010/05/06 18:53:15 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 3: Player24 ($1.48 in chips) 
@@ -3405,7 +3405,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:54:00 WET [2010/05/06 18:54:00 ET]
+PokerStars Game #76511550927:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:54:00 WET [2010/05/06 18:54:00 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player10 ($1.29 in chips) 
@@ -3461,7 +3461,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:54:56 WET [2010/05/06 18:54:56 ET]
+PokerStars Game #28012101373:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:54:56 WET [2010/05/06 18:54:56 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player10 ($1.21 in chips) 
@@ -3517,7 +3517,7 @@ Seat 9: Player9 (big blind) folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:55:56 WET [2010/05/06 18:55:56 ET]
+PokerStars Game #41511921426:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:55:56 WET [2010/05/06 18:55:56 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player10 ($1.05 in chips) 
@@ -3565,7 +3565,7 @@ Seat 9: Player9 (button) showed [Qs 7h] and lost with a pair of Deuces
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:56:53 WET [2010/05/06 18:56:53 ET]
+PokerStars Game #28359136208:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:56:53 WET [2010/05/06 18:56:53 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.98 in chips) 
 Seat 2: Player10 ($3 in chips) 
@@ -3610,7 +3610,7 @@ Seat 5: Player12 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:57:35 WET [2010/05/06 18:57:35 ET]
+PokerStars Game #70913060022:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:57:35 WET [2010/05/06 18:57:35 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player20 ($5.98 in chips) 
 Seat 2: Player10 ($3.20 in chips) 
@@ -3662,7 +3662,7 @@ Seat 9: Player9 showed [Kh Jh] and lost with a flush, Ace high
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:58:36 WET [2010/05/06 18:58:36 ET]
+PokerStars Game #20264306210:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:58:36 WET [2010/05/06 18:58:36 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.96 in chips) 
 Seat 2: Player10 ($3.18 in chips) 
@@ -3705,7 +3705,7 @@ Seat 6: Player22 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:59:12 WET [2010/05/06 18:59:12 ET]
+PokerStars Game #27816107382:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/06 23:59:12 WET [2010/05/06 18:59:12 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.96 in chips) 
 Seat 2: Player10 ($3.18 in chips) 
@@ -3753,7 +3753,7 @@ Seat 6: Player22 (big blind) folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:00:03 WET [2010/05/06 19:00:03 ET]
+PokerStars Game #25404395119:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:00:03 WET [2010/05/06 19:00:03 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.96 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
@@ -3806,7 +3806,7 @@ Seat 9: Player9 showed [6c Jd] and lost with high card Ace
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:02:07 WET [2010/05/06 19:02:07 ET]
+PokerStars Game #19191328622:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:02:07 WET [2010/05/06 19:02:07 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.94 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
@@ -3864,7 +3864,7 @@ Seat 9: Player9 (big blind) mucked [6c 2d]
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:03:47 WET [2010/05/06 19:03:47 ET]
+PokerStars Game #35042386427:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:03:47 WET [2010/05/06 19:03:47 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5.94 in chips) 
 Seat 3: Player24 ($1.44 in chips) 
@@ -3919,7 +3919,7 @@ Seat 9: Player9 (small blind) collected ($0.26)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:05:36 WET [2010/05/06 19:05:36 ET]
+PokerStars Game #50092600346:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:05:36 WET [2010/05/06 19:05:36 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.92 in chips) 
 Seat 2: Player4 ($1 in chips) 
@@ -3985,7 +3985,7 @@ Seat 9: Player9 (button) folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:07:48 WET [2010/05/06 19:07:48 ET]
+PokerStars Game #24708132405:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:07:48 WET [2010/05/06 19:07:48 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.54 in chips) 
 Seat 2: Player4 ($0.88 in chips) 
@@ -4044,7 +4044,7 @@ Seat 9: Player9 collected ($0.26)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:09:23 WET [2010/05/06 19:09:23 ET]
+PokerStars Game #16013874820:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:09:23 WET [2010/05/06 19:09:23 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player20 ($5.54 in chips) 
 Seat 2: Player4 ($0.82 in chips) 
@@ -4103,7 +4103,7 @@ Seat 9: Player9 folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:10:43 WET [2010/05/06 19:10:43 ET]
+PokerStars Game #81348282228:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:10:43 WET [2010/05/06 19:10:43 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.52 in chips) 
 Seat 2: Player4 ($0.70 in chips) 
@@ -4159,7 +4159,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:11:43 WET [2010/05/06 19:11:43 ET]
+PokerStars Game #12247201631:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:11:43 WET [2010/05/06 19:11:43 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.52 in chips) 
 Seat 2: Player4 ($0.64 in chips) 
@@ -4201,7 +4201,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:12:23 WET [2010/05/06 19:12:23 ET]
+PokerStars Game #18249303862:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:12:23 WET [2010/05/06 19:12:23 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.64 in chips) 
@@ -4253,7 +4253,7 @@ Seat 9: Player9 folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:13:34 WET [2010/05/06 19:13:34 ET]
+PokerStars Game #79095206106:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:13:34 WET [2010/05/06 19:13:34 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.64 in chips) 
@@ -4311,7 +4311,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:15:02 WET [2010/05/06 19:15:02 ET]
+PokerStars Game #23803281942:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:15:02 WET [2010/05/06 19:15:02 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.62 in chips) 
@@ -4353,7 +4353,7 @@ Seat 9: Player9 (big blind) folded before Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:15:57 WET [2010/05/06 19:15:57 ET]
+PokerStars Game #29640307323:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:15:57 WET [2010/05/06 19:15:57 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5.55 in chips) 
 Seat 2: Player4 ($0.62 in chips) 
@@ -4404,7 +4404,7 @@ Seat 8: Player7 (button) folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:17:07 WET [2010/05/06 19:17:07 ET]
+PokerStars Game #22991200661:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:17:07 WET [2010/05/06 19:17:07 ET]
 Table '99999999' 9-max Seat #1 is the button
 Seat 1: Player20 ($5.53 in chips) 
 Seat 2: Player4 ($0.60 in chips) 
@@ -4462,7 +4462,7 @@ Seat 9: Player9 folded on the Turn
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:18:07 WET [2010/05/06 19:18:07 ET]
+PokerStars Game #22198294871:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:18:07 WET [2010/05/06 19:18:07 ET]
 Table '99999999' 9-max Seat #2 is the button
 Seat 1: Player20 ($5.53 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
@@ -4515,7 +4515,7 @@ Seat 9: Player9 showed [2d Qd] and won ($0.19) with two pair, Aces and Queens
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:19:21 WET [2010/05/06 19:19:21 ET]
+PokerStars Game #97422269929:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:19:21 WET [2010/05/06 19:19:21 ET]
 Table '99999999' 9-max Seat #3 is the button
 Seat 1: Player20 ($5.45 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
@@ -4563,7 +4563,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:20:17 WET [2010/05/06 19:20:17 ET]
+PokerStars Game #18011288181:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:20:17 WET [2010/05/06 19:20:17 ET]
 Table '99999999' 9-max Seat #4 is the button
 Seat 1: Player20 ($5.45 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
@@ -4612,7 +4612,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:21:04 WET [2010/05/06 19:21:04 ET]
+PokerStars Game #45432821411:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:21:04 WET [2010/05/06 19:21:04 ET]
 Table '99999999' 9-max Seat #5 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.58 in chips) 
@@ -4672,7 +4672,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:22:27 WET [2010/05/06 19:22:27 ET]
+PokerStars Game #10551491588:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:22:27 WET [2010/05/06 19:22:27 ET]
 Table '99999999' 9-max Seat #6 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
@@ -4713,7 +4713,7 @@ Seat 9: Player9 folded before Flop (didn't bet)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:22:56 WET [2010/05/06 19:22:56 ET]
+PokerStars Game #19037115169:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:22:56 WET [2010/05/06 19:22:56 ET]
 Table '99999999' 9-max Seat #7 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
@@ -4752,7 +4752,7 @@ Seat 9: Player9 (big blind) collected ($0.02)
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:23:19 WET [2010/05/06 19:23:19 ET]
+PokerStars Game #26447108451:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:23:19 WET [2010/05/06 19:23:19 ET]
 Table '99999999' 9-max Seat #8 is the button
 Seat 1: Player20 ($5.39 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
@@ -4800,7 +4800,7 @@ Seat 9: Player9 (small blind) folded on the Flop
 
 
 
-PokerStars Game #99999999999:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:24:07 WET [2010/05/06 19:24:07 ET]
+PokerStars Game #16631106221:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/05/07 0:24:07 WET [2010/05/06 19:24:07 ET]
 Table '99999999' 9-max Seat #9 is the button
 Seat 1: Player20 ($5.37 in chips) 
 Seat 2: Player4 ($0.48 in chips) 
