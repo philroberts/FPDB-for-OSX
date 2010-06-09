@@ -32,6 +32,7 @@ import string
 import traceback
 import shutil
 import locale
+import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -662,7 +663,34 @@ class Config:
                 pass
 
         with open(file, 'w') as f:
-            self.doc.writexml(f)
+            #self.doc.writexml(f)
+            f.write( self.wrap_long_lines( self.doc.toxml() ) )
+
+    def wrap_long_lines(self, s):
+        lines = [ self.wrap_long_line(l) for l in s.splitlines() ]
+        return('\n'.join(lines) + '\n')
+
+    def wrap_long_line(self, l):
+        if 'config_wrap_len' in self.general:
+            wrap_len = int(self.general['config_wrap_len'])
+        else:
+            wrap_len = -1    # < 0 means no wrap
+
+        if wrap_len >= 0 and len(l) > wrap_len:
+            m = re.compile('\s+\S+\s+')
+            mo = m.match(l)
+            if mo:
+                indent_len = mo.end()
+                #print "indent = %s (%s)" % (indent_len, l[0:indent_len])
+                indent = '\n' + ' ' * indent_len
+                m = re.compile('(\S+="[^"]+"\s+)')
+                parts = [x for x in m.split(l[indent_len:]) if x]
+                if len(parts) > 1:
+                    #print "parts =", parts
+                    l = l[0:indent_len] + indent.join(parts)
+            return(l)
+        else:
+            return(l)
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
