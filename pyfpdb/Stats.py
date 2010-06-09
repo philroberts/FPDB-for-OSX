@@ -503,6 +503,90 @@ def a_freq_123(stat_dict, player):
                 '(%d/%d)'      % (0, 0),
                 'Post-Flop Aggression Freq'
                 )
+
+def agg_freq(stat_dict, player):
+    """    Post-Flop aggression frequency."""
+    """  Aggression frequency % = (times bet or raised post-flop) * 100 / (times bet, raised, called, or folded post-flop) """
+    stat = 0.0
+    try:
+        """ Agression on the flop and all streets """
+        bet_raise = stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
+        """ number post flop streets seen, this must be number of post-flop calls !! """
+        post_saw  = stat_dict[player]['saw_2'] + stat_dict[player]['saw_3'] + stat_dict[player]['saw_4']
+        """ Number of post flop folds this info is not yet in the database """
+        post_fold = stat_dict[player]['f_freq_2'] + stat_dict[player]['f_freq_3'] + stat_dict[player]['f_freq_4']
+
+        stat = float (bet_raise) / float(post_saw + post_fold)
+
+        return (stat,
+                '%3.1f'        % (100*stat) + '%',
+                'afr=%3.1f'    % (100*stat) + '%',
+                'agg_fr=%3.1f' % (100*stat) + '%',
+                '(%d/%d)'      % (bet_raise, (post_saw + post_fold)),
+                'Aggression Freq'
+                )
+    except:
+        return (stat,
+                '%2.1f'        % (0) + '%',
+                'af=%3.1f'     % (0) + '%',
+                'agg_f=%3.1f'  % (0) + '%',
+                '(%d/%d)'      % (0, 0),
+                'Aggression Freq'
+                )
+
+def agg_fact(stat_dict, player):
+    """    Post-Flop aggression frequency."""
+    """  Aggression factor = (times bet or raised post-flop) / (times called post-flop) """
+    """  Times called post flop is not availlable, streets seen used """
+    stat = 0.0
+    try:
+        bet_raise =  stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
+        post_saw  =  stat_dict[player]['saw_2'] + stat_dict[player]['saw_3'] + stat_dict[player]['saw_4']
+       
+        stat = float (bet_raise) / float(post_saw-bet_raise)
+
+        return (stat,
+                '%2.1f'        % (stat) ,
+                'afa=%2.1f'    % (stat) ,
+                'agg_fa=%2.1f' % (stat) ,
+                '(%d/%d)'      % (bet_raise, post_saw-bet_raise),
+                'Aggression Factor'
+                )
+    except:
+        return (stat,
+                '%2.1f'        % (0) ,
+                'afa=%2.1f'    % (0) ,
+                'agg_fa=%2.1f' % (0),
+                '(%d/%d)'      % (0, 0),
+                'Aggression Factor'
+                )
+
+
+def cbet(stat_dict, player):
+
+    """    Flop continuation bet."""
+    """    Continuation bet % = (times made a continuation bet on the flop) * 100 / (number of opportunities to make a continuation bet on the flop) """
+
+    stat = 0.0
+    try:
+        cbets = stat_dict[player]['cb_1']+stat_dict[player]['cb_2']+stat_dict[player]['cb_3']+stat_dict[player]['cb_4']
+        oppt = stat_dict[player]['cb_opp_1']+stat_dict[player]['cb_opp_2']+stat_dict[player]['cb_opp_3']+stat_dict[player]['cb_opp_4']
+        stat = float(cbets)/float(oppt)
+        return (stat,
+                '%3.1f'        % (100*stat) + '%',
+                'cbet=%3.1f'   % (100*stat) + '%',
+                'cbet=%3.1f'   % (100*stat) + '%',
+                '(%d/%d)'      % (cbets, oppt),
+                '% continuation bet '
+                )
+    except:
+        return (stat,
+                '%3.1f'        % (0) + '%',
+                'cbet=%3.1f'   % (0) + '%',
+                'cbet=%3.1f'   % (0) + '%',
+                '(%d/%d)'      % (0, 0),
+                '% continuation bet '
+                )
     
 def cb1(stat_dict, player):
     """    Flop continuation bet."""
