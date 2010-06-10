@@ -512,17 +512,17 @@ def agg_freq(stat_dict, player):
         """ Agression on the flop and all streets """
         bet_raise = stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
         """ number post flop streets seen, this must be number of post-flop calls !! """
-        post_saw  = stat_dict[player]['saw_2'] + stat_dict[player]['saw_3'] + stat_dict[player]['saw_4']
+        post_call  = stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
         """ Number of post flop folds this info is not yet in the database """
         post_fold = stat_dict[player]['f_freq_2'] + stat_dict[player]['f_freq_3'] + stat_dict[player]['f_freq_4']
 
-        stat = float (bet_raise) / float(post_saw + post_fold)
+        stat = float (bet_raise) / float(post_call + post_fold + bet_raise)
 
         return (stat,
                 '%3.1f'        % (100*stat) + '%',
                 'afr=%3.1f'    % (100*stat) + '%',
                 'agg_fr=%3.1f' % (100*stat) + '%',
-                '(%d/%d)'      % (bet_raise, (post_saw + post_fold)),
+                '(%d/%d)'      % (bet_raise, (post_call + post_fold + bet_raise)),
                 'Aggression Freq'
                 )
     except:
@@ -541,15 +541,15 @@ def agg_fact(stat_dict, player):
     stat = 0.0
     try:
         bet_raise =  stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
-        post_saw  =  stat_dict[player]['saw_2'] + stat_dict[player]['saw_3'] + stat_dict[player]['saw_4']
+        post_call  =  stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
        
-        stat = float (bet_raise) / float(post_saw-bet_raise)
+        stat = float (bet_raise) / float(post_call)
 
         return (stat,
                 '%2.1f'        % (stat) ,
                 'afa=%2.1f'    % (stat) ,
                 'agg_fa=%2.1f' % (stat) ,
-                '(%d/%d)'      % (bet_raise, post_saw-bet_raise),
+                '(%d/%d)'      % (bet_raise, post_call),
                 'Aggression Factor'
                 )
     except:

@@ -1662,7 +1662,7 @@ class Database:
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         inserts = []
         for p in pdata:
-            line = [0]*61
+            line = [0]*71
             
             line[0] = 1 # HDs
             if pdata[p]['street0VPI']:                  line[1] = 1
@@ -1719,13 +1719,24 @@ class Database:
             if pdata[p]['street3CheckCallRaiseDone']:   line[52] = 1
             if pdata[p]['street4CheckCallRaiseChance']: line[53] = 1
             if pdata[p]['street4CheckCallRaiseDone']:   line[54] = 1
-            line[55] = gid    # gametypeId
-            line[56] = pids[p]    # playerId
-            line[57] = len(pids)    # activeSeats
+            if pdata[p]['street0Calls']:                line[55] = 1
+            if pdata[p]['street1Calls']:                line[56] = 1
+            if pdata[p]['street2Calls']:                line[57] = 1
+            if pdata[p]['street3Calls']:                line[58] = 1
+            if pdata[p]['street4Calls']:                line[59] = 1
+            if pdata[p]['street0Bets']:                 line[60] = 1
+            if pdata[p]['street1Bets']:                 line[61] = 1
+            if pdata[p]['street2Bets']:                 line[62] = 1
+            if pdata[p]['street3Bets']:                 line[63] = 1
+            if pdata[p]['street4Bets']:                 line[64] = 1
+
+            line[65] = gid    # gametypeId
+            line[66] = pids[p]    # playerId
+            line[67] = len(pids)    # activeSeats
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            line[58] = pos[pdata[p]['position']]
-            line[59] = pdata[p]['tourneyTypeId']
-            line[60] = styleKey    # styleKey
+            line[68] = pos[pdata[p]['position']]
+            line[69] = pdata[p]['tourneyTypeId']
+            line[70] = styleKey    # styleKey
             inserts.append(line)
 
 

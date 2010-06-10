@@ -1337,6 +1337,16 @@ class Sql:
                     sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
                     sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
                     sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                    sum(hc.street0Calls)                AS call_0,
+                    sum(hc.street1Calls)                AS call_1,
+                    sum(hc.street2Calls)                AS call_2,
+                    sum(hc.street3Calls)                AS call_3,
+                    sum(hc.street4Calls)                AS call_4,
+                    sum(hc.street0Bets)                 AS bet_0,
+                    sum(hc.street1Bets)                 AS bet_1,
+                    sum(hc.street2Bets)                 AS bet_2,
+                    sum(hc.street3Bets)                 AS bet_3,
+                    sum(hc.street4Bets)                 AS bet_4
                 FROM Hands h
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
@@ -1420,7 +1430,17 @@ class Sql:
                        sum(hc.street3CheckCallRaiseChance) AS ccr_opp_3,
                        sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
                        sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
-                       sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                       sum(hc.street4CheckCallRaiseDone)   AS ccr_4,
+                       sum(hc.street0Calls)                AS call_0,
+                       sum(hc.street1Calls)                AS call_1,
+                       sum(hc.street2Calls)                AS call_2,
+                       sum(hc.street3Calls)                AS call_3,
+                       sum(hc.street4Calls)                AS call_4,
+                       sum(hc.street0Bets)                 AS bet_0,
+                       sum(hc.street1Bets)                 AS bet_1,
+                       sum(hc.street2Bets)                 AS bet_2,
+                       sum(hc.street3Bets)                 AS bet_3,
+                       sum(hc.street4Bets)                 AS bet_4
                 FROM Hands h
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
@@ -2759,6 +2779,16 @@ class Sql:
                 ,street3CheckCallRaiseDone
                 ,street4CheckCallRaiseChance
                 ,street4CheckCallRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -2834,6 +2864,16 @@ class Sql:
                       ,sum(street3CheckCallRaiseDone)
                       ,sum(street4CheckCallRaiseChance)
                       ,sum(street4CheckCallRaiseDone)
+                      ,sum(street0Calls)
+                      ,sum(street1Calls)
+                      ,sum(street2Calls)
+                      ,sum(street3Calls)
+                      ,sum(street4Calls)
+                      ,sum(street0Bets)
+                      ,sum(street1Bets)
+                      ,sum(street2Bets)
+                      ,sum(street3Bets)
+                      ,sum(street4Bets)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -2908,6 +2948,16 @@ class Sql:
                 ,street3CheckCallRaiseDone
                 ,street4CheckCallRaiseChance
                 ,street4CheckCallRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -2983,6 +3033,16 @@ class Sql:
                       ,sum(CAST(street3CheckCallRaiseDone as integer))
                       ,sum(CAST(street4CheckCallRaiseChance as integer))
                       ,sum(CAST(street4CheckCallRaiseDone as integer))
+                      ,sum(CAST(street0Calls as integer))
+                      ,sum(CAST(street1Calls as integer))
+                      ,sum(CAST(street2Calls as integer))
+                      ,sum(CAST(street3Calls as integer))
+                      ,sum(CAST(street4Calls as integer))
+                      ,sum(CAST(street0Bets as integer))
+                      ,sum(CAST(street1Bets as integer))
+                      ,sum(CAST(street2Bets as integer))
+                      ,sum(CAST(street3Bets as integer))
+                      ,sum(CAST(street4Bets as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -3057,6 +3117,16 @@ class Sql:
                 ,street3CheckCallRaiseDone
                 ,street4CheckCallRaiseChance
                 ,street4CheckCallRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -3132,6 +3202,16 @@ class Sql:
                       ,sum(CAST(street3CheckCallRaiseDone as integer))
                       ,sum(CAST(street4CheckCallRaiseChance as integer))
                       ,sum(CAST(street4CheckCallRaiseDone as integer))
+                      ,sum(CAST(street0Calls as integer))
+                      ,sum(CAST(street1Calls as integer))
+                      ,sum(CAST(street2Calls as integer))
+                      ,sum(CAST(street3Calls as integer))
+                      ,sum(CAST(street4Calls as integer))
+                      ,sum(CAST(street0Bets as integer))
+                      ,sum(CAST(street1Bets as integer))
+                      ,sum(CAST(street2Bets as integer))
+                      ,sum(CAST(street3Bets as integer))
+                      ,sum(CAST(street4Bets as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -3205,8 +3285,20 @@ class Sql:
                 street3CheckCallRaiseChance,
                 street3CheckCallRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone)
+                street4CheckCallRaiseDone,
+                street0Calls,
+                street1Calls,
+                street2Calls,
+                street3Calls,
+                street4Calls,
+                street0Bets,
+                street1Bets,
+                street2Bets,
+                street3Bets,
+                street4Bets)
             VALUES (%s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -3276,7 +3368,17 @@ class Sql:
             street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
             street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
             street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-            street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
+            street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+            street0Calls=street0Calls+%s,
+            street1Calls=street1Calls+%s,
+            street2Calls=street2Calls+%s,
+            street3Calls=street3Calls+%s,
+            street4Calls=street4Calls+%s,
+            street0Bets=street0Bets+%s, 
+            street1Bets=street1Bets+%s,
+            street2Bets=street2Bets+%s, 
+            street3Bets=street3Bets+%s,
+            street4Bets=street4Bets+%s 
         WHERE gametypeId+0=%s
             AND   playerId=%s
             AND   activeSeats=%s
