@@ -87,6 +87,7 @@ class Hud:
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
         self.hud_ui     = config.get_hud_ui_parameters()
+        self.site_params = config.get_site_parameters()
 
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
@@ -457,7 +458,7 @@ class Hud:
             if self.table.x != x or self.table.y != y:
                 self.table.x = x
                 self.table.y = y
-                self.main_window.move(x, y)
+                self.main_window.move(x + self.site_params['xshift'], y + self.site_params['yshift'])
                 adj = self.adj_seats(self.hand, self.config)
                 loc = self.config.get_locations(self.table.site, self.max)
                 # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?

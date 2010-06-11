@@ -249,6 +249,8 @@ class Site:
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
+        self.xshift       = node.getAttribute("xshift")
+        self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
 
         print "Loading site", self.site_name
@@ -260,6 +262,8 @@ class Site:
 #   Site defaults
         self.xpad = 1 if self.xpad == "" else int(self.xpad)
         self.ypad = 0 if self.ypad == "" else int(self.ypad)
+        self.xshift = 1 if self.xshift == "" else int(self.xshift)
+        self.yshift = 0 if self.yshift == "" else int(self.yshift)
         self.font_size = 7 if self.font_size == "" else int(self.font_size)
         self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
 
@@ -297,12 +301,18 @@ class Game:
         self.cols    = int( node.getAttribute("cols") )
         self.xpad    = node.getAttribute("xpad")
         self.ypad    = node.getAttribute("ypad")
+        self.xshift  = node.getAttribute("xshift")
+        self.yshift  = node.getAttribute("yshift")
 
 #    Defaults
         if self.xpad == "": self.xpad = 1
         else: self.xpad = int(self.xpad)
         if self.ypad == "": self.ypad = 0
         else: self.ypad = int(self.ypad)
+        if self.xshift == "": self.xshift = 1
+        else: self.xshift = int(self.xshift)
+        if self.yshift == "": self.yshift = 0
+        else: self.yshift = int(self.yshift)
 
         aux_text = node.getAttribute("aux")
         aux_list = aux_text.split(',')
@@ -335,6 +345,8 @@ class Game:
         temp = temp + "    cols = %d\n" % self.cols
         temp = temp + "    xpad = %d\n" % self.xpad
         temp = temp + "    ypad = %d\n" % self.ypad
+        temp = temp + "    xshift = %d\n" % self.xshift
+        temp = temp + "    yshift = %d\n" % self.yshift
         temp = temp + "    aux = %s\n" % self.aux
 
         for stat in self.stats.keys():
@@ -979,6 +991,8 @@ class Config:
         parms["enabled"]    = self.supported_sites[site].enabled
         parms["xpad"]        = self.supported_sites[site].xpad
         parms["ypad"]        = self.supported_sites[site].ypad
+        parms["xshift"]        = self.supported_sites[site].xshift
+        parms["yshift"]        = self.supported_sites[site].yshift
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
@@ -1030,6 +1044,8 @@ class Config:
             param['cols']    = self.supported_games[name].cols
             param['xpad']    = self.supported_games[name].xpad
             param['ypad']    = self.supported_games[name].ypad
+            param['xshift']  = self.supported_games[name].xshift
+            param['yshift']  = self.supported_games[name].yshift
             param['aux']     = self.supported_games[name].aux
         return param
 

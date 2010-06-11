@@ -119,6 +119,10 @@ Left-Drag to Move"
               hudopacity="1.0"
               font="Sans"
               font_size="8"
+              xpad="1"
+              ypad="0"
+              xshift="0"
+              yshift="0"
               supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
             <layout max="8" width="792" height="546" fav_seat="0">
                 <location seat="1" x="684" y="61">  </location>
