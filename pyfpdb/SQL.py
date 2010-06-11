@@ -819,7 +819,6 @@ class Sql:
                         street2Raises INT,
                         street3Raises INT,
                         street4Raises INT,
-
                         actionString REAL)
                         """
 
@@ -2844,6 +2843,11 @@ class Sql:
                 ,street2Bets
                 ,street3Bets
                 ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -2929,6 +2933,11 @@ class Sql:
                       ,sum(street2Bets)
                       ,sum(street3Bets)
                       ,sum(street4Bets)
+                      ,sum(hp.street0Raises)
+                      ,sum(hp.street1Raises)
+                      ,sum(hp.street2Raises)
+                      ,sum(hp.street3Raises)
+                      ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -3013,6 +3022,11 @@ class Sql:
                 ,street2Bets
                 ,street3Bets
                 ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -3098,6 +3112,11 @@ class Sql:
                       ,sum(CAST(street2Bets as integer))
                       ,sum(CAST(street3Bets as integer))
                       ,sum(CAST(street4Bets as integer))
+                      ,sum(CAST(hp.street0Raises as integer))
+                      ,sum(CAST(hp.street1Raises as integer))
+                      ,sum(CAST(hp.street2Raises as integer))
+                      ,sum(CAST(hp.street3Raises as integer))
+                      ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -3182,6 +3201,11 @@ class Sql:
                 ,street2Bets
                 ,street3Bets
                 ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -3267,6 +3291,11 @@ class Sql:
                       ,sum(CAST(street2Bets as integer))
                       ,sum(CAST(street3Bets as integer))
                       ,sum(CAST(street4Bets as integer))
+                      ,sum(CAST(hp.street0Raises as integer))
+                      ,sum(CAST(hp.street1Raises as integer))
+                      ,sum(CAST(hp.street2Raises as integer))
+                      ,sum(CAST(hp.street3Raises as integer))
+                      ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
