@@ -1633,7 +1633,12 @@ class Database:
                              pdata[p]['street3CheckCallRaiseChance'],
                              pdata[p]['street3CheckCallRaiseDone'],
                              pdata[p]['street4CheckCallRaiseChance'],
-                             pdata[p]['street4CheckCallRaiseDone']
+                             pdata[p]['street4CheckCallRaiseDone'],
+                             pdata[p]['street0Raises'],
+                             pdata[p]['street1Raises'],
+                             pdata[p]['street2Raises'],
+                             pdata[p]['street3Raises'],
+                             pdata[p]['street4Raises']
                             ) )
 
         q = self.sql.query['store_hands_players']
@@ -1662,7 +1667,7 @@ class Database:
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         inserts = []
         for p in pdata:
-            line = [0]*71
+            line = [0]*76
             
             line[0] = 1 # HDs
             if pdata[p]['street0VPI']:                  line[1] = 1
@@ -1729,14 +1734,19 @@ class Database:
             if pdata[p]['street2Bets']:                 line[62] = 1
             if pdata[p]['street3Bets']:                 line[63] = 1
             if pdata[p]['street4Bets']:                 line[64] = 1
+            if pdata[p]['street0Raises']:               line[65] = 1
+            if pdata[p]['street1Raises']:               line[66] = 1
+            if pdata[p]['street2Raises']:               line[67] = 1
+            if pdata[p]['street3Raises']:               line[68] = 1
+            if pdata[p]['street4Raises']:               line[69] = 1
 
-            line[65] = gid    # gametypeId
-            line[66] = pids[p]    # playerId
-            line[67] = len(pids)    # activeSeats
+            line[70] = gid    # gametypeId
+            line[71] = pids[p]    # playerId
+            line[72] = len(pids)    # activeSeats
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            line[68] = pos[pdata[p]['position']]
-            line[69] = pdata[p]['tourneyTypeId']
-            line[70] = styleKey    # styleKey
+            line[73] = pos[pdata[p]['position']]
+            line[74] = pdata[p]['tourneyTypeId']
+            line[75] = styleKey    # styleKey
             inserts.append(line)
 
 

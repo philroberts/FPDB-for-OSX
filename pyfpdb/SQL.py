@@ -1346,7 +1346,12 @@ class Sql:
                     sum(hc.street1Bets)                 AS bet_1,
                     sum(hc.street2Bets)                 AS bet_2,
                     sum(hc.street3Bets)                 AS bet_3,
-                    sum(hc.street4Bets)                 AS bet_4
+                    sum(hc.street4Bets)                 AS bet_4,
+                    sum(hc.street0Raises)               AS raise_0,
+                    sum(hc.street1Raises)               AS raise_1,
+                    sum(hc.street2Raises)               AS raise_2,
+                    sum(hc.street3Raises)               AS raise_3,
+                    sum(hc.street4Raises)               AS raise_4
                 FROM Hands h
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
@@ -1440,7 +1445,12 @@ class Sql:
                        sum(hc.street1Bets)                 AS bet_1,
                        sum(hc.street2Bets)                 AS bet_2,
                        sum(hc.street3Bets)                 AS bet_3,
-                       sum(hc.street4Bets)                 AS bet_4
+                       sum(hc.street4Bets)                 AS bet_4,
+                       sum(hc.street0Raises)               AS raise_0,
+                       sum(hc.street1Raises)               AS raise_1,
+                       sum(hc.street2Raises)               AS raise_2,
+                       sum(hc.street3Raises)               AS raise_3,
+                       sum(hc.street4Raises)               AS raise_4
                 FROM Hands h
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
@@ -1551,7 +1561,22 @@ class Sql:
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
                            cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street0Calls as <signed>integer)                AS call_0,
+                           cast(hp2.street1Calls as <signed>integer)                AS call_1,
+                           cast(hp2.street2Calls as <signed>integer)                AS call_2,
+                           cast(hp2.street3Calls as <signed>integer)                AS call_3,
+                           cast(hp2.street4Calls as <signed>integer)                AS call_4,
+                           cast(hp2.street0Bets as <signed>integer)                 AS bet_0,
+                           cast(hp2.street1Bets as <signed>integer)                 AS bet_1,
+                           cast(hp2.street2Bets as <signed>integer)                 AS bet_2,
+                           cast(hp2.street3Bets as <signed>integer)                 AS bet_3,
+                           cast(hp2.street4Bets as <signed>integer)                 AS bet_4,
+                           cast(hp2.street0Raises as <signed>integer)               AS raise_0,
+                           cast(hp2.street1Raises as <signed>integer)               AS raise_1,
+                           cast(hp2.street2Raises as <signed>integer)               AS raise_2,
+                           cast(hp2.street3Raises as <signed>integer)               AS raise_3,
+                           cast(hp2.street4Raises as <signed>integer)               AS raise_4
                     FROM
                          Hands h
                          INNER JOIN Hands h2         ON (h2.id > %s AND   h2.tableName = h.tableName)
@@ -1638,8 +1663,23 @@ class Sql:
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
                            cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
-                    FROM Hands h                                                  /* this hand */
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street0Calls as <signed>integer)                AS call_0,
+                           cast(hp2.street1Calls as <signed>integer)                AS call_1,
+                           cast(hp2.street2Calls as <signed>integer)                AS call_2,
+                           cast(hp2.street3Calls as <signed>integer)                AS call_3,
+                           cast(hp2.street4Calls as <signed>integer)                AS call_4,
+                           cast(hp2.street0Bets as <signed>integer)                 AS bet_0,
+                           cast(hp2.street1Bets as <signed>integer)                 AS bet_1,
+                           cast(hp2.street2Bets as <signed>integer)                 AS bet_2,
+                           cast(hp2.street3Bets as <signed>integer)                 AS bet_3,
+                           cast(hp2.street4Bets as <signed>integer)                 AS bet_4,
+                           cast(hp2.street0Raises as <signed>integer)               AS raise_0,
+                           cast(hp2.street1Raises as <signed>integer)               AS raise_1,
+                           cast(hp2.street2Raises as <signed>integer)               AS raise_2,
+                           cast(hp2.street3Raises as <signed>integer)               AS raise_3,
+                           cast(hp2.street4Raises as <signed>integer)               AS raise_4
+                         FROM Hands h                                                  /* this hand */
                          INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
@@ -1726,8 +1766,23 @@ class Sql:
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
                            cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
-                    FROM Hands h                                                  /* this hand */
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street0Calls as <signed>integer)                AS call_0,
+                           cast(hp2.street1Calls as <signed>integer)                AS call_1,
+                           cast(hp2.street2Calls as <signed>integer)                AS call_2,
+                           cast(hp2.street3Calls as <signed>integer)                AS call_3,
+                           cast(hp2.street4Calls as <signed>integer)                AS call_4,
+                           cast(hp2.street0Bets as <signed>integer)                 AS bet_0,
+                           cast(hp2.street1Bets as <signed>integer)                 AS bet_1,
+                           cast(hp2.street2Bets as <signed>integer)                 AS bet_2,
+                           cast(hp2.street3Bets as <signed>integer)                 AS bet_3,
+                           cast(hp2.street4Bets as <signed>integer)                 AS bet_4,
+                           cast(hp2.street0Raises as <signed>integer)               AS raise_0,
+                           cast(hp2.street1Raises as <signed>integer)               AS raise_1,
+                           cast(hp2.street2Raises as <signed>integer)               AS raise_2,
+                           cast(hp2.street3Raises as <signed>integer)               AS raise_3,
+                           cast(hp2.street4Raises as <signed>integer)               AS raise_4
+                         FROM Hands h                                                  /* this hand */
                          INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
@@ -3295,8 +3350,14 @@ class Sql:
                 street1Bets,
                 street2Bets,
                 street3Bets,
-                street4Bets)
+                street4Bets,
+                street0Raises,
+                street1Raises,
+                street2Raises,
+                street3Raises,
+                street4Raises)
             VALUES (%s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -3378,7 +3439,12 @@ class Sql:
             street1Bets=street1Bets+%s,
             street2Bets=street2Bets+%s, 
             street3Bets=street3Bets+%s,
-            street4Bets=street4Bets+%s 
+            street4Bets=street4Bets+%s, 
+            street0Raises=street0Raises+%s,
+            street1Raises=street1Raises+%s,
+            street2Raises=street2Raises+%s,
+            street3Raises=street3Raises+%s,
+            street4Raises=street4Raises+%s
         WHERE gametypeId+0=%s
             AND   playerId=%s
             AND   activeSeats=%s
@@ -3704,9 +3770,15 @@ class Sql:
                 street3CheckCallRaiseChance,
                 street3CheckCallRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone
+                street4CheckCallRaiseDone,
+                street0Raises,
+                street1Raises,
+                street2Raises,
+                street3Raises,
+                street4Raises
                )
                VALUES (
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
