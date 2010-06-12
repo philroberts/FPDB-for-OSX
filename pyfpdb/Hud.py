@@ -87,7 +87,7 @@ class Hud:
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
         self.hud_ui     = config.get_hud_ui_parameters()
-        self.site_params = config.get_site_parameters()
+        self.site_params = config.get_site_parameters(self.table.site)
 
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
