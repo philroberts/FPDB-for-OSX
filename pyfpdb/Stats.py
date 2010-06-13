@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """Manage collecting and formatting of stats and tooltips.
 """
@@ -114,7 +115,7 @@ def playername(stat_dict, player):
             stat_dict[player]['screen_name'])
 
 def vpip(stat_dict, player):
-    """    Voluntarily put $ in the pot."""
+    """    Voluntarily put $ in the pot pre-flop."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['vpip'])/float(stat_dict[player]['n'])
@@ -123,14 +124,14 @@ def vpip(stat_dict, player):
                 'v=%3.1f'    % (100*stat) + '%',
                 'vpip=%3.1f' % (100*stat) + '%',
                 '(%d/%d)'    % (stat_dict[player]['vpip'], stat_dict[player]['n']),
-                'Voluntarily Put In Pot %'
+                'Voluntarily Put In Pot Pre-Flop%'
                 )
     except: return (stat,
                     '%3.1f'      % (0) + '%',
                     'v=%3.1f'    % (0) + '%',
                     'vpip=%3.1f' % (0) + '%',
                     '(%d/%d)'    % (0, 0),
-                    'Voluntarily Put In Pot %'
+                    'Voluntarily Put In Pot Pre-Flop%'
                     )
 
 def pfr(stat_dict, player):
