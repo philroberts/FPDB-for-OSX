@@ -543,8 +543,10 @@ def agg_fact(stat_dict, player):
         bet_raise =   stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
         post_call  =  stat_dict[player]['call_1'] + stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
        
-        stat = float (bet_raise) / float(post_call)
-
+        if post_call > 0:
+            stat = float (bet_raise) / float(post_call)
+        else:
+            stat = bet_raise
         return (stat,
                 '%2.2f'        % (stat) ,
                 'afa=%2.2f'    % (stat) ,
