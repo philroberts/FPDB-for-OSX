@@ -2,9 +2,11 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 
-    <general config_wrap_len="-1"   <!-- preferred max line length in this file, -1 means no max -->
-             day_start="5"          <!-- time that logical day starts, e.g. 5 means that any play 
-                                         between 00:00 and 04:59:59 counts as being on the previous day -->
+    <!-- config_wrap_len  is preferred max line length in this file, -1 means no max
+         day_start        is time that logical day starts, e.g. 5 means that any play
+                          between 00:00 and 04:59:59 counts as being on the previous day -->
+    <general config_wrap_len="-1"   
+             day_start="5"          
              />
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>

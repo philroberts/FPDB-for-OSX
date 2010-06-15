@@ -714,7 +714,7 @@ class fpdb:
             self.warning_box( "There is an error in your config file\n" + self.config.file
                               + "\n\nError is:  " + str(self.config.file_error)
                             , diatitle="CONFIG FILE ERROR" )
-            exit()
+            sys.exit()
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
@@ -905,7 +905,11 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.window.connect("destroy", self.destroy)
         self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
         self.window.set_border_width(1)
-        self.window.set_default_size(900,720)
+        defx, defy = 900, 720
+        sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
+        if sx < defx:  defx = sx
+        if sy < defy:  defy = sy
+        self.window.set_default_size(defx, defy)
         self.window.set_resizable(True)
 
         self.main_vbox = gtk.VBox(False, 1)
