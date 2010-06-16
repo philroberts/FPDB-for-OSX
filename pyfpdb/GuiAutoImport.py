@@ -214,8 +214,8 @@ class GuiAutoImport (threading.Thread):
                                                             stderr=subprocess.PIPE,  # only needed for py2exe
                                                             universal_newlines=True
                                                            )
-                        self.pipe_to_hud.stdout.close()
-                        self.pipe_to_hud.stderr.close()
+                        #self.pipe_to_hud.stdout.close()
+                        #self.pipe_to_hud.stderr.close()
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))
