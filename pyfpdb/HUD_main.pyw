@@ -98,7 +98,11 @@ class HUD_main(object):
             self.main_window = gtk.Window()
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
-            self.label = gtk.Label('Closing this window will exit from the HUD.')
+            #in .exe version, closing HUD_main window causes window lockup 
+            #until next update cycle (i.e. cannot get focus on poker window while locked)
+            #temporary workaround to disable close button until fix is found
+            self.main_window.set_deletable(False)
+            self.label = gtk.Label(' To close, use "Stop Autoimport" in FPDB.')
             self.vb.add(self.label)
             self.main_window.add(self.vb)
             self.main_window.set_title("HUD Main Window")
