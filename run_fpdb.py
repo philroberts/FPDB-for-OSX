@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
@@ -21,13 +22,10 @@ import sys
 
 # sys.path[0] holds the directory run_fpdb.py is in
 sys.path[0] = sys.path[0]+os.sep+"pyfpdb"
+# cd to pyfpdb subdir
 os.chdir(sys.path[0])
 #print "sys.path[0] =", sys.path[0], "cwd =", os.getcwd()
 
-import fpdb
 
-
-if __name__ == "__main__":
-    me = fpdb.fpdb()
-    me.main()
-    exit()
+os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) 
+# first arg is ignored (name of program being run)

@@ -1056,7 +1056,7 @@ class Database:
                     key = "`" + inner[j][0] + "_" + m.group() + "`"
                     c.execute("ALTER TABLE " + inner[j][0] + " DROP FOREIGN KEY " + key)
                 self.commit()
-        #end drop_referential_inegrity
+    #end drop_referential_inegrity
     
     def recreate_tables(self):
         """(Re-)creates the tables of the current DB"""

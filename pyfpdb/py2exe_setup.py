@@ -39,16 +39,14 @@ Py2exe script for fpdb.
 #  MSVCP90.dll. These are somewhere in your windows install, so you 
 #  can just copy them to your working folder. (or just assume other
 #  person will have them? any copyright issues with including them?)
-#- [ If it works, you'll have 3 new folders, build and dist and gfx. Build is 
-#    working space and should be deleted. Dist and gfx contain the files to be
-#    distributed. ]
-#  If it works, you'll have a new dir  fpdb-XXX-YYYYMMDD-exe  which should
+#- If it works, you'll have a new dir  fpdb-YYYYMMDD-exe  which should
 #  contain 2 dirs; gfx and pyfpdb and run_fpdb.bat
-#- Last, you must copy the etc/, lib/ and share/ folders from your
-#  gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
-#  not just the contents) 
+#- [ This bit is now automated:
+#    Last, you must copy the etc/, lib/ and share/ folders from your
+#    gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
+#    not just the contents) ]
 #- You can (should) then prune the etc/, lib/ and share/ folders to 
-#  remove components we don't need. 
+#  remove components we don't need. (see output at end of program run)
 
 # sqlcoder notes: this worked for me with the following notes:
 #- I used the following versions:
@@ -116,11 +114,11 @@ test_and_remove('build')
 
 
 today = date.today().strftime('%Y%m%d')
-print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_XXX_"+today+'\\'
-print "Enter value for XXX (any length): ",     # the comma means no newline
-xxx = sys.stdin.readline().rstrip()
-dist_dirname = r'fpdb-' + xxx + '-' + today + '-exe'
-dist_dir = r'..\fpdb-' + xxx + '-' + today + '-exe'
+print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_"+today+'\\'
+#print "Enter value for XXX (any length): ",     # the comma means no newline
+#xxx = sys.stdin.readline().rstrip()
+dist_dirname = r'fpdb-' + today + '-exe'
+dist_dir = r'..\fpdb-' + today + '-exe'
 print
 
 test_and_remove(dist_dir)
@@ -130,8 +128,8 @@ setup(
     description = 'Free Poker DataBase',
     version     = '0.12',
 
-    console = [   {'script': 'fpdb.py', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
-                  {'script': 'HUD_main.py', },
+    windows = [   {'script': 'fpdb.pyw', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
+                  {'script': 'HUD_main.pyw', },
                   {'script': 'Configuration.py', }
               ],
 
@@ -163,10 +161,11 @@ setup(
 
 os.rename('dist', 'pyfpdb')
 
-print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
-print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
-print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
-print 'into there'
+#   these instructions no longer needed:
+#print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
+#print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
+#print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
+#print 'into there'
 
 dest = os.path.join(dist_dirname, 'pyfpdb')
 #print "try renaming pyfpdb to", dest
@@ -206,5 +205,25 @@ src_dir = src_dir.replace('\\', '\\\\')
 dest_dir = os.path.join(dest, 'share')
 dest_dir = dest_dir.replace('\\', '\\\\')
 shutil.copytree( src_dir, dest_dir )
+
+print "\nIf py2exe was successful you should now have a new dir"
+print dist_dirname+" in your pyfpdb dir"
+print """
+The following dirs can probably removed to make the final package smaller:
+
+pyfpdb/lib/glib-2.0
+pyfpdb/lib/gtk-2.0/include
+pyfpdb/lib/pkgconfig
+pyfpdb/share/aclocal
+pyfpdb/share/doc
+pyfpdb/share/glib-2.0
+pyfpdb/share/gtk-2.0
+pyfpdb/share/gtk-doc
+pyfpdb/share/locale
+pyfpdb/share/man
+pyfpdb/share/themes/Default
+
+Use 7-zip to zip up the distribution and create a self extracting archive and that's it!
+"""
 
 
