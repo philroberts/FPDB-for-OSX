@@ -25,5 +25,8 @@ import sys
 sys.stdout.write('fpdb.py has been renamed to fpdb.pyw - now calling fpdb.pyw ...\n\n')
 sys.stdout.flush()
 
-os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) 
+if os.name=='nt':
+    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ)
+else:
+    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ)
 # first arg is ignored (name of program being run)

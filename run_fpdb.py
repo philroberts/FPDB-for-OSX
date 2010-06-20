@@ -27,5 +27,8 @@ os.chdir(sys.path[0])
 #print "sys.path[0] =", sys.path[0], "cwd =", os.getcwd()
 
 
-os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) 
+if os.name=='nt':
+    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) 
+else:
+    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) 
 # first arg is ignored (name of program being run)
