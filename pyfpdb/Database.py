@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Database.py
 
 Create and manage the database objects.
@@ -1343,18 +1344,18 @@ class Database:
     def fillDefaultData(self):
         c = self.get_cursor() 
         c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('OnGame', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('UltimateBet', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Betfair', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Partouche', 'EUR')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Carbon', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('PKR', 'USD')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Full Tilt Poker', 'FT')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PokerStars', 'PS')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Everleaf', 'EV')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Win2day', 'W2')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('OnGame', 'OG')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('UltimateBet', 'UB')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Betfair', 'BF')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Absolute', 'AB')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PartyPoker', 'PP')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         if self.backend == self.SQLITE:
             c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
         elif self.backend == self.PGSQL:

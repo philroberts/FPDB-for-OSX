@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Returns a dict of SQL statements used in fpdb.
 """
 #    Copyright 2008-2009, Ray E. Barker
@@ -114,18 +115,18 @@ class Sql:
             self.query['createSitesTable'] = """CREATE TABLE Sites (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         name varchar(32) NOT NULL,
-                        currency char(3) NOT NULL)
+                        code char(2) NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createSitesTable'] = """CREATE TABLE Sites (
                         id SERIAL, PRIMARY KEY (id),
                         name varchar(32),
-                        currency char(3))"""
+                        code char(2))"""
         elif db_server == 'sqlite':
             self.query['createSitesTable'] = """CREATE TABLE Sites (
                         id INTEGER PRIMARY KEY,
                         name TEXT NOT NULL,
-                        currency TEXT NOT NULL)"""
+                        code TEXT NOT NULL)"""
 
 
         ################################
@@ -136,6 +137,7 @@ class Sql:
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
                         type char(4) NOT NULL,
                         base char(4) NOT NULL,
                         category varchar(9) NOT NULL,
@@ -150,6 +152,7 @@ class Sql:
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id SERIAL, PRIMARY KEY (id),
                         siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4),
                         type char(4),
                         base char(4),
                         category varchar(9),
@@ -163,6 +166,7 @@ class Sql:
             self.query['createGametypesTable'] = """CREATE TABLE GameTypes (
                         id INTEGER PRIMARY KEY,
                         siteId INTEGER,
+                        currency TEXT,
                         type TEXT,
                         base TEXT,
                         category TEXT,
@@ -358,6 +362,7 @@ class Sql:
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                             id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                             siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                            currency varchar(4) NOT NULL,
                             buyin INT NOT NULL,
                             fee INT NOT NULL,
                             maxSeats INT NOT NULL DEFAULT -1,
@@ -374,6 +379,7 @@ class Sql:
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id SERIAL, PRIMARY KEY (id),
                         siteId INT NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
                         buyin INT NOT NULL,
                         fee INT NOT NULL,
                         maxSeats INT NOT NULL DEFAULT -1,
@@ -389,6 +395,7 @@ class Sql:
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id INTEGER PRIMARY KEY,
                         siteId INT NOT NULL,
+                        currency TEXT NOT NULL,
                         buyin INT NOT NULL,
                         fee INT NOT NULL,
                         maxSeats INT NOT NULL DEFAULT -1,

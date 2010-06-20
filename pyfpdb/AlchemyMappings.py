@@ -34,8 +34,8 @@ class Gametype(MappedBase):
     @staticmethod
     def get_or_create(session, siteId, gametype):
         map = zip(
-            ['type', 'base', 'category', 'limitType', 'smallBlind', 'bigBlind', 'smallBet', 'bigBet'],
-            ['type', 'base', 'category', 'limitType', 'sb', 'bb', 'dummy', 'dummy', ])
+            ['type', 'base', 'category', 'limitType', 'smallBlind', 'bigBlind', 'smallBet', 'bigBet', 'currency'],
+            ['type', 'base', 'category', 'limitType', 'sb', 'bb', 'dummy', 'dummy', 'currency'])
         gametype = dict([(new, gametype.get(old)) for new, old in map  ])
 
         hilo = "h"
@@ -340,18 +340,20 @@ class HandPlayer(MappedBase):
 class Site(object):
     """Class reflecting Players db table"""
     INITIAL_DATA = [
-            (1 , 'Full Tilt Poker','USD'),
-            (2 , 'PokerStars',     'USD'),
-            (3 , 'Everleaf',       'USD'),
-            (4 , 'Win2day',        'USD'),
-            (5 , 'OnGame',         'USD'),
-            (6 , 'UltimateBet',    'USD'),
-            (7 , 'Betfair',        'USD'),
-            (8 , 'Absolute',       'USD'),
-            (9 , 'PartyPoker',     'USD'),
-            (10, 'Partouche',      'EUR'),
+            (1 , 'Full Tilt Poker','FT'),
+            (2 , 'PokerStars',     'PS'),
+            (3 , 'Everleaf',       'EV'),
+            (4 , 'Win2day',        'W2'),
+            (5 , 'OnGame',         'OG'),
+            (6 , 'UltimateBet',    'UB'),
+            (7 , 'Betfair',        'BF'),
+            (8 , 'Absolute',       'AB'),
+            (9 , 'PartyPoker',     'PP'),
+            (10, 'Partouche',      'PA'),
+            (11, 'Carbon',         'CA'),
+            (12, 'PKR',            'PK'),
         ]
-    INITIAL_DATA_KEYS = ('id', 'name', 'currency')
+    INITIAL_DATA_KEYS = ('id', 'name', 'code')
 
     INITIAL_DATA_DICTS = [ dict(zip(INITIAL_DATA_KEYS, datum)) for datum in INITIAL_DATA ] 
 
@@ -380,7 +382,7 @@ class TourneyType(MappedBase):
 
         Required kwargs: 
             buyin fee speed maxSeats knockout 
-            rebuyOrAddon headsUp shootout matrix sng
+            rebuyOrAddon headsUp shootout matrix sng currency
         """
         return get_or_create(cls, session, **kwargs)[0]
 

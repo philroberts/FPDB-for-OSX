@@ -29,6 +29,7 @@ autorates_table = Table('Autorates', metadata,
 gametypes_table = Table('Gametypes', metadata,
     Column('id',            SmallInteger, primary_key=True),
     Column('siteId',        SmallInteger, ForeignKey("Sites.id"), nullable=False), # SMALLINT
+    Column('currency',      String(4), nullable=False), # varchar(4) NOT NULL
     Column('type',          String(4), nullable=False), # char(4) NOT NULL
     Column('base',          String(4), nullable=False), # char(4) NOT NULL
     Column('category',      String(9), nullable=False), # varchar(9) NOT NULL
@@ -338,7 +339,7 @@ settings_table = Table('Settings', metadata,
 sites_table = Table('Sites', metadata,
     Column('id',            SmallInteger, primary_key=True),
     Column('name',          String(32), nullable=False), # varchar(32) NOT NULL
-    Column('currency',      String(3), nullable=False), # char(3) NOT NULL
+    Column('code',          String(2), nullable=False), # char(2) NOT NULL
     mysql_charset='utf8',
     mysql_engine='InnoDB',
 )
@@ -374,6 +375,7 @@ Index('siteTourneyNo', tourneys_table.c.siteTourneyNo, tourneys_table.c.tourneyT
 tourney_types_table = Table('TourneyTypes', metadata,
     Column('id',            Integer, primary_key=True), 
     Column('siteId',        SmallInteger, ForeignKey("Sites.id"), nullable=False), 
+    Column('currency',      String(4), nullable=False), # varchar(4) NOT NULL
     Column('buyin',         Integer, nullable=False), # INT NOT NULL
     Column('fee',           Integer, nullable=False, default=0), # INT NOT NULL
     Column('maxSeats',      Boolean, nullable=False, default=-1), # INT NOT NULL DEFAULT -1
