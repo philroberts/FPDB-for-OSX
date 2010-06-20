@@ -2713,31 +2713,13 @@ class Sql:
             self.query['sessionStats'] = """
                 SELECT UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
-            INNER JOIN Players pl      ON  (pl.id = hp.playerId)
-            INNER JOIN Hands h         ON  (h.id  = hp.handId)
-            INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
-            WHERE pl.id in <player_test>
-            AND   pl.siteId in <site_test>
-            AND   h.handStart > '<startdate_test>'
-            AND   h.handStart < '<enddate_test>'
-            <limit_test>
-            AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.handStart, hp.handId, hp.totalProfit
-            ORDER BY h.handStart"""
-
-        ####################################
-        # Session stats query
-        ####################################
-        if db_server == 'mysql':
-            self.query['sessionStats'] = """
-                SELECT UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
-                FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  date_format(h.handStart, '%Y-%m-%d') <datestest>
+                 AND  hp.tourneysPlayersId IS NULL
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
@@ -2749,6 +2731,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.handStart <datestest>
+                 AND  hp.tourneysPlayersId IS NULL
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
@@ -2760,6 +2743,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.handStart <datestest>
+                 AND  hp.tourneysPlayersId IS NULL
                 ORDER by time"""
 
 
