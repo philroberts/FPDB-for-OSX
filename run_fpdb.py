@@ -16,7 +16,6 @@
 #In the "official" distribution you can find the license in
 #agpl-3.0.txt in the docs folder of the package.
 
-
 import os
 import sys
 
@@ -26,9 +25,8 @@ sys.path[0] = sys.path[0]+os.sep+"pyfpdb"
 os.chdir(sys.path[0])
 #print "sys.path[0] =", sys.path[0], "cwd =", os.getcwd()
 
-
 if os.name=='nt':
-    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) 
+    os.execvpe('pythonw.exe', list(('pythonw.exe', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ) 
 else:
-    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) 
+    os.execvpe('python', list(('python', 'fpdb.pyw', '-r'))+sys.argv[1:], os.environ) 
 # first arg is ignored (name of program being run)
