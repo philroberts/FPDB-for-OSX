@@ -512,9 +512,9 @@ def agg_freq(stat_dict, player):
         """ Agression on the flop and all streets """
         bet_raise = stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
         """ number post flop streets seen, this must be number of post-flop calls !! """
-        post_call  = stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
+        post_call  = stat_dict[player]['call_1'] + stat_dict[player]['call_2'] + stat_dict[player]['call_3'] + stat_dict[player]['call_4']
         """ Number of post flop folds this info is not yet in the database """
-        post_fold = stat_dict[player]['f_freq_2'] + stat_dict[player]['f_freq_3'] + stat_dict[player]['f_freq_4']
+        post_fold = stat_dict[player]['f_freq_1'] + stat_dict[player]['f_freq_2'] + stat_dict[player]['f_freq_3'] + stat_dict[player]['f_freq_4']
 
         stat = float (bet_raise) / float(post_call + post_fold + bet_raise)
 
@@ -537,7 +537,6 @@ def agg_freq(stat_dict, player):
 def agg_fact(stat_dict, player):
     """    Post-Flop aggression frequency."""
     """  Aggression factor = (times bet or raised post-flop) / (times called post-flop) """
-    """  Times called post flop is not availlable, streets seen used """
     stat = 0.0
     try:
         bet_raise =   stat_dict[player]['aggr_1'] + stat_dict[player]['aggr_2'] + stat_dict[player]['aggr_3'] + stat_dict[player]['aggr_4']
@@ -546,7 +545,7 @@ def agg_fact(stat_dict, player):
         if post_call > 0:
             stat = float (bet_raise) / float(post_call)
         else:
-            stat = bet_raise
+            stat = float (bet_raise)
         return (stat,
                 '%2.2f'        % (stat) ,
                 'afa=%2.2f'    % (stat) ,
