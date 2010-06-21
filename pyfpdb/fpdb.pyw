@@ -887,8 +887,9 @@ class fpdb:
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         mh_tab=gtk.Label("""Welcome to Fpdb!
-For documentation please visit our website at http://fpdb.sourceforge.net/ or check the docs directory in the fpdb folder.
-Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml
+For documentation please visit our website at http://fpdb.sourceforge.net/.
+If you need help click on Contact - Get Help on our website.
+Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
 This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.add_and_display_tab(mh_tab, "Help")
 
