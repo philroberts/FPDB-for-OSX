@@ -185,7 +185,7 @@ class HandInternal(DerivedStats):
 
         # fetch and update tourney players
         for hp in self.handPlayers:
-            tp = TourneyPlayer.get_or_create(session, tour.id, hp.playerId)
+            tp = TourneysPlayer.get_or_create(session, tour.id, hp.playerId)
             # FIXME: other TourneysPlayers should be added here
 
         session.flush()
@@ -387,7 +387,7 @@ class TourneyType(MappedBase):
         return get_or_create(cls, session, **kwargs)[0]
 
 
-class TourneyPlayer(MappedBase):
+class TourneysPlayer(MappedBase):
     """Class reflecting TourneysPlayers db table"""
 
     @classmethod
@@ -439,7 +439,7 @@ mapper (Gametype, gametypes_table, properties={
 })
 mapper (Player, players_table, properties={
     'playerHands': relation(HandPlayer, backref='player'),
-    'playerTourney': relation(TourneyPlayer, backref='player'),
+    'playerTourney': relation(TourneysPlayer, backref='player'),
 })
 mapper (Site, sites_table, properties={
     'gametypes': relation(Gametype, backref = 'site'),
@@ -457,7 +457,7 @@ mapper (Tourney, tourneys_table)
 mapper (TourneyType, tourney_types_table, properties={
     'tourneys': relation(Tourney, backref='type'),
 })
-mapper (TourneyPlayer, tourneys_players_table) 
+mapper (TourneysPlayer, tourneys_players_table) 
 
 class LambdaKeyDict(defaultdict):
     """Operates like defaultdict but passes key argument to the factory function"""

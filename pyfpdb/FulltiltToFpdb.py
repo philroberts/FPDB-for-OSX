@@ -66,7 +66,7 @@ class Fulltilt(HandHistoryConverter):
                                     ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
-    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
+    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -99,7 +99,7 @@ class Fulltilt(HandHistoryConverter):
     re_TourneyCountKO       = re.compile("received (?P<COUNT_KO>\d+) Knockout Bounty Award(s)?")
     re_TourneyTimeInfo      = re.compile("Tournament started: (?P<STARTTIME>.*)\nTournament ((?P<IN_PROGRESS>is still in progress)?|(finished:(?P<ENDTIME>.*))?)$")
 
-    re_TourneyPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>\$|)?(?P<WINNING>[.\d]+)?", re.MULTILINE)
+    re_TourneysPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>\$|)?(?P<WINNING>[.\d]+)?", re.MULTILINE)
     re_TourneyHeroFinishingP = re.compile("(?P<HERO_NAME>.*) finished in (?P<HERO_FINISHING_POS>\d+)(st|nd|rd|th) place")
 
 #TODO: See if we need to deal with play money tourney summaries -- Not right now (they shouldn't pass the re_TourneyInfo)
@@ -264,7 +264,7 @@ class Fulltilt(HandHistoryConverter):
         if hand.gametype['type'] == "ring" :
             m = self.re_PlayerInfo.finditer(pre)
         else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneyPlayerInfo.finditer(pre)
+            m = self.re_TourneysPlayerInfo.finditer(pre)
 
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -642,7 +642,7 @@ class Fulltilt(HandHistoryConverter):
     def getPlayersPositionsAndWinnings(self, tourney):
         playersText = tourney.summaryText[1]
         #print "Examine : '%s'" %(playersText)
-        m = self.re_TourneyPlayersSummary.finditer(playersText)
+        m = self.re_TourneysPlayersSummary.finditer(playersText)
 
         for a in m:
             if a.group('PNAME') is not None and a.group('RANK') is not None:

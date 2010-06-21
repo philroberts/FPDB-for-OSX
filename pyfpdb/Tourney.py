@@ -166,14 +166,14 @@ class Tourney(object):
         logging.debug("Tourney Type ID = %d" % dbTourneyTypeId)
         dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
         logging.debug("Tourney ID = %d" % dbTourneyId)
-        dbTourneysPlayersIds = db.tStoreTourneyPlayers(self, dbTourneyId)
+        dbTourneysPlayersIds = db.tStoreTourneysPlayers(self, dbTourneyId)
         logging.debug("TourneysPlayersId = %s" % dbTourneysPlayersIds) 
         db.tUpdateTourneysHandsPlayers(self, dbTourneysPlayersIds, dbTourneyTypeId)
         logging.debug("tUpdateTourneysHandsPlayers done")
         logging.debug("Tourney Insert done")
         
         # TO DO : Return what has been done (tourney created, updated, nothing)
-        # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneyPlayers and handsplayers)
+        # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneysPlayers and handsPlayers)
         # if so, prototypes may need changes to know what has been done or make some kind of dict in Tourney object that could be updated during the insert process to store that information
         stored = 0
         duplicates = 0
