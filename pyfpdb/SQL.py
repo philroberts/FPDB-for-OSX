@@ -421,16 +421,10 @@ class Sql:
                         prizepool INT NOT NULL,
                         startTime DATETIME NOT NULL,
                         endTime DATETIME,
-                        buyinChips INT,
                         tourneyName varchar(40),
                         matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        rebuyChips INT DEFAULT 0,
-                        addonChips INT DEFAULT 0,
-                        rebuyAmount INT DEFAULT 0,
-                        addonAmount INT DEFAULT 0,
                         totalRebuys INT DEFAULT 0,
                         totalAddons INT DEFAULT 0,
-                        koBounty INT DEFAULT 0,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -443,16 +437,10 @@ class Sql:
                         prizepool INT,
                         startTime timestamp without time zone,
                         endTime timestamp without time zone,
-                        buyinChips INT,
                         tourneyName varchar(40),
                         matrixIdProcessed SMALLINT DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        rebuyChips INT DEFAULT 0,
-                        addonChips INT DEFAULT 0,
-                        rebuyAmount INT DEFAULT 0,
-                        addonAmount INT DEFAULT 0,
                         totalRebuys INT DEFAULT 0,
                         totalAddons INT DEFAULT 0,
-                        koBounty INT DEFAULT 0,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -464,16 +452,10 @@ class Sql:
                         prizepool INT,
                         startTime REAL,
                         endTime REAL,
-                        buyinChips INT,
                         tourneyName TEXT,
                         matrixIdProcessed INT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        rebuyChips INT DEFAULT 0,
-                        addonChips INT DEFAULT 0,
-                        rebuyAmount INT DEFAULT 0,
-                        addonAmount INT DEFAULT 0,
                         totalRebuys INT DEFAULT 0,
                         totalAddons INT DEFAULT 0,
-                        koBounty INT DEFAULT 0,
                         comment TEXT,
                         commentTs REAL)"""
         ################################
@@ -3614,16 +3596,10 @@ class Sql:
                                              t.prizepool,
                                              t.startTime,
                                              t.endTime,
-                                             t.buyinChips,
                                              t.tourneyName,
                                              t.matrixIdProcessed,
-                                             t.rebuyChips,
-                                             t.addonChips,
-                                             t.rebuyAmount,
-                                             t.addonAmount,
                                              t.totalRebuys,
                                              t.totalAddons,
-                                             t.koBounty,
                                              t.comment
                                         FROM Tourneys t  
                                         INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id) 
@@ -3632,11 +3608,10 @@ class Sql:
 
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
-                                             startTime, endTime, buyinChips, tourneyName, matrixIdProcessed,
-                                             rebuyChips, addonChips, rebuyAmount, addonAmount, totalRebuys,
-                                             totalAddons, koBounty, comment, commentTs)
+                                             startTime, endTime, tourneyName, matrixIdProcessed,
+                                             totalRebuys, totalAddons, comment, commentTs)
                                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                                %s, %s, %s, %s, %s, %s, %s, %s)
+                                                %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
@@ -3645,16 +3620,10 @@ class Sql:
                                                  prizepool = %s,
                                                  startTime = %s,
                                                  endTime = %s,
-                                                 buyinChips = %s,
                                                  tourneyName = %s,
                                                  matrixIdProcessed = %s,
-                                                 rebuyChips = %s,
-                                                 addonChips = %s,
-                                                 rebuyAmount = %s,
-                                                 addonAmount = %s,
                                                  totalRebuys = %s,
                                                  totalAddons = %s,
-                                                 koBounty = %s,
                                                  comment = %s,
                                                  commentTs = %s
                                         WHERE id=%s

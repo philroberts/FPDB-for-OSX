@@ -353,17 +353,11 @@ tourneys_table = Table('Tourneys', metadata,
     Column('prizepool',     Integer), # INT NOT NULL
     Column('tourStartTime',     DateTime), # DATETIME NOT NULL
     Column('tourEndTime',       DateTime), # DATETIME
-    Column('buyinChips',    Integer), # INT
     Column('tourneyName',   String(40)), # varchar(40)
     # Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn 
     Column('matrixIdProcessed',SmallInteger, default=0), # TINYINT UNSIGNED DEFAULT 0   
-    Column('rebuyChips',    Integer, default=0), # INT DEFAULT 0
-    Column('addonChips',    Integer, default=0), # INT DEFAULT 0
-    Column('rebuyAmount',   MoneyColumn, default=0), # INT DEFAULT 0
-    Column('addonAmount',   MoneyColumn, default=0), # INT DEFAULT 0
     Column('totalRebuys',   Integer, default=0), # INT DEFAULT 0
     Column('totalAddons',   Integer, default=0), # INT DEFAULT 0
-    Column('koBounty',      Integer, default=0), # INT DEFAULT 0
     Column('comment',       Text), # TEXT
     Column('commentTs',     DateTime), # DATETIME
     mysql_charset='utf8',
