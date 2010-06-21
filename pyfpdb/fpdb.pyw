@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Steffen Jobbagy-Felso
 #This program is free software: you can redistribute it and/or modify
