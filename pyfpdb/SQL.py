@@ -423,8 +423,8 @@ class Sql:
                         endTime DATETIME,
                         tourneyName varchar(40),
                         matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        totalRebuys INT DEFAULT 0,
-                        totalAddons INT DEFAULT 0,
+                        totalRebuyCount INT DEFAULT 0,
+                        totalAddOnCount INT DEFAULT 0,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -439,8 +439,8 @@ class Sql:
                         endTime timestamp without time zone,
                         tourneyName varchar(40),
                         matrixIdProcessed SMALLINT DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        totalRebuys INT DEFAULT 0,
-                        totalAddons INT DEFAULT 0,
+                        totalRebuyCount INT DEFAULT 0,
+                        totalAddOnCount INT DEFAULT 0,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -454,8 +454,8 @@ class Sql:
                         endTime REAL,
                         tourneyName TEXT,
                         matrixIdProcessed INT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        totalRebuys INT DEFAULT 0,
-                        totalAddons INT DEFAULT 0,
+                        totalRebuyCount INT DEFAULT 0,
+                        totalAddOnCount INT DEFAULT 0,
                         comment TEXT,
                         commentTs REAL)"""
         ################################
@@ -3598,8 +3598,8 @@ class Sql:
                                              t.endTime,
                                              t.tourneyName,
                                              t.matrixIdProcessed,
-                                             t.totalRebuys,
-                                             t.totalAddons,
+                                             t.totalRebuyCount,
+                                             t.totalAddOnCount,
                                              t.comment
                                         FROM Tourneys t  
                                         INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id) 
@@ -3609,7 +3609,7 @@ class Sql:
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, matrixIdProcessed,
-                                             totalRebuys, totalAddons, comment, commentTs)
+                                             totalRebuyCount, totalAddOnCount, comment, commentTs)
                                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                                                 %s, %s)
         """
@@ -3622,8 +3622,8 @@ class Sql:
                                                  endTime = %s,
                                                  tourneyName = %s,
                                                  matrixIdProcessed = %s,
-                                                 totalRebuys = %s,
-                                                 totalAddons = %s,
+                                                 totalRebuyCount = %s,
+                                                 totalAddonCount = %s,
                                                  comment = %s,
                                                  commentTs = %s
                                         WHERE id=%s

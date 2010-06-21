@@ -356,8 +356,8 @@ tourneys_table = Table('Tourneys', metadata,
     Column('tourneyName',   String(40)), # varchar(40)
     # Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn 
     Column('matrixIdProcessed',SmallInteger, default=0), # TINYINT UNSIGNED DEFAULT 0   
-    Column('totalRebuys',   Integer, default=0), # INT DEFAULT 0
-    Column('totalAddons',   Integer, default=0), # INT DEFAULT 0
+    Column('totalRebuyCount',   Integer, default=0), # INT DEFAULT 0
+    Column('totalAddOnCount',   Integer, default=0), # INT DEFAULT 0
     Column('comment',       Text), # TEXT
     Column('commentTs',     DateTime), # DATETIME
     mysql_charset='utf8',

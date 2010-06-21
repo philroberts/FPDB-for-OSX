@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2009 Stephane Alessio
 #This program is free software: you can redistribute it and/or modify
@@ -73,10 +74,10 @@ class Tourney(object):
         self.subTourneyFee      = None
         self.rebuyChips         = 0
         self.addOnChips         = 0
-        self.rebuyAmount		= 0
-        self.addOnAmount		= 0
-        self.totalRebuys        = 0
-        self.totalAddOns        = 0
+        self.rebuyAmount        = 0
+        self.addOnAmount        = 0
+        self.totalRebuyCount    = 0
+        self.totalAddOnCount    = 0
         self.koBounty           = 0
         self.tourneyComment     = None
         self.players            = []
@@ -121,8 +122,8 @@ class Tourney(object):
                  ("ADDON CHIPS", self.addOnChips),
                  ("REBUY AMOUNT", self.rebuyAmount),
                  ("ADDON AMOUNT", self.addOnAmount),
-                 ("TOTAL REBUYS", self.totalRebuys),
-                 ("TOTAL ADDONS", self.totalAddOns),
+                 ("TOTAL REBUYS", self.totalRebuyCount),
+                 ("TOTAL ADDONS", self.totalAddOnCount),
                  ("KO BOUNTY", self.koBounty),
                  ("TOURNEY COMMENT", self.tourneyComment)
         )
