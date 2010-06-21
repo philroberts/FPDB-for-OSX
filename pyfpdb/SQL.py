@@ -819,7 +819,6 @@ class Sql:
                         street2Raises INT,
                         street3Raises INT,
                         street4Raises INT,
-
                         actionString REAL)
                         """
 
@@ -1337,6 +1336,21 @@ class Sql:
                     sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
                     sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
                     sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                    sum(hc.street0Calls)                AS call_0,
+                    sum(hc.street1Calls)                AS call_1,
+                    sum(hc.street2Calls)                AS call_2,
+                    sum(hc.street3Calls)                AS call_3,
+                    sum(hc.street4Calls)                AS call_4,
+                    sum(hc.street0Bets)                 AS bet_0,
+                    sum(hc.street1Bets)                 AS bet_1,
+                    sum(hc.street2Bets)                 AS bet_2,
+                    sum(hc.street3Bets)                 AS bet_3,
+                    sum(hc.street4Bets)                 AS bet_4,
+                    sum(hc.street0Raises)               AS raise_0,
+                    sum(hc.street1Raises)               AS raise_1,
+                    sum(hc.street2Raises)               AS raise_2,
+                    sum(hc.street3Raises)               AS raise_3,
+                    sum(hc.street4Raises)               AS raise_4
                 FROM Hands h
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
@@ -1420,7 +1434,22 @@ class Sql:
                        sum(hc.street3CheckCallRaiseChance) AS ccr_opp_3,
                        sum(hc.street3CheckCallRaiseDone)   AS ccr_3,
                        sum(hc.street4CheckCallRaiseChance) AS ccr_opp_4,
-                       sum(hc.street4CheckCallRaiseDone)   AS ccr_4
+                       sum(hc.street4CheckCallRaiseDone)   AS ccr_4,
+                       sum(hc.street0Calls)                AS call_0,
+                       sum(hc.street1Calls)                AS call_1,
+                       sum(hc.street2Calls)                AS call_2,
+                       sum(hc.street3Calls)                AS call_3,
+                       sum(hc.street4Calls)                AS call_4,
+                       sum(hc.street0Bets)                 AS bet_0,
+                       sum(hc.street1Bets)                 AS bet_1,
+                       sum(hc.street2Bets)                 AS bet_2,
+                       sum(hc.street3Bets)                 AS bet_3,
+                       sum(hc.street4Bets)                 AS bet_4,
+                       sum(hc.street0Raises)               AS raise_0,
+                       sum(hc.street1Raises)               AS raise_1,
+                       sum(hc.street2Raises)               AS raise_2,
+                       sum(hc.street3Raises)               AS raise_3,
+                       sum(hc.street4Raises)               AS raise_4
                 FROM Hands h
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
@@ -1531,7 +1560,22 @@ class Sql:
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
                            cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street0Calls as <signed>integer)                AS call_0,
+                           cast(hp2.street1Calls as <signed>integer)                AS call_1,
+                           cast(hp2.street2Calls as <signed>integer)                AS call_2,
+                           cast(hp2.street3Calls as <signed>integer)                AS call_3,
+                           cast(hp2.street4Calls as <signed>integer)                AS call_4,
+                           cast(hp2.street0Bets as <signed>integer)                 AS bet_0,
+                           cast(hp2.street1Bets as <signed>integer)                 AS bet_1,
+                           cast(hp2.street2Bets as <signed>integer)                 AS bet_2,
+                           cast(hp2.street3Bets as <signed>integer)                 AS bet_3,
+                           cast(hp2.street4Bets as <signed>integer)                 AS bet_4,
+                           cast(hp2.street0Raises as <signed>integer)               AS raise_0,
+                           cast(hp2.street1Raises as <signed>integer)               AS raise_1,
+                           cast(hp2.street2Raises as <signed>integer)               AS raise_2,
+                           cast(hp2.street3Raises as <signed>integer)               AS raise_3,
+                           cast(hp2.street4Raises as <signed>integer)               AS raise_4
                     FROM
                          Hands h
                          INNER JOIN Hands h2         ON (h2.id > %s AND   h2.tableName = h.tableName)
@@ -1618,8 +1662,23 @@ class Sql:
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
                            cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
-                    FROM Hands h                                                  /* this hand */
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street0Calls as <signed>integer)                AS call_0,
+                           cast(hp2.street1Calls as <signed>integer)                AS call_1,
+                           cast(hp2.street2Calls as <signed>integer)                AS call_2,
+                           cast(hp2.street3Calls as <signed>integer)                AS call_3,
+                           cast(hp2.street4Calls as <signed>integer)                AS call_4,
+                           cast(hp2.street0Bets as <signed>integer)                 AS bet_0,
+                           cast(hp2.street1Bets as <signed>integer)                 AS bet_1,
+                           cast(hp2.street2Bets as <signed>integer)                 AS bet_2,
+                           cast(hp2.street3Bets as <signed>integer)                 AS bet_3,
+                           cast(hp2.street4Bets as <signed>integer)                 AS bet_4,
+                           cast(hp2.street0Raises as <signed>integer)               AS raise_0,
+                           cast(hp2.street1Raises as <signed>integer)               AS raise_1,
+                           cast(hp2.street2Raises as <signed>integer)               AS raise_2,
+                           cast(hp2.street3Raises as <signed>integer)               AS raise_3,
+                           cast(hp2.street4Raises as <signed>integer)               AS raise_4
+                         FROM Hands h                                                  /* this hand */
                          INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
@@ -1706,8 +1765,23 @@ class Sql:
                            cast(hp2.street3CheckCallRaiseChance as <signed>integer) AS ccr_opp_3,
                            cast(hp2.street3CheckCallRaiseDone as <signed>integer)   AS ccr_3,
                            cast(hp2.street4CheckCallRaiseChance as <signed>integer) AS ccr_opp_4,
-                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4
-                    FROM Hands h                                                  /* this hand */
+                           cast(hp2.street4CheckCallRaiseDone as <signed>integer)   AS ccr_4,
+                           cast(hp2.street0Calls as <signed>integer)                AS call_0,
+                           cast(hp2.street1Calls as <signed>integer)                AS call_1,
+                           cast(hp2.street2Calls as <signed>integer)                AS call_2,
+                           cast(hp2.street3Calls as <signed>integer)                AS call_3,
+                           cast(hp2.street4Calls as <signed>integer)                AS call_4,
+                           cast(hp2.street0Bets as <signed>integer)                 AS bet_0,
+                           cast(hp2.street1Bets as <signed>integer)                 AS bet_1,
+                           cast(hp2.street2Bets as <signed>integer)                 AS bet_2,
+                           cast(hp2.street3Bets as <signed>integer)                 AS bet_3,
+                           cast(hp2.street4Bets as <signed>integer)                 AS bet_4,
+                           cast(hp2.street0Raises as <signed>integer)               AS raise_0,
+                           cast(hp2.street1Raises as <signed>integer)               AS raise_1,
+                           cast(hp2.street2Raises as <signed>integer)               AS raise_2,
+                           cast(hp2.street3Raises as <signed>integer)               AS raise_3,
+                           cast(hp2.street4Raises as <signed>integer)               AS raise_4
+                         FROM Hands h                                                  /* this hand */
                          INNER JOIN Hands h2         ON (    h2.id > %s           /* other hands */
                                                          AND h2.tableName = h.tableName)
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)        /* players in this hand */
@@ -1913,6 +1987,18 @@ class Sql:
                                  else 100.0*(sum(cast(hp.street1Aggr as <signed>integer))+sum(cast(hp.street2Aggr as <signed>integer))+sum(cast(hp.street3Aggr as <signed>integer)))
                                           /(sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)))
                              end                                                                    AS pofafq
+                            ,case when sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)) = 0 then -999
+                                 else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
+                                     /(sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
+                             end                                                                    AS aggfac
+                            ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
+                                       / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
+                                       (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
+                                       (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
+                                                                                                    AS aggfrq
+                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                                       / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
+                                                                                                    AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
                             ,sum(hp.rake)/100.0                                                     AS rake
                             ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
@@ -1998,6 +2084,18 @@ class Sql:
                                  else 100.0*(sum(cast(hp.street1Aggr as <signed>integer))+sum(cast(hp.street2Aggr as <signed>integer))+sum(cast(hp.street3Aggr as <signed>integer)))
                                           /(sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)))
                              end                                                                    AS pofafq
+                            ,case when sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)) = 0 then -999
+                                 else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
+                                     /(sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
+                             end                                                                    AS aggfac
+                            ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
+                                       / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
+                                       (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
+                                       (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
+                                                                                                    AS aggfrq
+                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                                       / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
+                                                                                                    AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
                             ,sum(hp.rake)/100.0                                                     AS rake
                             ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
@@ -2084,6 +2182,18 @@ class Sql:
                                  else 100.0*(sum(cast(hp.street1Aggr as <signed>integer))+sum(cast(hp.street2Aggr as <signed>integer))+sum(cast(hp.street3Aggr as <signed>integer)))
                                           /(sum(cast(hp.street1Seen as <signed>integer))+sum(cast(hp.street2Seen as <signed>integer))+sum(cast(hp.street3Seen as <signed>integer)))
                              end                                                                    AS pofafq
+                            ,case when sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)) = 0 then -999
+                                 else (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer)))
+                                     /(sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer)))
+                             end                                                                    AS aggfac
+                            ,100.0*(sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) 
+                                       / ((sum(cast(hp.foldToOtherRaisedStreet1 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet2 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet3 as <signed>integer))+ sum(cast(hp.foldToOtherRaisedStreet4 as <signed>integer))) +
+                                       (sum(cast(hp.street1Calls as <signed>integer))+ sum(cast(hp.street2Calls as <signed>integer))+ sum(cast(hp.street3Calls as <signed>integer))+ sum(cast(hp.street4Calls as <signed>integer))) +
+                                       (sum(cast(hp.street1Aggr as <signed>integer)) + sum(cast(hp.street2Aggr as <signed>integer)) + sum(cast(hp.street3Aggr as <signed>integer)) + sum(cast(hp.street4Aggr as <signed>integer))) )
+                                                                                                    AS aggfrq
+                            ,100.0*(sum(cast(hp.street1CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street2CBDone as <signed>integer)) + sum(cast(hp.street4CBDone as <signed>integer))) 
+                                       / (sum(cast(hp.street1CBChance as <signed>integer))+ sum(cast(hp.street2CBChance as <signed>integer))+ sum(cast(hp.street3CBChance as <signed>integer))+ sum(cast(hp.street4CBChance as <signed>integer))) 
+                                                                                                    AS conbet
                             ,sum(hp.totalProfit)/100.0                                              AS net
                             ,sum(hp.rake)/100.0                                                     AS rake
                             ,100.0*avg(hp.totalProfit/(gt.bigBlind+0.0))                            AS bbper100
@@ -2632,6 +2742,7 @@ class Sql:
             GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.handStart"""
 
+
         ####################################
         # Session stats query
         ####################################
@@ -2743,6 +2854,21 @@ class Sql:
                 ,street3CheckCallRaiseDone
                 ,street4CheckCallRaiseChance
                 ,street4CheckCallRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -2818,6 +2944,21 @@ class Sql:
                       ,sum(street3CheckCallRaiseDone)
                       ,sum(street4CheckCallRaiseChance)
                       ,sum(street4CheckCallRaiseDone)
+                      ,sum(street0Calls)
+                      ,sum(street1Calls)
+                      ,sum(street2Calls)
+                      ,sum(street3Calls)
+                      ,sum(street4Calls)
+                      ,sum(street0Bets)
+                      ,sum(street1Bets)
+                      ,sum(street2Bets)
+                      ,sum(street3Bets)
+                      ,sum(street4Bets)
+                      ,sum(hp.street0Raises)
+                      ,sum(hp.street1Raises)
+                      ,sum(hp.street2Raises)
+                      ,sum(hp.street3Raises)
+                      ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -2892,6 +3033,21 @@ class Sql:
                 ,street3CheckCallRaiseDone
                 ,street4CheckCallRaiseChance
                 ,street4CheckCallRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -2967,6 +3123,21 @@ class Sql:
                       ,sum(CAST(street3CheckCallRaiseDone as integer))
                       ,sum(CAST(street4CheckCallRaiseChance as integer))
                       ,sum(CAST(street4CheckCallRaiseDone as integer))
+                      ,sum(CAST(street0Calls as integer))
+                      ,sum(CAST(street1Calls as integer))
+                      ,sum(CAST(street2Calls as integer))
+                      ,sum(CAST(street3Calls as integer))
+                      ,sum(CAST(street4Calls as integer))
+                      ,sum(CAST(street0Bets as integer))
+                      ,sum(CAST(street1Bets as integer))
+                      ,sum(CAST(street2Bets as integer))
+                      ,sum(CAST(street3Bets as integer))
+                      ,sum(CAST(street4Bets as integer))
+                      ,sum(CAST(hp.street0Raises as integer))
+                      ,sum(CAST(hp.street1Raises as integer))
+                      ,sum(CAST(hp.street2Raises as integer))
+                      ,sum(CAST(hp.street3Raises as integer))
+                      ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -3041,6 +3212,21 @@ class Sql:
                 ,street3CheckCallRaiseDone
                 ,street4CheckCallRaiseChance
                 ,street4CheckCallRaiseDone
+                ,street0Calls
+                ,street1Calls
+                ,street2Calls
+                ,street3Calls
+                ,street4Calls
+                ,street0Bets
+                ,street1Bets
+                ,street2Bets
+                ,street3Bets
+                ,street4Bets
+                ,street0Raises
+                ,street1Raises
+                ,street2Raises
+                ,street3Raises
+                ,street4Raises
                 )
                 SELECT h.gametypeId
                       ,hp.playerId
@@ -3116,6 +3302,21 @@ class Sql:
                       ,sum(CAST(street3CheckCallRaiseDone as integer))
                       ,sum(CAST(street4CheckCallRaiseChance as integer))
                       ,sum(CAST(street4CheckCallRaiseDone as integer))
+                      ,sum(CAST(street0Calls as integer))
+                      ,sum(CAST(street1Calls as integer))
+                      ,sum(CAST(street2Calls as integer))
+                      ,sum(CAST(street3Calls as integer))
+                      ,sum(CAST(street4Calls as integer))
+                      ,sum(CAST(street0Bets as integer))
+                      ,sum(CAST(street1Bets as integer))
+                      ,sum(CAST(street2Bets as integer))
+                      ,sum(CAST(street3Bets as integer))
+                      ,sum(CAST(street4Bets as integer))
+                      ,sum(CAST(hp.street0Raises as integer))
+                      ,sum(CAST(hp.street1Raises as integer))
+                      ,sum(CAST(hp.street2Raises as integer))
+                      ,sum(CAST(hp.street3Raises as integer))
+                      ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
                 <where_clause>
@@ -3189,8 +3390,26 @@ class Sql:
                 street3CheckCallRaiseChance,
                 street3CheckCallRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone)
+                street4CheckCallRaiseDone,
+                street0Calls,
+                street1Calls,
+                street2Calls,
+                street3Calls,
+                street4Calls,
+                street0Bets,
+                street1Bets,
+                street2Bets,
+                street3Bets,
+                street4Bets,
+                street0Raises,
+                street1Raises,
+                street2Raises,
+                street3Raises,
+                street4Raises)
             VALUES (%s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
@@ -3260,7 +3479,22 @@ class Sql:
             street3CheckCallRaiseChance=street3CheckCallRaiseChance+%s,
             street3CheckCallRaiseDone=street3CheckCallRaiseDone+%s,
             street4CheckCallRaiseChance=street4CheckCallRaiseChance+%s,
-            street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s
+            street4CheckCallRaiseDone=street4CheckCallRaiseDone+%s,
+            street0Calls=street0Calls+%s,
+            street1Calls=street1Calls+%s,
+            street2Calls=street2Calls+%s,
+            street3Calls=street3Calls+%s,
+            street4Calls=street4Calls+%s,
+            street0Bets=street0Bets+%s, 
+            street1Bets=street1Bets+%s,
+            street2Bets=street2Bets+%s, 
+            street3Bets=street3Bets+%s,
+            street4Bets=street4Bets+%s, 
+            street0Raises=street0Raises+%s,
+            street1Raises=street1Raises+%s,
+            street2Raises=street2Raises+%s,
+            street3Raises=street3Raises+%s,
+            street4Raises=street4Raises+%s
         WHERE gametypeId+0=%s
             AND   playerId=%s
             AND   activeSeats=%s
@@ -3586,9 +3820,15 @@ class Sql:
                 street3CheckCallRaiseChance,
                 street3CheckCallRaiseDone,
                 street4CheckCallRaiseChance,
-                street4CheckCallRaiseDone
+                street4CheckCallRaiseDone,
+                street0Raises,
+                street1Raises,
+                street2Raises,
+                street3Raises,
+                street4Raises
                )
                VALUES (
+                    %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
