@@ -62,6 +62,7 @@ class DerivedStats():
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
+                self.handsplayers[player[1]]['street%dRaises' % i] = 0
             for i in range(1,5):
                 self.handsplayers[player[1]]['street%dCBChance' %i] = False
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
