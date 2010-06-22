@@ -85,6 +85,7 @@ class Tourney(object):
         # Collections indexed by player names
         self.finishPositions    = {}
         self.winnings           = {}
+        self.winningsCurrency   = {}
         self.payinAmounts       = {}
         self.countRebuys        = {}
         self.countAddOns        = {}
@@ -187,7 +188,7 @@ class Tourney(object):
         """ Function to create Tourney object from database """
         
 
-    def addPlayer(self, rank, name, winnings, payinAmount, nbRebuys, nbAddons, nbKO):
+    def addPlayer(self, rank, name, winnings, winningsCurrency, payinAmount, rebuyCount, addOnCount, koCount):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
@@ -198,10 +199,11 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
         self.players.append(name)
         self.finishPositions.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
+        self.winningsCurrency.update( { name : String(winningsCurrency) } )
         self.payinAmounts.update( {name : Decimal(payinAmount) } )
-        self.countRebuys.update( {name: Decimal(nbRebuys) } )
-        self.countAddOns.update( {name: Decimal(nbAddons) } )
-        self.countKO.update( {name : Decimal(nbKO) } )
+        self.countRebuys.update( {name: Decimal(rebuyCount) } )
+        self.countAddOns.update( {name: Decimal(addOnCount) } )
+        self.countKO.update( {name : Decimal(koCount) } )
         
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
