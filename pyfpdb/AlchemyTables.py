@@ -397,9 +397,10 @@ tourneys_players_table = Table('TourneysPlayers', metadata,
     Column('payinAmount',   Integer), # INT NOT NULL
     Column('rank',          Integer), # INT NOT NULL
     Column('winnings',      Integer), # INT NOT NULL
-    Column('nbRebuys',      Integer, default=0), # INT DEFAULT 0
-    Column('nbAddons',      Integer, default=0), # INT DEFAULT 0
-    Column('nbKO',          Integer, default=0), # INT DEFAULT 0
+    Column('winningsCurrency', Text), # TEXT
+    Column('rebuyCount',    Integer, default=0), # INT DEFAULT 0
+    Column('addOnCount',    Integer, default=0), # INT DEFAULT 0
+    Column('koCount',       Integer, default=0), # INT DEFAULT 0
     Column('comment',       Text), # TEXT
     Column('commentTs',     DateTime), # DATETIME
     mysql_charset='utf8',

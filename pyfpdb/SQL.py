@@ -602,7 +602,7 @@ class Sql:
                         totalProfit INT,
                         comment text,
                         commentTs timestamp without time zone,
-                        tourneysPlayersId BIGINT,
+                        tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
                         tourneyTypeId INT NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT,
@@ -692,9 +692,7 @@ class Sql:
                         street3Raises SMALLINT,
                         street4Raises SMALLINT,
 
-                        actionString VARCHAR(15),
-
-                        FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
+                        actionString VARCHAR(15))"""
         elif db_server == 'sqlite':
             self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
                         id INTEGER PRIMARY KEY,
@@ -808,7 +806,7 @@ class Sql:
                         street2Raises INT,
                         street3Raises INT,
                         street4Raises INT,
-                        actionString REAL)
+                        actionString VARCHAR(15))
                         """
 
 
@@ -824,9 +822,10 @@ class Sql:
                         payinAmount INT NOT NULL,
                         rank INT NOT NULL,
                         winnings INT NOT NULL,
-                        nbRebuys INT DEFAULT 0,
-                        nbAddons INT DEFAULT 0,
-                        nbKO INT DEFAULT 0,
+                        winningsCurrency VARCHAR(4) NOT NULL,
+                        rebuyCount INT DEFAULT 0,
+                        addOnCount INT DEFAULT 0,
+                        koCount INT DEFAULT 0,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -838,9 +837,10 @@ class Sql:
                         payinAmount INT,
                         rank INT,
                         winnings INT,
-                        nbRebuys INT DEFAULT 0,
-                        nbAddons INT DEFAULT 0,
-                        nbKO INT DEFAULT 0,
+                        winningsCurrency VARCHAR(4),
+                        rebuyCount INT DEFAULT 0,
+                        addOnCount INT DEFAULT 0,
+                        koCount INT DEFAULT 0,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -851,9 +851,10 @@ class Sql:
                         payinAmount INT,
                         rank INT,
                         winnings INT,
-                        nbRebuys INT DEFAULT 0,
-                        nbAddons INT DEFAULT 0,
-                        nbKO INT DEFAULT 0,
+                        winningsCurrency VARCHAR(4),
+                        rebuyCount INT DEFAULT 0,
+                        addOnCount INT DEFAULT 0,
+                        koCount INT DEFAULT 0,
                         comment TEXT,
                         commentTs timestamp without time zone,
                         FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -3633,9 +3634,10 @@ class Sql:
                                                         payinAmount,
                                                         rank,
                                                         winnings,
-                                                        nbRebuys,
-                                                        nbAddons,
-                                                        nbKO,
+                                                        winningsCurrency,
+                                                        rebuyCount,
+                                                        addOnCount,
+                                                        koCount,
                                                         comment,
                                                         commentTs
                                                 FROM TourneysPlayers
@@ -3646,17 +3648,18 @@ class Sql:
                                                  SET payinAmount = %s,
                                                      rank = %s,
                                                      winnings = %s,
-                                                     nbRebuys = %s,
-                                                     nbAddons = %s,
-                                                     nbKO = %s,
+                                                     winningsCurrency = %s,
+                                                     rebuyCount = %s,
+                                                     addOnCount = %s,
+                                                     koCount = %s,
                                                      comment = %s,
                                                      commentTs = %s
                                                  WHERE id=%s
         """
 
         self.query['insertTourneysPlayers'] = """INSERT INTO TourneysPlayers
-                                                    (tourneyId, playerId, payinAmount, rank, winnings, nbRebuys, nbAddons, nbKO, comment, commentTs)
-                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                                    (tourneyId, playerId, payinAmount, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount, comment, commentTs)
+                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id

@@ -162,7 +162,7 @@ class Tourney(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
-        dbTourneyTypeId = db.tRecogniseTourneyType(self)
+        dbTourneyTypeId = db.recogniseTourneyType(self)
         logging.debug("Tourney Type ID = %d" % dbTourneyTypeId)
         dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
         logging.debug("Tourney ID = %d" % dbTourneyId)
@@ -182,80 +182,9 @@ class Tourney(object):
         ttime = 0
         return (stored, duplicates, partial, errors, ttime)
 
-    
-    def old_insert_from_Hand(self, db):
-        """ Function to insert Hand into database
-Should not commit, and do minimal selects. Callers may want to cache commits
-db: a connected Database object"""
-        # TODO:
-        # Players - base playerid and siteid tuple
-        sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
-
-        #Gametypes
-        gtid = db.getGameTypeId(self.siteId, self.gametype)
-
-        # HudCache data to come from DerivedStats class
-        # HandsActions - all actions for all players for all streets - self.actions
-        # Hands - Summary information of hand indexed by handId - gameinfo
-        #This should be moved to prepInsert
-        hh = {}
-        hh['siteHandNo'] =  self.handid
-        hh['handStart'] = self.starttime
-        hh['gameTypeId'] = gtid
-        # seats TINYINT NOT NULL,
-        hh['tableName'] = self.tablename
-        hh['maxSeats'] = self.maxseats
-        hh['seats'] = len(sqlids)
-        # Flop turn and river may all be empty - add (likely) too many elements and trim with range
-        boardcards = self.board['FLOP'] + self.board['TURN'] + self.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
-        cards = [Card.encodeCard(c) for c in boardcards[0:5]]
-        hh['boardcard1'] = cards[0]
-        hh['boardcard2'] = cards[1]
-        hh['boardcard3'] = cards[2]
-        hh['boardcard4'] = cards[3]
-        hh['boardcard5'] = cards[4]
-
-             # texture smallint,
-             # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
-                # Needs to be recorded
-             # playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
-                # Needs to be recorded
-             # playersAtStreet2 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtStreet3 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtStreet4 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtShowdown SMALLINT NOT NULL,
-                # Needs to be recorded
-             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
-                # Needs to be recorded
-             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
-                # Needs to be recorded
-             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
-                # Needs to be recorded
-             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
-                # Needs to be recorded
-             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
-                # Needs to be recorded
-
-        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  self.getStreetTotals()
-        #FIXME: Pot size still in decimal, needs to be converted to cents
-        (hh['street1Pot'], hh['street2Pot'], hh['street3Pot'], hh['street4Pot'], hh['showdownPot']) = self.getStreetTotals()
-
-             # comment TEXT,
-             # commentTs DATETIME
-        #print hh
-        handid = db.storeHand(hh)
-        # HandsPlayers - ? ... Do we fix winnings?
-        # Tourneys ?
-        # TourneysPlayers
-
-        pass
 
     def select(self, tourneyId):
         """ Function to create Tourney object from database """
-        
         
 
     def addPlayer(self, rank, name, winnings, payinAmount, nbRebuys, nbAddons, nbKO):

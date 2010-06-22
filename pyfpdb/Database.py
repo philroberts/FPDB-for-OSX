@@ -1854,48 +1854,6 @@ class Database:
 # Finish of NEWIMPORT CODE
 #################################
 
-
-
-    def store_tourneys_players(self, tourney_id, player_ids, payin_amounts, ranks, winnings):
-        try:
-            result=[]
-            cursor = self.get_cursor()
-            #print "in store_tourneys_players. tourney_id:",tourney_id
-            #print "player_ids:",player_ids
-            #print "payin_amounts:",payin_amounts
-            #print "ranks:",ranks
-            #print "winnings:",winnings
-            for i in xrange(len(player_ids)):
-                try:
-                    cursor.execute("savepoint ins_tplayer")
-                    cursor.execute("""INSERT INTO TourneysPlayers
-                    (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
-                    (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
-                    
-                    tmp = self.get_last_insert_id(cursor)
-                    result.append(tmp)
-                    #print "created new tourneys_players.id:", tmp
-                except:
-                    cursor.execute("rollback to savepoint ins_tplayer")
-                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
-                                  ,(tourney_id, player_ids[i]))
-                    tmp = cursor.fetchone()
-                    #print "tried SELECTing tourneys_players.id:", tmp
-                    try:
-                        len(tmp)
-                        result.append(tmp[0])
-                    except:
-                        print "tplayer id not found for tourney,player %s,%s" % (tourney_id, player_ids[i])
-                        pass
-        except:
-            raise FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
-
-        cursor.execute("release savepoint ins_tplayer")
-        #print "store_tourneys_players returning", result
-        return result
-    #end def store_tourneys_players
-
-
     # read HandToWrite objects from q and insert into database
     def insert_queue_hands(self, q, maxwait=10, commitEachHand=True):
         n,fails,maxTries,firstWait = 0,0,4,0.1
@@ -1971,8 +1929,8 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def tRecogniseTourneyType(self, tourney):
-        log.debug("Database.tRecogniseTourneyType")
+    def recogniseTourneyType(self, tourney):
+        log.debug("Database.recogniseTourneyType")
         typeId = 1
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
@@ -2021,7 +1979,7 @@ class Database:
                 typeId = self.get_last_insert_id(cursor)
 
         return typeId
-    #end def tRecogniseTourneyType
+    #end def recogniseTourneyType
 
         
 
