@@ -374,7 +374,8 @@ tourney_types_table = Table('TourneyTypes', metadata,
     Column('fee',           Integer, nullable=False, default=0), # INT NOT NULL
     Column('maxSeats',      Boolean, nullable=False, default=-1), # INT NOT NULL DEFAULT -1
     Column('knockout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
-    Column('rebuyOrAddon',  Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('rebuy',         Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('addOn',         Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('speed',         String(10)), # varchar(10)
     Column('headsUp',       Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('shootout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
@@ -385,9 +386,9 @@ tourney_types_table = Table('TourneyTypes', metadata,
 )
 Index('tourneyTypes_all', 
     tourney_types_table.c.siteId, tourney_types_table.c.buyin, tourney_types_table.c.fee, 
-    tourney_types_table.c.maxSeats, tourney_types_table.c.knockout, tourney_types_table.c.rebuyOrAddon, 
-    tourney_types_table.c.speed, tourney_types_table.c.headsUp, tourney_types_table.c.shootout, 
-    tourney_types_table.c.matrix, tourney_types_table.c.sng)
+    tourney_types_table.c.maxSeats, tourney_types_table.c.knockout, tourney_types_table.c.rebuy,
+    tourney_types_table.c.addOn, tourney_types_table.c.speed, tourney_types_table.c.headsUp,
+    tourney_types_table.c.shootout, tourney_types_table.c.matrix, tourney_types_table.c.sng)
 
 
 tourneys_players_table = Table('TourneysPlayers', metadata,

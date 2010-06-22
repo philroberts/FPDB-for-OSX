@@ -367,7 +367,8 @@ class Sql:
                             fee INT NOT NULL,
                             maxSeats INT NOT NULL DEFAULT -1,
                             knockout BOOLEAN NOT NULL DEFAULT False,
-                            rebuyOrAddon BOOLEAN NOT NULL DEFAULT False,
+                            rebuy BOOLEAN NOT NULL DEFAULT False,
+                            addOn BOOLEAN NOT NULL DEFAULT False,
                             speed varchar(10),
                             headsUp BOOLEAN NOT NULL DEFAULT False,
                             shootout BOOLEAN NOT NULL DEFAULT False,
@@ -384,7 +385,8 @@ class Sql:
                         fee INT NOT NULL,
                         maxSeats INT NOT NULL DEFAULT -1,
                         knockout BOOLEAN NOT NULL DEFAULT False,
-                        rebuyOrAddon BOOLEAN NOT NULL DEFAULT False,
+                        rebuy BOOLEAN NOT NULL DEFAULT False,
+                        addOn BOOLEAN NOT NULL DEFAULT False,
                         speed varchar(10),
                         headsUp BOOLEAN NOT NULL DEFAULT False,
                         shootout BOOLEAN NOT NULL DEFAULT False,
@@ -400,7 +402,8 @@ class Sql:
                         fee INT NOT NULL,
                         maxSeats INT NOT NULL DEFAULT -1,
                         knockout BOOLEAN NOT NULL DEFAULT 0,
-                        rebuyOrAddon BOOLEAN NOT NULL DEFAULT 0,
+                        rebuy BOOLEAN NOT NULL DEFAULT 0,
+                        addOn BOOLEAN NOT NULL DEFAULT 0,
                         speed TEXT,
                         headsUp BOOLEAN NOT NULL DEFAULT 0,
                         shootout BOOLEAN NOT NULL DEFAULT 0,
@@ -1239,13 +1242,13 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(buyin, fee
-                                             , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+                                             , maxSeats, knockout, rebuy, addOn, speed, headsUp, shootout, matrix, sng)"""
         elif db_server == 'postgresql':
             self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
-                                             , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+                                             , maxSeats, knockout, rebuy, addOn, speed, headsUp, shootout, matrix, sng)"""
         elif db_server == 'sqlite':
             self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
-                                             , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+                                             , maxSeats, knockout, rebuy, addOn, speed, headsUp, shootout, matrix, sng)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
 
@@ -3562,7 +3565,8 @@ class Sql:
                                                               tt.fee,
                                                               tt.maxSeats,
                                                               tt.knockout,
-                                                              tt.rebuyOrAddon,
+                                                              tt.rebuy,
+                                                              tt.addOn,
                                                               tt.speed,
                                                               tt.headsUp,
                                                               tt.shootout,
@@ -3578,7 +3582,8 @@ class Sql:
                                             AND buyin=%s
                                             AND fee=%s
                                             AND knockout=%s
-                                            AND rebuyOrAddon=%s
+                                            AND rebuy=%s
+                                            AND addOn=%s
                                             AND speed=%s
                                             AND headsUp=%s
                                             AND shootout=%s
@@ -3586,9 +3591,9 @@ class Sql:
         """
 
         self.query['insertTourneyTypes'] = """INSERT INTO TourneyTypes
-                                                  (siteId, buyin, fee, knockout, rebuyOrAddon
+                                                  (siteId, buyin, fee, knockout, rebuy, addOn
                                                   ,speed, headsUp, shootout, matrix)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['getTourney'] = """SELECT t.id,
@@ -3624,7 +3629,7 @@ class Sql:
                                                  tourneyName = %s,
                                                  matrixIdProcessed = %s,
                                                  totalRebuyCount = %s,
-                                                 totalAddonCount = %s,
+                                                 totalAddOnCount = %s,
                                                  comment = %s,
                                                  commentTs = %s
                                         WHERE id=%s

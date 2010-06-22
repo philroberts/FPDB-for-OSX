@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 119
+DB_VERSION = 120
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1357,15 +1357,17 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         if self.backend == self.SQLITE:
-            c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
+            c.execute("""INSERT INTO TourneyTypes (id, siteId, buyin, fee, maxSeats, knockout
+                         ,rebuy, addOn, speed, headsUp, shootout, matrix)
+                         VALUES (NULL, 1, 0, 0, False, False, False, NULL, False, False, False);""")
         elif self.backend == self.PGSQL:
             c.execute("""insert into TourneyTypes(siteId, buyin, fee, maxSeats, knockout
-                                                 ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
+                                                 ,rebuy, addOn, speed, headsUp, shootout, matrix)
+                         values (1, 0, 0, 0, False, False, False, null, False, False, False);""")
         elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
-                                                 ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (DEFAULT, 1, 0, 0, 0, False, False, null, False, False, False);""")
+                                                 ,rebuy, addOn, speed, headsUp, shootout, matrix)
+                         values (DEFAULT, 1, 0, 0, 0, False, False, False, null, False, False, False);""")
 
     #end def fillDefaultData
 
