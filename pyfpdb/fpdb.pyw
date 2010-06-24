@@ -276,7 +276,7 @@ class fpdb:
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_default_size(700, 500)
 
-        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
+        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox, dia)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
@@ -394,11 +394,13 @@ class fpdb:
         if self.obtain_global_lock():  # returns true if successful
 
             #lock_released = False
-            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+            dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
             diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
                         +self.db.database+" on "+self.db.host+" they will be deleted."
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            dia_confirm.set_deletable(False)
 
             response = dia_confirm.run()
             dia_confirm.destroy()
@@ -414,7 +416,7 @@ class fpdb:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
                 # TODO: figure out why this seems to be necessary
-                dia_restart = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+                dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
                 diastring = "You should now restart fpdb."
                 dia_restart.format_secondary_text(diastring)
@@ -428,9 +430,11 @@ class fpdb:
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
-            self.dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            self.dia_confirm.set_deletable(False)
 
             hb1 = gtk.HBox(True, 1)
             self.h_start_date = gtk.Entry(max=12)
@@ -478,16 +482,19 @@ class fpdb:
 
     def dia_rebuild_indexes(self, widget, data=None):
         if self.obtain_global_lock():
-            self.dia_confirm = gtk.MessageDialog(parent=None
-                                                ,flags=0
+            self.dia_confirm = gtk.MessageDialog(parent=self.window
+                                                ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                                 ,type=gtk.MESSAGE_WARNING
                                                 ,buttons=(gtk.BUTTONS_YES_NO)
                                                 ,message_format="Confirm rebuilding database indexes")
             diastring = "Please confirm that you want to rebuild the database indexes."
             self.dia_confirm.format_secondary_text(diastring)
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            self.dia_confirm.set_deletable(False)
 
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
+                #FIXME these progress messages do not seem to work
                 lbl = gtk.Label(" Rebuilding Indexes ... ")
                 self.dia_confirm.vbox.add(lbl)
                 lbl.show()
@@ -559,8 +566,13 @@ class fpdb:
             pass
 
     def __calendar_dialog(self, widget, entry):
-        self.dia_confirm.set_modal(False)
+# do not alter the modality of the parent
+#        self.dia_confirm.set_modal(False)
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        d.set_transient_for(self.dia_confirm)
+        d.set_destroy_with_parent(True)
+        d.set_modal(True)
+
         d.set_title('Pick a date')
 
         vb = gtk.VBox()
@@ -970,9 +982,15 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
         menuItem.connect('activate', self.dia_about)
         self.statusMenu.append(menuItem)
-        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
-        menuItem.connect('activate', self.quit)
-        self.statusMenu.append(menuItem)
+
+# do not allow quit - if any transient (popup) windows are open (rebuild cache, rebuild index etc) 
+# quit from the tray causes a very very unclean shutdown, lockup of python process and failure to release global lock.  
+#  fpdb window must be re-opened and the windows closed to quit
+ 
+#        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+#        menuItem.connect('activate', self.quit)
+#        self.statusMenu.append(menuItem)
+
         self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
         self.statusIcon.set_visible(True)
 
@@ -1019,7 +1037,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             self.window.present()
 
     def info_box(self, str1, str2):
-        diapath = gtk.MessageDialog( parent=None, flags=0, type=gtk.MESSAGE_INFO
+        diapath = gtk.MessageDialog( parent=self.window, flags=0, type=gtk.MESSAGE_INFO
                                    , buttons=(gtk.BUTTONS_OK), message_format=str1 )
         diapath.format_secondary_text(str2)
         response = diapath.run()
@@ -1027,7 +1045,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         return response
 
     def warning_box(self, str, diatitle="FPDB WARNING"):
-        diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
         label = gtk.Label(str)
         diaWarning.vbox.add(label)
