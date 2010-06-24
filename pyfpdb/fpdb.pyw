@@ -284,11 +284,11 @@ class fpdb:
             if len(self.nb_tab_names) == 1:
                 # only main tab open, reload profile
                 self.load_profile()
+                dia.destroy()
             else:
+                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
                 self.warning_box("Updated preferences have not been loaded because "
                                  + "windows are open. Re-start fpdb to load them.")
-
-        dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
         self.warning_box("Unimplemented: Maintain Databases")
