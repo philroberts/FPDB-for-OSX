@@ -289,6 +289,8 @@ class fpdb:
                 dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
                 self.warning_box("Updated preferences have not been loaded because "
                                  + "windows are open. Re-start fpdb to load them.")
+        else:
+            dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
         self.warning_box("Unimplemented: Maintain Databases")
