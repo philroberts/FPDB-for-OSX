@@ -20,6 +20,8 @@ pygtk 2.16.0 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.16/pygtk-
 pycairo 1.8.6 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/1.8/pycairo-1.8.6.win32-py2.6.exe
 pyGobject 2.20.0 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.20/pygobject-2.20.0.win32-py2.6.exe
 py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.6.exe/download
+MySQL-python 1.2.3c1 ... http://www.codegood.com/download/4/  (MySQL-python-1.2.3c1.win32-py2.6.exe)
+
 
 
 Step 2 Setup GTK
