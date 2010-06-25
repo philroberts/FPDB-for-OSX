@@ -496,7 +496,7 @@ class fpdb:
 
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
-                #FIXME these progress messages do not seem to work
+                #FIXME these progress messages do not seem to work in *nix
                 lbl = gtk.Label(" Rebuilding Indexes ... ")
                 self.dia_confirm.vbox.add(lbl)
                 lbl.show()
@@ -845,6 +845,7 @@ class fpdb:
 
     def quit(self, widget, data=None):
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
+        #FIXME  get two "quitting normally" messages, following the addition of the self.window.destroy() call
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
         try:
@@ -853,6 +854,8 @@ class fpdb:
         except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
             pass
         self.statusIcon.set_visible(False)
+
+        self.window.destroy() # explicitly destroy to allow child windows to close cleanly
         gtk.main_quit()
 
     def release_global_lock(self):
@@ -987,14 +990,10 @@ This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installat
         menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
         menuItem.connect('activate', self.dia_about)
         self.statusMenu.append(menuItem)
-
-# do not allow quit - if any transient (popup) windows are open (rebuild cache, rebuild index etc) 
-# quit from the tray causes a very very unclean shutdown, lockup of python process and failure to release global lock.  
-#  fpdb window must be re-opened and the windows closed to quit
  
-#        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
-#        menuItem.connect('activate', self.quit)
-#        self.statusMenu.append(menuItem)
+        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+        menuItem.connect('activate', self.quit)
+        self.statusMenu.append(menuItem)
 
         self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
         self.statusIcon.set_visible(True)
@@ -1042,7 +1041,7 @@ This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installat
             self.window.present()
 
     def info_box(self, str1, str2):
-        diapath = gtk.MessageDialog( parent=self.window, flags=0, type=gtk.MESSAGE_INFO
+        diapath = gtk.MessageDialog( parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_INFO
                                    , buttons=(gtk.BUTTONS_OK), message_format=str1 )
         diapath.format_secondary_text(str2)
         response = diapath.run()
@@ -1050,7 +1049,7 @@ This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installat
         return response
 
     def warning_box(self, str, diatitle="FPDB WARNING"):
-        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
         label = gtk.Label(str)
         diaWarning.vbox.add(label)
