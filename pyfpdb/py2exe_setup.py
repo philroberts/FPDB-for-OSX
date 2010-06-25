@@ -135,7 +135,7 @@ setup(
 
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
-                      'includes'    : ['cairo', 'pango', 'pangocairo', 'atk', 'gobject'
+                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'
                                       ,'matplotlib.numerix.random_array'
                                       ,'AbsoluteToFpdb',      'BetfairToFpdb'
                                       ,'CarbonToFpdb',        'EverleafToFpdb'

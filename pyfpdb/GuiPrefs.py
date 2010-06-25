@@ -30,10 +30,11 @@ import Configuration
 
 class GuiPrefs:
 
-    def __init__(self, config, mainwin, dia):
+    def __init__(self, config, mainwin, dia, parentwin):
         self.config = config
         self.main_window = mainwin
         self.dialog = dia
+        self.parent_window = parentwin #need to pass reference of parent, to set transient
 
         self.tree_box = gtk.ScrolledWindow()
         self.tree_box.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
@@ -120,7 +121,7 @@ class GuiPrefs:
             name = tmodel.get_value( iter, 1 )
             val = tmodel.get_value( iter, 2 )
             dia_edit = gtk.Dialog(name,
-                                  self.main_window,
+                                  self.parent_window,
                                   gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                   (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                                    gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
@@ -162,7 +163,8 @@ if __name__=="__main__":
                      (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                       gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
     dia.set_default_size(700, 500)
-    prefs = GuiPrefs(config, win, dia.vbox)
+    pw=dia      #pass parent window 
+    prefs = GuiPrefs(config, win, dia.vbox,pw)
     response = dia.run()
     if response == gtk.RESPONSE_ACCEPT:
         # save updated config
