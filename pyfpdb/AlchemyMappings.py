@@ -375,7 +375,7 @@ class Tourney(MappedBase):
 
 
 class TourneyType(MappedBase):
-    """Class reflecting TourneysType db table"""
+    """Class reflecting TourneyType db table"""
 
     @classmethod
     def get_or_create(cls, session, **kwargs):

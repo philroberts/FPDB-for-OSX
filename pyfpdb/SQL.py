@@ -360,21 +360,29 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
-                            id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                            currency varchar(4) NOT NULL,
-                            buyin INT NOT NULL,
-                            fee INT NOT NULL,
-                            maxSeats INT NOT NULL DEFAULT -1,
-                            knockout BOOLEAN NOT NULL DEFAULT False,
-                            rebuy BOOLEAN NOT NULL DEFAULT False,
-                            addOn BOOLEAN NOT NULL DEFAULT False,
-                            speed varchar(10),
-                            headsUp BOOLEAN NOT NULL DEFAULT False,
-                            shootout BOOLEAN NOT NULL DEFAULT False,
-                            matrix BOOLEAN NOT NULL DEFAULT False,
-                            sng BOOLEAN NOT NULL DEFAULT False
-                            )
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
+                        buyIn INT NOT NULL,
+                        fee INT NOT NULL,
+                        buyInChips INT NOT NULL,
+                        maxSeats INT NOT NULL DEFAULT -1,
+                        rebuy BOOLEAN NOT NULL DEFAULT False,
+                        rebuyCost INT,
+                        rebuyChips INT,
+                        addOn BOOLEAN NOT NULL DEFAULT False,
+                        addOnCost INT,
+                        addOnChips INT,
+                        knockout BOOLEAN NOT NULL DEFAULT False,
+                        koBounty INT,
+                        speed varchar(10),
+                        headsUp BOOLEAN NOT NULL DEFAULT False,
+                        shootout BOOLEAN NOT NULL DEFAULT False,
+                        matrix BOOLEAN NOT NULL DEFAULT False,
+                        sng BOOLEAN NOT NULL DEFAULT False,
+                        satellite BOOLEAN NOT NULL DEFAULT False,
+                        doubleOrNothing BOOLEAN NOT NULL DEFAULT False,
+                        guarantee INT)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
@@ -383,33 +391,49 @@ class Sql:
                         currency varchar(4) NOT NULL,
                         buyin INT NOT NULL,
                         fee INT NOT NULL,
+                        buyInChips INT NOT NULL,
                         maxSeats INT NOT NULL DEFAULT -1,
-                        knockout BOOLEAN NOT NULL DEFAULT False,
                         rebuy BOOLEAN NOT NULL DEFAULT False,
+                        rebuyCost INT,
+                        rebuyChips INT,
                         addOn BOOLEAN NOT NULL DEFAULT False,
+                        addOnCost INT,
+                        addOnChips INT,
+                        knockout BOOLEAN NOT NULL DEFAULT False,
+                        koBounty INT,
                         speed varchar(10),
                         headsUp BOOLEAN NOT NULL DEFAULT False,
                         shootout BOOLEAN NOT NULL DEFAULT False,
                         matrix BOOLEAN NOT NULL DEFAULT False,
-                        sng BOOLEAN NOT NULL DEFAULT False
-                        )"""
+                        sng BOOLEAN NOT NULL DEFAULT False,
+                        satellite BOOLEAN NOT NULL DEFAULT False,
+                        doubleOrNothing BOOLEAN NOT NULL DEFAULT False,
+                        guarantee INT)"""
         elif db_server == 'sqlite':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id INTEGER PRIMARY KEY,
                         siteId INT NOT NULL,
-                        currency TEXT NOT NULL,
+                        currency VARCHAR(4) NOT NULL,
                         buyin INT NOT NULL,
                         fee INT NOT NULL,
+                        buyInChips INT NOT NULL,
                         maxSeats INT NOT NULL DEFAULT -1,
-                        knockout BOOLEAN NOT NULL DEFAULT 0,
                         rebuy BOOLEAN NOT NULL DEFAULT 0,
+                        rebuyCost INT,
+                        rebuyChips INT,
                         addOn BOOLEAN NOT NULL DEFAULT 0,
+                        addOnCost INT,
+                        addOnChips INT,
+                        knockout BOOLEAN NOT NULL DEFAULT 0,
+                        koBounty INT,
                         speed TEXT,
                         headsUp BOOLEAN NOT NULL DEFAULT 0,
                         shootout BOOLEAN NOT NULL DEFAULT 0,
                         matrix BOOLEAN NOT NULL DEFAULT 0,
-                        sng BOOLEAN NOT NULL DEFAULT 0
-                        )"""
+                        sng BOOLEAN NOT NULL DEFAULT 0,
+                        satellite BOOLEAN NOT NULL DEFAULT 0,
+                        doubleOrNothing BOOLEAN NOT NULL DEFAULT 0,
+                        guarantee INT)"""
 
         ################################
         # Create Tourneys
@@ -3552,9 +3576,9 @@ class Sql:
         """
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
-                                              (siteId, type, base, category, limitType
+                                              (siteId, currency, type, base, category, limitType
                                               ,hiLo, smallBlind, bigBlind, smallBet, bigBet)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s

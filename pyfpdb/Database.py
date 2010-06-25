@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 120
+DB_VERSION = 121
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1357,18 +1357,17 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         if self.backend == self.SQLITE:
-            c.execute("""INSERT INTO TourneyTypes (id, siteId, buyin, fee, maxSeats, knockout
+            c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
                          ,rebuy, addOn, speed, headsUp, shootout, matrix)
-                         VALUES (NULL, 1, 0, 0, False, False, False, NULL, False, False, False);""")
+                         VALUES (NULL, 1, 'USD', 0, 0, 0, False, False, False, NULL, False, False, False);""")
         elif self.backend == self.PGSQL:
-            c.execute("""insert into TourneyTypes(siteId, buyin, fee, maxSeats, knockout
+            c.execute("""insert into TourneyTypes(siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
                                                  ,rebuy, addOn, speed, headsUp, shootout, matrix)
-                         values (1, 0, 0, 0, False, False, False, null, False, False, False);""")
+                         values (1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False, False);""")
         elif self.backend == self.MYSQL_INNODB:
-            c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
+            c.execute("""insert into TourneyTypes(id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
                                                  ,rebuy, addOn, speed, headsUp, shootout, matrix)
-                         values (DEFAULT, 1, 0, 0, 0, False, False, False, null, False, False, False);""")
-
+                         values (DEFAULT, 1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False, False);""")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1376,6 +1375,7 @@ class Database:
         self.createAllIndexes()
         self.dropAllForeignKeys()
         self.createAllForeignKeys()
+    #end def rebuild_indexes
 
     def rebuild_hudcache(self, h_start=None, v_start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
@@ -1795,8 +1795,9 @@ class Database:
                 hilo = "s"
             elif game['category'] in ['razz','27_3draw','badugi']:
                 hilo = "l"
-            tmp  = self.insertGameTypes( (siteid, game['type'], game['base'], game['category'], game['limitType'], hilo,
+            tmp  = self.insertGameTypes( (siteid, 'USD', game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
+                                    #FIXME: recognise currency
         return tmp[0]
 
     def getSqlPlayerIDs(self, pnames, siteid):

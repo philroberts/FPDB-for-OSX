@@ -371,16 +371,25 @@ tourney_types_table = Table('TourneyTypes', metadata,
     Column('siteId',        SmallInteger, ForeignKey("Sites.id"), nullable=False), 
     Column('currency',      String(4), nullable=False), # varchar(4) NOT NULL
     Column('buyin',         Integer, nullable=False), # INT NOT NULL
-    Column('fee',           Integer, nullable=False, default=0), # INT NOT NULL
+    Column('fee',           Integer, nullable=False), # INT NOT NULL
+    Column('buyInChips',    Integer, nullable=False), # INT NOT NULL
     Column('maxSeats',      Boolean, nullable=False, default=-1), # INT NOT NULL DEFAULT -1
-    Column('knockout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('rebuy',         Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('rebuyCost',     Integer), # INT
+    Column('rebuyChips',    Integer), # INT
     Column('addOn',         Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('addOnCost',     Integer), # INT
+    Column('addOnChips',    Integer), # INT
+    Column('knockout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('koBounty',      Integer), # INT
     Column('speed',         String(10)), # varchar(10)
     Column('headsUp',       Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('shootout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('matrix',        Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('sng',           Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('satellite',     Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('doubleOrNothing', Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('guarantee',     Integer, nullable=False, default=0), # INT NOT NULL DEFAULT 0
     mysql_charset='utf8',
     mysql_engine='InnoDB',
 )

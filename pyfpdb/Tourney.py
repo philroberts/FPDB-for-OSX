@@ -74,22 +74,26 @@ class Tourney(object):
         self.subTourneyFee      = None
         self.rebuyChips         = 0
         self.addOnChips         = 0
-        self.rebuyAmount        = 0
-        self.addOnAmount        = 0
+        self.rebuyCost          = 0
+        self.addOnCost          = 0
         self.totalRebuyCount    = 0
         self.totalAddOnCount    = 0
         self.koBounty           = 0
         self.tourneyComment     = None
         self.players            = []
+        self.isSng              = False
+        self.isSatellite        = False
+        self.isDoubleOrNothing  = False
+        self.guarantee          = 0
 
         # Collections indexed by player names
         self.finishPositions    = {}
         self.winnings           = {}
         self.winningsCurrency   = {}
         self.payinAmounts       = {}
-        self.countRebuys        = {}
-        self.countAddOns        = {}
-        self.countKO            = {}
+        self.rebuyCounts        = {}
+        self.addOnCounts        = {}
+        self.koCounts            = {}
 
         # currency symbol for this summary
         self.sym = None
@@ -121,12 +125,16 @@ class Tourney(object):
                  ("SUB TOURNEY FEE", self.subTourneyFee),
                  ("REBUY CHIPS", self.rebuyChips),
                  ("ADDON CHIPS", self.addOnChips),
-                 ("REBUY AMOUNT", self.rebuyAmount),
-                 ("ADDON AMOUNT", self.addOnAmount),
+                 ("REBUY COST", self.rebuyCost),
+                 ("ADDON COST", self.addOnCost),
                  ("TOTAL REBUYS", self.totalRebuyCount),
                  ("TOTAL ADDONS", self.totalAddOnCount),
                  ("KO BOUNTY", self.koBounty),
-                 ("TOURNEY COMMENT", self.tourneyComment)
+                 ("TOURNEY COMMENT", self.tourneyComment),
+                 ("SNG", self.isSng),
+                 ("SATELLITE", self.isSatellite),
+                 ("DOUBLE OR NOTHING", self.isDoubleOrNothing),
+                 ("GUARANTEE", self.guarantee)
         )
  
         structs = ( ("GAMETYPE", self.gametype),
@@ -134,9 +142,9 @@ class Tourney(object):
                     ("PAYIN AMOUNTS", self.payinAmounts),
                     ("POSITIONS", self.finishPositions),                    
                     ("WINNINGS", self.winnings),
-                    ("COUNT REBUYS", self.countRebuys),
-                    ("COUNT ADDONS", self.countAddOns),
-                    ("NB OF KO", self.countKO)
+                    ("COUNT REBUYS", self.rebuyCounts),
+                    ("COUNT ADDONS", self.addOnCounts),
+                    ("NB OF KO", self.koCounts)
         )
         str = ''
         for (name, var) in vars:
@@ -199,11 +207,11 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
         self.players.append(name)
         self.finishPositions.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
-        self.winningsCurrency.update( { name : String(winningsCurrency) } )
+        self.winningsCurrency.update( { name : winningsCurrency } )
         self.payinAmounts.update( {name : Decimal(payinAmount) } )
-        self.countRebuys.update( {name: Decimal(rebuyCount) } )
-        self.countAddOns.update( {name: Decimal(addOnCount) } )
-        self.countKO.update( {name : Decimal(koCount) } )
+        self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
+        self.addOnCounts.update( {name: Decimal(addOnCount) } )
+        self.koCounts.update( {name : Decimal(koCount) } )
         
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
