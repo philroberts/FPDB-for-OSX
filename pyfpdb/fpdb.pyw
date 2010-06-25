@@ -884,6 +884,8 @@ class fpdb:
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         mh_tab=gtk.Label("""Welcome to Fpdb!
+This program is currently in an alpha-state, so our database format is still sometimes changed.
+You should therefore always keep your hand history files so that you can re-import after an update, if necessary.
 For documentation please visit our website at http://fpdb.sourceforge.net/.
 If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
