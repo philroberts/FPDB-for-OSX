@@ -1357,9 +1357,9 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         if self.backend == self.SQLITE:
-            c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
-                         ,rebuy, addOn, speed, headsUp, shootout, matrix)
-                         VALUES (NULL, 1, 'USD', 0, 0, 0, False, False, False, NULL, False, False, False);""")
+            c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout,
+                         rebuy, addOn, speed, headsUp, shootout, matrix)
+                         VALUES (NULL, 1, 'USD', 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, 0);""")
         elif self.backend == self.PGSQL:
             c.execute("""insert into TourneyTypes(siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
                                                  ,rebuy, addOn, speed, headsUp, shootout, matrix)
