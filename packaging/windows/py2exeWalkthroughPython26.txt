@@ -20,8 +20,17 @@ pygtk 2.16.0 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.16/pygtk-
 pycairo 1.8.6 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/1.8/pycairo-1.8.6.win32-py2.6.exe
 pyGobject 2.20.0 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.20/pygobject-2.20.0.win32-py2.6.exe
 py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.6.exe/download
-MySQL-python 1.2.3c1 ... http://www.codegood.com/download/4/  (MySQL-python-1.2.3c1.win32-py2.6.exe)
+psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.2.1.win32-py2.6-pg8.4.3-release.exe
 
+1.2/ MySQL 
+
+mysql-python is needed
+The sourceforge page is http://sourceforge.net/projects/mysql-python/files/
+Unfortunately there is no py2.6 build for windows yet.
+Instructions to build the installer package can be found here 
+http://www.bcspcsonline.com/wiki/index.php?title=MySQL-5.1.34_Python-2.6_Module_Build_Instructions
+A pre-built intaller is available here
+MySQL-python 1.2.3c1 ... http://www.codegood.com/download/4/  (MySQL-python-1.2.3c1.win32-py2.6.exe)
 
 
 Step 2 Setup GTK
@@ -63,13 +72,15 @@ Step 4 Get the fpdb GIT tree
 4.1/ Best to take a copy to work with; following steps will assume that the fpdb folder is on the Desktop
 
 
-Step 5 Put MSVCP90.dll temporarily into the fpdb folder
--------------------------------------------------------
+#Step 5 Put MSVCP90.dll temporarily into the fpdb folder
+#-------------------------------------------------------
 
-py2exe will check for MSVCP90.dll.   The version installed by python2.6.5runtime is not in the path, so we will put it in place TEMPORARILY.  This will/must be removed manually once the exe has been created, as we do not have a licence to redistribute.
-
-Search for MSVCP90.dll  (should be found in C:\WINDOWS\WinSxS\...
-copy this file TEMPORARILY to the Desktop\fpdb\pyfpdb folder
+###### Step 5 no longer required as py2exe is instructed not to include the visualc/c++ dll's
+#
+#py2exe will check for MSVCP90.dll.   The version installed by python2.6.5runtime is not in the path, so we will put it in place #TEMPORARILY.  This will/must be removed manually once the exe has been created, as we do not have a licence to redistribute.
+#
+#Search for MSVCP90.dll  (should be found in C:\WINDOWS\WinSxS\...
+#copy this file TEMPORARILY to the Desktop\fpdb\pyfpdb folder
 
 Step 6 Run py2exe to generate fpdb.exe
 --------------------------------------
@@ -86,17 +97,29 @@ c:\GTK
 
 6.3/ If there are no errors reported, it has probably worked, we will test soon.
 
-Step 7 Delete C++runtime
-------------------------
+Build notes:
 
-This is really really important, this file must NOT be distributed, so get rid of it now to avoid issues.
+There is a warning "c:\Python26\lib\site-packages\py2exe\build_exe.py:16: DeprecationWarning: the sets module is deprecated  import sets".  This is probably coming from mysql-python see here https://bugs.launchpad.net/python-mysqldb/+bug/338387
 
-7.1/ in Desktop\fpdb\pyfpdb\ remove the file msvcp90.dll
+There is a warning about dll's not included  "umath.pyd - c:\Python26\lib\site-packages\numpy\core\umath.pyd" - reason for this is not understood at present.  (Umath is apparently included in the built package).
+
+
+#Step 7 Delete C++runtime
+#------------------------
+#
+###### Step 7 is no longer required (see step 5 for reason)
+#
+#This is really really important, this file must NOT be distributed, so get rid of it now to avoid issues.
+#
+#7.1/ in Desktop\fpdb\pyfpdb\ remove the file msvcp90.dll
+#
 
 Step 8 Drag out the completed bundle
 ------------------------------------
 
-py2exe creates a new folder for the created software bundle, drag this out to the desktop for ease of working
+py2exe creates a new folder for the created software bundle, drag this out to the desktop for ease of working.
+As far as I know you cannot rerun the build if the fpdb-yyyymmdd-exe exists in the tree, so dragging this out 
+also allows the build to re-run at step 6.
 
 8.1/ Drag Desktop\fpdb\pyfpdb\fpdb-yyyymmdd-exe to Desktop\
 
@@ -109,11 +132,8 @@ Step 9 Initial run
 9.3/ Double click run_fpdb.bat
 9.4/ check the contents of pyfpdb\fpdb.exe.log, deal with any errors thrown
 
-Step 10 drum roll.......
-------------------------
-
-10.1/ hopefully, fpdb will run
-10.2/ Try out a few options, deal with any errors reported
+9.5/ hopefully, fpdb will run 
+9.6/ Try out a few options, deal with any errors reported
 
 Observe that the msvcp90.dll was provided by the python runtime package, so we don't have to install the separate package from Microsoft.  End-users will, however need the dependency.
 

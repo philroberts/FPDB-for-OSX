@@ -66,7 +66,7 @@ Py2exe script for fpdb.
 #
 #  Now updated to work with python 2.6 + related dependencies
 #  See walkthrough in packaging directory for versions used
-#  Updated to this script have broken python 2.5 compatibility (gio module, new licence file locations)
+#  Updates to this script have broken python 2.5 compatibility (gio module, msvcr71 references now msvcp90)
 
 
 import os
@@ -151,7 +151,7 @@ setup(
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
-                                      ,'libgobject-2.0-0.dll'],
+                                      ,'libgobject-2.0-0.dll', 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],
                   }
               },
 
@@ -230,7 +230,7 @@ pyfpdb/share/locale
 pyfpdb/share/man
 pyfpdb/share/themes/Default
 
-Please double-check that msvcp90.dll is NOT in the distribution tree
+Please double-check that msvcr90.dll is NOT in the distribution tree
 
 Use 7-zip to zip up the distribution and create a self extracting archive and that's it!
 """
