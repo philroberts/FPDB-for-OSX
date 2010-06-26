@@ -1633,7 +1633,12 @@ class Database:
                              pdata[p]['street3CheckCallRaiseChance'],
                              pdata[p]['street3CheckCallRaiseDone'],
                              pdata[p]['street4CheckCallRaiseChance'],
-                             pdata[p]['street4CheckCallRaiseDone']
+                             pdata[p]['street4CheckCallRaiseDone'],
+                             pdata[p]['street0Raises'],
+                             pdata[p]['street1Raises'],
+                             pdata[p]['street2Raises'],
+                             pdata[p]['street3Raises'],
+                             pdata[p]['street4Raises']
                             ) )
 
         q = self.sql.query['store_hands_players']
@@ -1662,7 +1667,7 @@ class Database:
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
         inserts = []
         for p in pdata:
-            line = [0]*61
+            line = [0]*76
             
             line[0] = 1 # HDs
             if pdata[p]['street0VPI']:                  line[1] = 1
@@ -1719,13 +1724,29 @@ class Database:
             if pdata[p]['street3CheckCallRaiseDone']:   line[52] = 1
             if pdata[p]['street4CheckCallRaiseChance']: line[53] = 1
             if pdata[p]['street4CheckCallRaiseDone']:   line[54] = 1
-            line[55] = gid    # gametypeId
-            line[56] = pids[p]    # playerId
-            line[57] = len(pids)    # activeSeats
+            if pdata[p]['street0Calls']:                line[55] = 1
+            if pdata[p]['street1Calls']:                line[56] = 1
+            if pdata[p]['street2Calls']:                line[57] = 1
+            if pdata[p]['street3Calls']:                line[58] = 1
+            if pdata[p]['street4Calls']:                line[59] = 1
+            if pdata[p]['street0Bets']:                 line[60] = 1
+            if pdata[p]['street1Bets']:                 line[61] = 1
+            if pdata[p]['street2Bets']:                 line[62] = 1
+            if pdata[p]['street3Bets']:                 line[63] = 1
+            if pdata[p]['street4Bets']:                 line[64] = 1
+            if pdata[p]['street0Raises']:               line[65] = 1
+            if pdata[p]['street1Raises']:               line[66] = 1
+            if pdata[p]['street2Raises']:               line[67] = 1
+            if pdata[p]['street3Raises']:               line[68] = 1
+            if pdata[p]['street4Raises']:               line[69] = 1
+
+            line[70] = gid    # gametypeId
+            line[71] = pids[p]    # playerId
+            line[72] = len(pids)    # activeSeats
             pos = {'B':'B', 'S':'S', 0:'D', 1:'C', 2:'M', 3:'M', 4:'M', 5:'E', 6:'E', 7:'E', 8:'E', 9:'E' }
-            line[58] = pos[pdata[p]['position']]
-            line[59] = pdata[p]['tourneyTypeId']
-            line[60] = styleKey    # styleKey
+            line[73] = pos[pdata[p]['position']]
+            line[74] = pdata[p]['tourneyTypeId']
+            line[75] = styleKey    # styleKey
             inserts.append(line)
 
 

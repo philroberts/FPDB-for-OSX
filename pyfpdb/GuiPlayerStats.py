@@ -93,10 +93,13 @@ class GuiPlayerStats (threading.Thread):
                        , ["plposition", False, "Posn",     1.0, "%s", "str"]   # true not allowed for this line (set in code)
                        , ["pname",      False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
                        , ["n",          True,  "Hds",      1.0, "%1.0f", "str"]
-                       , ["avgseats",   False,  "Seats",    1.0, "%3.1f", "str"]
+                       , ["avgseats",   False, "Seats",    1.0, "%3.1f", "str"]
                        , ["vpip",       True,  "VPIP",     1.0, "%3.1f", "str"]
                        , ["pfr",        True,  "PFR",      1.0, "%3.1f", "str"]
                        , ["pf3",        True,  "PF3",      1.0, "%3.1f", "str"]
+                       , ["aggfac",     True,  "AggFac",   1.0, "%2.2f", "str"]
+                       , ["aggfrq",     True,  "AggFreq",  1.0, "%3.1f", "str"]
+                       , ["conbet",     True,  "ContBet",  1.0, "%3.1f", "str"]
                        , ["steals",     True,  "Steals",   1.0, "%3.1f", "str"]
                        , ["saw_f",      True,  "Saw_F",    1.0, "%3.1f", "str"]
                        , ["sawsd",      True,  "SawSD",    1.0, "%3.1f", "str"]
