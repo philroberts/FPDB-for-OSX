@@ -867,7 +867,7 @@ class fpdb:
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
-        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
+        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")
@@ -918,7 +918,7 @@ This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installat
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
-        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
+        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config, self.window)
         self.threads.append(new_gv_thread)
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")
