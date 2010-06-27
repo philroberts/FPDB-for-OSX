@@ -66,7 +66,7 @@ class Fulltilt(HandHistoryConverter):
                                     ''', re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
     re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
-    re_TourneyPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
+    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
@@ -87,8 +87,8 @@ class Fulltilt(HandHistoryConverter):
     re_TourneyBuyInChips    = re.compile("Buy-In Chips: (?P<BUYINCHIPS>\d+)")
     re_TourneyEntries       = re.compile("(?P<ENTRIES>\d+) Entries")
     re_TourneyPrizePool     = re.compile("Total Prize Pool: (?P<PRIZEPOOL_CURRENCY>\$|)?(?P<PRIZEPOOL>[.,0-9]+)")
-    re_TourneyRebuyAmount   = re.compile("Rebuy: (?P<REBUY_CURRENCY>\$|)?(?P<REBUY_AMOUNT>[.,0-9]+)")
-    re_TourneyAddOnAmount   = re.compile("Add-On: (?P<ADDON_CURRENCY>\$|)?(?P<ADDON_AMOUNT>[.,0-9]+)")
+    re_TourneyRebuyCost     = re.compile("Rebuy: (?P<REBUY_CURRENCY>\$|)?(?P<REBUY_COST>[.,0-9]+)")
+    re_TourneyAddOnCost     = re.compile("Add-On: (?P<ADDON_CURRENCY>\$|)?(?P<ADDON_COST>[.,0-9]+)")
     re_TourneyRebuyCount    = re.compile("performed (?P<REBUY_COUNT>\d+) Rebuy")
     re_TourneyAddOnCount    = re.compile("performed (?P<ADDON_COUNT>\d+) Add-On")
     re_TourneyRebuysTotal   = re.compile("Total Rebuys: (?P<REBUY_TOTAL>\d+)")
@@ -96,10 +96,10 @@ class Fulltilt(HandHistoryConverter):
     re_TourneyRebuyChips    = re.compile("Rebuy Chips: (?P<REBUY_CHIPS>\d+)")
     re_TourneyAddOnChips    = re.compile("Add-On Chips: (?P<ADDON_CHIPS>\d+)")
     re_TourneyKOBounty      = re.compile("Knockout Bounty: (?P<KO_BOUNTY_CURRENCY>\$|)?(?P<KO_BOUNTY_AMOUNT>[.,0-9]+)")
-    re_TourneyCountKO       = re.compile("received (?P<COUNT_KO>\d+) Knockout Bounty Award(s)?")
+    re_TourneyKoCount       = re.compile("received (?P<COUNT_KO>\d+) Knockout Bounty Award(s)?")
     re_TourneyTimeInfo      = re.compile("Tournament started: (?P<STARTTIME>.*)\nTournament ((?P<IN_PROGRESS>is still in progress)?|(finished:(?P<ENDTIME>.*))?)$")
 
-    re_TourneyPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>\$|)?(?P<WINNING>[.\d]+)?", re.MULTILINE)
+    re_TourneysPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>\$|)?(?P<WINNING>[.\d]+)?", re.MULTILINE)
     re_TourneyHeroFinishingP = re.compile("(?P<HERO_NAME>.*) finished in (?P<HERO_FINISHING_POS>\d+)(st|nd|rd|th) place")
 
 #TODO: See if we need to deal with play money tourney summaries -- Not right now (they shouldn't pass the re_TourneyInfo)
@@ -264,7 +264,7 @@ class Fulltilt(HandHistoryConverter):
         if hand.gametype['type'] == "ring" :
             m = self.re_PlayerInfo.finditer(pre)
         else:   #if hand.gametype['type'] == "tour"
-            m = self.re_TourneyPlayerInfo.finditer(pre)
+            m = self.re_TourneysPlayerInfo.finditer(pre)
 
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -430,7 +430,7 @@ class Fulltilt(HandHistoryConverter):
         if m:
             # info list should be 2 lines : Tourney infos & Finsihing postions with winnings
             if (len(summaryInfoList) != 2 ):
-                log.info("Too many lines (%d) in file '%s' : '%s'" % (len(summaryInfoList), self.in_path, summaryInfoList) )
+                log.info("Too many or too few lines (%d) in file '%s' : '%s'" % (len(summaryInfoList), self.in_path, summaryInfoList) )
                 self.status = False
             else:
                 self.tourney = Tourney.Tourney(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
@@ -566,8 +566,8 @@ class Fulltilt(HandHistoryConverter):
         dictRegex = {   "BUYINCHIPS"        : self.re_TourneyBuyInChips,
                         "ENTRIES"           : self.re_TourneyEntries,
                         "PRIZEPOOL"         : self.re_TourneyPrizePool,
-                        "REBUY_AMOUNT"      : self.re_TourneyRebuyAmount,
-                        "ADDON_AMOUNT"      : self.re_TourneyAddOnAmount,
+                        "REBUY_COST"        : self.re_TourneyRebuyCost,
+                        "ADDON_COST"        : self.re_TourneyAddOnCost,
                         "REBUY_TOTAL"       : self.re_TourneyRebuysTotal,
                         "ADDONS_TOTAL"      : self.re_TourneyAddOnsTotal,
                         "REBUY_CHIPS"       : self.re_TourneyRebuyChips,
@@ -580,10 +580,10 @@ class Fulltilt(HandHistoryConverter):
         dictHolders = { "BUYINCHIPS"        : "buyInChips",
                         "ENTRIES"           : "entries",
                         "PRIZEPOOL"         : "prizepool",
-                        "REBUY_AMOUNT"      : "rebuyAmount",
-                        "ADDON_AMOUNT"      : "addOnAmount",
-                        "REBUY_TOTAL"       : "totalRebuys",
-                        "ADDONS_TOTAL"      : "totalAddOns",
+                        "REBUY_COST"        : "rebuyCost",
+                        "ADDON_COST"        : "addOnCost",
+                        "REBUY_TOTAL"       : "totalRebuyCount",
+                        "ADDONS_TOTAL"      : "totalAddOnCount",
                         "REBUY_CHIPS"       : "rebuyChips",
                         "ADDON_CHIPS"       : "addOnChips",
                         "STARTTIME"         : "starttime",
@@ -607,42 +607,41 @@ class Fulltilt(HandHistoryConverter):
             if m is not None:
                 mg = m.groupdict()
                 if mg['REBUY_COUNT'] is not None :
-                    tourney.countRebuys.update( { tourney.hero : Decimal(mg['REBUY_COUNT']) } )
+                    tourney.rebuyCounts.update( { tourney.hero : Decimal(mg['REBUY_COUNT']) } )
             m = self.re_TourneyAddOnCount.search(tourneyText)
             if m is not None:
                 mg = m.groupdict()
                 if mg['ADDON_COUNT'] is not None :
-                    tourney.countAddOns.update( { tourney.hero : Decimal(mg['ADDON_COUNT']) } )
-            m = self.re_TourneyCountKO.search(tourneyText)
+                    tourney.addOnCounts.update( { tourney.hero : Decimal(mg['ADDON_COUNT']) } )
+            m = self.re_TourneyKoCount.search(tourneyText)
             if m is not None:
                 mg = m.groupdict()
                 if mg['COUNT_KO'] is not None :
-                    tourney.countKO.update( { tourney.hero : Decimal(mg['COUNT_KO']) } )
+                    tourney.koCounts.update( { tourney.hero : Decimal(mg['COUNT_KO']) } )
 
         # Deal with money amounts
         tourney.koBounty    = 100*Decimal(re.sub(u',', u'', "%s" % tourney.koBounty))
         tourney.prizepool   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.prizepool))
-        tourney.rebuyAmount = 100*Decimal(re.sub(u',', u'', "%s" % tourney.rebuyAmount))
-        tourney.addOnAmount = 100*Decimal(re.sub(u',', u'', "%s" % tourney.addOnAmount))
+        tourney.rebuyCost   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.rebuyCost))
+        tourney.addOnCost   = 100*Decimal(re.sub(u',', u'', "%s" % tourney.addOnCost))
         
         # Calculate payin amounts and update winnings -- not possible to take into account nb of rebuys, addons or Knockouts for other players than hero on FTP
         for p in tourney.players :
-            tourney.payinAmounts[p] = tourney.buyin + tourney.fee + (tourney.rebuyAmount * tourney.countRebuys[p]) + (tourney.addOnAmount * tourney.countAddOns[p])
+            tourney.payinAmounts[p] = tourney.buyin + tourney.fee + (tourney.rebuyCost * tourney.rebuyCounts[p]) + (tourney.addOnCost * tourney.addOnCounts[p])
             #print " player %s : payinAmount = %d" %( p, tourney.payinAmounts[p])
             if tourney.isKO :
-                #tourney.incrementPlayerWinnings(tourney.players[p], Decimal(tourney.koBounty)*Decimal(tourney.countKO[p]))
-                tourney.winnings[p] += Decimal(tourney.koBounty)*Decimal(tourney.countKO[p])
+                #tourney.incrementPlayerWinnings(tourney.players[p], Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p]))
+                tourney.winnings[p] += Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p])
                 #print "player %s : winnings %d" % (p, tourney.winnings[p])
-  
-                    
 
         #print mg
         return True
+    #end def determineTourneyType
 
     def getPlayersPositionsAndWinnings(self, tourney):
         playersText = tourney.summaryText[1]
         #print "Examine : '%s'" %(playersText)
-        m = self.re_TourneyPlayersSummary.finditer(playersText)
+        m = self.re_TourneysPlayersSummary.finditer(playersText)
 
         for a in m:
             if a.group('PNAME') is not None and a.group('RANK') is not None:
@@ -656,7 +655,7 @@ class Fulltilt(HandHistoryConverter):
                 else:
                     winnings = "0"
 
-                tourney.addPlayer(rank, a.group('PNAME'), winnings, 0, 0, 0, 0)
+                tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0, 0) #TODO: make it store actual winnings currency
             else:
                 print "FullTilt: Player finishing stats unreadable : %s" % a
 

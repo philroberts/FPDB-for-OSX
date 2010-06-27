@@ -36,7 +36,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.environ['PATH'] = tmppath
         print "Python " + sys.version[0:3] + ' - press return to continue\n'
         sys.stdin.readline()
-        os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+        if os.name=='nt':
+	    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+	else:
+	    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
         raw_input("Press ENTER to continue.")

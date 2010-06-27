@@ -431,6 +431,11 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%sAggr' % i] = True
             else:
                 self.handsplayers[player[1]]['street%sAggr' % i] = False
+                
+        if len(aggrers)>0 and i>0:
+            for playername in others:
+                self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
+                #print "otherRaised detected on handid "+str(hand.handid)+" for "+playername+" on street "+str(i)
 
         if i > 0 and len(aggrers) > 0:
             for playername in others:
@@ -450,8 +455,7 @@ class DerivedStats():
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('bets'):
                 self.handsplayers[act[0]]['street%sBets' % i] = 1 + self.handsplayers[act[0]]['street%sBets' % i]
-
-
+        
     def folds(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('folds'):

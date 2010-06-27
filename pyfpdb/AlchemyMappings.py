@@ -34,8 +34,8 @@ class Gametype(MappedBase):
     @staticmethod
     def get_or_create(session, siteId, gametype):
         map = zip(
-            ['type', 'base', 'category', 'limitType', 'smallBlind', 'bigBlind', 'smallBet', 'bigBet'],
-            ['type', 'base', 'category', 'limitType', 'sb', 'bb', 'dummy', 'dummy', ])
+            ['type', 'base', 'category', 'limitType', 'smallBlind', 'bigBlind', 'smallBet', 'bigBet', 'currency'],
+            ['type', 'base', 'category', 'limitType', 'sb', 'bb', 'dummy', 'dummy', 'currency'])
         gametype = dict([(new, gametype.get(old)) for new, old in map  ])
 
         hilo = "h"
@@ -152,7 +152,8 @@ class HandInternal(DerivedStats):
             'speed':         'speed',
             'maxSeats':      'maxseats',
             'knockout':      'isKO',
-            'rebuyOrAddon':  'isRebuy',
+            'rebuy':         'isRebuy',
+            'addOn':         'isAddOn',
             'headsUp':       'isHU',
             'shootout':      'isShootout',
             'matrix':        'isMatrix',
@@ -185,7 +186,7 @@ class HandInternal(DerivedStats):
 
         # fetch and update tourney players
         for hp in self.handPlayers:
-            tp = TourneyPlayer.get_or_create(session, tour.id, hp.playerId)
+            tp = TourneysPlayer.get_or_create(session, tour.id, hp.playerId)
             # FIXME: other TourneysPlayers should be added here
 
         session.flush()
@@ -340,18 +341,20 @@ class HandPlayer(MappedBase):
 class Site(object):
     """Class reflecting Players db table"""
     INITIAL_DATA = [
-            (1 , 'Full Tilt Poker','USD'),
-            (2 , 'PokerStars',     'USD'),
-            (3 , 'Everleaf',       'USD'),
-            (4 , 'Win2day',        'USD'),
-            (5 , 'OnGame',         'USD'),
-            (6 , 'UltimateBet',    'USD'),
-            (7 , 'Betfair',        'USD'),
-            (8 , 'Absolute',       'USD'),
-            (9 , 'PartyPoker',     'USD'),
-            (10, 'Partouche',      'EUR'),
+            (1 , 'Full Tilt Poker','FT'),
+            (2 , 'PokerStars',     'PS'),
+            (3 , 'Everleaf',       'EV'),
+            (4 , 'Win2day',        'W2'),
+            (5 , 'OnGame',         'OG'),
+            (6 , 'UltimateBet',    'UB'),
+            (7 , 'Betfair',        'BF'),
+            (8 , 'Absolute',       'AB'),
+            (9 , 'PartyPoker',     'PP'),
+            (10, 'Partouche',      'PA'),
+            (11, 'Carbon',         'CA'),
+            (12, 'PKR',            'PK'),
         ]
-    INITIAL_DATA_KEYS = ('id', 'name', 'currency')
+    INITIAL_DATA_KEYS = ('id', 'name', 'code')
 
     INITIAL_DATA_DICTS = [ dict(zip(INITIAL_DATA_KEYS, datum)) for datum in INITIAL_DATA ] 
 
@@ -372,7 +375,7 @@ class Tourney(MappedBase):
 
 
 class TourneyType(MappedBase):
-    """Class reflecting TourneysType db table"""
+    """Class reflecting TourneyType db table"""
 
     @classmethod
     def get_or_create(cls, session, **kwargs):
@@ -380,12 +383,12 @@ class TourneyType(MappedBase):
 
         Required kwargs: 
             buyin fee speed maxSeats knockout 
-            rebuyOrAddon headsUp shootout matrix sng
+            rebuy addOn headsUp shootout matrix sng currency
         """
         return get_or_create(cls, session, **kwargs)[0]
 
 
-class TourneyPlayer(MappedBase):
+class TourneysPlayer(MappedBase):
     """Class reflecting TourneysPlayers db table"""
 
     @classmethod
@@ -437,7 +440,7 @@ mapper (Gametype, gametypes_table, properties={
 })
 mapper (Player, players_table, properties={
     'playerHands': relation(HandPlayer, backref='player'),
-    'playerTourney': relation(TourneyPlayer, backref='player'),
+    'playerTourney': relation(TourneysPlayer, backref='player'),
 })
 mapper (Site, sites_table, properties={
     'gametypes': relation(Gametype, backref = 'site'),
@@ -455,7 +458,7 @@ mapper (Tourney, tourneys_table)
 mapper (TourneyType, tourney_types_table, properties={
     'tourneys': relation(Tourney, backref='type'),
 })
-mapper (TourneyPlayer, tourneys_players_table) 
+mapper (TourneysPlayer, tourneys_players_table) 
 
 class LambdaKeyDict(defaultdict):
     """Operates like defaultdict but passes key argument to the factory function"""
