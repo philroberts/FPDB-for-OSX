@@ -228,9 +228,9 @@ class GuiGraphViewer (threading.Thread):
                 self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
                 self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
                 if sys.version[0:3] == '2.5':
-                    self.ax.legend(loc='best', shadow=True, prop=FontProperties(size='smaller'))
+                    self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
-                    self.ax.legend(loc='best', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+                    self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
                 self.graphBox.add(self.canvas)
                 self.canvas.show()

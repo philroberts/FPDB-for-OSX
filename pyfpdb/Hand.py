@@ -345,7 +345,7 @@ For sites (currently only Carbon Poker) which record "all in" as a special actio
             self.actions['BLINDSANTES'].append(act)
 
             if blindtype == 'both':
-                # work with the real ammount. limit games are listed as $1, $2, where
+                # work with the real amount. limit games are listed as $1, $2, where
                 # the SB 0.50 and the BB is $1, after the turn the minimum bet amount is $2....
                 amount = self.bb 
                 self.bets['BLINDSANTES'][player].append(Decimal(self.sb))

@@ -2,6 +2,13 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 
+    <!-- config_wrap_len  is preferred max line length in this file, -1 means no max
+         day_start        is time that logical day starts, e.g. 5 means that any play
+                          between 00:00 and 04:59:59 counts as being on the previous day -->
+    <general config_wrap_len="-1"   
+             day_start="5"          
+             />
+
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
 <!-- These values determine what stats are displayed in the HUD
@@ -114,6 +121,10 @@ Left-Drag to Move"
               hudopacity="1.0"
               font="Sans"
               font_size="8"
+              xpad="1"
+              ypad="0"
+              xshift="0"
+              yshift="0"
               supported_games="holdem,razz,omahahi,omahahilo,studhi,studhilo">
             <layout max="8" width="792" height="546" fav_seat="0">
                 <location seat="1" x="684" y="61">  </location>
@@ -559,6 +570,9 @@ Left-Drag to Move"
             <pu_stat pu_stat_name="a_freq2"> </pu_stat>
             <pu_stat pu_stat_name="a_freq3"> </pu_stat>
             <pu_stat pu_stat_name="a_freq4"> </pu_stat>
+            <pu_stat pu_stat_name="agg_freq"> </pu_stat>
+            <pu_stat pu_stat_name="agg_fact"> </pu_stat>
+            <pu_stat pu_stat_name="cbet"> </pu_stat>
             <pu_stat pu_stat_name="cb1"> </pu_stat>
             <pu_stat pu_stat_name="cb2"> </pu_stat>
             <pu_stat pu_stat_name="cb3"> </pu_stat>
