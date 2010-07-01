@@ -521,17 +521,17 @@ def agg_freq(stat_dict, player):
         stat = float (bet_raise) / float(post_call + post_fold + bet_raise)
 
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'afr=%3.1f'    % (100*stat) + '%',
-                'agg_fr=%3.1f' % (100*stat) + '%',
+                '%3.1f'        % (100*stat),
+                'afr=%3.1f'    % (100*stat),
+                'agg_fr=%3.1f' % (100*stat),
                 '(%d/%d)'      % (bet_raise, (post_call + post_fold + bet_raise)),
                 'Aggression Freq'
                 )
     except:
         return (stat,
-                '%2.1f'        % (0) + '%',
-                'af=%3.1f'     % (0) + '%',
-                'agg_f=%3.1f'  % (0) + '%',
+                '%2.1f'        % (0),
+                'af=%3.1f'     % (0),
+                'agg_f=%3.1f'  % (0),
                 '(%d/%d)'      % (0, 0),
                 'Aggression Freq'
                 )
@@ -576,17 +576,17 @@ def cbet(stat_dict, player):
         oppt = stat_dict[player]['cb_opp_1']+stat_dict[player]['cb_opp_2']+stat_dict[player]['cb_opp_3']+stat_dict[player]['cb_opp_4']
         stat = float(cbets)/float(oppt)
         return (stat,
-                '%3.1f'        % (100*stat) + '%',
-                'cbet=%3.1f'   % (100*stat) + '%',
-                'cbet=%3.1f'   % (100*stat) + '%',
+                '%3.1f'        % (100*stat),
+                'cbet=%3.1f'   % (100*stat),
+                'cbet=%3.1f'   % (100*stat),
                 '(%d/%d)'      % (cbets, oppt),
                 '% continuation bet '
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'cbet=%3.1f'   % (0) + '%',
-                'cbet=%3.1f'   % (0) + '%',
+                '%3.1f'        % (0),
+                'cbet=%3.1f'   % (0),
+                'cbet=%3.1f'   % (0),
                 '(%d/%d)'      % (0, 0),
                 '% continuation bet '
                 )
