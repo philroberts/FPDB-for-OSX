@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Steffen Jobbagy-Felso
 #This program is free software: you can redistribute it and/or modify
@@ -35,7 +36,7 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.environ['PATH'] = tmppath
         print "Python " + sys.version[0:3] + ' - press return to continue\n'
         sys.stdin.readline()
-        os.execvpe('python.exe', ('python.exe', 'fpdb.py', '-r'), os.environ) # first arg is ignored (name of program being run)
+        os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
         raw_input("Press ENTER to continue.")
@@ -110,7 +111,7 @@ import Database
 import Configuration
 import Exceptions
 
-VERSION = "0.20"
+VERSION = "0.20-pre1"
 
 
 class fpdb:
@@ -226,12 +227,12 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2010, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
+        dia.set_copyright("2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
         dia.set_comments("GTK AboutDialog comments here")
         dia.set_license("GPL v3")
         dia.set_website("http://fpdb.sourceforge.net/")
-        dia.set_authors(['Steffen', 'Eratosthenes', 's0rrow',
-            'EricBlade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
+        dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
         dia.set_program_name("Free Poker Database (FPDB)")
 
         db_version = ""
@@ -275,7 +276,7 @@ class fpdb:
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_default_size(700, 500)
 
-        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
+        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox, dia)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
@@ -283,11 +284,13 @@ class fpdb:
             if len(self.nb_tab_names) == 1:
                 # only main tab open, reload profile
                 self.load_profile()
+                dia.destroy()
             else:
+                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
                 self.warning_box("Updated preferences have not been loaded because "
                                  + "windows are open. Re-start fpdb to load them.")
-
-        dia.destroy()
+        else:
+            dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
         self.warning_box("Unimplemented: Maintain Databases")
@@ -393,11 +396,13 @@ class fpdb:
         if self.obtain_global_lock():  # returns true if successful
 
             #lock_released = False
-            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+            dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
             diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
                         +self.db.database+" on "+self.db.host+" they will be deleted."
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            dia_confirm.set_deletable(False)
 
             response = dia_confirm.run()
             dia_confirm.destroy()
@@ -412,6 +417,14 @@ class fpdb:
                 #else:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
+                # TODO: figure out why this seems to be necessary
+                dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
+                        buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
+                diastring = "You should now restart fpdb."
+                dia_restart.format_secondary_text(diastring)
+
+                dia_restart.run()
+                dia_restart.destroy()
             elif response == gtk.RESPONSE_NO:
                 print 'User cancelled recreating tables'
             #if not lock_released:
@@ -419,9 +432,11 @@ class fpdb:
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
-            self.dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            self.dia_confirm.set_deletable(False)
 
             hb1 = gtk.HBox(True, 1)
             self.h_start_date = gtk.Entry(max=12)
@@ -469,16 +484,19 @@ class fpdb:
 
     def dia_rebuild_indexes(self, widget, data=None):
         if self.obtain_global_lock():
-            self.dia_confirm = gtk.MessageDialog(parent=None
-                                                ,flags=0
+            self.dia_confirm = gtk.MessageDialog(parent=self.window
+                                                ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                                 ,type=gtk.MESSAGE_WARNING
                                                 ,buttons=(gtk.BUTTONS_YES_NO)
                                                 ,message_format="Confirm rebuilding database indexes")
             diastring = "Please confirm that you want to rebuild the database indexes."
             self.dia_confirm.format_secondary_text(diastring)
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            self.dia_confirm.set_deletable(False)
 
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
+                #FIXME these progress messages do not seem to work
                 lbl = gtk.Label(" Rebuilding Indexes ... ")
                 self.dia_confirm.vbox.add(lbl)
                 lbl.show()
@@ -550,8 +568,13 @@ class fpdb:
             pass
 
     def __calendar_dialog(self, widget, entry):
-        self.dia_confirm.set_modal(False)
+# do not alter the modality of the parent
+#        self.dia_confirm.set_modal(False)
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        d.set_transient_for(self.dia_confirm)
+        d.set_destroy_with_parent(True)
+        d.set_modal(True)
+
         d.set_title('Pick a date')
 
         vb = gtk.VBox()
@@ -714,7 +737,7 @@ class fpdb:
             self.warning_box( "There is an error in your config file\n" + self.config.file
                               + "\n\nError is:  " + str(self.config.file_error)
                             , diatitle="CONFIG FILE ERROR" )
-            exit()
+            sys.exit()
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
@@ -875,9 +898,12 @@ class fpdb:
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         mh_tab=gtk.Label("""Welcome to Fpdb!
-For documentation please visit our website at http://fpdb.sourceforge.net/ or check the docs directory in the fpdb folder.
-Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml
-This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
+This program is currently in an alpha-state, so our database format is still sometimes changed.
+You should therefore always keep your hand history files so that you can re-import after an update, if necessary.
+For documentation please visit our website at http://fpdb.sourceforge.net/.
+If you need help click on Contact - Get Help on our website.
+Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
+This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory.""")
         self.add_and_display_tab(mh_tab, "Help")
 
     def tab_table_viewer(self, widget, data=None):
@@ -905,7 +931,11 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.window.connect("destroy", self.destroy)
         self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
         self.window.set_border_width(1)
-        self.window.set_default_size(900,720)
+        defx, defy = 900, 720
+        sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
+        if sx < defx:  defx = sx
+        if sy < defy:  defy = sy
+        self.window.set_default_size(defx, defy)
         self.window.set_resizable(True)
 
         self.main_vbox = gtk.VBox(False, 1)
@@ -957,9 +987,15 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
         menuItem.connect('activate', self.dia_about)
         self.statusMenu.append(menuItem)
-        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
-        menuItem.connect('activate', self.quit)
-        self.statusMenu.append(menuItem)
+
+# do not allow quit - if any transient (popup) windows are open (rebuild cache, rebuild index etc) 
+# quit from the tray causes a very very unclean shutdown, lockup of python process and failure to release global lock.  
+#  fpdb window must be re-opened and the windows closed to quit
+ 
+#        menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
+#        menuItem.connect('activate', self.quit)
+#        self.statusMenu.append(menuItem)
+
         self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
         self.statusIcon.set_visible(True)
 
@@ -1006,7 +1042,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             self.window.present()
 
     def info_box(self, str1, str2):
-        diapath = gtk.MessageDialog( parent=None, flags=0, type=gtk.MESSAGE_INFO
+        diapath = gtk.MessageDialog( parent=self.window, flags=0, type=gtk.MESSAGE_INFO
                                    , buttons=(gtk.BUTTONS_OK), message_format=str1 )
         diapath.format_secondary_text(str2)
         response = diapath.run()
@@ -1014,7 +1050,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         return response
 
     def warning_box(self, str, diatitle="FPDB WARNING"):
-        diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
         label = gtk.Label(str)
         diaWarning.vbox.add(label)

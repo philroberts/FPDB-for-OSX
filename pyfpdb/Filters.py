@@ -88,7 +88,7 @@ class Filters(threading.Thread):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print "Either 0 or more than one site matched - EEK"
+                print "Either 0 or more than one site matched (%s) - EEK" % site
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)

@@ -1,0 +1,39 @@
+Full Tilt Poker Game #19505996411: $2 + $0.25 Sit & Go (148860619), Table 1 - 300/600 - Limit Hold'em - 18:58:46 ET - 2010/03/23
+Seat 2: Player2 (7,723)
+Seat 5: Player5 (3,409)
+Seat 6: Player6 (50)
+Seat 8: Player8 (818)
+Player6 posts the small blind of 50, and is all in
+Player8 posts the big blind of 300
+The button is in seat #5
+*** HOLE CARDS ***
+Dealt to Player5 [2h 9h]
+Player2 has 15 seconds left to act
+Player2 calls 300
+Player5 folds
+Player8 checks
+*** FLOP *** [2d 7s Qc]
+Player8 checks
+Player2 checks
+*** TURN *** [2d 7s Qc] [8s]
+Player8 checks
+Player2 checks
+*** RIVER *** [2d 7s Qc 8s] [5c]
+Player8 checks
+Player2 checks
+*** SHOW DOWN ***
+Player8 shows [Ts 4c] Queen Ten high
+Player2 shows [2c As] a pair of Twos
+Player2 wins the side pot (500) with a pair of Twos
+Player6 shows [7c 5s] two pair, Sevens and Fives
+Player6 wins the main pot (150) with two pair, Sevens and Fives
+*** SUMMARY ***
+Total pot 650 Main pot 150. Side pot 500. | Rake 0
+Board: [2d 7s Qc 8s 5c]
+Seat 2: Player2 showed [2c As] and won (500) with a pair of Twos
+Seat 5: Player5 (button) didn't bet (folded)
+Seat 6: Player6 (small blind) showed [7c 5s] and won (150) with two pair, Sevens and Fives
+Seat 8: Player8 (big blind) showed [Ts 4c] and lost with Queen Ten high
+
+
+
