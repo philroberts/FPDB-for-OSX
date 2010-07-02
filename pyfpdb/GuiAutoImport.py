@@ -32,11 +32,12 @@ import Configuration
 import string
 
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config, sql):
+    def __init__(self, settings, config, sql, parent):
         self.importtimer = 0
         self.settings = settings
         self.config = config
         self.sql = sql
+        self.parent = parent
 
         imp = self.config.get_import_parameters()
 
@@ -138,6 +139,8 @@ class GuiAutoImport (threading.Thread):
         #dia_chooser.set_current_folder(pathname)
         dia_chooser.set_filename(current_path)
         #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+        dia_chooser.set_destroy_with_parent(True)
+        dia_chooser.set_transient_for(self.parent)
 
         response = dia_chooser.run()
         if response == gtk.RESPONSE_OK:

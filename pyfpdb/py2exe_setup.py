@@ -63,6 +63,10 @@ Py2exe script for fpdb.
 #  
 #  libgobject-2.0-0.dll
 #  libgdk-win32-2.0-0.dll
+#
+#  Now updated to work with python 2.6 + related dependencies
+#  See walkthrough in packaging directory for versions used
+#  Updates to this script have broken python 2.5 compatibility (gio module, msvcr71 references now msvcp90)
 
 
 import os
@@ -77,7 +81,9 @@ from datetime import date
 
 origIsSystemDLL = py2exe.build_exe.isSystemDLL
 def isSystemDLL(pathname):
-        if os.path.basename(pathname).lower() in ("msvcp71.dll", "dwmapi.dll"):
+        #VisC++ runtime msvcp71.dll removed; py2.6 needs msvcp90.dll which will not be distributed.
+        #dwmapi appears to be vista-specific file, not XP 
+        if os.path.basename(pathname).lower() in ("dwmapi.dll"):
                 return 0
         return origIsSystemDLL(pathname)
 py2exe.build_exe.isSystemDLL = isSystemDLL
@@ -145,12 +151,13 @@ setup(
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
-                                      ,'libgobject-2.0-0.dll'],
+                                      ,'libgobject-2.0-0.dll', 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],
                   }
               },
 
     # files in 2nd value in tuple are moved to dir named in 1st value
-    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../docs/readme.txt'])
+    #data_files updated for new locations of licences + readme nolonger exists
+    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../agpl-3.0.txt', '../fdl-1.2.txt', '../THANKS.txt'])
                  ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
                  # line below has problem with fonts subdir ('not a regular file')
@@ -174,7 +181,7 @@ dest = dest.replace('\\', '\\\\')
 os.rename( 'pyfpdb', dest )
 
 
-print "Enter directory name for GTK 2.14 (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
+print "Enter directory name for GTK (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
 gtk_dir = sys.stdin.readline().rstrip()
 
 
@@ -222,6 +229,8 @@ pyfpdb/share/gtk-doc
 pyfpdb/share/locale
 pyfpdb/share/man
 pyfpdb/share/themes/Default
+
+Please double-check that msvcr90.dll is NOT in the distribution tree
 
 Use 7-zip to zip up the distribution and create a self extracting archive and that's it!
 """
