@@ -79,7 +79,6 @@ class Hand(object):
         self.speed = "Normal"
         self.isRebuy = False
         self.isKO = False
-        self.isHU = False
         self.isMatrix = False
         self.isShootout = False
         self.tourneyComment = None

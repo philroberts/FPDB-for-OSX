@@ -154,7 +154,6 @@ class HandInternal(DerivedStats):
             'knockout':      'isKO',
             'rebuy':         'isRebuy',
             'addOn':         'isAddOn',
-            'headsUp':       'isHU',
             'shootout':      'isShootout',
             'matrix':        'isMatrix',
             'sng':           'isSNG',
@@ -383,7 +382,7 @@ class TourneyType(MappedBase):
 
         Required kwargs: 
             buyin fee speed maxSeats knockout 
-            rebuy addOn headsUp shootout matrix sng currency
+            rebuy addOn shootout matrix sng currency
         """
         return get_or_create(cls, session, **kwargs)[0]
 

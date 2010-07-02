@@ -1358,16 +1358,16 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         if self.backend == self.SQLITE:
             c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout,
-                         rebuy, addOn, speed, headsUp, shootout, matrix)
-                         VALUES (NULL, 1, 'USD', 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0, 0);""")
+                         rebuy, addOn, speed, shootout, matrix)
+                         VALUES (NULL, 1, 'USD', 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0);""")
         elif self.backend == self.PGSQL:
             c.execute("""insert into TourneyTypes(siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
-                                                 ,rebuy, addOn, speed, headsUp, shootout, matrix)
-                         values (1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False, False);""")
+                                                 ,rebuy, addOn, speed, shootout, matrix)
+                         values (1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False);""")
         elif self.backend == self.MYSQL_INNODB:
             c.execute("""insert into TourneyTypes(id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
-                                                 ,rebuy, addOn, speed, headsUp, shootout, matrix)
-                         values (DEFAULT, 1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False, False);""")
+                                                 ,rebuy, addOn, speed, shootout, matrix)
+                         values (DEFAULT, 1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False);""")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1943,7 +1943,7 @@ class Database:
         result=cursor.fetchone()
 
         expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
-                           7 : "isHU", 8 : "isShootout", 9 : "isMatrix" }
+                           7 : "isShootout", 8 : "isMatrix" }
         typeIdMatch = True
 
         try:
@@ -1965,7 +1965,7 @@ class Database:
             log.debug("Searching for a TourneyTypeId matching TourneyType data")
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
-                             tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                             tourney.isRebuy, tourney.speed, tourney.isShootout, tourney.isMatrix)
                             )
             result=cursor.fetchone()
         
@@ -1977,7 +1977,7 @@ class Database:
                 log.debug("Tourney Type Id not found : create one")
                 cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
                                 (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
-                                 tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                                 tourney.speed, tourney.isShootout, tourney.isMatrix)
                                 )
                 typeId = self.get_last_insert_id(cursor)
 

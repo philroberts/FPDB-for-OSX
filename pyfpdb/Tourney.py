@@ -66,7 +66,6 @@ class Tourney(object):
         self.mixed              = None
         self.isRebuy            = False
         self.isKO               = False
-        self.isHU               = False
         self.isMatrix           = False
         self.isShootout         = False
         self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
@@ -117,7 +116,6 @@ class Tourney(object):
                  ("MIXED", self.mixed),
                  ("REBUY ADDON", self.isRebuy),
                  ("KO", self.isKO),
-                 ("HU", self.isHU),
                  ("MATRIX", self.isMatrix),
                  ("SHOOTOUT", self.isShootout),
                  ("MATRIX MATCH ID", self.matrixMatchId),

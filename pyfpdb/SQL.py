@@ -376,7 +376,6 @@ class Sql:
                         knockout BOOLEAN NOT NULL DEFAULT False,
                         koBounty INT,
                         speed varchar(10),
-                        headsUp BOOLEAN NOT NULL DEFAULT False,
                         shootout BOOLEAN NOT NULL DEFAULT False,
                         matrix BOOLEAN NOT NULL DEFAULT False,
                         sng BOOLEAN NOT NULL DEFAULT False,
@@ -402,7 +401,6 @@ class Sql:
                         knockout BOOLEAN NOT NULL DEFAULT False,
                         koBounty INT,
                         speed varchar(10),
-                        headsUp BOOLEAN NOT NULL DEFAULT False,
                         shootout BOOLEAN NOT NULL DEFAULT False,
                         matrix BOOLEAN NOT NULL DEFAULT False,
                         sng BOOLEAN NOT NULL DEFAULT False,
@@ -427,7 +425,6 @@ class Sql:
                         knockout BOOLEAN NOT NULL DEFAULT 0,
                         koBounty INT,
                         speed TEXT,
-                        headsUp BOOLEAN NOT NULL DEFAULT 0,
                         shootout BOOLEAN NOT NULL DEFAULT 0,
                         matrix BOOLEAN NOT NULL DEFAULT 0,
                         sng BOOLEAN NOT NULL DEFAULT 0,
@@ -1266,13 +1263,13 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, headsUp, shootout, matrix, sng)"""
+                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
         elif db_server == 'postgresql':
             self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, headsUp, shootout, matrix, sng)"""
+                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
         elif db_server == 'sqlite':
             self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
-                                             , maxSeats, knockout, rebuy, addOn, speed, headsUp, shootout, matrix, sng)"""
+                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
 
@@ -3592,7 +3589,6 @@ class Sql:
                                                               tt.rebuy,
                                                               tt.addOn,
                                                               tt.speed,
-                                                              tt.headsUp,
                                                               tt.shootout,
                                                               tt.matrix
                                                     FROM TourneyTypes tt 
@@ -3609,15 +3605,14 @@ class Sql:
                                             AND rebuy=%s
                                             AND addOn=%s
                                             AND speed=%s
-                                            AND headsUp=%s
                                             AND shootout=%s
                                             AND matrix=%s
         """
 
         self.query['insertTourneyTypes'] = """INSERT INTO TourneyTypes
                                                   (siteId, buyin, fee, knockout, rebuy, addOn
-                                                  ,speed, headsUp, shootout, matrix)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                                  ,speed, shootout, matrix)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['getTourney'] = """SELECT t.id,

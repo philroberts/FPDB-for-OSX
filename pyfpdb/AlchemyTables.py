@@ -383,7 +383,6 @@ tourney_types_table = Table('TourneyTypes', metadata,
     Column('knockout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('koBounty',      Integer), # INT
     Column('speed',         String(10)), # varchar(10)
-    Column('headsUp',       Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('shootout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('matrix',        Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('sng',           Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
@@ -396,7 +395,7 @@ tourney_types_table = Table('TourneyTypes', metadata,
 Index('tourneyTypes_all', 
     tourney_types_table.c.siteId, tourney_types_table.c.buyin, tourney_types_table.c.fee, 
     tourney_types_table.c.maxSeats, tourney_types_table.c.knockout, tourney_types_table.c.rebuy,
-    tourney_types_table.c.addOn, tourney_types_table.c.speed, tourney_types_table.c.headsUp,
+    tourney_types_table.c.addOn, tourney_types_table.c.speed,
     tourney_types_table.c.shootout, tourney_types_table.c.matrix, tourney_types_table.c.sng)
 
 
