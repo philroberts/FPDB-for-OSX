@@ -494,6 +494,7 @@ class Sql:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
+                        sitout BOOLEAN NOT NULL,
                     
                         card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 smallint NOT NULL,
@@ -610,6 +611,7 @@ class Sql:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
+                        sitout BOOLEAN NOT NULL,
 
                         card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 smallint NOT NULL,
@@ -725,6 +727,7 @@ class Sql:
                         startCash INT NOT NULL,
                         position TEXT,
                         seatNo INT NOT NULL,
+                        sitout BOOLEAN NOT NULL,
                     
                         card1 INT NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 INT NOT NULL,
@@ -3748,6 +3751,7 @@ class Sql:
                 playerId,
                 startCash,
                 seatNo,
+                sitout,
                 card1,
                 card2,
                 card3,
@@ -3847,7 +3851,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                 )"""
         
         if db_server == 'mysql':

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
@@ -139,6 +140,7 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
+            self.handsplayers[player[1]]['sitout'] = False #TODO: implement actual sitout detection
 
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
