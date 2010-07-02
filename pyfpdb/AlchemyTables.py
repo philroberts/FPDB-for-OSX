@@ -403,7 +403,6 @@ tourneys_players_table = Table('TourneysPlayers', metadata,
     Column('id',            BigIntColumn, primary_key=True), 
     Column('tourneyId',     Integer, ForeignKey("Tourneys.id"), nullable=False), 
     Column('playerId',      Integer, ForeignKey("Players.id"), nullable=False), 
-    Column('payinAmount',   Integer), # INT NOT NULL
     Column('rank',          Integer), # INT NOT NULL
     Column('winnings',      Integer), # INT NOT NULL
     Column('winningsCurrency', Text), # TEXT

@@ -89,7 +89,6 @@ class Tourney(object):
         self.finishPositions    = {}
         self.winnings           = {}
         self.winningsCurrency   = {}
-        self.payinAmounts       = {}
         self.rebuyCounts        = {}
         self.addOnCounts        = {}
         self.koCounts            = {}
@@ -137,7 +136,6 @@ class Tourney(object):
  
         structs = ( ("GAMETYPE", self.gametype),
                     ("PLAYERS", self.players),
-                    ("PAYIN AMOUNTS", self.payinAmounts),
                     ("POSITIONS", self.finishPositions),                    
                     ("WINNINGS", self.winnings),
                     ("COUNT REBUYS", self.rebuyCounts),
@@ -194,7 +192,7 @@ class Tourney(object):
         """ Function to create Tourney object from database """
         
 
-    def addPlayer(self, rank, name, winnings, winningsCurrency, payinAmount, rebuyCount, addOnCount, koCount):
+    def addPlayer(self, rank, name, winnings, winningsCurrency, rebuyCount, addOnCount, koCount):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
@@ -206,7 +204,6 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
         self.finishPositions.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
         self.winningsCurrency.update( { name : winningsCurrency } )
-        self.payinAmounts.update( {name : Decimal(payinAmount) } )
         self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
         self.addOnCounts.update( {name: Decimal(addOnCount) } )
         self.koCounts.update( {name : Decimal(koCount) } )

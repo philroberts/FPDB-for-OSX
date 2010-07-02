@@ -846,7 +846,6 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        payinAmount INT NOT NULL,
                         rank INT NOT NULL,
                         winnings INT NOT NULL,
                         winningsCurrency VARCHAR(4) NOT NULL,
@@ -861,7 +860,6 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        payinAmount INT,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
@@ -875,7 +873,6 @@ class Sql:
                         id INT PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
-                        payinAmount INT,
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
@@ -3658,7 +3655,6 @@ class Sql:
         """
         
         self.query['getTourneysPlayers'] = """SELECT    id,
-                                                        payinAmount,
                                                         rank,
                                                         winnings,
                                                         winningsCurrency,
@@ -3672,8 +3668,7 @@ class Sql:
         """
 
         self.query['updateTourneysPlayers'] = """UPDATE TourneysPlayers
-                                                 SET payinAmount = %s,
-                                                     rank = %s,
+                                                 SET rank = %s,
                                                      winnings = %s,
                                                      winningsCurrency = %s,
                                                      rebuyCount = %s,
@@ -3685,8 +3680,8 @@ class Sql:
         """
 
         self.query['insertTourneysPlayers'] = """INSERT INTO TourneysPlayers
-                                                    (tourneyId, playerId, payinAmount, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount, comment, commentTs)
-                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                                    (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount, comment, commentTs)
+                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id
