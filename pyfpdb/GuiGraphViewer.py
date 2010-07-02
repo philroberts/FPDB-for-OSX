@@ -349,7 +349,7 @@ class GuiGraphViewer (threading.Thread):
 
         response = dia_chooser.run()
         
-        if response == gtk.RESPONSE_CANCEL:
+        if response <> gtk.RESPONSE_OK:
             print 'Closed, no graph exported'
             dia_chooser.destroy()
             return

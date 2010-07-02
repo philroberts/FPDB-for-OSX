@@ -132,7 +132,7 @@ test_and_remove(dist_dir)
 setup(
     name        = 'fpdb',
     description = 'Free Poker DataBase',
-    version     = '0.12',
+    version     = '0.20',
 
     windows = [   {'script': 'fpdb.pyw', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
                   {'script': 'HUD_main.pyw', },
@@ -157,7 +157,7 @@ setup(
 
     # files in 2nd value in tuple are moved to dir named in 1st value
     #data_files updated for new locations of licences + readme nolonger exists
-    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../agpl-3.0.txt', '../fdl-1.2.txt', '../THANKS.txt'])
+    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../agpl-3.0.txt', '../fdl-1.2.txt', '../THANKS.txt', '../readme.txt'])
                  ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
                  # line below has problem with fonts subdir ('not a regular file')
