@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2008 Steffen Jobbagy-Felso
 #This program is free software: you can redistribute it and/or modify
@@ -485,9 +486,9 @@ class Importer:
 
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
-        print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
+        print "Error No.",errors,", please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem."
         print "Filename:", filename
-        print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
+        print "Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:"
         print self.hand[0]
         print "Hand logged to hand-errors.txt"
         logfile = open('hand-errors.txt', 'a')
