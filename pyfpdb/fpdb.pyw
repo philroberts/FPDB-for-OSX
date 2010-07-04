@@ -416,21 +416,24 @@ class fpdb:
                 #    self.release_global_lock()
                 #    lock_released = True
                 self.db.recreate_tables()
+                self.release_global_lock()
                 #else:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
                 # TODO: figure out why this seems to be necessary
                 dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
-                diastring = "You should now restart fpdb."
+                diastring = "Fpdb now needs to close. Please restart it."
                 dia_restart.format_secondary_text(diastring)
 
                 dia_restart.run()
                 dia_restart.destroy()
+                self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
+		self.release_global_lock()
                 print 'User cancelled recreating tables'
             #if not lock_released:
-            self.release_global_lock()
+    #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
