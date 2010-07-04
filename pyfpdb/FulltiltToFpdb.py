@@ -626,7 +626,7 @@ class Fulltilt(HandHistoryConverter):
         
         # Calculate payin amounts and update winnings -- not possible to take into account nb of rebuys, addons or Knockouts for other players than hero on FTP
         for p in tourney.players :
-            tourney.payinAmounts[p] = tourney.buyin + tourney.fee + (tourney.rebuyCost * tourney.rebuyCounts[p]) + (tourney.addOnCost * tourney.addOnCounts[p])
+            #tourney.payinAmounts[p] = tourney.buyin + tourney.fee + (tourney.rebuyCost * tourney.rebuyCounts[p]) + (tourney.addOnCost * tourney.addOnCounts[p])
             #print " player %s : payinAmount = %d" %( p, tourney.payinAmounts[p])
             if tourney.isKO :
                 #tourney.incrementPlayerWinnings(tourney.players[p], Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p]))
