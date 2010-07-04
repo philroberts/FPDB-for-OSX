@@ -25,7 +25,7 @@ psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.2
 
 1.2/ MySQL 
 
-MySQL-python-1.2.2.win32-py2.6-fpdb0.20.exe ... http://www.mediafire.com/file/zjyljynz2mz/MySQL-python-1.2.2.win32-py2.6-fpdb0.20.exe
+MySQL-python-1.2.3.win32-py2.6-fpdb0.20.exe ... http://www.mediafire.com/file/iodnnnznmj1/MySQL-python-1.2.3.win32-py2.6-fpdb0.20.exe
 
 This is an intaller built from source by gimick.  There are no official mysql-python2.6 build for windows.
 

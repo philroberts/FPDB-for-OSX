@@ -113,7 +113,7 @@ import Database
 import Configuration
 import Exceptions
 
-VERSION = "0.20-pre3"
+VERSION = "0.20-pre4"
 
 
 class fpdb:
