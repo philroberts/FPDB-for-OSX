@@ -654,7 +654,7 @@ class Fulltilt(HandHistoryConverter):
                 else:
                     winnings = "0"
 
-                tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0, 0) #TODO: make it store actual winnings currency
+                tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0) #TODO: make it store actual winnings currency
             else:
                 print "FullTilt: Player finishing stats unreadable : %s" % a
 
