@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2010, Matthew Boss
@@ -21,7 +21,7 @@
 
 # This code is based heavily on EverleafToFpdb.py, by Carl Gherardi
 #
-# OUTSTANDING MATTERS
+# TODO:
 #
 # -- No siteID assigned
 # -- No support for games other than NL hold 'em cash. Hand histories for other

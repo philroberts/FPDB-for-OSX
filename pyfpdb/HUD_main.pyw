@@ -1,10 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 
-"""Hud_main.py
-
-Main for FreePokerTools HUD.
-"""
-#    Copyright 2008, 2009,  Ray E. Barker
+#    Copyright 2008-2010,  Ray E. Barker
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,10 +19,14 @@ Main for FreePokerTools HUD.
 
 ########################################################################
 
-#    to do allow window resizing
-#    to do hud to echo, but ignore non numbers
-#    to do no stat window for hero
-#    to do things to add to config.xml
+"""Hud_main.py
+
+Main for FreePokerTools HUD.
+"""
+#    TODO allow window resizing
+#    TODO hud to echo, but ignore non numbers
+#    TODO no stat window for hero
+#    TODO things to add to config.xml
 
 #    Standard Library modules
 import sys

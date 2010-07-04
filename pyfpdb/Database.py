@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """Database.py
 
 Create and manage the database objects.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008-2010, Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ Create and manage the database objects.
 
 ########################################################################
 
-# ToDo:  - rebuild indexes / vacuum option
+# TODO:  - rebuild indexes / vacuum option
 #        - check speed of get_stats_from_hand() - add log info
 #        - check size of db, seems big? (mysql)
 #        - investigate size of mysql db (200K for just 7K hands? 2GB for 140K hands?)

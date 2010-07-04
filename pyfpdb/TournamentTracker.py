@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """TourneyTracker.py
     Based on HUD_main .. who knows if we want to actually use this or not
 """
-#    Copyright 2008, 2009,  Eric Blade
+#    Copyright 2008-2010,  Eric Blade
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
