@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-#!/usr/bin/python
-=======
 #!/usr/bin/python2
 # -*- coding: utf-8 -*-
->>>>>>> 3b24fd1... some cleanups:
 
 #Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
