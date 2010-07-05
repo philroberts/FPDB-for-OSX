@@ -1,11 +1,17 @@
-Create MySqlPython windows installer for Python26
-created by Gimick on 29th June 2010
+Create MySqlPython version 1.2.3 windows installer for Python26
+
+This walkthrough is derived from excellent installation instructions released under GNU Free Documentation License 1.2.  The original work is here ... http://www.bcspcsonline.com/wiki/index.php?title=MySQL-5.1.34_Python-2.6_Module_Build_Instructions  The Wiki author appears to be "Irondesk"
+
+This version by Gimick on 29th June 2010
+Content is available under GNU Free Documentation License 1.2
+
+Premamble
+---------
+
 
 The FPDB exe needs to build against the MySql-Python project.  Unfortunately, for python 2.6 there is no official installer for windows, and none is ever likely to be provided.
+
 Community builds are available, but to reduce third-party dependencies, we will build our own here.
-
-This walkthrough is derived from excellent installation instructions here ... http://www.bcspcsonline.com/wiki/index.php?title=MySQL-5.1.34_Python-2.6_Module_Build_Instructions
-
 
 Step 0 Get a fresh XP installation
 ----------------------------------

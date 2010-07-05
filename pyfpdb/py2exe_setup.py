@@ -230,8 +230,6 @@ pyfpdb/share/locale
 pyfpdb/share/man
 pyfpdb/share/themes/Default
 
-Please double-check that msvcr90.dll is NOT in the distribution tree
-
 Use 7-zip to zip up the distribution and create a self extracting archive and that's it!
 """
 
