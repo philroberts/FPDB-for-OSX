@@ -1,7 +1,6 @@
 #!/bin/sh
 
-#Copyright 2008 Steffen Jobbagy-Felso
-#Copyright 2009 Ray E. Barker
+#Copyright 2008-2010 Steffen Schaumburg, Ray E. Barker
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -13,8 +12,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 #   This script prepares the compressed distribution files for
 #   uploading to sourceforge.

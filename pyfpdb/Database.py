@@ -1,9 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
 """Database.py
 
 Create and manage the database objects.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008-2010, Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -21,7 +22,7 @@ Create and manage the database objects.
 
 ########################################################################
 
-# ToDo:  - rebuild indexes / vacuum option
+# TODO:  - rebuild indexes / vacuum option
 #        - check speed of get_stats_from_hand() - add log info
 #        - check size of db, seems big? (mysql)
 #        - investigate size of mysql db (200K for just 7K hands? 2GB for 140K hands?)
@@ -1852,48 +1853,6 @@ class Database:
 #################################
 # Finish of NEWIMPORT CODE
 #################################
-
-
-
-    def store_tourneys_players(self, tourney_id, player_ids, payin_amounts, ranks, winnings):
-        try:
-            result=[]
-            cursor = self.get_cursor()
-            #print "in store_tourneys_players. tourney_id:",tourney_id
-            #print "player_ids:",player_ids
-            #print "payin_amounts:",payin_amounts
-            #print "ranks:",ranks
-            #print "winnings:",winnings
-            for i in xrange(len(player_ids)):
-                try:
-                    cursor.execute("savepoint ins_tplayer")
-                    cursor.execute("""INSERT INTO TourneysPlayers
-                    (tourneyId, playerId, payinAmount, rank, winnings) VALUES (%s, %s, %s, %s, %s)""".replace('%s', self.sql.query['placeholder']),
-                    (tourney_id, player_ids[i], payin_amounts[i], ranks[i], winnings[i]))
-                    
-                    tmp = self.get_last_insert_id(cursor)
-                    result.append(tmp)
-                    #print "created new tourneys_players.id:", tmp
-                except:
-                    cursor.execute("rollback to savepoint ins_tplayer")
-                    cursor.execute("SELECT id FROM TourneysPlayers WHERE tourneyId=%s AND playerId+0=%s".replace('%s', self.sql.query['placeholder'])
-                                  ,(tourney_id, player_ids[i]))
-                    tmp = cursor.fetchone()
-                    #print "tried SELECTing tourneys_players.id:", tmp
-                    try:
-                        len(tmp)
-                        result.append(tmp[0])
-                    except:
-                        print "tplayer id not found for tourney,player %s,%s" % (tourney_id, player_ids[i])
-                        pass
-        except:
-            raise FpdbError( "store_tourneys_players error: " + str(sys.exc_value) )
-
-        cursor.execute("release savepoint ins_tplayer")
-        #print "store_tourneys_players returning", result
-        return result
-    #end def store_tourneys_players
-
 
     # read HandToWrite objects from q and insert into database
     def insert_queue_hands(self, q, maxwait=10, commitEachHand=True):

@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -13,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import os
 import sys
@@ -906,7 +905,9 @@ You should therefore always keep your hand history files so that you can re-impo
 For documentation please visit our website at http://fpdb.sourceforge.net/.
 If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
-This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory.""")
+
+This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.
+You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt in the fpdb installation directory.""")
         self.add_and_display_tab(mh_tab, "Help")
 
     def tab_table_viewer(self, widget, data=None):

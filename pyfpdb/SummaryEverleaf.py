@@ -1,6 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python2
+# -*- coding: utf-8 -*-
 
-# Copyright (c) 2009 Eric Blade, and the FPDB team.
+# Copyright (c) 2009-2010 Eric Blade, and the FPDB team.
 
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
@@ -13,8 +14,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import urllib, htmllib, formatter
 
