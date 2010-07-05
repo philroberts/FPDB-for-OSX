@@ -22,6 +22,7 @@
 
 import sys
 from HandHistoryConverter import *
+from decimal import Decimal
 
 # PokerStars HH Format
 
@@ -241,12 +242,22 @@ class PokerStars(HandHistoryConverter):
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                if info[key] == 'Freeroll':
-                    hand.buyin = '$0+$0'
-                else:
-                    #FIXME: The key looks like: '€0.82+€0.18 EUR'
-                    #       This should be parsed properly and used
-                    hand.buyin = info[key]
+                if hand.tourNo!=None:
+                    if info[key] == 'Freeroll':
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency = "FREE"
+                    else:
+                        if info[key].find("$")!=-1:
+                            hand.buyinCurrency="USD"
+                        elif info[key].find(u"€")!=-1:
+                            hand.buyinCurrency="EUR"
+                        else:
+                            hand.buyinCurrency="NA" #FIXME: handle other currencies, FPP, play money
+                        info[key]=info[key][:-4]
+                        middle=info[key].find("+")
+                        hand.buyin = 100*Decimal(info[key][1:middle])
+                        hand.fee = 100*Decimal(info[key][middle+2:])
             if key == 'LEVEL':
                 hand.level = info[key]
 

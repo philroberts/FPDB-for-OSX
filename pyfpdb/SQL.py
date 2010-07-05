@@ -3599,6 +3599,7 @@ class Sql:
         self.query['getTourneyTypeId'] = """SELECT  id
                                             FROM TourneyTypes
                                             WHERE siteId=%s
+                                            AND currency=%s
                                             AND buyin=%s
                                             AND fee=%s
                                             AND knockout=%s
@@ -3609,34 +3610,23 @@ class Sql:
                                             AND matrix=%s
         """
 
-        self.query['insertTourneyTypes'] = """INSERT INTO TourneyTypes
-                                                  (siteId, buyin, fee, knockout, rebuy, addOn
-                                                  ,speed, shootout, matrix)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
+                                                  (siteId, currency, buyin, fee, buyInChips, knockout, rebuy,
+                                                  addOn ,speed, shootout, matrix)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
-        self.query['getTourney'] = """SELECT t.id,
-                                             t.tourneyTypeId,
-                                             t.entries,
-                                             t.prizepool,
-                                             t.startTime,
-                                             t.endTime,
-                                             t.tourneyName,
-                                             t.matrixIdProcessed,
-                                             t.totalRebuyCount,
-                                             t.totalAddOnCount,
-                                             t.comment
-                                        FROM Tourneys t  
-                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id) 
-                                        WHERE t.siteTourneyNo=%s AND tt.siteId=%s
+        self.query['getTourneyIdByTourneyNo'] = """SELECT t.id
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        WHERE tt.siteId=%s AND t.siteTourneyNo=%s
         """
 
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, matrixIdProcessed,
-                                             totalRebuyCount, totalAddOnCount, comment, commentTs)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                                %s, %s)
+                                             totalRebuyCount, totalAddOnCount)
+                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys

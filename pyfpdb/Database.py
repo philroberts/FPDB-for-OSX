@@ -1933,9 +1933,9 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def recogniseTourneyType(self, tourney):
-        log.debug("Database.recogniseTourneyType")
-        typeId = 1
+    def getTourneyTypeId(self, tourney):
+        tourneyTypeId = 1
+        
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
@@ -1945,47 +1945,61 @@ class Database:
 
         expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
                            7 : "isShootout", 8 : "isMatrix" }
-        typeIdMatch = True
+        tourneyTypeIdMatch = True
 
         try:
-            len(result)
-            typeId = result[0]
-            log.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
+            tourneyTypeId = result[0]
+            log.debug("Tourney found in db with Tourney_Type_ID = %d" % tourneyTypeId)
             for ev in expectedValues :
                 if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
                     log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
-                    typeIdMatch = False
+                    tourneyTypeIdMatch = False
                     #break
         except:
             # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
-            typeIdMatch = False
+            tourneyTypeIdMatch = False
     
-        if typeIdMatch == False :
-            # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
-            # if not found create it
-            log.debug("Searching for a TourneyTypeId matching TourneyType data")
+        if tourneyTypeIdMatch == False :
+            # Check for an existing TTypeId that matches tourney info, if not found create it
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
-                             tourney.isRebuy, tourney.speed, tourney.isShootout, tourney.isMatrix)
+                            (tourney.siteId, tourney.currency, tourney.buyin, tourney.fee, tourney.isKO,
+                             tourney.isRebuy, tourney.isAddOn, tourney.speed, tourney.isShootout, tourney.isMatrix)
                             )
             result=cursor.fetchone()
         
             try:
-                len(result)
-                typeId = result[0]
-                log.debug("Existing Tourney Type Id found : %d" % typeId)
+                tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
-                log.debug("Tourney Type Id not found : create one")
-                cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
-                                (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
-                                 tourney.speed, tourney.isShootout, tourney.isMatrix)
+                cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
+                                (tourney.siteId, tourney.currency, tourney.buyin, tourney.fee, tourney.buyInChips,
+                                 tourney.isKO, tourney.isRebuy,
+                                 tourney.isAddOn, tourney.speed, tourney.isShootout, tourney.isMatrix)
                                 )
-                typeId = self.get_last_insert_id(cursor)
+                tourneyTypeId = self.get_last_insert_id(cursor)
+        return tourneyTypeId
+    #end def getTourneyTypeId
+    
+    def getTourneyId(self, tourney):
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourneyIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
+                        (tourney.siteId, tourney.tourNo))
+        result=cursor.fetchone()
 
-        return typeId
-    #end def recogniseTourneyType
-
+        try:
+            tourneyId = result[0]
+        except:
+            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                        (tourney.tourneyTypeId, tourney.tourNo, tourney.entries, tourney.prizepool,
+                         tourney.startTime, tourney.endTime, tourney.tourneyName, None,
+                         tourney.totalRebuyCount, tourney.totalAddOnCount))
+            tourneyId = self.get_last_insert_id(cursor)
+        return tourneyId
+    #end def getTourneyId
         
+    def getTourneysPlayersIds(self, tourney):
+        print "TODO implement getTourneysPlayersIds"
+    #end def getTourneysPlayersIds
+#end class Database
 
 # Class used to hold all the data needed to write a hand to the db
 # mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 

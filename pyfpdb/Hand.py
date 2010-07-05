@@ -37,7 +37,7 @@ import Configuration
 from Exceptions import *
 import DerivedStats
 import Card
-
+import Tourney
 
 class Hand(object):
 
@@ -57,7 +57,7 @@ class Hand(object):
         self.siteId = self.SITEIDS[sitename]
         self.stats = DerivedStats.DerivedStats(self)
         self.gametype = gametype
-        self.starttime = 0
+        self.startTime = 0
         self.handText = handText
         self.handid = 0
         self.cancelled = False
@@ -69,12 +69,15 @@ class Hand(object):
         self.maxseats = None
         self.counted_seats = 0
         self.buttonpos = 0
+        
+        #tourney stuff
+        self.tourney = None
         self.tourNo = None
         self.buyin = None
+        self.buyinCurrency = None
         self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
-        # Some attributes for hand from a tourney
         self.speed = "Normal"
         self.isRebuy = False
         self.isKO = False
@@ -136,6 +139,8 @@ class Hand(object):
                  ("MAXSEATS", self.maxseats),
                  ("TOURNAMENT NO", self.tourNo),
                  ("BUYIN", self.buyin),
+                 ("BUYIN CURRENCY", self.buyinCurrency),
+                 ("FEE", self.fee),
                  ("LEVEL", self.level),
                  ("MIXED", self.mixed),
                  ("LASTBET", self.lastBet),
@@ -151,7 +156,7 @@ class Hand(object):
                  ("TOTAL POT", self.totalpot),
                  ("TOTAL COLLECTED", self.totalcollected),
                  ("RAKE", self.rake),
-                 ("START TIME", self.starttime),
+                 ("START TIME", self.startTime),
         )
 
         structs = ( ("PLAYERS", self.players),
@@ -207,6 +212,16 @@ dealt   whether they were seen in a 'dealt to' line
 
         #Gametypes
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
+        
+        if self.tourNo!=None:
+            self.tourney=Tourney.Tourney(self.sitename, self.gametype, None, builtFrom="HHC-HH", hand=self)
+            self.tourney.tourneyTypeId = db.getTourneyTypeId(self.tourney)
+            db.commit()
+            self.tourney.tourneyId = db.getTourneyId(self.tourney)
+            db.commit()
+            self.tourney.tourneysPlayersIds = db.getTourneysPlayersIds(self.tourney)
+            db.commit()
+    #end def prepInsert
 
     def insert(self, db):
         """ Function to insert Hand into database
@@ -231,15 +246,14 @@ db: a connected Database object"""
             db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers())
             # HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
-            # Tourneys ?
-            # TourneysPlayers
+            print "TODO: store TourneysPlayers"
         else:
             log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
             raise FpdbHandDuplicate(hh['siteHandNo'])
 
     def updateHudCache(self, db):
-        db.storeHudCache(self.dbid_gt, self.dbid_pids, self.starttime, self.stats.getHandsPlayers())
+        db.storeHudCache(self.dbid_gt, self.dbid_pids, self.startTime, self.stats.getHandsPlayers())
 
     def select(self, handId):
         """ Function to create Hand object from database """
@@ -602,10 +616,10 @@ Map the tuple self.gametype onto the pokerstars string describing it
             gs = gs + " %s (%s) - " % (self.getGameTypeAsString(), self.getStakesAsString())
 
         try:
-            timestr = datetime.datetime.strftime(self.starttime, '%Y/%m/%d %H:%M:%S ET')
+            timestr = datetime.datetime.strftime(self.startTime, '%Y/%m/%d %H:%M:%S ET')
         except TypeError:
-            print "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, expecting datetime.date object, received:", self.starttime
-            print "*** Make sure your HandHistoryConverter is setting hand.starttime properly!"
+            print "*** ERROR - HAND: calling writeGameLine with unexpected STARTTIME value, expecting datetime.date object, received:", self.startTime
+            print "*** Make sure your HandHistoryConverter is setting hand.startTime properly!"
             print "*** Game String:", gs
             return gs
         else:
@@ -805,7 +819,7 @@ class HoldemOmahaHand(Hand):
             T.h1[
                 T.span(class_='site')["%s Game #%s]" % ('PokerStars', self.handid)],
                 T.span(class_='type_limit')[ "%s ($%s/$%s)" %(self.getGameTypeAsString(), self.sb, self.bb) ],
-                T.span(class_='date')[ datetime.datetime.strftime(self.starttime,'%Y/%m/%d - %H:%M:%S ET') ]
+                T.span(class_='date')[ datetime.datetime.strftime(self.startTime,'%Y/%m/%d - %H:%M:%S ET') ]
             ],
             T.h2[ "Table '%s' %d-max Seat #%s is the button" %(self.tablename,
             self.maxseats, self.buttonpos)],
@@ -1555,7 +1569,7 @@ limit 1""", {'handid':handid})
 SELECT
     h.sitehandno as hid,
     h.tablename as table,
-    h.handstart as starttime
+    h.handstart as startTime
 FROM
     hands as h
 WHERE h.id = %(handid)s
@@ -1563,7 +1577,7 @@ WHERE h.id = %(handid)s
     res = c.fetchone()
     h.handid = res[0]
     h.tablename = res[1]
-    h.starttime = res[2] # automatically a datetime
+    h.startTime = res[2] # automatically a datetime
 
     # PlayerStacks
     c.execute("""

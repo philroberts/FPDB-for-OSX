@@ -45,25 +45,41 @@ class Tourney(object):
     SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9 }
 
 
-    def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC"):
+    def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC", hand=None):
         self.sitename           = sitename
         self.siteId             = self.SITEIDS[sitename]
         self.gametype           = gametype
-        self.starttime          = None
-        self.endtime            = None
+        
         self.summaryText        = summaryText
         self.tourneyName        = None
-        self.tourNo             = None
-        self.buyin              = None
-        self.fee                = None  # the Database code is looking for this one .. ?
+        self.tourneyTypeId      = None
+        self.tourneyId          = None
+        if builtFrom=="HHC":
+            self.startTime          = None
+            self.endTime            = None
+            self.tourNo             = None
+            self.currency           = None
+            self.buyin              = None
+            self.fee                = None
+        elif builtFrom=="HHC-HH":
+            self.startTime          = hand.startTime
+            #since tourney.startTime should only be stored to DB when the first hand of a tourney is imported this should actually be correct
+            self.endTime            = hand.startTime #TODO parse this
+            self.tourNo             = hand.tourNo
+            self.currency           = hand.buyinCurrency
+            self.buyin              = int(hand.buyin)
+            self.fee                = int(hand.fee)
+        else:
+            print "need to bail"
         self.hero               = None
         self.maxseats           = None
         self.entries            = 0
         self.speed              = "Normal"
-        self.prizepool          = None  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
-        self.buyInChips         = None
+        self.prizepool          = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
+        self.buyInChips         = 0
         self.mixed              = None
         self.isRebuy            = False
+        self.isAddOn            = False
         self.isKO               = False
         self.isMatrix           = False
         self.isShootout         = False
@@ -99,10 +115,12 @@ class Tourney(object):
     def __str__(self):
         #TODO : Update
         vars = ( ("SITE", self.sitename),
-                 ("START TIME", self.starttime),
-                 ("END TIME", self.endtime),
+                 ("START TIME", self.startTime),
+                 ("END TIME", self.endTime),
                  ("TOURNEY NAME", self.tourneyName),
                  ("TOURNEY NO", self.tourNo),
+                 ("TOURNEY TYPE ID", self.tourneyTypeId),
+                 ("TOURNEY ID", self.tourneyId),
                  ("BUYIN", self.buyin),
                  ("FEE", self.fee),
                  ("HERO", self.hero),
@@ -112,7 +130,8 @@ class Tourney(object):
                  ("PRIZE POOL", self.prizepool),
                  ("STARTING CHIP COUNT", self.buyInChips),
                  ("MIXED", self.mixed),
-                 ("REBUY ADDON", self.isRebuy),
+                 ("REBUY", self.isRebuy),
+                 ("ADDON", self.isAddOn),
                  ("KO", self.isKO),
                  ("MATRIX", self.isMatrix),
                  ("SHOOTOUT", self.isShootout),
@@ -151,11 +170,10 @@ class Tourney(object):
 
     def getSummaryText(self):
         return self.summaryText
-
-    def prepInsert(self, db):
-        pass
-
+    
     def insert(self, db):
+        # Note that this method is not used by the PS tourney storage stuff - this is for summary files only
+        
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -166,7 +184,7 @@ class Tourney(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
-        dbTourneyTypeId = db.recogniseTourneyType(self)
+        dbTourneyTypeId = db.getTourneyTypeId(self)
         logging.debug("Tourney Type ID = %d" % dbTourneyTypeId)
         dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
         logging.debug("Tourney ID = %d" % dbTourneyId)
@@ -317,7 +335,7 @@ limit 1""", {'handid':handid})
 SELECT
     h.sitehandno as hid,
     h.tablename as table,
-    h.handstart as starttime
+    h.handstart as startTime
 FROM
     hands as h
 WHERE h.id = %(handid)s
@@ -325,7 +343,7 @@ WHERE h.id = %(handid)s
     res = c.fetchone()
     h.handid = res[0]
     h.tablename = res[1]
-    h.starttime = res[2] # automatically a datetime
+    h.startTime = res[2] # automatically a datetime
     
     # PlayerStacks
     c.execute("""
