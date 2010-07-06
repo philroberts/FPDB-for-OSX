@@ -1933,7 +1933,7 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def getTourneyTypeId(self, tourney):
+    def createOrUpdateTourneyType(self, tourney):
         tourneyTypeId = 1
         
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
@@ -1977,9 +1977,9 @@ class Database:
                                 )
                 tourneyTypeId = self.get_last_insert_id(cursor)
         return tourneyTypeId
-    #end def getTourneyTypeId
+    #end def createOrUpdateTourneyType
     
-    def getTourneyId(self, tourney):
+    def createOrUpdateTourney(self, tourney):
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneyIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
                         (tourney.siteId, tourney.tourNo))
@@ -1994,11 +1994,11 @@ class Database:
                          tourney.totalRebuyCount, tourney.totalAddOnCount))
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
-    #end def getTourneyId
+    #end def createOrUpdateTourney
         
-    def getTourneysPlayersIds(self, tourney):
-        print "TODO implement getTourneysPlayersIds"
-    #end def getTourneysPlayersIds
+    def createOrUpdateTourneysPlayers(self, tourney):
+        print "TODO implement createOrUpdateTourneysPlayers"
+    #end def createOrUpdateTourneysPlayers
 #end class Database
 
 # Class used to hold all the data needed to write a hand to the db

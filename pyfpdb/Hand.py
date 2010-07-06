@@ -215,11 +215,11 @@ dealt   whether they were seen in a 'dealt to' line
         
         if self.tourney!=None:
             self.tourney=Tourney.Tourney(self.sitename, self.gametype, None, builtFrom="HHC-HH", hand=self)
-            self.tourney.tourneyTypeId = db.getTourneyTypeId(self.tourney)
+            self.tourney.tourneyTypeId = db.createOrUpdateTourneyType(self.tourney)
             db.commit()
-            self.tourney.tourneyId = db.getTourneyId(self.tourney)
+            self.tourney.tourneyId = db.createOrUpdateTourney(self.tourney)
             db.commit()
-            self.tourney.tourneysPlayersIds = db.getTourneysPlayersIds(self.tourney)
+            self.tourney.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self.tourney)
             db.commit()
     #end def prepInsert
 
