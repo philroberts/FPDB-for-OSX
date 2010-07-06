@@ -1985,9 +1985,9 @@ class Database:
                         (tourney.siteId, tourney.tourNo))
         result=cursor.fetchone()
 
-        try:
+        if len(result)==1:
             tourneyId = result[0]
-        except:
+        else:
             cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
                         (tourney.tourneyTypeId, tourney.tourNo, tourney.entries, tourney.prizepool,
                          tourney.startTime, tourney.endTime, tourney.tourneyName, None,
