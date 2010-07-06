@@ -213,7 +213,7 @@ dealt   whether they were seen in a 'dealt to' line
         #Gametypes
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
         
-        if self.tourNo!=None:
+        if self.tourney!=None:
             self.tourney=Tourney.Tourney(self.sitename, self.gametype, None, builtFrom="HHC-HH", hand=self)
             self.tourney.tourneyTypeId = db.getTourneyTypeId(self.tourney)
             db.commit()
