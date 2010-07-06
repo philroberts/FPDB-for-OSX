@@ -221,7 +221,15 @@ class Fulltilt(HandHistoryConverter):
             else:
                 hand.tourneyComment = n.group('TOURNEY_NAME')   # can be None
                 if (n.group('CURRENCY') is not None and n.group('BUYIN') is not None and n.group('FEE') is not None):
-                    hand.buyin = "%s%s+%s%s" %(n.group('CURRENCY'), n.group('BUYIN'), n.group('CURRENCY'), n.group('FEE'))
+                    if n.group('CURRENCY')=="$":
+                        hand.buyinCurrency="USD"
+                    elif n.group('CURRENCY')==u"€":
+                        hand.buyinCurrency="EUR"
+                    else:
+                        hand.buyinCurrency="NA"
+                    hand.buyin = 100*Decimal(n.group('BUYIN'))
+                    hand.fee = 100*Decimal(n.group('FEE'))
+                    print "currency, buyin, fee: ", n.group('CURRENCY'), n.group('BUYIN'), n.group('CURRENCY'), n.group('FEE')
                 if n.group('TURBO') is not None :
                     hand.speed = "Turbo"
                 if n.group('SPECIAL') is not None :
@@ -626,8 +634,6 @@ class Fulltilt(HandHistoryConverter):
         
         # Calculate payin amounts and update winnings -- not possible to take into account nb of rebuys, addons or Knockouts for other players than hero on FTP
         for p in tourney.players :
-            #tourney.payinAmounts[p] = tourney.buyin + tourney.fee + (tourney.rebuyCost * tourney.rebuyCounts[p]) + (tourney.addOnCost * tourney.addOnCounts[p])
-            #print " player %s : payinAmount = %d" %( p, tourney.payinAmounts[p])
             if tourney.isKO :
                 #tourney.incrementPlayerWinnings(tourney.players[p], Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p]))
                 tourney.winnings[p] += Decimal(tourney.koBounty)*Decimal(tourney.koCounts[p])
