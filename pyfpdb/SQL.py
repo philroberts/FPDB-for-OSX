@@ -257,6 +257,7 @@ class Sql:
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
                             maxSeats TINYINT NOT NULL,
+                            rush BOOLEAN NOT NULL DEFAULT True,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -293,6 +294,7 @@ class Sql:
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
                             maxSeats SMALLINT NOT NULL,
+                            rush BOOLEAN NOT NULL DEFAULT True,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -328,6 +330,7 @@ class Sql:
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
                             maxSeats INT NOT NULL,
+                            rush BOOLEAN NOT NULL DEFAULT 1,
                             boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 INT,
                             boardcard3 INT,
