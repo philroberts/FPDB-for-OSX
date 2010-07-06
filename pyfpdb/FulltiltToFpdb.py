@@ -229,7 +229,6 @@ class Fulltilt(HandHistoryConverter):
                         hand.buyinCurrency="NA"
                     hand.buyin = 100*Decimal(n.group('BUYIN'))
                     hand.fee = 100*Decimal(n.group('FEE'))
-                    print "currency, buyin, fee: ", n.group('CURRENCY'), n.group('BUYIN'), n.group('CURRENCY'), n.group('FEE')
                 if n.group('TURBO') is not None :
                     hand.speed = "Turbo"
                 if n.group('SPECIAL') is not None :

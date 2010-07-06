@@ -213,13 +213,13 @@ dealt   whether they were seen in a 'dealt to' line
         #Gametypes
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
         
-        if self.tourney!=None:
+        if self.tourNo!=None:
             self.tourney=Tourney.Tourney(self.sitename, self.gametype, None, builtFrom="HHC-HH", hand=self)
             self.tourney.tourneyTypeId = db.createOrUpdateTourneyType(self.tourney)
             db.commit()
             self.tourney.tourneyId = db.createOrUpdateTourney(self.tourney)
             db.commit()
-            self.tourney.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self.tourney)
+            self.tourney.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, self.tourney)
             db.commit()
     #end def prepInsert
 
@@ -244,9 +244,8 @@ db: a connected Database object"""
 
             self.dbid_hands = db.storeHand(hh)
             db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers())
-            # HandsActions - all actions for all players for all streets - self.actions
+            # TODO HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
-            print "TODO: store TourneysPlayers"
         else:
             log.info("Hand.insert(): hid #: %s is a duplicate" % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache

@@ -75,7 +75,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 125
+DB_VERSION = 126
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1985,7 +1985,7 @@ class Database:
                         (tourney.siteId, tourney.tourNo))
         result=cursor.fetchone()
 
-        if len(result)==1:
+        if result != None and len(result)==1:
             tourneyId = result[0]
         else:
             cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
@@ -1996,8 +1996,23 @@ class Database:
         return tourneyId
     #end def createOrUpdateTourney
         
-    def createOrUpdateTourneysPlayers(self, tourney):
-        print "TODO implement createOrUpdateTourneysPlayers"
+    def createOrUpdateTourneysPlayers(self, hand, tourney):
+        tourneysPlayersIds=[]
+        for player in hand.players:
+            playerId = hand.dbid_pids[player[1]]
+            
+            cursor = self.get_cursor()
+            cursor.execute (self.sql.query['getTourneysPlayersId'].replace('%s', self.sql.query['placeholder']),
+                            (tourney.tourneyId, playerId))
+            result=cursor.fetchone()
+
+            if result != None and len(result)==1:
+                tourneysPlayersIds.append(result[0])
+            else:
+                cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
+                            (tourney.tourneyId, playerId, None, None, None, None, None, None, None, None))
+                tourneysPlayersIds.append(self.get_last_insert_id(cursor))
+        return tourneysPlayersIds
     #end def createOrUpdateTourneysPlayers
 #end class Database
 

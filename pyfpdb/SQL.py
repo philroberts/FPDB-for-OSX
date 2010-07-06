@@ -849,12 +849,12 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        rank INT NOT NULL,
-                        winnings INT NOT NULL,
-                        winningsCurrency VARCHAR(4) NOT NULL,
-                        rebuyCount INT DEFAULT 0,
-                        addOnCount INT DEFAULT 0,
-                        koCount INT DEFAULT 0,
+                        rank INT,
+                        winnings INT,
+                        winningsCurrency VARCHAR(4),
+                        rebuyCount INT,
+                        addOnCount INT,
+                        koCount INT,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -866,9 +866,9 @@ class Sql:
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
-                        rebuyCount INT DEFAULT 0,
-                        addOnCount INT DEFAULT 0,
-                        koCount INT DEFAULT 0,
+                        rebuyCount INT,
+                        addOnCount INT,
+                        koCount INT,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -879,9 +879,9 @@ class Sql:
                         rank INT,
                         winnings INT,
                         winningsCurrency VARCHAR(4),
-                        rebuyCount INT DEFAULT 0,
-                        addOnCount INT DEFAULT 0,
-                        koCount INT DEFAULT 0,
+                        rebuyCount INT,
+                        addOnCount INT,
+                        koCount INT,
                         comment TEXT,
                         commentTs timestamp without time zone,
                         FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -1265,13 +1265,13 @@ class Sql:
             self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
 
         if db_server == 'mysql':
-            self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(buyin, fee
+            self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(siteId, buyin, fee
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
         elif db_server == 'postgresql':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
+            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
         elif db_server == 'sqlite':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
+            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
                                              , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
@@ -3647,15 +3647,7 @@ class Sql:
                                         WHERE id=%s
         """
         
-        self.query['getTourneysPlayers'] = """SELECT    id,
-                                                        rank,
-                                                        winnings,
-                                                        winningsCurrency,
-                                                        rebuyCount,
-                                                        addOnCount,
-                                                        koCount,
-                                                        comment,
-                                                        commentTs
+        self.query['getTourneysPlayersId'] = """SELECT    id
                                                 FROM TourneysPlayers
                                                 WHERE tourneyId=%s AND playerId+0=%s            
         """
@@ -3672,7 +3664,7 @@ class Sql:
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayers'] = """INSERT INTO TourneysPlayers
+        self.query['insertTourneysPlayer'] = """INSERT INTO TourneysPlayers
                                                     (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount, comment, commentTs)
                                                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
