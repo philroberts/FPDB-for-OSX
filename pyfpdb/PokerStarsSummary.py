@@ -62,6 +62,6 @@ class PokerStarsSummary(TourneySummary):
             else:
                 winnings=0
             
-            self.addPlayer(rank, name, winnings, "USD", -1, -1, -1)#TODO: currency, ko/addon/rebuy count -> need examples!
+            self.addPlayer(rank, name, winnings, "USD", None, None, None)#TODO: currency, ko/addon/rebuy count -> need examples!
     #end def parseSummary
 #end class PokerStarsSummary

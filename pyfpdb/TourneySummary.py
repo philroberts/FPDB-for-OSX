@@ -217,10 +217,13 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
         self.ranks.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
         self.winningsCurrency.update( { name : winningsCurrency } )
-        self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
-        self.addOnCounts.update( {name: Decimal(addOnCount) } )
-        self.koCounts.update( {name : Decimal(koCount) } )
-        
+        if rebuyCount:
+            self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
+        if addOnCount:
+            self.addOnCounts.update( {name: Decimal(addOnCount) } )
+        if koCount:
+            self.koCounts.update( {name : Decimal(koCount) } )
+    #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
         log.debug("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)" % (name, additionnalWinnings))
