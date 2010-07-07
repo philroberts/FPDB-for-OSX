@@ -67,7 +67,7 @@ for messageData in neededMessages:
         summaryTexts=(splitPokerStarsSummaries(bodyData))
         for summaryText in summaryTexts:
             result=PokerStarsSummary.PokerStarsSummary(sitename="PokerStars", gametype=None, summaryText=summaryText, builtFrom = "IMAP")
-            print "result:",result
+            #print "result:",result
             #TODO: count results and output to shell like hand importer does
             
 print "completed running Imap import, closing server connection"

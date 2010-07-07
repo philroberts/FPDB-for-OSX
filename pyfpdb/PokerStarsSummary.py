@@ -17,23 +17,22 @@
 
 """pokerstars-specific summary parsing code"""
 
-from TourneySummary import *
+from decimal import Decimal
+
 from PokerStarsToFpdb import PokerStars
+from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
     sitename = "PokerStars"
     siteId   = 2
-    limits = PokerStars.limits
-    games = PokerStars.games
+    #limits = PokerStars.limits
+    #games = PokerStars.games
     # = PokerStars.
-    
     
     re_TourNo = re.compile("\#[0-9]+,")
     re_Entries = re.compile("[0-9]+")
     re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
-    re_Rank = re.compile("[0-9]+:")
-    re_Name = re.compile(":.*\(")
-    re_Winnings = re.compile("\$[0-9]+\.[0-9]+ \(")
+    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s\$(?P<WINNINGS>[0-9]+\.[0-9]+)\s\()?""")
     # = re.compile("")
 
     def parseSummary(self):
@@ -53,18 +52,16 @@ class PokerStarsSummary(TourneySummary):
         for i in range(6,len(lines)-2): #lines with rank and winnings info
             if lines[i].find(":")==-1:
                 break
-            rank=self.re_Rank.findall(lines[i])[0][:-1]
-            start = lines[i].find(":")+2
-            end = lines[i].find("(")-1
-            name=lines[i][start:end]
-            winnings=self.re_Winnings.findall(lines[i])
+            result=self.re_Player.search(lines[i])
+            result=result.groupdict()
+            rank=result['RANK']
+            name=result['NAME']
+            winnings=result['WINNINGS']
             if winnings:
-                winnings=winnings[0][1:-5]+winnings[0][-4:-2]
+                winnings=int(100*Decimal(winnings))
             else:
                 winnings=0
             
-            self.addPlayer(rank, name, winnings, "USD", -1, -1, -1)
-            
+            self.addPlayer(rank, name, winnings, "USD", -1, -1, -1)#TODO: currency, ko/addon/rebuy count -> need examples!
     #end def parseSummary
-        
 #end class PokerStarsSummary
