@@ -30,46 +30,53 @@ def splitPokerStarsSummaries(emailText):
     return splitSummaries
 #end def emailText
 
-#TODO: move all these into the config file. until then usage is: ./ImapSummaries.py YourImapHost YourImapUser YourImapPw 
-configHost=sys.argv[1]
-configUser=sys.argv[2]
-configPw=sys.argv[3]
-#TODO: specify folder, whether to use SSL
+if __name__ == '__main__':
+    #TODO: move all these into the config file. until then usage is: ./ImapSummaries.py YourImapHost YourImapUser YourImapPw 
+    configHost=sys.argv[1]
+    configUser=sys.argv[2]
+    configPw=sys.argv[3]
+    #TODO: specify folder, whether to use SSL
 
-server = IMAP4_SSL(configHost) #TODO: optionally non-SSL
-response = server.login(configUser, configPw) #TODO catch authentication error
-#print "response to logging in:",response
-#print "server.list():",server.list() #prints list of folders
+    try:
+        server = IMAP4_SSL(configHost) #TODO: optionally non-SSL
+        response = server.login(configUser, configPw) #TODO catch authentication error
+        #print "response to logging in:",response
+        #print "server.list():",server.list() #prints list of folders
 
-response = server.select("INBOX")
-#print "response to selecting INBOX:",response
-if response[0]!="OK":
-    raise error #TODO: show error message
+        response = server.select("INBOX")
+        #print "response to selecting INBOX:",response
+        if response[0]!="OK":
+            raise error #TODO: show error message
 
-neededMessages=[]
-response, searchData = server.search(None, "SUBJECT", "PokerStars Tournament History Request")
-for messageNumber in searchData[0].split(" "):
-    response, headerData = server.fetch(messageNumber, "(BODY[HEADER.FIELDS (SUBJECT)])")
-    #print "response to fetch subject:",response
-    if response!="OK":
-        raise error #TODO: show error message
-    if headerData[1].find("Subject: PokerStars Tournament History Request - Last x")!=1:
-        neededMessages.append(("PS", messageNumber))
+        neededMessages=[]
+        response, searchData = server.search(None, "SUBJECT", "PokerStars Tournament History Request")
+        for messageNumber in searchData[0].split(" "):
+            response, headerData = server.fetch(messageNumber, "(BODY[HEADER.FIELDS (SUBJECT)])")
+            #print "response to fetch subject:",response
+            if response!="OK":
+                raise error #TODO: show error message
+            if headerData[1].find("Subject: PokerStars Tournament History Request - Last x")!=1:
+                neededMessages.append(("PS", messageNumber))
         
-if (len(neededMessages)==0):
-    raise error #TODO: show error message
-for messageData in neededMessages:
-    response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
-    bodyData=bodyData[0][1]
-    if response!="OK":
-        raise error #TODO: show error message
-    if messageData[0]=="PS":
-        summaryTexts=(splitPokerStarsSummaries(bodyData))
-        for summaryText in summaryTexts:
-            result=PokerStarsSummary.PokerStarsSummary(sitename="PokerStars", gametype=None, summaryText=summaryText, builtFrom = "IMAP")
-            #print "result:",result
-            #TODO: count results and output to shell like hand importer does
+        if (len(neededMessages)==0):
+            raise error #TODO: show error message
+        for messageData in neededMessages:
+            response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
+            bodyData=bodyData[0][1]
+            if response!="OK":
+                raise error #TODO: show error message
+            if messageData[0]=="PS":
+                summaryTexts=(splitPokerStarsSummaries(bodyData))
+                for summaryText in summaryTexts:
+                    result=PokerStarsSummary.PokerStarsSummary(sitename="PokerStars", gametype=None, summaryText=summaryText, builtFrom = "IMAP")
+                    #print "result:",result
+                    #TODO: count results and output to shell like hand importer does
             
-print "completed running Imap import, closing server connection"
-server.close()
-server.logout()
+        print "completed running Imap import, closing server connection"
+    finally:
+        try:
+            server.close()
+        finally:
+            pass
+        server.logout()
+        
