@@ -68,7 +68,7 @@ if __name__ == '__main__':
             if messageData[0]=="PS":
                 summaryTexts=(splitPokerStarsSummaries(bodyData))
                 for summaryText in summaryTexts:
-                    result=PokerStarsSummary.PokerStarsSummary(sitename="PokerStars", gametype=None, summaryText=summaryText, builtFrom = "IMAP")
+                    result=PokerStarsSummary.PokerStarsSummary(db=db, sitename="PokerStars", summaryText=summaryText, builtFrom = "IMAP")
                     #print "result:",result
                     #TODO: count results and output to shell like hand importer does
             
