@@ -273,7 +273,7 @@ Map the tuple self.gametype onto the pokerstars string describing it
         self.writeSummary(sys.stdout)
 
 
-def assemble(cnxn, tourneyId):
+def assemble(cnxn, tourneyId): #TODO: move this method to Hand or Database
     # TODO !!
     c = cnxn.cursor()
     
