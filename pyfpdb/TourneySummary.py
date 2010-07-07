@@ -15,6 +15,8 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+"""parses and stores summary sections from e.g. eMail or summary files"""
+
 # TODO: check to keep only the needed modules
 
 import re
@@ -90,16 +92,21 @@ class TourneySummary(object):
         self.guarantee          = 0
 
         # Collections indexed by player names
-        self.finishPositions    = {}
+        self.ranks              = {}
         self.winnings           = {}
         self.winningsCurrency   = {}
         self.rebuyCounts        = {}
         self.addOnCounts        = {}
-        self.koCounts            = {}
+        self.koCounts           = {}
 
         # currency symbol for this summary
         self.sym = None
         #self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
+        
+        if builtFrom=="IMAP":
+            self.parseSummary()
+            #TODO: self.insert()
+    #end def __init__
 
     def __str__(self):
         #TODO : Update
@@ -143,7 +150,7 @@ class TourneySummary(object):
  
         structs = ( ("GAMETYPE", self.gametype),
                     ("PLAYERS", self.players),
-                    ("POSITIONS", self.finishPositions),                    
+                    ("RANKS", self.ranks),                    
                     ("WINNINGS", self.winnings),
                     ("COUNT REBUYS", self.rebuyCounts),
                     ("COUNT ADDONS", self.addOnCounts),
@@ -156,6 +163,10 @@ class TourneySummary(object):
         for (name, struct) in structs:
             str = str + "\n%s =\n" % name + pprint.pformat(struct, 4)
         return str
+    #end def __str__
+    
+    def parseSummary(self): abstract
+    """should fill the class variables with the parsed information"""
 
     def getSummaryText(self):
         return self.summaryText
@@ -203,7 +214,7 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         self.players.append(name)
-        self.finishPositions.update( { name : Decimal(rank) } )
+        self.ranks.update( { name : Decimal(rank) } )
         self.winnings.update( { name : Decimal(winnings) } )
         self.winningsCurrency.update( { name : winningsCurrency } )
         self.rebuyCounts.update( {name: Decimal(rebuyCount) } )

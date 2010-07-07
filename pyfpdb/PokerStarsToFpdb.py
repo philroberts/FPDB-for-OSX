@@ -41,6 +41,30 @@ class PokerStars(HandHistoryConverter):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
+                    
+    # translations from captured groups to fpdb info strings
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),     '1.00': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),     '4'   : ('1.00', '2.00'),
+                        '4.00': ('1.00', '2.00'),       '6': ('1.00', '3.00'),     '6.00': ('1.00', '3.00'),
+                       '10.00': ('2.00', '5.00'),   '20.00': ('5.00', '10.00'),   '30.00': ('10.00', '15.00'),
+                       '60.00': ('15.00', '30.00'), '100.00': ('25.00', '50.00'), '200.00': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'), '1000.00': ('250.00', '500.00')}
+
+    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    games = {                          # base, category
+                              "Hold'em" : ('hold','holdem'), 
+                                'Omaha' : ('hold','omahahi'),
+                          'Omaha Hi/Lo' : ('hold','omahahilo'),
+                                 'Razz' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
+                          '7 Card Stud' : ('stud','studhi'),
+                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                               'Badugi' : ('draw','badugi'),
+              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+                          '5 Card Draw' : ('draw','fivedraw')
+               }
+    currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
@@ -144,43 +168,20 @@ class PokerStars(HandHistoryConverter):
             raise FpdbParseError("Unable to recognise gametype from: '%s'" % tmp)
 
         mg = m.groupdict()
-        # translations from captured groups to fpdb info strings
-        Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
-                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),     '1.00': ('0.25', '0.50'),
-                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),     '4'   : ('1.00', '2.00'),
-                        '4.00': ('1.00', '2.00'),       '6': ('1.00', '3.00'),     '6.00': ('1.00', '3.00'),
-                       '10.00': ('2.00', '5.00'),   '20.00': ('5.00', '10.00'),   '30.00': ('10.00', '15.00'),
-                       '60.00': ('15.00', '30.00'), '100.00': ('25.00', '50.00'), '200.00': ('50.00', '100.00'),
-                      '400.00': ('100.00', '200.00'), '1000.00': ('250.00', '500.00')}
-
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
-        games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
-                                'Omaha' : ('hold','omahahi'),
-                          'Omaha Hi/Lo' : ('hold','omahahilo'),
-                                 'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'),
-                          '7 Card Stud' : ('stud','studhi'),
-                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                               'Badugi' : ('draw','badugi'),
-              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
-               }
-        currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 #    I don't think this is doing what we think. mg will always have all 
 #    the expected keys, but the ones that didn't match in the regex will
 #    have a value of None. It is OK if it throws an exception when it 
 #    runs across an unknown game or limit or whatever.
         if 'LIMIT' in mg:
-            info['limitType'] = limits[mg['LIMIT']]
+            info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
-            (info['base'], info['category']) = games[mg['GAME']]
+            (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             info['sb'] = mg['SB']
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
-            info['currency'] = currencies[mg['CURRENCY']]
+            info['currency'] = self.currencies[mg['CURRENCY']]
 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
@@ -189,8 +190,8 @@ class PokerStars(HandHistoryConverter):
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
             try:
-                info['sb'] = Lim_Blinds[mg['BB']][0]
-                info['bb'] = Lim_Blinds[mg['BB']][1]
+                info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
                 log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
                 log.error("determineGameType: Raising FpdbParseError")

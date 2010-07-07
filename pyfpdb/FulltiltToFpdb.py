@@ -670,10 +670,10 @@ class Fulltilt(HandHistoryConverter):
             heroName = n.group('HERO_NAME')
             tourney.hero = heroName
             # Is this really useful ?
-            if heroName not in tourney.finishPositions:
-                print "FullTilt:", heroName, "not found in tourney.finishPositions ..."
-            elif (tourney.finishPositions[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print "FullTilt: Bad parsing : finish position incoherent : %s / %s" % (tourney.finishPositions[heroName], n.group('HERO_FINISHING_POS'))
+            if heroName not in tourney.ranks:
+                print "FullTilt:", heroName, "not found in tourney.ranks ..."
+            elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
+                print "FullTilt: Bad parsing : finish position incoherent : %s / %s" % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS'))
 
         return True
 

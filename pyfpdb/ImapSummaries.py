@@ -19,14 +19,22 @@
 #see http://docs.python.org/library/imaplib.html for the python interface
 #see http://tools.ietf.org/html/rfc2060#section-6.4.4 for IMAP4 search criteria
 
-#TODO: move all these into config file
-#TODO: This is currently for PS only. If anyone wants to expand IMAP 
-configHost="schaumburger.info"
-configUser="fpdb-test@schaumburger.info"
 import sys
-configPw=sys.argv[1]
-
 from imaplib import IMAP4_SSL
+import PokerStarsSummary
+
+def splitPokerStarsSummaries(emailText):
+    splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
+    for i in range(len(splitSummaries)):
+        splitSummaries[i]="PokerStars Tournament #"+splitSummaries[i]
+    return splitSummaries
+#end def emailText
+
+#TODO: move all these into the config file. until then usage is: ./ImapSummaries.py YourImapHost YourImapUser YourImapPw 
+configHost=sys.argv[1]
+configUser=sys.argv[2]
+configPw=sys.argv[3]
+#TODO: specify folder, whether to use SSL
 
 server = IMAP4_SSL(configHost) #TODO: optionally non-SSL
 response = server.login(configUser, configPw) #TODO catch authentication error
@@ -46,15 +54,22 @@ for messageNumber in searchData[0].split(" "):
     if response!="OK":
         raise error #TODO: show error message
     if headerData[1].find("Subject: PokerStars Tournament History Request - Last x")!=1:
-        neededMessages.append(messageNumber)
-
-if len(neededMessages)==0:
+        neededMessages.append(("PS", messageNumber))
+        
+if (len(neededMessages)==0):
     raise error #TODO: show error message
-for messageNumber in neededMessages:
-    response, bodyData = server.fetch(messageNumber, "(UID BODY[TEXT])")
+for messageData in neededMessages:
+    response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
+    bodyData=bodyData[0][1]
     if response!="OK":
         raise error #TODO: show error message
-    print "bodyData",bodyData[0][1]
-
+    if messageData[0]=="PS":
+        summaryTexts=(splitPokerStarsSummaries(bodyData))
+        for summaryText in summaryTexts:
+            result=PokerStarsSummary.PokerStarsSummary(sitename="PokerStars", gametype=None, summaryText=summaryText, builtFrom = "IMAP")
+            print "result:",result
+            #TODO: count results and output to shell like hand importer does
+            
+print "completed running Imap import, closing server connection"
 server.close()
 server.logout()
