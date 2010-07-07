@@ -20,6 +20,7 @@
 
 import logging
 from HandHistoryConverter import *
+import TourneySummary
 
 # Fulltilt HH Format converter
 
@@ -227,8 +228,8 @@ class Fulltilt(HandHistoryConverter):
                         hand.buyinCurrency="EUR"
                     else:
                         hand.buyinCurrency="NA"
-                    hand.buyin = 100*Decimal(n.group('BUYIN'))
-                    hand.fee = 100*Decimal(n.group('FEE'))
+                    hand.buyin = int(100*Decimal(n.group('BUYIN')))
+                    hand.fee = int(100*Decimal(n.group('FEE')))
                 if n.group('TURBO') is not None :
                     hand.speed = "Turbo"
                 if n.group('SPECIAL') is not None :
@@ -440,7 +441,7 @@ class Fulltilt(HandHistoryConverter):
                 log.info("Too many or too few lines (%d) in file '%s' : '%s'" % (len(summaryInfoList), self.in_path, summaryInfoList) )
                 self.status = False
             else:
-                self.tourney = Tourney.Tourney(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
+                self.tourney = TourneySummary.TourneySummary(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
                 self.status = self.getPlayersPositionsAndWinnings(self.tourney)
                 if self.status == True :
                     self.status = self.determineTourneyType(self.tourney)

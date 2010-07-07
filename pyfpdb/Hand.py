@@ -71,15 +71,18 @@ class Hand(object):
         self.buttonpos = 0
         
         #tourney stuff
-        self.tourney = None
         self.tourNo = None
+        self.tourneyId = None
+        self.tourneyTypeId = None
         self.buyin = None
         self.buyinCurrency = None
+        self.buyInChips = None
         self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
         self.speed = "Normal"
         self.isRebuy = False
+        self.isAddOn = False
         self.isKO = False
         self.isMatrix = False
         self.isShootout = False
@@ -88,7 +91,8 @@ class Hand(object):
         self.seating = []
         self.players = []
         self.posted = []
-
+        self.tourneysPlayersIds = []
+        
         # Collections indexed by street names
         self.bets = {}
         self.lastBet = {}
@@ -137,10 +141,6 @@ class Hand(object):
                  ("TABLE NAME", self.tablename),
                  ("HERO", self.hero),
                  ("MAXSEATS", self.maxseats),
-                 ("TOURNAMENT NO", self.tourNo),
-                 ("BUYIN", self.buyin),
-                 ("BUYIN CURRENCY", self.buyinCurrency),
-                 ("FEE", self.fee),
                  ("LEVEL", self.level),
                  ("MIXED", self.mixed),
                  ("LASTBET", self.lastBet),
@@ -157,6 +157,19 @@ class Hand(object):
                  ("TOTAL COLLECTED", self.totalcollected),
                  ("RAKE", self.rake),
                  ("START TIME", self.startTime),
+                 ("TOURNAMENT NO", self.tourNo),
+                 ("TOURNEY ID", self.tourneyId),
+                 ("TOURNEY TYPE ID", self.tourneyTypeId),
+                 ("BUYIN", self.buyin),
+                 ("BUYIN CURRENCY", self.buyinCurrency),
+                 ("BUYIN CHIPS", self.buyInChips),
+                 ("FEE", self.fee),
+                 ("IS REBUY", self.isRebuy),
+                 ("IS ADDON", self.isAddOn),
+                 ("IS KO", self.isKO),
+                 ("IS MATRIX", self.isMatrix),
+                 ("IS SHOOTOUT", self.isShootout),
+                 ("TOURNEY COMMENT", self.tourneyComment),
         )
 
         structs = ( ("PLAYERS", self.players),
@@ -171,6 +184,7 @@ class Hand(object):
                     ("BOARD", self.board),
                     ("DISCARDS", self.discards),
                     ("HOLECARDS", self.holecards),
+                    ("TOURNEYS PLAYER IDS", self.tourneysPlayersIds),
         )
         str = ''
         for (name, var) in vars:
@@ -214,12 +228,11 @@ dealt   whether they were seen in a 'dealt to' line
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
         
         if self.tourNo!=None:
-            self.tourney=Tourney.Tourney(self.sitename, self.gametype, None, builtFrom="HHC-HH", hand=self)
-            self.tourney.tourneyTypeId = db.createOrUpdateTourneyType(self.tourney)
+            self.tourneyTypeId = db.createOrUpdateTourneyType(self)
             db.commit()
-            self.tourney.tourneyId = db.createOrUpdateTourney(self.tourney)
+            self.tourneyId = db.createOrUpdateTourney(self)
             db.commit()
-            self.tourney.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, self.tourney)
+            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self)
             db.commit()
     #end def prepInsert
 

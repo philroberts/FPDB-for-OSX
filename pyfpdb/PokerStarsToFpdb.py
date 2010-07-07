@@ -256,8 +256,8 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="NA" #FIXME: handle other currencies, FPP, play money
                         info[key]=info[key][:-4]
                         middle=info[key].find("+")
-                        hand.buyin = 100*Decimal(info[key][1:middle])
-                        hand.fee = 100*Decimal(info[key][middle+2:])
+                        hand.buyin = int(100*Decimal(info[key][1:middle]))
+                        hand.fee = int(100*Decimal(info[key][middle+2:]))
             if key == 'LEVEL':
                 hand.level = info[key]
 

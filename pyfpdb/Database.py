@@ -53,7 +53,6 @@ log = logging.getLogger("db")
 #    FreePokerTools modules
 import SQL
 import Card
-import Tourney
 import Charset
 from Exceptions import *
 import Configuration
@@ -75,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 126
+DB_VERSION = 127
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1933,13 +1932,13 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def createOrUpdateTourneyType(self, tourney):
+    def createOrUpdateTourneyType(self, hand):
         tourneyTypeId = 1
         
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
-                        (tourney.tourNo, tourney.siteId)
+                        (hand.tourNo, hand.siteId)
                         )
         result=cursor.fetchone()
 
@@ -1951,8 +1950,8 @@ class Database:
             tourneyTypeId = result[0]
             log.debug("Tourney found in db with Tourney_Type_ID = %d" % tourneyTypeId)
             for ev in expectedValues :
-                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
-                    log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
+                if ( getattr( hand, expectedValues.get(ev) ) <> result[ev] ):
+                    log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( hand, expectedValues.get(ev)), result[ev]) )
                     tourneyTypeIdMatch = False
                     #break
         except:
@@ -1962,8 +1961,8 @@ class Database:
         if tourneyTypeIdMatch == False :
             # Check for an existing TTypeId that matches tourney info, if not found create it
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (tourney.siteId, tourney.currency, tourney.buyin, tourney.fee, tourney.isKO,
-                             tourney.isRebuy, tourney.isAddOn, tourney.speed, tourney.isShootout, tourney.isMatrix)
+                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.isKO,
+                             hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix)
                             )
             result=cursor.fetchone()
         
@@ -1971,46 +1970,46 @@ class Database:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
-                                (tourney.siteId, tourney.currency, tourney.buyin, tourney.fee, tourney.buyInChips,
-                                 tourney.isKO, tourney.isRebuy,
-                                 tourney.isAddOn, tourney.speed, tourney.isShootout, tourney.isMatrix)
+                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.buyInChips,
+                                 hand.isKO, hand.isRebuy,
+                                 hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
                                 )
                 tourneyTypeId = self.get_last_insert_id(cursor)
         return tourneyTypeId
     #end def createOrUpdateTourneyType
     
-    def createOrUpdateTourney(self, tourney):
+    def createOrUpdateTourney(self, hand):
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneyIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
-                        (tourney.siteId, tourney.tourNo))
+                        (hand.siteId, hand.tourNo))
         result=cursor.fetchone()
 
         if result != None and len(result)==1:
             tourneyId = result[0]
         else:
             cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                        (tourney.tourneyTypeId, tourney.tourNo, tourney.entries, tourney.prizepool,
-                         tourney.startTime, tourney.endTime, tourney.tourneyName, None,
-                         tourney.totalRebuyCount, tourney.totalAddOnCount))
+                        (hand.tourneyTypeId, hand.tourNo, None, None,
+                         hand.startTime, None, None, None,
+                         None, None))
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
     #end def createOrUpdateTourney
         
-    def createOrUpdateTourneysPlayers(self, hand, tourney):
+    def createOrUpdateTourneysPlayers(self, hand):
         tourneysPlayersIds=[]
         for player in hand.players:
             playerId = hand.dbid_pids[player[1]]
             
             cursor = self.get_cursor()
             cursor.execute (self.sql.query['getTourneysPlayersId'].replace('%s', self.sql.query['placeholder']),
-                            (tourney.tourneyId, playerId))
+                            (hand.tourneyId, playerId))
             result=cursor.fetchone()
 
             if result != None and len(result)==1:
                 tourneysPlayersIds.append(result[0])
             else:
                 cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
-                            (tourney.tourneyId, playerId, None, None, None, None, None, None, None, None))
+                            (hand.tourneyId, playerId, None, None, None, None, None, None, None, None))
                 tourneysPlayersIds.append(self.get_last_insert_id(cursor))
         return tourneysPlayersIds
     #end def createOrUpdateTourneysPlayers

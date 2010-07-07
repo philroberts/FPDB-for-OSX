@@ -34,7 +34,7 @@ import Card
 
 log = logging.getLogger("parser")
 
-class Tourney(object):
+class TourneySummary(object):
 
 ################################################################
 #    Class Variables
@@ -45,7 +45,7 @@ class Tourney(object):
     SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9 }
 
 
-    def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC", hand=None):
+    def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC"):
         self.sitename           = sitename
         self.siteId             = self.SITEIDS[sitename]
         self.gametype           = gametype
@@ -54,23 +54,12 @@ class Tourney(object):
         self.tourneyName        = None
         self.tourneyTypeId      = None
         self.tourneyId          = None
-        if builtFrom=="HHC":
-            self.startTime          = None
-            self.endTime            = None
-            self.tourNo             = None
-            self.currency           = None
-            self.buyin              = None
-            self.fee                = None
-        elif builtFrom=="HHC-HH":
-            self.startTime          = hand.startTime
-            #since tourney.startTime should only be stored to DB when the first hand of a tourney is imported this should actually be correct
-            self.endTime            = hand.startTime #TODO parse this
-            self.tourNo             = hand.tourNo
-            self.currency           = hand.buyinCurrency
-            self.buyin              = int(hand.buyin)
-            self.fee                = int(hand.fee)
-        else:
-            print "need to bail"
+        self.startTime          = None
+        self.endTime            = None
+        self.tourNo             = None
+        self.currency           = None
+        self.buyin              = None
+        self.fee                = None
         self.hero               = None
         self.maxseats           = None
         self.entries            = 0
