@@ -194,10 +194,6 @@ class TourneySummary(object):
         return (stored, duplicates, partial, errors, ttime)
 
 
-    def select(self, tourneyId):
-        """ Function to create Tourney object from database """
-        
-
     def addPlayer(self, rank, name, winnings, winningsCurrency, rebuyCount, addOnCount, koCount):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
