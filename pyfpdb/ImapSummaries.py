@@ -30,10 +30,9 @@ def splitPokerStarsSummaries(emailText):
 #end def emailText
 
 def run(config, db):
-        print "start of IS.run"
+        #print "start of IS.run"
         server=None
     #try:
-        print "in try of IS.run"
         if config.email.useSsl:
             server = IMAP4_SSL(config.email.host)
         else:
