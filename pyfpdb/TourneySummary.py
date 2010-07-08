@@ -76,6 +76,7 @@ class TourneySummary(object):
         self.isMatrix           = False
         self.isShootout         = False
         self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
+        self.matrixIdProcessed  = None
         self.subTourneyBuyin    = None
         self.subTourneyFee      = None
         self.rebuyChips         = 0
@@ -133,6 +134,7 @@ class TourneySummary(object):
                  ("ADDON", self.isAddOn),
                  ("KO", self.isKO),
                  ("MATRIX", self.isMatrix),
+                 ("MATRIX ID PROCESSED", self.matrixIdProcessed),
                  ("SHOOTOUT", self.isShootout),
                  ("MATRIX MATCH ID", self.matrixMatchId),
                  ("SUB TOURNEY BUY IN", self.subTourneyBuyin),
@@ -202,9 +204,9 @@ class TourneySummary(object):
         #print "TS.self before starting insert",self
         self.tourneyTypeId = self.db.createOrUpdateTourneyType(self)
         self.db.commit()
-        self.tourneyId = self.db.createOrUpdateTourney(self)
+        self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
         self.db.commit()
-        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TourneySummary")
+        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TS")
         self.db.commit()
         
         logging.debug("Tourney Insert/Update done")

@@ -741,7 +741,7 @@ class fpdb:
     
     def import_imap_summaries(self, widget, data=None):
         result=ImapSummaries.run(self.config, self.db)
-        print "import imap summaries result:", result
+        #print "import imap summaries result:", result
     #end def import_imap_summaries
 
     def load_profile(self, create_db = False):

@@ -1932,7 +1932,7 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def createOrUpdateTourneyType(self, hand):
+    def createOrUpdateTourneyType(self, hand):#note: this method is used on Hand and TourneySummary objects
         tourneyTypeId = 1
         
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
@@ -1978,7 +1978,7 @@ class Database:
         return tourneyTypeId
     #end def createOrUpdateTourneyType
     
-    def createOrUpdateTourney(self, hand):
+    def createOrUpdateTourney(self, hand, source):#note: this method is used on Hand and TourneySummary objects
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneyIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
                         (hand.siteId, hand.tourNo))
@@ -1987,21 +1987,29 @@ class Database:
         if result != None and len(result)==1:
             tourneyId = result[0]
         else:
-            cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+            if source=="HHC":
+                cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
                         (hand.tourneyTypeId, hand.tourNo, None, None,
-                         hand.startTime, None, None, None,
-                         None, None))
+                         hand.startTime, None, None, None, None, None))
+            elif source=="TS":
+                cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                        (hand.tourneyTypeId, hand.tourNo, hand.entries, hand.prizepool,
+                         hand.startTime, hand.endTime, hand.tourneyName, hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount))
+            else:
+                raise FpdbParseError("invalid source in Database.createOrUpdateTourney")
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
     #end def createOrUpdateTourney
         
-    def createOrUpdateTourneysPlayers(self, hand, source=None):
+    def createOrUpdateTourneysPlayers(self, hand, source):#note: this method is used on Hand and TourneySummary objects
         tourneysPlayersIds=[]
         for player in hand.players:
-            if source=="TourneySummary": #TODO remove this horrible hack
+            if source=="TS": #TODO remove this horrible hack
                 playerId = hand.dbid_pids[player]
-            else:
+            elif source=="HHC":
                 playerId = hand.dbid_pids[player[1]]
+            else:
+                raise FpdbParseError("invalid source in Database.createOrUpdateTourneysPlayers")
             
             cursor = self.get_cursor()
             cursor.execute (self.sql.query['getTourneysPlayersId'].replace('%s', self.sql.query['placeholder']),

@@ -229,9 +229,9 @@ dealt   whether they were seen in a 'dealt to' line
         if self.tourNo!=None:
             self.tourneyTypeId = db.createOrUpdateTourneyType(self)
             db.commit()
-            self.tourneyId = db.createOrUpdateTourney(self)
+            self.tourneyId = db.createOrUpdateTourney(self, "HHC")
             db.commit()
-            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self)
+            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, "HHC")
             db.commit()
     #end def prepInsert
 
