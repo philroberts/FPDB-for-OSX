@@ -644,5 +644,9 @@ Left-Drag to Move"
         <database db_ip="localhost" db_server="sqlite" db_name="fpdb.db3" db_user="fpdb" db_pass="fpdb"/>
     </supported_databases>
 
+    <email>
+        <email host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+    </email>
 </FreePokerToolsConfig>
-
+<!-- IMPORTANT: Please note that fpdb stores your email password in clear text. 
+So do not post a config containing a password on the Internet or anywhere else without removing the password! -->
