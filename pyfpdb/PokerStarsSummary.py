@@ -20,7 +20,7 @@
 from decimal import Decimal
 import datetime
 
-from PokerStarsToFpdb import PokerStars
+import PokerStarsToFpdb
 from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
@@ -58,6 +58,7 @@ class PokerStarsSummary(TourneySummary):
         result=result.groupdict()
         datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
         self.startTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+        self.startTime = PokerStarsToFpdb.removeET(self.startTime)
         
         result=self.re_DateTime.search(lines[5])
         result=result.groupdict()

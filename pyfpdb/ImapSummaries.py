@@ -33,6 +33,7 @@ def run(config, db):
         #print "start of IS.run"
         server=None
     #try:
+        #print "useSSL",config.email.useSsl,"host",config.email.host
         if config.email.useSsl:
             server = IMAP4_SSL(config.email.host)
         else:
