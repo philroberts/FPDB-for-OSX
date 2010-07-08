@@ -227,17 +227,7 @@ class PokerStars(HandHistoryConverter):
                     #tz = a.group('TZ')  # just assume ET??
                     #print "   tz = ", tz, " datetime =", datetimestr
                 hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-                # approximate rules for ET daylight savings time:
-                if (   hand.starttime.month == 12                                  # all of Dec
-                    or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
-                    or hand.starttime.month < 3                                    #    and all of Jan/Feb
-                    or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
-                    offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
-                else:
-                    offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
-                # adjust time into UTC:
-                hand.starttime = hand.starttime + offset
-                #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
+                self.removeET(hand)
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
@@ -277,7 +267,21 @@ class PokerStars(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
-
+    
+    def removeET(self, hand):
+        # approximate rules for ET daylight savings time:
+        if (   hand.starttime.month == 12                                  # all of Dec
+            or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
+            or hand.starttime.month < 3                                    #    and all of Jan/Feb
+            or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
+            offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
+        else:
+            offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
+        # adjust time into UTC:
+        hand.starttime = hand.starttime + offset
+        #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
+    #end def removeET
+    
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:
