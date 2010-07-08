@@ -434,6 +434,19 @@ class Import:
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
+class Email:
+    def __init__(self, node):
+        self.node = node
+        self.host= node.getAttribute("host")
+        self.username = node.getAttribute("username")
+        self.password = node.getAttribute("password")
+        self.useSsl = node.getAttribute("useSsl")
+        self.folder = node.getAttribute("folder")
+        
+    def __str__(self):
+        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.host, self.username, self.password, self.useSsl, self.folder) 
+
 class HudUI:
     def __init__(self, node):
         self.node = node
@@ -592,6 +605,10 @@ class Config:
         for imp_node in doc.getElementsByTagName("import"):
             imp = Import(node = imp_node)
             self.imp = imp
+
+        for email_node in doc.getElementsByTagName("email"):
+            email = Email(node = email_node)
+            self.email = email
 
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)

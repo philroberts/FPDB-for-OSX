@@ -102,6 +102,7 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
+import ImapSummaries
 import GuiPlayerStats
 import GuiPositionalStats
 import GuiTableViewer
@@ -655,6 +656,7 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
+                  <menuitem action="imapsummaries"/>
                   <menuitem action="autoimp"/>
                   <menuitem action="autorate"/>
                 </menu>
@@ -701,6 +703,7 @@ class fpdb:
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
+                                 ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
                                  ('autorate', None, 'Auto _Rating (todo)', '<control>R', 'Auto Rating (todo)', self.not_implemented),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
@@ -734,6 +737,12 @@ class fpdb:
         menubar = uimanager.get_widget('/MenuBar')
         window.add_accel_group(accel_group)
         return menubar
+    #end def get_menu
+    
+    def import_imap_summaries(self, widget, data=None):
+        result=ImapSummaries.run(self.config, self.db)
+        print "import imap summaries result:", result
+    #end def import_imap_summaries
 
     def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
@@ -879,7 +888,6 @@ class fpdb:
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
-        #print "start of tab_bulk_import"
         new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()

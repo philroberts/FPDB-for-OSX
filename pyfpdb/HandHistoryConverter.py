@@ -35,7 +35,6 @@ log = logging.getLogger("parser")
 
 
 import Hand
-import Tourney
 from Exceptions import FpdbParseError
 import Configuration
 

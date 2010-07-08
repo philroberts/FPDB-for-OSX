@@ -37,7 +37,6 @@ import Configuration
 from Exceptions import *
 import DerivedStats
 import Card
-import Tourney
 
 class Hand(object):
 

@@ -20,7 +20,7 @@
 
 import logging
 from HandHistoryConverter import *
-import TourneySummary
+#import TourneySummary
 
 # Fulltilt HH Format converter
 

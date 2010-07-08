@@ -23,16 +23,11 @@ from PokerStarsToFpdb import PokerStars
 from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
-    sitename = "PokerStars"
-    siteId   = 2
-    #limits = PokerStars.limits
-    #games = PokerStars.games
-    # = PokerStars.
-    
     re_TourNo = re.compile("\#[0-9]+,")
     re_Entries = re.compile("[0-9]+")
     re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
-    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s\$(?P<WINNINGS>[0-9]+\.[0-9]+)\s\()?""")
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s\$(?P<WINNINGS>[0-9]+\.[0-9]+)\s\()?""")
+    re_BuyInFee = re.compile("(?P<BUYIN>[0-9]+\.[0-9]+).*(?P<FEE>[0-9]+\.[0-9]+)")
     # = re.compile("")
 
     def parseSummary(self):
@@ -40,7 +35,17 @@ class PokerStarsSummary(TourneySummary):
         
         self.tourNo = self.re_TourNo.findall(lines[0])[0][1:-1] #ignore game and limit type as thats not recorded
         
-        #ignore lines[1] as buyin/fee are already recorded by HHC
+        if lines[1].find("$")!=-1:
+            self.currency="USD"
+        elif lines[1].find(u"€")!=-1:
+            self.currency="EUR"
+        else:
+            raise fpdbParseError("didn't recognise buyin currency")
+        
+        result=self.re_BuyInFee.search(lines[1])
+        result=result.groupdict()
+        self.buyin=int(100*Decimal(result['BUYIN']))
+        self.fee=int(100*Decimal(result['FEE']))
         
         self.entries = self.re_Entries.findall(lines[2])[0]
         

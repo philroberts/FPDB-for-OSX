@@ -802,17 +802,17 @@ class Database:
         #print "session stat_dict =", stat_dict
         #return stat_dict
             
-    def get_player_id(self, config, site, player_name):
+    def get_player_id(self, config, siteName, playerName):
         c = self.connection.cursor()
-        #print "get_player_id: player_name =", player_name, type(player_name)
-        p_name = Charset.to_utf8(player_name)
-        c.execute(self.sql.query['get_player_id'], (p_name, site))
+        playerNameUtf = Charset.to_utf8(playerName)
+        print "db.get_player_id siteName",siteName,"playerName",playerName
+        c.execute(self.sql.query['get_player_id'], (playerNameUtf, siteName))
         row = c.fetchone()
         if row:
             return row[0]
         else:
             return None
-            
+    
     def get_player_names(self, config, site_id=None, like_player_name="%"):
         """Fetch player names from players. Use site_id and like_player_name if provided"""
 
@@ -1995,10 +1995,14 @@ class Database:
         return tourneyId
     #end def createOrUpdateTourney
         
-    def createOrUpdateTourneysPlayers(self, hand):
+    def createOrUpdateTourneysPlayers(self, hand, source=None):
         tourneysPlayersIds=[]
         for player in hand.players:
-            playerId = hand.dbid_pids[player[1]]
+            print "beginning of for in createOrUpdateTourneysPlayers, player",player,"dbid_pids",hand.dbid_pids
+            if source=="TourneySummary": #TODO remove this horrible hack
+                playerId = hand.dbid_pids[player]
+            else:
+                playerId = hand.dbid_pids[player[1]]
             
             cursor = self.get_cursor()
             cursor.execute (self.sql.query['getTourneysPlayersId'].replace('%s', self.sql.query['placeholder']),
