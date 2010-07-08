@@ -139,6 +139,7 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
+            self.handsplayers[player[1]]['sitout'] = False #TODO: implement actual sitout detection
 
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
@@ -431,6 +432,11 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%sAggr' % i] = True
             else:
                 self.handsplayers[player[1]]['street%sAggr' % i] = False
+                
+        if len(aggrers)>0 and i>0:
+            for playername in others:
+                self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
+                #print "otherRaised detected on handid "+str(hand.handid)+" for "+playername+" on street "+str(i)
 
         if i > 0 and len(aggrers) > 0:
             for playername in others:
@@ -450,8 +456,7 @@ class DerivedStats():
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('bets'):
                 self.handsplayers[act[0]]['street%sBets' % i] = 1 + self.handsplayers[act[0]]['street%sBets' % i]
-
-
+        
     def folds(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('folds'):

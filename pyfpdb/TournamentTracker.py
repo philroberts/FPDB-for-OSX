@@ -87,7 +87,7 @@ class Tournament:
         self.buyin = summary.parser.TourneyBuyIn # need to remember to parse the Fee out of this and move it to self.fee
         self.rebuys = (summary.parser.TourneyRebuys == "yes")
         self.prizepool = summary.parser.TourneyPool
-        self.numplayers = summary.parser.TourneyPlayers
+        self.numplayers = summary.parser.TourneysPlayers
 
         self.openwindow() # let's start by getting any info we need.. meh
 
