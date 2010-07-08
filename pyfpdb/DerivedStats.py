@@ -97,7 +97,7 @@ class DerivedStats():
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
         self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
-        self.hands['handStart']  = hand.starttime           # format this!
+        self.hands['handStart']  = hand.startTime           # format this!
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats

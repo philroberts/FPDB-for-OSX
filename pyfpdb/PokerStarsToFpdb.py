@@ -226,18 +226,18 @@ class PokerStars(HandHistoryConverter):
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??
                     #print "   tz = ", tz, " datetime =", datetimestr
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 # approximate rules for ET daylight savings time:
-                if (   hand.starttime.month == 12                                  # all of Dec
-                    or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
-                    or hand.starttime.month < 3                                    #    and all of Jan/Feb
-                    or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
+                if (   hand.startTime.month == 12                                  # all of Dec
+                    or (hand.startTime.month == 11 and hand.startTime.day > 4)     #    and most of November
+                    or hand.startTime.month < 3                                    #    and all of Jan/Feb
+                    or (hand.startTime.month == 3 and hand.startTime.day < 11) ):  #    and 1st 10 days of March
                     offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
                 else:
                     offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
                 # adjust time into UTC:
-                hand.starttime = hand.starttime + offset
-                #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
+                hand.startTime = hand.startTime + offset
+                #print "   tz = %s  start = %s" % (tz, str(hand.startTime))
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
