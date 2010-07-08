@@ -1,3 +1,10 @@
+free-poker-tools (0.20-2) unstable; urgency=low
+
+  * Fix executable script shebangs: there is no /usr/bin/python2 (nor
+    /usr/bin/python3) symlink on Debian or Ubuntu
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Thu, 08 Jul 2010 21:29:40 +0300
+
 free-poker-tools (0.20-1) unstable; urgency=low
 
   * 0.20 release
