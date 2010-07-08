@@ -27,8 +27,6 @@ setup(name = 'fpdb',
     packages = ['fpdb'],
     package_dir = { 'fpdb' : 'pyfpdb' },
     data_files = [
-        ('/usr/share/doc/python-fpdb',
-            ['THANKS.txt']),
         ('/usr/share/pixmaps',
             ['gfx/fpdb-icon.png', 'gfx/fpdb-icon2.png',
              'gfx/fpdb-cards.png'
