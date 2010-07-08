@@ -21,7 +21,7 @@ from distutils.core import setup
 
 setup(name = 'fpdb',
     description = 'Free Poker Database',
-    version = '0.12',
+    version = '0.20',
     author = 'FPDB team',
     author_email = 'fpdb-main@lists.sourceforge.net',
     packages = ['fpdb'],
