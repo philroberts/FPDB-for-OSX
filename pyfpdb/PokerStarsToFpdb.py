@@ -226,7 +226,7 @@ class PokerStars(HandHistoryConverter):
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??
                     #print "   tz = ", tz, " datetime =", datetimestr
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 self.removeET(hand)
             if key == 'HID':
                 hand.handid = info[key]

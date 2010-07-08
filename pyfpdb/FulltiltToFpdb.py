@@ -201,7 +201,7 @@ class Fulltilt(HandHistoryConverter):
             return None
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
 
         if m.group("CANCELLED") or m.group("PARTIAL"):
             raise FpdbParseError(hid=m.group('HID'))

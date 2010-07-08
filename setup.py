@@ -20,8 +20,7 @@ setup(name = 'fpdb',
     package_dir = { 'fpdb' : 'pyfpdb' },
     data_files = [
         ('/usr/share/doc/python-fpdb',
-            ['docs/readme.txt', 'docs/release-notes.txt',
-            'docs/tabledesign.html', 'THANKS.txt']),
+            ['THANKS.txt']),
         ('/usr/share/pixmaps',
             ['gfx/fpdb-icon.png', 'gfx/fpdb-icon2.png',
              'gfx/fpdb-cards.png'

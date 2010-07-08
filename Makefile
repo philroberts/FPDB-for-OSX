@@ -23,3 +23,7 @@ all:
 snapshot:
 	git tag $(VERSION)-$(DATE)
 	git archive --prefix=fpdb-$(VERSION)-$(DATE)/ $(VERSION)-$(DATE) | gzip -9 > ../fpdb-$(VERSION)-$(DATE).tar.gz
+
+release:
+	git tag $(VERSION)
+	git archive --prefix=fpdb-$(VERSION)/ $(VERSION) | gzip -9 > ../fpdb-$(VERSION).tar.gz
