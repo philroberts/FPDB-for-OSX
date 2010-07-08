@@ -1,9 +1,9 @@
 PY2EXE walkthrough for Python 2.6 & FPDB 0.20 
-created on 22nd June 2010
+created on 22nd June 2010 by Gimick
 
 This walkthrough is derived from comments in the py2exe script made by Ray and SqlCoder
-Additional information, formatting,updating to Python 2.6 and sequencing added by Gimick
-Content is available under GNU Free Documentation License 1.2
+Additional information, formatting, updating to Python 2.6 and sequencing added by Gimick
+Content is available under the the GNU Affero General Public License version 3
 
 
 

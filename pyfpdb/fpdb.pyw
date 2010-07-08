@@ -110,7 +110,7 @@ import Database
 import Configuration
 import Exceptions
 
-VERSION = "0.20-pre4"
+VERSION = "0.20"
 
 
 class fpdb:
@@ -226,9 +226,9 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
-        dia.set_comments("GTK AboutDialog comments here")
-        dia.set_license("GPL v3")
+        dia.set_copyright("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
+        dia.set_comments("")
+        dia.set_license("This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory")
         dia.set_website("http://fpdb.sourceforge.net/")
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
