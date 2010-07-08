@@ -137,7 +137,7 @@ class Win2day(HandHistoryConverter):
         for key in info:
             if key == 'DATETIME':
                 # Win2day uses UTC timestamp
-                hand.starttime = datetime.datetime.fromtimestamp(int(info[key]))
+                hand.startTime = datetime.datetime.fromtimestamp(int(info[key]))
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':

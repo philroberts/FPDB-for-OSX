@@ -138,7 +138,7 @@ class OnGame(HandHistoryConverter):
 #TODO: Do conversion from GMT to ET
 #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         
-        hand.starttime = time.strptime(m.group('DATETIME'), "%d %b %Y %I:%M %p")
+        hand.startTime = time.strptime(m.group('DATETIME'), "%d %b %Y %I:%M %p")
         #hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
                             #int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
 
