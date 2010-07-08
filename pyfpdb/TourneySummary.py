@@ -158,6 +158,7 @@ class TourneySummary(object):
                     ("TOURNEYS PLAYERS IDS", self.tourneysPlayersIds),
                     ("RANKS", self.ranks),                    
                     ("WINNINGS", self.winnings),
+                    ("WINNINGS CURRENCY", self.winningsCurrency),
                     ("COUNT REBUYS", self.rebuyCounts),
                     ("COUNT ADDONS", self.addOnCounts),
                     ("NB OF KO", self.koCounts)
@@ -191,9 +192,7 @@ class TourneySummary(object):
         for player in self.players:
             id=self.db.get_player_id(self.config, self.siteName, player)
             if not id:
-                self.db.insertPlayer(player, self.siteId)
-                id=self.db.get_last_insert_id(self.db.cursor)
-            
+                id=self.db.insertPlayer(player, self.siteId)
             self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
@@ -236,10 +235,18 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
         self.winningsCurrency.update( { name : winningsCurrency } )
         if rebuyCount:
             self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
+        else:
+            self.rebuyCounts.update( {name: None } )
+        
         if addOnCount:
             self.addOnCounts.update( {name: Decimal(addOnCount) } )
+        else:
+            self.addOnCounts.update( {name: None } )
+        
         if koCount:
             self.koCounts.update( {name : Decimal(koCount) } )
+        else:
+            self.koCounts.update( {name: None } )
     #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
