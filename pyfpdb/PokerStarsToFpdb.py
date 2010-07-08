@@ -270,15 +270,15 @@ class PokerStars(HandHistoryConverter):
     
     def removeET(self, hand):
         # approximate rules for ET daylight savings time:
-        if (   hand.starttime.month == 12                                  # all of Dec
-            or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
-            or hand.starttime.month < 3                                    #    and all of Jan/Feb
-            or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
+        if (   hand.startTime.month == 12                                  # all of Dec
+            or (hand.startTime.month == 11 and hand.starttime.day > 4)     #    and most of November
+            or hand.startTime.month < 3                                    #    and all of Jan/Feb
+            or (hand.startTime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
             offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
         else:
             offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
         # adjust time into UTC:
-        hand.starttime = hand.starttime + offset
+        hand.startTime = hand.startTime + offset
         #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
     #end def removeET
     
