@@ -18,6 +18,7 @@
 """pokerstars-specific summary parsing code"""
 
 from decimal import Decimal
+import datetime
 
 from PokerStarsToFpdb import PokerStars
 from TourneySummary import *
@@ -28,6 +29,7 @@ class PokerStarsSummary(TourneySummary):
     re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
     re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s\$(?P<WINNINGS>[0-9]+\.[0-9]+)\s\()?""")
     re_BuyInFee = re.compile("(?P<BUYIN>[0-9]+\.[0-9]+).*(?P<FEE>[0-9]+\.[0-9]+)")
+    re_DateTime = re.compile("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
     # = re.compile("")
 
     def parseSummary(self):
@@ -52,7 +54,15 @@ class PokerStarsSummary(TourneySummary):
         self.prizepool = self.re_Prizepool.findall(lines[3])[0]
         self.prizepool = self.prizepool[1:-3]+self.prizepool[-2:]
         
-        #TODO: lines 4 and 5 are dates, read them
+        result=self.re_DateTime.search(lines[4])
+        result=result.groupdict()
+        datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
+        self.startTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+        
+        result=self.re_DateTime.search(lines[5])
+        result=result.groupdict()
+        datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
+        self.endTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
         
         for i in range(6,len(lines)-2): #lines with rank and winnings info
             if lines[i].find(":")==-1:

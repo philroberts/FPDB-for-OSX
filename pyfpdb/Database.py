@@ -805,7 +805,7 @@ class Database:
     def get_player_id(self, config, siteName, playerName):
         c = self.connection.cursor()
         playerNameUtf = Charset.to_utf8(playerName)
-        print "db.get_player_id siteName",siteName,"playerName",playerName
+        #print "db.get_player_id siteName",siteName,"playerName",playerName
         c.execute(self.sql.query['get_player_id'], (playerNameUtf, siteName))
         row = c.fetchone()
         if row:
@@ -1998,7 +1998,6 @@ class Database:
     def createOrUpdateTourneysPlayers(self, hand, source=None):
         tourneysPlayersIds=[]
         for player in hand.players:
-            print "beginning of for in createOrUpdateTourneysPlayers, player",player,"dbid_pids",hand.dbid_pids
             if source=="TourneySummary": #TODO remove this horrible hack
                 playerId = hand.dbid_pids[player]
             else:

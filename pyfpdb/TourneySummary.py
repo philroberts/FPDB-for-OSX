@@ -194,7 +194,7 @@ class TourneySummary(object):
             
             self.playerIds.update({player:id})
         
-        print "TS.insert players",self.players,"playerIds",self.playerIds
+        #print "TS.insert players",self.players,"playerIds",self.playerIds
         
         self.buyinCurrency=self.currency
         self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
