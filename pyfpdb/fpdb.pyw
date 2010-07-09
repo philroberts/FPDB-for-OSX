@@ -666,7 +666,6 @@ class fpdb:
                   <menuitem action="stats"/>
                 </menu>
                 <menu action="help">
-                  <menuitem action="Abbrev"/>
                   <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
@@ -704,7 +703,6 @@ class fpdb:
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
                                  ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
                                  ('help', None, '_Help'),
-                                 ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
                                  ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
@@ -856,9 +854,6 @@ class fpdb:
     def release_global_lock(self):
         self.lock.release()
         print "Global lock released.\n"
-
-    def tab_abbreviations(self, widget, data=None):
-        print "todo: implement tab_abbreviations"
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
