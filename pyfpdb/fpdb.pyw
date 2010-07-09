@@ -103,7 +103,8 @@ import GuiLogView
 import GuiDatabase
 import GuiBulkImport
 import ImapSummaries
-import GuiPlayerStats
+import GuiRingPlayerStats
+import GuiTourneyPlayerStats
 import GuiPositionalStats
 import GuiTableViewer
 import GuiAutoImport
@@ -665,7 +666,8 @@ class fpdb:
                   <menuitem action="graphs"/>
                   <menuitem action="handreplay"/>
                   <menuitem action="playerdetails"/>
-                  <menuitem action="playerstats"/>
+                  <menuitem action="ringplayerstats"/>
+                  <menuitem action="tourneyplayerstats"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
                   <menuitem action="sessionreplay"/>
@@ -710,7 +712,8 @@ class fpdb:
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('handreplay', None, 'Hand _Replayer (todo)', None, 'Hand Replayer (todo)', self.not_implemented),
                                  ('playerdetails', None, 'Player _Details (todo)', None, 'Player Details (todo)', self.not_implemented),
-                                 ('playerstats', None, '_Player Stats (tabulated view)', '<control>P', 'Player Stats (tabulated view)', self.tab_player_stats),
+                                 ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
@@ -893,11 +896,17 @@ class fpdb:
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
-    def tab_player_stats(self, widget, data=None):
-        new_ps_thread = GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
+    def tab_ring_player_stats(self, widget, data=None):
+        new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, "Player Stats")
+        self.add_and_display_tab(ps_tab, "Ring Player Stats")
+
+    def tab_tourney_player_stats(self, widget, data=None):
+        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.sql, self.window)
+        self.threads.append(new_ps_thread)
+        ps_tab=new_ps_thread.get_vbox()
+        self.add_and_display_tab(ps_tab, "Tourney Player Stats")
 
     def tab_positional_stats(self, widget, data=None):
         new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
