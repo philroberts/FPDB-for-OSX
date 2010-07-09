@@ -322,11 +322,6 @@ class fpdb:
             self.warning_box("Cannot open Database Maintenance window because "
                              + "other windows have been opened. Re-start fpdb to use this option.")
 
-    def dia_create_del_user(self, widget, data=None):
-        self.warning_box("Unimplemented: Create/Delete user")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
     def dia_database_stats(self, widget, data=None):
         self.warning_box("Unimplemented: Database Stats")
 
@@ -665,7 +660,6 @@ class fpdb:
                 </menu>
                 <menu action="database">
                   <menuitem action="maintaindbs"/>
-                  <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="rebuildindexes"/>
@@ -705,7 +699,6 @@ class fpdb:
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
                                  ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
-                                 ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
