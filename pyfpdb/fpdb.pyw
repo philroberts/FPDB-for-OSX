@@ -335,11 +335,6 @@ class fpdb:
         self.obtain_global_lock()
         self.release_global_lock()
 
-    def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
-        self.warning_box("Unimplemented: Edit Profile")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
     def dia_export_db(self, widget, data=None):
         self.warning_box("Unimplemented: Export Database")
         self.obtain_global_lock()
@@ -648,7 +643,6 @@ class fpdb:
               <menubar name="MenuBar">
                 <menu action="main">
                   <menuitem action="LoadProf"/>
-                  <menuitem action="EditProf"/>
                   <menuitem action="SaveProf"/>
                   <menuitem action="Preferences"/>
                   <separator/>
@@ -699,7 +693,6 @@ class fpdb:
         actiongroup.add_actions([('main', None, '_Main'),
                                  ('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.quit),
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
-                                 ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
                                  ('Preferences', None, 'Pre_ferences', '<control>F', 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
