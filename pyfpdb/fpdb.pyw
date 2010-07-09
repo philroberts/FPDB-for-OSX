@@ -661,7 +661,6 @@ class fpdb:
                   <menuitem action="tourneyplayerstats"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
-                  <menuitem action="sessionreplay"/>
                   <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
@@ -703,7 +702,6 @@ class fpdb:
                                  ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
-                                 ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
                                  ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
