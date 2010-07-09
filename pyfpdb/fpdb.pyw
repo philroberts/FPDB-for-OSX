@@ -653,7 +653,6 @@ class fpdb:
                   <menuitem action="bulkimp"/>
                   <menuitem action="imapsummaries"/>
                   <menuitem action="autoimp"/>
-                  <menuitem action="autorate"/>
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
@@ -699,7 +698,6 @@ class fpdb:
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
                                  ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
-                                 ('autorate', None, 'Auto _Rating (todo)', '<control>R', 'Auto Rating (todo)', self.not_implemented),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
