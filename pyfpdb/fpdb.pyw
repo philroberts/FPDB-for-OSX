@@ -325,19 +325,8 @@ class fpdb:
     def dia_database_stats(self, widget, data=None):
         self.warning_box("Unimplemented: Database Stats")
 
-    def dia_delete_db_parts(self, widget, data=None):
-        self.warning_box("Unimplemented: Delete Database Parts")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
-    def dia_export_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Export Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
-    def dia_get_db_root_credentials(self):
-        """obtains db root credentials from user"""
-        self.warning_box("Unimplemented: Get Root Database Credentials")
+#    def dia_get_db_root_credentials(self):
+#        """obtains db root credentials from user"""
 #        user, pw=None, None
 #
 #        dialog=gtk.Dialog(title="DB Credentials needed", parent=None, flags=0,
@@ -353,11 +342,6 @@ class fpdb:
 #        response=dialog.run()
 #        dialog.destroy()
 #        return (user, pw, response)
-
-    def dia_import_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Import Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
 
     def dia_licensing(self, widget, data=None):
         self.warning_box("Unimplemented: Licensing")
