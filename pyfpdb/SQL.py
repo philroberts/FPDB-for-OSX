@@ -2262,19 +2262,19 @@ class Sql:
                       select  t.tourneyTypeId                                                        AS tourneyTypeId
                             ,p.name                                                                 AS playerName
                             ,s.name                                                                 AS siteName
-                            ,sum(t.winnings)/100.0                                                  AS profit
-                            ,sum(t.buyin+t.fee)/100.0                                               AS invested
+                            ,sum(tp.winnings)/100.0                                                  AS profit
+                            ,sum(tt.buyin+tt.fee)/100.0                                               AS invested
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
                            inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
-                           inner join Sites s           on  (s.Id = gt.siteId)
+                           inner join Sites s           on  (s.Id = tt.siteId)
                            inner join Players p         on  (p.Id = tp.playerId)
                       where tp.playerId in <nametest> <sitetest>
                       and   date_format(t.startTime, '%Y-%m-%d %T') <datestest>
                       group by tourneyTypeId, playerName
                       order by tourneyTypeId
-                              ,pname
-                              ,s.name"""
+                              ,playerName
+                              ,siteName"""
         elif db_server == 'postgresql':
             self.query['tourneyPlayerDetailedStats'] = """TODO"""
         elif db_server == 'sqlite':

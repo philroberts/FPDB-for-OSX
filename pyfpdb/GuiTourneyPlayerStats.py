@@ -102,7 +102,7 @@ class GuiTourneyPlayerStats (threading.Thread):
     #end def __init__
 
     def addGrid(self, vbox, query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates):
-        print "start of addGrid query", query
+        #print "start of addGrid query", query
         counter = 0
         row = 0
         sqlrow = 0
@@ -111,6 +111,7 @@ class GuiTourneyPlayerStats (threading.Thread):
         query = self.refineQuery(query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates)
         self.cursor.execute(query)
         result = self.cursor.fetchall()
+        #print "result of the big query in addGrid:",result
         colnames = [desc[0].lower() for desc in self.cursor.description]
 
         # pre-fetch some constant values:
@@ -293,14 +294,14 @@ class GuiTourneyPlayerStats (threading.Thread):
     def refineQuery(self, query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates):
         having = ''
         
-        print "start of refinequery, playerids:",playerids
+        #print "start of refinequery, playerids:",playerids
         if playerids:
             nametest = str(tuple(playerids))
             nametest = nametest.replace("L", "")
             nametest = nametest.replace(",)",")")
         else:
             nametest = "1 = 2"
-        print "refinequery, nametest after initial creation:",nametest
+        #print "refinequery, nametest after initial creation:",nametest
         pname = "p.name"
         # set flag in self.columns to not show player name column
         #[x for x in self.columns if x[0] == 'pname'][0][1] = False #TODO: fix and reactivate
@@ -341,7 +342,7 @@ class GuiTourneyPlayerStats (threading.Thread):
                     sitetest = "and tt.siteId in %s" % sitetest#[1:-1]
                 else:
                     sitetest = "and tt.siteId IS NULL"
-        print "refinequery, sitetest before its use for replacement:",sitetest
+        #print "refinequery, sitetest before its use for replacement:",sitetest
         query = query.replace("<sitetest>", sitetest)
         
         if seats:
@@ -425,7 +426,7 @@ class GuiTourneyPlayerStats (threading.Thread):
         #    # unset flag in self.columns to hide posn column
         #    [x for x in self.columns if x[0] == 'plposition'][0][1] = False
 
-        print "query at end of refine query:", query
+        #print "query at end of refine query:", query
         return(query)
     #end def refineQuery
 
