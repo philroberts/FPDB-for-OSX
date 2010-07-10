@@ -40,6 +40,7 @@ class PokerStarsSummary(TourneySummary):
         lines=self.summaryText.splitlines()
         
         self.tourNo = self.re_TourNo.findall(lines[0])[0][1:-1] #ignore game and limit type as thats not recorded
+        print "tourNo:",self.tourNo
         
         if lines[1].find("$")!=-1: #TODO: move this into a method and call that from PokerStarsToFpdb.py:269    if hand.buyinCurrency=="USD" etc.
             self.currency="USD"
@@ -65,20 +66,23 @@ class PokerStarsSummary(TourneySummary):
         self.entries = self.re_Entries.findall(lines[currentLine])[0]
         currentLine+=1 #note that I chose to make the code keep state (the current line number)
                        #as that means it'll fail rather than silently skip potentially valuable information
-        #print "after entries lines[currentLine]", lines[currentLine]
+        print "after entries lines[currentLine]", lines[currentLine]
         
         result=self.re_Added.search(lines[currentLine])
         if result:
-            print "detected addon [currentLine]", lines[currentLine]
             result=result.groupdict()
             self.added=100*int(Decimal(result['DOLLAR']))+int(Decimal(result['CENT']))
             self.addedCurrency=result['CURRENCY']
             #print "TODO: implement added:",self.added,self.addedCurrency
             currentLine+=1
+        print "after added/entries lines[currentLine]", lines[currentLine]
         
-        self.prizepool = self.re_Prizepool.findall(lines[currentLine])[0]
-        self.prizepool = self.prizepool[1:-3]+self.prizepool[-2:]
-        currentLine+=1
+        result=self.re_Prizepool.findall(lines[currentLine])
+        if result:
+            print "prizepool result", result
+            self.prizepool = result[0]
+            self.prizepool = self.prizepool[1:-3]+self.prizepool[-2:]
+            currentLine+=1
         #print "after prizepool lines[currentLine]", lines[currentLine]
         
         result=self.re_DateTime.search(lines[currentLine])
@@ -89,10 +93,12 @@ class PokerStarsSummary(TourneySummary):
         currentLine+=1
         
         result=self.re_DateTime.search(lines[currentLine])
-        result=result.groupdict()
-        datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
-        self.endTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-        currentLine+=1
+        if result:
+            print "endtime result", result
+            result=result.groupdict()
+            datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
+            self.endTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+            currentLine+=1
         
         for i in range(currentLine,len(lines)-2): #lines with rank and winnings info
             if lines[i].find(":")==-1:
