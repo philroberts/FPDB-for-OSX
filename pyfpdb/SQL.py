@@ -3840,8 +3840,8 @@ class Sql:
         # Counts for DB stats window
         ################################
         self.query['getHandCount'] = "SELECT COUNT(id) FROM Hands"
-        
         self.query['getTourneyCount'] = "SELECT COUNT(id) FROM Tourneys"
+        self.query['getTourneyTypeCount'] = "SELECT COUNT(id) FROM TourneyTypes"
         
         ################################
         # placeholders and substitution stuff

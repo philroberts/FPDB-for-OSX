@@ -323,7 +323,10 @@ class fpdb:
                              + "other windows have been opened. Re-start fpdb to use this option.")
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str="Number of hands: "+str(self.db.getHandCount())+"\nNumber of tourneys: "+str(self.db.getTourneyCount()), diatitle="Database Statistics")
+        self.warning_box(str="Number of Hands: "+str(self.db.getHandCount())+
+                    "\nNumber of Tourneys: "+str(self.db.getTourneyCount())+
+                    "\nNumber of TourneyTypes: "+str(self.db.getTourneyTypeCount()),
+                    diatitle="Database Statistics")
     #end def dia_database_stats
 
 #    def dia_get_db_root_credentials(self):
