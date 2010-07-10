@@ -50,7 +50,7 @@ class GuiBulkImport():
         ttime = None
         # Does the lock acquisition need to be more sophisticated for multiple dirs?
         # (see comment above about what to do if pipe already open)
-        if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
+        if self.settings['global_lock'].acquire(wait=False, source="GuiBulkImport"):   # returns false immediately if lock not acquired
             #try:
                 print "\nGlobal lock taken ..."
                 self.progressbar.set_text("Importing...")

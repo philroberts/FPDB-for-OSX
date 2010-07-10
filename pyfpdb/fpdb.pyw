@@ -814,12 +814,13 @@ class fpdb:
     def not_implemented(self, widget, data=None):
         self.warning_box("Unimplemented menu entry")
 
-    def obtain_global_lock(self):
-        ret = self.lock.acquire(False) # will return false if lock is already held
+    def obtain_global_lock(self, source):
+        ret = self.lock.acquire(source=source) # will return false if lock is already held
         if ret:
-            print "\nGlobal lock taken ..."
+            print "\nGlobal lock taken by", source
+            self.lockTakenBy=source
         else:
-            print "\nFailed to get global lock."
+            print "\nFailed to get global lock, it is currently held by", source
         return ret
         # need to release it later:
         # self.lock.release()
@@ -841,6 +842,7 @@ class fpdb:
 
     def release_global_lock(self):
         self.lock.release()
+        self.lockTakenBy=None
         print "Global lock released.\n"
 
     def tab_auto_import(self, widget, data=None):
