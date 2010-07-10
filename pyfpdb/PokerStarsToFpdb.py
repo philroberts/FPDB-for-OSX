@@ -256,16 +256,24 @@ class PokerStars(HandHistoryConverter):
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
                     else:
+                        #print "info[key]:",info[key]
                         if info[key].find("$")!=-1:
                             hand.buyinCurrency="USD"
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
+                        elif info[key].find("FPP")!=-1:
+                            hand.buyinCurrency="PSFP"
                         else:
-                            hand.buyinCurrency="NA" #FIXME: handle other currencies, FPP, play money
-                        info[key]=info[key][:-4]
-                        middle=info[key].find("+")
-                        hand.buyin = int(100*Decimal(info[key][1:middle]))
-                        hand.fee = int(100*Decimal(info[key][middle+2:]))
+                            raise FpdbParseError("failed to detect currency") #FIXME: handle other currencies, FPP, play money
+                        
+                        if hand.buyinCurrency=="USD" or hand.buyinCurrency=="EUR":
+                            info[key]=info[key][:-4]
+                            middle=info[key].find("+")
+                            hand.buyin = int(100*Decimal(info[key][1:middle]))
+                            hand.fee = int(100*Decimal(info[key][middle+2:]))
+                        elif hand.buyinCurrency=="PSFP":
+                            hand.buyin = int(Decimal(info[key][0:-3]))
+                            hand.fee = 0
             if key == 'LEVEL':
                 hand.level = info[key]
 
