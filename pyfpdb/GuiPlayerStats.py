@@ -218,7 +218,7 @@ class GuiPlayerStats (threading.Thread):
     #end def fillStatsFrame
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games):
-        starttime = time()
+        startTime = time()
         show_detail = True
 
         # Scrolled window for summary table
@@ -262,7 +262,7 @@ class GuiPlayerStats (threading.Thread):
                         ,sitenos, limits, type, seats, groups, dates, games)
 
         self.db.rollback()
-        print "Stats page displayed in %4.2f seconds" % (time() - starttime)
+        print "Stats page displayed in %4.2f seconds" % (time() - startTime)
     #end def createStatsTable
 
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
