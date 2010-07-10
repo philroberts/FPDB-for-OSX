@@ -22,12 +22,12 @@ pygtk.require('2.0')
 import gtk
 #import os
 #import sys
-#from time import time, strftime
+from time import time, strftime
 
 #import Card
 #import fpdb_import
 #import Database
-#import Charset
+import Charset
 import TourneyFilters
 
 class GuiTourneyPlayerStats (threading.Thread):
@@ -41,7 +41,7 @@ class GuiTourneyPlayerStats (threading.Thread):
         self.liststore = []   # gtk.ListStore[]         stores the contents of the grids
         self.listcols = []    # gtk.TreeViewColumn[][]  stores the columns in the grids
         
-        filters_display = { "Heroes"    : True,
+        filters_display = { "Heroes"    : False,
                             "Sites"     : True,
                             #"Games"     : True,
                             #"Limits"    : True,
@@ -67,6 +67,23 @@ class GuiTourneyPlayerStats (threading.Thread):
         #self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name("_Refresh Stats")
         self.filters.registerButton2Callback(self.refreshStats)
+        
+        # ToDo: store in config
+        # ToDo: create popup to adjust column config
+        # columns to display, keys match column name returned by sql, values in tuple are:
+        #     is column displayed, column heading, xalignment, formatting, celltype
+        self.columns = [ ["tourneyTypeId",  True,  "TTypeId",     0.0, "%s", "str"]
+                       , ["tourney",        False, "Tourney",     0.0, "%s", "str"]   # true not allowed for this line
+                       #, ["pname",         False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
+                       , ["tourneyCount",   True,  "#",      1.0, "%1.0f", "str"]
+                       , ["1st",            False, "1st",    1.0, "%3.1f", "str"]
+                       , ["2nd",            True,  "2nd",     1.0, "%3.1f", "str"]
+                       , ["3rd",            True,  "3rd",      1.0, "%3.1f", "str"]
+                       , ["unknownRank",    True,  "unknown",      1.0, "%3.1f", "str"]
+                       , ["itm",            True,  "ITM",   1.0, "%2.2f", "str"]
+                       , ["roi",            True,  "ROI",  1.0, "%3.1f", "str"]
+                       , ["profitPerTourney", True,  "$/T",  1.0, "%3.1f", "str"]]
+        
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
 
@@ -82,8 +99,119 @@ class GuiTourneyPlayerStats (threading.Thread):
         self.main_hbox.show()
     #end def __init__
 
-    def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games):
-        starttime = time()
+    def addGrid(self, vbox, query, flags, tourneyTypes, playerids, sitenos, seats, dates):
+        counter = 0
+        row = 0
+        sqlrow = 0
+        if not flags:  holecards,grid = False,0
+        else:          holecards,grid = flags[0],flags[2]
+
+        tmp = self.sql.query[query]
+        tmp = self.refineQuery(tmp, flags, tourneyTypes, playerids, sitenos, seats, dates)
+        self.cursor.execute(tmp)
+        result = self.cursor.fetchall()
+        colnames = [desc[0].lower() for desc in self.cursor.description]
+
+        # pre-fetch some constant values:
+        self.cols_to_show = [x for x in self.columns if x[colshow]]
+        hgametypeid_idx = colnames.index('hgametypeid')
+
+        assert len(self.liststore) == grid, "len(self.liststore)="+str(len(self.liststore))+" grid-1="+str(grid)
+        self.liststore.append( gtk.ListStore(*([str] * len(self.cols_to_show))) )
+        view = gtk.TreeView(model=self.liststore[grid])
+        view.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+        #vbox.pack_start(view, expand=False, padding=3)
+        vbox.add(view)
+        textcell = gtk.CellRendererText()
+        textcell50 = gtk.CellRendererText()
+        textcell50.set_property('xalign', 0.5)
+        numcell = gtk.CellRendererText()
+        numcell.set_property('xalign', 1.0)
+        assert len(self.listcols) == grid
+        self.listcols.append( [] )
+
+        # Create header row   eg column: ("game",     True, "Game",     0.0, "%s")
+        for col, column in enumerate(self.cols_to_show):
+            if column[colalias] == 'game' and holecards:
+                s = [x for x in self.columns if x[colalias] == 'hand'][0][colheading]
+            else:
+                s = column[colheading]
+            self.listcols[grid].append(gtk.TreeViewColumn(s))
+            view.append_column(self.listcols[grid][col])
+            if column[colformat] == '%s':
+                if column[colxalign] == 0.0:
+                    self.listcols[grid][col].pack_start(textcell, expand=True)
+                    self.listcols[grid][col].add_attribute(textcell, 'text', col)
+                    cellrend = textcell
+                else:
+                    self.listcols[grid][col].pack_start(textcell50, expand=True)
+                    self.listcols[grid][col].add_attribute(textcell50, 'text', col)
+                    cellrend = textcell50
+                self.listcols[grid][col].set_expand(True)
+            else:
+                self.listcols[grid][col].pack_start(numcell, expand=True)
+                self.listcols[grid][col].add_attribute(numcell, 'text', col)
+                self.listcols[grid][col].set_expand(True)
+                cellrend = numcell
+                #self.listcols[grid][col].set_alignment(column[colxalign]) # no effect?
+            self.listcols[grid][col].set_clickable(True)
+            self.listcols[grid][col].connect("clicked", self.sortcols, (col,grid))
+            if col == 0:
+                self.listcols[grid][col].set_sort_order(gtk.SORT_DESCENDING)
+                self.listcols[grid][col].set_sort_indicator(True)
+            if column[coltype] == 'cash':
+                self.listcols[grid][col].set_cell_data_func(numcell, self.ledger_style_render_func)
+            else:
+                self.listcols[grid][col].set_cell_data_func(cellrend, self.reset_style_render_func)
+
+        rows = len(result) # +1 for title row
+
+        while sqlrow < rows:
+            treerow = []
+            for col,column in enumerate(self.cols_to_show):
+                if column[colalias] in colnames:
+                    value = result[sqlrow][colnames.index(column[colalias])]
+                    if column[colalias] == 'plposition':
+                        if value == 'B':
+                            value = 'BB'
+                        elif value == 'S':
+                            value = 'SB'
+                        elif value == '0':
+                            value = 'Btn'
+                else:
+                    if column[colalias] == 'game':
+                        if holecards:
+                            value = Card.twoStartCardString( result[sqlrow][hgametypeid_idx] )
+                        else:
+                            minbb = result[sqlrow][colnames.index('minbigblind')]
+                            maxbb = result[sqlrow][colnames.index('maxbigblind')]
+                            value = result[sqlrow][colnames.index('limittype')] + ' ' \
+                                    + result[sqlrow][colnames.index('category')].title() + ' ' \
+                                    + result[sqlrow][colnames.index('name')] + ' $'
+                            if 100 * int(minbb/100.0) != minbb:
+                                value += '%.2f' % (minbb/100.0)
+                            else:
+                                value += '%.0f' % (minbb/100.0)
+                            if minbb != maxbb:
+                                if 100 * int(maxbb/100.0) != maxbb:
+                                    value += ' - $' + '%.2f' % (maxbb/100.0)
+                                else:
+                                    value += ' - $' + '%.0f' % (maxbb/100.0)
+                    else:
+                        continue
+                if value and value != -999:
+                    treerow.append(column[colformat] % value)
+                else:
+                    treerow.append(' ')
+            iter = self.liststore[grid].append(treerow)
+            #print treerow
+            sqlrow += 1
+            row += 1
+        vbox.show_all()
+    #end def addGrid
+
+    def createStatsTable(self, vbox, tourneyTypes, playerids, sitenos, seats, dates):
+        startTime = time()
         show_detail = True
 
         # Scrolled window for summary table
@@ -97,9 +225,9 @@ class GuiTourneyPlayerStats (threading.Thread):
         #   holecards - whether to display card breakdown (True/False)
         #   numhands  - min number hands required when displaying all players
         #   gridnum   - index for grid data structures
-        flags = [False, self.filters.getNumHands(), 0]
-        self.addGrid(swin, 'playerDetailedStats', flags, playerids
-                    ,sitenos, limits, type, seats, groups, dates, games)
+        flags = [False, self.filters.getNumTourneys(), 0]
+        self.addGrid(swin, 'playerDetailedStats', flags, tourneyTypes, playerids
+                    ,sitenos, seats, dates)
 
         if 'allplayers' in groups and groups['allplayers']:
             # can't currently do this combination so skip detailed table
@@ -123,20 +251,20 @@ class GuiTourneyPlayerStats (threading.Thread):
             # Detailed table
             flags[0] = True
             flags[2] = 1
-            self.addGrid(swin, 'playerDetailedStats', flags, playerids
-                        ,sitenos, limits, type, seats, groups, dates, games)
+            self.addGrid(swin, 'playerDetailedStats', flags, playerids, sitenos, seats, dates)
 
         self.db.rollback()
-        print "Stats page displayed in %4.2f seconds" % (time() - starttime)
+        print "Stats page displayed in %4.2f seconds" % (time() - startTime)
     #end def createStatsTable
 
     def fillStatsFrame(self, vbox):
+        tourneyTypes = self.filters.getTourneyTypes()
+        #tourneys = self.tourneys.getTourneys()
         sites = self.filters.getSites()
         heroes = self.filters.getHeroes()
         siteids = self.filters.getSiteIds()
         seats  = self.filters.getSeats()
         dates = self.filters.getDates()
-        games = self.filters.getGames()
         sitenos = []
         playerids = []
 
@@ -156,11 +284,8 @@ class GuiTourneyPlayerStats (threading.Thread):
         if not playerids:
             print "No player ids found"
             return
-        if not limits:
-            print "No limits found"
-            return
-
-        self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games)
+        
+        self.createStatsTable(vbox, tourneyTypes, playerids, sitenos, seats, dates)
     #end def fillStatsFrame
 
     def get_vbox(self):
@@ -168,6 +293,150 @@ class GuiTourneyPlayerStats (threading.Thread):
         return self.main_hbox
     #end def get_vbox
     
+    def refineQuery(self, query, flags, tourneyTypes, playerids, sitenos, seats, dates):
+        having = ''
+        holecards = flags[0]
+        numTourneys = flags[1]
+
+        #if 'allplayers' in groups and groups['allplayers']:
+        nametest = "(hp.playerId)"
+        pname = "p.name"
+        # set flag in self.columns to show player name column
+        [x for x in self.columns if x[0] == 'pname'][0][1] = True
+        if numTourneys:
+            having = ' and count(1) > %d ' % (numTourneys,)
+        query = query.replace("<player_test>", nametest)
+        query = query.replace("<playerName>", pname)
+        query = query.replace("<havingclause>", having)
+
+        gametest = ""
+        q = []
+        for m in self.filters.display.items():
+            if m[0] == 'Games' and m[1]:
+                for n in games:
+                    if games[n]:
+                        q.append(n)
+                if len(q) > 0:
+                    gametest = str(tuple(q))
+                    gametest = gametest.replace("L", "")
+                    gametest = gametest.replace(",)",")")
+                    gametest = gametest.replace("u'","'")
+                    gametest = "and gt.category in %s" % gametest
+                else:
+                    gametest = "and gt.category IS NULL"
+        query = query.replace("<game_test>", gametest)
+        
+        sitetest = ""
+        q = []
+        for m in self.filters.display.items():
+            if m[0] == 'Sites' and m[1]:
+                for n in sitenos:
+                        q.append(n)
+                if len(q) > 0:
+                    sitetest = str(tuple(q))
+                    sitetest = sitetest.replace("L", "")
+                    sitetest = sitetest.replace(",)",")")
+                    sitetest = sitetest.replace("u'","'")
+                    sitetest = "and gt.siteId in %s" % sitetest
+                else:
+                    sitetest = "and gt.siteId IS NULL"
+        query = query.replace("<site_test>", sitetest)
+        
+        if seats:
+            query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
+            if 'show' in seats and seats['show']:
+                query = query.replace('<groupbyseats>', ',h.seats')
+                query = query.replace('<orderbyseats>', ',h.seats')
+            else:
+                query = query.replace('<groupbyseats>', '')
+                query = query.replace('<orderbyseats>', '')
+        else:
+            query = query.replace('<seats_test>', 'between 0 and 100')
+            query = query.replace('<groupbyseats>', '')
+            query = query.replace('<orderbyseats>', '')
+
+        lims = [int(x) for x in limits if x.isdigit()]
+        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
+        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
+                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
+        if lims:
+            blindtest = str(tuple(lims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) '
+        else:
+            bbtest = bbtest + '(-1) ) '
+        bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
+        if potlims:
+            blindtest = str(tuple(potlims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) '
+        else:
+            bbtest = bbtest + '(-1) ) '
+        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
+        if nolims:
+            blindtest = str(tuple(nolims))
+            blindtest = blindtest.replace("L", "")
+            blindtest = blindtest.replace(",)",")")
+            bbtest = bbtest + blindtest + ' ) )'
+        else:
+            bbtest = bbtest + '(-1) ) )'
+        if type == 'ring':
+            bbtest = bbtest + " and gt.type = 'ring' "
+        elif type == 'tour':
+            bbtest = " and gt.type = 'tour' "
+        query = query.replace("<gtbigBlind_test>", bbtest)
+
+        if holecards:  # re-use level variables for hole card query
+            query = query.replace("<hgameTypeId>", "hp.startcards")
+            query = query.replace("<orderbyhgameTypeId>"
+                                 , ",case when floor((hp.startcards-1)/13) >= mod((hp.startcards-1),13) then hp.startcards + 0.1 "
+                                   +    " else 13*mod((hp.startcards-1),13) + floor((hp.startcards-1)/13) + 1 "
+                                   +    " end desc ")
+        else:
+            query = query.replace("<orderbyhgameTypeId>", "")
+            groupLevels = "show" not in str(limits)
+            if groupLevels:
+                query = query.replace("<hgameTypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
+            else:
+                query = query.replace("<hgameTypeId>", "h.gameTypeId")
+
+        # process self.detailFilters (a list of tuples)
+        flagtest = ''
+        #self.detailFilters = [('h.seats', 5, 6)]   # for debug
+        if self.detailFilters:
+            for f in self.detailFilters:
+                if len(f) == 3:
+                    # X between Y and Z
+                    flagtest += ' and %s between %s and %s ' % (f[0], str(f[1]), str(f[2]))
+        query = query.replace("<flagtest>", flagtest)
+
+        # allow for differences in sql cast() function:
+        if self.db.backend == self.MYSQL_INNODB:
+            query = query.replace("<signed>", 'signed ')
+        else:
+            query = query.replace("<signed>", '')
+
+        # Filter on dates
+        query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")
+
+        # Group by position?
+        if groups['posn']:
+            #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
+            query = query.replace("<position>", "hp.position")
+            # set flag in self.columns to show posn column
+            [x for x in self.columns if x[0] == 'plposition'][0][1] = True
+        else:
+            query = query.replace("<position>", "gt.base")
+            # unset flag in self.columns to hide posn column
+            [x for x in self.columns if x[0] == 'plposition'][0][1] = False
+
+        #print "query =\n", query
+        return(query)
+    #end def refineQuery
+
     def refreshStats(self, widget, data):
         self.last_pos = self.stats_vbox.get_position()
         try: self.stats_vbox.destroy()

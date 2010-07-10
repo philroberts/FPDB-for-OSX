@@ -92,6 +92,8 @@ class Sql:
         
         self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
 
+        self.query['getTourneyTypesIds'] = "SELECT id FROM TourneyTypes"
+
         ################################
         # Create Settings
         ################################
@@ -3834,9 +3836,16 @@ class Sql:
                     %s
                 )"""
         
+        ################################
+        # Counts for DB stats window
+        ################################
         self.query['getHandCount'] = "SELECT COUNT(id) FROM Hands"
+        
         self.query['getTourneyCount'] = "SELECT COUNT(id) FROM Tourneys"
         
+        ################################
+        # placeholders and substitution stuff
+        ################################
         if db_server == 'mysql':
             self.query['placeholder'] = u'%s'
         elif db_server == 'postgresql':

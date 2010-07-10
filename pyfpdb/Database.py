@@ -2042,6 +2042,14 @@ class Database:
                 tourneysPlayersIds.append(self.get_last_insert_id(cursor))
         return tourneysPlayersIds
     #end def createOrUpdateTourneysPlayers
+    
+    def getTourneyTypesIds(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getTourneyTypesIds'])
+        result = c.fetchall()
+        print "DB.getTourneyTypesIds result:",result
+        return result
+    #end def getTourneyTypesIds
 #end class Database
 
 # Class used to hold all the data needed to write a hand to the db

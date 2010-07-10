@@ -23,7 +23,7 @@ import gobject
 #import os
 #import sys
 #from optparse import OptionParser
-#from time import *
+from time import gmtime, mktime, strftime, strptime
 #import pokereval
 
 import logging #logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -45,8 +45,14 @@ class TourneyFilters(threading.Thread):
         self.display = display
         
         self.filterText = {'playerstitle':'Hero:', 'sitestitle':'Sites:', 'seatstitle':'Number of Players:',
-                    'seatsbetween':'Between:', 'seatsand':'And:', 'datestitle':'Date:'}
+                    'seatsbetween':'Between:', 'seatsand':'And:', 'datestitle':'Date:',
+                    'tourneyTypesTitle':'Tourney Type'}
         
+        gen = self.conf.get_general_params()
+        self.day_start = 0
+        if 'day_start' in gen:
+            self.day_start = float(gen['day_start'])
+
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
 
@@ -79,19 +85,44 @@ class TourneyFilters(threading.Thread):
         self.end_date.set_text('')
     #end def __clear_dates
 
+    def __get_dates(self):
+        # self.day_start gives user's start of day in hours
+        offset = int(self.day_start * 3600)   # calc day_start in seconds
+
+        t1 = self.start_date.get_text()
+        t2 = self.end_date.get_text()
+
+        if t1 == '':
+            t1 = '1970-01-02'
+        if t2 == '':
+            t2 = '2020-12-12'
+
+        s1 = strptime(t1, "%Y-%m-%d") # make time_struct
+        s2 = strptime(t2, "%Y-%m-%d")
+        e1 = mktime(s1) + offset  # s1 is localtime, but returned time since epoch is UTC, then add the 
+        e2 = mktime(s2) + offset  # s2 is localtime, but returned time since epoch is UTC
+        e2 = e2 + 24 * 3600 - 1   # date test is inclusive, so add 23h 59m 59s to e2
+
+        adj_t1 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e1)) # make adjusted string including time
+        adj_t2 = strftime("%Y-%m-%d %H:%M:%S", gmtime(e2))
+        log.info("t1="+t1+" adj_t1="+adj_t1+'.')
+
+        return (adj_t1, adj_t2)
+    #end def __get_dates
+
     def __refresh(self, widget, entry):
         for w in self.mainVBox.get_children():
             w.destroy()
         self.make_filter()
     #end def __refresh
 
-    def __set_hero_name(self, w, site):
-        _name = w.get_text()
-        #get_text() returns a str but we want internal variables to be unicode:
-        _guiname = unicode(_name)
-        self.heroes[site] = _guiname
-        #log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
-    #end def __set_hero_name
+    def __set_num_tourneys(self, w, val):
+        try:
+            self.numTourneys = int(w.get_text())
+        except:
+            self.numTourneys = 0
+        print "setting numTourneys:", self.numTourneys
+    #end def __set_num_tourneys
 
     def __set_seat_select(self, w, seat):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
@@ -104,6 +135,12 @@ class TourneyFilters(threading.Thread):
         self.sites[site] = w.get_active()
         log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
     #end def __set_site_select
+
+    def __set_tourney_type_select(self, w, tourneyType):
+        #print w.get_active()
+        self.tourneyTypes[tourneyType] = w.get_active()
+        log.debug("self.tourney_types[%s] set to %s" %(tourneyType, self.tourneyTypes[tourneyType]))
+    #end def __set_tourney_type_select
 
     def __toggle_box(self, widget, entry):
         if self.boxes[entry].props.visible:
@@ -123,7 +160,7 @@ class TourneyFilters(threading.Thread):
         pname.set_text(player)
         pname.set_width_chars(20)
         hbox.pack_start(pname, False, True, 0)
-        pname.connect("changed", self.__set_hero_name, site)
+        #pname.connect("changed", self.__set_hero_name, site)
 
         # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
         completion = gtk.EntryCompletion()
@@ -137,7 +174,7 @@ class TourneyFilters(threading.Thread):
             _nt = (_n, )
             liststore.append(_nt)
 
-        self.__set_hero_name(pname, site)
+        #self.__set_hero_name(pname, site)
     #end def createPlayerLine
     
     def createSiteLine(self, hbox, site):
@@ -146,6 +183,13 @@ class TourneyFilters(threading.Thread):
         cb.set_active(True)
         hbox.pack_start(cb, False, False, 0)
     #end def createSiteLine
+    
+    def createTourneyTypeLine(self, hbox, tourneyType):
+        cb = gtk.CheckButton(str(tourneyType))
+        cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
+        hbox.pack_start(cb, False, False, 0)
+        cb.set_active(True)
+    #end def createTourneyTypeLine
 
     def fillDateFrame(self, vbox):
         # Hat tip to Mika Bostrom - calendar code comes from PokerStats
@@ -216,7 +260,25 @@ class TourneyFilters(threading.Thread):
             player = self.conf.supported_sites[site].screen_name
             _pname = Charset.to_gui(player)
             self.createPlayerLine(hBox, site, _pname)
+        
+        hbox = gtk.HBox(False, 0)
+        vbox1.pack_start(hbox, False, False, 0)
+        #cb = gtk.CheckButton(self.filterText['groupsall'])
+        #cb.connect('clicked', self.__set_group_select, 'allplayers')
+        #hbox.pack_start(cb, False, False, 0)
+        #self.sbGroups['allplayers'] = cb
+        #self.groups['allplayers'] = False
 
+        #lbl = gtk.Label('Min # Hands:')
+        #lbl.set_alignment(xalign=1.0, yalign=0.5)
+        #hbox.pack_start(lbl, expand=True, padding=3)
+
+        #phands = gtk.Entry()
+        #phands.set_text('0')
+        #phands.set_width_chars(8)
+        #hbox.pack_start(phands, False, False, 0)
+        #phands.connect("changed", self.__set_num_hands, site)
+        
         top_hbox.pack_start(showb, expand=False, padding=1)
     #end def fillPlayerFrame
 
@@ -279,17 +341,77 @@ class TourneyFilters(threading.Thread):
             self.createSiteLine(hbox, site)
     #end def fillSitesFrame
 
+    def fillTourneyTypesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['tourneyTypesTitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['tourneyTypes'] = vbox1
+
+        result = self.db.getTourneyTypesIds()
+        if len(result) >= 1:
+            for line in result:
+                hbox = gtk.HBox(False, 0)
+                vbox1.pack_start(hbox, False, True, 0)
+                self.createTourneyTypeLine(hbox, line[0])
+        else:
+            print "INFO: No tourney types returned from database"
+            log.info("No tourney types returned from database")
+    #end def fillTourneyTypesFrame
+
+    def getDates(self):
+        return self.__get_dates()
+    #end def getDates
+
+    def getHeroes(self):
+        return self.heroes
+    #end def getHeroes
+
+    def getNumTourneys(self):
+        return self.numTourneys
+    #end def getNumTourneys
+
+    def getSeats(self):
+        if 'from' in self.sbSeats:
+            self.seats['from'] = self.sbSeats['from'].get_value_as_int()
+        if 'to' in self.sbSeats:
+            self.seats['to'] = self.sbSeats['to'].get_value_as_int()
+        return self.seats
+    #end def getSeats
+
+    def getSiteIds(self):
+        return self.siteid
+    #end def getSiteIds
+
+    def getSites(self):
+        return self.sites
+    #end def getSites
+
+    def getTourneyTypes(self):
+        return self.tourneyTypes
+    #end def getTourneyTypes
+
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.mainVBox
     #end def get_vbox
 
     def make_filter(self):
-        self.sites  = {}
-        self.seats  = {}
+        self.tourneyTypes = {}
+        #self.tourneys = {}
+        self.sites = {}
+        self.seats = {}
         self.siteid = {}
         self.heroes = {}
-        self.boxes  = {}
+        self.boxes = {}
 
         for site in self.conf.get_supported_sites():
             #Get db site id for filtering later
@@ -323,6 +445,15 @@ class TourneyFilters(threading.Thread):
 
         self.fillSitesFrame(vbox)
         sitesFrame.add(vbox)
+
+        # Tourney types
+        tourneyTypesFrame = gtk.Frame()
+        tourneyTypesFrame.set_label_align(0.0, 0.0)
+        tourneyTypesFrame.show()
+        vbox = gtk.VBox(False, 0)
+
+        self.fillTourneyTypesFrame(vbox)
+        tourneyTypesFrame.add(vbox)
 
         # Seats
         seatsFrame = gtk.Frame()

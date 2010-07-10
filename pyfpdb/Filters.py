@@ -226,18 +226,22 @@ class Filters(threading.Thread):
 
     def getNumHands(self):
         return self.numHands
+    #end def getNumHands
 
     def getSites(self):
         return self.sites
+    #end def getSites
 
     def getGames(self):
         return self.games
 
     def getSiteIds(self):
         return self.siteid
+    #end def getSiteIds
 
     def getHeroes(self):
         return self.heroes
+    #end def getHeroes
 
     def getLimits(self):
         ltuple = []
@@ -255,12 +259,14 @@ class Filters(threading.Thread):
         if 'to' in self.sbSeats:
             self.seats['to'] = self.sbSeats['to'].get_value_as_int()
         return self.seats
+    #end def getSeats
 
     def getGroups(self):
         return self.groups
 
     def getDates(self):
         return self.__get_dates()
+    #end def getDates
 
     def registerButton1Name(self, title):
         self.Button1.set_label(title)
@@ -323,7 +329,8 @@ class Filters(threading.Thread):
             self.numHands = int(w.get_text())
         except:
             self.numHands = 0
-#        log.debug("setting numHands:", self.numHands)
+        #log.debug("setting numHands:", self.numHands)
+    #end def __set_num_hands
 
     def createSiteLine(self, hbox, site):
         cb = gtk.CheckButton(site)
@@ -354,6 +361,7 @@ class Filters(threading.Thread):
         #print w.get_active()
         self.games[game] = w.get_active()
         log.debug("self.games[%s] set to %s" %(game, self.games[game]))
+    #end def __set_game_select
 
     def __set_limit_select(self, w, limit):
         #print w.get_active()
@@ -600,6 +608,7 @@ class Filters(threading.Thread):
         else:
             print "INFO: No games returned from database"
             log.info("No games returned from database")
+    #end def fillGamesFrame
 
     def fillLimitsFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
@@ -899,6 +908,7 @@ class Filters(threading.Thread):
         log.info("t1="+t1+" adj_t1="+adj_t1+'.')
 
         return (adj_t1, adj_t2)
+    #end def __get_dates
 
     def __get_date(self, widget, calendar, entry, win):
         # year and day are correct, month is 0..11

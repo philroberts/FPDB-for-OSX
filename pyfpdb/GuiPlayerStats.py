@@ -442,8 +442,7 @@ class GuiPlayerStats (threading.Thread):
             sqlrow += 1
             row += 1
         vbox.show_all()
-        
-    #end def addGrid(self, query, vars, playerids, sitenos, limits, type, seats, groups, dates):
+    #end def addGrid
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games):
         having = ''
@@ -609,7 +608,7 @@ class GuiPlayerStats (threading.Thread):
 
         #print "query =\n", query
         return(query)
-    #end def refineQuery(self, query, playerids, sitenos, limits):
+    #end def refineQuery
 
     def showDetailFilter(self, widget, data):
         detailDialog = gtk.Dialog(title="Detailed Filters", parent=self.main_window
