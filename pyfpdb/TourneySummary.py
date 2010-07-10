@@ -230,9 +230,14 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         self.players.append(name)
-        self.ranks.update( { name : Decimal(rank) } )
-        self.winnings.update( { name : Decimal(winnings) } )
-        self.winningsCurrency.update( { name : winningsCurrency } )
+        if rank:
+            self.ranks.update( { name : Decimal(rank) } )
+            self.winnings.update( { name : Decimal(winnings) } )
+            self.winningsCurrency.update( { name : winningsCurrency } )
+        else:
+            self.ranks.update( { name : None } )
+            self.winnings.update( { name : None } )
+            self.winningsCurrency.update( { name : None } )
         if rebuyCount:
             self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
         else:

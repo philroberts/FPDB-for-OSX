@@ -28,7 +28,7 @@ class PokerStarsSummary(TourneySummary):
     re_TourNo = re.compile("\#[0-9]+,")
     re_Entries = re.compile("[0-9]+")
     re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
-    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s\$(?P<WINNINGS>[0-9]+\.[0-9]+)\s\()?""")
+    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s\$(?P<WINNINGS>[0-9]+\.[0-9]+)\s\()?(\s(?P<STILLPLAYING>still\splaying))?""")
     re_BuyInFee = re.compile("(?P<BUYIN>[0-9]+\.[0-9]+).*(?P<FEE>[0-9]+\.[0-9]+)")
     re_FPP = re.compile("(?P<FPP>[0-9]+)\sFPP")
     #note: the dollar and cent in the below line are currency-agnostic
@@ -40,7 +40,7 @@ class PokerStarsSummary(TourneySummary):
         lines=self.summaryText.splitlines()
         
         self.tourNo = self.re_TourNo.findall(lines[0])[0][1:-1] #ignore game and limit type as thats not recorded
-        print "tourNo:",self.tourNo
+        #print "tourNo:",self.tourNo
         
         if lines[1].find("$")!=-1: #TODO: move this into a method and call that from PokerStarsToFpdb.py:269    if hand.buyinCurrency=="USD" etc.
             self.currency="USD"
@@ -66,7 +66,7 @@ class PokerStarsSummary(TourneySummary):
         self.entries = self.re_Entries.findall(lines[currentLine])[0]
         currentLine+=1 #note that I chose to make the code keep state (the current line number)
                        #as that means it'll fail rather than silently skip potentially valuable information
-        print "after entries lines[currentLine]", lines[currentLine]
+        #print "after entries lines[currentLine]", lines[currentLine]
         
         result=self.re_Added.search(lines[currentLine])
         if result:
@@ -75,11 +75,10 @@ class PokerStarsSummary(TourneySummary):
             self.addedCurrency=result['CURRENCY']
             #print "TODO: implement added:",self.added,self.addedCurrency
             currentLine+=1
-        print "after added/entries lines[currentLine]", lines[currentLine]
+        #print "after added/entries lines[currentLine]", lines[currentLine]
         
         result=self.re_Prizepool.findall(lines[currentLine])
         if result:
-            print "prizepool result", result
             self.prizepool = result[0]
             self.prizepool = self.prizepool[1:-3]+self.prizepool[-2:]
             currentLine+=1
@@ -94,10 +93,12 @@ class PokerStarsSummary(TourneySummary):
         
         result=self.re_DateTime.search(lines[currentLine])
         if result:
-            print "endtime result", result
             result=result.groupdict()
             datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
             self.endTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+            currentLine+=1
+        
+        if lines[currentLine].find("Tournament is still in progress")!=-1:
             currentLine+=1
         
         for i in range(currentLine,len(lines)-2): #lines with rank and winnings info
@@ -108,10 +109,16 @@ class PokerStarsSummary(TourneySummary):
             rank=result['RANK']
             name=result['NAME']
             winnings=result['WINNINGS']
+            
             if winnings:
                 winnings=int(100*Decimal(winnings))
             else:
                 winnings=0
+            
+            if result['STILLPLAYING']:
+                #print "stillplaying"
+                rank=None
+                winnings=None
             
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)#TODO: currency, ko/addon/rebuy count -> need examples!
     #end def parseSummary
