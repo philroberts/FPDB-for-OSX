@@ -2258,6 +2258,29 @@ class Sql:
                       """
 
         if db_server == 'mysql':
+            self.query['tourneyPlayerDetailedStats'] = """
+                      select  t.tourneyTypeId                                                        AS tourneyTypeId
+                            ,p.name                                                                 AS playerName
+                            ,s.name                                                                 AS siteName
+                            ,sum(t.winnings)/100.0                                                  AS profit
+                            ,sum(t.buyin+t.fee)/100.0                                               AS invested
+                      from TourneysPlayers tp
+                           inner join Tourneys t        on  (t.id = tp.tourneyId)
+                           inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
+                           inner join Sites s           on  (s.Id = gt.siteId)
+                           inner join Players p         on  (p.Id = tp.playerId)
+                      where tp.playerId in <nametest> <sitetest>
+                      and   date_format(t.startTime, '%Y-%m-%d %T') <datestest>
+                      group by tourneyTypeId, playerName
+                      order by tourneyTypeId
+                              ,pname
+                              ,s.name"""
+        elif db_server == 'postgresql':
+            self.query['tourneyPlayerDetailedStats'] = """TODO"""
+        elif db_server == 'sqlite':
+            self.query['tourneyPlayerDetailedStats'] = """TODO"""
+
+        if db_server == 'mysql':
             self.query['playerStats'] = """
                 SELECT
                       concat(upper(stats.limitType), ' '

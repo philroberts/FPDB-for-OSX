@@ -74,16 +74,17 @@ class GuiTourneyPlayerStats (threading.Thread):
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed, column heading, xalignment, formatting, celltype
         self.columns = [ ["tourneyTypeId",  True,  "TTypeId",     0.0, "%s", "str"]
-                       , ["tourney",        False, "Tourney",     0.0, "%s", "str"]   # true not allowed for this line
-                       #, ["pname",         False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
+                       #, ["tourney",        False, "Tourney",     0.0, "%s", "str"]   # true not allowed for this line
+                       , ["playerName",     False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
                        , ["tourneyCount",   True,  "#",      1.0, "%1.0f", "str"]
                        , ["1st",            False, "1st",    1.0, "%3.1f", "str"]
                        , ["2nd",            True,  "2nd",     1.0, "%3.1f", "str"]
                        , ["3rd",            True,  "3rd",      1.0, "%3.1f", "str"]
                        , ["unknownRank",    True,  "unknown",      1.0, "%3.1f", "str"]
-                       , ["itm",            True,  "ITM",   1.0, "%2.2f", "str"]
-                       , ["roi",            True,  "ROI",  1.0, "%3.1f", "str"]
-                       , ["profitPerTourney", True,  "$/T",  1.0, "%3.1f", "str"]]
+                       #, ["itm",            True,  "ITM",   1.0, "%2.2f", "str"]
+                       #, ["roi",            True,  "ROI",  1.0, "%3.1f", "str"]
+                       , ["invested",       True,  "Invested",  1.0, "%3.1f", "str"]
+                       , ["profit",         True,  "Profit",  1.0, "%3.1f", "str"]]
         
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
@@ -100,16 +101,15 @@ class GuiTourneyPlayerStats (threading.Thread):
         self.main_hbox.show()
     #end def __init__
 
-    def addGrid(self, vbox, query, flags, tourneyTypes, playerids, sitenos, seats, dates):
+    def addGrid(self, vbox, query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates):
+        print "start of addGrid query", query
         counter = 0
         row = 0
         sqlrow = 0
-        if not flags:  holecards,grid = False,0
-        else:          holecards,grid = flags[0],flags[2]
-
-        tmp = self.sql.query[query]
-        tmp = self.refineQuery(tmp, flags, tourneyTypes, playerids, sitenos, seats, dates)
-        self.cursor.execute(tmp)
+        
+        query = self.sql.query[query]
+        query = self.refineQuery(query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates)
+        self.cursor.execute(query)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
 
@@ -221,13 +221,8 @@ class GuiTourneyPlayerStats (threading.Thread):
         swin.show()
         vbox.pack1(swin)
 
-        # Display summary table at top of page
-        # 3rd parameter passes extra flags, currently includes:
-        #   holecards - whether to display card breakdown (True/False)
-        #   numhands  - min number hands required when displaying all players
-        #   gridnum   - index for grid data structures
-        flags = [False, self.filters.getNumTourneys(), 0]
-        self.addGrid(swin, 'playerDetailedStats', flags, tourneyTypes, playerids
+        numTourneys = self.filters.getNumTourneys()
+        self.addGrid(swin, 'tourneyPlayerDetailedStats', numTourneys, tourneyTypes, playerids
                     ,sitenos, seats, dates)
 
         if 'allplayers' in groups and groups['allplayers']:
@@ -295,41 +290,42 @@ class GuiTourneyPlayerStats (threading.Thread):
         return self.main_hbox
     #end def get_vbox
     
-    def refineQuery(self, query, flags, tourneyTypes, playerids, sitenos, seats, dates):
+    def refineQuery(self, query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates):
         having = ''
-        holecards = flags[0]
-        numTourneys = flags[1]
-
+        
+        print "start of refinequery, playerids:",playerids
         if playerids:
             nametest = str(tuple(playerids))
             nametest = nametest.replace("L", "")
             nametest = nametest.replace(",)",")")
         else:
             nametest = "1 = 2"
+        print "refinequery, nametest after initial creation:",nametest
         pname = "p.name"
         # set flag in self.columns to not show player name column
         #[x for x in self.columns if x[0] == 'pname'][0][1] = False #TODO: fix and reactivate
             
-        query = query.replace("<player_test>", nametest)
+        query = query.replace("<nametest>", nametest)
         query = query.replace("<playerName>", pname)
         query = query.replace("<havingclause>", having)
 
-        gametest = ""
-        q = []
-        for m in self.filters.display.items():
-            if m[0] == 'Games' and m[1]:
-                for n in games:
-                    if games[n]:
-                        q.append(n)
-                if len(q) > 0:
-                    gametest = str(tuple(q))
-                    gametest = gametest.replace("L", "")
-                    gametest = gametest.replace(",)",")")
-                    gametest = gametest.replace("u'","'")
-                    gametest = "and gt.category in %s" % gametest
-                else:
-                    gametest = "and gt.category IS NULL"
-        query = query.replace("<game_test>", gametest)
+        #TODO: remove, or replace with tourneytest
+        #gametest = ""
+        #q = []
+        #for m in self.filters.display.items():
+        #    if m[0] == 'Games' and m[1]:
+        #        for n in games:
+        #            if games[n]:
+        #                q.append(n)
+        #        if len(q) > 0:
+        #            gametest = str(tuple(q))
+        #            gametest = gametest.replace("L", "")
+        #            gametest = gametest.replace(",)",")")
+        #            gametest = gametest.replace("u'","'")
+        #            gametest = "and gt.category in %s" % gametest
+        #        else:
+        #            gametest = "and gt.category IS NULL"
+        #query = query.replace("<game_test>", gametest)
         
         sitetest = ""
         q = []
@@ -342,10 +338,11 @@ class GuiTourneyPlayerStats (threading.Thread):
                     sitetest = sitetest.replace("L", "")
                     sitetest = sitetest.replace(",)",")")
                     sitetest = sitetest.replace("u'","'")
-                    sitetest = "and gt.siteId in %s" % sitetest
+                    sitetest = "and tt.siteId in %s" % sitetest#[1:-1]
                 else:
-                    sitetest = "and gt.siteId IS NULL"
-        query = query.replace("<site_test>", sitetest)
+                    sitetest = "and tt.siteId IS NULL"
+        print "refinequery, sitetest before its use for replacement:",sitetest
+        query = query.replace("<sitetest>", sitetest)
         
         if seats:
             query = query.replace('<seats_test>', 'between ' + str(seats['from']) + ' and ' + str(seats['to']))
