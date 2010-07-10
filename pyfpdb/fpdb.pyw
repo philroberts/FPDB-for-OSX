@@ -300,7 +300,7 @@ class fpdb:
         self.warning_box("Unimplemented: Maintain Databases")
         return
         if len(self.tab_names) == 1:
-            if self.obtain_global_lock():  # returns true if successful
+            if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
                 dia = gtk.Dialog("Maintain Databases",
                                  self.window,
@@ -352,7 +352,7 @@ class fpdb:
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock():  # returns true if successful
+        if self.obtain_global_lock("fpdb.dia_load_profile"):  # returns true if successful
             #try:
             #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
             #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
@@ -375,7 +375,7 @@ class fpdb:
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
-        if self.obtain_global_lock():  # returns true if successful
+        if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
 
             #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
@@ -416,7 +416,7 @@ class fpdb:
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
-        if self.obtain_global_lock():
+        if self.obtain_global_lock("dia_recreate_hudcache"):
             self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
@@ -468,7 +468,7 @@ class fpdb:
         self.release_global_lock()
 
     def dia_rebuild_indexes(self, widget, data=None):
-        if self.obtain_global_lock():
+        if self.obtain_global_lock("dia_rebuild_indexes"):
             self.dia_confirm = gtk.MessageDialog(parent=self.window
                                                 ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                                 ,type=gtk.MESSAGE_WARNING
@@ -509,7 +509,7 @@ class fpdb:
         """opens the log viewer window"""
 
         #lock_set = False
-        #if self.obtain_global_lock():
+        #if self.obtain_global_lock("dia_logs"):
         #    lock_set = True
 
         # remove members from self.threads if close messages received
@@ -595,8 +595,8 @@ class fpdb:
 
     def dia_regression_test(self, widget, data=None):
         self.warning_box("Unimplemented: Regression Test")
-        self.obtain_global_lock()
-        self.release_global_lock()
+        #self.obtain_global_lock("dia_regression_test")
+        #self.release_global_lock()
 
     def dia_save_profile(self, widget, data=None):
         self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
