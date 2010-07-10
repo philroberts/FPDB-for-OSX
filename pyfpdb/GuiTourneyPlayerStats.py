@@ -34,6 +34,7 @@ class GuiTourneyPlayerStats (threading.Thread):
     def __init__(self, config, db, sql, mainwin, debug=True):
         self.conf = config
         self.db = db
+        self.cursor = self.db.cursor
         self.sql = sql
         self.main_window = mainwin
         self.debug = debug
@@ -41,7 +42,7 @@ class GuiTourneyPlayerStats (threading.Thread):
         self.liststore = []   # gtk.ListStore[]         stores the contents of the grids
         self.listcols = []    # gtk.TreeViewColumn[][]  stores the columns in the grids
         
-        filters_display = { "Heroes"    : False,
+        filters_display = { "Heroes"    : True,
                             "Sites"     : True,
                             #"Games"     : True,
                             #"Limits"    : True,
@@ -272,6 +273,7 @@ class GuiTourneyPlayerStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
+                print "heroes",heroes
                 _hname = Charset.to_utf8(heroes[site])
                 result = self.db.get_player_id(self.conf, site, _hname)
                 if result is not None:
@@ -298,13 +300,16 @@ class GuiTourneyPlayerStats (threading.Thread):
         holecards = flags[0]
         numTourneys = flags[1]
 
-        #if 'allplayers' in groups and groups['allplayers']:
-        nametest = "(hp.playerId)"
+        if playerids:
+            nametest = str(tuple(playerids))
+            nametest = nametest.replace("L", "")
+            nametest = nametest.replace(",)",")")
+        else:
+            nametest = "1 = 2"
         pname = "p.name"
-        # set flag in self.columns to show player name column
-        [x for x in self.columns if x[0] == 'pname'][0][1] = True
-        if numTourneys:
-            having = ' and count(1) > %d ' % (numTourneys,)
+        # set flag in self.columns to not show player name column
+        #[x for x in self.columns if x[0] == 'pname'][0][1] = False #TODO: fix and reactivate
+            
         query = query.replace("<player_test>", nametest)
         query = query.replace("<playerName>", pname)
         query = query.replace("<havingclause>", having)
@@ -355,54 +360,44 @@ class GuiTourneyPlayerStats (threading.Thread):
             query = query.replace('<groupbyseats>', '')
             query = query.replace('<orderbyseats>', '')
 
-        lims = [int(x) for x in limits if x.isdigit()]
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
+        #lims = [int(x) for x in limits if x.isdigit()]
+        #potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
+        #nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
+        #bbtest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
                  # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) '
-        else:
-            bbtest = bbtest + '(-1) ) '
-        bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            bbtest = bbtest + blindtest + ' ) )'
-        else:
-            bbtest = bbtest + '(-1) ) )'
-        if type == 'ring':
-            bbtest = bbtest + " and gt.type = 'ring' "
-        elif type == 'tour':
-            bbtest = " and gt.type = 'tour' "
-        query = query.replace("<gtbigBlind_test>", bbtest)
+        #if lims:
+        #    blindtest = str(tuple(lims))
+        #    blindtest = blindtest.replace("L", "")
+        #    blindtest = blindtest.replace(",)",")")
+        #    bbtest = bbtest + blindtest + ' ) '
+        #else:
+        #    bbtest = bbtest + '(-1) ) '
+        #bbtest = bbtest + " or (gt.limitType = 'pl' and gt.bigBlind in "
+        #if potlims:
+        #    blindtest = str(tuple(potlims))
+        #    blindtest = blindtest.replace("L", "")
+        #    blindtest = blindtest.replace(",)",")")
+        #    bbtest = bbtest + blindtest + ' ) '
+        #else:
+        #    bbtest = bbtest + '(-1) ) '
+        #bbtest = bbtest + " or (gt.limitType = 'nl' and gt.bigBlind in "
+        #if nolims:
+        #    blindtest = str(tuple(nolims))
+        #    blindtest = blindtest.replace("L", "")
+        #    blindtest = blindtest.replace(",)",")")
+        #    bbtest = bbtest + blindtest + ' ) )'
+        #else:
+        #    bbtest = bbtest + '(-1) ) )'
+        
+        #if type == 'ring':
+        #    bbtest = bbtest + " and gt.type = 'ring' "
+        #elif type == 'tour':
+        #bbtest = " and gt.type = 'tour' "
+        
+        #query = query.replace("<gtbigBlind_test>", bbtest)
 
-        if holecards:  # re-use level variables for hole card query
-            query = query.replace("<hgameTypeId>", "hp.startcards")
-            query = query.replace("<orderbyhgameTypeId>"
-                                 , ",case when floor((hp.startcards-1)/13) >= mod((hp.startcards-1),13) then hp.startcards + 0.1 "
-                                   +    " else 13*mod((hp.startcards-1),13) + floor((hp.startcards-1)/13) + 1 "
-                                   +    " end desc ")
-        else:
-            query = query.replace("<orderbyhgameTypeId>", "")
-            groupLevels = "show" not in str(limits)
-            if groupLevels:
-                query = query.replace("<hgameTypeId>", "p.name")  # need to use p.name for sqlite posn stats to work
-            else:
-                query = query.replace("<hgameTypeId>", "h.gameTypeId")
-
+        #query = query.replace("<orderbyhgameTypeId>", "")
+        
         # process self.detailFilters (a list of tuples)
         flagtest = ''
         #self.detailFilters = [('h.seats', 5, 6)]   # for debug
@@ -414,7 +409,7 @@ class GuiTourneyPlayerStats (threading.Thread):
         query = query.replace("<flagtest>", flagtest)
 
         # allow for differences in sql cast() function:
-        if self.db.backend == self.MYSQL_INNODB:
+        if self.db.backend == self.db.MYSQL_INNODB:
             query = query.replace("<signed>", 'signed ')
         else:
             query = query.replace("<signed>", '')
@@ -423,17 +418,17 @@ class GuiTourneyPlayerStats (threading.Thread):
         query = query.replace("<datestest>", " between '" + dates[0] + "' and '" + dates[1] + "'")
 
         # Group by position?
-        if groups['posn']:
-            #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
-            query = query.replace("<position>", "hp.position")
-            # set flag in self.columns to show posn column
-            [x for x in self.columns if x[0] == 'plposition'][0][1] = True
-        else:
-            query = query.replace("<position>", "gt.base")
-            # unset flag in self.columns to hide posn column
-            [x for x in self.columns if x[0] == 'plposition'][0][1] = False
+        #if groups['posn']:
+        #    #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
+        #    query = query.replace("<position>", "hp.position")
+        #    # set flag in self.columns to show posn column
+        #    [x for x in self.columns if x[0] == 'plposition'][0][1] = True
+        #else:
+        #    query = query.replace("<position>", "gt.base")
+        #    # unset flag in self.columns to hide posn column
+        #    [x for x in self.columns if x[0] == 'plposition'][0][1] = False
 
-        #print "query =\n", query
+        print "query at end of refine query:", query
         return(query)
     #end def refineQuery
 

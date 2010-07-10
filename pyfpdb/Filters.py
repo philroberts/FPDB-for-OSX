@@ -321,7 +321,7 @@ class Filters(threading.Thread):
         # get_text() returns a str but we want internal variables to be unicode:
         _guiname = unicode(_name)
         self.heroes[site] = _guiname
-#        log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
+        #log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
     #end def __set_hero_name
 
     def __set_num_hands(self, w, val):

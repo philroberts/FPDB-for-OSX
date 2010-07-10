@@ -116,6 +116,14 @@ class TourneyFilters(threading.Thread):
         self.make_filter()
     #end def __refresh
 
+    def __set_hero_name(self, w, site):
+        _name = w.get_text()
+        # get_text() returns a str but we want internal variables to be unicode:
+        _guiname = unicode(_name)
+        self.heroes[site] = _guiname
+        #log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
+    #end def __set_hero_name
+
     def __set_num_tourneys(self, w, val):
         try:
             self.numTourneys = int(w.get_text())
@@ -174,7 +182,7 @@ class TourneyFilters(threading.Thread):
             _nt = (_n, )
             liststore.append(_nt)
 
-        #self.__set_hero_name(pname, site)
+        self.__set_hero_name(pname, site)
     #end def createPlayerLine
     
     def createSiteLine(self, hbox, site):
