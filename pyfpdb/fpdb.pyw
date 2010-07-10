@@ -861,7 +861,7 @@ class fpdb:
         self.add_and_display_tab(ps_tab, "Ring Player Stats")
 
     def tab_tourney_player_stats(self, widget, data=None):
-        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.sql, self.window)
+        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Tourney Player Stats")

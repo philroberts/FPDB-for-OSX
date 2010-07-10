@@ -274,11 +274,13 @@ class Filters(threading.Thread):
     def registerButton2Name(self, title):
         self.Button2.set_label(title)
         self.label['button2'] = title
+    #end def registerButton2Name
 
     def registerButton2Callback(self, callback):
         self.Button2.connect("clicked", callback, "clicked")
         self.Button2.set_sensitive(True)
         self.callback['button2'] = callback
+    #end def registerButton2Callback
 
     def cardCallback(self, widget, data=None):
         log.debug( "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()]) )
@@ -314,6 +316,7 @@ class Filters(threading.Thread):
         _guiname = unicode(_name)
         self.heroes[site] = _guiname
 #        log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
+    #end def __set_hero_name
 
     def __set_num_hands(self, w, val):
         try:
@@ -729,6 +732,7 @@ class Filters(threading.Thread):
 
         self.sbSeats['from'] = sb1
         self.sbSeats['to']   = sb2
+    #end def fillSeatsFrame
 
     def fillGroupsFrame(self, vbox, display):
         hbox = gtk.HBox(False, 0)
@@ -833,6 +837,7 @@ class Filters(threading.Thread):
         hbox.pack_start(self.end_date, expand=False, padding=2)
 
         hbox.pack_start(btn_clear, expand=False, padding=15)
+    #end def fillDateFrame
 
     def __refresh(self, widget, entry):
         for w in self.mainVBox.get_children():
@@ -846,6 +851,7 @@ class Filters(threading.Thread):
         else:
             self.boxes[entry].show()
             widget.set_label("hide")
+    #end def __toggle_box
 
     def __calendar_dialog(self, widget, entry):
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -863,10 +869,12 @@ class Filters(threading.Thread):
         d.add(vb)
         d.set_position(gtk.WIN_POS_MOUSE)
         d.show_all()
+    #end def __calendar_dialog
 
     def __clear_dates(self, w):
         self.start_date.set_text('')
         self.end_date.set_text('')
+    #end def __clear_dates
 
     def __get_dates(self):
         # self.day_start gives user's start of day in hours

@@ -164,6 +164,7 @@ class GuiPlayerStats (threading.Thread):
     def get_vbox(self):
         """returns the vbox of this thread"""
         return self.main_hbox
+    #end def get_vbox
 
     def refreshStats(self, widget, data):
         self.last_pos = self.stats_vbox.get_position()
@@ -178,6 +179,7 @@ class GuiPlayerStats (threading.Thread):
         self.fillStatsFrame(self.stats_vbox)
         if self.last_pos > 0:
             self.stats_vbox.set_position(self.last_pos)
+    #end def refreshStats
 
     def fillStatsFrame(self, vbox):
         sites = self.filters.getSites()
@@ -213,6 +215,7 @@ class GuiPlayerStats (threading.Thread):
             return
 
         self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games)
+    #end def fillStatsFrame
 
     def createStatsTable(self, vbox, playerids, sitenos, limits, type, seats, groups, dates, games):
         starttime = time()
@@ -260,7 +263,7 @@ class GuiPlayerStats (threading.Thread):
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - starttime)
-    #end def fillStatsFrame(self, vbox):
+    #end def createStatsTable
 
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
         cell.set_property('foreground', 'black')
