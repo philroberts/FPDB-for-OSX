@@ -92,7 +92,8 @@ class PokerStars(HandHistoryConverter):
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
-          (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
+          (-\sMatch.*)                   #TODO: waiting for reply from user as to what this means
+          (Level\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
