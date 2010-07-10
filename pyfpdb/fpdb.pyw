@@ -115,7 +115,7 @@ import Database
 import Configuration
 import Exceptions
 
-VERSION = "0.21"
+VERSION = "0.20 plus git"
 
 
 class fpdb:
@@ -915,7 +915,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
-        self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
+        self.window.set_title("Free Poker DB - v%s" % (VERSION, ))
         self.window.set_border_width(1)
         defx, defy = 900, 720
         sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
