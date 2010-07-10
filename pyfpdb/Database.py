@@ -553,6 +553,18 @@ class Database:
         c.execute(self.sql.query['get_hand_info'], new_hand_id)
         return c.fetchall()
 
+    def getHandCount(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getHandCount'])
+        return c.fetchone()[0]
+    #end def getHandCount
+
+    def getTourneyCount(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getTourneyCount'])
+        return c.fetchone()[0]
+    #end def getTourneyCount
+
     def get_actual_seat(self, hand_id, name):
         c = self.connection.cursor()
         c.execute(self.sql.query['get_actual_seat'], (hand_id, name))

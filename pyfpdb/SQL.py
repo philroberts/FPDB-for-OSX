@@ -3834,6 +3834,9 @@ class Sql:
                     %s
                 )"""
         
+        self.query['getHandCount'] = "SELECT COUNT(id) FROM Hands"
+        self.query['getTourneyCount'] = "SELECT COUNT(id) FROM Tourneys"
+        
         if db_server == 'mysql':
             self.query['placeholder'] = u'%s'
         elif db_server == 'postgresql':

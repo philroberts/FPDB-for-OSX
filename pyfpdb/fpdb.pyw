@@ -323,7 +323,8 @@ class fpdb:
                              + "other windows have been opened. Re-start fpdb to use this option.")
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box("Unimplemented: Database Stats")
+        self.warning_box(str="Number of hands: "+str(self.db.getHandCount())+"\nNumber of tourneys: "+str(self.db.getTourneyCount()), diatitle="Database Statistics")
+    #end def dia_database_stats
 
 #    def dia_get_db_root_credentials(self):
 #        """obtains db root credentials from user"""
@@ -685,7 +686,7 @@ class fpdb:
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
-                                 ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('stats', None, '_Statistics', None, 'View Database Statistics', self.dia_database_stats),
                                  ('help', None, '_Help'),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
