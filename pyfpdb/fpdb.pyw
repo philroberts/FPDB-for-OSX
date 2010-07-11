@@ -36,9 +36,9 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         print "Python " + sys.version[0:3] + ' - press return to continue\n'
         sys.stdin.readline()
         if os.name=='nt':
-	    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
-	else:
-	    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+        else:
+            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
         raw_input("Press ENTER to continue.")
@@ -437,7 +437,7 @@ class fpdb:
                 #dia_restart.destroy()
                 #self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
-		self.release_global_lock()
+                self.release_global_lock()
                 print 'User cancelled recreating tables'
             #if not lock_released:
     #end def dia_recreate_tables
