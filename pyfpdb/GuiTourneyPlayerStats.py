@@ -85,10 +85,10 @@ class GuiTourneyPlayerStats (threading.Thread):
                        , ["2nd",            True,  "2nd",     1.0, "%1.0f", "str"]
                        , ["3rd",            True,  "3rd",      1.0, "%1.0f", "str"]
                        , ["unknownRank",    True,  "unknown",      1.0, "%1.0f", "str"]
-                       #, ["roi",            True,  "ROI",  1.0, "%3.1f", "str"]
-                       , ["invested",       True,  "Invested",  1.0, "%3.2f", "str"]
-                       , ["profit",         True,  "Profit",  1.0, "%3.2f", "str"]]
-        
+                       , ["spent",       True,  "Spent",  1.0, "%3.2f", "str"]
+                       , ["won",            True,  "Won",  1.0, "%3.2f", "str"]
+                       , ["roi",            True,  "ROI%",  1.0, "%3.0f", "str"]]
+                       
         self.stats_frame = gtk.Frame()
         self.stats_frame.show()
 
