@@ -1941,12 +1941,12 @@ class Sql:
                 inner join Hands h          on (h.id = hp3.handId)
                 """
 
-        # used in GuiPlayerStats:
+        # used in Gui*PlayerStats:
         self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
         self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
 
-        # used in Filters:
+        # used in *Filters:
         self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
         self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
         self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""

@@ -45,7 +45,7 @@ except ImportError, inst:
 import Card
 import fpdb_import
 import Database
-import Filters
+import RingFilters
 import FpdbSQLQueries
 import Charset
 
@@ -96,7 +96,7 @@ class GuiSessionViewer (threading.Thread):
                             "Button2"   : False
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 
