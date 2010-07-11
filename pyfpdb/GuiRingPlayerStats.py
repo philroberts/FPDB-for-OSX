@@ -29,11 +29,12 @@ import fpdb_import
 import Database
 import RingFilters
 import Charset
+import GuiPlayerStats
 
 colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
 ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
 
-class GuiRingPlayerStats (threading.Thread):
+class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
     def __init__(self, config, querylist, mainwin, debug=True):
         self.debug = debug

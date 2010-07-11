@@ -34,8 +34,9 @@ log = logging.getLogger("filter")
 #import Database
 #import SQL
 import Charset
+import Filters
 
-class TourneyFilters(threading.Thread):
+class TourneyFilters(Filters.Filters):
     def __init__(self, db, config, qdict, display = {}, debug=True):
         self.debug = debug
         self.db = db

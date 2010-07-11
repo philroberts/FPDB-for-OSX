@@ -35,9 +35,9 @@ import Configuration
 import Database
 import SQL
 import Charset
+import Filters
 
-
-class RingFilters(threading.Thread):
+class RingFilters(Filters.Filters):
     def __init__(self, db, config, qdict, display = {}, debug=True):
         # config and qdict are now redundant
         self.debug = debug

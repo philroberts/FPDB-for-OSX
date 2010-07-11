@@ -29,10 +29,11 @@ from time import time, strftime
 #import Database
 import Charset
 import TourneyFilters
+import GuiPlayerStats
 
 colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
 
-class GuiTourneyPlayerStats (threading.Thread):
+class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
     def __init__(self, config, db, sql, mainwin, debug=True):
         self.conf = config
         self.db = db
