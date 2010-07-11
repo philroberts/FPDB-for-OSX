@@ -46,7 +46,6 @@ import Card
 import fpdb_import
 import Database
 import RingFilters
-import FpdbSQLQueries
 import Charset
 
 class GuiSessionViewer (threading.Thread):

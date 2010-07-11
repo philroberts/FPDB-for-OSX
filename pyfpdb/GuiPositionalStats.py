@@ -25,7 +25,6 @@ from time import time, strftime
 import fpdb_import
 import Database
 import RingFilters
-import FpdbSQLQueries
 
 class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
