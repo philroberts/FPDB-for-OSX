@@ -2272,7 +2272,7 @@ class Sql:
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(tt.buyin+tt.fee)/100.0                                             AS spent
+                            ,SUM(CASE WHEN tt.currency = "USD" THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
                             ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
