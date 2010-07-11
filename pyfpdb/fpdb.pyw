@@ -103,7 +103,7 @@ import GuiLogView
 import GuiDatabase
 import GuiBulkImport
 import ImapSummaries
-import GuiRingPlayerStats
+import GuiPlayerStats
 import GuiTourneyPlayerStats
 import GuiPositionalStats
 import GuiTableViewer
@@ -860,7 +860,7 @@ class fpdb:
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
     def tab_ring_player_stats(self, widget, data=None):
-        new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
+        new_ps_thread = GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Ring Player Stats")
