@@ -2264,10 +2264,11 @@ class Sql:
                             ,(CASE WHEN tt.currency = "USD" THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
+                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS 1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
-                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
                             ,SUM(tp.winnings)/100.0                                                 AS profit
                             ,SUM(tt.buyin+tt.fee)/100.0                                             AS invested
                       from TourneysPlayers tp
