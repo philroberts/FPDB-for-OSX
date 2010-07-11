@@ -2265,7 +2265,7 @@ class Sql:
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS 1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
-                            ,SUM(CASE WHEN rank = NULL THEN 1 ELSE 0 END)                           AS unknownRank
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
                             ,SUM(tp.winnings)/100.0                                                 AS profit
                             ,SUM(tt.buyin+tt.fee)/100.0                                             AS invested
                       from TourneysPlayers tp
