@@ -2059,7 +2059,6 @@ class Database:
         c = self.connection.cursor()
         c.execute(self.sql.query['getTourneyTypesIds'])
         result = c.fetchall()
-        print "DB.getTourneyTypesIds result:",result
         return result
     #end def getTourneyTypesIds
 #end class Database

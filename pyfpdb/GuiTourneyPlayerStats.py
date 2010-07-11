@@ -30,6 +30,8 @@ from time import time, strftime
 import Charset
 import TourneyFilters
 
+colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
+
 class GuiTourneyPlayerStats (threading.Thread):
     def __init__(self, config, db, sql, mainwin, debug=True):
         self.conf = config
@@ -103,21 +105,24 @@ class GuiTourneyPlayerStats (threading.Thread):
 
     def addGrid(self, vbox, query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates):
         #print "start of addGrid query", query
+        #print "start of addGrid. numTourneys:",numTourneys,"tourneyTypes:", tourneyTypes, "playerids:",playerids
         counter = 0
         row = 0
         sqlrow = 0
+        grid=numTourneys #TODO: should this be numTourneyTypes?
         
         query = self.sql.query[query]
         query = self.refineQuery(query, numTourneys, tourneyTypes, playerids, sitenos, seats, dates)
         self.cursor.execute(query)
         result = self.cursor.fetchall()
         #print "result of the big query in addGrid:",result
-        colnames = [desc[0].lower() for desc in self.cursor.description]
+        colnames = [desc[0] for desc in self.cursor.description]
 
         # pre-fetch some constant values:
-        self.cols_to_show = [x for x in self.columns if x[colshow]]
-        hgametypeid_idx = colnames.index('hgametypeid')
-
+        #self.cols_to_show = [x for x in self.columns if x[colshow]]
+        #htourneytypeid_idx = colnames.index('tourneyTypeId')
+        self.cols_to_show = self.columns #TODO do i need above 2 lines?
+        
         assert len(self.liststore) == grid, "len(self.liststore)="+str(len(self.liststore))+" grid-1="+str(grid)
         self.liststore.append( gtk.ListStore(*([str] * len(self.cols_to_show))) )
         view = gtk.TreeView(model=self.liststore[grid])
@@ -157,7 +162,7 @@ class GuiTourneyPlayerStats (threading.Thread):
                 cellrend = numcell
                 #self.listcols[grid][col].set_alignment(column[colxalign]) # no effect?
             self.listcols[grid][col].set_clickable(True)
-            self.listcols[grid][col].connect("clicked", self.sortcols, (col,grid))
+            self.listcols[grid][col].connect("clicked", self.sortCols, (col,grid))
             if col == 0:
                 self.listcols[grid][col].set_sort_order(gtk.SORT_DESCENDING)
                 self.listcols[grid][col].set_sort_indicator(True)
@@ -173,40 +178,14 @@ class GuiTourneyPlayerStats (threading.Thread):
             for col,column in enumerate(self.cols_to_show):
                 if column[colalias] in colnames:
                     value = result[sqlrow][colnames.index(column[colalias])]
-                    if column[colalias] == 'plposition':
-                        if value == 'B':
-                            value = 'BB'
-                        elif value == 'S':
-                            value = 'SB'
-                        elif value == '0':
-                            value = 'Btn'
                 else:
-                    if column[colalias] == 'game':
-                        if holecards:
-                            value = Card.twoStartCardString( result[sqlrow][hgametypeid_idx] )
-                        else:
-                            minbb = result[sqlrow][colnames.index('minbigblind')]
-                            maxbb = result[sqlrow][colnames.index('maxbigblind')]
-                            value = result[sqlrow][colnames.index('limittype')] + ' ' \
-                                    + result[sqlrow][colnames.index('category')].title() + ' ' \
-                                    + result[sqlrow][colnames.index('name')] + ' $'
-                            if 100 * int(minbb/100.0) != minbb:
-                                value += '%.2f' % (minbb/100.0)
-                            else:
-                                value += '%.0f' % (minbb/100.0)
-                            if minbb != maxbb:
-                                if 100 * int(maxbb/100.0) != maxbb:
-                                    value += ' - $' + '%.2f' % (maxbb/100.0)
-                                else:
-                                    value += ' - $' + '%.0f' % (maxbb/100.0)
-                    else:
-                        continue
+                    value = 111
                 if value and value != -999:
                     treerow.append(column[colformat] % value)
                 else:
                     treerow.append(' ')
+            #print "addGrid, just before end of big for. grid:",grid,"treerow:",treerow
             iter = self.liststore[grid].append(treerow)
-            #print treerow
             sqlrow += 1
             row += 1
         vbox.show_all()
@@ -226,9 +205,9 @@ class GuiTourneyPlayerStats (threading.Thread):
         self.addGrid(swin, 'tourneyPlayerDetailedStats', numTourneys, tourneyTypes, playerids
                     ,sitenos, seats, dates)
 
-        if 'allplayers' in groups and groups['allplayers']:
+        #if 'allplayers' in groups and groups['allplayers']:
             # can't currently do this combination so skip detailed table
-            show_detail = False
+        show_detail = False
 
         if show_detail: 
             # Separator
@@ -269,7 +248,6 @@ class GuiTourneyPlayerStats (threading.Thread):
         for site in sites:
             if sites[site] == True:
                 sitenos.append(siteids[site])
-                print "heroes",heroes
                 _hname = Charset.to_utf8(heroes[site])
                 result = self.db.get_player_id(self.conf, site, _hname)
                 if result is not None:
@@ -444,4 +422,29 @@ class GuiTourneyPlayerStats (threading.Thread):
         if self.last_pos > 0:
             self.stats_vbox.set_position(self.last_pos)
     #end def refreshStats
+    
+    def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
+        cell.set_property('foreground', 'black')
+    #end def reset_style_render_func
+
+    def sortCols(self, col, nums):
+        try:
+            #This doesn't actually work yet - clicking heading in top section sorts bottom section :-(
+            (n, grid) = nums
+            if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
+                col.set_sort_order(gtk.SORT_DESCENDING)
+            else:
+                col.set_sort_order(gtk.SORT_ASCENDING)
+            self.liststore[grid].set_sort_column_id(n, col.get_sort_order())
+            self.liststore[grid].set_sort_func(n, self.sortnums, (n,grid))
+            for i in xrange(len(self.listcols[grid])):
+                self.listcols[grid][i].set_sort_indicator(False)
+            self.listcols[grid][n].set_sort_indicator(True)
+            # use this   listcols[col].set_sort_indicator(True)
+            # to turn indicator off for other cols
+        except:
+            err = traceback.extract_tb(sys.exc_info()[2])
+            print "***sortCols error: " + str(sys.exc_info()[1])
+            print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+    #end def sortCols
 #end class GuiTourneyPlayerStats

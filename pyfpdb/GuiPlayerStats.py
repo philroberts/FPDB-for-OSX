@@ -267,6 +267,7 @@ class GuiPlayerStats (threading.Thread):
 
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
         cell.set_property('foreground', 'black')
+    #end def reset_style_render_func
 
     def ledger_style_render_func(self, tvcol, cell, model, iter):
         str = cell.get_property('text')
@@ -332,6 +333,7 @@ class GuiPlayerStats (threading.Thread):
             err = traceback.extract_tb(sys.exc_info()[2])
             print "***sortcols error: " + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+    #end def sortcols
 
     def addGrid(self, vbox, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games):
         counter = 0
