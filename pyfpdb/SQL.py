@@ -2261,6 +2261,7 @@ class Sql:
             self.query['tourneyPlayerDetailedStats'] = """
                       select s.name                                                                 AS siteName
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
+                            ,(CASE WHEN tt.currency = "USD" THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
                             ,p.name                                                                 AS playerName
                             ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS 1st
                             ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
