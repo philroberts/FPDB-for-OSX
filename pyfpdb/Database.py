@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 130
+DB_VERSION = 131
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -140,6 +140,8 @@ class Database:
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
@@ -154,6 +156,8 @@ class Database:
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               ]
 
@@ -1135,6 +1139,7 @@ class Database:
             c.execute(self.sql.query['createHandsPlayersTable'])
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
+            c.execute(self.sql.query['createBackingsTable'])
 
             # Create unique indexes:
             log.debug("Creating unique indexes")
@@ -1212,7 +1217,7 @@ class Database:
             for idx in self.indexes[self.backend]:
                 if self.backend == self.MYSQL_INNODB:
                     print "Creating mysql index %s %s" %(idx['tab'], idx['col'])
-                    log.debug("Creating sqlite index %s %s" %(idx['tab'], idx['col']))
+                    log.debug("Creating mysql index %s %s" %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s on %s(%s)" % (idx['col'],idx['tab'],idx['col'])
                         self.get_cursor().execute(s)
@@ -1220,8 +1225,8 @@ class Database:
                         print "    create idx failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
                     # mod to use tab_col for index name?
-                    print "Creating pg index %s %s" %(idx['tab'], idx['col'])
-                    log.debug("Creating sqlite index %s %s" %(idx['tab'], idx['col']))
+                    print "Creating pgsql index %s %s" %(idx['tab'], idx['col'])
+                    log.debug("Creating pgsql index %s %s" %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         self.get_cursor().execute(s)

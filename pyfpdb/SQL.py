@@ -130,7 +130,32 @@ class Sql:
                         name TEXT NOT NULL,
                         code TEXT NOT NULL)"""
 
-
+        ################################
+        # Create Backings
+        ################################
+        
+        if db_server == 'mysql':
+            self.query['createBackingsTable'] = """CREATE TABLE Backings (
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        tourneysPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        buyInPercentage FLOAT UNSIGNED NOT NULL,
+                        payOffPercentage FLOAT UNSIGNED NOT NULL) ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createBackingsTable'] = """CREATE TABLE Backings (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        tourneysPlayerId INT NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        buyInPercentage FLOAT UNSIGNED NOT NULL,
+                        payOffPercentage FLOAT UNSIGNED NOT NULL)"""
+        elif db_server == 'sqlite':
+            self.query['createBackingsTable'] = """CREATE TABLE Backings (
+                        id INTEGER PRIMARY KEY,
+                        tourneysPlayerId INT NOT NULL,
+                        playerId INT NOT NULL,
+                        buyInPercentage REAL UNSIGNED NOT NULL,
+                        payOffPercentage REAL UNSIGNED NOT NULL)"""
+        
         ################################
         # Create Gametypes
         ################################
