@@ -28,7 +28,7 @@ class PokerStarsSummary(TourneySummary):
     re_TourNo = re.compile("\#[0-9]+,")
     re_Entries = re.compile("[0-9]+")
     re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
-    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\)(,\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?""")
+    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?""")
     re_BuyInFee = re.compile("(?P<BUYIN>[0-9]+\.[0-9]+).*(?P<FEE>[0-9]+\.[0-9]+)")
     re_FPP = re.compile("(?P<FPP>[0-9]+)\sFPP")
     #note: the dollar and cent in the below line are currency-agnostic
