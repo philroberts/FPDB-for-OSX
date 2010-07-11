@@ -22,7 +22,7 @@ import gtk
 import os
 import sys
 from optparse import OptionParser
-from time import *
+from time import gmtime, mktime, strftime, strptime
 import gobject
 #import pokereval
 
