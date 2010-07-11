@@ -1,3 +1,12 @@
+free-poker-tools (0.20~git20100630) unstable; urgency=low
+
+  * Snapshot release
+  * Executable names have been changed to accommodate for some win32
+    trouble cases; install these files manually to build-tree
+  * Improved statistics
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Wed, 16 Jun 2010 08:10:00 +0300
+
 free-poker-tools (0.20~git20100305) unstable; urgency=low
 
   * New snapshot

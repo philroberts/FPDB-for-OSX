@@ -3,4 +3,4 @@
 # When installed into .../fpdb/ the script gets mode 644
 # Note: "dh_fixperms -Xfpdb.py" did not work, hence this hack
 chmod 755 /usr/bin/fpdb
-chmod 755 /usr/share/pyshared/fpdb/HUD_main.py
+chmod 755 /usr/share/pyshared/fpdb/HUD_main.pyw

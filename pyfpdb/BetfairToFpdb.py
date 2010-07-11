@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008, Carl Gherardi
+#    Copyright 2008-2010, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@ class Betfair(HandHistoryConverter):
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%A, %B %d, %H:%M:%S GMT %Y")
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%A, %B %d, %H:%M:%S GMT %Y")
         #hand.buttonpos = int(m.group('BUTTON'))
 
     def readPlayerStacks(self, hand):

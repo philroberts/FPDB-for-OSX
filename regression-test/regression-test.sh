@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +12,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 echo "Please note for this to work you need to work on an empty database, otherwise some info (the id fields) will be off"
 

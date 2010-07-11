@@ -1,6 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python2
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Carl Gherardi
+#Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 #fpdb modules
 import Card
@@ -97,7 +97,7 @@ class DerivedStats():
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
         self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
-        self.hands['handStart']  = hand.starttime           # format this!
+        self.hands['handStart']  = hand.startTime           # format this!
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats
@@ -139,6 +139,7 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
+            self.handsplayers[player[1]]['sitout'] = False #TODO: implement actual sitout detection
 
         # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
@@ -431,6 +432,11 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%sAggr' % i] = True
             else:
                 self.handsplayers[player[1]]['street%sAggr' % i] = False
+                
+        if len(aggrers)>0 and i>0:
+            for playername in others:
+                self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
+                #print "otherRaised detected on handid "+str(hand.handid)+" for "+playername+" on street "+str(i)
 
         if i > 0 and len(aggrers) > 0:
             for playername in others:
@@ -450,8 +456,7 @@ class DerivedStats():
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('bets'):
                 self.handsplayers[act[0]]['street%sBets' % i] = 1 + self.handsplayers[act[0]]['street%sBets' % i]
-
-
+        
     def folds(self, hand, i):
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('folds'):

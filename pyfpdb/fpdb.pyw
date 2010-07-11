@@ -1,7 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 # -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -13,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import os
 import sys
@@ -36,7 +35,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.environ['PATH'] = tmppath
         print "Python " + sys.version[0:3] + ' - press return to continue\n'
         sys.stdin.readline()
-        os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+        if os.name=='nt':
+	    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+	else:
+	    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
         raw_input("Press ENTER to continue.")
@@ -111,7 +113,7 @@ import Database
 import Configuration
 import Exceptions
 
-VERSION = "0.20-pre3"
+VERSION = "0.20"
 
 
 class fpdb:
@@ -227,9 +229,9 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
-        dia.set_comments("GTK AboutDialog comments here")
-        dia.set_license("GPL v3")
+        dia.set_copyright("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
+        dia.set_comments("")
+        dia.set_license("This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory")
         dia.set_website("http://fpdb.sourceforge.net/")
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
@@ -414,21 +416,24 @@ class fpdb:
                 #    self.release_global_lock()
                 #    lock_released = True
                 self.db.recreate_tables()
+                self.release_global_lock()
                 #else:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
                 # TODO: figure out why this seems to be necessary
                 dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
-                diastring = "You should now restart fpdb."
+                diastring = "Fpdb now needs to close. Please restart it."
                 dia_restart.format_secondary_text(diastring)
 
                 dia_restart.run()
                 dia_restart.destroy()
+                self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
+		self.release_global_lock()
                 print 'User cancelled recreating tables'
             #if not lock_released:
-            self.release_global_lock()
+    #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock():
@@ -867,7 +872,7 @@ class fpdb:
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
-        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
+        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")
@@ -906,7 +911,9 @@ You should therefore always keep your hand history files so that you can re-impo
 For documentation please visit our website at http://fpdb.sourceforge.net/.
 If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
-This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory.""")
+
+This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.
+You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt in the fpdb installation directory.""")
         self.add_and_display_tab(mh_tab, "Help")
 
     def tab_table_viewer(self, widget, data=None):
@@ -918,7 +925,7 @@ This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installat
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
-        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
+        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config, self.window)
         self.threads.append(new_gv_thread)
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")

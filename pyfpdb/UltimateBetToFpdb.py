@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008, Carl Gherardi
+#    Copyright 2008-2010 Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -128,7 +128,7 @@ follow :  whether to tail -f the input"""
                 #2008/09/07 06:23:14 ET
                 m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
                 datetime = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), m2.group('M'),m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
-                hand.starttime = time.strptime(datetime, "%Y/%m/%d %H:%M:%S")
+                hand.startTime = time.strptime(datetime, "%Y/%m/%d %H:%M:%S")
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':

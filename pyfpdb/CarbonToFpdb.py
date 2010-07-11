@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2010, Matthew Boss
@@ -21,7 +21,7 @@
 
 # This code is based heavily on EverleafToFpdb.py, by Carl Gherardi
 #
-# OUTSTANDING MATTERS
+# TODO:
 #
 # -- No siteID assigned
 # -- No support for games other than NL hold 'em cash. Hand histories for other
@@ -79,7 +79,7 @@ class Carbon(HandHistoryConverter):
     #re_Antes = ???
     #re_BringIn = ???
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT)" player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
+    re_Action = re.compile(r'<event sequence="[0-9]+" type="(?P<ATYPE>FOLD|CHECK|CALL|BET|RAISE|ALL_IN|SIT_OUT)" (?P<TIMESTAMP>timestamp="[0-9]+" )?player="(?P<PSEAT>[0-9])"( amount="(?P<BET>[.0-9]+)")?/>', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(true|false)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -156,7 +156,7 @@ or None if we fail to get the info """
         hand.handid = m.group('HID1') + m.group('HID2')
         hand.tablename = m.group('TABLE')[:-1]
         hand.maxseats = 2 # This value may be increased as necessary
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME')[:12],
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],
                                                     '%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable
