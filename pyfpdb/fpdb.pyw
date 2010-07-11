@@ -66,6 +66,7 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging, logging.config
+log = logging.getLogger("fpdb")
 
 try:
     import pygtk
@@ -854,9 +855,10 @@ class fpdb:
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
         try:
-            if self.db is not None and self.db.connected:
+            if self.db is not None and self.db.connected():
                 self.db.disconnect()
         except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+            log.info("fpdb.quit disconnect error being ignored: "+str(sys.exc_info()))
             pass
         self.statusIcon.set_visible(False)
 
