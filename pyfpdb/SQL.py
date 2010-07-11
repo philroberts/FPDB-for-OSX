@@ -2259,11 +2259,15 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['tourneyPlayerDetailedStats'] = """
-                      select  t.tourneyTypeId                                                        AS tourneyTypeId
+                      select s.name                                                                 AS siteName
+                            ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,p.name                                                                 AS playerName
-                            ,s.name                                                                 AS siteName
-                            ,sum(tp.winnings)/100.0                                                  AS profit
-                            ,sum(tt.buyin+tt.fee)/100.0                                               AS invested
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS 1st
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
+                            ,SUM(CASE WHEN rank = NULL THEN 1 ELSE 0 END)                           AS unknownRank
+                            ,SUM(tp.winnings)/100.0                                                 AS profit
+                            ,SUM(tt.buyin+tt.fee)/100.0                                             AS invested
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
                            inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
