@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 129
+DB_VERSION = 130
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1423,9 +1423,9 @@ class Database:
                 where = ""
             else:
                 where =   "where (    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.handStart > '" + v_start + "')" \
+                        + "       and h.startTime > '" + v_start + "')" \
                         + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.handStart > '" + h_start + "')"
+                        + "       and h.startTime > '" + h_start + "')"
             rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
 
             self.get_cursor().execute(self.sql.query['clearHudCache'])
@@ -1541,7 +1541,7 @@ class Database:
                 p['gameTypeId'], 
                 p['siteHandNo'], 
                 0, # tourneyId: 0 means not a tourney hand
-                p['handStart'], 
+                p['startTime'], 
                 datetime.today(), #importtime
                 p['seats'],
                 p['maxSeats'],

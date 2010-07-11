@@ -255,7 +255,7 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT UNSIGNED NOT NULL, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            handStart DATETIME NOT NULL,
+                            startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
                             maxSeats TINYINT NOT NULL,
@@ -292,7 +292,7 @@ class Sql:
                             siteHandNo BIGINT NOT NULL,
                             tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            handStart timestamp without time zone NOT NULL,
+                            startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
                             maxSeats SMALLINT NOT NULL,
@@ -328,7 +328,7 @@ class Sql:
                             siteHandNo INT NOT NULL,
                             tourneyId INT NOT NULL,
                             gametypeId INT NOT NULL,
-                            handStart REAL NOT NULL,
+                            startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
                             maxSeats INT NOT NULL,
@@ -1620,7 +1620,7 @@ class Sql:
                                AND h2.seats between %s and %s
                               )
                           )
-                    ORDER BY h.handStart desc, hp2.PlayerId
+                    ORDER BY h.startTime desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
@@ -1723,7 +1723,7 @@ class Sql:
                                AND h2.seats between %s and %s
                               )
                           )
-                    ORDER BY h.handStart desc, hp2.PlayerId
+                    ORDER BY h.startTime desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
@@ -1826,7 +1826,7 @@ class Sql:
                                AND h2.seats between %s and %s
                               )
                           )
-                    ORDER BY h.handStart desc, hp2.PlayerId
+                    ORDER BY h.startTime desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
@@ -1896,23 +1896,23 @@ class Sql:
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where handStart < date_sub(utc_timestamp(), interval '1' day)"""
+                where startTime < date_sub(utc_timestamp(), interval '1' day)"""
         elif db_server == 'postgresql':
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where handStart < now() at time zone 'UTC' - interval '1 day'"""
+                where startTime < now() at time zone 'UTC' - interval '1 day'"""
         elif db_server == 'sqlite':
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where handStart < strftime('%J', 'now') - 1"""
+                where startTime < strftime('%J', 'now') - 1"""
 
         # not used yet ...
         # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
         if db_server == 'mysql':
             self.query['get_date_nhands_ago'] = """
-                select concat( 'd', date_format(max(h.handStart), '%Y%m%d') )
+                select concat( 'd', date_format(max(h.startTime), '%Y%m%d') )
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -1924,7 +1924,7 @@ class Sql:
                 """
         elif db_server == 'postgresql':
             self.query['get_date_nhands_ago'] = """
-                select 'd' || to_char(max(h3.handStart), 'YYMMDD')
+                select 'd' || to_char(max(h3.startTime), 'YYMMDD')
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -1936,7 +1936,7 @@ class Sql:
                 """
         elif db_server == 'sqlite': # untested guess at query:
             self.query['get_date_nhands_ago'] = """
-                select 'd' || strftime(max(h3.handStart), 'YYMMDD')
+                select 'd' || strftime(max(h3.startTime), 'YYMMDD')
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -2043,7 +2043,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   date_format(h.handStart, '%Y-%m-%d %T') <datestest>
+                      and   date_format(h.startTime, '%Y-%m-%d %T') <datestest>
                       group by hgameTypeId
                               ,pname
                               ,gt.base
@@ -2140,7 +2140,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   to_char(h.handStart, 'YYYY-MM-DD HH24:MI:SS') <datestest>
+                      and   to_char(h.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
                       group by hgameTypeId
                               ,pname
                               ,gt.base
@@ -2238,7 +2238,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   datetime(h.handStart) <datestest>
+                      and   datetime(h.startTime) <datestest>
                       group by hgameTypeId
                               ,hp.playerId
                               ,gt.base
@@ -2396,7 +2396,7 @@ class Sql:
                            inner join Hands h        ON h.id            = hp.handId
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
+                           and   date_format(h.startTime, '%Y-%m-%d') <datestest>
                            group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
@@ -2499,7 +2499,7 @@ class Sql:
                            inner join Hands h   ON (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                           and   to_char(h.startTime, 'YYYY-MM-DD') <datestest>
                            group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
@@ -2634,7 +2634,7 @@ class Sql:
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
+                           and   date_format(h.startTime, '%Y-%m-%d') <datestest>
                            group by hp.handId, gtId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
@@ -2771,7 +2771,7 @@ class Sql:
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                           and   to_char(h.startTime, 'YYYY-MM-DD') <datestest>
                            group by hp.handId, gameTypeId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
@@ -2792,13 +2792,13 @@ class Sql:
             INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
             WHERE pl.id in <player_test>
             AND   pl.siteId in <site_test>
-            AND   h.handStart > '<startdate_test>'
-            AND   h.handStart < '<enddate_test>'
+            AND   h.startTime > '<startdate_test>'
+            AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
             AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
-            ORDER BY h.handStart"""
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            ORDER BY h.startTime"""
 
 
         ####################################
@@ -2806,38 +2806,38 @@ class Sql:
         ####################################
         if db_server == 'mysql':
             self.query['sessionStats'] = """
-                SELECT UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
-                 AND  date_format(h.handStart, '%Y-%m-%d') <datestest>
+                 AND  date_format(h.startTime, '%Y-%m-%d') <datestest>
                  AND  hp.tourneysPlayersId IS NULL
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
-                SELECT EXTRACT(epoch from h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT EXTRACT(epoch from h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
-                 AND  h.handStart <datestest>
+                 AND  h.startTime <datestest>
                  AND  hp.tourneysPlayersId IS NULL
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
-                SELECT STRFTIME('<ampersand_s>', h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
-                 AND  h.handStart <datestest>
+                 AND  h.startTime <datestest>
                  AND  hp.tourneysPlayersId IS NULL
                 ORDER by time"""
 
@@ -2946,7 +2946,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,date_format(h.handStart, 'd%y%m%d')
+                      ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -3025,7 +3025,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
-                        ,date_format(h.handStart, 'd%y%m%d')
+                        ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
@@ -3125,7 +3125,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,'d' || to_char(h.handStart, 'YYMMDD')
+                      ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -3204,7 +3204,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
-                        ,to_char(h.handStart, 'YYMMDD')
+                        ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
             self.query['rebuildHudCache'] = """
@@ -3304,7 +3304,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
+                      ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -3383,7 +3383,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
-                        ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
+                        ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
         self.query['insert_hudcache'] = """
