@@ -235,6 +235,7 @@ class fpdb:
         dia.set_comments("")
         dia.set_license("This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory")
         dia.set_website("http://fpdb.sourceforge.net/")
+        
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
         dia.set_program_name("Free Poker Database (FPDB)")
@@ -261,11 +262,17 @@ class fpdb:
         view.modify_font(pango.FontDescription('monospace 10'))
         view.show()
         dia.vbox.pack_end(view, True, True, 2)
-        l = gtk.Label('Version Information:')
+        
+        l = gtk.Label("Your config file is: "+self.config.file)
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
 
+        l = gtk.Label('Version Information:')
+        l.set_alignment(0.5, 0.5)
+        l.show()
+        dia.vbox.pack_end(l, True, True, 2)
+        
         dia.run()
         dia.destroy()
         log.debug("Threads: ")
