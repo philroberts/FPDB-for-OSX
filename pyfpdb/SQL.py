@@ -2273,7 +2273,8 @@ class Sql:
                             ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
                             ,SUM(tt.buyin+tt.fee)/100.0                                             AS spent
-                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                          AS roi
+                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
                            inner join Tourneys t        on  (t.id = tp.tourneyId)
                            inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
