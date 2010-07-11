@@ -3646,6 +3646,8 @@ class Sql:
                                             AND currency=%s
                                             AND buyin=%s
                                             AND fee=%s
+                                            AND category=%s
+                                            AND limitType=%s
                                             AND knockout=%s
                                             AND rebuy=%s
                                             AND addOn=%s
@@ -3655,9 +3657,9 @@ class Sql:
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
-                                                  (siteId, currency, buyin, fee, buyInChips, knockout, rebuy,
+                                                  (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, rebuy,
                                                   addOn ,speed, shootout, matrix)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['getTourneyIdByTourneyNo'] = """SELECT t.id
@@ -3734,7 +3736,7 @@ class Sql:
                                             gametypeid,
                                             sitehandno,
                                             tourneyId,
-                                            handstart,
+                                            startTime,
                                             importtime,
                                             seats,
                                             maxseats,
@@ -3882,6 +3884,12 @@ class Sql:
         self.query['getHandCount'] = "SELECT COUNT(id) FROM Hands"
         self.query['getTourneyCount'] = "SELECT COUNT(id) FROM Tourneys"
         self.query['getTourneyTypeCount'] = "SELECT COUNT(id) FROM TourneyTypes"
+        
+        ################################
+        # queries for dumpDatabase
+        ################################
+        for table in (u'Autorates', u'GameTypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+            self.query['get'+table] = u"SELECT * FROM "+table
         
         ################################
         # placeholders and substitution stuff

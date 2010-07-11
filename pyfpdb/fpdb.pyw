@@ -336,6 +336,11 @@ class fpdb:
                     diatitle="Database Statistics")
     #end def dia_database_stats
 
+    def dia_dump_db(self, widget, data=None):
+        self.db.dumpDatabase("database-dump.sql")
+    #end def dia_database_stats
+
+
 #    def dia_get_db_root_credentials(self):
 #        """obtains db root credentials from user"""
 #        user, pw=None, None
@@ -658,7 +663,8 @@ class fpdb:
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="rebuildindexes"/>
-                  <menuitem action="stats"/>
+                  <menuitem action="databasestats"/>
+                  <menuitem action="dumptofile"/>
                 </menu>
                 <menu action="help">
                   <menuitem action="Logs"/>
@@ -696,7 +702,8 @@ class fpdb:
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
-                                 ('stats', None, '_Statistics', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('databasestats', None, '_Statistics', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('dumptofile', None, 'Dump Database to Textfile', None, 'Dump Database to Textfile (takes much time, RAM, HD)', self.dia_dump_db),
                                  ('help', None, '_Help'),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),

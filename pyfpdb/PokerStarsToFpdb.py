@@ -238,7 +238,7 @@ class PokerStars(HandHistoryConverter):
                 #2008/09/07 06:23:14 ET
                 m1 = self.re_DateTime.finditer(info[key])
                 # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but handstart will be wrong)
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but startTime will be wrong)
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??

@@ -290,6 +290,34 @@ class Database:
             self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
+    def dumpDatabase(self, filename):
+        dumpFile = open(filename, 'w')
+        
+        result="Database dump version " + str(DB_VERSION)+"\n\n"
+        
+        tables=self.cursor.execute(self.sql.query['list_tables'])
+        tables=self.cursor.fetchall()
+        dumpFile.write(result)
+        
+        for table in tables:
+            table=table[0]
+            print "table:", table
+            result="###################\nTable "+table+"\n###################\n"
+            rows=self.cursor.execute(self.sql.query['get'+table])
+            rows=self.cursor.fetchall()
+            columnNames=self.cursor.description
+            if not rows:
+                result+="empty table\n"
+            else:
+                for row in rows:
+                    for columnNumber in range(len(columnNames)):
+                        result+=("  "+columnNames[columnNumber][0]+"="+str(row[columnNumber])+"\n")
+                    result+="\n"
+            result+="\n"
+            dumpFile.write(result)
+        dumpFile.close()
+    #end def dumpDatabase
+    
     # could be used by hud to change hud style
     def set_hud_style(self, style):
         self.hud_style = style
@@ -1375,17 +1403,17 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         if self.backend == self.SQLITE:
-            c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout,
-                         rebuy, addOn, speed, shootout, matrix)
-                         VALUES (NULL, 1, 'USD', 0, 0, 0, 0, 0, 0, 0, NULL, 0, 0);""")
+            c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, category, limitType,
+                         buyInChips, maxSeats, knockout, rebuy, addOn, speed, shootout, matrix)
+                         VALUES (NULL, 1, 'USD', 0, 0, "NA", "NA", 0, 0, 0, 0, 0, NULL, 0, 0);""")
         elif self.backend == self.PGSQL:
-            c.execute("""insert into TourneyTypes(siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
-                                                 ,rebuy, addOn, speed, shootout, matrix)
-                         values (1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False);""")
+            c.execute("""insert into TourneyTypes(siteId, currency, buyin, fee, category, limitType,
+                         buyInChips, maxSeats, knockout, rebuy, addOn, speed, shootout, matrix)
+                         values (1, 'USD', 0, 0, "NA", "NA", 0, 0, False, False, False, null, False, False);""")
         elif self.backend == self.MYSQL_INNODB:
-            c.execute("""insert into TourneyTypes(id, siteId, currency, buyin, fee, buyInChips, maxSeats, knockout
-                                                 ,rebuy, addOn, speed, shootout, matrix)
-                         values (DEFAULT, 1, 'USD', 0, 0, 0, 0, False, False, False, null, False, False);""")
+            c.execute("""insert into TourneyTypes(id, siteId, currency, buyin, fee, category, limitType,
+                         buyInChips, maxSeats, knockout, rebuy, addOn, speed, shootout, matrix)
+                         values (DEFAULT, 1, 'USD', 0, 0, "NA", "NA", 0, 0, False, False, False, null, False, False);""")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1976,11 +2004,11 @@ class Database:
         except:
             # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
             tourneyTypeIdMatch = False
-    
+        
         if tourneyTypeIdMatch == False :
             # Check for an existing TTypeId that matches tourney info, if not found create it
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.isKO,
+                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
                              hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix)
                             )
             result=cursor.fetchone()
@@ -1989,7 +2017,7 @@ class Database:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
-                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.buyInChips,
+                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips,
                                  hand.isKO, hand.isRebuy,
                                  hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
                                 )
@@ -2112,7 +2140,7 @@ class HandToWrite:
             print "htw.init error: " + str(sys.exc_info())
             raise
     # end def __init__
-
+    
     def set_all( self, config, settings, base, category, siteTourneyNo, buyin
                , fee, knockout, entries, prizepool, tourneyStartTime
                , isTourney, tourneyTypeId, siteID, siteHandNo

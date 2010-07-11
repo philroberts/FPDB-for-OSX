@@ -1580,7 +1580,7 @@ limit 1""", {'handid':handid})
 SELECT
     h.sitehandno as hid,
     h.tablename as table,
-    h.handstart as startTime
+    h.startTime as startTime
 FROM
     hands as h
 WHERE h.id = %(handid)s
