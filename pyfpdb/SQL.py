@@ -190,7 +190,7 @@ class Sql:
                         smallBet int,
                         bigBet int)"""
         elif db_server == 'sqlite':
-            self.query['createGametypesTable'] = """CREATE TABLE GameTypes (
+            self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id INTEGER PRIMARY KEY,
                         siteId INTEGER,
                         currency TEXT,
