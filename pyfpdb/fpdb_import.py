@@ -152,7 +152,7 @@ class Importer:
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
-        if filename in self.filelist or not os.path.exists(filename):
+        if filename in self.filelist or not os.path.exists(unicode(filename,'utf-8')):
             return
         self.filelist[filename] = [site] + [filter]
         if site not in self.siteIds:
@@ -406,7 +406,7 @@ class Importer:
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
 
-        file =  file.decode(Configuration.LOCALE_ENCODING)
+        file =  file.decode("utf-8") #(Configuration.LOCALE_ENCODING)
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
