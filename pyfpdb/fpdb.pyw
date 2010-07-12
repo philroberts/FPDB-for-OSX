@@ -844,11 +844,16 @@ class fpdb:
         #FIXME  get two "quitting normally" messages, following the addition of the self.window.destroy() call
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        try:
+        
+        if self.db.backend==self.db.MYSQL_INNODB:
+            try:
+                if self.db is not None and self.db.connected:
+                    self.db.disconnect()
+            except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+                pass
+        else:
             if self.db is not None and self.db.connected:
                 self.db.disconnect()
-        except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
-            pass
         self.statusIcon.set_visible(False)
 
         self.window.destroy() # explicitly destroy to allow child windows to close cleanly
