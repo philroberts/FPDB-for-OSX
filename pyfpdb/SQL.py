@@ -1985,7 +1985,7 @@ class Sql:
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
         self.query['getLimits3'] = """select DISTINCT type
-                                           , limitType
+                                           , gt.limitType
                                            , case type 
                                                  when 'ring' then bigBlind 
                                                  else buyin 
