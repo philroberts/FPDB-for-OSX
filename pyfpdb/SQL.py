@@ -1980,7 +1980,7 @@ class Sql:
         # used in *Filters:
         self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
         self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
-        self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+        #self.query['getLimits'] = already defined further up
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
