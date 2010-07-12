@@ -1992,7 +1992,7 @@ class Sql:
                                              end as bb_or_buyin
                                       from Gametypes gt
                                       cross join TourneyTypes tt
-                                      order by type, limitType DESC, bb_or_buyin DESC"""
+                                      order by type, gt.limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
