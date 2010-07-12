@@ -624,7 +624,7 @@ class RingFilters(Filters.Filters):
         vbox.pack_start(vbox1, False, False, 0)
         self.boxes['limits'] = vbox1
 
-        self.cursor.execute(self.sql.query['getLimits3'])
+        self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
         found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}

@@ -1986,13 +1986,18 @@ class Sql:
                                       ORDER by type, limitType DESC, bigBlind DESC"""
         self.query['getLimits3'] = """select DISTINCT type
                                            , gt.limitType
-                                           , case type 
+                                           , case type
                                                  when 'ring' then bigBlind 
-                                                 else buyin 
-                                             end as bb_or_buyin
+-                                                else buyin
+-                                            end as bb_or_buyin
                                       from Gametypes gt
                                       cross join TourneyTypes tt
                                       order by type, gt.limitType DESC, bb_or_buyin DESC"""
+        self.query['getCashLimits'] = """select DISTINCT type
+                                           , limitType
+                                           , bigBlind as bb_or_buyin
+                                      from Gametypes gt
+                                      order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
             self.query['playerDetailedStats'] = """
@@ -2821,7 +2826,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
-            AND   hp.tourneysPlayersId IS NULL
+            AND   gt.type is 'ring'
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
 
@@ -2839,7 +2844,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  date_format(h.startTime, '%Y-%m-%d') <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  gt.type is 'ring'
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
@@ -2851,7 +2856,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  gt.type is 'ring'
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
@@ -2863,7 +2868,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  gt.type is 'ring'
                 ORDER by time"""
 
 
