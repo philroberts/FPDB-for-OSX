@@ -845,15 +845,18 @@ class fpdb:
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
         
-        if self.db.backend==self.db.MYSQL_INNODB:
-            try:
+        if self.db!=None:
+            if self.db.backend==self.db.MYSQL_INNODB:
+                try:
+                    if self.db is not None and self.db.connected:
+                        self.db.disconnect()
+                except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+                    pass
+            else:
                 if self.db is not None and self.db.connected:
                     self.db.disconnect()
-            except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
-                pass
         else:
-            if self.db is not None and self.db.connected:
-                self.db.disconnect()
+            pass
         self.statusIcon.set_visible(False)
 
         self.window.destroy() # explicitly destroy to allow child windows to close cleanly
