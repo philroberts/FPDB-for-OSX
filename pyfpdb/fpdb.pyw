@@ -393,7 +393,7 @@ class fpdb:
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
             diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
-                        +self.db.database+" on "+self.db.host+" they will be deleted."
+                        +self.db.database+" on "+self.db.host+" they will be deleted.\nThis may take a while."
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             dia_confirm.set_deletable(False)
