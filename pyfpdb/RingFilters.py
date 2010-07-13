@@ -66,6 +66,7 @@ class RingFilters(Filters.Filters):
         # Outer Packing box
         self.mainVBox = gtk.VBox(False, 0)
 
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
         self.label = {}
         self.callback = {}
 
@@ -364,7 +365,7 @@ class RingFilters(Filters.Filters):
     #end def __set_game_select
 
     def __set_limit_select(self, w, limit):
-        #print w.get_active()
+        #print "__set_limit_select:  limit =", limit, w.get_active()
         self.limits[limit] = w.get_active()
         log.debug("self.limit[%s] set to %s" %(limit, self.limits[limit]))
         if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
@@ -488,7 +489,7 @@ class RingFilters(Filters.Filters):
             if self.limits[limit]:
                 self.type = "ring"
                 for cb in self.cbLimits.values():
-                    #print "cb label: ", cb.children()[0].get_text()
+                    print "ring: cb label: ", cb.children()[0].get_text()
                     if self.types[cb.get_children()[0].get_text()] == 'tour':
                         cb.set_active(False)
         elif limit == "tour":
@@ -627,7 +628,7 @@ class RingFilters(Filters.Filters):
         self.cursor.execute(self.sql.query['getCashLimits'])
         # selects  limitType, bigBlind
         result = self.db.cursor.fetchall()
-        found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
+        self.found = {'nl':False, 'fl':False, 'pl':False, 'ring':False, 'tour':False}
 
         if len(result) >= 1:
             hbox = gtk.HBox(True, 0)
@@ -648,16 +649,16 @@ class RingFilters(Filters.Filters):
                 if True:  #line[0] == 'ring':
                     if line[1] == 'fl':
                         name = str(line[2])
-                        found['fl'] = True
+                        self.found['fl'] = True
                     elif line[1] == 'pl':
                         name = str(line[2])+line[1]
-                        found['pl'] = True
+                        self.found['pl'] = True
                     else:
                         name = str(line[2])+line[1]
-                        found['nl'] = True
+                        self.found['nl'] = True
                     self.cbLimits[name] = self.createLimitLine(hbox, name, name)
                     self.types[name] = line[0]
-                found[line[0]] = True      # type is ring/tour
+                self.found[line[0]] = True      # type is ring/tour
                 self.type = line[0]        # if only one type, set it now
             if "LimitSep" in display and display["LimitSep"] == True and len(result) >= 2:
                 hbox = gtk.HBox(True, 0)
@@ -675,24 +676,30 @@ class RingFilters(Filters.Filters):
                 self.cbNoLimits = self.createLimitLine(hbox, 'none', self.filterText['limitsnone'])
 
                 dest = vbox3  # for ring/tour buttons
-                if "LimitType" in display and display["LimitType"] == True and found['nl'] and found['fl']:
-                    #if found['fl']:
-                    hbox = gtk.HBox(False, 0)
-                    vbox3.pack_start(hbox, False, False, 0)
-                    self.cbFL = self.createLimitLine(hbox, 'fl', self.filterText['limitsFL'])
-                    #if found['nl']:
-                    hbox = gtk.HBox(False, 0)
-                    vbox3.pack_start(hbox, False, False, 0)
-                    self.cbNL = self.createLimitLine(hbox, 'nl', self.filterText['limitsNL'])
-                    hbox = gtk.HBox(False, 0)
-                    vbox3.pack_start(hbox, False, False, 0)
-                    self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
-                    dest = vbox2  # for ring/tour buttons
+                if "LimitType" in display and display["LimitType"] == True:
+                    num_limit_types = 0
+                    if self.found['fl']:  num_limit_types = num_limit_types + 1
+                    if self.found['pl']:  num_limit_types = num_limit_types + 1
+                    if self.found['nl']:  num_limit_types = num_limit_types + 1
+                    if num_limit_types > 1:
+                       if self.found['fl']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbFL = self.createLimitLine(hbox, 'fl', self.filterText['limitsFL'])
+                       if self.found['nl']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbNL = self.createLimitLine(hbox, 'nl', self.filterText['limitsNL'])
+                       if self.found['pl']:
+                           hbox = gtk.HBox(False, 0)
+                           vbox3.pack_start(hbox, False, False, 0)
+                           self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
+                       dest = vbox2  # for ring/tour buttons
         else:
             print "INFO: No games returned from database"
             log.info("No games returned from database")
 
-        if "Type" in display and display["Type"] == True and found['ring'] and found['tour']:
+        if "Type" in display and display["Type"] == True and self.found['ring'] and self.found['tour']:
             rb1 = gtk.RadioButton(None, self.filterText['ring'])
             rb1.connect('clicked', self.__set_limit_select, 'ring')
             rb2 = gtk.RadioButton(rb1, self.filterText['tour'])
