@@ -92,6 +92,7 @@ class TourneySummary(object):
         self.isSatellite        = False
         self.isDoubleOrNothing  = False
         self.guarantee          = 0
+        self.gametype           = {'category':None, 'limitType':None}
 
         # Collections indexed by player names
         self.playerIds          = {}

@@ -25,22 +25,40 @@ import PokerStarsToFpdb
 from TourneySummary import *
 
 class PokerStarsSummary(TourneySummary):
+    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    games = {                          # base, category
+                              "Hold'em" : ('hold','holdem'), 
+                                'Omaha' : ('hold','omahahi'),
+                          'Omaha Hi/Lo' : ('hold','omahahilo'),
+                                 'Razz' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
+                          '7 Card Stud' : ('stud','studhi'),
+                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                               'Badugi' : ('draw','badugi'),
+              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+                          '5 Card Draw' : ('draw','fivedraw')
+               }
+    
     re_TourNo = re.compile("\#[0-9]+,")
     re_Entries = re.compile("[0-9]+")
     re_Prizepool = re.compile("\$[0-9]+\.[0-9]+")
-    re_Player = re.compile("""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?""")
+    re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?""")
     re_BuyInFee = re.compile("(?P<BUYIN>[0-9]+\.[0-9]+).*(?P<FEE>[0-9]+\.[0-9]+)")
     re_FPP = re.compile("(?P<FPP>[0-9]+)\sFPP")
     #note: the dollar and cent in the below line are currency-agnostic
     re_Added = re.compile("(?P<DOLLAR>[0-9]+)\.(?P<CENT>[0-9]+)\s(?P<CURRENCY>[A-Z]+)(\sadded\sto\sthe\sprize\spool\sby\sPokerStars)")
     re_DateTime = re.compile("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
-    # = re.compile("")
+    re_GameInfo = re.compile(u""".+(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)""")
 
     def parseSummary(self):
         lines=self.summaryText.splitlines()
         
         self.tourNo = self.re_TourNo.findall(lines[0])[0][1:-1] #ignore game and limit type as thats not recorded
-        #print "tourNo:",self.tourNo
+        
+        result=self.re_GameInfo.search(lines[0])
+        result=result.groupdict()
+        self.gametype['limitType']=self.limits[result['LIMIT']]
+        self.gametype['category']=self.games[result['GAME']][0]
         
         if lines[1].find("$")!=-1: #TODO: move this into a method and call that from PokerStarsToFpdb.py:269    if hand.buyinCurrency=="USD" etc.
             self.currency="USD"
