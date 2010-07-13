@@ -2300,6 +2300,8 @@ class Sql:
                             ,tt.currency                                                            AS currency
                             ,(CASE WHEN tt.currency = "USD" THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
+                            ,tt.category                                                            AS category
+                            ,tt.limitType                                                           AS limitType
                             ,p.name                                                                 AS playerName
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
