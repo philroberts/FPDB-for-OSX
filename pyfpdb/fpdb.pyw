@@ -703,7 +703,7 @@ class fpdb:
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
                                  ('databasestats', None, '_Statistics', None, 'View Database Statistics', self.dia_database_stats),
-                                 ('dumptofile', None, 'Dump Database to Textfile', None, 'Dump Database to Textfile (takes much time, RAM, HD)', self.dia_dump_db),
+                                 ('dumptofile', None, 'Dump Database to Textfile (takes ALOT of time)', None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, '_Help'),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
