@@ -74,8 +74,8 @@ def run(config, db):
         print "completed running Imap import, closing server connection"
     #finally:
      #   try:
-      #      server.close()
+        server.close()
        # finally:
         #    pass
-        #server.logout()
+        server.logout()
         
