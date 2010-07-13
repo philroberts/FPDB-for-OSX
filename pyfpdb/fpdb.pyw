@@ -849,18 +849,21 @@ class fpdb:
     def quit(self, widget, data=None):
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         #FIXME  get two "quitting normally" messages, following the addition of the self.window.destroy() call
-        print "Quitting normally"
+        #       ... because self.window.destroy() leads to self.destroy() which calls this!
+        if not self.quitting:
+            print "Quitting normally"
+            self.quitting = True
         # TODO: check if current settings differ from profile, if so offer to save or abort
         
         if self.db!=None:
             if self.db.backend==self.db.MYSQL_INNODB:
                 try:
-                    if self.db is not None and self.db.connected:
+                    if self.db is not None and self.db.connected():
                         self.db.disconnect()
                 except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
                     pass
             else:
-                if self.db is not None and self.db.connected:
+                if self.db is not None and self.db.connected():
                     self.db.disconnect()
         else:
             pass
@@ -945,6 +948,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
         self.db = None
         self.status_bar = None
+        self.quitting = False
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
