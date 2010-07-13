@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2009-2010 Grigorij Indigirkin
@@ -65,7 +65,7 @@ hands_table = Table('Hands', metadata,
     Column('tableName',     String(30), nullable=False),
     Column('siteHandNo',    BigIntColumn, nullable=False),
     Column('gametypeId',    SmallInteger, ForeignKey('Gametypes.id'), nullable=False),
-    Column('handStart',     DateTime, nullable=False),
+    Column('startTime',     DateTime, nullable=False),
     Column('importTime',    DateTime, nullable=False),
     Column('seats',         SmallInteger, nullable=False),
     Column('maxSeats',      SmallInteger, nullable=False),

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
@@ -20,7 +20,7 @@
 
 import logging
 from HandHistoryConverter import *
-import TourneySummary
+#import TourneySummary
 
 # Fulltilt HH Format converter
 
@@ -434,23 +434,23 @@ class Fulltilt(HandHistoryConverter):
     def readSummaryInfo(self, summaryInfoList):
         self.status = True
 
-        m = re.search("Tournament Summary", summaryInfoList[0])
-        if m:
-            # info list should be 2 lines : Tourney infos & Finsihing postions with winnings
-            if (len(summaryInfoList) != 2 ):
-                log.info("Too many or too few lines (%d) in file '%s' : '%s'" % (len(summaryInfoList), self.in_path, summaryInfoList) )
-                self.status = False
-            else:
-                self.tourney = TourneySummary.TourneySummary(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
-                self.status = self.getPlayersPositionsAndWinnings(self.tourney)
-                if self.status == True :
-                    self.status = self.determineTourneyType(self.tourney)
-                    #print self.tourney
-                else:
-                    log.info("Parsing NOK : rejected")
-        else:
-            log.info( "This is not a summary file : '%s'" % (self.in_path) )
-            self.status = False
+        #m = re.search("Tournament Summary", summaryInfoList[0])
+        #if m:
+        #    # info list should be 2 lines : Tourney infos & Finsihing postions with winnings
+        #    if (len(summaryInfoList) != 2 ):
+        #        log.info("Too many or too few lines (%d) in file '%s' : '%s'" % (len(summaryInfoList), self.in_path, summaryInfoList) )
+        #        self.status = False
+        #    else:
+        #        self.tourney = TourneySummary.TourneySummary(sitename = self.sitename, gametype = None, summaryText = summaryInfoList, builtFrom = "HHC")
+        #        self.status = self.getPlayersPositionsAndWinnings(self.tourney)
+        #        if self.status == True :
+        #            self.status = self.determineTourneyType(self.tourney)
+        #            #print self.tourney
+        #        else:
+        #            log.info("Parsing NOK : rejected")
+        #else:
+        #    log.info( "This is not a summary file : '%s'" % (self.in_path) )
+        #    self.status = False
 
         return self.status
 

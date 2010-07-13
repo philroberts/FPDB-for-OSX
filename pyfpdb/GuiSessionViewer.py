@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -45,8 +45,7 @@ except ImportError, inst:
 import Card
 import fpdb_import
 import Database
-import Filters
-import FpdbSQLQueries
+import RingFilters
 import Charset
 
 class GuiSessionViewer (threading.Thread):
@@ -96,7 +95,7 @@ class GuiSessionViewer (threading.Thread):
                             "Button2"   : False
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2009-2010 Grigorij Indigirkin
@@ -193,8 +193,8 @@ class HandInternal(DerivedStats):
                 setattr(tour, col, hand_val)
             elif col == 'koBounty':
                 setattr(tour, col, max(db_val, hand_val))
-            elif col == 'tourStartTime' and hand.handStart:
-                setattr(tour, col, min(db_val, hand.handStart))
+            elif col == 'tourStartTime' and hand.startTime:
+                setattr(tour, col, min(db_val, hand.startTime))
 
         if tour.entries is None and tour_type.sng:
             tour.entries = tour_type.maxSeats

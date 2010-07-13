@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Carl Gherardi
@@ -37,7 +37,6 @@ import Configuration
 from Exceptions import *
 import DerivedStats
 import Card
-import Tourney
 
 class Hand(object):
 
@@ -230,9 +229,9 @@ dealt   whether they were seen in a 'dealt to' line
         if self.tourNo!=None:
             self.tourneyTypeId = db.createOrUpdateTourneyType(self)
             db.commit()
-            self.tourneyId = db.createOrUpdateTourney(self)
+            self.tourneyId = db.createOrUpdateTourney(self, "HHC")
             db.commit()
-            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self)
+            self.tourneysPlayersIds = db.createOrUpdateTourneysPlayers(self, "HHC")
             db.commit()
     #end def prepInsert
 
@@ -1581,7 +1580,7 @@ limit 1""", {'handid':handid})
 SELECT
     h.sitehandno as hid,
     h.tablename as table,
-    h.handstart as startTime
+    h.startTime as startTime
 FROM
     hands as h
 WHERE h.id = %(handid)s

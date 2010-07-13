@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Copyright (c) 2009-2010 Eric Blade, and the FPDB team.

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -19,8 +19,7 @@
 #see http://docs.python.org/library/imaplib.html for the python interface
 #see http://tools.ietf.org/html/rfc2060#section-6.4.4 for IMAP4 search criteria
 
-import sys
-from imaplib import IMAP4_SSL
+from imaplib import IMAP4, IMAP4_SSL
 import PokerStarsSummary
 
 def splitPokerStarsSummaries(emailText):
@@ -30,20 +29,20 @@ def splitPokerStarsSummaries(emailText):
     return splitSummaries
 #end def emailText
 
-if __name__ == '__main__':
-    #TODO: move all these into the config file. until then usage is: ./ImapSummaries.py YourImapHost YourImapUser YourImapPw 
-    configHost=sys.argv[1]
-    configUser=sys.argv[2]
-    configPw=sys.argv[3]
-    #TODO: specify folder, whether to use SSL
-
-    try:
-        server = IMAP4_SSL(configHost) #TODO: optionally non-SSL
-        response = server.login(configUser, configPw) #TODO catch authentication error
-        #print "response to logging in:",response
+def run(config, db):
+        #print "start of IS.run"
+        server=None
+    #try:
+        #print "useSSL",config.email.useSsl,"host",config.email.host
+        if config.email.useSsl:
+            server = IMAP4_SSL(config.email.host)
+        else:
+            server = IMAP4(config.email.host)
+        response = server.login(config.email.username, config.email.password) #TODO catch authentication error
+        print "response to logging in:",response
         #print "server.list():",server.list() #prints list of folders
 
-        response = server.select("INBOX")
+        response = server.select(config.email.folder)
         #print "response to selecting INBOX:",response
         if response[0]!="OK":
             raise error #TODO: show error message
@@ -68,15 +67,15 @@ if __name__ == '__main__':
             if messageData[0]=="PS":
                 summaryTexts=(splitPokerStarsSummaries(bodyData))
                 for summaryText in summaryTexts:
-                    result=PokerStarsSummary.PokerStarsSummary(sitename="PokerStars", gametype=None, summaryText=summaryText, builtFrom = "IMAP")
-                    #print "result:",result
+                    result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+                    #print "finished importing a PS summary with result:",result
                     #TODO: count results and output to shell like hand importer does
             
         print "completed running Imap import, closing server connection"
-    finally:
-        try:
-            server.close()
-        finally:
-            pass
+    #finally:
+     #   try:
+        server.close()
+       # finally:
+        #    pass
         server.logout()
         

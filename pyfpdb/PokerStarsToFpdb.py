@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
@@ -77,7 +77,9 @@ class PokerStars(HandHistoryConverter):
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
-          (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
+          (-\s)?
+          (Match.*)?                  #TODO: waiting for reply from user as to what this means
+          (Level\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
@@ -221,23 +223,13 @@ class PokerStars(HandHistoryConverter):
                 #2008/09/07 06:23:14 ET
                 m1 = self.re_DateTime.finditer(info[key])
                 # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but handstart will be wrong)
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but startTime will be wrong)
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??
                     #print "   tz = ", tz, " datetime =", datetimestr
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-                # approximate rules for ET daylight savings time:
-                if (   hand.startTime.month == 12                                  # all of Dec
-                    or (hand.startTime.month == 11 and hand.startTime.day > 4)     #    and most of November
-                    or hand.startTime.month < 3                                    #    and all of Jan/Feb
-                    or (hand.startTime.month == 3 and hand.startTime.day < 11) ):  #    and 1st 10 days of March
-                    offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
-                else:
-                    offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
-                # adjust time into UTC:
-                hand.startTime = hand.startTime + offset
-                #print "   tz = %s  start = %s" % (tz, str(hand.startTime))
+                hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
@@ -249,16 +241,24 @@ class PokerStars(HandHistoryConverter):
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
                     else:
+                        #print "info[key]:",info[key]
                         if info[key].find("$")!=-1:
                             hand.buyinCurrency="USD"
                         elif info[key].find(u"€")!=-1:
                             hand.buyinCurrency="EUR"
+                        elif info[key].find("FPP")!=-1:
+                            hand.buyinCurrency="PSFP"
                         else:
-                            hand.buyinCurrency="NA" #FIXME: handle other currencies, FPP, play money
-                        info[key]=info[key][:-4]
-                        middle=info[key].find("+")
-                        hand.buyin = int(100*Decimal(info[key][1:middle]))
-                        hand.fee = int(100*Decimal(info[key][middle+2:]))
+                            raise FpdbParseError("failed to detect currency") #FIXME: handle other currencies, FPP, play money
+                        
+                        if hand.buyinCurrency=="USD" or hand.buyinCurrency=="EUR":
+                            info[key]=info[key][:-4]
+                            middle=info[key].find("+")
+                            hand.buyin = int(100*Decimal(info[key][1:middle]))
+                            hand.fee = int(100*Decimal(info[key][middle+2:]))
+                        elif hand.buyinCurrency=="PSFP":
+                            hand.buyin = int(Decimal(info[key][0:-3]))
+                            hand.fee = 0
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -277,7 +277,7 @@ class PokerStars(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
-
+    
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:

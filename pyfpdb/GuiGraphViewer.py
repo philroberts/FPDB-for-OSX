@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -44,7 +44,7 @@ except ImportError, inst:
 
 import fpdb_import
 import Database
-import Filters
+import RingFilters
 import Charset
 
 class GuiGraphViewer (threading.Thread):
@@ -75,7 +75,7 @@ class GuiGraphViewer (threading.Thread):
                             "Button2"   : True
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh _Graph")
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name("_Export to File")

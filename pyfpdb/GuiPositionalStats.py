@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -24,8 +24,7 @@ from time import time, strftime
     
 import fpdb_import
 import Database
-import Filters
-import FpdbSQLQueries
+import RingFilters
 
 class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
@@ -58,7 +57,7 @@ class GuiPositionalStats (threading.Thread):
                             "Button2"  :  False
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 

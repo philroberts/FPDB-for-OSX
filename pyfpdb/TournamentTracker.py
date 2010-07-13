@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """TourneyTracker.py
     Based on HUD_main .. who knows if we want to actually use this or not

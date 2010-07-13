@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2009-2010 Stephane Alessio
@@ -47,10 +47,11 @@ class TourneySummary(object):
     SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9 }
 
 
-    def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC"):
-        self.sitename           = sitename
-        self.siteId             = self.SITEIDS[sitename]
-        self.gametype           = gametype
+    def __init__(self, db, config, siteName, summaryText, builtFrom = "HHC"):
+        self.db                 = db
+        self.config             = config
+        self.siteName           = siteName
+        self.siteId             = self.SITEIDS[siteName]
         
         self.summaryText        = summaryText
         self.tourneyName        = None
@@ -75,6 +76,7 @@ class TourneySummary(object):
         self.isMatrix           = False
         self.isShootout         = False
         self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
+        self.matrixIdProcessed  = None
         self.subTourneyBuyin    = None
         self.subTourneyFee      = None
         self.rebuyChips         = 0
@@ -90,8 +92,11 @@ class TourneySummary(object):
         self.isSatellite        = False
         self.isDoubleOrNothing  = False
         self.guarantee          = 0
+        self.gametype           = {'category':None, 'limitType':None}
 
         # Collections indexed by player names
+        self.playerIds          = {}
+        self.tourneysPlayersIds = {}
         self.ranks              = {}
         self.winnings           = {}
         self.winningsCurrency   = {}
@@ -101,16 +106,15 @@ class TourneySummary(object):
 
         # currency symbol for this summary
         self.sym = None
-        #self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
         
         if builtFrom=="IMAP":
             self.parseSummary()
-            #TODO: self.insert()
+            self.insertOrUpdate()
     #end def __init__
 
     def __str__(self):
         #TODO : Update
-        vars = ( ("SITE", self.sitename),
+        vars = ( ("SITE", self.siteName),
                  ("START TIME", self.startTime),
                  ("END TIME", self.endTime),
                  ("TOURNEY NAME", self.tourneyName),
@@ -119,6 +123,7 @@ class TourneySummary(object):
                  ("TOURNEY ID", self.tourneyId),
                  ("BUYIN", self.buyin),
                  ("FEE", self.fee),
+                 ("CURRENCY", self.currency),
                  ("HERO", self.hero),
                  ("MAXSEATS", self.maxseats),
                  ("ENTRIES", self.entries),
@@ -130,6 +135,7 @@ class TourneySummary(object):
                  ("ADDON", self.isAddOn),
                  ("KO", self.isKO),
                  ("MATRIX", self.isMatrix),
+                 ("MATRIX ID PROCESSED", self.matrixIdProcessed),
                  ("SHOOTOUT", self.isShootout),
                  ("MATRIX MATCH ID", self.matrixMatchId),
                  ("SUB TOURNEY BUY IN", self.subTourneyBuyin),
@@ -148,10 +154,12 @@ class TourneySummary(object):
                  ("GUARANTEE", self.guarantee)
         )
  
-        structs = ( ("GAMETYPE", self.gametype),
+        structs = ( ("PLAYER IDS", self.playerIds),
                     ("PLAYERS", self.players),
+                    ("TOURNEYS PLAYERS IDS", self.tourneysPlayersIds),
                     ("RANKS", self.ranks),                    
                     ("WINNINGS", self.winnings),
+                    ("WINNINGS CURRENCY", self.winningsCurrency),
                     ("COUNT REBUYS", self.rebuyCounts),
                     ("COUNT ADDONS", self.addOnCounts),
                     ("NB OF KO", self.koCounts)
@@ -170,10 +178,8 @@ class TourneySummary(object):
 
     def getSummaryText(self):
         return self.summaryText
-
-    def insert(self, db):
-        # Note that this method is not used by the PS tourney storage stuff - this is for summary files only
-        
+    
+    def insertOrUpdate(self):
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -184,15 +190,26 @@ class TourneySummary(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
-        dbTourneyTypeId = db.getTourneyTypeId(self)
-        logging.debug("Tourney Type ID = %d" % dbTourneyTypeId)
-        dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
-        logging.debug("Tourney ID = %d" % dbTourneyId)
-        dbTourneysPlayersIds = db.tStoreTourneysPlayers(self, dbTourneyId)
-        logging.debug("TourneysPlayersId = %s" % dbTourneysPlayersIds) 
-        db.tUpdateTourneysHandsPlayers(self, dbTourneysPlayersIds, dbTourneyTypeId)
-        logging.debug("tUpdateTourneysHandsPlayers done")
-        logging.debug("Tourney Insert done")
+        for player in self.players:
+            id=self.db.get_player_id(self.config, self.siteName, player)
+            if not id:
+                id=self.db.insertPlayer(player, self.siteId)
+            self.playerIds.update({player:id})
+        
+        #print "TS.insert players",self.players,"playerIds",self.playerIds
+        
+        self.buyinCurrency=self.currency
+        self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
+        
+        #print "TS.self before starting insert",self
+        self.tourneyTypeId = self.db.createOrUpdateTourneyType(self)
+        self.db.commit()
+        self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
+        self.db.commit()
+        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TS")
+        self.db.commit()
+        
+        logging.debug("Tourney Insert/Update done")
         
         # TO DO : Return what has been done (tourney created, updated, nothing)
         # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneysPlayers and handsPlayers)
@@ -214,15 +231,28 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         self.players.append(name)
-        self.ranks.update( { name : Decimal(rank) } )
-        self.winnings.update( { name : Decimal(winnings) } )
-        self.winningsCurrency.update( { name : winningsCurrency } )
+        if rank:
+            self.ranks.update( { name : Decimal(rank) } )
+            self.winnings.update( { name : Decimal(winnings) } )
+            self.winningsCurrency.update( { name : winningsCurrency } )
+        else:
+            self.ranks.update( { name : None } )
+            self.winnings.update( { name : None } )
+            self.winningsCurrency.update( { name : None } )
         if rebuyCount:
             self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
+        else:
+            self.rebuyCounts.update( {name: None } )
+        
         if addOnCount:
             self.addOnCounts.update( {name: Decimal(addOnCount) } )
+        else:
+            self.addOnCounts.update( {name: None } )
+        
         if koCount:
             self.koCounts.update( {name : Decimal(koCount) } )
+        else:
+            self.koCounts.update( {name: None } )
     #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
@@ -240,35 +270,6 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
             print "checkPlayerExists", player, "fail"
             raise FpdbParseError
 
-
-    def getGameTypeAsString(self):
-        """\
-Map the tuple self.gametype onto the pokerstars string describing it
-"""
-        # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
-        gs = {"holdem"     : "Hold'em",
-              "omahahi"    : "Omaha",
-              "omahahilo"  : "Omaha Hi/Lo",
-              "razz"       : "Razz",
-              "studhi"     : "7 Card Stud",
-              "studhilo"   : "7 Card Stud Hi/Lo",
-              "fivedraw"   : "5 Card Draw",
-              "27_1draw"   : "FIXME",
-              "27_3draw"   : "Triple Draw 2-7 Lowball",
-              "badugi"     : "Badugi"
-             }
-        ls = {"nl"  : "No Limit",
-              "pl"  : "Pot Limit",
-              "fl"  : "Limit",
-              "cn"  : "Cap No Limit",
-              "cp"  : "Cap Pot Limit"
-             }
-
-        log.debug("gametype: %s" %(self.gametype))
-        retstring = "%s %s" %(gs[self.gametype['category']], ls[self.gametype['limitType']])
-        return retstring
-
-
     def writeSummary(self, fh=sys.__stdout__):
         print >>fh, "Override me"
 
@@ -280,7 +281,7 @@ def assemble(cnxn, tourneyId): #TODO: move this method to Hand or Database
     # TODO !!
     c = cnxn.cursor()
     
-    # We need at least sitename, gametype, handid
+    # We need at least siteName, gametype, handid
     # for the Hand.__init__
     c.execute("""
 select
@@ -316,7 +317,7 @@ limit 1""", {'handid':handid})
     #TODO: siteid should be in hands table - we took the scenic route through players here.
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-    h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+    h = HoldemOmahaHand(hhc = None, siteName=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
     cards = map(Card.valueSuitFromCard, res[11:16] )
     if cards[0]:
         h.setCommunityCards('FLOP', cards[0:3])
@@ -334,9 +335,9 @@ limit 1""", {'handid':handid})
 SELECT
     h.sitehandno as hid,
     h.tablename as table,
-    h.handstart as startTime
+    h.startTime as startTime
 FROM
-    hands as h
+    Hands as h
 WHERE h.id = %(handid)s
 """, {'handid':handid})
     res = c.fetchone()

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -103,7 +103,9 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
-import GuiPlayerStats
+import ImapSummaries
+import GuiRingPlayerStats
+import GuiTourneyPlayerStats
 import GuiPositionalStats
 import GuiTableViewer
 import GuiAutoImport
@@ -114,7 +116,7 @@ import Database
 import Configuration
 import Exceptions
 
-VERSION = "0.20"
+VERSION = "0.20 plus git"
 
 
 class fpdb:
@@ -234,6 +236,7 @@ class fpdb:
         dia.set_comments("")
         dia.set_license("This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory")
         dia.set_website("http://fpdb.sourceforge.net/")
+        
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
             'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
         dia.set_program_name("Free Poker Database (FPDB)")
@@ -260,11 +263,17 @@ class fpdb:
         view.modify_font(pango.FontDescription('monospace 10'))
         view.show()
         dia.vbox.pack_end(view, True, True, 2)
-        l = gtk.Label('Version Information:')
+        
+        l = gtk.Label("Your config file is: "+self.config.file)
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
 
+        l = gtk.Label('Version Information:')
+        l.set_alignment(0.5, 0.5)
+        l.show()
+        dia.vbox.pack_end(l, True, True, 2)
+        
         dia.run()
         dia.destroy()
         log.debug("Threads: ")
@@ -299,7 +308,7 @@ class fpdb:
         self.warning_box("Unimplemented: Maintain Databases")
         return
         if len(self.tab_names) == 1:
-            if self.obtain_global_lock():  # returns true if successful
+            if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
                 dia = gtk.Dialog("Maintain Databases",
                                  self.window,
@@ -321,32 +330,20 @@ class fpdb:
             self.warning_box("Cannot open Database Maintenance window because "
                              + "other windows have been opened. Re-start fpdb to use this option.")
 
-    def dia_create_del_user(self, widget, data=None):
-        self.warning_box("Unimplemented: Create/Delete user")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
     def dia_database_stats(self, widget, data=None):
-        self.warning_box("Unimplemented: Database Stats")
+        self.warning_box(str="Number of Hands: "+str(self.db.getHandCount())+
+                    "\nNumber of Tourneys: "+str(self.db.getTourneyCount())+
+                    "\nNumber of TourneyTypes: "+str(self.db.getTourneyTypeCount()),
+                    diatitle="Database Statistics")
+    #end def dia_database_stats
 
-    def dia_delete_db_parts(self, widget, data=None):
-        self.warning_box("Unimplemented: Delete Database Parts")
-        self.obtain_global_lock()
-        self.release_global_lock()
+    def dia_dump_db(self, widget, data=None):
+        self.db.dumpDatabase("database-dump.sql")
+    #end def dia_database_stats
 
-    def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
-        self.warning_box("Unimplemented: Edit Profile")
-        self.obtain_global_lock()
-        self.release_global_lock()
 
-    def dia_export_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Export Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
-    def dia_get_db_root_credentials(self):
-        """obtains db root credentials from user"""
-        self.warning_box("Unimplemented: Get Root Database Credentials")
+#    def dia_get_db_root_credentials(self):
+#        """obtains db root credentials from user"""
 #        user, pw=None, None
 #
 #        dialog=gtk.Dialog(title="DB Credentials needed", parent=None, flags=0,
@@ -363,17 +360,12 @@ class fpdb:
 #        dialog.destroy()
 #        return (user, pw, response)
 
-    def dia_import_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Import Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
     def dia_licensing(self, widget, data=None):
         self.warning_box("Unimplemented: Licensing")
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock():  # returns true if successful
+        if self.obtain_global_lock("fpdb.dia_load_profile"):  # returns true if successful
             #try:
             #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
             #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
@@ -396,7 +388,7 @@ class fpdb:
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
-        if self.obtain_global_lock():  # returns true if successful
+        if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
 
             #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
@@ -443,7 +435,7 @@ class fpdb:
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
-        if self.obtain_global_lock():
+        if self.obtain_global_lock("dia_recreate_hudcache"):
             self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
@@ -495,7 +487,7 @@ class fpdb:
         self.release_global_lock()
 
     def dia_rebuild_indexes(self, widget, data=None):
-        if self.obtain_global_lock():
+        if self.obtain_global_lock("dia_rebuild_indexes"):
             self.dia_confirm = gtk.MessageDialog(parent=self.window
                                                 ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                                 ,type=gtk.MESSAGE_WARNING
@@ -536,7 +528,7 @@ class fpdb:
         """opens the log viewer window"""
 
         #lock_set = False
-        #if self.obtain_global_lock():
+        #if self.obtain_global_lock("dia_logs"):
         #    lock_set = True
 
         # remove members from self.threads if close messages received
@@ -622,8 +614,8 @@ class fpdb:
 
     def dia_regression_test(self, widget, data=None):
         self.warning_box("Unimplemented: Regression Test")
-        self.obtain_global_lock()
-        self.release_global_lock()
+        #self.obtain_global_lock("dia_regression_test")
+        #self.release_global_lock()
 
     def dia_save_profile(self, widget, data=None):
         self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
@@ -653,7 +645,6 @@ class fpdb:
               <menubar name="MenuBar">
                 <menu action="main">
                   <menuitem action="LoadProf"/>
-                  <menuitem action="EditProf"/>
                   <menuitem action="SaveProf"/>
                   <menuitem action="Preferences"/>
                   <separator/>
@@ -662,30 +653,27 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
+                  <menuitem action="imapsummaries"/>
                   <menuitem action="autoimp"/>
-                  <menuitem action="autorate"/>
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
                   <menuitem action="graphs"/>
-                  <menuitem action="handreplay"/>
-                  <menuitem action="playerdetails"/>
-                  <menuitem action="playerstats"/>
+                  <menuitem action="ringplayerstats"/>
+                  <menuitem action="tourneyplayerstats"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
-                  <menuitem action="sessionreplay"/>
                   <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
                   <menuitem action="maintaindbs"/>
-                  <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="rebuildindexes"/>
-                  <menuitem action="stats"/>
+                  <menuitem action="databasestats"/>
+                  <menuitem action="dumptofile"/>
                 </menu>
                 <menu action="help">
-                  <menuitem action="Abbrev"/>
                   <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
@@ -702,32 +690,28 @@ class fpdb:
         actiongroup.add_actions([('main', None, '_Main'),
                                  ('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.quit),
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
-                                 ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
                                  ('Preferences', None, 'Pre_ferences', '<control>F', 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
-                                 ('autorate', None, 'Auto _Rating (todo)', '<control>R', 'Auto Rating (todo)', self.not_implemented),
+                                 ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
-                                 ('handreplay', None, 'Hand _Replayer (todo)', None, 'Hand Replayer (todo)', self.not_implemented),
-                                 ('playerdetails', None, 'Player _Details (todo)', None, 'Player Details (todo)', self.not_implemented),
-                                 ('playerstats', None, '_Player Stats (tabulated view)', '<control>P', 'Player Stats (tabulated view)', self.tab_player_stats),
+                                 ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
-                                 ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
                                  ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
-                                 ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
-                                 ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('databasestats', None, '_Statistics', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('dumptofile', None, 'Dump Database to Textfile', None, 'Dump Database to Textfile (takes much time, RAM, HD)', self.dia_dump_db),
                                  ('help', None, '_Help'),
-                                 ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, 'A_bout', None, 'About the program', self.dia_about),
                                  ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
@@ -741,6 +725,12 @@ class fpdb:
         menubar = uimanager.get_widget('/MenuBar')
         window.add_accel_group(accel_group)
         return menubar
+    #end def get_menu
+    
+    def import_imap_summaries(self, widget, data=None):
+        result=ImapSummaries.run(self.config, self.db)
+        #print "import imap summaries result:", result
+    #end def import_imap_summaries
 
     def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
@@ -845,12 +835,13 @@ class fpdb:
     def not_implemented(self, widget, data=None):
         self.warning_box("Unimplemented menu entry")
 
-    def obtain_global_lock(self):
-        ret = self.lock.acquire(False) # will return false if lock is already held
+    def obtain_global_lock(self, source):
+        ret = self.lock.acquire(source=source) # will return false if lock is already held
         if ret:
-            print "\nGlobal lock taken ..."
+            print "\nGlobal lock taken by", source
+            self.lockTakenBy=source
         else:
-            print "\nFailed to get global lock."
+            print "\nFailed to get global lock, it is currently held by", source
         return ret
         # need to release it later:
         # self.lock.release()
@@ -860,11 +851,18 @@ class fpdb:
         #FIXME  get two "quitting normally" messages, following the addition of the self.window.destroy() call
         print "Quitting normally"
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        try:
-            if self.db is not None and self.db.connected():
-                self.db.disconnect()
-        except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
-            log.info("fpdb.quit disconnect error being ignored: "+str(sys.exc_info()))
+        
+        if self.db!=None:
+            if self.db.backend==self.db.MYSQL_INNODB:
+                try:
+                    if self.db is not None and self.db.connected:
+                        self.db.disconnect()
+                except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+                    pass
+            else:
+                if self.db is not None and self.db.connected:
+                    self.db.disconnect()
+        else:
             pass
         self.statusIcon.set_visible(False)
 
@@ -873,10 +871,8 @@ class fpdb:
 
     def release_global_lock(self):
         self.lock.release()
+        self.lockTakenBy=None
         print "Global lock released.\n"
-
-    def tab_abbreviations(self, widget, data=None):
-        print "todo: implement tab_abbreviations"
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
@@ -887,17 +883,22 @@ class fpdb:
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
-        #print "start of tab_bulk_import"
         new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
-    def tab_player_stats(self, widget, data=None):
-        new_ps_thread = GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
+    def tab_ring_player_stats(self, widget, data=None):
+        new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, "Player Stats")
+        self.add_and_display_tab(ps_tab, "Ring Player Stats")
+
+    def tab_tourney_player_stats(self, widget, data=None):
+        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_ps_thread)
+        ps_tab=new_ps_thread.get_vbox()
+        self.add_and_display_tab(ps_tab, "Tourney Player Stats")
 
     def tab_positional_stats(self, widget, data=None):
         new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
@@ -916,6 +917,7 @@ class fpdb:
         mh_tab=gtk.Label("""Welcome to Fpdb!
 This program is currently in an alpha-state, so our database format is still sometimes changed.
 You should therefore always keep your hand history files so that you can re-import after an update, if necessary.
+
 For documentation please visit our website at http://fpdb.sourceforge.net/.
 If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
@@ -947,7 +949,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
-        self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
+        self.window.set_title("Free Poker DB - v%s" % (VERSION, ))
         self.window.set_border_width(1)
         defx, defy = 900, 720
         sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
