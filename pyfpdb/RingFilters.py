@@ -489,7 +489,7 @@ class RingFilters(Filters.Filters):
             if self.limits[limit]:
                 self.type = "ring"
                 for cb in self.cbLimits.values():
-                    print "ring: cb label: ", cb.children()[0].get_text()
+                    #print "cb label: ", cb.children()[0].get_text()
                     if self.types[cb.get_children()[0].get_text()] == 'tour':
                         cb.set_active(False)
         elif limit == "tour":
