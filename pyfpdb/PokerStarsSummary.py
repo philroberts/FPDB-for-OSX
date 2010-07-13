@@ -48,7 +48,8 @@ class PokerStarsSummary(TourneySummary):
     re_FPP = re.compile("(?P<FPP>[0-9]+)\sFPP")
     #note: the dollar and cent in the below line are currency-agnostic
     re_Added = re.compile("(?P<DOLLAR>[0-9]+)\.(?P<CENT>[0-9]+)\s(?P<CURRENCY>[A-Z]+)(\sadded\sto\sthe\sprize\spool\sby\sPokerStars)")
-    re_DateTime = re.compile("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
+    re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
+    re_DateTimeET = re.compile("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
     re_GameInfo = re.compile(u""".+(?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s(?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)""")
 
     def parseSummary(self):
@@ -103,19 +104,28 @@ class PokerStarsSummary(TourneySummary):
             currentLine+=1
         #print "after prizepool lines[currentLine]", lines[currentLine]
         
+        useET=False
         result=self.re_DateTime.search(lines[currentLine])
+        if not result:
+            print "in not result starttime"
+            useET=True
+            result=self.re_DateTimeET.search(lines[currentLine])
         result=result.groupdict()
         datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
         self.startTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
         self.startTime = HandHistoryConverter.changeTimezone(self.startTime, "ET", "UTC")
         currentLine+=1
         
-        result=self.re_DateTime.search(lines[currentLine])
+        if useET:
+            result=self.re_DateTimeET.search(lines[currentLine])
+        else:
+            result=self.re_DateTime.search(lines[currentLine])
         if result:
             result=result.groupdict()
             datetimestr = "%s/%s/%s %s:%s:%s" % (result['Y'], result['M'],result['D'],result['H'],result['MIN'],result['S'])
             self.endTime= datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-            currentLine+=1
+            self.endTime = HandHistoryConverter.changeTimezone(self.endTime, "ET", "UTC")
+        currentLine+=1
         
         if lines[currentLine].find("Tournament is still in progress")!=-1:
             currentLine+=1
