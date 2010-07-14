@@ -409,6 +409,10 @@ class fpdb:
                 #    self.release_global_lock()
                 #    lock_released = True
                 self.db.recreate_tables()
+                # find any guibulkimport windows and clear player cache:
+                for t in self.threads:
+                    if isinstance(t, GuiBulkImport.GuiBulkImport):
+                        t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
                 #else:
                     # for other dbs use same connection as holds global lock
