@@ -521,6 +521,7 @@ class Database:
             self.connection.commit()
         self.cursor.close()
         self.connection.close()
+        self.__connected = False
     
     def reconnect(self, due_to_error=False):
         """Reconnects the DB"""

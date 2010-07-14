@@ -2834,7 +2834,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
-            AND   gt.type is 'ring'
+            AND   gt.type = 'ring'
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
 

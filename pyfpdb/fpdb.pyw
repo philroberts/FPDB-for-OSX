@@ -36,9 +36,9 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         print "Python " + sys.version[0:3] + ' - press return to continue\n'
         sys.stdin.readline()
         if os.name=='nt':
-	    os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
-	else:
-	    os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+        else:
+            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
         raw_input("Press ENTER to continue.")
@@ -66,6 +66,7 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging, logging.config
+log = logging.getLogger("fpdb")
 
 try:
     import pygtk
@@ -415,14 +416,20 @@ class fpdb:
                 # TODO: figure out why this seems to be necessary
                 dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
-                diastring = "Fpdb now needs to close. Please restart it."
-                dia_restart.format_secondary_text(diastring)
-
-                dia_restart.run()
-                dia_restart.destroy()
-                self.quit(None, None)
+                
+                # sc: I don't see the need for this closedown - if it is a problem let me know 
+                #     and I will look into it .... (if there is a problem with db re-create I
+                #     would expect it to be before here, i.e. maybe user needs to restart before
+                #     the re-create. Once here everything should be ok.)
+                #     The recreate will not work if autoimport is running! Other than that it 
+                #     should work.
+                #diastring = "Fpdb now needs to close. Please restart it."
+                #dia_restart.format_secondary_text(diastring)
+                #dia_restart.run()
+                #dia_restart.destroy()
+                #self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
-		self.release_global_lock()
+                self.release_global_lock()
                 print 'User cancelled recreating tables'
             #if not lock_released:
     #end def dia_recreate_tables
@@ -842,18 +849,21 @@ class fpdb:
     def quit(self, widget, data=None):
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
         #FIXME  get two "quitting normally" messages, following the addition of the self.window.destroy() call
-        print "Quitting normally"
+        #       ... because self.window.destroy() leads to self.destroy() which calls this!
+        if not self.quitting:
+            print "Quitting normally"
+            self.quitting = True
         # TODO: check if current settings differ from profile, if so offer to save or abort
         
         if self.db!=None:
             if self.db.backend==self.db.MYSQL_INNODB:
                 try:
-                    if self.db is not None and self.db.connected:
+                    if self.db is not None and self.db.connected():
                         self.db.disconnect()
                 except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
                     pass
             else:
-                if self.db is not None and self.db.connected:
+                if self.db is not None and self.db.connected():
                     self.db.disconnect()
         else:
             pass
@@ -938,6 +948,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
         self.db = None
         self.status_bar = None
+        self.quitting = False
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
