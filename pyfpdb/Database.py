@@ -1985,7 +1985,7 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def createOrUpdateTourneyType(self, hand):#note: this method is used on Hand and TourneySummary objects
+    def createTourneyType(self, hand):#note: this method is used on Hand and TourneySummary objects
         tourneyTypeId = 1
         
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
@@ -2029,7 +2029,7 @@ class Database:
                                 )
                 tourneyTypeId = self.get_last_insert_id(cursor)
         return tourneyTypeId
-    #end def createOrUpdateTourneyType
+    #end def createTourneyType
     
     def createOrUpdateTourney(self, hand, source):#note: this method is used on Hand and TourneySummary objects
         cursor = self.get_cursor()

@@ -227,7 +227,7 @@ dealt   whether they were seen in a 'dealt to' line
         self.dbid_gt = db.getGameTypeId(self.siteId, self.gametype)
         
         if self.tourNo!=None:
-            self.tourneyTypeId = db.createOrUpdateTourneyType(self)
+            self.tourneyTypeId = db.createTourneyType(self)
             db.commit()
             self.tourneyId = db.createOrUpdateTourney(self, "HHC")
             db.commit()

@@ -202,7 +202,7 @@ class TourneySummary(object):
         self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
         
         #print "TS.self before starting insert",self
-        self.tourneyTypeId = self.db.createOrUpdateTourneyType(self)
+        self.tourneyTypeId = self.db.createTourneyType(self)
         self.db.commit()
         self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
         self.db.commit()
