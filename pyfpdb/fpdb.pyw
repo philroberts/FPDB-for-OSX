@@ -103,7 +103,7 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
-import ImapSummaries
+import ImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
 import GuiPositionalStats
@@ -722,7 +722,7 @@ class fpdb:
     #end def get_menu
     
     def import_imap_summaries(self, widget, data=None):
-        result=ImapSummaries.run(self.config, self.db)
+        result=ImapFetcher.run(self.config, self.db)
         #print "import imap summaries result:", result
     #end def import_imap_summaries
 
