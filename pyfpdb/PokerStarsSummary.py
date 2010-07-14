@@ -60,7 +60,7 @@ class PokerStarsSummary(TourneySummary):
         result=self.re_GameInfo.search(lines[0])
         result=result.groupdict()
         self.gametype['limitType']=self.limits[result['LIMIT']]
-        self.gametype['category']=self.games[result['GAME']][0]
+        self.gametype['category']=self.games[result['GAME']][1]
         
         if lines[1].find("$")!=-1: #TODO: move this into a method and call that from PokerStarsToFpdb.py:269    if hand.buyinCurrency=="USD" etc.
             self.currency="USD"
