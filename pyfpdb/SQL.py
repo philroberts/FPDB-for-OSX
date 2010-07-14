@@ -3700,7 +3700,7 @@ class Sql:
                                               VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
-        self.query['getTourneyIdByTourneyNo'] = """SELECT t.id
+        self.query['getTourneyByTourneyNo'] = """SELECT t.*
                                         FROM Tourneys t
                                         INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
                                         WHERE tt.siteId=%s AND t.siteTourneyNo=%s
@@ -3714,8 +3714,7 @@ class Sql:
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
-                                             SET tourneyTypeId = %s,
-                                                 entries = %s,
+                                             SET entries = %s,
                                                  prizepool = %s,
                                                  startTime = %s,
                                                  endTime = %s,

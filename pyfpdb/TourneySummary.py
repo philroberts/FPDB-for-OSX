@@ -93,6 +93,8 @@ class TourneySummary(object):
         self.isDoubleOrNothing  = False
         self.guarantee          = 0
         self.gametype           = {'category':None, 'limitType':None}
+        self.comment            = None
+        self.commentTs          = None
 
         # Collections indexed by player names
         self.playerIds          = {}
@@ -151,7 +153,9 @@ class TourneySummary(object):
                  ("SNG", self.isSng),
                  ("SATELLITE", self.isSatellite),
                  ("DOUBLE OR NOTHING", self.isDoubleOrNothing),
-                 ("GUARANTEE", self.guarantee)
+                 ("GUARANTEE", self.guarantee),
+                 ("COMMENT", self.comment),
+                 ("COMMENT TIMESTAMP", self.commentTs)
         )
  
         structs = ( ("PLAYER IDS", self.playerIds),

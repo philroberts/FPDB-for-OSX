@@ -2033,12 +2033,31 @@ class Database:
     
     def createOrUpdateTourney(self, hand, source):#note: this method is used on Hand and TourneySummary objects
         cursor = self.get_cursor()
-        cursor.execute (self.sql.query['getTourneyIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
+        cursor.execute (self.sql.query['getTourneyByTourneyNo'].replace('%s', self.sql.query['placeholder']),
                         (hand.siteId, hand.tourNo))
+        columnNames=[desc[0] for desc in cursor.description]
         result=cursor.fetchone()
-
-        if result != None and len(result)==1:
-            tourneyId = result[0]
+        
+        if result != None:
+            expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
+                    'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            updateDb=False
+            resultDict = dict(zip(columnNames, result))
+            
+            tourneyId = resultDict["id"]
+            if source=="TS":
+                for ev in expectedValues :
+                    if getattr(hand, ev)==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
+                        setattr(hand, ev, resultDict[ev])
+                    elif getattr(hand, ev)!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
+                        updateDb=True
+                    elif ev=="startTime":
+                        if (resultDict[ev] < hand.startTime):
+                            hand.startTime=resultDict[ev]
+                if updateDb:
+                    cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
+                           (hand.entries, hand.prizepool, hand.startTime, hand.endTime, hand.tourneyName,
+                            hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount, hand.comment, hand.commentTs, tourneyId))
         else:
             if source=="HHC":
                 cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
@@ -2046,8 +2065,8 @@ class Database:
                          hand.startTime, None, None, None, None, None))
             elif source=="TS":
                 cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
-                        (hand.tourneyTypeId, hand.tourNo, hand.entries, hand.prizepool,
-                         hand.startTime, hand.endTime, hand.tourneyName, hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount))
+                        (hand.tourneyTypeId, hand.tourNo, hand.entries, hand.prizepool, hand.startTime,
+                         hand.endTime, hand.tourneyName, hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount))
             else:
                 raise FpdbParseError("invalid source in Database.createOrUpdateTourney")
             tourneyId = self.get_last_insert_id(cursor)
