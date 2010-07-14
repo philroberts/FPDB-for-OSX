@@ -2084,12 +2084,32 @@ class Database:
                 raise FpdbParseError("invalid source in Database.createOrUpdateTourneysPlayers")
             
             cursor = self.get_cursor()
-            cursor.execute (self.sql.query['getTourneysPlayersIdByIds'].replace('%s', self.sql.query['placeholder']),
+            cursor.execute (self.sql.query['getTourneysPlayersByIds'].replace('%s', self.sql.query['placeholder']),
                             (hand.tourneyId, playerId))
+            columnNames=[desc[0] for desc in cursor.description]
             result=cursor.fetchone()
 
-            if result != None and len(result)==1:
+            if result != None:
+                expectedValues = ('rank', 'winnings', 'winningsCurrency', 'rebuyCount', 'addOnCount', 'koCount')
+                updateDb=False
+                resultDict = dict(zip(columnNames, result))
+                
                 tourneysPlayersIds.append(result[0])
+                if source=="TS":
+                    tourneysPlayersId=result[0]
+                    for ev in expectedValues :
+                        handAttribute=ev
+                        if ev!="winnings" and ev!="winningsCurrency":
+                            handAttribute+="s"
+                        
+                        if getattr(hand, handAttribute)[player]==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
+                            setattr(hand, handAttribute, resultDict[ev][player])
+                        elif getattr(hand, handAttribute)[player]!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
+                            updateDb=True
+                    if updateDb:
+                        cursor.execute (self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
+                               (hand.ranks[player], hand.winnings[player], hand.winningsCurrency[player],
+                                 hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player], tourneysPlayersId))
             else:
                 if source=="HHC":
                     cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),

@@ -3727,20 +3727,18 @@ class Sql:
                                         WHERE id=%s
         """
         
-        self.query['getTourneysPlayersIdByIds'] = """SELECT    id
+        self.query['getTourneysPlayersByIds'] = """SELECT *
                                                 FROM TourneysPlayers
                                                 WHERE tourneyId=%s AND playerId+0=%s            
         """
 
-        self.query['updateTourneysPlayers'] = """UPDATE TourneysPlayers
+        self.query['updateTourneysPlayer'] = """UPDATE TourneysPlayers
                                                  SET rank = %s,
                                                      winnings = %s,
                                                      winningsCurrency = %s,
                                                      rebuyCount = %s,
                                                      addOnCount = %s,
-                                                     koCount = %s,
-                                                     comment = %s,
-                                                     commentTs = %s
+                                                     koCount = %s
                                                  WHERE id=%s
         """
 
