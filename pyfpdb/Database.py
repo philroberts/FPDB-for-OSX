@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 133
+DB_VERSION = 134
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1408,18 +1408,6 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
-        if self.backend == self.SQLITE:
-            c.execute("""INSERT INTO TourneyTypes (id, siteId, currency, buyin, fee, category, limitType,
-                         buyInChips, maxSeats, knockout, rebuy, addOn, speed, shootout, matrix)
-                         VALUES (NULL, 1, 'USD', 0, 0, "NA", "NA", 0, 0, 0, 0, 0, NULL, 0, 0);""")
-        elif self.backend == self.PGSQL:
-            c.execute("""insert into TourneyTypes(siteId, currency, buyin, fee, category, limitType,
-                         buyInChips, maxSeats, knockout, rebuy, addOn, speed, shootout, matrix)
-                         values (1, 'USD', 0, 0, "NA", "NA", 0, 0, False, False, False, null, False, False);""")
-        elif self.backend == self.MYSQL_INNODB:
-            c.execute("""insert into TourneyTypes(id, siteId, currency, buyin, fee, category, limitType,
-                         buyInChips, maxSeats, knockout, rebuy, addOn, speed, shootout, matrix)
-                         values (DEFAULT, 1, 'USD', 0, 0, "NA", "NA", 0, 0, False, False, False, null, False, False);""")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):

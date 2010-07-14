@@ -59,6 +59,8 @@ class DerivedStats():
             self.handsplayers[player[1]]['foldSbToStealChance'] = False
             self.handsplayers[player[1]]['foldedSbToSteal']     = False
             self.handsplayers[player[1]]['foldedBbToSteal']     = False
+            self.handsplayers[player[1]]['tourneyTypeId']       = None
+            
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
@@ -70,9 +72,8 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
                 self.handsplayers[player[1]]['otherRaisedStreet%d' %i]          = False
                 self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
-
+            
             #FIXME - Everything below this point is incomplete.
-            self.handsplayers[player[1]]['tourneyTypeId']       = 1
             for i in range(1,5):
                 self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
                 self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
@@ -141,6 +142,7 @@ class DerivedStats():
             self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
             self.handsplayers[player[1]]['sitout'] = False #TODO: implement actual sitout detection
             if hand.gametype["type"]=="tour":
+                self.handsplayers[player[1]]['tourneyTypeId']=hand.tourneyTypeId
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]
             else:
                 self.handsplayers[player[1]]['tourneysPlayersIds'] = None
