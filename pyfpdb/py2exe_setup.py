@@ -73,6 +73,7 @@ from distutils.core import setup
 import py2exe
 import glob
 import matplotlib
+import shutil
 from datetime import date
 
 
@@ -111,7 +112,7 @@ def test_and_remove(top):
 # remove build and dist dirs if they exist
 test_and_remove('dist')
 test_and_remove('build')
-test_and_remove('gfx')
+#test_and_remove('gfx')
 
 
 today = date.today().strftime('%Y%m%d')
@@ -151,7 +152,7 @@ setup(
               },
 
     # files in 2nd value in tuple are moved to dir named in 1st value
-    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf'])
+    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../docs/readme.txt'])
                  ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
                  # line below has problem with fonts subdir ('not a regular file')
@@ -172,5 +173,38 @@ dest = os.path.join(dist_dirname, 'pyfpdb')
 dest = dest.replace('\\', '\\\\')
 #print "dest is now", dest
 os.rename( 'pyfpdb', dest )
+
+
+print "Enter directory name for GTK 2.14 (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
+gtk_dir = sys.stdin.readline().rstrip()
+
+
+print "\ncopying files and dirs from ", gtk_dir, "to", dest.replace('\\\\', '\\'), "..."
+src = os.path.join(gtk_dir, 'bin', 'libgdk-win32-2.0-0.dll')
+src = src.replace('\\', '\\\\')
+shutil.copy( src, dest )
+
+src = os.path.join(gtk_dir, 'bin', 'libgobject-2.0-0.dll')
+src = src.replace('\\', '\\\\')
+shutil.copy( src, dest )
+
+
+src_dir = os.path.join(gtk_dir, 'etc')
+src_dir = src_dir.replace('\\', '\\\\')
+dest_dir = os.path.join(dest, 'etc')
+dest_dir = dest_dir.replace('\\', '\\\\')
+shutil.copytree( src_dir, dest_dir )
+
+src_dir = os.path.join(gtk_dir, 'lib')
+src_dir = src_dir.replace('\\', '\\\\')
+dest_dir = os.path.join(dest, 'lib')
+dest_dir = dest_dir.replace('\\', '\\\\')
+shutil.copytree( src_dir, dest_dir )
+
+src_dir = os.path.join(gtk_dir, 'share')
+src_dir = src_dir.replace('\\', '\\\\')
+dest_dir = os.path.join(dest, 'share')
+dest_dir = dest_dir.replace('\\', '\\\\')
+shutil.copytree( src_dir, dest_dir )
 
 

@@ -162,7 +162,7 @@ class DerivedStats():
                 self.handsplayers[player]['wonAtSD'] = 1.0
 
         for player in hand.pot.committed:
-            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player]))
+            self.handsplayers[player]['totalProfit'] = int(self.handsplayers[player]['winnings'] - (100*hand.pot.committed[player])- (100*hand.pot.common[player]))
 
         self.calcCBets(hand)
 
@@ -227,7 +227,7 @@ class DerivedStats():
 
             #print "bb =", bb, "sb =", sb, "players =", players
             for i,player in enumerate(reversed(players)):
-                self.handsplayers[player]['position'] = str(i)
+                self.handsplayers[player]['position'] = i
 
     def assembleHudCache(self, hand):
         # No real work to be done - HandsPlayers data already contains the correct info
@@ -305,12 +305,13 @@ class DerivedStats():
         """Fills stealAttempt(Chance|ed, fold(Bb|Sb)ToSteal(Chance|)
 
         Steal attempt - open raise on positions 1 0 S - i.e. MP3, CO, BU, SB
+                        (note: I don't think PT2 counts SB steals in HU hands, maybe we shouldn't?)
         Fold to steal - folding blind after steal attemp wo any other callers or raisers
         """
         steal_attempt = False
-        steal_positions = ('1', '0', 'S')
+        steal_positions = (1, 0, 'S')
         if hand.gametype['base'] == 'stud':
-            steal_positions = ('2', '1', '0')
+            steal_positions = (2, 1, 0)
         for action in hand.actions[hand.actionStreets[1]]:
             pname, act = action[0], action[1]
             posn = self.handsplayers[pname]['position']
@@ -344,9 +345,9 @@ class DerivedStats():
         for action in hand.actions[hand.actionStreets[1]]:
             # FIXME: fill other(3|4)BStreet0 - i have no idea what does it mean
             pname, aggr = action[0], action[1] in ('raises', 'bets')
-            self.handsplayers[pname]['street0_3BChance'] = bet_level == 2
+            self.handsplayers[pname]['street0_3BChance'] = self.handsplayers[pname]['street0_3BChance'] or bet_level == 2
             self.handsplayers[pname]['street0_4BChance'] = bet_level == 3
-            self.handsplayers[pname]['street0_3BDone'] =  aggr and (self.handsplayers[pname]['street0_3BChance'])
+            self.handsplayers[pname]['street0_3BDone'] =  self.handsplayers[pname]['street0_3BDone'] or (aggr and self.handsplayers[pname]['street0_3BChance'])
             self.handsplayers[pname]['street0_4BDone'] =  aggr and (self.handsplayers[pname]['street0_4BChance'])
             if aggr:
                 bet_level += 1

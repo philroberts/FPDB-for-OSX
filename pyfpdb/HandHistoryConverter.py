@@ -69,6 +69,7 @@ out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
 
         self.config = config
+        self.import_parameters = self.config.get_import_parameters()
         #log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
         log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
 
@@ -87,12 +88,8 @@ follow :  whether to tail -f the input"""
 
         if in_path == '-':
             self.in_fh = sys.stdin
+        self.out_fh = get_out_fh(out_path, self.import_parameters)
 
-        if out_path == '-':
-            self.out_fh = sys.stdout
-        else:
-            # TODO: out_path should be sanity checked.
-            self.out_fh = sys.stdout
         self.follow = follow
         self.compiledPlayers   = set()
         self.maxseats  = 10
@@ -446,8 +443,8 @@ or None if we fail to get the info """
     def guessMaxSeats(self, hand):
         """Return a guess at maxseats when not specified in HH."""
         # if some other code prior to this has already set it, return it
-        if maxseats > 1 and maxseats < 11:
-            return maxseats
+        if self.maxseats > 1 and self.maxseats < 11:
+            return self.maxseats
         mo = self.maxOccSeat(hand)
 
         if mo == 10: return 10 #that was easy
@@ -515,3 +512,23 @@ def getSiteHhc(config, sitename):
     hhcName = config.supported_sites[sitename].converter
     hhcModule = __import__(hhcName)
     return getattr(hhcModule, hhcName[:-6])
+
+def get_out_fh(out_path, parameters):
+    if out_path == '-':
+        return(sys.stdout)
+    elif parameters['saveStarsHH']:
+        out_dir = os.path.dirname(out_path) 
+        if not os.path.isdir(out_dir) and out_dir != '': 
+            try: 
+                os.makedirs(out_dir) 
+            except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
+                log.error("Unable to create output directory %s for HHC!" % out_dir) 
+                print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir 
+            else: 
+                log.info("Created directory '%s'" % out_dir) 
+        try: 
+            return(codecs.open(out_path, 'w', 'utf8')) 
+        except: 
+            log.error("out_path %s couldn't be opened" % (out_path)) 
+    else:
+        return(sys.stdout)

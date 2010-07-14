@@ -61,7 +61,7 @@ import Hud
 
 
 # get config and set up logger
-c = Configuration.Config(file=options.config)
+c = Configuration.Config(file=options.config, dbname=options.dbname)
 log = Configuration.get_logger("logging.conf", "hud", log_dir=c.dir_log, log_file='HUD-log.txt')
 
 
@@ -78,14 +78,14 @@ class HUD_main(object):
 
         try:
             if not options.errorsToConsole:
-                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                 print "Note: error output is being diverted to:\n"+fileName \
-                       + "\nAny major error will be reported there _only_.\n" 
-                 log.info("Note: error output is being diverted to:"+fileName)
-                 log.info("Any major error will be reported there _only_.")
-                 errorFile = open(fileName, 'w', 0)
-                 sys.stderr = errorFile
-                 sys.stderr.write("HUD_main: starting ...\n")
+                fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
+                print "Note: error output is being diverted to:\n"+fileName \
+                      + "\nAny major error will be reported there _only_.\n" 
+                log.info("Note: error output is being diverted to:"+fileName)
+                log.info("Any major error will be reported there _only_.")
+                errorFile = open(fileName, 'w', 0)
+                sys.stderr = errorFile
+                sys.stderr.write("HUD_main: starting ...\n")
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -237,7 +237,7 @@ class HUD_main(object):
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
-            except Exception, err:
+            except Exception:
                 log.error("db error: skipping %s" % new_hand_id)
                 continue
             t1 = time.time()
