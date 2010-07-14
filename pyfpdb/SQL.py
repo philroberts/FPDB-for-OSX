@@ -3853,6 +3853,7 @@ class Sql:
                 street4Bets,
                 position,
                 tourneyTypeId,
+                tourneysPlayersId,
                 startCards,
                 street0_3BChance,
                 street0_3BDone,
@@ -3910,7 +3911,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s
                 )"""
         
         ################################

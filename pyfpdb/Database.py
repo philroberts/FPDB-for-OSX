@@ -1657,6 +1657,7 @@ class Database:
                              pdata[p]['street4Bets'],
                              pdata[p]['position'],
                              pdata[p]['tourneyTypeId'],
+                             pdata[p]['tourneysPlayersIds'],
                              pdata[p]['startCards'],
                              pdata[p]['street0_3BChance'],
                              pdata[p]['street0_3BDone'],
@@ -2074,7 +2075,7 @@ class Database:
     #end def createOrUpdateTourney
         
     def createOrUpdateTourneysPlayers(self, hand, source):#note: this method is used on Hand and TourneySummary objects
-        tourneysPlayersIds=[]
+        tourneysPlayersIds={}
         for player in hand.players:
             if source=="TS": #TODO remove this horrible hack
                 playerId = hand.dbid_pids[player]
@@ -2094,9 +2095,8 @@ class Database:
                 updateDb=False
                 resultDict = dict(zip(columnNames, result))
                 
-                tourneysPlayersIds.append(result[0])
+                tourneysPlayersIds[player[1]]=result[0]
                 if source=="TS":
-                    tourneysPlayersId=result[0]
                     for ev in expectedValues :
                         handAttribute=ev
                         if ev!="winnings" and ev!="winningsCurrency":
@@ -2124,7 +2124,7 @@ class Database:
                         cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
                                 (hand.tourneyId, playerId, None, None, None,
                                  hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player]))
-                tourneysPlayersIds.append(self.get_last_insert_id(cursor))
+                tourneysPlayersIds[player[1]]=self.get_last_insert_id(cursor)
         return tourneysPlayersIds
     #end def createOrUpdateTourneysPlayers
     
