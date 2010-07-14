@@ -416,18 +416,12 @@ class fpdb:
                 # TODO: figure out why this seems to be necessary
                 dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
                         buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
-                
-                # sc: I don't see the need for this closedown - if it is a problem let me know 
-                #     and I will look into it .... (if there is a problem with db re-create I
-                #     would expect it to be before here, i.e. maybe user needs to restart before
-                #     the re-create. Once here everything should be ok.)
-                #     The recreate will not work if autoimport is running! Other than that it 
-                #     should work.
-                #diastring = "Fpdb now needs to close. Please restart it."
-                #dia_restart.format_secondary_text(diastring)
-                #dia_restart.run()
-                #dia_restart.destroy()
-                #self.quit(None, None)
+                diastring = "Fpdb now needs to close. Please restart it."
+                dia_restart.format_secondary_text(diastring)
+
+                dia_restart.run()
+                dia_restart.destroy()
+                self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print 'User cancelled recreating tables'
