@@ -912,6 +912,9 @@ class fpdb:
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         mh_tab=gtk.Label("""Welcome to Fpdb!
+To be notified of new snapshots and releases go to https://lists.sourceforge.net/lists/listinfo/fpdb-announce and subscribe.
+If you want to follow development more closely go to https://lists.sourceforge.net/lists/listinfo/fpdb-main and subscribe.
+
 This program is currently in an alpha-state, so our database format is still sometimes changed.
 You should therefore always keep your hand history files so that you can re-import after an update, if necessary.
 
