@@ -3727,7 +3727,7 @@ class Sql:
                                         WHERE id=%s
         """
         
-        self.query['getTourneysPlayersId'] = """SELECT    id
+        self.query['getTourneysPlayersIdByIds'] = """SELECT    id
                                                 FROM TourneysPlayers
                                                 WHERE tourneyId=%s AND playerId+0=%s            
         """

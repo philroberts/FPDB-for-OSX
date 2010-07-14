@@ -2084,7 +2084,7 @@ class Database:
                 raise FpdbParseError("invalid source in Database.createOrUpdateTourneysPlayers")
             
             cursor = self.get_cursor()
-            cursor.execute (self.sql.query['getTourneysPlayersId'].replace('%s', self.sql.query['placeholder']),
+            cursor.execute (self.sql.query['getTourneysPlayersIdByIds'].replace('%s', self.sql.query['placeholder']),
                             (hand.tourneyId, playerId))
             result=cursor.fetchone()
 
