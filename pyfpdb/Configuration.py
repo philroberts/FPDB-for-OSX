@@ -1069,8 +1069,8 @@ class Config:
     def get_supported_games(self):
         """Get the list of supported games."""
         sg = []
-        for game in c.supported_games.keys():
-            sg.append(c.supported_games[game].game_name)
+        for game in self.supported_games.keys():
+            sg.append(self.supported_games[game].game_name)
         return sg
 
     def execution_path(self, filename):

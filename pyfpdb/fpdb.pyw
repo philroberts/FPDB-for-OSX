@@ -337,6 +337,62 @@ class fpdb:
                     diatitle="Database Statistics")
     #end def dia_database_stats
 
+    def diaHudConfigurator(self, widget, data=None):
+        self.obtain_global_lock("diaHudConfigurator")
+        diaSelections = gtk.Dialog("HUD Configurator - choose category",
+                                 self.window,
+                                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                 (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
+                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+        
+        label=gtk.Label("Please select the game category for which you want to configure HUD stats:")
+        diaSelections.vbox.add(label)
+        label.show()
+        
+        #combo=gtk.ComboBox()
+        
+        comboGame = gtk.combo_box_new_text()
+        comboGame.connect("changed", self.hudConfiguratorComboSelection)
+        diaSelections.vbox.add(comboGame)
+        games=self.config.get_supported_games()
+        for game in games:
+            comboGame.append_text(game)
+        comboGame.show()
+        
+        comboRows = gtk.combo_box_new_text()
+        comboRows.connect("changed", self.hudConfiguratorComboSelection)
+        diaSelections.vbox.add(comboRows)
+        for i in range(1,8):
+            comboRows.append_text(str(i)+" rows")
+        comboRows.show()
+        
+        comboColumns = gtk.combo_box_new_text()
+        comboColumns.connect("changed", self.hudConfiguratorComboSelection)
+        diaSelections.vbox.add(comboColumns)
+        for i in range(1,8):
+            comboColumns.append_text(str(i)+" columns")
+        comboColumns.show()
+        
+        response=diaSelections.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
+        diaSelections.destroy()
+        
+        #TODO: bring up dialogue to actually select stats
+        #TODO: show explanation of what each stat means
+        self.release_global_lock()
+    #end def diaHudConfigurator
+
+    def hudConfiguratorComboSelection(self, widget):
+        result=widget.get_active_text()
+        if result.endswith(" rows"):
+            self.hudConfiguratorRows=int(result[0])
+        elif result.endswith(" columns"):
+            self.hudConfiguratorColumns=int(result[0])
+        else:
+            self.hudConfiguratorGame=result
+    #end def hudConfiguratorComboSelection
+    
     def dia_dump_db(self, widget, data=None):
         self.db.dumpDatabase("database-dump.sql")
     #end def dia_database_stats
@@ -640,6 +696,7 @@ class fpdb:
                 <menu action="main">
                   <menuitem action="LoadProf"/>
                   <menuitem action="SaveProf"/>
+                  <menuitem action="hudConfigurator"/>
                   <menuitem action="Preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
@@ -652,6 +709,7 @@ class fpdb:
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
+                  <menuitem action="hudConfigurator"/>
                   <menuitem action="graphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
@@ -692,6 +750,7 @@ class fpdb:
                                  ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
+                                 ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
