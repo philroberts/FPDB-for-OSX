@@ -103,6 +103,7 @@ class DerivedStats():
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats
         self.hands['texture']    = None                     # No calculation done for this yet.
+        self.hands['tourneyId']  = hand.tourneyId
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.

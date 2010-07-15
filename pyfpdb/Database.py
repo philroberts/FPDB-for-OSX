@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 134
+DB_VERSION = 135
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -1562,7 +1562,7 @@ class Database:
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
-                0, # tourneyId: 0 means not a tourney hand
+                p['tourneyId'],
                 p['startTime'], 
                 datetime.today(), #importtime
                 p['seats'],
