@@ -474,25 +474,6 @@ class fpdb:
         self.db.dumpDatabase("database-dump.sql")
     #end def dia_database_stats
 
-
-#    def dia_get_db_root_credentials(self):
-#        """obtains db root credentials from user"""
-#        user, pw=None, None
-#
-#        dialog=gtk.Dialog(title="DB Credentials needed", parent=None, flags=0,
-#                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,"Connect and recreate",gtk.RESPONSE_OK))
-#
-#        label_warning1=gtk.Label("Please enter credentials for a database user for "+self.host+" that has permissions to create a database.")
-#
-#
-#        label_user=gtk.Label("Username")
-#        dialog.vbox.add(label_user)
-#        label_user.show()
-#
-#        response=dialog.run()
-#        dialog.destroy()
-#        return (user, pw, response)
-
     def dia_licensing(self, widget, data=None):
         self.warning_box("Unimplemented: Licensing")
 
