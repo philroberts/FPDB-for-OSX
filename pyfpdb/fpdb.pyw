@@ -423,11 +423,20 @@ class fpdb:
                         label=gtk.Label("column "+str(columnNumber))
                         table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
                         label.show()
+                elif columnNumber==0:
+                    label=gtk.Label("row "+str(rowNumber))
+                    table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                    label.show()
                 else:
-                    if columnNumber==0:
-                        label=gtk.Label("row "+str(rowNumber))
-                        table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
-                        label.show()
+                    comboBox = gtk.combo_box_new_text()
+                    for i in ("vpip", "pfr", "wtsd"):
+                        comboBox.append_text(i)
+                    comboBox.set_active(0)
+                    
+                    newRow.append(comboBox)
+                    table.attach(child=comboBox, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                    
+                    comboBox.show()
             self.hudConfiguratorTableContents.append(newRow)
         diaHudTable.vbox.add(table)
         table.show()
