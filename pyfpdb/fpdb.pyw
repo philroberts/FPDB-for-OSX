@@ -115,6 +115,7 @@ import SQL
 import Database
 import Configuration
 import Exceptions
+import Stats
 
 VERSION = "0.20 plus git"
 
@@ -412,6 +413,16 @@ class fpdb:
         self.hudConfiguratorTableContents=[]
         table= gtk.Table(rows=self.hudConfiguratorRows+1, columns=self.hudConfiguratorColumns+1, homogeneous=True)
         
+        statDir=dir(Stats)
+        statDict={}
+        for attr in statDir:
+            if attr.startswith('__'): continue
+            if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
+                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
+                        "h", "re", "re_Percent", "re_Places", ): continue
+            statDict[attr]=eval("Stats.%s.__doc__" % (attr))
+        #print "statDict:",statDict
+        
         for rowNumber in range(self.hudConfiguratorRows+1):
             newRow=[]
             
@@ -429,8 +440,9 @@ class fpdb:
                     label.show()
                 else:
                     comboBox = gtk.combo_box_new_text()
-                    for i in ("vpip", "pfr", "wtsd"):
-                        comboBox.append_text(i)
+                    
+                    for stat in statDict.keys():
+                        comboBox.append_text(stat)
                     comboBox.set_active(0)
                     
                     newRow.append(comboBox)
@@ -449,8 +461,12 @@ class fpdb:
     #end def diaHudConfiguratorTable
     
     def storeNewHudStatConfig(self):
+        print "start of storeNewHudStatConfig"
         self.obtain_global_lock("diaHudConfiguratorTable")
-        print "storeNewHudStatConfig"
+        for row in self.hudConfiguratorTableContents:
+            for column in row:
+                print column.get_active_text()
+        
         self.release_global_lock()
     #end def storeNewHudStatConfig
     
