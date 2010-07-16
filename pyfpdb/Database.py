@@ -856,7 +856,7 @@ class Database:
     def get_player_id(self, config, siteName, playerName):
         c = self.connection.cursor()
         siteNameUtf = Charset.to_utf8(siteName)
-        playerNameUtf = Charset.to_utf8(playerName)
+        playerNameUtf = unicode(playerName)
         #print "db.get_player_id siteName",siteName,"playerName",playerName
         c.execute(self.sql.query['get_player_id'], (playerNameUtf, siteNameUtf))
         row = c.fetchone()
@@ -2040,9 +2040,9 @@ class Database:
                         setattr(hand, ev, resultDict[ev])
                     elif getattr(hand, ev)!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
                         updateDb=True
-                    elif ev=="startTime":
-                        if (resultDict[ev] < hand.startTime):
-                            hand.startTime=resultDict[ev]
+                    #elif ev=="startTime":
+                    #    if (resultDict[ev] < hand.startTime):
+                    #        hand.startTime=resultDict[ev]
                 if updateDb:
                     cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
                            (hand.entries, hand.prizepool, hand.startTime, hand.endTime, hand.tourneyName,

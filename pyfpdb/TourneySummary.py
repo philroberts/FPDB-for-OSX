@@ -197,7 +197,7 @@ class TourneySummary(object):
         for player in self.players:
             id=self.db.get_player_id(self.config, self.siteName, player)
             if not id:
-                id=self.db.insertPlayer(player, self.siteId)
+                id=self.db.insertPlayer(unicode(player), self.siteId)
             self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
