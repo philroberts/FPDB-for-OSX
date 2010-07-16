@@ -338,7 +338,10 @@ class fpdb:
     #end def dia_database_stats
 
     def diaHudConfigurator(self, widget, data=None):
-        self.obtain_global_lock("diaHudConfigurator")
+        self.hudConfiguratorRows=None
+        self.hudConfiguratorColumns=None
+        self.hudConfiguratorGame=None
+        
         diaSelections = gtk.Dialog("HUD Configurator - choose category",
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -374,13 +377,11 @@ class fpdb:
         comboColumns.show()
         
         response=diaSelections.run()
-        if response == gtk.RESPONSE_ACCEPT:
-            print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
         diaSelections.destroy()
         
-        #TODO: bring up dialogue to actually select stats
-        #TODO: show explanation of what each stat means
-        self.release_global_lock()
+        if response == gtk.RESPONSE_ACCEPT and self.hudConfiguratorRows!=None and self.hudConfiguratorColumns!=None and self.hudConfiguratorGame!=None:
+            print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
+            self.diaHudConfiguratorTable()
     #end def diaHudConfigurator
 
     def hudConfiguratorComboSelection(self, widget):
@@ -392,6 +393,53 @@ class fpdb:
         else:
             self.hudConfiguratorGame=result
     #end def hudConfiguratorComboSelection
+    
+    def diaHudConfiguratorTable(self):
+        #TODO: show explanation of what each stat means
+        self.obtain_global_lock("diaHudConfiguratorTable")
+        diaHudTable = gtk.Dialog("HUD Configurator - please choose your stats",
+                                 self.window,
+                                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                 (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
+                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+        
+        label=gtk.Label("Please choose the stats you wish to use")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        self.hudConfiguratorTableContents=[]
+        table= gtk.Table(rows=self.hudConfiguratorRows+1, columns=self.hudConfiguratorColumns+1, homogeneous=True)
+        
+        for rowNumber in range(self.hudConfiguratorRows+1):
+            newRow=[]
+            
+            for columnNumber in range(self.hudConfiguratorColumns+1):
+                if rowNumber==0:
+                    if columnNumber==0:
+                        pass
+                    else:
+                        label=gtk.Label("column "+str(columnNumber))
+                        table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                        label.show()
+                else:
+                    if columnNumber==0:
+                        label=gtk.Label("row "+str(rowNumber))
+                        table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                        label.show()
+            self.hudConfiguratorTableContents.append(newRow)
+        diaHudTable.vbox.add(table)
+        table.show()
+        
+        response=diaHudTable.run()
+        diaHudTable.destroy()
+        
+        if response == gtk.RESPONSE_ACCEPT:
+            self.storeNewHudStatConfig()
+    #end def diaHudConfiguratorTable
+    
+    def storeNewHudStatConfig(self):
+        print "storeNewHudStatConfig"
+    #end def storeNewHudStatConfig
     
     def dia_dump_db(self, widget, data=None):
         self.db.dumpDatabase("database-dump.sql")
