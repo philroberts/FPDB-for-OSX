@@ -360,6 +360,7 @@ class fpdb:
         games=self.config.get_supported_games()
         for game in games:
             comboGame.append_text(game)
+        comboGame.set_active(0)
         comboGame.show()
         
         comboRows = gtk.combo_box_new_text()
@@ -367,6 +368,7 @@ class fpdb:
         diaSelections.vbox.add(comboRows)
         for i in range(1,8):
             comboRows.append_text(str(i)+" rows")
+        comboRows.set_active(0)
         comboRows.show()
         
         comboColumns = gtk.combo_box_new_text()
@@ -374,6 +376,7 @@ class fpdb:
         diaSelections.vbox.add(comboColumns)
         for i in range(1,8):
             comboColumns.append_text(str(i)+" columns")
+        comboColumns.set_active(0)
         comboColumns.show()
         
         response=diaSelections.run()
@@ -396,7 +399,6 @@ class fpdb:
     
     def diaHudConfiguratorTable(self):
         #TODO: show explanation of what each stat means
-        self.obtain_global_lock("diaHudConfiguratorTable")
         diaHudTable = gtk.Dialog("HUD Configurator - please choose your stats",
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
@@ -438,7 +440,9 @@ class fpdb:
     #end def diaHudConfiguratorTable
     
     def storeNewHudStatConfig(self):
+        self.obtain_global_lock("diaHudConfiguratorTable")
         print "storeNewHudStatConfig"
+        self.release_global_lock()
     #end def storeNewHudStatConfig
     
     def dia_dump_db(self, widget, data=None):
