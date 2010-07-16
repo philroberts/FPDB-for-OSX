@@ -339,6 +339,7 @@ class fpdb:
     #end def dia_database_stats
 
     def diaHudConfigurator(self, widget, data=None):
+        """Opens dialog to set parameters (game category, row count, column count for HUD stat configurator"""
         self.hudConfiguratorRows=None
         self.hudConfiguratorColumns=None
         self.hudConfiguratorGame=None
@@ -352,8 +353,6 @@ class fpdb:
         label=gtk.Label("Please select the game category for which you want to configure HUD stats:")
         diaSelections.vbox.add(label)
         label.show()
-        
-        #combo=gtk.ComboBox()
         
         comboGame = gtk.combo_box_new_text()
         comboGame.connect("changed", self.hudConfiguratorComboSelection)
@@ -384,11 +383,12 @@ class fpdb:
         diaSelections.destroy()
         
         if response == gtk.RESPONSE_ACCEPT and self.hudConfiguratorRows!=None and self.hudConfiguratorColumns!=None and self.hudConfiguratorGame!=None:
-            print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
+            #print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
             self.diaHudConfiguratorTable()
     #end def diaHudConfigurator
 
     def hudConfiguratorComboSelection(self, widget):
+        #TODO: remove this and handle it directly in diaHudConfigurator
         result=widget.get_active_text()
         if result.endswith(" rows"):
             self.hudConfiguratorRows=int(result[0])
@@ -399,6 +399,8 @@ class fpdb:
     #end def hudConfiguratorComboSelection
     
     def diaHudConfiguratorTable(self):
+        """shows dialogue with Table of ComboBoxes to allow choosing of HUD stats"""
+        #TODO: add notices to hud configurator: no duplicates, no empties, display options
         #TODO: show explanation of what each stat means
         diaHudTable = gtk.Dialog("HUD Configurator - please choose your stats",
                                  self.window,
@@ -421,11 +423,9 @@ class fpdb:
                         "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
                         "h", "re", "re_Percent", "re_Places", ): continue
             statDict[attr]=eval("Stats.%s.__doc__" % (attr))
-        #print "statDict:",statDict
         
         for rowNumber in range(self.hudConfiguratorRows+1):
             newRow=[]
-            
             for columnNumber in range(self.hudConfiguratorColumns+1):
                 if rowNumber==0:
                     if columnNumber==0:
@@ -449,7 +449,8 @@ class fpdb:
                     table.attach(child=comboBox, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
                     
                     comboBox.show()
-            self.hudConfiguratorTableContents.append(newRow)
+            if rowNumber!=0:
+                self.hudConfiguratorTableContents.append(newRow)
         diaHudTable.vbox.add(table)
         table.show()
         
@@ -461,12 +462,18 @@ class fpdb:
     #end def diaHudConfiguratorTable
     
     def storeNewHudStatConfig(self):
-        print "start of storeNewHudStatConfig"
+        """stores selections made in diaHudConfiguratorTable"""
         self.obtain_global_lock("diaHudConfiguratorTable")
+        statTable=[]
         for row in self.hudConfiguratorTableContents:
+            newRow=[]
             for column in row:
-                print column.get_active_text()
-        
+                newField = column.get_active_text()
+                newRow.append(newField)
+            statTable.append(newRow)
+                
+        self.config.editStats(self.hudConfiguratorGame,statTable)
+        self.config.save() #TODO: make it not store in horrible formatting
         self.release_global_lock()
     #end def storeNewHudStatConfig
     

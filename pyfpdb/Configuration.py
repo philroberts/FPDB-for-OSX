@@ -655,6 +655,14 @@ class Config:
             if site_node.getAttribute("site_name") == site:
                 return site_node
 
+    def getGameNode(self,gameName):
+        """returns DOM game node for a given game"""
+        for gameNode in self.doc.getElementsByTagName("game"):
+            #print "getGameNode gameNode:",gameNode
+            if gameNode.getAttribute("game_name") == gameName:
+                return gameNode
+    #end def getGameNode
+    
     def get_aux_node(self, aux):
         for aux_node in self.doc.getElementsByTagName("aw"):
             if aux_node.getAttribute("name") == aux:
@@ -733,6 +741,49 @@ class Config:
             location_node.setAttribute("x", str( locations[i-1][0] ))
             location_node.setAttribute("y", str( locations[i-1][1] ))
             self.supported_sites[site_name].layout[max].location[i] = ( locations[i-1][0], locations[i-1][1] )
+
+    def editStats(self, gameName, statArray):
+        """replaces stat selection for the given gameName with the given statArray"""
+        gameNode = self.getGameNode(gameName)
+        statNodes = gameNode.getElementsByTagName("stat")
+        
+        for node in statNodes:
+            gameNode.removeChild(node)
+        
+        gameNode.setAttribute("rows", str(len(statArray)))
+        gameNode.setAttribute("cols", str(len(statArray[0])))
+        
+        for rowNumber in range(len(statArray)):
+            for columnNumber in range(len(statArray[rowNumber])):
+                newStat=self.doc.createElement("stat")
+                
+                newAttrStatName=self.doc.createAttribute("stat_name")
+                newStat.setAttributeNode(newAttrStatName)
+                newStat.setAttribute("stat_name", statArray[rowNumber][columnNumber])
+                
+                newAttrStatName=self.doc.createAttribute("row")
+                newStat.setAttributeNode(newAttrStatName)
+                newStat.setAttribute("row", str(rowNumber))
+                
+                newAttrStatName=self.doc.createAttribute("col")
+                newStat.setAttributeNode(newAttrStatName)
+                newStat.setAttribute("col", str(columnNumber))
+                
+                newAttrStatName=self.doc.createAttribute("click")
+                newStat.setAttributeNode(newAttrStatName)
+                newStat.setAttribute("click", "tog_decorate")
+                
+                newAttrStatName=self.doc.createAttribute("popup")
+                newStat.setAttributeNode(newAttrStatName)
+                newStat.setAttribute("popup", "default")
+                
+                newAttrStatName=self.doc.createAttribute("tip")
+                newStat.setAttributeNode(newAttrStatName)
+                newStat.setAttribute("tip", "tip1")
+                
+                gameNode.appendChild(newStat)
+        statNodes = gameNode.getElementsByTagName("stat")
+    #end def editStats
 
     def edit_aux_layout(self, aux_name, max, width = None, height = None, locations = None):
         aux_node   = self.get_aux_node(aux_name)
