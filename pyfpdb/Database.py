@@ -295,7 +295,7 @@ class Database:
     #end def __init__
 
     def dumpDatabase(self):
-        result="Database dump version " + str(DB_VERSION)+"\n\n"
+        result="fpdb database dump\nDB version=" + str(DB_VERSION)+"\n\n"
         
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
