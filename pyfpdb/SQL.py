@@ -2826,7 +2826,7 @@ class Sql:
             AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
-            AND   hp.tourneysPlayersId IS NULL
+            AND   gt.type is 'ring'
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
 
@@ -2844,7 +2844,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  date_format(h.startTime, '%Y-%m-%d') <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  gt.type is 'ring'
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
@@ -2856,7 +2856,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  gt.type is 'ring'
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
@@ -2868,7 +2868,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  gt.type is 'ring'
                 ORDER by time"""
 
 
