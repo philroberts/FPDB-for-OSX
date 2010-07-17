@@ -3698,12 +3698,14 @@ class Sql:
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
+                                            AND added=%s
+                                            AND addedCurrency=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
                                                   (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, rebuy,
-                                                  addOn ,speed, shootout, matrix)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                                  addOn ,speed, shootout, matrix, added, addedCurrency)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*

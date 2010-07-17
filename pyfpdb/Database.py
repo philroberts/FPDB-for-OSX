@@ -1984,27 +1984,13 @@ class Database:
                         )
         result=cursor.fetchone()
 
-        expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
-                           7 : "isShootout", 8 : "isMatrix" }
-        tourneyTypeIdMatch = True
-
-        try:
+        if result:
             tourneyTypeId = result[0]
-            log.debug("Tourney found in db with Tourney_Type_ID = %d" % tourneyTypeId)
-            for ev in expectedValues :
-                if ( getattr( hand, expectedValues.get(ev) ) <> result[ev] ):
-                    log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( hand, expectedValues.get(ev)), result[ev]) )
-                    tourneyTypeIdMatch = False
-                    #break
-        except:
-            # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
-            tourneyTypeIdMatch = False
-        
-        if tourneyTypeIdMatch == False :
+        else:
             # Check for an existing TTypeId that matches tourney info, if not found create it
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
-                             hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix)
+                             hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                             )
             result=cursor.fetchone()
         
@@ -2014,7 +2000,7 @@ class Database:
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
                                 (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips,
                                  hand.isKO, hand.isRebuy,
-                                 hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
+                                 hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                                 )
                 tourneyTypeId = self.get_last_insert_id(cursor)
         return tourneyTypeId
