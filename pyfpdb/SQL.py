@@ -415,7 +415,9 @@ class Sql:
                         sng BOOLEAN,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
-                        guarantee INT)
+                        guarantee INT,
+                        added INT,
+                        addedCurrency VARCHAR(4))
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
@@ -444,7 +446,9 @@ class Sql:
                         sng BOOLEAN,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
-                        guarantee INT)"""
+                        guarantee INT,
+                        added INT,
+                        addedCurrency VARCHAR(4))"""
         elif db_server == 'sqlite':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id INTEGER PRIMARY KEY,
@@ -472,7 +476,9 @@ class Sql:
                         sng BOOLEAN,
                         satellite BOOLEAN,
                         doubleOrNothing BOOLEAN,
-                        guarantee INT)"""
+                        guarantee INT,
+                        added INT,
+                        addedCurrency VARCHAR(4))"""
 
         ################################
         # Create Tourneys

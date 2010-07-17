@@ -85,6 +85,8 @@ class Hand(object):
         self.isKO = False
         self.isMatrix = False
         self.isShootout = False
+        self.added = None
+        self.addedCurrency = None
         self.tourneyComment = None
 
         self.seating = []

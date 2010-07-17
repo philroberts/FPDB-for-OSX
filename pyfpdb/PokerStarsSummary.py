@@ -93,7 +93,6 @@ class PokerStarsSummary(TourneySummary):
             result=result.groupdict()
             self.added=100*int(Decimal(result['DOLLAR']))+int(Decimal(result['CENT']))
             self.addedCurrency=result['CURRENCY']
-            #print "TODO: implement added:",self.added,self.addedCurrency
             currentLine+=1
         #print "after added/entries lines[currentLine]", lines[currentLine]
         

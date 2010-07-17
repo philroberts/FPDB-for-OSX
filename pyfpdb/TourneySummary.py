@@ -79,19 +79,21 @@ class TourneySummary(object):
         self.matrixIdProcessed  = None
         self.subTourneyBuyin    = None
         self.subTourneyFee      = None
-        self.rebuyChips         = 0
-        self.addOnChips         = 0
-        self.rebuyCost          = 0
-        self.addOnCost          = 0
-        self.totalRebuyCount    = 0
-        self.totalAddOnCount    = 0
-        self.koBounty           = 0
+        self.rebuyChips         = None
+        self.addOnChips         = None
+        self.rebuyCost          = None
+        self.addOnCost          = None
+        self.totalRebuyCount    = None
+        self.totalAddOnCount    = None
+        self.koBounty           = None
         self.tourneyComment     = None
         self.players            = []
         self.isSng              = False
         self.isSatellite        = False
         self.isDoubleOrNothing  = False
-        self.guarantee          = 0
+        self.guarantee          = None
+        self.added              = None
+        self.addedCurrency      = None
         self.gametype           = {'category':None, 'limitType':None}
         self.comment            = None
         self.commentTs          = None
@@ -154,6 +156,8 @@ class TourneySummary(object):
                  ("SATELLITE", self.isSatellite),
                  ("DOUBLE OR NOTHING", self.isDoubleOrNothing),
                  ("GUARANTEE", self.guarantee),
+                 ("ADDED", self.added),
+                 ("ADDED CURRENCY", self.addedCurrency),
                  ("COMMENT", self.comment),
                  ("COMMENT TIMESTAMP", self.commentTs)
         )
