@@ -490,7 +490,12 @@ class fpdb:
     #end def storeNewHudStatConfig
     
     def dia_dump_db(self, widget, data=None):
-        self.db.dumpDatabase("database-dump.sql")
+        filename = "database-dump.sql"
+        result = self.db.dumpDatabase()
+        
+        dumpFile = open(filename, 'w')
+        dumpFile.write(result)
+        dumpFile.close()
     #end def dia_database_stats
 
     def dia_licensing(self, widget, data=None):

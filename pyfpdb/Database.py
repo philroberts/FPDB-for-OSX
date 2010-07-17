@@ -294,19 +294,16 @@ class Database:
             self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
-    def dumpDatabase(self, filename):
-        dumpFile = open(filename, 'w')
-        
+    def dumpDatabase(self):
         result="Database dump version " + str(DB_VERSION)+"\n\n"
         
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        dumpFile.write(result)
-        
         for table in tables:
             table=table[0]
+            
             print "table:", table
-            result="###################\nTable "+table+"\n###################\n"
+            result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
             rows=self.cursor.fetchall()
             columnNames=self.cursor.description
@@ -318,8 +315,7 @@ class Database:
                         result+=("  "+columnNames[columnNumber][0]+"="+str(row[columnNumber])+"\n")
                     result+="\n"
             result+="\n"
-            dumpFile.write(result)
-        dumpFile.close()
+        return result
     #end def dumpDatabase
     
     # could be used by hud to change hud style
