@@ -1564,7 +1564,7 @@ class Database:
                 p['siteHandNo'], 
                 p['tourneyId'],
                 p['startTime'], 
-                datetime.today(), #importtime
+                datetime.utcnow(), #importtime
                 p['seats'],
                 p['maxSeats'],
                 p['texture'],
