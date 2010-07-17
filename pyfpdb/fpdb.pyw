@@ -408,7 +408,19 @@ class fpdb:
                                  (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
         
-        label=gtk.Label("Please choose the stats you wish to use")
+        label=gtk.Label("Please choose the stats you wish to use in the below table.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        label=gtk.Label("Note that you may not select any stat more than once or it will crash.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        label=gtk.Label("It is not currently possible to select \"empty\" or anything else to that end.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        label=gtk.Label("To configure things like colouring you will still have to manually edit your HUD_config.xml.")
         diaHudTable.vbox.add(label)
         label.show()
         
