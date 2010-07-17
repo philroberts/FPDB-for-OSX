@@ -442,6 +442,8 @@ class Email:
         self.password = node.getAttribute("password")
         self.useSsl = node.getAttribute("useSsl")
         self.folder = node.getAttribute("folder")
+        self.siteName = node.getAttribute("siteName")
+        self.fetchType = node.getAttribute("fetchType")
         
     def __str__(self):
         return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
