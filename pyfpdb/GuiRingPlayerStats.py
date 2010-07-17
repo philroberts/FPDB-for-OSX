@@ -27,7 +27,7 @@ from time import time, strftime
 import Card
 import fpdb_import
 import Database
-import RingFilters
+import Filters
 import Charset
 import GuiPlayerStats
 
@@ -79,7 +79,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                             "Button2"   : True
                           }
 
-        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("_Filters")
         self.filters.registerButton1Callback(self.showDetailFilter)
         self.filters.registerButton2Name("_Refresh Stats")
