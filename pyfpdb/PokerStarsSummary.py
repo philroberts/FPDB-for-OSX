@@ -94,6 +94,9 @@ class PokerStarsSummary(TourneySummary):
             self.added=100*int(Decimal(result['DOLLAR']))+int(Decimal(result['CENT']))
             self.addedCurrency=result['CURRENCY']
             currentLine+=1
+        else:
+            self.added=0
+            self.addedCurrency="NA"
         #print "after added/entries lines[currentLine]", lines[currentLine]
         
         result=self.re_Prizepool.findall(lines[currentLine])
