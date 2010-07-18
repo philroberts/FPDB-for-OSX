@@ -1110,6 +1110,7 @@ class Database:
         """(Re-)creates the tables of the current DB"""
         
         self.drop_tables()
+        self.resetPlayerIDs()
         self.create_tables()
         self.createAllIndexes()
         self.commit()
@@ -1837,6 +1838,9 @@ class Database:
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
                                     #FIXME: recognise currency
         return tmp[0]
+
+    def resetPlayerIDs(self):
+        self.pcache = None
 
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
