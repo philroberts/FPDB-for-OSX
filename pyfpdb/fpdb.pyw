@@ -306,8 +306,8 @@ class fpdb:
             dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        self.warning_box("Unimplemented: Maintain Databases")
-        return
+        #self.warning_box("Unimplemented: Maintain Databases")
+        #return
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
@@ -321,8 +321,14 @@ class fpdb:
                 prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
                 response = dia.run()
                 if response == gtk.RESPONSE_ACCEPT:
+                    log.info('saving updated db data')
                     # save updated config
                     self.config.save()
+                    self.load_profile()
+                    for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
+                        log.info('fpdb: name,desc='+name+','+self.config.supported_databases[name].db_desc)
+                else:
+                    log.info('guidb response was '+str(response))
 
                 self.release_global_lock()
 
@@ -835,7 +841,7 @@ class fpdb:
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
-                                 ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
+                                 ('maintaindbs', None, '_Maintain Databases', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
