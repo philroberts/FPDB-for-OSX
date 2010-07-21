@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 #Copyright 2010 Mika Bostrom
 #This program is free software: you can redistribute it and/or modify
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 # Error logging
 import sys
@@ -26,7 +26,9 @@ import Configuration
 
 encoder_to_utf = codecs.lookup('utf-8')
 encoder_to_sys = codecs.lookup(Configuration.LOCALE_ENCODING)
+coder_hex      = codecs.lookup('hex_codec')
 
+hex_coding = False      #FIXME: Should only be on if db is not UTF8 - test in Database.py?
 # I'm saving a few cycles with this one
 not_needed1, not_needed2, not_needed3 = False, False, False
 if Configuration.LOCALE_ENCODING == 'UTF8':
@@ -75,3 +77,19 @@ def to_gui(s):
     except UnicodeEncodeError:
         sys.stderr.write('Could not encode: "%s"\n' % s)
         raise
+
+def to_hex(s):
+    try:
+        out = coder_hex.encode(s)[0]
+        return out
+    except UnicodeDecodeError:
+        sys.stderr.write('Could not convert: "%s"\n' % s)
+        return s
+
+def from_hex(s):
+    try:
+        out = coder_hex.decode(s)[0]
+        return out
+    except UnicodeDecodeError:
+        sys.stderr.write('Could not convert: "%s"\n' % s)
+        return s

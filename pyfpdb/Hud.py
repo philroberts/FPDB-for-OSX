@@ -4,7 +4,7 @@
 
 Create and manage the hud overlays.
 """
-#    Copyright 2008, 2009  Ray E. Barker
+#    Copyright 2008-2010  Ray E. Barker
 
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -87,6 +87,7 @@ class Hud:
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
         self.hud_ui     = config.get_hud_ui_parameters()
+        self.site_params = config.get_site_parameters(self.table.site)
 
         self.backgroundcolor = gtk.gdk.color_parse(self.colors['hudbgcolor'])
         self.foregroundcolor = gtk.gdk.color_parse(self.colors['hudfgcolor'])
@@ -448,6 +449,8 @@ class Hud:
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
                 self.parent.kill_hud(self, self.table.name)
+                self.parent.kill_hud(self, self.table.name.split(" ")[0])
+                #table.name is only a valid handle for ring games ! we are not killing tourney tables here.
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
@@ -455,7 +458,7 @@ class Hud:
             if self.table.x != x or self.table.y != y:
                 self.table.x = x
                 self.table.y = y
-                self.main_window.move(x, y)
+                self.main_window.move(x + self.site_params['xshift'], y + self.site_params['yshift'])
                 adj = self.adj_seats(self.hand, self.config)
                 loc = self.config.get_locations(self.table.site, self.max)
                 # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?

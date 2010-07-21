@@ -4,7 +4,7 @@
 
 Handles HUD configuration files.
 """
-#    Copyright 2008, 2009,  Ray E. Barker
+#    Copyright 2008-2010,  Ray E. Barker
 
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -32,6 +32,7 @@ import string
 import traceback
 import shutil
 import locale
+import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
@@ -248,6 +249,8 @@ class Site:
         self.enabled    = string_to_bool(node.getAttribute("enabled"), default=True)
         self.xpad         = node.getAttribute("xpad")
         self.ypad         = node.getAttribute("ypad")
+        self.xshift       = node.getAttribute("xshift")
+        self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
 
         print "Loading site", self.site_name
@@ -259,6 +262,8 @@ class Site:
 #   Site defaults
         self.xpad = 1 if self.xpad == "" else int(self.xpad)
         self.ypad = 0 if self.ypad == "" else int(self.ypad)
+        self.xshift = 1 if self.xshift == "" else int(self.xshift)
+        self.yshift = 0 if self.yshift == "" else int(self.yshift)
         self.font_size = 7 if self.font_size == "" else int(self.font_size)
         self.hudopacity = 1.0 if self.hudopacity == "" else float(self.hudopacity)
 
@@ -296,12 +301,18 @@ class Game:
         self.cols    = int( node.getAttribute("cols") )
         self.xpad    = node.getAttribute("xpad")
         self.ypad    = node.getAttribute("ypad")
+        self.xshift  = node.getAttribute("xshift")
+        self.yshift  = node.getAttribute("yshift")
 
 #    Defaults
         if self.xpad == "": self.xpad = 1
         else: self.xpad = int(self.xpad)
         if self.ypad == "": self.ypad = 0
         else: self.ypad = int(self.ypad)
+        if self.xshift == "": self.xshift = 1
+        else: self.xshift = int(self.xshift)
+        if self.yshift == "": self.yshift = 0
+        else: self.yshift = int(self.yshift)
 
         aux_text = node.getAttribute("aux")
         aux_list = aux_text.split(',')
@@ -334,6 +345,8 @@ class Game:
         temp = temp + "    cols = %d\n" % self.cols
         temp = temp + "    xpad = %d\n" % self.xpad
         temp = temp + "    ypad = %d\n" % self.ypad
+        temp = temp + "    xshift = %d\n" % self.xshift
+        temp = temp + "    yshift = %d\n" % self.yshift
         temp = temp + "    aux = %s\n" % self.aux
 
         for stat in self.stats.keys():
@@ -420,6 +433,19 @@ class Import:
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
+
+class Email:
+    def __init__(self, node):
+        self.node = node
+        self.host= node.getAttribute("host")
+        self.username = node.getAttribute("username")
+        self.password = node.getAttribute("password")
+        self.useSsl = node.getAttribute("useSsl")
+        self.folder = node.getAttribute("folder")
+        
+    def __str__(self):
+        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -580,6 +606,10 @@ class Config:
             imp = Import(node = imp_node)
             self.imp = imp
 
+        for email_node in doc.getElementsByTagName("email"):
+            email = Email(node = email_node)
+            self.email = email
+
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
             self.ui = hui
@@ -662,7 +692,34 @@ class Config:
                 pass
 
         with open(file, 'w') as f:
-            self.doc.writexml(f)
+            #self.doc.writexml(f)
+            f.write( self.wrap_long_lines( self.doc.toxml() ) )
+
+    def wrap_long_lines(self, s):
+        lines = [ self.wrap_long_line(l) for l in s.splitlines() ]
+        return('\n'.join(lines) + '\n')
+
+    def wrap_long_line(self, l):
+        if 'config_wrap_len' in self.general:
+            wrap_len = int(self.general['config_wrap_len'])
+        else:
+            wrap_len = -1    # < 0 means no wrap
+
+        if wrap_len >= 0 and len(l) > wrap_len:
+            m = re.compile('\s+\S+\s+')
+            mo = m.match(l)
+            if mo:
+                indent_len = mo.end()
+                #print "indent = %s (%s)" % (indent_len, l[0:indent_len])
+                indent = '\n' + ' ' * indent_len
+                m = re.compile('(\S+="[^"]+"\s+)')
+                parts = [x for x in m.split(l[indent_len:]) if x]
+                if len(parts) > 1:
+                    #print "parts =", parts
+                    l = l[0:indent_len] + indent.join(parts)
+            return(l)
+        else:
+            return(l)
 
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
@@ -951,6 +1008,8 @@ class Config:
         parms["enabled"]    = self.supported_sites[site].enabled
         parms["xpad"]        = self.supported_sites[site].xpad
         parms["ypad"]        = self.supported_sites[site].ypad
+        parms["xshift"]        = self.supported_sites[site].xshift
+        parms["yshift"]        = self.supported_sites[site].yshift
         return parms
 
     def set_site_parameters(self, site_name, converter = None, decoder = None,
@@ -1002,6 +1061,8 @@ class Config:
             param['cols']    = self.supported_games[name].cols
             param['xpad']    = self.supported_games[name].xpad
             param['ypad']    = self.supported_games[name].ypad
+            param['xshift']  = self.supported_games[name].xshift
+            param['yshift']  = self.supported_games[name].yshift
             param['aux']     = self.supported_games[name].aux
         return param
 

@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,10 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
-
-#see status.txt for site/games support info
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 #    Standard Library modules
 
@@ -468,6 +466,7 @@ class Importer:
                 errors = getattr(hhc, 'numErrors')
                 stored = getattr(hhc, 'numHands')
                 stored -= duplicates
+                stored -= errors
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
@@ -484,9 +483,9 @@ class Importer:
 
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
-        print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
+        print "Error No.",errors,", please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem."
         print "Filename:", filename
-        print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
+        print "Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:"
         print self.hand[0]
         print "Hand logged to hand-errors.txt"
         logfile = open('hand-errors.txt', 'a')

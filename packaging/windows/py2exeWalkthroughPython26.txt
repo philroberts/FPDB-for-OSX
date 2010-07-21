@@ -1,0 +1,213 @@
+PY2EXE walkthrough for Python 2.6 & FPDB 0.20 
+created on 22nd June 2010 by Gimick
+
+This walkthrough is derived from comments in the py2exe script made by Ray and SqlCoder
+Additional information, formatting, updating to Python 2.6 and sequencing added by Gimick
+Content is available under the the GNU Affero General Public License version 3
+
+
+
+Step 0 Get a fresh XP installation
+----------------------------------
+
+0.1/ Using XPhome or Pro 32bit
+
+0.2/ Ensure the CPU supports SSE2 instruction set or better.
+
+
+Step 1, dependency install
+--------------------------
+
+1.1/ install the following in sequence (accept all default options) there should be no errors !
+
+Python 2.6.5 ... http://www.python.org/ftp/python/2.6.5/python-2.6.5.msi
+pywin 214 ... http://sourceforge.net/projects/pywin32/files/pywin32/Build%20214/pywin32-214.win32-py2.6.exe/download
+matplotlib 0.99.3 ... http://sourceforge.net/projects/matplotlib/files/matplotlib/matplotlib-0.99.3/matplotlib-0.99.3.win32-py2.6.exe/download
+pygtk 2.16.0 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygtk/2.16/pygtk-2.16.0.win32-py2.6.exe
+pycairo 1.8.6 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pycairo/1.8/pycairo-1.8.6.win32-py2.6.exe
+pyGobject 2.20.0 ... http://ftp.gnome.org/pub/GNOME/binaries/win32/pygobject/2.20/pygobject-2.20.0.win32-py2.6.exe
+py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2exe-0.6.9.win32-py2.6.exe/download
+psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.2.1.win32-py2.6-pg8.4.3-release.exe
+(Note: stickpeople is the offical repository, not a community build)
+
+1.2/ MySQL 
+
+MySQL-python-1.2.3.win32-py2.6-fpdb0.20.exe ... http://www.mediafire.com/file/iodnnnznmj1/MySQL-python-1.2.3.win32-py2.6-fpdb0.20.exe
+
+This is an intaller built from source by gimick.  There are no official mysql-python2.6 build for windows.
+
+Community builds are also available from some developers.  see www.codegood.com for example.
+
+
+Step 2 Setup GTK
+-----------------
+
+There are quite a few GTK packages needed, and rather than install them individually, I used the official AllinOne from the GTK project.
+
+2,1/ Create a new folder c:\GTK
+
+2.2/ Extract the following zip file into c:\GTK
+
+GTK+ all in one 2.20.0 ... http://ftp.gnome.org/pub/gnome/binaries/win32/gtk+/2.20/gtk+-bundle_2.20.0-20100406_win32.zip
+
+2.3/ If everything has worked, you should have c:\GTK\bin \etc \lib \src and so on created.
+
+
+Step 3 Set GTK into the PATH variable
+-------------------------------------
+
+The path for GTK isn't set by default, so need to let the o/s know where the GTK stuff is.
+
+3.1/ Rightclick on mycomputer to show system properties
+3.2/ select advanced/environment Variables
+3.3/ in "system variables" NOT "user variables" do the following
+3.3.1/ create a new item as name: GTK_BASEPATH value: c:\GTK
+3.3.2/ edit the item "path", press home to get to the first character and insert the following text, (no quotes, including semicolon) %GTK_BASEPATH%\bin;
+
+3.4/ to check, open command prompt and do:
+
+dos>path  ...  system should respond with  ...   PATH=c:\GTK\bin;C:\WIN........
+
+3.5/ Give it a spin to test (hopefully an application will start, if not, something has gone wrong)
+
+dos> gtk-demo
+
+
+Step 4 Get the fpdb GIT tree
+----------------------------
+
+4.1/ Best to take a copy to work with; following steps will assume that the fpdb folder is on the Desktop
+
+
+5.3/ Install correct Numpy for this build
+-----------------------------------------
+
+Numpy needs special handling, as by default it will install an optimised version for the SSE level of your CPU (SSE3, SSE2 or noSSE).  This means that the completed package will not run on an older CPU.  
+
+For this reason, do not just run the installer downloaded.
+
+5.3.1/ download the package to the Desktop
+ 
+numpy 1.4.1 ... http://sourceforge.net/projects/numpy/files/NumPy/1.4.1/numpy-1.4.1-win32-superpack-python2.6.exe/download
+
+5.3.2/ remove any existing numpy installation
+
+Go to the control panel and uninstall "Python2.6 numpy-1.4.1"
+
+5.3.3/ If you are wanting to build a package which works on all CPU's, install noSSE as follows:
+
+dos> cd Desktop
+dos> numpy-1.4.1-win32-superpack-python2.6.exe /arch nosse
+
+5.3.4/ If you are wanting to build a package which works on SSE2 and better CPU's, install SSE2 as follows:
+
+dos> cd Desktop
+dos> numpy-1.4.1-win32-superpack-python2.6.exe /arch sse2
+
+5.3.4/ At the end of the installation, click on "show details" to confirm the installation.
+
+For no SSE:
+
+"Target CPU handles SSE2"
+"Target CPU handles SSE3"
+"nosse install (arch value: nosse)"
+"Install NO SSE"
+Extract: numpy-1.4.1-nosse.exe... 100%
+Execute: "C:\DOCUME~1\user\LOCALS~1\Temp\numpy-1.4.1-nosse.exe"
+Completed
+
+For SSE2:
+
+"Target CPU handles SSE2"
+"Target CPU handles SSE3"
+"sse2 install (arch value: sse2)"
+"Install SSE 2"
+Extract: numpy-1.4.1-sse2.exe... 100%
+Execute: "C:\DOCUME~1\user\LOCALS~1\Temp\numpy-1.4.1-sse2.exe"
+Completed
+
+
+Step 6 Run py2exe to generate fpdb.exe
+--------------------------------------
+
+6.1/ Run the script to create the fpdb.exe bundle
+
+dos> cd Desktop\fpdb\pyfpdb
+dos> c:\python26\python.exe py2exe_setup.py py2exe
+
+wait a while, watch lots of copying and whatever.
+
+6.2/ You should next get prompted for the GTK folder.
+c:\GTK
+
+6.3/ If there are no errors reported, it has probably worked, we will test soon.
+
+Build notes:
+
+There is a warning about dll's not included  "umath.pyd - c:\Python26\lib\site-packages\numpy\core\umath.pyd" - reason for this is not understood at present.  (Umath is apparently included in the built package).
+
+
+Step 7 not currently used
+-------------------------
+
+Has been deleted
+
+
+Step 8 Drag out the completed bundle
+------------------------------------
+
+py2exe creates a new folder for the created software bundle, drag this out to the desktop for ease of working.
+As far as I know you cannot rerun the build if the fpdb-yyyymmdd-exe exists in the tree, so dragging this out 
+also allows the build to re-run at step 6.
+
+8.1/ Drag Desktop\fpdb\pyfpdb\fpdb-yyyymmdd-exe to Desktop\
+
+
+Step 9 Initial run
+------------------
+
+9.1/ Open the Desktop\fpdb-yyyymmdd-exe folder
+9.2/ In explorer...tools...folder options...View uncheck "Hide extensions for known file types" 
+9.3/ Double click run_fpdb.bat
+9.4/ check the contents of pyfpdb\fpdb.exe.log, deal with any errors thrown
+
+9.5/ hopefully, fpdb will run 
+9.6/ Try out a few options, deal with any errors reported
+
+Observe that the msvcp90.dll was provided by the python runtime package, so we don't have to install the separate package from Microsoft.  End-users will, however need the dependency.
+
+
+Step 11 pruning
+---------------
+
+11.1/ The generated folder is 100+MB and can be pruned by removing the following directories:
+
+pyfpdb/lib/glib-2.0
+pyfpdb/lib/pkgconfig
+pyfpdb/share/aclocal
+pyfpdb/share/doc
+pyfpdb/share/glib-2.0
+pyfpdb/share/gtk-2.0
+pyfpdb/share/gtk-doc
+pyfpdb/share/locale
+pyfpdb/share/man
+
+
+Step 12 rename folder 
+---------------------
+
+Rename the folder to something meaningful to the community.  If you have built for NoSSE, append noSSE to the directory name.
+
+
+Step 13 Compress to executable archive
+--------------------------------------
+
+13.1/ Download and install 7zip 914 ... http://sourceforge.net/projects/sevenzip/files/7-Zip/9.14/7z914.exe/download
+13.2/ Rightclick on fpdb executable folder, select 7zip Add to archive... select SFX archive option switch
+13.3/ Test the created exe file
+
+Step 14 If you need to build again for a different SSE level
+------------------------------------------------------------
+
+Go back to step 5 and run again.
+

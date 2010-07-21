@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import threading
 import subprocess
@@ -32,11 +32,12 @@ import Configuration
 import string
 
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config, sql):
+    def __init__(self, settings, config, sql, parent):
         self.importtimer = 0
         self.settings = settings
         self.config = config
         self.sql = sql
+        self.parent = parent
 
         imp = self.config.get_import_parameters()
 
@@ -138,6 +139,8 @@ class GuiAutoImport (threading.Thread):
         #dia_chooser.set_current_folder(pathname)
         dia_chooser.set_filename(current_path)
         #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+        dia_chooser.set_destroy_with_parent(True)
+        dia_chooser.set_transient_for(self.parent)
 
         response = dia_chooser.run()
         if response == gtk.RESPONSE_OK:
@@ -199,10 +202,10 @@ class GuiAutoImport (threading.Thread):
                         bs = 0
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
-                        command = 'python "'+path+'\\HUD_main.py" ' + self.settings['cl_options']
+                        command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
                         bs = 0
                     else:
-                        command = os.path.join(sys.path[0], 'HUD_main.py')
+                        command = os.path.join(sys.path[0], 'HUD_main.pyw')
                         command = [command, ] + string.split(self.settings['cl_options'])
                         bs = 1
 
@@ -210,7 +213,12 @@ class GuiAutoImport (threading.Thread):
                         print "opening pipe to HUD"
                         self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                             stdin=subprocess.PIPE,
-                                                            universal_newlines=True)
+                                                            stdout=subprocess.PIPE,  # only needed for py2exe
+                                                            stderr=subprocess.PIPE,  # only needed for py2exe
+                                                            universal_newlines=True
+                                                           )
+                        #self.pipe_to_hud.stdout.close()
+                        #self.pipe_to_hud.stderr.close()
                     except:
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
                         #self.addText( "\n*** GuiAutoImport Error opening pipe: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]))

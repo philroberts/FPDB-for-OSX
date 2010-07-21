@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008, Carl Gherardi
+#    Copyright 2008-2010, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,8 +22,24 @@
 
 import sys
 from HandHistoryConverter import *
+from decimal import Decimal
 
 # PokerStars HH Format
+
+def removeET(time):
+    # approximate rules for ET daylight savings time:
+    if (   time.month == 12                                  # all of Dec
+        or (time.month == 11 and time.day > 4)     #    and most of November
+        or time.month < 3                                    #    and all of Jan/Feb
+        or (time.month == 3 and time.day < 11) ):  #    and 1st 10 days of March
+        offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
+    else:
+        offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
+    # adjust time into UTC:
+    time = time + offset
+    #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
+    return time
+#end def removeET
 
 class PokerStars(HandHistoryConverter):
 
@@ -40,6 +56,30 @@ class PokerStars(HandHistoryConverter):
                      'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
+                    
+    # translations from captured groups to fpdb info strings
+    Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
+                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),     '1.00': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),     '4'   : ('1.00', '2.00'),
+                        '4.00': ('1.00', '2.00'),       '6': ('1.00', '3.00'),     '6.00': ('1.00', '3.00'),
+                       '10.00': ('2.00', '5.00'),   '20.00': ('5.00', '10.00'),   '30.00': ('10.00', '15.00'),
+                       '60.00': ('15.00', '30.00'), '100.00': ('25.00', '50.00'), '200.00': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'), '1000.00': ('250.00', '500.00')}
+
+    limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
+    games = {                          # base, category
+                              "Hold'em" : ('hold','holdem'), 
+                                'Omaha' : ('hold','omahahi'),
+                          'Omaha Hi/Lo' : ('hold','omahahilo'),
+                                 'Razz' : ('stud','razz'), 
+                                 'RAZZ' : ('stud','razz'),
+                          '7 Card Stud' : ('stud','studhi'),
+                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                               'Badugi' : ('draw','badugi'),
+              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+                          '5 Card Draw' : ('draw','fivedraw')
+               }
+    currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 
     # Static regexes
     re_GameInfo     = re.compile(u"""
@@ -52,7 +92,9 @@ class PokerStars(HandHistoryConverter):
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
-          (-\sLevel\s(?P<LEVEL>[IVXLC]+)\s)?
+          (-\s)?
+          (Match.*)?                  #TODO: waiting for reply from user as to what this means
+          (Level\s(?P<LEVEL>[IVXLC]+)\s)?
           \(?                            # open paren of the stakes
           (?P<CURRENCY>%(LS)s|)?
           (?P<SB>[.0-9]+)/(%(LS)s)?
@@ -137,47 +179,26 @@ class PokerStars(HandHistoryConverter):
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
-            print "DEBUG: determineGameType(): did not match"
-            return None
+            tmp = handText[0:100]
+            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
+            log.error("determineGameType: Raising FpdbParseError")
+            raise FpdbParseError("Unable to recognise gametype from: '%s'" % tmp)
 
         mg = m.groupdict()
-        # translations from captured groups to fpdb info strings
-        Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
-                        '0.50': ('0.10', '0.25'),    '1.00': ('0.25', '0.50'),     '2.00': ('0.50', '1.00'), 
-                        '4.00': ('1.00', '2.00'),    '6.00': ('1.00', '3.00'),    '10.00': ('2.00', '5.00'),
-                       '20.00': ('5.00', '10.00'),  '30.00': ('10.00', '15.00'),  '60.00': ('15.00', '30.00'),
-                      '100.00': ('25.00', '50.00'),'200.00': ('50.00', '100.00'),'400.00': ('100.00', '200.00'),
-                     '1000.00': ('250.00', '500.00')}
-
-
-        limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
-        games = {                          # base, category
-                              "Hold'em" : ('hold','holdem'), 
-                                'Omaha' : ('hold','omahahi'),
-                          'Omaha Hi/Lo' : ('hold','omahahilo'),
-                                 'Razz' : ('stud','razz'), 
-                                 'RAZZ' : ('stud','razz'), 
-                          '7 Card Stud' : ('stud','studhi'),
-                    '7 Card Stud Hi/Lo' : ('stud','studhilo'),
-                               'Badugi' : ('draw','badugi'),
-              'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
-                          '5 Card Draw' : ('draw','fivedraw')
-               }
-        currencies = { u'€':'EUR', '$':'USD', '':'T$' }
 #    I don't think this is doing what we think. mg will always have all 
 #    the expected keys, but the ones that didn't match in the regex will
 #    have a value of None. It is OK if it throws an exception when it 
 #    runs across an unknown game or limit or whatever.
         if 'LIMIT' in mg:
-            info['limitType'] = limits[mg['LIMIT']]
+            info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
-            (info['base'], info['category']) = games[mg['GAME']]
+            (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
             info['sb'] = mg['SB']
         if 'BB' in mg:
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
-            info['currency'] = currencies[mg['CURRENCY']]
+            info['currency'] = self.currencies[mg['CURRENCY']]
 
         if 'TOURNO' in mg and mg['TOURNO'] is None:
             info['type'] = 'ring'
@@ -185,10 +206,14 @@ class PokerStars(HandHistoryConverter):
             info['type'] = 'tour'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
-            info['sb'] = Lim_Blinds[mg['BB']][0] 
-            info['bb'] = Lim_Blinds[mg['BB']][1]
+            try:
+                info['sb'] = self.Lim_Blinds[mg['BB']][0]
+                info['bb'] = self.Lim_Blinds[mg['BB']][1]
+            except KeyError:
+                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error("determineGameType: Raising FpdbParseError")
+                raise FpdbParseError("Lim_Blinds has no lookup for '%s'" % mg['BB'])
 
-        # NB: SB, BB must be interpreted as blinds or bets depending on limit type.
         return info
 
     def readHandInfo(self, hand):
@@ -213,34 +238,42 @@ class PokerStars(HandHistoryConverter):
                 #2008/09/07 06:23:14 ET
                 m1 = self.re_DateTime.finditer(info[key])
                 # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but handstart will be wrong)
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but startTime will be wrong)
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??
                     #print "   tz = ", tz, " datetime =", datetimestr
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
-                # approximate rules for ET daylight savings time:
-                if (   hand.starttime.month == 12                                  # all of Dec
-                    or (hand.starttime.month == 11 and hand.starttime.day > 4)     #    and most of November
-                    or hand.starttime.month < 3                                    #    and all of Jan/Feb
-                    or (hand.starttime.month == 3 and hand.starttime.day < 11) ):  #    and 1st 10 days of March
-                    offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
-                else:
-                    offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
-                # adjust time into UTC:
-                hand.starttime = hand.starttime + offset
-                #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                hand.startTime = removeET(hand.startTime)
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TOURNO':
                 hand.tourNo = info[key]
             if key == 'BUYIN':
-                if info[key] == 'Freeroll':
-                    hand.buyin = '$0+$0'
-                else:
-                    #FIXME: The key looks like: '€0.82+€0.18 EUR'
-                    #       This should be parsed properly and used
-                    hand.buyin = info[key]
+                if hand.tourNo!=None:
+                    if info[key] == 'Freeroll':
+                        hand.buyin = 0
+                        hand.fee = 0
+                        hand.buyinCurrency = "FREE"
+                    else:
+                        #print "info[key]:",info[key]
+                        if info[key].find("$")!=-1:
+                            hand.buyinCurrency="USD"
+                        elif info[key].find(u"€")!=-1:
+                            hand.buyinCurrency="EUR"
+                        elif info[key].find("FPP")!=-1:
+                            hand.buyinCurrency="PSFP"
+                        else:
+                            raise FpdbParseError("failed to detect currency") #FIXME: handle other currencies, FPP, play money
+                        
+                        if hand.buyinCurrency=="USD" or hand.buyinCurrency=="EUR":
+                            info[key]=info[key][:-4]
+                            middle=info[key].find("+")
+                            hand.buyin = int(100*Decimal(info[key][1:middle]))
+                            hand.fee = int(100*Decimal(info[key][middle+2:]))
+                        elif hand.buyinCurrency=="PSFP":
+                            hand.buyin = int(Decimal(info[key][0:-3]))
+                            hand.fee = 0
             if key == 'LEVEL':
                 hand.level = info[key]
 
@@ -259,7 +292,7 @@ class PokerStars(HandHistoryConverter):
             if key == 'PLAY' and info['PLAY'] is not None:
 #                hand.currency = 'play' # overrides previously set value
                 hand.gametype['currency'] = 'play'
-
+    
     def readButton(self, hand):
         m = self.re_Button.search(hand.handText)
         if m:

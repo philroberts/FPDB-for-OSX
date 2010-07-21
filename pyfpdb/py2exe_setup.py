@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 """setup.py
 
 Py2exe script for fpdb.
 """
-#    Copyright 2009,  Ray E. Barker
+#    Copyright 2009-2010,  Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -39,16 +40,14 @@ Py2exe script for fpdb.
 #  MSVCP90.dll. These are somewhere in your windows install, so you 
 #  can just copy them to your working folder. (or just assume other
 #  person will have them? any copyright issues with including them?)
-#- [ If it works, you'll have 3 new folders, build and dist and gfx. Build is 
-#    working space and should be deleted. Dist and gfx contain the files to be
-#    distributed. ]
-#  If it works, you'll have a new dir  fpdb-XXX-YYYYMMDD-exe  which should
+#- If it works, you'll have a new dir  fpdb-YYYYMMDD-exe  which should
 #  contain 2 dirs; gfx and pyfpdb and run_fpdb.bat
-#- Last, you must copy the etc/, lib/ and share/ folders from your
-#  gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
-#  not just the contents) 
+#- [ This bit is now automated:
+#    Last, you must copy the etc/, lib/ and share/ folders from your
+#    gtk/bin/ (just /gtk/?) folder to the pyfpdb folder. (the whole folders, 
+#    not just the contents) ]
 #- You can (should) then prune the etc/, lib/ and share/ folders to 
-#  remove components we don't need. 
+#  remove components we don't need. (see output at end of program run)
 
 # sqlcoder notes: this worked for me with the following notes:
 #- I used the following versions:
@@ -65,6 +64,10 @@ Py2exe script for fpdb.
 #  
 #  libgobject-2.0-0.dll
 #  libgdk-win32-2.0-0.dll
+#
+#  Now updated to work with python 2.6 + related dependencies
+#  See walkthrough in packaging directory for versions used
+#  Updates to this script have broken python 2.5 compatibility (gio module, msvcr71 references now msvcp90)
 
 
 import os
@@ -79,7 +82,9 @@ from datetime import date
 
 origIsSystemDLL = py2exe.build_exe.isSystemDLL
 def isSystemDLL(pathname):
-        if os.path.basename(pathname).lower() in ("msvcp71.dll", "dwmapi.dll"):
+        #VisC++ runtime msvcp71.dll removed; py2.6 needs msvcp90.dll which will not be distributed.
+        #dwmapi appears to be vista-specific file, not XP 
+        if os.path.basename(pathname).lower() in ("dwmapi.dll"):
                 return 0
         return origIsSystemDLL(pathname)
 py2exe.build_exe.isSystemDLL = isSystemDLL
@@ -116,11 +121,11 @@ test_and_remove('build')
 
 
 today = date.today().strftime('%Y%m%d')
-print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_XXX_"+today+'\\'
-print "Enter value for XXX (any length): ",     # the comma means no newline
-xxx = sys.stdin.readline().rstrip()
-dist_dirname = r'fpdb-' + xxx + '-' + today + '-exe'
-dist_dir = r'..\fpdb-' + xxx + '-' + today + '-exe'
+print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_"+today+'\\'
+#print "Enter value for XXX (any length): ",     # the comma means no newline
+#xxx = sys.stdin.readline().rstrip()
+dist_dirname = r'fpdb-' + today + '-exe'
+dist_dir = r'..\fpdb-' + today + '-exe'
 print
 
 test_and_remove(dist_dir)
@@ -128,21 +133,16 @@ test_and_remove(dist_dir)
 setup(
     name        = 'fpdb',
     description = 'Free Poker DataBase',
-    version     = '0.12',
+    version     = '0.20',
 
-    console = [   {'script': 'fpdb.py', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
-                  {'script': 'HUD_main.py', },
-                  {'script': 'Configuration.py', },
-                  {'script': 'Tables.py', },
-                  {'script': 'Stats.py', },
-                  {'script': 'Hello.py', },
-                  {'script': 'GuiBulkImport.py', },
-                  {'script': 'GuiAutoImport.py', }
+    windows = [   {'script': 'fpdb.pyw', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
+                  {'script': 'HUD_main.pyw', },
+                  {'script': 'Configuration.py', }
               ],
 
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
-                      'includes'    : ['cairo', 'pango', 'pangocairo', 'atk', 'gobject'
+                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'
                                       ,'matplotlib.numerix.random_array'
                                       ,'AbsoluteToFpdb',      'BetfairToFpdb'
                                       ,'CarbonToFpdb',        'EverleafToFpdb'
@@ -152,12 +152,13 @@ setup(
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
                       'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
-                                      ,'libgobject-2.0-0.dll'],
+                                      ,'libgobject-2.0-0.dll', 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],
                   }
               },
 
     # files in 2nd value in tuple are moved to dir named in 1st value
-    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../docs/readme.txt'])
+    #data_files updated for new locations of licences + readme nolonger exists
+    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../agpl-3.0.txt', '../fdl-1.2.txt', '../THANKS.txt', '../readme.txt'])
                  ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
                  # line below has problem with fonts subdir ('not a regular file')
@@ -168,10 +169,11 @@ setup(
 
 os.rename('dist', 'pyfpdb')
 
-print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
-print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
-print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
-print 'into there'
+#   these instructions no longer needed:
+#print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
+#print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
+#print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
+#print 'into there'
 
 dest = os.path.join(dist_dirname, 'pyfpdb')
 #print "try renaming pyfpdb to", dest
@@ -180,7 +182,7 @@ dest = dest.replace('\\', '\\\\')
 os.rename( 'pyfpdb', dest )
 
 
-print "Enter directory name for GTK 2.14 (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
+print "Enter directory name for GTK (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
 gtk_dir = sys.stdin.readline().rstrip()
 
 
@@ -211,5 +213,25 @@ src_dir = src_dir.replace('\\', '\\\\')
 dest_dir = os.path.join(dest, 'share')
 dest_dir = dest_dir.replace('\\', '\\\\')
 shutil.copytree( src_dir, dest_dir )
+
+print "\nIf py2exe was successful you should now have a new dir"
+print dist_dirname+" in your pyfpdb dir"
+print """
+The following dirs can probably removed to make the final package smaller:
+
+pyfpdb/lib/glib-2.0
+pyfpdb/lib/gtk-2.0/include
+pyfpdb/lib/pkgconfig
+pyfpdb/share/aclocal
+pyfpdb/share/doc
+pyfpdb/share/glib-2.0
+pyfpdb/share/gtk-2.0
+pyfpdb/share/gtk-doc
+pyfpdb/share/locale
+pyfpdb/share/man
+pyfpdb/share/themes/Default
+
+Use 7-zip to zip up the distribution and create a self extracting archive and that's it!
+"""
 
 

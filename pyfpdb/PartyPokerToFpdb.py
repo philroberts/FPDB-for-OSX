@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2009, Grigorij Indigirkin
+#    Copyright 2009-2010, Grigorij Indigirkin
 #
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -261,6 +261,7 @@ class PartyPoker(HandHistoryConverter):
                     if v[0] in self.pot.returned:
                         self.collected[i][1] = Decimal(v[1]) - self.pot.returned[v[0]]
                         self.collectees[v[0]] -= self.pot.returned[v[0]]
+                        self.pot.returned[v[0]] = 0
                 return origTotalPot()
             return totalPot
         instancemethod = type(hand.totalPot)
@@ -280,7 +281,7 @@ class PartyPoker(HandHistoryConverter):
                     'July','August','September','October','November','December']
                 month = months.index(m2.group('M')) + 1
                 datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 # FIXME: some timezone correction required
                 #tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
                 #hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])
@@ -359,8 +360,14 @@ class PartyPoker(HandHistoryConverter):
         if hand.gametype['type'] == 'ring':
             try:
                 assert noSmallBlind==False
-                m = self.re_PostSB.search(hand.handText)
-                hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+                liveBlind = True
+                for m in self.re_PostSB.finditer(hand.handText):
+                    if liveBlind:
+                        hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
+                        liveBlind = False
+                    else:
+                        # Post dead blinds as ante
+                        hand.addBlind(m.group('PNAME'), 'secondsb', m.group('SB'))
             except: # no small blind
                 hand.addBlind(None, None, None)
 
@@ -432,7 +439,7 @@ class PartyPoker(HandHistoryConverter):
                 if street == 'PREFLOP' and \
                     playerName in [item[0] for item in hand.actions['BLINDSANTES'] if item[2]!='ante']:
                     # preflop raise from blind
-                    hand.addRaiseBy( street, playerName, amount )
+                    hand.addCallandRaise( street, playerName, amount )
                 else:
                     hand.addCallandRaise( street, playerName, amount )
             elif actionType == 'calls':

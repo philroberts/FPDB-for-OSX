@@ -1,0 +1,49 @@
+PokerStars Game #42738187409:  Hold'em No Limit ($0.01/$0.02 USD) - 2010/04/16 11:14:06 WET [2010/04/16 6:14:06 ET]
+Table 'Circinus V' 9-max Seat #4 is the button
+Seat 1: Player2 ($4.26 in chips) 
+Seat 2: Player1 ($0.35 in chips) 
+Seat 3: Player7 ($8.34 in chips) 
+Seat 4: Player5 ($3.70 in chips) 
+Seat 5: Player6 ($4.98 in chips) 
+Seat 7: Player3 ($2.55 in chips) 
+Seat 8: Player0 ($4.91 in chips) 
+Seat 9: Player4 ($1.31 in chips) 
+Player6: posts small blind $0.01
+Alehta: is sitting out 
+Player3: posts big blind $0.02
+*** HOLE CARDS ***
+Dealt to Player1 [3d Ks]
+Alehta leaves the table
+Player0: calls $0.02
+Player4: raises $0.06 to $0.08
+Player2: raises $0.16 to $0.24
+AFMAT joins the table at seat #6 
+Player1: folds 
+Player7: folds 
+Player5: folds 
+Player6: folds 
+Player3: folds 
+Player0: calls $0.22
+Player4: raises $1.07 to $1.31 and is all-in
+Player2: calls $1.07
+Player0: folds 
+*** FLOP *** [7c Ac 6s]
+*** TURN *** [7c Ac 6s] [5d]
+*** RIVER *** [7c Ac 6s 5d] [Qh]
+*** SHOW DOWN ***
+Player4: shows [As Qs] (two pair, Aces and Queens)
+Player2: shows [Jc Jd] (a pair of Jacks)
+Player4 collected $2.79 from pot
+*** SUMMARY ***
+Total pot $2.89 | Rake $0.10 
+Board [7c Ac 6s 5d Qh]
+Seat 1: Player2 showed [Jc Jd] and lost with a pair of Jacks
+Seat 2: Player1 folded before Flop (didn't bet)
+Seat 3: Player7 folded before Flop (didn't bet)
+Seat 4: Player5 (button) folded before Flop (didn't bet)
+Seat 5: Player6 (small blind) folded before Flop
+Seat 7: Player3 (big blind) folded before Flop
+Seat 8: Player0 folded before Flop
+Seat 9: Player4 showed [As Qs] and won ($2.79) with two pair, Aces and Queens
+
+

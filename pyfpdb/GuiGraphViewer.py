@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import threading
 import pygtk
@@ -23,6 +23,7 @@ import os
 import sys
 import traceback
 from time import *
+from datetime import datetime
 #import pokereval
 
 try:
@@ -43,16 +44,17 @@ except ImportError, inst:
 
 import fpdb_import
 import Database
-import Filters
+import RingFilters
 import Charset
 
 class GuiGraphViewer (threading.Thread):
 
-    def __init__(self, querylist, config, debug=True):
+    def __init__(self, querylist, config, parent, debug=True):
         """Constructor for GraphViewer"""
         self.sql = querylist
         self.conf = config
         self.debug = debug
+        self.parent = parent
         #print "start of GraphViewer constructor"
         self.db = Database.Database(self.conf, sql=self.sql)
 
@@ -73,7 +75,7 @@ class GuiGraphViewer (threading.Thread):
                             "Button2"   : True
                           }
 
-        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh _Graph")
         self.filters.registerButton1Callback(self.generateGraph)
         self.filters.registerButton2Name("_Export to File")
@@ -228,9 +230,9 @@ class GuiGraphViewer (threading.Thread):
                 self.ax.plot(blue, color='blue', label='Showdown: $%.2f' %(blue[-1]))
                 self.ax.plot(red, color='red', label='Non-showdown: $%.2f' %(red[-1]))
                 if sys.version[0:3] == '2.5':
-                    self.ax.legend(loc='best', shadow=True, prop=FontProperties(size='smaller'))
+                    self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
-                    self.ax.legend(loc='best', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+                    self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
@@ -334,21 +336,41 @@ class GuiGraphViewer (threading.Thread):
     def exportGraph (self, widget, data):
         if self.fig is None:
             return # Might want to disable export button until something has been generated.
+
         dia_chooser = gtk.FileChooserDialog(title="Please choose the directory you wish to export to:",
-                                            action=gtk.FILE_CHOOSER_ACTION_OPEN,
-                                            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
-        #TODO: Suggest path and filename to start with
+                                            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
+                                            buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OK,gtk.RESPONSE_OK))
+        dia_chooser.set_destroy_with_parent(True)
+        dia_chooser.set_transient_for(self.parent)
+        try: 
+            dia_chooser.set_filename(self.exportFile) # use previously chosen export path as default
+        except:
+            pass
 
         response = dia_chooser.run()
-        if response == gtk.RESPONSE_OK:
-            self.exportDir = dia_chooser.get_filename()
-            print "DEBUG: self.exportDir = %s" %(self.exportDir)
-        elif response == gtk.RESPONSE_CANCEL:
+        
+        if response <> gtk.RESPONSE_OK:
             print 'Closed, no graph exported'
+            dia_chooser.destroy()
+            return
+            
+        # generate a unique filename for export
+        now = datetime.now()
+        now_formatted = now.strftime("%Y%m%d%H%M%S")
+        self.exportFile = dia_chooser.get_filename() + "/fpdb" + now_formatted + ".png"
         dia_chooser.destroy()
-        #TODO: Check to see if file exists
-        #NOTE: Dangerous - will happily overwrite any file we have write access too
-        #TODO: This asks for a directory but will take a filename and overwrite it.
-        self.fig.savefig(self.exportDir, format="png")
+        
+        #print "DEBUG: self.exportFile = %s" %(self.exportFile)
+        self.fig.savefig(self.exportFile, format="png")
 
-
+        #display info box to confirm graph created
+        diainfo = gtk.MessageDialog(parent=self.parent,
+                                flags=gtk.DIALOG_DESTROY_WITH_PARENT,
+                                type=gtk.MESSAGE_INFO,
+                                buttons=gtk.BUTTONS_OK,
+                                message_format="Graph created")
+        diainfo.format_secondary_text(self.exportFile)          
+        diainfo.run()
+        diainfo.destroy()
+        
+    #end of def exportGraph
