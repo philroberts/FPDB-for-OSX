@@ -97,7 +97,7 @@ except:
 
 import GuiPrefs
 import GuiLogView
-import GuiDatabase
+#import GuiDatabase
 import GuiBulkImport
 import GuiPlayerStats
 import GuiPositionalStats
