@@ -689,5 +689,3 @@ if __name__ == "__main__":
 
     e = Fulltilt(in_path = options.ipath, out_path = options.opath, follow = options.follow)
 
-
-
