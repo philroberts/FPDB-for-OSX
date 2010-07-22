@@ -117,7 +117,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.1 plus git"
+VERSION = "0.20.901"
 
 
 class fpdb:
@@ -306,8 +306,8 @@ class fpdb:
             dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        self.warning_box("Unimplemented: Maintain Databases")
-        return
+        #self.warning_box("Unimplemented: Maintain Databases")
+        #return
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
@@ -321,8 +321,14 @@ class fpdb:
                 prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
                 response = dia.run()
                 if response == gtk.RESPONSE_ACCEPT:
+                    log.info('saving updated db data')
                     # save updated config
                     self.config.save()
+                    self.load_profile()
+                    for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
+                        log.info('fpdb: name,desc='+name+','+self.config.supported_databases[name].db_desc)
+                else:
+                    log.info('guidb response was '+str(response))
 
                 self.release_global_lock()
 
@@ -547,23 +553,14 @@ class fpdb:
                 #    self.release_global_lock()
                 #    lock_released = True
                 self.db.recreate_tables()
-                # find any guibulkimport windows and clear player cache:
+                # find any guibulkimport/guiautoimport windows and clear player cache:
                 for t in self.threads:
-                    if isinstance(t, GuiBulkImport.GuiBulkImport):
+                    if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
                         t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
                 #else:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
-                # TODO: figure out why this seems to be necessary
-                dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
-                        buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
-                diastring = "Fpdb now needs to close. Please restart it."
-                dia_restart.format_secondary_text(diastring)
-
-                dia_restart.run()
-                dia_restart.destroy()
-                self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print 'User cancelled recreating tables'
@@ -839,12 +836,12 @@ class fpdb:
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
-                                 ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
+                                 ('maintaindbs', None, '_Maintain Databases', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
