@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 136
+DB_VERSION = 137
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -147,7 +147,6 @@ class Database:
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
-                , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -168,7 +167,6 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
@@ -1641,7 +1639,6 @@ class Database:
                              pdata[p]['street3Bets'],
                              pdata[p]['street4Bets'],
                              pdata[p]['position'],
-                             pdata[p]['tourneyTypeId'],
                              pdata[p]['tourneysPlayersIds'],
                              pdata[p]['startCards'],
                              pdata[p]['street0_3BChance'],
@@ -1983,17 +1980,21 @@ class Database:
                         (hand.tourNo, hand.siteId)
                         )
         result=cursor.fetchone()
+        #print "result of fetching TT by number and site:",result
 
         if result:
             tourneyTypeId = result[0]
         else:
             # Check for an existing TTypeId that matches tourney info, if not found create it
+            #print "info that we use to get TT by detail:", hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO, hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix
+            #print "the query:",self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
-                             hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
+                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
                             )
             result=cursor.fetchone()
-        
+            #print "result of fetching TT by details:",result
+            
             try:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
