@@ -836,7 +836,7 @@ class fpdb:
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
