@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -46,7 +46,6 @@ import Card
 import fpdb_import
 import Database
 import Filters
-import FpdbSQLQueries
 import Charset
 
 class GuiSessionViewer (threading.Thread):

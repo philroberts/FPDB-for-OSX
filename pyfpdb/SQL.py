@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Returns a dict of SQL statements used in fpdb.
 """
@@ -92,6 +92,8 @@ class Sql:
         
         self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
 
+        self.query['getTourneyTypesIds'] = "SELECT id FROM TourneyTypes"
+
         ################################
         # Create Settings
         ################################
@@ -115,20 +117,45 @@ class Sql:
             self.query['createSitesTable'] = """CREATE TABLE Sites (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         name varchar(32) NOT NULL,
-                        currency char(3) NOT NULL)
+                        code char(2) NOT NULL)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createSitesTable'] = """CREATE TABLE Sites (
                         id SERIAL, PRIMARY KEY (id),
                         name varchar(32),
-                        currency char(3))"""
+                        code char(2))"""
         elif db_server == 'sqlite':
             self.query['createSitesTable'] = """CREATE TABLE Sites (
                         id INTEGER PRIMARY KEY,
                         name TEXT NOT NULL,
-                        currency TEXT NOT NULL)"""
+                        code TEXT NOT NULL)"""
 
-
+        ################################
+        # Create Backings
+        ################################
+        
+        if db_server == 'mysql':
+            self.query['createBackingsTable'] = """CREATE TABLE Backings (
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        tourneysPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        buyInPercentage FLOAT UNSIGNED NOT NULL,
+                        payOffPercentage FLOAT UNSIGNED NOT NULL) ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createBackingsTable'] = """CREATE TABLE Backings (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        tourneysPlayerId INT NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
+                        buyInPercentage FLOAT UNSIGNED NOT NULL,
+                        payOffPercentage FLOAT UNSIGNED NOT NULL)"""
+        elif db_server == 'sqlite':
+            self.query['createBackingsTable'] = """CREATE TABLE Backings (
+                        id INTEGER PRIMARY KEY,
+                        tourneysPlayerId INT NOT NULL,
+                        playerId INT NOT NULL,
+                        buyInPercentage REAL UNSIGNED NOT NULL,
+                        payOffPercentage REAL UNSIGNED NOT NULL)"""
+        
         ################################
         # Create Gametypes
         ################################
@@ -137,6 +164,7 @@ class Sql:
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
                         type char(4) NOT NULL,
                         base char(4) NOT NULL,
                         category varchar(9) NOT NULL,
@@ -151,6 +179,7 @@ class Sql:
             self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id SERIAL, PRIMARY KEY (id),
                         siteId INTEGER, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4),
                         type char(4),
                         base char(4),
                         category varchar(9),
@@ -161,9 +190,10 @@ class Sql:
                         smallBet int,
                         bigBet int)"""
         elif db_server == 'sqlite':
-            self.query['createGametypesTable'] = """CREATE TABLE GameTypes (
+            self.query['createGametypesTable'] = """CREATE TABLE Gametypes (
                         id INTEGER PRIMARY KEY,
                         siteId INTEGER,
+                        currency TEXT,
                         type TEXT,
                         base TEXT,
                         category TEXT,
@@ -248,12 +278,13 @@ class Sql:
                             id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
-                            tourneyId INT UNSIGNED NOT NULL, 
+                            tourneyId INT UNSIGNED, 
                             gametypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            handStart DATETIME NOT NULL,
+                            startTime DATETIME NOT NULL,
                             importTime DATETIME NOT NULL,
                             seats TINYINT NOT NULL,
                             maxSeats TINYINT NOT NULL,
+                            rush BOOLEAN,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -284,12 +315,13 @@ class Sql:
                             id BIGSERIAL, PRIMARY KEY (id),
                             tableName VARCHAR(22) NOT NULL,
                             siteHandNo BIGINT NOT NULL,
-                            tourneyId INT NOT NULL,
+                            tourneyId INT,
                             gametypeId INT NOT NULL, FOREIGN KEY (gametypeId) REFERENCES Gametypes(id),
-                            handStart timestamp without time zone NOT NULL,
+                            startTime timestamp without time zone NOT NULL,
                             importTime timestamp without time zone NOT NULL,
                             seats SMALLINT NOT NULL,
                             maxSeats SMALLINT NOT NULL,
+                            rush BOOLEAN,
                             boardcard1 smallint,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 smallint,
                             boardcard3 smallint,
@@ -319,12 +351,13 @@ class Sql:
                             id INTEGER PRIMARY KEY,
                             tableName TEXT(22) NOT NULL,
                             siteHandNo INT NOT NULL,
-                            tourneyId INT NOT NULL,
+                            tourneyId INT,
                             gametypeId INT NOT NULL,
-                            handStart REAL NOT NULL,
+                            startTime REAL NOT NULL,
                             importTime REAL NOT NULL,
                             seats INT NOT NULL,
                             maxSeats INT NOT NULL,
+                            rush BOOLEAN,
                             boardcard1 INT,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                             boardcard2 INT,
                             boardcard3 INT,
@@ -357,50 +390,95 @@ class Sql:
 
         if db_server == 'mysql':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
-                            id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                            siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                            buyin INT NOT NULL,
-                            fee INT NOT NULL,
-                            maxSeats INT NOT NULL DEFAULT -1,
-                            knockout BOOLEAN NOT NULL DEFAULT False,
-                            rebuyOrAddon BOOLEAN NOT NULL DEFAULT False,
-                            speed varchar(10),
-                            headsUp BOOLEAN NOT NULL DEFAULT False,
-                            shootout BOOLEAN NOT NULL DEFAULT False,
-                            matrix BOOLEAN NOT NULL DEFAULT False,
-                            sng BOOLEAN NOT NULL DEFAULT False
-                            )
+                        id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
+                        buyIn INT NOT NULL,
+                        fee INT NOT NULL,
+                        category varchar(9) NOT NULL,
+                        limitType char(2) NOT NULL,
+                        buyInChips INT,
+                        maxSeats INT,
+                        rebuy BOOLEAN,
+                        rebuyCost INT,
+                        rebuyFee INT,
+                        rebuyChips INT,
+                        addOn BOOLEAN,
+                        addOnCost INT,
+                        addOnFee INT,
+                        addOnChips INT,
+                        knockout BOOLEAN,
+                        koBounty INT,
+                        speed varchar(10),
+                        shootout BOOLEAN,
+                        matrix BOOLEAN,
+                        sng BOOLEAN,
+                        satellite BOOLEAN,
+                        doubleOrNothing BOOLEAN,
+                        guarantee INT,
+                        added INT,
+                        addedCurrency VARCHAR(4))
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id SERIAL, PRIMARY KEY (id),
                         siteId INT NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
+                        currency varchar(4) NOT NULL,
                         buyin INT NOT NULL,
                         fee INT NOT NULL,
-                        maxSeats INT NOT NULL DEFAULT -1,
-                        knockout BOOLEAN NOT NULL DEFAULT False,
-                        rebuyOrAddon BOOLEAN NOT NULL DEFAULT False,
+                        category varchar(9),
+                        limitType char(2),
+                        buyInChips INT,
+                        maxSeats INT,
+                        rebuy BOOLEAN,
+                        rebuyCost INT,
+                        rebuyFee INT,
+                        rebuyChips INT,
+                        addOn BOOLEAN,
+                        addOnCost INT,
+                        addOnFee INT,
+                        addOnChips INT,
+                        knockout BOOLEAN,
+                        koBounty INT,
                         speed varchar(10),
-                        headsUp BOOLEAN NOT NULL DEFAULT False,
-                        shootout BOOLEAN NOT NULL DEFAULT False,
-                        matrix BOOLEAN NOT NULL DEFAULT False,
-                        sng BOOLEAN NOT NULL DEFAULT False
-                        )"""
+                        shootout BOOLEAN,
+                        matrix BOOLEAN,
+                        sng BOOLEAN,
+                        satellite BOOLEAN,
+                        doubleOrNothing BOOLEAN,
+                        guarantee INT,
+                        added INT,
+                        addedCurrency VARCHAR(4))"""
         elif db_server == 'sqlite':
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id INTEGER PRIMARY KEY,
                         siteId INT NOT NULL,
+                        currency VARCHAR(4) NOT NULL,
                         buyin INT NOT NULL,
                         fee INT NOT NULL,
-                        maxSeats INT NOT NULL DEFAULT -1,
-                        knockout BOOLEAN NOT NULL DEFAULT 0,
-                        rebuyOrAddon BOOLEAN NOT NULL DEFAULT 0,
+                        category TEXT,
+                        limitType TEXT,
+                        buyInChips INT,
+                        maxSeats INT,
+                        rebuy BOOLEAN,
+                        rebuyCost INT,
+                        rebuyFee INT,
+                        rebuyChips INT,
+                        addOn BOOLEAN,
+                        addOnCost INT,
+                        addOnFee INT,
+                        addOnChips INT,
+                        knockout BOOLEAN,
+                        koBounty INT,
                         speed TEXT,
-                        headsUp BOOLEAN NOT NULL DEFAULT 0,
-                        shootout BOOLEAN NOT NULL DEFAULT 0,
-                        matrix BOOLEAN NOT NULL DEFAULT 0,
-                        sng BOOLEAN NOT NULL DEFAULT 0
-                        )"""
+                        shootout BOOLEAN,
+                        matrix BOOLEAN,
+                        sng BOOLEAN,
+                        satellite BOOLEAN,
+                        doubleOrNothing BOOLEAN,
+                        guarantee INT,
+                        added INT,
+                        addedCurrency VARCHAR(4))"""
 
         ################################
         # Create Tourneys
@@ -409,65 +487,47 @@ class Sql:
         if db_server == 'mysql':
             self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                         id INT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyTypeId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         siteTourneyNo BIGINT NOT NULL,
-                        entries INT NOT NULL,
-                        prizepool INT NOT NULL,
+                        entries INT,
+                        prizepool INT,
                         startTime DATETIME NOT NULL,
                         endTime DATETIME,
-                        buyinChips INT,
                         tourneyName varchar(40),
                         matrixIdProcessed TINYINT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        rebuyChips INT DEFAULT 0,
-                        addonChips INT DEFAULT 0,
-                        rebuyAmount INT DEFAULT 0,
-                        addonAmount INT DEFAULT 0,
-                        totalRebuys INT DEFAULT 0,
-                        totalAddons INT DEFAULT 0,
-                        koBounty INT DEFAULT 0,
+                        totalRebuyCount INT,
+                        totalAddOnCount INT,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                         id SERIAL, PRIMARY KEY (id),
-                        tourneyTypeId INT DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         siteTourneyNo BIGINT,
                         entries INT,
                         prizepool INT,
                         startTime timestamp without time zone,
                         endTime timestamp without time zone,
-                        buyinChips INT,
                         tourneyName varchar(40),
                         matrixIdProcessed SMALLINT DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        rebuyChips INT DEFAULT 0,
-                        addonChips INT DEFAULT 0,
-                        rebuyAmount INT DEFAULT 0,
-                        addonAmount INT DEFAULT 0,
-                        totalRebuys INT DEFAULT 0,
-                        totalAddons INT DEFAULT 0,
-                        koBounty INT DEFAULT 0,
+                        totalRebuyCount INT,
+                        totalAddOnCount INT,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
             self.query['createTourneysTable'] = """CREATE TABLE Tourneys (
                         id INTEGER PRIMARY KEY,
-                        tourneyTypeId INT DEFAULT 1,
+                        tourneyTypeId INT,
                         siteTourneyNo INT,
                         entries INT,
                         prizepool INT,
                         startTime REAL,
                         endTime REAL,
-                        buyinChips INT,
                         tourneyName TEXT,
                         matrixIdProcessed INT UNSIGNED DEFAULT 0,    /* Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn */
-                        rebuyChips INT DEFAULT 0,
-                        addonChips INT DEFAULT 0,
-                        rebuyAmount INT DEFAULT 0,
-                        addonAmount INT DEFAULT 0,
-                        totalRebuys INT DEFAULT 0,
-                        totalAddons INT DEFAULT 0,
-                        koBounty INT DEFAULT 0,
+                        totalRebuyCount INT,
+                        totalAddOnCount INT,
                         comment TEXT,
                         commentTs REAL)"""
         ################################
@@ -482,6 +542,7 @@ class Sql:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
+                        sitout BOOLEAN NOT NULL,
                     
                         card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 smallint NOT NULL,
@@ -499,7 +560,7 @@ class Sql:
                         comment text,
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
-                        tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT,
                         wonWhenSeenStreet2 FLOAT,
@@ -598,6 +659,7 @@ class Sql:
                         startCash INT NOT NULL,
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
+                        sitout BOOLEAN NOT NULL,
 
                         card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 smallint NOT NULL,
@@ -614,8 +676,8 @@ class Sql:
                         totalProfit INT,
                         comment text,
                         commentTs timestamp without time zone,
-                        tourneysPlayersId BIGINT,
-                        tourneyTypeId INT NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT,
                         wonWhenSeenStreet2 FLOAT,
@@ -704,9 +766,7 @@ class Sql:
                         street3Raises SMALLINT,
                         street4Raises SMALLINT,
 
-                        actionString VARCHAR(15),
-
-                        FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id))"""
+                        actionString VARCHAR(15))"""
         elif db_server == 'sqlite':
             self.query['createHandsPlayersTable'] = """CREATE TABLE HandsPlayers (
                         id INTEGER PRIMARY KEY,
@@ -715,6 +775,7 @@ class Sql:
                         startCash INT NOT NULL,
                         position TEXT,
                         seatNo INT NOT NULL,
+                        sitout BOOLEAN NOT NULL,
                     
                         card1 INT NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 INT NOT NULL,
@@ -732,7 +793,7 @@ class Sql:
                         comment TEXT,
                         commentTs REAL,
                         tourneysPlayersId INT,
-                        tourneyTypeId INT NOT NULL DEFAULT 1,
+                        tourneyTypeId INT,
 
                         wonWhenSeenStreet1 REAL,
                         wonWhenSeenStreet2 REAL,
@@ -820,7 +881,7 @@ class Sql:
                         street2Raises INT,
                         street3Raises INT,
                         street4Raises INT,
-                        actionString REAL)
+                        actionString VARCHAR(15))
                         """
 
 
@@ -833,12 +894,12 @@ class Sql:
                         id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         tourneyId INT UNSIGNED NOT NULL, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        payinAmount INT NOT NULL,
-                        rank INT NOT NULL,
-                        winnings INT NOT NULL,
-                        nbRebuys INT DEFAULT 0,
-                        nbAddons INT DEFAULT 0,
-                        nbKO INT DEFAULT 0,
+                        rank INT,
+                        winnings INT,
+                        winningsCurrency VARCHAR(4),
+                        rebuyCount INT,
+                        addOnCount INT,
+                        koCount INT,
                         comment TEXT,
                         commentTs DATETIME)
                         ENGINE=INNODB"""
@@ -847,12 +908,12 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneyId INT, FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        payinAmount INT,
                         rank INT,
                         winnings INT,
-                        nbRebuys INT DEFAULT 0,
-                        nbAddons INT DEFAULT 0,
-                        nbKO INT DEFAULT 0,
+                        winningsCurrency VARCHAR(4),
+                        rebuyCount INT,
+                        addOnCount INT,
+                        koCount INT,
                         comment TEXT,
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
@@ -860,12 +921,12 @@ class Sql:
                         id INT PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
-                        payinAmount INT,
                         rank INT,
                         winnings INT,
-                        nbRebuys INT DEFAULT 0,
-                        nbAddons INT DEFAULT 0,
-                        nbKO INT DEFAULT 0,
+                        winningsCurrency VARCHAR(4),
+                        rebuyCount INT,
+                        addOnCount INT,
+                        koCount INT,
                         comment TEXT,
                         commentTs timestamp without time zone,
                         FOREIGN KEY (tourneyId) REFERENCES Tourneys(id),
@@ -926,7 +987,7 @@ class Sql:
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         activeSeats SMALLINT NOT NULL,
                         position CHAR(1),
-                        tourneyTypeId SMALLINT UNSIGNED NOT NULL DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT NOT NULL,
 
@@ -1027,7 +1088,7 @@ class Sql:
                         playerId INT, FOREIGN KEY (playerId) REFERENCES Players(id),
                         activeSeats SMALLINT,
                         position CHAR(1),
-                        tourneyTypeId INT DEFAULT 1, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
+                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
                         styleKey CHAR(7) NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT,
 
@@ -1126,7 +1187,7 @@ class Sql:
                         playerId INT,
                         activeSeats INT,
                         position TEXT,
-                        tourneyTypeId INT DEFAULT 1,
+                        tourneyTypeId INT,
                         styleKey TEXT NOT NULL,  /* 1st char is style (A/T/H/S), other 6 are the key */
                         HDs INT,
 
@@ -1249,14 +1310,14 @@ class Sql:
             self.query['addTPlayersIndex'] = """CREATE UNIQUE INDEX tourneyId ON TourneysPlayers (tourneyId, playerId)"""
 
         if db_server == 'mysql':
-            self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(buyin, fee
-                                             , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            self.query['addTTypesIndex'] = """ALTER TABLE TourneyTypes ADD UNIQUE INDEX tourneytypes_all(siteId, buyin, fee
+                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
         elif db_server == 'postgresql':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
-                                             , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
+                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
         elif db_server == 'sqlite':
-            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (buyin, fee
-                                             , maxSeats, knockout, rebuyOrAddon, speed, headsUp, shootout, matrix, sng)"""
+            self.query['addTTypesIndex'] = """CREATE UNIQUE INDEX tourneyTypes_all ON TourneyTypes (siteId, buyin, fee
+                                             , maxSeats, knockout, rebuy, addOn, speed, shootout, matrix, sng)"""
 
         self.query['get_last_hand'] = "select max(id) from Hands"
 
@@ -1596,7 +1657,7 @@ class Sql:
                                AND h2.seats between %s and %s
                               )
                           )
-                    ORDER BY h.handStart desc, hp2.PlayerId
+                    ORDER BY h.startTime desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
@@ -1699,7 +1760,7 @@ class Sql:
                                AND h2.seats between %s and %s
                               )
                           )
-                    ORDER BY h.handStart desc, hp2.PlayerId
+                    ORDER BY h.startTime desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
@@ -1802,7 +1863,7 @@ class Sql:
                                AND h2.seats between %s and %s
                               )
                           )
-                    ORDER BY h.handStart desc, hp2.PlayerId
+                    ORDER BY h.startTime desc, hp2.PlayerId
                     /* order rows by handstart descending so that we can stop reading rows when
                        there's a gap over X minutes between hands (ie. when we get back to start of
                        the session */
@@ -1872,23 +1933,23 @@ class Sql:
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where handStart < date_sub(utc_timestamp(), interval '1' day)"""
+                where startTime < date_sub(utc_timestamp(), interval '1' day)"""
         elif db_server == 'postgresql':
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where handStart < now() at time zone 'UTC' - interval '1 day'"""
+                where startTime < now() at time zone 'UTC' - interval '1 day'"""
         elif db_server == 'sqlite':
             self.query['get_hand_1day_ago'] = """
                 select coalesce(max(id),0)
                 from Hands
-                where handStart < strftime('%J', 'now') - 1"""
+                where startTime < strftime('%J', 'now') - 1"""
 
         # not used yet ...
         # gets a date, would need to use handsplayers (not hudcache) to get exact hand Id
         if db_server == 'mysql':
             self.query['get_date_nhands_ago'] = """
-                select concat( 'd', date_format(max(h.handStart), '%Y%m%d') )
+                select concat( 'd', date_format(max(h.startTime), '%Y%m%d') )
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -1900,7 +1961,7 @@ class Sql:
                 """
         elif db_server == 'postgresql':
             self.query['get_date_nhands_ago'] = """
-                select 'd' || to_char(max(h3.handStart), 'YYMMDD')
+                select 'd' || to_char(max(h3.startTime), 'YYMMDD')
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -1912,7 +1973,7 @@ class Sql:
                 """
         elif db_server == 'sqlite': # untested guess at query:
             self.query['get_date_nhands_ago'] = """
-                select 'd' || strftime(max(h3.handStart), 'YYMMDD')
+                select 'd' || strftime(max(h3.startTime), 'YYMMDD')
                 from (select hp.playerId
                             ,coalesce(greatest(max(hp.handId)-%s,1),1) as maxminusx
                       from HandsPlayers hp
@@ -1923,27 +1984,31 @@ class Sql:
                 inner join Hands h          on (h.id = hp3.handId)
                 """
 
-        # used in GuiPlayerStats:
+        # used in Gui*PlayerStats:
         self.query['getPlayerId'] = """SELECT id from Players where name = %s"""
 
         self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
 
-
-        # used in Filters:
+        # used in *Filters:
         self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
         self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
-        self.query['getLimits'] = """SELECT DISTINCT bigBlind from Gametypes ORDER by bigBlind DESC"""
+        #self.query['getLimits'] = already defined further up
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
                                       ORDER by type, limitType DESC, bigBlind DESC"""
         self.query['getLimits3'] = """select DISTINCT type
-                                           , limitType
-                                           , case type 
+                                           , gt.limitType
+                                           , case type
                                                  when 'ring' then bigBlind 
-                                                 else buyin 
-                                             end as bb_or_buyin
+-                                                else buyin
+-                                            end as bb_or_buyin
                                       from Gametypes gt
                                       cross join TourneyTypes tt
+                                      order by type, gt.limitType DESC, bb_or_buyin DESC"""
+        self.query['getCashLimits'] = """select DISTINCT type
+                                           , limitType
+                                           , bigBlind as bb_or_buyin
+                                      from Gametypes gt
                                       order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
@@ -2020,7 +2085,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   date_format(h.handStart, '%Y-%m-%d %T') <datestest>
+                      and   date_format(h.startTime, '%Y-%m-%d %T') <datestest>
                       group by hgameTypeId
                               ,pname
                               ,gt.base
@@ -2117,7 +2182,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   to_char(h.handStart, 'YYYY-MM-DD HH24:MI:SS') <datestest>
+                      and   to_char(h.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
                       group by hgameTypeId
                               ,pname
                               ,gt.base
@@ -2215,7 +2280,7 @@ class Sql:
                       and   h.seats <seats_test>
                       <flagtest>
                       <gtbigBlind_test>
-                      and   datetime(h.handStart) <datestest>
+                      and   datetime(h.startTime) <datestest>
                       group by hgameTypeId
                               ,hp.playerId
                               ,gt.base
@@ -2239,6 +2304,42 @@ class Sql:
                               ,max(gt.bigBlind) desc
                               ,s.name
                       """
+
+        if db_server == 'mysql':
+            self.query['tourneyPlayerDetailedStats'] = """
+                      select s.name                                                                 AS siteName
+                            ,t.tourneyTypeId                                                        AS tourneyTypeId
+                            ,tt.currency                                                            AS currency
+                            ,(CASE WHEN tt.currency = "USD" THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,tt.fee/100.0                                                           AS fee
+                            ,tt.category                                                            AS category
+                            ,tt.limitType                                                           AS limitType
+                            ,p.name                                                                 AS playerName
+                            ,COUNT(1)                                                               AS tourneyCount
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
+                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS 1st
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
+                            ,SUM(tp.winnings)/100.0                                                 AS won
+                            ,SUM(CASE WHEN tt.currency = "USD" THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
+                      from TourneysPlayers tp
+                           inner join Tourneys t        on  (t.id = tp.tourneyId)
+                           inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
+                           inner join Sites s           on  (s.Id = tt.siteId)
+                           inner join Players p         on  (p.Id = tp.playerId)
+                      where tp.playerId in <nametest> <sitetest>
+                      and   date_format(t.startTime, '%Y-%m-%d %T') <datestest>
+                      group by tourneyTypeId, playerName
+                      order by tourneyTypeId
+                              ,playerName
+                              ,siteName"""
+        elif db_server == 'postgresql':
+            self.query['tourneyPlayerDetailedStats'] = """TODO"""
+        elif db_server == 'sqlite':
+            self.query['tourneyPlayerDetailedStats'] = """TODO"""
 
         if db_server == 'mysql':
             self.query['playerStats'] = """
@@ -2339,7 +2440,7 @@ class Sql:
                            inner join Hands h        ON h.id            = hp.handId
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
+                           and   date_format(h.startTime, '%Y-%m-%d') <datestest>
                            group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
@@ -2442,7 +2543,7 @@ class Sql:
                            inner join Hands h   ON (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                           and   to_char(h.startTime, 'YYYY-MM-DD') <datestest>
                            group by hp.handId, gtId, hp.totalProfit
                           ) hprof
                       group by hprof.gtId
@@ -2577,7 +2678,7 @@ class Sql:
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   date_format(h.handStart, '%Y-%m-%d') <datestest>
+                           and   date_format(h.startTime, '%Y-%m-%d') <datestest>
                            group by hp.handId, gtId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
@@ -2714,7 +2815,7 @@ class Sql:
                            inner join Hands h  ON  (h.id = hp.handId)
                            where hp.playerId in <player_test>
                            and   hp.tourneysPlayersId IS NULL
-                           and   to_char(h.handStart, 'YYYY-MM-DD') <datestest>
+                           and   to_char(h.startTime, 'YYYY-MM-DD') <datestest>
                            group by hp.handId, gameTypeId, hp.position, hp.totalProfit
                           ) hprof
                       group by hprof.gtId, PlPosition
@@ -2735,13 +2836,13 @@ class Sql:
             INNER JOIN Gametypes gt    ON  (gt.id = h.gametypeId)
             WHERE pl.id in <player_test>
             AND   pl.siteId in <site_test>
-            AND   h.handStart > '<startdate_test>'
-            AND   h.handStart < '<enddate_test>'
+            AND   h.startTime > '<startdate_test>'
+            AND   h.startTime < '<enddate_test>'
             <limit_test>
             <game_test>
-            AND   hp.tourneysPlayersId IS NULL
-            GROUP BY h.handStart, hp.handId, hp.sawShowdown, hp.totalProfit
-            ORDER BY h.handStart"""
+            AND   gt.type = 'ring'
+            GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
+            ORDER BY h.startTime"""
 
 
         ####################################
@@ -2749,39 +2850,39 @@ class Sql:
         ####################################
         if db_server == 'mysql':
             self.query['sessionStats'] = """
-                SELECT UNIX_TIMESTAMP(h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT UNIX_TIMESTAMP(h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
-                 AND  date_format(h.handStart, '%Y-%m-%d') <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  date_format(h.startTime, '%Y-%m-%d') <datestest>
+                 AND  gt.type is 'ring'
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
-                SELECT EXTRACT(epoch from h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT EXTRACT(epoch from h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
-                 AND  h.handStart <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  h.startTime <datestest>
+                 AND  gt.type is 'ring'
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
-                SELECT STRFTIME('<ampersand_s>', h.handStart) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
+                SELECT STRFTIME('<ampersand_s>', h.startTime) as time, hp.handId, hp.startCash, hp.winnings, hp.totalProfit
                 FROM HandsPlayers hp
                  INNER JOIN Hands h       on  (h.id = hp.handId)
                  INNER JOIN Gametypes gt  on  (gt.Id = h.gameTypeId)
                  INNER JOIN Sites s       on  (s.Id = gt.siteId)
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
-                 AND  h.handStart <datestest>
-                 AND  hp.tourneysPlayersId IS NULL
+                 AND  h.startTime <datestest>
+                 AND  gt.type is 'ring'
                 ORDER by time"""
 
 
@@ -2889,7 +2990,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,date_format(h.handStart, 'd%y%m%d')
+                      ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -2968,7 +3069,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
-                        ,date_format(h.handStart, 'd%y%m%d')
+                        ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
             self.query['rebuildHudCache'] = """
@@ -3068,7 +3169,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,'d' || to_char(h.handStart, 'YYMMDD')
+                      ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -3147,7 +3248,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
-                        ,to_char(h.handStart, 'YYMMDD')
+                        ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
             self.query['rebuildHudCache'] = """
@@ -3247,7 +3348,7 @@ class Sql:
                             else 'E'
                        end                                            AS hc_position
                       ,hp.tourneyTypeId
-                      ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
+                      ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
                       ,sum(wonAtSD)
@@ -3326,7 +3427,7 @@ class Sql:
                         ,h.seats
                         ,hc_position
                         ,hp.tourneyTypeId
-                        ,'d' || substr(strftime('%Y%m%d', h.handStart),3,7)
+                        ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
         self.query['insert_hudcache'] = """
@@ -3560,9 +3661,9 @@ class Sql:
         """
 
         self.query['insertGameTypes'] = """INSERT INTO Gametypes
-                                              (siteId, type, base, category, limitType
+                                              (siteId, currency, type, base, category, limitType
                                               ,hiLo, smallBlind, bigBlind, smallBet, bigBet)
-                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
 
         self.query['isAlreadyInDB'] = """SELECT id FROM Hands 
                                          WHERE gametypeId=%s AND siteHandNo=%s
@@ -3573,9 +3674,9 @@ class Sql:
                                                               tt.fee,
                                                               tt.maxSeats,
                                                               tt.knockout,
-                                                              tt.rebuyOrAddon,
+                                                              tt.rebuy,
+                                                              tt.addOn,
                                                               tt.speed,
-                                                              tt.headsUp,
                                                               tt.shootout,
                                                               tt.matrix
                                                     FROM TourneyTypes tt 
@@ -3586,102 +3687,72 @@ class Sql:
         self.query['getTourneyTypeId'] = """SELECT  id
                                             FROM TourneyTypes
                                             WHERE siteId=%s
+                                            AND currency=%s
                                             AND buyin=%s
                                             AND fee=%s
+                                            AND category=%s
+                                            AND limitType=%s
                                             AND knockout=%s
-                                            AND rebuyOrAddon=%s
+                                            AND rebuy=%s
+                                            AND addOn=%s
                                             AND speed=%s
-                                            AND headsUp=%s
                                             AND shootout=%s
                                             AND matrix=%s
+                                            AND added=%s
+                                            AND addedCurrency=%s
         """
 
-        self.query['insertTourneyTypes'] = """INSERT INTO TourneyTypes
-                                                  (siteId, buyin, fee, knockout, rebuyOrAddon
-                                                  ,speed, headsUp, shootout, matrix)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
+                                                  (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, rebuy,
+                                                  addOn ,speed, shootout, matrix, added, addedCurrency)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
-        self.query['getTourney'] = """SELECT t.id,
-                                             t.tourneyTypeId,
-                                             t.entries,
-                                             t.prizepool,
-                                             t.startTime,
-                                             t.endTime,
-                                             t.buyinChips,
-                                             t.tourneyName,
-                                             t.matrixIdProcessed,
-                                             t.rebuyChips,
-                                             t.addonChips,
-                                             t.rebuyAmount,
-                                             t.addonAmount,
-                                             t.totalRebuys,
-                                             t.totalAddons,
-                                             t.koBounty,
-                                             t.comment
-                                        FROM Tourneys t  
-                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id) 
-                                        WHERE t.siteTourneyNo=%s AND tt.siteId=%s
+        self.query['getTourneyByTourneyNo'] = """SELECT t.*
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        WHERE tt.siteId=%s AND t.siteTourneyNo=%s
         """
 
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
-                                             startTime, endTime, buyinChips, tourneyName, matrixIdProcessed,
-                                             rebuyChips, addonChips, rebuyAmount, addonAmount, totalRebuys,
-                                             totalAddons, koBounty, comment, commentTs)
-                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                                                %s, %s, %s, %s, %s, %s, %s, %s)
+                                             startTime, endTime, tourneyName, matrixIdProcessed,
+                                             totalRebuyCount, totalAddOnCount)
+                                        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
         self.query['updateTourney'] = """UPDATE Tourneys
-                                             SET tourneyTypeId = %s,
-                                                 entries = %s,
+                                             SET entries = %s,
                                                  prizepool = %s,
                                                  startTime = %s,
                                                  endTime = %s,
-                                                 buyinChips = %s,
                                                  tourneyName = %s,
                                                  matrixIdProcessed = %s,
-                                                 rebuyChips = %s,
-                                                 addonChips = %s,
-                                                 rebuyAmount = %s,
-                                                 addonAmount = %s,
-                                                 totalRebuys = %s,
-                                                 totalAddons = %s,
-                                                 koBounty = %s,
+                                                 totalRebuyCount = %s,
+                                                 totalAddOnCount = %s,
                                                  comment = %s,
                                                  commentTs = %s
                                         WHERE id=%s
         """
         
-        self.query['getTourneysPlayers'] = """SELECT    id,
-                                                        payinAmount,
-                                                        rank,
-                                                        winnings,
-                                                        nbRebuys,
-                                                        nbAddons,
-                                                        nbKO,
-                                                        comment,
-                                                        commentTs
+        self.query['getTourneysPlayersByIds'] = """SELECT *
                                                 FROM TourneysPlayers
                                                 WHERE tourneyId=%s AND playerId+0=%s            
         """
 
-        self.query['updateTourneysPlayers'] = """UPDATE TourneysPlayers
-                                                 SET payinAmount = %s,
-                                                     rank = %s,
+        self.query['updateTourneysPlayer'] = """UPDATE TourneysPlayers
+                                                 SET rank = %s,
                                                      winnings = %s,
-                                                     nbRebuys = %s,
-                                                     nbAddons = %s,
-                                                     nbKO = %s,
-                                                     comment = %s,
-                                                     commentTs = %s
+                                                     winningsCurrency = %s,
+                                                     rebuyCount = %s,
+                                                     addOnCount = %s,
+                                                     koCount = %s
                                                  WHERE id=%s
         """
 
-        self.query['insertTourneysPlayers'] = """INSERT INTO TourneysPlayers
-                                                    (tourneyId, playerId, payinAmount, rank, winnings, nbRebuys, nbAddons, nbKO, comment, commentTs)
-                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        self.query['insertTourneysPlayer'] = """INSERT INTO TourneysPlayers
+                                                    (tourneyId, playerId, rank, winnings, winningsCurrency, rebuyCount, addOnCount, koCount)
+                                                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['selectHandsPlayersWithWrongTTypeId'] = """SELECT id
@@ -3708,7 +3779,7 @@ class Sql:
                                             gametypeid,
                                             sitehandno,
                                             tourneyId,
-                                            handstart,
+                                            startTime,
                                             importtime,
                                             seats,
                                             maxseats,
@@ -3746,6 +3817,7 @@ class Sql:
                 playerId,
                 startCash,
                 seatNo,
+                sitout,
                 card1,
                 card2,
                 card3,
@@ -3789,6 +3861,7 @@ class Sql:
                 street4Bets,
                 position,
                 tourneyTypeId,
+                tourneysPlayersId,
                 startCards,
                 street0_3BChance,
                 street0_3BDone,
@@ -3845,9 +3918,26 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s
                 )"""
         
+        ################################
+        # Counts for DB stats window
+        ################################
+        self.query['getHandCount'] = "SELECT COUNT(id) FROM Hands"
+        self.query['getTourneyCount'] = "SELECT COUNT(id) FROM Tourneys"
+        self.query['getTourneyTypeCount'] = "SELECT COUNT(id) FROM TourneyTypes"
+        
+        ################################
+        # queries for dumpDatabase
+        ################################
+        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+            self.query['get'+table] = u"SELECT * FROM "+table
+        
+        ################################
+        # placeholders and substitution stuff
+        ################################
         if db_server == 'mysql':
             self.query['placeholder'] = u'%s'
         elif db_server == 'postgresql':

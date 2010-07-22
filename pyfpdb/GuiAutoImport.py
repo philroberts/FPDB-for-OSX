@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2008-2010 Steffen Schaumburg
@@ -101,7 +101,7 @@ class GuiAutoImport (threading.Thread):
         hbox.pack_start(lbl1, expand=True, fill=False)
 
         self.doAutoImportBool = False
-        self.startButton = gtk.ToggleButton("  _Start Autoimport  ")
+        self.startButton = gtk.ToggleButton("  Start _Autoimport  ")
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
@@ -156,7 +156,7 @@ class GuiAutoImport (threading.Thread):
     def do_import(self):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
-            self.startButton.set_label(u' I M P O R T I N G  ')
+            self.startButton.set_label(u'  _Auto Import Running  ')
             self.importer.runUpdated()
             self.addText(".")
             #sys.stdout.write(".")
@@ -167,9 +167,9 @@ class GuiAutoImport (threading.Thread):
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(u'  _Stop Autoimport  ')
+            self.startButton.set_label(u'  Stop _Autoimport  ')
         else:
-            self.startButton.set_label(u'  _Start Autoimport  ')
+            self.startButton.set_label(u'  Start _Autoimport  ')
 
         return False
 
@@ -246,7 +246,7 @@ class GuiAutoImport (threading.Thread):
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
-            self.startButton.set_label(u'  _Start Autoimport  ')
+            self.startButton.set_label(u'  Start _Autoimport  ')
 
     #end def GuiAutoImport.startClicked
 

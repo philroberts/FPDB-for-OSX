@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
@@ -177,7 +177,7 @@ or None if we fail to get the info """
                                 # TODO: (1-on-1) does have that info in the game type line
         if self.HORSEHand:
             hand.maxseats = 8
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
         return
 
     def readPlayerStacks(self, hand):

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2010, Matthew Boss
@@ -156,7 +156,7 @@ or None if we fail to get the info """
         hand.handid = m.group('HID1') + m.group('HID2')
         hand.tablename = m.group('TABLE')[:-1]
         hand.maxseats = 2 # This value may be increased as necessary
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME')[:12],
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME')[:12],
                                                     '%Y%m%d%H%M')
         # Check that the hand is complete up to the awarding of the pot; if
         # not, the hand is unparseable

@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2008-2010, Carl Gherardi
@@ -154,7 +154,7 @@ or None if we fail to get the info """
         # 2008/11/10 3:58:52 ET
         #TODO: Do conversion from GMT to ET
         #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
         return
 
     def readPlayerStacks(self, hand):

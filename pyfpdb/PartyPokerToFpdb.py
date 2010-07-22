@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 #    Copyright 2009-2010, Grigorij Indigirkin
@@ -281,7 +281,7 @@ class PartyPoker(HandHistoryConverter):
                     'July','August','September','October','November','December']
                 month = months.index(m2.group('M')) + 1
                 datetimestr = "%s/%s/%s %s:%s:%s" % (m2.group('Y'), month,m2.group('D'),m2.group('H'),m2.group('MIN'),m2.group('S'))
-                hand.starttime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
                 # FIXME: some timezone correction required
                 #tzShift = defaultdict(lambda:0, {'EDT': -5, 'EST': -6, 'MSKS': 3})
                 #hand.starttime -= datetime.timedelta(hours=tzShift[m2.group('TZ')])

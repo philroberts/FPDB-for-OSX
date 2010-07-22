@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """Database.py
 
@@ -53,7 +53,6 @@ log = logging.getLogger("db")
 #    FreePokerTools modules
 import SQL
 import Card
-import Tourney
 import Charset
 from Exceptions import *
 import Configuration
@@ -75,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 119
+DB_VERSION = 136
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -141,6 +140,8 @@ class Database:
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
@@ -155,6 +156,8 @@ class Database:
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               ]
 
@@ -291,6 +294,30 @@ class Database:
             self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
+    def dumpDatabase(self):
+        result="fpdb database dump\nDB version=" + str(DB_VERSION)+"\n\n"
+        
+        tables=self.cursor.execute(self.sql.query['list_tables'])
+        tables=self.cursor.fetchall()
+        for table in tables:
+            table=table[0]
+            
+            print "table:", table
+            result+="###################\nTable "+table+"\n###################\n"
+            rows=self.cursor.execute(self.sql.query['get'+table])
+            rows=self.cursor.fetchall()
+            columnNames=self.cursor.description
+            if not rows:
+                result+="empty table\n"
+            else:
+                for row in rows:
+                    for columnNumber in range(len(columnNames)):
+                        result+=("  "+columnNames[columnNumber][0]+"="+str(row[columnNumber])+"\n")
+                    result+="\n"
+            result+="\n"
+        return result
+    #end def dumpDatabase
+    
     # could be used by hud to change hud style
     def set_hud_style(self, style):
         self.hud_style = style
@@ -490,6 +517,7 @@ class Database:
             self.connection.commit()
         self.cursor.close()
         self.connection.close()
+        self.__connected = False
     
     def reconnect(self, due_to_error=False):
         """Reconnects the DB"""
@@ -553,6 +581,24 @@ class Database:
         c = self.connection.cursor()
         c.execute(self.sql.query['get_hand_info'], new_hand_id)
         return c.fetchall()
+
+    def getHandCount(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getHandCount'])
+        return c.fetchone()[0]
+    #end def getHandCount
+
+    def getTourneyCount(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getTourneyCount'])
+        return c.fetchone()[0]
+    #end def getTourneyCount
+
+    def getTourneyTypeCount(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getTourneyTypeCount'])
+        return c.fetchone()[0]
+    #end def getTourneyCount
 
     def get_actual_seat(self, hand_id, name):
         c = self.connection.cursor()
@@ -803,17 +849,18 @@ class Database:
         #print "session stat_dict =", stat_dict
         #return stat_dict
             
-    def get_player_id(self, config, site, player_name):
+    def get_player_id(self, config, siteName, playerName):
         c = self.connection.cursor()
-        #print "get_player_id: player_name =", player_name, type(player_name)
-        p_name = Charset.to_utf8(player_name)
-        c.execute(self.sql.query['get_player_id'], (p_name, site))
+        siteNameUtf = Charset.to_utf8(siteName)
+        playerNameUtf = unicode(playerName)
+        #print "db.get_player_id siteName",siteName,"playerName",playerName
+        c.execute(self.sql.query['get_player_id'], (playerNameUtf, siteNameUtf))
         row = c.fetchone()
         if row:
             return row[0]
         else:
             return None
-            
+    
     def get_player_names(self, config, site_id=None, like_player_name="%"):
         """Fetch player names from players. Use site_id and like_player_name if provided"""
 
@@ -1063,6 +1110,7 @@ class Database:
         """(Re-)creates the tables of the current DB"""
         
         self.drop_tables()
+        self.resetPlayerIDs()
         self.create_tables()
         self.createAllIndexes()
         self.commit()
@@ -1089,6 +1137,7 @@ class Database:
             c.execute(self.sql.query['createHandsPlayersTable'])
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
+            c.execute(self.sql.query['createBackingsTable'])
 
             # Create unique indexes:
             log.debug("Creating unique indexes")
@@ -1166,7 +1215,7 @@ class Database:
             for idx in self.indexes[self.backend]:
                 if self.backend == self.MYSQL_INNODB:
                     print "Creating mysql index %s %s" %(idx['tab'], idx['col'])
-                    log.debug("Creating sqlite index %s %s" %(idx['tab'], idx['col']))
+                    log.debug("Creating mysql index %s %s" %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s on %s(%s)" % (idx['col'],idx['tab'],idx['col'])
                         self.get_cursor().execute(s)
@@ -1174,8 +1223,8 @@ class Database:
                         print "    create idx failed: " + str(sys.exc_info())
                 elif self.backend == self.PGSQL:
                     # mod to use tab_col for index name?
-                    print "Creating pg index %s %s" %(idx['tab'], idx['col'])
-                    log.debug("Creating sqlite index %s %s" %(idx['tab'], idx['col']))
+                    print "Creating pgsql index %s %s" %(idx['tab'], idx['col'])
+                    log.debug("Creating pgsql index %s %s" %(idx['tab'], idx['col']))
                     try:
                         s = "create index %s_%s_idx on %s(%s)" % (idx['tab'], idx['col'], idx['tab'], idx['col'])
                         self.get_cursor().execute(s)
@@ -1344,29 +1393,18 @@ class Database:
     def fillDefaultData(self):
         c = self.get_cursor() 
         c.execute("INSERT INTO Settings (version) VALUES (%s);" % (DB_VERSION))
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Full Tilt Poker', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('PokerStars', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Everleaf', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Win2day', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('OnGame', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('UltimateBet', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Betfair', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Absolute', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('PartyPoker', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Partouche', 'EUR')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('Carbon', 'USD')")
-        c.execute("INSERT INTO Sites (name,currency) VALUES ('PKR', 'USD')")
-        if self.backend == self.SQLITE:
-            c.execute("INSERT INTO TourneyTypes (id, siteId, buyin, fee) VALUES (NULL, 1, 0, 0);")
-        elif self.backend == self.PGSQL:
-            c.execute("""insert into TourneyTypes(siteId, buyin, fee, maxSeats, knockout
-                                                 ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (1, 0, 0, 0, False, False, null, False, False, False);""")
-        elif self.backend == self.MYSQL_INNODB:
-            c.execute("""insert into TourneyTypes(id, siteId, buyin, fee, maxSeats, knockout
-                                                 ,rebuyOrAddon, speed, headsUp, shootout, matrix)
-                         values (DEFAULT, 1, 0, 0, 0, False, False, null, False, False, False);""")
-
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Full Tilt Poker', 'FT')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PokerStars', 'PS')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Everleaf', 'EV')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Win2day', 'W2')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('OnGame', 'OG')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('UltimateBet', 'UB')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Betfair', 'BF')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Absolute', 'AB')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PartyPoker', 'PP')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1374,6 +1412,7 @@ class Database:
         self.createAllIndexes()
         self.dropAllForeignKeys()
         self.createAllForeignKeys()
+    #end def rebuild_indexes
 
     def rebuild_hudcache(self, h_start=None, v_start=None):
         """clears hudcache and rebuilds from the individual handsplayers records"""
@@ -1403,9 +1442,9 @@ class Database:
                 where = ""
             else:
                 where =   "where (    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.handStart > '" + v_start + "')" \
+                        + "       and h.startTime > '" + v_start + "')" \
                         + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.handStart > '" + h_start + "')"
+                        + "       and h.startTime > '" + h_start + "')"
             rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
 
             self.get_cursor().execute(self.sql.query['clearHudCache'])
@@ -1520,9 +1559,9 @@ class Database:
                 p['tableName'], 
                 p['gameTypeId'], 
                 p['siteHandNo'], 
-                0, # tourneyId: 0 means not a tourney hand
-                p['handStart'], 
-                datetime.today(), #importtime
+                p['tourneyId'],
+                p['startTime'], 
+                datetime.utcnow(), #importtime
                 p['seats'],
                 p['maxSeats'],
                 p['texture'],
@@ -1559,6 +1598,7 @@ class Database:
                              pids[p],
                              pdata[p]['startCash'],
                              pdata[p]['seatNo'],
+                             pdata[p]['sitout'],
                              pdata[p]['card1'],
                              pdata[p]['card2'],
                              pdata[p]['card3'],
@@ -1602,6 +1642,7 @@ class Database:
                              pdata[p]['street4Bets'],
                              pdata[p]['position'],
                              pdata[p]['tourneyTypeId'],
+                             pdata[p]['tourneysPlayersIds'],
                              pdata[p]['startCards'],
                              pdata[p]['street0_3BChance'],
                              pdata[p]['street0_3BDone'],
@@ -1793,9 +1834,13 @@ class Database:
                 hilo = "s"
             elif game['category'] in ['razz','27_3draw','badugi']:
                 hilo = "l"
-            tmp  = self.insertGameTypes( (siteid, game['type'], game['base'], game['category'], game['limitType'], hilo,
+            tmp  = self.insertGameTypes( (siteid, 'USD', game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
+                                    #FIXME: recognise currency
         return tmp[0]
+
+    def resetPlayerIDs(self):
+        self.pcache = None
 
     def getSqlPlayerIDs(self, pnames, siteid):
         result = {}
@@ -1929,59 +1974,141 @@ class Database:
             print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
-    def tRecogniseTourneyType(self, tourney):
-        log.debug("Database.tRecogniseTourneyType")
-        typeId = 1
+    def createTourneyType(self, hand):#note: this method is used on Hand and TourneySummary objects
+        tourneyTypeId = 1
+        
         # Check if Tourney exists, and if so retrieve TTypeId : in that case, check values of the ttype
         cursor = self.get_cursor()
         cursor.execute (self.sql.query['getTourneyTypeIdByTourneyNo'].replace('%s', self.sql.query['placeholder']),
-                        (tourney.tourNo, tourney.siteId)
+                        (hand.tourNo, hand.siteId)
                         )
         result=cursor.fetchone()
 
-        expectedValues = { 1 : "buyin", 2 : "fee", 4 : "isKO", 5 : "isRebuy", 6 : "speed", 
-                           7 : "isHU", 8 : "isShootout", 9 : "isMatrix" }
-        typeIdMatch = True
-
-        try:
-            len(result)
-            typeId = result[0]
-            log.debug("Tourney found in db with Tourney_Type_ID = %d" % typeId)
-            for ev in expectedValues :
-                if ( getattr( tourney, expectedValues.get(ev) ) <> result[ev] ):
-                    log.debug("TypeId mismatch : wrong %s : Tourney=%s / db=%s" % (expectedValues.get(ev), getattr( tourney, expectedValues.get(ev)), result[ev]) )
-                    typeIdMatch = False
-                    #break
-        except:
-            # Tourney not found : a TourneyTypeId has to be found or created for that specific tourney
-            typeIdMatch = False
-    
-        if typeIdMatch == False :
-            # Check for an existing TTypeId that matches tourney info (buyin/fee, knockout, rebuy, speed, matrix, shootout)
-            # if not found create it
-            log.debug("Searching for a TourneyTypeId matching TourneyType data")
+        if result:
+            tourneyTypeId = result[0]
+        else:
+            # Check for an existing TTypeId that matches tourney info, if not found create it
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO,
-                             tourney.isRebuy, tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
+                             hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                             )
             result=cursor.fetchone()
         
             try:
-                len(result)
-                typeId = result[0]
-                log.debug("Existing Tourney Type Id found : %d" % typeId)
+                tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
-                log.debug("Tourney Type Id not found : create one")
-                cursor.execute (self.sql.query['insertTourneyTypes'].replace('%s', self.sql.query['placeholder']),
-                                (tourney.siteId, tourney.buyin, tourney.fee, tourney.isKO, tourney.isRebuy,
-                                 tourney.speed, tourney.isHU, tourney.isShootout, tourney.isMatrix)
+                cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
+                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips,
+                                 hand.isKO, hand.isRebuy,
+                                 hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                                 )
-                typeId = self.get_last_insert_id(cursor)
-
-        return typeId
-    #end def tRecogniseTourneyType
-
+                tourneyTypeId = self.get_last_insert_id(cursor)
+        return tourneyTypeId
+    #end def createTourneyType
+    
+    def createOrUpdateTourney(self, hand, source):#note: this method is used on Hand and TourneySummary objects
+        cursor = self.get_cursor()
+        cursor.execute (self.sql.query['getTourneyByTourneyNo'].replace('%s', self.sql.query['placeholder']),
+                        (hand.siteId, hand.tourNo))
+        columnNames=[desc[0] for desc in cursor.description]
+        result=cursor.fetchone()
         
+        if result != None:
+            expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
+                    'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            updateDb=False
+            resultDict = dict(zip(columnNames, result))
+            
+            tourneyId = resultDict["id"]
+            if source=="TS":
+                for ev in expectedValues :
+                    if getattr(hand, ev)==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
+                        setattr(hand, ev, resultDict[ev])
+                    elif getattr(hand, ev)!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
+                        updateDb=True
+                    #elif ev=="startTime":
+                    #    if (resultDict[ev] < hand.startTime):
+                    #        hand.startTime=resultDict[ev]
+                if updateDb:
+                    cursor.execute (self.sql.query['updateTourney'].replace('%s', self.sql.query['placeholder']),
+                           (hand.entries, hand.prizepool, hand.startTime, hand.endTime, hand.tourneyName,
+                            hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount, hand.comment, hand.commentTs, tourneyId))
+        else:
+            if source=="HHC":
+                cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                        (hand.tourneyTypeId, hand.tourNo, None, None,
+                         hand.startTime, None, None, None, None, None))
+            elif source=="TS":
+                cursor.execute (self.sql.query['insertTourney'].replace('%s', self.sql.query['placeholder']),
+                        (hand.tourneyTypeId, hand.tourNo, hand.entries, hand.prizepool, hand.startTime,
+                         hand.endTime, hand.tourneyName, hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount))
+            else:
+                raise FpdbParseError("invalid source in Database.createOrUpdateTourney")
+            tourneyId = self.get_last_insert_id(cursor)
+        return tourneyId
+    #end def createOrUpdateTourney
+        
+    def createOrUpdateTourneysPlayers(self, hand, source):#note: this method is used on Hand and TourneySummary objects
+        tourneysPlayersIds={}
+        for player in hand.players:
+            if source=="TS": #TODO remove this horrible hack
+                playerId = hand.dbid_pids[player]
+            elif source=="HHC":
+                playerId = hand.dbid_pids[player[1]]
+            else:
+                raise FpdbParseError("invalid source in Database.createOrUpdateTourneysPlayers")
+            
+            cursor = self.get_cursor()
+            cursor.execute (self.sql.query['getTourneysPlayersByIds'].replace('%s', self.sql.query['placeholder']),
+                            (hand.tourneyId, playerId))
+            columnNames=[desc[0] for desc in cursor.description]
+            result=cursor.fetchone()
+
+            if result != None:
+                expectedValues = ('rank', 'winnings', 'winningsCurrency', 'rebuyCount', 'addOnCount', 'koCount')
+                updateDb=False
+                resultDict = dict(zip(columnNames, result))
+                
+                tourneysPlayersIds[player[1]]=result[0]
+                if source=="TS":
+                    for ev in expectedValues :
+                        handAttribute=ev
+                        if ev!="winnings" and ev!="winningsCurrency":
+                            handAttribute+="s"
+                        
+                        if getattr(hand, handAttribute)[player]==None and resultDict[ev]!=None:#DB has this value but object doesnt, so update object
+                            setattr(hand, handAttribute, resultDict[ev][player])
+                        elif getattr(hand, handAttribute)[player]!=None and resultDict[ev]==None:#object has this value but DB doesnt, so update DB
+                            updateDb=True
+                    if updateDb:
+                        cursor.execute (self.sql.query['updateTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
+                               (hand.ranks[player], hand.winnings[player], hand.winningsCurrency[player],
+                                 hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player], tourneysPlayersIds[player[1]]))
+            else:
+                if source=="HHC":
+                    cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
+                            (hand.tourneyId, playerId, None, None, None, None, None, None))
+                elif source=="TS":
+                    #print "all values: tourneyId",hand.tourneyId, "playerId",playerId, "rank",hand.ranks[player], "winnings",hand.winnings[player], "winCurr",hand.winningsCurrency[player], hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player]
+                    if hand.ranks[player]:
+                        cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
+                                (hand.tourneyId, playerId, int(hand.ranks[player]), int(hand.winnings[player]), hand.winningsCurrency[player],
+                                 hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player]))
+                    else:
+                        cursor.execute (self.sql.query['insertTourneysPlayer'].replace('%s', self.sql.query['placeholder']),
+                                (hand.tourneyId, playerId, None, None, None,
+                                 hand.rebuyCounts[player], hand.addOnCounts[player], hand.koCounts[player]))
+                tourneysPlayersIds[player[1]]=self.get_last_insert_id(cursor)
+        return tourneysPlayersIds
+    #end def createOrUpdateTourneysPlayers
+    
+    def getTourneyTypesIds(self):
+        c = self.connection.cursor()
+        c.execute(self.sql.query['getTourneyTypesIds'])
+        result = c.fetchall()
+        return result
+    #end def getTourneyTypesIds
+#end class Database
 
 # Class used to hold all the data needed to write a hand to the db
 # mainParser() in fpdb_parse_logic.py creates one of these and then passes it to 
@@ -2028,12 +2155,11 @@ class HandToWrite:
             self.maxSeats = None
             self.tableName = None
             self.seatNos = None
-            self.payin_amounts = None # tourney import was complaining mightily about this missing
         except:
             print "htw.init error: " + str(sys.exc_info())
             raise
     # end def __init__
-
+    
     def set_all( self, config, settings, base, category, siteTourneyNo, buyin
                , fee, knockout, entries, prizepool, tourneyStartTime
                , isTourney, tourneyTypeId, siteID, siteHandNo

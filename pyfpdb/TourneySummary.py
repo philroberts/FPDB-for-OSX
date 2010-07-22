@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 #Copyright 2009-2010 Stephane Alessio
@@ -14,6 +14,8 @@
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
+
+"""parses and stores summary sections from e.g. eMail or summary files"""
 
 # TODO: check to keep only the needed modules
 
@@ -34,7 +36,7 @@ import Card
 
 log = logging.getLogger("parser")
 
-class Tourney(object):
+class TourneySummary(object):
 
 ################################################################
 #    Class Variables
@@ -45,63 +47,87 @@ class Tourney(object):
     SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9 }
 
 
-    def __init__(self, sitename, gametype, summaryText, builtFrom = "HHC"):
-        self.sitename           = sitename
-        self.siteId             = self.SITEIDS[sitename]
-        self.gametype           = gametype
-        self.starttime          = None
-        self.endtime            = None
+    def __init__(self, db, config, siteName, summaryText, builtFrom = "HHC"):
+        self.db                 = db
+        self.config             = config
+        self.siteName           = siteName
+        self.siteId             = self.SITEIDS[siteName]
+        
         self.summaryText        = summaryText
         self.tourneyName        = None
+        self.tourneyTypeId      = None
+        self.tourneyId          = None
+        self.startTime          = None
+        self.endTime            = None
         self.tourNo             = None
+        self.currency           = None
         self.buyin              = None
-        self.fee                = None  # the Database code is looking for this one .. ?
+        self.fee                = None
         self.hero               = None
         self.maxseats           = None
         self.entries            = 0
         self.speed              = "Normal"
-        self.prizepool          = None  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
-        self.buyInChips         = None
+        self.prizepool          = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}
+        self.buyInChips         = 0
         self.mixed              = None
         self.isRebuy            = False
+        self.isAddOn            = False
         self.isKO               = False
-        self.isHU               = False
         self.isMatrix           = False
         self.isShootout         = False
         self.matrixMatchId      = None  # For Matrix tourneys : 1-4 => match tables (traditionnal), 0 => Positional winnings info
+        self.matrixIdProcessed  = None
         self.subTourneyBuyin    = None
         self.subTourneyFee      = None
-        self.rebuyChips         = 0
-        self.addOnChips         = 0
-        self.rebuyAmount		= 0
-        self.addOnAmount		= 0
-        self.totalRebuys        = 0
-        self.totalAddOns        = 0
-        self.koBounty           = 0
+        self.rebuyChips         = None
+        self.addOnChips         = None
+        self.rebuyCost          = None
+        self.addOnCost          = None
+        self.totalRebuyCount    = None
+        self.totalAddOnCount    = None
+        self.koBounty           = None
         self.tourneyComment     = None
         self.players            = []
+        self.isSng              = False
+        self.isSatellite        = False
+        self.isDoubleOrNothing  = False
+        self.guarantee          = None
+        self.added              = None
+        self.addedCurrency      = None
+        self.gametype           = {'category':None, 'limitType':None}
+        self.comment            = None
+        self.commentTs          = None
 
         # Collections indexed by player names
-        self.finishPositions    = {}
+        self.playerIds          = {}
+        self.tourneysPlayersIds = {}
+        self.ranks              = {}
         self.winnings           = {}
-        self.payinAmounts       = {}
-        self.countRebuys        = {}
-        self.countAddOns        = {}
-        self.countKO            = {}
+        self.winningsCurrency   = {}
+        self.rebuyCounts        = {}
+        self.addOnCounts        = {}
+        self.koCounts           = {}
 
         # currency symbol for this summary
         self.sym = None
-        #self.sym = self.SYMBOL[self.gametype['currency']] # save typing! delete this attr when done
+        
+        if builtFrom=="IMAP":
+            self.parseSummary()
+            self.insertOrUpdate()
+    #end def __init__
 
     def __str__(self):
         #TODO : Update
-        vars = ( ("SITE", self.sitename),
-                 ("START TIME", self.starttime),
-                 ("END TIME", self.endtime),
+        vars = ( ("SITE", self.siteName),
+                 ("START TIME", self.startTime),
+                 ("END TIME", self.endTime),
                  ("TOURNEY NAME", self.tourneyName),
                  ("TOURNEY NO", self.tourNo),
+                 ("TOURNEY TYPE ID", self.tourneyTypeId),
+                 ("TOURNEY ID", self.tourneyId),
                  ("BUYIN", self.buyin),
                  ("FEE", self.fee),
+                 ("CURRENCY", self.currency),
                  ("HERO", self.hero),
                  ("MAXSEATS", self.maxseats),
                  ("ENTRIES", self.entries),
@@ -109,32 +135,42 @@ class Tourney(object):
                  ("PRIZE POOL", self.prizepool),
                  ("STARTING CHIP COUNT", self.buyInChips),
                  ("MIXED", self.mixed),
-                 ("REBUY ADDON", self.isRebuy),
+                 ("REBUY", self.isRebuy),
+                 ("ADDON", self.isAddOn),
                  ("KO", self.isKO),
-                 ("HU", self.isHU),
                  ("MATRIX", self.isMatrix),
+                 ("MATRIX ID PROCESSED", self.matrixIdProcessed),
                  ("SHOOTOUT", self.isShootout),
                  ("MATRIX MATCH ID", self.matrixMatchId),
                  ("SUB TOURNEY BUY IN", self.subTourneyBuyin),
                  ("SUB TOURNEY FEE", self.subTourneyFee),
                  ("REBUY CHIPS", self.rebuyChips),
                  ("ADDON CHIPS", self.addOnChips),
-                 ("REBUY AMOUNT", self.rebuyAmount),
-                 ("ADDON AMOUNT", self.addOnAmount),
-                 ("TOTAL REBUYS", self.totalRebuys),
-                 ("TOTAL ADDONS", self.totalAddOns),
+                 ("REBUY COST", self.rebuyCost),
+                 ("ADDON COST", self.addOnCost),
+                 ("TOTAL REBUYS", self.totalRebuyCount),
+                 ("TOTAL ADDONS", self.totalAddOnCount),
                  ("KO BOUNTY", self.koBounty),
-                 ("TOURNEY COMMENT", self.tourneyComment)
+                 ("TOURNEY COMMENT", self.tourneyComment),
+                 ("SNG", self.isSng),
+                 ("SATELLITE", self.isSatellite),
+                 ("DOUBLE OR NOTHING", self.isDoubleOrNothing),
+                 ("GUARANTEE", self.guarantee),
+                 ("ADDED", self.added),
+                 ("ADDED CURRENCY", self.addedCurrency),
+                 ("COMMENT", self.comment),
+                 ("COMMENT TIMESTAMP", self.commentTs)
         )
  
-        structs = ( ("GAMETYPE", self.gametype),
+        structs = ( ("PLAYER IDS", self.playerIds),
                     ("PLAYERS", self.players),
-                    ("PAYIN AMOUNTS", self.payinAmounts),
-                    ("POSITIONS", self.finishPositions),                    
+                    ("TOURNEYS PLAYERS IDS", self.tourneysPlayersIds),
+                    ("RANKS", self.ranks),                    
                     ("WINNINGS", self.winnings),
-                    ("COUNT REBUYS", self.countRebuys),
-                    ("COUNT ADDONS", self.countAddOns),
-                    ("NB OF KO", self.countKO)
+                    ("WINNINGS CURRENCY", self.winningsCurrency),
+                    ("COUNT REBUYS", self.rebuyCounts),
+                    ("COUNT ADDONS", self.addOnCounts),
+                    ("NB OF KO", self.koCounts)
         )
         str = ''
         for (name, var) in vars:
@@ -143,14 +179,15 @@ class Tourney(object):
         for (name, struct) in structs:
             str = str + "\n%s =\n" % name + pprint.pformat(struct, 4)
         return str
+    #end def __str__
+    
+    def parseSummary(self): abstract
+    """should fill the class variables with the parsed information"""
 
     def getSummaryText(self):
         return self.summaryText
-
-    def prepInsert(self, db):
-        pass
-
-    def insert(self, db):
+    
+    def insertOrUpdate(self):
         # First : check all needed info is filled in the object, especially for the initial select
 
         # Notes on DB Insert
@@ -161,18 +198,29 @@ class Tourney(object):
         # Starttime may not match the one in the Summary file : HH = time of the first Hand / could be slighltly different from the one in the summary file
         # Note: If the TourneyNo could be a unique id .... this would really be a relief to deal with matrix matches ==> Ask on the IRC / Ask Fulltilt ??
         
-        dbTourneyTypeId = db.tRecogniseTourneyType(self)
-        logging.debug("Tourney Type ID = %d" % dbTourneyTypeId)
-        dbTourneyId = db.tRecognizeTourney(self, dbTourneyTypeId)
-        logging.debug("Tourney ID = %d" % dbTourneyId)
-        dbTourneysPlayersIds = db.tStoreTourneyPlayers(self, dbTourneyId)
-        logging.debug("TourneysPlayersId = %s" % dbTourneysPlayersIds) 
-        db.tUpdateTourneysHandsPlayers(self, dbTourneysPlayersIds, dbTourneyTypeId)
-        logging.debug("tUpdateTourneysHandsPlayers done")
-        logging.debug("Tourney Insert done")
+        for player in self.players:
+            id=self.db.get_player_id(self.config, self.siteName, player)
+            if not id:
+                id=self.db.insertPlayer(unicode(player), self.siteId)
+            self.playerIds.update({player:id})
+        
+        #print "TS.insert players",self.players,"playerIds",self.playerIds
+        
+        self.buyinCurrency=self.currency
+        self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
+        
+        #print "TS.self before starting insert",self
+        self.tourneyTypeId = self.db.createTourneyType(self)
+        self.db.commit()
+        self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
+        self.db.commit()
+        self.tourneysPlayersIds = self.db.createOrUpdateTourneysPlayers(self, "TS")
+        self.db.commit()
+        
+        logging.debug("Tourney Insert/Update done")
         
         # TO DO : Return what has been done (tourney created, updated, nothing)
-        # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneyPlayers and handsplayers)
+        # ?? stored = 1 if tourney is fully created / duplicates = 1, if everything was already here and correct / partial=1 if some things were already here (between tourney, tourneysPlayers and handsPlayers)
         # if so, prototypes may need changes to know what has been done or make some kind of dict in Tourney object that could be updated during the insert process to store that information
         stored = 0
         duplicates = 0
@@ -181,83 +229,8 @@ class Tourney(object):
         ttime = 0
         return (stored, duplicates, partial, errors, ttime)
 
-    
-    def old_insert_from_Hand(self, db):
-        """ Function to insert Hand into database
-Should not commit, and do minimal selects. Callers may want to cache commits
-db: a connected Database object"""
-        # TODO:
-        # Players - base playerid and siteid tuple
-        sqlids = db.getSqlPlayerIDs([p[1] for p in self.players], self.siteId)
 
-        #Gametypes
-        gtid = db.getGameTypeId(self.siteId, self.gametype)
-
-        # HudCache data to come from DerivedStats class
-        # HandsActions - all actions for all players for all streets - self.actions
-        # Hands - Summary information of hand indexed by handId - gameinfo
-        #This should be moved to prepInsert
-        hh = {}
-        hh['siteHandNo'] =  self.handid
-        hh['handStart'] = self.starttime
-        hh['gameTypeId'] = gtid
-        # seats TINYINT NOT NULL,
-        hh['tableName'] = self.tablename
-        hh['maxSeats'] = self.maxseats
-        hh['seats'] = len(sqlids)
-        # Flop turn and river may all be empty - add (likely) too many elements and trim with range
-        boardcards = self.board['FLOP'] + self.board['TURN'] + self.board['RIVER'] + [u'0x', u'0x', u'0x', u'0x', u'0x']
-        cards = [Card.encodeCard(c) for c in boardcards[0:5]]
-        hh['boardcard1'] = cards[0]
-        hh['boardcard2'] = cards[1]
-        hh['boardcard3'] = cards[2]
-        hh['boardcard4'] = cards[3]
-        hh['boardcard5'] = cards[4]
-
-             # texture smallint,
-             # playersVpi SMALLINT NOT NULL,         /* num of players vpi */
-                # Needs to be recorded
-             # playersAtStreet1 SMALLINT NOT NULL,   /* num of players seeing flop/street4 */
-                # Needs to be recorded
-             # playersAtStreet2 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtStreet3 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtStreet4 SMALLINT NOT NULL,
-                # Needs to be recorded
-             # playersAtShowdown SMALLINT NOT NULL,
-                # Needs to be recorded
-             # street0Raises TINYINT NOT NULL, /* num small bets paid to see flop/street4, including blind */
-                # Needs to be recorded
-             # street1Raises TINYINT NOT NULL, /* num small bets paid to see turn/street5 */
-                # Needs to be recorded
-             # street2Raises TINYINT NOT NULL, /* num big bets paid to see river/street6 */
-                # Needs to be recorded
-             # street3Raises TINYINT NOT NULL, /* num big bets paid to see sd/street7 */
-                # Needs to be recorded
-             # street4Raises TINYINT NOT NULL, /* num big bets paid to see showdown */
-                # Needs to be recorded
-
-        #print "DEBUG: self.getStreetTotals = (%s, %s, %s, %s, %s)" %  self.getStreetTotals()
-        #FIXME: Pot size still in decimal, needs to be converted to cents
-        (hh['street1Pot'], hh['street2Pot'], hh['street3Pot'], hh['street4Pot'], hh['showdownPot']) = self.getStreetTotals()
-
-             # comment TEXT,
-             # commentTs DATETIME
-        #print hh
-        handid = db.storeHand(hh)
-        # HandsPlayers - ? ... Do we fix winnings?
-        # Tourneys ?
-        # TourneysPlayers
-
-        pass
-
-    def select(self, tourneyId):
-        """ Function to create Tourney object from database """
-        
-        
-
-    def addPlayer(self, rank, name, winnings, payinAmount, nbRebuys, nbAddons, nbKO):
+    def addPlayer(self, rank, name, winnings, winningsCurrency, rebuyCount, addOnCount, koCount):
         """\
 Adds a player to the tourney, and initialises data structures indexed by player.
 rank        (int) indicating the finishing rank (can be -1 if unknown)
@@ -266,13 +239,29 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
 """
         log.debug("addPlayer: rank:%s - name : '%s' - Winnings (%s)" % (rank, name, winnings))
         self.players.append(name)
-        self.finishPositions.update( { name : Decimal(rank) } )
-        self.winnings.update( { name : Decimal(winnings) } )
-        self.payinAmounts.update( {name : Decimal(payinAmount) } )
-        self.countRebuys.update( {name: Decimal(nbRebuys) } )
-        self.countAddOns.update( {name: Decimal(nbAddons) } )
-        self.countKO.update( {name : Decimal(nbKO) } )
+        if rank:
+            self.ranks.update( { name : Decimal(rank) } )
+            self.winnings.update( { name : Decimal(winnings) } )
+            self.winningsCurrency.update( { name : winningsCurrency } )
+        else:
+            self.ranks.update( { name : None } )
+            self.winnings.update( { name : None } )
+            self.winningsCurrency.update( { name : None } )
+        if rebuyCount:
+            self.rebuyCounts.update( {name: Decimal(rebuyCount) } )
+        else:
+            self.rebuyCounts.update( {name: None } )
         
+        if addOnCount:
+            self.addOnCounts.update( {name: Decimal(addOnCount) } )
+        else:
+            self.addOnCounts.update( {name: None } )
+        
+        if koCount:
+            self.koCounts.update( {name : Decimal(koCount) } )
+        else:
+            self.koCounts.update( {name: None } )
+    #end def addPlayer
 
     def incrementPlayerWinnings(self, name, additionnalWinnings):
         log.debug("incrementPlayerWinnings: name : '%s' - Add Winnings (%s)" % (name, additionnalWinnings))
@@ -289,35 +278,6 @@ winnings    (decimal) the money the player ended the tourney with (can be 0, or 
             print "checkPlayerExists", player, "fail"
             raise FpdbParseError
 
-
-    def getGameTypeAsString(self):
-        """\
-Map the tuple self.gametype onto the pokerstars string describing it
-"""
-        # currently it appears to be something like ["ring", "hold", "nl", sb, bb]:
-        gs = {"holdem"     : "Hold'em",
-              "omahahi"    : "Omaha",
-              "omahahilo"  : "Omaha Hi/Lo",
-              "razz"       : "Razz",
-              "studhi"     : "7 Card Stud",
-              "studhilo"   : "7 Card Stud Hi/Lo",
-              "fivedraw"   : "5 Card Draw",
-              "27_1draw"   : "FIXME",
-              "27_3draw"   : "Triple Draw 2-7 Lowball",
-              "badugi"     : "Badugi"
-             }
-        ls = {"nl"  : "No Limit",
-              "pl"  : "Pot Limit",
-              "fl"  : "Limit",
-              "cn"  : "Cap No Limit",
-              "cp"  : "Cap Pot Limit"
-             }
-
-        log.debug("gametype: %s" %(self.gametype))
-        retstring = "%s %s" %(gs[self.gametype['category']], ls[self.gametype['limitType']])
-        return retstring
-
-
     def writeSummary(self, fh=sys.__stdout__):
         print >>fh, "Override me"
 
@@ -325,11 +285,11 @@ Map the tuple self.gametype onto the pokerstars string describing it
         self.writeSummary(sys.stdout)
 
 
-def assemble(cnxn, tourneyId):
+def assemble(cnxn, tourneyId): #TODO: move this method to Hand or Database
     # TODO !!
     c = cnxn.cursor()
     
-    # We need at least sitename, gametype, handid
+    # We need at least siteName, gametype, handid
     # for the Hand.__init__
     c.execute("""
 select
@@ -365,7 +325,7 @@ limit 1""", {'handid':handid})
     #TODO: siteid should be in hands table - we took the scenic route through players here.
     res = c.fetchone()
     gametype = {'category':res[1],'base':res[2],'type':res[3],'limitType':res[4],'hilo':res[5],'sb':res[6],'bb':res[7], 'currency':res[10]}
-    h = HoldemOmahaHand(hhc = None, sitename=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
+    h = HoldemOmahaHand(hhc = None, siteName=res[0], gametype = gametype, handText=None, builtFrom = "DB", handid=handid)
     cards = map(Card.valueSuitFromCard, res[11:16] )
     if cards[0]:
         h.setCommunityCards('FLOP', cards[0:3])
@@ -383,15 +343,15 @@ limit 1""", {'handid':handid})
 SELECT
     h.sitehandno as hid,
     h.tablename as table,
-    h.handstart as starttime
+    h.startTime as startTime
 FROM
-    hands as h
+    Hands as h
 WHERE h.id = %(handid)s
 """, {'handid':handid})
     res = c.fetchone()
     h.handid = res[0]
     h.tablename = res[1]
-    h.starttime = res[2] # automatically a datetime
+    h.startTime = res[2] # automatically a datetime
     
     # PlayerStacks
     c.execute("""

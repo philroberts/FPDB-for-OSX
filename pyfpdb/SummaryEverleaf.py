@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # Copyright (c) 2009-2010 Eric Blade, and the FPDB team.
@@ -51,7 +51,7 @@ class SummaryParser(htmllib.HTMLParser): # derive new HTML parser
         self.nextPool       = False
         self.TourneyPool    = None
         self.nextPlayers    = False
-        self.TourneyPlayers = None
+        self.TourneysPlayers = None
         self.nextAllowRebuys = False
         self.TourneyRebuys  = None
         self.parseResultsA  = False
@@ -134,7 +134,7 @@ class SummaryParser(htmllib.HTMLParser): # derive new HTML parser
             if not self.nextPlayers and x == "Player Count:":
                 self.nextPlayers = True
             elif self.nextPlayers:
-                self.TourneyPlayers = x
+                self.TourneysPlayers = x
                 self.nextPlayers = False
                 
             if not self.nextAllowRebuys and x == "Rebuys possible?:":
@@ -179,7 +179,7 @@ class EverleafSummary:
         print "site=",self.parser.SiteName, "tourneyname=", self.parser.TourneyName, "tourneyid=", self.parser.TourneyId
         print "start time=",self.parser.TourneyStartTime, "end time=",self.parser.TourneyEndTime
         print "structure=", self.parser.TourneyStructure, "game type=",self.parser.TourneyGameType
-        print "buy-in=", self.parser.TourneyBuyIn, "rebuys=", self.parser.TourneyRebuys, "total players=", self.parser.TourneyPlayers, "pool=", self.parser.TourneyPool
+        print "buy-in=", self.parser.TourneyBuyIn, "rebuys=", self.parser.TourneyRebuys, "total players=", self.parser.TourneysPlayers, "pool=", self.parser.TourneyPool
         print "results=", self.parser.Results
     
     
