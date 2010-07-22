@@ -1983,17 +1983,20 @@ class Database:
                         (hand.tourNo, hand.siteId)
                         )
         result=cursor.fetchone()
+        print "result of fetching TT by number and site:",result
 
         if result:
             tourneyTypeId = result[0]
         else:
             # Check for an existing TTypeId that matches tourney info, if not found create it
+            print "info that we use to get TT by detail:", hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips, hand.isKO, hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
-                             hand.isRebuy, hand.isRebuy, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
+                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips, hand.isKO,
+                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                             )
             result=cursor.fetchone()
-        
+            print "result of fetching TT by details:",result
+            
             try:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
