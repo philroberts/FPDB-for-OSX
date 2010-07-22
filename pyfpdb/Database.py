@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 136
+DB_VERSION = 137
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -147,7 +147,6 @@ class Database:
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
-                , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -168,7 +167,6 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
@@ -1641,7 +1639,6 @@ class Database:
                              pdata[p]['street3Bets'],
                              pdata[p]['street4Bets'],
                              pdata[p]['position'],
-                             pdata[p]['tourneyTypeId'],
                              pdata[p]['tourneysPlayersIds'],
                              pdata[p]['startCards'],
                              pdata[p]['street0_3BChance'],
