@@ -3692,15 +3692,12 @@ class Sql:
                                             AND fee=%s
                                             AND category=%s
                                             AND limitType=%s
-                                            AND buyInChips=%s
                                             AND knockout=%s
                                             AND rebuy=%s
                                             AND addOn=%s
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
-                                            AND added=%s
-                                            AND addedCurrency=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
