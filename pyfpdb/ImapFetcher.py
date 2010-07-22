@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -74,8 +74,8 @@ def run(config, db):
         print "completed running Imap import, closing server connection"
     #finally:
      #   try:
-      #      server.close()
+        server.close()
        # finally:
         #    pass
-        #server.logout()
+        server.logout()
         

@@ -78,6 +78,8 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         #     is column displayed, column heading, xalignment, formatting, celltype
         self.columns = [ ["siteName",       True,  "Site",    0.0, "%s", "str"]
                        #,["tourney",        False, "Tourney", 0.0, "%s", "str"]   # true not allowed for this line
+                       , ["category",       True,  "Cat.",   0.0, "%s", "str"]
+                       , ["limitType",      True,  "Limit",   0.0, "%s", "str"]
                        , ["currency",       True,  "Curr.",   0.0, "%s", "str"]
                        , ["buyIn",          True,  "BuyIn",   1.0, "%3.2f", "str"]
                        , ["fee",            True,  "Fee",     1.0, "%3.2f", "str"]

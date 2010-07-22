@@ -494,6 +494,23 @@ or None if we fail to get the info """
 
     def getTourney(self):
         return self.tourney
+        
+    @staticmethod
+    def changeTimezone(time, givenTimezone, wantedTimezone):
+        if givenTimezone=="ET" and wantedTimezone=="UTC":
+            # approximate rules for ET daylight savings time:
+            if (   time.month == 12                                  # all of Dec
+                or (time.month == 11 and time.day > 4)     #    and most of November
+                or time.month < 3                                    #    and all of Jan/Feb
+                or (time.month == 3 and time.day < 11) ):  #    and 1st 10 days of March
+                offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
+            else:
+                offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
+            # adjust time into UTC:
+            time = time + offset
+            #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
+            return time
+    #end @staticmethod def changeTimezone
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):

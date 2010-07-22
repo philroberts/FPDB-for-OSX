@@ -79,19 +79,24 @@ class TourneySummary(object):
         self.matrixIdProcessed  = None
         self.subTourneyBuyin    = None
         self.subTourneyFee      = None
-        self.rebuyChips         = 0
-        self.addOnChips         = 0
-        self.rebuyCost          = 0
-        self.addOnCost          = 0
-        self.totalRebuyCount    = 0
-        self.totalAddOnCount    = 0
-        self.koBounty           = 0
+        self.rebuyChips         = None
+        self.addOnChips         = None
+        self.rebuyCost          = None
+        self.addOnCost          = None
+        self.totalRebuyCount    = None
+        self.totalAddOnCount    = None
+        self.koBounty           = None
         self.tourneyComment     = None
         self.players            = []
         self.isSng              = False
         self.isSatellite        = False
         self.isDoubleOrNothing  = False
-        self.guarantee          = 0
+        self.guarantee          = None
+        self.added              = None
+        self.addedCurrency      = None
+        self.gametype           = {'category':None, 'limitType':None}
+        self.comment            = None
+        self.commentTs          = None
 
         # Collections indexed by player names
         self.playerIds          = {}
@@ -150,7 +155,11 @@ class TourneySummary(object):
                  ("SNG", self.isSng),
                  ("SATELLITE", self.isSatellite),
                  ("DOUBLE OR NOTHING", self.isDoubleOrNothing),
-                 ("GUARANTEE", self.guarantee)
+                 ("GUARANTEE", self.guarantee),
+                 ("ADDED", self.added),
+                 ("ADDED CURRENCY", self.addedCurrency),
+                 ("COMMENT", self.comment),
+                 ("COMMENT TIMESTAMP", self.commentTs)
         )
  
         structs = ( ("PLAYER IDS", self.playerIds),
@@ -192,7 +201,7 @@ class TourneySummary(object):
         for player in self.players:
             id=self.db.get_player_id(self.config, self.siteName, player)
             if not id:
-                id=self.db.insertPlayer(player, self.siteId)
+                id=self.db.insertPlayer(unicode(player), self.siteId)
             self.playerIds.update({player:id})
         
         #print "TS.insert players",self.players,"playerIds",self.playerIds
@@ -201,7 +210,7 @@ class TourneySummary(object):
         self.dbid_pids=self.playerIds #TODO:rename this field in Hand so this silly renaming can be removed
         
         #print "TS.self before starting insert",self
-        self.tourneyTypeId = self.db.createOrUpdateTourneyType(self)
+        self.tourneyTypeId = self.db.createTourneyType(self)
         self.db.commit()
         self.tourneyId = self.db.createOrUpdateTourney(self, "TS")
         self.db.commit()

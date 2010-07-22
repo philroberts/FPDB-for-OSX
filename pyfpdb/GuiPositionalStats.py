@@ -24,7 +24,7 @@ from time import time, strftime
     
 import fpdb_import
 import Database
-import RingFilters
+import Filters
 
 class GuiPositionalStats (threading.Thread):
     def __init__(self, config, querylist, debug=True):
@@ -57,7 +57,7 @@ class GuiPositionalStats (threading.Thread):
                             "Button2"  :  False
                           }
 
-        self.filters = RingFilters.RingFilters(self.db, self.conf, self.sql, display = filters_display)
+        self.filters = Filters.Filters(self.db, self.conf, self.sql, display = filters_display)
         self.filters.registerButton1Name("Refresh")
         self.filters.registerButton1Callback(self.refreshStats)
 

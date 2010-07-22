@@ -645,7 +645,7 @@ Left-Drag to Move"
     </supported_databases>
 
     <email>
-        <email host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
+        <email siteName="PokerStars" fetchType="request-summary" host="YOUR_EMAIL_SERVER" username="YOUR_EMAIL_USERNAME" password="YOUR_EMAIL_PASSWORD" useSsl="True" folder="INBOX"/>
     </email>
 </FreePokerToolsConfig>
 <!-- IMPORTANT: Please note that fpdb stores your email password in clear text. 

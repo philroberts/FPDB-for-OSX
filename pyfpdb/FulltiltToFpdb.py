@@ -201,11 +201,14 @@ class Fulltilt(HandHistoryConverter):
             return None
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
+        
         try:
             hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
         except:
             hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M ET - %a, %B %d, %Y")
-
+        
+        hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
+        
         if m.group("CANCELLED") or m.group("PARTIAL"):
             raise FpdbParseError(hid=m.group('HID'))
 
