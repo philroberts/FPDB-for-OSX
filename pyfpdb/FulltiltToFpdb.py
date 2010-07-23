@@ -203,9 +203,9 @@ class Fulltilt(HandHistoryConverter):
         hand.tablename = m.group('TABLE')
         
         try:
-            hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
         except:
-            hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M ET - %a, %B %d, %Y")
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M ET - %a, %B %d, %Y")
         
         hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
         
