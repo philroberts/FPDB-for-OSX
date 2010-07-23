@@ -152,7 +152,6 @@ or None if we fail to get the info """
         # or                        : 2008/11/07 12:38:49 ET
         # Not getting it in my HH files yet, so using
         # 2008/11/10 3:58:52 ET
-        #TODO: Do conversion from GMT to ET
         #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
         return
