@@ -146,6 +146,8 @@ or None if we fail to get the info """
             tourno = t.group('TOURNO')
             hand.tourNo = tourno
             hand.tablename = t.group('TABLE')
+            #TODO we should fetch info including buyincurrency, buyin and fee from URL:
+            #           https://www.poker4ever.com/tourney/%TOURNEY_NUMBER%
 
         # Believe Everleaf time is GMT/UTC, no transation necessary
         # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
