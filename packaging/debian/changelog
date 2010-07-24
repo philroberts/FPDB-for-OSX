@@ -1,3 +1,9 @@
+free-poker-tools (0.20.902-1) unstable; urgency=low
+
+  * New snapshot release; .901 was broken for FTP
+
+ -- Mika Bostrom <bostik@iki.fi>  Sat, 24 Jul 2010 09:05:57 +0300
+
 free-poker-tools (0.20.901-1) unstable; urgency=low
 
   * Snapshot release before oncoming 0.21
