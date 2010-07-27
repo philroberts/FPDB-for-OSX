@@ -348,6 +348,20 @@ class Filters(threading.Thread):
         cb.connect('clicked', self.__set_site_select, site)
         cb.set_active(True)
         hbox.pack_start(cb, False, False, 0)
+    #end def createSiteLine
+
+    def __set_tourney_type_select(self, w, tourneyType):
+        #print w.get_active()
+        self.tourneyTypes[tourneyType] = w.get_active()
+        log.debug("self.tourney_types[%s] set to %s" %(tourneyType, self.tourneyTypes[tourneyType]))
+    #end def __set_tourney_type_select
+
+    def createTourneyTypeLine(self, hbox, tourneyType):
+        cb = gtk.CheckButton(str(tourneyType))
+        cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
+        hbox.pack_start(cb, False, False, 0)
+        cb.set_active(True)
+    #end def createTourneyTypeLine
 
     def createGameLine(self, hbox, game):
         cb = gtk.CheckButton(game)

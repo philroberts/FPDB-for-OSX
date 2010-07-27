@@ -97,12 +97,6 @@ class TourneyFilters(Filters.Filters):
         log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
     #end def __set_site_select
 
-    def __set_tourney_type_select(self, w, tourneyType):
-        #print w.get_active()
-        self.tourneyTypes[tourneyType] = w.get_active()
-        log.debug("self.tourney_types[%s] set to %s" %(tourneyType, self.tourneyTypes[tourneyType]))
-    #end def __set_tourney_type_select
-
     def __toggle_box(self, widget, entry):
         if self.boxes[entry].props.visible:
             self.boxes[entry].hide()
@@ -111,13 +105,6 @@ class TourneyFilters(Filters.Filters):
             self.boxes[entry].show()
             widget.set_label("hide")
     #end def __toggle_box
-
-    def createTourneyTypeLine(self, hbox, tourneyType):
-        cb = gtk.CheckButton(str(tourneyType))
-        cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
-        hbox.pack_start(cb, False, False, 0)
-        cb.set_active(True)
-    #end def createTourneyTypeLine
 
     def fillPlayerFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
