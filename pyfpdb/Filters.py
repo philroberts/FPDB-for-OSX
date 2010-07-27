@@ -237,8 +237,13 @@ class Filters(threading.Thread):
         return self.sites
     #end def getSites
 
+    def getTourneyTypes(self):
+        return self.tourneyTypes
+    #end def getTourneyTypes
+
     def getGames(self):
         return self.games
+    #end def getGames
 
     def getSiteIds(self):
         return self.siteid

@@ -214,10 +214,6 @@ class TourneyFilters(Filters.Filters):
             log.info("No tourney types returned from database")
     #end def fillTourneyTypesFrame
 
-    def getTourneyTypes(self):
-        return self.tourneyTypes
-    #end def getTourneyTypes
-
     def make_filter(self):
         self.tourneyTypes = {}
         #self.tourneys = {}
