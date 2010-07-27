@@ -2444,6 +2444,8 @@ class Sql:
                      ) hprof2
                     on hprof2.gtId = stats.gtId
                 order by stats.category, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
+        #elif db_server == 'sqlite': #TODO
+        #    self.query['playerStats'] = """ """
         else:  # assume postgres
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
@@ -2547,8 +2549,6 @@ class Sql:
                      ) hprof2
                     on hprof2.gtId = stats.gtId
                 order by stats.base, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
-        #elif db_server == 'sqlite':
-        #    self.query['playerStats'] = """ """
 
         if db_server == 'mysql':
             self.query['playerStatsByPosition'] = """
