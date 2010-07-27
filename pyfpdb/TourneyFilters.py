@@ -86,49 +86,6 @@ class TourneyFilters(Filters.Filters):
             widget.set_label("hide")
     #end def __toggle_box
 
-    def fillPlayerFrame(self, vbox, display):
-        top_hbox = gtk.HBox(False, 0)
-        vbox.pack_start(top_hbox, False, False, 0)
-        lbl_title = gtk.Label(self.filterText['playerstitle'])
-        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
-        top_hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="refresh", stock=None, use_underline=True)
-        showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__refresh, 'players')
-
-        vbox1 = gtk.VBox(False, 0)
-        vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['players'] = vbox1
-
-        for site in self.conf.get_supported_sites():
-            hBox = gtk.HBox(False, 0)
-            vbox1.pack_start(hBox, False, True, 0)
-
-            player = self.conf.supported_sites[site].screen_name
-            _pname = Charset.to_gui(player)
-            self.createPlayerLine(hBox, site, _pname)
-        
-        hbox = gtk.HBox(False, 0)
-        vbox1.pack_start(hbox, False, False, 0)
-        #cb = gtk.CheckButton(self.filterText['groupsall'])
-        #cb.connect('clicked', self.__set_group_select, 'allplayers')
-        #hbox.pack_start(cb, False, False, 0)
-        #self.sbGroups['allplayers'] = cb
-        #self.groups['allplayers'] = False
-
-        #lbl = gtk.Label('Min # Hands:')
-        #lbl.set_alignment(xalign=1.0, yalign=0.5)
-        #hbox.pack_start(lbl, expand=True, padding=3)
-
-        #phands = gtk.Entry()
-        #phands.set_text('0')
-        #phands.set_width_chars(8)
-        #hbox.pack_start(phands, False, False, 0)
-        #phands.connect("changed", self.__set_num_hands, site)
-        
-        top_hbox.pack_start(showb, expand=False, padding=1)
-    #end def fillPlayerFrame
-
     def make_filter(self):
         self.tourneyTypes = {}
         #self.tourneys = {}

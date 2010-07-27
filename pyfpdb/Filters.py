@@ -578,6 +578,7 @@ class Filters(threading.Thread):
             hbox.pack_start(phands, False, False, 0)
             phands.connect("changed", self.__set_num_hands, site)
         top_hbox.pack_start(showb, expand=False, padding=1)
+    #end def fillPlayerFrame
 
     def fillSitesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
