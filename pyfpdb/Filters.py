@@ -229,6 +229,10 @@ class Filters(threading.Thread):
         return self.numHands
     #end def getNumHands
 
+    def getNumTourneys(self):
+        return self.numTourneys
+    #end def getNumTourneys
+
     def getSites(self):
         return self.sites
     #end def getSites

@@ -280,10 +280,6 @@ class TourneyFilters(Filters.Filters):
             log.info("No tourney types returned from database")
     #end def fillTourneyTypesFrame
 
-    def getNumTourneys(self):
-        return self.numTourneys
-    #end def getNumTourneys
-
     def getSeats(self):
         if 'from' in self.sbSeats:
             self.seats['from'] = self.sbSeats['from'].get_value_as_int()
