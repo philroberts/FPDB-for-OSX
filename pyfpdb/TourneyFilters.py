@@ -327,15 +327,4 @@ class TourneyFilters(Filters.Filters):
         # make sure any locks on db are released:
         self.db.rollback()
     #end def make_filter
-    
-    def registerButton2Name(self, title):
-        self.Button2.set_label(title)
-        self.label['button2'] = title
-    #end def registerButton2Name
-
-    def registerButton2Callback(self, callback):
-        self.Button2.connect("clicked", callback, "clicked")
-        self.Button2.set_sensitive(True)
-        self.callback['button2'] = callback
-    #end def registerButton2Callback
 #end class TourneyFilters
