@@ -529,6 +529,7 @@ class Filters(threading.Thread):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.seats[seat] = w.get_active()
         log.debug( "self.seats[%s] set to %s" %(seat, self.seats[seat]) )
+    #end def __set_seat_select
 
     def __set_group_select(self, w, group):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()

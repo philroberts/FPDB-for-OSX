@@ -77,12 +77,6 @@ class TourneyFilters(Filters.Filters):
         print "setting numTourneys:", self.numTourneys
     #end def __set_num_tourneys
 
-    def __set_seat_select(self, w, seat):
-        #print "__set_seat_select: seat =", seat, "active =", w.get_active()
-        self.seats[seat] = w.get_active()
-        log.debug( "self.seats[%s] set to %s" %(seat, self.seats[seat]) )
-    #end def __set_seat_select
-
     def __set_site_select(self, w, site):
         #print w.get_active()
         self.sites[site] = w.get_active()
