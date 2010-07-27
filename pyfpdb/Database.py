@@ -1651,8 +1651,8 @@ class Database:
                              pdata[p]['foldToOtherRaisedStreet2'],
                              pdata[p]['foldToOtherRaisedStreet3'],
                              pdata[p]['foldToOtherRaisedStreet4'],
-                             pdata[p]['stealAttemptChance'],
-                             pdata[p]['stealAttempted'],
+                             pdata[p]['raiseFirstInChance'],
+                             pdata[p]['raisedFirstIn'],
                              pdata[p]['foldBbToStealChance'],
                              pdata[p]['foldedBbToSteal'],
                              pdata[p]['foldSbToStealChance'],
@@ -1732,8 +1732,8 @@ class Database:
             if pdata[p]['foldToOtherRaisedStreet4']:    line[21] = 1
             line[22] = pdata[p]['wonWhenSeenStreet1']
             line[23] = pdata[p]['wonAtSD']
-            if pdata[p]['stealAttemptChance']:          line[24] = 1
-            if pdata[p]['stealAttempted']:              line[25] = 1
+            if pdata[p]['raiseFirstInChance']:          line[24] = 1
+            if pdata[p]['raisedFirstIn']:               line[25] = 1
             if pdata[p]['foldBbToStealChance']:         line[26] = 1
             if pdata[p]['foldedBbToSteal']:             line[27] = 1
             if pdata[p]['foldSbToStealChance']:         line[28] = 1

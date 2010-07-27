@@ -101,6 +101,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                        , ["aggfac",     True,  "AggFac",   1.0, "%2.2f", "str"]
                        , ["aggfrq",     True,  "AggFreq",  1.0, "%3.1f", "str"]
                        , ["conbet",     True,  "ContBet",  1.0, "%3.1f", "str"]
+                       , ["rfi",        True,  "RFI",      1.0, "%3.1f", "str"]
                        , ["steals",     True,  "Steals",   1.0, "%3.1f", "str"]
                        , ["saw_f",      True,  "Saw_F",    1.0, "%3.1f", "str"]
                        , ["sawsd",      True,  "SawSD",    1.0, "%3.1f", "str"]
