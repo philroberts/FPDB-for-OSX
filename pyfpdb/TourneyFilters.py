@@ -138,13 +138,6 @@ class TourneyFilters(Filters.Filters):
         self.__set_hero_name(pname, site)
     #end def createPlayerLine
     
-    def createSiteLine(self, hbox, site):
-        cb = gtk.CheckButton(site)
-        cb.connect('clicked', self.__set_site_select, site)
-        cb.set_active(True)
-        hbox.pack_start(cb, False, False, 0)
-    #end def createSiteLine
-    
     def createTourneyTypeLine(self, hbox, tourneyType):
         cb = gtk.CheckButton(str(tourneyType))
         cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
@@ -194,40 +187,6 @@ class TourneyFilters(Filters.Filters):
         
         top_hbox.pack_start(showb, expand=False, padding=1)
     #end def fillPlayerFrame
-
-    def fillSeatsFrame(self, vbox, display):
-        hbox = gtk.HBox(False, 0)
-        vbox.pack_start(hbox, False, False, 0)
-        lbl_title = gtk.Label(self.filterText['seatstitle'])
-        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
-        hbox.pack_start(lbl_title, expand=True, padding=3)
-        showb = gtk.Button(label="hide", stock=None, use_underline=True)
-        showb.set_alignment(xalign=1.0, yalign=0.5)
-        showb.connect('clicked', self.__toggle_box, 'seats')
-        hbox.pack_start(showb, expand=False, padding=1)
-
-        vbox1 = gtk.VBox(False, 0)
-        vbox.pack_start(vbox1, False, False, 0)
-        self.boxes['seats'] = vbox1
-
-        hbox = gtk.HBox(False, 0)
-        vbox1.pack_start(hbox, False, True, 0)
-
-        lbl_from = gtk.Label(self.filterText['seatsbetween'])
-        lbl_to   = gtk.Label(self.filterText['seatsand'])
-        adj1 = gtk.Adjustment(value=2, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
-        sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
-        adj2 = gtk.Adjustment(value=10, lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)
-        sb2 = gtk.SpinButton(adjustment=adj2, climb_rate=0.0, digits=0)
-
-        hbox.pack_start(lbl_from, expand=False, padding=3)
-        hbox.pack_start(sb1, False, False, 0)
-        hbox.pack_start(lbl_to, expand=False, padding=3)
-        hbox.pack_start(sb2, False, False, 0)
-
-        self.sbSeats['from'] = sb1
-        self.sbSeats['to']   = sb2
-    #end def fillSeatsFrame
 
     def fillSitesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
@@ -280,30 +239,9 @@ class TourneyFilters(Filters.Filters):
             log.info("No tourney types returned from database")
     #end def fillTourneyTypesFrame
 
-    def getSeats(self):
-        if 'from' in self.sbSeats:
-            self.seats['from'] = self.sbSeats['from'].get_value_as_int()
-        if 'to' in self.sbSeats:
-            self.seats['to'] = self.sbSeats['to'].get_value_as_int()
-        return self.seats
-    #end def getSeats
-
-    def getSiteIds(self):
-        return self.siteid
-    #end def getSiteIds
-
-    def getSites(self):
-        return self.sites
-    #end def getSites
-
     def getTourneyTypes(self):
         return self.tourneyTypes
     #end def getTourneyTypes
-
-    def get_vbox(self):
-        """returns the vbox of this thread"""
-        return self.mainVBox
-    #end def get_vbox
 
     def make_filter(self):
         self.tourneyTypes = {}
