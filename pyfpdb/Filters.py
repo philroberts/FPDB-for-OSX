@@ -325,6 +325,7 @@ class Filters(threading.Thread):
             liststore.append(_nt)
 
         self.__set_hero_name(pname, site)
+    #end def createPlayerLine
 
     def __set_hero_name(self, w, site):
         _name = w.get_text()

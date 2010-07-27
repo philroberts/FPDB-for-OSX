@@ -112,32 +112,6 @@ class TourneyFilters(Filters.Filters):
             widget.set_label("hide")
     #end def __toggle_box
 
-    def createPlayerLine(self, hbox, site, player):
-        log.debug('add:"%s"' % player)
-        label = gtk.Label(site +" id:")
-        hbox.pack_start(label, False, False, 3)
-
-        pname = gtk.Entry()
-        pname.set_text(player)
-        pname.set_width_chars(20)
-        hbox.pack_start(pname, False, True, 0)
-        #pname.connect("changed", self.__set_hero_name, site)
-
-        # Added EntryCompletion but maybe comboBoxEntry is more flexible? (e.g. multiple choices)
-        completion = gtk.EntryCompletion()
-        pname.set_completion(completion)
-        liststore = gtk.ListStore(gobject.TYPE_STRING)
-        completion.set_model(liststore)
-        completion.set_text_column(0)
-        names = self.db.get_player_names(self.conf, self.siteid[site])  # (config=self.conf, site_id=None, like_player_name="%")
-        for n in names: # list of single-element "tuples"
-            _n = Charset.to_gui(n[0])
-            _nt = (_n, )
-            liststore.append(_nt)
-
-        self.__set_hero_name(pname, site)
-    #end def createPlayerLine
-    
     def createTourneyTypeLine(self, hbox, tourneyType):
         cb = gtk.CheckButton(str(tourneyType))
         cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
