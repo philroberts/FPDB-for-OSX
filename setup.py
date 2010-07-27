@@ -13,14 +13,12 @@ from distutils.core import setup
 
 setup(name = 'fpdb',
     description = 'Free Poker Database',
-    version = '0.12',
+    version = '0.20',
     author = 'FPDB team',
     author_email = 'fpdb-main@lists.sourceforge.net',
     packages = ['fpdb'],
     package_dir = { 'fpdb' : 'pyfpdb' },
     data_files = [
-        ('/usr/share/doc/python-fpdb',
-            ['THANKS.txt']),
         ('/usr/share/pixmaps',
             ['gfx/fpdb-icon.png', 'gfx/fpdb-icon2.png',
              'gfx/fpdb-cards.png'
