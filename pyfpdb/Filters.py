@@ -611,6 +611,32 @@ class Filters(threading.Thread):
             #    print "Either 0 or more than one site matched - EEK"
     #end def fillSitesFrame
 
+    def fillTourneyTypesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['tourneyTypesTitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['tourneyTypes'] = vbox1
+
+        result = self.db.getTourneyTypesIds()
+        if len(result) >= 1:
+            for line in result:
+                hbox = gtk.HBox(False, 0)
+                vbox1.pack_start(hbox, False, True, 0)
+                self.createTourneyTypeLine(hbox, line[0])
+        else:
+            print "INFO: No tourney types returned from database"
+            log.info("No tourney types returned from database")
+    #end def fillTourneyTypesFrame
+
     def fillGamesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
         vbox.pack_start(top_hbox, False, False, 0)
