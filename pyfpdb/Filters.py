@@ -587,6 +587,7 @@ class Filters(threading.Thread):
             #    self.siteid[site] = result[0][0]
             #else:
             #    print "Either 0 or more than one site matched - EEK"
+    #end def fillSitesFrame
 
     def fillGamesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
