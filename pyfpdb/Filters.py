@@ -381,6 +381,7 @@ class Filters(threading.Thread):
         #print w.get_active()
         self.sites[site] = w.get_active()
         log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
+    #end def __set_site_select
 
     def __set_game_select(self, w, game):
         #print w.get_active()

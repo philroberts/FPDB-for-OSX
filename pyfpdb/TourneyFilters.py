@@ -77,13 +77,7 @@ class TourneyFilters(Filters.Filters):
         print "setting numTourneys:", self.numTourneys
     #end def __set_num_tourneys
 
-    def __set_site_select(self, w, site):
-        #print w.get_active()
-        self.sites[site] = w.get_active()
-        log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
-    #end def __set_site_select
-
-    def __toggle_box(self, widget, entry):
+    def __toggle_box(self, widget, entry): #identical with Filters
         if self.boxes[entry].props.visible:
             self.boxes[entry].hide()
             widget.set_label("show")
