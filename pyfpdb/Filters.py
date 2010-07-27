@@ -884,6 +884,7 @@ class Filters(threading.Thread):
         for w in self.mainVBox.get_children():
             w.destroy()
         self.make_filter()
+    #end def __refresh
 
     def __toggle_box(self, widget, entry):
         if self.boxes[entry].props.visible:

@@ -63,19 +63,11 @@ class TourneyFilters(Filters.Filters):
         self.make_filter()
     #end def __init__
     
-    def __refresh(self, widget, entry):
+    def __refresh(self, widget, entry): #identical with Filters
         for w in self.mainVBox.get_children():
             w.destroy()
         self.make_filter()
     #end def __refresh
-
-    def __set_hero_name(self, w, site):
-        _name = w.get_text()
-        # get_text() returns a str but we want internal variables to be unicode:
-        _guiname = unicode(_name)
-        self.heroes[site] = _guiname
-        #log.debug("setting heroes[%s]: %s"%(site, self.heroes[site]))
-    #end def __set_hero_name
 
     def __set_num_tourneys(self, w, val):
         try:
