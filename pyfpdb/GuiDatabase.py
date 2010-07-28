@@ -33,17 +33,32 @@ log = logging.getLogger("maintdbs")
 
 import Exceptions
 import Database
+import SQL
 
 
 class GuiDatabase:
 
+    # columns in liststore:
+    MODEL_DBMS = 0
+    MODEL_NAME = 1
+    MODEL_DESC = 2
+    MODEL_USER = 3
+    MODEL_PASS = 4
+    MODEL_HOST = 5
+    MODEL_DFLT = 6
+    MODEL_DFLTIC = 7
+    MODEL_STATUS = 8
+    MODEL_STATIC = 9
+
+    # columns in listview:
     COL_DBMS = 0
     COL_NAME = 1
     COL_DESC = 2
     COL_USER = 3
     COL_PASS = 4
     COL_HOST = 5
-    COL_ICON = 6
+    COL_DFLT = 6
+    COL_ICON = 7
 
     def __init__(self, config, mainwin, dia):
         self.config = config
@@ -56,9 +71,9 @@ class GuiDatabase:
             #gtk.Widget.set_size_request(self.vbox, 700, 400);
 
             # list of databases in self.config.supported_databases:
-            self.liststore = gtk.ListStore(str, str, str, str
-                                          ,str, str, str, str)  #object, gtk.gdk.Pixbuf)
-            #                              dbms, name, comment, user, pass, ip, status(, icon?)
+            self.liststore = gtk.ListStore(str, str, str, str, str
+                                          ,str, str, str, str, str)
+            #                              dbms, name, comment, user, passwd, host, "", default_icon, status, icon
             # this is how to add a filter:
             #
             # # Creation of the filter, from the model
@@ -70,11 +85,12 @@ class GuiDatabase:
             self.listview = gtk.TreeView(model=self.liststore)
             self.listview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_NONE)
             self.listcols = []
+            self.changes = False
 
-            scrolledwindow = gtk.ScrolledWindow()
-            scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-            scrolledwindow.add(self.listview)
-            self.vbox.pack_start(scrolledwindow, expand=True, fill=True, padding=0)
+            self.scrolledwindow = gtk.ScrolledWindow()
+            self.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            self.scrolledwindow.add(self.listview)
+            self.vbox.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
 
             refreshbutton = gtk.Button("Refresh")
             refreshbutton.connect("clicked", self.refresh, None)
@@ -87,18 +103,28 @@ class GuiDatabase:
             col = self.addTextColumn("Username", 3, True)
             col = self.addTextColumn("Password", 4, True)
             col = self.addTextColumn("Host", 5, True)
-            col = self.addTextObjColumn("", 6)
+            col = self.addTextObjColumn("Default", 6, 6)
+            col = self.addTextObjColumn("Status", 7, 8)
+
+            #self.listview.get_selection().set_mode(gtk.SELECTION_SINGLE)
+            #self.listview.get_selection().connect("changed", self.on_selection_changed)
+            self.listview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+            self.listview.connect('button_press_event', self.selectTest)
 
             self.loadDbs()
 
-            self.dia.connect('response', self.dialog_response_cb)
+            #self.dia.connect('response', self.dialog_response_cb)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print 'guidbmaint: '+ err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
 
     def dialog_response_cb(self, dialog, response_id):
         # this is called whether close button is pressed or window is closed
+        log.info('dialog_response_cb: response_id='+str(response_id))
+        #if self.changes:
+        #    self.config.save()
         dialog.destroy()
+        return(response_id)
 
 
     def get_dialog(self):
@@ -125,6 +151,7 @@ class GuiDatabase:
 
     def edited_cb(self, cell, path, new_text, user_data):
         liststore, col = user_data
+        log.info('edited_cb: col = '+str(col))
         valid = True
         name = self.liststore[path][self.COL_NAME]
 
@@ -138,10 +165,11 @@ class GuiDatabase:
 
             self.config.set_db_parameters( db_server = self.liststore[path][self.COL_DBMS]
                                          , db_name = name
+                                         , db_desc = self.liststore[path][self.COL_DESC]
                                          , db_ip = self.liststore[path][self.COL_HOST]
                                          , db_user = self.liststore[path][self.COL_USER]
                                          , db_pass = self.liststore[path][self.COL_PASS] )
-
+            self.changes = True
         return
 
     def check_new_name(self, path, new_text):
@@ -152,38 +180,73 @@ class GuiDatabase:
         #TODO: popup an error message telling user names must be unique
         return name_ok
 
-    def addTextObjColumn(self, title, n):
+    def addTextObjColumn(self, title, viewcol, storecol, editable=False):
         col = gtk.TreeViewColumn(title)
         self.listview.append_column(col)
 
         cRenderT = gtk.CellRendererText()
         cRenderT.set_property("wrap-mode", pango.WRAP_WORD_CHAR)
         col.pack_start(cRenderT, False)
-        col.add_attribute(cRenderT, 'text', n)
+        col.add_attribute(cRenderT, 'text', storecol)
 
         cRenderP = gtk.CellRendererPixbuf()
-        col.pack_start(cRenderP, False)
-        col.add_attribute(cRenderP, 'stock-id', n+1)
+        col.pack_start(cRenderP, True)
+        col.add_attribute(cRenderP, 'stock-id', storecol+1)
 
         col.set_max_width(1000)
         col.set_spacing(0)  # no effect
         self.listcols.append(col)
-        #col.set_clickable(True)
-        #col.connect("clicked", self.sortCols, p)
+
+        col.set_clickable(True)
+        col.connect("clicked", self.sortCols, viewcol)
         return(col)
+
+    def selectTest(self, widget, event):
+        if event.button == 1:  # and event.type == gtk.gdk._2BUTTON_PRESS:
+            pthinfo = self.listview.get_path_at_pos( int(event.x), int(event.y) )
+            if pthinfo is not None:
+                path, col, cellx, celly = pthinfo
+                row = path[0]
+                if col == self.listcols[self.COL_DFLT]:
+                    if self.liststore[row][self.MODEL_STATUS] == 'ok' and self.liststore[row][self.MODEL_DFLTIC] is None:
+                        self.setDefaultDB(row)
+
+    def setDefaultDB(self, row):
+        print "set new defaultdb:", row, self.liststore[row][self.MODEL_NAME]
+        for r in xrange(len(self.liststore)):
+            if r == row:
+                self.liststore[r][self.MODEL_DFLTIC] = gtk.STOCK_APPLY
+                default = "True"
+            else:
+                self.liststore[r][self.MODEL_DFLTIC] = None
+                default = "False"
+
+            self.config.set_db_parameters( db_server = self.liststore[r][self.COL_DBMS]
+                                         , db_name = self.liststore[r][self.COL_NAME]
+                                         , db_desc = self.liststore[r][self.COL_DESC]
+                                         , db_ip   = self.liststore[r][self.COL_HOST]
+                                         , db_user = self.liststore[r][self.COL_USER]
+                                         , db_pass = self.liststore[r][self.COL_PASS]
+                                         , default = default
+                                         )
+        self.changes = True
+        return
+        
 
     def loadDbs(self):
 
         self.liststore.clear()
-        self.listcols = []
-        self.dbs = []   # list of tuples:  (dbms, name, comment, user, passwd, host, status, icon)
+        #self.listcols = []
+        dia = self.info_box2(None, 'Testing database connections ... ', "", False, False)
+        while gtk.events_pending():
+            gtk.mainiteration() 
 
         try:
-            # want to fill: dbms, name, comment, user, passwd, host, status(, icon?)
+            # want to fill: dbms, name, comment, user, passwd, host, default, status, icon
             for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
                 dbms = self.config.supported_databases[name].db_server  # mysql/postgresql/sqlite
                 dbms_num = self.config.get_backend(dbms)              #   2  /    3     /  4
-                comment = ""
+                comment = self.config.supported_databases[name].db_desc
                 if dbms == 'sqlite':
                     user = ""
                     passwd = ""
@@ -191,22 +254,30 @@ class GuiDatabase:
                     user = self.config.supported_databases[name].db_user
                     passwd = self.config.supported_databases[name].db_pass
                 host = self.config.supported_databases[name].db_ip
+                default = (name == self.config.db_selected)
+                default_icon = None
+                if default:  default_icon = gtk.STOCK_APPLY
                 status = ""
                 icon = None
                 err_msg = ""
                 
-                db = Database.Database(self.config, sql = None, autoconnect = False)
+                sql = SQL.Sql(db_server=dbms)
+                db = Database.Database(self.config, sql = sql, autoconnect = False)
                 # try to connect to db, set status and err_msg if it fails
                 try:
                     # is creating empty db for sqlite ... mod db.py further?
                     # add noDbTables flag to db.py?
+                    log.debug("loaddbs: trying to connect to: %s/%s, %s, %s/%s" % (str(dbms_num),dbms,name,user,passwd))
                     db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
                     if db.connected:
+                        log.debug("         connected ok")
                         status = 'ok'
                         icon = gtk.STOCK_APPLY
                         if db.wrongDbVersion:
                             status = 'old'
                             icon = gtk.STOCK_INFO
+                    else:
+                        log.debug("         not connected but no exception")
                 except Exceptions.FpdbMySQLAccessDenied:
                     err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
                     status = "failed"
@@ -230,13 +301,17 @@ class GuiDatabase:
                               + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]) )
                     status = "failed"
                     icon = gtk.STOCK_CANCEL
+                if err_msg:
+                    log.info( 'db connection to '+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
+                              + err_msg )
 
                 b = gtk.Button(name)
                 b.show()
-                iter = self.liststore.append( (dbms, name, comment, user, passwd, host, status, icon) )
+                iter = self.liststore.append( (dbms, name, comment, user, passwd, host, "", default_icon, status, icon) )
 
+            self.info_box2(dia[0], "finished.", "", False, True)
             self.listview.show()
-            scrolledwindow.show()
+            self.scrolledwindow.show()
             self.vbox.show()
             self.dia.set_focus(self.listview)
 
@@ -249,13 +324,16 @@ class GuiDatabase:
 
     def sortCols(self, col, n):
         try:
+            log.info('sortcols n='+str(n))
             if not col.get_sort_indicator() or col.get_sort_order() == gtk.SORT_ASCENDING:
                 col.set_sort_order(gtk.SORT_DESCENDING)
             else:
                 col.set_sort_order(gtk.SORT_ASCENDING)
             self.liststore.set_sort_column_id(n, col.get_sort_order())
             #self.liststore.set_sort_func(n, self.sortnums, (n,grid))
+            log.info('sortcols len(listcols)='+str(len(self.listcols)))
             for i in xrange(len(self.listcols)):
+                log.info('sortcols i='+str(i))
                 self.listcols[i].set_sort_indicator(False)
             self.listcols[n].set_sort_indicator(True)
             # use this   listcols[col].set_sort_indicator(True)
@@ -264,10 +342,69 @@ class GuiDatabase:
             err = traceback.extract_tb(sys.exc_info()[2])
             print "***sortCols error: " + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
+            log.info('sortCols error: ' + str(sys.exc_info()) )
 
     def refresh(self, widget, data):
         self.loadDbs()
 
+    def info_box(self, dia, str1, str2, run, destroy):
+        if dia is None:
+            #if run:  
+            btns = gtk.BUTTONS_NONE
+            btns = gtk.BUTTONS_OK
+            dia = gtk.MessageDialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                                   , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
+            # try to remove buttons!
+            # (main message is in inverse video if no buttons, so try removing them after 
+            # creating dialog)
+            # NO! message just goes back to inverse video :-(    use info_box2 instead
+            for c in dia.vbox.get_children():
+                if isinstance(c, gtk.HButtonBox):
+                    for d in c.get_children():
+                        log.info('child: '+str(d)+' is a '+str(d.__class__))
+                        if isinstance(d, gtk.Button):
+                            log.info('removing button '+str(d))
+                            c.remove(d)
+            if str2:
+                dia.format_secondary_text(str2)
+        else:
+            dia.set_markup(str1)
+            if str2:
+                dia.format_secondary_text(str2)
+        dia.show()
+        response = None
+        if run:      response = dia.run()
+        if destroy:  dia.destroy()
+        return (dia, response)
+
+    def info_box2(self, dia, str1, str2, run, destroy):
+        if dia is None:
+            # create dialog and add icon and label
+            btns = (gtk.BUTTONS_OK)
+            btns = None
+            # messagedialog puts text in inverse colors if no buttons are displayed??
+            #dia = gtk.MessageDialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
+            #                       , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
+            dia = gtk.Dialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                            , title="" ) # , buttons=btns
+            vbox = dia.vbox
+            
+            h = gtk.HBox(False, 2)
+            i = gtk.Image()
+            i.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_DIALOG)
+            l = gtk.Label(str1)
+            h.pack_start(i, padding=5)
+            h.pack_start(l, padding=5)
+            vbox.pack_start(h)
+        else:
+            # add extra label
+            vbox = dia.vbox
+            vbox.pack_start( gtk.Label(str1) )
+        dia.show_all()
+        response = None
+        if run:      response = dia.run()
+        if destroy:  dia.destroy()
+        return (dia, response)
 
 
 if __name__=="__main__":

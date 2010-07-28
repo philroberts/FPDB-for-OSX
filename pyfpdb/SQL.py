@@ -392,9 +392,9 @@ class Sql:
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
                         siteId SMALLINT UNSIGNED NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                        currency varchar(4) NOT NULL,
-                        buyIn INT NOT NULL,
-                        fee INT NOT NULL,
+                        currency varchar(4),
+                        buyIn INT,
+                        fee INT,
                         category varchar(9) NOT NULL,
                         limitType char(2) NOT NULL,
                         buyInChips INT,
@@ -423,9 +423,9 @@ class Sql:
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id SERIAL, PRIMARY KEY (id),
                         siteId INT NOT NULL, FOREIGN KEY (siteId) REFERENCES Sites(id),
-                        currency varchar(4) NOT NULL,
-                        buyin INT NOT NULL,
-                        fee INT NOT NULL,
+                        currency varchar(4),
+                        buyin INT,
+                        fee INT,
                         category varchar(9),
                         limitType char(2),
                         buyInChips INT,
@@ -453,9 +453,9 @@ class Sql:
             self.query['createTourneyTypesTable'] = """CREATE TABLE TourneyTypes (
                         id INTEGER PRIMARY KEY,
                         siteId INT NOT NULL,
-                        currency VARCHAR(4) NOT NULL,
-                        buyin INT NOT NULL,
-                        fee INT NOT NULL,
+                        currency VARCHAR(4),
+                        buyin INT,
+                        fee INT,
                         category TEXT,
                         limitType TEXT,
                         buyInChips INT,
@@ -560,7 +560,6 @@ class Sql:
                         comment text,
                         commentTs DATETIME,
                         tourneysPlayersId BIGINT UNSIGNED, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
-                        tourneyTypeId SMALLINT UNSIGNED, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT,
                         wonWhenSeenStreet2 FLOAT,
@@ -677,7 +676,6 @@ class Sql:
                         comment text,
                         commentTs timestamp without time zone,
                         tourneysPlayersId BIGINT, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
-                        tourneyTypeId INT, FOREIGN KEY (tourneyTypeId) REFERENCES TourneyTypes(id),
 
                         wonWhenSeenStreet1 FLOAT,
                         wonWhenSeenStreet2 FLOAT,
@@ -793,7 +791,6 @@ class Sql:
                         comment TEXT,
                         commentTs REAL,
                         tourneysPlayersId INT,
-                        tourneyTypeId INT,
 
                         wonWhenSeenStreet1 REAL,
                         wonWhenSeenStreet2 REAL,
@@ -2447,6 +2444,8 @@ class Sql:
                      ) hprof2
                     on hprof2.gtId = stats.gtId
                 order by stats.category, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
+        #elif db_server == 'sqlite': #TODO
+        #    self.query['playerStats'] = """ """
         else:  # assume postgres
             self.query['playerStats'] = """
                 SELECT upper(stats.limitType) || ' '
@@ -2550,8 +2549,6 @@ class Sql:
                      ) hprof2
                     on hprof2.gtId = stats.gtId
                 order by stats.base, stats.limittype, stats.bigBlindDesc desc <orderbyseats>"""
-        #elif db_server == 'sqlite':
-        #    self.query['playerStats'] = """ """
 
         if db_server == 'mysql':
             self.query['playerStatsByPosition'] = """
@@ -2989,7 +2986,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,hp.tourneyTypeId
+                      ,t.tourneyTypeId
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3063,12 +3060,14 @@ class Sql:
                       ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,hp.tourneyTypeId
+                        ,t.tourneyTypeId
                         ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
@@ -3168,7 +3167,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,hp.tourneyTypeId
+                      ,t.tourneyTypeId
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3242,12 +3241,14 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,hp.tourneyTypeId
+                        ,t.tourneyTypeId
                         ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
@@ -3347,7 +3348,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,hp.tourneyTypeId
+                      ,t.tourneyTypeId
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3421,12 +3422,14 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,hp.tourneyTypeId
+                        ,t.tourneyTypeId
                         ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
@@ -3698,8 +3701,6 @@ class Sql:
                                             AND speed=%s
                                             AND shootout=%s
                                             AND matrix=%s
-                                            AND added=%s
-                                            AND addedCurrency=%s
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
@@ -3860,7 +3861,6 @@ class Sql:
                 street3Bets,
                 street4Bets,
                 position,
-                tourneyTypeId,
                 tourneysPlayersId,
                 startCards,
                 street0_3BChance,
@@ -3919,7 +3919,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s
+                    %s
                 )"""
         
         ################################

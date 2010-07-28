@@ -357,6 +357,7 @@ class Game:
 class Database:
     def __init__(self, node):
         self.db_name   = node.getAttribute("db_name")
+        self.db_desc   = node.getAttribute("db_desc")
         self.db_server = node.getAttribute("db_server").lower()
         self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
@@ -817,6 +818,9 @@ class Config:
         try:    db['db-databaseName'] = name
         except: pass
 
+        try:    db['db-desc'] = self.supported_databases[name].db_desc
+        except: pass
+
         try:    db['db-host'] = self.supported_databases[name].db_ip
         except: pass
 
@@ -834,20 +838,29 @@ class Config:
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
-                        db_pass = None, db_server = None):
+                          db_pass = None, db_desc = None, db_server = None,
+                          default = "False"):
         db_node = self.get_db_node(db_name)
+        default = default.lower()
+        defaultb = string_to_bool(default, False)
         if db_node != None:
+            if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
             if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
             if db_user   is not None: db_node.setAttribute("db_user", db_user)
             if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
             if db_server is not None: db_node.setAttribute("db_server", db_server)
-            if db_type   is not None: db_node.setAttribute("db_type", db_type)
+            if defaultb:              db_node.setAttribute("default", default)
+            elif db_node.hasAttribute("default"): 
+                db_node.removeAttribute("default")
         if self.supported_databases.has_key(db_name):
+            if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
             if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
             if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
             if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
-            if db_type   is not None: self.supported_databases[db_name].dp_type   = db_type
+            self.supported_databases[db_name].db_selected = defaultb
+        if defaultb:
+            self.db_selected = db_name
         return
     
     def get_backend(self, name):

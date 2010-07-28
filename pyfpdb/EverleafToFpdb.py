@@ -146,13 +146,14 @@ or None if we fail to get the info """
             tourno = t.group('TOURNO')
             hand.tourNo = tourno
             hand.tablename = t.group('TABLE')
+            #TODO we should fetch info including buyincurrency, buyin and fee from URL:
+            #           https://www.poker4ever.com/tourney/%TOURNEY_NUMBER%
 
         # Believe Everleaf time is GMT/UTC, no transation necessary
         # Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
         # or                        : 2008/11/07 12:38:49 ET
         # Not getting it in my HH files yet, so using
         # 2008/11/10 3:58:52 ET
-        #TODO: Do conversion from GMT to ET
         #TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y/%m/%d - %H:%M:%S")
         return

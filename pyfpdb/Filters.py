@@ -229,12 +229,21 @@ class Filters(threading.Thread):
         return self.numHands
     #end def getNumHands
 
+    def getNumTourneys(self):
+        return self.numTourneys
+    #end def getNumTourneys
+
     def getSites(self):
         return self.sites
     #end def getSites
 
+    def getTourneyTypes(self):
+        return self.tourneyTypes
+    #end def getTourneyTypes
+
     def getGames(self):
         return self.games
+    #end def getGames
 
     def getSiteIds(self):
         return self.siteid
@@ -316,6 +325,7 @@ class Filters(threading.Thread):
             liststore.append(_nt)
 
         self.__set_hero_name(pname, site)
+    #end def createPlayerLine
 
     def __set_hero_name(self, w, site):
         _name = w.get_text()
@@ -338,6 +348,20 @@ class Filters(threading.Thread):
         cb.connect('clicked', self.__set_site_select, site)
         cb.set_active(True)
         hbox.pack_start(cb, False, False, 0)
+    #end def createSiteLine
+
+    def __set_tourney_type_select(self, w, tourneyType):
+        #print w.get_active()
+        self.tourneyTypes[tourneyType] = w.get_active()
+        log.debug("self.tourney_types[%s] set to %s" %(tourneyType, self.tourneyTypes[tourneyType]))
+    #end def __set_tourney_type_select
+
+    def createTourneyTypeLine(self, hbox, tourneyType):
+        cb = gtk.CheckButton(str(tourneyType))
+        cb.connect('clicked', self.__set_tourney_type_select, tourneyType)
+        hbox.pack_start(cb, False, False, 0)
+        cb.set_active(True)
+    #end def createTourneyTypeLine
 
     def createGameLine(self, hbox, game):
         cb = gtk.CheckButton(game)
@@ -357,6 +381,7 @@ class Filters(threading.Thread):
         #print w.get_active()
         self.sites[site] = w.get_active()
         log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
+    #end def __set_site_select
 
     def __set_game_select(self, w, game):
         #print w.get_active()
@@ -505,6 +530,7 @@ class Filters(threading.Thread):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.seats[seat] = w.get_active()
         log.debug( "self.seats[%s] set to %s" %(seat, self.seats[seat]) )
+    #end def __set_seat_select
 
     def __set_group_select(self, w, group):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
@@ -552,6 +578,7 @@ class Filters(threading.Thread):
             hbox.pack_start(phands, False, False, 0)
             phands.connect("changed", self.__set_num_hands, site)
         top_hbox.pack_start(showb, expand=False, padding=1)
+    #end def fillPlayerFrame
 
     def fillSitesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
@@ -583,6 +610,33 @@ class Filters(threading.Thread):
             #    self.siteid[site] = result[0][0]
             #else:
             #    print "Either 0 or more than one site matched - EEK"
+    #end def fillSitesFrame
+
+    def fillTourneyTypesFrame(self, vbox):
+        top_hbox = gtk.HBox(False, 0)
+        vbox.pack_start(top_hbox, False, False, 0)
+        lbl_title = gtk.Label(self.filterText['tourneyTypesTitle'])
+        lbl_title.set_alignment(xalign=0.0, yalign=0.5)
+        top_hbox.pack_start(lbl_title, expand=True, padding=3)
+        showb = gtk.Button(label="hide", stock=None, use_underline=True)
+        showb.set_alignment(xalign=1.0, yalign=0.5)
+        showb.connect('clicked', self.__toggle_box, 'tourneyTypes')
+        top_hbox.pack_start(showb, expand=False, padding=1)
+
+        vbox1 = gtk.VBox(False, 0)
+        vbox.pack_start(vbox1, False, False, 0)
+        self.boxes['tourneyTypes'] = vbox1
+
+        result = self.db.getTourneyTypesIds()
+        if len(result) >= 1:
+            for line in result:
+                hbox = gtk.HBox(False, 0)
+                vbox1.pack_start(hbox, False, True, 0)
+                self.createTourneyTypeLine(hbox, line[0])
+        else:
+            print "INFO: No tourney types returned from database"
+            log.info("No tourney types returned from database")
+    #end def fillTourneyTypesFrame
 
     def fillGamesFrame(self, vbox):
         top_hbox = gtk.HBox(False, 0)
@@ -859,6 +913,7 @@ class Filters(threading.Thread):
         for w in self.mainVBox.get_children():
             w.destroy()
         self.make_filter()
+    #end def __refresh
 
     def __toggle_box(self, widget, entry):
         if self.boxes[entry].props.visible:
