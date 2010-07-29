@@ -52,8 +52,13 @@ def get_default_config_path():
     if os.name == 'posix':
         config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
     elif os.name == 'nt':
-        config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
+        config_path = os.path.join(unicode(os.environ[u"APPDATA"], "latin-1"), u"fpdb")
+        #print u"path after joining in get_default_config_path:",config_path
     else: config_path = False
+    
+    try: os.mkdir(config_path)
+    except: pass
+    
     return config_path
 
 def get_exec_path():
@@ -110,7 +115,7 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     (conf_file,copied) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
-        log_dir = os.path.join(get_exec_path(), 'log')
+        log_dir = os.path.join(get_exec_path(), u'log')
     #print "\nget_logger: checking log_dir:", log_dir
     check_dir(log_dir)
     if log_file is None:
@@ -147,7 +152,7 @@ def check_dir(path, create = True):
         msg = "Creating directory: '%s'" % (path)
         print msg
         log.info(msg)
-        os.mkdir(path)
+        os.mkdir(path)#, "utf-8"))
     else:
         return False
 
@@ -520,9 +525,9 @@ class Config:
         self.dir_self = get_exec_path()
 #        self.dir_config = os.path.dirname(self.file)
         self.dir_config = get_default_config_path()
-        self.dir_log = os.path.join(self.dir_config, 'log')
-        self.dir_database = os.path.join(self.dir_config, 'database')
-        self.log_file = os.path.join(self.dir_log, 'fpdb-log.txt')
+        self.dir_log = os.path.join(self.dir_config, u'log')
+        self.dir_database = os.path.join(self.dir_config, u'database')
+        self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
 #    Parse even if there was no real config file found and we are using the example
