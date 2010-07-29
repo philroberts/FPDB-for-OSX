@@ -26,8 +26,11 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
+
 import time
 import datetime
+from pytz import timezone
+import pytz
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -497,23 +500,24 @@ or None if we fail to get the info """
         
     @staticmethod
     def changeTimezone(time, givenTimezone, wantedTimezone):
-        offest = datetime.timedelta(hours=0)
-        if givenTimezone=="ET" and wantedTimezone=="UTC":
-            # approximate rules for ET daylight savings time:
-            if (   time.month == 12                                  # all of Dec
-                or (time.month == 11 and time.day > 4)     #    and most of November
-                or time.month < 3                                    #    and all of Jan/Feb
-                or (time.month == 3 and time.day < 11) ):  #    and 1st 10 days of March
-                offset = datetime.timedelta(hours=5)       # are EST: assume 5 hour offset (ET without daylight saving)
-            else:
-                offset = datetime.timedelta(hours=4)       # rest is EDT: assume 4 hour offset (ET with daylight saving)
-            #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
-        elif givenTimezone=="CET" and wantedTimezone=="UTC":
-            offset = datetime.timedelta(hours=1)
-
-        # adjust time into UTC:
-        time = time + offset
-        return time
+        #print "raw time:",time, "given TZ:", givenTimezone
+        if wantedTimezone=="UTC":
+            wantedTimezone = pytz.utc
+        else:
+            raise Error #TODO raise appropriate error
+        
+        if givenTimezone=="ET":
+            givenTimezone = timezone('US/Eastern')
+        elif givenTimezone=="CET":
+            givenTimezone = timezone('Europe/Berlin')
+            #Note: Daylight Saving Time is standardised across the EU so this should be fine
+        else:
+            raise Error #TODO raise appropriate error
+        
+        localisedTime = givenTimezone.localize(time)
+        utcTime = localisedTime.astimezone(wantedTimezone)
+        #print "utcTime:",utcTime
+        return utcTime
     #end @staticmethod def changeTimezone
 
     @staticmethod
