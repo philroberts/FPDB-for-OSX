@@ -511,6 +511,50 @@ or None if we fail to get the info """
         elif givenTimezone=="CET":
             givenTimezone = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
+        elif givenTimezone == 'HST': # Hawaiian Standard Time
+            pass
+        elif givenTimezone == 'AKT': # Alaska Time
+            pass
+        elif givenTimezone == 'PT': # Pacific Time
+            pass
+        elif givenTimezone == 'MT': # Mountain Time
+            pass
+        elif givenTimezone == 'CT': # Central Time
+            pass
+        elif givenTimezone == 'AT': # Atlantic Time
+            pass
+        elif givenTimezone == 'NT': # Newfoundland Time
+            pass
+        elif givenTimezone == 'ART': # Argentinian Time
+            pass
+        elif givenTimezone == 'BRT': # Brasilia Time
+            pass
+        elif givenTimezone == 'AKT': # Alaska Time
+            pass
+        elif givenTimezone == 'WET': # Western European Time
+            pass
+        elif givenTimezone == 'EET': # Eastern European Time
+            pass
+        elif givenTimezone == 'MSK': # Moscow Standard Time
+            pass
+        elif givenTimezone == 'IST': # India Standard Time
+            pass
+        elif givenTimezone == 'CCT': # China Coast Time
+            pass
+        elif givenTimezone == 'JST': # Japan Standard Time
+            pass
+        elif givenTimezone == 'AWST': # Australian Western Standard Time
+            givenTimezone = timezone('Australia/West')
+        elif givenTimezone == 'ACST': # Australian Central Standard Time
+            givenTimezone = timezone('Australia/Darwin')
+        elif givenTimezone == 'AEST': # Australian Eastern Standard Time
+            # Each State on the East Coast has different DSTs.
+            # Melbournce is out because I don't like AFL, Queensland doesn't have DST
+            # ACT is full of politicians and Tasmania will never notice.
+            # Using Sydney. 
+            givenTimezone = timezone('Australia/Sydney')
+        elif givenTimezone == 'NZT': # New Zealand Time
+            pass
         else:
             raise Error #TODO raise appropriate error
         
