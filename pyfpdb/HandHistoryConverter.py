@@ -497,19 +497,23 @@ or None if we fail to get the info """
         
     @staticmethod
     def changeTimezone(time, givenTimezone, wantedTimezone):
+        offest = datetime.timedelta(hours=0)
         if givenTimezone=="ET" and wantedTimezone=="UTC":
             # approximate rules for ET daylight savings time:
             if (   time.month == 12                                  # all of Dec
                 or (time.month == 11 and time.day > 4)     #    and most of November
                 or time.month < 3                                    #    and all of Jan/Feb
                 or (time.month == 3 and time.day < 11) ):  #    and 1st 10 days of March
-                offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
+                offset = datetime.timedelta(hours=5)       # are EST: assume 5 hour offset (ET without daylight saving)
             else:
-                offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
-            # adjust time into UTC:
-            time = time + offset
+                offset = datetime.timedelta(hours=4)       # rest is EDT: assume 4 hour offset (ET with daylight saving)
             #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
-            return time
+        elif givenTimezone=="CET" and wantedTimezone=="UTC":
+            offset = datetime.timedelta(hours=1)
+
+        # adjust time into UTC:
+        time = time + offset
+        return time
     #end @staticmethod def changeTimezone
 
     @staticmethod
