@@ -29,7 +29,8 @@ RDEPEND="
     dev-python/pygtk
     graph? ( dev-python/numpy
         dev-python/matplotlib[gtk] )
-    dev-python/python-xlib"
+    dev-python/python-xlib
+    dev-python/pytz"
 DEPEND="${RDEPEND}"
 
 src_install() {
