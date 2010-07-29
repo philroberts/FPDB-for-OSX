@@ -3741,6 +3741,7 @@ class Sql:
                                            AND   type=%s
                                            AND   category=%s
                                            AND   limitType=%s
+                                           AND   currency=%s
                                            AND   smallBlind=%s
                                            AND   bigBlind=%s
         """
