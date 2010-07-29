@@ -54,7 +54,7 @@ class Fulltilt(HandHistoryConverter):
                                     \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
                                     \$?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
-                                    (?P<DATETIME>\d+:\d+:\d+\s\w+\s-\s\d+/\d+/\d+|\d+:\d+\s\w+\s-\s\w+\,\s\w+\s\d+\,\s\d+)
+                                    (?P<DATETIME>\d+:\d+:\d+\s(?P<TZ1>\w+)\s-\s\d+/\d+/\d+|\d+:\d+\s(?P<TZ2>\w+)\s-\s\w+\,\s\w+\s\d+\,\s\d+)
                                     (?P<PARTIAL>\(partial\))?\n
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
                                  ''', re.VERBOSE|re.DOTALL)
@@ -201,13 +201,18 @@ class Fulltilt(HandHistoryConverter):
             return None
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
-        
+
+        timezone = "ET"
+        if m.group('TZ1') == "CET" or m.group('TZ2') == "CET":
+            timezone = "CET"
         try:
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M:%S ET - %Y/%m/%d")
+            stringformat = "%H:%M:%S " + m.group('TZ1') + " - %Y/%m/%d"
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), stringformat)
         except:
-            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%H:%M ET - %a, %B %d, %Y")
-        
-        hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "ET", "UTC")
+            stringformat = "%H:%M " + m.group('TZ2') + " - %a, %B %d, %Y"
+            hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), stringformat)
+
+        hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, timezone, "UTC")
         
         if m.group("CANCELLED") or m.group("PARTIAL"):
             raise FpdbParseError(hid=m.group('HID'))
