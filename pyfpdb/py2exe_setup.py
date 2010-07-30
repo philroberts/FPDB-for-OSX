@@ -133,7 +133,7 @@ test_and_remove(dist_dir)
 setup(
     name        = 'fpdb',
     description = 'Free Poker DataBase',
-    version     = '0.20.901',
+    version     = '0.20.903',
 
     windows = [   {'script': 'fpdb.pyw', "icon_resources": [(1, "../gfx/fpdb_large_icon.ico")]},
                   {'script': 'HUD_main.pyw', },
