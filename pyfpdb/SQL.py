@@ -146,8 +146,8 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneysPlayerId INT NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        buyInPercentage FLOAT UNSIGNED NOT NULL,
-                        payOffPercentage FLOAT UNSIGNED NOT NULL)"""
+                        buyInPercentage FLOAT NOT NULL,
+                        payOffPercentage FLOAT NOT NULL)"""
         elif db_server == 'sqlite':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id INTEGER PRIMARY KEY,
