@@ -500,6 +500,41 @@ class General(dict):
             s = s + "    %s = %s\n" % (k, self[k])
         return(s)
 
+class GUICashStats(list):
+    """<gui_cash_stats>
+           <col col_name="game" col_title="Game" disp_all="True" disp_posn="True" field_format="%s" field_type="str" xalignment="0.0" />
+           ...
+       </gui_cash_stats>
+       """
+    def __init__(self):
+        super(GUICashStats, self).__init__()
+
+    def add_elements(self, node):
+        # is this needed?
+        for child in node.childNodes:
+            if child.nodeType == child.ELEMENT_NODE:
+                col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment=None, None, True, True, "%s", "str", 0.0
+                
+                if child.hasAttribute('col_name'):     col_name     = child.getAttribute('col_name')
+                if child.hasAttribute('col_title'):    col_title    = child.getAttribute('col_title')
+                if child.hasAttribute('disp_all'):     disp_all     = string_to_bool(child.getAttribute('disp_all'))
+                if child.hasAttribute('disp_posn'):    disp_posn    = string_to_bool(child.getAttribute('disp_posn'))
+                if child.hasAttribute('field_format'): field_format = child.getAttribute('field_format')
+                if child.hasAttribute('field_type'):   field_type   = child.getAttribute('field_type')
+                try:
+                    if child.hasAttribute('xalignment'):   xalignment   = float(child.getAttribute('xalignment'))
+                except ValueError:
+                    print "bad number in xalignment was ignored"
+                    log.info("bad number in xalignment was ignored")
+
+                self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
+
+#    def __str__(self):
+#        s = ""
+#        for l in self:
+#            s = s + "    %s = %s\n" % (k, self[k])
+#        return(s)
+
 class Config:
     def __init__(self, file = None, dbname = ''):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
@@ -555,9 +590,13 @@ class Config:
         self.db_selected = None    # database the user would like to use
         self.tv = None
         self.general = General()
+        self.gui_cash_stats = GUICashStats()
 
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
+
+        for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
+            self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -1146,6 +1185,9 @@ class Config:
     def get_general_params(self):
         return( self.general )
 
+    def get_gui_cash_stat_params(self):
+        return( self.gui_cash_stats )
+
 if __name__== "__main__":
     c = Config()
 
@@ -1218,6 +1260,8 @@ if __name__== "__main__":
         print "hud param %s = %s" % (hud_param, value)
 
     print "start up path = ", c.execution_path("")
+
+    print "gui_cash_stats =", c.gui_cash_stats
 
     try:
         from xml.dom.ext import PrettyPrint

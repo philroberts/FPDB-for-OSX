@@ -95,7 +95,7 @@ class GuiPrefs:
             if node.hasAttributes():
                 for i in xrange(node.attributes.length):
                     self.configStore.append( iter, [node, node.attributes.item(i).localName, node.attributes.item(i).value] )
-                    if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site'):
+                    if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site', 'col_name'):
                         name = " " + node.attributes.item(i).value
             if name != "":
                 self.configStore.set_value(iter, 1, setting+name)
