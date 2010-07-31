@@ -3275,7 +3275,7 @@ class Sql:
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet4 as integer))
-                      ,sum(CAST(raisedFirstInChance as integer))
+                      ,sum(CAST(raiseFirstInChance as integer))
                       ,sum(CAST(raisedFirstIn as integer))
                       ,sum(CAST(foldBbToStealChance as integer))
                       ,sum(CAST(foldedBbToSteal as integer))
