@@ -69,7 +69,7 @@ class Table(Table_Window):
         for listing in os.popen('xwininfo -root -tree').readlines():
             if re.search(search_string, listing):
 #                print listing
-                mo = re.match('\s+([\dxabcdef]+) (.+):\s\(\"([a-zA-Z.]+)\".+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
+                mo = re.match('\s+([\dxabcdef]+) (.+):\s\(\"([a-zA-Z0-9\-.]+)\".+  (\d+)x(\d+)\+\d+\+\d+  \+(\d+)\+(\d+)', listing)
                 self.number = int( mo.group(1), 0)
                 self.width  = int( mo.group(4) )
                 self.height = int( mo.group(5) )
