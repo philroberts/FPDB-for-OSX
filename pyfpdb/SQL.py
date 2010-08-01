@@ -146,8 +146,8 @@ class Sql:
                         id BIGSERIAL, PRIMARY KEY (id),
                         tourneysPlayerId INT NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
-                        buyInPercentage FLOAT UNSIGNED NOT NULL,
-                        payOffPercentage FLOAT UNSIGNED NOT NULL)"""
+                        buyInPercentage FLOAT NOT NULL,
+                        payOffPercentage FLOAT NOT NULL)"""
         elif db_server == 'sqlite':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id INTEGER PRIMARY KEY,
@@ -3275,7 +3275,7 @@ class Sql:
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet4 as integer))
-                      ,sum(CAST(raisedFirstInChance as integer))
+                      ,sum(CAST(raiseFirstInChance as integer))
                       ,sum(CAST(raisedFirstIn as integer))
                       ,sum(CAST(foldBbToStealChance as integer))
                       ,sum(CAST(foldedBbToSteal as integer))
