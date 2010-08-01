@@ -26,8 +26,11 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
+
 import time
 import datetime
+from pytz import timezone
+import pytz
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -497,19 +500,68 @@ or None if we fail to get the info """
         
     @staticmethod
     def changeTimezone(time, givenTimezone, wantedTimezone):
-        if givenTimezone=="ET" and wantedTimezone=="UTC":
-            # approximate rules for ET daylight savings time:
-            if (   time.month == 12                                  # all of Dec
-                or (time.month == 11 and time.day > 4)     #    and most of November
-                or time.month < 3                                    #    and all of Jan/Feb
-                or (time.month == 3 and time.day < 11) ):  #    and 1st 10 days of March
-                offset = datetime.timedelta(hours=5)                           # are EST: assume 5 hour offset (ET without daylight saving)
-            else:
-                offset = datetime.timedelta(hours=4)                           # rest is EDT: assume 4 hour offset (ET with daylight saving)
-            # adjust time into UTC:
-            time = time + offset
-            #print "   tz = %s  start = %s" % (tz, str(hand.starttime))
-            return time
+        #print "raw time:",time, "given TZ:", givenTimezone
+        if wantedTimezone=="UTC":
+            wantedTimezone = pytz.utc
+        else:
+            raise Error #TODO raise appropriate error
+        
+        if givenTimezone=="ET":
+            givenTimezone = timezone('US/Eastern')
+        elif givenTimezone=="CET":
+            givenTimezone = timezone('Europe/Berlin')
+            #Note: Daylight Saving Time is standardised across the EU so this should be fine
+        elif givenTimezone == 'HST': # Hawaiian Standard Time
+            pass
+        elif givenTimezone == 'AKT': # Alaska Time
+            pass
+        elif givenTimezone == 'PT': # Pacific Time
+            pass
+        elif givenTimezone == 'MT': # Mountain Time
+            pass
+        elif givenTimezone == 'CT': # Central Time
+            pass
+        elif givenTimezone == 'AT': # Atlantic Time
+            pass
+        elif givenTimezone == 'NT': # Newfoundland Time
+            pass
+        elif givenTimezone == 'ART': # Argentinian Time
+            pass
+        elif givenTimezone == 'BRT': # Brasilia Time
+            pass
+        elif givenTimezone == 'AKT': # Alaska Time
+            pass
+        elif givenTimezone == 'WET': # Western European Time
+            pass
+        elif givenTimezone == 'EET': # Eastern European Time
+            pass
+        elif givenTimezone == 'MSK': # Moscow Standard Time
+            pass
+        elif givenTimezone == 'IST': # India Standard Time
+            pass
+        elif givenTimezone == 'CCT': # China Coast Time
+            pass
+        elif givenTimezone == 'JST': # Japan Standard Time
+            pass
+        elif givenTimezone == 'AWST': # Australian Western Standard Time
+            givenTimezone = timezone('Australia/West')
+        elif givenTimezone == 'ACST': # Australian Central Standard Time
+            givenTimezone = timezone('Australia/Darwin')
+        elif givenTimezone == 'AEST': # Australian Eastern Standard Time
+            # Each State on the East Coast has different DSTs.
+            # Melbournce is out because I don't like AFL, Queensland doesn't have DST
+            # ACT is full of politicians and Tasmania will never notice.
+            # Using Sydney. 
+            givenTimezone = timezone('Australia/Sydney')
+        elif givenTimezone == 'NZT': # New Zealand Time
+            pass
+        else:
+            raise Error #TODO raise appropriate error
+        
+        localisedTime = givenTimezone.localize(time)
+        utcTime = localisedTime.astimezone(wantedTimezone)
+        #print "utcTime:",utcTime
+        return utcTime
     #end @staticmethod def changeTimezone
 
     @staticmethod

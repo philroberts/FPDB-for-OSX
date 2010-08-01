@@ -107,7 +107,6 @@ import ImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
 import GuiPositionalStats
-import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import GuiSessionViewer
@@ -117,7 +116,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.901"
+VERSION = "0.20.902 plus git"
 
 
 class fpdb:
@@ -798,7 +797,6 @@ class fpdb:
                   <menuitem action="tourneyplayerstats"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
-                  <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
                   <menuitem action="maintaindbs"/>
@@ -839,7 +837,6 @@ class fpdb:
                                  ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
-                                 ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
                                  ('maintaindbs', None, '_Maintain Databases', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
@@ -1067,13 +1064,6 @@ Please note that default.conf is no longer needed nor used, all configuration no
 This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.
 You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt in the fpdb installation directory.""")
         self.add_and_display_tab(mh_tab, "Help")
-
-    def tab_table_viewer(self, widget, data=None):
-        """opens a table viewer tab"""
-        new_tv_thread = GuiTableViewer.GuiTableViewer(self.db, self.settings, self.config)
-        self.threads.append(new_tv_thread)
-        tv_tab = new_tv_thread.get_vbox()
-        self.add_and_display_tab(tv_tab, "Table Viewer")
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
