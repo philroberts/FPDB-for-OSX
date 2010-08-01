@@ -72,6 +72,14 @@ Py2exe script for fpdb.
 
 import os
 import sys
+
+# get out now if parameter not passed
+try: 
+    sys.argv[1] <> ""
+except: 
+    print "A parameter is required, quitting now"
+    quit()
+
 from distutils.core import setup
 import py2exe
 import glob
@@ -82,7 +90,6 @@ from datetime import date
 
 origIsSystemDLL = py2exe.build_exe.isSystemDLL
 def isSystemDLL(pathname):
-        #VisC++ runtime msvcp71.dll removed; py2.6 needs msvcp90.dll which will not be distributed.
         #dwmapi appears to be vista-specific file, not XP 
         if os.path.basename(pathname).lower() in ("dwmapi.dll"):
                 return 0
@@ -97,7 +104,7 @@ def remove_tree(top):
     # could delete all your disk files.
     # sc: Nicked this from somewhere, added the if statement to try 
     #     make it a bit safer
-    if top in ('build','dist','gfx') and os.path.basename(os.getcwd()) == 'pyfpdb':
+    if top in ('build','dist','pyfpdb',dist_dirname) and os.path.basename(os.getcwd()) == 'pyfpdb':
         #print "removing directory '"+top+"' ..."
         for root, dirs, files in os.walk(top, topdown=False):
             for name in files:
@@ -114,12 +121,6 @@ def test_and_remove(top):
             print "Unexpected file '"+top+"' found. Exiting."
             exit()
 
-# remove build and dist dirs if they exist
-test_and_remove('dist')
-test_and_remove('build')
-#test_and_remove('gfx')
-
-
 today = date.today().strftime('%Y%m%d')
 print "\n" + r"Output will be created in \pyfpdb\ and \fpdb_"+today+'\\'
 #print "Enter value for XXX (any length): ",     # the comma means no newline
@@ -128,7 +129,13 @@ dist_dirname = r'fpdb-' + today + '-exe'
 dist_dir = r'..\fpdb-' + today + '-exe'
 print
 
-test_and_remove(dist_dir)
+# remove build and dist dirs if they exist
+test_and_remove('dist')
+test_and_remove('build')
+test_and_remove('pyfpdb')
+
+test_and_remove(dist_dirname)
+
 
 setup(
     name        = 'fpdb',
@@ -142,7 +149,7 @@ setup(
 
     options = {'py2exe': {
                       'packages'    : ['encodings', 'matplotlib'],
-                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'
+                      'includes'    : ['gio', 'cairo', 'pango', 'pangocairo', 'atk', 'gobject'    
                                       ,'matplotlib.numerix.random_array'
                                       ,'AbsoluteToFpdb',      'BetfairToFpdb'
                                       ,'CarbonToFpdb',        'EverleafToFpdb'
@@ -151,8 +158,8 @@ setup(
                                       ,'UltimateBetToFpdb',   'Win2dayToFpdb'
                                       ],
                       'excludes'    : ['_tkagg', '_agg2', 'cocoaagg', 'fltkagg'],   # surely we need this? '_gtkagg'
-                      'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll'
-                                      ,'libgobject-2.0-0.dll', 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],
+                      'dll_excludes': ['libglade-2.0-0.dll', 'libgdk-win32-2.0-0.dll', 'libgobject-2.0-0.dll'
+                                      , 'msvcr90.dll', 'MSVCP90.dll', 'MSVCR90.dll','msvcr90.dll'],  # these are vis c / c++ runtimes, and must not be redistributed
                   }
               },
 
@@ -166,25 +173,28 @@ setup(
                  ] + matplotlib.get_py2exe_datafiles()
 )
 
-
+# rename completed output package as pyfpdb
 os.rename('dist', 'pyfpdb')
 
-#   these instructions no longer needed:
-#print '\n' + 'If py2exe was successful add the \\etc \\lib and \\share dirs '
-#print 'from your gtk dir to \\%s\\pyfpdb\\\n' % dist_dirname
-#print 'Also copy libgobject-2.0-0.dll and libgdk-win32-2.0-0.dll from <gtk_dir>\\bin'
-#print 'into there'
+# pull pytz zoneinfo into pyfpdb package folder
+src_dir = r'c:\python26\Lib\site-packages\pytz\zoneinfo'
+src_dir = src_dir.replace('\\', '\\\\')
+dest_dir = os.path.join(r'pyfpdb', 'zoneinfo')
+shutil.copytree( src_dir, dest_dir )
 
+# shunt pyfpdb package over to the distribution folder
 dest = os.path.join(dist_dirname, 'pyfpdb')
-#print "try renaming pyfpdb to", dest
+# print "try renaming pyfpdb to", dest
 dest = dest.replace('\\', '\\\\')
-#print "dest is now", dest
+# print "dest is now", dest
 os.rename( 'pyfpdb', dest )
 
+# prompt for gtk location
 
-print "Enter directory name for GTK (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
-gtk_dir = sys.stdin.readline().rstrip()
-
+gtk_dir = ""
+while not os.path.exists(gtk_dir):
+    print "Enter directory name for GTK (e.g. c:\code\gtk_2.14.7-20090119)\n: ",     # the comma means no newline
+    gtk_dir = sys.stdin.readline().rstrip()
 
 print "\ncopying files and dirs from ", gtk_dir, "to", dest.replace('\\\\', '\\'), "..."
 src = os.path.join(gtk_dir, 'bin', 'libgdk-win32-2.0-0.dll')
@@ -194,7 +204,6 @@ shutil.copy( src, dest )
 src = os.path.join(gtk_dir, 'bin', 'libgobject-2.0-0.dll')
 src = src.replace('\\', '\\\\')
 shutil.copy( src, dest )
-
 
 src_dir = os.path.join(gtk_dir, 'etc')
 src_dir = src_dir.replace('\\', '\\\\')
