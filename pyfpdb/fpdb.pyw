@@ -810,7 +810,6 @@ class fpdb:
                   <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
-                  <menuitem action="License"/>
                 </menu>
               </menubar>
             </ui>"""
@@ -846,8 +845,7 @@ class fpdb:
                                  ('dumptofile', None, 'Dump Database to Textfile (takes ALOT of time)', None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, '_Help'),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
-                                 ('About', None, 'A_bout', None, 'About the program', self.dia_about),
-                                 ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
+                                 ('About', None, 'A_bout, License, Copying', None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', '_Quit')
 
