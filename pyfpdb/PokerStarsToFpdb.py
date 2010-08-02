@@ -253,7 +253,8 @@ class PokerStars(HandHistoryConverter):
                         
                         if hand.buyinCurrency!="PSFP":
                             hand.buyin = int(100*Decimal(info['BIAMT'][1:]))
-                            if info['BIRAKE']=="0": #we have a non-bounty game
+                            if info['BIRAKE'][0]!="$": #we have a non-bounty game
+                                info['BOUNTY']=info['BOUNTY']+info['BIRAKE'] #TODO remove this dirty dirty hack by fixing regex
                                 hand.fee = int(100*Decimal(info['BOUNTY'][1:]))
                             else:
                                 hand.fee = int(100*Decimal(info['BIRAKE'][1:]))
