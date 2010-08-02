@@ -26,6 +26,20 @@ import gobject
 import Configuration
 
 
+rewrite = { 'general' : 'General',                   'supported_databases' : 'Databases'
+          , 'import'  : 'Import',                    'hud_ui' : 'HUD'
+          , 'supported_sites' : 'Sites',             'supported_games' : 'Games'
+          , 'popup_windows' : 'Popup Windows',       'pu' : 'Window'
+          , 'pu_name' : 'Popup Name',                'pu_stat' : 'Stat'
+          , 'pu_stat_name' : 'Stat Name'
+          , 'aux_windows' : 'Auxiliary Windows',     'aw stud_mucked' : 'stud_mucked'
+          , 'aw mucked' : 'mucked',                  'hhcs' : 'Hand History Converters'
+          , 'gui_cash_stats' : 'Ring Player Stats',  'field_type' : 'Field Type'
+          , 'col_title' : 'Column Heading',          'xalignment' : 'Left/Right Align'
+          , 'disp_all' : 'Show in Summaries',        'disp_posn' : 'Show in Position Stats'
+          , 'col_name' : 'Stat Name',                'field_format' : 'Format'
+          }
+
 class GuiPrefs:
 
     def __init__(self, config, mainwin, dia, parentwin):
@@ -78,6 +92,13 @@ class GuiPrefs:
             self.tree_box.show()
             self.dialog.show()
 
+    def rewriteText(self, s):
+        upd = False
+        if s in rewrite:
+            s = rewrite[s]
+            upd = True
+        return( (s,upd) )
+
     def addTreeRows(self, parent, node):
         if (node.nodeType == node.ELEMENT_NODE):
             (setting, value) = (node.nodeName, None)
@@ -94,11 +115,15 @@ class GuiPrefs:
             iter = self.configStore.append( parent, [node, setting, value] )
             if node.hasAttributes():
                 for i in xrange(node.attributes.length):
-                    self.configStore.append( iter, [node, node.attributes.item(i).localName, node.attributes.item(i).value] )
-                    if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site'):
+                    localName,updated = self.rewriteText( node.attributes.item(i).localName )
+                    self.configStore.append( iter, [node, localName, node.attributes.item(i).value] )
+                    if node.attributes.item(i).localName in ('site_name', 'game_name', 'stat_name', 'name', 'db_server', 'site', 'col_name'):
                         name = " " + node.attributes.item(i).value
-            if name != "":
-                self.configStore.set_value(iter, 1, setting+name)
+
+            label,updated = self.rewriteText(setting+name)
+            if name != "" or updated:
+                self.configStore.set_value(iter, 1, label)
+
             if node.hasChildNodes():
                 for elem in node.childNodes:
                     self.addTreeRows(iter, elem)
