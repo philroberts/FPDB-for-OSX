@@ -83,6 +83,7 @@ class Hand(object):
         self.isRebuy = False
         self.isAddOn = False
         self.isKO = False
+        self.koBounty = None
         self.isMatrix = False
         self.isShootout = False
         self.added = None
@@ -168,6 +169,7 @@ class Hand(object):
                  ("IS REBUY", self.isRebuy),
                  ("IS ADDON", self.isAddOn),
                  ("IS KO", self.isKO),
+                 ("KO BOUNTY", self.koBounty),
                  ("IS MATRIX", self.isMatrix),
                  ("IS SHOOTOUT", self.isShootout),
                  ("TOURNEY COMMENT", self.tourneyComment),

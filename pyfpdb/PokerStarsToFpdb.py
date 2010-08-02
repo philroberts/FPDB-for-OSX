@@ -257,7 +257,8 @@ class PokerStars(HandHistoryConverter):
                                 hand.fee = int(100*Decimal(info['BOUNTY'][1:]))
                             else:
                                 hand.fee = int(100*Decimal(info['BIRAKE'][1:]))
-                            # TODO: Bounty is in key 'BOUNTY'
+                                hand.isKO = True
+                                hand.koBounty = int(100*Decimal(info['BOUNTY'][1:]))
                         else:
                             hand.buyin = int(Decimal(info[key][0:-3]))
                             hand.fee = 0

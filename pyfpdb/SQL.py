@@ -3786,9 +3786,9 @@ class Sql:
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
-                                                  (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, rebuy,
+                                                  (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, koBounty, rebuy,
                                                   addOn ,speed, shootout, matrix, added, addedCurrency)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*

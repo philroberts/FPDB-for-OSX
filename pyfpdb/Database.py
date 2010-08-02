@@ -1990,7 +1990,7 @@ class Database:
             #print "the query:",self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
-                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
+                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix) #TODO: add koamount
                             )
             result=cursor.fetchone()
             #print "result of fetching TT by details:",result
@@ -1999,8 +1999,8 @@ class Database:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
-                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips,
-                                 hand.isKO, hand.isRebuy,
+                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'],
+                                 hand.buyInChips, hand.isKO, hand.koBounty, hand.isRebuy,
                                  hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                                 )
                 tourneyTypeId = self.get_last_insert_id(cursor)
