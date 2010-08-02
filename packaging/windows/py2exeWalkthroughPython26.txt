@@ -222,7 +222,7 @@ pyfpdb/share/man
 Step 12 rename folder 
 ---------------------
 
-Rename the folder to something meaningful to the community.  If you have built for NoSSE, append noSSE to the directory name.
+Rename the folder to something meaningful to the community.  If you have built for NoSSE, append anyCPU to the directory name.
 
 
 Step 13 Compress to executable archive
