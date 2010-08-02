@@ -228,13 +228,12 @@ class fpdb:
         self.quit(widget)
 
     def dia_about(self, widget, data=None):
-        #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
         dia.set_copyright("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
-        dia.set_comments("")
-        dia.set_license("This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory")
+        dia.set_comments("You are free to change and distribute original or changed versions of fpdb within the rules set out by the license")
+        dia.set_license("Please see fpdb's start screen for license information")
         dia.set_website("http://fpdb.sourceforge.net/")
         
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
