@@ -1060,7 +1060,8 @@ If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
 
 This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.
-You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt in the fpdb installation directory.""")
+The Windows installer package includes code licensed under the MIT license.
+You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory.""")
         self.add_and_display_tab(mh_tab, "Help")
 
     def tabGraphViewer(self, widget, data=None):
