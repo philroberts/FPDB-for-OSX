@@ -289,8 +289,10 @@ class DerivedStats():
 #        actions = hand.actions[hand.actionStreets[-1]]
 #        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
 #        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
-        
-        p_in = set(x[1] for x in hand.players)
+
+        # hand.players includes people that are sitting out on some sites. 
+        # Those that posted an ante should have been deal cards. 
+        p_in = set([x[0] for x in hand.actions['BLINDSANTES']]) 
         for (i, street) in enumerate(hand.actionStreets):
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))

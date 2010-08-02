@@ -72,7 +72,7 @@ class PokerStars(HandHistoryConverter):
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
-          (?P<BUYIN>([%(LS)s\+\d\.]+\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?)|Freeroll)\s+)?                          
+          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+(?P<BOUNTY>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)|Freeroll)\s+)?
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
@@ -206,24 +206,20 @@ class PokerStars(HandHistoryConverter):
         m = self.re_HandInfo.search(hand.handText,re.DOTALL)
         if m:
             info.update(m.groupdict())
-#                hand.maxseats = int(m2.group(1))
         else:
             pass  # throw an exception here, eh?
         m = self.re_GameInfo.search(hand.handText)
         if m:
             info.update(m.groupdict())
-#        m = self.re_Button.search(hand.handText)
-#        if m: info.update(m.groupdict()) 
-        # TODO : I rather like the idea of just having this dict as hand.info
+
         log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
-                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET]             # (both dates are parsed so ET date overrides the other)
+                #2008/11/12 10:00:48 CET [2008/11/12 4:00:48 ET] # (both dates are parsed so ET date overrides the other)
                 #2008/08/17 - 01:14:43 (ET)
                 #2008/09/07 06:23:14 ET
                 m1 = self.re_DateTime.finditer(info[key])
-                # m2 = re.search("(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)", info[key])
-                datetimestr = "2000/01/01 00:00:00"  # default used if time not found (stops import crashing, but startTime will be wrong)
+                datetimestr = "2000/01/01 00:00:00"  # default used if time not found
                 for a in m1:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'), a.group('M'),a.group('D'),a.group('H'),a.group('MIN'),a.group('S'))
                     #tz = a.group('TZ')  # just assume ET??
@@ -236,12 +232,15 @@ class PokerStars(HandHistoryConverter):
                 hand.tourNo = info[key]
             if key == 'BUYIN':
                 if hand.tourNo!=None:
+                    #print "DEBUG: info['BUYIN']: %s" % info['BUYIN']
+                    #print "DEBUG: info['BIAMT']: %s" % info['BIAMT']
+                    #print "DEBUG: info['BIRAKE']: %s" % info['BIRAKE']
+                    #print "DEBUG: info['BOUNTY']: %s" % info['BOUNTY']
                     if info[key] == 'Freeroll':
                         hand.buyin = 0
                         hand.fee = 0
                         hand.buyinCurrency = "FREE"
                     else:
-                        #print "info[key]:",info[key]
                         if info[key].find("$")!=-1:
                             hand.buyinCurrency="USD"
                         elif info[key].find(u"€")!=-1:
@@ -249,14 +248,18 @@ class PokerStars(HandHistoryConverter):
                         elif info[key].find("FPP")!=-1:
                             hand.buyinCurrency="PSFP"
                         else:
-                            raise FpdbParseError("failed to detect currency") #FIXME: handle other currencies, FPP, play money
+                            #FIXME: handle other currencies, FPP, play money
+                            raise FpdbParseError("failed to detect currency")
                         
-                        if hand.buyinCurrency=="USD" or hand.buyinCurrency=="EUR":
-                            info[key]=info[key][:-4]
-                            middle=info[key].find("+")
-                            hand.buyin = int(100*Decimal(info[key][1:middle]))
-                            hand.fee = int(100*Decimal(info[key][middle+2:]))
-                        elif hand.buyinCurrency=="PSFP":
+                        if hand.buyinCurrency!="PSFP":
+                            hand.buyin = int(100*Decimal(info['BIAMT'][1:]))
+                            if info['BIRAKE']=="0": #we have a non-bounty game
+                                hand.fee = int(100*Decimal(info['BOUNTY'][1:]))
+                            else:
+                                hand.fee = int(100*Decimal(info['BIRAKE'][1:]))
+                                hand.isKO = True
+                                hand.koBounty = int(100*Decimal(info['BOUNTY'][1:]))
+                        else:
                             hand.buyin = int(Decimal(info[key][0:-3]))
                             hand.fee = 0
             if key == 'LEVEL':
