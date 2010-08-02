@@ -58,7 +58,7 @@ class Everleaf(HandHistoryConverter):
             self.re_HeroCards       = re.compile(ur"^Dealt to %s \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
             # ^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:\$| €|) (?P<BET>[.,\d]+) (USD|EURO|Chips)\])?
             self.re_Action          = re.compile(ur"^%s(?P<ATYPE>: bets| checks| raises| calls| folds)(\s\[(?:[$€]?) (?P<BET>[.,\d]+)\s?(USD|EURO|Chips|)\])?" % player_re, re.MULTILINE)
-            self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]$" % player_re, re.MULTILINE)
+            self.re_ShowdownAction  = re.compile(ur"^%s shows \[ (?P<CARDS>.*) \]" % player_re, re.MULTILINE)
             self.re_CollectPot      = re.compile(ur"^%s wins (?:[$€]?)\s?(?P<POT>[.\d]+) (USD|EURO|chips)(.*?\[ (?P<CARDS>.*?) \])?" % player_re, re.MULTILINE)
             self.re_SitsOut         = re.compile(ur"^%s sits out" % player_re, re.MULTILINE)
 
