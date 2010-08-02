@@ -165,7 +165,7 @@ setup(
 
     # files in 2nd value in tuple are moved to dir named in 1st value
     #data_files updated for new locations of licences + readme nolonger exists
-    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../agpl-3.0.txt', '../fdl-1.2.txt', '../gpl-3.0.txt', '../gpl-2.0.txt', '../readme.txt'])
+    data_files = [('', ['HUD_config.xml.example', 'Cards01.png', 'logging.conf', '../agpl-3.0.txt', '../fdl-1.2.txt', '../gpl-3.0.txt', '../gpl-2.0.txt', '../mit.txt', '../readme.txt'])
                  ,(dist_dir, [r'..\run_fpdb.bat'])
                  ,( dist_dir + r'\gfx', glob.glob(r'..\gfx\*.*') )
                  # line below has problem with fonts subdir ('not a regular file')
