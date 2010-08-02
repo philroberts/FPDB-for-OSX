@@ -556,22 +556,26 @@ Left-Drag to Move"
 
     <popup_windows>
         <pu pu_name="default">
+            <pu_stat pu_stat_name="playername"> </pu_stat>
+            <pu_stat pu_stat_name="totalprofit"> </pu_stat>
+            <pu_stat pu_stat_name="profit100"> </pu_stat>             
             <pu_stat pu_stat_name="n"> </pu_stat>
             <pu_stat pu_stat_name="vpip"> </pu_stat>
             <pu_stat pu_stat_name="pfr"> </pu_stat>
             <pu_stat pu_stat_name="three_B_0"> </pu_stat>
             <pu_stat pu_stat_name="steal"> </pu_stat>
+            <pu_stat pu_stat_name="f_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>
             <pu_stat pu_stat_name="wmsd"> </pu_stat>
             <pu_stat pu_stat_name="wtsd"> </pu_stat>
             <pu_stat pu_stat_name="WMsF"> </pu_stat>
+            <pu_stat pu_stat_name="agg_fact"> </pu_stat>
             <pu_stat pu_stat_name="a_freq1"> </pu_stat>
             <pu_stat pu_stat_name="a_freq2"> </pu_stat>
             <pu_stat pu_stat_name="a_freq3"> </pu_stat>
             <pu_stat pu_stat_name="a_freq4"> </pu_stat>
             <pu_stat pu_stat_name="agg_freq"> </pu_stat>
-            <pu_stat pu_stat_name="agg_fact"> </pu_stat>
             <pu_stat pu_stat_name="cbet"> </pu_stat>
             <pu_stat pu_stat_name="cb1"> </pu_stat>
             <pu_stat pu_stat_name="cb2"> </pu_stat>
