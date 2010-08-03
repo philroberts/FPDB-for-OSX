@@ -72,7 +72,7 @@ class PokerStars(HandHistoryConverter):
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
-          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
+          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
@@ -252,14 +252,20 @@ class PokerStars(HandHistoryConverter):
                             raise FpdbParseError("failed to detect currency")
                         
                         if hand.buyinCurrency!="PSFP":
-                            hand.buyin = int(100*Decimal(info['BIAMT'][1:]))
-                            if info['BIRAKE'][0]!="$": #we have a non-bounty game
-                                info['BOUNTY']=info['BOUNTY']+info['BIRAKE'] #TODO remove this dirty dirty hack by fixing regex
-                                hand.fee = int(100*Decimal(info['BOUNTY'][1:]))
-                            else:
-                                hand.fee = int(100*Decimal(info['BIRAKE'][1:]))
-                                hand.isKO = True
-                                hand.koBounty = int(100*Decimal(info['BOUNTY'][1:]))
+                            if info['BOUNTY'] != None:
+                                # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
+                                tmp = info['BOUNTY']
+                                info['BOUNTY'] = info['BIRAKE']
+                                info['BIRAKE'] = tmp
+                                info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
+                                hand.koBounty = int(100*Decimal(info['BOUNTY']))
+
+                            info['BIAMT'] = info['BIAMT'].strip(u'$€')
+                            info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
+
+                            hand.buyin = int(100*Decimal(info['BIAMT']))
+                            hand.fee = int(100*Decimal(info['BIRAKE']))
+                            hand.isKO = True
                         else:
                             hand.buyin = int(Decimal(info[key][0:-3]))
                             hand.fee = 0
