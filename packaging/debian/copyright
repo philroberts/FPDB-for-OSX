@@ -2,6 +2,6 @@ This package was debianised by Mika Bostrom <bostik+fpdb@bostik.iki.fi>
 
 Upstream authors: ...
 
-License: AGPL
+License: AGPL3; partially GPL2 or higher
 
-Copyright (C) 2008-  The FPDB developers
+Copyright (C) 2008-2010  The FPDB developers

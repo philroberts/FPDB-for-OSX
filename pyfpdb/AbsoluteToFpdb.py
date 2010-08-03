@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-#    Copyright 2008, Carl Gherardi
+#    Copyright 2008-2010, Carl Gherardi
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -42,10 +42,10 @@ class Absolute(HandHistoryConverter):
 #Seat 6 - FETS63 ($0.75 in chips)
 #Board [10s 5d Kh Qh 8c]
 
-    re_GameInfo     = re.compile(ur"^Stage #([0-9]+): (?P<GAME>Holdem|HORSE)(?: \(1 on 1\)|)?  ?(?P<LIMIT>No Limit|Pot Limit|Normal|)? ?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/?(?:\$| €|)(?P<BB>[.0-9]+)?", re.MULTILINE)
+    re_GameInfo     = re.compile(ur"^Stage #(C?[0-9]+): (?P<GAME>Holdem|HORSE)(?: \(1 on 1\)|)?  ?(?P<LIMIT>No Limit|Pot Limit|Normal|)? ?(?P<CURRENCY>\$| €|)(?P<SB>[.0-9]+)/?(?:\$| €|)(?P<BB>[.0-9]+)?", re.MULTILINE)
     re_HorseGameInfo = re.compile(ur"^Game Type: (?P<LIMIT>Limit) (?P<GAME>Holdem)", re.MULTILINE)
     # TODO: can set max seats via (1 on 1) to a known 2 .. 
-    re_HandInfo     = re.compile(ur"^Stage #(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\n(Table: (?P<TABLE>.*) \(Real Money\))?", re.MULTILINE)
+    re_HandInfo     = re.compile(ur"^Stage #C?(?P<HID>[0-9]+): .*(?P<DATETIME>\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d).*\n(Table: (?P<TABLE>.*) \(Real Money\))?", re.MULTILINE)
     re_TableFromFilename = re.compile(ur".*IHH([0-9]+) (?P<TABLE>.*) -") # on HORSE STUD games, the table name isn't in the hand info!
     re_Button       = re.compile(ur"Seat #(?P<BUTTON>[0-9]) is the ?[dead]* dealer$", re.MULTILINE) # TODO: that's not the right way to match for "dead" dealer is it?
     re_PlayerInfo   = re.compile(ur"^Seat (?P<SEAT>[0-9]) - (?P<PNAME>.*) \((?:\$| €|)(?P<CASH>[0-9]*[.0-9]+) in chips\)", re.MULTILINE)
@@ -96,17 +96,18 @@ class Absolute(HandHistoryConverter):
 
     def determineGameType(self, handText):
         """return dict with keys/values:
-    'type'       in ('ring', 'tour')
-    'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
-    'base'       in ('hold', 'stud', 'draw')
-    'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
-    'hilo'       in ('h','l','s')
-    'smallBlind' int?
-    'bigBlind'   int?
-    'smallBet'
-    'bigBet'
-    'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
-or None if we fail to get the info """
+        'type'       in ('ring', 'tour')
+        'limitType'  in ('nl', 'cn', 'pl', 'cp', 'fl')
+        'base'       in ('hold', 'stud', 'draw')
+        'category'   in ('holdem', 'omahahi', omahahilo', 'razz', 'studhi', 'studhilo', 'fivedraw', '27_1draw', '27_3draw', 'badugi')
+        'hilo'       in ('h','l','s')
+        'smallBlind' int?
+        'bigBlind'   int?
+        'smallBet'
+        'bigBet'
+        'currency'  in ('USD', 'EUR', 'T$', <countrycode>)
+
+        or None if we fail to get the info """
         info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
@@ -177,7 +178,7 @@ or None if we fail to get the info """
                                 # TODO: (1-on-1) does have that info in the game type line
         if self.HORSEHand:
             hand.maxseats = 8
-        hand.starttime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
+        hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), "%Y-%m-%d %H:%M:%S")
         return
 
     def readPlayerStacks(self, hand):
@@ -329,6 +330,9 @@ def validCard(card):
     return card
 
 if __name__ == "__main__":
+    import Configuration
+    config =  Configuration.Config(None)
+
     parser = OptionParser()
     parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
     parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
@@ -345,5 +349,5 @@ if __name__ == "__main__":
     LOG_FILENAME = './logging.out'
     logging.basicConfig(filename=LOG_FILENAME,level=options.verbosity)
 
-    e = Absolute(in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True, debugging=True)
+    e = Absolute(config, in_path = options.ipath, out_path = options.opath, follow = options.follow, autostart=True)
 

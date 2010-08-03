@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import threading
 import subprocess
@@ -32,11 +32,12 @@ import Configuration
 import string
 
 class GuiAutoImport (threading.Thread):
-    def __init__(self, settings, config, sql):
+    def __init__(self, settings, config, sql, parent):
         self.importtimer = 0
         self.settings = settings
         self.config = config
         self.sql = sql
+        self.parent = parent
 
         imp = self.config.get_import_parameters()
 
@@ -100,7 +101,7 @@ class GuiAutoImport (threading.Thread):
         hbox.pack_start(lbl1, expand=True, fill=False)
 
         self.doAutoImportBool = False
-        self.startButton = gtk.ToggleButton("  _Start Autoimport  ")
+        self.startButton = gtk.ToggleButton("  Start _Autoimport  ")
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
@@ -138,6 +139,8 @@ class GuiAutoImport (threading.Thread):
         #dia_chooser.set_current_folder(pathname)
         dia_chooser.set_filename(current_path)
         #dia_chooser.set_select_multiple(select_multiple) #not in tv, but want this in bulk import
+        dia_chooser.set_destroy_with_parent(True)
+        dia_chooser.set_transient_for(self.parent)
 
         response = dia_chooser.run()
         if response == gtk.RESPONSE_OK:
@@ -153,7 +156,7 @@ class GuiAutoImport (threading.Thread):
     def do_import(self):
         """Callback for timer to do an import iteration."""
         if self.doAutoImportBool:
-            self.startButton.set_label(u' I M P O R T I N G  ')
+            self.startButton.set_label(u'  _Auto Import Running  ')
             self.importer.runUpdated()
             self.addText(".")
             #sys.stdout.write(".")
@@ -164,9 +167,9 @@ class GuiAutoImport (threading.Thread):
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(u'  _Stop Autoimport  ')
+            self.startButton.set_label(u'  Stop _Autoimport  ')
         else:
-            self.startButton.set_label(u'  _Start Autoimport  ')
+            self.startButton.set_label(u'  Start _Autoimport  ')
 
         return False
 
@@ -243,7 +246,7 @@ class GuiAutoImport (threading.Thread):
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
-            self.startButton.set_label(u'  _Start Autoimport  ')
+            self.startButton.set_label(u'  Start _Autoimport  ')
 
     #end def GuiAutoImport.startClicked
 

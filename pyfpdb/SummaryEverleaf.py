@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-# Copyright (c) 2009 Eric Blade, and the FPDB team.
+# Copyright (c) 2009-2010 Eric Blade, and the FPDB team.
 
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
@@ -13,8 +14,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import urllib, htmllib, formatter
 
@@ -51,7 +51,7 @@ class SummaryParser(htmllib.HTMLParser): # derive new HTML parser
         self.nextPool       = False
         self.TourneyPool    = None
         self.nextPlayers    = False
-        self.TourneyPlayers = None
+        self.TourneysPlayers = None
         self.nextAllowRebuys = False
         self.TourneyRebuys  = None
         self.parseResultsA  = False
@@ -134,7 +134,7 @@ class SummaryParser(htmllib.HTMLParser): # derive new HTML parser
             if not self.nextPlayers and x == "Player Count:":
                 self.nextPlayers = True
             elif self.nextPlayers:
-                self.TourneyPlayers = x
+                self.TourneysPlayers = x
                 self.nextPlayers = False
                 
             if not self.nextAllowRebuys and x == "Rebuys possible?:":
@@ -179,7 +179,7 @@ class EverleafSummary:
         print "site=",self.parser.SiteName, "tourneyname=", self.parser.TourneyName, "tourneyid=", self.parser.TourneyId
         print "start time=",self.parser.TourneyStartTime, "end time=",self.parser.TourneyEndTime
         print "structure=", self.parser.TourneyStructure, "game type=",self.parser.TourneyGameType
-        print "buy-in=", self.parser.TourneyBuyIn, "rebuys=", self.parser.TourneyRebuys, "total players=", self.parser.TourneyPlayers, "pool=", self.parser.TourneyPool
+        print "buy-in=", self.parser.TourneyBuyIn, "rebuys=", self.parser.TourneyRebuys, "total players=", self.parser.TourneysPlayers, "pool=", self.parser.TourneyPool
         print "results=", self.parser.Results
     
     

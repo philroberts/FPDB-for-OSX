@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,10 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
-
-#see status.txt for site/games support info
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 #    Standard Library modules
 
@@ -154,6 +152,8 @@ class Importer:
     #Add an individual file to filelist
     def addImportFile(self, filename, site = "default", filter = "passthrough"):
         #TODO: test it is a valid file -> put that in config!!
+        #print "addimportfile: filename is a", filename.__class__
+        # filename now comes in as unicode
         if filename in self.filelist or not os.path.exists(filename):
             return
         self.filelist[filename] = [site] + [filter]
@@ -179,10 +179,11 @@ class Importer:
         if os.path.isdir(inputPath):
             for subdir in os.walk(inputPath):
                 for file in subdir[2]:
-                    self.addImportFile(os.path.join(subdir[0], file), site=site,
-                                       filter=filter)
+                    self.addImportFile(unicode(os.path.join(subdir[0], file),'utf-8'),
+                                       site=site, filter=filter)
         else:
-            self.addImportFile(inputPath, site=site, filter=filter)
+            
+            self.addImportFile(unicode(inputPath,'utf-8'), site=site, filter=filter)
     #Add a directory of files to filelist
     #Only one import directory per site supported.
     #dirlist is a hash of lists:
@@ -408,7 +409,8 @@ class Importer:
         conv = None
         (stored, duplicates, partial, errors, ttime) = (0, 0, 0, 0, time())
 
-        file =  file.decode(Configuration.LOCALE_ENCODING)
+        # sc: is there any need to decode this? maybe easier to skip it than guess at the encoding?
+        #file =  file.decode("utf-8") #(Configuration.LOCALE_ENCODING)
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
@@ -485,9 +487,9 @@ class Importer:
 
     def printEmailErrorMessage(self, errors, filename, line):
         traceback.print_exc(file=sys.stderr)
-        print "Error No.",errors,", please send the hand causing this to steffen@sycamoretest.info so I can fix it."
+        print "Error No.",errors,", please send the hand causing this to fpdb-main@lists.sourceforge.net so we can fix the problem."
         print "Filename:", filename
-        print "Here is the first line so you can identify it. Please mention that the error was a ValueError:"
+        print "Here is the first line of the hand so you can identify it. Please mention that the error was a ValueError:"
         print self.hand[0]
         print "Hand logged to hand-errors.txt"
         logfile = open('hand-errors.txt', 'a')

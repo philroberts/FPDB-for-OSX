@@ -4,7 +4,7 @@
 
 Create and manage the hud overlays.
 """
-#    Copyright 2008, 2009  Ray E. Barker
+#    Copyright 2008-2010  Ray E. Barker
 
 #
 #    This program is free software; you can redistribute it and/or modify
@@ -469,6 +469,9 @@ class Hud:
                 # While we're at it, fix the positions of mucked cards too
                 for aux in self.aux_windows:
                     aux.update_card_positions()
+                
+                self.reposition_windows()
+                # call reposition_windows, which apparently moves even hidden windows, where this function does not, even though they do the same thing, afaict
 
         return True
 

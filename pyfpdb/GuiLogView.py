@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008 Carl Gherardi
+#Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -13,9 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
-
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import os
 import Queue
@@ -26,6 +24,8 @@ import gtk
 import gobject
 import pango
 
+import os
+import traceback
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("logview")
@@ -137,7 +137,7 @@ class GuiLogView:
     def loadLog(self):
 
         self.liststore.clear()
-        self.listcols = []
+#        self.listcols = [] blanking listcols causes sortcols() to fail with index out of range
 
         # guesstimate number of lines in file
         if os.path.exists(self.logfile):
@@ -157,6 +157,15 @@ class GuiLogView:
                 # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
                 l = l + 1
                 if l > startline:
+                    # NOTE selecting a sort column and then switching to a log file
+                    # with several thousand rows will send cpu 100% for a prolonged period.
+                    # reason is that the append() method seems to sort every record as it goes, rather than
+                    # pulling in the whole file and sorting at the end.
+                    # one fix is to check if a column sort has been selected, reset to date/time asc
+                    # append all the rows and then reselect the required sort order.
+                    # Note: there is no easy method available to revert the list to an "unsorted" state.
+                    # always defaulting to date/time asc doesn't work, because some rows do not have date/time info
+                    # and would end up sorted out of context.
                     if len(line) > 49 and line[23:26] == ' - ' and line[34:39] == '     ':
                         iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
                     else:
