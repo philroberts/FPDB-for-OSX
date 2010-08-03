@@ -262,6 +262,8 @@ class PokerStars(HandHistoryConverter):
                                 info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
                                 hand.koBounty = int(100*Decimal(info['BOUNTY']))
                                 hand.isKO = True
+                            else:
+                                hand.isKO = False
 
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
 
