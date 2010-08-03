@@ -72,7 +72,7 @@ class PokerStars(HandHistoryConverter):
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
-          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
+          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
@@ -250,6 +250,8 @@ class PokerStars(HandHistoryConverter):
                         else:
                             #FIXME: handle other currencies, FPP, play money
                             raise FpdbParseError("failed to detect currency")
+
+                        info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
                         if hand.buyinCurrency!="PSFP":
                             if info['BOUNTY'] != None:
@@ -259,15 +261,14 @@ class PokerStars(HandHistoryConverter):
                                 info['BIRAKE'] = tmp
                                 info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
                                 hand.koBounty = int(100*Decimal(info['BOUNTY']))
+                                hand.isKO = True
 
-                            info['BIAMT'] = info['BIAMT'].strip(u'$€')
                             info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
 
                             hand.buyin = int(100*Decimal(info['BIAMT']))
                             hand.fee = int(100*Decimal(info['BIRAKE']))
-                            hand.isKO = True
                         else:
-                            hand.buyin = int(Decimal(info[key][0:-3]))
+                            hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
             if key == 'LEVEL':
                 hand.level = info[key]
