@@ -433,9 +433,9 @@ or None if we fail to get the info """
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
                         whole_file = in_fh.read()
+                        in_fh.close()
                         self.obs = whole_file[self.index:]
                         self.index = len(whole_file)
-                        in_fh.close()
                         break
                     except:
                         pass
