@@ -1371,6 +1371,7 @@ class Database:
                     # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
                     # then drop still hangs :-(  does work in some tests though??
                     # will leave code here for now pending further tests/enhancement ...
+                    c.execute("BEGIN TRANSACTION")
                     c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
                     #print "after lock, status:", c.statusmessage
                     #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
@@ -1381,6 +1382,7 @@ class Database:
                         if "does not exist" not in str(sys.exc_value):
                             print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
                                   % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
+                    c.execute("END TRANSACTION")
                 except:
                     print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
                           % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
