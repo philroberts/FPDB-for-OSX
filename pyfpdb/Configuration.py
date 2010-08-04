@@ -534,6 +534,37 @@ class GUICashStats(list):
 
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
 
+    def get_defaults(self):
+        """I have no idea id this is functional"""
+        return self.append ( [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+            [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
+            [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
+            [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
+            [u'n', u'Hds', True, True, u'%1.0f', u'str', 1.0],
+            [u'avgseats', u'Seats', False, False, u'%3.1f', u'str', 1.0],
+            [u'vpip', u'VPIP', True, True, u'%3.1f', u'str', 1.0],
+            [u'pfr', u'PFR', True, True, u'%3.1f', u'str', 1.0],
+            [u'pf3', u'PF3', True, True, u'%3.1f', u'str', 1.0],
+            [u'aggfac', u'AggFac', True, True, u'%2.2f', u'str', 1.0],
+            [u'aggfrq', u'AggFreq', True, True, u'%3.1f', u'str', 1.0],
+            [u'conbet', u'ContBet', True, True, u'%3.1f', u'str', 1.0],
+            [u'rfi', u'RFI', True, True, u'%3.1f', u'str', 1.0],
+            [u'steals', u'Steals', True, True, u'%3.1f', u'str', 1.0],
+            [u'saw_f', u'Saw_F', True, True, u'%3.1f', u'str', 1.0],
+            [u'sawsd', u'SawSD', True, True, u'%3.1f', u'str', 1.0],
+            [u'wtsdwsf', u'WtSDwsF', True, True, u'%3.1f', u'str', 1.0],
+            [u'wmsd', u'W$SD', True, True, u'%3.1f', u'str', 1.0],
+            [u'flafq', u'FlAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'tuafq', u'TuAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'rvafq', u'RvAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'pofafq', u'PoFAFq', False, False, u'%3.1f', u'str', 1.0],
+            [u'net', u'Net($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bbper100', u'bb/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'rake', u'Rake($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bb100xr', u'bbxr/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
+        ])
+
 #    def __str__(self):
 #        s = ""
 #        for l in self:
@@ -602,6 +633,7 @@ class Config:
 
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
             self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
+            # TODO: gui_cash_stats.get_defaults if doc.getElementsByTagName("gui_cash_stats") is non-existant
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
