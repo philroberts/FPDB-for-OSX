@@ -48,7 +48,7 @@
 #        6  For each stat you make add a line to the __main__ function to test it.
 
 #    Standard Library modules
-#import sys
+import sys
 
 #    pyGTK modules
 import pygtk
@@ -59,6 +59,10 @@ import re
 import Configuration
 import Database
 import Charset
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("db")
 
 
 re_Places = re.compile("_[0-9]$")
@@ -79,12 +83,23 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
     else:
         base = stat[0:-2]
         places = int(stat[-1:])
-        result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': base, 'player': player})
+        result = (0.0, '0.0', 'notset=0', 'notset=0', '0', 'not set')
+        try:
+            result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': base, 'player': player})
+        except:
+            pass #
+            log.info("exception getting stat "+base+" for player "+str(player)+str(sys.exc_info()))
+        log.debug("result = %s" % str(result) )
+
         match = re_Percent.search(result[1])
-        if match is None:
-            result = (result[0], "%.*f" % (places, result[0]), result[2], result[3], result[4], result[5])
-        else:
-            result = (result[0], "%.*f%%" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
+        try:
+            if match is None:
+                result = (result[0], "%.*f" % (places, result[0]), result[2], result[3], result[4], result[5])
+            else:
+                result = (result[0], "%.*f%%" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
+        except:
+            log.info( "error: %s" % str(sys.exc_info()))
+            raise
     return result
 
 #    OK, for reference the tuple returned by the stat is:
@@ -198,7 +213,7 @@ def wmsd(stat_dict, player):
                 )
 
 def profit100(stat_dict, player):
-    """    Profit won per 100 hands (no decimal places)."""
+    """    Profit won per 100 hands."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['net'])/float(stat_dict[player]['n'])
@@ -212,12 +227,56 @@ def profit100(stat_dict, player):
     except:
             print "exception calcing p/100: 100 * %d / %d" % (stat_dict[player]['net'], stat_dict[player]['n'])
             return (stat,
-                    '%.0f'       % (0),
-                    'p=%.0f'     % (0),
-                    'p/100=%.0f'  % (0),
+                    '%.0f'       % (0.0),
+                    'p=%.0f'     % (0.0),
+                    'p/100=%.0f'  % (0.0),
                     '(%d/%d)' % (0, 0),
                     'profit/100hands'
                     )
+
+def bbper100(stat_dict, player):
+    """    big blinds won per 100 hands."""
+    stat = 0.0
+    try:
+        stat = 100.0 * float(stat_dict[player]['net']) / float(stat_dict[player]['bigblind'])
+        return (stat,
+                '%5.3f'        % (stat),
+                'bb100=%5.3f'     % (stat),
+                'bb100=%5.3f'  % (stat),
+                '(%d,%d)' % (100*stat_dict[player]['net'],stat_dict[player]['bigblind']),
+                'big blinds/100 hands'
+                )
+    except:
+        log.info("exception calcing bb/100: "+str(stat_dict[player]))
+        return (stat,
+                '%.0f'       % (0),
+                'bb100=%.0f'     % (0),
+                'bb100=%.0f'  % (0),
+                '(%f)' % (0),
+                'big blinds/100 hands'
+                )
+
+def BBper100(stat_dict, player):
+    """    Big Bets won per 100 hands."""
+    stat = 0.0
+    try:
+        stat = 50 * float(stat_dict[player]['net']) / float(stat_dict[player]['bigblind'])
+        return (stat,
+                '%5.3f'        % (stat),
+                'BB100=%5.3f'     % (stat),
+                'BB100=%5.3f'  % (stat),
+                '(%d,%d)' % (100*stat_dict[player]['net'],2*stat_dict[player]['bigblind']),
+                'Big Bets/100 hands'
+                )
+    except:
+        log.info("exception calcing BB/100: "+str(stat_dict[player]))
+        return (stat,
+                '%.0f'       % (0.0),
+                'BB100=%.0f'     % (0.0),
+                'BB100=%.0f'  % (0.0),
+                '(%f)' % (0.0),
+                'Big Bets/100 hands'
+                )
 
 def saw_f(stat_dict, player):
     """    Saw flop/4th."""
@@ -782,13 +841,27 @@ def ffreq4(stat_dict, player):
                 )
     
 if __name__== "__main__":
+    statlist = dir()
+    misslist = [ "Configuration", "Database", "Charset", "codecs", "encoder"
+               , "do_stat", "do_tip", "GInitiallyUnowned", "gtk", "pygtk"
+               , "re", "re_Percent", "re_Places"
+               ]
+    statlist = [ x for x in statlist if x not in dir(sys) ]
+    statlist = [ x for x in statlist if x not in dir(codecs) ]
+    statlist = [ x for x in statlist if x not in misslist ]
+    #print "statlist is", statlist
+
     c = Configuration.Config()
     #TODO: restore the below code. somehow it creates a version 119 DB but commenting this out makes it print a stat list
-    #db_connection = Database.Database(c)
-    #h = db_connection.get_last_hand()
-    #stat_dict = db_connection.get_stats_from_hand(h, "ring")
+    db_connection = Database.Database(c)
+    h = db_connection.get_last_hand()
+    stat_dict = db_connection.get_stats_from_hand(h, "ring")
     
-    #for player in stat_dict.keys():
+    for player in stat_dict.keys():
+        print "Example stats, player =", player, "hand =", h, ":"
+        for attr in statlist:
+            print "  ", do_stat(stat_dict, player=player, stat=attr)
+        break
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'vpip') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'pfr') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'wtsd') 
@@ -820,11 +893,7 @@ if __name__== "__main__":
 
     print "\n\nLegal stats:"
     print "(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n"
-    for attr in dir():
-        if attr.startswith('__'): continue
-        if attr in ("Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
-                    "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
-                    "h", "re", "re_Percent", "re_Places"): continue
+    for attr in statlist:
         print "%-14s %s" % (attr, eval("%s.__doc__" % (attr)))
 #        print "            <pu_stat pu_stat_name = \"%s\"> </pu_stat>" % (attr)
     print
