@@ -79,12 +79,13 @@ class Hand(object):
         self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
-        self.speed = "Normal"
-        self.isRebuy = False
-        self.isAddOn = False
-        self.isKO = False
-        self.isMatrix = False
-        self.isShootout = False
+        self.speed = None
+        self.isRebuy = None
+        self.isAddOn = None
+        self.isKO = None
+        self.koBounty = None
+        self.isMatrix = None
+        self.isShootout = None
         self.added = None
         self.addedCurrency = None
         self.tourneyComment = None
@@ -168,6 +169,7 @@ class Hand(object):
                  ("IS REBUY", self.isRebuy),
                  ("IS ADDON", self.isAddOn),
                  ("IS KO", self.isKO),
+                 ("KO BOUNTY", self.koBounty),
                  ("IS MATRIX", self.isMatrix),
                  ("IS SHOOTOUT", self.isShootout),
                  ("TOURNEY COMMENT", self.tourneyComment),

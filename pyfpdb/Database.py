@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 136
+DB_VERSION = 139
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -147,7 +147,6 @@ class Database:
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
                 , {'tab':'HandsPlayers',    'col':'handId',            'drop':0} 
                 , {'tab':'HandsPlayers',    'col':'playerId',          'drop':0}
-                , {'tab':'HandsPlayers',    'col':'tourneyTypeId',     'drop':0}
                 , {'tab':'HandsPlayers',    'col':'tourneysPlayersId', 'drop':0}
                 , {'tab':'HudCache',        'col':'gametypeId',        'drop':1}
                 , {'tab':'HudCache',        'col':'playerId',          'drop':0}
@@ -168,7 +167,6 @@ class Database:
                       {'fktab':'Hands',        'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'handId',        'rtab':'Hands',         'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'playerId',      'rtab':'Players',       'rcol':'id', 'drop':1}
-                    , {'fktab':'HandsPlayers', 'fkcol':'tourneyTypeId', 'rtab':'TourneyTypes',  'rcol':'id', 'drop':1}
                     , {'fktab':'HandsPlayers', 'fkcol':'tourneysPlayersId','rtab':'TourneysPlayers','rcol':'id', 'drop':1}
                     , {'fktab':'HandsActions', 'fkcol':'handsPlayerId', 'rtab':'HandsPlayers',  'rcol':'id', 'drop':1}
                     , {'fktab':'HudCache',     'fkcol':'gametypeId',    'rtab':'Gametypes',     'rcol':'id', 'drop':1}
@@ -953,6 +951,7 @@ class Database:
                         # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
                         # then drop still hangs :-(  does work in some tests though??
                         # will leave code here for now pending further tests/enhancement ...
+                        c.execute("BEGIN TRANSACTION")
                         c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
                         #print "after lock, status:", c.statusmessage
                         #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
@@ -963,6 +962,7 @@ class Database:
                             if "does not exist" not in str(sys.exc_value):
                                 print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
                                       % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
+                        c.execute("END TRANSACTION")
                     except:
                         print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
                               % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
@@ -986,6 +986,7 @@ class Database:
                     print "dropping pg index ", idx['tab'], idx['col']
                     try:
                         # try to lock table to see if index drop will work:
+                        c.execute("BEGIN TRANSACTION")
                         c.execute( "lock table %s in exclusive mode nowait" % (idx['tab'],) )
                         #print "after lock, status:", c.statusmessage
                         try:
@@ -997,6 +998,7 @@ class Database:
                             if "does not exist" not in str(sys.exc_value):
                                 print "warning: drop index %s_%s_idx failed: %s, continuing ..." \
                                       % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n')) 
+                        c.execute("END TRANSACTION")
                     except:
                         print "warning: index %s_%s_idx not dropped %s, continuing ..." \
                               % (idx['tab'],idx['col'], str(sys.exc_value).rstrip('\n'))
@@ -1369,6 +1371,7 @@ class Database:
                     # hmmm, tested by commenting out rollback in grapher. lock seems to work but 
                     # then drop still hangs :-(  does work in some tests though??
                     # will leave code here for now pending further tests/enhancement ...
+                    c.execute("BEGIN TRANSACTION")
                     c.execute( "lock table %s in exclusive mode nowait" % (fk['fktab'],) )
                     #print "after lock, status:", c.statusmessage
                     #print "alter table %s drop constraint %s_%s_fkey" % (fk['fktab'], fk['fktab'], fk['fkcol'])
@@ -1379,6 +1382,7 @@ class Database:
                         if "does not exist" not in str(sys.exc_value):
                             print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
                                   % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
+                    c.execute("END TRANSACTION")
                 except:
                     print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
                           % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
@@ -1641,7 +1645,6 @@ class Database:
                              pdata[p]['street3Bets'],
                              pdata[p]['street4Bets'],
                              pdata[p]['position'],
-                             pdata[p]['tourneyTypeId'],
                              pdata[p]['tourneysPlayersIds'],
                              pdata[p]['startCards'],
                              pdata[p]['street0_3BChance'],
@@ -1654,8 +1657,8 @@ class Database:
                              pdata[p]['foldToOtherRaisedStreet2'],
                              pdata[p]['foldToOtherRaisedStreet3'],
                              pdata[p]['foldToOtherRaisedStreet4'],
-                             pdata[p]['stealAttemptChance'],
-                             pdata[p]['stealAttempted'],
+                             pdata[p]['raiseFirstInChance'],
+                             pdata[p]['raisedFirstIn'],
                              pdata[p]['foldBbToStealChance'],
                              pdata[p]['foldedBbToSteal'],
                              pdata[p]['foldSbToStealChance'],
@@ -1735,8 +1738,8 @@ class Database:
             if pdata[p]['foldToOtherRaisedStreet4']:    line[21] = 1
             line[22] = pdata[p]['wonWhenSeenStreet1']
             line[23] = pdata[p]['wonAtSD']
-            if pdata[p]['stealAttemptChance']:          line[24] = 1
-            if pdata[p]['stealAttempted']:              line[25] = 1
+            if pdata[p]['raiseFirstInChance']:          line[24] = 1
+            if pdata[p]['raisedFirstIn']:               line[25] = 1
             if pdata[p]['foldBbToStealChance']:         line[26] = 1
             if pdata[p]['foldedBbToSteal']:             line[27] = 1
             if pdata[p]['foldSbToStealChance']:         line[28] = 1
@@ -1825,7 +1828,7 @@ class Database:
     def getGameTypeId(self, siteid, game):
         c = self.get_cursor()
         #FIXME: Fixed for NL at the moment
-        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], 
+        c.execute(self.sql.query['getGametypeNL'], (siteid, game['type'], game['category'], game['limitType'], game['currency'], 
                         int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100)))
         tmp = c.fetchone()
         if (tmp == None):
@@ -1834,7 +1837,7 @@ class Database:
                 hilo = "s"
             elif game['category'] in ['razz','27_3draw','badugi']:
                 hilo = "l"
-            tmp  = self.insertGameTypes( (siteid, 'USD', game['type'], game['base'], game['category'], game['limitType'], hilo,
+            tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
                                     #FIXME: recognise currency
         return tmp[0]
@@ -1983,26 +1986,27 @@ class Database:
                         (hand.tourNo, hand.siteId)
                         )
         result=cursor.fetchone()
-        print "result of fetching TT by number and site:",result
+        #print "result of fetching TT by number and site:",result
 
         if result:
             tourneyTypeId = result[0]
         else:
             # Check for an existing TTypeId that matches tourney info, if not found create it
-            print "info that we use to get TT by detail:", hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips, hand.isKO, hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency
+            #print "info that we use to get TT by detail:", hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO, hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix
+            #print "the query:",self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips, hand.isKO,
-                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
+                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
+                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix) #TODO: add koamount
                             )
             result=cursor.fetchone()
-            print "result of fetching TT by details:",result
+            #print "result of fetching TT by details:",result
             
             try:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
-                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.buyInChips,
-                                 hand.isKO, hand.isRebuy,
+                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'],
+                                 hand.buyInChips, hand.isKO, hand.koBounty, hand.isRebuy,
                                  hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                                 )
                 tourneyTypeId = self.get_last_insert_id(cursor)

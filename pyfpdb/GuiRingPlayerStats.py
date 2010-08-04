@@ -31,7 +31,9 @@ import Filters
 import Charset
 import GuiPlayerStats
 
-colalias,colshow,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5
+#colalias,colshowsumm,colshowposn,colheading,colxalign,colformat,coltype = 0,1,2,3,4,5,6
+#new order in config file:
+colalias,colheading,colshowsumm,colshowposn,colformat,coltype,colxalign = 0,1,2,3,4,5,6
 ranks = {'x':0, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':11, 'Q':12, 'K':13, 'A':14}
 
 class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
@@ -88,34 +90,36 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         # ToDo: store in config
         # ToDo: create popup to adjust column config
         # columns to display, keys match column name returned by sql, values in tuple are:
-        #     is column displayed, column heading, xalignment, formatting, celltype
-        self.columns = [ ["game",       True,  "Game",     0.0, "%s", "str"]
-                       , ["hand",       False, "Hand",     0.0, "%s", "str"]   # true not allowed for this line
-                       , ["plposition", False, "Posn",     1.0, "%s", "str"]   # true not allowed for this line (set in code)
-                       , ["pname",      False, "Name",     0.0, "%s", "str"]   # true not allowed for this line (set in code)
-                       , ["n",          True,  "Hds",      1.0, "%1.0f", "str"]
-                       , ["avgseats",   False, "Seats",    1.0, "%3.1f", "str"]
-                       , ["vpip",       True,  "VPIP",     1.0, "%3.1f", "str"]
-                       , ["pfr",        True,  "PFR",      1.0, "%3.1f", "str"]
-                       , ["pf3",        True,  "PF3",      1.0, "%3.1f", "str"]
-                       , ["aggfac",     True,  "AggFac",   1.0, "%2.2f", "str"]
-                       , ["aggfrq",     True,  "AggFreq",  1.0, "%3.1f", "str"]
-                       , ["conbet",     True,  "ContBet",  1.0, "%3.1f", "str"]
-                       , ["steals",     True,  "Steals",   1.0, "%3.1f", "str"]
-                       , ["saw_f",      True,  "Saw_F",    1.0, "%3.1f", "str"]
-                       , ["sawsd",      True,  "SawSD",    1.0, "%3.1f", "str"]
-                       , ["wtsdwsf",    True,  "WtSDwsF",  1.0, "%3.1f", "str"]
-                       , ["wmsd",       True,  "W$SD",     1.0, "%3.1f", "str"]
-                       , ["flafq",      True,  "FlAFq",    1.0, "%3.1f", "str"]
-                       , ["tuafq",      True,  "TuAFq",    1.0, "%3.1f", "str"]
-                       , ["rvafq",      True,  "RvAFq",    1.0, "%3.1f", "str"]
-                       , ["pofafq",     False, "PoFAFq",   1.0, "%3.1f", "str"]
-                       , ["net",        True,  "Net($)",   1.0, "%6.2f", "cash"]
-                       , ["bbper100",   True,  "bb/100",   1.0, "%4.2f", "str"]
-                       , ["rake",       True,  "Rake($)",  1.0, "%6.2f", "cash"]
-                       , ["bb100xr",    True,  "bbxr/100", 1.0, "%4.2f", "str"]
-                       , ["variance",   True,  "Variance", 1.0, "%5.2f", "str"]
-                       ]
+        #     is column displayed(summary then position), column heading, xalignment, formatting, celltype
+        self.columns = self.conf.get_gui_cash_stat_params()
+#        self.columns = [ ["game",       True,  True,  "Game",     0.0, "%s",    "str"]
+#                       , ["hand",       False, False, "Hand",     0.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
+#                       , ["plposition", False, False, "Posn",     1.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
+#                       , ["pname",      False, False, "Name",     0.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
+#                       , ["n",          True,  True,  "Hds",      1.0, "%1.0f", "str"]
+#                       , ["avgseats",   False, False, "Seats",    1.0, "%3.1f", "str"]
+#                       , ["vpip",       True,  True,  "VPIP",     1.0, "%3.1f", "str"]
+#                       , ["pfr",        True,  True,  "PFR",      1.0, "%3.1f", "str"]
+#                       , ["pf3",        True,  True,  "PF3",      1.0, "%3.1f", "str"]
+#                       , ["aggfac",     True,  True,  "AggFac",   1.0, "%2.2f", "str"]
+#                       , ["aggfrq",     True,  True,  "AggFreq",  1.0, "%3.1f", "str"]
+#                       , ["conbet",     True,  True,  "ContBet",  1.0, "%3.1f", "str"]
+#                       , ["rfi",        True,  True,  "RFI",      1.0, "%3.1f", "str"]
+#                       , ["steals",     True,  True,  "Steals",   1.0, "%3.1f", "str"]
+#                       , ["saw_f",      True,  True,  "Saw_F",    1.0, "%3.1f", "str"]
+#                       , ["sawsd",      True,  True,  "SawSD",    1.0, "%3.1f", "str"]
+#                       , ["wtsdwsf",    True,  True,  "WtSDwsF",  1.0, "%3.1f", "str"]
+#                       , ["wmsd",       True,  True,  "W$SD",     1.0, "%3.1f", "str"]
+#                       , ["flafq",      True,  True,  "FlAFq",    1.0, "%3.1f", "str"]
+#                       , ["tuafq",      True,  True,  "TuAFq",    1.0, "%3.1f", "str"]
+#                       , ["rvafq",      True,  True,  "RvAFq",    1.0, "%3.1f", "str"]
+#                       , ["pofafq",     False, False, "PoFAFq",   1.0, "%3.1f", "str"]
+#                       , ["net",        True,  True,  "Net($)",   1.0, "%6.2f", "cash"]
+#                       , ["bbper100",   True,  True,  "bb/100",   1.0, "%4.2f", "str"]
+#                       , ["rake",       True,  True,  "Rake($)",  1.0, "%6.2f", "cash"]
+#                       , ["bb100xr",    True,  True,  "bbxr/100", 1.0, "%4.2f", "str"]
+#                       , ["variance",   True,  True,  "Variance", 1.0, "%5.2f", "str"]
+#                       ]
 
         # Detail filters:  This holds the data used in the popup window, extra values are
         # added at the end of these lists during processing
@@ -149,6 +153,8 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         self.stats_vbox = gtk.VPaned()
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
+        self.top_pane_height = 0
+        self.height_inc = None
         # self.fillStatsFrame(self.stats_vbox)
 
         #self.main_hbox.pack_start(self.filters.get_vbox())
@@ -158,7 +164,17 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         self.main_hbox.show()
 
         # make sure Hand column is not displayed
-        [x for x in self.columns if x[0] == 'hand'][0][1] = False
+        [x for x in self.columns if x[0] == 'hand'][0][colshowsumm] = False
+        [x for x in self.columns if x[0] == 'hand'][0][colshowposn] = False
+        # if rfi and steal both on for summaries, turn rfi off 
+        if ( [x for x in self.columns if x[0] == 'rfi'][0][colshowsumm]
+            and [x for x in self.columns if x[0] == 'steals'][0][colshowsumm]):
+            [x for x in self.columns if x[0] == 'rfi'][0][colshowsumm] = False
+        # if rfi and steal both on for position breakdowns, turn steals off:
+        if ( [x for x in self.columns if x[0] == 'rfi'][0][colshowposn]
+            and [x for x in self.columns if x[0] == 'steals'][0][colshowposn]):
+            [x for x in self.columns if x[0] == 'steals'][0][colshowposn] = False
+
         self.last_pos = -1
 
 
@@ -168,18 +184,33 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
     #end def get_vbox
 
     def refreshStats(self, widget, data):
-        self.last_pos = self.stats_vbox.get_position()
+        #self.last_pos = self.stats_vbox.get_position()
+        self.height_inc = None
+        #old_len = 0
+        #if self.liststore:
+        #    old_len = len(self.liststore[0])
         try: self.stats_vbox.destroy()
         except AttributeError: pass
         self.liststore = []
         self.listcols = []
-        #self.stats_vbox = gtk.VBox(False, 0)
         self.stats_vbox = gtk.VPaned()
         self.stats_vbox.show()
         self.stats_frame.add(self.stats_vbox)
         self.fillStatsFrame(self.stats_vbox)
-        if self.last_pos > 0:
-            self.stats_vbox.set_position(self.last_pos)
+
+        # set height of top pane
+        # (tried 2 ways, guesstimate using ratio of old to new number of rows and sum of
+        #  heights of parts)
+        new_len = 0
+        if self.liststore:
+            #new_len = len(self.liststore[0])
+            #print "setting to", self.top_pane_height + self.height_inc
+            self.stats_vbox.set_position(self.top_pane_height + self.height_inc)
+        #if self.last_pos > 0:
+        #    if old_len > 0 and new_len > 0 and new_len <= 10:
+        #        self.stats_vbox.set_position(self.last_pos * (new_len+1.9)/(old_len+1.9))
+        #    else:
+        #        self.stats_vbox.set_position(self.last_pos)
     #end def refreshStats
 
     def fillStatsFrame(self, vbox):
@@ -225,8 +256,8 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         # Scrolled window for summary table
         swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        swin.show()
-        vbox.pack1(swin)
+        vbox.pack1(swin) #, resize=True)  don't use resize, self.height_inc relies on initial 
+                         # height of pane being correct for one row
 
         # Display summary table at top of page
         # 3rd parameter passes extra flags, currently includes:
@@ -236,6 +267,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         flags = [False, self.filters.getNumHands(), 0]
         self.addGrid(swin, 'playerDetailedStats', flags, playerids
                     ,sitenos, limits, type, seats, groups, dates, games)
+        swin.show()
 
         if 'allplayers' in groups and groups['allplayers']:
             # can't currently do this combination so skip detailed table
@@ -249,18 +281,31 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             vbox2.pack_start(heading, expand=False, padding=3)
 
             # Scrolled window for detailed table (display by hand)
-            swin = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-            swin.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-            swin.show()
-            vbox2.pack_start(swin, expand=True, padding=3)
+            swin2 = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+            swin2.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            swin2.show()
+            vbox2.pack_start(swin2, expand=True, padding=3)
             vbox.pack2(vbox2)
             vbox2.show()
 
             # Detailed table
             flags[0] = True
             flags[2] = 1
-            self.addGrid(swin, 'playerDetailedStats', flags, playerids
+            self.addGrid(swin2, 'playerDetailedStats', flags, playerids
                         ,sitenos, limits, type, seats, groups, dates, games)
+
+        if self.height_inc is None:
+            self.height_inc = 0
+            # need this to check whether scrollbar is visible:
+            while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
+                gtk.main_iteration(False)
+            hs = swin.get_hscrollbar()
+            if hs is not None:
+                #print "hs vis", hs.get_property('visible'), hs.get_property('visible').__class__
+                if hs.get_property('visible'):
+                    self.height_inc = hs.size_request()[1] + swin.style_get_property('scrollbar-spacing')
+            #print "hh set to", self.height_inc
+            self.stats_vbox.set_position(self.top_pane_height + self.height_inc)
 
         self.db.rollback()
         print "Stats page displayed in %4.2f seconds" % (time() - startTime)
@@ -350,6 +395,8 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         colnames = [desc[0].lower() for desc in self.cursor.description]
 
         # pre-fetch some constant values:
+        colshow = colshowsumm
+        if groups['posn']:  colshow = colshowposn 
         self.cols_to_show = [x for x in self.columns if x[colshow]]
         hgametypeid_idx = colnames.index('hgametypeid')
 
@@ -445,6 +492,11 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             sqlrow += 1
             row += 1
         vbox.show_all()
+        view.show()
+        if len(self.liststore) == 1:
+            #print "view hieght is ", view.get_allocation().height, view.size_request(), view.get_visible_rect().height, view.get_vadjustment().get_value()
+            self.top_pane_height = view.size_request()[1]
+            #print "saved ", self.top_pane_height
     #end def addGrid
 
     def refineQuery(self, query, flags, playerids, sitenos, limits, type, seats, groups, dates, games):
@@ -455,20 +507,22 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         else:
             holecards = flags[0]
             numhands = flags[1]
+        colshow = colshowsumm
+        if groups['posn']:  colshow = colshowposn 
 
         if 'allplayers' in groups and groups['allplayers']:
             nametest = "(hp.playerId)"
             if holecards or groups['posn']:
                 pname = "'all players'"
                 # set flag in self.columns to not show player name column
-                [x for x in self.columns if x[0] == 'pname'][0][1] = False
+                [x for x in self.columns if x[0] == 'pname'][0][colshow] = False
                 # can't do this yet (re-write doing more maths in python instead of sql?)
                 if numhands:
                     nametest = "(-1)"
             else:
                 pname = "p.name"
                 # set flag in self.columns to show player name column
-                [x for x in self.columns if x[0] == 'pname'][0][1] = True
+                [x for x in self.columns if x[0] == 'pname'][0][colshow] = True
                 if numhands:
                     having = ' and count(1) > %d ' % (numhands,)
         else:
@@ -480,7 +534,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                 nametest = "1 = 2"
             pname = "p.name"
             # set flag in self.columns to not show player name column
-            [x for x in self.columns if x[0] == 'pname'][0][1] = False
+            [x for x in self.columns if x[0] == 'pname'][0][colshow] = False
         query = query.replace("<player_test>", nametest)
         query = query.replace("<playerName>", pname)
         query = query.replace("<havingclause>", having)
@@ -603,11 +657,11 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             #query = query.replace("<position>", "case hp.position when '0' then 'Btn' else hp.position end")
             query = query.replace("<position>", "hp.position")
             # set flag in self.columns to show posn column
-            [x for x in self.columns if x[0] == 'plposition'][0][1] = True
+            [x for x in self.columns if x[0] == 'plposition'][0][colshow] = True
         else:
             query = query.replace("<position>", "gt.base")
             # unset flag in self.columns to hide posn column
-            [x for x in self.columns if x[0] == 'plposition'][0][1] = False
+            [x for x in self.columns if x[0] == 'plposition'][0][colshow] = False
 
         #print "query =\n", query
         return(query)

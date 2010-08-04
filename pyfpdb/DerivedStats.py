@@ -53,8 +53,8 @@ class DerivedStats():
             self.handsplayers[player[1]]['street0_3BDone']      = False
             self.handsplayers[player[1]]['street0_4BChance']    = False
             self.handsplayers[player[1]]['street0_4BDone']      = False
-            self.handsplayers[player[1]]['stealAttemptChance']  = False
-            self.handsplayers[player[1]]['stealAttempted']      = False
+            self.handsplayers[player[1]]['raiseFirstInChance']  = False
+            self.handsplayers[player[1]]['raisedFirstIn']       = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
             self.handsplayers[player[1]]['foldSbToStealChance'] = False
             self.handsplayers[player[1]]['foldedSbToSteal']     = False
@@ -290,7 +290,10 @@ class DerivedStats():
 #        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
 #        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
         
-        p_in = set(x[1] for x in hand.players)
+        # hand.players includes people that are sitting out on some sites.
+        # Those that posted an ante should have been deal cards.
+        p_in = set([x[0] for x in hand.actions['BLINDSANTES']] + [x[0] for x in hand.actions['PREFLOP']])
+
         for (i, street) in enumerate(hand.actionStreets):
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
@@ -315,13 +318,14 @@ class DerivedStats():
             self.hands['street%dRaises' % i] = len(filter( lambda action: action[1] in ('raises','bets'), hand.actions[street]))
 
     def calcSteals(self, hand):
-        """Fills stealAttempt(Chance|ed, fold(Bb|Sb)ToSteal(Chance|)
+        """Fills raiseFirstInChance|raisedFirstIn, fold(Bb|Sb)ToSteal(Chance|)
 
-        Steal attempt - open raise on positions 1 0 S - i.e. MP3, CO, BU, SB
+        Steal attempt - open raise on positions 1 0 S - i.e. CO, BU, SB
                         (note: I don't think PT2 counts SB steals in HU hands, maybe we shouldn't?)
         Fold to steal - folding blind after steal attemp wo any other callers or raisers
         """
         steal_attempt = False
+        raised = False
         steal_positions = (1, 0, 'S')
         if hand.gametype['base'] == 'stud':
             steal_positions = (2, 1, 0)
@@ -341,11 +345,13 @@ class DerivedStats():
             if steal_attempt and act != 'folds':
                 break
 
-            if posn in steal_positions and not steal_attempt:
-                self.handsplayers[pname]['stealAttemptChance'] = True
+            if not steal_attempt and not raised: # if posn in steal_positions and not steal_attempt:
+                self.handsplayers[pname]['raiseFirstInChance'] = True
                 if act in ('bets', 'raises'):
-                    self.handsplayers[pname]['stealAttempted'] = True
-                    steal_attempt = True
+                    self.handsplayers[pname]['raisedFirstIn'] = True
+                    raised = True
+                    if posn in steal_positions:
+                        steal_attempt = True
                 if act == 'calls':
                     break
             

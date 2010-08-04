@@ -350,6 +350,29 @@ def f_BB_steal(stat_dict, player):
                 'fBB_s=NA',
                 '(0/0)',
                 '% folded BB to steal')
+                
+def f_steal(stat_dict, player):
+    """    Folded blind to steal."""
+    stat = 0.0
+    try:
+        folded_blind = stat_dict[player]['sbnotdef'] + stat_dict[player]['bbnotdef']
+        blind_stolen = stat_dict[player]['sbstolen'] + stat_dict[player]['bbstolen']
+        
+        stat = float(folded_blind)/float(blind_stolen)
+        return (stat,
+                '%3.1f'        % (100*stat) + '%',
+                'fB=%3.1f'     % (100*stat) + '%',
+                'fB_s=%3.1f' % (100*stat) + '%',
+                '(%d/%d)'      % (folded_blind, blind_stolen),
+                '% folded blind to steal'
+                )
+    except:
+        return (stat,
+                'NA',
+                'fB=NA',
+                'fB_s=NA',
+                '(0/0)',
+                '% folded blind to steal')
 
 def three_B(stat_dict, player):
     """    Three bet preflop/3rd."""
@@ -566,8 +589,8 @@ def agg_fact(stat_dict, player):
 
 def cbet(stat_dict, player):
 
-    """    Flop continuation bet."""
-    """    Continuation bet % = (times made a continuation bet on the flop) * 100 / (number of opportunities to make a continuation bet on the flop) """
+    """    Total continuation bet."""
+    """    Continuation bet % = (times made a continuation bet on any street) * 100 / (number of opportunities to make a continuation bet on any street) """
 
     stat = 0.0
     try:
@@ -777,6 +800,7 @@ if __name__== "__main__":
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'steal') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_SB_steal') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_BB_steal') 
+        #print "player = ", player, do_stat(stat_dict, player = player, stat = 'f_steal')
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'three_B')
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'WMsF') 
         #print "player = ", player, do_stat(stat_dict, player = player, stat = 'a_freq1') 

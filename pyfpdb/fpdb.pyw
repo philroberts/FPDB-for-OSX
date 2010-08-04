@@ -107,7 +107,6 @@ import ImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
 import GuiPositionalStats
-import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import GuiSessionViewer
@@ -117,7 +116,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.1 plus git"
+VERSION = "0.20.903 plus git"
 
 
 class fpdb:
@@ -229,13 +228,12 @@ class fpdb:
         self.quit(widget)
 
     def dia_about(self, widget, data=None):
-        #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
         dia.set_copyright("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
-        dia.set_comments("")
-        dia.set_license("This program is licensed under the AGPL3, see agpl-3.0.txt in the fpdb installation directory")
+        dia.set_comments("You are free to change and distribute original or changed versions of fpdb within the rules set out by the license")
+        dia.set_license("Please see fpdb's start screen for license information")
         dia.set_website("http://fpdb.sourceforge.net/")
         
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
@@ -306,8 +304,8 @@ class fpdb:
             dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        self.warning_box("Unimplemented: Maintain Databases")
-        return
+        #self.warning_box("Unimplemented: Maintain Databases")
+        #return
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
@@ -321,8 +319,14 @@ class fpdb:
                 prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
                 response = dia.run()
                 if response == gtk.RESPONSE_ACCEPT:
+                    log.info('saving updated db data')
                     # save updated config
                     self.config.save()
+                    self.load_profile()
+                    for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
+                        log.info('fpdb: name,desc='+name+','+self.config.supported_databases[name].db_desc)
+                else:
+                    log.info('guidb response was '+str(response))
 
                 self.release_global_lock()
 
@@ -547,23 +551,14 @@ class fpdb:
                 #    self.release_global_lock()
                 #    lock_released = True
                 self.db.recreate_tables()
-                # find any guibulkimport windows and clear player cache:
+                # find any guibulkimport/guiautoimport windows and clear player cache:
                 for t in self.threads:
-                    if isinstance(t, GuiBulkImport.GuiBulkImport):
+                    if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
                         t.importer.database.resetPlayerIDs()
                 self.release_global_lock()
                 #else:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
-                # TODO: figure out why this seems to be necessary
-                dia_restart = gtk.MessageDialog(parent=self.window, flags=0, type=gtk.MESSAGE_WARNING,
-                        buttons=(gtk.BUTTONS_OK), message_format="Restart fpdb")
-                diastring = "Fpdb now needs to close. Please restart it."
-                dia_restart.format_secondary_text(diastring)
-
-                dia_restart.run()
-                dia_restart.destroy()
-                self.quit(None, None)
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
                 print 'User cancelled recreating tables'
@@ -801,7 +796,6 @@ class fpdb:
                   <menuitem action="tourneyplayerstats"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
-                  <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
                   <menuitem action="maintaindbs"/>
@@ -815,7 +809,6 @@ class fpdb:
                   <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
-                  <menuitem action="License"/>
                 </menu>
               </menubar>
             </ui>"""
@@ -839,12 +832,11 @@ class fpdb:
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view)', self.tab_tourney_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
-                                 ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
-                                 ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
+                                 ('maintaindbs', None, '_Maintain Databases', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
@@ -852,8 +844,7 @@ class fpdb:
                                  ('dumptofile', None, 'Dump Database to Textfile (takes ALOT of time)', None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, '_Help'),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
-                                 ('About', None, 'A_bout', None, 'About the program', self.dia_about),
-                                 ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
+                                 ('About', None, 'A_bout, License, Copying', None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', '_Quit')
 
@@ -1068,15 +1059,9 @@ If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
 
 This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.
-You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt and gpl-3.0.txt in the fpdb installation directory.""")
+The Windows installer package includes code licensed under the MIT license.
+You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory.""")
         self.add_and_display_tab(mh_tab, "Help")
-
-    def tab_table_viewer(self, widget, data=None):
-        """opens a table viewer tab"""
-        new_tv_thread = GuiTableViewer.GuiTableViewer(self.db, self.settings, self.config)
-        self.threads.append(new_tv_thread)
-        tv_tab = new_tv_thread.get_vbox()
-        self.add_and_display_tab(tv_tab, "Table Viewer")
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""

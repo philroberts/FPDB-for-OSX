@@ -52,8 +52,13 @@ def get_default_config_path():
     if os.name == 'posix':
         config_path = os.path.join(os.path.expanduser("~"), '.fpdb')
     elif os.name == 'nt':
-        config_path = os.path.join(os.environ["APPDATA"], 'fpdb')
+        config_path = os.path.join(unicode(os.environ[u"APPDATA"], "latin-1"), u"fpdb")
+        #print u"path after joining in get_default_config_path:",config_path
     else: config_path = False
+    
+    try: os.mkdir(config_path)
+    except: pass
+    
     return config_path
 
 def get_exec_path():
@@ -110,7 +115,7 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     (conf_file,copied) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
-        log_dir = os.path.join(get_exec_path(), 'log')
+        log_dir = os.path.join(get_exec_path(), u'log')
     #print "\nget_logger: checking log_dir:", log_dir
     check_dir(log_dir)
     if log_file is None:
@@ -147,7 +152,7 @@ def check_dir(path, create = True):
         msg = "Creating directory: '%s'" % (path)
         print msg
         log.info(msg)
-        os.mkdir(path)
+        os.mkdir(path)#, "utf-8"))
     else:
         return False
 
@@ -357,6 +362,7 @@ class Game:
 class Database:
     def __init__(self, node):
         self.db_name   = node.getAttribute("db_name")
+        self.db_desc   = node.getAttribute("db_desc")
         self.db_server = node.getAttribute("db_server").lower()
         self.db_ip    = node.getAttribute("db_ip")
         self.db_user   = node.getAttribute("db_user")
@@ -499,6 +505,41 @@ class General(dict):
             s = s + "    %s = %s\n" % (k, self[k])
         return(s)
 
+class GUICashStats(list):
+    """<gui_cash_stats>
+           <col col_name="game" col_title="Game" disp_all="True" disp_posn="True" field_format="%s" field_type="str" xalignment="0.0" />
+           ...
+       </gui_cash_stats>
+       """
+    def __init__(self):
+        super(GUICashStats, self).__init__()
+
+    def add_elements(self, node):
+        # is this needed?
+        for child in node.childNodes:
+            if child.nodeType == child.ELEMENT_NODE:
+                col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment=None, None, True, True, "%s", "str", 0.0
+                
+                if child.hasAttribute('col_name'):     col_name     = child.getAttribute('col_name')
+                if child.hasAttribute('col_title'):    col_title    = child.getAttribute('col_title')
+                if child.hasAttribute('disp_all'):     disp_all     = string_to_bool(child.getAttribute('disp_all'))
+                if child.hasAttribute('disp_posn'):    disp_posn    = string_to_bool(child.getAttribute('disp_posn'))
+                if child.hasAttribute('field_format'): field_format = child.getAttribute('field_format')
+                if child.hasAttribute('field_type'):   field_type   = child.getAttribute('field_type')
+                try:
+                    if child.hasAttribute('xalignment'):   xalignment   = float(child.getAttribute('xalignment'))
+                except ValueError:
+                    print "bad number in xalignment was ignored"
+                    log.info("bad number in xalignment was ignored")
+
+                self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
+
+#    def __str__(self):
+#        s = ""
+#        for l in self:
+#            s = s + "    %s = %s\n" % (k, self[k])
+#        return(s)
+
 class Config:
     def __init__(self, file = None, dbname = ''):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
@@ -519,9 +560,9 @@ class Config:
         self.dir_self = get_exec_path()
 #        self.dir_config = os.path.dirname(self.file)
         self.dir_config = get_default_config_path()
-        self.dir_log = os.path.join(self.dir_config, 'log')
-        self.dir_database = os.path.join(self.dir_config, 'database')
-        self.log_file = os.path.join(self.dir_log, 'fpdb-log.txt')
+        self.dir_log = os.path.join(self.dir_config, u'log')
+        self.dir_database = os.path.join(self.dir_config, u'database')
+        self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
 #    Parse even if there was no real config file found and we are using the example
@@ -554,9 +595,13 @@ class Config:
         self.db_selected = None    # database the user would like to use
         self.tv = None
         self.general = General()
+        self.gui_cash_stats = GUICashStats()
 
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
+
+        for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
+            self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
@@ -817,6 +862,9 @@ class Config:
         try:    db['db-databaseName'] = name
         except: pass
 
+        try:    db['db-desc'] = self.supported_databases[name].db_desc
+        except: pass
+
         try:    db['db-host'] = self.supported_databases[name].db_ip
         except: pass
 
@@ -834,20 +882,29 @@ class Config:
         return db
 
     def set_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
-                        db_pass = None, db_server = None):
+                          db_pass = None, db_desc = None, db_server = None,
+                          default = "False"):
         db_node = self.get_db_node(db_name)
+        default = default.lower()
+        defaultb = string_to_bool(default, False)
         if db_node != None:
+            if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
             if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
             if db_user   is not None: db_node.setAttribute("db_user", db_user)
             if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
             if db_server is not None: db_node.setAttribute("db_server", db_server)
-            if db_type   is not None: db_node.setAttribute("db_type", db_type)
+            if defaultb:              db_node.setAttribute("default", default)
+            elif db_node.hasAttribute("default"): 
+                db_node.removeAttribute("default")
         if self.supported_databases.has_key(db_name):
+            if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
             if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
             if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
             if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
-            if db_type   is not None: self.supported_databases[db_name].dp_type   = db_type
+            self.supported_databases[db_name].db_selected = defaultb
+        if defaultb:
+            self.db_selected = db_name
         return
     
     def get_backend(self, name):
@@ -1133,6 +1190,9 @@ class Config:
     def get_general_params(self):
         return( self.general )
 
+    def get_gui_cash_stat_params(self):
+        return( self.gui_cash_stats )
+
 if __name__== "__main__":
     c = Config()
 
@@ -1205,6 +1265,8 @@ if __name__== "__main__":
         print "hud param %s = %s" % (hud_param, value)
 
     print "start up path = ", c.execution_path("")
+
+    print "gui_cash_stats =", c.gui_cash_stats
 
     try:
         from xml.dom.ext import PrettyPrint

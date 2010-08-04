@@ -10,7 +10,7 @@ NEED_PYTHON=2.5
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PV}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${PV}/${P}.tar.bz2"
 
 LICENSE="AGPL-3"
 SLOT="0"
@@ -29,7 +29,8 @@ RDEPEND="
     dev-python/pygtk
     graph? ( dev-python/numpy
         dev-python/matplotlib[gtk] )
-    dev-python/python-xlib"
+    dev-python/python-xlib
+    dev-python/pytz"
 DEPEND="${RDEPEND}"
 
 src_install() {
@@ -53,9 +54,7 @@ src_install() {
 
 pkg_postinst() {
 	games_pkg_postinst
-	echo
-    elog "Note that if you really want to use mysql or postgresql you will have to create"
-    elog "the database and user yourself and enter it into the fpdb config."
+	elog "Note that if you really want to use mysql or postgresql you will have to create"
+   	elog "the database and user yourself and enter it into the fpdb config."
 	elog "You can find the instructions on the project's website."
-	echo
 }
