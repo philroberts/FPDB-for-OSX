@@ -590,8 +590,8 @@ def agg_fact(stat_dict, player):
 
 def cbet(stat_dict, player):
 
-    """    Flop continuation bet."""
-    """    Continuation bet % = (times made a continuation bet on the flop) * 100 / (number of opportunities to make a continuation bet on the flop) """
+    """    Total continuation bet."""
+    """    Continuation bet % = (times made a continuation bet on any street) * 100 / (number of opportunities to make a continuation bet on any street) """
 
     stat = 0.0
     try:

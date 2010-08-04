@@ -292,7 +292,7 @@ class DerivedStats():
         
         # hand.players includes people that are sitting out on some sites.
         # Those that posted an ante should have been deal cards.
-        p_in = set([x[0] for x in hand.actions['BLINDSANTES']])
+        p_in = set([x[0] for x in hand.actions['BLINDSANTES']] + [x[0] for x in hand.actions['PREFLOP']])
 
         for (i, street) in enumerate(hand.actionStreets):
             actions = hand.actions[street]
