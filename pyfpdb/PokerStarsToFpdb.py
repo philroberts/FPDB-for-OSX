@@ -74,7 +74,7 @@ class PokerStars(HandHistoryConverter):
           # here's how I plan to use LS
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
-          (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
+          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed PLH/PLO)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
