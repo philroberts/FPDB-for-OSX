@@ -349,11 +349,11 @@ def main(argv=None):
     if options.usage == True:
         #Print usage examples and exit
         print "USAGE:"
-        print 'PokerStars converter: ./GuiBulkImport -c PokerStars -f filename'
-        print 'Full Tilt  converter: ./GuiBulkImport -c "Full Tilt Poker" -f filename'
-        print "Everleaf   converter: ./GuiBulkImport -c Everleaf -f filename"
-        print "Absolute   converter: ./GuiBulkImport -c Absolute -f filename"
-        print "PartyPoker converter: ./GuiBulkImport -c PartyPoker -f filename"
+        print 'PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename'
+        print 'Full Tilt  converter: ./GuiBulkImport.py -c "Full Tilt Poker" -f filename'
+        print "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
+        print "Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename"
+        print "PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename"
         sys.exit(0)
 
     config = Configuration.Config()
