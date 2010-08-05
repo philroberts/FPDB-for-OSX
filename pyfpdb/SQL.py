@@ -1397,6 +1397,7 @@ class Sql:
                     sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                     sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                     sum(hc.totalProfit)                 AS net,
+                    sum(gt.bigblind)                    AS bigblind,
                     sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                     sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
                     sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
@@ -1425,6 +1426,7 @@ class Sql:
                      INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
                                                 AND hc.gametypeId+0 = h.gametypeId+0)
                      INNER JOIN Players p ON (p.id = hp.PlayerId+0)
+                     INNER JOIN Gametypes gt ON (gt.id = hc.gametypeId)
                 WHERE h.id = %s
                 AND   hc.styleKey > %s
                       /* styleKey is currently 'd' (for date) followed by a yyyymmdd
@@ -1496,6 +1498,7 @@ class Sql:
                        sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                        sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                        sum(hc.totalProfit)                 AS net,
+                       sum(gt.bigblind)                    AS bigblind,
                        sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                        sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
                        sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
@@ -1523,6 +1526,7 @@ class Sql:
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
                      INNER JOIN Players p       ON (p.id = hc.playerId)
+                     INNER JOIN Gametypes gt    ON (gt.id = hc.gametypeId)
                 WHERE h.id = %s
                 AND   (   /* 2 separate parts for hero and opponents */
                           (    hp.playerId != %s
@@ -1622,6 +1626,7 @@ class Sql:
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
@@ -1651,6 +1656,7 @@ class Sql:
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)         /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (hp2.playerId+0 = hp.playerId+0 AND (hp2.handId = h2.id+0))  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                         INNER JOIN Gametypes gt     ON (gt.id = h2.gametypeId)
                     WHERE hp.handId = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
@@ -1724,6 +1730,7 @@ class Sql:
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
@@ -1754,6 +1761,7 @@ class Sql:
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
                                                          AND hp2.handId = h2.id)  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                         INNER JOIN Gametypes gt     ON (gt.id = h2.gametypeId)
                     WHERE h.id = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
@@ -1827,6 +1835,7 @@ class Sql:
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
@@ -1857,6 +1866,7 @@ class Sql:
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
                                                          AND hp2.handId = h2.id)  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                         INNER JOIN Gametypes gt     ON (gt.id = h2.gametypeId)
                     WHERE h.id = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)

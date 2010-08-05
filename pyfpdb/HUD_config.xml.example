@@ -673,6 +673,37 @@ Left-Drag to Move"
         <hhc site="Carbon" converter="CarbonToFpdb"/>
     </hhcs>
 
+    <!-- attribute names chosen to be in alphabetic order so that order can be set when retrieved -->
+    <gui_cash_stats>
+        <col col_name="game" col_title="Game" disp_all="True" disp_posn="True" field_format="%s" field_type="str" xalignment="0.0"/>
+        <col col_name="hand" col_title="Hand" disp_all="False" disp_posn="False" field_format="%s" field_type="str" xalignment="0.0"/>
+        <col col_name="plposition" col_title="Posn" disp_all="False" disp_posn="False" field_format="%s" field_type="str" xalignment="1.0"/>
+        <col col_name="pname" col_title="Name" disp_all="False" disp_posn="False" field_format="%s" field_type="str" xalignment="0.0"/>
+        <col col_name="n" col_title="Hds" disp_all="True" disp_posn="True" field_format="%1.0f" field_type="str" xalignment="1.0"/>
+        <col col_name="avgseats" col_title="Seats" disp_all="False" disp_posn="False" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="vpip" col_title="VPIP" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="pfr" col_title="PFR" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="pf3" col_title="PF3" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="aggfac" col_title="AggFac" disp_all="True" disp_posn="True" field_format="%2.2f" field_type="str" xalignment="1.0"/>
+        <col col_name="aggfrq" col_title="AggFreq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="conbet" col_title="ContBet" disp_all="False" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="rfi" col_title="RFI" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="steals" col_title="Steals" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="saw_f" col_title="Saw_F" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="sawsd" col_title="SawSD" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="wtsdwsf" col_title="WtSDwsF" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="wmsd" col_title="W$SD" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="flafq" col_title="FlAFq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="tuafq" col_title="TuAFq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="rvafq" col_title="RvAFq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="pofafq" col_title="PoFAFq" disp_all="False" disp_posn="False" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="net" col_title="Net($)" disp_all="True" disp_posn="True" field_format="%6.2f" field_type="cash" xalignment="1.0"/>
+        <col col_name="bbper100" col_title="bb/100" disp_all="True" disp_posn="True" field_format="%4.2f" field_type="str" xalignment="1.0"/>
+        <col col_name="rake" col_title="Rake($)" disp_all="True" disp_posn="True" field_format="%6.2f" field_type="cash" xalignment="1.0"/>
+        <col col_name="bb100xr" col_title="bbxr/100" disp_all="True" disp_posn="True" field_format="%4.2f" field_type="str" xalignment="1.0"/>
+        <col col_name="variance" col_title="Variance" disp_all="True" disp_posn="True" field_format="%5.2f" field_type="str" xalignment="1.0"/>
+    </gui_cash_stats>
+
     <supported_databases>
         <!-- <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD"></database> -->
         <database db_ip="localhost" db_server="sqlite" db_name="fpdb.db3" db_user="fpdb" db_pass="fpdb"/>
