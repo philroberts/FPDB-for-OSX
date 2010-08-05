@@ -683,9 +683,15 @@ class HoldemOmahaHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
+            
             if self.cancelled:
                 return
-            hhc.readBlinds(self)
+            
+            try: hhc.readBlinds(self)
+            except:
+                print "*** Parse error reading blinds (check compilePlayerRegexs as a likely culprit)", self
+                return
+            
             hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)
