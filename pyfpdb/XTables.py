@@ -1,11 +1,12 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Discover_Tables.py
 
 Inspects the currently open windows and finds those of interest to us--that is
 poker table windows from supported sites.  Returns a list
 of Table_Window objects representing the windows found.
 """
-#    Copyright 2008 - 2009, Ray E. Barker
+#    Copyright 2008-2010, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

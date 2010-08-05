@@ -1,4 +1,20 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+#Copyright 2009-2010 Grigorij Indigirkin
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU Affero General Public License as published by
+#the Free Software Foundation, version 3 of the License.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU Affero General Public License
+#along with this program. If not, see <http://www.gnu.org/licenses/>.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
+
 """@package AlchemyTables
 Contains all sqlalchemy tables
 """
@@ -29,6 +45,7 @@ autorates_table = Table('Autorates', metadata,
 gametypes_table = Table('Gametypes', metadata,
     Column('id',            SmallInteger, primary_key=True),
     Column('siteId',        SmallInteger, ForeignKey("Sites.id"), nullable=False), # SMALLINT
+    Column('currency',      String(4), nullable=False), # varchar(4) NOT NULL
     Column('type',          String(4), nullable=False), # char(4) NOT NULL
     Column('base',          String(4), nullable=False), # char(4) NOT NULL
     Column('category',      String(9), nullable=False), # varchar(9) NOT NULL
@@ -48,7 +65,7 @@ hands_table = Table('Hands', metadata,
     Column('tableName',     String(30), nullable=False),
     Column('siteHandNo',    BigIntColumn, nullable=False),
     Column('gametypeId',    SmallInteger, ForeignKey('Gametypes.id'), nullable=False),
-    Column('handStart',     DateTime, nullable=False),
+    Column('startTime',     DateTime, nullable=False),
     Column('importTime',    DateTime, nullable=False),
     Column('seats',         SmallInteger, nullable=False),
     Column('maxSeats',      SmallInteger, nullable=False),
@@ -338,7 +355,7 @@ settings_table = Table('Settings', metadata,
 sites_table = Table('Sites', metadata,
     Column('id',            SmallInteger, primary_key=True),
     Column('name',          String(32), nullable=False), # varchar(32) NOT NULL
-    Column('currency',      String(3), nullable=False), # char(3) NOT NULL
+    Column('code',          String(2), nullable=False), # char(2) NOT NULL
     mysql_charset='utf8',
     mysql_engine='InnoDB',
 )
@@ -352,17 +369,11 @@ tourneys_table = Table('Tourneys', metadata,
     Column('prizepool',     Integer), # INT NOT NULL
     Column('tourStartTime',     DateTime), # DATETIME NOT NULL
     Column('tourEndTime',       DateTime), # DATETIME
-    Column('buyinChips',    Integer), # INT
     Column('tourneyName',   String(40)), # varchar(40)
     # Mask use : 1=Positionnal Winnings|2=Match1|4=Match2|...|pow(2,n)=Matchn 
     Column('matrixIdProcessed',SmallInteger, default=0), # TINYINT UNSIGNED DEFAULT 0   
-    Column('rebuyChips',    Integer, default=0), # INT DEFAULT 0
-    Column('addonChips',    Integer, default=0), # INT DEFAULT 0
-    Column('rebuyAmount',   MoneyColumn, default=0), # INT DEFAULT 0
-    Column('addonAmount',   MoneyColumn, default=0), # INT DEFAULT 0
-    Column('totalRebuys',   Integer, default=0), # INT DEFAULT 0
-    Column('totalAddons',   Integer, default=0), # INT DEFAULT 0
-    Column('koBounty',      Integer, default=0), # INT DEFAULT 0
+    Column('totalRebuyCount',   Integer, default=0), # INT DEFAULT 0
+    Column('totalAddOnCount',   Integer, default=0), # INT DEFAULT 0
     Column('comment',       Text), # TEXT
     Column('commentTs',     DateTime), # DATETIME
     mysql_charset='utf8',
@@ -374,36 +385,46 @@ Index('siteTourneyNo', tourneys_table.c.siteTourneyNo, tourneys_table.c.tourneyT
 tourney_types_table = Table('TourneyTypes', metadata,
     Column('id',            Integer, primary_key=True), 
     Column('siteId',        SmallInteger, ForeignKey("Sites.id"), nullable=False), 
+    Column('currency',      String(4), nullable=False), # varchar(4) NOT NULL
     Column('buyin',         Integer, nullable=False), # INT NOT NULL
-    Column('fee',           Integer, nullable=False, default=0), # INT NOT NULL
+    Column('fee',           Integer, nullable=False), # INT NOT NULL
+    Column('buyInChips',    Integer, nullable=False), # INT NOT NULL
     Column('maxSeats',      Boolean, nullable=False, default=-1), # INT NOT NULL DEFAULT -1
+    Column('rebuy',         Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('rebuyCost',     Integer), # INT
+    Column('rebuyChips',    Integer), # INT
+    Column('addOn',         Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('addOnCost',     Integer), # INT
+    Column('addOnChips',    Integer), # INT
     Column('knockout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
-    Column('rebuyOrAddon',  Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('koBounty',      Integer), # INT
     Column('speed',         String(10)), # varchar(10)
-    Column('headsUp',       Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('shootout',      Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('matrix',        Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
     Column('sng',           Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('satellite',     Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('doubleOrNothing', Boolean, nullable=False, default=False), # BOOLEAN NOT NULL DEFAULT False
+    Column('guarantee',     Integer, nullable=False, default=0), # INT NOT NULL DEFAULT 0
     mysql_charset='utf8',
     mysql_engine='InnoDB',
 )
 Index('tourneyTypes_all', 
     tourney_types_table.c.siteId, tourney_types_table.c.buyin, tourney_types_table.c.fee, 
-    tourney_types_table.c.maxSeats, tourney_types_table.c.knockout, tourney_types_table.c.rebuyOrAddon, 
-    tourney_types_table.c.speed, tourney_types_table.c.headsUp, tourney_types_table.c.shootout, 
-    tourney_types_table.c.matrix, tourney_types_table.c.sng)
+    tourney_types_table.c.maxSeats, tourney_types_table.c.knockout, tourney_types_table.c.rebuy,
+    tourney_types_table.c.addOn, tourney_types_table.c.speed,
+    tourney_types_table.c.shootout, tourney_types_table.c.matrix, tourney_types_table.c.sng)
 
 
 tourneys_players_table = Table('TourneysPlayers', metadata,
     Column('id',            BigIntColumn, primary_key=True), 
     Column('tourneyId',     Integer, ForeignKey("Tourneys.id"), nullable=False), 
     Column('playerId',      Integer, ForeignKey("Players.id"), nullable=False), 
-    Column('payinAmount',   Integer), # INT NOT NULL
     Column('rank',          Integer), # INT NOT NULL
     Column('winnings',      Integer), # INT NOT NULL
-    Column('nbRebuys',      Integer, default=0), # INT DEFAULT 0
-    Column('nbAddons',      Integer, default=0), # INT DEFAULT 0
-    Column('nbKO',          Integer, default=0), # INT DEFAULT 0
+    Column('winningsCurrency', Text), # TEXT
+    Column('rebuyCount',    Integer, default=0), # INT DEFAULT 0
+    Column('addOnCount',    Integer, default=0), # INT DEFAULT 0
+    Column('koCount',       Integer, default=0), # INT DEFAULT 0
     Column('comment',       Text), # TEXT
     Column('commentTs',     DateTime), # DATETIME
     mysql_charset='utf8',

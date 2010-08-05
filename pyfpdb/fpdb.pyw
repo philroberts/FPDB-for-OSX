@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Steffen Jobbagy-Felso
+#Copyright 2008-2010 Steffen Schaumburg
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import os
 import sys
@@ -35,7 +35,10 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         os.environ['PATH'] = tmppath
         print "Python " + sys.version[0:3] + ' - press return to continue\n'
         sys.stdin.readline()
-        os.execvpe('python.exe', ('python.exe', 'fpdb.py', '-r'), os.environ) # first arg is ignored (name of program being run)
+        if os.name=='nt':
+            os.execvpe('pythonw.exe', ('pythonw.exe', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
+        else:
+            os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
         print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
         raw_input("Press ENTER to continue.")
@@ -63,6 +66,7 @@ cl_options = string.join(sys.argv[1:])
 (options, argv) = Options.fpdb_options()
 
 import logging, logging.config
+log = logging.getLogger("fpdb")
 
 try:
     import pygtk
@@ -99,9 +103,10 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
-import GuiPlayerStats
+import ImapFetcher
+import GuiRingPlayerStats
+import GuiTourneyPlayerStats
 import GuiPositionalStats
-import GuiTableViewer
 import GuiAutoImport
 import GuiGraphViewer
 import GuiSessionViewer
@@ -109,8 +114,9 @@ import SQL
 import Database
 import Configuration
 import Exceptions
+import Stats
 
-VERSION = "0.12"
+VERSION = "0.20.903 plus git"
 
 
 class fpdb:
@@ -222,16 +228,16 @@ class fpdb:
         self.quit(widget)
 
     def dia_about(self, widget, data=None):
-        #self.warning_box("About FPDB:\n\nFPDB was originally created by a guy named Steffen, sometime in 2008, \nand is mostly worked on these days by people named Eratosthenes, s0rrow, _mt, EricBlade, sqlcoder, and other strange people.\n\n", "ABOUT FPDB")
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("2008-2010, Steffen, Eratosthenes, s0rrow, EricBlade, _mt, sqlcoder, Bostik, and others")
-        dia.set_comments("GTK AboutDialog comments here")
-        dia.set_license("GPL v3")
+        dia.set_copyright("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
+        dia.set_comments("You are free to change and distribute original or changed versions of fpdb within the rules set out by the license")
+        dia.set_license("Please see fpdb's start screen for license information")
         dia.set_website("http://fpdb.sourceforge.net/")
-        dia.set_authors(['Steffen', 'Eratosthenes', 's0rrow',
-            'EricBlade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
+        
+        dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
         dia.set_program_name("Free Poker Database (FPDB)")
 
         db_version = ""
@@ -256,11 +262,17 @@ class fpdb:
         view.modify_font(pango.FontDescription('monospace 10'))
         view.show()
         dia.vbox.pack_end(view, True, True, 2)
-        l = gtk.Label('Version Information:')
+        
+        l = gtk.Label("Your config file is: "+self.config.file)
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
 
+        l = gtk.Label('Version Information:')
+        l.set_alignment(0.5, 0.5)
+        l.show()
+        dia.vbox.pack_end(l, True, True, 2)
+        
         dia.run()
         dia.destroy()
         log.debug("Threads: ")
@@ -275,7 +287,7 @@ class fpdb:
                           gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT))
         dia.set_default_size(700, 500)
 
-        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox)
+        prefs = GuiPrefs.GuiPrefs(self.config, self.window, dia.vbox, dia)
         response = dia.run()
         if response == gtk.RESPONSE_ACCEPT:
             # save updated config
@@ -283,17 +295,19 @@ class fpdb:
             if len(self.nb_tab_names) == 1:
                 # only main tab open, reload profile
                 self.load_profile()
+                dia.destroy()
             else:
+                dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
                 self.warning_box("Updated preferences have not been loaded because "
                                  + "windows are open. Re-start fpdb to load them.")
-
-        dia.destroy()
+        else:
+            dia.destroy()
 
     def dia_maintain_dbs(self, widget, data=None):
-        self.warning_box("Unimplemented: Maintain Databases")
-        return
+        #self.warning_box("Unimplemented: Maintain Databases")
+        #return
         if len(self.tab_names) == 1:
-            if self.obtain_global_lock():  # returns true if successful
+            if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
                 dia = gtk.Dialog("Maintain Databases",
                                  self.window,
@@ -305,8 +319,14 @@ class fpdb:
                 prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
                 response = dia.run()
                 if response == gtk.RESPONSE_ACCEPT:
+                    log.info('saving updated db data')
                     # save updated config
                     self.config.save()
+                    self.load_profile()
+                    for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
+                        log.info('fpdb: name,desc='+name+','+self.config.supported_databases[name].db_desc)
+                else:
+                    log.info('guidb response was '+str(response))
 
                 self.release_global_lock()
 
@@ -315,59 +335,179 @@ class fpdb:
             self.warning_box("Cannot open Database Maintenance window because "
                              + "other windows have been opened. Re-start fpdb to use this option.")
 
-    def dia_create_del_user(self, widget, data=None):
-        self.warning_box("Unimplemented: Create/Delete user")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
     def dia_database_stats(self, widget, data=None):
-        self.warning_box("Unimplemented: Database Stats")
+        self.warning_box(str="Number of Hands: "+str(self.db.getHandCount())+
+                    "\nNumber of Tourneys: "+str(self.db.getTourneyCount())+
+                    "\nNumber of TourneyTypes: "+str(self.db.getTourneyTypeCount()),
+                    diatitle="Database Statistics")
+    #end def dia_database_stats
 
-    def dia_delete_db_parts(self, widget, data=None):
-        self.warning_box("Unimplemented: Delete Database Parts")
-        self.obtain_global_lock()
+    def diaHudConfigurator(self, widget, data=None):
+        """Opens dialog to set parameters (game category, row count, column count for HUD stat configurator"""
+        self.hudConfiguratorRows=None
+        self.hudConfiguratorColumns=None
+        self.hudConfiguratorGame=None
+        
+        diaSelections = gtk.Dialog("HUD Configurator - choose category",
+                                 self.window,
+                                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                 (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
+                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+        
+        label=gtk.Label("Please select the game category for which you want to configure HUD stats:")
+        diaSelections.vbox.add(label)
+        label.show()
+        
+        comboGame = gtk.combo_box_new_text()
+        comboGame.connect("changed", self.hudConfiguratorComboSelection)
+        diaSelections.vbox.add(comboGame)
+        games=self.config.get_supported_games()
+        for game in games:
+            comboGame.append_text(game)
+        comboGame.set_active(0)
+        comboGame.show()
+        
+        comboRows = gtk.combo_box_new_text()
+        comboRows.connect("changed", self.hudConfiguratorComboSelection)
+        diaSelections.vbox.add(comboRows)
+        for i in range(1,8):
+            comboRows.append_text(str(i)+" rows")
+        comboRows.set_active(0)
+        comboRows.show()
+        
+        comboColumns = gtk.combo_box_new_text()
+        comboColumns.connect("changed", self.hudConfiguratorComboSelection)
+        diaSelections.vbox.add(comboColumns)
+        for i in range(1,8):
+            comboColumns.append_text(str(i)+" columns")
+        comboColumns.set_active(0)
+        comboColumns.show()
+        
+        response=diaSelections.run()
+        diaSelections.destroy()
+        
+        if response == gtk.RESPONSE_ACCEPT and self.hudConfiguratorRows!=None and self.hudConfiguratorColumns!=None and self.hudConfiguratorGame!=None:
+            #print "clicked ok and selected:", self.hudConfiguratorGame,"with", str(self.hudConfiguratorRows), "rows and", str(self.hudConfiguratorColumns), "columns"
+            self.diaHudConfiguratorTable()
+    #end def diaHudConfigurator
+
+    def hudConfiguratorComboSelection(self, widget):
+        #TODO: remove this and handle it directly in diaHudConfigurator
+        result=widget.get_active_text()
+        if result.endswith(" rows"):
+            self.hudConfiguratorRows=int(result[0])
+        elif result.endswith(" columns"):
+            self.hudConfiguratorColumns=int(result[0])
+        else:
+            self.hudConfiguratorGame=result
+    #end def hudConfiguratorComboSelection
+    
+    def diaHudConfiguratorTable(self):
+        """shows dialogue with Table of ComboBoxes to allow choosing of HUD stats"""
+        #TODO: add notices to hud configurator: no duplicates, no empties, display options
+        #TODO: show explanation of what each stat means
+        diaHudTable = gtk.Dialog("HUD Configurator - please choose your stats",
+                                 self.window,
+                                 gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                 (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
+                                  gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
+        
+        label=gtk.Label("Please choose the stats you wish to use in the below table.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        label=gtk.Label("Note that you may not select any stat more than once or it will crash.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        label=gtk.Label("It is not currently possible to select \"empty\" or anything else to that end.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        label=gtk.Label("To configure things like colouring you will still have to manually edit your HUD_config.xml.")
+        diaHudTable.vbox.add(label)
+        label.show()
+        
+        self.hudConfiguratorTableContents=[]
+        table= gtk.Table(rows=self.hudConfiguratorRows+1, columns=self.hudConfiguratorColumns+1, homogeneous=True)
+        
+        statDir=dir(Stats)
+        statDict={}
+        for attr in statDir:
+            if attr.startswith('__'): continue
+            if attr in ("Charset", "Configuration", "Database", "GInitiallyUnowned", "gtk", "pygtk",
+                        "player", "c", "db_connection", "do_stat", "do_tip", "stat_dict",
+                        "h", "re", "re_Percent", "re_Places", ): continue
+            statDict[attr]=eval("Stats.%s.__doc__" % (attr))
+        
+        for rowNumber in range(self.hudConfiguratorRows+1):
+            newRow=[]
+            for columnNumber in range(self.hudConfiguratorColumns+1):
+                if rowNumber==0:
+                    if columnNumber==0:
+                        pass
+                    else:
+                        label=gtk.Label("column "+str(columnNumber))
+                        table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                        label.show()
+                elif columnNumber==0:
+                    label=gtk.Label("row "+str(rowNumber))
+                    table.attach(child=label, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                    label.show()
+                else:
+                    comboBox = gtk.combo_box_new_text()
+                    
+                    for stat in statDict.keys():
+                        comboBox.append_text(stat)
+                    comboBox.set_active(0)
+                    
+                    newRow.append(comboBox)
+                    table.attach(child=comboBox, left_attach=columnNumber, right_attach=columnNumber+1, top_attach=rowNumber, bottom_attach=rowNumber+1)
+                    
+                    comboBox.show()
+            if rowNumber!=0:
+                self.hudConfiguratorTableContents.append(newRow)
+        diaHudTable.vbox.add(table)
+        table.show()
+        
+        response=diaHudTable.run()
+        diaHudTable.destroy()
+        
+        if response == gtk.RESPONSE_ACCEPT:
+            self.storeNewHudStatConfig()
+    #end def diaHudConfiguratorTable
+    
+    def storeNewHudStatConfig(self):
+        """stores selections made in diaHudConfiguratorTable"""
+        self.obtain_global_lock("diaHudConfiguratorTable")
+        statTable=[]
+        for row in self.hudConfiguratorTableContents:
+            newRow=[]
+            for column in row:
+                newField = column.get_active_text()
+                newRow.append(newField)
+            statTable.append(newRow)
+                
+        self.config.editStats(self.hudConfiguratorGame,statTable)
+        self.config.save() #TODO: make it not store in horrible formatting
         self.release_global_lock()
-
-    def dia_edit_profile(self, widget=None, data=None, create_default=False, path=None):
-        self.warning_box("Unimplemented: Edit Profile")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
-    def dia_export_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Export Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
-
-    def dia_get_db_root_credentials(self):
-        """obtains db root credentials from user"""
-        self.warning_box("Unimplemented: Get Root Database Credentials")
-#        user, pw=None, None
-#
-#        dialog=gtk.Dialog(title="DB Credentials needed", parent=None, flags=0,
-#                buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,"Connect and recreate",gtk.RESPONSE_OK))
-#
-#        label_warning1=gtk.Label("Please enter credentials for a database user for "+self.host+" that has permissions to create a database.")
-#
-#
-#        label_user=gtk.Label("Username")
-#        dialog.vbox.add(label_user)
-#        label_user.show()
-#
-#        response=dialog.run()
-#        dialog.destroy()
-#        return (user, pw, response)
-
-    def dia_import_db(self, widget, data=None):
-        self.warning_box("Unimplemented: Import Database")
-        self.obtain_global_lock()
-        self.release_global_lock()
+    #end def storeNewHudStatConfig
+    
+    def dia_dump_db(self, widget, data=None):
+        filename = "database-dump.sql"
+        result = self.db.dumpDatabase()
+        
+        dumpFile = open(filename, 'w')
+        dumpFile.write(result)
+        dumpFile.close()
+    #end def dia_database_stats
 
     def dia_licensing(self, widget, data=None):
         self.warning_box("Unimplemented: Licensing")
 
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
-        if self.obtain_global_lock():  # returns true if successful
+        if self.obtain_global_lock("fpdb.dia_load_profile"):  # returns true if successful
             #try:
             #    chooser = gtk.FileChooserDialog(title="Please select a profile file to load",
             #            action=gtk.FILE_CHOOSER_ACTION_OPEN,
@@ -390,14 +530,16 @@ class fpdb:
 
     def dia_recreate_tables(self, widget, data=None):
         """Dialogue that asks user to confirm that he wants to delete and recreate the tables"""
-        if self.obtain_global_lock():  # returns true if successful
+        if self.obtain_global_lock("fpdb.dia_recreate_tables"):  # returns true if successful
 
             #lock_released = False
-            dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING,
+            dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
             diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
-                        +self.db.database+" on "+self.db.host+" they will be deleted."
+                        +self.db.database+" on "+self.db.host+" they will be deleted.\nThis may take a while."
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            dia_confirm.set_deletable(False)
 
             response = dia_confirm.run()
             dia_confirm.destroy()
@@ -409,19 +551,27 @@ class fpdb:
                 #    self.release_global_lock()
                 #    lock_released = True
                 self.db.recreate_tables()
+                # find any guibulkimport/guiautoimport windows and clear player cache:
+                for t in self.threads:
+                    if isinstance(t, GuiBulkImport.GuiBulkImport) or isinstance(t, GuiAutoImport.GuiAutoImport):
+                        t.importer.database.resetPlayerIDs()
+                self.release_global_lock()
                 #else:
                     # for other dbs use same connection as holds global lock
                 #    self.fdb_lock.fdb.recreate_tables()
             elif response == gtk.RESPONSE_NO:
+                self.release_global_lock()
                 print 'User cancelled recreating tables'
             #if not lock_released:
-            self.release_global_lock()
+    #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
-        if self.obtain_global_lock():
-            self.dia_confirm = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
+        if self.obtain_global_lock("dia_recreate_hudcache"):
+            self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
             diastring = "Please confirm that you want to re-create the HUD cache."
             self.dia_confirm.format_secondary_text(diastring)
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            self.dia_confirm.set_deletable(False)
 
             hb1 = gtk.HBox(True, 1)
             self.h_start_date = gtk.Entry(max=12)
@@ -468,17 +618,20 @@ class fpdb:
         self.release_global_lock()
 
     def dia_rebuild_indexes(self, widget, data=None):
-        if self.obtain_global_lock():
-            self.dia_confirm = gtk.MessageDialog(parent=None
-                                                ,flags=0
+        if self.obtain_global_lock("dia_rebuild_indexes"):
+            self.dia_confirm = gtk.MessageDialog(parent=self.window
+                                                ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                                 ,type=gtk.MESSAGE_WARNING
                                                 ,buttons=(gtk.BUTTONS_YES_NO)
                                                 ,message_format="Confirm rebuilding database indexes")
             diastring = "Please confirm that you want to rebuild the database indexes."
             self.dia_confirm.format_secondary_text(diastring)
+            # disable windowclose, do not want the the underlying processing interrupted mid-process
+            self.dia_confirm.set_deletable(False)
 
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
+                #FIXME these progress messages do not seem to work in *nix
                 lbl = gtk.Label(" Rebuilding Indexes ... ")
                 self.dia_confirm.vbox.add(lbl)
                 lbl.show()
@@ -506,7 +659,7 @@ class fpdb:
         """opens the log viewer window"""
 
         #lock_set = False
-        #if self.obtain_global_lock():
+        #if self.obtain_global_lock("dia_logs"):
         #    lock_set = True
 
         # remove members from self.threads if close messages received
@@ -550,8 +703,13 @@ class fpdb:
             pass
 
     def __calendar_dialog(self, widget, entry):
-        self.dia_confirm.set_modal(False)
+# do not alter the modality of the parent
+#        self.dia_confirm.set_modal(False)
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        d.set_transient_for(self.dia_confirm)
+        d.set_destroy_with_parent(True)
+        d.set_modal(True)
+
         d.set_title('Pick a date')
 
         vb = gtk.VBox()
@@ -587,8 +745,8 @@ class fpdb:
 
     def dia_regression_test(self, widget, data=None):
         self.warning_box("Unimplemented: Regression Test")
-        self.obtain_global_lock()
-        self.release_global_lock()
+        #self.obtain_global_lock("dia_regression_test")
+        #self.release_global_lock()
 
     def dia_save_profile(self, widget, data=None):
         self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
@@ -618,8 +776,8 @@ class fpdb:
               <menubar name="MenuBar">
                 <menu action="main">
                   <menuitem action="LoadProf"/>
-                  <menuitem action="EditProf"/>
                   <menuitem action="SaveProf"/>
+                  <menuitem action="hudConfigurator"/>
                   <menuitem action="Preferences"/>
                   <separator/>
                   <menuitem action="Quit"/>
@@ -627,34 +785,30 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
+                  <menuitem action="imapsummaries"/>
                   <menuitem action="autoimp"/>
-                  <menuitem action="autorate"/>
                 </menu>
                 <menu action="viewers">
                   <menuitem action="autoimp"/>
+                  <menuitem action="hudConfigurator"/>
                   <menuitem action="graphs"/>
-                  <menuitem action="handreplay"/>
-                  <menuitem action="playerdetails"/>
-                  <menuitem action="playerstats"/>
+                  <menuitem action="ringplayerstats"/>
+                  <menuitem action="tourneyplayerstats"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
-                  <menuitem action="sessionreplay"/>
-                  <menuitem action="tableviewer"/>
                 </menu>
                 <menu action="database">
                   <menuitem action="maintaindbs"/>
-                  <menuitem action="createuser"/>
                   <menuitem action="createtabs"/>
                   <menuitem action="rebuildhudcache"/>
                   <menuitem action="rebuildindexes"/>
-                  <menuitem action="stats"/>
+                  <menuitem action="databasestats"/>
+                  <menuitem action="dumptofile"/>
                 </menu>
                 <menu action="help">
-                  <menuitem action="Abbrev"/>
                   <menuitem action="Logs"/>
                   <separator/>
                   <menuitem action="About"/>
-                  <menuitem action="License"/>
                 </menu>
               </menubar>
             </ui>"""
@@ -667,35 +821,30 @@ class fpdb:
         actiongroup.add_actions([('main', None, '_Main'),
                                  ('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.quit),
                                  ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
-                                 ('EditProf', None, '_Edit Profile (todo)', '<control>E', 'Edit your profile', self.dia_edit_profile),
                                  ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
                                  ('Preferences', None, 'Pre_ferences', '<control>F', 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
-                                 ('autorate', None, 'Auto _Rating (todo)', '<control>R', 'Auto Rating (todo)', self.not_implemented),
+                                 ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
+                                 ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
-                                 ('handreplay', None, 'Hand _Replayer (todo)', None, 'Hand Replayer (todo)', self.not_implemented),
-                                 ('playerdetails', None, 'Player _Details (todo)', None, 'Player Details (todo)', self.not_implemented),
-                                 ('playerstats', None, '_Player Stats (tabulated view)', '<control>P', 'Player Stats (tabulated view)', self.tab_player_stats),
+                                 ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
-                                 ('sessionreplay', None, '_Session Replayer (todo)', None, 'Session Replayer (todo)', self.not_implemented),
-                                 ('tableviewer', None, 'Poker_table Viewer (mostly obselete)', None, 'Poker_table Viewer (mostly obselete)', self.tab_table_viewer),
                                  ('database', None, '_Database'),
-                                 ('maintaindbs', None, '_Maintain Databases (todo)', None, 'Maintain Databases', self.dia_maintain_dbs),
-                                 ('createuser', None, 'Create or Delete _User (todo)', None, 'Create or Delete User', self.dia_create_del_user),
+                                 ('maintaindbs', None, '_Maintain Databases', None, 'Maintain Databases', self.dia_maintain_dbs),
                                  ('createtabs', None, 'Create or Recreate _Tables', None, 'Create or Recreate Tables ', self.dia_recreate_tables),
                                  ('rebuildhudcache', None, 'Rebuild HUD Cache', None, 'Rebuild HUD Cache', self.dia_recreate_hudcache),
                                  ('rebuildindexes', None, 'Rebuild DB Indexes', None, 'Rebuild DB Indexes', self.dia_rebuild_indexes),
-                                 ('stats', None, '_Statistics (todo)', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('databasestats', None, '_Statistics', None, 'View Database Statistics', self.dia_database_stats),
+                                 ('dumptofile', None, 'Dump Database to Textfile (takes ALOT of time)', None, 'Dump Database to Textfile (takes ALOT of time)', self.dia_dump_db),
                                  ('help', None, '_Help'),
-                                 ('Abbrev', None, '_Abbrevations (todo)', None, 'List of Abbrevations', self.tab_abbreviations),
                                  ('Logs', None, '_Log Messages', None, 'Log and Debug Messages', self.dia_logs),
-                                 ('About', None, 'A_bout', None, 'About the program', self.dia_about),
-                                 ('License', None, '_License and Copying (todo)', None, 'License and Copying', self.dia_licensing),
+                                 ('About', None, 'A_bout, License, Copying', None, 'About the program', self.dia_about),
                                 ])
         actiongroup.get_action('Quit').set_property('short-label', '_Quit')
 
@@ -706,6 +855,12 @@ class fpdb:
         menubar = uimanager.get_widget('/MenuBar')
         window.add_accel_group(accel_group)
         return menubar
+    #end def get_menu
+    
+    def import_imap_summaries(self, widget, data=None):
+        result=ImapFetcher.run(self.config, self.db)
+        #print "import imap summaries result:", result
+    #end def import_imap_summaries
 
     def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
@@ -714,7 +869,7 @@ class fpdb:
             self.warning_box( "There is an error in your config file\n" + self.config.file
                               + "\n\nError is:  " + str(self.config.file_error)
                             , diatitle="CONFIG FILE ERROR" )
-            exit()
+            sys.exit()
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
         print "Logfile is " + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
@@ -810,55 +965,73 @@ class fpdb:
     def not_implemented(self, widget, data=None):
         self.warning_box("Unimplemented menu entry")
 
-    def obtain_global_lock(self):
-        ret = self.lock.acquire(False) # will return false if lock is already held
+    def obtain_global_lock(self, source):
+        ret = self.lock.acquire(source=source) # will return false if lock is already held
         if ret:
-            print "\nGlobal lock taken ..."
+            print "\nGlobal lock taken by", source
+            self.lockTakenBy=source
         else:
-            print "\nFailed to get global lock."
+            print "\nFailed to get global lock, it is currently held by", source
         return ret
         # need to release it later:
         # self.lock.release()
 
     def quit(self, widget, data=None):
         # TODO: can we get some / all of the stuff done in this function to execute on any kind of abort?
-        print "Quitting normally"
+        #FIXME  get two "quitting normally" messages, following the addition of the self.window.destroy() call
+        #       ... because self.window.destroy() leads to self.destroy() which calls this!
+        if not self.quitting:
+            print "Quitting normally"
+            self.quitting = True
         # TODO: check if current settings differ from profile, if so offer to save or abort
-        try:
-            if self.db is not None and self.db.connected:
-                self.db.disconnect()
-        except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+        
+        if self.db!=None:
+            if self.db.backend==self.db.MYSQL_INNODB:
+                try:
+                    if self.db is not None and self.db.connected():
+                        self.db.disconnect()
+                except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
+                    pass
+            else:
+                if self.db is not None and self.db.connected():
+                    self.db.disconnect()
+        else:
             pass
         self.statusIcon.set_visible(False)
+
+        self.window.destroy() # explicitly destroy to allow child windows to close cleanly
         gtk.main_quit()
 
     def release_global_lock(self):
         self.lock.release()
+        self.lockTakenBy=None
         print "Global lock released.\n"
-
-    def tab_abbreviations(self, widget, data=None):
-        print "todo: implement tab_abbreviations"
 
     def tab_auto_import(self, widget, data=None):
         """opens the auto import tab"""
-        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql)
+        new_aimp_thread = GuiAutoImport.GuiAutoImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_aimp_thread)
         aimp_tab=new_aimp_thread.get_vbox()
         self.add_and_display_tab(aimp_tab, "Auto Import")
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
-        #print "start of tab_bulk_import"
         new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
-    def tab_player_stats(self, widget, data=None):
-        new_ps_thread = GuiPlayerStats.GuiPlayerStats(self.config, self.sql, self.window)
+    def tab_ring_player_stats(self, widget, data=None):
+        new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
-        self.add_and_display_tab(ps_tab, "Player Stats")
+        self.add_and_display_tab(ps_tab, "Ring Player Stats")
+
+    def tab_tourney_player_stats(self, widget, data=None):
+        new_ps_thread = GuiTourneyPlayerStats.GuiTourneyPlayerStats(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_ps_thread)
+        ps_tab=new_ps_thread.get_vbox()
+        self.add_and_display_tab(ps_tab, "Tourney Player Stats")
 
     def tab_positional_stats(self, widget, data=None):
         new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
@@ -875,21 +1048,24 @@ class fpdb:
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
         mh_tab=gtk.Label("""Welcome to Fpdb!
-For documentation please visit our website at http://fpdb.sourceforge.net/ or check the docs directory in the fpdb folder.
-Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml
-This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
-        self.add_and_display_tab(mh_tab, "Help")
+To be notified of new snapshots and releases go to https://lists.sourceforge.net/lists/listinfo/fpdb-announce and subscribe.
+If you want to follow development more closely go to https://lists.sourceforge.net/lists/listinfo/fpdb-main and subscribe.
 
-    def tab_table_viewer(self, widget, data=None):
-        """opens a table viewer tab"""
-        new_tv_thread = GuiTableViewer.GuiTableViewer(self.db, self.settings, self.config)
-        self.threads.append(new_tv_thread)
-        tv_tab = new_tv_thread.get_vbox()
-        self.add_and_display_tab(tv_tab, "Table Viewer")
+This program is currently in an alpha-state, so our database format is still sometimes changed.
+You should therefore always keep your hand history files so that you can re-import after an update, if necessary.
+
+For documentation please visit our website at http://fpdb.sourceforge.net/.
+If you need help click on Contact - Get Help on our website.
+Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
+
+This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.
+The Windows installer package includes code licensed under the MIT license.
+You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory.""")
+        self.add_and_display_tab(mh_tab, "Help")
 
     def tabGraphViewer(self, widget, data=None):
         """opens a graph viewer tab"""
-        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config)
+        new_gv_thread = GuiGraphViewer.GuiGraphViewer(self.sql, self.config, self.window)
         self.threads.append(new_gv_thread)
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, "Graphs")
@@ -899,13 +1075,18 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
         self.db = None
         self.status_bar = None
+        self.quitting = False
 
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
-        self.window.set_title("Free Poker DB - v%s or higher" % (VERSION, ))
+        self.window.set_title("Free Poker DB - v%s" % (VERSION, ))
         self.window.set_border_width(1)
-        self.window.set_default_size(900,720)
+        defx, defy = 900, 720
+        sx, sy = gtk.gdk.screen_width(), gtk.gdk.screen_height()
+        if sx < defx:  defx = sx
+        if sy < defy:  defy = sy
+        self.window.set_default_size(defx, defy)
         self.window.set_resizable(True)
 
         self.main_vbox = gtk.VBox(False, 1)
@@ -957,9 +1138,11 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         menuItem = gtk.ImageMenuItem(gtk.STOCK_ABOUT)
         menuItem.connect('activate', self.dia_about)
         self.statusMenu.append(menuItem)
+ 
         menuItem = gtk.ImageMenuItem(gtk.STOCK_QUIT)
         menuItem.connect('activate', self.quit)
         self.statusMenu.append(menuItem)
+
         self.statusIcon.connect('popup-menu', self.statusicon_menu, self.statusMenu)
         self.statusIcon.set_visible(True)
 
@@ -1006,7 +1189,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
             self.window.present()
 
     def info_box(self, str1, str2):
-        diapath = gtk.MessageDialog( parent=None, flags=0, type=gtk.MESSAGE_INFO
+        diapath = gtk.MessageDialog( parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_INFO
                                    , buttons=(gtk.BUTTONS_OK), message_format=str1 )
         diapath.format_secondary_text(str2)
         response = diapath.run()
@@ -1014,7 +1197,7 @@ This program is licensed under the AGPL3, see docs"""+os.sep+"agpl-3.0.txt")
         return response
 
     def warning_box(self, str, diatitle="FPDB WARNING"):
-        diaWarning = gtk.Dialog(title=diatitle, parent=None, flags=0, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
+        diaWarning = gtk.Dialog(title=diatitle, parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, buttons=(gtk.STOCK_OK,gtk.RESPONSE_OK))
 
         label = gtk.Label(str)
         diaWarning.vbox.add(label)

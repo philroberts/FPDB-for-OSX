@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008 Carl Gherardi
+#Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -13,9 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
-
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import os
 import Queue
@@ -26,6 +24,8 @@ import gtk
 import gobject
 import pango
 
+import os
+import traceback
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("logview")
@@ -33,6 +33,11 @@ log = logging.getLogger("logview")
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
+LOGFILES = [ [ 'Fpdb Errors', 'fpdb-errors.txt', False ]  # label, filename, start value
+           , [ 'Fpdb Log',    'fpdb-log.txt',    True ]
+           , [ 'HUD Errors',  'HUD-errors.txt',  False ]
+           , [ 'HUD Log',     'HUD-log.txt',     False ]
+           ]
 
 class GuiLogView:
 
@@ -41,7 +46,7 @@ class GuiLogView:
         self.main_window = mainwin
         self.closeq = closeq
 
-        self.logfile = self.config.log_file    # name of logfile
+        self.logfile = os.path.join(self.config.dir_log, LOGFILES[1][1])
         self.dia = gtk.Dialog(title="Log Messages"
                              ,parent=None
                              ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
@@ -69,10 +74,19 @@ class GuiLogView:
         scrolledwindow.add(self.listview)
         self.vbox.pack_start(scrolledwindow, expand=True, fill=True, padding=0)
 
+        hb = gtk.HBox(False, 0)
+        grp = None
+        for logf in LOGFILES:
+            rb = gtk.RadioButton(group=grp, label=logf[0], use_underline=True)
+            if grp is None: grp = rb
+            rb.set_active(logf[2])
+            rb.connect('clicked', self.__set_logfile, logf[0])
+            hb.pack_start(rb, False, False, 3)
         refreshbutton = gtk.Button("Refresh")
         refreshbutton.connect("clicked", self.refresh, None)
-        self.vbox.pack_start(refreshbutton, False, False, 3)
+        hb.pack_start(refreshbutton, False, False, 3)
         refreshbutton.show()
+        self.vbox.pack_start(hb, False, False, 0)
 
         self.listview.show()
         scrolledwindow.show()
@@ -89,6 +103,14 @@ class GuiLogView:
         self.dia.show()
 
         self.dia.connect('response', self.dialog_response_cb)
+
+    def __set_logfile(self, w, file):
+        #print "w is", w, "file is", file, "active is", w.get_active()
+        if w.get_active():
+            for logf in LOGFILES:
+                if logf[0] == file:
+                    self.logfile = os.path.join(self.config.dir_log, logf[1])
+            self.refresh(w, file)  # params are not used
 
     def dialog_response_cb(self, dialog, response_id):
         # this is called whether close button is pressed or window is closed
@@ -115,7 +137,7 @@ class GuiLogView:
     def loadLog(self):
 
         self.liststore.clear()
-        self.listcols = []
+#        self.listcols = [] blanking listcols causes sortcols() to fail with index out of range
 
         # guesstimate number of lines in file
         if os.path.exists(self.logfile):
@@ -131,11 +153,23 @@ class GuiLogView:
 
             l = 0
             for line in open(self.logfile):
-                # eg line:
+                # example line in logfile format:
                 # 2009-12-02 15:23:21,716 - config       DEBUG    config logger initialised
                 l = l + 1
-                if l > startline and len(line) > 49:
-                    iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
+                if l > startline:
+                    # NOTE selecting a sort column and then switching to a log file
+                    # with several thousand rows will send cpu 100% for a prolonged period.
+                    # reason is that the append() method seems to sort every record as it goes, rather than
+                    # pulling in the whole file and sorting at the end.
+                    # one fix is to check if a column sort has been selected, reset to date/time asc
+                    # append all the rows and then reselect the required sort order.
+                    # Note: there is no easy method available to revert the list to an "unsorted" state.
+                    # always defaulting to date/time asc doesn't work, because some rows do not have date/time info
+                    # and would end up sorted out of context.
+                    if len(line) > 49 and line[23:26] == ' - ' and line[34:39] == '     ':
+                        iter = self.liststore.append( (line[0:23], line[26:32], line[39:46], line[48:].strip(), True) )
+                    else:
+                        iter = self.liststore.append( ('', '', '', line.strip(), True) )
 
     def sortCols(self, col, n):
         try:

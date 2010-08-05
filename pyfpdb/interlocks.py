@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 
 # Code from http://ender.snowburst.org:4747/~jjohns/interlocks.py
 # Thanks JJ!
@@ -34,19 +35,24 @@ class InterProcessLockBase:
         if not name:
             name = sys.argv[0]
         self.name = name
+        self.heldBy = None
 
     def getHashedName(self):
         return base64.b64encode(self.name).replace('=','')
 
     def acquire_impl(self, wait): abstract
         
-    def acquire(self, wait=False, retry_time=1):
+    def acquire(self, wait=False, retry_time=1, source=None):
+        if source == None:
+            source="Unknown"
         if self._has_lock:             # make sure 2nd acquire in same process fails
+            print "lock already held by:",self.heldBy
             return False
         while not self._has_lock:
             try:
                 self.acquire_impl(wait)
                 self._has_lock = True
+                self.heldBy=source
                 #print 'i have the lock'
             except SingleInstanceError:
                 if not wait:
@@ -58,6 +64,7 @@ class InterProcessLockBase:
     def release(self):
         self.release_impl()
         self._has_lock = False
+        self.heldBy=None
 
     def locked(self):
         if self.acquire():

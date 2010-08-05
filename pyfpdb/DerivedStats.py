@@ -1,6 +1,7 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
-#Copyright 2008 Carl Gherardi
+#Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -12,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 #fpdb modules
 import Card
@@ -53,26 +53,28 @@ class DerivedStats():
             self.handsplayers[player[1]]['street0_3BDone']      = False
             self.handsplayers[player[1]]['street0_4BChance']    = False
             self.handsplayers[player[1]]['street0_4BDone']      = False
-            self.handsplayers[player[1]]['stealAttemptChance']  = False
-            self.handsplayers[player[1]]['stealAttempted']      = False
+            self.handsplayers[player[1]]['raiseFirstInChance']  = False
+            self.handsplayers[player[1]]['raisedFirstIn']       = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
             self.handsplayers[player[1]]['foldSbToStealChance'] = False
             self.handsplayers[player[1]]['foldedSbToSteal']     = False
             self.handsplayers[player[1]]['foldedBbToSteal']     = False
+            self.handsplayers[player[1]]['tourneyTypeId']       = None
+            
             for i in range(5): 
                 self.handsplayers[player[1]]['street%dCalls' % i] = 0
                 self.handsplayers[player[1]]['street%dBets' % i] = 0
+                self.handsplayers[player[1]]['street%dRaises' % i] = 0
             for i in range(1,5):
                 self.handsplayers[player[1]]['street%dCBChance' %i] = False
                 self.handsplayers[player[1]]['street%dCBDone' %i] = False
                 self.handsplayers[player[1]]['street%dCheckCallRaiseChance' %i] = False
                 self.handsplayers[player[1]]['street%dCheckCallRaiseDone' %i]   = False
-
-            #FIXME - Everything below this point is incomplete.
-            self.handsplayers[player[1]]['tourneyTypeId']       = 1
-            for i in range(1,5):
                 self.handsplayers[player[1]]['otherRaisedStreet%d' %i]          = False
                 self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
+            
+            #FIXME - Everything below this point is incomplete.
+            for i in range(1,5):
                 self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
                 self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
 
@@ -96,11 +98,12 @@ class DerivedStats():
         self.hands['tableName']  = hand.tablename
         self.hands['siteHandNo'] = hand.handid
         self.hands['gametypeId'] = None                     # Leave None, handled later after checking db
-        self.hands['handStart']  = hand.starttime           # format this!
+        self.hands['startTime']  = hand.startTime           # format this!
         self.hands['importTime'] = None
         self.hands['seats']      = self.countPlayers(hand) 
         self.hands['maxSeats']   = hand.maxseats
         self.hands['texture']    = None                     # No calculation done for this yet.
+        self.hands['tourneyId']  = hand.tourneyId
 
         # This (i think...) is correct for both stud and flop games, as hand.board['street'] disappears, and
         # those values remain default in stud.
@@ -138,7 +141,15 @@ class DerivedStats():
         for player in hand.players:
             self.handsplayers[player[1]]['seatNo'] = player[0]
             self.handsplayers[player[1]]['startCash'] = int(100 * Decimal(player[2]))
+            self.handsplayers[player[1]]['sitout'] = False #TODO: implement actual sitout detection
+            if hand.gametype["type"]=="tour":
+                self.handsplayers[player[1]]['tourneyTypeId']=hand.tourneyTypeId
+                self.handsplayers[player[1]]['tourneysPlayersIds'] = hand.tourneysPlayersIds[player[1]]
+            else:
+                self.handsplayers[player[1]]['tourneysPlayersIds'] = None
 
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
+        #for i, street in enumerate(hand.actionStreets[2:], start=1):
         for i, street in enumerate(hand.actionStreets[2:]):
             self.seen(self.hand, i+1)
 
@@ -146,6 +157,8 @@ class DerivedStats():
             self.aggr(self.hand, i)
             self.calls(self.hand, i)
             self.bets(self.hand, i)
+            if i>0:
+                self.folds(self.hand, i)
 
         # Winnings is a non-negative value of money collected from the pot, which already includes the
         # rake taken out. hand.collectees is Decimal, database requires cents
@@ -277,7 +290,10 @@ class DerivedStats():
 #        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
 #        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
         
-        p_in = set(x[1] for x in hand.players)
+        # hand.players includes people that are sitting out on some sites.
+        # Those that posted an ante should have been deal cards.
+        p_in = set([x[0] for x in hand.actions['BLINDSANTES']] + [x[0] for x in hand.actions['PREFLOP']])
+
         for (i, street) in enumerate(hand.actionStreets):
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))
@@ -302,13 +318,14 @@ class DerivedStats():
             self.hands['street%dRaises' % i] = len(filter( lambda action: action[1] in ('raises','bets'), hand.actions[street]))
 
     def calcSteals(self, hand):
-        """Fills stealAttempt(Chance|ed, fold(Bb|Sb)ToSteal(Chance|)
+        """Fills raiseFirstInChance|raisedFirstIn, fold(Bb|Sb)ToSteal(Chance|)
 
-        Steal attempt - open raise on positions 1 0 S - i.e. MP3, CO, BU, SB
+        Steal attempt - open raise on positions 1 0 S - i.e. CO, BU, SB
                         (note: I don't think PT2 counts SB steals in HU hands, maybe we shouldn't?)
         Fold to steal - folding blind after steal attemp wo any other callers or raisers
         """
         steal_attempt = False
+        raised = False
         steal_positions = (1, 0, 'S')
         if hand.gametype['base'] == 'stud':
             steal_positions = (2, 1, 0)
@@ -328,11 +345,13 @@ class DerivedStats():
             if steal_attempt and act != 'folds':
                 break
 
-            if posn in steal_positions and not steal_attempt:
-                self.handsplayers[pname]['stealAttemptChance'] = True
+            if not steal_attempt and not raised: # if posn in steal_positions and not steal_attempt:
+                self.handsplayers[pname]['raiseFirstInChance'] = True
                 if act in ('bets', 'raises'):
-                    self.handsplayers[pname]['stealAttempted'] = True
-                    steal_attempt = True
+                    self.handsplayers[pname]['raisedFirstIn'] = True
+                    raised = True
+                    if posn in steal_positions:
+                        steal_attempt = True
                 if act == 'calls':
                     break
             
@@ -368,8 +387,8 @@ class DerivedStats():
             name = self.lastBetOrRaiser(hand.actionStreets[i+1])
             if name:
                 chance = self.noBetsBefore(hand.actionStreets[i+2], name)
-                self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                 if chance == True:
+                    self.handsplayers[name]['street%dCBChance' % (i+1)] = True
                     self.handsplayers[name]['street%dCBDone' % (i+1)] = self.betStreet(hand.actionStreets[i+2], name)
 
     def calcCheckCallRaise(self, hand):
@@ -380,6 +399,7 @@ class DerivedStats():
 
         CG: CheckCall would be a much better name for this.
         """
+        # XXX: enumerate(list, start=x) is python 2.6 syntax; 'start'
         #for i, street in enumerate(hand.actionStreets[2:], start=1):
         for i, street in enumerate(hand.actionStreets[2:]):
             actions = hand.actions[hand.actionStreets[i+1]]
@@ -408,10 +428,16 @@ class DerivedStats():
 
     def aggr(self, hand, i):
         aggrers = set()
+        others = set()
         # Growl - actionStreets contains 'BLINDSANTES', which isn't actually an action street
+
+        firstAggrMade=False
         for act in hand.actions[hand.actionStreets[i+1]]:
+            if firstAggrMade:
+                others.add(act[0])
             if act[1] in ('completes', 'bets', 'raises'):
                 aggrers.add(act[0])
+                firstAggrMade=True
 
         for player in hand.players:
             #print "DEBUG: actionStreet[%s]: %s" %(hand.actionStreets[i+1], i)
@@ -419,6 +445,17 @@ class DerivedStats():
                 self.handsplayers[player[1]]['street%sAggr' % i] = True
             else:
                 self.handsplayers[player[1]]['street%sAggr' % i] = False
+                
+        if len(aggrers)>0 and i>0:
+            for playername in others:
+                self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
+                #print "otherRaised detected on handid "+str(hand.handid)+" for "+playername+" on street "+str(i)
+
+        if i > 0 and len(aggrers) > 0:
+            for playername in others:
+                self.handsplayers[playername]['otherRaisedStreet%s' % i] = True
+                #print "DEBUG: otherRaised detected on handid %s for %s on actionStreet[%s]: %s" 
+                #                           %(hand.handid, playername, hand.actionStreets[i+1], i)
 
     def calls(self, hand, i):
         callers = []
@@ -429,10 +466,17 @@ class DerivedStats():
     # CG - I'm sure this stat is wrong
     # Best guess is that raise = 2 bets
     def bets(self, hand, i):
-        betters = []
         for act in hand.actions[hand.actionStreets[i+1]]:
             if act[1] in ('bets'):
                 self.handsplayers[act[0]]['street%sBets' % i] = 1 + self.handsplayers[act[0]]['street%sBets' % i]
+        
+    def folds(self, hand, i):
+        for act in hand.actions[hand.actionStreets[i+1]]:
+            if act[1] in ('folds'):
+                if self.handsplayers[act[0]]['otherRaisedStreet%s' % i] == True:
+                    self.handsplayers[act[0]]['foldToOtherRaisedStreet%s' % i] = True
+                    #print "DEBUG: fold detected on handid %s for %s on actionStreet[%s]: %s"
+                    #                       %(hand.handid, act[0],hand.actionStreets[i+1], i)
 
     def countPlayers(self, hand):
         pass
@@ -505,9 +549,14 @@ class DerivedStats():
         """Returns true if player bet/raised the street as their first action"""
         betOrRaise = False
         for act in self.hand.actions[street]:
-            if act[0] == player and act[1] in ('bets', 'raises'):
-                betOrRaise = True
-            else:
+            if act[0] == player:
+                if act[1] in ('bets', 'raises'):
+                    betOrRaise = True
+                else:
+                    # player found but did not bet or raise as their first action
+                    pass
                 break
+            #else:
+                # haven't found player's first action yet
         return betOrRaise
 

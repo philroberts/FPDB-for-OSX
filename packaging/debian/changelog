@@ -1,3 +1,50 @@
+free-poker-tools (0.20.902-1) unstable; urgency=low
+
+  * New snapshot release; .901 was broken for FTP
+
+ -- Mika Bostrom <bostik@iki.fi>  Sat, 24 Jul 2010 09:05:57 +0300
+
+free-poker-tools (0.20.901-1) unstable; urgency=low
+
+  * Snapshot release before oncoming 0.21
+
+ -- Mika Bostrom <bostik@iki.fi>  Thu, 22 Jul 2010 23:32:47 +0300
+
+free-poker-tools (0.20.1-1) unstable; urgency=low
+
+  * 0.20.1 release
+
+ -- Mika Bostrom <bostik@iki.fi>  Thu, 22 Jul 2010 08:47:39 +0300
+
+free-poker-tools (0.20-2) unstable; urgency=low
+
+  * Fix executable script shebangs: there is no /usr/bin/python2 (nor
+    /usr/bin/python3) symlink on Debian or Ubuntu
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Thu, 08 Jul 2010 21:29:40 +0300
+
+free-poker-tools (0.20-1) unstable; urgency=low
+
+  * 0.20 release
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Thu, 08 Jul 2010 11:25:36 +0300
+
+free-poker-tools (0.20~git20100630) unstable; urgency=low
+
+  * Snapshot release
+  * Executable names have been changed to accommodate for some win32
+    trouble cases; install these files manually to build-tree
+  * Improved statistics
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Wed, 16 Jun 2010 08:10:00 +0300
+
+free-poker-tools (0.20~git20100305) unstable; urgency=low
+
+  * New snapshot
+  * Version bumped to 0.20
+
+ -- Mika Bostrom <bostik+fpdb@bostik.iki.fi>  Fri, 05 Mar 2010 08:38:52 +0200
+
 free-poker-tools (0.12~git20100122) unstable; urgency=low
 
   * New snapshot release with reworked import code

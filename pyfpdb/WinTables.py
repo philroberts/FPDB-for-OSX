@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """WinTables.py
 
 Routines for detecting and handling poker client windows for MS Windows.
 """
-#    Copyright 2008 - 2009, Ray E. Barker
+#    Copyright 2008-2010, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

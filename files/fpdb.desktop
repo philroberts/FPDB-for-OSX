@@ -5,5 +5,5 @@ Exec=/usr/bin/fpdb
 Icon=fpdb-icon.png
 Terminal=true
 Type=Application
-Categories=Utility
+Categories=Utility;GTK;Application
 

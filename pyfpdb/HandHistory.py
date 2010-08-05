@@ -1,9 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """HandHistory.py
 
 Parses HandHistory xml files and returns requested objects.
 """
-#    Copyright 2008, Ray E. Barker
+#    Copyright 2008-2010, Ray E. Barker
 #    
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

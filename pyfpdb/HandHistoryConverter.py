@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008 Carl Gherardi
+#Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -13,8 +13,7 @@
 #
 #You should have received a copy of the GNU Affero General Public License
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
-#In the "official" distribution you can find the license in
-#agpl-3.0.txt in the docs folder of the package.
+#In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import re
 import sys
@@ -27,8 +26,11 @@ import codecs
 from decimal import Decimal
 import operator
 from xml.dom.minidom import Node
+
 import time
 import datetime
+from pytz import timezone
+import pytz
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -36,7 +38,6 @@ log = logging.getLogger("parser")
 
 
 import Hand
-import Tourney
 from Exceptions import FpdbParseError
 import Configuration
 
@@ -62,7 +63,7 @@ class HandHistoryConverter():
     codepage = "cp1252"
 
 
-    def __init__(self, config, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False):
+    def __init__(self, config, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False, ftpArchive=False):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -75,6 +76,7 @@ follow :  whether to tail -f the input"""
 
         self.index     = index
         self.starsArchive = starsArchive
+        self.ftpArchive = ftpArchive
 
         self.in_path = in_path
         self.out_path = out_path
@@ -136,8 +138,7 @@ Otherwise, finish at EOF.
                         self.numHands += 1
                     except FpdbParseError, e:
                         self.numErrors += 1
-                        log.warning("Failed to convert hand %s" % e.hid)
-                        log.warning("Exception msg: '%s'" % str(e))
+                        log.warning("HHC.start(follow): processHand failed: Exception msg: '%s'" % e)
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
@@ -151,8 +152,7 @@ Otherwise, finish at EOF.
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
                             self.numErrors += 1
-                            log.warning("Failed to convert hand %s" % e.hid)
-                            log.warning("Exception msg: '%s'" % str(e))
+                            log.warning("HHC.start(): processHand failed: Exception msg: '%s'" % e)
                             log.debug(handText)
                     self.numHands = len(handsList)
                     endtime = time.time()
@@ -245,6 +245,11 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         if self.starsArchive == True:
             log.debug("Converting starsArchive format to readable")
             m = re.compile('^Hand #\d+', re.MULTILINE)
+            self.obs = m.sub('', self.obs)
+
+        if self.ftpArchive == True:
+            log.debug("Converting ftpArchive format to readable")
+            m = re.compile('^\*\*\*\*\*\*+\s#\s\d+\s\*\*\*\*\*+$', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
@@ -428,9 +433,9 @@ or None if we fail to get the info """
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
                         whole_file = in_fh.read()
+                        in_fh.close()
                         self.obs = whole_file[self.index:]
                         self.index = len(whole_file)
-                        in_fh.close()
                         break
                     except:
                         pass
@@ -492,6 +497,72 @@ or None if we fail to get the info """
 
     def getTourney(self):
         return self.tourney
+        
+    @staticmethod
+    def changeTimezone(time, givenTimezone, wantedTimezone):
+        #print "raw time:",time, "given TZ:", givenTimezone
+        if wantedTimezone=="UTC":
+            wantedTimezone = pytz.utc
+        else:
+            raise Error #TODO raise appropriate error
+        
+        if givenTimezone=="ET":
+            givenTimezone = timezone('US/Eastern')
+        elif givenTimezone=="CET":
+            givenTimezone = timezone('Europe/Berlin')
+            #Note: Daylight Saving Time is standardised across the EU so this should be fine
+        elif givenTimezone == 'HST': # Hawaiian Standard Time
+            pass
+        elif givenTimezone == 'AKT': # Alaska Time
+            pass
+        elif givenTimezone == 'PT': # Pacific Time
+            pass
+        elif givenTimezone == 'MT': # Mountain Time
+            pass
+        elif givenTimezone == 'CT': # Central Time
+            pass
+        elif givenTimezone == 'AT': # Atlantic Time
+            pass
+        elif givenTimezone == 'NT': # Newfoundland Time
+            pass
+        elif givenTimezone == 'ART': # Argentinian Time
+            pass
+        elif givenTimezone == 'BRT': # Brasilia Time
+            pass
+        elif givenTimezone == 'AKT': # Alaska Time
+            pass
+        elif givenTimezone == 'WET': # Western European Time
+            pass
+        elif givenTimezone == 'EET': # Eastern European Time
+            pass
+        elif givenTimezone == 'MSK': # Moscow Standard Time
+            pass
+        elif givenTimezone == 'IST': # India Standard Time
+            pass
+        elif givenTimezone == 'CCT': # China Coast Time
+            pass
+        elif givenTimezone == 'JST': # Japan Standard Time
+            pass
+        elif givenTimezone == 'AWST': # Australian Western Standard Time
+            givenTimezone = timezone('Australia/West')
+        elif givenTimezone == 'ACST': # Australian Central Standard Time
+            givenTimezone = timezone('Australia/Darwin')
+        elif givenTimezone == 'AEST': # Australian Eastern Standard Time
+            # Each State on the East Coast has different DSTs.
+            # Melbournce is out because I don't like AFL, Queensland doesn't have DST
+            # ACT is full of politicians and Tasmania will never notice.
+            # Using Sydney. 
+            givenTimezone = timezone('Australia/Sydney')
+        elif givenTimezone == 'NZT': # New Zealand Time
+            pass
+        else:
+            raise Error #TODO raise appropriate error
+        
+        localisedTime = givenTimezone.localize(time)
+        utcTime = localisedTime.astimezone(wantedTimezone)
+        #print "utcTime:",utcTime
+        return utcTime
+    #end @staticmethod def changeTimezone
 
     @staticmethod
     def getTableTitleRe(type, table_name=None, tournament = None, table_number=None):
