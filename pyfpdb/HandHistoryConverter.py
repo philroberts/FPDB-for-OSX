@@ -441,7 +441,7 @@ or None if we fail to get the info """
                         pass
                 else:
                     print "unable to read file with any codec in list!", self.in_path
-                    self.obs = None
+                    self.obs = ""
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
