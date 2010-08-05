@@ -31,18 +31,23 @@ class Fulltilt(HandHistoryConverter):
     codepage = ["utf-16", "cp1252", "utf-8"]
     siteId   = 1 # Needs to match id entry in Sites database
 
+    substitutions = {
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
+                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
+                    }
+
     # Static regexes
     re_GameInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     .+
-                                    -\s(?P<CURRENCY>\$|)?
+                                    -\s(?P<CURRENCY>[%(LS)s]|)?
                                     (?P<SB>[.0-9]+)/
-                                    \$?(?P<BB>[.0-9]+)\s
+                                    [%(LS)s]?(?P<BB>[.0-9]+)\s
                                     (Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
-                                    \$?(?P<CAP>[.0-9]+\sCap\s)?
+                                    [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
-                                 ''', re.VERBOSE)
+                                 ''' % substitutions, re.VERBOSE)
     re_SplitHands   = re.compile(r"\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
@@ -51,29 +56,29 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<PLAY>Play\sChip\s|PC)?
                                     (?P<TABLE>[-\s\da-zA-Z]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
-                                    \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)\s(Ante\s\$?(?P<ANTE>[.0-9]+)\s)?-\s
-                                    \$?(?P<CAP>[.0-9]+\sCap\s)?
+                                    [%(LS)s]?(?P<SB>[.0-9]+)/[%(LS)s]?(?P<BB>[.0-9]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
+                                    [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
                                     (?P<GAMETYPE>[a-zA-Z\/\'\s]+)\s-\s
                                     (?P<DATETIME>\d+:\d+:\d+\s(?P<TZ1>\w+)\s-\s\d+/\d+/\d+|\d+:\d+\s(?P<TZ2>\w+)\s-\s\w+\,\s\w+\s\d+\,\s\d+)
                                     (?P<PARTIAL>\(partial\))?\n
                                     (?:.*?\n(?P<CANCELLED>Hand\s\#(?P=HID)\shas\sbeen\scanceled))?
-                                 ''', re.VERBOSE|re.DOTALL)
+                                 ''' % substitutions, re.VERBOSE|re.DOTALL)
     re_TourneyExtraInfo  = re.compile('''(((?P<TOURNEY_NAME>[^$]+)?
-                                         (?P<CURRENCY>\$)?(?P<BUYIN>[.0-9]+)?\s*\+\s*\$?(?P<FEE>[.0-9]+)?
+                                         (?P<CURRENCY>[%(LS)s])?(?P<BUYIN>[.0-9]+)?\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+)?
                                          (\s(?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness)))?
                                          (\s(?P<SHOOTOUT>Shootout))?
                                          (\s(?P<SNG>Sit\s&\sGo))?
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
-                                    ''', re.VERBOSE)
+                                    ''' % substitutions, re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$(?P<CASH>[,.0-9]+)\)$', re.MULTILINE)
-    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \(\$?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$', re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s](?P<CASH>[,.0-9]+)\)$' % substitutions, re.MULTILINE)
+    re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
     #static regex for tourney purpose
     re_TourneyInfo  = re.compile('''Tournament\sSummary\s
                                     (?P<TOURNAMENT_NAME>[^$(]+)?\s*
-                                    ((?P<CURRENCY>\$|)?(?P<BUYIN>[.0-9]+)\s*\+\s*\$?(?P<FEE>[.0-9]+)\s)?
+                                    ((?P<CURRENCY>[%(LS)s]|)?(?P<BUYIN>[.0-9]+)\s*\+\s*[%(LS)s]?(?P<FEE>[.0-9]+)\s)?
                                     ((?P<SPECIAL>(KO|Heads\sUp|Matrix\s\dx|Rebuy|Madness))\s)?
                                     ((?P<SHOOTOUT>Shootout)\s)?
                                     ((?P<SNG>Sit\s&\sGo)\s)?
@@ -83,24 +88,24 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))\s
                                     (\((?P<TURBO2>Turbo)\)\s)?
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?
-                                ''', re.VERBOSE)
-    re_TourneyBuyInFee      = re.compile("Buy-In: (?P<BUYIN_CURRENCY>\$|)?(?P<BUYIN>[.0-9]+) \+ \$?(?P<FEE>[.0-9]+)")
+                                ''' % substitutions, re.VERBOSE)
+    re_TourneyBuyInFee      = re.compile("Buy-In: (?P<BUYIN_CURRENCY>[%(LS)s]|)?(?P<BUYIN>[.0-9]+) \+ [%(LS)s]?(?P<FEE>[.0-9]+)" % substitutions)
     re_TourneyBuyInChips    = re.compile("Buy-In Chips: (?P<BUYINCHIPS>\d+)")
     re_TourneyEntries       = re.compile("(?P<ENTRIES>\d+) Entries")
-    re_TourneyPrizePool     = re.compile("Total Prize Pool: (?P<PRIZEPOOL_CURRENCY>\$|)?(?P<PRIZEPOOL>[.,0-9]+)")
-    re_TourneyRebuyCost     = re.compile("Rebuy: (?P<REBUY_CURRENCY>\$|)?(?P<REBUY_COST>[.,0-9]+)")
-    re_TourneyAddOnCost     = re.compile("Add-On: (?P<ADDON_CURRENCY>\$|)?(?P<ADDON_COST>[.,0-9]+)")
+    re_TourneyPrizePool     = re.compile("Total Prize Pool: (?P<PRIZEPOOL_CURRENCY>[%(LS)s]|)?(?P<PRIZEPOOL>[.,0-9]+)" % substitutions)
+    re_TourneyRebuyCost     = re.compile("Rebuy: (?P<REBUY_CURRENCY>[%(LS)s]|)?(?P<REBUY_COST>[.,0-9]+)"% substitutions)
+    re_TourneyAddOnCost     = re.compile("Add-On: (?P<ADDON_CURRENCY>[%(LS)s]|)?(?P<ADDON_COST>[.,0-9]+)"% substitutions)
     re_TourneyRebuyCount    = re.compile("performed (?P<REBUY_COUNT>\d+) Rebuy")
     re_TourneyAddOnCount    = re.compile("performed (?P<ADDON_COUNT>\d+) Add-On")
     re_TourneyRebuysTotal   = re.compile("Total Rebuys: (?P<REBUY_TOTAL>\d+)")
     re_TourneyAddOnsTotal   = re.compile("Total Add-Ons: (?P<ADDONS_TOTAL>\d+)")
     re_TourneyRebuyChips    = re.compile("Rebuy Chips: (?P<REBUY_CHIPS>\d+)")
     re_TourneyAddOnChips    = re.compile("Add-On Chips: (?P<ADDON_CHIPS>\d+)")
-    re_TourneyKOBounty      = re.compile("Knockout Bounty: (?P<KO_BOUNTY_CURRENCY>\$|)?(?P<KO_BOUNTY_AMOUNT>[.,0-9]+)")
+    re_TourneyKOBounty      = re.compile("Knockout Bounty: (?P<KO_BOUNTY_CURRENCY>[%(LS)s]|)?(?P<KO_BOUNTY_AMOUNT>[.,0-9]+)" % substitutions)
     re_TourneyKoCount       = re.compile("received (?P<COUNT_KO>\d+) Knockout Bounty Award(s)?")
     re_TourneyTimeInfo      = re.compile("Tournament started: (?P<STARTTIME>.*)\nTournament ((?P<IN_PROGRESS>is still in progress)?|(finished:(?P<ENDTIME>.*))?)$")
 
-    re_TourneysPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>\$|)?(?P<WINNING>[.\d]+)?", re.MULTILINE)
+    re_TourneysPlayersSummary = re.compile("^(?P<RANK>(Still Playing|\d+))( - |: )(?P<PNAME>[^\n,]+)(, )?(?P<WINNING_CURRENCY>[%(LS)s]|)?(?P<WINNING>[.\d]+)?" % substitutions, re.MULTILINE)
     re_TourneyHeroFinishingP = re.compile("(?P<HERO_NAME>.*) finished in (?P<HERO_FINISHING_POS>\d+)(st|nd|rd|th) place")
 
 #TODO: See if we need to deal with play money tourney summaries -- Not right now (they shouldn't pass the re_TourneyInfo)
@@ -127,17 +132,19 @@ class Fulltilt(HandHistoryConverter):
             # we need to recompile the player regexs.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
+            self.substitutions['PLAYERS'] = player_re
+
             logging.debug("player_re: " + player_re)
-            self.re_PostSB           = re.compile(r"^%s posts the small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_PostDead         = re.compile(r"^%s posts a dead small blind of \$?(?P<SB>[.0-9]+)" %  player_re, re.MULTILINE)
-            self.re_PostBB           = re.compile(r"^%s posts (the big blind of )?\$?(?P<BB>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%s antes \$?(?P<ANTE>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%s brings in for \$?(?P<BRINGIN>[.0-9]+)" % player_re, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%s posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)" % player_re, re.MULTILINE)
+            self.re_PostSB           = re.compile(r"^%(PLAYERS)s posts the small blind of [%(LS)s]?(?P<SB>[.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostDead         = re.compile(r"^%(PLAYERS)s posts a dead small blind of [%(LS)s]?(?P<SB>[.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostBB           = re.compile(r"^%(PLAYERS)s posts (the big blind of )?[%(LS)s]?(?P<BB>[.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_Antes            = re.compile(r"^%(PLAYERS)s antes [%(LS)s]?(?P<ANTE>[.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_BringIn          = re.compile(r"^%(PLAYERS)s brings in for [%(LS)s]?(?P<BRINGIN>[.0-9]+)" % self.substitutions, re.MULTILINE)
+            self.re_PostBoth         = re.compile(r"^%(PLAYERS)s posts small \& big blinds \[[%(LS)s]? (?P<SBBB>[.0-9]+)" % self.substitutions, re.MULTILINE)
             self.re_HeroCards        = re.compile(r"^Dealt to %s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % player_re, re.MULTILINE)
-            self.re_Action           = re.compile(r"^%s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( \$?(?P<BET>[.,\d]+))?" % player_re, re.MULTILINE)
+            self.re_Action           = re.compile(r"^%(PLAYERS)s(?P<ATYPE> bets| checks| raises to| completes it to| calls| folds)( [%(LS)s]?(?P<BET>[.,\d]+))?" % self.substitutions, re.MULTILINE)
             self.re_ShowdownAction   = re.compile(r"^%s shows \[(?P<CARDS>.*)\]" % player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \(\$?(?P<POT>[.,\d]+)\)(, mucked| with.*)" % player_re, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %(PLAYERS)s (\(button\) |\(small blind\) |\(big blind\) )?(collected|showed \[.*\] and won) \([%(LS)s]?(?P<POT>[.,\d]+)\)(, mucked| with.*)" % self.substitutions, re.MULTILINE)
             self.re_SitsOut          = re.compile(r"^%s sits out" % player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile(r"^Seat (?P<SEAT>[0-9]+): %s (\(button\) |\(small blind\) |\(big blind\) )?(?P<ACT>showed|mucked) \[(?P<CARDS>.*)\].*" % player_re, re.MULTILINE)
 
