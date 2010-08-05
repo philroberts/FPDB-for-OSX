@@ -2029,6 +2029,7 @@ class Sql:
                                            , limitType
                                            , bigBlind as bb_or_buyin
                                       from Gametypes gt
+                                      WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
