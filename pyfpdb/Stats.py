@@ -770,10 +770,10 @@ def ffreq1(stat_dict, player):
                 )
     except:
         return (stat,
-                '%3.1f'        % (0) + '%',
-                'ff1=%3.1f'     % (0) + '%',
-                'ff_1=%3.1f' % (0) + '%',
-                '(%d/%d)'      % (0, 0),
+                'NA',
+                'ff1=NA',
+                'ff_1=NA',
+                '(0/0)',
                 '% fold frequency flop/4th'
                 )
     
