@@ -96,7 +96,8 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile(
                     '^There is no Small Blind in this hand as the Big Blind '
                     'of the previous hand left the table', re.MULTILINE)
-
+    re_ringSB       = re.compile(r"(?P<PLAYER>.*) posts small blind \[\$(?P<RINGSB>[.,0-9]*) USD\]\.")
+    re_ringBB       = re.compile(r"(?P<PLAYER>.*) posts big blind \[\$(?P<RINGBB>[.,0-9]*) USD\]\.")
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -185,6 +186,8 @@ class PartyPoker(HandHistoryConverter):
 
         info = {}
         m = self._getGameType(handText)
+        m_sb = self.re_ringSB.search(handText)
+        m_bb = self.re_ringBB.search(handText)
         if m is None:
             return None
 
@@ -216,7 +219,8 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
 
         if info['type'] == 'ring':
-            info['sb'], info['bb'] = ringBlinds(mg['RINGLIMIT'])
+            info['sb'] = m_sb.group('RINGSB')
+            info['bb'] = m_bb.group('RINGBB')
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
@@ -482,13 +486,6 @@ class PartyPoker(HandHistoryConverter):
         else:
             print 'party', 'getTableTitleRe', table_number
             return table_name
-
-
-def ringBlinds(ringLimit):
-    "Returns blinds for current limit in cash games"
-    ringLimit = float(clearMoneyString(ringLimit))
-    if ringLimit == 5.: ringLimit = 4.
-    return ('%.2f' % (ringLimit/200.), '%.2f' % (ringLimit/100.)  )
 
 def clearMoneyString(money):
     "Renders 'numbers' like '1 200' and '2,000'"
