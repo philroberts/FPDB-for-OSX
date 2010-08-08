@@ -232,7 +232,7 @@ class GuiGraphViewer (threading.Thread):
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
-                    self.ax.legend(loc='upper left', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
+                    self.ax.legend(loc='best', fancybox=True, shadow=True, prop=FontProperties(size='smaller'))
 
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
