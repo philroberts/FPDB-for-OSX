@@ -3812,6 +3812,13 @@ class Sql:
                                         WHERE tt.siteId=%s AND t.siteTourneyNo=%s
         """
 
+        self.query['getTourneyInfo'] = """SELECT tt.*, t.*
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        WHERE s.name=%s AND t.siteTourneyNo=%s
+        """
+
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, matrixIdProcessed,

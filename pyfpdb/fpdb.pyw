@@ -106,6 +106,7 @@ import GuiBulkImport
 import ImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
+import GuiTourneyViewer
 import GuiPositionalStats
 import GuiAutoImport
 import GuiGraphViewer
@@ -794,6 +795,7 @@ class fpdb:
                   <menuitem action="graphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
+                  <menuitem action="tourneyviewer"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
                 </menu>
@@ -833,6 +835,7 @@ class fpdb:
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('tourneyviewer', None, 'Tourney _Viewer', None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('database', None, '_Database'),
@@ -1032,6 +1035,12 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Tourney Player Stats")
+
+    def tab_tourney_viewer_stats(self, widget, data=None):
+        new_thread = GuiTourneyViewer.GuiTourneyViewer(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_thread)
+        tab=new_thread.get_vbox()
+        self.add_and_display_tab(tab, "Tourney Viewer")
 
     def tab_positional_stats(self, widget, data=None):
         new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
