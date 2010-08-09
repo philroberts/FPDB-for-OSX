@@ -1336,8 +1336,6 @@ class Sql:
                 and   (p.siteId = %s or %s = -1)
             """
 
-        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
-
         self.query['get_stats_from_hand'] = """
                 SELECT hc.playerId                      AS player_id,
                     hp.seatNo                           AS seat,
@@ -2010,8 +2008,6 @@ class Sql:
         self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
 
         # used in *Filters:
-        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
-        self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
         #self.query['getLimits'] = already defined further up
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
