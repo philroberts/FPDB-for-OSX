@@ -2115,6 +2115,32 @@ class Database:
         result = c.fetchall()
         return result
     #end def getTourneyTypesIds
+
+    def getTourneyInfo(self, siteName, tourneyNo):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyInfo'], (siteName, tourneyNo))
+        columnNames=c.description
+        
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+        
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyInfo
+    
+    def getTourneyPlayerInfo(self, siteName, tourneyNo, playerName):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyPlayerInfo'], (siteName, tourneyNo, playerName))
+        columnNames=c.description
+        
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+        
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyPlayerInfo
 #end class Database
 
 # Class used to hold all the data needed to write a hand to the db

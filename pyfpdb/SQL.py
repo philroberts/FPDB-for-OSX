@@ -1336,8 +1336,6 @@ class Sql:
                 and   (p.siteId = %s or %s = -1)
             """
 
-        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
-
         self.query['get_stats_from_hand'] = """
                 SELECT hc.playerId                      AS player_id,
                     hp.seatNo                           AS seat,
@@ -2010,8 +2008,6 @@ class Sql:
         self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
 
         # used in *Filters:
-        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
-        self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
         #self.query['getLimits'] = already defined further up
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
@@ -2992,7 +2988,6 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3082,7 +3077,6 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3156,14 +3150,11 @@ class Sql:
                       ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
                         ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
@@ -3173,7 +3164,6 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3263,7 +3253,6 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3337,14 +3326,11 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
                         ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
@@ -3354,7 +3340,6 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3444,7 +3429,6 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3518,14 +3502,11 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
                         ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
@@ -3812,6 +3793,22 @@ class Sql:
                                         WHERE tt.siteId=%s AND t.siteTourneyNo=%s
         """
 
+        self.query['getTourneyInfo'] = """SELECT tt.*, t.*
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        WHERE s.name=%s AND t.siteTourneyNo=%s
+        """
+
+        self.query['getTourneyPlayerInfo'] = """SELECT tp.*
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        INNER JOIN TourneysPlayers tp ON (tp.tourneyId = t.id)
+                                        INNER JOIN Players p ON (p.id = tp.playerId)
+                                        WHERE s.name=%s AND t.siteTourneyNo=%s AND p.name=%s
+        """
+        
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, matrixIdProcessed,
