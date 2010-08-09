@@ -219,8 +219,11 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
 
         if info['type'] == 'ring':
-            info['sb'] = m_sb.group('RINGSB')
-            info['bb'] = m_bb.group('RINGBB')
+            if (m_sb is None) or (m_bb is None):
+                return None
+            else:
+                info['sb'] = m_sb.group('RINGSB')
+                info['bb'] = m_bb.group('RINGBB')
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
