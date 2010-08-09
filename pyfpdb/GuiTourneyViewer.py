@@ -58,14 +58,9 @@ class GuiTourneyViewer (threading.Thread):
     #end def __init__
     
     def displayClicked(self, widget, data=None):
-        tourneyNo=int(self.entryTourney.get_text())
-        siteName=self.siteBox.get_active_text()
+        self.prepare(10, 9)
         
-        self.table.destroy()
-        self.table=gtk.Table(columns=10, rows=9)
-        self.mainVBox.add(self.table)
-        
-        result=self.db.getTourneyInfo(siteName, tourneyNo)
+        result=self.db.getTourneyInfo(self.siteName, self.tourneyNo)
         x=0
         y=0
         for i in range(1,len(result[0])):
@@ -87,15 +82,9 @@ class GuiTourneyViewer (threading.Thread):
     #def displayClicked
     
     def displayPlayerClicked(self, widget, data=None):
-        tourneyNo=int(self.entryTourney.get_text())
-        siteName=self.siteBox.get_active_text()
-        playerName=self.entryPlayer.get_text()
+        self.prepare(4, 5)
         
-        self.table.destroy()
-        self.table=gtk.Table(columns=4, rows=5)
-        self.mainVBox.add(self.table)
-        
-        result=self.db.getTourneyPlayerInfo(siteName, tourneyNo, playerName)
+        result=self.db.getTourneyPlayerInfo(self.siteName, self.tourneyNo, self.playerName)
         x=0
         y=0
         for i in range(1,len(result[0])):
@@ -120,4 +109,14 @@ class GuiTourneyViewer (threading.Thread):
         """returns the vbox of this thread"""
         return self.mainVBox
     #end def get_vbox
+    
+    def prepare(self, columns, rows):
+        self.tourneyNo=int(self.entryTourney.get_text())
+        self.siteName=self.siteBox.get_active_text()
+        self.playerName=self.entryPlayer.get_text()
+        
+        self.table.destroy()
+        self.table=gtk.Table(columns=columns, rows=rows)
+        self.mainVBox.add(self.table)
+    #end def readInfo
 #end class GuiTourneyViewer
