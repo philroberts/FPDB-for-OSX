@@ -1,0 +1,63 @@
+Game #9485557849 starts.
+
+#Game No : 9485557849 
+***** Hand History for Game 9485557849 *****
+$0.80 USD NL Texas Hold'em - Saturday, July 31, 13:52:16 EDT 2010
+Table 20BB Min Speed #1770998 (Real Money)
+Seat 1 is the button
+Total number of players : 4/9 
+Seat 3: FErki84 ( $1.64 USD )
+Seat 5: Vandercasses ( $0.01 USD )
+Seat 9: jeremyho888 ( $1.02 USD )
+Seat 1: sergeodem ( $1.20 USD )
+FErki84 posts small blind [$0.01 USD].
+Vandercasses posts big blind [$0.01 USD].
+** Dealing down cards **
+Dealt to FErki84 [  8h Kc ]
+jeremyho888 folds
+sergeodem calls [$0.02 USD]
+FErki84 calls [$0.01 USD]
+** Dealing Flop ** [ Td, 7c, 9h ]
+FErki84 checks
+sergeodem checks
+** Dealing Turn ** [ 3h ]
+FErki84 checks
+sergeodem checks
+** Dealing River ** [ Jc ]
+FErki84 bets [$0.04 USD]
+sergeodem folds
+FErki84 shows [ 8h, Kc ]a straight, Seven to Jack.
+Vandercasses doesn't show [ Ts, Jd ]two pairs, Jacks and Tens.
+FErki84 wins $0.06 USD from the side pot 1 with a straight, Seven to Jack.
+FErki84 wins $0.03 USD from the main pot with a straight, Seven to Jack.
+Vandercasses has left the table.
+
+Game #9498788316 starts.
+
+#Game No : 9498788316 
+***** Hand History for Game 9498788316 *****
+$1.60 USD NL Texas Hold'em - Wednesday, August 04, 15:02:33 EDT 2010
+Table 20BB Min #1847547 (No DP) (Real Money)
+Seat 2 is the button
+Total number of players : 5/6 
+Seat 5: CepguTbIu999 ( $1.60 USD )
+Seat 1: Daytona_955 ( $2.45 USD )
+Seat 4: FErki84 ( $2.18 USD )
+Seat 2: anjl2009 ( $2.80 USD )
+Seat 3: lukeman2 ( $0.01 USD )
+lukeman2 posts small blind [$0.01 USD].
+FErki84 posts big blind [$0.04 USD].
+** Dealing down cards **
+Dealt to FErki84 [  6s 2c ]
+CepguTbIu999 folds
+Daytona_955 folds
+anjl2009 folds
+** Dealing Flop ** [ 9d, Ah, 3h ]
+** Dealing Turn ** [ Js ]
+** Dealing River ** [ Kc ]
+lukeman2 shows [ 5h, 5s ]a pair of Fives.
+FErki84 shows [ 6s, 2c ]high card Ace.
+FErki84 wins $0.03 USD from the side pot 1 with high card, Ace.
+lukeman2 wins $0.02 USD from the main pot with a pair of Fives.
+lukeman2 has left the table.
+
