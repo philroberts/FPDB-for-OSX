@@ -60,23 +60,28 @@ class GuiTourneyViewer (threading.Thread):
     def displayClicked(self, widget, data=None):
         if self.prepare(10, 9):
             result=self.db.getTourneyInfo(self.siteName, self.tourneyNo)
-            x=0
-            y=0
-            for i in range(1,len(result[0])):
-                if y==9:
-                    x+=2
-                    y=0
+            if result[1] == None:
+                self.table.destroy()
+                self.errorLabel=gtk.Label("Tournament not found - please ensure you imported it and selected the correct site")
+                self.mainVBox.add(self.errorLabel)
+            else:
+                x=0
+                y=0
+                for i in range(1,len(result[0])):
+                    if y==9:
+                        x+=2
+                        y=0
             
-                label=gtk.Label(result[0][i])
-                self.table.attach(label,x,x+1,y,y+1)
+                    label=gtk.Label(result[0][i])
+                    self.table.attach(label,x,x+1,y,y+1)
             
-                if result[1][i]==None:
-                    label=gtk.Label("N/A")
-                else:
-                    label=gtk.Label(result[1][i])
-                self.table.attach(label,x+1,x+2,y,y+1)
+                    if result[1][i]==None:
+                        label=gtk.Label("N/A")
+                    else:
+                        label=gtk.Label(result[1][i])
+                    self.table.attach(label,x+1,x+2,y,y+1)
             
-                y+=1
+                    y+=1
         self.mainVBox.show_all()
     #def displayClicked
     
