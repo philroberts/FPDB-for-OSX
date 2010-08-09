@@ -2988,7 +2988,6 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3078,7 +3077,6 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3152,14 +3150,11 @@ class Sql:
                       ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
                         ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
@@ -3169,7 +3164,6 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3259,7 +3253,6 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3333,14 +3326,11 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
                         ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
@@ -3350,7 +3340,6 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3440,7 +3429,6 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3514,14 +3502,11 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
                         ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
