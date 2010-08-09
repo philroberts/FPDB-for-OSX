@@ -37,21 +37,28 @@ class GuiTourneyViewer (threading.Thread):
         label=gtk.Label("Enter the tourney number you want to display:")
         self.interfaceHBox.add(label)
         
-        self.entryBox = gtk.Entry()
-        self.interfaceHBox.add(self.entryBox)
+        self.entryTourney = gtk.Entry()
+        self.interfaceHBox.add(self.entryTourney)
         
-        self.button = gtk.Button("_Display")
-        self.button.connect('clicked', self.displayClicked)
-        self.interfaceHBox.add(self.button)
+        self.displayButton = gtk.Button("_Display")
+        self.displayButton.connect('clicked', self.displayClicked)
+        self.interfaceHBox.add(self.displayButton)
+        
+        self.entryPlayer = gtk.Entry()
+        self.interfaceHBox.add(self.entryPlayer)
+        
+        self.playerButton = gtk.Button("Display _Player")
+        self.playerButton.connect('clicked', self.displayPlayerClicked)
+        self.interfaceHBox.add(self.playerButton)
         
         self.table = gtk.Table(columns=10, rows=9)
         self.mainVBox.add(self.table)
-                       
+        
         self.mainVBox.show_all()
     #end def __init__
     
     def displayClicked(self, widget, data=None):
-        tourneyNo=int(self.entryBox.get_text())
+        tourneyNo=int(self.entryTourney.get_text())
         siteName=self.siteBox.get_active_text()
         
         self.table.destroy()
@@ -78,6 +85,36 @@ class GuiTourneyViewer (threading.Thread):
             y+=1
         self.mainVBox.show_all()
     #def displayClicked
+    
+    def displayPlayerClicked(self, widget, data=None):
+        tourneyNo=int(self.entryTourney.get_text())
+        siteName=self.siteBox.get_active_text()
+        playerName=self.entryPlayer.get_text()
+        
+        self.table.destroy()
+        self.table=gtk.Table(columns=4, rows=5)
+        self.mainVBox.add(self.table)
+        
+        result=self.db.getTourneyPlayerInfo(siteName, tourneyNo, playerName)
+        x=0
+        y=0
+        for i in range(1,len(result[0])):
+            if y==5:
+                x+=2
+                y=0
+            
+            label=gtk.Label(result[0][i])
+            self.table.attach(label,x,x+1,y,y+1)
+            
+            if result[1][i]==None:
+                label=gtk.Label("N/A")
+            else:
+                label=gtk.Label(result[1][i])
+            self.table.attach(label,x+1,x+2,y,y+1)
+            
+            y+=1
+        self.mainVBox.show_all()
+    #def displayPlayerClicked
     
     def get_vbox(self):
         """returns the vbox of this thread"""
