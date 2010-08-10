@@ -104,7 +104,12 @@ class GuiImapFetcher (threading.Thread):
         for email in self.config.emails:
             config=self.config.emails[email]
             box=gtk.HBox(homogeneous=True)
-            for field in (config.siteName, config.fetchType, config.host, config.username, config.password, config.folder):
+            
+            for field in (config.siteName, config.fetchType):
+                label=gtk.Label(field)
+                box.add(label)
+            
+            for field in (config.host, config.username, config.password, config.folder):
                 entry=gtk.Entry()
                 entry.set_text(field)
                 box.add(entry)
