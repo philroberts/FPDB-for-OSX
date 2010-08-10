@@ -2990,6 +2990,7 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
+                <tourney1_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3079,6 +3080,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
+                      <tourney2_clause>
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3152,11 +3154,13 @@ class Sql:
                       ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                <tourney_join_clause>
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
+                        <tourney_group_clause>
                         ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
@@ -3342,6 +3346,7 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
+                <tourney1_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3431,6 +3436,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
+                      <tourney2_clause>
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3504,11 +3510,13 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                <tourney_join_clause>
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
+                        <tourney_group_clause>
                         ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 

@@ -1451,13 +1451,32 @@ class Database:
                         + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
                         + "       and h.startTime > '" + h_start + "'))" \
                         + "   AND hp.tourneysPlayersId IS NULL)"
-            rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
-            print "rebuild_sql_cash:",rebuild_sql_cash
-            
+            rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<tourney1_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney2_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
+            #print "rebuild_sql_cash:",rebuild_sql_cash
             self.get_cursor().execute(self.sql.query['clearHudCache'])
-            
             self.get_cursor().execute(rebuild_sql_cash)
-            #self.get_cursor().execute(rebuild_sql_tour)
+            
+            if self.hero_ids == {}:
+                where = "WHERE hp.tourneysPlayersId >= 0"
+            else:
+                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.startTime > '" + v_start + "')" \
+                        + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.startTime > '" + h_start + "'))" \
+                        + "   AND hp.tourneysPlayersId >= 0)"
+            rebuild_sql_tourney = self.sql.query['rebuildHudCache'].replace('<tourney1_clause>', ",tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney2_clause>', ",t.tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
+            #print "rebuild_sql_tourney:",rebuild_sql_tourney
+            
+            self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
