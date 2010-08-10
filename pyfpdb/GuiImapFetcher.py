@@ -19,6 +19,8 @@ import threading
 import pygtk
 pygtk.require('2.0')
 import gtk
+from imaplib import IMAP4
+
 import ImapFetcher
 
 class GuiImapFetcher (threading.Thread):
@@ -82,8 +84,15 @@ class GuiImapFetcher (threading.Thread):
     def importAllClicked(self, widget, data=None):
         self.statusLabel.set_label("Starting import. Please wait.") #FIXME: why doesnt this one show?
         for email in self.config.emails:
-            result=ImapFetcher.run(self.config.emails[email], self.db)
-        self.statusLabel.set_label("Finished import without error.")
+            try:
+                print "trying to run"
+                result=ImapFetcher.run(self.config.emails[email], self.db)
+                self.statusLabel.set_label("Finished import without error.")
+                print "finished to run"
+            except IMAP4.error as strerror:
+                if str(strerror)=="[AUTHENTICATIONFAILED] Authentication failed.":
+                    self.statusLabel.set_label("Login to mailserver failed: please check mailserver, username and password")
+        
     #def importAllClicked
     
     def get_vbox(self):
