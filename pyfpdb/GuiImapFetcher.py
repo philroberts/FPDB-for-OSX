@@ -48,7 +48,7 @@ class GuiImapFetcher (threading.Thread):
         self.statusLabel=gtk.Label("If you change the config you must save before importing")
         self.mainVBox.pack_end(self.statusLabel, expand=False, padding=4)
 
-        
+        self.passwords={}
         self.displayConfig()
         
         self.mainVBox.show_all()
@@ -70,14 +70,19 @@ class GuiImapFetcher (threading.Thread):
         
         toSave.host=columns[2].get_text()
         toSave.username=columns[3].get_text()
-        toSave.password=columns[4].get_text()
+        
+        if columns[4].get_text()=="***":
+            toSave.password=self.passwords[code]
+        else:
+            toSave.password=columns[4].get_text()
+        
         toSave.folder=columns[5].get_text()
         
         if columns[6].get_active() == 0:
             toSave.useSsl="True"
         else:
             toSave.useSsl="False"
-            
+        
         self.config.editEmail(siteName, fetchType, toSave)
         self.config.save()
     #def saveClicked
@@ -119,10 +124,19 @@ class GuiImapFetcher (threading.Thread):
                 label=gtk.Label(field)
                 box.add(label)
             
-            for field in (config.host, config.username, config.password, config.folder):
+            for field in (config.host, config.username):
                 entry=gtk.Entry()
                 entry.set_text(field)
                 box.add(entry)
+            
+            entry=gtk.Entry()
+            self.passwords[email]=config.password
+            entry.set_text("***")
+            box.add(entry)
+            
+            entry=gtk.Entry()
+            entry.set_text(config.folder)
+            box.add(entry)
             
             sslBox = gtk.combo_box_new_text()
             sslBox.append_text("Yes")
