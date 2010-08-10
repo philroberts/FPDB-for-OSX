@@ -31,22 +31,20 @@ class GuiImapFetcher (threading.Thread):
         self.buttonsHBox = gtk.HBox()
         self.mainVBox.pack_end(self.buttonsHBox, expand=False)
         
-        label=gtk.Label("To cancel just close this tab")
+        label=gtk.Label("To cancel just close this tab.")
         self.buttonsHBox.add(label)
         
-        self.saveButton = gtk.Button("_Save (doesn't work yet)")
+        self.saveButton = gtk.Button("_Save")
         self.saveButton.connect('clicked', self.saveClicked)
         self.buttonsHBox.add(self.saveButton)
         
-        self.runAllButton = gtk.Button("_Run All")
-        self.runAllButton.connect('clicked', self.runAllClicked)
-        self.buttonsHBox.add(self.runAllButton)
+        self.importAllButton = gtk.Button("_Import All")
+        self.importAllButton.connect('clicked', self.importAllClicked)
+        self.buttonsHBox.add(self.importAllButton)
         
-        self.statusLabel=gtk.Label("Please edit your config if you wish and then click Run All")
+        self.statusLabel=gtk.Label("If you change the config you must save before importing")
         self.mainVBox.pack_end(self.statusLabel, expand=False, padding=4)
 
-        self.rowVBox = gtk.VBox()
-        self.mainVBox.add(self.rowVBox)
         
         self.displayConfig()
         
@@ -54,15 +52,39 @@ class GuiImapFetcher (threading.Thread):
     #end def __init__
     
     def saveClicked(self, widget, data=None):
-        pass
+        row = self.rowVBox.get_children()
+        columns=row[0].get_children() #TODO: make save capable of handling multiple email entries - not relevant yet as only one entry is useful atm. The rest of this tab works fine for multiple entries though
+        
+        siteName=columns[0].get_text()
+        fetchType=columns[1].get_text()
+        code=siteName+"_"+fetchType
+        
+        for email in self.config.emails:
+            toSave=self.config.emails[email]
+            break
+        toSave.siteName=siteName
+        toSave.fetchType=fetchType
+        
+        toSave.host=columns[2].get_text()
+        toSave.username=columns[3].get_text()
+        toSave.password=columns[4].get_text()
+        toSave.folder=columns[5].get_text()
+        
+        if columns[6].get_active() == 0:
+            toSave.useSsl="True"
+        else:
+            toSave.useSsl="False"
+            
+        self.config.editEmail(siteName, fetchType, toSave)
+        self.config.save()
     #def saveClicked
     
-    def runAllClicked(self, widget, data=None):
+    def importAllClicked(self, widget, data=None):
         self.statusLabel.set_label("Starting import. Please wait.") #FIXME: why doesnt this one show?
         for email in self.config.emails:
             result=ImapFetcher.run(self.config.emails[email], self.db)
         self.statusLabel.set_label("Finished import without error.")
-    #def runAllClicked
+    #def importAllClicked
     
     def get_vbox(self):
         """returns the vbox of this thread"""
@@ -74,7 +96,10 @@ class GuiImapFetcher (threading.Thread):
         for text in ("Site", "Fetch Type", "Mailserver", "Username", "Password", "Mail Folder", "Use SSL"):
             label=gtk.Label(text)
             box.add(label)
-        self.rowVBox.pack_start(box, expand=False)
+        self.mainVBox.pack_start(box, expand=False)
+        
+        self.rowVBox = gtk.VBox()
+        self.mainVBox.add(self.rowVBox)
         
         for email in self.config.emails:
             config=self.config.emails[email]
@@ -90,10 +115,11 @@ class GuiImapFetcher (threading.Thread):
             sslBox.set_active(0)
             box.add(sslBox)
             
-            #TODO: useSsl
+            #TODO: "run just this one" button
+            
             self.rowVBox.pack_start(box, expand=False)
             #print 
         
-        self.rowVBox.show_all()
+        self.mainVBox.show_all()
     #end def displayConfig
 #end class GuiImapFetcher

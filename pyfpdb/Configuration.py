@@ -736,6 +736,12 @@ class Config:
             if site_node.getAttribute("site_name") == site:
                 return site_node
 
+    def getEmailNode(self, siteName, fetchType):
+        for emailNode in self.doc.getElementsByTagName("email"):
+            if emailNode.getAttribute("siteName") == siteName and emailNode.getAttribute("fetchType") == fetchType:
+                return emailNode
+    #end def getEmailNode
+
     def getGameNode(self,gameName):
         """returns DOM game node for a given game"""
         for gameNode in self.doc.getElementsByTagName("game"):
@@ -810,6 +816,15 @@ class Config:
         else:
             return(l)
 
+    def editEmail(self, siteName, fetchType, newEmail):
+        emailNode = self.getEmailNode(siteName, fetchType)
+        emailNode.setAttribute("host", newEmail.host)
+        emailNode.setAttribute("username", newEmail.username)
+        emailNode.setAttribute("password", newEmail.password)
+        emailNode.setAttribute("folder", newEmail.folder)
+        emailNode.setAttribute("useSsl", newEmail.useSsl)
+    #end def editEmail
+    
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)
