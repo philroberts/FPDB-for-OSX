@@ -34,7 +34,7 @@ class GuiImapFetcher (threading.Thread):
         label=gtk.Label("To cancel just close this tab")
         self.buttonsHBox.add(label)
         
-        self.saveButton = gtk.Button("_Save Configuration")
+        self.saveButton = gtk.Button("_Save (doesn't work yet)")
         self.saveButton.connect('clicked', self.saveClicked)
         self.buttonsHBox.add(self.saveButton)
         
@@ -70,9 +70,30 @@ class GuiImapFetcher (threading.Thread):
     #end def get_vbox
     
     def displayConfig(self):
-        print self.config.emails
-        for email in self.config.emails:
-            print self.config.emails[email]
+        box=gtk.HBox(homogeneous=True)
+        for text in ("Site", "Fetch Type", "Mailserver", "Username", "Password", "Mail Folder", "Use SSL"):
+            label=gtk.Label(text)
+            box.add(label)
+        self.rowVBox.pack_start(box, expand=False)
         
+        for email in self.config.emails:
+            config=self.config.emails[email]
+            box=gtk.HBox(homogeneous=True)
+            for field in (config.siteName, config.fetchType, config.host, config.username, config.password, config.folder):
+                entry=gtk.Entry()
+                entry.set_text(field)
+                box.add(entry)
+            
+            sslBox = gtk.combo_box_new_text()
+            sslBox.append_text("Yes")
+            sslBox.append_text("No")
+            sslBox.set_active(0)
+            box.add(sslBox)
+            
+            #TODO: useSsl
+            self.rowVBox.pack_start(box, expand=False)
+            #print 
+        
+        self.rowVBox.show_all()
     #end def displayConfig
 #end class GuiImapFetcher
