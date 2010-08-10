@@ -20,6 +20,7 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 from imaplib import IMAP4
+from socket import gaierror
 
 import ImapFetcher
 
@@ -85,14 +86,14 @@ class GuiImapFetcher (threading.Thread):
         self.statusLabel.set_label("Starting import. Please wait.") #FIXME: why doesnt this one show?
         for email in self.config.emails:
             try:
-                print "trying to run"
                 result=ImapFetcher.run(self.config.emails[email], self.db)
                 self.statusLabel.set_label("Finished import without error.")
-                print "finished to run"
-            except IMAP4.error as strerror:
-                if str(strerror)=="[AUTHENTICATIONFAILED] Authentication failed.":
+            except IMAP4.error as error:
+                if str(error)=="[AUTHENTICATIONFAILED] Authentication failed.":
                     self.statusLabel.set_label("Login to mailserver failed: please check mailserver, username and password")
-        
+            except gaierror as error:
+                if str(error)=="[Errno -2] Name or service not known":
+                    self.statusLabel.set_label("Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity")
     #def importAllClicked
     
     def get_vbox(self):
