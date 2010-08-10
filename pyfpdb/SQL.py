@@ -2777,6 +2777,8 @@ class Sql:
                 order by stats.category, stats.limitType, stats.bigBlindDesc desc
                          <orderbyseats>, cast(stats.PlPosition as signed)
                 """
+        elif db_server == 'sqlite':
+            self.query['playerStatsByPosition'] = ""#TODO
         else:  # assume postgresql
             self.query['playerStatsByPosition'] = """
                 select /* stats from hudcache */
