@@ -103,7 +103,7 @@ import GuiPrefs
 import GuiLogView
 #import GuiDatabase
 import GuiBulkImport
-import ImapFetcher
+import GuiImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
 import GuiTourneyViewer
@@ -786,7 +786,7 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
-                  <menuitem action="imapsummaries"/>
+                  <menuitem action="imapimport"/>
                   <menuitem action="autoimp"/>
                 </menu>
                 <menu action="viewers">
@@ -828,7 +828,7 @@ class fpdb:
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
-                                 ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
+                                 ('imapimport', None, '_Import through eMail/IMAP', '<control>I', 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
@@ -860,10 +860,6 @@ class fpdb:
         return menubar
     #end def get_menu
     
-    def import_imap_summaries(self, widget, data=None):
-        result=ImapFetcher.run(self.config, self.db)
-        #print "import imap summaries result:", result
-    #end def import_imap_summaries
 
     def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
@@ -1024,6 +1020,13 @@ class fpdb:
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
+    def tab_imap_import(self, widget, data=None):
+        new_thread = GuiImapFetcher.GuiImapFetcher(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_thread)
+        tab=new_thread.get_vbox()
+        self.add_and_display_tab(tab, "IMAP Import")
+    #end def tab_import_imap_summaries
+    
     def tab_ring_player_stats(self, widget, data=None):
         new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)

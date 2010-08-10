@@ -452,8 +452,8 @@ class Email:
         self.fetchType = node.getAttribute("fetchType")
         
     def __str__(self):
-        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.host, self.username, self.password, self.useSsl, self.folder) 
+        return "    siteName=%s\n    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.siteName, self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -626,6 +626,7 @@ class Config:
         self.db_selected = None    # database the user would like to use
         self.tv = None
         self.general = General()
+        self.emails = {}
         self.gui_cash_stats = GUICashStats()
 
         for gen_node in doc.getElementsByTagName("general"):
@@ -687,7 +688,8 @@ class Config:
 
         for email_node in doc.getElementsByTagName("email"):
             email = Email(node = email_node)
-            self.email = email
+            if email.siteName!="": #FIXME: Why on earth is this needed?
+                self.emails[email.siteName+"_"+email.fetchType]=email
 
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
