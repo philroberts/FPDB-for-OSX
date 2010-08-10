@@ -1442,17 +1442,22 @@ class Database:
                 h_start = self.hero_hudstart_def
             if v_start is None:
                 v_start = self.villain_hudstart_def
+            
             if self.hero_ids == {}:
-                where = ""
+                where = "WHERE hp.tourneysPlayersId IS NULL"
             else:
-                where =   "where (    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
                         + "       and h.startTime > '" + v_start + "')" \
                         + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + h_start + "')"
-            rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
-
+                        + "       and h.startTime > '" + h_start + "'))" \
+                        + "   AND hp.tourneysPlayersId IS NULL)"
+            rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
+            print "rebuild_sql_cash:",rebuild_sql_cash
+            
             self.get_cursor().execute(self.sql.query['clearHudCache'])
-            self.get_cursor().execute(rebuild_sql)
+            
+            self.get_cursor().execute(rebuild_sql_cash)
+            #self.get_cursor().execute(rebuild_sql_tour)
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
