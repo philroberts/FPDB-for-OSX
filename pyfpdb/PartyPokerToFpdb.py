@@ -39,8 +39,8 @@ class FpdbParseError(FpdbParseError):
 class PartyPoker(HandHistoryConverter):
     sitename = "PartyPoker"
     codepage = "cp1252"
-    siteId = 9 
-    filetype = "text" 
+    siteId = 9
+    filetype = "text"
     sym = {'USD': "\$", }
 
     # Static regexes
@@ -96,8 +96,7 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile(
                     '^There is no Small Blind in this hand as the Big Blind '
                     'of the previous hand left the table', re.MULTILINE)
-    re_ringSB       = re.compile(r"(?P<PLAYER>.*) posts small blind \[\$(?P<RINGSB>[.,0-9]*) USD\]\.")
-    re_ringBB       = re.compile(r"(?P<PLAYER>.*) posts big blind \[\$(?P<RINGBB>[.,0-9]*) USD\]\.")
+    re_20BBmin       = re.compile(r"Table 20BB Min")
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -186,8 +185,7 @@ class PartyPoker(HandHistoryConverter):
 
         info = {}
         m = self._getGameType(handText)
-        m_sb = self.re_ringSB.search(handText)
-        m_bb = self.re_ringBB.search(handText)
+        m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
             return None
 
@@ -219,11 +217,18 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
 
         if info['type'] == 'ring':
-            if (m_sb is None) or (m_bb is None):
-                return None
+            if m_20BBmin is None:
+                bb = float(mg['RINGLIMIT'])/100.0
             else:
-                info['sb'] = m_sb.group('RINGSB')
-                info['bb'] = m_bb.group('RINGBB')
+                bb = float(mg['RINGLIMIT'])/40.0
+
+            if bb == 0.25:
+                sb = 0.10
+            else:
+                sb = bb/2.0
+
+            info['bb'] = "%.2f" % (bb)
+            info['sb'] = "%.2f" % (sb)
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
@@ -298,9 +303,9 @@ class PartyPoker(HandHistoryConverter):
             if key == 'TABLE':
                 hand.tablename = info[key]
             if key == 'MTTTABLE':
-            	if info[key] != None:
-            		hand.tablename = info[key]
-            		hand.tourNo = info['TABLE']
+                if info[key] != None:
+                    hand.tablename = info[key]
+                    hand.tourNo = info['TABLE']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
