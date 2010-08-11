@@ -2990,7 +2990,7 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                <tourney1_clause>
+                <tourney_insert_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3080,7 +3080,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      <tourney2_clause>
+                      <tourney_select_clause>
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3346,7 +3346,7 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                <tourney1_clause>
+                <tourney_insert_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3436,7 +3436,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      <tourney2_clause>
+                      <tourney_select_clause>
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
