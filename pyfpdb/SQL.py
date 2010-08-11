@@ -2961,7 +2961,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
-                 AND  gt.type is 'ring'
+                 AND  gt.type LIKE 'ring'
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
