@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 141
+DB_VERSION = 142
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -140,7 +140,7 @@ class Database:
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
@@ -155,7 +155,7 @@ class Database:
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               ]
