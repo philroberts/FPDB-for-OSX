@@ -137,14 +137,14 @@ class Sql:
         if db_server == 'mysql':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        tourneysPlayersId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        tourneysPlayersId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         buyInPercentage FLOAT UNSIGNED NOT NULL,
                         payOffPercentage FLOAT UNSIGNED NOT NULL) ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        tourneysPlayersId INT NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        tourneysPlayersId INT NOT NULL, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         buyInPercentage FLOAT NOT NULL,
                         payOffPercentage FLOAT NOT NULL)"""
