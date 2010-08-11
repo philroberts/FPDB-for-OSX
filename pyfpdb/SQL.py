@@ -918,7 +918,7 @@ class Sql:
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
             self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
-                        id INT PRIMARY KEY,
+                        id INTEGER PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
                         rank INT,
@@ -963,7 +963,7 @@ class Sql:
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
-                        id INT PRIMARY KEY,
+                        id INTEGER PRIMARY KEY,
                         handsPlayerId BIGINT,
                         street SMALLINT,
                         actionNo SMALLINT,
