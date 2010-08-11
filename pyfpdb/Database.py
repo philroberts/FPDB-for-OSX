@@ -1474,7 +1474,7 @@ class Database:
                 INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
             rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
             rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
-            print "rebuild_sql_tourney:",rebuild_sql_tourney
+            #print "rebuild_sql_tourney:",rebuild_sql_tourney
             
             self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()

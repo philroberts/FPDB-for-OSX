@@ -3170,6 +3170,7 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
+                <tourney_insert_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
@@ -3259,6 +3260,7 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
+                      <tourney_select_clause>
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
@@ -3332,11 +3334,13 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
+                <tourney_join_clause>
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
+                        <tourney_group_clause>
                         ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
