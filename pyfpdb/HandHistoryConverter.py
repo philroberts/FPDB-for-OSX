@@ -41,9 +41,9 @@ import Hand
 from Exceptions import FpdbParseError
 import Configuration
 
-import gettext
-gettext.install('fpdb')
-
+#import gettext
+#trans=gettext.translation("fpdb", "/home/steffen/poker/fpdb-dev/pyfpdb/locale", languages=["de"])
+#trans.install()
 
 import pygtk
 import gtk

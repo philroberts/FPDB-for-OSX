@@ -20,6 +20,10 @@ import sys
 import re
 import Queue
 
+#import gettext
+#trans=gettext.translation("fpdb", "locale", ["en_GB"])
+#trans.install()
+
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
 if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sys.argv:
