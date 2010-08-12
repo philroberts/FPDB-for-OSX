@@ -184,7 +184,7 @@ class Fulltilt(HandHistoryConverter):
                   'Stud Hi' : ('stud','studhi'), 
                  'Stud H/L' : ('stud','studhilo')
                }
-        currencies = { u' €':'EUR', '$':'USD', '':'T$' }
+        currencies = { u'€':'EUR', '$':'USD', '':'T$' }
         if mg['CAP']:
             info['limitType'] = 'cn'
         else:

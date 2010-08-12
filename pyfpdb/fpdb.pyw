@@ -103,9 +103,10 @@ import GuiPrefs
 import GuiLogView
 #import GuiDatabase
 import GuiBulkImport
-import ImapFetcher
+import GuiImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
+import GuiTourneyViewer
 import GuiPositionalStats
 import GuiAutoImport
 import GuiGraphViewer
@@ -785,7 +786,7 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
-                  <menuitem action="imapsummaries"/>
+                  <menuitem action="imapimport"/>
                   <menuitem action="autoimp"/>
                 </menu>
                 <menu action="viewers">
@@ -794,6 +795,7 @@ class fpdb:
                   <menuitem action="graphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
+                  <menuitem action="tourneyviewer"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
                 </menu>
@@ -826,13 +828,14 @@ class fpdb:
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
-                                 ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
+                                 ('imapimport', None, '_Import through eMail/IMAP', '<control>I', 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('tourneyviewer', None, 'Tourney _Viewer', None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('database', None, '_Database'),
@@ -857,10 +860,6 @@ class fpdb:
         return menubar
     #end def get_menu
     
-    def import_imap_summaries(self, widget, data=None):
-        result=ImapFetcher.run(self.config, self.db)
-        #print "import imap summaries result:", result
-    #end def import_imap_summaries
 
     def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
@@ -1021,6 +1020,13 @@ class fpdb:
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
+    def tab_imap_import(self, widget, data=None):
+        new_thread = GuiImapFetcher.GuiImapFetcher(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_thread)
+        tab=new_thread.get_vbox()
+        self.add_and_display_tab(tab, "IMAP Import")
+    #end def tab_import_imap_summaries
+    
     def tab_ring_player_stats(self, widget, data=None):
         new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
@@ -1032,6 +1038,12 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Tourney Player Stats")
+
+    def tab_tourney_viewer_stats(self, widget, data=None):
+        new_thread = GuiTourneyViewer.GuiTourneyViewer(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_thread)
+        tab=new_thread.get_vbox()
+        self.add_and_display_tab(tab, "Tourney Viewer")
 
     def tab_positional_stats(self, widget, data=None):
         new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)

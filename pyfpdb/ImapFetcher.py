@@ -33,16 +33,16 @@ def run(config, db):
         #print "start of IS.run"
         server=None
     #try:
-        #print "useSSL",config.email.useSsl,"host",config.email.host
-        if config.email.useSsl:
-            server = IMAP4_SSL(config.email.host)
+        #print "useSSL",config.useSsl,"host",config.host
+        if config.useSsl:
+            server = IMAP4_SSL(config.host)
         else:
-            server = IMAP4(config.email.host)
-        response = server.login(config.email.username, config.email.password) #TODO catch authentication error
+            server = IMAP4(config.host)
+        response = server.login(config.username, config.password) #TODO catch authentication error
         print "response to logging in:",response
         #print "server.list():",server.list() #prints list of folders
 
-        response = server.select(config.email.folder)
+        response = server.select(config.folder)
         #print "response to selecting INBOX:",response
         if response[0]!="OK":
             raise error #TODO: show error message

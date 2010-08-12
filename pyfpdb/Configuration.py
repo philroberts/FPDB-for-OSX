@@ -452,8 +452,8 @@ class Email:
         self.fetchType = node.getAttribute("fetchType")
         
     def __str__(self):
-        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.host, self.username, self.password, self.useSsl, self.folder) 
+        return "    siteName=%s\n    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.siteName, self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -626,6 +626,7 @@ class Config:
         self.db_selected = None    # database the user would like to use
         self.tv = None
         self.general = General()
+        self.emails = {}
         self.gui_cash_stats = GUICashStats()
 
         for gen_node in doc.getElementsByTagName("general"):
@@ -687,7 +688,8 @@ class Config:
 
         for email_node in doc.getElementsByTagName("email"):
             email = Email(node = email_node)
-            self.email = email
+            if email.siteName!="": #FIXME: Why on earth is this needed?
+                self.emails[email.siteName+"_"+email.fetchType]=email
 
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
@@ -733,6 +735,12 @@ class Config:
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
                 return site_node
+
+    def getEmailNode(self, siteName, fetchType):
+        for emailNode in self.doc.getElementsByTagName("email"):
+            if emailNode.getAttribute("siteName") == siteName and emailNode.getAttribute("fetchType") == fetchType:
+                return emailNode
+    #end def getEmailNode
 
     def getGameNode(self,gameName):
         """returns DOM game node for a given game"""
@@ -808,6 +816,15 @@ class Config:
         else:
             return(l)
 
+    def editEmail(self, siteName, fetchType, newEmail):
+        emailNode = self.getEmailNode(siteName, fetchType)
+        emailNode.setAttribute("host", newEmail.host)
+        emailNode.setAttribute("username", newEmail.username)
+        emailNode.setAttribute("password", newEmail.password)
+        emailNode.setAttribute("folder", newEmail.folder)
+        emailNode.setAttribute("useSsl", newEmail.useSsl)
+    #end def editEmail
+    
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)

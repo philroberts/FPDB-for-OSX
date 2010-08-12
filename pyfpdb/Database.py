@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 140
+DB_VERSION = 142
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -140,7 +140,7 @@ class Database:
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
@@ -155,7 +155,7 @@ class Database:
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               ]
@@ -1442,17 +1442,41 @@ class Database:
                 h_start = self.hero_hudstart_def
             if v_start is None:
                 v_start = self.villain_hudstart_def
+            
             if self.hero_ids == {}:
-                where = ""
+                where = "WHERE hp.tourneysPlayersId IS NULL"
             else:
-                where =   "where (    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
                         + "       and h.startTime > '" + v_start + "')" \
                         + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + h_start + "')"
-            rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
-
+                        + "       and h.startTime > '" + h_start + "'))" \
+                        + "   AND hp.tourneysPlayersId IS NULL)"
+            rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_select_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
+            #print "rebuild_sql_cash:",rebuild_sql_cash
             self.get_cursor().execute(self.sql.query['clearHudCache'])
-            self.get_cursor().execute(rebuild_sql)
+            self.get_cursor().execute(rebuild_sql_cash)
+            
+            if self.hero_ids == {}:
+                where = "WHERE hp.tourneysPlayersId >= 0"
+            else:
+                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.startTime > '" + v_start + "')" \
+                        + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.startTime > '" + h_start + "'))" \
+                        + "   AND hp.tourneysPlayersId >= 0)"
+            rebuild_sql_tourney = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', ",tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_select_clause>', ",t.tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
+            #print "rebuild_sql_tourney:",rebuild_sql_tourney
+            
+            self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
@@ -2115,6 +2139,32 @@ class Database:
         result = c.fetchall()
         return result
     #end def getTourneyTypesIds
+
+    def getTourneyInfo(self, siteName, tourneyNo):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyInfo'], (siteName, tourneyNo))
+        columnNames=c.description
+        
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+        
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyInfo
+    
+    def getTourneyPlayerInfo(self, siteName, tourneyNo, playerName):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyPlayerInfo'], (siteName, tourneyNo, playerName))
+        columnNames=c.description
+        
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+        
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyPlayerInfo
 #end class Database
 
 # Class used to hold all the data needed to write a hand to the db
