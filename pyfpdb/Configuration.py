@@ -535,8 +535,8 @@ class GUICashStats(list):
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
 
     def get_defaults(self):
-        """I have no idea id this is functional"""
-        return self.append ( [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+        """A list of defaults to be called, should there be no entry in config"""
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
             [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
             [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
             [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
@@ -563,7 +563,9 @@ class GUICashStats(list):
             [u'rake', u'Rake($)', True, True, u'%6.2f', u'cash', 1.0],
             [u'bb100xr', u'bbxr/100', True, True, u'%4.2f', u'str', 1.0],
             [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
-        ])
+            ]
+        for col in defaults:
+            self.append (col)
 
 #    def __str__(self):
 #        s = ""
@@ -632,9 +634,10 @@ class Config:
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
+        if doc.getElementsByTagName("gui_cash_stats") == []:
+            self.gui_cash_stats.get_defaults()
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
             self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
-            # TODO: gui_cash_stats.get_defaults if doc.getElementsByTagName("gui_cash_stats") is non-existant
 
 #        s_sites = doc.getElementsByTagName("supported_sites")
         for site_node in doc.getElementsByTagName("site"):
