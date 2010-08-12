@@ -105,7 +105,7 @@ except:
 
 import GuiPrefs
 import GuiLogView
-#import GuiDatabase
+import GuiDatabase
 import GuiBulkImport
 import GuiImapFetcher
 import GuiRingPlayerStats
@@ -838,7 +838,7 @@ class fpdb:
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, 'Tourney _Viewer', None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, 'P_ositional Stats (tabulated view, not on sqlite)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
@@ -894,7 +894,7 @@ class fpdb:
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db is not None and self.db.connected:
+        if self.db is not None and self.db.is_connected():
             self.db.disconnect()
 
         self.sql = SQL.Sql(db_server = self.settings['db-server'])
@@ -917,6 +917,8 @@ class fpdb:
         if err_msg is not None:
             self.db = None
             self.warning_box(err_msg)
+        if self.db is not None and not self.db.is_connected():
+            self.db = None
 
 #        except FpdbMySQLFailedError:
 #            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
@@ -957,7 +959,7 @@ class fpdb:
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
 
-        if self.db is not None and self.db.connected:
+        if self.db is not None and self.db.is_connected():
             self.status_bar.set_text("Status: Connected to %s database named %s on host %s"
                                      % (self.db.get_backend_name(),self.db.database, self.db.host))
             # rollback to make sure any locks are cleared:
@@ -991,12 +993,12 @@ class fpdb:
         if self.db!=None:
             if self.db.backend==self.db.MYSQL_INNODB:
                 try:
-                    if self.db is not None and self.db.connected():
+                    if self.db is not None and self.db.is_connected():
                         self.db.disconnect()
                 except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
                     pass
             else:
-                if self.db is not None and self.db.connected():
+                if self.db is not None and self.db.is_connected():
                     self.db.disconnect()
         else:
             pass

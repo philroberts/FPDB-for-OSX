@@ -265,7 +265,7 @@ class Database:
                 #ISOLATION_LEVEL_SERIALIZABLE   = 2
 
 
-            if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
+            if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion and self.is_connected():
                 log.info("sqlite/:memory: - creating")
                 self.recreate_tables()
                 self.wrongDbVersion = False
@@ -289,7 +289,8 @@ class Database:
 
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
-            self.connection.rollback()  # make sure any locks taken so far are released
+            if self.is_connected():
+                self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
     def dumpDatabase(self):
@@ -342,7 +343,6 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
-        self.__connected = True
 
     def connect(self, backend=None, host=None, database=None,
                 user=None, password=None, create=False):
@@ -363,6 +363,7 @@ class Database:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
                 self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+                self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
                 if ex.args[0] == 1045:
@@ -384,20 +385,21 @@ class Database:
             # flat out wrong
             # sqlcoder: This database only connect failed in my windows setup??
             # Modifed it to try the 4 parameter style if the first connect fails - does this work everywhere?
-            connected = False
+            self.__connected = False
             if self.host == "localhost" or self.host == "127.0.0.1":
                 try:
                     self.connection = psycopg2.connect(database = database)
-                    connected = True
+                    self.__connected = True
                 except:
                     # direct connection failed so try user/pass/... version
                     pass
-            if not connected:
+            if not self.is_connected():
                 try:
                     self.connection = psycopg2.connect(host = host,
                                                user = user,
                                                password = password,
                                                database = database)
+                    self.__connected = True
                 except Exception, ex:
                     if 'Connection refused' in ex.args[0]:
                         # meaning eg. db not running
@@ -426,6 +428,7 @@ class Database:
             log.info("Connecting to SQLite: %(database)s" % {'database':self.db_path})
             if os.path.exists(database) or create:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
+                self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
                 self.connection.create_function("floor", 1, math.floor)
@@ -443,9 +446,10 @@ class Database:
         else:
             raise FpdbError("unrecognised database backend:"+str(backend))
 
-        self.cursor = self.connection.cursor()
-        self.cursor.execute(self.sql.query['set tx level'])
-        self.check_version(database=database, create=create)
+        if self.is_connected():
+            self.cursor = self.connection.cursor()
+            self.cursor.execute(self.sql.query['set tx level'])
+            self.check_version(database=database, create=create)
 
 
     def check_version(self, database, create):
@@ -499,6 +503,10 @@ class Database:
         self.connection.rollback()
 
     def connected(self):
+        """ now deprecated, use is_connected() instead """
+        return self.__connected
+
+    def is_connected(self):
         return self.__connected
 
     def get_cursor(self):
