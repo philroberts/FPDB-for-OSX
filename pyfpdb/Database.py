@@ -2053,8 +2053,12 @@ class Database:
         result=cursor.fetchone()
         
         if result != None:
-            expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
-                    'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            if self.backend == Database.PGSQL:
+                expectedValues = ('comment', 'tourneyname', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
+                        'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            else:
+                expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
+                        'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
             updateDb=False
             resultDict = dict(zip(columnNames, result))
             
