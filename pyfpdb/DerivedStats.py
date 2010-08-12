@@ -290,9 +290,11 @@ class DerivedStats():
 #        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
 #        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
         
-        # hand.players includes people that are sitting out on some sites.
-        # Those that posted an ante should have been deal cards.
-        p_in = set([x[0] for x in hand.actions[hand.allStreets[0]]] + [x[0] for x in hand.actions[hand.actionStreets[0]]])
+        # hand.players includes people that are sitting out on some sites for cash games
+        # actionStreets[1] is 'DEAL', 'THIRD', 'PREFLOP', so any player dealt cards
+        # must act on this street if dealt cards. Almost certainly broken for the 'all-in blind' case
+        # and right now i don't care - CG
+        p_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
 
         for (i, street) in enumerate(hand.actionStreets):
             actions = hand.actions[street]
