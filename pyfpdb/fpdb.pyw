@@ -44,8 +44,8 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sy
         else:
             os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
-        print "\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n"
-        raw_input("Press ENTER to continue.")
+        print _("\npython 2.5 not found, please install python 2.5 or 2.6 for fpdb\n")
+        raw_input(_("Press ENTER to continue."))
         exit()
 else:
     pass
@@ -56,8 +56,8 @@ if os.name == 'nt':
         import win32api
         import win32con
     except ImportError:
-        print "We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"
-        raw_input("Press ENTER to continue.")
+        print _("We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/")
+        raw_input(_("Press ENTER to continue."))
         exit()
 
 print "Python " + sys.version[0:3] + '...'
@@ -78,8 +78,8 @@ try:
     import gtk
     import pango
 except:
-    print "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
-    raw_input("Press ENTER to continue.")
+    print _("Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
+    raw_input(_("Press ENTER to continue."))
     exit()
 
 import interlocks
@@ -121,7 +121,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.903 plus git"
+VERSION = "0.20.904 plus git"
 
 
 class fpdb:
@@ -236,19 +236,19 @@ class fpdb:
         dia = gtk.AboutDialog()
         dia.set_name("Free Poker Database (FPDB)")
         dia.set_version(VERSION)
-        dia.set_copyright("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others")
-        dia.set_comments("You are free to change and distribute original or changed versions of fpdb within the rules set out by the license")
-        dia.set_license("Please see fpdb's start screen for license information")
+        dia.set_copyright(_("Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others"))
+        dia.set_comments(_("You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"))
+        dia.set_license(_("Please see fpdb's start screen for license information"))
         dia.set_website("http://fpdb.sourceforge.net/")
         
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
-            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', 'and others'])
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others']))
         dia.set_program_name("Free Poker Database (FPDB)")
 
         db_version = ""
         #if self.db is not None:
         #    db_version = self.db.get_version()
-        nums = [ ('Operating System', os.name)
+        nums = [ (_('Operating System'), os.name)
                , ('Python',           sys.version[0:3])
                , ('GTK+',             '.'.join([str(x) for x in gtk.gtk_version]))
                , ('PyGTK',            '.'.join([str(x) for x in gtk.pygtk_version]))
@@ -268,24 +268,24 @@ class fpdb:
         view.show()
         dia.vbox.pack_end(view, True, True, 2)
         
-        l = gtk.Label("Your config file is: "+self.config.file)
+        l = gtk.Label(_("Your config file is: ")+self.config.file)
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
 
-        l = gtk.Label('Version Information:')
+        l = gtk.Label(_('Version Information:'))
         l.set_alignment(0.5, 0.5)
         l.show()
         dia.vbox.pack_end(l, True, True, 2)
         
         dia.run()
         dia.destroy()
-        log.debug("Threads: ")
+        log.debug(_("Threads: "))
         for t in self.threads:
             log.debug("........." + str(t.__class__))
 
     def dia_preferences(self, widget, data=None):
-        dia = gtk.Dialog("Preferences",
+        dia = gtk.Dialog(_("Preferences"),
                          self.window,
                          gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                          (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
@@ -303,8 +303,7 @@ class fpdb:
                 dia.destroy()
             else:
                 dia.destroy()  # destroy prefs before raising warning, otherwise parent is dia rather than self.window
-                self.warning_box("Updated preferences have not been loaded because "
-                                 + "windows are open. Re-start fpdb to load them.")
+                self.warning_box(_("Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."))
         else:
             dia.destroy()
 
@@ -314,7 +313,7 @@ class fpdb:
         if len(self.tab_names) == 1:
             if self.obtain_global_lock("dia_maintain_dbs"):  # returns true if successful
                 # only main tab has been opened, open dialog
-                dia = gtk.Dialog("Maintain Databases",
+                dia = gtk.Dialog(_("Maintain Databases"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
@@ -324,27 +323,26 @@ class fpdb:
                 prefs = GuiDatabase.GuiDatabase(self.config, self.window, dia)
                 response = dia.run()
                 if response == gtk.RESPONSE_ACCEPT:
-                    log.info('saving updated db data')
+                    log.info(_('saving updated db data'))
                     # save updated config
                     self.config.save()
                     self.load_profile()
                     for name in self.config.supported_databases: #db_ip/db_user/db_pass/db_server
                         log.info('fpdb: name,desc='+name+','+self.config.supported_databases[name].db_desc)
                 else:
-                    log.info('guidb response was '+str(response))
+                    log.info(_('guidb response was ')+str(response))
 
                 self.release_global_lock()
 
             dia.destroy()
         else:
-            self.warning_box("Cannot open Database Maintenance window because "
-                             + "other windows have been opened. Re-start fpdb to use this option.")
+            self.warning_box(_("Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."))
 
     def dia_database_stats(self, widget, data=None):
-        self.warning_box(str="Number of Hands: "+str(self.db.getHandCount())+
-                    "\nNumber of Tourneys: "+str(self.db.getTourneyCount())+
-                    "\nNumber of TourneyTypes: "+str(self.db.getTourneyTypeCount()),
-                    diatitle="Database Statistics")
+        self.warning_box(str=_("Number of Hands: ")+str(self.db.getHandCount())+
+                    _("\nNumber of Tourneys: ")+str(self.db.getTourneyCount())+
+                    _("\nNumber of TourneyTypes: ")+str(self.db.getTourneyTypeCount()),
+                    diatitle=_("Database Statistics"))
     #end def dia_database_stats
 
     def diaHudConfigurator(self, widget, data=None):
@@ -353,13 +351,13 @@ class fpdb:
         self.hudConfiguratorColumns=None
         self.hudConfiguratorGame=None
         
-        diaSelections = gtk.Dialog("HUD Configurator - choose category",
+        diaSelections = gtk.Dialog(_("HUD Configurator - choose category"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_OK, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
         
-        label=gtk.Label("Please select the game category for which you want to configure HUD stats:")
+        label=gtk.Label(_("Please select the game category for which you want to configure HUD stats:"))
         diaSelections.vbox.add(label)
         label.show()
         
@@ -411,25 +409,25 @@ class fpdb:
         """shows dialogue with Table of ComboBoxes to allow choosing of HUD stats"""
         #TODO: add notices to hud configurator: no duplicates, no empties, display options
         #TODO: show explanation of what each stat means
-        diaHudTable = gtk.Dialog("HUD Configurator - please choose your stats",
+        diaHudTable = gtk.Dialog(_("HUD Configurator - please choose your stats"),
                                  self.window,
                                  gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                  (gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT,
                                   gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT))
         
-        label=gtk.Label("Please choose the stats you wish to use in the below table.")
+        label=gtk.Label(_("Please choose the stats you wish to use in the below table."))
         diaHudTable.vbox.add(label)
         label.show()
         
-        label=gtk.Label("Note that you may not select any stat more than once or it will crash.")
+        label=gtk.Label(_("Note that you may not select any stat more than once or it will crash."))
         diaHudTable.vbox.add(label)
         label.show()
         
-        label=gtk.Label("It is not currently possible to select \"empty\" or anything else to that end.")
+        label=gtk.Label(_("It is not currently possible to select \"empty\" or anything else to that end."))
         diaHudTable.vbox.add(label)
         label.show()
         
-        label=gtk.Label("To configure things like colouring you will still have to manually edit your HUD_config.xml.")
+        label=gtk.Label(_("To configure things like colouring you will still have to manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
         label.show()
         
