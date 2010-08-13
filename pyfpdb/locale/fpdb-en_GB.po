@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-13 02:45+CEST\n"
+"POT-Creation-Date: 2010-08-13 04:10+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,23 +63,568 @@ msgstr ""
 msgid "*** RIVER ***"
 msgstr ""
 
-#: fpdb.pyw:827
+#: fpdb.pyw:40
+msgid ""
+" - press return to continue\n"
+msgstr ""
+
+#: fpdb.pyw:47
+msgid ""
+"\n"
+"python 2.5 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+msgstr ""
+
+#: fpdb.pyw:48 fpdb.pyw:60 fpdb.pyw:82
+msgid "Press ENTER to continue."
+msgstr ""
+
+#: fpdb.pyw:59
+msgid "We appear to be running in Windows, but the Windows Python Extensions are not loading. Please install the PYWIN32 package from http://sourceforge.net/projects/pywin32/"
+msgstr ""
+
+#: fpdb.pyw:81
+msgid "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
+msgstr ""
+
+#: fpdb.pyw:239
+msgid "Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, sqlcoder, Bostik, and others"
+msgstr ""
+
+#: fpdb.pyw:240
+msgid "You are free to change, and distribute original or changed versions of fpdb within the rules set out by the license"
+msgstr ""
+
+#: fpdb.pyw:241
+msgid "Please see fpdb's start screen for license information"
+msgstr ""
+
+#: fpdb.pyw:245
+msgid "and others"
+msgstr ""
+
+#: fpdb.pyw:251
+msgid "Operating System"
+msgstr ""
+
+#: fpdb.pyw:271
+msgid "Your config file is: "
+msgstr ""
+
+#: fpdb.pyw:276
+msgid "Version Information:"
+msgstr ""
+
+#: fpdb.pyw:283
+msgid "Threads: "
+msgstr ""
+
+#: fpdb.pyw:288
+msgid "Preferences"
+msgstr ""
+
+#: fpdb.pyw:306
+msgid "Updated preferences have not been loaded because windows are open. Re-start fpdb to load them."
+msgstr ""
+
+#: fpdb.pyw:316
+msgid "Maintain Databases"
+msgstr ""
+
+#: fpdb.pyw:326
+msgid "saving updated db data"
+msgstr ""
+
+#: fpdb.pyw:333
+msgid "guidb response was "
+msgstr ""
+
+#: fpdb.pyw:339
+msgid "Cannot open Database Maintenance window because other windows have been opened. Re-start fpdb to use this option."
+msgstr ""
+
+#: fpdb.pyw:342
+msgid "Number of Hands: "
+msgstr ""
+
+#: fpdb.pyw:343
+msgid ""
+"\n"
+"Number of Tourneys: "
+msgstr ""
+
+#: fpdb.pyw:344
+msgid ""
+"\n"
+"Number of TourneyTypes: "
+msgstr ""
+
+#: fpdb.pyw:345
+msgid "Database Statistics"
+msgstr ""
+
+#: fpdb.pyw:354
+msgid "HUD Configurator - choose category"
+msgstr ""
+
+#: fpdb.pyw:360
+msgid "Please select the game category for which you want to configure HUD stats:"
+msgstr ""
+
+#: fpdb.pyw:412
+msgid "HUD Configurator - please choose your stats"
+msgstr ""
+
+#: fpdb.pyw:418
+msgid "Please choose the stats you wish to use in the below table."
+msgstr ""
+
+#: fpdb.pyw:422
+msgid "Note that you may not select any stat more than once or it will crash."
+msgstr ""
+
+#: fpdb.pyw:426
+msgid "It is not currently possible to select \"empty\" or anything else to that end."
+msgstr ""
+
+#: fpdb.pyw:430
+msgid "To configure things like colouring you will still have to manually edit your HUD_config.xml."
+msgstr ""
+
+#: fpdb.pyw:537
+msgid "Confirm deleting and recreating tables"
+msgstr ""
+
+#: fpdb.pyw:538
+msgid "Please confirm that you want to (re-)create the tables. If there already are tables in the database "
+msgstr ""
+
+#: fpdb.pyw:539
+msgid ""
+" they will be deleted.\n"
+"This may take a while."
+msgstr ""
+
+#: fpdb.pyw:564
+msgid "User cancelled recreating tables"
+msgstr ""
+
+#: fpdb.pyw:571
+msgid "Please confirm that you want to re-create the HUD cache."
+msgstr ""
+
+#: fpdb.pyw:579
+msgid " Hero's cache starts: "
+msgstr ""
+
+#: fpdb.pyw:593
+msgid " Villains' cache starts: "
+msgstr ""
+
+#: fpdb.pyw:606
+msgid " Rebuilding HUD Cache ... "
+msgstr ""
+
+#: fpdb.pyw:614
+msgid "User cancelled rebuilding hud cache"
+msgstr ""
+
+#: fpdb.pyw:626
+msgid "Confirm rebuilding database indexes"
+msgstr ""
+
+#: fpdb.pyw:627
+msgid "Please confirm that you want to rebuild the database indexes."
+msgstr ""
+
+#: fpdb.pyw:635
+msgid " Rebuilding Indexes ... "
+msgstr ""
+
+#: fpdb.pyw:642
+msgid " Cleaning Database ... "
+msgstr ""
+
+#: fpdb.pyw:647
+msgid " Analyzing Database ... "
+msgstr ""
+
+#: fpdb.pyw:652
+msgid "User cancelled rebuilding db indexes"
+msgstr ""
+
+#: fpdb.pyw:713
+msgid "Pick a date"
+msgstr ""
+
+#: fpdb.pyw:719
+msgid "Done"
+msgstr ""
+
+#: fpdb.pyw:747
+msgid "Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
+msgstr ""
+
+#: fpdb.pyw:750
+msgid "Fatal Error - Config File Missing"
+msgstr ""
+
+#: fpdb.pyw:752
+msgid "Please copy the config file from the docs folder to:"
+msgstr ""
+
+#: fpdb.pyw:760
+msgid "and edit it according to the install documentation at http://fpdb.sourceforge.net"
+msgstr ""
+
+#: fpdb.pyw:817
 msgid "_Main"
 msgstr ""
 
-#: fpdb.pyw:828
+#: fpdb.pyw:818 fpdb.pyw:846
 msgid "_Quit"
 msgstr ""
 
-#: fpdb.pyw:829
+#: fpdb.pyw:819
+msgid "<control>L"
+msgstr ""
+
+#: fpdb.pyw:819
 msgid "_Load Profile (broken)"
 msgstr ""
 
-#: fpdb.pyw:830
+#: fpdb.pyw:820
+msgid "<control>S"
+msgstr ""
+
+#: fpdb.pyw:820
 msgid "_Save Profile (todo)"
 msgstr ""
 
-#: fpdb.pyw:831
+#: fpdb.pyw:821
+msgid "<control>F"
+msgstr ""
+
+#: fpdb.pyw:821
 msgid "Pre_ferences"
-msgstr "_Einstellungen"
+msgstr ""
+
+#: fpdb.pyw:822
+msgid "_Import"
+msgstr ""
+
+#: fpdb.pyw:823
+msgid "_Set HandHistory Archive Directory"
+msgstr ""
+
+#: fpdb.pyw:824
+msgid "<control>B"
+msgstr ""
+
+#: fpdb.pyw:824
+msgid "_Bulk Import"
+msgstr ""
+
+#: fpdb.pyw:825
+msgid "<control>I"
+msgstr ""
+
+#: fpdb.pyw:825
+msgid "_Import through eMail/IMAP"
+msgstr ""
+
+#: fpdb.pyw:826
+msgid "_Viewers"
+msgstr ""
+
+#: fpdb.pyw:827
+msgid "<control>A"
+msgstr ""
+
+#: fpdb.pyw:827
+msgid "_Auto Import and HUD"
+msgstr ""
+
+#: fpdb.pyw:828
+msgid "<control>H"
+msgstr ""
+
+#: fpdb.pyw:828
+msgid "_HUD Configurator"
+msgstr ""
+
+#: fpdb.pyw:829
+msgid "<control>G"
+msgstr ""
+
+#: fpdb.pyw:829
+msgid "_Graphs"
+msgstr ""
+
+#: fpdb.pyw:830
+msgid "<control>P"
+msgstr ""
+
+#: fpdb.pyw:830
+msgid "Ring _Player Stats (tabulated view)"
+msgstr ""
+
+#: fpdb.pyw:831
+msgid "<control>T"
+msgstr ""
+
+#: fpdb.pyw:831
+msgid "_Tourney Player Stats (tabulated view)"
+msgstr ""
+
+#: fpdb.pyw:832
+msgid "Tourney _Viewer"
+msgstr ""
+
+#: fpdb.pyw:833
+msgid "<control>O"
+msgstr ""
+
+#: fpdb.pyw:833
+msgid "P_ositional Stats (tabulated view, not on sqlite)"
+msgstr ""
+
+#: fpdb.pyw:834 fpdb.pyw:1051
+msgid "Session Stats"
+msgstr ""
+
+#: fpdb.pyw:835
+msgid "_Database"
+msgstr ""
+
+#: fpdb.pyw:836
+msgid "_Maintain Databases"
+msgstr ""
+
+#: fpdb.pyw:837
+msgid "Create or Recreate _Tables"
+msgstr ""
+
+#: fpdb.pyw:838
+msgid "Rebuild HUD Cache"
+msgstr ""
+
+#: fpdb.pyw:839
+msgid "Rebuild DB Indexes"
+msgstr ""
+
+#: fpdb.pyw:840
+msgid "_Statistics"
+msgstr ""
+
+#: fpdb.pyw:841
+msgid "Dump Database to Textfile (takes ALOT of time)"
+msgstr ""
+
+#: fpdb.pyw:842
+msgid "_Help"
+msgstr ""
+
+#: fpdb.pyw:843
+msgid "_Log Messages"
+msgstr ""
+
+#: fpdb.pyw:844
+msgid "A_bout, License, Copying"
+msgstr ""
+
+#: fpdb.pyw:862
+msgid ""
+"There is an error in your config file\n"
+msgstr ""
+
+#: fpdb.pyw:863
+msgid ""
+"\n"
+"\n"
+"Error is:  "
+msgstr ""
+
+#: fpdb.pyw:864
+msgid "CONFIG FILE ERROR"
+msgstr ""
+
+#: fpdb.pyw:868
+msgid "Logfile is "
+msgstr ""
+
+#: fpdb.pyw:870
+msgid "Config file"
+msgstr ""
+
+#: fpdb.pyw:871
+msgid ""
+"has been created at:\n"
+"%s.\n"
+msgstr ""
+
+#: fpdb.pyw:872
+msgid "Edit your screen_name and hand history path in the supported_sites "
+msgstr ""
+
+#: fpdb.pyw:873
+msgid "section of the Preferences window (Main menu) before trying to import hands."
+msgstr ""
+
+#: fpdb.pyw:896
+msgid "Connected to SQLite: %(database)s"
+msgstr ""
+
+#: fpdb.pyw:898
+msgid "MySQL Server reports: Access denied. Are your permissions set correctly?"
+msgstr ""
+
+#: fpdb.pyw:900
+msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
+msgstr ""
+
+#: fpdb.pyw:901
+msgid "Please check that the MySQL service has been started"
+msgstr ""
+
+#: fpdb.pyw:903
+msgid "Postgres Server reports: Access denied. Are your permissions set correctly?"
+msgstr ""
+
+#: fpdb.pyw:905
+msgid "Postgres client reports: Unable to connect - "
+msgstr ""
+
+#: fpdb.pyw:906
+msgid "Please check that the Postgres service has been started"
+msgstr ""
+
+#: fpdb.pyw:930
+msgid "Strong Warning - Invalid database version"
+msgstr ""
+
+#: fpdb.pyw:932
+msgid "An invalid DB version or missing tables have been detected."
+msgstr ""
+
+#: fpdb.pyw:936
+msgid "This error is not necessarily fatal but it is strongly recommended that you recreate the tables by using the Database menu."
+msgstr ""
+
+#: fpdb.pyw:940
+msgid "Not doing this will likely lead to misbehaviour including fpdb crashes, corrupt data etc."
+msgstr ""
+
+#: fpdb.pyw:953
+msgid "Status: Connected to %s database named %s on host %s"
+msgstr ""
+
+#: fpdb.pyw:963
+msgid ""
+"\n"
+"Global lock taken by"
+msgstr ""
+
+#: fpdb.pyw:966
+msgid ""
+"\n"
+"Failed to get global lock, it is currently held by"
+msgstr ""
+
+#: fpdb.pyw:976
+msgid "Quitting normally"
+msgstr ""
+
+#: fpdb.pyw:1000
+msgid ""
+"Global lock released.\n"
+msgstr ""
+
+#: fpdb.pyw:1007
+msgid "Auto Import"
+msgstr ""
+
+#: fpdb.pyw:1014
+msgid "Bulk Import"
+msgstr ""
+
+#: fpdb.pyw:1020
+msgid "eMail Import"
+msgstr ""
+
+#: fpdb.pyw:1027
+msgid "Ring Player Stats"
+msgstr ""
+
+#: fpdb.pyw:1033
+msgid "Tourney Player Stats"
+msgstr ""
+
+#: fpdb.pyw:1039
+msgid "Tourney Viewer"
+msgstr ""
+
+#: fpdb.pyw:1045
+msgid "Positional Stats"
+msgstr ""
+
+#: fpdb.pyw:1055
+msgid ""
+"Welcome to Fpdb!\n"
+"To be notified of new snapshots and releases go to https://lists.sourceforge.net/lists/listinfo/fpdb-announce and subscribe.\n"
+"If you want to follow development more closely go to https://lists.sourceforge.net/lists/listinfo/fpdb-main and subscribe.\n"
+"\n"
+"This program is currently in an alpha-state, so our database format is still sometimes changed.\n"
+"You should therefore always keep your hand history files so that you can re-import after an update, if necessary.\n"
+"\n"
+"For documentation please visit our website at http://fpdb.sourceforge.net/.\n"
+"If you need help click on Contact - Get Help on our website.\n"
+"Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.\n"
+"\n"
+"This program is free/libre open source software licensed partially under the AGPL3, and partially under GPL2 or later.\n"
+"The Windows installer package includes code licensed under the MIT license.\n"
+"You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory."
+msgstr ""
+
+#: fpdb.pyw:1069
+msgid "Help"
+msgstr ""
+
+#: fpdb.pyw:1076
+msgid "Graphs"
+msgstr ""
+
+#: fpdb.pyw:1126
+msgid ""
+"\n"
+"Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in:\n"
+msgstr ""
+
+#: fpdb.pyw:1127
+msgid ""
+"\n"
+"Any major error will be reported there _only_.\n"
+msgstr ""
+
+#: fpdb.pyw:1155
+msgid "fpdb starting ..."
+msgstr ""
+
+#: fpdb.pyw:1204
+msgid "FPDB WARNING"
+msgstr ""
+
+#: fpdb.pyw:1223
+msgid ""
+"WARNING: Unable to find output hh directory %s\n"
+"\n"
+" Press YES to create this directory, or NO to select a new one."
+msgstr ""
+
+#: fpdb.pyw:1231
+msgid "WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."
+msgstr ""
+
+#: fpdb.pyw:1236
+msgid "Select HH Output Directory"
+msgstr ""
 
