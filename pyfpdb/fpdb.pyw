@@ -505,9 +505,6 @@ class fpdb:
         dumpFile.close()
     #end def dia_database_stats
 
-    def dia_licensing(self, widget, data=None):
-        self.warning_box("Unimplemented: Licensing")
-
     def dia_load_profile(self, widget, data=None):
         """Dialogue to select a file to load a profile from"""
         if self.obtain_global_lock("fpdb.dia_load_profile"):  # returns true if successful
