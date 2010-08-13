@@ -4,13 +4,14 @@
 
 inherit eutils
 inherit games
+inherit git
 
 EAPI="2"
 NEED_PYTHON=2.5
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PV}/${P}.tar.bz2"
+EGIT_REPO_URI="git://git.assembla.com/fpdb.git"
 
 LICENSE="AGPL-3"
 SLOT="0"
@@ -32,6 +33,10 @@ RDEPEND="
     dev-python/python-xlib
     dev-python/pytz"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	git_src_unpack
+}
 
 src_install() {
 	insinto "${GAMES_DATADIR}"/${PN}

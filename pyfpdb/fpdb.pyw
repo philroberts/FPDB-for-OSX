@@ -20,6 +20,10 @@ import sys
 import re
 import Queue
 
+#import gettext
+#trans=gettext.translation("fpdb", "locale", ["en_GB"])
+#trans.install()
+
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
 if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6') and '-r' not in sys.argv:
@@ -103,9 +107,10 @@ import GuiPrefs
 import GuiLogView
 import GuiDatabase
 import GuiBulkImport
-import ImapFetcher
+import GuiImapFetcher
 import GuiRingPlayerStats
 import GuiTourneyPlayerStats
+import GuiTourneyViewer
 import GuiPositionalStats
 import GuiAutoImport
 import GuiGraphViewer
@@ -785,7 +790,7 @@ class fpdb:
                 <menu action="import">
                   <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
-                  <menuitem action="imapsummaries"/>
+                  <menuitem action="imapimport"/>
                   <menuitem action="autoimp"/>
                 </menu>
                 <menu action="viewers">
@@ -794,6 +799,7 @@ class fpdb:
                   <menuitem action="graphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
+                  <menuitem action="tourneyviewer"/>
                   <menuitem action="posnstats"/>
                   <menuitem action="sessionstats"/>
                 </menu>
@@ -826,14 +832,15 @@ class fpdb:
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
-                                 ('imapsummaries', None, '_Import Tourney Summaries through eMail/IMAP', '<control>I', 'Auto Import and HUD', self.import_imap_summaries),
+                                 ('imapimport', None, '_Import through eMail/IMAP', '<control>I', 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, '_Viewers'),
                                  ('autoimp', None, '_Auto Import and HUD', '<control>A', 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, '_HUD Configurator', '<control>H', 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, '_Graphs', '<control>G', 'Graphs', self.tabGraphViewer),
                                  ('ringplayerstats', None, 'Ring _Player Stats (tabulated view)', '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view, mysql only)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
-                                 ('posnstats', None, 'P_ositional Stats (tabulated view)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('tourneyplayerstats', None, '_Tourney Player Stats (tabulated view)', '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('tourneyviewer', None, 'Tourney _Viewer', None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
+                                 ('posnstats', None, 'P_ositional Stats (tabulated view, not on sqlite)', '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, 'Session Stats', None, 'Session Stats', self.tab_session_stats),
                                  ('database', None, '_Database'),
                                  ('maintaindbs', None, '_Maintain Databases', None, 'Maintain Databases', self.dia_maintain_dbs),
@@ -857,10 +864,6 @@ class fpdb:
         return menubar
     #end def get_menu
     
-    def import_imap_summaries(self, widget, data=None):
-        result=ImapFetcher.run(self.config, self.db)
-        #print "import imap summaries result:", result
-    #end def import_imap_summaries
 
     def load_profile(self, create_db = False):
         """Loads profile from the provided path name."""
@@ -891,7 +894,7 @@ class fpdb:
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
-        if self.db is not None and self.db.connected:
+        if self.db is not None and self.db.is_connected():
             self.db.disconnect()
 
         self.sql = SQL.Sql(db_server = self.settings['db-server'])
@@ -914,6 +917,8 @@ class fpdb:
         if err_msg is not None:
             self.db = None
             self.warning_box(err_msg)
+        if self.db is not None and not self.db.is_connected():
+            self.db = None
 
 #        except FpdbMySQLFailedError:
 #            self.warning_box("Unable to connect to MySQL! Is the MySQL server running?!", "FPDB ERROR")
@@ -954,7 +959,7 @@ class fpdb:
             self.main_vbox.pack_end(self.status_bar, False, True, 0)
             self.status_bar.show()
 
-        if self.db is not None and self.db.connected:
+        if self.db is not None and self.db.is_connected():
             self.status_bar.set_text("Status: Connected to %s database named %s on host %s"
                                      % (self.db.get_backend_name(),self.db.database, self.db.host))
             # rollback to make sure any locks are cleared:
@@ -988,12 +993,12 @@ class fpdb:
         if self.db!=None:
             if self.db.backend==self.db.MYSQL_INNODB:
                 try:
-                    if self.db is not None and self.db.connected():
+                    if self.db is not None and self.db.is_connected():
                         self.db.disconnect()
                 except _mysql_exceptions.OperationalError: # oh, damn, we're already disconnected
                     pass
             else:
-                if self.db is not None and self.db.connected():
+                if self.db is not None and self.db.is_connected():
                     self.db.disconnect()
         else:
             pass
@@ -1021,6 +1026,13 @@ class fpdb:
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, "Bulk Import")
 
+    def tab_imap_import(self, widget, data=None):
+        new_thread = GuiImapFetcher.GuiImapFetcher(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_thread)
+        tab=new_thread.get_vbox()
+        self.add_and_display_tab(tab, "IMAP Import")
+    #end def tab_import_imap_summaries
+    
     def tab_ring_player_stats(self, widget, data=None):
         new_ps_thread = GuiRingPlayerStats.GuiRingPlayerStats(self.config, self.sql, self.window)
         self.threads.append(new_ps_thread)
@@ -1032,6 +1044,12 @@ class fpdb:
         self.threads.append(new_ps_thread)
         ps_tab=new_ps_thread.get_vbox()
         self.add_and_display_tab(ps_tab, "Tourney Player Stats")
+
+    def tab_tourney_viewer_stats(self, widget, data=None):
+        new_thread = GuiTourneyViewer.GuiTourneyViewer(self.config, self.db, self.sql, self.window)
+        self.threads.append(new_thread)
+        tab=new_thread.get_vbox()
+        self.add_and_display_tab(tab, "Tourney Viewer")
 
     def tab_positional_stats(self, widget, data=None):
         new_ps_thread = GuiPositionalStats.GuiPositionalStats(self.config, self.sql)
@@ -1047,14 +1065,17 @@ class fpdb:
 
     def tab_main_help(self, widget, data=None):
         """Displays a tab with the main fpdb help screen"""
-        mh_tab=gtk.Label("""Welcome to Fpdb!
+        mh_tab=gtk.Label("""Fpdb needs translators!
+If you speak another language and have a few minutes or more to spare get in touch by emailing steffen@schaumburger.info
+
+Welcome to Fpdb!
 To be notified of new snapshots and releases go to https://lists.sourceforge.net/lists/listinfo/fpdb-announce and subscribe.
 If you want to follow development more closely go to https://lists.sourceforge.net/lists/listinfo/fpdb-main and subscribe.
 
 This program is currently in an alpha-state, so our database format is still sometimes changed.
 You should therefore always keep your hand history files so that you can re-import after an update, if necessary.
 
-For documentation please visit our website at http://fpdb.sourceforge.net/.
+For documentation please visit our website/wiki at http://fpdb.sourceforge.net/.
 If you need help click on Contact - Get Help on our website.
 Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.
 

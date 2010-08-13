@@ -41,9 +41,9 @@ import Hand
 from Exceptions import FpdbParseError
 import Configuration
 
-import gettext
-gettext.install('fpdb')
-
+#import gettext
+#trans=gettext.translation("fpdb", "/home/steffen/poker/fpdb-dev/pyfpdb/locale", languages=["de"])
+#trans.install()
 
 import pygtk
 import gtk
@@ -441,6 +441,7 @@ or None if we fail to get the info """
                         pass
                 else:
                     print "unable to read file with any codec in list!", self.in_path
+                    self.obs = ""
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc

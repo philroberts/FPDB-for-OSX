@@ -79,13 +79,13 @@ class Hand(object):
         self.fee = None  # the Database code is looking for this one .. ?
         self.level = None
         self.mixed = None
-        self.speed = None
-        self.isRebuy = None
-        self.isAddOn = None
-        self.isKO = None
+        self.speed = "Normal"
+        self.isRebuy = False
+        self.isAddOn = False
+        self.isKO = False
         self.koBounty = None
-        self.isMatrix = None
-        self.isShootout = None
+        self.isMatrix = False
+        self.isShootout = False
         self.added = None
         self.addedCurrency = None
         self.tourneyComment = None
@@ -683,9 +683,15 @@ class HoldemOmahaHand(Hand):
             hhc.readPlayerStacks(self)
             hhc.compilePlayerRegexs(self)
             hhc.markStreets(self)
+            
             if self.cancelled:
                 return
-            hhc.readBlinds(self)
+            
+            try: hhc.readBlinds(self)
+            except:
+                print "*** Parse error reading blinds (check compilePlayerRegexs as a likely culprit)", self
+                return
+            
             hhc.readAntes(self)
             hhc.readButton(self)
             hhc.readHeroCards(self)

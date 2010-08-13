@@ -74,7 +74,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 139
+DB_VERSION = 142
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -140,7 +140,7 @@ class Database:
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 #, {'tab':'TourneysPlayers', 'col':'tourneyId',         'drop':0}  unique indexes not dropped
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
@@ -155,7 +155,7 @@ class Database:
                 , {'tab':'Tourneys',        'col':'tourneyTypeId',     'drop':1}
                 , {'tab':'TourneysPlayers', 'col':'playerId',          'drop':0}
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
-                , {'tab':'Backings',        'col':'tourneysPlayerId',  'drop':0}
+                , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
                 ]
               ]
@@ -265,7 +265,7 @@ class Database:
                 #ISOLATION_LEVEL_SERIALIZABLE   = 2
 
 
-            if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion:
+            if self.backend == self.SQLITE and self.database == ':memory:' and self.wrongDbVersion and self.is_connected():
                 log.info("sqlite/:memory: - creating")
                 self.recreate_tables()
                 self.wrongDbVersion = False
@@ -289,7 +289,8 @@ class Database:
 
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
-            self.connection.rollback()  # make sure any locks taken so far are released
+            if self.is_connected():
+                self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
     def dumpDatabase(self):
@@ -342,7 +343,6 @@ class Database:
         self.db_server = db_params['db-server']
         self.database = db_params['db-databaseName']
         self.host = db_params['db-host']
-        self.__connected = True
 
     def connect(self, backend=None, host=None, database=None,
                 user=None, password=None, create=False):
@@ -363,6 +363,7 @@ class Database:
                 MySQLdb = pool.manage(MySQLdb, pool_size=5)
             try:
                 self.connection = MySQLdb.connect(host=host, user=user, passwd=password, db=database, use_unicode=True)
+                self.__connected = True
             #TODO: Add port option
             except MySQLdb.Error, ex:
                 if ex.args[0] == 1045:
@@ -384,20 +385,21 @@ class Database:
             # flat out wrong
             # sqlcoder: This database only connect failed in my windows setup??
             # Modifed it to try the 4 parameter style if the first connect fails - does this work everywhere?
-            connected = False
+            self.__connected = False
             if self.host == "localhost" or self.host == "127.0.0.1":
                 try:
                     self.connection = psycopg2.connect(database = database)
-                    connected = True
+                    self.__connected = True
                 except:
                     # direct connection failed so try user/pass/... version
                     pass
-            if not connected:
+            if not self.is_connected():
                 try:
                     self.connection = psycopg2.connect(host = host,
                                                user = user,
                                                password = password,
                                                database = database)
+                    self.__connected = True
                 except Exception, ex:
                     if 'Connection refused' in ex.args[0]:
                         # meaning eg. db not running
@@ -426,6 +428,7 @@ class Database:
             log.info("Connecting to SQLite: %(database)s" % {'database':self.db_path})
             if os.path.exists(database) or create:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
+                self.__connected = True
                 sqlite3.register_converter("bool", lambda x: bool(int(x)))
                 sqlite3.register_adapter(bool, lambda x: "1" if x else "0")
                 self.connection.create_function("floor", 1, math.floor)
@@ -443,9 +446,10 @@ class Database:
         else:
             raise FpdbError("unrecognised database backend:"+str(backend))
 
-        self.cursor = self.connection.cursor()
-        self.cursor.execute(self.sql.query['set tx level'])
-        self.check_version(database=database, create=create)
+        if self.is_connected():
+            self.cursor = self.connection.cursor()
+            self.cursor.execute(self.sql.query['set tx level'])
+            self.check_version(database=database, create=create)
 
 
     def check_version(self, database, create):
@@ -499,6 +503,10 @@ class Database:
         self.connection.rollback()
 
     def connected(self):
+        """ now deprecated, use is_connected() instead """
+        return self.__connected
+
+    def is_connected(self):
         return self.__connected
 
     def get_cursor(self):
@@ -1442,17 +1450,41 @@ class Database:
                 h_start = self.hero_hudstart_def
             if v_start is None:
                 v_start = self.villain_hudstart_def
+            
             if self.hero_ids == {}:
-                where = ""
+                where = "WHERE hp.tourneysPlayersId IS NULL"
             else:
-                where =   "where (    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
                         + "       and h.startTime > '" + v_start + "')" \
                         + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
-                        + "       and h.startTime > '" + h_start + "')"
-            rebuild_sql = self.sql.query['rebuildHudCache'].replace('<where_clause>', where)
-
+                        + "       and h.startTime > '" + h_start + "'))" \
+                        + "   AND hp.tourneysPlayersId IS NULL)"
+            rebuild_sql_cash = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_select_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_join_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<tourney_group_clause>', "")
+            rebuild_sql_cash = rebuild_sql_cash.replace('<where_clause>', where)
+            #print "rebuild_sql_cash:",rebuild_sql_cash
             self.get_cursor().execute(self.sql.query['clearHudCache'])
-            self.get_cursor().execute(rebuild_sql)
+            self.get_cursor().execute(rebuild_sql_cash)
+            
+            if self.hero_ids == {}:
+                where = "WHERE hp.tourneysPlayersId >= 0"
+            else:
+                where =   "where (((    hp.playerId not in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.startTime > '" + v_start + "')" \
+                        + "   or (    hp.playerId in " + str(tuple(self.hero_ids.values())) \
+                        + "       and h.startTime > '" + h_start + "'))" \
+                        + "   AND hp.tourneysPlayersId >= 0)"
+            rebuild_sql_tourney = self.sql.query['rebuildHudCache'].replace('<tourney_insert_clause>', ",tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_select_clause>', ",t.tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_join_clause>', """INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
+                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)""")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<tourney_group_clause>', ",t.tourneyTypeId")
+            rebuild_sql_tourney = rebuild_sql_tourney.replace('<where_clause>', where)
+            #print "rebuild_sql_tourney:",rebuild_sql_tourney
+            
+            self.get_cursor().execute(rebuild_sql_tourney)
             self.commit()
             print "Rebuild hudcache took %.1f seconds" % (time() - stime,)
         except:
@@ -2021,8 +2053,12 @@ class Database:
         result=cursor.fetchone()
         
         if result != None:
-            expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
-                    'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            if self.backend == Database.PGSQL:
+                expectedValues = ('comment', 'tourneyname', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
+                        'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
+            else:
+                expectedValues = ('comment', 'tourneyName', 'matrixIdProcessed', 'totalRebuyCount', 'totalAddOnCount',
+                        'prizepool', 'startTime', 'entries', 'commentTs', 'endTime')
             updateDb=False
             resultDict = dict(zip(columnNames, result))
             
@@ -2115,6 +2151,32 @@ class Database:
         result = c.fetchall()
         return result
     #end def getTourneyTypesIds
+
+    def getTourneyInfo(self, siteName, tourneyNo):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyInfo'], (siteName, tourneyNo))
+        columnNames=c.description
+        
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+        
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyInfo
+    
+    def getTourneyPlayerInfo(self, siteName, tourneyNo, playerName):
+        c = self.get_cursor()
+        c.execute(self.sql.query['getTourneyPlayerInfo'], (siteName, tourneyNo, playerName))
+        columnNames=c.description
+        
+        names=[]
+        for column in columnNames:
+            names.append(column[0])
+        
+        data=c.fetchone()
+        return (names,data)
+    #end def getTourneyPlayerInfo
 #end class Database
 
 # Class used to hold all the data needed to write a hand to the db

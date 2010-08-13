@@ -452,8 +452,8 @@ class Email:
         self.fetchType = node.getAttribute("fetchType")
         
     def __str__(self):
-        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.host, self.username, self.password, self.useSsl, self.folder) 
+        return "    siteName=%s\n    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.siteName, self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -534,6 +534,39 @@ class GUICashStats(list):
 
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
 
+    def get_defaults(self):
+        """A list of defaults to be called, should there be no entry in config"""
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+            [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
+            [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
+            [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
+            [u'n', u'Hds', True, True, u'%1.0f', u'str', 1.0],
+            [u'avgseats', u'Seats', False, False, u'%3.1f', u'str', 1.0],
+            [u'vpip', u'VPIP', True, True, u'%3.1f', u'str', 1.0],
+            [u'pfr', u'PFR', True, True, u'%3.1f', u'str', 1.0],
+            [u'pf3', u'PF3', True, True, u'%3.1f', u'str', 1.0],
+            [u'aggfac', u'AggFac', True, True, u'%2.2f', u'str', 1.0],
+            [u'aggfrq', u'AggFreq', True, True, u'%3.1f', u'str', 1.0],
+            [u'conbet', u'ContBet', True, True, u'%3.1f', u'str', 1.0],
+            [u'rfi', u'RFI', True, True, u'%3.1f', u'str', 1.0],
+            [u'steals', u'Steals', True, True, u'%3.1f', u'str', 1.0],
+            [u'saw_f', u'Saw_F', True, True, u'%3.1f', u'str', 1.0],
+            [u'sawsd', u'SawSD', True, True, u'%3.1f', u'str', 1.0],
+            [u'wtsdwsf', u'WtSDwsF', True, True, u'%3.1f', u'str', 1.0],
+            [u'wmsd', u'W$SD', True, True, u'%3.1f', u'str', 1.0],
+            [u'flafq', u'FlAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'tuafq', u'TuAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'rvafq', u'RvAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'pofafq', u'PoFAFq', False, False, u'%3.1f', u'str', 1.0],
+            [u'net', u'Net($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bbper100', u'bb/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'rake', u'Rake($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bb100xr', u'bbxr/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
+            ]
+        for col in defaults:
+            self.append (col)
+
 #    def __str__(self):
 #        s = ""
 #        for l in self:
@@ -595,11 +628,14 @@ class Config:
         self.db_selected = None    # database the user would like to use
         self.tv = None
         self.general = General()
+        self.emails = {}
         self.gui_cash_stats = GUICashStats()
 
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
+        if doc.getElementsByTagName("gui_cash_stats") == []:
+            self.gui_cash_stats.get_defaults()
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
             self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
 
@@ -655,7 +691,8 @@ class Config:
 
         for email_node in doc.getElementsByTagName("email"):
             email = Email(node = email_node)
-            self.email = email
+            if email.siteName!="": #FIXME: Why on earth is this needed?
+                self.emails[email.siteName+"_"+email.fetchType]=email
 
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
@@ -701,6 +738,12 @@ class Config:
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
                 return site_node
+
+    def getEmailNode(self, siteName, fetchType):
+        for emailNode in self.doc.getElementsByTagName("email"):
+            if emailNode.getAttribute("siteName") == siteName and emailNode.getAttribute("fetchType") == fetchType:
+                return emailNode
+    #end def getEmailNode
 
     def getGameNode(self,gameName):
         """returns DOM game node for a given game"""
@@ -776,6 +819,15 @@ class Config:
         else:
             return(l)
 
+    def editEmail(self, siteName, fetchType, newEmail):
+        emailNode = self.getEmailNode(siteName, fetchType)
+        emailNode.setAttribute("host", newEmail.host)
+        emailNode.setAttribute("username", newEmail.username)
+        emailNode.setAttribute("password", newEmail.password)
+        emailNode.setAttribute("folder", newEmail.folder)
+        emailNode.setAttribute("useSsl", newEmail.useSsl)
+    #end def editEmail
+    
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)

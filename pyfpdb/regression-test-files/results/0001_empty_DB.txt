@@ -1,5 +1,5 @@
 fpdb database dump
-DB version=136
+DB version=142
 
 ###################
 Table Autorates
@@ -44,7 +44,7 @@ empty table
 ###################
 Table Settings
 ###################
-  version=136
+  version=142
 
 
 ###################
