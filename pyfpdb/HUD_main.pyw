@@ -60,6 +60,9 @@ elif os.name == 'nt':
 #import Tables
 import Hud
 
+import gettext
+trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
+trans.install()
 
 # get config and set up logger
 c = Configuration.Config(file=options.config, dbname=options.dbname)
@@ -71,22 +74,22 @@ class HUD_main(object):
 #    This class mainly provides state for controlling the multiple HUDs.
 
     def __init__(self, db_name = 'fpdb'):
-        print "\nHUD_main: starting ..."
+        print _("\nHUD_main: starting ...")
         self.db_name = db_name
         self.config = c
-        print "Logfile is " + os.path.join(self.config.dir_log, 'HUD-log.txt')
-        log.info("HUD_main starting: using db name = %s" % (db_name))
+        print _("Logfile is ") + os.path.join(self.config.dir_log, 'HUD-log.txt')
+        log.info(_("HUD_main starting: using db name = %s") % (db_name))
 
         try:
             if not options.errorsToConsole:
                 fileName = os.path.join(self.config.dir_log, 'HUD-errors.txt')
-                print "Note: error output is being diverted to:\n"+fileName \
-                      + "\nAny major error will be reported there _only_.\n" 
-                log.info("Note: error output is being diverted to:"+fileName)
-                log.info("Any major error will be reported there _only_.")
+                print _("Note: error output is being diverted to:\n")+fileName \
+                      + _("\nAny major error will be reported there _only_.\n")
+                log.info(_("Note: error output is being diverted to:")+fileName)
+                log.info(_("Any major error will be reported there _only_."))
                 errorFile = open(fileName, 'w', 0)
                 sys.stderr = errorFile
-                sys.stderr.write("HUD_main: starting ...\n")
+                sys.stderr.write(_("HUD_main: starting ...\n"))
 
             self.hud_dict = {}
             self.hud_params = self.config.get_hud_ui_parameters()
@@ -99,10 +102,10 @@ class HUD_main(object):
             self.main_window = gtk.Window()
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
-            self.label = gtk.Label('Closing this window will exit from the HUD.')
+            self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
             self.vb.add(self.label)
             self.main_window.add(self.vb)
-            self.main_window.set_title("HUD Main Window")
+            self.main_window.set_title(_("HUD Main Window"))
             self.main_window.show_all()
         except:
             log.error( "*** Exception in HUD_main.init() *** " )
@@ -111,7 +114,7 @@ class HUD_main(object):
 
 
     def destroy(self, *args):             # call back for terminating the main eventloop
-        log.info("Terminating normally.")
+        log.info(_("Terminating normally."))
         gtk.main_quit()
 
     def kill_hud(self, event, table):
@@ -215,7 +218,7 @@ class HUD_main(object):
             t0 = time.time()
             t1 = t2 = t3 = t4 = t5 = t6 = t0
             new_hand_id = string.rstrip(new_hand_id)
-            log.debug("Received hand no %s" % new_hand_id)
+            log.debug(_("Received hand no %s") % new_hand_id)
             if new_hand_id == "":           # blank line means quit
                 self.destroy()
                 break # this thread is not always killed immediately with gtk.main_quit()
@@ -234,12 +237,12 @@ class HUD_main(object):
 
 #        get basic info about the new hand from the db
 #        if there is a db error, complain, skip hand, and proceed
-            log.info("HUD_main.read_stdin: hand processing starting ...")
+            log.info(_("HUD_main.read_stdin: hand processing starting ..."))
             try:
                 (table_name, max, poker_game, type, site_id, site_name, num_seats, tour_number, tab_number) = \
                                 self.db_connection.get_table_info(new_hand_id)
             except Exception:
-                log.error("db error: skipping %s" % new_hand_id)
+                log.error(_("db error: skipping %s" % new_hand_id))
                 continue
             t1 = time.time()
 
@@ -260,8 +263,8 @@ class HUD_main(object):
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
-                    log.error('hud_dict[%s] was not found\n' % temp_key)
-                    log.error('will not send hand\n')
+                    log.error(_('hud_dict[%s] was not found\n') % temp_key)
+                    log.error(_('will not send hand\n'))
                     # Unlocks table, copied from end of function
                     self.db_connection.connection.rollback()
                     return
@@ -295,8 +298,7 @@ class HUD_main(object):
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
                         table_name = "%s %s" % (tour_number, tab_number)
-#                    log.error("HUD create: table name "+table_name+" not found, skipping.\n")
-                    log.error("HUD create: table name %s not found, skipping." % table_name)
+                    log.error(_("HUD create: table name %s not found, skipping.") % table_name)
                 else:
                     tablewindow.max = max
                     tablewindow.site = site_name
@@ -304,10 +306,10 @@ class HUD_main(object):
                     if hasattr(tablewindow, 'number'):
                         self.create_HUD(new_hand_id, tablewindow, temp_key, max, poker_game, type, stat_dict, cards)
                     else:
-                        log.error('Table "%s" no longer exists\n' % table_name)
+                        log.error(_('Table "%s" no longer exists\n') % table_name)
 
             t6 = time.time()
-            log.info("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)"
+            log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
                      % (t6-t0,t1-t0,t2-t0,t3-t0,t4-t0,t5-t0,t6-t0))
             self.db_connection.connection.rollback()
 
