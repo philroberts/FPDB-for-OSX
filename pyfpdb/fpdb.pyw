@@ -967,9 +967,6 @@ class fpdb:
 
         self.validate_config()
 
-    def not_implemented(self, widget, data=None):
-        self.warning_box("Unimplemented menu entry")
-
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source) # will return false if lock is already held
         if ret:
