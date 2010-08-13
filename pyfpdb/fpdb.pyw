@@ -743,11 +743,6 @@ class fpdb:
         win.destroy()
         self.dia_confirm.set_modal(True)
 
-    def dia_regression_test(self, widget, data=None):
-        self.warning_box("Unimplemented: Regression Test")
-        #self.obtain_global_lock("dia_regression_test")
-        #self.release_global_lock()
-
     def dia_save_profile(self, widget, data=None):
         self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
 
