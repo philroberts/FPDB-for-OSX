@@ -20,9 +20,9 @@ import sys
 import re
 import Queue
 
-#import gettext
-#trans=gettext.translation("fpdb", "locale", ["en_GB"])
-#trans.install()
+import gettext
+trans = gettext.translation("fpdb", "locale", ["de_DE"])
+trans.install()
 
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
@@ -824,11 +824,11 @@ class fpdb:
         actiongroup = gtk.ActionGroup('UIManagerExample')
 
         # Create actions
-        actiongroup.add_actions([('main', None, '_Main'),
-                                 ('Quit', gtk.STOCK_QUIT, '_Quit', None, 'Quit the Program', self.quit),
-                                 ('LoadProf', None, '_Load Profile (broken)', '<control>L', 'Load your profile', self.dia_load_profile),
-                                 ('SaveProf', None, '_Save Profile (todo)', '<control>S', 'Save your profile', self.dia_save_profile),
-                                 ('Preferences', None, 'Pre_ferences', '<control>F', 'Edit your preferences', self.dia_preferences),
+        actiongroup.add_actions([('main', None, _('_Main')),
+                                 ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
+                                 ('LoadProf', None, _('_Load Profile (broken)'), '<control>L', 'Load your profile', self.dia_load_profile),
+                                 ('SaveProf', None, _('_Save Profile (todo)'), '<control>S', 'Save your profile', self.dia_save_profile),
+                                 ('Preferences', None, _('Pre_ferences'), '<control>F', 'Edit your preferences', self.dia_preferences),
                                  ('import', None, '_Import'),
                                  ('sethharchive', None, '_Set HandHistory Archive Directory', None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, '_Bulk Import', '<control>B', 'Bulk Import', self.tab_bulk_import),
