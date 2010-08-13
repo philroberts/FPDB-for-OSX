@@ -39,8 +39,8 @@ class FpdbParseError(FpdbParseError):
 class PartyPoker(HandHistoryConverter):
     sitename = "PartyPoker"
     codepage = "cp1252"
-    siteId = 9 
-    filetype = "text" 
+    siteId = 9
+    filetype = "text"
     sym = {'USD': "\$", }
 
     # Static regexes
@@ -96,7 +96,7 @@ class PartyPoker(HandHistoryConverter):
     re_NoSmallBlind = re.compile(
                     '^There is no Small Blind in this hand as the Big Blind '
                     'of the previous hand left the table', re.MULTILINE)
-
+    re_20BBmin       = re.compile(r"Table 20BB Min")
 
     def allHandsAsList(self):
         list = HandHistoryConverter.allHandsAsList(self)
@@ -185,6 +185,7 @@ class PartyPoker(HandHistoryConverter):
 
         info = {}
         m = self._getGameType(handText)
+        m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
             return None
 
@@ -216,7 +217,18 @@ class PartyPoker(HandHistoryConverter):
             info['type'] = 'ring'
 
         if info['type'] == 'ring':
-            info['sb'], info['bb'] = ringBlinds(mg['RINGLIMIT'])
+            if m_20BBmin is None:
+                bb = float(mg['RINGLIMIT'])/100.0
+            else:
+                bb = float(mg['RINGLIMIT'])/40.0
+
+            if bb == 0.25:
+                sb = 0.10
+            else:
+                sb = bb/2.0
+
+            info['bb'] = "%.2f" % (bb)
+            info['sb'] = "%.2f" % (sb)
             info['currency'] = currencies[mg['CURRENCY']]
         else:
             info['sb'] = clearMoneyString(mg['SB'])
@@ -291,9 +303,9 @@ class PartyPoker(HandHistoryConverter):
             if key == 'TABLE':
                 hand.tablename = info[key]
             if key == 'MTTTABLE':
-            	if info[key] != None:
-            		hand.tablename = info[key]
-            		hand.tourNo = info['TABLE']
+                if info[key] != None:
+                    hand.tablename = info[key]
+                    hand.tourNo = info['TABLE']
             if key == 'BUTTON':
                 hand.buttonpos = info[key]
             if key == 'TOURNO':
@@ -482,13 +494,6 @@ class PartyPoker(HandHistoryConverter):
         else:
             print 'party', 'getTableTitleRe', table_number
             return table_name
-
-
-def ringBlinds(ringLimit):
-    "Returns blinds for current limit in cash games"
-    ringLimit = float(clearMoneyString(ringLimit))
-    if ringLimit == 5.: ringLimit = 4.
-    return ('%.2f' % (ringLimit/200.), '%.2f' % (ringLimit/100.)  )
 
 def clearMoneyString(money):
     "Renders 'numbers' like '1 200' and '2,000'"

@@ -49,7 +49,7 @@ src_install() {
 	make_desktop_entry ${PN}
 
 	prepgamesdirs
-	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+	chmod +x ${D}/"${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
 }
 
 pkg_postinst() {
