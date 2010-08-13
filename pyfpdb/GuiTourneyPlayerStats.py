@@ -69,7 +69,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         self.filters = TourneyFilters.TourneyFilters(self.db, self.conf, self.sql, display = filters_display)
         #self.filters.registerButton1Name("_Filters")
         #self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh Stats")
+        self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
         
         # ToDo: store in config
@@ -237,7 +237,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
             self.addGrid(swin, 'playerDetailedStats', flags, playerids, sitenos, seats, dates)
 
         self.db.rollback()
-        print "Stats page displayed in %4.2f seconds" % (time() - startTime)
+        print _("Stats page displayed in %4.2f seconds") % (time() - startTime)
     #end def createStatsTable
 
     def fillStatsFrame(self, vbox):
@@ -262,10 +262,10 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
         if not sitenos:
             #Should probably pop up here.
-            print "No sites selected - defaulting to PokerStars"
+            print _("No sites selected - defaulting to PokerStars")
             sitenos = [2]
         if not playerids:
-            print "No player ids found"
+            print _("No player ids found")
             return
         
         self.createStatsTable(vbox, tourneyTypes, playerids, sitenos, seats, dates)
@@ -451,7 +451,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***sortCols error: " + str(sys.exc_info()[1])
+            print _("***sortCols error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
     #end def sortCols
 #end class GuiTourneyPlayerStats
