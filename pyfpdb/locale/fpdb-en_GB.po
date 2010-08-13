@@ -5,15 +5,392 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-13 04:10+CEST\n"
+"POT-Creation-Date: 2010-08-13 05:34+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: ENCODING\n"
 "Generated-By: pygettext.py 1.5\n"
 
+
+#: GuiAutoImport.py:73
+msgid "Time between imports in seconds:"
+msgstr ""
+
+#: GuiAutoImport.py:104 GuiAutoImport.py:172 GuiAutoImport.py:249
+msgid "  Start _Autoimport  "
+msgstr ""
+
+#: GuiAutoImport.py:123
+msgid "AutoImport Ready."
+msgstr ""
+
+#: GuiAutoImport.py:136
+msgid "Please choose the path that you want to auto import"
+msgstr ""
+
+#: GuiAutoImport.py:159
+msgid "  _Auto Import Running  "
+msgstr ""
+
+#: GuiAutoImport.py:170
+msgid "  Stop _Autoimport  "
+msgstr ""
+
+#: GuiAutoImport.py:195
+msgid ""
+"\n"
+"Global lock taken ... Auto Import Started.\n"
+msgstr ""
+
+#: GuiAutoImport.py:197
+msgid "  _Stop Autoimport  "
+msgstr ""
+
+#: GuiAutoImport.py:213
+msgid "opening pipe to HUD"
+msgstr ""
+
+#: GuiAutoImport.py:225
+msgid ""
+"\n"
+"*** GuiAutoImport Error opening pipe: "
+msgstr ""
+
+#: GuiAutoImport.py:237
+msgid ""
+"\n"
+"auto-import aborted - global lock not available"
+msgstr ""
+
+#: GuiAutoImport.py:242
+msgid ""
+"\n"
+"Stopping autoimport - global lock released."
+msgstr ""
+
+#: GuiAutoImport.py:244
+msgid ""
+"\n"
+" * Stop Autoimport: HUD already terminated"
+msgstr ""
+
+#: GuiAutoImport.py:271
+msgid "Browse..."
+msgstr ""
+
+#: GuiAutoImport.py:314 GuiBulkImport.py:342
+msgid "How often to print a one-line status report (0 (default) means never)"
+msgstr ""
+
+#: GuiBulkImport.py:55
+msgid ""
+"\n"
+"Global lock taken ..."
+msgstr ""
+
+#: GuiBulkImport.py:56
+msgid "Importing..."
+msgstr ""
+
+#: GuiBulkImport.py:105
+msgid "GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec"
+msgstr ""
+
+#: GuiBulkImport.py:119
+msgid "Import Complete"
+msgstr ""
+
+#: GuiBulkImport.py:127
+msgid "bulk-import aborted - global lock not available"
+msgstr ""
+
+#: GuiBulkImport.py:153
+msgid "Print Start/Stop Info"
+msgstr ""
+
+#: GuiBulkImport.py:160
+msgid "Hands/status print:"
+msgstr ""
+
+#: GuiBulkImport.py:177
+msgid "Number of threads:"
+msgstr ""
+
+#: GuiBulkImport.py:197
+msgid "Fail on error"
+msgstr ""
+
+#: GuiBulkImport.py:202
+msgid "Hands/file:"
+msgstr ""
+
+#: GuiBulkImport.py:217
+msgid "Drop indexes:"
+msgstr ""
+
+#: GuiBulkImport.py:226 GuiBulkImport.py:276
+msgid "auto"
+msgstr ""
+
+#: GuiBulkImport.py:227 GuiBulkImport.py:277 GuiBulkImport.py:385
+msgid "don't drop"
+msgstr ""
+
+#: GuiBulkImport.py:228 GuiBulkImport.py:278
+msgid "drop"
+msgstr ""
+
+#: GuiBulkImport.py:234
+msgid "HUD Test mode"
+msgstr ""
+
+#: GuiBulkImport.py:239
+msgid "Site filter:"
+msgstr ""
+
+#: GuiBulkImport.py:267
+msgid "Drop HudCache:"
+msgstr ""
+
+#: GuiBulkImport.py:285
+msgid "Import"
+msgstr ""
+
+#: GuiBulkImport.py:287
+msgid "Import clicked"
+msgstr ""
+
+#: GuiBulkImport.py:305
+msgid "Waiting..."
+msgstr ""
+
+#: GuiBulkImport.py:334
+msgid "Input file in quiet mode"
+msgstr ""
+
+#: GuiBulkImport.py:336
+msgid "don't start gui; deprecated (just give a filename with -f)."
+msgstr ""
+
+#: GuiBulkImport.py:338
+msgid "Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"
+msgstr ""
+
+#: GuiBulkImport.py:340
+msgid "If this option is passed it quits when it encounters any error"
+msgstr ""
+
+#: GuiBulkImport.py:344
+msgid "Print some useful one liners"
+msgstr ""
+
+#: GuiBulkImport.py:346
+msgid "Do the required conversion for Stars Archive format (ie. as provided by support"
+msgstr ""
+
+#: GuiBulkImport.py:351
+msgid "USAGE:"
+msgstr ""
+
+#: GuiBulkImport.py:352
+msgid "PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename"
+msgstr ""
+
+#: GuiBulkImport.py:353
+msgid "Full Tilt  converter: ./GuiBulkImport.py -c \"Full Tilt Poker\" -f filename"
+msgstr ""
+
+#: GuiBulkImport.py:354
+msgid "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
+msgstr ""
+
+#: GuiBulkImport.py:355
+msgid "Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename"
+msgstr ""
+
+#: GuiBulkImport.py:356
+msgid "PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename"
+msgstr ""
+
+#: GuiBulkImport.py:372
+msgid "-q is deprecated. Just use \"-f filename\" instead"
+msgstr ""
+
+#: GuiBulkImport.py:394
+msgid "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec"
+msgstr ""
+
+#: GuiImapFetcher.py:37
+msgid "To cancel just close this tab."
+msgstr ""
+
+#: GuiImapFetcher.py:40
+msgid "_Save"
+msgstr ""
+
+#: GuiImapFetcher.py:44
+msgid "_Import All"
+msgstr ""
+
+#: GuiImapFetcher.py:48
+msgid "If you change the config you must save before importing"
+msgstr ""
+
+#: GuiImapFetcher.py:91
+msgid "Starting import. Please wait."
+msgstr ""
+
+#: GuiImapFetcher.py:95
+msgid "Finished import without error."
+msgstr ""
+
+#: GuiImapFetcher.py:98
+msgid "Login to mailserver failed: please check mailserver, username and password"
+msgstr ""
+
+#: GuiImapFetcher.py:101
+msgid "Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Fetch Type"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Mail Folder"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Mailserver"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Password"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Site"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Use SSL"
+msgstr ""
+
+#: GuiImapFetcher.py:111
+msgid "Username"
+msgstr ""
+
+#: GuiImapFetcher.py:142
+msgid "Yes"
+msgstr ""
+
+#: GuiImapFetcher.py:143
+msgid "No"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:72
+msgid "_Refresh Stats"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:240
+msgid "Stats page displayed in %4.2f seconds"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:265
+msgid "No sites selected - defaulting to PokerStars"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:268
+msgid "No player ids found"
+msgstr ""
+
+#: GuiTourneyPlayerStats.py:454
+msgid "***sortCols error: "
+msgstr ""
+
+#: HUD_main.pyw:77
+msgid ""
+"\n"
+"HUD_main: starting ..."
+msgstr ""
+
+#: HUD_main.pyw:80 fpdb.pyw:868
+msgid "Logfile is "
+msgstr ""
+
+#: HUD_main.pyw:81
+msgid "HUD_main starting: using db name = %s"
+msgstr ""
+
+#: HUD_main.pyw:86
+msgid ""
+"Note: error output is being diverted to:\n"
+msgstr ""
+
+#: HUD_main.pyw:87 fpdb.pyw:1130
+msgid ""
+"\n"
+"Any major error will be reported there _only_.\n"
+msgstr ""
+
+#: HUD_main.pyw:88
+msgid "Note: error output is being diverted to:"
+msgstr ""
+
+#: HUD_main.pyw:89
+msgid "Any major error will be reported there _only_."
+msgstr ""
+
+#: HUD_main.pyw:92
+msgid ""
+"HUD_main: starting ...\n"
+msgstr ""
+
+#: HUD_main.pyw:105
+msgid "Closing this window will exit from the HUD."
+msgstr ""
+
+#: HUD_main.pyw:108
+msgid "HUD Main Window"
+msgstr ""
+
+#: HUD_main.pyw:117
+msgid "Terminating normally."
+msgstr ""
+
+#: HUD_main.pyw:221
+msgid "Received hand no %s"
+msgstr ""
+
+#: HUD_main.pyw:240
+msgid "HUD_main.read_stdin: hand processing starting ..."
+msgstr ""
+
+#: HUD_main.pyw:266
+msgid ""
+"hud_dict[%s] was not found\n"
+msgstr ""
+
+#: HUD_main.pyw:267
+msgid ""
+"will not send hand\n"
+msgstr ""
+
+#: HUD_main.pyw:301
+msgid "HUD create: table name %s not found, skipping."
+msgstr ""
+
+#: HUD_main.pyw:309
+msgid ""
+"Table \"%s\" no longer exists\n"
+msgstr ""
+
+#: HUD_main.pyw:312
+msgid "HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)"
+msgstr ""
 
 #: Hand.py:1102
 msgid "*** DEALING HANDS ***"
@@ -61,6 +438,14 @@ msgstr ""
 
 #: Hand.py:1348
 msgid "*** RIVER ***"
+msgstr ""
+
+#: ImapFetcher.py:46
+msgid "response to logging in:"
+msgstr ""
+
+#: ImapFetcher.py:78
+msgid "completed running Imap import, closing server connection"
 msgstr ""
 
 #: fpdb.pyw:40
@@ -448,10 +833,6 @@ msgstr ""
 msgid "CONFIG FILE ERROR"
 msgstr ""
 
-#: fpdb.pyw:868
-msgid "Logfile is "
-msgstr ""
-
 #: fpdb.pyw:870
 msgid "Config file"
 msgstr ""
@@ -569,6 +950,9 @@ msgstr ""
 
 #: fpdb.pyw:1055
 msgid ""
+"Fpdb needs translators!\n"
+"If you speak another language and have a few minutes or more to spare get in touch by emailing steffen@schaumburger.info\n"
+"\n"
 "Welcome to Fpdb!\n"
 "To be notified of new snapshots and releases go to https://lists.sourceforge.net/lists/listinfo/fpdb-announce and subscribe.\n"
 "If you want to follow development more closely go to https://lists.sourceforge.net/lists/listinfo/fpdb-main and subscribe.\n"
@@ -576,7 +960,7 @@ msgid ""
 "This program is currently in an alpha-state, so our database format is still sometimes changed.\n"
 "You should therefore always keep your hand history files so that you can re-import after an update, if necessary.\n"
 "\n"
-"For documentation please visit our website at http://fpdb.sourceforge.net/.\n"
+"For documentation please visit our website/wiki at http://fpdb.sourceforge.net/.\n"
 "If you need help click on Contact - Get Help on our website.\n"
 "Please note that default.conf is no longer needed nor used, all configuration now happens in HUD_config.xml.\n"
 "\n"
@@ -585,46 +969,40 @@ msgid ""
 "You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt and mit.txt in the fpdb installation directory."
 msgstr ""
 
-#: fpdb.pyw:1069
+#: fpdb.pyw:1072
 msgid "Help"
 msgstr ""
 
-#: fpdb.pyw:1076
+#: fpdb.pyw:1079
 msgid "Graphs"
 msgstr ""
 
-#: fpdb.pyw:1126
+#: fpdb.pyw:1129
 msgid ""
 "\n"
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in:\n"
 msgstr ""
 
-#: fpdb.pyw:1127
-msgid ""
-"\n"
-"Any major error will be reported there _only_.\n"
-msgstr ""
-
-#: fpdb.pyw:1155
+#: fpdb.pyw:1158
 msgid "fpdb starting ..."
 msgstr ""
 
-#: fpdb.pyw:1204
+#: fpdb.pyw:1207
 msgid "FPDB WARNING"
 msgstr ""
 
-#: fpdb.pyw:1223
+#: fpdb.pyw:1226
 msgid ""
 "WARNING: Unable to find output hh directory %s\n"
 "\n"
 " Press YES to create this directory, or NO to select a new one."
 msgstr ""
 
-#: fpdb.pyw:1231
+#: fpdb.pyw:1234
 msgid "WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."
 msgstr ""
 
-#: fpdb.pyw:1236
+#: fpdb.pyw:1239
 msgid "Select HH Output Directory"
 msgstr ""
 
