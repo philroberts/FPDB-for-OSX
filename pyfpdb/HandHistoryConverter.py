@@ -42,7 +42,7 @@ from Exceptions import FpdbParseError
 import Configuration
 
 #import gettext
-#trans = gettext.translation("fpdb", "locale", languages="de_DE")
+#trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
 #trans.install()
 
 import pygtk
