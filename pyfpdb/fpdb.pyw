@@ -242,7 +242,7 @@ class fpdb:
         dia.set_website("http://fpdb.sourceforge.net/")
         
         dia.set_authors(['Steffen', 'Eratosthenes', 'Carl Gherardi',
-            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others']))
+            'Eric Blade', '_mt', 'sqlcoder', 'Bostik', _('and others')])
         dia.set_program_name("Free Poker Database (FPDB)")
 
         db_version = ""
@@ -744,12 +744,12 @@ class fpdb:
         self.dia_confirm.set_modal(True)
 
     def dia_save_profile(self, widget, data=None):
-        self.warning_box("Unimplemented: Save Profile (try saving a HUD layout, that should do it)")
+        self.warning_box(_("Unimplemented: Save Profile (try saving a HUD layout, that should do it)"))
 
     def diaSetupWizard(self, path):
-        diaSetupWizard = gtk.Dialog(title="Fatal Error - Config File Missing", parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
+        diaSetupWizard = gtk.Dialog(title=_("Fatal Error - Config File Missing"), parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
 
-        label = gtk.Label("Please copy the config file from the docs folder to:")
+        label = gtk.Label(_("Please copy the config file from the docs folder to:"))
         diaSetupWizard.vbox.add(label)
         label.show()
 
@@ -757,7 +757,7 @@ class fpdb:
         diaSetupWizard.vbox.add(label)
         label.show()
 
-        label = gtk.Label("and edit it according to the install documentation at http://fpdb.sourceforge.net")
+        label = gtk.Label(_("and edit it according to the install documentation at http://fpdb.sourceforge.net"))
         diaSetupWizard.vbox.add(label)
         label.show()
 
@@ -816,21 +816,21 @@ class fpdb:
         # Create actions
         actiongroup.add_actions([('main', None, _('_Main')),
                                  ('Quit', gtk.STOCK_QUIT, _('_Quit'), None, 'Quit the Program', self.quit),
-                                 ('LoadProf', None, _('_Load Profile (broken)'), '<control>L', 'Load your profile', self.dia_load_profile),
-                                 ('SaveProf', None, _('_Save Profile (todo)'), '<control>S', 'Save your profile', self.dia_save_profile),
-                                 ('Preferences', None, _('Pre_ferences'), '<control>F', 'Edit your preferences', self.dia_preferences),
+                                 ('LoadProf', None, _('_Load Profile (broken)'), _('<control>L'), 'Load your profile', self.dia_load_profile),
+                                 ('SaveProf', None, _('_Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
+                                 ('Preferences', None, _('Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
                                  ('import', None, _('_Import')),
                                  ('sethharchive', None, _('_Set HandHistory Archive Directory'), None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
-                                 ('bulkimp', None, _('_Bulk Import'), '<control>B', 'Bulk Import', self.tab_bulk_import),
-                                 ('imapimport', None, _('_Import through eMail/IMAP'), '<control>I', 'Import through eMail/IMAP', self.tab_imap_import),
+                                 ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
+                                 ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, _('_Viewers')),
-                                 ('autoimp', None, _('_Auto Import and HUD'), '<control>A', 'Auto Import and HUD', self.tab_auto_import),
-                                 ('hudConfigurator', None, _('_HUD Configurator'), '<control>H', 'HUD Configurator', self.diaHudConfigurator),
-                                 ('graphs', None, _('_Graphs'), '<control>G', 'Graphs', self.tabGraphViewer),
-                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view)'), '<control>P', 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view)'), '<control>T', 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
+                                 ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
+                                 ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
+                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
-                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), '<control>O', 'Positional Stats (tabulated view)', self.tab_positional_stats),
+                                 ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
                                  ('database', None, _('_Database')),
                                  ('maintaindbs', None, _('_Maintain Databases'), None, 'Maintain Databases', self.dia_maintain_dbs),
@@ -843,7 +843,7 @@ class fpdb:
                                  ('Logs', None, _('_Log Messages'), None, 'Log and Debug Messages', self.dia_logs),
                                  ('About', None, _('A_bout, License, Copying'), None, 'About the program', self.dia_about),
                                 ])
-        actiongroup.get_action('Quit').set_property('short-label', '_Quit')
+        actiongroup.get_action('Quit').set_property('short-label', _('_Quit'))
 
         uimanager.insert_action_group(actiongroup, 0)
         merge_id = uimanager.add_ui_from_string(fpdbmenu)
