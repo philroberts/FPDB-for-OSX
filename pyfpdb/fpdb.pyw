@@ -534,9 +534,9 @@ class fpdb:
 
             #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
-                    buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm deleting and recreating tables")
-            diastring = "Please confirm that you want to (re-)create the tables. If there already are tables in the database " \
-                        +self.db.database+" on "+self.db.host+" they will be deleted.\nThis may take a while."
+                    buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
+            diastring = _("Please confirm that you want to (re-)create the tables. If there already are tables in the database ") \
+                        +self.db.database+" on "+self.db.host+_(" they will be deleted.\nThis may take a while.")
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             dia_confirm.set_deletable(False)
@@ -561,14 +561,14 @@ class fpdb:
                 #    self.fdb_lock.fdb.recreate_tables()
             elif response == gtk.RESPONSE_NO:
                 self.release_global_lock()
-                print 'User cancelled recreating tables'
+                print _('User cancelled recreating tables')
             #if not lock_released:
     #end def dia_recreate_tables
 
     def dia_recreate_hudcache(self, widget, data=None):
         if self.obtain_global_lock("dia_recreate_hudcache"):
             self.dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Confirm recreating HUD cache")
-            diastring = "Please confirm that you want to re-create the HUD cache."
+            diastring = _("Please confirm that you want to re-create the HUD cache.")
             self.dia_confirm.format_secondary_text(diastring)
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             self.dia_confirm.set_deletable(False)
@@ -576,7 +576,7 @@ class fpdb:
             hb1 = gtk.HBox(True, 1)
             self.h_start_date = gtk.Entry(max=12)
             self.h_start_date.set_text( self.db.get_hero_hudcache_start() )
-            lbl = gtk.Label(" Hero's cache starts: ")
+            lbl = gtk.Label(_(" Hero's cache starts: "))
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
             btn.connect('clicked', self.__calendar_dialog, self.h_start_date)
@@ -590,7 +590,7 @@ class fpdb:
             hb2 = gtk.HBox(True, 1)
             self.start_date = gtk.Entry(max=12)
             self.start_date.set_text( self.db.get_hero_hudcache_start() )
-            lbl = gtk.Label(" Villains' cache starts: ")
+            lbl = gtk.Label(_(" Villains' cache starts: "))
             btn = gtk.Button()
             btn.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
             btn.connect('clicked', self.__calendar_dialog, self.start_date)
@@ -603,7 +603,7 @@ class fpdb:
 
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
-                lbl = gtk.Label(" Rebuilding HUD Cache ... ")
+                lbl = gtk.Label(_(" Rebuilding HUD Cache ... "))
                 self.dia_confirm.vbox.add(lbl)
                 lbl.show()
                 while gtk.events_pending():
@@ -611,7 +611,7 @@ class fpdb:
 
                 self.db.rebuild_hudcache( self.h_start_date.get_text(), self.start_date.get_text() )
             elif response == gtk.RESPONSE_NO:
-                print 'User cancelled rebuilding hud cache'
+                print _('User cancelled rebuilding hud cache')
 
             self.dia_confirm.destroy()
 
@@ -623,8 +623,8 @@ class fpdb:
                                                 ,flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                                 ,type=gtk.MESSAGE_WARNING
                                                 ,buttons=(gtk.BUTTONS_YES_NO)
-                                                ,message_format="Confirm rebuilding database indexes")
-            diastring = "Please confirm that you want to rebuild the database indexes."
+                                                ,message_format=_("Confirm rebuilding database indexes"))
+            diastring = _("Please confirm that you want to rebuild the database indexes.")
             self.dia_confirm.format_secondary_text(diastring)
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             self.dia_confirm.set_deletable(False)
@@ -632,24 +632,24 @@ class fpdb:
             response = self.dia_confirm.run()
             if response == gtk.RESPONSE_YES:
                 #FIXME these progress messages do not seem to work in *nix
-                lbl = gtk.Label(" Rebuilding Indexes ... ")
+                lbl = gtk.Label(_(" Rebuilding Indexes ... "))
                 self.dia_confirm.vbox.add(lbl)
                 lbl.show()
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
                 self.db.rebuild_indexes()
 
-                lbl.set_text(" Cleaning Database ... ")
+                lbl.set_text(_(" Cleaning Database ... "))
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
                 self.db.vacuumDB()
 
-                lbl.set_text(" Analyzing Database ... ")
+                lbl.set_text(_(" Analyzing Database ... "))
                 while gtk.events_pending():
                     gtk.main_iteration_do(False)
                 self.db.analyzeDB()
             elif response == gtk.RESPONSE_NO:
-                print 'User cancelled rebuilding db indexes'
+                print _('User cancelled rebuilding db indexes')
 
             self.dia_confirm.destroy()
 
@@ -710,13 +710,13 @@ class fpdb:
         d.set_destroy_with_parent(True)
         d.set_modal(True)
 
-        d.set_title('Pick a date')
+        d.set_title(_('Pick a date'))
 
         vb = gtk.VBox()
         cal = gtk.Calendar()
         vb.pack_start(cal, expand=False, padding=0)
 
-        btn = gtk.Button('Done')
+        btn = gtk.Button(_('Done'))
         btn.connect('clicked', self.__get_date, cal, entry, d)
 
         vb.pack_start(btn, expand=False, padding=4)
