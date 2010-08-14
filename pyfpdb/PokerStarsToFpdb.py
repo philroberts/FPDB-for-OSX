@@ -169,9 +169,9 @@ class PokerStars(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
-            log.error("determineGameType: Raising FpdbParseError")
-            raise FpdbParseError("Unable to recognise gametype from: '%s'" % tmp)
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
 #    I don't think this is doing what we think. mg will always have all 
@@ -199,9 +199,9 @@ class PokerStars(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
-                log.error("determineGameType: Raising FpdbParseError")
-                raise FpdbParseError("Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         return info
 
@@ -253,7 +253,7 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError("failed to detect currency")
+                            raise FpdbParseError(_("failed to detect currency"))
 
                         info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
@@ -300,7 +300,7 @@ class PokerStars(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info('readButton: not found')
+            log.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
@@ -338,7 +338,7 @@ class PokerStars(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
-        log.debug("reading antes")
+        log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -420,7 +420,7 @@ class PokerStars(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print _("DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
 
 
     def readShowdownActions(self, hand):
@@ -447,9 +447,9 @@ class PokerStars(HandHistoryConverter):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     #parser.add_option("-q", "--quiet", action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     #parser.add_option("-v", "--verbose", action="store_const", const=logging.INFO, dest="verbosity")
     #parser.add_option("--vv", action="store_const", const=logging.DEBUG, dest="verbosity")
