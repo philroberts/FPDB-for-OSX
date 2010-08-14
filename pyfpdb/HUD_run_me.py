@@ -42,13 +42,13 @@ def destroy(*args):             # call back for terminating the main eventloop
 
 
 if __name__== "__main__":
-    sys.stderr.write("HUD_main starting\n")
+    sys.stderr.write(_("HUD_main starting\n"))
 
     try:
         HUD_main.db_name = sys.argv[1]
     except:
         HUD_main.db_name = 'fpdb'
-    sys.stderr.write("Using db name = %s\n" % (HUD_main.db_name))
+    sys.stderr.write(_("Using db name = %s\n") % (HUD_main.db_name))
 
     HUD_main.config = Configuration.Config()
 
@@ -59,11 +59,11 @@ if __name__== "__main__":
     HUD_main.main_window = gtk.Window()
     HUD_main.main_window.connect("destroy", destroy)
     HUD_main.eb = gtk.VBox()
-    label = gtk.Label('Closing this window will exit from the HUD.')
+    label = gtk.Label(_('Closing this window will exit from the HUD.'))
     HUD_main.eb.add(label)
     HUD_main.main_window.add(HUD_main.eb)
 
-    HUD_main.main_window.set_title("HUD Main Window")
+    HUD_main.main_window.set_title(_("HUD Main Window"))
     HUD_main.main_window.show_all()
     
     gtk.main()
