@@ -34,20 +34,20 @@ class GuiTourneyViewer (threading.Thread):
         self.siteBox.set_active(0)
         self.interfaceHBox.add(self.siteBox)
         
-        label=gtk.Label("Enter the tourney number you want to display:")
+        label=gtk.Label(_("Enter the tourney number you want to display:"))
         self.interfaceHBox.add(label)
         
         self.entryTourney = gtk.Entry()
         self.interfaceHBox.add(self.entryTourney)
         
-        self.displayButton = gtk.Button("_Display")
+        self.displayButton = gtk.Button(_("_Display"))
         self.displayButton.connect('clicked', self.displayClicked)
         self.interfaceHBox.add(self.displayButton)
         
         self.entryPlayer = gtk.Entry()
         self.interfaceHBox.add(self.entryPlayer)
         
-        self.playerButton = gtk.Button("Display _Player")
+        self.playerButton = gtk.Button(_("Display _Player"))
         self.playerButton.connect('clicked', self.displayPlayerClicked)
         self.interfaceHBox.add(self.playerButton)
         
@@ -62,7 +62,7 @@ class GuiTourneyViewer (threading.Thread):
             result=self.db.getTourneyInfo(self.siteName, self.tourneyNo)
             if result[1] == None:
                 self.table.destroy()
-                self.errorLabel=gtk.Label("Tournament not found - please ensure you imported it and selected the correct site")
+                self.errorLabel=gtk.Label(_("Tournament not found - please ensure you imported it and selected the correct site"))
                 self.mainVBox.add(self.errorLabel)
             else:
                 x=0
@@ -90,7 +90,7 @@ class GuiTourneyViewer (threading.Thread):
             result=self.db.getTourneyPlayerInfo(self.siteName, self.tourneyNo, self.playerName)
             if result[1] == None:
                 self.table.destroy()
-                self.errorLabel=gtk.Label("Player or tourney not found - please ensure you imported it and selected the correct site")
+                self.errorLabel=gtk.Label(_("Player or tourney not found - please ensure you imported it and selected the correct site"))
                 self.mainVBox.add(self.errorLabel)
             else:
                 x=0
@@ -104,7 +104,7 @@ class GuiTourneyViewer (threading.Thread):
                     self.table.attach(label,x,x+1,y,y+1)
                 
                     if result[1][i]==None:
-                        label=gtk.Label("N/A")
+                        label=gtk.Label(_("N/A"))
                     else:
                         label=gtk.Label(result[1][i])
                     self.table.attach(label,x+1,x+2,y,y+1)
@@ -125,7 +125,7 @@ class GuiTourneyViewer (threading.Thread):
         try:
             self.tourneyNo=int(self.entryTourney.get_text())
         except ValueError:
-            self.errorLabel=gtk.Label("invalid entry in tourney number - must enter numbers only")
+            self.errorLabel=gtk.Label(_("invalid entry in tourney number - must enter numbers only"))
             self.mainVBox.add(self.errorLabel)
             return False
         self.siteName=self.siteBox.get_active_text()
