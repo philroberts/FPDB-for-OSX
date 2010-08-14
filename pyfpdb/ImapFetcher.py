@@ -22,6 +22,10 @@
 from imaplib import IMAP4, IMAP4_SSL
 import PokerStarsSummary
 
+import gettext
+trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
+trans.install()
+
 def splitPokerStarsSummaries(emailText):
     splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
     for i in range(len(splitSummaries)):
@@ -39,7 +43,7 @@ def run(config, db):
         else:
             server = IMAP4(config.host)
         response = server.login(config.username, config.password) #TODO catch authentication error
-        print "response to logging in:",response
+        print _("response to logging in:"),response
         #print "server.list():",server.list() #prints list of folders
 
         response = server.select(config.folder)
@@ -71,7 +75,7 @@ def run(config, db):
                     #print "finished importing a PS summary with result:",result
                     #TODO: count results and output to shell like hand importer does
             
-        print "completed running Imap import, closing server connection"
+        print _("completed running Imap import, closing server connection")
     #finally:
      #   try:
         server.close()
