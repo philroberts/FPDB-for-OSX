@@ -123,7 +123,7 @@ Otherwise, finish at EOF.
 
         starttime = time.time()
         if not self.sanityCheck():
-            log.warning("Failed sanity check")
+            log.warning(_("Failed sanity check"))
             return
 
         try:
@@ -131,14 +131,14 @@ Otherwise, finish at EOF.
             self.numErrors = 0
             if self.follow:
                 #TODO: See how summary files can be handled on the fly (here they should be rejected as before)
-                log.info("Tailing '%s'" % self.in_path)
+                log.info(_("Tailing '%s'") % self.in_path)
                 for handText in self.tailHands():
                     try:
                         self.processHand(handText)
                         self.numHands += 1
                     except FpdbParseError, e:
                         self.numErrors += 1
-                        log.warning("HHC.start(follow): processHand failed: Exception msg: '%s'" % e)
+                        log.warning(_("HHC.start(follow): processHand failed: Exception msg: '%s'") % e)
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
@@ -152,22 +152,22 @@ Otherwise, finish at EOF.
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
                             self.numErrors += 1
-                            log.warning("HHC.start(): processHand failed: Exception msg: '%s'" % e)
+                            log.warning(_("HHC.start(): processHand failed: Exception msg: '%s'") % e)
                             log.debug(handText)
                     self.numHands = len(handsList)
                     endtime = time.time()
-                    log.info("Read %d hands (%d failed) in %.3f seconds" % (self.numHands, self.numErrors, endtime - starttime))
+                    log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
                 else:
                         self.parsedObjectType = "Summary"
                         summaryParsingStatus = self.readSummaryInfo(handsList)
                         endtime = time.time()
                         if summaryParsingStatus :
-                            log.info("Summary file '%s' correctly parsed  (took %.3f seconds)" % (self.in_path, endtime - starttime))
+                            log.info(_("Summary file '%s' correctly parsed  (took %.3f seconds)") % (self.in_path, endtime - starttime))
                         else :
-                            log.warning("Error converting summary file '%s' (took %.3f seconds)" % (self.in_path, endtime - starttime))
+                            log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
 
         except IOError, ioe:
-            log.exception("Error converting '%s'" % self.in_path)
+            log.exception(_("Error converting '%s'") % self.in_path)
         finally:
             if self.out_fh != sys.stdout:
                 self.out_fh.close()
@@ -198,7 +198,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
                     time.sleep(interval)
                     fd.seek(where)
                 else:
-                    log.debug("%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1]))
+                    log.debug(_("%s changed inode numbers from %d to %d") % (self.in_path, fd_results[1], st_results[1]))
                     fd = codecs.open(self.in_path, 'r', self.codepage)
                     fd.seek(where)
             else:
@@ -243,17 +243,17 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
         if self.starsArchive == True:
-            log.debug("Converting starsArchive format to readable")
+            log.debug(_("Converting starsArchive format to readable"))
             m = re.compile('^Hand #\d+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.ftpArchive == True:
-            log.debug("Converting ftpArchive format to readable")
+            log.debug(_("Converting ftpArchive format to readable"))
             m = re.compile('^\*\*\*\*\*\*+\s#\s\d+\s\*\*\*\*\*+$', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.info("Read no hands.")
+            log.info(_("Read no hands."))
             return []
         return re.split(self.re_SplitHands,  self.obs)
 
@@ -281,13 +281,13 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.info("Unsupported game type: %s" % gametype)
+            log.info(_("Unsupported game type: %s" % gametype))
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.info("Unsupported game type: %s" % gametype)
+            log.info(_("Unsupported game type: %s" % gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
 
@@ -390,7 +390,7 @@ or None if we fail to get the info """
             sane = True
 
         if self.in_path != '-' and self.out_path == self.in_path:
-            print "HH Sanity Check: output and input files are the same, check config"
+            print _("HH Sanity Check: output and input files are the same, check config")
             sane = False
 
 
@@ -425,7 +425,7 @@ or None if we fail to get the info """
         if self.filetype == "text":
             if self.in_path == '-':
                 # read from stdin
-                log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
+                log.debug(_("Reading stdin with %s") % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
                 for kodec in self.__listof(self.codepage):
@@ -440,7 +440,7 @@ or None if we fail to get the info """
                     except:
                         pass
                 else:
-                    print "unable to read file with any codec in list!", self.in_path
+                    print _("unable to read file with any codec in list!"), self.in_path
                     self.obs = ""
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
@@ -594,13 +594,13 @@ def get_out_fh(out_path, parameters):
             try: 
                 os.makedirs(out_dir) 
             except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
-                log.error("Unable to create output directory %s for HHC!" % out_dir) 
-                print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir 
+                log.error(_("Unable to create output directory %s for HHC!") % out_dir) 
+                print _("*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"), out_dir 
             else: 
-                log.info("Created directory '%s'" % out_dir) 
+                log.info(_("Created directory '%s'") % out_dir) 
         try: 
             return(codecs.open(out_path, 'w', 'utf8')) 
         except: 
-            log.error("out_path %s couldn't be opened" % (out_path)) 
+            log.error(_("out_path %s couldn't be opened") % (out_path)) 
     else:
         return(sys.stdout)
