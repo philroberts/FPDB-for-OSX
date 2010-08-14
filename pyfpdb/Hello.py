@@ -41,10 +41,10 @@ from Mucked import Aux_Seats
 class Hello(Aux_Window):
     """A 'Hello World' Aux_Window demo."""
     def create(self):
-        print "creating Hello"
+        print _("creating Hello")
 #    This demo simply creates a label in a window.
         self.container = gtk.Window()
-        self.container.add(gtk.Label("Hello World"))
+        self.container.add(gtk.Label(_("Hello World")))
 #    and shows it. There is no functionality.
         self.container.show_all()
 
@@ -62,7 +62,7 @@ class Hello_plus(Aux_Window):
 
 #    get the site we are playing from the HUD
         self.site = hud.site
-        print "site =", hud.site # print it to the terminal, to make sure
+        print _("site ="), hud.site # print it to the terminal, to make sure
 
 #    now get our screen name for that site from the configuration
 #    wrap it in a try/except in case screen name isn't set up in the config file
@@ -70,7 +70,7 @@ class Hello_plus(Aux_Window):
             site_params = self.config.get_site_parameters(self.hud.site)
             self.hero = site_params['screen_name']
         except:
-            self.hero = 'YOUR NAME HERE'
+            self.hero = _('YOUR NAME HERE')
         print "hero =", self.hero
 
 
@@ -101,7 +101,7 @@ class Hello_plus(Aux_Window):
 
 #    Here, we just update the label in our aux_window from the number of
 #    hands played that was updated in the "update_data()" function.
-        self.label.set_text("Hello %s\nYou have played %d hands\n on %s." % (self.hero, self.hands_played, self.site))
+        self.label.set_text(_("Hello %s\nYou have played %d hands\n on %s.") % (self.hero, self.hands_played, self.site))
 
 class Hello_Seats(Aux_Seats):
     """A 'Hello World' Seat_Window demo."""
