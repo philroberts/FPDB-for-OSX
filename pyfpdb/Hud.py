@@ -134,153 +134,153 @@ class Hud:
 #    A popup menu for the main window
         menu = gtk.Menu()
 
-        killitem = gtk.MenuItem('Kill This HUD')
+        killitem = gtk.MenuItem(_('Kill This HUD'))
         menu.append(killitem)
         if self.parent is not None:
             killitem.connect("activate", self.parent.kill_hud, self.table_name)
 
-        saveitem = gtk.MenuItem('Save HUD Layout')
+        saveitem = gtk.MenuItem(_('Save HUD Layout'))
         menu.append(saveitem)
         saveitem.connect("activate", self.save_layout)
 
-        repositem = gtk.MenuItem('Reposition StatWindows')
+        repositem = gtk.MenuItem(_('Reposition StatWindows'))
         menu.append(repositem)
         repositem.connect("activate", self.reposition_windows)
 
-        aggitem = gtk.MenuItem('Show Player Stats')
+        aggitem = gtk.MenuItem(_('Show Player Stats'))
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
         # set agg_bb_mult to 1 to stop aggregation
-        item = gtk.CheckMenuItem('For This Blind Level Only')
+        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',1))
         setattr(self, 'h_aggBBmultItem1', item)
-        #
-        item = gtk.MenuItem('For Multiple Blind Levels:')
+        
+        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
-        #
-        item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
+        
+        item = gtk.CheckMenuItem(_('  0.5 to 2.0 x Current Blinds'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',2))
         setattr(self, 'h_aggBBmultItem2', item)
-        #
-        item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
+        
+        item = gtk.CheckMenuItem(_('  0.33 to 3.0 x Current Blinds'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',3))
         setattr(self, 'h_aggBBmultItem3', item)
-        #
-        item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
+        
+        item = gtk.CheckMenuItem(_('  0.1 to 10 x Current Blinds'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10))
         setattr(self, 'h_aggBBmultItem10', item)
-        #
-        item = gtk.CheckMenuItem('  All Levels')
+        
+        item = gtk.CheckMenuItem(_('  All Levels'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('P',10000))
         setattr(self, 'h_aggBBmultItem10000', item)
-        #
-        item = gtk.MenuItem('For #Seats:')
+        
+        item = gtk.MenuItem('For #Seats:'))
         self.aggMenu.append(item)
-        #
-        item = gtk.CheckMenuItem('  Any Number')
+        
+        item = gtk.CheckMenuItem(_('  Any Number'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','A'))
         setattr(self, 'h_seatsStyleOptionA', item)
-        #
-        item = gtk.CheckMenuItem('  Custom')
+        
+        item = gtk.CheckMenuItem(_('  Custom'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','C'))
         setattr(self, 'h_seatsStyleOptionC', item)
-        #
-        item = gtk.CheckMenuItem('  Exact')
+        
+        item = gtk.CheckMenuItem(_('  Exact'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('P','E'))
         setattr(self, 'h_seatsStyleOptionE', item)
-        #
-        item = gtk.MenuItem('Since:')
+        
+        item = gtk.MenuItem(_('Since:'))
         self.aggMenu.append(item)
-        #
-        item = gtk.CheckMenuItem('  All Time')
+        
+        item = gtk.CheckMenuItem(_('  All Time'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','A'))
         setattr(self, 'h_hudStyleOptionA', item)
-        #
-        item = gtk.CheckMenuItem('  Session')
+        
+        item = gtk.CheckMenuItem(_('  Session'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','S'))
         setattr(self, 'h_hudStyleOptionS', item)
-        #
-        item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
+        
+        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('P','T'))
         setattr(self, 'h_hudStyleOptionT', item)
 
-        aggitem = gtk.MenuItem('Show Opponent Stats')
+        aggitem = gtk.MenuItem(_('Show Opponent Stats'))
         menu.append(aggitem)
         self.aggMenu = gtk.Menu()
         aggitem.set_submenu(self.aggMenu)
         # set agg_bb_mult to 1 to stop aggregation
-        item = gtk.CheckMenuItem('For This Blind Level Only')
+        item = gtk.CheckMenuItem(_('For This Blind Level Only'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',1))
         setattr(self, 'aggBBmultItem1', item)
-        #
-        item = gtk.MenuItem('For Multiple Blind Levels:')
+        
+        item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
-        #
-        item = gtk.CheckMenuItem('  0.5 to 2.0 x Current Blinds')
+        
+        item = gtk.CheckMenuItem(_('  0.5 to 2.0 x Current Blinds'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',2))
         setattr(self, 'aggBBmultItem2', item)
-        #
-        item = gtk.CheckMenuItem('  0.33 to 3.0 x Current Blinds')
+        
+        item = gtk.CheckMenuItem(_('  0.33 to 3.0 x Current Blinds'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',3))
         setattr(self, 'aggBBmultItem3', item)
-        #
-        item = gtk.CheckMenuItem('  0.1 to 10 x Current Blinds')
+        
+        item = gtk.CheckMenuItem(_('  0.1 to 10 x Current Blinds'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10))
         setattr(self, 'aggBBmultItem10', item)
-        #
-        item = gtk.CheckMenuItem('  All Levels')
+        
+        item = gtk.CheckMenuItem(_('  All Levels'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_aggregation, ('O',10000))
         setattr(self, 'aggBBmultItem10000', item)
-        #
-        item = gtk.MenuItem('For #Seats:')
+        
+        item = gtk.MenuItem(_('For #Seats:'))
         self.aggMenu.append(item)
-        #
-        item = gtk.CheckMenuItem('  Any Number')
+        
+        item = gtk.CheckMenuItem(_('  Any Number'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','A'))
         setattr(self, 'seatsStyleOptionA', item)
-        #
-        item = gtk.CheckMenuItem('  Custom')
+        
+        item = gtk.CheckMenuItem(_('  Custom'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','C'))
         setattr(self, 'seatsStyleOptionC', item)
-        #
-        item = gtk.CheckMenuItem('  Exact')
+        
+        item = gtk.CheckMenuItem(_('  Exact'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_seats_style, ('O','E'))
         setattr(self, 'seatsStyleOptionE', item)
-        #
-        item = gtk.MenuItem('Since:')
+        
+        item = gtk.MenuItem(_('Since:'))
         self.aggMenu.append(item)
-        #
-        item = gtk.CheckMenuItem('  All Time')
+        
+        item = gtk.CheckMenuItem(_('  All Time'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','A'))
         setattr(self, 'hudStyleOptionA', item)
-        #
-        item = gtk.CheckMenuItem('  Session')
+        
+        item = gtk.CheckMenuItem(_('  Session'))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','S'))
         setattr(self, 'hudStyleOptionS', item)
-        #
-        item = gtk.CheckMenuItem('  %s Days' % (self.hud_params['h_hud_days']))
+        
+        item = gtk.CheckMenuItem(_('  %s Days') % (self.hud_params['h_hud_days']))
         self.aggMenu.append(item)
         item.connect("activate", self.set_hud_style, ('O','T'))
         setattr(self, 'hudStyleOptionT', item)
@@ -296,7 +296,7 @@ class Hud:
             getattr(self, 'h_aggBBmultItem10').set_active(True)
         elif self.hud_params['h_agg_bb_mult'] > 9000:
             getattr(self, 'h_aggBBmultItem10000').set_active(True)
-        #
+        
         if self.hud_params['agg_bb_mult'] == 1:
             getattr(self, 'aggBBmultItem1').set_active(True)
         elif self.hud_params['agg_bb_mult'] == 2:
@@ -307,28 +307,28 @@ class Hud:
             getattr(self, 'aggBBmultItem10').set_active(True)
         elif self.hud_params['agg_bb_mult'] > 9000:
             getattr(self, 'aggBBmultItem10000').set_active(True)
-        #
+        
         if self.hud_params['h_seats_style'] == 'A':
             getattr(self, 'h_seatsStyleOptionA').set_active(True)
         elif self.hud_params['h_seats_style'] == 'C':
             getattr(self, 'h_seatsStyleOptionC').set_active(True)
         elif self.hud_params['h_seats_style'] == 'E':
             getattr(self, 'h_seatsStyleOptionE').set_active(True)
-        #
+        
         if self.hud_params['seats_style'] == 'A':
             getattr(self, 'seatsStyleOptionA').set_active(True)
         elif self.hud_params['seats_style'] == 'C':
             getattr(self, 'seatsStyleOptionC').set_active(True)
         elif self.hud_params['seats_style'] == 'E':
             getattr(self, 'seatsStyleOptionE').set_active(True)
-        #
+        
         if self.hud_params['h_hud_style'] == 'A':
             getattr(self, 'h_hudStyleOptionA').set_active(True)
         elif self.hud_params['h_hud_style'] == 'S':
             getattr(self, 'h_hudStyleOptionS').set_active(True)
         elif self.hud_params['h_hud_style'] == 'T':
             getattr(self, 'h_hudStyleOptionT').set_active(True)
-        #
+        
         if self.hud_params['hud_style'] == 'A':
             getattr(self, 'hudStyleOptionA').set_active(True)
         elif self.hud_params['hud_style'] == 'S':
@@ -338,11 +338,11 @@ class Hud:
 
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
-        debugitem = gtk.MenuItem('Debug StatWindows')
+        debugitem = gtk.MenuItem(_('Debug StatWindows'))
         menu.append(debugitem)
         debugitem.connect("activate", self.debug_stat_windows)
 
-        item5 = gtk.MenuItem('Set max seats')
+        item5 = gtk.MenuItem(_('Set max seats'))
         menu.append(item5)
         maxSeatsMenu = gtk.Menu()
         item5.set_submenu(maxSeatsMenu)
@@ -525,7 +525,7 @@ class Hud:
 #    ask each aux to save its layout back to the config object
         [aux.save_layout() for aux in self.aux_windows]
 #    save the config object back to the file
-        print "Updating config file"
+        print _("Updating config file")
         self.config.save()
 
     def adj_seats(self, hand, config):
@@ -534,7 +534,7 @@ class Hud:
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         if self.max not in config.supported_sites[self.table.site].layout:
-            sys.stderr.write("No layout found for %d-max games for site %s\n" % (self.max, self.table.site) )
+            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site) )
             return adj
         if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
@@ -548,15 +548,15 @@ class Hud:
                     if adj[j] > self.max:
                         adj[j] = adj[j] - self.max
             except Exception, inst:
-                sys.stderr.write("exception in adj!!!\n\n")
-                sys.stderr.write("error is %s" % inst)           # __str__ allows args to printed directly
+                sys.stderr.write(_("exception in Hud.adj_seats\n\n"))
+                sys.stderr.write(_("error is %s") % inst)           # __str__ allows args to printed directly
         return adj
 
     def get_actual_seat(self, name):
         for key in self.stat_dict:
             if self.stat_dict[key]['screen_name'] == name:
                 return self.stat_dict[key]['seat']
-        sys.stderr.write("Error finding actual seat.\n")
+        sys.stderr.write(_("Error finding actual seat.\n"))
 
     def create(self, hand, config, stat_dict, cards):
 #    update this hud, to the stats and players as of "hand"
@@ -572,7 +572,7 @@ class Hud:
 
         self.stat_dict = stat_dict
         self.cards = cards
-        sys.stderr.write("------------------------------------------------------------\nCreating hud from hand %s\n" % hand)
+        sys.stderr.write(_("------------------------------------------------------------\nCreating hud from hand %s\n") % hand)
         adj = self.adj_seats(hand, config)
         loc = self.config.get_locations(self.table.site, self.max)
         if loc is None and self.max != 10:
@@ -621,8 +621,8 @@ class Hud:
             try:
                 statd = self.stat_dict[s]
             except KeyError:
-                log.error("KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric")
-                log.error("(btw, the key was ", s, " and statd is...", statd)
+                log.error(_("KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"))
+                log.error(_("(btw, the key was %s and statd is %s") % (s, statd))
                 continue
             try:
                 self.stat_windows[statd['seat']].player_id = statd['player_id']
@@ -929,7 +929,7 @@ class Popup_window:
 if __name__== "__main__":
     main_window = gtk.Window()
     main_window.connect("destroy", destroy)
-    label = gtk.Label('Fake main window, blah blah, blah\nblah, blah')
+    label = gtk.Label(_('Fake main window, blah blah, blah\nblah, blah'))
     main_window.add(label)
     main_window.show_all()
 
@@ -937,7 +937,7 @@ if __name__== "__main__":
     #tables = Tables.discover(c)
     t = Tables.discover_table_by_name(c, "Corona")
     if t is None:
-        print "Table not found."
+        print _("Table not found.")
     db = Database.Database(c, 'fpdb', 'holdem')
 
     stat_dict = db.get_stats_from_hand(1)
