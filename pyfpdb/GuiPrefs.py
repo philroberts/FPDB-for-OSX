@@ -67,13 +67,13 @@ class GuiPrefs:
         self.configView = gtk.TreeView(self.configStore)
         self.configView.set_enable_tree_lines(True)
 
-        configColumn = gtk.TreeViewColumn("Setting")
+        configColumn = gtk.TreeViewColumn(_("Setting"))
         self.configView.append_column(configColumn)
         cRender = gtk.CellRendererText()
         configColumn.pack_start(cRender, True)
         configColumn.add_attribute(cRender, 'text', 1)
 
-        configColumn = gtk.TreeViewColumn("Value  (double-click to change)")
+        configColumn = gtk.TreeViewColumn(_("Value  (double-click to change)"))
         self.configView.append_column(configColumn)
         cRender = gtk.CellRendererText()
         configColumn.pack_start(cRender, True)
@@ -168,19 +168,17 @@ class GuiPrefs:
         if dia is not None:
             dia.response(gtk.RESPONSE_ACCEPT)
 
-
-
 if __name__=="__main__":
 
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title("Test Preferences Dialog")
+    win.set_title(_("Test Preferences Dialog"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
 
-    dia = gtk.Dialog("Preferences",
+    dia = gtk.Dialog(_("Preferences"),
                      win,
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
@@ -193,7 +191,3 @@ if __name__=="__main__":
         # save updated config
         config.save()
     dia.destroy()
-
-
-
-
