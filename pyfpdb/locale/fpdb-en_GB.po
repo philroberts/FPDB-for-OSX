@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-13 05:34+CEST\n"
+"POT-Creation-Date: 2010-08-14 02:57+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,6 +14,110 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Generated-By: pygettext.py 1.5\n"
 
+
+#: Anonymise.py:47
+msgid "Could not find file %s"
+msgstr ""
+
+#: Anonymise.py:53
+msgid "Output being written to"
+msgstr ""
+
+#: BetfairToFpdb.py:75
+msgid "GameInfo regex did not match"
+msgstr ""
+
+#: BetfairToFpdb.py:106
+msgid "Didn't match re_HandInfo"
+msgstr ""
+
+#: BetfairToFpdb.py:162
+msgid "No bringin found"
+msgstr ""
+
+#: BetfairToFpdb.py:198
+msgid "DEBUG: unimplemented readAction: '%s' '%s'"
+msgstr ""
+
+#: BetfairToFpdb.py:221
+msgid "parse input hand history"
+msgstr ""
+
+#: BetfairToFpdb.py:222
+msgid "output translation to"
+msgstr ""
+
+#: BetfairToFpdb.py:223
+msgid "follow (tail -f) the input"
+msgstr ""
+
+#: Configuration.py:98
+msgid ""
+"No %s found\n"
+"  in %s\n"
+"  or %s\n"
+msgstr ""
+
+#: Configuration.py:99
+msgid ""
+"Config file has been created at %s.\n"
+msgstr ""
+
+#: Configuration.py:104 Configuration.py:105
+msgid ""
+"Error copying .example file, cannot fall back. Exiting.\n"
+msgstr ""
+
+#: Configuration.py:109 Configuration.py:110
+msgid ""
+"No %s found, cannot fall back. Exiting.\n"
+msgstr ""
+
+#: Configuration.py:140
+msgid "Default logger initialised for "
+msgstr ""
+
+#: Configuration.py:141
+msgid "Default logger intialised for "
+msgstr ""
+
+#: Configuration.py:152
+msgid "Creating directory: '%s'"
+msgstr ""
+
+#: Configuration.py:178
+msgid "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+msgstr ""
+
+#: Configuration.py:261
+msgid "Loading site"
+msgstr ""
+
+#: Configuration.py:499
+msgid "config.general: adding %s = %s"
+msgstr ""
+
+#: Configuration.py:532 Configuration.py:533
+msgid "bad number in xalignment was ignored"
+msgstr ""
+
+#: Configuration.py:586 Configuration.py:587
+msgid "Configuration file %s not found.  Using defaults."
+msgstr ""
+
+#: Configuration.py:603
+msgid "Reading configuration file %s"
+msgstr ""
+
+#: Configuration.py:604
+msgid ""
+"\n"
+"Reading configuration file %s\n"
+msgstr ""
+
+#: Configuration.py:609
+msgid "Error parsing %s.  See error log file."
+msgstr ""
 
 #: GuiAutoImport.py:73
 msgid "Time between imports in seconds:"
