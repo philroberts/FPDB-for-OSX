@@ -31,6 +31,18 @@ from optparse import OptionParser
 import Configuration
 import string
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config, sql, parent):
         self.importtimer = 0
