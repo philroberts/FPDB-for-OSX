@@ -35,6 +35,9 @@ import Exceptions
 import Database
 import SQL
 
+import gettext
+trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
+trans.install()
 
 class GuiDatabase:
 
@@ -92,19 +95,19 @@ class GuiDatabase:
             self.scrolledwindow.add(self.listview)
             self.vbox.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
 
-            refreshbutton = gtk.Button("Refresh")
+            refreshbutton = gtk.Button(_("Refresh"))
             refreshbutton.connect("clicked", self.refresh, None)
             self.vbox.pack_start(refreshbutton, False, False, 3)
             refreshbutton.show()
 
-            col = self.addTextColumn("Type", 0, False)
-            col = self.addTextColumn("Name", 1, False)
-            col = self.addTextColumn("Description", 2, True)
-            col = self.addTextColumn("Username", 3, True)
-            col = self.addTextColumn("Password", 4, True)
-            col = self.addTextColumn("Host", 5, True)
-            col = self.addTextObjColumn("Default", 6, 6)
-            col = self.addTextObjColumn("Status", 7, 8)
+            col = self.addTextColumn(_("Type"), 0, False)
+            col = self.addTextColumn(_("Name"), 1, False)
+            col = self.addTextColumn(_("Description"), 2, True)
+            col = self.addTextColumn(_("Username"), 3, True)
+            col = self.addTextColumn(_("Password"), 4, True)
+            col = self.addTextColumn(_("Host"), 5, True)
+            col = self.addTextObjColumn(_("Default"), 6, 6)
+            col = self.addTextObjColumn(_("Status"), 7, 8)
 
             #self.listview.get_selection().set_mode(gtk.SELECTION_SINGLE)
             #self.listview.get_selection().connect("changed", self.on_selection_changed)
@@ -237,7 +240,7 @@ class GuiDatabase:
 
         self.liststore.clear()
         #self.listcols = []
-        dia = self.info_box2(None, 'Testing database connections ... ', "", False, False)
+        dia = self.info_box2(None, _('Testing database connections ... '), "", False, False)
         while gtk.events_pending():
             gtk.mainiteration() 
 
@@ -267,49 +270,47 @@ class GuiDatabase:
                 try:
                     # is creating empty db for sqlite ... mod db.py further?
                     # add noDbTables flag to db.py?
-                    log.debug("loaddbs: trying to connect to: %s/%s, %s, %s/%s" % (str(dbms_num),dbms,name,user,passwd))
+                    log.debug(_("loaddbs: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
                     db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
                     if db.connected:
-                        log.debug("         connected ok")
+                        log.debug(_("         connected ok"))
                         status = 'ok'
                         icon = gtk.STOCK_APPLY
                         if db.wrongDbVersion:
                             status = 'old'
                             icon = gtk.STOCK_INFO
                     else:
-                        log.debug("         not connected but no exception")
+                        log.debug(_("         not connected but no exception"))
                 except Exceptions.FpdbMySQLAccessDenied:
-                    err_msg = "MySQL Server reports: Access denied. Are your permissions set correctly?"
+                    err_msg = _("MySQL Server reports: Access denied. Are your permissions set correctly?")
                     status = "failed"
                     icon = gtk.STOCK_CANCEL
                 except Exceptions.FpdbMySQLNoDatabase:
-                    err_msg = "MySQL client reports: 2002 or 2003 error. Unable to connect - " \
-                              + "Please check that the MySQL service has been started"
+                    err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started")
                     status = "failed"
                     icon = gtk.STOCK_CANCEL
                 except Exceptions.FpdbPostgresqlAccessDenied:
-                    err_msg = "Postgres Server reports: Access denied. Are your permissions set correctly?"
+                    err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
                     status = "failed"
                 except Exceptions.FpdbPostgresqlNoDatabase:
-                    err_msg = "Postgres client reports: Unable to connect - " \
-                              + "Please check that the Postgres service has been started"
+                    err_msg = _("Postgres client reports: Unable to connect - Please check that the Postgres service has been started")
                     status = "failed"
                     icon = gtk.STOCK_CANCEL
                 except:
                     err = traceback.extract_tb(sys.exc_info()[2])[-1]
                     log.info( 'db connection to '+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
-                              + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]) )
+                              + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]) )#TODO Gettextify
                     status = "failed"
                     icon = gtk.STOCK_CANCEL
                 if err_msg:
                     log.info( 'db connection to '+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
-                              + err_msg )
+                              + err_msg )#TODO Gettextify
 
                 b = gtk.Button(name)
                 b.show()
                 iter = self.liststore.append( (dbms, name, comment, user, passwd, host, "", default_icon, status, icon) )
 
-            self.info_box2(dia[0], "finished.", "", False, True)
+            self.info_box2(dia[0], _("finished."), "", False, True)
             self.listview.show()
             self.scrolledwindow.show()
             self.vbox.show()
@@ -319,7 +320,7 @@ class GuiDatabase:
             self.dia.show()
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print 'loaddbs error: '+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: ' \
+            print _('loaddbs error: ')+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: ' \
                       + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
 
     def sortCols(self, col, n):
@@ -340,9 +341,9 @@ class GuiDatabase:
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***sortCols error: " + str(sys.exc_info()[1])
+            print _("***sortCols error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
-            log.info('sortCols error: ' + str(sys.exc_info()) )
+            log.info(_('sortCols error: ') + str(sys.exc_info()) )
 
     def refresh(self, widget, data):
         self.loadDbs()
@@ -363,7 +364,7 @@ class GuiDatabase:
                     for d in c.get_children():
                         log.info('child: '+str(d)+' is a '+str(d.__class__))
                         if isinstance(d, gtk.Button):
-                            log.info('removing button '+str(d))
+                            log.info(_('removing button %s'% str(d)))
                             c.remove(d)
             if str2:
                 dia.format_secondary_text(str2)
@@ -412,12 +413,12 @@ if __name__=="__main__":
     config = Configuration.Config()
 
     win = gtk.Window(gtk.WINDOW_TOPLEVEL)
-    win.set_title("Test Log Viewer")
+    win.set_title(_("Test Log Viewer"))
     win.set_border_width(1)
     win.set_default_size(600, 500)
     win.set_resizable(True)
 
-    dia = gtk.Dialog("Log Viewer",
+    dia = gtk.Dialog(_("Log Viewer"),
                      win,
                      gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                      (gtk.STOCK_CLOSE, gtk.RESPONSE_OK))
