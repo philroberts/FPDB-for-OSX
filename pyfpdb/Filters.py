@@ -48,14 +48,14 @@ class Filters(threading.Thread):
         self.display = display
 
         # text used on screen stored here so that it can be configured
-        self.filterText = {'limitsall':'All', 'limitsnone':'None', 'limitsshow':'Show _Limits'
-                          ,'seatsbetween':'Between:', 'seatsand':'And:', 'seatsshow':'Show Number of _Players'
-                          ,'playerstitle':'Hero:', 'sitestitle':'Sites:', 'gamestitle':'Games:'
-                          ,'limitstitle':'Limits:', 'seatstitle':'Number of Players:'
-                          ,'groupstitle':'Grouping:', 'posnshow':'Show Position Stats:'
-                          ,'datestitle':'Date:'
-                          ,'groupsall':'All Players'
-                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':'Ring', 'tour':'Tourney'
+        self.filterText = {'limitsall':_('All'), 'limitsnone':_('None'), 'limitsshow':_('Show _Limits')
+                          ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
+                          ,'playerstitle':_('Hero:'), 'sitestitle':_('Sites:'), 'gamestitle':_('Games:')
+                          ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
+                          ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats:')
+                          ,'datestitle':_('Date:')
+                          ,'groupsall':_('All Players')
+                          ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':_('Ring'), 'tour':_('Tourney')
                           }
 
         gen = self.conf.get_general_params()
@@ -89,7 +89,7 @@ class Filters(threading.Thread):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print "Either 0 or more than one site matched (%s) - EEK" % site
+                print _("Either 0 or more than one site matched (%s) - EEK") % site
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)
@@ -299,7 +299,7 @@ class Filters(threading.Thread):
     #end def registerButton2Callback
 
     def cardCallback(self, widget, data=None):
-        log.debug( "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()]) )
+        log.debug( _("%s was toggled %s") % (data, (_("OFF"), _("ON"))[widget.get_active()]) )
 
     def createPlayerLine(self, hbox, site, player):
         log.debug('add:"%s"' % player)
@@ -380,19 +380,19 @@ class Filters(threading.Thread):
     def __set_site_select(self, w, site):
         #print w.get_active()
         self.sites[site] = w.get_active()
-        log.debug("self.sites[%s] set to %s" %(site, self.sites[site]))
+        log.debug(_("self.sites[%s] set to %s") %(site, self.sites[site]))
     #end def __set_site_select
 
     def __set_game_select(self, w, game):
         #print w.get_active()
         self.games[game] = w.get_active()
-        log.debug("self.games[%s] set to %s" %(game, self.games[game]))
+        log.debug(_("self.games[%s] set to %s") %(game, self.games[game]))
     #end def __set_game_select
 
     def __set_limit_select(self, w, limit):
         #print "__set_limit_select:  limit =", limit, w.get_active()
         self.limits[limit] = w.get_active()
-        log.debug("self.limit[%s] set to %s" %(limit, self.limits[limit]))
+        log.debug(_("self.limit[%s] set to %s") %(limit, self.limits[limit]))
         if limit.isdigit() or (len(limit) > 2 and (limit[-2:] == 'nl' or limit[-2:] == 'fl' or limit[-2:] == 'pl')):
             if self.limits[limit]:
                 if self.cbNoLimits is not None:
@@ -529,13 +529,13 @@ class Filters(threading.Thread):
     def __set_seat_select(self, w, seat):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.seats[seat] = w.get_active()
-        log.debug( "self.seats[%s] set to %s" %(seat, self.seats[seat]) )
+        log.debug( _("self.seats[%s] set to %s") %(seat, self.seats[seat]) )
     #end def __set_seat_select
 
     def __set_group_select(self, w, group):
         #print "__set_seat_select: seat =", seat, "active =", w.get_active()
         self.groups[group] = w.get_active()
-        log.debug( "self.groups[%s] set to %s" %(group, self.groups[group]) )
+        log.debug( _("self.groups[%s] set to %s") %(group, self.groups[group]) )
 
     def fillPlayerFrame(self, vbox, display):
         top_hbox = gtk.HBox(False, 0)
@@ -568,7 +568,7 @@ class Filters(threading.Thread):
             self.sbGroups['allplayers'] = cb
             self.groups['allplayers'] = False
 
-            lbl = gtk.Label('Min # Hands:')
+            lbl = gtk.Label(_('Min # Hands:'))
             lbl.set_alignment(xalign=1.0, yalign=0.5)
             hbox.pack_start(lbl, expand=True, padding=3)
 
@@ -634,8 +634,8 @@ class Filters(threading.Thread):
                 vbox1.pack_start(hbox, False, True, 0)
                 self.createTourneyTypeLine(hbox, line[0])
         else:
-            print "INFO: No tourney types returned from database"
-            log.info("No tourney types returned from database")
+            print _("INFO: No tourney types returned from database")
+            log.info(_("No tourney types returned from database"))
     #end def fillTourneyTypesFrame
 
     def fillGamesFrame(self, vbox):
@@ -661,8 +661,8 @@ class Filters(threading.Thread):
                 vbox1.pack_start(hbox, False, True, 0)
                 self.createGameLine(hbox, line[0])
         else:
-            print "INFO: No games returned from database"
-            log.info("No games returned from database")
+            print _("INFO: No games returned from database")
+            log.info(_("No games returned from database"))
     #end def fillGamesFrame
 
     def fillLimitsFrame(self, vbox, display):
@@ -750,8 +750,8 @@ class Filters(threading.Thread):
                            self.cbPL = self.createLimitLine(hbox, 'pl', self.filterText['limitsPL'])
                        dest = vbox2  # for ring/tour buttons
         else:
-            print "INFO: No games returned from database"
-            log.info("No games returned from database")
+            print _("INFO: No games returned from database")
+            log.info(_("No games returned from database"))
 
         if "Type" in display and display["Type"] == True and self.found['ring'] and self.found['tour']:
             rb1 = gtk.RadioButton(None, self.filterText['ring'])
@@ -899,7 +899,7 @@ class Filters(threading.Thread):
         btn_end.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_end.connect('clicked', self.__calendar_dialog, self.end_date)
 
-        btn_clear = gtk.Button(label=' Clear Dates ')
+        btn_clear = gtk.Button(label=_(' Clear Dates '))
         btn_clear.connect('clicked', self.__clear_dates)
 
         hbox.pack_start(lbl_end, expand=False, padding=3)
@@ -926,13 +926,13 @@ class Filters(threading.Thread):
 
     def __calendar_dialog(self, widget, entry):
         d = gtk.Window(gtk.WINDOW_TOPLEVEL)
-        d.set_title('Pick a date')
+        d.set_title(_('Pick a date'))
 
         vb = gtk.VBox()
         cal = gtk.Calendar()
         vb.pack_start(cal, expand=False, padding=0)
 
-        btn = gtk.Button('Done')
+        btn = gtk.Button(_('Done'))
         btn.connect('clicked', self.__get_date, cal, entry, d)
 
         vb.pack_start(btn, expand=False, padding=4)
