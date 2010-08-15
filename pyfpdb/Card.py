@@ -153,7 +153,7 @@ def encodeCard(cardString):
     return encodeCardList[cardString]
 
 if __name__ == '__main__':
-    print "fpdb card encoding(same as pokersource)"
+    print _("fpdb card encoding(same as pokersource)")
     for i in xrange(1, 14):
         print "card %2d = %s    card %2d = %s    card %2d = %s    card %2d = %s" % \
             (i, valueSuitFromCard(i), i+13, valueSuitFromCard(i+13), i+26, valueSuitFromCard(i+26), i+39, valueSuitFromCard(i+39))
