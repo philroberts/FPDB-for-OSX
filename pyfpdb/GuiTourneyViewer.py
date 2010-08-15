@@ -20,6 +20,18 @@ import pygtk
 pygtk.require('2.0')
 import gtk
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 class GuiTourneyViewer (threading.Thread):
     def __init__(self, config, db, sql, mainwin, debug=True):
         self.db = db

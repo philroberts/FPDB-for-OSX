@@ -22,6 +22,18 @@ import gtk
 import os
 from time import time, strftime
     
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 import fpdb_import
 import Database
 import Filters
