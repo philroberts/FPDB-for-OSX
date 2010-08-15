@@ -30,9 +30,18 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("logview")
 
-import gettext
-trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
-trans.install()
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+print "lang:", lang
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 MAX_LINES = 100000         # max lines to display in window
 EST_CHARS_PER_LINE = 150   # used to guesstimate number of lines in log file
