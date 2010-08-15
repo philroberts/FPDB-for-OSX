@@ -33,6 +33,10 @@ import fpdb_import
 import Configuration
 import Exceptions
 
+import gettext
+trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
+trans.install()
+
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
