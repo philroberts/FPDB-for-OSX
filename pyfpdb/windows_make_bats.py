@@ -17,6 +17,10 @@
 
 # create .bat scripts in windows to try out different gtk dirs
 
+import gettext
+trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
+trans.install()
+
 try:
 
     import os
@@ -24,7 +28,7 @@ try:
     import re
 
     if os.name != 'nt':
-        print "\nThis script is only for windows\n"
+        print _("\nThis script is only for windows\n")
         exit()
 
     dirs = re.split(os.pathsep, os.environ['PATH'])
@@ -51,7 +55,7 @@ try:
             bat.close()
             i = i + 1
     else:
-        print "\nno gtk directories found in your path - install gtk or edit the path manually\n"
+        print _("\nno gtk directories found in your path - install gtk or edit the path manually\n")
 
 except SystemExit:
     pass
