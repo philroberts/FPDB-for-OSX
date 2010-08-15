@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.904\n"
 "POT-Creation-Date: 2010-08-15 20:33+CEST\n"
-"PO-Revision-Date: 2010-08-15 15:22+0200\n"
+"PO-Revision-Date: 2010-08-15 20:46+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -53,17 +53,15 @@ msgstr "kövesse a kimenetet (tail -f)"
 
 #: Card.py:159
 msgid "fpdb card encoding(same as pokersource)"
-msgstr ""
+msgstr "fpdb kártyakódolás (ugyanaz, mint amit a pokersource használ)"
 
 #: Charset.py:45 Charset.py:60 Charset.py:75 Charset.py:86 Charset.py:94
-#, fuzzy
 msgid "Could not convert: \"%s\"\n"
-msgstr "%s fájl nem található"
+msgstr "Nem sikerült konvertálni: \"%s\"\n"
 
 #: Charset.py:48 Charset.py:63 Charset.py:78
-#, fuzzy
 msgid "Could not encode: \"%s\"\n"
-msgstr "%s fájl nem található"
+msgstr "Nem sikerült kódolni: \"%s\"\n"
 
 #: Configuration.py:98
 msgid ""
@@ -514,22 +512,20 @@ msgstr ""
 "s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:98 GuiLogView.py:88
-#, fuzzy
 msgid "Refresh"
-msgstr "Statisztikák f_rissítése"
+msgstr "Frissítés"
 
 #: GuiDatabase.py:103
 msgid "Type"
-msgstr ""
+msgstr "Típus"
 
 #: GuiDatabase.py:104
-#, fuzzy
 msgid "Name"
-msgstr "Nincs név"
+msgstr "Név"
 
 #: GuiDatabase.py:105
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #: GuiDatabase.py:106 GuiImapFetcher.py:111
 msgid "Username"
@@ -541,32 +537,31 @@ msgstr "Jelszó"
 
 #: GuiDatabase.py:108
 msgid "Host"
-msgstr ""
+msgstr "Kiszolgáló"
 
 #: GuiDatabase.py:109
 msgid "Default"
-msgstr ""
+msgstr "Alapértelmezett"
 
 #: GuiDatabase.py:110
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: GuiDatabase.py:243
-#, fuzzy
 msgid "Testing database connections ... "
-msgstr " Adatbázis tisztítása ... "
+msgstr "Adatbázis-kapcsolatok ellenőrzése ..."
 
 #: GuiDatabase.py:273
 msgid "loaddbs: trying to connect to: %s/%s, %s, %s/%s"
-msgstr ""
+msgstr "loaddbs: kapcolódási próbálkozás: %s/%s, %s, %s/%s"
 
 #: GuiDatabase.py:276
 msgid "         connected ok"
-msgstr ""
+msgstr "         kapcsolódás OK"
 
 #: GuiDatabase.py:283
 msgid "         not connected but no exception"
-msgstr ""
+msgstr "         nem kapcsolódott, de nincs hibaüzenet"
 
 #: GuiDatabase.py:285 fpdb.pyw:904
 msgid ""
@@ -576,13 +571,12 @@ msgstr ""
 "jogosultságaid?"
 
 #: GuiDatabase.py:289
-#, fuzzy
 msgid ""
 "MySQL client reports: 2002 or 2003 error. Unable to connect - Please check "
 "that the MySQL service has been started"
 msgstr ""
 "MySQL kliens jelenti: 2002-es vagy 2003-as hiba. Nem sikerült a kapcsolódás "
-"- "
+"- Kérlek ellenőrizd, hogy a MySQL szolgáltatás el van-e indítva"
 
 #: GuiDatabase.py:293 fpdb.pyw:909
 msgid ""
@@ -592,38 +586,36 @@ msgstr ""
 "jogosultságaid?"
 
 #: GuiDatabase.py:296
-#, fuzzy
 msgid ""
 "Postgres client reports: Unable to connect - Please check that the Postgres "
 "service has been started"
-msgstr "Kérlek ellenőrizd, hogy a Postgres szolgáltatás el van-e indítva"
+msgstr ""
+"Postgres kliens jelenti: Nem sikerült a kapcsolódás. .Kérlek ellenőrizd, "
+"hogy a Postgres szolgáltatás el van-e indítva"
 
 #: GuiDatabase.py:313
 msgid "finished."
-msgstr ""
+msgstr "befejezve."
 
 #: GuiDatabase.py:323
 msgid "loaddbs error: "
-msgstr ""
+msgstr "loaddbs hiba: "
 
 #: GuiDatabase.py:344 GuiLogView.py:192 GuiTourneyPlayerStats.py:454
 msgid "***sortCols error: "
 msgstr "***sortCols hiba: "
 
 #: GuiDatabase.py:346
-#, fuzzy
 msgid "sortCols error: "
-msgstr "***sortCols hiba: "
+msgstr "sortCols hiba: "
 
 #: GuiDatabase.py:416 GuiLogView.py:205
-#, fuzzy
 msgid "Test Log Viewer"
-msgstr "Verseny nézet"
+msgstr "Napló böngésző (teszt)"
 
 #: GuiDatabase.py:421 GuiLogView.py:210
-#, fuzzy
 msgid "Log Viewer"
-msgstr "_Nézetek"
+msgstr "Napló böngésző"
 
 #: GuiGraphViewer.py:39
 msgid ""
@@ -773,7 +765,6 @@ msgid "No"
 msgstr "Nem"
 
 #: GuiLogView.py:53
-#, fuzzy
 msgid "Log Messages"
 msgstr "Nap_lóbejegyzések"
 
@@ -1622,15 +1613,15 @@ msgstr "nyomj ENTER-t a befejezéshez"
 
 #: P5sResultsParser.py:10
 msgid "You need to manually enter the playername"
-msgstr ""
+msgstr "Meg kell adnod a játékos nevét"
 
 #: PokerStarsSummary.py:72
 msgid "didn't recognise buyin currency in:"
-msgstr ""
+msgstr "nem sikerült felismerni a beülő pénznemét ebben:"
 
 #: PokerStarsSummary.py:112
 msgid "in not result starttime"
-msgstr ""
+msgstr "a starttime nem található részében"
 
 #: PokerStarsToFpdb.py:172
 msgid "determineGameType: Unable to recognise gametype from: '%s'"
@@ -1661,26 +1652,24 @@ msgid "reading antes"
 msgstr "antek olvasása"
 
 #: Tables_Demo.py:64
-#, fuzzy
 msgid "Fake HUD Main Window"
-msgstr "HUD Főablak"
+msgstr "Kamu HUD Főablak"
 
 #: Tables_Demo.py:87
 msgid "enter table name to find: "
-msgstr ""
+msgstr "add meg a keresendő asztalnevet: "
 
 #: Tables_Demo.py:112
 msgid "calling main"
-msgstr ""
+msgstr "main hívása"
 
 #: WinTables.py:70
-#, fuzzy
 msgid "Window %s not found. Skipping."
-msgstr "HUD létrehozás: %s nevű asztal nincs meg, kihagyás."
+msgstr "A(z) %s nevű ablak nincs meg. Kihagyás."
 
 #: WinTables.py:73
 msgid "self.window doesn't exist? why?"
-msgstr ""
+msgstr "self.window nem létezik? miért?"
 
 #: fpdb.pyw:46
 msgid " - press return to continue\n"
@@ -2349,17 +2338,20 @@ msgstr "Válaszd ki a leosztásarchívum könyvtárát"
 
 #: test_Database.py:50
 msgid "DEBUG: Testing variance function"
-msgstr ""
+msgstr "DEBUG: Varianciafügvény tesztelésa"
 
 #: test_Database.py:51
 msgid "DEBUG: result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
 msgstr ""
+"DEBUG: eredmény: %s várt érték: 0.666666. (eredmény - várt érték ~= 0.0): %s"
 
 #: windows_make_bats.py:31
 msgid ""
 "\n"
 "This script is only for windows\n"
 msgstr ""
+"\n"
+"Ez a szkript csak windowson használható\n"
 
 #: windows_make_bats.py:58
 msgid ""
@@ -2367,3 +2359,6 @@ msgid ""
 "no gtk directories found in your path - install gtk or edit the path "
 "manually\n"
 msgstr ""
+"\n"
+"Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
+"állítsd be kézzel az útvonalat\n"
