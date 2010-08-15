@@ -29,8 +29,19 @@ import os
 import sys
 import re
 
-#    Win32 modules
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
+#    Win32 modules
 if os.name == 'nt':
     import win32gui
     import win32process
@@ -220,7 +231,7 @@ def discover_nt(c):
                 tw.site = "Full Tilt"
             else:
                 tw.site = "Unknown"
-                sys.stderr.write("Found unknown table = %s" % tw.title)
+                sys.stderr.write(_("Found unknown table = %s") % tw.title)
             if tw.site != "Unknown":
                 eval("%s(tw)" % c.supported_sites[tw.site].decoder)
             else:
@@ -247,7 +258,7 @@ def discover_nt_by_name(c, tablename):
         if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
         if ' - Table ' in titles[hwnd]: continue # Absolute table Chat window.. sigh. TODO: Can we tell what site we're trying to discover for somehow in here, so i can limit this check just to AP searches?
         temp = decode_windows(c, titles[hwnd], hwnd)
-        print "attach to window", temp
+        print _("attach to window"), temp
         return temp
     return None
 
@@ -434,5 +445,5 @@ if __name__=="__main__":
     for t in tables.keys():
         print tables[t]
 
-    print "press enter to continue"
+    print _("press enter to continue")
     sys.stdin.readline()

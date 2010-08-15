@@ -17,9 +17,17 @@
 
 # create .bat scripts in windows to try out different gtk dirs
 
-import gettext
-trans = gettext.translation("fpdb", localedir="locale", languages=["de_DE"])
-trans.install()
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 try:
 
