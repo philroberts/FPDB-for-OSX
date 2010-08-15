@@ -6,18 +6,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.904\n"
 "POT-Creation-Date: 2010-08-15 20:33+CEST\n"
-"PO-Revision-Date: 2010-08-15 20:46+0200\n"
+"PO-Revision-Date: 2010-08-16 00:47+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: UTF-8\n"
 "Generated-By: pygettext.py 1.5\n"
-"Plural-Forms: k\n"
+"Plural-Forms: nplurals=2; plural=n !=1;\n"
 
 #: Anonymise.py:47
 msgid "Could not find file %s"
-msgstr "%s fájl nem található"
+msgstr "%s fájl nem találhatópd"
 
 #: Anonymise.py:53
 msgid "Output being written to"
@@ -151,15 +151,15 @@ msgstr "_Limitek"
 
 #: Filters.py:52
 msgid "And:"
-msgstr "És:"
+msgstr "Max:"
 
 #: Filters.py:52
 msgid "Between:"
-msgstr "Ezek között:"
+msgstr "Min:"
 
 #: Filters.py:52
 msgid "Show Number of _Players"
-msgstr "Mutasd a _játékosok számát"
+msgstr "_Játékosok száma"
 
 #: Filters.py:53
 msgid "Games:"
@@ -187,7 +187,7 @@ msgstr "Csoportosítás:"
 
 #: Filters.py:55
 msgid "Show Position Stats:"
-msgstr "Pozíciók mutatása:"
+msgstr "Pozíció"
 
 #: Filters.py:56
 msgid "Date:"
@@ -243,7 +243,7 @@ msgstr "self.groups[%s] beállítva erre: %s"
 
 #: Filters.py:571
 msgid "Min # Hands:"
-msgstr "Legalább ennyi leosztás:"
+msgstr "Minimum ennyi leosztással:"
 
 #: Filters.py:637
 msgid "INFO: No tourney types returned from database"
@@ -673,11 +673,11 @@ msgstr ""
 
 #: GuiGraphViewer.py:211 GuiGraphViewer.py:230
 msgid "Showdown: $%.2f"
-msgstr "Mutatás: $%.2f"
+msgstr "Mutatással: $%.2f"
 
 #: GuiGraphViewer.py:212 GuiGraphViewer.py:231
 msgid "Non-showdown: $%.2f"
-msgstr "Non-showdown: $%.2f"
+msgstr "Mutatás nélkül: $%.2f"
 
 #: GuiGraphViewer.py:220
 msgid "Profit graph for ring games"
@@ -685,7 +685,7 @@ msgstr "Bevételgrafikon a készpénzes játékokról"
 
 #: GuiGraphViewer.py:340
 msgid "Please choose the directory you wish to export to:"
-msgstr "Választ ki az exportálás könyvtárát:"
+msgstr "Válaszd ki az exportálás könyvtárát:"
 
 #: GuiGraphViewer.py:353
 msgid "Closed, no graph exported"
@@ -766,7 +766,7 @@ msgstr "Nem"
 
 #: GuiLogView.py:53
 msgid "Log Messages"
-msgstr "Nap_lóbejegyzések"
+msgstr "Naplóbejegyzések"
 
 #: GuiPositionalStats.py:135
 msgid "DEBUG: activesite set to %s"
@@ -894,7 +894,7 @@ msgstr "Bármilyen nagyobb hiba _csak_oda_ kerül kiírásra."
 
 #: HUD_main.pyw:92
 msgid "HUD_main: starting ...\n"
-msgstr "HUD_main: indítás ..."
+msgstr "HUD_main: indítás ...\n"
 
 #: HUD_main.pyw:105 HUD_run_me.py:62
 msgid "Closing this window will exit from the HUD."
@@ -922,7 +922,7 @@ msgstr "hud_dict[%s] nincs meg\n"
 
 #: HUD_main.pyw:267
 msgid "will not send hand\n"
-msgstr "leosztás nem lesz elküldve"
+msgstr "leosztás nem lesz elküldve\n"
 
 #: HUD_main.pyw:301
 msgid "HUD create: table name %s not found, skipping."
@@ -1845,15 +1845,15 @@ msgid ""
 "tables in the database "
 msgstr ""
 "Kérlek erősítsd meg, hogy valóban (újra) létre akarod hozni a táblákat. Ha "
-"már vannak táblák az adatbázisban,"
+"már vannak táblák az adatbázisban ("
 
 #: fpdb.pyw:545
 msgid ""
 " they will be deleted.\n"
 "This may take a while."
 msgstr ""
-" akkor azok törölve lesznek.\n"
-"Ez eltarthat egy darabig."
+"), akkor azok törölve lesznek.\n"
+"Ja, és ez eltarthat egy darabig:)"
 
 #: fpdb.pyw:570
 msgid "User cancelled recreating tables"
@@ -1870,7 +1870,7 @@ msgstr " Saját gyorstár innentől: "
 
 #: fpdb.pyw:599
 msgid " Villains' cache starts: "
-msgstr " Ellenfelek gyorstár-e innentől: "
+msgstr " Ellenfelek gyorstára innentől: "
 
 #: fpdb.pyw:612
 msgid " Rebuilding HUD Cache ... "
@@ -1909,8 +1909,8 @@ msgstr "A felhasználó megszakította az adatbázis indexeinek újraépítésé
 msgid ""
 "Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
 msgstr ""
-"Még nincs kész: Profil mentése (próbáld meg addig is ehelyett elmenteni a "
-"HUD elrendezését)"
+"Még nincs kész: Profil mentése (addig használd a HUD elrendezésének "
+"mentését, az jó)"
 
 #: fpdb.pyw:756
 msgid "Fatal Error - Config File Missing"
@@ -2002,7 +2002,7 @@ msgstr "<control>H"
 
 #: fpdb.pyw:834
 msgid "_HUD Configurator"
-msgstr "_HUD beállító"
+msgstr "_HUD beállítása"
 
 #: fpdb.pyw:835
 msgid "<control>G"
@@ -2184,13 +2184,17 @@ msgstr ""
 msgid ""
 "\n"
 "Global lock taken by"
-msgstr "Globális zárolást végzett:"
+msgstr ""
+"\n"
+"Globális zárolást végzett:"
 
 #: fpdb.pyw:972
 msgid ""
 "\n"
 "Failed to get global lock, it is currently held by"
-msgstr "Globális zárolás meghiúsult, jelenleg már zárolta:"
+msgstr ""
+"\n"
+"Globális zárolás meghiúsult, jelenleg már zárolta:"
 
 #: fpdb.pyw:982
 msgid "Quitting normally"
@@ -2214,11 +2218,11 @@ msgstr "Email import"
 
 #: fpdb.pyw:1033
 msgid "Ring Player Stats"
-msgstr "Készpénzes játékos statisztikák"
+msgstr "Készpénzes statisztikák"
 
 #: fpdb.pyw:1039
 msgid "Tourney Player Stats"
-msgstr "Versenyjátékos statisztikák"
+msgstr "Versenystatisztikák"
 
 #: fpdb.pyw:1045
 msgid "Tourney Viewer"
@@ -2259,8 +2263,10 @@ msgid ""
 msgstr ""
 "Az fpdb fordítókat keres!\n"
 "Ha beszélsz egy olyan nyelvet, amit az fpdb még nem, és van legalább pár "
-"perced, amit erre fordítanál, akkor vedd fel a kapcsolatot velünk a "
-"következő emailcímen: steffen@schaumburger.info\n"
+"perced,\n"
+"amit erre fordítanál, akkor vedd fel a kapcsolatot velünk a következő "
+"emailcímen:\n"
+"steffen@schaumburger.info\n"
 "\n"
 "Üdvözöl az fpdb!\n"
 "Iratkozz fel az új kiadásokról való értesítésekre a https://lists."
