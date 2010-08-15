@@ -38,7 +38,6 @@ from HandHistoryConverter import getTableTitleRe
 
 import locale
 lang=locale.getdefaultlocale()[0][0:2]
-print "lang:", lang
 if lang=="en":
     def _(string): return string
 else:

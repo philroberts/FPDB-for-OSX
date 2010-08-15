@@ -45,9 +45,9 @@ class TourneyFilters(Filters.Filters):
         self.conf = db.config
         self.display = display
         
-        self.filterText = {'playerstitle':'Hero:', 'sitestitle':'Sites:', 'seatstitle':'Number of Players:',
-                    'seatsbetween':'Between:', 'seatsand':'And:', 'datestitle':'Date:',
-                    'tourneyTypesTitle':'Tourney Type'}
+        self.filterText = {'playerstitle':_('Hero:'), 'sitestitle':_('Sites:'), 'seatstitle':_('Number of Players:'),
+                    'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'datestitle':_('Date:'),
+                    'tourneyTypesTitle':_('Tourney Type')}
         
         gen = self.conf.get_general_params()
         self.day_start = 0
@@ -102,7 +102,7 @@ class TourneyFilters(Filters.Filters):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print "Either 0 or more than one site matched (%s) - EEK" % site
+                print _("Either 0 or more than one site matched (%s) - EEK") % site
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)
