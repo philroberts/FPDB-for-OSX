@@ -324,7 +324,7 @@ class Stud_cards:
         for k in self.parent.hud.stat_dict.keys():
             if self.parent.hud.stat_dict[k]['seat'] == seat_no:
                 return self.parent.hud.stat_dict[k]['screen_name']
-        return "No Name"
+        return _("No Name")
 
     def clear(self):
         for r in range(0, self.rows):
