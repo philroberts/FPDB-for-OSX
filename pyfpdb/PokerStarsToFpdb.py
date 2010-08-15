@@ -24,6 +24,18 @@ import sys
 from HandHistoryConverter import *
 from decimal import Decimal
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 # PokerStars HH Format
 
 class PokerStars(HandHistoryConverter):
