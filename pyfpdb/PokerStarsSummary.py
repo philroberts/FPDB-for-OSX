@@ -69,7 +69,7 @@ class PokerStarsSummary(TourneySummary):
         elif lines[1].find("FPP")!=-1:
             self.currency="PSFP"
         else:
-            raise FpdbParseError("didn't recognise buyin currency in:"+lines[1])
+            raise FpdbParseError(_("didn't recognise buyin currency in:")+lines[1])
         
         if self.currency=="USD" or self.currency=="EUR":
             result=self.re_BuyInFee.search(lines[1])
@@ -109,7 +109,7 @@ class PokerStarsSummary(TourneySummary):
         useET=False
         result=self.re_DateTime.search(lines[currentLine])
         if not result:
-            print "in not result starttime"
+            print _("in not result starttime")
             useET=True
             result=self.re_DateTimeET.search(lines[currentLine])
         result=result.groupdict()
