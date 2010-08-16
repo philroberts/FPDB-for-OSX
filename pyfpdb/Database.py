@@ -1529,7 +1529,7 @@ class Database:
                 return "20"+tmp[0][1:3] + "-" + tmp[0][3:5] + "-" + tmp[0][5:7]
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "Error rebuilding hudcache:", str(sys.exc_value)
+            print _("Error rebuilding hudcache:"), str(sys.exc_value)
             print err
     #end def get_hero_hudcache_start
 
@@ -1541,17 +1541,17 @@ class Database:
             try:
                 self.get_cursor().execute(self.sql.query['analyze'])
             except:
-                print "Error during analyze:", str(sys.exc_value)
+                print _("Error during analyze:"), str(sys.exc_value)
         elif self.backend == self.PGSQL:
             self.connection.set_isolation_level(0)   # allow analyze to work
             try:
                 self.get_cursor().execute(self.sql.query['analyze'])
             except:
-                print "Error during analyze:", str(sys.exc_value)
+                print _("Error during analyze:"), str(sys.exc_value)
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit()
         atime = time() - stime
-        print "Analyze took %.1f seconds" % (atime,)
+        print _("Analyze took %.1f seconds") % (atime,)
     #end def analyzeDB
 
     def vacuumDB(self):
@@ -1561,17 +1561,17 @@ class Database:
             try:
                 self.get_cursor().execute(self.sql.query['vacuum'])
             except:
-                print "Error during vacuum:", str(sys.exc_value)
+                print _("Error during vacuum:"), str(sys.exc_value)
         elif self.backend == self.PGSQL:
             self.connection.set_isolation_level(0)   # allow vacuum to work
             try:
                 self.get_cursor().execute(self.sql.query['vacuum'])
             except:
-                print "Error during vacuum:", str(sys.exc_value)
+                print _("Error during vacuum:"), str(sys.exc_value)
             self.connection.set_isolation_level(1)   # go back to normal isolation level
         self.commit()
         atime = time() - stime
-        print "Vacuum took %.1f seconds" % (atime,)
+        print _("Vacuum took %.1f seconds") % (atime,)
     #end def analyzeDB
 
 # Start of Hand Writing routines. Idea is to provide a mixture of routines to store Hand data
@@ -1583,7 +1583,7 @@ class Database:
         try:
             self.get_cursor().execute(self.sql.query['lockForInsert'])
         except:
-            print "Error during lock_for_insert:", str(sys.exc_value)
+            print _("Error during lock_for_insert:"), str(sys.exc_value)
     #end def lock_for_insert
 
 ###########################
@@ -1956,10 +1956,10 @@ class Database:
                 # could also test threading.active_count() or look through threading.enumerate()
                 # so break immediately if no threads, but count up to X exceptions if a writer
                 # thread is still alive???
-                print "queue empty too long - writer stopping ..."
+                print _("queue empty too long - writer stopping ...")
                 break
             except:
-                print "writer stopping, error reading queue: " + str(sys.exc_info())
+                print _("writer stopping, error reading queue: ") + str(sys.exc_info())
                 break
             #print "got hand", str(h.get_finished())
 
@@ -1984,16 +1984,16 @@ class Database:
                         # deadlocks only a problem if hudcache is being updated
                         tries = tries + 1
                         if tries < maxTries and wait < 5:    # wait < 5 just to make sure
-                            print "deadlock detected - trying again ..."
+                            print _("deadlock detected - trying again ...")
                             sleep(wait)
                             wait = wait + wait
                             again = True
                         else:
-                            print "too many deadlocks - failed to store hand " + h.get_siteHandNo()
+                            print _("too many deadlocks - failed to store hand ") + h.get_siteHandNo()
                     if not again:
                         fails = fails + 1
                         err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                        print "***Error storing hand: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+                        print _("***Error storing hand: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             # finished trying to store hand
 
             # always reduce q count, whether or not this hand was saved ok
@@ -2003,7 +2003,7 @@ class Database:
         self.commit()
         if sendFinal:
             q.task_done()
-        print "db writer finished: stored %d hands (%d fails) in %.1f seconds" % (n, fails, time()-t0)
+        print _("db writer finished: stored %d hands (%d fails) in %.1f seconds") % (n, fails, time()-t0)
     # end def insert_queue_hands():
 
 
@@ -2013,7 +2013,7 @@ class Database:
             q.put(h)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error sending finish: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("***Error sending finish: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
     # end def send_finish_msg():
 
     def createTourneyType(self, hand):#note: this method is used on Hand and TourneySummary objects
@@ -2093,7 +2093,7 @@ class Database:
                         (hand.tourneyTypeId, hand.tourNo, hand.entries, hand.prizepool, hand.startTime,
                          hand.endTime, hand.tourneyName, hand.matrixIdProcessed, hand.totalRebuyCount, hand.totalAddOnCount))
             else:
-                raise FpdbParseError("invalid source in Database.createOrUpdateTourney")
+                raise FpdbParseError(_("invalid source in Database.createOrUpdateTourney"))
             tourneyId = self.get_last_insert_id(cursor)
         return tourneyId
     #end def createOrUpdateTourney
@@ -2106,7 +2106,7 @@ class Database:
             elif source=="HHC":
                 playerId = hand.dbid_pids[player[1]]
             else:
-                raise FpdbParseError("invalid source in Database.createOrUpdateTourneysPlayers")
+                raise FpdbParseError(_("invalid source in Database.createOrUpdateTourneysPlayers"))
             
             cursor = self.get_cursor()
             cursor.execute (self.sql.query['getTourneysPlayersByIds'].replace('%s', self.sql.query['placeholder']),
@@ -2232,7 +2232,7 @@ class HandToWrite:
             self.tableName = None
             self.seatNos = None
         except:
-            print "htw.init error: " + str(sys.exc_info())
+            print _("HandToWrite.init error: ") + str(sys.exc_info())
             raise
     # end def __init__
     
@@ -2282,7 +2282,7 @@ class HandToWrite:
             self.tableName = tableName
             self.seatNos = seatNos
         except:
-            print "htw.set_all error: " + str(sys.exc_info())
+            print _("HandToWrite.set_all error: ") + str(sys.exc_info())
             raise
     # end def set_hand
 
@@ -2313,7 +2313,7 @@ if __name__=="__main__":
     
     hero = db_connection.get_player_id(c, 'PokerStars', 'nutOmatic')
     if hero:
-        print "nutOmatic is id_player = %d" % hero
+        print _("nutOmatic is id_player = %d") % hero
     
     # example of displaying query plan in sqlite:
     if db_connection.backend == 4:
@@ -2321,7 +2321,7 @@ if __name__=="__main__":
         c = db_connection.get_cursor()
         c.execute('explain query plan '+sql.query['get_table_name'], (h, ))
         for row in c.fetchall():
-            print "query plan: ", row
+            print _("query plan: "), row
         print
     
     t0 = time()
@@ -2330,12 +2330,12 @@ if __name__=="__main__":
     for p in stat_dict.keys():
         print p, "  ", stat_dict[p]
         
-    print "cards =", db_connection.get_cards(u'1')
+    print _("cards ="), db_connection.get_cards(u'1')
     db_connection.close_connection
     
-    print "get_stats took:  %4.3f seconds" % (t1-t0)
+    print _("get_stats took:  %4.3f seconds") % (t1-t0)
 
-    print "press enter to continue"
+    print _("press enter to continue")
     sys.stdin.readline()
 
 #Code borrowed from http://push.cx/2008/caching-dictionaries-in-python-vs-ruby
