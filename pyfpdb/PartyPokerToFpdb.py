@@ -21,6 +21,18 @@
 import sys
 from collections import defaultdict
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 from Exceptions import FpdbParseError
 from HandHistoryConverter import *
 
@@ -200,16 +212,16 @@ class PartyPoker(HandHistoryConverter):
 
         for expectedField in ['LIMIT', 'GAME']:
             if mg[expectedField] is None:
-                raise FpdbParseError( "Cannot fetch field '%s'" % expectedField)
+                raise FpdbParseError(_("Cannot fetch field '%s'") % expectedField)
         try:
             info['limitType'] = limits[mg['LIMIT'].strip()]
         except:
-            raise FpdbParseError("Unknown limit '%s'" % mg['LIMIT'])
+            raise FpdbParseError(_("Unknown limit '%s'") % mg['LIMIT'])
 
         try:
             (info['base'], info['category']) = games[mg['GAME']]
         except:
-            raise FpdbParseError("Unknown game type '%s'" % mg['GAME'])
+            raise FpdbParseError(_("Unknown game type '%s'") % mg['GAME'])
 
         if 'TOURNO' in mg:
             info['type'] = 'tour'
@@ -243,17 +255,17 @@ class PartyPoker(HandHistoryConverter):
         try:
             info.update(self.re_Hid.search(hand.handText).groupdict())
         except:
-            raise FpdbParseError("Cannot read HID for current hand")
+            raise FpdbParseError(_("Cannot read HID for current hand"))
 
         try:
             info.update(self.re_HandInfo.search(hand.handText,re.DOTALL).groupdict())
         except:
-            raise FpdbParseError("Cannot read Handinfo for current hand", hid = info['HID'])
+            raise FpdbParseError(_("Cannot read Handinfo for current hand"), hid = info['HID'])
 
         try:
             info.update(self._getGameType(hand.handText).groupdict())
         except:
-            raise FpdbParseError("Cannot read GameType for current hand", hid = info['HID'])
+            raise FpdbParseError(_("Cannot read GameType for current hand"), hid = info['HID'])
 
 
         m = self.re_CountedSeats.search(hand.handText)
@@ -336,7 +348,7 @@ class PartyPoker(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info('readButton: not found')
+            log.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
@@ -464,7 +476,7 @@ class PartyPoker(HandHistoryConverter):
                 hand.addCheck( street, playerName )
             else:
                 raise FpdbParseError(
-                    "Unimplemented readAction: '%s' '%s'" % (playerName,actionType,),
+                    _("Unimplemented readAction: '%s' '%s'") % (playerName,actionType,),
                     hid = hand.hid, )
 
     def readShowdownActions(self, hand):
@@ -507,9 +519,9 @@ def renderCards(string):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"))
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",
