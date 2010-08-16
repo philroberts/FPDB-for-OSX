@@ -46,9 +46,17 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("db")
 
-
-#    pyGTK modules
-
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 #    FreePokerTools modules
 import SQL
@@ -63,14 +71,14 @@ try:
     import sqlalchemy.pool as pool
     use_pool = True
 except ImportError:
-    log.info("Not using sqlalchemy connection pool.")
+    log.info(_("Not using sqlalchemy connection pool."))
     use_pool = False
 
 try:
     from numpy import var
     use_numpy = True
 except ImportError:
-    log.info("Not using numpy to define variance in sqlite.")
+    log.info(_("Not using numpy to define variance in sqlite."))
     use_numpy = False
 
 
@@ -235,7 +243,7 @@ class Database:
 
     def __init__(self, c, sql = None, autoconnect = True): 
         #log = Configuration.get_logger("logging.conf", "db", log_dir=c.dir_log)
-        log.debug("Creating Database instance, sql = %s" % sql)
+        log.debug(_("Creating Database instance, sql = %s") % sql)
         self.config = c
         self.__connected = False
         self.settings = {}
@@ -371,7 +379,7 @@ class Database:
                 elif ex.args[0] == 2002 or ex.args[0] == 2003: # 2002 is no unix socket, 2003 is no tcp socket
                     raise FpdbMySQLNoDatabase(ex.args[0], ex.args[1])
                 else:
-                    print "*** WARNING UNKNOWN MYSQL ERROR", ex
+                    print _("*** WARNING UNKNOWN MYSQL ERROR:"), ex
         elif backend == Database.PGSQL:
             import psycopg2
             import psycopg2.extensions
@@ -420,12 +428,12 @@ class Database:
 
             if database != ":memory:":
                 if not os.path.isdir(self.config.dir_database) and create:
-                    print "Creating directory: '%s'" % (self.config.dir_database)
-                    log.info("Creating directory: '%s'" % (self.config.dir_database))
+                    print _("Creating directory: '%s'") % (self.config.dir_database)
+                    log.info(_("Creating directory: '%s'") % (self.config.dir_database))
                     os.mkdir(self.config.dir_database)
                 database = os.path.join(self.config.dir_database, database)
             self.db_path = database
-            log.info("Connecting to SQLite: %(database)s" % {'database':self.db_path})
+            log.info(_("Connecting to SQLite: %(database)s") % {'database':self.db_path})
             if os.path.exists(database) or create:
                 self.connection = sqlite3.connect(self.db_path, detect_types=sqlite3.PARSE_DECLTYPES )
                 self.__connected = True
@@ -437,7 +445,7 @@ class Database:
                 if use_numpy:
                     self.connection.create_aggregate("variance", 1, VARIANCE)
                 else:
-                    log.warning("Some database functions will not work without NumPy support")
+                    log.warning(_("Some database functions will not work without NumPy support"))
                 self.cursor = self.connection.cursor()
                 self.cursor.execute('PRAGMA temp_store=2')  # use memory for temp tables/indexes
                 self.cursor.execute('PRAGMA synchronous=0') # don't wait for file writes to finish
@@ -458,19 +466,19 @@ class Database:
             self.cursor.execute("SELECT * FROM Settings")
             settings = self.cursor.fetchone()
             if settings[0] != DB_VERSION:
-                log.error("outdated or too new database version (%s) - please recreate tables"
+                log.error(_("outdated or too new database version (%s) - please recreate tables")
                               % (settings[0]))
                 self.wrongDbVersion = True
         except:# _mysql_exceptions.ProgrammingError:
             if database !=  ":memory:":
                 if create:
-                    print "Failed to read settings table - recreating tables"
-                    log.info("failed to read settings table - recreating tables")
+                    print _("Failed to read settings table - recreating tables")
+                    log.info(_("Failed to read settings table - recreating tables"))
                     self.recreate_tables()
                     self.check_version(database=database, create=False)
                 else:
-                    print "Failed to read settings table - please recreate tables"
-                    log.info("failed to read settings table - please recreate tables")
+                    print _("Failed to read settings table - please recreate tables")
+                    log.info(_("Failed to read settings table - please recreate tables"))
                     self.wrongDbVersion = True
             else:
                 self.wrongDbVersion = True
@@ -488,15 +496,14 @@ class Database:
             for i in xrange(maxtimes):
                 try:
                     ret = self.connection.commit()
-                    log.debug("commit finished ok, i = "+str(i))
+                    log.debug(_("commit finished ok, i = ")+str(i))
                     ok = True
                 except:
-                    log.debug("commit "+str(i)+" failed: info=" + str(sys.exc_info())
-                                  + " value=" + str(sys.exc_value))
+                    log.debug(_("commit %s failed: info=%s value=%s") % (str(i), str(sys.exc_info()), str(sys.exc_value))
                     sleep(pause)
                 if ok: break
             if not ok:
-                log.debug("commit failed")
+                log.debug(_("commit failed"))
                 raise FpdbError('sqlite commit failed')
 
     def rollback(self):
@@ -665,7 +672,7 @@ class Database:
             row = c.fetchone()
         except: # TODO: what error is a database error?!
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "*** Database Error: " + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+            print _("*** Database Error: ") + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
         else:
             if row and row[0]:
                 self.hand_1day_ago = int(row[0])
@@ -691,10 +698,10 @@ class Database:
             if row and row[0]:
                 self.date_nhands_ago[str(playerid)] = row[0]
             c.close()
-            print "Database: date n hands ago = " + self.date_nhands_ago[str(playerid)] + "(playerid "+str(playerid)+")"
+            print _("Database: date n hands ago = ") + self.date_nhands_ago[str(playerid)] + "(playerid "+str(playerid)+")"
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "*** Database Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("*** Database Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
 
     # is get_stats_from_hand slow?
     def get_stats_from_hand( self, hand, type   # type is "ring" or "tour"
@@ -848,7 +855,7 @@ class Database:
                                           # prevents infinite loop so leave for now - comment out or remove?
                 row = c.fetchone()
         else:
-            log.error("ERROR: query %s result does not have player_id as first column" % (query,))
+            log.error(_("ERROR: query %s result does not have player_id as first column") % (query,))
 
         #print "   %d rows fetched, len(stat_dict) = %d" % (n, len(stat_dict))
 
@@ -890,7 +897,7 @@ class Database:
             if self.backend == self.MYSQL_INNODB:
                 ret = self.connection.insert_id()
                 if ret < 1 or ret > 999999999:
-                    log.warning("getLastInsertId(): problem fetching insert_id? ret=%d" % ret)
+                    log.warning(_("getLastInsertId(): problem fetching insert_id? ret=%d") % ret)
                     ret = -1
             elif self.backend == self.PGSQL:
                 # some options:
@@ -902,19 +909,19 @@ class Database:
                 ret = c.execute ("SELECT lastval()")
                 row = c.fetchone()
                 if not row:
-                    log.warning("getLastInsertId(%s): problem fetching lastval? row=%d" % (seq, row))
+                    log.warning(_("getLastInsertId(%s): problem fetching lastval? row=%d") % (seq, row))
                     ret = -1
                 else:
                     ret = row[0]
             elif self.backend == self.SQLITE:
                 ret = cursor.lastrowid
             else:
-                log.error("getLastInsertId(): unknown backend: %d" % self.backend)
+                log.error(_("getLastInsertId(): unknown backend: %d") % self.backend)
                 ret = -1
         except:
             ret = -1
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "*** Database get_last_insert_id error: " + str(sys.exc_info()[1])
+            print _("*** Database get_last_insert_id error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
             raise
         return ret
@@ -968,11 +975,11 @@ class Database:
                             print "dropped pg fk pg fk %s_%s_fkey, continuing ..." % (fk['fktab'], fk['fkcol'])
                         except:
                             if "does not exist" not in str(sys.exc_value):
-                                print "warning: drop pg fk %s_%s_fkey failed: %s, continuing ..." \
+                                print _("warning: drop pg fk %s_%s_fkey failed: %s, continuing ...") \
                                       % (fk['fktab'], fk['fkcol'], str(sys.exc_value).rstrip('\n') )
                         c.execute("END TRANSACTION")
                     except:
-                        print "warning: constraint %s_%s_fkey not dropped: %s, continuing ..." \
+                        print _("warning: constraint %s_%s_fkey not dropped: %s, continuing ...") \
                               % (fk['fktab'],fk['fkcol'], str(sys.exc_value).rstrip('\n'))
                 else:
                     return -1
@@ -980,13 +987,13 @@ class Database:
         for idx in self.indexes[self.backend]:
             if idx['drop'] == 1:
                 if self.backend == self.MYSQL_INNODB:
-                    print "dropping mysql index ", idx['tab'], idx['col']
+                    print _("dropping mysql index "), idx['tab'], idx['col']
                     try:
                         # apparently nowait is not implemented in mysql so this just hangs if there are locks 
                         # preventing the index drop :-(
                         c.execute( "alter table %s drop index %s;", (idx['tab'],idx['col']) )
                     except:
-                        print "    drop index failed: " + str(sys.exc_info())
+                        print _("    drop index failed: ") + str(sys.exc_info())
                             # ALTER TABLE `fpdb`.`handsplayers` DROP INDEX `playerId`;
                             # using: 'HandsPlayers' drop index 'playerId'
                 elif self.backend == self.PGSQL:
