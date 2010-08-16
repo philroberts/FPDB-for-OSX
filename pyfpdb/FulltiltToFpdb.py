@@ -692,7 +692,7 @@ class Fulltilt(HandHistoryConverter):
 
                 tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0) #TODO: make it store actual winnings currency
             else:
-                print _("FullTilt: Player finishing stats unreadable : %s") % a
+                print (_("FullTilt: Player finishing stats unreadable : %s") % a)
 
         # Find Hero
         n = self.re_TourneyHeroFinishingP.search(playersText)
@@ -703,7 +703,7 @@ class Fulltilt(HandHistoryConverter):
             if heroName not in tourney.ranks:
                 print (_("FullTilt: %s not found in tourney.ranks ...") % heroName)
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print _("FullTilt: Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS'))
+                print (_("FullTilt: Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
 
