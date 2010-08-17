@@ -42,6 +42,18 @@ if os.name == 'nt':
     import win32con
     import win32api
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 #    FreePokerTools modules
 import Tables # needed for testing only
 import Configuration
@@ -180,7 +192,7 @@ class Hud:
         item.connect("activate", self.set_aggregation, ('P',10000))
         setattr(self, 'h_aggBBmultItem10000', item)
         
-        item = gtk.MenuItem('For #Seats:'))
+        item = gtk.MenuItem(_('For #Seats:'))
         self.aggMenu.append(item)
         
         item = gtk.CheckMenuItem(_('  Any Number'))
