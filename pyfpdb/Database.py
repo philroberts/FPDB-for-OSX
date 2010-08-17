@@ -496,7 +496,7 @@ class Database:
             for i in xrange(maxtimes):
                 try:
                     ret = self.connection.commit()
-                    log.debug(_("commit finished ok, i = ")+str(i))
+                    #log.debug(_("commit finished ok, i = ")+str(i))
                     ok = True
                 except:
                     log.debug(_("commit %s failed: info=%s value=%s") % (str(i), str(sys.exc_info()), str(sys.exc_value)))
