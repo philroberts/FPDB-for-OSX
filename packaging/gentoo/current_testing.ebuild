@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # created by Steffen Schaumburg, steffen@schaumburger.info
+EAPI="2"
 
 inherit eutils
 inherit games
 
-EAPI="2"
 NEED_PYTHON=2.5
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
