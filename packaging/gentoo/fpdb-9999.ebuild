@@ -15,7 +15,7 @@ EGIT_REPO_URI="git://git.assembla.com/fpdb.git"
 
 LICENSE="AGPL-3"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 #note: this should work on other architectures too, please send me your experiences
 
 IUSE="graph mysql postgres sqlite"
