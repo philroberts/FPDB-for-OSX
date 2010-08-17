@@ -6,5 +6,5 @@
 
   17 Aug 2010; Steffen Schaumburg <steffen@schaumburger.info>
   +fpdb-0.20.1.ebuild, +fpdb-0.20.904.ebuild, +fpdb-9999.ebuild, +metadata.xml:
-  Initial changelogged commit, this ebuild was created by ferki and I made some changes to comply with repoman.
+  Initial changelog for repoman.
 
