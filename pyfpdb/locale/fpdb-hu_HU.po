@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.904\n"
 "POT-Creation-Date: 2010-08-17 20:08+CEST\n"
-"PO-Revision-Date: 2010-08-17 22:43+0200\n"
+"PO-Revision-Date: 2010-08-17 23:49+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: Anonymise.py:55
 msgid "Could not find file %s"
-msgstr "%s fájl nem találhatópd"
+msgstr "%s fájl nem található"
 
 #: Anonymise.py:61
 msgid "Output being written to"
@@ -1183,7 +1183,7 @@ msgid ""
 "Player or tourney not found - please ensure you imported it and selected the "
 "correct site"
 msgstr ""
-"A játékos vagy averseny nem található - kérlek ellenőrizd, hogy importáltad-"
+"A játékos vagy a verseny nem található - kérlek ellenőrizd, hogy importáltad-"
 "e már, és hogy a helyes termet választottad"
 
 #: GuiTourneyViewer.py:119
@@ -1714,7 +1714,7 @@ msgstr "Standard bemenet olvasása ezzel: %s"
 
 #: HandHistoryConverter.py:451
 msgid "unable to read file with any codec in list!"
-msgstr "a file olvasása nem sikerült egyik listabeli kódolással sem"
+msgstr "a fájl olvasása nem sikerült egyik listabeli kódolással sem"
 
 #: HandHistoryConverter.py:605
 msgid "Unable to create output directory %s for HHC!"
@@ -1788,11 +1788,11 @@ msgstr "  A jelenlegi 0.5-2-szerese"
 
 #: Hud.py:180 Hud.py:249
 msgid "  0.33 to 3.0 x Current Blinds"
-msgstr "A jelenlegi 0.33-3-szorosa"
+msgstr "  A jelenlegi 0.33-3-szorosa"
 
 #: Hud.py:185 Hud.py:254
 msgid "  0.1 to 10 x Current Blinds"
-msgstr "A jelenlegi 0.1-10-szerese"
+msgstr "  A jelenlegi 0.1-10-szerese"
 
 #: Hud.py:190 Hud.py:259
 msgid "  All Levels"
@@ -1816,7 +1816,7 @@ msgstr "  Csak ez"
 
 #: Hud.py:213 Hud.py:282
 msgid "Since:"
-msgstr "Ez óta:"
+msgstr "Szűkítés:"
 
 #: Hud.py:216 Hud.py:285
 msgid "  All Time"
@@ -2007,7 +2007,7 @@ msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 
 #: PokerStarsToFpdb.py:221
 msgid "Lim_Blinds has no lookup for '%s'"
-msgstr "Lim_Blindsban nincs '%s'"
+msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
 #: PokerStarsToFpdb.py:273
 msgid "failed to detect currency"
@@ -2023,7 +2023,7 @@ msgstr "hiba a %s statisztika számításakor %s játékosnál: %s"
 
 #: Stats.py:104
 msgid "Stats.do_stat result = %s"
-msgstr "Stats.do_stat eredmény = %s"
+msgstr "Stats.do_stat eredménye = %s"
 
 #: Stats.py:113
 msgid "error: %s"
@@ -2261,7 +2261,7 @@ msgstr "nem található a verseny: kihagyás"
 
 #: TournamentTracker.py:286
 msgid "Could not find tournament %d in hand %d. Skipping.\n"
-msgstr "Nem található a %d versenyazonosító a%d leosztásban. Kihagyás.\n"
+msgstr "Nem található a %d versenyazonosító a %d leosztásban. Kihagyás.\n"
 
 #: TournamentTracker.py:309
 msgid "table name %s not found, skipping.\n"
@@ -2802,7 +2802,7 @@ msgstr "<control>P"
 
 #: fpdb.pyw:838
 msgid "Ring _Player Stats (tabulated view)"
-msgstr "Kész_pénzes játékos statisztikák (táblázatos nézet)"
+msgstr "Kész_pénzes statisztikák (táblázatos nézet)"
 
 #: fpdb.pyw:839
 msgid "<control>T"
@@ -3236,7 +3236,7 @@ msgstr "a zárolást már elvégezte:"
 
 #: test_Database.py:50
 msgid "DEBUG: Testing variance function"
-msgstr "DEBUG: Varianciafügvény tesztelésa"
+msgstr "DEBUG: Varianciafügvény tesztelése"
 
 #: test_Database.py:51
 msgid "DEBUG: result: %s expecting: 0.666666 (result-expecting ~= 0.0): %s"
