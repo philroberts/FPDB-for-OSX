@@ -84,6 +84,13 @@ def get_config(file_name, fallback = True):
 #        print "config path 2=", config_path
         if os.path.exists(config_path):
             return (config_path,False)
+        # Copy from example (debian package)
+        try:
+            example_path = '/usr/share/python-fpdb/' + file_name + '.example'
+            shutil.copyfile(example_path, config_path)
+            return (config_path,False)
+        except IOError:
+            pass
 
 #    No file found
     if not fallback:
