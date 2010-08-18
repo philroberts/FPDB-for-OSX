@@ -873,7 +873,7 @@ class fpdb:
             sys.exit()
 
         log = Configuration.get_logger("logging.conf", "fpdb", log_dir=self.config.dir_log)
-        print _("Logfile is ") + os.path.join(self.config.dir_log, self.config.log_file) + "\n"
+        print (_("Logfile is %s\n") % os.path.join(self.config.dir_log, self.config.log_file))
         if self.config.example_copy:
             self.info_box(_("Config file")
                          , _("has been created at:\n%s.\n") % self.config.file
@@ -901,7 +901,7 @@ class fpdb:
             self.db = Database.Database(self.config, sql = self.sql)
             if self.db.get_backend_name() == 'SQLite':
                 # tell sqlite users where the db file is
-                print _("Connected to SQLite: %(database)s") % {'database':self.db.db_path}
+                print (_("Connected to SQLite: %s") % self.db.db_path)
         except Exceptions.FpdbMySQLAccessDenied:
             err_msg = _("MySQL Server reports: Access denied. Are your permissions set correctly?")
         except Exceptions.FpdbMySQLNoDatabase:

@@ -23,8 +23,19 @@ pygtk.require('2.0')
 import gtk
 import gobject
 
-import Configuration
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
+import Configuration
 
 rewrite = { 'general' : 'General',                   'supported_databases' : 'Databases'
           , 'import'  : 'Import',                    'hud_ui' : 'HUD'

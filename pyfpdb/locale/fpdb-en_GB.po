@@ -5,12 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-16 07:17+CEST\n"
+"POT-Creation-Date: 2010-08-17 20:08+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: ENCODING\n"
 "Generated-By: pygettext.py 1.5\n"
 
@@ -1014,19 +1014,19 @@ msgstr ""
 msgid "Positional Stats page displayed in %4.2f seconds"
 msgstr ""
 
-#: GuiPrefs.py:70
+#: GuiPrefs.py:81
 msgid "Setting"
 msgstr ""
 
-#: GuiPrefs.py:76
+#: GuiPrefs.py:87
 msgid "Value  (double-click to change)"
 msgstr ""
 
-#: GuiPrefs.py:176
+#: GuiPrefs.py:187
 msgid "Test Preferences Dialog"
 msgstr ""
 
-#: GuiPrefs.py:181 fpdb.pyw:296
+#: GuiPrefs.py:192 fpdb.pyw:296
 msgid "Preferences"
 msgstr ""
 
@@ -1649,6 +1649,138 @@ msgid ""
 " on %s."
 msgstr ""
 
+#: Hud.py:149
+msgid "Kill This HUD"
+msgstr ""
+
+#: Hud.py:154
+msgid "Save HUD Layout"
+msgstr ""
+
+#: Hud.py:158
+msgid "Reposition StatWindows"
+msgstr ""
+
+#: Hud.py:162
+msgid "Show Player Stats"
+msgstr ""
+
+#: Hud.py:167 Hud.py:236
+msgid "For This Blind Level Only"
+msgstr ""
+
+#: Hud.py:172 Hud.py:241
+msgid "For Multiple Blind Levels:"
+msgstr ""
+
+#: Hud.py:175 Hud.py:244
+msgid "  0.5 to 2.0 x Current Blinds"
+msgstr ""
+
+#: Hud.py:180 Hud.py:249
+msgid "  0.33 to 3.0 x Current Blinds"
+msgstr ""
+
+#: Hud.py:185 Hud.py:254
+msgid "  0.1 to 10 x Current Blinds"
+msgstr ""
+
+#: Hud.py:190 Hud.py:259
+msgid "  All Levels"
+msgstr ""
+
+#: Hud.py:195 Hud.py:264
+msgid "For #Seats:"
+msgstr ""
+
+#: Hud.py:198 Hud.py:267
+msgid "  Any Number"
+msgstr ""
+
+#: Hud.py:203 Hud.py:272
+msgid "  Custom"
+msgstr ""
+
+#: Hud.py:208 Hud.py:277
+msgid "  Exact"
+msgstr ""
+
+#: Hud.py:213 Hud.py:282
+msgid "Since:"
+msgstr ""
+
+#: Hud.py:216 Hud.py:285
+msgid "  All Time"
+msgstr ""
+
+#: Hud.py:221 Hud.py:290
+msgid "  Session"
+msgstr ""
+
+#: Hud.py:226 Hud.py:295
+msgid "  %s Days"
+msgstr ""
+
+#: Hud.py:231
+msgid "Show Opponent Stats"
+msgstr ""
+
+#: Hud.py:353
+msgid "Debug StatWindows"
+msgstr ""
+
+#: Hud.py:357
+msgid "Set max seats"
+msgstr ""
+
+#: Hud.py:540
+msgid "Updating config file"
+msgstr ""
+
+#: Hud.py:549
+msgid ""
+"No layout found for %d-max games for site %s\n"
+msgstr ""
+
+#: Hud.py:563
+msgid ""
+"exception in Hud.adj_seats\n"
+"\n"
+msgstr ""
+
+#: Hud.py:564
+msgid "error is %s"
+msgstr ""
+
+#: Hud.py:571
+msgid ""
+"Error finding actual seat.\n"
+msgstr ""
+
+#: Hud.py:587
+msgid ""
+"------------------------------------------------------------\n"
+"Creating hud from hand %s\n"
+msgstr ""
+
+#: Hud.py:636
+msgid "KeyError at the start of the for loop in update in hud_main. How this can possibly happen is totally beyond my comprehension. Your HUD may be about to get really weird. -Eric"
+msgstr ""
+
+#: Hud.py:637
+msgid "(btw, the key was %s and statd is %s"
+msgstr ""
+
+#: Hud.py:944
+msgid ""
+"Fake main window, blah blah, blah\n"
+"blah, blah"
+msgstr ""
+
+#: Hud.py:952
+msgid "Table not found."
+msgstr ""
+
 #: ImapFetcher.py:54
 msgid "response to logging in:"
 msgstr ""
@@ -1763,6 +1895,174 @@ msgstr ""
 
 #: PokerStarsToFpdb.py:358
 msgid "reading antes"
+msgstr ""
+
+#: Stats.py:103
+msgid "exception getting stat %s for player %s %s"
+msgstr ""
+
+#: Stats.py:104
+msgid "Stats.do_stat result = %s"
+msgstr ""
+
+#: Stats.py:113
+msgid "error: %s"
+msgstr ""
+
+#: Stats.py:132 Stats.py:133
+msgid "Total Profit"
+msgstr ""
+
+#: Stats.py:154 Stats.py:161
+msgid "Voluntarily Put In Pot Pre-Flop%"
+msgstr ""
+
+#: Stats.py:174 Stats.py:182
+msgid "Pre-Flop Raise %"
+msgstr ""
+
+#: Stats.py:195 Stats.py:203
+msgid "% went to showdown"
+msgstr ""
+
+#: Stats.py:216 Stats.py:224
+msgid "% won money at showdown"
+msgstr ""
+
+#: Stats.py:237 Stats.py:246
+msgid "profit/100hands"
+msgstr ""
+
+#: Stats.py:240
+msgid "exception calcing p/100: 100 * %d / %d"
+msgstr ""
+
+#: Stats.py:259 Stats.py:268
+msgid "big blinds/100 hands"
+msgstr ""
+
+#: Stats.py:281 Stats.py:290
+msgid "Big Bets/100 hands"
+msgstr ""
+
+#: Stats.py:284
+msgid "exception calcing BB/100: "
+msgstr ""
+
+#: Stats.py:304 Stats.py:315
+msgid "Flop Seen %"
+msgstr ""
+
+#: Stats.py:338 Stats.py:346
+msgid "number hands seen"
+msgstr ""
+
+#: Stats.py:359 Stats.py:367
+msgid "folded flop/4th"
+msgstr ""
+
+#: Stats.py:380
+msgid "% steal attempted"
+msgstr ""
+
+#: Stats.py:395 Stats.py:402
+msgid "% folded SB to steal"
+msgstr ""
+
+#: Stats.py:414 Stats.py:421
+msgid "% folded BB to steal"
+msgstr ""
+
+#: Stats.py:436 Stats.py:443
+msgid "% folded blind to steal"
+msgstr ""
+
+#: Stats.py:455 Stats.py:462
+msgid "% 3/4 Bet preflop/3rd"
+msgstr ""
+
+#: Stats.py:474 Stats.py:481
+msgid "% won$/saw flop/4th"
+msgstr ""
+
+#: Stats.py:493 Stats.py:500
+msgid "Aggression Freq flop/4th"
+msgstr ""
+
+#: Stats.py:512 Stats.py:519
+msgid "Aggression Freq turn/5th"
+msgstr ""
+
+#: Stats.py:531 Stats.py:538
+msgid "Aggression Freq river/6th"
+msgstr ""
+
+#: Stats.py:550 Stats.py:557
+msgid "Aggression Freq 7th"
+msgstr ""
+
+#: Stats.py:576 Stats.py:583
+msgid "Post-Flop Aggression Freq"
+msgstr ""
+
+#: Stats.py:604 Stats.py:611
+msgid "Aggression Freq"
+msgstr ""
+
+#: Stats.py:630 Stats.py:637
+msgid "Aggression Factor"
+msgstr ""
+
+#: Stats.py:654 Stats.py:661
+msgid "% continuation bet "
+msgstr ""
+
+#: Stats.py:673 Stats.py:680
+msgid "% continuation bet flop/4th"
+msgstr ""
+
+#: Stats.py:692 Stats.py:699
+msgid "% continuation bet turn/5th"
+msgstr ""
+
+#: Stats.py:711 Stats.py:718
+msgid "% continuation bet river/6th"
+msgstr ""
+
+#: Stats.py:730 Stats.py:737
+msgid "% continuation bet 7th"
+msgstr ""
+
+#: Stats.py:749 Stats.py:756
+msgid "% fold frequency flop/4th"
+msgstr ""
+
+#: Stats.py:768 Stats.py:775
+msgid "% fold frequency turn/5th"
+msgstr ""
+
+#: Stats.py:787 Stats.py:794
+msgid "% fold frequency river/6th"
+msgstr ""
+
+#: Stats.py:806 Stats.py:813
+msgid "% fold frequency 7th"
+msgstr ""
+
+#: Stats.py:833
+msgid "Example stats, player = %s  hand = %s:"
+msgstr ""
+
+#: Stats.py:866
+msgid ""
+"\n"
+"\n"
+"Legal stats:"
+msgstr ""
+
+#: Stats.py:867
+msgid ""
+"(add _0 to name to display with 0 decimal places, _1 to display with 1, etc)\n"
 msgstr ""
 
 #: Tables.py:234

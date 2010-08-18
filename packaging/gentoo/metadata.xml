@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <longdescription>
+    FPDB (Free Poker Database) is a free/open source suite of steadily growing tools to track and analyse your poker game. FPDB is able to import the hand histories that poker sites write to your computer, store additional data from each hand in a database for use in later analysis.
+  </longdescription>
+  <use>
+    <flag name='graph'>Enable dependencies for making graphs</flag>
+  </use>
+</pkgmetadata>
+

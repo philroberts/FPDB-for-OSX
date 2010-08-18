@@ -101,6 +101,21 @@ def get_config(file_name, fallback = True):
     if not fallback:
         return (False,False)
 
+# Example configuration for debian package
+    if os.name == 'posix':
+        # If we're on linux, try to copy example from the place
+        # debian package puts it; get_default_config_path() creates
+        # the config directory for us so there's no need to check it
+        # again
+        example_path = '/usr/share/python-fpdb/' + file_name + '.example'
+        try:
+            shutil.copyfile(example_path, config_path)
+            msg = 'Configuration file created: %s\n' % config_path
+            logging.info(msg)
+            return (config_path,False)
+        except IOError:
+            pass
+
 #    OK, fall back to the .example file, should be in the start dir
     if os.path.exists(file_name + ".example"):
         try:
