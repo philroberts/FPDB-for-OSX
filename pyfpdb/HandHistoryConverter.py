@@ -272,8 +272,8 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         l = None
         if gametype is None:
             gametype = "unmatched"
-            # TODO: not ideal, just trying to not error.
-            # TODO: Need to count failed hands.
+            # TODO: not ideal, just trying to not error. Throw ParseException?
+            self.numErrors += 1
         else:
             # See if gametype is supported.
             type = gametype['type']
