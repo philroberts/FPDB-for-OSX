@@ -27,7 +27,6 @@ install: build
 	cp pyfpdb/*.pyw debian/$(PACKAGE)/usr/lib/python2.6/site-packages/fpdb/
 	# Remove scripts that are only useful in win32
 	rm debian/$(PACKAGE)/usr/lib/python2.6/site-packages/fpdb//windows_make_bats.py
-	rm debian/$(PACKAGE)/usr/lib/python2.6/site-packages/fpdb/makeexe.py
 	rm debian/$(PACKAGE)/usr/lib/python2.6/site-packages/fpdb/py2exe_setup.py
 
 

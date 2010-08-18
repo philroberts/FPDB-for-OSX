@@ -1,3 +1,21 @@
+free-poker-tools (0.20.904-2) unstable; urgency=low
+
+  * On fpdb start, copy example HUD_config.xml in place if none is present
+
+ -- Mika Bostrom <bostik@iki.fi>  Tue, 17 Aug 2010 08:23:31 +0300
+
+free-poker-tools (0.20.904-1) unstable; urgency=low
+
+  * .904 snapshot release
+
+ -- Mika Bostrom <bostik@iki.fi>  Sat, 14 Aug 2010 09:24:25 +0300
+
+free-poker-tools (0.20.903-1) unstable; urgency=low
+
+  * .903 snapshot release
+
+ -- Mika Bostrom <bostik@iki.fi>  Tue, 03 Aug 2010 17:47:41 +0300
+
 free-poker-tools (0.20.902-1) unstable; urgency=low
 
   * New snapshot release; .901 was broken for FTP
