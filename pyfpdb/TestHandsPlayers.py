@@ -39,9 +39,12 @@ def compare(leaf, importer):
             for hand in handlist:
                 ghash = hand.stats.getHandsPlayers()
                 for p in ghash:
+                    #print "DEBUG: player: '%s'" % p
                     pstat = ghash[p]
                     teststat = testhash[p]
+
                     for stat in pstat:
+                        #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
                         if pstat[stat] == teststat[stat]:
                             # The stats match - continue
                             pass
