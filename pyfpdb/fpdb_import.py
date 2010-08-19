@@ -103,6 +103,7 @@ class Importer:
         self.settings.setdefault("dropHudCache", "don't drop")
         self.settings.setdefault("starsArchive", False)
         self.settings.setdefault("testData", False)
+        self.settings.setdefault("cacheHHC", False)
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
