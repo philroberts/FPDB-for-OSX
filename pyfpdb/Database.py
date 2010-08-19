@@ -1887,7 +1887,7 @@ class Database:
                 hilo = "l"
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
-                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)) )
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)) ) #TODO: this wont work for non-standard structures
                                     #FIXME: recognise currency
         return tmp[0]
 
