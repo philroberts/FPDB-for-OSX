@@ -3065,6 +3065,10 @@ class Sql:
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3160,6 +3164,10 @@ class Sql:
                       ,sum(street0Aggr)
                       ,sum(street0_3BChance)
                       ,sum(street0_3BDone)
+                      ,sum(street0_4BChance)
+                      ,sum(street0_4BDone)
+                      ,sum(other3BStreet0)
+                      ,sum(other4BStreet0)
                       ,sum(street1Seen)
                       ,sum(street2Seen)
                       ,sum(street3Seen)
@@ -3255,6 +3263,10 @@ class Sql:
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0      
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3350,6 +3362,10 @@ class Sql:
                       ,sum(CAST(street0Aggr as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(other3BStreet0 as integer))
+                      ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3445,6 +3461,10 @@ class Sql:
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3540,6 +3560,10 @@ class Sql:
                       ,sum(CAST(street0Aggr as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(other3BStreet0 as integer))
+                      ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3630,6 +3654,10 @@ class Sql:
                 street0Aggr,
                 street0_3BChance,
                 street0_3BDone,
+                street0_4BChance,
+                street0_4BDone,
+                other3BStreet0,
+                other4BStreet0,
                 street1Seen,
                 street2Seen,
                 street3Seen,
@@ -3715,7 +3743,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
