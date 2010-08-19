@@ -3074,10 +3074,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3167,10 +3169,12 @@ class Sql:
                       ,sum(street2Aggr)
                       ,sum(street3Aggr)
                       ,sum(street4Aggr)
+                      ,sum(otherRaisedStreet0)
                       ,sum(otherRaisedStreet1)
                       ,sum(otherRaisedStreet2)
                       ,sum(otherRaisedStreet3)
                       ,sum(otherRaisedStreet4)
+                      ,sum(foldToOtherRaisedStreet0)
                       ,sum(foldToOtherRaisedStreet1)
                       ,sum(foldToOtherRaisedStreet2)
                       ,sum(foldToOtherRaisedStreet3)
@@ -3260,10 +3264,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3353,10 +3359,12 @@ class Sql:
                       ,sum(CAST(street2Aggr as integer))
                       ,sum(CAST(street3Aggr as integer))
                       ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
                       ,sum(CAST(otherRaisedStreet1 as integer))
                       ,sum(CAST(otherRaisedStreet2 as integer))
                       ,sum(CAST(otherRaisedStreet3 as integer))
                       ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
@@ -3446,10 +3454,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3539,10 +3549,12 @@ class Sql:
                       ,sum(CAST(street2Aggr as integer))
                       ,sum(CAST(street3Aggr as integer))
                       ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
                       ,sum(CAST(otherRaisedStreet1 as integer))
                       ,sum(CAST(otherRaisedStreet2 as integer))
                       ,sum(CAST(otherRaisedStreet3 as integer))
                       ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
@@ -3627,10 +3639,12 @@ class Sql:
                 street2Aggr,
                 street3Aggr,
                 street4Aggr,
+                otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
                 otherRaisedStreet3,
                 otherRaisedStreet4,
+                foldToOtherRaisedStreet0,
                 foldToOtherRaisedStreet1,
                 foldToOtherRaisedStreet2,
                 foldToOtherRaisedStreet3,
@@ -3719,10 +3733,12 @@ class Sql:
             street2Aggr=street2Aggr+%s,
             street3Aggr=street3Aggr+%s,
             street4Aggr=street4Aggr+%s,
+            otherRaisedStreet0=otherRaisedStreet0+%s,
             otherRaisedStreet1=otherRaisedStreet1+%s,
             otherRaisedStreet2=otherRaisedStreet2+%s,
             otherRaisedStreet3=otherRaisedStreet3+%s,
             otherRaisedStreet4=otherRaisedStreet4+%s,
+            foldToOtherRaisedStreet0=foldToOtherRaisedStreet0+%s,
             foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s,
             foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
             foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s,
