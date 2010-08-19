@@ -4021,6 +4021,9 @@ class Sql:
                 street3CBDone,
                 street4CBDone,
                 wonWhenSeenStreet1,
+                wonWhenSeenStreet2,
+                wonWhenSeenStreet3,
+                wonWhenSeenStreet4,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -4090,7 +4093,7 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s, %s
                 )"""
         
         ################################
