@@ -1886,7 +1886,8 @@ class Database:
             elif game['category'] in ['razz','27_3draw','badugi']:
                 hilo = "l"
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
-                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100), 0, 0) )
+                                    int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
+                                    int(Decimal(game['bb'])*100), int(Decimal(game['bb'])*200)) )
                                     #FIXME: recognise currency
         return tmp[0]
 
