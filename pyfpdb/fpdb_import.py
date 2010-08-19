@@ -102,6 +102,7 @@ class Importer:
         self.settings.setdefault("dropIndexes", "don't drop")
         self.settings.setdefault("dropHudCache", "don't drop")
         self.settings.setdefault("starsArchive", False)
+        self.settings.setdefault("testData", False)
 
         self.writeq = None
         self.database = Database.Database(self.config, sql = self.sql)
@@ -145,6 +146,15 @@ class Importer:
 
     def setStarsArchive(self, value):
         self.settings['starsArchive'] = value
+
+    def setPrintTestData(self, value):
+        self.settings['testData'] = value
+
+    def setFakeCacheHHC(self, value):
+        self.settings['cacheHHC'] = value
+
+    def getCachedHHC(self):
+        return self.handhistoryconverter
 
 #   def setWatchTime(self):
 #       self.updated = time()
@@ -456,7 +466,7 @@ class Importer:
                     if hand is not None:
                         hand.prepInsert(self.database)
                         try:
-                            hand.insert(self.database)
+                            hand.insert(self.database, printtest = self.settings['testData'])
                         except Exceptions.FpdbHandDuplicate:
                             duplicates += 1
                         else:
@@ -485,6 +495,10 @@ class Importer:
                 stored = getattr(hhc, 'numHands')
                 stored -= duplicates
                 stored -= errors
+                # Really ugly hack to allow testing Hands within the HHC from someone
+                # with only an Importer objec
+                if self.settings['cacheHHC']:
+                    self.handhistoryconverter = hhc
             else:
                 # conversion didn't work
                 # TODO: appropriate response?
