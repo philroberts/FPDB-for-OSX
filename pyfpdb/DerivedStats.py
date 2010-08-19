@@ -74,6 +74,8 @@ class DerivedStats():
                 self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
             
             #FIXME - Everything below this point is incomplete.
+            self.handsplayers[player[1]]['otherRaisedStreet0']          = False
+            self.handsplayers[player[1]]['foldToOtherRaisedStreet0']    = False
             for i in range(1,5):
                 self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
                 self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False

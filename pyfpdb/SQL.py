@@ -4039,10 +4039,12 @@ class Sql:
                 startCards,
                 street0_3BChance,
                 street0_3BDone,
+                otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
                 otherRaisedStreet3,
                 otherRaisedStreet4,
+                foldToOtherRaisedStreet0,
                 foldToOtherRaisedStreet1,
                 foldToOtherRaisedStreet2,
                 foldToOtherRaisedStreet3,
@@ -4093,7 +4095,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s
+                    %s, %s, %s, %s, %s,
+                    %s
                 )"""
         
         ################################
