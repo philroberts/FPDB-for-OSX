@@ -51,8 +51,8 @@ class DerivedStats():
             self.handsplayers[player[1]]['position']            = 2
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
-            self.handsplayers[player[1]]['street0_4BChance']    = False
-            self.handsplayers[player[1]]['street0_4BDone']      = False
+            self.handsplayers[player[1]]['street0_4BChance']    = False #FIXME: this might not actually be implemented
+            self.handsplayers[player[1]]['street0_4BDone']      = False #FIXME: this might not actually be implemented
             self.handsplayers[player[1]]['raiseFirstInChance']  = False
             self.handsplayers[player[1]]['raisedFirstIn']       = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
@@ -74,9 +74,16 @@ class DerivedStats():
                 self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
             
             #FIXME - Everything below this point is incomplete.
+            self.handsplayers[player[1]]['other3BStreet0']              = False
+            self.handsplayers[player[1]]['other4BStreet0']              = False
+            self.handsplayers[player[1]]['otherRaisedStreet0']          = False
+            self.handsplayers[player[1]]['foldToOtherRaisedStreet0']    = False
             for i in range(1,5):
                 self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
                 self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet2'] = 0.0
+            self.handsplayers[player[1]]['wonWhenSeenStreet3'] = 0.0
+            self.handsplayers[player[1]]['wonWhenSeenStreet4'] = 0.0
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)

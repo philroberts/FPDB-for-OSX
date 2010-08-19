@@ -32,12 +32,13 @@ class Fulltilt(HandHistoryConverter):
     siteId   = 1 # Needs to match id entry in Sites database
 
     substitutions = {
-                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
-                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",       # legal ISO currency codes
+                            'LS' : u"\$|\u20AC|\xe2\x82\xac|",  # legal currency symbols - Euro(cp1252, utf-8)
+                           'TAB' : u"-\u2013\s\da-zA-Z"
                     }
 
     # Static regexes
-    re_GameInfo     = re.compile('''.*\#(?P<HID>[0-9]+):\s
+    re_GameInfo     = re.compile(u'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     .+
                                     -\s(?P<CURRENCY>[%(LS)s]|)?
@@ -54,7 +55,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
                                     (Table|Match)\s 
                                     (?P<PLAY>Play\sChip\s|PC)?
-                                    (?P<TABLE>[-\s\da-zA-Z]+)\s
+                                    (?P<TABLE>[%(TAB)s]+)\s
                                     (\((?P<TABLEATTRIBUTES>.+)\)\s)?-\s
                                     [%(LS)s]?(?P<SB>[.0-9]+)/[%(LS)s]?(?P<BB>[.0-9]+)\s(Ante\s[%(LS)s]?(?P<ANTE>[.0-9]+)\s)?-\s
                                     [%(LS)s]?(?P<CAP>[.0-9]+\sCap\s)?
@@ -168,12 +169,14 @@ class Fulltilt(HandHistoryConverter):
         # Full Tilt Poker Game #10773265574: Table Butte (6 max) - $0.01/$0.02 - Pot Limit Hold'em - 21:33:46 ET - 2009/02/21
         # Full Tilt Poker Game #9403951181: Table CR - tay - $0.05/$0.10 - No Limit Hold'em - 9:40:20 ET - 2008/12/09
         # Full Tilt Poker Game #10809877615: Table Danville - $0.50/$1 Ante $0.10 - Limit Razz - 21:47:27 ET - 2009/02/23
+        # Full Tilt Poker.fr Game #23057874034: Table Douai–Lens (6 max) - €0.01/€0.02 - No Limit Hold'em - 21:59:17 CET - 2010/08/13
         info = {'type':'ring'}
         
         m = self.re_GameInfo.search(handText)
-        if not m: 
+        if not m:
             return None
         mg = m.groupdict()
+
         # translations from captured groups to our info strings
         limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl' }
         games = {              # base, category
@@ -205,6 +208,7 @@ class Fulltilt(HandHistoryConverter):
         if m is None:
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
+            # Should this throw an exception? - CG
             return None
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')

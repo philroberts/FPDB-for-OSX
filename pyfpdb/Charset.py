@@ -42,10 +42,10 @@ def to_utf8(s):
         _out = unicode(s, Configuration.LOCALE_ENCODING).encode('utf-8')
         return _out
     except UnicodeDecodeError:
-        sys.stderr.write('Could not convert: "%s"\n' % s)
+        sys.stderr.write(_('Could not convert: "%s"\n') % s)
         raise
     except UnicodeEncodeError:
-        sys.stderr.write('Could not encode: "%s"\n' % s)
+        sys.stderr.write(_('Could not encode: "%s"\n') % s)
         raise
     except TypeError: # TypeError is raised when we give unicode() an already encoded string
         return s
@@ -57,10 +57,10 @@ def to_db_utf8(s):
         (_out, _len) = encoder_to_utf.encode(unicode(s))
         return _out
     except UnicodeDecodeError:
-        sys.stderr.write('Could not convert: "%s"\n' % s)
+        sys.stderr.write(_('Could not convert: "%s"\n') % s)
         raise
     except UnicodeEncodeError:
-        sys.stderr.write('Could not encode: "%s"\n' % s)
+        sys.stderr.write(_('Could not encode: "%s"\n') % s)
         raise
 
 def to_gui(s):
@@ -72,10 +72,10 @@ def to_gui(s):
         (_out, _len) = encoder_to_sys.encode(s, 'replace')
         return _out
     except UnicodeDecodeError:
-        sys.stderr.write('Could not convert: "%s"\n' % s)
+        sys.stderr.write(_('Could not convert: "%s"\n') % s)
         raise
     except UnicodeEncodeError:
-        sys.stderr.write('Could not encode: "%s"\n' % s)
+        sys.stderr.write(_('Could not encode: "%s"\n') % s)
         raise
 
 def to_hex(s):
@@ -83,7 +83,7 @@ def to_hex(s):
         out = coder_hex.encode(s)[0]
         return out
     except UnicodeDecodeError:
-        sys.stderr.write('Could not convert: "%s"\n' % s)
+        sys.stderr.write(_('Could not convert: "%s"\n') % s)
         return s
 
 def from_hex(s):
@@ -91,5 +91,5 @@ def from_hex(s):
         out = coder_hex.decode(s)[0]
         return out
     except UnicodeDecodeError:
-        sys.stderr.write('Could not convert: "%s"\n' % s)
+        sys.stderr.write(_('Could not convert: "%s"\n') % s)
         return s

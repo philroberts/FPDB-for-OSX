@@ -22,6 +22,18 @@ import gtk
 from imaplib import IMAP4
 from socket import gaierror
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 import ImapFetcher
 
 class GuiImapFetcher (threading.Thread):
@@ -34,18 +46,18 @@ class GuiImapFetcher (threading.Thread):
         self.buttonsHBox = gtk.HBox()
         self.mainVBox.pack_end(self.buttonsHBox, expand=False)
         
-        label=gtk.Label("To cancel just close this tab.")
+        label=gtk.Label(_("To cancel just close this tab."))
         self.buttonsHBox.add(label)
         
-        self.saveButton = gtk.Button("_Save")
+        self.saveButton = gtk.Button(_("_Save"))
         self.saveButton.connect('clicked', self.saveClicked)
         self.buttonsHBox.add(self.saveButton)
         
-        self.importAllButton = gtk.Button("_Import All")
+        self.importAllButton = gtk.Button(_("_Import All"))
         self.importAllButton.connect('clicked', self.importAllClicked)
         self.buttonsHBox.add(self.importAllButton)
         
-        self.statusLabel=gtk.Label("If you change the config you must save before importing")
+        self.statusLabel=gtk.Label(_("If you change the config you must save before importing"))
         self.mainVBox.pack_end(self.statusLabel, expand=False, padding=4)
 
         self.passwords={}
@@ -88,17 +100,17 @@ class GuiImapFetcher (threading.Thread):
     #def saveClicked
     
     def importAllClicked(self, widget, data=None):
-        self.statusLabel.set_label("Starting import. Please wait.") #FIXME: why doesnt this one show?
+        self.statusLabel.set_label(_("Starting import. Please wait.")) #FIXME: why doesnt this one show?
         for email in self.config.emails:
             try:
                 result=ImapFetcher.run(self.config.emails[email], self.db)
-                self.statusLabel.set_label("Finished import without error.")
+                self.statusLabel.set_label(_("Finished import without error."))
             except IMAP4.error as error:
                 if str(error)=="[AUTHENTICATIONFAILED] Authentication failed.":
-                    self.statusLabel.set_label("Login to mailserver failed: please check mailserver, username and password")
+                    self.statusLabel.set_label(_("Login to mailserver failed: please check mailserver, username and password"))
             except gaierror as error:
                 if str(error)=="[Errno -2] Name or service not known":
-                    self.statusLabel.set_label("Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity")
+                    self.statusLabel.set_label(_("Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity"))
     #def importAllClicked
     
     def get_vbox(self):
@@ -108,7 +120,7 @@ class GuiImapFetcher (threading.Thread):
     
     def displayConfig(self):
         box=gtk.HBox(homogeneous=True)
-        for text in ("Site", "Fetch Type", "Mailserver", "Username", "Password", "Mail Folder", "Use SSL"):
+        for text in (_("Site"), _("Fetch Type"), _("Mailserver"), _("Username"), _("Password"), _("Mail Folder"), _("Use SSL")):
             label=gtk.Label(text)
             box.add(label)
         self.mainVBox.pack_start(box, expand=False)
@@ -139,8 +151,8 @@ class GuiImapFetcher (threading.Thread):
             box.add(entry)
             
             sslBox = gtk.combo_box_new_text()
-            sslBox.append_text("Yes")
-            sslBox.append_text("No")
+            sslBox.append_text(_("Yes"))
+            sslBox.append_text(_("No"))
             sslBox.set_active(0)
             box.add(sslBox)
             

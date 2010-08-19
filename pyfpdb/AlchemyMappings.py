@@ -19,6 +19,8 @@
 This package contains all classes to be mapped and mappers themselves
 """
 
+#TODO: gettextify if file is used again
+
 import logging
 import re
 from decimal import Decimal

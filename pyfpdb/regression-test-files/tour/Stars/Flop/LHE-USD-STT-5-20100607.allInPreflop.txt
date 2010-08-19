@@ -1,0 +1,60 @@
+PokerStars Game #45201040897: Tournament #280631121, $5.00+$0.50 USD Hold'em Limit - Level III (50/100) - 2010/06/07 16:14:48 ET
+Table '280631121 1' 9-max Seat #2 is the button
+Seat 1: Slush11 (110 in chips) 
+Seat 2: zsoccerino (1430 in chips) is sitting out
+Seat 3: 101ripcord (1250 in chips) 
+Seat 4: Lawwill (3300 in chips) 
+Seat 5: nakamurov (1890 in chips) 
+Seat 6: 67_fredf_67 (1425 in chips) 
+Seat 7: NICk.nico333 (1960 in chips) 
+Seat 8: steffen780 (1745 in chips) 
+Seat 9: PORCHES996 (390 in chips) 
+101ripcord: posts small blind 25
+Lawwill: posts big blind 50
+*** HOLE CARDS ***
+Dealt to steffen780 [Td Th]
+nakamurov: folds 
+67_fredf_67: calls 50
+NICk.nico333: folds 
+steffen780: raises 50 to 100
+PORCHES996: folds 
+Slush11: raises 10 to 110 and is all-in
+zsoccerino: folds 
+101ripcord: calls 85
+Lawwill: folds 
+67_fredf_67: calls 60
+steffen780: calls 10
+*** FLOP *** [2c Qh 6c]
+101ripcord: checks 
+67_fredf_67: checks 
+steffen780: bets 50
+101ripcord: calls 50
+67_fredf_67: folds 
+*** TURN *** [2c Qh 6c] [9s]
+101ripcord: checks 
+steffen780: bets 100
+101ripcord: calls 100
+*** RIVER *** [2c Qh 6c 9s] [4d]
+101ripcord: bets 100
+steffen780: calls 100
+*** SHOW DOWN ***
+101ripcord: shows [9c 4c] (two pair, Nines and Fours)
+steffen780: mucks hand 
+101ripcord collected 500 from side pot
+Slush11: mucks hand 
+101ripcord collected 490 from main pot
+*** SUMMARY ***
+Total pot 990 Main pot 490. Side pot 500. | Rake 0 
+Board [2c Qh 6c 9s 4d]
+Seat 1: Slush11 mucked [9d As]
+Seat 2: zsoccerino (button) folded before Flop (didn't bet)
+Seat 3: 101ripcord (small blind) showed [9c 4c] and won (990) with two pair, Nines and Fours
+Seat 4: Lawwill (big blind) folded before Flop
+Seat 5: nakamurov folded before Flop (didn't bet)
+Seat 6: 67_fredf_67 folded on the Flop
+Seat 7: NICk.nico333 folded before Flop (didn't bet)
+Seat 8: steffen780 mucked [Td Th]
+Seat 9: PORCHES996 folded before Flop (didn't bet)
+
+
+

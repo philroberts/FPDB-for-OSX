@@ -36,6 +36,18 @@ import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 import logging, logging.config
 import ConfigParser
 
@@ -110,19 +122,19 @@ def get_config(file_name, fallback = True):
             print ""
             check_dir(default_dir)
             shutil.copyfile(file_name + ".example", config_path)
-            msg = "No %s found\n  in %s\n  or %s\n" % (file_name, exec_dir, default_dir) \
-                  + "Config file has been created at %s.\n" % config_path
+            msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
+                  + _("Config file has been created at %s.\n") % config_path
             print msg
             logging.info(msg)
             file_name = config_path
         except:
-            print "Error copying .example file, cannot fall back. Exiting.\n"
-            sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
+            print _("Error copying .example file, cannot fall back. Exiting.\n")
+            sys.stderr.write(_("Error copying .example file, cannot fall back. Exiting.\n"))
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     else:
-        print "No %s found, cannot fall back. Exiting.\n" % file_name
-        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+        print _("No %s found, cannot fall back. Exiting.\n") % file_name
+        sys.stderr.write(_("No %s found, cannot fall back. Exiting.\n") % file_name)
         sys.exit()
     return (file_name,True)
 
@@ -152,8 +164,8 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
-    log.debug("Default logger initialised for "+file)
-    print "Default logger intialised for "+file
+    log.debug(_("Default logger initialised for ")+file)
+    print _("Default logger intialised for ")+file
     return log
 
 def check_dir(path, create = True):
@@ -164,7 +176,7 @@ def check_dir(path, create = True):
         else:
             return False
     if create:
-        msg = "Creating directory: '%s'" % (path)
+        msg = _("Creating directory: '%s'") % (path)
         print msg
         log.info(msg)
         os.mkdir(path)#, "utf-8"))
@@ -190,7 +202,7 @@ DATABASE_TYPES = (
 #LOCALE_ENCODING = locale.getdefaultlocale()[1]
 LOCALE_ENCODING = locale.getpreferredencoding()
 if LOCALE_ENCODING == "US-ASCII":
-    print "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+    print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
 
 
@@ -273,7 +285,7 @@ class Site:
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
 
-        print "Loading site", self.site_name
+        print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -511,7 +523,7 @@ class General(dict):
         #                e.g. user could set to 4.0 for day to start at 4am local time
         # [ HH_bulk_path was here - now moved to import section ]
         for (name, value) in node.attributes.items():
-            log.debug("config.general: adding %s = %s" % (name,value))
+            log.debug(_("config.general: adding %s = %s") % (name,value))
             self[name] = value
 
     def __str__(self):
@@ -544,8 +556,8 @@ class GUICashStats(list):
                 try:
                     if child.hasAttribute('xalignment'):   xalignment   = float(child.getAttribute('xalignment'))
                 except ValueError:
-                    print "bad number in xalignment was ignored"
-                    log.info("bad number in xalignment was ignored")
+                    print _("bad number in xalignment was ignored")
+                    log.info(_("bad number in xalignment was ignored"))
 
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
 
@@ -598,8 +610,8 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print "Configuration file %s not found.  Using defaults." % (file)
-                sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
+                print _("Configuration file %s not found.  Using defaults.") % (file)
+                sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
         if file is None: (file,self.example_copy) = get_config("HUD_config.xml", True)
@@ -615,13 +627,13 @@ class Config:
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
-        log.info("Reading configuration file %s" % file)
-        print "\nReading configuration file %s\n" % file
+        log.info(_("Reading configuration file %s") % file)
+        print _("\nReading configuration file %s\n") % file
         try:
             doc = xml.dom.minidom.parse(file)
             self.file_error = None
         except:
-            log.error("Error parsing %s.  See error log file." % (file))
+            log.error(_("Error parsing %s.  See error log file.") % (file))
             traceback.print_exc(file=sys.stderr)
             self.file_error = sys.exc_info()[1]
             # we could add a parameter to decide whether to return or read a line and exit?

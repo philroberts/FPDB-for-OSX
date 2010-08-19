@@ -67,10 +67,10 @@ class Table(Table_Window):
 
         try:
             if self.window == None:
-                log.error( "Window %s not found. Skipping." % search_string )
+                log.error(_("Window %s not found. Skipping.") % search_string )
                 return None
         except AttributeError:
-            log.error( "self.window doesn't exist? why?" )
+            log.error(_("self.window doesn't exist? why?"))
             return None
 
         (x, y, width, height) = win32gui.GetWindowRect(hwnd)

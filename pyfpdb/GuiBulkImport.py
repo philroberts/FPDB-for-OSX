@@ -33,6 +33,18 @@ import fpdb_import
 import Configuration
 import Exceptions
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 class GuiBulkImport():
 
     # CONFIGURATION  -  update these as preferred:
@@ -52,8 +64,8 @@ class GuiBulkImport():
         # (see comment above about what to do if pipe already open)
         if self.settings['global_lock'].acquire(wait=False, source="GuiBulkImport"):   # returns false immediately if lock not acquired
             #try:
-                print "\nGlobal lock taken ..."
-                self.progressbar.set_text("Importing...")
+                print _("\nGlobal lock taken ...")
+                self.progressbar.set_text(_("Importing..."))
                 self.progressbar.pulse()
                 while gtk.events_pending(): # see http://faq.pygtk.org/index.py?req=index for more hints (3.7)
                     gtk.main_iteration(False)
@@ -102,7 +114,7 @@ class GuiBulkImport():
                 ttime = time() - starttime
                 if ttime == 0:
                     ttime = 1
-                print 'GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+                print _('GuiBulkImport.load done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
                 self.importer.clearFileList()
                 # This file should really be 'logging'
@@ -116,7 +128,7 @@ class GuiBulkImport():
                     self.cb_drophudcache.set_active(0)
                     self.lab_hdrop.set_sensitive(True)
 
-                self.progressbar.set_text("Import Complete")
+                self.progressbar.set_text(_("Import Complete"))
                 self.progressbar.set_fraction(0)
             #except:
                 #err = traceback.extract_tb(sys.exc_info()[2])[-1]
@@ -124,7 +136,7 @@ class GuiBulkImport():
             #self.settings['global_lock'].release()
                 self.settings['global_lock'].release()
         else:
-            print "bulk-import aborted - global lock not available"
+            print _("bulk-import aborted - global lock not available")
 
     def get_vbox(self):
         """returns the vbox of this thread"""
@@ -150,14 +162,14 @@ class GuiBulkImport():
         self.table.show()
 
 #    checkbox - print start/stop?
-        self.chk_st_st = gtk.CheckButton('Print Start/Stop Info')
+        self.chk_st_st = gtk.CheckButton(_('Print Start/Stop Info'))
         self.table.attach(self.chk_st_st, 0, 1, 0, 1, xpadding=10, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.chk_st_st.show()
         self.chk_st_st.set_active(True)
 
 #    label - status
-        self.lab_status = gtk.Label("Hands/status print:")
+        self.lab_status = gtk.Label(_("Hands/status print:"))
         self.table.attach(self.lab_status, 1, 2, 0, 1, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.lab_status.show()
@@ -174,7 +186,7 @@ class GuiBulkImport():
         self.spin_status.show()
 
 #    label - threads
-        self.lab_threads = gtk.Label("Number of threads:")
+        self.lab_threads = gtk.Label(_("Number of threads:"))
         self.table.attach(self.lab_threads, 3, 4, 0, 1, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.lab_threads.show()
@@ -194,12 +206,12 @@ class GuiBulkImport():
             self.spin_threads.set_sensitive(False)
 
 #    checkbox - fail on error?
-        self.chk_fail = gtk.CheckButton('Fail on error')
+        self.chk_fail = gtk.CheckButton(_('Fail on error'))
         self.table.attach(self.chk_fail, 0, 1, 1, 2, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
         self.chk_fail.show()
 
 #    label - hands
-        self.lab_hands = gtk.Label("Hands/file:")
+        self.lab_hands = gtk.Label(_("Hands/file:"))
         self.table.attach(self.lab_hands, 1, 2, 1, 2, xpadding=0, ypadding=0, yoptions=gtk.SHRINK)
         self.lab_hands.show()
         self.lab_hands.set_justify(gtk.JUSTIFY_RIGHT)
@@ -214,7 +226,7 @@ class GuiBulkImport():
         self.spin_hands.show()
 
 #    label - drop indexes
-        self.lab_drop = gtk.Label("Drop indexes:")
+        self.lab_drop = gtk.Label(_("Drop indexes:"))
         self.table.attach(self.lab_drop, 3, 4, 1, 2, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.lab_drop.show()
@@ -223,20 +235,20 @@ class GuiBulkImport():
 
 #    ComboBox - drop indexes
         self.cb_dropindexes = gtk.combo_box_new_text()
-        self.cb_dropindexes.append_text('auto')
-        self.cb_dropindexes.append_text("don't drop")
-        self.cb_dropindexes.append_text('drop')
+        self.cb_dropindexes.append_text(_('auto'))
+        self.cb_dropindexes.append_text(_("don't drop"))
+        self.cb_dropindexes.append_text(_('drop'))
         self.cb_dropindexes.set_active(0)
         self.table.attach(self.cb_dropindexes, 4, 5, 1, 2, xpadding=10,
                           ypadding=0, yoptions=gtk.SHRINK)
         self.cb_dropindexes.show()
 
-        self.cb_testmode = gtk.CheckButton('HUD Test mode')
+        self.cb_testmode = gtk.CheckButton(_('HUD Test mode'))
         self.table.attach(self.cb_testmode, 0, 1, 2, 3, xpadding=10, ypadding=0, yoptions=gtk.SHRINK)
         self.cb_testmode.show()
 
 #    label - filter
-        self.lab_filter = gtk.Label("Site filter:")
+        self.lab_filter = gtk.Label(_("Site filter:"))
         self.table.attach(self.lab_filter, 1, 2, 2, 3, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.lab_filter.show()
@@ -264,7 +276,7 @@ class GuiBulkImport():
         self.cbfilter.show()
 
 #    label - drop hudcache
-        self.lab_hdrop = gtk.Label("Drop HudCache:")
+        self.lab_hdrop = gtk.Label(_("Drop HudCache:"))
         self.table.attach(self.lab_hdrop, 3, 4, 2, 3, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.lab_hdrop.show()
@@ -273,18 +285,18 @@ class GuiBulkImport():
 
 #    ComboBox - drop hudcache
         self.cb_drophudcache = gtk.combo_box_new_text()
-        self.cb_drophudcache.append_text('auto')
-        self.cb_drophudcache.append_text("don't drop")
-        self.cb_drophudcache.append_text('drop')
+        self.cb_drophudcache.append_text(_('auto'))
+        self.cb_drophudcache.append_text(_("don't drop"))
+        self.cb_drophudcache.append_text(_('drop'))
         self.cb_drophudcache.set_active(0)
         self.table.attach(self.cb_drophudcache, 4, 5, 2, 3, xpadding=10,
                           ypadding=0, yoptions=gtk.SHRINK)
         self.cb_drophudcache.show()
 
 #    button - Import
-        self.load_button = gtk.Button('Import')  # todo: rename variables to import too
+        self.load_button = gtk.Button(_('Import'))  # todo: rename variables to import too
         self.load_button.connect('clicked', self.load_clicked,
-                                 'Import clicked')
+                                 _('Import clicked'))
         self.table.attach(self.load_button, 2, 3, 4, 5, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
         self.load_button.show()
@@ -302,7 +314,7 @@ class GuiBulkImport():
         self.progressbar = gtk.ProgressBar()
         self.table.attach(self.progressbar, 3, 5, 4, 5, xpadding=0, ypadding=0,
                           yoptions=gtk.SHRINK)
-        self.progressbar.set_text("Waiting...")
+        self.progressbar.set_text(_("Waiting..."))
         self.progressbar.set_fraction(0)
         self.progressbar.show()
 
@@ -331,29 +343,29 @@ def main(argv=None):
 
     parser = OptionParser()
     parser.add_option("-f", "--file", dest="filename", metavar="FILE", default=None,
-                    help="Input file in quiet mode")
+                    help=_("Input file in quiet mode"))
     parser.add_option("-q", "--quiet", action="store_false", dest="gui", default=True,
-                    help="don't start gui; deprecated (just give a filename with -f).")
+                    help=_("don't start gui; deprecated (just give a filename with -f)."))
     parser.add_option("-c", "--convert", dest="filtername", default="PokerStars", metavar="FILTER",
-                    help="Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)")
+                    help=_("Conversion filter (*Full Tilt Poker, PokerStars, Everleaf, Absolute)"))
     parser.add_option("-x", "--failOnError", action="store_true", default=False,
-                    help="If this option is passed it quits when it encounters any error")
+                    help=_("If this option is passed it quits when it encounters any error"))
     parser.add_option("-m", "--minPrint", "--status", dest="minPrint", default="0", type="int",
-                    help="How often to print a one-line status report (0 (default) means never)")
+                    help=_("How often to print a one-line status report (0 (default) means never)"))
     parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
-                    help="Print some useful one liners")
+                    help=_("Print some useful one liners"))
     parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
-                    help="Do the required conversion for Stars Archive format (ie. as provided by support")
+                    help=_("Do the required conversion for Stars Archive format (ie. as provided by support"))
     (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
         #Print usage examples and exit
-        print "USAGE:"
-        print 'PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename'
-        print 'Full Tilt  converter: ./GuiBulkImport.py -c "Full Tilt Poker" -f filename'
-        print "Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename"
-        print "Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename"
-        print "PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename"
+        print _("USAGE:")
+        print _('PokerStars converter: ./GuiBulkImport.py -c PokerStars -f filename')
+        print _('Full Tilt  converter: ./GuiBulkImport.py -c "Full Tilt Poker" -f filename')
+        print _("Everleaf   converter: ./GuiBulkImport.py -c Everleaf -f filename")
+        print _("Absolute   converter: ./GuiBulkImport.py -c Absolute -f filename")
+        print _("PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename")
         sys.exit(0)
 
     config = Configuration.Config()
@@ -369,7 +381,7 @@ def main(argv=None):
     settings.update(config.get_default_paths())
 
     if not options.gui:
-        print '-q is deprecated. Just use "-f filename" instead'
+        print _('-q is deprecated. Just use "-f filename" instead')
         # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
         i = GuiBulkImport(settings, config)
@@ -382,7 +394,7 @@ def main(argv=None):
         #Do something useful
         importer = fpdb_import.Importer(False,settings, config)
         # importer.setDropIndexes("auto")
-        importer.setDropIndexes("don't drop")
+        importer.setDropIndexes(_("don't drop"))
         importer.setFailOnError(options.failOnError)
         importer.setThreads(-1)
         importer.addBulkImportImportFileOrDir(os.path.expanduser(options.filename), site=options.filtername)
@@ -391,7 +403,7 @@ def main(argv=None):
             importer.setStarsArchive(True)
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
-        print 'GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec'\
+        print _('GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
                      % (stored, dups, partial, errs, ttime, (stored+0.0) / ttime)
 
 

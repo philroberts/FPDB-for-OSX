@@ -69,6 +69,7 @@ Py2exe script for fpdb.
 #  See walkthrough in packaging directory for versions used
 #  Updates to this script have broken python 2.5 compatibility (gio module, msvcr71 references now msvcp90)
 
+# steffeN: Doesnt seem necessary to gettext-ify this, but feel free to if you disagree
 
 import os
 import sys

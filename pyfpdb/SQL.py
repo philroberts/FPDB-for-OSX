@@ -3057,11 +3057,18 @@ class Sql:
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3071,10 +3078,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3147,11 +3156,18 @@ class Sql:
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(street0VPI)
                       ,sum(street0Aggr)
                       ,sum(street0_3BChance)
                       ,sum(street0_3BDone)
+                      ,sum(street0_4BChance)
+                      ,sum(street0_4BDone)
+                      ,sum(other3BStreet0)
+                      ,sum(other4BStreet0)
                       ,sum(street1Seen)
                       ,sum(street2Seen)
                       ,sum(street3Seen)
@@ -3161,10 +3177,12 @@ class Sql:
                       ,sum(street2Aggr)
                       ,sum(street3Aggr)
                       ,sum(street4Aggr)
+                      ,sum(otherRaisedStreet0)
                       ,sum(otherRaisedStreet1)
                       ,sum(otherRaisedStreet2)
                       ,sum(otherRaisedStreet3)
                       ,sum(otherRaisedStreet4)
+                      ,sum(foldToOtherRaisedStreet0)
                       ,sum(foldToOtherRaisedStreet1)
                       ,sum(foldToOtherRaisedStreet2)
                       ,sum(foldToOtherRaisedStreet3)
@@ -3237,11 +3255,18 @@ class Sql:
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0      
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3251,10 +3276,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3327,11 +3354,18 @@ class Sql:
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(other3BStreet0 as integer))
+                      ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3341,10 +3375,12 @@ class Sql:
                       ,sum(CAST(street2Aggr as integer))
                       ,sum(CAST(street3Aggr as integer))
                       ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
                       ,sum(CAST(otherRaisedStreet1 as integer))
                       ,sum(CAST(otherRaisedStreet2 as integer))
                       ,sum(CAST(otherRaisedStreet3 as integer))
                       ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
@@ -3417,11 +3453,18 @@ class Sql:
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3431,10 +3474,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3507,11 +3552,18 @@ class Sql:
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(other3BStreet0 as integer))
+                      ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3521,10 +3573,12 @@ class Sql:
                       ,sum(CAST(street2Aggr as integer))
                       ,sum(CAST(street3Aggr as integer))
                       ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
                       ,sum(CAST(otherRaisedStreet1 as integer))
                       ,sum(CAST(otherRaisedStreet2 as integer))
                       ,sum(CAST(otherRaisedStreet3 as integer))
                       ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
@@ -3600,6 +3654,10 @@ class Sql:
                 street0Aggr,
                 street0_3BChance,
                 street0_3BDone,
+                street0_4BChance,
+                street0_4BDone,
+                other3BStreet0,
+                other4BStreet0,
                 street1Seen,
                 street2Seen,
                 street3Seen,
@@ -3609,15 +3667,20 @@ class Sql:
                 street2Aggr,
                 street3Aggr,
                 street4Aggr,
+                otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
                 otherRaisedStreet3,
                 otherRaisedStreet4,
+                foldToOtherRaisedStreet0,
                 foldToOtherRaisedStreet1,
                 foldToOtherRaisedStreet2,
                 foldToOtherRaisedStreet3,
                 foldToOtherRaisedStreet4,
                 wonWhenSeenStreet1,
+                wonWhenSeenStreet2,
+                wonWhenSeenStreet3,
+                wonWhenSeenStreet4,
                 wonAtSD,
                 raiseFirstInChance,
                 raisedFirstIn,
@@ -3680,7 +3743,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -3698,15 +3762,20 @@ class Sql:
             street2Aggr=street2Aggr+%s,
             street3Aggr=street3Aggr+%s,
             street4Aggr=street4Aggr+%s,
+            otherRaisedStreet0=otherRaisedStreet0+%s,
             otherRaisedStreet1=otherRaisedStreet1+%s,
             otherRaisedStreet2=otherRaisedStreet2+%s,
             otherRaisedStreet3=otherRaisedStreet3+%s,
             otherRaisedStreet4=otherRaisedStreet4+%s,
+            foldToOtherRaisedStreet0=foldToOtherRaisedStreet0+%s,
             foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s,
             foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
             foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s,
             foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
             wonWhenSeenStreet1=wonWhenSeenStreet1+%s,
+            wonWhenSeenStreet2=wonWhenSeenStreet2+%s,
+            wonWhenSeenStreet3=wonWhenSeenStreet3+%s,
+            wonWhenSeenStreet4=wonWhenSeenStreet4+%s,
             wonAtSD=wonAtSD+%s,
             raiseFirstInChance=raiseFirstInChance+%s,
             raisedFirstIn=raisedFirstIn+%s,
@@ -4021,6 +4090,9 @@ class Sql:
                 street3CBDone,
                 street4CBDone,
                 wonWhenSeenStreet1,
+                wonWhenSeenStreet2,
+                wonWhenSeenStreet3,
+                wonWhenSeenStreet4,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -4036,10 +4108,16 @@ class Sql:
                 startCards,
                 street0_3BChance,
                 street0_3BDone,
+                street0_4BChance,
+                street0_4BDone,
+                other3BStreet0,
+                other4BStreet0,
+                otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
                 otherRaisedStreet3,
                 otherRaisedStreet4,
+                foldToOtherRaisedStreet0,
                 foldToOtherRaisedStreet1,
                 foldToOtherRaisedStreet2,
                 foldToOtherRaisedStreet3,
@@ -4090,7 +4168,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s
                 )"""
         
         ################################

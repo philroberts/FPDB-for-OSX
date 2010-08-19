@@ -19,6 +19,8 @@
 Contains all sqlalchemy tables
 """
 
+#TODO: gettextify if file is used again
+
 from sqlalchemy import Table, Float, Column, Integer, String, MetaData, \
         ForeignKey, Boolean, SmallInteger, DateTime, Text, Index, CHAR, \
         PickleType, Unicode

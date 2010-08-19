@@ -23,6 +23,18 @@ import HandHistoryConverter
 import Configuration
 import sys
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 (options, argv) = Options.fpdb_options()
 config = Configuration.Config()
 
@@ -40,13 +52,13 @@ if os.path.exists(options.infile):
     filecontents = in_fh.read()
     in_fh.close()
 else:
-    print "Could not find file %s" % options.infile
+    print _("Could not find file %s") % options.infile
     exit(1)
 
 m = hhc.re_PlayerInfo.finditer(filecontents)
 
 outfile = options.infile+".anon"
-print "Output being written to", outfile
+print _("Output being written to"), outfile
 
 savestdout = sys.stdout
 fsock = open(outfile,"w")
