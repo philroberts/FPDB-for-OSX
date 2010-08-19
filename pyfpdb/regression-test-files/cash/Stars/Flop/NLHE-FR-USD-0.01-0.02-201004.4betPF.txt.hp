@@ -722,6 +722,7 @@
                     'street2CheckCallRaiseChance': False,
                     'street2CheckCallRaiseDone': False,
                     'street2Seen': False,
+                    'street2Raises': False,
                     'street3Aggr': False,
                     'street3Bets': 0,
                     'street3CBChance': False,
