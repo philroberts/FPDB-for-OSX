@@ -3057,6 +3057,9 @@ class Sql:
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
@@ -3147,6 +3150,9 @@ class Sql:
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(street0VPI)
                       ,sum(street0Aggr)
@@ -3237,6 +3243,9 @@ class Sql:
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
@@ -3327,6 +3336,9 @@ class Sql:
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
@@ -3417,6 +3429,9 @@ class Sql:
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
@@ -3507,6 +3522,9 @@ class Sql:
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
@@ -3618,6 +3636,9 @@ class Sql:
                 foldToOtherRaisedStreet3,
                 foldToOtherRaisedStreet4,
                 wonWhenSeenStreet1,
+                wonWhenSeenStreet2,
+                wonWhenSeenStreet3,
+                wonWhenSeenStreet4,
                 wonAtSD,
                 raiseFirstInChance,
                 raisedFirstIn,
@@ -3707,6 +3728,9 @@ class Sql:
             foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s,
             foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
             wonWhenSeenStreet1=wonWhenSeenStreet1+%s,
+            wonWhenSeenStreet2=wonWhenSeenStreet2+%s,
+            wonWhenSeenStreet3=wonWhenSeenStreet3+%s,
+            wonWhenSeenStreet4=wonWhenSeenStreet4+%s,
             wonAtSD=wonAtSD+%s,
             raiseFirstInChance=raiseFirstInChance+%s,
             raisedFirstIn=raisedFirstIn+%s,
