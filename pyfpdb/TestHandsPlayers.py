@@ -9,10 +9,11 @@ import Database
 import SQL
 import fpdb_import
 
-def error_report( filename, hand, stat, ghash, testhash):
+def error_report( filename, hand, stat, ghash, testhash, player):
     print "Regression Test Error:"
     print "\tFile: %s" % filename
     print "\tStat: %s" % stat
+    print "\tPlayer: %s" % player
 
 def compare(leaf, importer):
     filename = leaf
@@ -50,7 +51,7 @@ def compare(leaf, importer):
                             pass
                         else:
                             # Stats don't match - Doh!
-                            error_report(filename, hand, stat, ghash, testhash)
+                            error_report(filename, hand, stat, ghash, testhash, p)
 
         importer.clearFileList()
 
