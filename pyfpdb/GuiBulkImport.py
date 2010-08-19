@@ -356,6 +356,8 @@ def main(argv=None):
                     help=_("Print some useful one liners"))
     parser.add_option("-s", "--starsarchive", action="store_true", dest="starsArchive", default=False,
                     help=_("Do the required conversion for Stars Archive format (ie. as provided by support"))
+    parser.add_option("-t", "--testdata", action="store_true", dest="testData", default=False,
+                    help=_("Output the pprinted version of the HandsPlayer hash for regresion testing"))
     (options, argv) = parser.parse_args(args = argv)
 
     if options.usage == True:
@@ -401,6 +403,8 @@ def main(argv=None):
         importer.setCallHud(False)
         if options.starsArchive:
             importer.setStarsArchive(True)
+        if options.testData:
+            importer.setPrintTestData(True)
         (stored, dups, partial, errs, ttime) = importer.runImport()
         importer.clearFileList()
         print _('GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec')\
