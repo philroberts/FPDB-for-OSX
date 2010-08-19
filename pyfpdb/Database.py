@@ -1633,8 +1633,13 @@ class Database:
         return self.get_last_insert_id(c)
     # def storeHand
 
-    def storeHandsPlayers(self, hid, pids, pdata):
+    def storeHandsPlayers(self, hid, pids, pdata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, pdata)
+        if printdata:
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(pdata)
+
         inserts = []
         for p in pdata:
             inserts.append( (hid,

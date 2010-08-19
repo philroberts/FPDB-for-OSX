@@ -251,7 +251,7 @@ dealt   whether they were seen in a 'dealt to' line
             db.commit()
     #end def prepInsert
 
-    def insert(self, db):
+    def insert(self, db, printtest = False):
         """ Function to insert Hand into database
 Should not commit, and do minimal selects. Callers may want to cache commits
 db: a connected Database object"""
@@ -271,7 +271,7 @@ db: a connected Database object"""
             hh['seats'] = len(self.dbid_pids)
 
             self.dbid_hands = db.storeHand(hh)
-            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers())
+            db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(), printdata = printtest)
             # TODO HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
         else:
