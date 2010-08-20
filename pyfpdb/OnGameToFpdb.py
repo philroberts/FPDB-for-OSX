@@ -21,6 +21,19 @@
 import sys
 import Configuration
 from HandHistoryConverter import *
+from decimal import Decimal
+
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 # OnGame HH Format
 
@@ -71,6 +84,12 @@ class OnGame(HandHistoryConverter):
         gametype = ["ring", "hold", "nl"]
 
         m = self.re_HandInfo.search(handText)
+        if not m:
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+
         gametype = gametype + [m.group('SB')]
         gametype = gametype + [m.group('BB')]
         
