@@ -43,14 +43,44 @@ class OnGame(HandHistoryConverter):
     codepage = ("utf8", "cp1252")
     siteId   = 5 # Needs to match id entry in Sites database
 
+    substitutions = {
+                     'LEGAL_ISO' : "USD|EUR|GBP|CAD|FPP",    # legal ISO currency codes
+                            'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
+                    }
+
+    limits = { 'NO LIMIT':'nl', 'LIMIT':'fl'}
+
+    games = {                          # base, category
+                          "TEXAS_HOLDEM" : ('hold','holdem'),
+             #                   'Omaha' : ('hold','omahahi'),
+             #             'Omaha Hi/Lo' : ('hold','omahahilo'),
+             #                    'Razz' : ('stud','razz'),
+             #                    'RAZZ' : ('stud','razz'),
+             #             '7 Card Stud' : ('stud','studhi'),
+             #       '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+             #                  'Badugi' : ('draw','badugi'),
+             # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+             #             '5 Card Draw' : ('draw','fivedraw')
+               }
+
         #self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
     # Static regexes
     re_SplitHands = re.compile('\n\n\n+')
-        
-    #Texas Hold'em $.5-$1 NL (real money), hand #P4-76915775-797
-    #Table Kuopio, 20 Sep 2008 11:59 PM
-    re_HandInfo = re.compile(r"Texas Hold'em \$?(?P<SB>[.0-9]+)-\$?(?P<BB>[.0-9]+) NL \(real money\), hand #(?P<HID>[-A-Z\d]+)\nTable\ (?P<TABLE>[\' \w]+), (?P<DATETIME>\d\d \w+ \d\d\d\d \d\d:\d\d (AM|PM))")
-    # SB BB HID TABLE DAY MON YEAR HR12 MIN AMPM
+
+    # ***** History for hand R5-75443872-57 *****
+    # Start hand: Wed Aug 18 19:29:10 GMT+0100 2010
+    # Table: someplace [75443872] (LIMIT TEXAS_HOLDEM 0.50/1, Real money)
+    re_HandInfo = re.compile(u"""
+            \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+).*
+            Start\shand:\s(?P<DATETIME>.*)
+            Table:\s(?P<TABLE>[\'\w]+)\s\[\d+\]\s\(
+            (
+            (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
+            (?P<GAME>TEXAS_HOLDEM|RAZZ)\s
+            (?P<SB>[.0-9]+)/
+            (?P<BB>[.0-9]+)
+            )?
+            """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
         
     #    self.rexx.button_re = re.compile('#SUMMARY\nDealer: (?P<BUTTONPNAME>.*)\n')
         
@@ -80,8 +110,9 @@ class OnGame(HandHistoryConverter):
         pass
 
     def determineGameType(self, handText):
-        # Cheating with this regex, only support nlhe at the moment
-        gametype = ["ring", "hold", "nl"]
+        # Inspect the handText and return the gametype dict
+        # gametype dict is: {'limitType': xxx, 'base': xxx, 'category': xxx}
+        info = {}
 
         m = self.re_HandInfo.search(handText)
         if not m:
@@ -90,10 +121,20 @@ class OnGame(HandHistoryConverter):
             log.error(_("determineGameType: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
-        gametype = gametype + [m.group('SB')]
-        gametype = gametype + [m.group('BB')]
-        
-        return gametype
+        mg = m.groupdict()
+
+        info['type'] = 'ring'
+
+        if 'LIMIT' in mg:
+            info['limitType'] = self.limits[mg['LIMIT']]
+        if 'GAME' in mg:
+            (info['base'], info['category']) = self.games[mg['GAME']]
+        if 'SB' in mg:
+            info['sb'] = mg['SB']
+        if 'BB' in mg:
+            info['bb'] = mg['BB']
+
+        return info
 
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.string)
