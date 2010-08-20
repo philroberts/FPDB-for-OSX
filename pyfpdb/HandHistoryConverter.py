@@ -349,9 +349,22 @@ or None if we fail to get the info """
     """
     #TODO: which parts are optional/required?
 
-    # Needs to return a list of lists in the format
-    # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
     def readPlayerStacks(self, hand): abstract
+    """This function is for identifying players at the table, and to pass the 
+    information on to 'hand' via Hand.addPlayer(seat, name, chips)
+
+    At the time of writing the reference function in the PS converter is:
+        log.debug("readPlayerStacks")
+        m = self.re_PlayerInfo.finditer(hand.handText)
+        for a in m:
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+
+    Which is pretty simple because the hand history format is consistent. Other hh formats aren't so nice.
+
+    This is the appropriate place to identify players that are sitting out and ignore them
+
+    *** NOTE: You may find this is a more appropriate place to set hand.maxseats ***
+    """
 
     def compilePlayerRegexs(self): abstract
     """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
