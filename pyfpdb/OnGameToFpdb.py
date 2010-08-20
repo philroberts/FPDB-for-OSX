@@ -107,7 +107,10 @@ class OnGame(HandHistoryConverter):
     re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def readSupportedGames(self):
-        pass
+        return [
+                ["ring", "hold", "fl"],
+                ["ring", "hold", "nl"],
+               ]
 
     def determineGameType(self, handText):
         # Inspect the handText and return the gametype dict
@@ -124,6 +127,7 @@ class OnGame(HandHistoryConverter):
         mg = m.groupdict()
 
         info['type'] = 'ring'
+        info['currency'] = 'USD'
 
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
