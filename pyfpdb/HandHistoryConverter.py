@@ -326,15 +326,28 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
 or None if we fail to get the info """
     #TODO: which parts are optional/required?
 
-    # Read any of:
-    # HID       HandID
-    # TABLE     Table name
-    # SB        small blind
-    # BB        big blind
-    # GAMETYPE  gametype
-    # YEAR MON DAY HR MIN SEC   datetime
-    # BUTTON    button seat number
     def readHandInfo(self, hand): abstract
+    """Read and set information about the hand being dealt, and set the correct 
+    variables in the Hand object 'hand
+
+    * hand.startTime - a datetime object
+    * hand.handid - The site identified for the hand - a string.
+    * hand.tablename
+    * hand.buttonpos
+    * hand.maxseats
+    * hand.mixed
+
+    Tournament fields:
+
+    * hand.tourNo - The site identified tournament id as appropriate - a string.
+    * hand.buyin
+    * hand.fee
+    * hand.buyinCurrency
+    * hand.koBounty
+    * hand.isKO
+    * hand.level
+    """
+    #TODO: which parts are optional/required?
 
     # Needs to return a list of lists in the format
     # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
