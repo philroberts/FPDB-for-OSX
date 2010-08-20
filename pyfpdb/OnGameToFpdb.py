@@ -81,11 +81,21 @@ class OnGame(HandHistoryConverter):
             (?P<BB>[.0-9]+)
             )?
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
+
+    # Wed Aug 18 19:45:30 GMT+0100 2010
+    re_DateTime = re.compile("""
+            [a-zA-Z]{3}\s
+            (?P<M>[a-zA-Z]{3})\s
+            (?P<D>[0-9]{2})\s
+            (?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\sGMT
+            (?P<OFFSET>[-+]\d+)\s
+            (?P<Y>[0-9]{4})
+            """, re.MULTILINE|re.VERBOSE)
         
     #    self.rexx.button_re = re.compile('#SUMMARY\nDealer: (?P<BUTTONPNAME>.*)\n')
         
     #Seat 1: .Lucchess ($4.17 in chips) 
-    re_PlayerInfo = re.compile(u'Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \((\$(?P<CASH>[.0-9]+) in chips)\)')
+    re_PlayerInfo = re.compile(u'Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \((?P<CASH>[.0-9]+) \)')
         
     #ANTES/BLINDS
     #helander2222 posts blind ($0.25), lopllopl posts blind ($0.50).
@@ -105,6 +115,9 @@ class OnGame(HandHistoryConverter):
     #Uchilka, bets $11.75, collects $23.04, net $11.29
     re_CollectPot = re.compile('(?P<PNAME>.*), bets.+, collects \$(?P<POT>\d*\.?\d*), net.* ')
     re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
+
+    def compilePlayerRegexs(self, hand):
+        pass
 
     def readSupportedGames(self):
         return [
@@ -141,30 +154,37 @@ class OnGame(HandHistoryConverter):
         return info
 
     def readHandInfo(self, hand):
-        m =  self.re_HandInfo.search(hand.string)
-        hand.handid = m.group('HID')
-        hand.tablename = m.group('TABLE')
-        #hand.buttonpos = self.rexx.button_re.search(hand.string).group('BUTTONPNAME')
-# These work, but the info is already in the Hand class - should be used for tourneys though.
-#       m.group('SB')
-#       m.group('BB')
-#       m.group('GAMETYPE')
+        info = {}
+        m =  self.re_HandInfo.search(hand.handText)
 
-# Believe Everleaf time is GMT/UTC, no transation necessary
-# Stars format (Nov 10 2008): 2008/11/07 12:38:49 CET [2008/11/07 7:38:49 ET]
-# or                        : 2008/11/07 12:38:49 ET
-# Not getting it in my HH files yet, so using
-# 2008/11/10 3:58:52 ET
-#TODO: Do conversion from GMT to ET
-#TODO: Need some date functions to convert to different timezones (Date::Manip for perl rocked for this)
-        
-        hand.startTime = time.strptime(m.group('DATETIME'), "%d %b %Y %I:%M %p")
-        #hand.starttime = "%d/%02d/%02d %d:%02d:%02d ET" %(int(m.group('YEAR')), int(m.group('MON')), int(m.group('DAY')),
-                            #int(m.group('HR')), int(m.group('MIN')), int(m.group('SEC')))
+        if m:
+            info.update(m.groupdict())
+
+        log.debug("readHandInfo: %s" % info)
+        for key in info:
+            if key == 'DATETIME':
+                #'Wed Aug 18 19:45:30 GMT+0100 2010
+                # %a   %b %d %H:%M:%S     %z   %Y
+                #hand.startTime = time.strptime(m.group('DATETIME'), "%a %b %d %H:%M:%S GMT%z %Y")
+                # Stupid library doesn't seem to support %z (http://docs.python.org/library/time.html?highlight=strptime#time.strptime)
+                # So we need to re-interpret te string to be useful
+                m1 = self.re_DateTime.finditer(info[key])
+                for a in m1:
+                    datetimestr = "%s %s %s %s:%s:%s" % (a.group('M'),a.group('D'), a.group('Y'), a.group('H'),a.group('MIN'),a.group('S'))
+                    hand.startTime = time.strptime(datetimestr, "%b %d %Y %H:%M:%S")
+                    # TODO: Manually adjust time against OFFSET
+            if key == 'HID':
+                hand.handid = info[key]
+            if key == 'TABLE':
+                hand.tablename = info[key]
+
+        # TODO: These
+        hand.buttonpos = 1
+        hand.maxseats = 10
+        hand.mixed = None
 
     def readPlayerStacks(self, hand):
-        m = self.re_PlayerInf.finditer(hand.string)
-        players = []
+        m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
 
@@ -176,7 +196,7 @@ class OnGame(HandHistoryConverter):
         m =  re.search(r"PRE-FLOP(?P<PREFLOP>.+(?=FLOP)|.+(?=SHOWDOWN))"
                        r"(FLOP (?P<FLOP>\[board cards .+ \].+(?=TURN)|.+(?=SHOWDOWN)))?"
                        r"(TURN (?P<TURN>\[board cards .+ \].+(?=RIVER)|.+(?=SHOWDOWN)))?"
-                       r"(RIVER (?P<RIVER>\[board cards .+ \].+(?=SHOWDOWN)))?", hand.string,re.DOTALL)
+                       r"(RIVER (?P<RIVER>\[board cards .+ \].+(?=SHOWDOWN)))?", hand.handText, re.DOTALL)
 
         hand.addStreets(m)
             
@@ -189,17 +209,17 @@ class OnGame(HandHistoryConverter):
 
     def readBlinds(self, hand):
         try:
-            m = self.re_PostSB.search(hand.string)
+            m = self.re_PostSB.search(hand.handText)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         except: # no small blind
             hand.addBlind(None, None, None)
-        for a in self.re_PostBB.finditer(hand.string):
+        for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
-        for a in self.re_PostBoth.finditer(hand.string):
+        for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.string)
+        m = self.re_HeroCards.search(hand.handText)
         if(m == None):
             #Not involved in hand
             hand.involved = False
@@ -230,13 +250,13 @@ class OnGame(HandHistoryConverter):
         # TODO: Everleaf does not record uncalled bets.
 
     def readShowdownActions(self, hand):
-        for shows in self.re_ShowdownAction.finditer(hand.string):
+        for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = set(cards.split(','))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.re_CollectPot.finditer(hand.string):
+        for m in self.re_CollectPot.finditer(hand.handText):
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
