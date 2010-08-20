@@ -391,6 +391,24 @@ or None if we fail to get the info """
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
     def markStreets(self, hand): abstract
+    """For dividing the handText into sections.
+
+    The function requires you to pass a MatchObject with groups specifically labeled with
+    the 'correct' street names.
+
+    The Hand object will use the various matches for assigning actions to the correct streets.
+
+    Flop Based Games:
+    PREFLOP, FLOP, TURN, RIVER
+
+    Draw Based Games:
+    PREDEAL, DEAL, DRAWONE, DRAWTWO, DRAWTHREE
+
+    Stud Based Games:
+    ANTES, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH
+
+    The Stars HHC has a good reference implementation
+    """
 
     #Needs to return a list in the format
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
