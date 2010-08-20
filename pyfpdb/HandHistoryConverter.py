@@ -367,7 +367,25 @@ or None if we fail to get the info """
     """
 
     def compilePlayerRegexs(self): abstract
-    """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
+    """Compile dynamic regexes -- compile player dependent regexes.
+
+    Depending on the ambiguity of lines you may need to match, and the complexity of 
+    player names - we found that we needed to recompile some regexes for player actions so that they actually contained the player names.
+
+    eg.
+    We need to match the ante line:
+    <Player> antes $1.00
+
+    But <Player> is actually named
+
+    YesI antes $4000 - A perfectly legal playername
+
+    Giving:
+
+    YesI antes $4000 antes $1.00
+
+    Which without care in your regexes most people would match 'YesI' and not 'YesI antes $4000'
+    """
 
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
