@@ -670,6 +670,7 @@ Left-Drag to Move"
         <hhc site="Betfair" converter="BetfairToFpdb"/>
         <hhc site="Partouche" converter="PartoucheToFpdb"/>
         <hhc site="Carbon" converter="CarbonToFpdb"/>
+        <hhc site="OnGame" converter="OnGameToFpdb"/>
     </hhcs>
 
     <!-- attribute names chosen to be in alphabetic order so that order can be set when retrieved -->
