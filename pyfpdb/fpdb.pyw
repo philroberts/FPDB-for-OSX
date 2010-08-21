@@ -1171,12 +1171,12 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
     def __iconify(self):
         self.visible = False
         self.window.set_skip_taskbar_hint(True)
-        self.window.set_skip_pager_hind(True)
+        self.window.set_skip_pager_hint(True)
 
     def __deiconify(self):
         self.visible = True
         self.window.set_skip_taskbar_hint(False)
-        self.window.set_skip_pager_hind(False)
+        self.window.set_skip_pager_hint(False)
 
     def window_state_event_cb(self, window, event):
         # Deal with iconification first
