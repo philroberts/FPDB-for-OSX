@@ -294,7 +294,7 @@ class GuiBulkImport():
         self.cb_drophudcache.show()
 
 #    button - Import
-        self.load_button = gtk.Button(_('Import'))  # todo: rename variables to import too
+        self.load_button = gtk.Button(_('_Bulk Import'))  # todo: rename variables to import too
         self.load_button.connect('clicked', self.load_clicked,
                                  _('Import clicked'))
         self.table.attach(self.load_button, 2, 3, 4, 5, xpadding=0, ypadding=0,
