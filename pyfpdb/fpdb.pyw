@@ -1093,6 +1093,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.status_bar = None
         self.quitting = False
 
+        self.visible = False
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.connect("delete_event", self.delete_event)
         self.window.connect("destroy", self.destroy)
@@ -1130,6 +1131,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.tab_main_help(None, None)
 
         self.window.show()
+        self.visible = True     # Flip on
         self.load_profile(create_db = True)
 
         if not options.errorsToConsole:
@@ -1165,21 +1167,31 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.window.connect('window-state-event', self.window_state_event_cb)
         sys.stderr.write(_("fpdb starting ..."))
 
+
+    def __iconify(self):
+        self.visible = False
+        self.window.set_skip_taskbar_hint(True)
+        self.window.set_skip_pager_hind(True)
+
+    def __deiconify(self):
+        self.visible = True
+        self.window.set_skip_taskbar_hint(False)
+        self.window.set_skip_pager_hind(False)
+
     def window_state_event_cb(self, window, event):
+        # Deal with iconification first
         if event.changed_mask & gtk.gdk.WINDOW_STATE_ICONIFIED:
-            # -20 = GWL_EXSTYLE can't find it in the pywin32 libs
-            #bits = win32api.GetWindowLong(self.window.window.handle, -20)
-            #bits = bits ^ (win32con.WS_EX_TOOLWINDOW | win32con.WS_EX_APPWINDOW)
-
-            #win32api.SetWindowLong(self.window.window.handle, -20, bits)
-
             if event.new_window_state & gtk.gdk.WINDOW_STATE_ICONIFIED:
-                self.window.hide()
-                self.window.set_skip_taskbar_hint(True)
-                self.window.set_skip_pager_hint(True)
+                self.__iconify()
             else:
-                self.window.set_skip_taskbar_hint(False)
-                self.window.set_skip_pager_hint(False)
+                self.__deiconify()
+            if not event.new_window_state & gtk.gdk.WINDOW_STATE_WITHDRAWN:
+                return True
+        # And then the tray icon click
+        if event.new_window_state & gtk.gdk.WINDOW_STATE_WITHDRAWN:
+            self.__iconify()
+        else:
+            self.__deiconify()
         # Tell GTK not to propagate this signal any further
         return True
 
@@ -1197,11 +1209,9 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
     def statusicon_activate(self, widget, data = None):
         # Let's allow the tray icon to toggle window visibility, the way
         # most other apps work
-        shown = self.window.get_property('visible')
-        if shown:
+        if self.visible:
             self.window.hide()
         else:
-            self.window.show()
             self.window.present()
 
     def info_box(self, str1, str2):

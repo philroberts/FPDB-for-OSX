@@ -326,33 +326,104 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
 or None if we fail to get the info """
     #TODO: which parts are optional/required?
 
-    # Read any of:
-    # HID       HandID
-    # TABLE     Table name
-    # SB        small blind
-    # BB        big blind
-    # GAMETYPE  gametype
-    # YEAR MON DAY HR MIN SEC   datetime
-    # BUTTON    button seat number
     def readHandInfo(self, hand): abstract
+    """Read and set information about the hand being dealt, and set the correct 
+    variables in the Hand object 'hand
 
-    # Needs to return a list of lists in the format
-    # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
+    * hand.startTime - a datetime object
+    * hand.handid - The site identified for the hand - a string.
+    * hand.tablename
+    * hand.buttonpos
+    * hand.maxseats
+    * hand.mixed
+
+    Tournament fields:
+
+    * hand.tourNo - The site identified tournament id as appropriate - a string.
+    * hand.buyin
+    * hand.fee
+    * hand.buyinCurrency
+    * hand.koBounty
+    * hand.isKO
+    * hand.level
+    """
+    #TODO: which parts are optional/required?
+
     def readPlayerStacks(self, hand): abstract
+    """This function is for identifying players at the table, and to pass the 
+    information on to 'hand' via Hand.addPlayer(seat, name, chips)
+
+    At the time of writing the reference function in the PS converter is:
+        log.debug("readPlayerStacks")
+        m = self.re_PlayerInfo.finditer(hand.handText)
+        for a in m:
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+
+    Which is pretty simple because the hand history format is consistent. Other hh formats aren't so nice.
+
+    This is the appropriate place to identify players that are sitting out and ignore them
+
+    *** NOTE: You may find this is a more appropriate place to set hand.maxseats ***
+    """
 
     def compilePlayerRegexs(self): abstract
-    """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
+    """Compile dynamic regexes -- compile player dependent regexes.
+
+    Depending on the ambiguity of lines you may need to match, and the complexity of 
+    player names - we found that we needed to recompile some regexes for player actions so that they actually contained the player names.
+
+    eg.
+    We need to match the ante line:
+    <Player> antes $1.00
+
+    But <Player> is actually named
+
+    YesI antes $4000 - A perfectly legal playername
+
+    Giving:
+
+    YesI antes $4000 antes $1.00
+
+    Which without care in your regexes most people would match 'YesI' and not 'YesI antes $4000'
+    """
 
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
     def markStreets(self, hand): abstract
+    """For dividing the handText into sections.
+
+    The function requires you to pass a MatchObject with groups specifically labeled with
+    the 'correct' street names.
+
+    The Hand object will use the various matches for assigning actions to the correct streets.
+
+    Flop Based Games:
+    PREFLOP, FLOP, TURN, RIVER
+
+    Draw Based Games:
+    PREDEAL, DEAL, DRAWONE, DRAWTWO, DRAWTHREE
+
+    Stud Based Games:
+    ANTES, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH
+
+    The Stars HHC has a good reference implementation
+    """
 
     #Needs to return a list in the format
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    """Function for reading the various blinds from the hand history.
+
+    Pass any small blind to hand.addBlind(<name>, "small blind", <value>)
+    - unless it is a single dead small blind then use:
+        hand.addBlind(<name>, 'secondsb', <value>)
+    Pass any big blind to hand.addBlind(<name>, "big blind", <value>)
+    Pass any play posting both big and small blinds to hand.addBlind(<name>, 'both', <vale>)
+    """
     def readAntes(self, hand): abstract
+    """Function for reading the antes from the hand history and passing the hand.addAnte"""
     def readBringIn(self, hand): abstract
     def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
@@ -408,18 +479,6 @@ or None if we fail to get the info """
     def setFileType(self, filetype = "text", codepage='utf8'):
         self.filetype = filetype
         self.codepage = codepage
-
-    #This function doesn't appear to be used
-    def splitFileIntoHands(self):
-        hands = []
-        self.obs = self.obs.strip()
-        list = self.re_SplitHands.split(self.obs)
-        list.pop() #Last entry is empty
-        for l in list:
-#           print "'" + l + "'"
-            hands = hands + [Hand.Hand(self.config, self.sitename, self.gametype, l)]
-        # TODO: This looks like it could be replaced with a list comp.. ?
-        return hands
 
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
