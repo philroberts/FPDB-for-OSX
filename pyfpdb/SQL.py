@@ -108,7 +108,52 @@ class Sql:
             self.query['createSettingsTable'] = """CREATE TABLE Settings
             (version INTEGER NOT NULL) """
 
-
+        ################################
+        # Create RawHands (this table is all but identical with RawTourneys)
+        ################################
+        if db_server == 'mysql':
+            self.query['createRawHands'] = """CREATE TABLE RawHands (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        handId BIGINT NOT NULL,
+                        rawHand TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createRawHands'] =  """CREATE TABLE RawHands (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handId BIGINT NOT NULL,
+                        rawHand TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        elif db_server == 'sqlite':
+            self.query['createRawHands'] = """CREATE TABLE RawHands (
+                        id INTEGER PRIMARY KEY,
+                        handId BIGINT NOT NULL,
+                        rawHand TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        
+        ################################
+        # Create RawTourneys (this table is all but identical with RawHands)
+        ################################
+        if db_server == 'mysql':
+            self.query['createRawTourneys'] = """CREATE TABLE RawTourneys (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        tourneyId BIGINT NOT NULL,
+                        rawTourney TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createRawTourneys'] =  """CREATE TABLE RawTourneys (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        tourneyId BIGINT NOT NULL,
+                        rawTourney TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        elif db_server == 'sqlite':
+            self.query['createRawTourneys'] = """CREATE TABLE RawTourneys (
+                        id INTEGER PRIMARY KEY,
+                        tourneyId BIGINT NOT NULL,
+                        rawTourney TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        
         ################################
         # Create Sites
         ################################
@@ -4182,7 +4227,7 @@ class Sql:
         ################################
         # queries for dumpDatabase
         ################################
-        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             self.query['get'+table] = u"SELECT * FROM "+table
         
         ################################

@@ -82,7 +82,7 @@ except ImportError:
     use_numpy = False
 
 
-DB_VERSION = 142
+DB_VERSION = 143
 
 
 # Variance created as sqlite has a bunch of undefined aggregate functions.
@@ -150,6 +150,8 @@ class Database:
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
+                , {'tab':'RawHands',        'col':'id',                'drop':0}
+                , {'tab':'RawTourneys',        'col':'id',                'drop':0}
                 ]
               , [ # indexes for sqlite (list index 4)
                   {'tab':'Hands',           'col':'gametypeId',        'drop':0}
@@ -165,6 +167,8 @@ class Database:
                 , {'tab':'TourneyTypes',    'col':'siteId',            'drop':0}
                 , {'tab':'Backings',        'col':'tourneysPlayersId',  'drop':0}
                 , {'tab':'Backings',        'col':'playerId',          'drop':0}
+                , {'tab':'RawHands',        'col':'id',                'drop':0}
+                , {'tab':'RawTourneys',     'col':'id',                'drop':0}
                 ]
               ]
 
@@ -306,9 +310,7 @@ class Database:
         
         tables=self.cursor.execute(self.sql.query['list_tables'])
         tables=self.cursor.fetchall()
-        for table in tables:
-            table=table[0]
-            
+        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             print "table:", table
             result+="###################\nTable "+table+"\n###################\n"
             rows=self.cursor.execute(self.sql.query['get'+table])
@@ -1155,6 +1157,8 @@ class Database:
             c.execute(self.sql.query['createHandsActionsTable'])
             c.execute(self.sql.query['createHudCacheTable'])
             c.execute(self.sql.query['createBackingsTable'])
+            c.execute(self.sql.query['createRawHands'])
+            c.execute(self.sql.query['createRawTourneys'])
 
             # Create unique indexes:
             log.debug("Creating unique indexes")
