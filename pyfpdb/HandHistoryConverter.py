@@ -70,6 +70,7 @@ class HandHistoryConverter():
     # "utf_8" is more likely if there are funny characters
     codepage = "cp1252"
 
+    re_tzOffset = re.compile('^\w+[+-]\d{4}$')
 
     def __init__(self, config, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False, ftpArchive=False):
         """\
@@ -572,6 +573,12 @@ or None if we fail to get the info """
         
     @staticmethod
     def changeTimezone(time, givenTimezone, wantedTimezone):
+        """Takes a givenTimezone in format AAA or AAA+HHMM where AAA is a standard timezone
+           and +HHMM is an optional offset (+/-) in hours (HH) and minutes (MM)
+           (See OnGameToFpdb.py for example use of the +HHMM part)
+           Tries to convert the time parameter (with no timezone) from the givenTimezone to 
+           the wantedTimeZone (currently only allows "UTC")
+        """
         log.debug( _("raw time:")+str(time) + _(" given TZ:")+str(givenTimezone) )
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
@@ -579,6 +586,10 @@ or None if we fail to get the info """
             raise Error #TODO raise appropriate error
 
         givenTZ = None
+        if HandHistoryConverter.re_tzOffset.match(givenTimezone):
+            offset = int(givenTimezone[-5:])
+            givenTimezone = givenTimezone[0:-5]
+            log.debug( _("changeTimeZone: offset=") + str(offset) )
 
         if givenTimezone=="ET":
             givenTZ = timezone('US/Eastern')
@@ -634,8 +645,12 @@ or None if we fail to get the info """
         else:
             raise Error #TODO raise appropriate error
         
+        if givenTZ is None:
+            raise Error #TODO raise appropriate error
+                        # (or just return time unchanged?)
+
         localisedTime = givenTZ.localize(time)
-        utcTime = localisedTime.astimezone(wantedTimezone)
+        utcTime = localisedTime.astimezone(wantedTimezone) + datetime.timedelta(seconds=-3600*(offset/100)-60*(offset%100))
         log.debug( _("utcTime:")+str(utcTime) )
         return utcTime
     #end @staticmethod def changeTimezone
