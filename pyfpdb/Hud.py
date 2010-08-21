@@ -525,7 +525,10 @@ class Hud:
     def debug_stat_windows(self, *args):
 #        print self.table, "\n", self.main_window.window.get_transient_for()
         for w in self.stat_windows:
-            print self.stat_windows[w].window.window.get_transient_for()
+            try:
+                print self.stat_windows[w].window.window.get_transient_for()
+            except AttributeError:
+                print "this window doesnt have get_transient_for"
 
     def save_layout(self, *args):
         new_layout = [(0, 0)] * self.max
