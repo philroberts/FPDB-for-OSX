@@ -65,7 +65,8 @@ class OnGame(HandHistoryConverter):
 
         #self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
     # Static regexes
-    re_SplitHands = re.compile('\n\n\n+')
+    # ***** End of hand R5-75443872-57 *****
+    re_SplitHands = re.compile(u'\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n(?=\*)')
 
     # ***** History for hand R5-75443872-57 *****
     # Start hand: Wed Aug 18 19:29:10 GMT+0100 2010
@@ -179,9 +180,10 @@ class OnGame(HandHistoryConverter):
                 # So we need to re-interpret te string to be useful
                 m1 = self.re_DateTime.finditer(info[key])
                 for a in m1:
-                    datetimestr = "%s %s %s %s:%s:%s" % (a.group('M'),a.group('D'), a.group('Y'), a.group('H'),a.group('MIN'),a.group('S'))
-                    hand.startTime = time.strptime(datetimestr, "%b %d %Y %H:%M:%S")
+                    datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
                     # TODO: Manually adjust time against OFFSET
+                hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
+                hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, "GMT", "UTC")
             if key == 'HID':
                 hand.handid = info[key]
             if key == 'TABLE':

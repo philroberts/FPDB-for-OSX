@@ -150,6 +150,7 @@ Otherwise, finish at EOF.
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
+                log.debug( _("handsList is ") + str(handsList) )
                 log.info("Parsing %d hands" % len(handsList))
                 # Determine if we're dealing with a HH file or a Summary file
                 # quick fix : empty files make the handsList[0] fail ==> If empty file, go on with HH parsing
@@ -571,17 +572,21 @@ or None if we fail to get the info """
         
     @staticmethod
     def changeTimezone(time, givenTimezone, wantedTimezone):
-        #print "raw time:",time, "given TZ:", givenTimezone
+        log.debug( _("raw time:")+str(time) + _(" given TZ:")+str(givenTimezone) )
         if wantedTimezone=="UTC":
             wantedTimezone = pytz.utc
         else:
             raise Error #TODO raise appropriate error
-        
+
+        givenTZ = None
+
         if givenTimezone=="ET":
-            givenTimezone = timezone('US/Eastern')
+            givenTZ = timezone('US/Eastern')
         elif givenTimezone=="CET":
-            givenTimezone = timezone('Europe/Berlin')
+            givenTZ = timezone('Europe/Berlin')
             #Note: Daylight Saving Time is standardised across the EU so this should be fine
+        elif givenTimezone == 'GMT': # Greenwich Mean Time (same as UTC - no change to time)
+            givenTZ = timezone('GMT')
         elif givenTimezone == 'HST': # Hawaiian Standard Time
             pass
         elif givenTimezone == 'AKT': # Alaska Time
@@ -615,23 +620,23 @@ or None if we fail to get the info """
         elif givenTimezone == 'JST': # Japan Standard Time
             pass
         elif givenTimezone == 'AWST': # Australian Western Standard Time
-            givenTimezone = timezone('Australia/West')
+            givenTZ = timezone('Australia/West')
         elif givenTimezone == 'ACST': # Australian Central Standard Time
-            givenTimezone = timezone('Australia/Darwin')
+            givenTZ = timezone('Australia/Darwin')
         elif givenTimezone == 'AEST': # Australian Eastern Standard Time
             # Each State on the East Coast has different DSTs.
             # Melbournce is out because I don't like AFL, Queensland doesn't have DST
             # ACT is full of politicians and Tasmania will never notice.
             # Using Sydney. 
-            givenTimezone = timezone('Australia/Sydney')
+            givenTZ = timezone('Australia/Sydney')
         elif givenTimezone == 'NZT': # New Zealand Time
             pass
         else:
             raise Error #TODO raise appropriate error
         
-        localisedTime = givenTimezone.localize(time)
+        localisedTime = givenTZ.localize(time)
         utcTime = localisedTime.astimezone(wantedTimezone)
-        #print "utcTime:",utcTime
+        log.debug( _("utcTime:")+str(utcTime) )
         return utcTime
     #end @staticmethod def changeTimezone
 
