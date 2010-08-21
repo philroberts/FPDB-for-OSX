@@ -96,28 +96,37 @@ class OnGame(HandHistoryConverter):
         
     #Seat 1: .Lucchess ($4.17 in chips) 
     re_PlayerInfo = re.compile(u'Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \((?P<CASH>[.0-9]+) \)')
-        
-    #ANTES/BLINDS
-    #helander2222 posts blind ($0.25), lopllopl posts blind ($0.50).
-    re_PostSB    = re.compile('(?P<PNAME>.*) posts blind \(\$?(?P<SB>[.0-9]+)\), ')
-    re_PostBB    = re.compile('\), (?P<PNAME>.*) posts blind \(\$?(?P<BB>[.0-9]+)\).')
-    re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
-    re_HeroCards = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
-        
-    #lopllopl checks, Eurolll checks, .Lucchess checks.
-    re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( \$(?P<BET>\d*\.?\d*))?( and is all-in)?')
-    re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
-        
-    #Uchilka shows [ KC,JD ]
-    re_ShowdownAction = re.compile('(?P<PNAME>.*) shows \[ (?P<CARDS>.+) \]')
-        
-    # TODO: read SUMMARY correctly for collected pot stuff.
-    #Uchilka, bets $11.75, collects $23.04, net $11.29
-    re_CollectPot = re.compile('(?P<PNAME>.*), bets.+, collects \$(?P<POT>\d*\.?\d*), net.* ')
-    re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def compilePlayerRegexs(self, hand):
-        pass
+        players = set([player[1] for player in hand.players])
+        if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
+            # we need to recompile the player regexs.
+# TODO: should probably rename re_HeroCards and corresponding method,
+#    since they are used to find all cards on lines starting with "Dealt to:"
+#    They still identify the hero.
+
+            #ANTES/BLINDS
+            #helander2222 posts blind ($0.25), lopllopl posts blind ($0.50).
+            player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
+            subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
+            re_PostSB    = re.compile('(?P<PNAME>.*) posts blind \(\$?(?P<SB>[.0-9]+)\), ')
+            re_PostBB    = re.compile('\), (?P<PNAME>.*) posts blind \(\$?(?P<BB>[.0-9]+)\).')
+            re_Antes     = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
+            re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
+            re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \[\$? (?P<SBBB>[.0-9]+)')
+            re_HeroCards = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
+
+            #lopllopl checks, Eurolll checks, .Lucchess checks.
+            re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( \$(?P<BET>\d*\.?\d*))?( and is all-in)?')
+            re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
+
+            #Uchilka shows [ KC,JD ]
+            re_ShowdownAction = re.compile('(?P<PNAME>.*) shows \[ (?P<CARDS>.+) \]')
+
+            # TODO: read SUMMARY correctly for collected pot stuff.
+            #Uchilka, bets $11.75, collects $23.04, net $11.29
+            re_CollectPot = re.compile('(?P<PNAME>.*), bets.+, collects \$(?P<POT>\d*\.?\d*), net.* ')
+            re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def readSupportedGames(self):
         return [
@@ -193,13 +202,27 @@ class OnGame(HandHistoryConverter):
         # This re fails if,  say, river is missing; then we don't get the ** that starts the river.
         #m = re.search('(\*\* Dealing down cards \*\*\n)(?P<PREFLOP>.*?\n\*\*)?( Dealing Flop \*\* \[ (?P<FLOP1>\S\S), (?P<FLOP2>\S\S), (?P<FLOP3>\S\S) \])?(?P<FLOP>.*?\*\*)?( Dealing Turn \*\* \[ (?P<TURN1>\S\S) \])?(?P<TURN>.*?\*\*)?( Dealing River \*\* \[ (?P<RIVER1>\S\S) \])?(?P<RIVER>.*)', hand.string,re.DOTALL)
 
-        m =  re.search(r"PRE-FLOP(?P<PREFLOP>.+(?=FLOP)|.+(?=SHOWDOWN))"
-                       r"(FLOP (?P<FLOP>\[board cards .+ \].+(?=TURN)|.+(?=SHOWDOWN)))?"
-                       r"(TURN (?P<TURN>\[board cards .+ \].+(?=RIVER)|.+(?=SHOWDOWN)))?"
-                       r"(RIVER (?P<RIVER>\[board cards .+ \].+(?=SHOWDOWN)))?", hand.handText, re.DOTALL)
+        #if hand.gametype['base'] in ("hold"):
+        #elif hand.gametype['base'] in ("stud"):
+        #elif hand.gametype['base'] in ("draw"):
+        # only holdem so far:
+        m =  re.search(r"pocket cards(?P<PREFLOP>.+(?=flop)|.+(?=Summary))"
+                       r"(flop (?P<FLOP>\[\S\S, \S\S, \S\S\].+(?=turn)|.+(?=Summary)))?"
+                       r"(turn (?P<TURN>\[\S\S, \S\S, \S\S\, \S\S\].+(?=river)|.+(?=Summary)))?"
+                       r"(river (?P<RIVER>\[\S\S, \S\S, \S\S\, \S\S, \S\S\].+(?=Summary)))?", hand.handText, re.DOTALL)
 
         hand.addStreets(m)
-            
+
+    #Needs to return a list in the format
+    # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
+    # addtional players are assumed to post a bb oop
+
+    def readButton(self, hand):
+        m = self.re_Button.search(hand.handText)
+        if m:
+            hand.buttonpos = int(m.group('BUTTON'))
+        else:
+            log.info(_('readButton: not found'))
 
     def readCommunityCards(self, hand, street):
         print hand.streets.group(street)
@@ -217,6 +240,19 @@ class OnGame(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
+
+    def readAntes(self, hand):
+        log.debug(_("reading antes"))
+        m = self.re_Antes.finditer(hand.handText)
+        for player in m:
+            #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
+            hand.addAnte(player.group('PNAME'), player.group('ANTE'))
+    
+    def readBringIn(self, hand):
+        m = self.re_BringIn.search(hand.handText,re.DOTALL)
+        if m:
+            #~ logging.debug("readBringIn: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readHeroCards(self, hand):
         m = self.re_HeroCards.search(hand.handText)
