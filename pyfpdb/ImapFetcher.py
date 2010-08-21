@@ -66,8 +66,7 @@ def run(config, db):
             #print "response to fetch subject:",response
             if response!="OK":
                 raise error #TODO: show error message
-            if headerData[1].find("Subject: PokerStars Tournament History Request - Last x")!=1:
-                neededMessages.append(("PS", messageNumber))
+            neededMessages.append(("PS", messageNumber))
         
         if (len(neededMessages)==0):
             raise error #TODO: show error message
