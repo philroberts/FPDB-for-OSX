@@ -416,7 +416,16 @@ or None if we fail to get the info """
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    """Function for reading the various blinds from the hand history.
+
+    Pass any small blind to hand.addBlind(<name>, "small blind", <value>)
+    - unless it is a single dead small blind then use:
+        hand.addBlind(<name>, 'secondsb', <value>)
+    Pass any big blind to hand.addBlind(<name>, "big blind", <value>)
+    Pass any play posting both big and small blinds to hand.addBlind(<name>, 'both', <vale>)
+    """
     def readAntes(self, hand): abstract
+    """Function for reading the antes from the hand history and passing the hand.addAnte"""
     def readBringIn(self, hand): abstract
     def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
@@ -472,18 +481,6 @@ or None if we fail to get the info """
     def setFileType(self, filetype = "text", codepage='utf8'):
         self.filetype = filetype
         self.codepage = codepage
-
-    #This function doesn't appear to be used
-    def splitFileIntoHands(self):
-        hands = []
-        self.obs = self.obs.strip()
-        list = self.re_SplitHands.split(self.obs)
-        list.pop() #Last entry is empty
-        for l in list:
-#           print "'" + l + "'"
-            hands = hands + [Hand.Hand(self.config, self.sitename, self.gametype, l)]
-        # TODO: This looks like it could be replaced with a list comp.. ?
-        return hands
 
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
