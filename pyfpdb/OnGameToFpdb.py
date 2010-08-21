@@ -65,7 +65,7 @@ class OnGame(HandHistoryConverter):
 
         #self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
     # Static regexes
-    re_SplitHands = re.compile('\n\n\n+')
+    re_SplitHands = re.compile(r'End of hand .{2}-\d{7,9}-\d+ \*\*\*\*\*\n')
 
     # ***** History for hand R5-75443872-57 *****
     # Start hand: Wed Aug 18 19:29:10 GMT+0100 2010
