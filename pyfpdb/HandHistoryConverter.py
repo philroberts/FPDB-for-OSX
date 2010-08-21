@@ -414,7 +414,16 @@ or None if we fail to get the info """
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    """Function for reading the various blinds from the hand history.
+
+    Pass any small blind to hand.addBlind(<name>, "small blind", <value>)
+    - unless it is a single dead small blind then use:
+        hand.addBlind(<name>, 'secondsb', <value>)
+    Pass any big blind to hand.addBlind(<name>, "big blind", <value>)
+    Pass any play posting both big and small blinds to hand.addBlind(<name>, 'both', <vale>)
+    """
     def readAntes(self, hand): abstract
+    """Function for reading the antes from the hand history and passing the hand.addAnte"""
     def readBringIn(self, hand): abstract
     def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
