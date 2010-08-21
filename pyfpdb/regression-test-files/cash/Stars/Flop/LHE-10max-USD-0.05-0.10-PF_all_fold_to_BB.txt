@@ -1,0 +1,40 @@
+PokerStars Game #46290540537:  Hold'em Limit ($0.05/$0.10 USD) - 2010/07/03 14:46:30 CET [2010/07/03 8:46:30 ET]
+Table 'Elektra II' 10-max Seat #6 is the button
+Seat 1: steffen780 ($2.77 in chips) 
+Seat 2: ialexiv ($1.93 in chips) 
+Seat 4: seregaserg ($2.80 in chips) 
+Seat 5: GREEN373 ($2.38 in chips) 
+Seat 6: Swann99 ($2.93 in chips) 
+Seat 7: ToolTheSheep ($1.22 in chips) 
+Seat 9: bigsergv ($2.26 in chips) 
+Seat 10: garikoitz_22 ($1.69 in chips) 
+ToolTheSheep: posts small blind $0.02
+Tora-Usagi: is sitting out 
+bigsergv: posts big blind $0.05
+Ted the Mad: sits out 
+*** HOLE CARDS ***
+Dealt to steffen780 [8h 3c]
+garikoitz_22: folds 
+steffen780: folds 
+ialexiv: folds 
+seregaserg: folds 
+GREEN373: folds 
+Swann99: folds 
+ToolTheSheep: folds 
+Uncalled bet ($0.03) returned to bigsergv
+bigsergv collected $0.04 from pot
+bigsergv: doesn't show hand 
+*** SUMMARY ***
+Total pot $0.04 | Rake $0 
+Seat 1: steffen780 folded before Flop (didn't bet)
+Seat 2: ialexiv folded before Flop (didn't bet)
+Seat 4: seregaserg folded before Flop (didn't bet)
+Seat 5: GREEN373 folded before Flop (didn't bet)
+Seat 6: Swann99 (button) folded before Flop (didn't bet)
+Seat 7: ToolTheSheep (small blind) folded before Flop
+Seat 9: bigsergv (big blind) collected ($0.04)
+Seat 10: garikoitz_22 folded before Flop (didn't bet)
+
+
+
+

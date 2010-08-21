@@ -24,6 +24,18 @@ import gtk
 #import sys
 from time import time, strftime
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 #import Card
 #import fpdb_import
 #import Database
@@ -69,7 +81,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
         self.filters = TourneyFilters.TourneyFilters(self.db, self.conf, self.sql, display = filters_display)
         #self.filters.registerButton1Name("_Filters")
         #self.filters.registerButton1Callback(self.showDetailFilter)
-        self.filters.registerButton2Name("_Refresh Stats")
+        self.filters.registerButton2Name(_("_Refresh Stats"))
         self.filters.registerButton2Callback(self.refreshStats)
         
         # ToDo: store in config
@@ -86,9 +98,9 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
                        , ["playerName",     False, "Name",    0.0, "%s", "str"]   # true not allowed for this line (set in code)
                        , ["tourneyCount",   True,  "#",       1.0, "%1.0f", "str"]
                        , ["itm",            True,  "ITM%",    1.0, "%3.2f", "str"]
-                       , ["1st",            False, "1st",     1.0, "%1.0f", "str"]
-                       , ["2nd",            True,  "2nd",     1.0, "%1.0f", "str"]
-                       , ["3rd",            True,  "3rd",     1.0, "%1.0f", "str"]
+                       , ["_1st",           False, "1st",     1.0, "%1.0f", "str"]
+                       , ["_2nd",           True,  "2nd",     1.0, "%1.0f", "str"]
+                       , ["_3rd",           True,  "3rd",     1.0, "%1.0f", "str"]
                        , ["unknownRank",    True,  "Rank?",   1.0, "%1.0f", "str"]
                        , ["spent",          True,  "Spent",   1.0, "%3.2f", "str"]
                        , ["won",            True,  "Won",     1.0, "%3.2f", "str"]
@@ -237,7 +249,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
             self.addGrid(swin, 'playerDetailedStats', flags, playerids, sitenos, seats, dates)
 
         self.db.rollback()
-        print "Stats page displayed in %4.2f seconds" % (time() - startTime)
+        print _("Stats page displayed in %4.2f seconds") % (time() - startTime)
     #end def createStatsTable
 
     def fillStatsFrame(self, vbox):
@@ -262,10 +274,10 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
         if not sitenos:
             #Should probably pop up here.
-            print "No sites selected - defaulting to PokerStars"
+            print _("No sites selected - defaulting to PokerStars")
             sitenos = [2]
         if not playerids:
-            print "No player ids found"
+            print _("No player ids found")
             return
         
         self.createStatsTable(vbox, tourneyTypes, playerids, sitenos, seats, dates)
@@ -451,7 +463,7 @@ class GuiTourneyPlayerStats (GuiPlayerStats.GuiPlayerStats):
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***sortCols error: " + str(sys.exc_info()[1])
+            print _("***sortCols error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
     #end def sortCols
 #end class GuiTourneyPlayerStats

@@ -38,9 +38,20 @@ try:
 #     DayLocator, MONDAY, timezone
 
 except ImportError, inst:
-    print """Failed to load numpy in Session Viewer"""
-    print """This is of no consequence as the page is broken and only of interest to developers."""
-    print "ImportError: %s" % inst.args
+    print _("""Failed to load numpy and/or matplotlib in Session Viewer""")
+    print _("ImportError: %s") % inst.args
+
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 import Card
 import fpdb_import
@@ -76,8 +87,7 @@ class GuiSessionViewer (threading.Thread):
         settings.update(self.conf.get_default_paths())
 
         # text used on screen stored here so that it can be configured
-        self.filterText = {'handhead':'Hand Breakdown for all levels listed above'
-                          }
+        self.filterText = {'handhead':_('Hand Breakdown for all levels listed above')}
 
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
@@ -191,13 +201,13 @@ class GuiSessionViewer (threading.Thread):
 
         if not sitenos:
             #Should probably pop up here.
-            print "No sites selected - defaulting to PokerStars"
+            print _("No sites selected - defaulting to PokerStars")
             sitenos = [2]
         if not playerids:
-            print "No player ids found"
+            print _("No player ids found")
             return
         if not limits:
-            print "No limits found"
+            print _("No limits found")
             return
 
         self.createStatsPane(vbox, playerids, sitenos, limits, seats)
@@ -236,7 +246,7 @@ class GuiSessionViewer (threading.Thread):
         self.addTable(vbox1, results)
 
         self.db.rollback()
-        print "Stats page displayed in %4.2f seconds" % (time() - starttime)
+        print _("Stats page displayed in %4.2f seconds") % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
     def generateDatasets(self, playerids, sitenos, limits, seats):
@@ -342,7 +352,7 @@ class GuiSessionViewer (threading.Thread):
             self.canvas = FigureCanvas(self.fig)  # a gtk.DrawingArea
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print "***Error: "+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
+            print _("***Error: ")+err[2]+"("+str(err[1])+"): "+str(sys.exc_info()[1])
             raise
 
 
@@ -363,10 +373,10 @@ class GuiSessionViewer (threading.Thread):
 
         self.ax = self.fig.add_subplot(111)
 
-        self.ax.set_title("Session candlestick graph")
+        self.ax.set_title(_("Session candlestick graph"))
 
         #Set axis labels and grid overlay properites
-        self.ax.set_xlabel("Sessions", fontsize = 12)
+        self.ax.set_xlabel(_("Sessions"), fontsize = 12)
         self.ax.set_ylabel("$", fontsize = 12)
         self.ax.grid(color='g', linestyle=':', linewidth=0.2)
 

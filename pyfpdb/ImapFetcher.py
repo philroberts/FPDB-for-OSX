@@ -22,6 +22,18 @@
 from imaplib import IMAP4, IMAP4_SSL
 import PokerStarsSummary
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 def splitPokerStarsSummaries(emailText):
     splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
     for i in range(len(splitSummaries)):
@@ -33,16 +45,16 @@ def run(config, db):
         #print "start of IS.run"
         server=None
     #try:
-        #print "useSSL",config.email.useSsl,"host",config.email.host
-        if config.email.useSsl:
-            server = IMAP4_SSL(config.email.host)
+        #print "useSSL",config.useSsl,"host",config.host
+        if config.useSsl:
+            server = IMAP4_SSL(config.host)
         else:
-            server = IMAP4(config.email.host)
-        response = server.login(config.email.username, config.email.password) #TODO catch authentication error
-        print "response to logging in:",response
+            server = IMAP4(config.host)
+        response = server.login(config.username, config.password) #TODO catch authentication error
+        print _("response to logging in:"),response
         #print "server.list():",server.list() #prints list of folders
 
-        response = server.select(config.email.folder)
+        response = server.select(config.folder)
         #print "response to selecting INBOX:",response
         if response[0]!="OK":
             raise error #TODO: show error message
@@ -54,8 +66,7 @@ def run(config, db):
             #print "response to fetch subject:",response
             if response!="OK":
                 raise error #TODO: show error message
-            if headerData[1].find("Subject: PokerStars Tournament History Request - Last x")!=1:
-                neededMessages.append(("PS", messageNumber))
+            neededMessages.append(("PS", messageNumber))
         
         if (len(neededMessages)==0):
             raise error #TODO: show error message
@@ -71,7 +82,7 @@ def run(config, db):
                     #print "finished importing a PS summary with result:",result
                     #TODO: count results and output to shell like hand importer does
             
-        print "completed running Imap import, closing server connection"
+        print _("completed running Imap import, closing server connection")
     #finally:
      #   try:
         server.close()

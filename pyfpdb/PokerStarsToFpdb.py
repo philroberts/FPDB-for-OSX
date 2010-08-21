@@ -24,6 +24,18 @@ import sys
 from HandHistoryConverter import *
 from decimal import Decimal
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 # PokerStars HH Format
 
 class PokerStars(HandHistoryConverter):
@@ -44,12 +56,21 @@ class PokerStars(HandHistoryConverter):
                     
     # translations from captured groups to fpdb info strings
     Lim_Blinds = {  '0.04': ('0.01', '0.02'),    '0.10': ('0.02', '0.05'),     '0.20': ('0.05', '0.10'),
-                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),     '1.00': ('0.25', '0.50'),
-                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),     '4'   : ('1.00', '2.00'),
-                        '4.00': ('1.00', '2.00'),       '6': ('1.00', '3.00'),     '6.00': ('1.00', '3.00'),
-                       '10.00': ('2.00', '5.00'),   '20.00': ('5.00', '10.00'),   '30.00': ('10.00', '15.00'),
-                       '60.00': ('15.00', '30.00'), '100.00': ('25.00', '50.00'), '200.00': ('50.00', '100.00'),
-                      '400.00': ('100.00', '200.00'), '1000.00': ('250.00', '500.00')}
+                        '0.40': ('0.10', '0.20'),    '0.50': ('0.10', '0.25'),
+                        '1.00': ('0.25', '0.50'),       '1': ('0.25', '0.50'),
+                        '2.00': ('0.50', '1.00'),       '2': ('0.50', '1.00'),
+                        '4.00': ('1.00', '2.00'),       '4': ('1.00', '2.00'),
+                        '6.00': ('1.00', '3.00'),       '6': ('1.00', '3.00'),
+                        '8.00': ('2.00', '4.00'),       '8': ('2.00', '4.00'),
+                       '10.00': ('2.00', '5.00'),      '10': ('2.00', '5.00'),
+                       '20.00': ('5.00', '10.00'),     '20': ('5.00', '10.00'),
+                       '30.00': ('10.00', '15.00'),    '30': ('10.00', '15.00'),
+                       '60.00': ('15.00', '30.00'),    '60': ('15.00', '30.00'),
+                      '100.00': ('25.00', '50.00'),   '100': ('25.00', '50.00'),
+                      '200.00': ('50.00', '100.00'),  '200': ('50.00', '100.00'),
+                      '400.00': ('100.00', '200.00'), '400': ('100.00', '200.00'),
+                     '1000.00': ('250.00', '500.00'),'1000': ('250.00', '500.00')
+                  }
 
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category
@@ -72,9 +93,9 @@ class PokerStars(HandHistoryConverter):
           (Tournament\s\#                # open paren of tournament info
           (?P<TOURNO>\d+),\s
           # here's how I plan to use LS
-          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)\+(?P<BOUNTY>[%(LS)s\d\.]+)?\+(?P<BIRAKE>[%(LS)s\d\.]+)\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)|Freeroll)\s+)?
+          (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
-          (?P<MIXED>HORSE|8\-Game|HOSE)?\s?\(?
+          (?P<MIXED>HORSE|8\-Game|HOSE|Mixed PLH/PLO)?\s?\(?
           (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
@@ -165,9 +186,9 @@ class PokerStars(HandHistoryConverter):
         m = self.re_GameInfo.search(handText)
         if not m:
             tmp = handText[0:100]
-            log.error("determineGameType: Unable to recognise gametype from: '%s'" % tmp)
-            log.error("determineGameType: Raising FpdbParseError")
-            raise FpdbParseError("Unable to recognise gametype from: '%s'" % tmp)
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
 #    I don't think this is doing what we think. mg will always have all 
@@ -195,9 +216,9 @@ class PokerStars(HandHistoryConverter):
                 info['sb'] = self.Lim_Blinds[mg['BB']][0]
                 info['bb'] = self.Lim_Blinds[mg['BB']][1]
             except KeyError:
-                log.error("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB'])
-                log.error("determineGameType: Raising FpdbParseError")
-                raise FpdbParseError("Lim_Blinds has no lookup for '%s'" % mg['BB'])
+                log.error(_("determineGameType: Lim_Blinds has no lookup for '%s'" % mg['BB']))
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("Lim_Blinds has no lookup for '%s'") % mg['BB'])
 
         return info
 
@@ -249,14 +270,28 @@ class PokerStars(HandHistoryConverter):
                             hand.buyinCurrency="PSFP"
                         else:
                             #FIXME: handle other currencies, FPP, play money
-                            raise FpdbParseError("failed to detect currency")
+                            raise FpdbParseError(_("failed to detect currency"))
+
+                        info['BIAMT'] = info['BIAMT'].strip(u'$€FPP')
                         
-                        if hand.buyinCurrency=="USD" or hand.buyinCurrency=="EUR":
-                            hand.buyin = int(100*Decimal(info['BIAMT'][1:]))
-                            hand.fee = int(100*Decimal(info['BIRAKE'][1:]))
-                            # TODO: Bounty is in key 'BOUNTY'
-                        elif hand.buyinCurrency=="PSFP":
-                            hand.buyin = int(Decimal(info[key][0:-3]))
+                        if hand.buyinCurrency!="PSFP":
+                            if info['BOUNTY'] != None:
+                                # There is a bounty, Which means we need to switch BOUNTY and BIRAKE values
+                                tmp = info['BOUNTY']
+                                info['BOUNTY'] = info['BIRAKE']
+                                info['BIRAKE'] = tmp
+                                info['BOUNTY'] = info['BOUNTY'].strip(u'$€') # Strip here where it isn't 'None'
+                                hand.koBounty = int(100*Decimal(info['BOUNTY']))
+                                hand.isKO = True
+                            else:
+                                hand.isKO = False
+
+                            info['BIRAKE'] = info['BIRAKE'].strip(u'$€')
+
+                            hand.buyin = int(100*Decimal(info['BIAMT']))
+                            hand.fee = int(100*Decimal(info['BIRAKE']))
+                        else:
+                            hand.buyin = int(Decimal(info['BIAMT']))
                             hand.fee = 0
             if key == 'LEVEL':
                 hand.level = info[key]
@@ -282,7 +317,7 @@ class PokerStars(HandHistoryConverter):
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            log.info('readButton: not found')
+            log.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
@@ -320,7 +355,7 @@ class PokerStars(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
-        log.debug("reading antes")
+        log.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -402,7 +437,7 @@ class PokerStars(HandHistoryConverter):
             elif action.group('ATYPE') == ' stands pat':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print _("DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
 
 
     def readShowdownActions(self, hand):
@@ -429,9 +464,9 @@ class PokerStars(HandHistoryConverter):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="regression-test-files/stars/horse/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     #parser.add_option("-q", "--quiet", action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     #parser.add_option("-v", "--verbose", action="store_const", const=logging.INFO, dest="verbosity")
     #parser.add_option("--vv", action="store_const", const=logging.DEBUG, dest="verbosity")

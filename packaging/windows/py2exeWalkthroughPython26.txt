@@ -30,13 +30,39 @@ py2exe 0.6.9 ... http://sourceforge.net/projects/py2exe/files/py2exe/0.6.9/py2ex
 psycopg2 ... http://www.stickpeople.com/projects/python/win-psycopg/psycopg2-2.2.1.win32-py2.6-pg8.4.3-release.exe
 (Note: stickpeople is the offical repository, not a community build)
 
+
 1.2/ MySQL 
 
 MySQL-python-1.2.3.win32-py2.6-fpdb0.20.exe ... http://www.mediafire.com/file/iodnnnznmj1/MySQL-python-1.2.3.win32-py2.6-fpdb0.20.exe
 
-This is an intaller built from source by gimick.  There are no official mysql-python2.6 build for windows.
+This is an intaller built from source by gimick.  There are no official mysql-python2.6 builds for windows.
 
 Community builds are also available from some developers.  see www.codegood.com for example.
+
+
+1.3/ pytz fixup to work in an executable package
+
+pytz needs runtime access to timezone definition files.  pytz is hard-coded to search in the directory from which the pytz .py modules are being run.
+In a py2exe package, this directory is actually a library.zip container file, so windows cannot find the timezone definitions, and will crash the app.
+
+We need to make a one-line change to pytz to search in the current working directory (which is not a container), and not the application directory.
+The py2exe script copies the timezone datafiles into the package folder pyfpdb/zoneinfo.
+
+Thanks to Jeff Peck <peck.jeff <at> gmail.com> on the py2exe mailing list for documenting this problem and solution.
+
+1.3.1/ Navigate to C:\Python26\Lib\site-packages\pytz
+1.3.2/ Edit __init__.py 
+1.3.3/ At line 55 replace the following line(s):
+
+        filename = os.path.join(os.path.dirname(__file__),
+                                'zoneinfo', *name_parts)
+
+with this line:
+
+        filename = os.path.join(os.getcwd(), 'zoneinfo', *name_parts)
+
+1.3.4/ Save and exit
+
 
 
 Step 2 Setup GTK
@@ -196,7 +222,7 @@ pyfpdb/share/man
 Step 12 rename folder 
 ---------------------
 
-Rename the folder to something meaningful to the community.  If you have built for NoSSE, append noSSE to the directory name.
+Rename the folder to something meaningful to the community.  If you have built for NoSSE, append anyCPU to the directory name.
 
 
 Step 13 Compress to executable archive

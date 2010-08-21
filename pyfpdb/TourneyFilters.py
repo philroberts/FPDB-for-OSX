@@ -29,6 +29,17 @@ from time import gmtime, mktime, strftime, strptime
 import logging #logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("filter")
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 #import Configuration
 #import Database
@@ -45,9 +56,9 @@ class TourneyFilters(Filters.Filters):
         self.conf = db.config
         self.display = display
         
-        self.filterText = {'playerstitle':'Hero:', 'sitestitle':'Sites:', 'seatstitle':'Number of Players:',
-                    'seatsbetween':'Between:', 'seatsand':'And:', 'datestitle':'Date:',
-                    'tourneyTypesTitle':'Tourney Type'}
+        self.filterText = {'playerstitle':_('Hero:'), 'sitestitle':_('Sites:'), 'seatstitle':_('Number of Players:'),
+                    'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'datestitle':_('Date:'),
+                    'tourneyTypesTitle':_('Tourney Type')}
         
         gen = self.conf.get_general_params()
         self.day_start = 0
@@ -74,7 +85,7 @@ class TourneyFilters(Filters.Filters):
             self.numTourneys = int(w.get_text())
         except:
             self.numTourneys = 0
-        print "setting numTourneys:", self.numTourneys
+        print _("setting numTourneys:"), self.numTourneys
     #end def __set_num_tourneys
 
     def __toggle_box(self, widget, entry): #identical with Filters
@@ -102,7 +113,7 @@ class TourneyFilters(Filters.Filters):
             if len(result) == 1:
                 self.siteid[site] = result[0][0]
             else:
-                print "Either 0 or more than one site matched (%s) - EEK" % site
+                print _("Either 0 or more than one site matched (%s) - EEK") % site
 
         # For use in date ranges.
         self.start_date = gtk.Entry(max=12)

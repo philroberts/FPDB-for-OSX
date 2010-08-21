@@ -11,6 +11,36 @@
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
 
+    <gui_cash_stats>
+        <col col_name="game"       disp_all="True"  disp_posn="True"  col_title="Game"     xalignment="0.0" field_format="%s"    field_type="str" />
+        <col col_name="hand"       disp_all="False" disp_posn="False" col_title="Hand"     xalignment="0.0" field_format="%s"    field_type="str" />
+        <col col_name="plposition" disp_all="False" disp_posn="False" col_title="Posn"     xalignment="1.0" field_format="%s"    field_type="str" />
+        <col col_name="pname"      disp_all="False" disp_posn="False" col_title="Name"     xalignment="0.0" field_format="%s"    field_type="str" />
+        <col col_name="n"          disp_all="True"  disp_posn="True"  col_title="Hds"      xalignment="1.0" field_format="%1.0f" field_type="str" />
+        <col col_name="avgseats"   disp_all="False" disp_posn="False" col_title="Seats"    xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="vpip"       disp_all="True"  disp_posn="True"  col_title="VPIP"     xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pfr"        disp_all="True"  disp_posn="True"  col_title="PFR"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pf3"        disp_all="True"  disp_posn="True"  col_title="PF3"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="aggfac"     disp_all="True"  disp_posn="True"  col_title="AggFac"   xalignment="1.0" field_format="%2.2f" field_type="str" />
+        <col col_name="aggfrq"     disp_all="True"  disp_posn="True"  col_title="AggFreq"  xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="conbet"     disp_all="True"  disp_posn="True"  col_title="ContBet"  xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="rfi"        disp_all="True"  disp_posn="True"  col_title="RFI"      xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="steals"     disp_all="True"  disp_posn="True"  col_title="Steals"   xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="saw_f"      disp_all="True"  disp_posn="True"  col_title="Saw_F"    xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="sawsd"      disp_all="True"  disp_posn="True"  col_title="SawSD"    xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="wtsdwsf"    disp_all="True"  disp_posn="True"  col_title="WtSDwsF"  xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="wmsd"       disp_all="True"  disp_posn="True"  col_title="W$SD"     xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="flafq"      disp_all="True"  disp_posn="True"  col_title="FlAFq"    xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="tuafq"      disp_all="True"  disp_posn="True"  col_title="TuAFq"    xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="rvafq"      disp_all="True"  disp_posn="True"  col_title="RvAFq"    xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="pofafq"     disp_all="False" disp_posn="False" col_title="PoFAFq"   xalignment="1.0" field_format="%3.1f" field_type="str" />
+        <col col_name="net"        disp_all="True"  disp_posn="True"  col_title="Net($)"   xalignment="1.0" field_format="%6.2f" field_type="cash" />
+        <col col_name="bbper100"   disp_all="True"  disp_posn="True"  col_title="bb/100"   xalignment="1.0" field_format="%4.2f" field_type="str" />
+        <col col_name="rake"       disp_all="True"  disp_posn="True"  col_title="Rake($)"  xalignment="1.0" field_format="%6.2f" field_type="cash" />
+        <col col_name="bb100xr"    disp_all="True"  disp_posn="True"  col_title="bbxr/100" xalignment="1.0" field_format="%4.2f" field_type="str" />
+        <col col_name="variance"   disp_all="True"  disp_posn="True"  col_title="Variance" xalignment="1.0" field_format="%5.2f" field_type="str" />
+    </gui_cash_stats>
+
 <!-- These values determine what stats are displayed in the HUD
 
     The following values define how opponents' stats are done, the first 2 determine
@@ -222,49 +252,46 @@ Left-Drag to Move"
             </layout>
         </site>
 
-        <site enabled="False"
-              site_name="Everleaf"
-              table_finder="Everleaf.exe"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path=""
-              HH_path=""
-              decoder="everleaf_decode_table"
-              converter="EverleafToFpdb"
-              supported_games="holdem">
-            <layout fav_seat="0" height="547" max="8" width="794">
-                <location seat="1" x="640" y="64">  </location>
-                <location seat="2" x="650" y="230"> </location>
-                <location seat="3" x="650" y="385"> </location>
-                <location seat="4" x="588" y="425"> </location>
-                <location seat="5" x="92" y="425"> </location>
-                <location seat="6" x="0" y="373"> </location>
-                <location seat="7" x="0" y="223"> </location>
-                <location seat="8" x="25" y="50">  </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="6" width="794">
-                <location seat="1" x="640" y="58"> </location>
-                <location seat="2" x="654" y="288"> </location>
-                <location seat="3" x="615" y="424"> </location>
-                <location seat="4" x="70" y="421"> </location>
-                <location seat="5" x="0" y="280"> </location>
-                <location seat="6" x="70" y="58"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="2" width="794">
-                <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
-            </layout>
-            <layout fav_seat="0" height="547" max="9" width="794">
-                <location seat="1" x="634" y="38">  </location>
-                <location seat="2" x="667" y="184"> </location>
-                <location seat="3" x="667" y="321"> </location>
-                <location seat="4" x="667" y="445"> </location>
-                <location seat="5" x="337" y="459"> </location>
-                <location seat="6" x="0" y="400"> </location>
-                <location seat="7" x="0" y="322"> </location>
-                <location seat="8" x="0" y="181">  </location>
-                <location seat="9" x="70" y="53">  </location>
-            </layout>
-        </site>
+	    <site HH_path="C:\Users\WindowsUserName\Documents\EverleafSiteName\HandHistory\PlayerName"
+                  bgcolor="#000000"
+                  converter="EverleafToFpdb"
+                  decoder="everleaf_decode_table"
+                  enabled="False"
+                  fgcolor="#EEEEEE"
+                  hudopacity="0.75"
+                  screen_name="PlayerName"
+                  site_name="Everleaf"
+                  site_path="C:\Users\WindowsUserName\AppData\Roaming\EverleafSiteName\"
+                  supported_games="holdem,omahahi,omahahilo"
+                  table_finder="Poker.exe">
+	        <layout fav_seat="0" height="546" max="6" width="792">
+			<location seat="0" x="0" y="0"> </location>
+	        	<location seat="1" x="586" y="109"> </location>
+	        	<location seat="2" x="605" y="283"> </location>
+	        	<location seat="3" x="544" y="383"> </location>
+	        	<location seat="4" x="67" y="383"> </location>
+	        	<location seat="5" x="5" y="284"> </location>
+	        	<location seat="6" x="61" y="111"> </location>
+	        </layout>
+	        <layout fav_seat="0" height="546" max="10" width="792">
+			<location seat="0" x="182" y="69"> </location>
+	        	<location seat="1" x="456" y="74">  </location>
+	        	<location seat="2" x="630" y="81"> </location>
+	        	<location seat="3" x="637" y="208"> </location>
+	        	<location seat="4" x="629" y="347"> </location>
+	        	<location seat="5" x="412" y="377"> </location>
+	        	<location seat="6" x="232" y="377"> </location>
+	        	<location seat="7" x="21" y="349"> </location>
+	        	<location seat="8" x="4" y="208">  </location>
+	        	<location seat="9" x="7" y="88">  </location>
+	        	<location seat="10" x="196" y="69">  </location>
+	        </layout>
+	        <layout fav_seat="0" height="546" max="2" width="792">
+	        	<location seat="1" x="651" y="288"> </location>
+	        	<location seat="2" x="10" y="288"> </location>
+	        </layout>
+	      
+	    </site>
 
         <site enabled="False"
               site_name="Win2day"
@@ -556,22 +583,28 @@ Left-Drag to Move"
 
     <popup_windows>
         <pu pu_name="default">
+            <pu_stat pu_stat_name="playername"> </pu_stat>
+            <pu_stat pu_stat_name="totalprofit"> </pu_stat>
+            <pu_stat pu_stat_name="profit100"> </pu_stat>
+            <pu_stat pu_stat_name="bbper100"> </pu_stat>
+            <pu_stat pu_stat_name="BBper100"> </pu_stat>
             <pu_stat pu_stat_name="n"> </pu_stat>
             <pu_stat pu_stat_name="vpip"> </pu_stat>
             <pu_stat pu_stat_name="pfr"> </pu_stat>
             <pu_stat pu_stat_name="three_B_0"> </pu_stat>
             <pu_stat pu_stat_name="steal"> </pu_stat>
+            <pu_stat pu_stat_name="f_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_BB_steal"> </pu_stat>
             <pu_stat pu_stat_name="f_SB_steal"> </pu_stat>
             <pu_stat pu_stat_name="wmsd"> </pu_stat>
             <pu_stat pu_stat_name="wtsd"> </pu_stat>
             <pu_stat pu_stat_name="WMsF"> </pu_stat>
+            <pu_stat pu_stat_name="agg_fact"> </pu_stat>
             <pu_stat pu_stat_name="a_freq1"> </pu_stat>
             <pu_stat pu_stat_name="a_freq2"> </pu_stat>
             <pu_stat pu_stat_name="a_freq3"> </pu_stat>
             <pu_stat pu_stat_name="a_freq4"> </pu_stat>
             <pu_stat pu_stat_name="agg_freq"> </pu_stat>
-            <pu_stat pu_stat_name="agg_fact"> </pu_stat>
             <pu_stat pu_stat_name="cbet"> </pu_stat>
             <pu_stat pu_stat_name="cb1"> </pu_stat>
             <pu_stat pu_stat_name="cb2"> </pu_stat>
@@ -637,7 +670,39 @@ Left-Drag to Move"
         <hhc site="Betfair" converter="BetfairToFpdb"/>
         <hhc site="Partouche" converter="PartoucheToFpdb"/>
         <hhc site="Carbon" converter="CarbonToFpdb"/>
+        <hhc site="OnGame" converter="OnGameToFpdb"/>
     </hhcs>
+
+    <!-- attribute names chosen to be in alphabetic order so that order can be set when retrieved -->
+    <gui_cash_stats>
+        <col col_name="game" col_title="Game" disp_all="True" disp_posn="True" field_format="%s" field_type="str" xalignment="0.0"/>
+        <col col_name="hand" col_title="Hand" disp_all="False" disp_posn="False" field_format="%s" field_type="str" xalignment="0.0"/>
+        <col col_name="plposition" col_title="Posn" disp_all="False" disp_posn="False" field_format="%s" field_type="str" xalignment="1.0"/>
+        <col col_name="pname" col_title="Name" disp_all="False" disp_posn="False" field_format="%s" field_type="str" xalignment="0.0"/>
+        <col col_name="n" col_title="Hds" disp_all="True" disp_posn="True" field_format="%1.0f" field_type="str" xalignment="1.0"/>
+        <col col_name="avgseats" col_title="Seats" disp_all="False" disp_posn="False" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="vpip" col_title="VPIP" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="pfr" col_title="PFR" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="pf3" col_title="PF3" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="aggfac" col_title="AggFac" disp_all="True" disp_posn="True" field_format="%2.2f" field_type="str" xalignment="1.0"/>
+        <col col_name="aggfrq" col_title="AggFreq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="conbet" col_title="ContBet" disp_all="False" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="rfi" col_title="RFI" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="steals" col_title="Steals" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="saw_f" col_title="Saw_F" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="sawsd" col_title="SawSD" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="wtsdwsf" col_title="WtSDwsF" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="wmsd" col_title="W$SD" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="flafq" col_title="FlAFq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="tuafq" col_title="TuAFq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="rvafq" col_title="RvAFq" disp_all="True" disp_posn="True" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="pofafq" col_title="PoFAFq" disp_all="False" disp_posn="False" field_format="%3.1f" field_type="str" xalignment="1.0"/>
+        <col col_name="net" col_title="Net($)" disp_all="True" disp_posn="True" field_format="%6.2f" field_type="cash" xalignment="1.0"/>
+        <col col_name="bbper100" col_title="bb/100" disp_all="True" disp_posn="True" field_format="%4.2f" field_type="str" xalignment="1.0"/>
+        <col col_name="rake" col_title="Rake($)" disp_all="True" disp_posn="True" field_format="%6.2f" field_type="cash" xalignment="1.0"/>
+        <col col_name="bb100xr" col_title="bbxr/100" disp_all="True" disp_posn="True" field_format="%4.2f" field_type="str" xalignment="1.0"/>
+        <col col_name="variance" col_title="Variance" disp_all="True" disp_posn="True" field_format="%5.2f" field_type="str" xalignment="1.0"/>
+    </gui_cash_stats>
 
     <supported_databases>
         <!-- <database db_name="fpdb" db_server="mysql" db_ip="localhost" db_user="fpdb" db_pass="YOUR MYSQL PASSWORD"></database> -->

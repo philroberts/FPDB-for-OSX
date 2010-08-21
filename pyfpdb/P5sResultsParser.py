@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import urllib2, re
 import pprint
 from BeautifulSoup import BeautifulSoup
@@ -6,7 +7,7 @@ from BeautifulSoup import BeautifulSoup
 playername = ''
 
 if playername == '':
-    print "You need to manually enter the playername"
+    print _("You need to manually enter the playername")
     exit(0)
 
 page = urllib2.urlopen("http://www.pocketfives.com/poker-scores/%s/" %playername)

@@ -36,6 +36,18 @@ import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 import logging, logging.config
 import ConfigParser
 
@@ -89,25 +101,40 @@ def get_config(file_name, fallback = True):
     if not fallback:
         return (False,False)
 
+# Example configuration for debian package
+    if os.name == 'posix':
+        # If we're on linux, try to copy example from the place
+        # debian package puts it; get_default_config_path() creates
+        # the config directory for us so there's no need to check it
+        # again
+        example_path = '/usr/share/python-fpdb/' + file_name + '.example'
+        try:
+            shutil.copyfile(example_path, config_path)
+            msg = 'Configuration file created: %s\n' % config_path
+            logging.info(msg)
+            return (config_path,False)
+        except IOError:
+            pass
+
 #    OK, fall back to the .example file, should be in the start dir
     if os.path.exists(file_name + ".example"):
         try:
             print ""
             check_dir(default_dir)
             shutil.copyfile(file_name + ".example", config_path)
-            msg = "No %s found\n  in %s\n  or %s\n" % (file_name, exec_dir, default_dir) \
-                  + "Config file has been created at %s.\n" % config_path
+            msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
+                  + _("Config file has been created at %s.\n") % config_path
             print msg
             logging.info(msg)
             file_name = config_path
         except:
-            print "Error copying .example file, cannot fall back. Exiting.\n"
-            sys.stderr.write("Error copying .example file, cannot fall back. Exiting.\n")
+            print _("Error copying .example file, cannot fall back. Exiting.\n")
+            sys.stderr.write(_("Error copying .example file, cannot fall back. Exiting.\n"))
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     else:
-        print "No %s found, cannot fall back. Exiting.\n" % file_name
-        sys.stderr.write("No %s found, cannot fall back. Exiting.\n" % file_name)
+        print _("No %s found, cannot fall back. Exiting.\n") % file_name
+        sys.stderr.write(_("No %s found, cannot fall back. Exiting.\n") % file_name)
         sys.exit()
     return (file_name,True)
 
@@ -137,8 +164,8 @@ def get_logger(file_name, config = "config", fallback = False, log_dir=None, log
     log = logging.basicConfig(filename=file, level=logging.INFO)
     log = logging.getLogger()
     # but it looks like default is no output :-(  maybe because all the calls name a module?
-    log.debug("Default logger initialised for "+file)
-    print "Default logger intialised for "+file
+    log.debug(_("Default logger initialised for ")+file)
+    print _("Default logger intialised for ")+file
     return log
 
 def check_dir(path, create = True):
@@ -149,7 +176,7 @@ def check_dir(path, create = True):
         else:
             return False
     if create:
-        msg = "Creating directory: '%s'" % (path)
+        msg = _("Creating directory: '%s'") % (path)
         print msg
         log.info(msg)
         os.mkdir(path)#, "utf-8"))
@@ -175,7 +202,7 @@ DATABASE_TYPES = (
 #LOCALE_ENCODING = locale.getdefaultlocale()[1]
 LOCALE_ENCODING = locale.getpreferredencoding()
 if LOCALE_ENCODING == "US-ASCII":
-    print "Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem."
+    print _("Default encoding set to US-ASCII, defaulting to CP1252 instead -- If you're not on a Mac, please report this problem.")
     LOCALE_ENCODING = "cp1252"
 
 
@@ -258,7 +285,7 @@ class Site:
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
 
-        print "Loading site", self.site_name
+        print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
@@ -452,8 +479,8 @@ class Email:
         self.fetchType = node.getAttribute("fetchType")
         
     def __str__(self):
-        return "    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.host, self.username, self.password, self.useSsl, self.folder) 
+        return "    siteName=%s\n    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.siteName, self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -496,7 +523,7 @@ class General(dict):
         #                e.g. user could set to 4.0 for day to start at 4am local time
         # [ HH_bulk_path was here - now moved to import section ]
         for (name, value) in node.attributes.items():
-            log.debug("config.general: adding %s = %s" % (name,value))
+            log.debug(_("config.general: adding %s = %s") % (name,value))
             self[name] = value
 
     def __str__(self):
@@ -529,10 +556,43 @@ class GUICashStats(list):
                 try:
                     if child.hasAttribute('xalignment'):   xalignment   = float(child.getAttribute('xalignment'))
                 except ValueError:
-                    print "bad number in xalignment was ignored"
-                    log.info("bad number in xalignment was ignored")
+                    print _("bad number in xalignment was ignored")
+                    log.info(_("bad number in xalignment was ignored"))
 
                 self.append( [col_name, col_title, disp_all, disp_posn, field_format, field_type, xalignment] )
+
+    def get_defaults(self):
+        """A list of defaults to be called, should there be no entry in config"""
+        defaults = [   [u'game', u'Game', True, True, u'%s', u'str', 0.0],
+            [u'hand', u'Hand', False, False, u'%s', u'str', 0.0],
+            [u'plposition', u'Posn', False, False, u'%s', u'str', 1.0],
+            [u'pname', u'Name', False, False, u'%s', u'str', 0.0],
+            [u'n', u'Hds', True, True, u'%1.0f', u'str', 1.0],
+            [u'avgseats', u'Seats', False, False, u'%3.1f', u'str', 1.0],
+            [u'vpip', u'VPIP', True, True, u'%3.1f', u'str', 1.0],
+            [u'pfr', u'PFR', True, True, u'%3.1f', u'str', 1.0],
+            [u'pf3', u'PF3', True, True, u'%3.1f', u'str', 1.0],
+            [u'aggfac', u'AggFac', True, True, u'%2.2f', u'str', 1.0],
+            [u'aggfrq', u'AggFreq', True, True, u'%3.1f', u'str', 1.0],
+            [u'conbet', u'ContBet', True, True, u'%3.1f', u'str', 1.0],
+            [u'rfi', u'RFI', True, True, u'%3.1f', u'str', 1.0],
+            [u'steals', u'Steals', True, True, u'%3.1f', u'str', 1.0],
+            [u'saw_f', u'Saw_F', True, True, u'%3.1f', u'str', 1.0],
+            [u'sawsd', u'SawSD', True, True, u'%3.1f', u'str', 1.0],
+            [u'wtsdwsf', u'WtSDwsF', True, True, u'%3.1f', u'str', 1.0],
+            [u'wmsd', u'W$SD', True, True, u'%3.1f', u'str', 1.0],
+            [u'flafq', u'FlAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'tuafq', u'TuAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'rvafq', u'RvAFq', True, True, u'%3.1f', u'str', 1.0],
+            [u'pofafq', u'PoFAFq', False, False, u'%3.1f', u'str', 1.0],
+            [u'net', u'Net($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bbper100', u'bb/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'rake', u'Rake($)', True, True, u'%6.2f', u'cash', 1.0],
+            [u'bb100xr', u'bbxr/100', True, True, u'%4.2f', u'str', 1.0],
+            [u'variance', u'Variance', True, True, u'%5.2f', u'str', 1.0]
+            ]
+        for col in defaults:
+            self.append (col)
 
 #    def __str__(self):
 #        s = ""
@@ -550,8 +610,8 @@ class Config:
         if file is not None: # config file path passed in
             file = os.path.expanduser(file)
             if not os.path.exists(file):
-                print "Configuration file %s not found.  Using defaults." % (file)
-                sys.stderr.write("Configuration file %s not found.  Using defaults." % (file))
+                print _("Configuration file %s not found.  Using defaults.") % (file)
+                sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
         if file is None: (file,self.example_copy) = get_config("HUD_config.xml", True)
@@ -567,13 +627,13 @@ class Config:
 
 #    Parse even if there was no real config file found and we are using the example
 #    If using the example, we'll edit it later
-        log.info("Reading configuration file %s" % file)
-        print "\nReading configuration file %s\n" % file
+        log.info(_("Reading configuration file %s") % file)
+        print _("\nReading configuration file %s\n") % file
         try:
             doc = xml.dom.minidom.parse(file)
             self.file_error = None
         except:
-            log.error("Error parsing %s.  See error log file." % (file))
+            log.error(_("Error parsing %s.  See error log file.") % (file))
             traceback.print_exc(file=sys.stderr)
             self.file_error = sys.exc_info()[1]
             # we could add a parameter to decide whether to return or read a line and exit?
@@ -595,11 +655,14 @@ class Config:
         self.db_selected = None    # database the user would like to use
         self.tv = None
         self.general = General()
+        self.emails = {}
         self.gui_cash_stats = GUICashStats()
 
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
+        if doc.getElementsByTagName("gui_cash_stats") == []:
+            self.gui_cash_stats.get_defaults()
         for gcs_node in doc.getElementsByTagName("gui_cash_stats"):
             self.gui_cash_stats.add_elements(node=gcs_node) # add/overwrite elements in self.gui_cash_stats
 
@@ -655,7 +718,8 @@ class Config:
 
         for email_node in doc.getElementsByTagName("email"):
             email = Email(node = email_node)
-            self.email = email
+            if email.siteName!="": #FIXME: Why on earth is this needed?
+                self.emails[email.siteName+"_"+email.fetchType]=email
 
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
@@ -701,6 +765,12 @@ class Config:
         for site_node in self.doc.getElementsByTagName("site"):
             if site_node.getAttribute("site_name") == site:
                 return site_node
+
+    def getEmailNode(self, siteName, fetchType):
+        for emailNode in self.doc.getElementsByTagName("email"):
+            if emailNode.getAttribute("siteName") == siteName and emailNode.getAttribute("fetchType") == fetchType:
+                return emailNode
+    #end def getEmailNode
 
     def getGameNode(self,gameName):
         """returns DOM game node for a given game"""
@@ -776,6 +846,15 @@ class Config:
         else:
             return(l)
 
+    def editEmail(self, siteName, fetchType, newEmail):
+        emailNode = self.getEmailNode(siteName, fetchType)
+        emailNode.setAttribute("host", newEmail.host)
+        emailNode.setAttribute("username", newEmail.username)
+        emailNode.setAttribute("password", newEmail.password)
+        emailNode.setAttribute("folder", newEmail.folder)
+        emailNode.setAttribute("useSsl", newEmail.useSsl)
+    #end def editEmail
+    
     def edit_layout(self, site_name, max, width = None, height = None,
                     fav_seat = None, locations = None):
         site_node   = self.get_site_node(site_name)

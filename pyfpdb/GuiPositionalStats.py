@@ -22,6 +22,18 @@ import gtk
 import os
 from time import time, strftime
     
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 import fpdb_import
 import Database
 import Filters
@@ -132,7 +144,7 @@ class GuiPositionalStats (threading.Thread):
     def toggleCallback(self, widget, data=None):
 #        print "%s was toggled %s" % (data, ("OFF", "ON")[widget.get_active()])
         self.activesite = data
-        print "DEBUG: activesite set to %s" %(self.activesite)
+        print _("DEBUG: activesite set to %s") %(self.activesite)
 
     def refreshStats(self, widget, data):
         try: self.stats_vbox.destroy()
@@ -163,13 +175,13 @@ class GuiPositionalStats (threading.Thread):
 
         if not sitenos:
             #Should probably pop up here.
-            print "No sites selected - defaulting to PokerStars"
+            print _("No sites selected - defaulting to PokerStars")
             sitenos = [2]
         if not playerids:
-            print "No player ids found"
+            print _("No player ids found")
             return
         if not limits:
-            print "No limits found"
+            print _("No limits found")
             return
 
         self.createStatsTable(vbox, playerids, sitenos, limits, seats, dates)
@@ -318,7 +330,7 @@ class GuiPositionalStats (threading.Thread):
         vbox.show_all()
 
         self.db.rollback()
-        print "Positional Stats page displayed in %4.2f seconds" % (time() - starttime)
+        print _("Positional Stats page displayed in %4.2f seconds") % (time() - starttime)
     #end def fillStatsFrame(self, vbox):
 
     def refineQuery(self, query, playerids, sitenos, limits, seats, dates):

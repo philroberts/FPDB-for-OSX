@@ -24,6 +24,18 @@ import os
 import sys
 from time import time, strftime
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 import Card
 import fpdb_import
 import Database
@@ -237,13 +249,13 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
         if not sitenos:
             #Should probably pop up here.
-            print "No sites selected - defaulting to PokerStars"
+            print _("No sites selected - defaulting to PokerStars")
             sitenos = [2]
         if not playerids:
-            print "No player ids found"
+            print _("No player ids found")
             return
         if not limits:
-            print "No limits found"
+            print _("No limits found")
             return
 
         self.createStatsTable(vbox, playerids, sitenos, limits, type, seats, groups, dates, games)
@@ -308,7 +320,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             self.stats_vbox.set_position(self.top_pane_height + self.height_inc)
 
         self.db.rollback()
-        print "Stats page displayed in %4.2f seconds" % (time() - startTime)
+        print (_("Stats page displayed in %4.2f seconds") % (time() - startTime))
     #end def createStatsTable
 
     def reset_style_render_func(self, treeviewcolumn, cell, model, iter):
@@ -355,7 +367,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             #print "n =", n, "iter1[n] =", self.liststore[grid].get_value(iter1,n), "iter2[n] =", self.liststore[grid].get_value(iter2,n), "ret =", ret
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***sortnums error: " + str(sys.exc_info()[1])
+            print _("***sortnums error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
 
         return(ret)
@@ -377,7 +389,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             # to turn indicator off for other cols
         except:
             err = traceback.extract_tb(sys.exc_info()[2])
-            print "***sortcols error: " + str(sys.exc_info()[1])
+            print _("***sortcols error: ") + str(sys.exc_info()[1])
             print "\n".join( [e[0]+':'+str(e[1])+" "+e[2] for e in err] )
     #end def sortcols
 
@@ -668,7 +680,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
     #end def refineQuery
 
     def showDetailFilter(self, widget, data):
-        detailDialog = gtk.Dialog(title="Detailed Filters", parent=self.main_window
+        detailDialog = gtk.Dialog(title=_("Detailed Filters"), parent=self.main_window
                                  ,flags=gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT
                                  ,buttons=(gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
                                            gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
@@ -677,7 +689,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         detailDialog.vbox.pack_start(handbox, False, False, 0)
         handbox.show()
 
-        label = gtk.Label("Hand Filters:")
+        label = gtk.Label(_("Hand Filters:"))
         handbox.add(label)
         label.show()
 
@@ -690,8 +702,8 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
             cb = gtk.CheckButton()
             lbl_from = gtk.Label(htest[1])
             lbl_from.set_alignment(xalign=0.0, yalign=0.5)
-            lbl_tween = gtk.Label('between')
-            lbl_to   = gtk.Label('and')
+            lbl_tween = gtk.Label(_('between'))
+            lbl_to   = gtk.Label(_('and'))
             adj1 = gtk.Adjustment(value=htest[2], lower=0, upper=10, step_incr=1, page_incr=1, page_size=0)
             sb1 = gtk.SpinButton(adjustment=adj1, climb_rate=0.0, digits=0)
             adj2 = gtk.Adjustment(value=htest[3], lower=2, upper=10, step_incr=1, page_incr=1, page_size=0)

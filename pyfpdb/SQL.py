@@ -108,7 +108,52 @@ class Sql:
             self.query['createSettingsTable'] = """CREATE TABLE Settings
             (version INTEGER NOT NULL) """
 
-
+        ################################
+        # Create RawHands (this table is all but identical with RawTourneys)
+        ################################
+        if db_server == 'mysql':
+            self.query['createRawHands'] = """CREATE TABLE RawHands (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        handId BIGINT NOT NULL,
+                        rawHand TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createRawHands'] =  """CREATE TABLE RawHands (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        handId BIGINT NOT NULL,
+                        rawHand TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        elif db_server == 'sqlite':
+            self.query['createRawHands'] = """CREATE TABLE RawHands (
+                        id INTEGER PRIMARY KEY,
+                        handId BIGINT NOT NULL,
+                        rawHand TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        
+        ################################
+        # Create RawTourneys (this table is all but identical with RawHands)
+        ################################
+        if db_server == 'mysql':
+            self.query['createRawTourneys'] = """CREATE TABLE RawTourneys (
+                        id BIGINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
+                        tourneyId BIGINT NOT NULL,
+                        rawTourney TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)
+                        ENGINE=INNODB"""
+        elif db_server == 'postgresql':
+            self.query['createRawTourneys'] =  """CREATE TABLE RawTourneys (
+                        id BIGSERIAL, PRIMARY KEY (id),
+                        tourneyId BIGINT NOT NULL,
+                        rawTourney TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        elif db_server == 'sqlite':
+            self.query['createRawTourneys'] = """CREATE TABLE RawTourneys (
+                        id INTEGER PRIMARY KEY,
+                        tourneyId BIGINT NOT NULL,
+                        rawTourney TEXT NOT NULL,
+                        complain BOOLEAN NOT NULL DEFAULT FALSE)"""
+        
         ################################
         # Create Sites
         ################################
@@ -137,21 +182,21 @@ class Sql:
         if db_server == 'mysql':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL, PRIMARY KEY (id),
-                        tourneysPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        tourneysPlayersId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
                         playerId INT UNSIGNED NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         buyInPercentage FLOAT UNSIGNED NOT NULL,
                         payOffPercentage FLOAT UNSIGNED NOT NULL) ENGINE=INNODB"""
         elif db_server == 'postgresql':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id BIGSERIAL, PRIMARY KEY (id),
-                        tourneysPlayerId INT NOT NULL, FOREIGN KEY (tourneysPlayerId) REFERENCES TourneysPlayers(id),
+                        tourneysPlayersId INT NOT NULL, FOREIGN KEY (tourneysPlayersId) REFERENCES TourneysPlayers(id),
                         playerId INT NOT NULL, FOREIGN KEY (playerId) REFERENCES Players(id),
                         buyInPercentage FLOAT NOT NULL,
                         payOffPercentage FLOAT NOT NULL)"""
         elif db_server == 'sqlite':
             self.query['createBackingsTable'] = """CREATE TABLE Backings (
                         id INTEGER PRIMARY KEY,
-                        tourneysPlayerId INT NOT NULL,
+                        tourneysPlayersId INT NOT NULL,
                         playerId INT NOT NULL,
                         buyInPercentage REAL UNSIGNED NOT NULL,
                         payOffPercentage REAL UNSIGNED NOT NULL)"""
@@ -543,6 +588,7 @@ class Sql:
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
+                        wentAllInOnStreet SMALLINT,
                     
                         card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 smallint NOT NULL,
@@ -659,6 +705,7 @@ class Sql:
                         position CHAR(1),
                         seatNo SMALLINT NOT NULL,
                         sitout BOOLEAN NOT NULL,
+                        wentAllInOnStreet SMALLINT,
 
                         card1 smallint NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 smallint NOT NULL,
@@ -774,6 +821,7 @@ class Sql:
                         position TEXT,
                         seatNo INT NOT NULL,
                         sitout BOOLEAN NOT NULL,
+                        wentAllInOnStreet INT,
                     
                         card1 INT NOT NULL,  /* 0=none, 1-13=2-Ah 14-26=2-Ad 27-39=2-Ac 40-52=2-As */
                         card2 INT NOT NULL,
@@ -915,7 +963,7 @@ class Sql:
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
             self.query['createTourneysPlayersTable'] = """CREATE TABLE TourneysPlayers (
-                        id INT PRIMARY KEY,
+                        id INTEGER PRIMARY KEY,
                         tourneyId INT,
                         playerId INT,
                         rank INT,
@@ -960,7 +1008,7 @@ class Sql:
                         commentTs timestamp without time zone)"""
         elif db_server == 'sqlite':
             self.query['createHandsActionsTable'] = """CREATE TABLE HandsActions (
-                        id INT PRIMARY KEY,
+                        id INTEGER PRIMARY KEY,
                         handsPlayerId BIGINT,
                         street SMALLINT,
                         actionNo SMALLINT,
@@ -1333,8 +1381,6 @@ class Sql:
                 and   (p.siteId = %s or %s = -1)
             """
 
-        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
-
         self.query['get_stats_from_hand'] = """
                 SELECT hc.playerId                      AS player_id,
                     hp.seatNo                           AS seat,
@@ -1397,6 +1443,7 @@ class Sql:
                     sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                     sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                     sum(hc.totalProfit)                 AS net,
+                    sum(gt.bigblind)                    AS bigblind,
                     sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                     sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
                     sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
@@ -1425,6 +1472,7 @@ class Sql:
                      INNER JOIN HudCache hc ON (    hc.PlayerId = hp.PlayerId+0
                                                 AND hc.gametypeId+0 = h.gametypeId+0)
                      INNER JOIN Players p ON (p.id = hp.PlayerId+0)
+                     INNER JOIN Gametypes gt ON (gt.id = hc.gametypeId)
                 WHERE h.id = %s
                 AND   hc.styleKey > %s
                       /* styleKey is currently 'd' (for date) followed by a yyyymmdd
@@ -1496,6 +1544,7 @@ class Sql:
                        sum(hc.foldToStreet4CBChance)       AS f_cb_opp_4,
                        sum(hc.foldToStreet4CBDone)         AS f_cb_4,
                        sum(hc.totalProfit)                 AS net,
+                       sum(gt.bigblind)                    AS bigblind,
                        sum(hc.street1CheckCallRaiseChance) AS ccr_opp_1,
                        sum(hc.street1CheckCallRaiseDone)   AS ccr_1,
                        sum(hc.street2CheckCallRaiseChance) AS ccr_opp_2,
@@ -1523,6 +1572,7 @@ class Sql:
                      INNER JOIN HandsPlayers hp ON (hp.handId = h.id)
                      INNER JOIN HudCache hc     ON (hc.playerId = hp.playerId)
                      INNER JOIN Players p       ON (p.id = hc.playerId)
+                     INNER JOIN Gametypes gt    ON (gt.id = hc.gametypeId)
                 WHERE h.id = %s
                 AND   (   /* 2 separate parts for hero and opponents */
                           (    hp.playerId != %s
@@ -1622,6 +1672,7 @@ class Sql:
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
@@ -1651,6 +1702,7 @@ class Sql:
                          INNER JOIN HandsPlayers hp  ON (h.id = hp.handId)         /* players in this hand */
                          INNER JOIN HandsPlayers hp2 ON (hp2.playerId+0 = hp.playerId+0 AND (hp2.handId = h2.id+0))  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                         INNER JOIN Gametypes gt     ON (gt.id = h2.gametypeId)
                     WHERE hp.handId = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
@@ -1724,6 +1776,7 @@ class Sql:
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
@@ -1754,6 +1807,7 @@ class Sql:
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
                                                          AND hp2.handId = h2.id)  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                         INNER JOIN Gametypes gt     ON (gt.id = h2.gametypeId)
                     WHERE h.id = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
@@ -1827,6 +1881,7 @@ class Sql:
                            cast(hp2.foldToStreet4CBChance as <signed>integer)       AS f_cb_opp_4,
                            cast(hp2.foldToStreet4CBDone as <signed>integer)         AS f_cb_4,
                            cast(hp2.totalProfit as <signed>integer)                 AS net,
+                           cast(gt.bigblind as <signed>integer)                     AS bigblind,
                            cast(hp2.street1CheckCallRaiseChance as <signed>integer) AS ccr_opp_1,
                            cast(hp2.street1CheckCallRaiseDone as <signed>integer)   AS ccr_1,
                            cast(hp2.street2CheckCallRaiseChance as <signed>integer) AS ccr_opp_2,
@@ -1857,6 +1912,7 @@ class Sql:
                          INNER JOIN HandsPlayers hp2 ON (    hp2.playerId+0 = hp.playerId+0
                                                          AND hp2.handId = h2.id)  /* other hands by these players */
                          INNER JOIN Players p        ON (p.id = hp2.PlayerId+0)
+                         INNER JOIN Gametypes gt     ON (gt.id = h2.gametypeId)
                     WHERE h.id = %s
                     /* check activeseats once this data returned (don't want to do that here as it might
                        assume a session ended just because the number of seats dipped for a few hands)
@@ -1997,8 +2053,6 @@ class Sql:
         self.query['getPlayerIdBySite'] = """SELECT id from Players where name = %s AND siteId = %s"""
 
         # used in *Filters:
-        self.query['getSiteId'] = """SELECT id from Sites where name = %s"""
-        self.query['getGames'] = """SELECT DISTINCT category from Gametypes"""
         #self.query['getLimits'] = already defined further up
         self.query['getLimits2'] = """SELECT DISTINCT type, limitType, bigBlind 
                                       from Gametypes
@@ -2016,6 +2070,7 @@ class Sql:
                                            , limitType
                                            , bigBlind as bb_or_buyin
                                       from Gametypes gt
+                                      WHERE type = 'ring'
                                       order by type, limitType DESC, bb_or_buyin DESC"""
 
         if db_server == 'mysql':
@@ -2389,7 +2444,7 @@ class Sql:
                       select s.name                                                                 AS siteName
                             ,t.tourneyTypeId                                                        AS tourneyTypeId
                             ,tt.currency                                                            AS currency
-                            ,(CASE WHEN tt.currency = "USD" THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,(CASE WHEN tt.currency = 'USD' THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
                             ,tt.fee/100.0                                                           AS fee
                             ,tt.category                                                            AS category
                             ,tt.limitType                                                           AS limitType
@@ -2397,11 +2452,11 @@ class Sql:
                             ,COUNT(1)                                                               AS tourneyCount
                             ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
                             ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
-                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS 1st
-                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS 2nd
-                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS 3rd
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
                             ,SUM(tp.winnings)/100.0                                                 AS won
-                            ,SUM(CASE WHEN tt.currency = "USD" THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
                             ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
                             ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
                       from TourneysPlayers tp
@@ -2416,9 +2471,72 @@ class Sql:
                               ,playerName
                               ,siteName"""
         elif db_server == 'postgresql':
-            self.query['tourneyPlayerDetailedStats'] = """TODO"""
+            # sc: itm and profitPerTourney changed to "ELSE 0" to avoid divide by zero error as temp fix
+            # proper fix should use coalesce() or case ... when ... to work in all circumstances
+            self.query['tourneyPlayerDetailedStats'] = """
+                      select s.name                                                                 AS siteName
+                            ,t.tourneyTypeId                                                        AS tourneyTypeId
+                            ,tt.currency                                                            AS currency
+                            ,(CASE WHEN tt.currency = 'USD' THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,tt.fee/100.0                                                           AS fee
+                            ,tt.category                                                            AS category
+                            ,tt.limitType                                                           AS limitType
+                            ,p.name                                                                 AS playerName
+                            ,COUNT(1)                                                               AS tourneyCount
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
+                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)
+                             /(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))             AS itm
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
+                            ,SUM(tp.winnings)/100.0                                                 AS won
+                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0
+                             /(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 0 END))               AS profitPerTourney
+                      from TourneysPlayers tp
+                           inner join Tourneys t        on  (t.id = tp.tourneyId)
+                           inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
+                           inner join Sites s           on  (s.Id = tt.siteId)
+                           inner join Players p         on  (p.Id = tp.playerId)
+                      where tp.playerId in <nametest> <sitetest>
+                      and   to_char(t.startTime, 'YYYY-MM-DD HH24:MI:SS') <datestest>
+                      group by tourneyTypeId, s.name, playerName, tt.currency, tt.buyin, tt.fee
+                             , tt.category, tt.limitType
+                      order by tourneyTypeId
+                              ,playerName
+                              ,siteName"""
         elif db_server == 'sqlite':
-            self.query['tourneyPlayerDetailedStats'] = """TODO"""
+            self.query['tourneyPlayerDetailedStats'] = """
+                      select s.name                                                                 AS siteName
+                            ,t.tourneyTypeId                                                        AS tourneyTypeId
+                            ,tt.currency                                                            AS currency
+                            ,(CASE WHEN tt.currency = 'USD' THEN tt.buyIn/100.0 ELSE tt.buyIn END)  AS buyIn
+                            ,tt.fee/100.0                                                           AS fee
+                            ,tt.category                                                            AS category
+                            ,tt.limitType                                                           AS limitType
+                            ,p.name                                                                 AS playerName
+                            ,COUNT(1)                                                               AS tourneyCount
+                            ,SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)                           AS unknownRank
+                            ,SUM(CASE WHEN winnings > 0 THEN 1 ELSE 0 END)/(COUNT(1) - SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS itm
+                            ,SUM(CASE WHEN rank = 1 THEN 1 ELSE 0 END)                              AS _1st
+                            ,SUM(CASE WHEN rank = 2 THEN 1 ELSE 0 END)                              AS _2nd
+                            ,SUM(CASE WHEN rank = 3 THEN 1 ELSE 0 END)                              AS _3rd
+                            ,SUM(tp.winnings)/100.0                                                 AS won
+                            ,SUM(CASE WHEN tt.currency = 'USD' THEN (tt.buyIn+tt.fee)/100.0 ELSE tt.buyIn END) AS spent
+                            ,SUM(tp.winnings)/SUM(tt.buyin+tt.fee)*100.0-100                        AS roi
+                            ,SUM(tp.winnings-(tt.buyin+tt.fee))/100.0/(COUNT(1)-SUM(CASE WHEN tp.rank > 0 THEN 0 ELSE 1 END)) AS profitPerTourney
+                      from TourneysPlayers tp
+                           inner join Tourneys t        on  (t.id = tp.tourneyId)
+                           inner join TourneyTypes tt   on  (tt.Id = t.tourneyTypeId)
+                           inner join Sites s           on  (s.Id = tt.siteId)
+                           inner join Players p         on  (p.Id = tp.playerId)
+                      where tp.playerId in <nametest> <sitetest>
+                      and   datetime(t.startTime) <datestest>
+                      group by tourneyTypeId, playerName
+                      order by tourneyTypeId
+                              ,playerName
+                              ,siteName"""
 
         if db_server == 'mysql':
             self.query['playerStats'] = """
@@ -2767,6 +2885,8 @@ class Sql:
                 order by stats.category, stats.limitType, stats.bigBlindDesc desc
                          <orderbyseats>, cast(stats.PlPosition as signed)
                 """
+        elif db_server == 'sqlite':
+            self.query['playerStatsByPosition'] = ""#TODO
         else:  # assume postgresql
             self.query['playerStatsByPosition'] = """
                 select /* stats from hudcache */
@@ -2937,7 +3057,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  date_format(h.startTime, '%Y-%m-%d') <datestest>
-                 AND  gt.type is 'ring'
+                 AND  gt.type LIKE 'ring'
                 ORDER by time"""
         elif db_server == 'postgresql':
             self.query['sessionStats'] = """
@@ -2949,7 +3069,7 @@ class Sql:
                  INNER JOIN Players p     on  (p.Id = hp.playerId)
                 WHERE hp.playerId in <player_test>
                  AND  h.startTime <datestest>
-                 AND  gt.type is 'ring'
+                 AND  gt.type LIKE 'ring'
                 ORDER by time"""
         elif db_server == 'sqlite':
             self.query['sessionStats'] = """
@@ -2978,15 +3098,22 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
+                <tourney_insert_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -2996,10 +3123,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3068,15 +3197,22 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
+                      <tourney_select_clause>
                       ,date_format(h.startTime, 'd%y%m%d')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(street0VPI)
                       ,sum(street0Aggr)
                       ,sum(street0_3BChance)
                       ,sum(street0_3BDone)
+                      ,sum(street0_4BChance)
+                      ,sum(street0_4BDone)
+                      ,sum(other3BStreet0)
+                      ,sum(other4BStreet0)
                       ,sum(street1Seen)
                       ,sum(street2Seen)
                       ,sum(street3Seen)
@@ -3086,10 +3222,12 @@ class Sql:
                       ,sum(street2Aggr)
                       ,sum(street3Aggr)
                       ,sum(street4Aggr)
+                      ,sum(otherRaisedStreet0)
                       ,sum(otherRaisedStreet1)
                       ,sum(otherRaisedStreet2)
                       ,sum(otherRaisedStreet3)
                       ,sum(otherRaisedStreet4)
+                      ,sum(foldToOtherRaisedStreet0)
                       ,sum(foldToOtherRaisedStreet1)
                       ,sum(foldToOtherRaisedStreet2)
                       ,sum(foldToOtherRaisedStreet3)
@@ -3142,14 +3280,13 @@ class Sql:
                       ,sum(hp.street4Raises)
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
+                <tourney_join_clause>
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
+                        <tourney_group_clause>
                         ,date_format(h.startTime, 'd%y%m%d')
 """
         elif db_server == 'postgresql':
@@ -3159,15 +3296,22 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
+                <tourney_insert_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0      
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3177,10 +3321,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3249,15 +3395,22 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
+                      <tourney_select_clause>
                       ,'d' || to_char(h.startTime, 'YYMMDD')
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(other3BStreet0 as integer))
+                      ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3267,10 +3420,12 @@ class Sql:
                       ,sum(CAST(street2Aggr as integer))
                       ,sum(CAST(street3Aggr as integer))
                       ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
                       ,sum(CAST(otherRaisedStreet1 as integer))
                       ,sum(CAST(otherRaisedStreet2 as integer))
                       ,sum(CAST(otherRaisedStreet3 as integer))
                       ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
@@ -3323,14 +3478,13 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
+                <tourney_join_clause>
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
+                        <tourney_group_clause>
                         ,to_char(h.startTime, 'YYMMDD')
 """
         else:   # assume sqlite
@@ -3340,15 +3494,22 @@ class Sql:
                 ,playerId
                 ,activeSeats
                 ,position
-                ,tourneyTypeId
+                <tourney_insert_clause>
                 ,styleKey
                 ,HDs
                 ,wonWhenSeenStreet1
+                ,wonWhenSeenStreet2
+                ,wonWhenSeenStreet3
+                ,wonWhenSeenStreet4
                 ,wonAtSD
                 ,street0VPI
                 ,street0Aggr
                 ,street0_3BChance
                 ,street0_3BDone
+                ,street0_4BChance
+                ,street0_4BDone
+                ,other3BStreet0
+                ,other4BStreet0
                 ,street1Seen
                 ,street2Seen
                 ,street3Seen
@@ -3358,10 +3519,12 @@ class Sql:
                 ,street2Aggr
                 ,street3Aggr
                 ,street4Aggr
+                ,otherRaisedStreet0
                 ,otherRaisedStreet1
                 ,otherRaisedStreet2
                 ,otherRaisedStreet3
                 ,otherRaisedStreet4
+                ,foldToOtherRaisedStreet0
                 ,foldToOtherRaisedStreet1
                 ,foldToOtherRaisedStreet2
                 ,foldToOtherRaisedStreet3
@@ -3430,15 +3593,22 @@ class Sql:
                             when hp.position = '9' then 'E'
                             else 'E'
                        end                                            AS hc_position
-                      ,t.tourneyTypeId
+                      <tourney_select_clause>
                       ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
                       ,count(1)
                       ,sum(wonWhenSeenStreet1)
+                      ,sum(wonWhenSeenStreet2)
+                      ,sum(wonWhenSeenStreet3)
+                      ,sum(wonWhenSeenStreet4)
                       ,sum(wonAtSD)
                       ,sum(CAST(street0VPI as integer))
                       ,sum(CAST(street0Aggr as integer))
                       ,sum(CAST(street0_3BChance as integer))
                       ,sum(CAST(street0_3BDone as integer))
+                      ,sum(CAST(street0_4BChance as integer))
+                      ,sum(CAST(street0_4BDone as integer))
+                      ,sum(CAST(other3BStreet0 as integer))
+                      ,sum(CAST(other4BStreet0 as integer))
                       ,sum(CAST(street1Seen as integer))
                       ,sum(CAST(street2Seen as integer))
                       ,sum(CAST(street3Seen as integer))
@@ -3448,10 +3618,12 @@ class Sql:
                       ,sum(CAST(street2Aggr as integer))
                       ,sum(CAST(street3Aggr as integer))
                       ,sum(CAST(street4Aggr as integer))
+                      ,sum(CAST(otherRaisedStreet0 as integer))
                       ,sum(CAST(otherRaisedStreet1 as integer))
                       ,sum(CAST(otherRaisedStreet2 as integer))
                       ,sum(CAST(otherRaisedStreet3 as integer))
                       ,sum(CAST(otherRaisedStreet4 as integer))
+                      ,sum(CAST(foldToOtherRaisedStreet0 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet1 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet2 as integer))
                       ,sum(CAST(foldToOtherRaisedStreet3 as integer))
@@ -3504,14 +3676,13 @@ class Sql:
                       ,sum(CAST(hp.street4Raises as integer))
                 FROM HandsPlayers hp
                 INNER JOIN Hands h ON (h.id = hp.handId)
-                INNER JOIN TourneysPlayers tp ON (tp.id = hp.tourneysPlayersId)
-                INNER JOIN Tourneys t ON (t.id = tp.tourneyId)
+                <tourney_join_clause>
                 <where_clause>
                 GROUP BY h.gametypeId
                         ,hp.playerId
                         ,h.seats
                         ,hc_position
-                        ,t.tourneyTypeId
+                        <tourney_group_clause>
                         ,'d' || substr(strftime('%Y%m%d', h.startTime),3,7)
 """
 
@@ -3528,6 +3699,10 @@ class Sql:
                 street0Aggr,
                 street0_3BChance,
                 street0_3BDone,
+                street0_4BChance,
+                street0_4BDone,
+                other3BStreet0,
+                other4BStreet0,
                 street1Seen,
                 street2Seen,
                 street3Seen,
@@ -3537,15 +3712,20 @@ class Sql:
                 street2Aggr,
                 street3Aggr,
                 street4Aggr,
+                otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
                 otherRaisedStreet3,
                 otherRaisedStreet4,
+                foldToOtherRaisedStreet0,
                 foldToOtherRaisedStreet1,
                 foldToOtherRaisedStreet2,
                 foldToOtherRaisedStreet3,
                 foldToOtherRaisedStreet4,
                 wonWhenSeenStreet1,
+                wonWhenSeenStreet2,
+                wonWhenSeenStreet3,
+                wonWhenSeenStreet4,
                 wonAtSD,
                 raiseFirstInChance,
                 raisedFirstIn,
@@ -3608,7 +3788,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s)"""
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s)"""
 
         self.query['update_hudcache'] = """
             UPDATE HudCache SET
@@ -3617,6 +3798,10 @@ class Sql:
             street0Aggr=street0Aggr+%s,
             street0_3BChance=street0_3BChance+%s,
             street0_3BDone=street0_3BDone+%s,
+            street0_4BChance=street0_4BChance+%s,
+            street0_4BDone=street0_4BDone+%s,
+            other3BStreet0=other3BStreet0+%s,
+            other4BStreet0=other4BStreet0+%s,
             street1Seen=street1Seen+%s,
             street2Seen=street2Seen+%s,
             street3Seen=street3Seen+%s,
@@ -3626,15 +3811,20 @@ class Sql:
             street2Aggr=street2Aggr+%s,
             street3Aggr=street3Aggr+%s,
             street4Aggr=street4Aggr+%s,
+            otherRaisedStreet0=otherRaisedStreet0+%s,
             otherRaisedStreet1=otherRaisedStreet1+%s,
             otherRaisedStreet2=otherRaisedStreet2+%s,
             otherRaisedStreet3=otherRaisedStreet3+%s,
             otherRaisedStreet4=otherRaisedStreet4+%s,
+            foldToOtherRaisedStreet0=foldToOtherRaisedStreet0+%s,
             foldToOtherRaisedStreet1=foldToOtherRaisedStreet1+%s,
             foldToOtherRaisedStreet2=foldToOtherRaisedStreet2+%s,
             foldToOtherRaisedStreet3=foldToOtherRaisedStreet3+%s,
             foldToOtherRaisedStreet4=foldToOtherRaisedStreet4+%s,
             wonWhenSeenStreet1=wonWhenSeenStreet1+%s,
+            wonWhenSeenStreet2=wonWhenSeenStreet2+%s,
+            wonWhenSeenStreet3=wonWhenSeenStreet3+%s,
+            wonWhenSeenStreet4=wonWhenSeenStreet4+%s,
             wonAtSD=wonAtSD+%s,
             raiseFirstInChance=raiseFirstInChance+%s,
             raisedFirstIn=raisedFirstIn+%s,
@@ -3741,6 +3931,7 @@ class Sql:
                                            AND   type=%s
                                            AND   category=%s
                                            AND   limitType=%s
+                                           AND   currency=%s
                                            AND   smallBlind=%s
                                            AND   bigBlind=%s
         """
@@ -3786,9 +3977,9 @@ class Sql:
         """
 
         self.query['insertTourneyType'] = """INSERT INTO TourneyTypes
-                                                  (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, rebuy,
+                                                  (siteId, currency, buyin, fee, category, limitType, buyInChips, knockout, koBounty, rebuy,
                                                   addOn ,speed, shootout, matrix, added, addedCurrency)
-                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                                              VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
 
         self.query['getTourneyByTourneyNo'] = """SELECT t.*
@@ -3797,6 +3988,22 @@ class Sql:
                                         WHERE tt.siteId=%s AND t.siteTourneyNo=%s
         """
 
+        self.query['getTourneyInfo'] = """SELECT tt.*, t.*
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        WHERE s.name=%s AND t.siteTourneyNo=%s
+        """
+
+        self.query['getTourneyPlayerInfo'] = """SELECT tp.*
+                                        FROM Tourneys t
+                                        INNER JOIN TourneyTypes tt ON (t.tourneyTypeId = tt.id)
+                                        INNER JOIN Sites s ON (tt.siteId = s.id)
+                                        INNER JOIN TourneysPlayers tp ON (tp.tourneyId = t.id)
+                                        INNER JOIN Players p ON (p.id = tp.playerId)
+                                        WHERE s.name=%s AND t.siteTourneyNo=%s AND p.name=%s
+        """
+        
         self.query['insertTourney'] = """INSERT INTO Tourneys
                                             (tourneyTypeId, siteTourneyNo, entries, prizepool,
                                              startTime, endTime, tourneyName, matrixIdProcessed,
@@ -3932,6 +4139,9 @@ class Sql:
                 street3CBDone,
                 street4CBDone,
                 wonWhenSeenStreet1,
+                wonWhenSeenStreet2,
+                wonWhenSeenStreet3,
+                wonWhenSeenStreet4,
                 street0Calls,
                 street1Calls,
                 street2Calls,
@@ -3947,10 +4157,16 @@ class Sql:
                 startCards,
                 street0_3BChance,
                 street0_3BDone,
+                street0_4BChance,
+                street0_4BDone,
+                other3BStreet0,
+                other4BStreet0,
+                otherRaisedStreet0,
                 otherRaisedStreet1,
                 otherRaisedStreet2,
                 otherRaisedStreet3,
                 otherRaisedStreet4,
+                foldToOtherRaisedStreet0,
                 foldToOtherRaisedStreet1,
                 foldToOtherRaisedStreet2,
                 foldToOtherRaisedStreet3,
@@ -4001,7 +4217,8 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s,
-                    %s
+                    %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s
                 )"""
         
         ################################
@@ -4014,7 +4231,7 @@ class Sql:
         ################################
         # queries for dumpDatabase
         ################################
-        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
+        for table in (u'Autorates', u'Backings', u'Gametypes', u'Hands', u'HandsActions', u'HandsPlayers', u'HudCache', u'Players', u'RawHands', u'RawTourneys', u'Settings', u'Sites', u'TourneyTypes', u'Tourneys', u'TourneysPlayers'):
             self.query['get'+table] = u"SELECT * FROM "+table
         
         ################################

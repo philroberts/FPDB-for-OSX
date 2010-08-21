@@ -41,9 +41,17 @@ import Hand
 from Exceptions import FpdbParseError
 import Configuration
 
-import gettext
-gettext.install('fpdb')
-
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
 
 import pygtk
 import gtk
@@ -123,7 +131,7 @@ Otherwise, finish at EOF.
 
         starttime = time.time()
         if not self.sanityCheck():
-            log.warning("Failed sanity check")
+            log.warning(_("Failed sanity check"))
             return
 
         try:
@@ -131,14 +139,14 @@ Otherwise, finish at EOF.
             self.numErrors = 0
             if self.follow:
                 #TODO: See how summary files can be handled on the fly (here they should be rejected as before)
-                log.info("Tailing '%s'" % self.in_path)
+                log.info(_("Tailing '%s'") % self.in_path)
                 for handText in self.tailHands():
                     try:
                         self.processHand(handText)
                         self.numHands += 1
                     except FpdbParseError, e:
                         self.numErrors += 1
-                        log.warning("HHC.start(follow): processHand failed: Exception msg: '%s'" % e)
+                        log.warning(_("HHC.start(follow): processHand failed: Exception msg: '%s'") % e)
                         log.debug(handText)
             else:
                 handsList = self.allHandsAsList()
@@ -152,22 +160,22 @@ Otherwise, finish at EOF.
                             self.processedHands.append(self.processHand(handText))
                         except FpdbParseError, e:
                             self.numErrors += 1
-                            log.warning("HHC.start(): processHand failed: Exception msg: '%s'" % e)
+                            log.warning(_("HHC.start(): processHand failed: Exception msg: '%s'") % e)
                             log.debug(handText)
                     self.numHands = len(handsList)
                     endtime = time.time()
-                    log.info("Read %d hands (%d failed) in %.3f seconds" % (self.numHands, self.numErrors, endtime - starttime))
+                    log.info(_("Read %d hands (%d failed) in %.3f seconds") % (self.numHands, self.numErrors, endtime - starttime))
                 else:
                         self.parsedObjectType = "Summary"
                         summaryParsingStatus = self.readSummaryInfo(handsList)
                         endtime = time.time()
                         if summaryParsingStatus :
-                            log.info("Summary file '%s' correctly parsed  (took %.3f seconds)" % (self.in_path, endtime - starttime))
+                            log.info(_("Summary file '%s' correctly parsed  (took %.3f seconds)") % (self.in_path, endtime - starttime))
                         else :
-                            log.warning("Error converting summary file '%s' (took %.3f seconds)" % (self.in_path, endtime - starttime))
+                            log.warning(_("Error converting summary file '%s' (took %.3f seconds)") % (self.in_path, endtime - starttime))
 
         except IOError, ioe:
-            log.exception("Error converting '%s'" % self.in_path)
+            log.exception(_("Error converting '%s'") % self.in_path)
         finally:
             if self.out_fh != sys.stdout:
                 self.out_fh.close()
@@ -198,7 +206,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
                     time.sleep(interval)
                     fd.seek(where)
                 else:
-                    log.debug("%s changed inode numbers from %d to %d" % (self.in_path, fd_results[1], st_results[1]))
+                    log.debug(_("%s changed inode numbers from %d to %d") % (self.in_path, fd_results[1], st_results[1]))
                     fd = codecs.open(self.in_path, 'r', self.codepage)
                     fd.seek(where)
             else:
@@ -243,17 +251,17 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
         if self.starsArchive == True:
-            log.debug("Converting starsArchive format to readable")
+            log.debug(_("Converting starsArchive format to readable"))
             m = re.compile('^Hand #\d+', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.ftpArchive == True:
-            log.debug("Converting ftpArchive format to readable")
+            log.debug(_("Converting ftpArchive format to readable"))
             m = re.compile('^\*\*\*\*\*\*+\s#\s\d+\s\*\*\*\*\*+$', re.MULTILINE)
             self.obs = m.sub('', self.obs)
 
         if self.obs is None or self.obs == "":
-            log.info("Read no hands.")
+            log.info(_("Read no hands."))
             return []
         return re.split(self.re_SplitHands,  self.obs)
 
@@ -264,8 +272,8 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         l = None
         if gametype is None:
             gametype = "unmatched"
-            # TODO: not ideal, just trying to not error.
-            # TODO: Need to count failed hands.
+            # TODO: not ideal, just trying to not error. Throw ParseException?
+            self.numErrors += 1
         else:
             # See if gametype is supported.
             type = gametype['type']
@@ -281,13 +289,13 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             elif gametype['base'] == 'draw':
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
-            log.info("Unsupported game type: %s" % gametype)
+            log.info(_("Unsupported game type: %s" % gametype))
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.info("Unsupported game type: %s" % gametype)
+            log.info(_("Unsupported game type: %s" % gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
             # From the log we can deduce that it is the hand after the one before :)
 
@@ -318,33 +326,104 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
 or None if we fail to get the info """
     #TODO: which parts are optional/required?
 
-    # Read any of:
-    # HID       HandID
-    # TABLE     Table name
-    # SB        small blind
-    # BB        big blind
-    # GAMETYPE  gametype
-    # YEAR MON DAY HR MIN SEC   datetime
-    # BUTTON    button seat number
     def readHandInfo(self, hand): abstract
+    """Read and set information about the hand being dealt, and set the correct 
+    variables in the Hand object 'hand
 
-    # Needs to return a list of lists in the format
-    # [['seat#', 'player1name', 'stacksize'] ['seat#', 'player2name', 'stacksize'] [...]]
+    * hand.startTime - a datetime object
+    * hand.handid - The site identified for the hand - a string.
+    * hand.tablename
+    * hand.buttonpos
+    * hand.maxseats
+    * hand.mixed
+
+    Tournament fields:
+
+    * hand.tourNo - The site identified tournament id as appropriate - a string.
+    * hand.buyin
+    * hand.fee
+    * hand.buyinCurrency
+    * hand.koBounty
+    * hand.isKO
+    * hand.level
+    """
+    #TODO: which parts are optional/required?
+
     def readPlayerStacks(self, hand): abstract
+    """This function is for identifying players at the table, and to pass the 
+    information on to 'hand' via Hand.addPlayer(seat, name, chips)
+
+    At the time of writing the reference function in the PS converter is:
+        log.debug("readPlayerStacks")
+        m = self.re_PlayerInfo.finditer(hand.handText)
+        for a in m:
+            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+
+    Which is pretty simple because the hand history format is consistent. Other hh formats aren't so nice.
+
+    This is the appropriate place to identify players that are sitting out and ignore them
+
+    *** NOTE: You may find this is a more appropriate place to set hand.maxseats ***
+    """
 
     def compilePlayerRegexs(self): abstract
-    """Compile dynamic regexes -- these explicitly match known player names and must be updated if a new player joins"""
+    """Compile dynamic regexes -- compile player dependent regexes.
+
+    Depending on the ambiguity of lines you may need to match, and the complexity of 
+    player names - we found that we needed to recompile some regexes for player actions so that they actually contained the player names.
+
+    eg.
+    We need to match the ante line:
+    <Player> antes $1.00
+
+    But <Player> is actually named
+
+    YesI antes $4000 - A perfectly legal playername
+
+    Giving:
+
+    YesI antes $4000 antes $1.00
+
+    Which without care in your regexes most people would match 'YesI' and not 'YesI antes $4000'
+    """
 
     # Needs to return a MatchObject with group names identifying the streets into the Hand object
     # so groups are called by street names 'PREFLOP', 'FLOP', 'STREET2' etc
     # blinds are done seperately
     def markStreets(self, hand): abstract
+    """For dividing the handText into sections.
+
+    The function requires you to pass a MatchObject with groups specifically labeled with
+    the 'correct' street names.
+
+    The Hand object will use the various matches for assigning actions to the correct streets.
+
+    Flop Based Games:
+    PREFLOP, FLOP, TURN, RIVER
+
+    Draw Based Games:
+    PREDEAL, DEAL, DRAWONE, DRAWTWO, DRAWTHREE
+
+    Stud Based Games:
+    ANTES, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH
+
+    The Stars HHC has a good reference implementation
+    """
 
     #Needs to return a list in the format
     # ['player1name', 'player2name', ...] where player1name is the sb and player2name is bb,
     # addtional players are assumed to post a bb oop
     def readBlinds(self, hand): abstract
+    """Function for reading the various blinds from the hand history.
+
+    Pass any small blind to hand.addBlind(<name>, "small blind", <value>)
+    - unless it is a single dead small blind then use:
+        hand.addBlind(<name>, 'secondsb', <value>)
+    Pass any big blind to hand.addBlind(<name>, "big blind", <value>)
+    Pass any play posting both big and small blinds to hand.addBlind(<name>, 'both', <vale>)
+    """
     def readAntes(self, hand): abstract
+    """Function for reading the antes from the hand history and passing the hand.addAnte"""
     def readBringIn(self, hand): abstract
     def readButton(self, hand): abstract
     def readHeroCards(self, hand): abstract
@@ -390,7 +469,7 @@ or None if we fail to get the info """
             sane = True
 
         if self.in_path != '-' and self.out_path == self.in_path:
-            print "HH Sanity Check: output and input files are the same, check config"
+            print _("HH Sanity Check: output and input files are the same, check config")
             sane = False
 
 
@@ -400,18 +479,6 @@ or None if we fail to get the info """
     def setFileType(self, filetype = "text", codepage='utf8'):
         self.filetype = filetype
         self.codepage = codepage
-
-    #This function doesn't appear to be used
-    def splitFileIntoHands(self):
-        hands = []
-        self.obs = self.obs.strip()
-        list = self.re_SplitHands.split(self.obs)
-        list.pop() #Last entry is empty
-        for l in list:
-#           print "'" + l + "'"
-            hands = hands + [Hand.Hand(self.config, self.sitename, self.gametype, l)]
-        # TODO: This looks like it could be replaced with a list comp.. ?
-        return hands
 
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
@@ -425,7 +492,7 @@ or None if we fail to get the info """
         if self.filetype == "text":
             if self.in_path == '-':
                 # read from stdin
-                log.debug("Reading stdin with %s" % self.codepage) # is this necessary? or possible? or what?
+                log.debug(_("Reading stdin with %s") % self.codepage) # is this necessary? or possible? or what?
                 in_fh = codecs.getreader('cp1252')(sys.stdin)
             else:
                 for kodec in self.__listof(self.codepage):
@@ -433,14 +500,15 @@ or None if we fail to get the info """
                     try:
                         in_fh = codecs.open(self.in_path, 'r', kodec)
                         whole_file = in_fh.read()
+                        in_fh.close()
                         self.obs = whole_file[self.index:]
                         self.index = len(whole_file)
-                        in_fh.close()
                         break
                     except:
                         pass
                 else:
-                    print "unable to read file with any codec in list!", self.in_path
+                    print _("unable to read file with any codec in list!"), self.in_path
+                    self.obs = ""
         elif self.filetype == "xml":
             doc = xml.dom.minidom.parse(filename)
             self.doc = doc
@@ -593,13 +661,13 @@ def get_out_fh(out_path, parameters):
             try: 
                 os.makedirs(out_dir) 
             except: # we get a WindowsError here in Windows.. pretty sure something else for Linux :D 
-                log.error("Unable to create output directory %s for HHC!" % out_dir) 
-                print "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY", out_dir 
+                log.error(_("Unable to create output directory %s for HHC!") % out_dir) 
+                print _("*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"), out_dir 
             else: 
-                log.info("Created directory '%s'" % out_dir) 
+                log.info(_("Created directory '%s'") % out_dir) 
         try: 
             return(codecs.open(out_path, 'w', 'utf8')) 
         except: 
-            log.error("out_path %s couldn't be opened" % (out_path)) 
+            log.error(_("out_path %s couldn't be opened") % (out_path)) 
     else:
         return(sys.stdout)

@@ -1,0 +1,52 @@
+Full Tilt Poker Game #22821112219: Table Venice (6 max) - $0.01/$0.02 - No Limit Hold'em - 15:42:59 ET - 2010/08/04
+Seat 1: gimick ($0.70)
+Seat 2: player2 ($0.70)
+Seat 3: player1 ($0.98)
+Seat 4: player3 ($5.14)
+Seat 5: player4 ($2)
+Seat 6: player5 ($0.80)
+player1 posts the small blind of $0.01
+player3 posts the big blind of $0.02
+gimick posts $0.02
+5 seconds left to act
+player5 posts $0.02
+The button is in seat #2
+*** HOLE CARDS ***
+Dealt to gimick [Qd Jc]
+player4 folds
+player5 checks
+gimick checks
+player1 calls $0.01
+player3 checks
+*** FLOP *** [3d As 2h]
+player1 checks
+player3 checks
+player5 bets $0.02
+gimick folds
+player1 folds
+gimick is sitting out
+player3 calls $0.02
+*** TURN *** [3d As 2h] [4h]
+player3 checks
+player5 bets $0.02
+player3 calls $0.02
+*** RIVER *** [3d As 2h 4h] [7c]
+player3 checks
+player5 bets $0.16
+player3 folds
+player3 is sitting out
+Uncalled bet of $0.16 returned to player5
+player5 mucks
+player5 wins the pot ($0.15)
+*** SUMMARY ***
+Total pot $0.16 | Rake $0.01
+Board: [3d As 2h 4h 7c]
+Seat 1: gimick folded on the Flop
+Seat 2: player2 (button) is sitting out
+Seat 3: player1 (small blind) folded on the Flop
+Seat 4: player3 (big blind) folded on the River
+Seat 5: player4 didn't bet (folded)
+Seat 6: player5 collected ($0.15), mucked
+
+
+

@@ -51,8 +51,8 @@ class DerivedStats():
             self.handsplayers[player[1]]['position']            = 2
             self.handsplayers[player[1]]['street0_3BChance']    = False
             self.handsplayers[player[1]]['street0_3BDone']      = False
-            self.handsplayers[player[1]]['street0_4BChance']    = False
-            self.handsplayers[player[1]]['street0_4BDone']      = False
+            self.handsplayers[player[1]]['street0_4BChance']    = False #FIXME: this might not actually be implemented
+            self.handsplayers[player[1]]['street0_4BDone']      = False #FIXME: this might not actually be implemented
             self.handsplayers[player[1]]['raiseFirstInChance']  = False
             self.handsplayers[player[1]]['raisedFirstIn']       = False
             self.handsplayers[player[1]]['foldBbToStealChance'] = False
@@ -74,9 +74,16 @@ class DerivedStats():
                 self.handsplayers[player[1]]['foldToOtherRaisedStreet%d' %i]    = False
             
             #FIXME - Everything below this point is incomplete.
+            self.handsplayers[player[1]]['other3BStreet0']              = False
+            self.handsplayers[player[1]]['other4BStreet0']              = False
+            self.handsplayers[player[1]]['otherRaisedStreet0']          = False
+            self.handsplayers[player[1]]['foldToOtherRaisedStreet0']    = False
             for i in range(1,5):
                 self.handsplayers[player[1]]['foldToStreet%dCBChance' %i]       = False
                 self.handsplayers[player[1]]['foldToStreet%dCBDone' %i]         = False
+            self.handsplayers[player[1]]['wonWhenSeenStreet2'] = 0.0
+            self.handsplayers[player[1]]['wonWhenSeenStreet3'] = 0.0
+            self.handsplayers[player[1]]['wonWhenSeenStreet4'] = 0.0
 
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
@@ -289,10 +296,13 @@ class DerivedStats():
 #        actions = hand.actions[hand.actionStreets[-1]]
 #        print "p_actions:", self.pfba(actions), "p_folds:", self.pfba(actions, l=('folds',)), "alliners:", alliners
 #        pas = set.union(self.pfba(actions) - self.pfba(actions, l=('folds',)),  alliners)
+        
+        # hand.players includes people that are sitting out on some sites for cash games
+        # actionStreets[1] is 'DEAL', 'THIRD', 'PREFLOP', so any player dealt cards
+        # must act on this street if dealt cards. Almost certainly broken for the 'all-in blind' case
+        # and right now i don't care - CG
+        p_in = set([x[0] for x in hand.actions[hand.actionStreets[1]]])
 
-        # hand.players includes people that are sitting out on some sites. 
-        # Those that posted an ante should have been deal cards. 
-        p_in = set([x[0] for x in hand.actions['BLINDSANTES']]) 
         for (i, street) in enumerate(hand.actionStreets):
             actions = hand.actions[street]
             p_in = p_in - self.pfba(actions, l=('folds',))

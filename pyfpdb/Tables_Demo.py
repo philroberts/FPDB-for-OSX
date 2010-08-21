@@ -36,6 +36,18 @@ import gobject
 import Configuration
 from HandHistoryConverter import getTableTitleRe
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 #    get the correct module for the current os
 if os.name == 'posix':
     import XTables as Tables
@@ -57,7 +69,7 @@ if __name__=="__main__":
             self.main_window.connect("destroy", self.client_destroyed)
             self.label = gtk.Label('Fake Fake Fake Fake\nFake\nFake\nFake')
             self.main_window.add(self.label)
-            self.main_window.set_title("Fake HUD Main Window")
+            self.main_window.set_title(_("Fake HUD Main Window"))
             self.main_window.move(table.x + dx, table.y + dy)
             self.main_window.show_all()
             table.topify(self)
@@ -80,7 +92,7 @@ if __name__=="__main__":
             hud.main_window.emit(result, hud)
         return True
 
-    print "enter table name to find: ",
+    print _("enter table name to find: "),
     table_name = sys.stdin.readline()
     if "," in table_name:  # tournament
         print "tournament"
@@ -105,6 +117,6 @@ if __name__=="__main__":
     fake = fake_hud(table)
     print "fake =", fake
 #    gobject.timeout_add(100, check_on_table, table, fake)
-    print "calling main"
+    print _("calling main")
     gtk.main()
 
