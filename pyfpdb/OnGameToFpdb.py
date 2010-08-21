@@ -48,7 +48,7 @@ class OnGame(HandHistoryConverter):
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
-    limits = { 'NO LIMIT':'nl', 'LIMIT':'fl'}
+    limits = { 'NO_LIMIT':'nl', 'LIMIT':'fl'}
 
     games = {                          # base, category
                           "TEXAS_HOLDEM" : ('hold','holdem'),
