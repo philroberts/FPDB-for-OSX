@@ -480,18 +480,6 @@ or None if we fail to get the info """
         self.filetype = filetype
         self.codepage = codepage
 
-    #This function doesn't appear to be used
-    def splitFileIntoHands(self):
-        hands = []
-        self.obs = self.obs.strip()
-        list = self.re_SplitHands.split(self.obs)
-        list.pop() #Last entry is empty
-        for l in list:
-#           print "'" + l + "'"
-            hands = hands + [Hand.Hand(self.config, self.sitename, self.gametype, l)]
-        # TODO: This looks like it could be replaced with a list comp.. ?
-        return hands
-
     def __listof(self, x):
         if isinstance(x, list) or isinstance(x, tuple):
             return x
