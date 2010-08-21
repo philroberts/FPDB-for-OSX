@@ -256,6 +256,20 @@ class Layout:
 
         return temp + "\n"
 
+class Email:
+    def __init__(self, node):
+        self.node = node
+        self.host= node.getAttribute("host")
+        self.username = node.getAttribute("username")
+        self.password = node.getAttribute("password")
+        self.useSsl = node.getAttribute("useSsl")
+        self.folder = node.getAttribute("folder")
+        self.fetchType = node.getAttribute("fetchType")
+        
+    def __str__(self):
+        return "    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
+
 class Site:
     def __init__(self, node):
         def normalizePath(path):
@@ -284,12 +298,17 @@ class Site:
         self.xshift       = node.getAttribute("xshift")
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
+        self.emails       = {}
 
         print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
+        
+        for email_node in node.getElementsByTagName('email'):
+            email = Email(email_node)
+            self.emails[email.fetchType] = email
 
 #   Site defaults
         self.xpad = 1 if self.xpad == "" else int(self.xpad)
@@ -466,21 +485,6 @@ class Import:
     def __str__(self):
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
-
-class Email:
-    def __init__(self, node):
-        self.node = node
-        self.host= node.getAttribute("host")
-        self.username = node.getAttribute("username")
-        self.password = node.getAttribute("password")
-        self.useSsl = node.getAttribute("useSsl")
-        self.folder = node.getAttribute("folder")
-        self.siteName = node.getAttribute("siteName")
-        self.fetchType = node.getAttribute("fetchType")
-        
-    def __str__(self):
-        return "    siteName=%s\n    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.siteName, self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
 
 class HudUI:
     def __init__(self, node):
@@ -716,11 +720,6 @@ class Config:
             imp = Import(node = imp_node)
             self.imp = imp
 
-        for email_node in doc.getElementsByTagName("email"):
-            email = Email(node = email_node)
-            if email.siteName!="": #FIXME: Why on earth is this needed?
-                self.emails[email.siteName+"_"+email.fetchType]=email
-
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
             self.ui = hui
@@ -767,9 +766,12 @@ class Config:
                 return site_node
 
     def getEmailNode(self, siteName, fetchType):
-        for emailNode in self.doc.getElementsByTagName("email"):
-            if emailNode.getAttribute("siteName") == siteName and emailNode.getAttribute("fetchType") == fetchType:
+        siteNode = self.get_site_node(siteName)
+        for emailNode in siteNode.getElementsByTagName("email"):
+            if emailNode.getAttribute("fetchType") == fetchType:
+                print "found emailNode"
                 return emailNode
+                break
     #end def getEmailNode
 
     def getGameNode(self,gameName):
