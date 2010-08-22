@@ -1,5 +1,5 @@
 fpdb database dump
-DB version=142
+DB version=143
 
 ###################
 Table Autorates
@@ -1643,11 +1643,20 @@ Table Players
   comment=None
   commentTs=None
 
+###################
+Table RawHands
+###################
+empty table
+
+###################
+Table RawTourneys
+###################
+empty table
 
 ###################
 Table Settings
 ###################
-  version=142
+  version=143
 
 
 ###################
