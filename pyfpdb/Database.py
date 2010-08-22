@@ -2062,8 +2062,9 @@ class Database:
             #print "info that we use to get TT by detail:", hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO, hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix
             #print "the query:",self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
-                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'], hand.isKO,
-                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix) #TODO: add koamount
+                            (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
+                             hand.gametype['limitType'], hand.maxSeats, hand.isKO,
+                             hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
                             )
             result=cursor.fetchone()
             #print "result of fetching TT by details:",result
@@ -2072,7 +2073,8 @@ class Database:
                 tourneyTypeId = result[0]
             except TypeError: #this means we need to create a new entry
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
-                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'], hand.gametype['limitType'],
+                                (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
+                                 hand.gametype['limitType'], hand.maxSeats,
                                  hand.buyInChips, hand.isKO, hand.koBounty, hand.isRebuy,
                                  hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                                 )
