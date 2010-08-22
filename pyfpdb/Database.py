@@ -321,7 +321,12 @@ class Database:
             else:
                 for row in rows:
                     for columnNumber in range(len(columnNames)):
-                        result+=("  "+columnNames[columnNumber][0]+"="+str(row[columnNumber])+"\n")
+                        if columnNames[columnNumber][0]=="importTime":
+                            result+=("  "+columnNames[columnNumber][0]+"=ignore\n")
+                        elif columnNames[columnNumber][0]=="styleKey":
+                            result+=("  "+columnNames[columnNumber][0]+"=ignore\n")
+                        else:
+                            result+=("  "+columnNames[columnNumber][0]+"="+str(row[columnNumber])+"\n")
                     result+="\n"
             result+="\n"
         return result
