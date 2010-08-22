@@ -93,6 +93,11 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
     result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': stat, 'player': player})
 
     # If decimal places have been defined, override result[1]
+    # NOTE: decimal place override ALWAYS assumes the raw result is a
+    # fraction (x/100); manual decimal places really only make sense for
+    # percentage values. Also, profit/100 hands (bb/BB) already default
+    # to three decimal places anyhow, so they are unlikely override
+    # candidates.
     if match:
         base = stat[0:-2]
         places = int(stat[-1:])
