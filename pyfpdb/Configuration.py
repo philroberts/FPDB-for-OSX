@@ -110,7 +110,7 @@ def get_config(file_name, fallback = True):
         example_path = '/usr/share/python-fpdb/' + file_name + '.example'
         try:
             shutil.copyfile(example_path, config_path)
-            msg = 'Configuration file created: %s\n' % config_path
+            msg = _("Config file has been created at %s.\n") % config_path
             logging.info(msg)
             return (config_path,False)
         except IOError:
