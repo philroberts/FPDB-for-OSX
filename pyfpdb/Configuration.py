@@ -594,6 +594,58 @@ class GUICashStats(list):
 #            s = s + "    %s = %s\n" % (k, self[k])
 #        return(s)
 
+class RawHands:
+    def __init__(self, node=None):
+        if node==None:
+            self.save="error"
+            self.compression="none"
+            print _("missing config section raw_hands")
+        else:
+            save=node.getAttribute("save")
+            if save in ("none", "error", "all"):
+                self.save=save
+            else:
+                print _("Invalid config value for raw_hands.save, defaulting to \"error\"")
+                self.save="error"
+            
+            compression=node.getAttribute("compression")
+            if save in ("none", "gzip", "bzip2"):
+                self.compression=compression
+            else:
+                print _("Invalid config value for raw_hands.compression, defaulting to \"none\"")
+                self.compression="none"
+    #end def __init__
+
+    def __str__(self):
+        return "        save= %s, compression= %s\n" % (self.save, self.compression)
+#end class RawHands
+
+class RawTourneys:
+    def __init__(self, node=None):
+        if node==None:
+            self.save="error"
+            self.compression="none"
+            print _("missing config section raw_tourneys")
+        else:
+            save=node.getAttribute("save")
+            if save in ("none", "error", "all"):
+                self.save=save
+            else:
+                print _("Invalid config value for raw_tourneys.save, defaulting to \"error\"")
+                self.save="error"
+            
+            compression=node.getAttribute("compression")
+            if save in ("none", "gzip", "bzip2"):
+                self.compression=compression
+            else:
+                print _("Invalid config value for raw_tourneys.compression, defaulting to \"none\"")
+                self.compression="none"
+    #end def __init__
+
+    def __str__(self):
+        return "        save= %s, compression= %s\n" % (self.save, self.compression)
+#end class RawTourneys
+
 class Config:
     def __init__(self, file = None, dbname = ''):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
@@ -724,8 +776,19 @@ class Config:
                                      db_user = df_parms['db-user'],
                                      db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
-
+        
+        if doc.getElementsByTagName("raw_hands") == []:
+            self.raw_hands = RawHands()
+        for raw_hands_node in doc.getElementsByTagName('raw_hands'):
+            self.raw_hands = RawHands(raw_hands_node)
+        
+        if doc.getElementsByTagName("raw_tourneys") == []:
+            self.raw_tourneys = RawTourneys()
+        for raw_tourneys_node in doc.getElementsByTagName('raw_tourneys'):
+            self.raw_tourneys = RawTourneys(raw_tourneys_node)
+        
         print ""
+    #end def __init__
 
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
