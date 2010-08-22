@@ -2063,7 +2063,7 @@ class Database:
             #print "the query:",self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder'])
             cursor.execute (self.sql.query['getTourneyTypeId'].replace('%s', self.sql.query['placeholder']), 
                             (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-                             hand.gametype['limitType'], hand.maxSeats, hand.isKO,
+                             hand.gametype['limitType'], hand.maxseats, hand.isKO,
                              hand.isRebuy, hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix)
                             )
             result=cursor.fetchone()
@@ -2074,7 +2074,7 @@ class Database:
             except TypeError: #this means we need to create a new entry
                 cursor.execute (self.sql.query['insertTourneyType'].replace('%s', self.sql.query['placeholder']),
                                 (hand.siteId, hand.buyinCurrency, hand.buyin, hand.fee, hand.gametype['category'],
-                                 hand.gametype['limitType'], hand.maxSeats,
+                                 hand.gametype['limitType'], hand.maxseats,
                                  hand.buyInChips, hand.isKO, hand.koBounty, hand.isRebuy,
                                  hand.isAddOn, hand.speed, hand.isShootout, hand.isMatrix, hand.added, hand.addedCurrency)
                                 )
