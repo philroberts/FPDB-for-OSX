@@ -508,16 +508,6 @@ class HudUI:
         return "    label = %s\n" % self.label
 
 
-class Tv:
-    def __init__(self, node):
-        self.combinedStealFold = string_to_bool(node.getAttribute("combinedStealFold"), default=True)
-        self.combined2B3B    = string_to_bool(node.getAttribute("combined2B3B"), default=True)
-        self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
-
-    def __str__(self):
-        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" %
-                (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
-
 class General(dict):
     def __init__(self):
         super(General, self).__init__()
@@ -657,7 +647,6 @@ class Config:
         self.hhcs = {}
         self.popup_windows = {}
         self.db_selected = None    # database the user would like to use
-        self.tv = None
         self.general = General()
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
@@ -723,9 +712,6 @@ class Config:
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
             self.ui = hui
-
-        for tv_node in doc.getElementsByTagName("tv"):
-            self.tv = Tv(node = tv_node)
 
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
@@ -1011,15 +997,6 @@ class Config:
             if site.enabled:
                 return site_name
         return None
-
-    def get_tv_parameters(self):
-        if self.tv is not None:
-            return {
-                    'combinedStealFold': self.tv.combinedStealFold,
-                    'combined2B3B': self.tv.combined2B3B,
-                    'combinedPostflop': self.tv.combinedPostflop
-                    }
-        return {}
 
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
@@ -1313,15 +1290,10 @@ if __name__== "__main__":
     print c.imp
     print "----------- END IMPORT -----------"
 
-    print "\n----------- TABLE VIEW -----------"
-#    print c.tv
-    print "----------- END TABLE VIEW -----------"
-
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
 
     print "db    = ", c.get_db_parameters()
-#    print "tv    = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")

@@ -888,7 +888,6 @@ class fpdb:
 
         self.settings.update({'cl_options': cl_options})
         self.settings.update(self.config.get_db_parameters())
-        self.settings.update(self.config.get_tv_parameters())
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
