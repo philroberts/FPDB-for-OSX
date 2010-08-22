@@ -78,7 +78,6 @@ log = logging.getLogger("db")
 
 
 re_Places = re.compile("_[0-9]$")
-re_Percent = re.compile("%$")
 
 # String manipulation
 import codecs
@@ -95,12 +94,6 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
     else:
         base = stat[0:-2]
         places = int(stat[-1:])
-        #match = re_Percent.search(result[1])
-        #if match is None:
-        #    result = (result[0], "%.*f" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
-        #else:
-        #    result = (result[0], "%.*f%%" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
-        #result = (result[0], "%.*f" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
         result = (0.0, '0.0', 'notset=0', 'notset=0', '0', 'not set')
         try:
             result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': base, 'player': player})
@@ -109,15 +102,8 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
             log.info(_("exception getting stat %s for player %s %s") % (base, str(player), str(sys.exc_info())))
         log.debug(_("Stats.do_stat result = %s") % str(result) )
 
-        match = re_Percent.search(result[1])
-        try:
-            if match is None:
-                result = (result[0], "%.*f" % (places, result[0]), result[2], result[3], result[4], result[5])
-            else:
-                result = (result[0], "%.*f%%" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
-        except:
-            log.info(_("error: %s") % str(sys.exc_info()))
-            raise
+        # Unconditional formatting, as these are always percentages
+        result = (result[0], "%.*f" % (places, 100*result[0]), result[2], result[3], result[4], result[5])
     return result
 
 #    OK, for reference the tuple returned by the stat is:
