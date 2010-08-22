@@ -79,7 +79,16 @@ class GuiDatabase:
         try:
             #self.dia.set_modal(True)
             self.vbox = self.dia.vbox
+            self.action_area = self.dia.action_area
             #gtk.Widget.set_size_request(self.vbox, 700, 400);
+
+            h = gtk.HBox(False, spacing=3)
+            h.show()
+            self.vbox.pack_start(h, padding=3)
+
+            vbtn = gtk.VBox(True, spacing=3)
+            vbtn.show()
+            h.pack_start(vbtn, expand=False, fill=False, padding=2)
 
             # list of databases in self.config.supported_databases:
             self.liststore = gtk.ListStore(str, str, str, str, str
@@ -101,12 +110,28 @@ class GuiDatabase:
             self.scrolledwindow = gtk.ScrolledWindow()
             self.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
             self.scrolledwindow.add(self.listview)
-            self.vbox.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
+            h.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
 
-            refreshbutton = gtk.Button(_("Refresh"))
-            refreshbutton.connect("clicked", self.refresh, None)
-            self.vbox.pack_start(refreshbutton, False, False, 3)
-            refreshbutton.show()
+            # to change label on buttons:
+            # ( see http://faq.pygtk.org/index.py?req=show&file=faq09.005.htp )
+            gtk.stock_add([(gtk.STOCK_ADD, _("Add"), 0, 0, "")])
+
+            # alternatively:
+            # button = gtk.Button(stock=gtk.STOCK_CANCEL)
+            # button.show()
+            # alignment = button.get_children()[0]
+            # hbox = alignment.get_children()[0]
+            # image, label = hbox.get_children()
+            # label.set_text('Hide')
+
+
+            add_button     = self.makeSideButton(_("Add"), gtk.STOCK_ADD)
+            add_button.connect("clicked", self.addDB, None)
+            vbtn.pack_start(add_button, False, False, 3)
+
+            refresh_button = self.makeSideButton(_("Refresh"), gtk.STOCK_REFRESH)
+            refresh_button.connect("clicked", self.refresh, None)
+            vbtn.pack_start(refresh_button, False, False, 3)
 
             col = self.addTextColumn(_("Type"), 0, False)
             col = self.addTextColumn(_("Name"), 1, False)
@@ -122,12 +147,32 @@ class GuiDatabase:
             self.listview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
             self.listview.connect('button_press_event', self.selectTest)
 
+            self.dia.show_all()
             self.loadDbs()
 
             #self.dia.connect('response', self.dialog_response_cb)
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
             print 'guidbmaint: '+ err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+
+    def makeSideButton(self, label, stock):
+            gtk.stock_add([(gtk.STOCK_REFRESH, _("Refresh"), 0, 0, "")])
+
+            button = gtk.Button(stock=stock)
+            alignment = button.get_children()[0]
+            hbox = alignment.get_children()[0]
+            image, label = hbox.get_children()
+            #label.set_text('Hide')
+            hbox.remove(image)
+            hbox.remove(label)
+            v = gtk.VBox(False, spacing=3)
+            v.pack_start(image, 3)
+            v.pack_start(label, 3)
+            alignment.remove(hbox)
+            alignment.add(v)
+            button.show_all()
+
+            return(button)
 
     def dialog_response_cb(self, dialog, response_id):
         # this is called whether close button is pressed or window is closed
@@ -250,7 +295,7 @@ class GuiDatabase:
         #self.listcols = []
         dia = self.info_box2(None, _('Testing database connections ... '), "", False, False)
         while gtk.events_pending():
-            gtk.mainiteration() 
+            gtk.main_iteration() 
 
         try:
             # want to fill: dbms, name, comment, user, passwd, host, default, status, icon
@@ -356,6 +401,9 @@ class GuiDatabase:
     def refresh(self, widget, data):
         self.loadDbs()
 
+    def addDB(self, widget, data):
+        pass
+
     def info_box(self, dia, str1, str2, run, destroy):
         if dia is None:
             #if run:  
@@ -394,7 +442,7 @@ class GuiDatabase:
             # messagedialog puts text in inverse colors if no buttons are displayed??
             #dia = gtk.MessageDialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
             #                       , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
-            dia = gtk.Dialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
+            dia = gtk.Dialog( parent=self.dia, flags=gtk.DIALOG_DESTROY_WITH_PARENT
                             , title="" ) # , buttons=btns
             vbox = dia.vbox
             
