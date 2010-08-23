@@ -285,24 +285,6 @@ class OnGame(HandHistoryConverter):
                 newcards = found.group('CARDS').split(', ')
                 hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
-    def readAction_old(self, hand, street):
-        m = self.re_Action.finditer(hand.streets.group(street))
-        for action in m:
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
-                hand.addCheck( street, action.group('PNAME'))
-            else:
-                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
-                #hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
-        # TODO: Everleaf does not record uncalled bets.
-
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
