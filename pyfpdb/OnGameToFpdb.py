@@ -78,7 +78,7 @@ class OnGame(HandHistoryConverter):
             Start\shand:\s(?P<DATETIME>.*)
             Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
             (
-            (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
+            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
             (?P<GAME>TEXAS_HOLDEM|RAZZ)\s
             (?P<SB>[.0-9]+)/
             (?P<BB>[.0-9]+)
