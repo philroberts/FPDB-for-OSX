@@ -78,7 +78,7 @@ class OnGame(HandHistoryConverter):
             Start\shand:\s(?P<DATETIME>.*)
             Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
             (
-            (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
+            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
             (?P<GAME>TEXAS_HOLDEM|RAZZ)\s
             (?P<SB>[.0-9]+)/
             (?P<BB>[.0-9]+)
@@ -132,8 +132,8 @@ class OnGame(HandHistoryConverter):
             self.re_ShowdownAction = re.compile('(?P<PNAME>.*) shows \[ (?P<CARDS>.+) \]')
 
             # TODO: read SUMMARY correctly for collected pot stuff.
-            #Uchilka, bets $11.75, collects $23.04, net $11.29
-            self.re_CollectPot = re.compile('(?P<PNAME>.*), bets.+, collects \$(?P<POT>\d*\.?\d*), net.* ')
+            # Main pot: 6.75 won by player3 (6.45)
+            self.re_CollectPot = re.compile('Main pot: (?P<POT>\d*\.?\d*) won by %(PLYR)s' % subst)
             self.re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def readSupportedGames(self):
