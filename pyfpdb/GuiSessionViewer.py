@@ -82,7 +82,6 @@ class GuiSessionViewer (threading.Thread):
 
         settings = {}
         settings.update(self.conf.get_db_parameters())
-        settings.update(self.conf.get_tv_parameters())
         settings.update(self.conf.get_import_parameters())
         settings.update(self.conf.get_default_paths())
 

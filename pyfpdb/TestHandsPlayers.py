@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import os
 import codecs
@@ -76,7 +77,6 @@ def main(argv=None):
     sql = SQL.Sql(db_server = 'sqlite')
     settings = {}
     settings.update(config.get_db_parameters())
-    settings.update(config.get_tv_parameters())
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
     db.recreate_tables()

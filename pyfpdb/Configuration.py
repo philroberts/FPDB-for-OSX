@@ -519,6 +519,20 @@ class General(dict):
         for (name, value) in node.attributes.items():
             log.debug(_("config.general: adding %s = %s") % (name,value))
             self[name] = value
+        
+        try:
+            self["version"]=int(self["version"])
+        except KeyError:
+            self["version"]=0
+            self["ui_language"]="system"
+            self["config_difficuly"]="expert"
+            
+    def get_defaults(self):
+        self["version"]=0
+        self["ui_language"]="system"
+        self["config_difficuly"]="expert"
+        self["config_wrap_len"]="-1"
+        self["day_start"]="5"
 
     def __str__(self):
         s = ""
@@ -703,6 +717,8 @@ class Config:
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
 
+        if doc.getElementsByTagName("general") == []:
+            self.general.get_defaults()
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
