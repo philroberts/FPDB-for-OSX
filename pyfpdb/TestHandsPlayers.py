@@ -10,13 +10,19 @@ import Database
 import SQL
 import fpdb_import
 
-def error_report( filename, hand, stat, ghash, testhash, player):
-    print "Regression Test Error:"
-    print "\tFile: %s" % filename
-    print "\tStat: %s" % stat
-    print "\tPlayer: %s" % player
 
-def compare(leaf, importer):
+class FpdbError:
+    def __init__(self):
+        self.errorcount = 0
+
+    def error_report(self, filename, hand, stat, ghash, testhash, player):
+        print "Regression Test Error:"
+        print "\tFile: %s" % filename
+        print "\tStat: %s" % stat
+        print "\tPlayer: %s" % player
+        self.errorcount += 1
+
+def compare(leaf, importer, errors):
     filename = leaf
     #print "DEBUG: fileanme: %s" % filename
 
@@ -52,21 +58,21 @@ def compare(leaf, importer):
                             pass
                         else:
                             # Stats don't match - Doh!
-                            error_report(filename, hand, stat, ghash, testhash, p)
+                            errors.error_report(filename, hand, stat, ghash, testhash, p)
 
         importer.clearFileList()
 
 
 
-def walk_testfiles(dir, function, importer):
+def walk_testfiles(dir, function, importer, errors):
     """Walks a directory, and executes a callback on each file """
     dir = os.path.abspath(dir)
     for file in [file for file in os.listdir(dir) if not file in [".",".."]]:
         nfile = os.path.join(dir,file)
         if os.path.isdir(nfile):
-            walk_testfiles(nfile, compare, importer)
+            walk_testfiles(nfile, compare, importer, errors)
         else:
-            compare(nfile, importer)
+            compare(nfile, importer, errors)
 
 def main(argv=None):
     if argv is None:
@@ -86,8 +92,14 @@ def main(argv=None):
     importer.setThreads(-1)
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
+
+    errors = FpdbError()
     
-    walk_testfiles("regression-test-files/cash/Stars/", compare, importer)
+    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, errors)
+
+    print "---------------------"
+    print "Total Errors: %d" % errors.errorcount
+    print "---------------------"
 
 if __name__ == '__main__':
     sys.exit(main())
