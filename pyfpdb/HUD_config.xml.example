@@ -443,16 +443,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-
-        <site enabled="False"
-              site_name="Betfair"
-              table_finder="Betfair Poker.exe"
-              screen_name="YOUR SCREEN NAME HERE"
-              site_path="C:/Program Files/Betfair/Betfair Poker/"
-              HH_path="C:/Program Files/Betfair/Betfair Poker/HandHistory/YOUR SCREEN NAME HERE/"
-              decoder="everleaf_decode_table"
-              converter="BetfairToFpdb"
-              supported_games="holdem">
+        <site HH_path="C:/Program Files/Carbon Poker/HandHistory/YOUR SCREEN NAME HERE/" converter="CarbonToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Carbon" site_path="C:/Program Files/Carbin/" supported_games="holdem" table_finder="Carbon Poker.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>
@@ -473,7 +464,7 @@ Left-Drag to Move"
             </layout>
             <layout fav_seat="0" height="547" max="2" width="794">
                 <location seat="1" x="651" y="288"> </location>
-                <location seat="2" x="10"  y="288"> </location>
+                <location seat="2" x="10" y="288"> </location>
             </layout>
             <layout fav_seat="0" height="547" max="9" width="794">
                 <location seat="1" x="634" y="38">  </location>
@@ -488,8 +479,7 @@ Left-Drag to Move"
             </layout>
         </site>
 
-
-        <site HH_path="C:/Program Files/Carbon Poker/HandHistory/YOUR SCREEN NAME HERE/" converter="CarbonToFpdb" decoder="everleaf_decode_table" enabled="True" screen_name="YOUR SCREEN NAME HERE" site_name="Carbon" site_path="C:/Program Files/Carbin/" supported_games="holdem" table_finder="Carbon Poker.exe">
+        <site HH_path="C:/Program Files/OnGame Sking/HandHistory/YOUR SCREEN NAME HERE/" converter="OnGameToFpdb" decoder="everleaf_decode_table" enabled="False" screen_name="YOUR SCREEN NAME HERE" site_name="OnGame" site_path="C:/Program Files/OnGame/" supported_games="holdem" table_finder="OnGame.exe">
             <layout fav_seat="0" height="547" max="8" width="794">
                 <location seat="1" x="640" y="64">  </location>
                 <location seat="2" x="650" y="230"> </location>
