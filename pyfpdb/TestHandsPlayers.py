@@ -14,13 +14,23 @@ import fpdb_import
 class FpdbError:
     def __init__(self):
         self.errorcount = 0
+        self.histogram = {}
 
     def error_report(self, filename, hand, stat, ghash, testhash, player):
         print "Regression Test Error:"
         print "\tFile: %s" % filename
         print "\tStat: %s" % stat
         print "\tPlayer: %s" % player
+        if filename in self.histogram:
+            self.histogram[filename] += 1
+        else:
+            self.histogram[filename] = 1
         self.errorcount += 1
+
+    def print_histogram(self):
+        for f in self.histogram:
+            idx = f.find('regression')
+            print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
 def compare(leaf, importer, errors):
     filename = leaf
@@ -100,6 +110,7 @@ def main(argv=None):
     print "---------------------"
     print "Total Errors: %d" % errors.errorcount
     print "---------------------"
+    errors.print_histogram()
 
 if __name__ == '__main__':
     sys.exit(main())
