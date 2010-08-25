@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.904\n"
 "POT-Creation-Date: 2010-08-17 20:08+CEST\n"
-"PO-Revision-Date: 2010-08-17 23:49+0200\n"
+"PO-Revision-Date: 2010-08-25 02:55+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -169,7 +169,8 @@ msgstr ""
 
 #: Database.py:475 Database.py:476
 msgid "Failed to read settings table - recreating tables"
-msgstr "Nem sikerült az olvasás a beállítások táblából - táblák létrehozása"
+msgstr ""
+"Nem sikerült az olvasás a beállítások táblából - táblák újra létrehozása"
 
 #: Database.py:480 Database.py:481
 msgid "Failed to read settings table - please recreate tables"
@@ -274,7 +275,7 @@ msgstr "    index létrehozása nem sikerült: "
 
 #: Database.py:1134 Database.py:1135
 msgid "Finished recreating tables"
-msgstr "A táblák létrehozása befejeződött"
+msgstr "A táblák újra létrehozása befejeződött"
 
 #: Database.py:1172
 msgid "***Error creating tables: "
@@ -555,7 +556,7 @@ msgstr "self.groups[%s] beállítva erre: %s"
 
 #: Filters.py:582
 msgid "Min # Hands:"
-msgstr "Minimum ennyi leosztással:"
+msgstr "Min. leosztásszám:"
 
 #: Filters.py:648
 msgid "INFO: No tourney types returned from database"
@@ -575,11 +576,11 @@ msgstr "Nem található játék az adatbázisban"
 
 #: Filters.py:913
 msgid " Clear Dates "
-msgstr "Dátumok törlése"
+msgstr "Törlés"
 
 #: Filters.py:940 fpdb.pyw:721
 msgid "Pick a date"
-msgstr "Válassz egy dátumot"
+msgstr "Válassz napot"
 
 #: Filters.py:946 fpdb.pyw:727
 msgid "Done"
@@ -693,7 +694,7 @@ msgstr "Importálás kész"
 
 #: GuiBulkImport.py:139
 msgid "bulk-import aborted - global lock not available"
-msgstr "tömeges importálás megszakítva - nem elérhető a globális zárolás"
+msgstr "importálás megszakítva - nem elérhető a globális zárolás"
 
 #: GuiBulkImport.py:165
 msgid "Print Start/Stop Info"
@@ -713,11 +714,11 @@ msgstr "Hiba esetén megáll"
 
 #: GuiBulkImport.py:214
 msgid "Hands/file:"
-msgstr "Leosztás/fájl"
+msgstr "Leosztás/fájl:"
 
 #: GuiBulkImport.py:229
 msgid "Drop indexes:"
-msgstr "Indexek eldobása"
+msgstr "Indexek eldobása:"
 
 #: GuiBulkImport.py:238 GuiBulkImport.py:288
 msgid "auto"
@@ -725,7 +726,7 @@ msgstr "automatikus"
 
 #: GuiBulkImport.py:239 GuiBulkImport.py:289 GuiBulkImport.py:397
 msgid "don't drop"
-msgstr "ne dobja el"
+msgstr "megtartás"
 
 #: GuiBulkImport.py:240 GuiBulkImport.py:290
 msgid "drop"
@@ -737,7 +738,7 @@ msgstr "HUD teszt mód"
 
 #: GuiBulkImport.py:251
 msgid "Site filter:"
-msgstr "Teremszűrő:"
+msgstr "Terem:"
 
 #: GuiBulkImport.py:279
 msgid "Drop HudCache:"
@@ -1160,7 +1161,7 @@ msgstr "Statisztikák f_rissítése"
 
 #: GuiTourneyViewer.py:49
 msgid "Enter the tourney number you want to display:"
-msgstr "Add meg a megjelenítendő verseny azonosítóját"
+msgstr "Add meg a megjelenítendő verseny azonosítóját:"
 
 #: GuiTourneyViewer.py:55
 msgid "_Display"
@@ -2584,12 +2585,12 @@ msgstr "Adatbázis statisztikák"
 
 #: fpdb.pyw:362
 msgid "HUD Configurator - choose category"
-msgstr "HUD beállító - válassz kategóriát"
+msgstr "HUD beállító - válassz típust és méretet"
 
 #: fpdb.pyw:368
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
-msgstr "Válassz játéktípust, amelyre vonatkozóan akarod beállítani a HUD-ot:"
+msgstr "Válassz játéktípust, amelyre vonatkozóan be akarod állítani a HUD-ot:"
 
 #: fpdb.pyw:420
 msgid "HUD Configurator - please choose your stats"
@@ -2602,8 +2603,7 @@ msgstr "Válaszd ki a lenti táblázatból a megjelenítendő statisztikákat."
 #: fpdb.pyw:430
 msgid "Note that you may not select any stat more than once or it will crash."
 msgstr ""
-"Vedd figyelembe, hogy egy statisztikát nem választhatsz ki többször, "
-"különben ki fog lépni."
+"Egy statisztikát ne válassz ki többször, mert nem fog működni (ki fog lépni)."
 
 #: fpdb.pyw:434
 msgid ""
@@ -2616,7 +2616,7 @@ msgid ""
 "To configure things like colouring you will still have to manually edit your "
 "HUD_config.xml."
 msgstr ""
-"Bizonyos dolgok, mint pl. a színezés beállításához egyelőre még kézzel kell "
+"Bizonyos dolgok (pl. színezés) beállításához egyelőre még kézzel kell "
 "szerkesztened a HUD_config.xml fájlt."
 
 #: fpdb.pyw:545
@@ -2641,7 +2641,7 @@ msgstr ""
 
 #: fpdb.pyw:572
 msgid "User cancelled recreating tables"
-msgstr "A felhasználó mégsem generálja újra a táblákat."
+msgstr "A felhasználó megszakította a táblák újra létrehozását"
 
 #: fpdb.pyw:579
 msgid "Please confirm that you want to re-create the HUD cache."
@@ -2750,7 +2750,7 @@ msgstr "_Importálás"
 
 #: fpdb.pyw:831
 msgid "_Set HandHistory Archive Directory"
-msgstr "Leo_sztástörténet archívumának könyvtára"
+msgstr "Leo_sztásarchívum könyvtára"
 
 #: fpdb.pyw:832
 msgid "<control>B"
@@ -2758,7 +2758,7 @@ msgstr "<control>B"
 
 #: fpdb.pyw:832
 msgid "_Bulk Import"
-msgstr "_Tömeges importálás"
+msgstr "_Importálás"
 
 #: fpdb.pyw:833
 msgid "<control>I"
@@ -2766,7 +2766,7 @@ msgstr "<control>I"
 
 #: fpdb.pyw:833
 msgid "_Import through eMail/IMAP"
-msgstr "Email _import (IMAP)"
+msgstr "_Email import (IMAP)"
 
 #: fpdb.pyw:834
 msgid "_Viewers"
@@ -2802,7 +2802,7 @@ msgstr "<control>P"
 
 #: fpdb.pyw:838
 msgid "Ring _Player Stats (tabulated view)"
-msgstr "Kész_pénzes statisztikák (táblázatos nézet)"
+msgstr "Kész_pénzes statisztikák (táblázat)"
 
 #: fpdb.pyw:839
 msgid "<control>T"
@@ -2810,7 +2810,7 @@ msgstr "<control>T"
 
 #: fpdb.pyw:839
 msgid "_Tourney Player Stats (tabulated view)"
-msgstr "Versenyjá_tékos statisztikák (táblázatos nézet)"
+msgstr "Versenyjá_tékos statisztikák (táblázat)"
 
 #: fpdb.pyw:840
 msgid "Tourney _Viewer"
@@ -2822,7 +2822,7 @@ msgstr "<control>O"
 
 #: fpdb.pyw:841
 msgid "P_ositional Stats (tabulated view, not on sqlite)"
-msgstr "P_ozíciós statisztikák (táblázatos nézet, SQLite-tal nem megy)"
+msgstr "P_ozíciós statisztikák (táblázat; SQLite-tal nem)"
 
 #: fpdb.pyw:842 fpdb.pyw:1059
 msgid "Session Stats"
@@ -2838,7 +2838,7 @@ msgstr "_Karbantartás"
 
 #: fpdb.pyw:845
 msgid "Create or Recreate _Tables"
-msgstr "_Táblák létrehozása vagy újragenerálása"
+msgstr "_Táblák (újra) létrehozása"
 
 #: fpdb.pyw:846
 msgid "Rebuild HUD Cache"
@@ -2854,7 +2854,7 @@ msgstr "_Statisztikák"
 
 #: fpdb.pyw:849
 msgid "Dump Database to Textfile (takes ALOT of time)"
-msgstr "Adatbázis exportálása textfájlba (SOKÁIG tart)"
+msgstr "Adatbázis kiírása textfájlba (SOKÁIG tart)"
 
 #: fpdb.pyw:850
 msgid "_Help"
@@ -2994,7 +2994,7 @@ msgstr "AutoImport"
 
 #: fpdb.pyw:1022
 msgid "Bulk Import"
-msgstr "Tömeges import"
+msgstr "Importálás"
 
 #: fpdb.pyw:1028
 msgid "eMail Import"
