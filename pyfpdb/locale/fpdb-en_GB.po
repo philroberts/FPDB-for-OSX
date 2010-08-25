@@ -4,14 +4,14 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-23 05:27+CEST\n"
+"Project-Id-Version: 0.20.905 plus git\n"
+"POT-Creation-Date: 2010-08-25 13:31+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: ENCODING\n"
+"Content-Transfer-Encoding: UTF-8\n"
 "Generated-By: pygettext.py 1.5\n"
 
 
@@ -23,31 +23,31 @@ msgstr ""
 msgid "Output being written to"
 msgstr ""
 
-#: BetfairToFpdb.py:84
+#: BetfairToFpdb.py:83
 msgid "GameInfo regex did not match"
 msgstr ""
 
-#: BetfairToFpdb.py:115
+#: BetfairToFpdb.py:114
 msgid "Didn't match re_HandInfo"
 msgstr ""
 
-#: BetfairToFpdb.py:171
+#: BetfairToFpdb.py:170
 msgid "No bringin found"
 msgstr ""
 
-#: BetfairToFpdb.py:207 OnGameToFpdb.py:328 PokerStarsToFpdb.py:440
+#: BetfairToFpdb.py:206 OnGameToFpdb.py:308 PokerStarsToFpdb.py:440
 msgid "DEBUG: unimplemented readAction: '%s' '%s'"
 msgstr ""
 
-#: BetfairToFpdb.py:230 PartyPokerToFpdb.py:522 PokerStarsToFpdb.py:467
+#: BetfairToFpdb.py:229 PartyPokerToFpdb.py:522 PokerStarsToFpdb.py:467
 msgid "parse input hand history"
 msgstr ""
 
-#: BetfairToFpdb.py:231 PartyPokerToFpdb.py:523 PokerStarsToFpdb.py:468
+#: BetfairToFpdb.py:230 PartyPokerToFpdb.py:523 PokerStarsToFpdb.py:468
 msgid "output translation to"
 msgstr ""
 
-#: BetfairToFpdb.py:232 PartyPokerToFpdb.py:524 PokerStarsToFpdb.py:469
+#: BetfairToFpdb.py:231 PartyPokerToFpdb.py:524 PokerStarsToFpdb.py:469
 msgid "follow (tail -f) the input"
 msgstr ""
 
@@ -709,7 +709,7 @@ msgstr ""
 msgid "auto"
 msgstr ""
 
-#: GuiBulkImport.py:239 GuiBulkImport.py:289 GuiBulkImport.py:399
+#: GuiBulkImport.py:239 GuiBulkImport.py:289 GuiBulkImport.py:398
 msgid "don't drop"
 msgstr ""
 
@@ -793,11 +793,11 @@ msgstr ""
 msgid "PartyPoker converter: ./GuiBulkImport.py -c PartyPoker -f filename"
 msgstr ""
 
-#: GuiBulkImport.py:386
+#: GuiBulkImport.py:385
 msgid "-q is deprecated. Just use \"-f filename\" instead"
 msgstr ""
 
-#: GuiBulkImport.py:410
+#: GuiBulkImport.py:409
 msgid "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d in %s seconds - %.0f/sec"
 msgstr ""
 
@@ -905,22 +905,22 @@ msgid ""
 "         and HUD are NOT affected by this problem."
 msgstr ""
 
-#: GuiGraphViewer.py:141 GuiGraphViewer.py:255 GuiSessionViewer.py:355
+#: GuiGraphViewer.py:141 GuiGraphViewer.py:255 GuiSessionViewer.py:354
 msgid "***Error: "
 msgstr ""
 
-#: GuiGraphViewer.py:171 GuiPositionalStats.py:178 GuiRingPlayerStats.py:252
-#: GuiSessionViewer.py:204 GuiTourneyPlayerStats.py:277
+#: GuiGraphViewer.py:171 GuiPositionalStats.py:177 GuiRingPlayerStats.py:251
+#: GuiSessionViewer.py:203 GuiTourneyPlayerStats.py:277
 msgid "No sites selected - defaulting to PokerStars"
 msgstr ""
 
-#: GuiGraphViewer.py:176 GuiPositionalStats.py:181 GuiRingPlayerStats.py:255
-#: GuiSessionViewer.py:207 GuiTourneyPlayerStats.py:280
+#: GuiGraphViewer.py:176 GuiPositionalStats.py:180 GuiRingPlayerStats.py:254
+#: GuiSessionViewer.py:206 GuiTourneyPlayerStats.py:280
 msgid "No player ids found"
 msgstr ""
 
-#: GuiGraphViewer.py:181 GuiPositionalStats.py:184 GuiRingPlayerStats.py:258
-#: GuiSessionViewer.py:210
+#: GuiGraphViewer.py:181 GuiPositionalStats.py:183 GuiRingPlayerStats.py:257
+#: GuiSessionViewer.py:209
 msgid "No limits found"
 msgstr ""
 
@@ -1030,11 +1030,11 @@ msgstr ""
 msgid "Log Messages"
 msgstr ""
 
-#: GuiPositionalStats.py:147
+#: GuiPositionalStats.py:146
 msgid "DEBUG: activesite set to %s"
 msgstr ""
 
-#: GuiPositionalStats.py:333
+#: GuiPositionalStats.py:332
 msgid "Positional Stats page displayed in %4.2f seconds"
 msgstr ""
 
@@ -1054,32 +1054,32 @@ msgstr ""
 msgid "Preferences"
 msgstr ""
 
-#: GuiRingPlayerStats.py:323 GuiSessionViewer.py:249
+#: GuiRingPlayerStats.py:322 GuiSessionViewer.py:248
 #: GuiTourneyPlayerStats.py:252
 msgid "Stats page displayed in %4.2f seconds"
 msgstr ""
 
-#: GuiRingPlayerStats.py:370
+#: GuiRingPlayerStats.py:369
 msgid "***sortnums error: "
 msgstr ""
 
-#: GuiRingPlayerStats.py:392
+#: GuiRingPlayerStats.py:391
 msgid "***sortcols error: "
 msgstr ""
 
-#: GuiRingPlayerStats.py:683
+#: GuiRingPlayerStats.py:682
 msgid "Detailed Filters"
 msgstr ""
 
-#: GuiRingPlayerStats.py:692
+#: GuiRingPlayerStats.py:691
 msgid "Hand Filters:"
 msgstr ""
 
-#: GuiRingPlayerStats.py:705
+#: GuiRingPlayerStats.py:704
 msgid "between"
 msgstr ""
 
-#: GuiRingPlayerStats.py:706
+#: GuiRingPlayerStats.py:705
 msgid "and"
 msgstr ""
 
@@ -1091,15 +1091,15 @@ msgstr ""
 msgid "ImportError: %s"
 msgstr ""
 
-#: GuiSessionViewer.py:90
+#: GuiSessionViewer.py:89
 msgid "Hand Breakdown for all levels listed above"
 msgstr ""
 
-#: GuiSessionViewer.py:376
+#: GuiSessionViewer.py:375
 msgid "Session candlestick graph"
 msgstr ""
 
-#: GuiSessionViewer.py:379
+#: GuiSessionViewer.py:378
 msgid "Sessions"
 msgstr ""
 
@@ -2671,7 +2671,7 @@ msgid "<control>P"
 msgstr ""
 
 #: fpdb.pyw:838
-msgid "Ring _Player Stats (tabulated view)"
+msgid "Ring _Player Stats (tabulated view, not on pgsql)"
 msgstr ""
 
 #: fpdb.pyw:839
@@ -2679,7 +2679,7 @@ msgid "<control>T"
 msgstr ""
 
 #: fpdb.pyw:839
-msgid "_Tourney Player Stats (tabulated view)"
+msgid "_Tourney Player Stats (tabulated view, not on pgsql)"
 msgstr ""
 
 #: fpdb.pyw:840
@@ -3016,7 +3016,7 @@ msgstr ""
 msgid "CLI for fpdb_import is now available as CliFpdb.py"
 msgstr ""
 
-#: interlocks.py:49
+#: interlocks.py:61
 msgid "lock already held by:"
 msgstr ""
 
