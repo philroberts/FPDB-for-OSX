@@ -77,7 +77,7 @@ class Hand(object):
         self.dbid_gt = 0
         self.tablename = ""
         self.hero = ""
-        self.maxseats = None
+        self.maxseats = 0
         self.counted_seats = 0
         self.buttonpos = 0
         
