@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-08-25 13:31+CEST\n"
-"PO-Revision-Date: 2010-08-25 02:55+0200\n"
+"PO-Revision-Date: 2010-08-25 14:25+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -120,28 +120,35 @@ msgstr "hibás érték az xalignment-ben - figyelmen kívül hagyás"
 
 #: Configuration.py:616
 msgid "missing config section raw_hands"
-msgstr ""
+msgstr "hiányzó konfigurációs bekezdés: raw_hands"
 
 #: Configuration.py:622
 msgid "Invalid config value for raw_hands.save, defaulting to \"error\""
 msgstr ""
+"Érvénytelen raw_hands.save beállítás, az alapértelmezett \"error\" használata"
 
 #: Configuration.py:629
 msgid "Invalid config value for raw_hands.compression, defaulting to \"none\""
 msgstr ""
+"Érvénytelen raw_hands.compression beállítás, az alapértelmezett \"none\" "
+"használata"
 
 #: Configuration.py:642
 msgid "missing config section raw_tourneys"
-msgstr ""
+msgstr "hiányzó konfigurációs bekezdés: raw_tourneys"
 
 #: Configuration.py:648
 msgid "Invalid config value for raw_tourneys.save, defaulting to \"error\""
 msgstr ""
+"Érvénytelen raw_tourneys.save beállítás, az alapértelmezett \"error\" "
+"használata"
 
 #: Configuration.py:655
 msgid ""
 "Invalid config value for raw_tourneys.compression, defaulting to \"none\""
 msgstr ""
+"Érvénytelen raw_tourneys.compression beállítás, az alapértelmezett \"none\" "
+"használata"
 
 #: Configuration.py:673 Configuration.py:674
 msgid "Configuration file %s not found.  Using defaults."
@@ -810,7 +817,7 @@ msgstr ""
 #: GuiBulkImport.py:360
 msgid ""
 "Output the pprinted version of the HandsPlayer hash for regresion testing"
-msgstr ""
+msgstr "A HandsPlayer hash kiíratása pprint-tel regresszió tesztelés céljából"
 
 #: GuiBulkImport.py:365
 msgid "USAGE:"
@@ -847,8 +854,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
-"%s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
+"s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:106 GuiLogView.py:96
 msgid "Refresh"
@@ -900,7 +907,7 @@ msgstr "         kapcsolódás OK"
 
 #: GuiDatabase.py:291
 msgid "         not connected but no exception"
-msgstr "         nem kapcsolódott, de nincs hibaüzenet"
+msgstr "         nem kapcsolódott, de nem volt hibaüzenet"
 
 #: GuiDatabase.py:293 fpdb.pyw:905
 msgid ""
@@ -1299,11 +1306,11 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:321
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -1535,14 +1542,12 @@ msgstr ""
 "FpdbParseError: markStreets hívása meghiúsult: az első 100 karakter: '%s'"
 
 #: Hand.py:323
-#, fuzzy
 msgid "DEBUG: checkPlayerExists %s fail on hand number %s"
-msgstr "DEBUG: checkPlayerExists %s játékos nem létezik."
+msgstr "DEBUG: checkPlayerExists %s hiba a következő leosztásban: %s"
 
 #: Hand.py:324
-#, fuzzy
 msgid "checkPlayerExists: '%s fail on hand number %s"
-msgstr "checkPlayerExists: '%s' játékos nem létezik."
+msgstr "checkPlayerExists: '%s hiba a következő leosztásban: %s"
 
 #: Hand.py:405
 msgid "%s %s calls %s"
@@ -1697,7 +1702,7 @@ msgstr "HHC.start(follow): processHand meghiúsult: A hibaüzenet szövege: '%s'
 
 #: HandHistoryConverter.py:154
 msgid "handsList is "
-msgstr ""
+msgstr "A handsList a következő: "
 
 #: HandHistoryConverter.py:165
 msgid "HHC.start(): processHand failed: Exception msg: '%s'"
@@ -1751,19 +1756,19 @@ msgstr "a fájl olvasása nem sikerült egyik listabeli kódolással sem"
 
 #: HandHistoryConverter.py:579
 msgid " given TZ:"
-msgstr ""
+msgstr " adott időzóna:"
 
 #: HandHistoryConverter.py:579
 msgid "raw time:"
-msgstr ""
+msgstr "nyers idő:"
 
 #: HandHistoryConverter.py:589
 msgid "changeTimeZone: offset="
-msgstr ""
+msgstr "changeTimeZone: offszet="
 
 #: HandHistoryConverter.py:652
 msgid "utcTime:"
-msgstr ""
+msgstr "utcTime:"
 
 #: HandHistoryConverter.py:685
 msgid "Unable to create output directory %s for HHC!"
@@ -1977,17 +1982,16 @@ msgid "readButton: not found"
 msgstr "readButton: nem található"
 
 #: OnGameToFpdb.py:250
-#, fuzzy
 msgid "readBlinds starting"
-msgstr "HUD_main indítása\n"
+msgstr "readBlinds indítása"
 
 #: OnGameToFpdb.py:254
 msgid "re_postSB failed, hand="
-msgstr ""
+msgstr "re_postSB nem sikerült, leosztás="
 
 #: OnGameToFpdb.py:257
 msgid "readBlinds in noSB exception"
-msgstr ""
+msgstr "readBlinds noSB-n belül hiba"
 
 #: OnGameToFpdb.py:265 PokerStarsToFpdb.py:358
 msgid "reading antes"
@@ -2858,18 +2862,16 @@ msgid "<control>P"
 msgstr "<control>P"
 
 #: fpdb.pyw:838
-#, fuzzy
 msgid "Ring _Player Stats (tabulated view, not on pgsql)"
-msgstr "Kész_pénzes statisztikák (táblázat)"
+msgstr "Kész_pénzes statisztikák (táblázat; Postgre-vel nem)"
 
 #: fpdb.pyw:839
 msgid "<control>T"
 msgstr "<control>T"
 
 #: fpdb.pyw:839
-#, fuzzy
 msgid "_Tourney Player Stats (tabulated view, not on pgsql)"
-msgstr "Versenyjá_tékos statisztikák (táblázat)"
+msgstr "Versenyjá_tékos statisztikák (táblázat; Postgre-vel nem)"
 
 #: fpdb.pyw:840
 msgid "Tourney _Viewer"
@@ -2946,9 +2948,8 @@ msgid "CONFIG FILE ERROR"
 msgstr "KONFIGURÁCIÓS FÁJL HIBA"
 
 #: fpdb.pyw:876
-#, fuzzy
 msgid "Logfile is %s\n"
-msgstr "A naplófájl "
+msgstr "A naplófájl: %s\n"
 
 #: fpdb.pyw:878
 msgid "Config file"
@@ -2976,9 +2977,8 @@ msgstr ""
 "importálni."
 
 #: fpdb.pyw:903
-#, fuzzy
 msgid "Connected to SQLite: %s"
-msgstr "Kapcsolódva a %(database)s SQLite adatbázishoz"
+msgstr "Kapcsolódva az SQLite adatbázishoz: %s"
 
 #: fpdb.pyw:907
 msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
@@ -3139,8 +3139,8 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
-"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
+"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
 #: fpdb.pyw:1079
 msgid "Help"
