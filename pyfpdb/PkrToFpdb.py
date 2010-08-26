@@ -76,10 +76,10 @@ class Pkr(HandHistoryConverter):
           """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_PlayerInfo   = re.compile(u"""
-          ^Seat\s(?P<SEAT>[0-9]+):\s
-          (?P<PNAME>.*)\s
-          \((%(LS)s)?(?P<CASH>[.0-9]+)\sin\schips\)""" % substitutions, 
-          re.MULTILINE|re.VERBOSE)
+              ^Seat\s(?P<SEAT>[0-9]+):\s
+              (?P<PNAME>.*)\s-\s
+              (%(LS)s)?(?P<CASH>[.0-9]+)
+            """ % substitutions, re.MULTILINE|re.VERBOSE)
 
     re_HandInfo     = re.compile("""
           ^Table\s\'(?P<TABLE>[-\ a-zA-Z\d]+)\'\s
@@ -97,28 +97,24 @@ class Pkr(HandHistoryConverter):
     re_DateTime     = re.compile("""(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)""", re.MULTILINE)
  
     def compilePlayerRegexs(self,  hand):
-        print "DEBUG: compilePlayerRegexs"
         players = set([player[1] for player in hand.players])
         if not players <= self.compiledPlayers: # x <= y means 'x is subset of y'
             # we need to recompile the player regexs.
-# TODO: should probably rename re_HeroCards and corresponding method,
-#    since they are used to find all cards on lines starting with "Dealt to:"
-#    They still identify the hero.
             self.compiledPlayers = players
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
             log.debug("player_re: " + player_re)
-            self.re_PostSB           = re.compile(r"^%(PLYR)s: posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
-            self.re_PostBB           = re.compile(r"^%(PLYR)s: posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
-            self.re_Antes            = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_BringIn          = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth         = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
-            self.re_HeroCards        = re.compile(r"^Dealt to %(PLYR)s(?: \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\])" % subst, re.MULTILINE)
-            self.re_Action           = re.compile(r"""
-                        ^%(PLYR)s:(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds|\sdiscards|\sstands\spat)
-                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?(\sto\s%(CUR)s(?P<BETTO>[.\d]+))?  # the number discarded goes in <BET>
-                        (\scards?(\s\[(?P<DISCARDED>.+?)\])?)?"""
-                         %  subst, re.MULTILINE|re.VERBOSE)
+            self.re_PostSB    = re.compile(r"^%(PLYR)s posts small blind %(CUR)s(?P<SB>[.0-9]+)" %  subst, re.MULTILINE)
+            # FIXME: Sionel posts $0.04 is a second big blind in a different format.
+            self.re_PostBB    = re.compile(r"^%(PLYR)s posts big blind %(CUR)s(?P<BB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
+            self.re_PostBoth  = re.compile(r"^%(PLYR)s: posts small \& big blinds %(CUR)s(?P<SBBB>[.0-9]+)" %  subst, re.MULTILINE)
+            self.re_HeroCards = re.compile(r"^Dealing( \[(?P<OLDCARDS>.+?)\])?( \[(?P<NEWCARDS>.+?)\]) to %(PLYR)s" % subst, re.MULTILINE)
+            self.re_Action    = re.compile(r"""
+                        ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
+                        (\s(%(CUR)s)?(?P<BET>[.\d]+))?
+                        """ %  subst, re.MULTILINE|re.VERBOSE)
             self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
@@ -150,7 +146,7 @@ class Pkr(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-        print "DEBUG: %s" % mg
+        #print "DEBUG: %s" % mg
 
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
@@ -341,7 +337,7 @@ class Pkr(HandHistoryConverter):
         for action in m:
             acts = action.groupdict()
             if action.group('ATYPE') == ' raises':
-                hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
+                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
