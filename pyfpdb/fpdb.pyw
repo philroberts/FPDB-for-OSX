@@ -264,7 +264,8 @@ class fpdb:
                , ('numpy',            numpy_version)
                , ('sqlite3',          sqlite3_version)
                , ('sqlite',           sqlite_version)
-               , ('database',         self.settings['db-server'] + db_version)
+               , ('fpdb version',     VERSION)
+               , ('database used',    self.settings['db-server'])
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
