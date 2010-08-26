@@ -9,7 +9,7 @@
              config_wrap_len="-1"
              day_start="5"
              ui_language="system"
-             config_difficuly="expert"
+             config_difficulty="expert"
              />
 
     <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
