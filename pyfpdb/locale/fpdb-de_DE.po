@@ -1,19 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Steffen Schaumburg <steffen@schaumburger.info>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-08-25 13:31+CEST\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2010-08-25 18:41+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
-"Language-Team: de_DE <steffen@schaumburger.info>\n"
+"Language-Team: Fpdb\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.6.1\n"
 "Generated-By: pygettext.py 1.5\n"
-
 
 #: Anonymise.py:55
 msgid "Could not find file %s"
@@ -2478,7 +2479,7 @@ msgstr ""
 
 #: fpdb.pyw:353
 msgid "Database Statistics"
-msgstr ""
+msgstr "Datenbankstatistiken"
 
 #: fpdb.pyw:362
 msgid "HUD Configurator - choose category"
@@ -2588,39 +2589,40 @@ msgstr ""
 
 #: fpdb.pyw:825
 msgid "_Main"
-msgstr ""
+msgstr "_Hauptmenü"
 
 #: fpdb.pyw:826 fpdb.pyw:854
 msgid "_Quit"
-msgstr ""
+msgstr "_Beenden"
 
 #: fpdb.pyw:827
+#, fuzzy
 msgid "<control>L"
-msgstr ""
+msgstr "<control>L"
 
 #: fpdb.pyw:827
 msgid "_Load Profile (broken)"
-msgstr ""
+msgstr "Profil _Laden (kaputt)"
 
 #: fpdb.pyw:828
 msgid "<control>S"
-msgstr ""
+msgstr "<control>S"
 
 #: fpdb.pyw:828
 msgid "_Save Profile (todo)"
-msgstr ""
+msgstr "Profil _Speichern (nicht fertig)"
 
 #: fpdb.pyw:829
 msgid "<control>F"
-msgstr ""
+msgstr "<control>F"
 
 #: fpdb.pyw:829
 msgid "Pre_ferences"
-msgstr ""
+msgstr "_Einstellungen"
 
 #: fpdb.pyw:830
 msgid "_Import"
-msgstr ""
+msgstr "_Importieren"
 
 #: fpdb.pyw:831
 msgid "_Set HandHistory Archive Directory"
@@ -2628,15 +2630,15 @@ msgstr ""
 
 #: fpdb.pyw:832
 msgid "<control>B"
-msgstr ""
+msgstr "<control>B"
 
 #: fpdb.pyw:833
 msgid "<control>I"
-msgstr ""
+msgstr "<control>I"
 
 #: fpdb.pyw:833
 msgid "_Import through eMail/IMAP"
-msgstr ""
+msgstr "_Import per eMail/IMAP"
 
 #: fpdb.pyw:834
 msgid "_Viewers"
@@ -2720,7 +2722,7 @@ msgstr ""
 
 #: fpdb.pyw:848
 msgid "_Statistics"
-msgstr ""
+msgstr "_Statistiken"
 
 #: fpdb.pyw:849
 msgid "Dump Database to Textfile (takes ALOT of time)"
@@ -3039,4 +3041,3 @@ msgid ""
 "\n"
 "no gtk directories found in your path - install gtk or edit the path manually\n"
 msgstr ""
-
