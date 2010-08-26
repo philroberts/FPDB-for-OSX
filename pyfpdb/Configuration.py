@@ -525,12 +525,12 @@ class General(dict):
         except KeyError:
             self["version"]=0
             self["ui_language"]="system"
-            self["config_difficuly"]="expert"
+            self["config_difficulty"]="expert"
             
     def get_defaults(self):
         self["version"]=0
         self["ui_language"]="system"
-        self["config_difficuly"]="expert"
+        self["config_difficulty"]="expert"
         self["config_wrap_len"]="-1"
         self["day_start"]="5"
 
