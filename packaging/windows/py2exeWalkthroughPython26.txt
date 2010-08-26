@@ -103,6 +103,7 @@ Step 4 Get the fpdb GIT tree
 ----------------------------
 
 4.1/ Best to take a copy to work with; following steps will assume that the fpdb folder is on the Desktop
+4.2/ Edit the script in packaging/windows/py2exe_setup.py to set the fpdbver variable for this release
 
 
 5.3/ Install correct Numpy for this build
@@ -158,7 +159,7 @@ Step 6 Run py2exe to generate fpdb.exe
 
 6.1/ Run the script to create the fpdb.exe bundle
 
-dos> cd Desktop\fpdb\pyfpdb
+dos> cd Desktop\fpdb\packaging\windows
 dos> c:\python26\python.exe py2exe_setup.py py2exe
 
 wait a while, watch lots of copying and whatever.
@@ -183,16 +184,14 @@ Step 8 Drag out the completed bundle
 ------------------------------------
 
 py2exe creates a new folder for the created software bundle, drag this out to the desktop for ease of working.
-As far as I know you cannot rerun the build if the fpdb-yyyymmdd-exe exists in the tree, so dragging this out 
-also allows the build to re-run at step 6.
 
-8.1/ Drag Desktop\fpdb\pyfpdb\fpdb-yyyymmdd-exe to Desktop\
+8.1/ Drag Desktop\fpdb\packaging\windows\fpdb-n.nn.nnn to Desktop\
 
 
 Step 9 Initial run
 ------------------
 
-9.1/ Open the Desktop\fpdb-yyyymmdd-exe folder
+9.1/ Open the Desktop\fpdb-n.nn.nnn  folder
 9.2/ In explorer...tools...folder options...View uncheck "Hide extensions for known file types" 
 9.3/ Double click run_fpdb.bat
 9.4/ check the contents of pyfpdb\fpdb.exe.log, deal with any errors thrown
@@ -222,7 +221,7 @@ pyfpdb/share/man
 Step 12 rename folder 
 ---------------------
 
-Rename the folder to something meaningful to the community.  If you have built for NoSSE, append anyCPU to the directory name.
+If needed, rename the folder to something meaningful to the community.  If you have built for NoSSE, append anyCPU to the directory name.
 
 
 Step 13 Compress to executable archive
