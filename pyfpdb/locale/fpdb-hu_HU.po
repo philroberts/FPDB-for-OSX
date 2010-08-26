@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2010-08-25 13:31+CEST\n"
+"POT-Creation-Date: 2010-08-26 18:52+CEST\n"
 "PO-Revision-Date: 2010-08-26 01:40+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -606,11 +606,11 @@ msgstr "Nem található játék az adatbázisban"
 msgid " Clear Dates "
 msgstr "Törlés"
 
-#: Filters.py:940 fpdb.pyw:721
+#: Filters.py:940 fpdb.pyw:722
 msgid "Pick a date"
 msgstr "Válassz napot"
 
-#: Filters.py:946 fpdb.pyw:727
+#: Filters.py:946 fpdb.pyw:728
 msgid "Done"
 msgstr "Kész"
 
@@ -772,7 +772,7 @@ msgstr "Terem:"
 msgid "Drop HudCache:"
 msgstr "HUD gyorstár eldobása:"
 
-#: GuiBulkImport.py:297 fpdb.pyw:832
+#: GuiBulkImport.py:297 fpdb.pyw:831
 msgid "_Bulk Import"
 msgstr "_Importálás"
 
@@ -854,8 +854,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
-"s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
+"%s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:106 GuiLogView.py:96
 msgid "Refresh"
@@ -909,7 +909,7 @@ msgstr "         kapcsolódás OK"
 msgid "         not connected but no exception"
 msgstr "         nem kapcsolódott, de nem volt hibaüzenet"
 
-#: GuiDatabase.py:293 fpdb.pyw:905
+#: GuiDatabase.py:293 fpdb.pyw:904
 msgid ""
 "MySQL Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
@@ -924,7 +924,7 @@ msgstr ""
 "MySQL kliens jelenti: 2002-es vagy 2003-as hiba. Nem sikerült a kapcsolódás "
 "- Kérlek ellenőrizd, hogy a MySQL szolgáltatás el van-e indítva"
 
-#: GuiDatabase.py:301 fpdb.pyw:910
+#: GuiDatabase.py:301 fpdb.pyw:909
 msgid ""
 "Postgres Server reports: Access denied. Are your permissions set correctly?"
 msgstr ""
@@ -1135,7 +1135,7 @@ msgstr "Érték (kattints duplán a módosításhoz)"
 msgid "Test Preferences Dialog"
 msgstr "Beállítási párbeszéd (teszt)"
 
-#: GuiPrefs.py:192 fpdb.pyw:296
+#: GuiPrefs.py:192 fpdb.pyw:297
 msgid "Preferences"
 msgstr "Beállítások"
 
@@ -1248,7 +1248,7 @@ msgstr "HUD_main indítás: "
 msgid "Note: error output is being diverted to:\n"
 msgstr "Megjegyzés: a hibakimenet ide van átirányítva:\n"
 
-#: HUD_main.pyw:96 fpdb.pyw:1139
+#: HUD_main.pyw:96 fpdb.pyw:1138
 msgid ""
 "\n"
 "Any major error will be reported there _only_.\n"
@@ -1306,11 +1306,11 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:321
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -1965,15 +1965,16 @@ msgstr "IMAP import befejezve, kapcsolat lezárása"
 msgid "No Name"
 msgstr "Nincs név"
 
-#: OnGameToFpdb.py:153 PokerStarsToFpdb.py:189
+#: OnGameToFpdb.py:153 PkrToFpdb.py:144 PokerStarsToFpdb.py:189
 msgid "determineGameType: Unable to recognise gametype from: '%s'"
 msgstr "determineGameType: Nem sikerült felismerni a játéktípust innen: '%s'"
 
-#: OnGameToFpdb.py:154 PokerStarsToFpdb.py:190 PokerStarsToFpdb.py:220
+#: OnGameToFpdb.py:154 PkrToFpdb.py:145 PkrToFpdb.py:173
+#: PokerStarsToFpdb.py:190 PokerStarsToFpdb.py:220
 msgid "determineGameType: Raising FpdbParseError"
 msgstr "determineGameType: FpdbParseError"
 
-#: OnGameToFpdb.py:155 PokerStarsToFpdb.py:191
+#: OnGameToFpdb.py:155 PkrToFpdb.py:146 PokerStarsToFpdb.py:191
 msgid "Unable to recognise gametype from: '%s'"
 msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
 
@@ -2067,6 +2068,10 @@ msgstr "GameType nem olvasható az aktuális leosztásból"
 msgid "Unimplemented readAction: '%s' '%s'"
 msgstr "Nem ismert readAction: '%s' '%s'"
 
+#: PkrToFpdb.py:174 PokerStarsToFpdb.py:221
+msgid "Lim_Blinds has no lookup for '%s'"
+msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
+
 #: PokerStarsSummary.py:72
 msgid "didn't recognise buyin currency in:"
 msgstr "nem sikerült felismerni a beülő pénznemét ebben:"
@@ -2074,10 +2079,6 @@ msgstr "nem sikerült felismerni a beülő pénznemét ebben:"
 #: PokerStarsSummary.py:112
 msgid "in not result starttime"
 msgstr "a starttime nem található részében"
-
-#: PokerStarsToFpdb.py:221
-msgid "Lim_Blinds has no lookup for '%s'"
-msgstr "Lim_Blinds nem tartalmazza ezt: '%s'"
 
 #: PokerStarsToFpdb.py:273
 msgid "failed to detect currency"
@@ -2584,19 +2585,19 @@ msgstr "és mások"
 msgid "Operating System"
 msgstr "Operációs rendszer"
 
-#: fpdb.pyw:279
+#: fpdb.pyw:280
 msgid "Your config file is: "
 msgstr "Konfigurációs fájl:"
 
-#: fpdb.pyw:284
+#: fpdb.pyw:285
 msgid "Version Information:"
 msgstr "Verzióinformáció:"
 
-#: fpdb.pyw:291
+#: fpdb.pyw:292
 msgid "Threads: "
 msgstr "Szálak:"
 
-#: fpdb.pyw:314
+#: fpdb.pyw:315
 msgid ""
 "Updated preferences have not been loaded because windows are open. Re-start "
 "fpdb to load them."
@@ -2604,19 +2605,19 @@ msgstr ""
 "A megváltoztatott beállítások még nem léptek érvénybe, mert vannak nyitott "
 "ablakok. Indítsd újra az fpdb-t az érvénybe léptetésükhöz."
 
-#: fpdb.pyw:324
+#: fpdb.pyw:325
 msgid "Maintain Databases"
 msgstr "Adatbázisok karbantartása"
 
-#: fpdb.pyw:334
+#: fpdb.pyw:335
 msgid "saving updated db data"
 msgstr "frissített adatbázis adatok mentése"
 
-#: fpdb.pyw:341
+#: fpdb.pyw:342
 msgid "guidb response was "
 msgstr "a guidb válasza ez volt: "
 
-#: fpdb.pyw:347
+#: fpdb.pyw:348
 msgid ""
 "Cannot open Database Maintenance window because other windows have been "
 "opened. Re-start fpdb to use this option."
@@ -2624,11 +2625,11 @@ msgstr ""
 "Nem tudom megnyitni az adatbázis karbantartó ablakot, mert más ablakok is "
 "nyitva vannak. Indítsd újra az fpdb-t ezen funkció használatához."
 
-#: fpdb.pyw:350
+#: fpdb.pyw:351
 msgid "Number of Hands: "
 msgstr "Leosztások száma:"
 
-#: fpdb.pyw:351
+#: fpdb.pyw:352
 msgid ""
 "\n"
 "Number of Tourneys: "
@@ -2636,7 +2637,7 @@ msgstr ""
 "\n"
 "Versenyek száma: "
 
-#: fpdb.pyw:352
+#: fpdb.pyw:353
 msgid ""
 "\n"
 "Number of TourneyTypes: "
@@ -2644,39 +2645,39 @@ msgstr ""
 "\n"
 "Versenytípusok száma: "
 
-#: fpdb.pyw:353
+#: fpdb.pyw:354
 msgid "Database Statistics"
 msgstr "Adatbázis statisztikák"
 
-#: fpdb.pyw:362
+#: fpdb.pyw:363
 msgid "HUD Configurator - choose category"
 msgstr "HUD beállító - válassz típust és méretet"
 
-#: fpdb.pyw:368
+#: fpdb.pyw:369
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
 msgstr "Válassz játéktípust, amelyre vonatkozóan be akarod állítani a HUD-ot:"
 
-#: fpdb.pyw:420
+#: fpdb.pyw:421
 msgid "HUD Configurator - please choose your stats"
 msgstr "HUD beállító - válassz statisztikákat"
 
-#: fpdb.pyw:426
+#: fpdb.pyw:427
 msgid "Please choose the stats you wish to use in the below table."
 msgstr "Válaszd ki a lenti táblázatból a megjelenítendő statisztikákat."
 
-#: fpdb.pyw:430
+#: fpdb.pyw:431
 msgid "Note that you may not select any stat more than once or it will crash."
 msgstr ""
 "Egy statisztikát ne válassz ki többször, mert nem fog működni (ki fog lépni)."
 
-#: fpdb.pyw:434
+#: fpdb.pyw:435
 msgid ""
 "It is not currently possible to select \"empty\" or anything else to that "
 "end."
 msgstr "Jelenleg nem lehetséges olyat választani, hogy \"üres\" vagy hasonló."
 
-#: fpdb.pyw:438
+#: fpdb.pyw:439
 msgid ""
 "To configure things like colouring you will still have to manually edit your "
 "HUD_config.xml."
@@ -2684,11 +2685,11 @@ msgstr ""
 "Bizonyos dolgok (pl. színezés) beállításához egyelőre még kézzel kell "
 "szerkesztened a HUD_config.xml fájlt."
 
-#: fpdb.pyw:545
+#: fpdb.pyw:546
 msgid "Confirm deleting and recreating tables"
 msgstr "Erősítsd meg a táblák törlését és újra létrehozását"
 
-#: fpdb.pyw:546
+#: fpdb.pyw:547
 msgid ""
 "Please confirm that you want to (re-)create the tables. If there already are "
 "tables in the database "
@@ -2696,7 +2697,7 @@ msgstr ""
 "Kérlek erősítsd meg, hogy valóban (újra) létre akarod hozni a táblákat. Ha "
 "már vannak táblák az adatbázisban ("
 
-#: fpdb.pyw:547
+#: fpdb.pyw:548
 msgid ""
 " they will be deleted.\n"
 "This may take a while."
@@ -2704,72 +2705,72 @@ msgstr ""
 "), akkor azok törölve lesznek.\n"
 "Ja, és ez eltarthat egy darabig:)"
 
-#: fpdb.pyw:572
+#: fpdb.pyw:573
 msgid "User cancelled recreating tables"
 msgstr "A felhasználó megszakította a táblák újra létrehozását"
 
-#: fpdb.pyw:579
+#: fpdb.pyw:580
 msgid "Please confirm that you want to re-create the HUD cache."
 msgstr ""
 "Kérlek erősítsd meg, hogy valóban újra akarod generálni a HUD gyorstárat."
 
-#: fpdb.pyw:587
+#: fpdb.pyw:588
 msgid " Hero's cache starts: "
 msgstr " Saját gyorstár innentől: "
 
-#: fpdb.pyw:601
+#: fpdb.pyw:602
 msgid " Villains' cache starts: "
 msgstr " Ellenfelek gyorstára innentől: "
 
-#: fpdb.pyw:614
+#: fpdb.pyw:615
 msgid " Rebuilding HUD Cache ... "
 msgstr " HUD gyorstár újraépítése ... "
 
-#: fpdb.pyw:622
+#: fpdb.pyw:623
 msgid "User cancelled rebuilding hud cache"
 msgstr "A felhasználó megszakította a HUD gyorstár újraépítését."
 
-#: fpdb.pyw:634
+#: fpdb.pyw:635
 msgid "Confirm rebuilding database indexes"
 msgstr "Erősítsd meg az adatbázis indexeinek újraépítését"
 
-#: fpdb.pyw:635
+#: fpdb.pyw:636
 msgid "Please confirm that you want to rebuild the database indexes."
 msgstr ""
 "Kérlek erősítsd meg, hogy valóban újra akarod építeni az adatbázis indexeit."
 
-#: fpdb.pyw:643
+#: fpdb.pyw:644
 msgid " Rebuilding Indexes ... "
 msgstr " Indexek újraépítése ... "
 
-#: fpdb.pyw:650
+#: fpdb.pyw:651
 msgid " Cleaning Database ... "
 msgstr " Adatbázis tisztítása ... "
 
-#: fpdb.pyw:655
+#: fpdb.pyw:656
 msgid " Analyzing Database ... "
 msgstr " Adatbázis elemzése ... "
 
-#: fpdb.pyw:660
+#: fpdb.pyw:661
 msgid "User cancelled rebuilding db indexes"
 msgstr "A felhasználó megszakította az adatbázis indexeinek újraépítését."
 
-#: fpdb.pyw:755
+#: fpdb.pyw:756
 msgid ""
 "Unimplemented: Save Profile (try saving a HUD layout, that should do it)"
 msgstr ""
 "Még nincs kész: Profil mentése (addig használd a HUD elrendezésének "
 "mentését, az jó)"
 
-#: fpdb.pyw:758
+#: fpdb.pyw:759
 msgid "Fatal Error - Config File Missing"
 msgstr "Végzetes hiba - Hiányzó konfigurációs fájl"
 
-#: fpdb.pyw:760
+#: fpdb.pyw:761
 msgid "Please copy the config file from the docs folder to:"
 msgstr "Kérlek másold át a konfigurációs fájlt a docs könyvtárból ide:"
 
-#: fpdb.pyw:768
+#: fpdb.pyw:769
 msgid ""
 "and edit it according to the install documentation at http://fpdb."
 "sourceforge.net"
@@ -2781,7 +2782,7 @@ msgstr ""
 msgid "_Main"
 msgstr "Fő_menü"
 
-#: fpdb.pyw:826 fpdb.pyw:854
+#: fpdb.pyw:826 fpdb.pyw:853
 msgid "_Quit"
 msgstr "_Kilépés"
 
@@ -2814,126 +2815,122 @@ msgid "_Import"
 msgstr "_Importálás"
 
 #: fpdb.pyw:831
-msgid "_Set HandHistory Archive Directory"
-msgstr "Leo_sztásarchívum könyvtára"
-
-#: fpdb.pyw:832
 msgid "<control>B"
 msgstr "<control>I"
 
-#: fpdb.pyw:833
+#: fpdb.pyw:832
 msgid "<control>I"
 msgstr "<control>E"
 
-#: fpdb.pyw:833
+#: fpdb.pyw:832
 msgid "_Import through eMail/IMAP"
 msgstr "_Email import (IMAP)"
 
-#: fpdb.pyw:834
+#: fpdb.pyw:833
 msgid "_Viewers"
 msgstr "_Nézetek"
 
-#: fpdb.pyw:835
+#: fpdb.pyw:834
 msgid "<control>A"
 msgstr "<control>A"
 
-#: fpdb.pyw:835
+#: fpdb.pyw:834
 msgid "_Auto Import and HUD"
 msgstr "_AutoImport és HUD"
 
-#: fpdb.pyw:836
+#: fpdb.pyw:835
 msgid "<control>H"
 msgstr "<control>H"
 
-#: fpdb.pyw:836
+#: fpdb.pyw:835
 msgid "_HUD Configurator"
 msgstr "_HUD beállítása"
 
-#: fpdb.pyw:837
+#: fpdb.pyw:836
 msgid "<control>G"
 msgstr "<control>G"
 
-#: fpdb.pyw:837
+#: fpdb.pyw:836
 msgid "_Graphs"
 msgstr "_Grafikonok"
 
-#: fpdb.pyw:838
+#: fpdb.pyw:837
 msgid "<control>P"
 msgstr "<control>P"
 
-#: fpdb.pyw:838
+#: fpdb.pyw:837
 msgid "Ring _Player Stats (tabulated view, not on pgsql)"
 msgstr "Kész_pénzes statisztikák (táblázat; Postgre-vel nem)"
 
-#: fpdb.pyw:839
+#: fpdb.pyw:838
 msgid "<control>T"
 msgstr "<control>T"
 
-#: fpdb.pyw:839
+#: fpdb.pyw:838
 msgid "_Tourney Player Stats (tabulated view, not on pgsql)"
 msgstr "Versenyjá_tékos statisztikák (táblázat; Postgre-vel nem)"
 
-#: fpdb.pyw:840
+#: fpdb.pyw:839
 msgid "Tourney _Viewer"
 msgstr "_Verseny nézet"
 
-#: fpdb.pyw:841
+#: fpdb.pyw:840
 msgid "<control>O"
 msgstr "<control>O"
 
-#: fpdb.pyw:841
+#: fpdb.pyw:840
 msgid "P_ositional Stats (tabulated view, not on sqlite)"
 msgstr "P_ozíciós statisztikák (táblázat; SQLite-tal nem)"
 
-#: fpdb.pyw:842 fpdb.pyw:1058
+#: fpdb.pyw:841 fpdb.pyw:1057
 msgid "Session Stats"
 msgstr "Session statisztikák"
 
-#: fpdb.pyw:843
+#: fpdb.pyw:842
 msgid "_Database"
 msgstr "A_datbázis"
 
-#: fpdb.pyw:844
+#: fpdb.pyw:843
 msgid "_Maintain Databases"
 msgstr "_Karbantartás"
 
-#: fpdb.pyw:845
+#: fpdb.pyw:844
 msgid "Create or Recreate _Tables"
 msgstr "_Táblák (újra) létrehozása"
 
-#: fpdb.pyw:846
+#: fpdb.pyw:845
 msgid "Rebuild HUD Cache"
 msgstr "HUD gyorstár újraépítése"
 
-#: fpdb.pyw:847
+#: fpdb.pyw:846
 msgid "Rebuild DB Indexes"
 msgstr "Adatbázis indexek újraépítése"
 
-#: fpdb.pyw:848
+#: fpdb.pyw:847
 msgid "_Statistics"
 msgstr "_Statisztikák"
 
-#: fpdb.pyw:849
+#: fpdb.pyw:848
 msgid "Dump Database to Textfile (takes ALOT of time)"
 msgstr "Adatbázis kiírása textfájlba (SOKÁIG tart)"
 
-#: fpdb.pyw:850
+#: fpdb.pyw:849
 msgid "_Help"
 msgstr "_Súgó"
 
-#: fpdb.pyw:851
+#: fpdb.pyw:850
 msgid "_Log Messages"
 msgstr "Nap_lóbejegyzések"
 
-#: fpdb.pyw:852
+#: fpdb.pyw:851
 msgid "A_bout, License, Copying"
 msgstr "_Névjegy, licensz, másolás"
 
-#: fpdb.pyw:870
+#: fpdb.pyw:869
 msgid "There is an error in your config file\n"
 msgstr "Hiba van a konfigurációs fájlodban\n"
 
-#: fpdb.pyw:871
+#: fpdb.pyw:870
 msgid ""
 "\n"
 "\n"
@@ -2943,19 +2940,19 @@ msgstr ""
 "\n"
 "A hiba a következő:  "
 
-#: fpdb.pyw:872
+#: fpdb.pyw:871
 msgid "CONFIG FILE ERROR"
 msgstr "KONFIGURÁCIÓS FÁJL HIBA"
 
-#: fpdb.pyw:876
+#: fpdb.pyw:875
 msgid "Logfile is %s\n"
 msgstr "A naplófájl: %s\n"
 
-#: fpdb.pyw:878
+#: fpdb.pyw:877
 msgid "Config file"
 msgstr "Konfigurációs fájl"
 
-#: fpdb.pyw:879
+#: fpdb.pyw:878
 msgid ""
 "has been created at:\n"
 "%s.\n"
@@ -2963,50 +2960,50 @@ msgstr ""
 "létrehozva itt:\n"
 "%s.\n"
 
-#: fpdb.pyw:880
+#: fpdb.pyw:879
 msgid "Edit your screen_name and hand history path in the supported_sites "
 msgstr ""
 "Állítsd be az asztalnál látható nevedet és a leosztástörténetek helyét a "
 "támogatott termek"
 
-#: fpdb.pyw:881
+#: fpdb.pyw:880
 msgid ""
 "section of the Preferences window (Main menu) before trying to import hands."
 msgstr ""
 "résznél a Beállítások ablakban (Főmenü) mielőtt megpróbálnál leosztásokat "
 "importálni."
 
-#: fpdb.pyw:903
+#: fpdb.pyw:902
 msgid "Connected to SQLite: %s"
 msgstr "Kapcsolódva az SQLite adatbázishoz: %s"
 
-#: fpdb.pyw:907
+#: fpdb.pyw:906
 msgid "MySQL client reports: 2002 or 2003 error. Unable to connect - "
 msgstr ""
 "MySQL kliens jelenti: 2002-es vagy 2003-as hiba. Nem sikerült a kapcsolódás "
 "- "
 
-#: fpdb.pyw:908
+#: fpdb.pyw:907
 msgid "Please check that the MySQL service has been started"
 msgstr "Kérlek ellenőrizd, hogy a MySQL szolgáltatás el van-e indítva"
 
-#: fpdb.pyw:912
+#: fpdb.pyw:911
 msgid "Postgres client reports: Unable to connect - "
 msgstr "Postgres kliens jelenti: Nem sikerült a kapcsolódás - "
 
-#: fpdb.pyw:913
+#: fpdb.pyw:912
 msgid "Please check that the Postgres service has been started"
 msgstr "Kérlek ellenőrizd, hogy a Postgres szolgáltatás el van-e indítva"
 
-#: fpdb.pyw:937
+#: fpdb.pyw:936
 msgid "Strong Warning - Invalid database version"
 msgstr "Nyomatékos figyelmeztetés - Érvénytelen adatbázis verzió"
 
-#: fpdb.pyw:939
+#: fpdb.pyw:938
 msgid "An invalid DB version or missing tables have been detected."
 msgstr "Érvénytelen adatbázis verziót vagy hiányzó táblá(ka)t találtam."
 
-#: fpdb.pyw:943
+#: fpdb.pyw:942
 msgid ""
 "This error is not necessarily fatal but it is strongly recommended that you "
 "recreate the tables by using the Database menu."
@@ -3014,7 +3011,7 @@ msgstr ""
 "Ez a hiba nem feltétlenül végzetes, de erősen javasolt a táblák "
 "újragenerálása az Adatbázis menü használatával."
 
-#: fpdb.pyw:947
+#: fpdb.pyw:946
 msgid ""
 "Not doing this will likely lead to misbehaviour including fpdb crashes, "
 "corrupt data etc."
@@ -3023,13 +3020,13 @@ msgstr ""
 "kiléphet, tönkretehet adatokat, stb."
 
 # FIXME: would need a different word ordering in Hungarian
-#: fpdb.pyw:960
+#: fpdb.pyw:959
 msgid "Status: Connected to %s database named %s on host %s"
 msgstr ""
 "Állapot: Kapcsolódva a(z) %s adatbázis-kezelő %s nevű adatbázisához a(z) %s "
 "kiszolgálón"
 
-#: fpdb.pyw:970
+#: fpdb.pyw:969
 msgid ""
 "\n"
 "Global lock taken by"
@@ -3037,7 +3034,7 @@ msgstr ""
 "\n"
 "Globális zárolást végzett:"
 
-#: fpdb.pyw:973
+#: fpdb.pyw:972
 msgid ""
 "\n"
 "Failed to get global lock, it is currently held by"
@@ -3045,43 +3042,43 @@ msgstr ""
 "\n"
 "Globális zárolás meghiúsult, jelenleg már zárolta:"
 
-#: fpdb.pyw:983
+#: fpdb.pyw:982
 msgid "Quitting normally"
 msgstr "Normál kilépés"
 
-#: fpdb.pyw:1007
+#: fpdb.pyw:1006
 msgid "Global lock released.\n"
 msgstr "Globális zárolás feloldva.\n"
 
-#: fpdb.pyw:1014
+#: fpdb.pyw:1013
 msgid "Auto Import"
 msgstr "AutoImport"
 
-#: fpdb.pyw:1021
+#: fpdb.pyw:1020
 msgid "Bulk Import"
 msgstr "Importálás"
 
-#: fpdb.pyw:1027
+#: fpdb.pyw:1026
 msgid "eMail Import"
 msgstr "Email import"
 
-#: fpdb.pyw:1034
+#: fpdb.pyw:1033
 msgid "Ring Player Stats"
 msgstr "Készpénzes statisztikák"
 
-#: fpdb.pyw:1040
+#: fpdb.pyw:1039
 msgid "Tourney Player Stats"
 msgstr "Versenystatisztikák"
 
-#: fpdb.pyw:1046
+#: fpdb.pyw:1045
 msgid "Tourney Viewer"
 msgstr "Verseny nézet"
 
-#: fpdb.pyw:1052
+#: fpdb.pyw:1051
 msgid "Positional Stats"
 msgstr "Pozíciós statisztikák"
 
-#: fpdb.pyw:1062
+#: fpdb.pyw:1061
 msgid ""
 "Fpdb needs translators!\n"
 "If you speak another language and have a few minutes or more to spare get in "
@@ -3139,18 +3136,18 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
-"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
+"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
-#: fpdb.pyw:1079
+#: fpdb.pyw:1078
 msgid "Help"
 msgstr "Súgó"
 
-#: fpdb.pyw:1086
+#: fpdb.pyw:1085
 msgid "Graphs"
 msgstr "Grafikonok"
 
-#: fpdb.pyw:1138
+#: fpdb.pyw:1137
 msgid ""
 "\n"
 "Note: error output is being diverted to fpdb-errors.txt and HUD-errors.txt "
@@ -3160,15 +3157,15 @@ msgstr ""
 "Megjegyzés: a hibakimenet átirányítva az fpdb-errors.txt és HUD-errors.txt "
 "fájlokba itt:\n"
 
-#: fpdb.pyw:1167
+#: fpdb.pyw:1166
 msgid "fpdb starting ..."
 msgstr "fpdb indítása ..."
 
-#: fpdb.pyw:1224
+#: fpdb.pyw:1223
 msgid "FPDB WARNING"
 msgstr "FPDB FIGYELMEZTETÉS"
 
-#: fpdb.pyw:1243
+#: fpdb.pyw:1242
 msgid ""
 "WARNING: Unable to find output hh directory %s\n"
 "\n"
@@ -3179,17 +3176,13 @@ msgstr ""
 " Kattints az IGEN gombra a könyvtár létrehozásához, vagy a NEM gombra egy "
 "másik könyvtár választásához."
 
-#: fpdb.pyw:1251
+#: fpdb.pyw:1250
 msgid ""
 "WARNING: Unable to create hand output directory. Importing is not likely to "
 "work until this is fixed."
 msgstr ""
 "FIGYELEM: Nem sikerült a leosztásarchívum könyvtárának létrehozása. Az "
 "importálás valószínűleg nem fog működni."
-
-#: fpdb.pyw:1256
-msgid "Select HH Output Directory"
-msgstr "Válaszd ki a leosztásarchívum könyvtárát"
 
 #: fpdb_import.py:60
 msgid "Import database module: MySQLdb not found"
@@ -3325,6 +3318,12 @@ msgstr ""
 "\n"
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
+
+#~ msgid "_Set HandHistory Archive Directory"
+#~ msgstr "Leo_sztásarchívum könyvtára"
+
+#~ msgid "Select HH Output Directory"
+#~ msgstr "Válaszd ki a leosztásarchívum könyvtárát"
 
 #~ msgid "commit finished ok, i = "
 #~ msgstr "a véglegesítés sikeresen befejeződött, i = "
