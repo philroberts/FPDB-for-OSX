@@ -688,6 +688,7 @@ class Config:
                 raise ValueError("Database names must be unique")
             if self.db_selected is None or db.db_selected:
                 self.db_selected = db.db_name
+                db_node.setAttribute("default", "True")
             self.supported_databases[db.db_name] = db
         #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored
         #           ..when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
@@ -972,9 +973,10 @@ class Config:
             if db_user   is not None: db_node.setAttribute("db_user", db_user)
             if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
             if db_server is not None: db_node.setAttribute("db_server", db_server)
-            if defaultb:              db_node.setAttribute("default", default)
+            if defaultb or self.db_selected == db_name:
+                                      db_node.setAttribute("default", True)
             elif db_node.hasAttribute("default"): 
-                db_node.removeAttribute("default")
+                                      db_node.removeAttribute("default")
         if self.supported_databases.has_key(db_name):
             if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
             if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
