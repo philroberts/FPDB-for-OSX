@@ -129,7 +129,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.904 plus git"
+VERSION = "0.20.905 plus git"
 
 
 class fpdb:
@@ -264,7 +264,8 @@ class fpdb:
                , ('numpy',            numpy_version)
                , ('sqlite3',          sqlite3_version)
                , ('sqlite',           sqlite_version)
-               , ('database',         self.settings['db-server'] + db_version)
+               , ('fpdb version',     VERSION)
+               , ('database used',    self.settings['db-server'])
                ]
         versions = gtk.TextBuffer()
         w = 20  # width used for module names and version numbers
@@ -786,7 +787,6 @@ class fpdb:
                   <menuitem action="Quit"/>
                 </menu>
                 <menu action="import">
-                  <menuitem action="sethharchive"/>
                   <menuitem action="bulkimp"/>
                   <menuitem action="imapimport"/>
                   <menuitem action="autoimp"/>
@@ -828,15 +828,14 @@ class fpdb:
                                  ('SaveProf', None, _('_Save Profile (todo)'), _('<control>S'), 'Save your profile', self.dia_save_profile),
                                  ('Preferences', None, _('Pre_ferences'), _('<control>F'), 'Edit your preferences', self.dia_preferences),
                                  ('import', None, _('_Import')),
-                                 ('sethharchive', None, _('_Set HandHistory Archive Directory'), None, 'Set HandHistory Archive Directory', self.select_hhArchiveBase),
                                  ('bulkimp', None, _('_Bulk Import'), _('<control>B'), 'Bulk Import', self.tab_bulk_import),
                                  ('imapimport', None, _('_Import through eMail/IMAP'), _('<control>I'), 'Import through eMail/IMAP', self.tab_imap_import),
                                  ('viewers', None, _('_Viewers')),
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
-                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
-                                 ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
+                                 ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
+                                 ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
                                  ('posnstats', None, _('P_ositional Stats (tabulated view, not on sqlite)'), _('<control>O'), 'Positional Stats (tabulated view)', self.tab_positional_stats),
                                  ('sessionstats', None, _('Session Stats'), None, 'Session Stats', self.tab_session_stats),
@@ -888,7 +887,6 @@ class fpdb:
 
         self.settings.update({'cl_options': cl_options})
         self.settings.update(self.config.get_db_parameters())
-        self.settings.update(self.config.get_tv_parameters())
         self.settings.update(self.config.get_import_parameters())
         self.settings.update(self.config.get_default_paths())
 
@@ -1252,16 +1250,6 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                         self.warning_box(_("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."))
                 elif response == gtk.RESPONSE_NO:
                     self.select_hhArchiveBase()
-
-    def select_hhArchiveBase(self, widget=None):
-        fc = gtk.FileChooserDialog(title=_("Select HH Output Directory"), parent=None, action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER, buttons=(gtk.STOCK_OPEN,gtk.RESPONSE_OK), backend=None)
-        fc.run()
-        # TODO: We need to put in a Cancel button, and handle if the user presses that or the "Close" box without selecting anything as a cancel, and return to the prior setting
-        #self.warning_box("You selected %s" % fc.get_filename())
-        self.config.set_hhArchiveBase(fc.get_filename())
-        self.config.save()
-        self.load_profile() # we can't do this at the end of this func because load_profile calls this func
-        fc.destroy() # TODO: loop this to make sure we get valid data back from it, because the open directory thing in GTK lets you select files and not select things and other stupid bullshit
 
     def main(self):
         gtk.main()

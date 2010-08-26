@@ -1,5 +1,5 @@
 fpdb database dump
-DB version=142
+DB version=143
 
 ###################
 Table Autorates
@@ -1857,7 +1857,6 @@ Table HandsPlayers
   street4Raises=0
   actionString=None
 
-!!!verified to here
 ###################
 Table HudCache
 ###################
@@ -2557,6 +2556,7 @@ Table HudCache
   street3Raises=0
   street4Raises=0
 
+!!!verified to here
   id=9
   gametypeId=2
   playerId=1
@@ -3442,9 +3442,19 @@ Table Players
 
 
 ###################
+Table RawHands
+###################
+empty table
+
+###################
+Table RawTourneys
+###################
+empty table
+
+###################
 Table Settings
 ###################
-  version=142
+  version=143
 
 
 ###################

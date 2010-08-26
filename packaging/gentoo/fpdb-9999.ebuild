@@ -18,48 +18,53 @@ SLOT="0"
 KEYWORDS=""
 #note: this should work on other architectures too, please send me your experiences
 
-IUSE="graph mysql postgres sqlite"
+IUSE="graph mysql postgres sqlite linguas_hu"
 RDEPEND="
-	mysql? ( virtual/mysql
-		dev-python/mysql-python )
-	postgres? ( dev-db/postgresql-server
-		dev-python/psycopg )
-	sqlite? ( dev-lang/python[sqlite]
-		dev-python/numpy )
-	>=x11-libs/gtk+-2.10
-	dev-python/pygtk
-	graph? ( dev-python/numpy
-		dev-python/matplotlib[gtk] )
-	dev-python/python-xlib
-	dev-python/pytz"
+    mysql? ( virtual/mysql
+        dev-python/mysql-python )
+    postgres? ( dev-db/postgresql-server
+        dev-python/psycopg )
+    sqlite? ( dev-lang/python[sqlite]
+        dev-python/numpy )
+    >=x11-libs/gtk+-2.10
+    dev-python/pygtk
+    graph? ( dev-python/numpy
+        dev-python/matplotlib[gtk] )
+    dev-python/python-xlib
+    dev-python/pytz"
 DEPEND="${RDEPEND}"
 
 src_unpack() {
-	git_src_unpack
+    git_src_unpack
 }
 
 src_install() {
-	insinto "${GAMES_DATADIR}"/${PN}
-	doins -r gfx
-	doins -r pyfpdb
-	doins readme.txt
+    insinto "${GAMES_DATADIR}"/${PN}
+    doins -r gfx
+    doins -r pyfpdb
 
-	exeinto "${GAMES_DATADIR}"/${PN}
-	doexe run_fpdb.py
+    if use linguas_hu; then
+        dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/hu/LC_MESSAGES/${PN}.mo /usr/share/locale/hu/LC_MESSAGES/${PN}.mo
+    fi
 
-	dodir "${GAMES_BINDIR}"
-	dosym "${GAMES_DATADIR}"/${PN}/run_fpdb.py "${GAMES_BINDIR}"/${PN}
+    doins readme.txt
 
-	newicon gfx/fpdb-icon.png ${PN}.png
-	make_desktop_entry ${PN}
+    exeinto "${GAMES_DATADIR}"/${PN}
+    doexe run_fpdb.py
 
-	chmod +x "${D}/${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
-	prepgamesdirs
+    dodir "${GAMES_BINDIR}"
+    dosym "${GAMES_DATADIR}"/${PN}/run_fpdb.py "${GAMES_BINDIR}"/${PN}
+
+    newicon gfx/fpdb-icon.png ${PN}.png
+    make_desktop_entry ${PN}
+
+    chmod +x "${D}/${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+    prepgamesdirs
 }
 
 pkg_postinst() {
-	games_pkg_postinst
-	elog "Note that if you really want to use mysql or postgresql you will have to create"
-	elog "the database and user yourself and enter it into the fpdb config."
-	elog "You can find the instructions on the project's website."
+    games_pkg_postinst
+    elog "Note that if you really want to use mysql or postgresql you will have to create"
+    elog "the database and user yourself and enter it into the fpdb config."
+    elog "You can find the instructions on the project's website."
 }
