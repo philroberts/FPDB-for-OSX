@@ -77,7 +77,7 @@ class TourneySummary(object):
         self.buyin              = None
         self.fee                = None
         self.hero               = None
-        self.maxseats           = None
+        self.maxseats           = 0
         self.entries            = 0
         self.speed              = "Normal"
         self.prizepool          = 0  # Make it a dict in order to deal (eventually later) with non-money winnings : {'MONEY' : amount, 'OTHER' : Value ??}

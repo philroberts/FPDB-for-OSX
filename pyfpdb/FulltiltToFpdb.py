@@ -260,8 +260,8 @@ class Fulltilt(HandHistoryConverter):
                         hand.isRebuy = True
                     if special == "KO":
                         hand.isKO = True
-                    if special == "Head's Up":
-                        hand.maxSeats = 2
+                    if special == "Head's Up" or special == "Heads Up":
+                        hand.maxseats = 2
                     if re.search("Matrix", special):
                         hand.isMatrix = True
                     if special == "Shootout":

@@ -58,7 +58,7 @@ class Hand(object):
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
     SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
-    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Partouche':10, 'Carbon':11 }
+    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Partouche':10, 'Carbon':11, 'PKR':12 }
 
 
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
@@ -320,10 +320,8 @@ If a player has None chips he won't be added."""
 
     def checkPlayerExists(self,player):
         if player not in [p[1] for p in self.players]:
-            print _("DEBUG: checkPlayerExists %s fail") % player
-            raise FpdbParseError(_("checkPlayerExists: '%s' failed.") % player)
-
-
+            print (_("DEBUG: checkPlayerExists %s fail on hand number %s") % (player, self.handid))
+            raise FpdbParseError(_("checkPlayerExists: '%s fail on hand number %s") % (player, self.handid))
 
     def setCommunityCards(self, street, cards):
         log.debug("setCommunityCards %s %s" %(street,  cards))
