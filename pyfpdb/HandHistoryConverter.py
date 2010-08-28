@@ -587,6 +587,7 @@ or None if we fail to get the info """
             offset = int(givenTimezone[-5:])
             givenTimezone = givenTimezone[0:-5]
             log.debug( _("changeTimeZone: offset=") + str(offset) )
+        else: offset=0
 
         if givenTimezone=="ET":
             givenTZ = timezone('US/Eastern')

@@ -72,19 +72,14 @@ class GuiImapFetcher (threading.Thread):
         
         siteName=columns[0].get_text()
         fetchType=columns[1].get_text()
-        code=siteName+"_"+fetchType
         
-        for email in self.config.emails:
-            toSave=self.config.emails[email]
-            break
-        toSave.siteName=siteName
-        toSave.fetchType=fetchType
+        toSave=self.config.supported_sites[siteName].emails[fetchType]
         
         toSave.host=columns[2].get_text()
         toSave.username=columns[3].get_text()
         
         if columns[4].get_text()=="***":
-            toSave.password=self.passwords[code]
+            toSave.password=self.passwords[siteName+fetchType]
         else:
             toSave.password=columns[4].get_text()
         
@@ -101,16 +96,17 @@ class GuiImapFetcher (threading.Thread):
     
     def importAllClicked(self, widget, data=None):
         self.statusLabel.set_label(_("Starting import. Please wait.")) #FIXME: why doesnt this one show?
-        for email in self.config.emails:
-            try:
-                result=ImapFetcher.run(self.config.emails[email], self.db)
-                self.statusLabel.set_label(_("Finished import without error."))
-            except IMAP4.error as error:
-                if str(error)=="[AUTHENTICATIONFAILED] Authentication failed.":
-                    self.statusLabel.set_label(_("Login to mailserver failed: please check mailserver, username and password"))
-            except gaierror as error:
-                if str(error)=="[Errno -2] Name or service not known":
-                    self.statusLabel.set_label(_("Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity"))
+        for siteName in self.config.supported_sites:
+            for fetchType in self.config.supported_sites[siteName].emails:
+                try:
+                    result=ImapFetcher.run(self.config.supported_sites[siteName].emails[fetchType], self.db)
+                    self.statusLabel.set_label(_("Finished import without error."))
+                except IMAP4.error as error:
+                    if str(error)=="[AUTHENTICATIONFAILED] Authentication failed.":
+                        self.statusLabel.set_label(_("Login to mailserver failed: please check mailserver, username and password"))
+                except gaierror as error:
+                    if str(error)=="[Errno -2] Name or service not known":
+                        self.statusLabel.set_label(_("Could not connect to mailserver: check mailserver and use SSL settings and internet connectivity"))
     #def importAllClicked
     
     def get_vbox(self):
@@ -128,38 +124,42 @@ class GuiImapFetcher (threading.Thread):
         self.rowVBox = gtk.VBox()
         self.mainVBox.add(self.rowVBox)
         
-        for email in self.config.emails:
-            config=self.config.emails[email]
-            box=gtk.HBox(homogeneous=True)
-            
-            for field in (config.siteName, config.fetchType):
-                label=gtk.Label(field)
-                box.add(label)
-            
-            for field in (config.host, config.username):
+        for siteName in self.config.supported_sites:
+            for fetchType in self.config.supported_sites[siteName].emails:
+                config=self.config.supported_sites[siteName].emails[fetchType]
+                box=gtk.HBox(homogeneous=True)
+                
+                for field in (siteName, config.fetchType):
+                    label=gtk.Label(field)
+                    box.add(label)
+                
+                for field in (config.host, config.username):
+                    entry=gtk.Entry()
+                    entry.set_text(field)
+                    box.add(entry)
+                
                 entry=gtk.Entry()
-                entry.set_text(field)
+                self.passwords[siteName+fetchType]=config.password
+                entry.set_text("***")
                 box.add(entry)
-            
-            entry=gtk.Entry()
-            self.passwords[email]=config.password
-            entry.set_text("***")
-            box.add(entry)
-            
-            entry=gtk.Entry()
-            entry.set_text(config.folder)
-            box.add(entry)
-            
-            sslBox = gtk.combo_box_new_text()
-            sslBox.append_text(_("Yes"))
-            sslBox.append_text(_("No"))
-            sslBox.set_active(0)
-            box.add(sslBox)
-            
-            #TODO: "run just this one" button
-            
-            self.rowVBox.pack_start(box, expand=False)
-            #print 
+                
+                entry=gtk.Entry()
+                entry.set_text(config.folder)
+                box.add(entry)
+                
+                sslBox = gtk.combo_box_new_text()
+                sslBox.append_text(_("Yes"))
+                sslBox.append_text(_("No"))
+                if config.useSsl:
+                    sslBox.set_active(0)
+                else:
+                    sslBox.set_active(1)
+                box.add(sslBox)
+                
+                #TODO: "run just this one" button
+                
+                self.rowVBox.pack_start(box, expand=False)
+                #print 
         
         self.mainVBox.show_all()
     #end def displayConfig

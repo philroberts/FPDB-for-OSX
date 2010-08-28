@@ -378,7 +378,6 @@ def main(argv=None):
     else:               settings['os'] = 'linuxmac'
 
     settings.update(config.get_db_parameters())
-    settings.update(config.get_tv_parameters())
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
 

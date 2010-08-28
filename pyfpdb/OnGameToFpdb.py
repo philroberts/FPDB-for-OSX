@@ -96,7 +96,7 @@ class OnGame(HandHistoryConverter):
             Start\shand:\s(?P<DATETIME>.*)
             Table:\s(?P<TABLE>[\'\w\s]+)\s\[\d+\]\s\(
             (
-            (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
+            (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
             (?P<GAME>TEXAS_HOLDEM|RAZZ)\s
             (%(LS)s)?(?P<SB>[.0-9]+)/
             (%(LS)s)?(?P<BB>[.0-9]+)
@@ -142,7 +142,7 @@ class OnGame(HandHistoryConverter):
             self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % subst, re.MULTILINE)
             self.re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
-            self.re_HeroCards = re.compile('.*\nDealt\sto\s(?P<PNAME>.*)\s\[ (?P<CARDS>.*) \]')
+            self.re_HeroCards = re.compile('Dealing\sto\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
             #lopllopl checks, Eurolll checks, .Lucchess checks.
             #chumley. calls $0.25
@@ -152,9 +152,6 @@ class OnGame(HandHistoryConverter):
             #Uchilka shows [ KC,JD ]
             self.re_ShowdownAction = re.compile('(?P<PNAME>.*) shows \[ (?P<CARDS>.+) \]')
 
-            # TODO: read SUMMARY correctly for collected pot stuff.
-            #Uchilka, bets $11.75, collects $23.04, net $11.29
-            #like this:
             #Main pot: $3.57 won by mleo17 ($3.40)
             #Side pot 1: $3.26 won by maac_5 ($3.10)
             #Main pot: $2.87 won by maac_5 ($1.37), sagi34 ($1.36)
@@ -309,35 +306,15 @@ class OnGame(HandHistoryConverter):
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
 
     def readHeroCards(self, hand):
-        m = self.re_HeroCards.search(hand.handText)
-        if(m == None):
-            #Not involved in hand
-            hand.involved = False
-        else:
-            hand.hero = m.group('PNAME')
-            # "2c, qh" -> set(["2c","qc"])
-            # Also works with Omaha hands.
-            cards = m.group('CARDS')
-            cards = set(cards.split(','))
-            hand.addHoleCards(cards, m.group('PNAME'))
-
-    def readAction_old(self, hand, street):
-        m = self.re_Action.finditer(hand.streets.group(street))
-        for action in m:
-            if action.group('ATYPE') == ' raises':
-                hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' calls':
-                hand.addCall( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' bets':
-                hand.addBet( street, action.group('PNAME'), action.group('BET') )
-            elif action.group('ATYPE') == ' folds':
-                hand.addFold( street, action.group('PNAME'))
-            elif action.group('ATYPE') == ' checks':
-                hand.addCheck( street, action.group('PNAME'))
-            else:
-                print "DEBUG: unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)
-                #hand.actions[street] += [[action.group('PNAME'), action.group('ATYPE')]]
-        # TODO: Everleaf does not record uncalled bets.
+        # streets PREFLOP, PREDRAW, and THIRD are special cases beacause
+        # we need to grab hero's cards
+        for street in ('PREFLOP', 'DEAL'):
+            if street in hand.streets.keys():
+                m = self.re_HeroCards.finditer(hand.streets[street])
+            for found in m:
+                hand.hero = found.group('PNAME')
+                newcards = found.group('CARDS').split(', ')
+                hand.addHoleCards(street, hand.hero, closed=newcards, shown=False, mucked=False, dealt=True)
 
     def readAction(self, hand, street):
         m = self.re_Action.finditer(hand.streets[street])

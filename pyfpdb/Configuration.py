@@ -110,7 +110,7 @@ def get_config(file_name, fallback = True):
         example_path = '/usr/share/python-fpdb/' + file_name + '.example'
         try:
             shutil.copyfile(example_path, config_path)
-            msg = 'Configuration file created: %s\n' % config_path
+            msg = _("Config file has been created at %s.\n") % config_path
             logging.info(msg)
             return (config_path,False)
         except IOError:
@@ -256,6 +256,20 @@ class Layout:
 
         return temp + "\n"
 
+class Email:
+    def __init__(self, node):
+        self.node = node
+        self.host= node.getAttribute("host")
+        self.username = node.getAttribute("username")
+        self.password = node.getAttribute("password")
+        self.useSsl = node.getAttribute("useSsl")
+        self.folder = node.getAttribute("folder")
+        self.fetchType = node.getAttribute("fetchType")
+        
+    def __str__(self):
+        return "    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
+            % (self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
+
 class Site:
     def __init__(self, node):
         def normalizePath(path):
@@ -284,12 +298,17 @@ class Site:
         self.xshift       = node.getAttribute("xshift")
         self.yshift       = node.getAttribute("yshift")
         self.layout       = {}
+        self.emails       = {}
 
         print _("Loading site"), self.site_name
 
         for layout_node in node.getElementsByTagName('layout'):
             lo = Layout(layout_node)
             self.layout[lo.max] = lo
+        
+        for email_node in node.getElementsByTagName('email'):
+            email = Email(email_node)
+            self.emails[email.fetchType] = email
 
 #   Site defaults
         self.xpad = 1 if self.xpad == "" else int(self.xpad)
@@ -467,21 +486,6 @@ class Import:
         return "    interval = %s\n    callFpdbHud = %s\n    hhArchiveBase = %s\n    saveActions = %s\n    fastStoreHudCache = %s\n" \
             % (self.interval, self.callFpdbHud, self.hhArchiveBase, self.saveActions, self.fastStoreHudCache)
 
-class Email:
-    def __init__(self, node):
-        self.node = node
-        self.host= node.getAttribute("host")
-        self.username = node.getAttribute("username")
-        self.password = node.getAttribute("password")
-        self.useSsl = node.getAttribute("useSsl")
-        self.folder = node.getAttribute("folder")
-        self.siteName = node.getAttribute("siteName")
-        self.fetchType = node.getAttribute("fetchType")
-        
-    def __str__(self):
-        return "    siteName=%s\n    fetchType=%s\n    host = %s\n    username = %s\n    password = %s\n    useSsl = %s\n    folder = %s\n" \
-            % (self.siteName, self.fetchType, self.host, self.username, self.password, self.useSsl, self.folder) 
-
 class HudUI:
     def __init__(self, node):
         self.node = node
@@ -504,16 +508,6 @@ class HudUI:
         return "    label = %s\n" % self.label
 
 
-class Tv:
-    def __init__(self, node):
-        self.combinedStealFold = string_to_bool(node.getAttribute("combinedStealFold"), default=True)
-        self.combined2B3B    = string_to_bool(node.getAttribute("combined2B3B"), default=True)
-        self.combinedPostflop  = string_to_bool(node.getAttribute("combinedPostflop"), default=True)
-
-    def __str__(self):
-        return ("    combinedStealFold = %s\n    combined2B3B = %s\n    combinedPostflop = %s\n" %
-                (self.combinedStealFold, self.combined2B3B, self.combinedPostflop) )
-
 class General(dict):
     def __init__(self):
         super(General, self).__init__()
@@ -525,6 +519,20 @@ class General(dict):
         for (name, value) in node.attributes.items():
             log.debug(_("config.general: adding %s = %s") % (name,value))
             self[name] = value
+        
+        try:
+            self["version"]=int(self["version"])
+        except KeyError:
+            self["version"]=0
+            self["ui_language"]="system"
+            self["config_difficulty"]="expert"
+            
+    def get_defaults(self):
+        self["version"]=0
+        self["ui_language"]="system"
+        self["config_difficulty"]="expert"
+        self["config_wrap_len"]="-1"
+        self["day_start"]="5"
 
     def __str__(self):
         s = ""
@@ -600,6 +608,58 @@ class GUICashStats(list):
 #            s = s + "    %s = %s\n" % (k, self[k])
 #        return(s)
 
+class RawHands:
+    def __init__(self, node=None):
+        if node==None:
+            self.save="error"
+            self.compression="none"
+            print _("missing config section raw_hands")
+        else:
+            save=node.getAttribute("save")
+            if save in ("none", "error", "all"):
+                self.save=save
+            else:
+                print _("Invalid config value for raw_hands.save, defaulting to \"error\"")
+                self.save="error"
+            
+            compression=node.getAttribute("compression")
+            if save in ("none", "gzip", "bzip2"):
+                self.compression=compression
+            else:
+                print _("Invalid config value for raw_hands.compression, defaulting to \"none\"")
+                self.compression="none"
+    #end def __init__
+
+    def __str__(self):
+        return "        save= %s, compression= %s\n" % (self.save, self.compression)
+#end class RawHands
+
+class RawTourneys:
+    def __init__(self, node=None):
+        if node==None:
+            self.save="error"
+            self.compression="none"
+            print _("missing config section raw_tourneys")
+        else:
+            save=node.getAttribute("save")
+            if save in ("none", "error", "all"):
+                self.save=save
+            else:
+                print _("Invalid config value for raw_tourneys.save, defaulting to \"error\"")
+                self.save="error"
+            
+            compression=node.getAttribute("compression")
+            if save in ("none", "gzip", "bzip2"):
+                self.compression=compression
+            else:
+                print _("Invalid config value for raw_tourneys.compression, defaulting to \"none\"")
+                self.compression="none"
+    #end def __init__
+
+    def __str__(self):
+        return "        save= %s, compression= %s\n" % (self.save, self.compression)
+#end class RawTourneys
+
 class Config:
     def __init__(self, file = None, dbname = ''):
 #    "file" is a path to an xml file with the fpdb/HUD configuration
@@ -653,11 +713,12 @@ class Config:
         self.hhcs = {}
         self.popup_windows = {}
         self.db_selected = None    # database the user would like to use
-        self.tv = None
         self.general = General()
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
 
+        if doc.getElementsByTagName("general") == []:
+            self.general.get_defaults()
         for gen_node in doc.getElementsByTagName("general"):
             self.general.add_elements(node=gen_node) # add/overwrite elements in self.general
 
@@ -717,17 +778,9 @@ class Config:
             imp = Import(node = imp_node)
             self.imp = imp
 
-        for email_node in doc.getElementsByTagName("email"):
-            email = Email(node = email_node)
-            if email.siteName!="": #FIXME: Why on earth is this needed?
-                self.emails[email.siteName+"_"+email.fetchType]=email
-
         for hui_node in doc.getElementsByTagName('hud_ui'):
             hui = HudUI(node = hui_node)
             self.ui = hui
-
-        for tv_node in doc.getElementsByTagName("tv"):
-            self.tv = Tv(node = tv_node)
 
         db = self.get_db_parameters()
         if db['db-password'] == 'YOUR MYSQL PASSWORD':
@@ -740,8 +793,19 @@ class Config:
                                      db_user = df_parms['db-user'],
                                      db_pass = df_parms['db-password'])
                 self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
-
+        
+        if doc.getElementsByTagName("raw_hands") == []:
+            self.raw_hands = RawHands()
+        for raw_hands_node in doc.getElementsByTagName('raw_hands'):
+            self.raw_hands = RawHands(raw_hands_node)
+        
+        if doc.getElementsByTagName("raw_tourneys") == []:
+            self.raw_tourneys = RawTourneys()
+        for raw_tourneys_node in doc.getElementsByTagName('raw_tourneys'):
+            self.raw_tourneys = RawTourneys(raw_tourneys_node)
+        
         print ""
+    #end def __init__
 
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
@@ -768,9 +832,12 @@ class Config:
                 return site_node
 
     def getEmailNode(self, siteName, fetchType):
-        for emailNode in self.doc.getElementsByTagName("email"):
-            if emailNode.getAttribute("siteName") == siteName and emailNode.getAttribute("fetchType") == fetchType:
+        siteNode = self.get_site_node(siteName)
+        for emailNode in siteNode.getElementsByTagName("email"):
+            if emailNode.getAttribute("fetchType") == fetchType:
+                print "found emailNode"
                 return emailNode
+                break
     #end def getEmailNode
 
     def getGameNode(self,gameName):
@@ -1073,15 +1140,6 @@ class Config:
                 return site_name
         return None
 
-    def get_tv_parameters(self):
-        if self.tv is not None:
-            return {
-                    'combinedStealFold': self.tv.combinedStealFold,
-                    'combined2B3B': self.tv.combined2B3B,
-                    'combinedPostflop': self.tv.combinedPostflop
-                    }
-        return {}
-
     # Allow to change the menu appearance
     def get_hud_ui_parameters(self):
         hui = {}
@@ -1374,15 +1432,10 @@ if __name__== "__main__":
     print c.imp
     print "----------- END IMPORT -----------"
 
-    print "\n----------- TABLE VIEW -----------"
-#    print c.tv
-    print "----------- END TABLE VIEW -----------"
-
     c.edit_layout("PokerStars", 6, locations=( (1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6) ))
     c.save(file="testout.xml")
 
     print "db    = ", c.get_db_parameters()
-#    print "tv    = ", c.get_tv_parameters()
 #    print "imp    = ", c.get_import_parameters()
     print "paths  = ", c.get_default_paths("PokerStars")
     print "colors = ", c.get_default_colors("PokerStars")

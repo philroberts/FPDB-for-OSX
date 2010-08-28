@@ -1,6 +1,7 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# created by Steffen Schaumburg, steffen@schaumburger.info and Erki Ferenc, erkiferenc@gmail.com
+# $Header: $
+
 EAPI="2"
 
 inherit eutils
@@ -18,7 +19,7 @@ SLOT="0"
 KEYWORDS=""
 #note: this should work on other architectures too, please send me your experiences
 
-IUSE="graph mysql postgres sqlite"
+IUSE="graph mysql postgres sqlite linguas_hu linguas_it"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -42,6 +43,15 @@ src_install() {
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r gfx
 	doins -r pyfpdb
+
+	if use linguas_hu; then
+		dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/hu/LC_MESSAGES/${PN}.mo /usr/share/locale/hu/LC_MESSAGES/${PN}.mo
+	fi
+
+	if use linguas_it; then
+		dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/it/LC_MESSAGES/${PN}.mo /usr/share/locale/it/LC_MESSAGES/${PN}.mo
+	fi
+
 	doins readme.txt
 
 	exeinto "${GAMES_DATADIR}"/${PN}
