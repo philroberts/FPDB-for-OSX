@@ -55,7 +55,6 @@ else:
         def _(string): return string
 
 #    FreePokerTools modules
-import Tables # needed for testing only
 import Configuration
 import Stats
 import Mucked
@@ -950,26 +949,3 @@ class Popup_window:
 #        window.present()
 
 
-if __name__== "__main__":
-    main_window = gtk.Window()
-    main_window.connect("destroy", destroy)
-    label = gtk.Label(_('Fake main window, blah blah, blah\nblah, blah'))
-    main_window.add(label)
-    main_window.show_all()
-
-    c = Configuration.Config()
-    #tables = Tables.discover(c)
-    t = Tables.discover_table_by_name(c, "Corona")
-    if t is None:
-        print _("Table not found.")
-    db = Database.Database(c, 'fpdb', 'holdem')
-
-    stat_dict = db.get_stats_from_hand(1)
-
-#    for t in tables:
-    win = Hud(None, t, 10, 'holdem', c, db) # parent, table, max, poker_game, config, db_connection
-    win.create(1, c, stat_dict, None) # hand, config, stat_dict, cards):
-#        t.get_details()
-    win.update(8300, c) # self, hand, config):
-
-    gtk.main()

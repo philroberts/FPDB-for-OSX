@@ -208,8 +208,7 @@ class Fulltilt(HandHistoryConverter):
         if m is None:
             logging.info("Didn't match re_HandInfo")
             logging.info(hand.handText)
-            # Should this throw an exception? - CG
-            return None
+            raise FpdbParseError("No match in readHandInfo.")
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
@@ -260,8 +259,8 @@ class Fulltilt(HandHistoryConverter):
                         hand.isRebuy = True
                     if special == "KO":
                         hand.isKO = True
-                    if special == "Head's Up":
-                        hand.maxSeats = 2
+                    if special == "Head's Up" or special == "Heads Up":
+                        hand.maxseats = 2
                     if re.search("Matrix", special):
                         hand.isMatrix = True
                     if special == "Shootout":

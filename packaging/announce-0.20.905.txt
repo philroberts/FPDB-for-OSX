@@ -1,0 +1,32 @@
+Hello everyone,
+The new snapshot 0.20.905 is now available for download as source or as packages/installers for Debian, Gentoo, Ubuntu and Windows.
+This version brings many improvements and bugfixes, updating is recommended for users of previous snapshots. If you're using a stable version like 0.20 or 0.20.1 please consider trying this version and report any bugs, and in particular regressions, so we can fix them. This snapshot will hopefully be the last, next step is one or more release candidates, and then the next stable release.
+
+We are still looking for translators! You can find some information about what languages we are still missing here: http://sourceforge.net/apps/mediawiki/fpdb/index.php?title=Translation
+
+188 changesets (excl. merges) have gone in since 0.20.904. 
+Please note that you will have to either recreate your database or use a new one if you're updating from 0.20.904 or older.
+Config files from 0.20 and later should work. Please report if you have problems with config files from that version or later.
+
+What's changed:
+- Fpdb now supports running in languages other than English, Erki supplied a translation for Hungarian. French, Spanish and Italian are in progress by new contributors. Fpdb will use the system-configured language, a configuration option will be added before the next stable release. Note that this is about the user interface language, non-English history file parsing is a seperate topic.
+- Much improved testing to improve the recording of data, especially corner cases and non-trivial stats
+- OnGame network (which now includes Betfair) is now properly supported
+- FTP.fr importing now works. We don't know if the HUD works yet, give it a go and let us know
+- We noticed that fpdb already supports PS.fr
+- PokerStars should support all limits now
+- The Debian package now handles a missing config file properly
+- Many minor improvements to the Gentoo ebuilds for the upcoming submission to the sunrise overlay
+- We changed how email import is configured. Either delete your old config or see the HUD_config.xml.example file for how to add the section to the right place
+- fpdb should now be able to run with any config file from 0.20 or later, including all 0.20.9* snapshots
+- Some more fixes to window visibility and the minimise to tray icon feature
+- Various other small cleanups, fixes and improvements. See the git changelog for full details
+
+To download:
+- Debian/Ubuntu Linux: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/python-fpdb_0.20.905-1_all.deb/download
+- Gentoo Linux: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/fpdb-0.20.905.ebuild/download
+- Windows: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/fpdb-0.20.905anyCPU.exe/download
+- Source version for those who installed the dependencies manually: http://sourceforge.net/projects/fpdb/files/fpdb/Snapshots/fpdb-0.20.905.tar.bz2/download
+
+Thanks to everyone who contributed code, translations, testing and bug reports!
+The fpdb team
