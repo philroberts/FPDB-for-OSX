@@ -34,14 +34,14 @@ class FpdbError:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
 
-def compare(leaf, importer, errors):
+def compare(leaf, importer, errors, site):
     filename = leaf
     #print "DEBUG: fileanme: %s" % filename
 
     # Test if this is a hand history file
     if filename.endswith('.txt'):
         # test if there is a .hp version of the file
-        importer.addBulkImportImportFileOrDir(filename, site="PokerStars")
+        importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
         if os.path.isfile(filename + '.hp'):
             # Compare them
@@ -76,15 +76,15 @@ def compare(leaf, importer, errors):
 
 
 
-def walk_testfiles(dir, function, importer, errors):
+def walk_testfiles(dir, function, importer, errors, site):
     """Walks a directory, and executes a callback on each file """
     dir = os.path.abspath(dir)
     for file in [file for file in os.listdir(dir) if not file in [".",".."]]:
         nfile = os.path.join(dir,file)
         if os.path.isdir(nfile):
-            walk_testfiles(nfile, compare, importer, errors)
+            walk_testfiles(nfile, compare, importer, errors, site)
         else:
-            compare(nfile, importer, errors)
+            compare(nfile, importer, errors, site)
 
 def main(argv=None):
     if argv is None:
@@ -110,10 +110,10 @@ def main(argv=None):
     PartyPokerErrors = FpdbError('Party Poker')
     BetfairErrors    = FpdbError('Betfair')
     
-    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors)
-    walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors)
-    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors)
-    walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors)
+    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+    walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+    #walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+    walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
 
     totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount
 
