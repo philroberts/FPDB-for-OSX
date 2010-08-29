@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2010-08-26 18:52+CEST\n"
-"PO-Revision-Date: 2010-08-25 18:41+0200\n"
+"POT-Creation-Date: 2010-08-29 14:22+CEST\n"
+"PO-Revision-Date: 2010-08-29 14:20+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
 "Language-Team: Fpdb\n"
 "Language: de\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: Anonymise.py:55
 msgid "Could not find file %s"
-msgstr ""
+msgstr "Konnte Datei %s nicht finden"
 
 #: Anonymise.py:61
 msgid "Output being written to"
@@ -907,13 +907,13 @@ msgstr ""
 msgid "Log Viewer"
 msgstr ""
 
-#: GuiGraphViewer.py:39
+#: GuiGraphViewer.py:56
 msgid ""
 "Failed to load libs for graphing, graphing will not function. Please\n"
 "                 install numpy and matplotlib if you want to use graphs."
 msgstr ""
 
-#: GuiGraphViewer.py:41
+#: GuiGraphViewer.py:58
 msgid ""
 "This is of no consequence for other parts of the program, e.g. import \n"
 "         and HUD are NOT affected by this problem."
@@ -2412,17 +2412,20 @@ msgstr ""
 
 #: fpdb.pyw:48
 msgid " - press return to continue\n"
-msgstr ""
+msgstr " - drücken Sie Enter um fortzufahren"
 
 #: fpdb.pyw:55
 msgid ""
 "\n"
-"python 2.5 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
 msgstr ""
+"\n"
+"Python 2.5-2.7 nicht gefunden, bitte installieren Sie Python 2.5, 2.6 oder "
+"2.7 für fpdb\n"
 
 #: fpdb.pyw:56 fpdb.pyw:68 fpdb.pyw:90
 msgid "Press ENTER to continue."
-msgstr ""
+msgstr "Drücken Sie ENTER um fortzufahren"
 
 #: fpdb.pyw:67
 msgid ""
@@ -2430,88 +2433,105 @@ msgid ""
 "not loading. Please install the PYWIN32 package from http://sourceforge.net/"
 "projects/pywin32/"
 msgstr ""
+"Ihr Betriebssystem scheint Windows zu sein, aber die Windows Python "
+"Extensions konnten nicht geladen werden. Bitte installieren Sie das PYWIN32-"
+"Paket von http://sourceforge.net/projects/pywin32/"
 
 #: fpdb.pyw:89
 msgid ""
-"Unable to load PYGTK modules required for GUI. Please install PyCairo, "
+"Unable to load PyGTK modules required for GUI. Please install PyCairo, "
 "PyGObject, and PyGTK from www.pygtk.org."
 msgstr ""
+"Die für die GUI benötigten PyGTK module konnten nicht geladen werden. Bitte "
+"installieren Sie PyCairo, PyGObject und PyGTK von www.pygtk.org."
 
 #: fpdb.pyw:247
 msgid ""
 "Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
 "sqlcoder, Bostik, and others"
 msgstr ""
+"Copyright 2008-2010, Steffen, Eratosthenes, Carl Gherardi, Eric Blade, _mt, "
+"sqlcoder, Bostik und andere"
 
 #: fpdb.pyw:248
 msgid ""
 "You are free to change, and distribute original or changed versions of fpdb "
 "within the rules set out by the license"
 msgstr ""
+"Sie dürfen fpdb innerhalb der Regeln der Lizenz verändern, verbreiten und "
+"verändert verbreiten."
 
 #: fpdb.pyw:249
 msgid "Please see fpdb's start screen for license information"
-msgstr ""
+msgstr "Lizenzinformationen finden Sie auf fpdb's Startbildschirm"
 
 #: fpdb.pyw:253
 msgid "and others"
-msgstr ""
+msgstr "und andere"
 
 #: fpdb.pyw:259
 msgid "Operating System"
-msgstr ""
+msgstr "Betriebssystem"
 
 #: fpdb.pyw:280
 msgid "Your config file is: "
-msgstr ""
+msgstr "Ihre Konfigurationsdatei ist:"
 
 #: fpdb.pyw:285
 msgid "Version Information:"
-msgstr ""
+msgstr "Versionsinformationen:"
 
 #: fpdb.pyw:292
 msgid "Threads: "
-msgstr ""
+msgstr "Threads:"
 
 #: fpdb.pyw:315
 msgid ""
 "Updated preferences have not been loaded because windows are open. Re-start "
 "fpdb to load them."
 msgstr ""
+"Die neuen Einstellungen konnten nicht geladen werden da fpdb-Fenster offen "
+"sind. Bitte starten Sie fpdb neu um sie zu verwenden."
 
 #: fpdb.pyw:325
 msgid "Maintain Databases"
-msgstr ""
+msgstr "Datenbanken verwalten"
 
 #: fpdb.pyw:335
 msgid "saving updated db data"
-msgstr ""
+msgstr "speichere aktualisierte DB-Daten"
 
 #: fpdb.pyw:342
 msgid "guidb response was "
-msgstr ""
+msgstr "GuiDBs Antwort war "
 
 #: fpdb.pyw:348
 msgid ""
 "Cannot open Database Maintenance window because other windows have been "
 "opened. Re-start fpdb to use this option."
 msgstr ""
+"Konnte Datenbank-Verwaltungsfenster nicht öffnen da andere Fenster geöffnet "
+"waren/sind. Starten Sie fpdb neu um diese Funktion zu nutzen."
 
 #: fpdb.pyw:351
 msgid "Number of Hands: "
-msgstr ""
+msgstr "Hände: "
 
 #: fpdb.pyw:352
 msgid ""
 "\n"
 "Number of Tourneys: "
 msgstr ""
+"\n"
+"Tournamente: "
 
 #: fpdb.pyw:353
 msgid ""
 "\n"
 "Number of TourneyTypes: "
 msgstr ""
+"\n"
+"Tournamentarten (TourneyTypes): "
 
 #: fpdb.pyw:354
 msgid "Database Statistics"
@@ -2519,40 +2539,46 @@ msgstr "Datenbankstatistiken"
 
 #: fpdb.pyw:363
 msgid "HUD Configurator - choose category"
-msgstr ""
+msgstr "HUD-Konfigurator - Kategorieauswahl"
 
 #: fpdb.pyw:369
 msgid ""
 "Please select the game category for which you want to configure HUD stats:"
 msgstr ""
+"Bitte wählen Sie die Spielkategorie, für die Sie HUD-Statistiken "
+"konfigurieren möchten:"
 
 #: fpdb.pyw:421
 msgid "HUD Configurator - please choose your stats"
-msgstr ""
+msgstr "HUD-Konfigurator - Statistikauswahl"
 
 #: fpdb.pyw:427
 msgid "Please choose the stats you wish to use in the below table."
-msgstr ""
+msgstr "Bitte wählen Sie die Statistiken, die Sie nutzen möchten."
 
 #: fpdb.pyw:431
 msgid "Note that you may not select any stat more than once or it will crash."
 msgstr ""
+"Bitte beachten Sie, dass das HUD abstürzt wenn Sie Statistiken mehr als "
+"einmal auswählen."
 
 #: fpdb.pyw:435
 msgid ""
 "It is not currently possible to select \"empty\" or anything else to that "
 "end."
-msgstr ""
+msgstr "Es ist momentan nicht möglich \"leer\" o.ä. auszuwählen."
 
 #: fpdb.pyw:439
 msgid ""
-"To configure things like colouring you will still have to manually edit your "
-"HUD_config.xml."
+"To configure things like colouring you will still have to use the "
+"Preferences dialogue or manually edit your HUD_config.xml."
 msgstr ""
+"Um Farben usw. zu konfigurieren müssen Sie weiterhin den Einstellungs-Dialog "
+"verwenden oder Ihre HUD_config.xml manuell bearbeiten."
 
 #: fpdb.pyw:546
 msgid "Confirm deleting and recreating tables"
-msgstr ""
+msgstr "Tabellen löschen und reinitialisieren"
 
 #: fpdb.pyw:547
 msgid ""
@@ -2562,17 +2588,17 @@ msgstr ""
 
 #: fpdb.pyw:548
 msgid ""
-" they will be deleted.\n"
+" they will be deleted and you will have to re-import your histories.\n"
 "This may take a while."
 msgstr ""
 
 #: fpdb.pyw:573
 msgid "User cancelled recreating tables"
-msgstr ""
+msgstr "Benutzer hat Reinitialisierung der Tabellen abgebrochen"
 
 #: fpdb.pyw:580
 msgid "Please confirm that you want to re-create the HUD cache."
-msgstr ""
+msgstr "Bitte bestätigen Sie, dass Sie den HUD-Cache neu erstellen möchten."
 
 #: fpdb.pyw:588
 msgid " Hero's cache starts: "
@@ -2584,35 +2610,36 @@ msgstr ""
 
 #: fpdb.pyw:615
 msgid " Rebuilding HUD Cache ... "
-msgstr ""
+msgstr " Der HUD-Cache wird neu erstellt ... "
 
 #: fpdb.pyw:623
 msgid "User cancelled rebuilding hud cache"
-msgstr ""
+msgstr "Benutzer hat Neuerstellung des HUD-Cache abgebrochen"
 
 #: fpdb.pyw:635
 msgid "Confirm rebuilding database indexes"
-msgstr ""
+msgstr "Bestätigung der Neuerstellung der Datenbankindexe"
 
 #: fpdb.pyw:636
 msgid "Please confirm that you want to rebuild the database indexes."
 msgstr ""
+"Bitte bestätigen Sie, dass Sie die Datenbankindexe neu erstellen möchten."
 
 #: fpdb.pyw:644
 msgid " Rebuilding Indexes ... "
-msgstr ""
+msgstr " Datenbankindexe werden neu erstellt ... "
 
 #: fpdb.pyw:651
 msgid " Cleaning Database ... "
-msgstr ""
+msgstr " Reinige Datenbank ... "
 
 #: fpdb.pyw:656
 msgid " Analyzing Database ... "
-msgstr ""
+msgstr " Analysiere Datenbank ... "
 
 #: fpdb.pyw:661
 msgid "User cancelled rebuilding db indexes"
-msgstr ""
+msgstr "Benutzer hat Neuerstellung der Datenbankindexe abgebrochen"
 
 #: fpdb.pyw:756
 msgid ""
@@ -2621,7 +2648,7 @@ msgstr ""
 
 #: fpdb.pyw:759
 msgid "Fatal Error - Config File Missing"
-msgstr ""
+msgstr "Schwerer Fehler - Konfigurationsdatei nicht gefunden"
 
 #: fpdb.pyw:761
 msgid "Please copy the config file from the docs folder to:"
@@ -2642,7 +2669,6 @@ msgid "_Quit"
 msgstr "_Beenden"
 
 #: fpdb.pyw:827
-#, fuzzy
 msgid "<control>L"
 msgstr "<control>L"
 
@@ -2688,31 +2714,31 @@ msgstr ""
 
 #: fpdb.pyw:834
 msgid "<control>A"
-msgstr ""
+msgstr "<control>A"
 
 #: fpdb.pyw:834
 msgid "_Auto Import and HUD"
-msgstr ""
+msgstr "_Autoimport und HUD"
 
 #: fpdb.pyw:835
 msgid "<control>H"
-msgstr ""
+msgstr "<control>H"
 
 #: fpdb.pyw:835
 msgid "_HUD Configurator"
-msgstr ""
+msgstr "_HUD-Konfigurator"
 
 #: fpdb.pyw:836
 msgid "<control>G"
-msgstr ""
+msgstr "<control>G"
 
 #: fpdb.pyw:836
 msgid "_Graphs"
-msgstr ""
+msgstr "_Graphen"
 
 #: fpdb.pyw:837
 msgid "<control>P"
-msgstr ""
+msgstr "<control>P"
 
 #: fpdb.pyw:837
 msgid "Ring _Player Stats (tabulated view, not on pgsql)"
@@ -2720,7 +2746,7 @@ msgstr ""
 
 #: fpdb.pyw:838
 msgid "<control>T"
-msgstr ""
+msgstr "<control>T"
 
 #: fpdb.pyw:838
 msgid "_Tourney Player Stats (tabulated view, not on pgsql)"
@@ -2728,39 +2754,39 @@ msgstr ""
 
 #: fpdb.pyw:839
 msgid "Tourney _Viewer"
-msgstr ""
+msgstr "Tourney-_Betrachter"
 
 #: fpdb.pyw:840
 msgid "<control>O"
-msgstr ""
+msgstr "<control>O"
 
 #: fpdb.pyw:840
 msgid "P_ositional Stats (tabulated view, not on sqlite)"
-msgstr ""
+msgstr "Statistiken nach Position (Tabelle, nicht auf sqlite)"
 
 #: fpdb.pyw:841 fpdb.pyw:1057
 msgid "Session Stats"
-msgstr ""
+msgstr "Statistiken nach Sitzung"
 
 #: fpdb.pyw:842
 msgid "_Database"
-msgstr ""
+msgstr "_Datenbank"
 
 #: fpdb.pyw:843
 msgid "_Maintain Databases"
-msgstr ""
+msgstr "Datenbanken _Verwalten"
 
 #: fpdb.pyw:844
 msgid "Create or Recreate _Tables"
-msgstr ""
+msgstr "_Tabellen erstellen oder neu erstellen"
 
 #: fpdb.pyw:845
 msgid "Rebuild HUD Cache"
-msgstr ""
+msgstr "HUD-Cache neu erstellen"
 
 #: fpdb.pyw:846
 msgid "Rebuild DB Indexes"
-msgstr ""
+msgstr "Datenbankindexe neu erstellen"
 
 #: fpdb.pyw:847
 msgid "_Statistics"
@@ -2768,23 +2794,23 @@ msgstr "_Statistiken"
 
 #: fpdb.pyw:848
 msgid "Dump Database to Textfile (takes ALOT of time)"
-msgstr ""
+msgstr "Datenbank in eine Textdatei schreiben (dauert SEHR lange)"
 
 #: fpdb.pyw:849
 msgid "_Help"
-msgstr ""
+msgstr "_Hilfe"
 
 #: fpdb.pyw:850
 msgid "_Log Messages"
-msgstr ""
+msgstr "_Log-Dateien"
 
 #: fpdb.pyw:851
 msgid "A_bout, License, Copying"
-msgstr ""
+msgstr "_Über, Lizenz, Kopieren"
 
 #: fpdb.pyw:869
 msgid "There is an error in your config file\n"
-msgstr ""
+msgstr "Fehler in Ihrer Konfigurationsdatei\n"
 
 #: fpdb.pyw:870
 msgid ""
@@ -2792,6 +2818,9 @@ msgid ""
 "\n"
 "Error is:  "
 msgstr ""
+"\n"
+"\n"
+"Der Fehler ist:"
 
 #: fpdb.pyw:871
 msgid "CONFIG FILE ERROR"

@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2010-08-26 18:52+CEST\n"
+"POT-Creation-Date: 2010-08-29 14:22+CEST\n"
 "PO-Revision-Date: 2010-08-28 12:32+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -854,8 +854,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
-"s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
+"%s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:106 GuiLogView.py:96
 msgid "Refresh"
@@ -963,7 +963,7 @@ msgstr "Napló böngésző (teszt)"
 msgid "Log Viewer"
 msgstr "Napló böngésző"
 
-#: GuiGraphViewer.py:39
+#: GuiGraphViewer.py:56
 msgid ""
 "Failed to load libs for graphing, graphing will not function. Please\n"
 "                 install numpy and matplotlib if you want to use graphs."
@@ -971,7 +971,7 @@ msgstr ""
 "Nem sikerült a grafikonokhoz szükséges libraryl betöltése.\n"
 "A grafikonokhoz telepítsd a numpy-t és a matplotlib-et."
 
-#: GuiGraphViewer.py:41
+#: GuiGraphViewer.py:58
 msgid ""
 "This is of no consequence for other parts of the program, e.g. import \n"
 "         and HUD are NOT affected by this problem."
@@ -1306,11 +1306,11 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:321
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -2527,9 +2527,10 @@ msgid " - press return to continue\n"
 msgstr " - nyomj ENTER-t a folytatáshoz\n"
 
 #: fpdb.pyw:55
+#, fuzzy
 msgid ""
 "\n"
-"python 2.5 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
 msgstr ""
 "\n"
 "Python 2.5 nincs meg, kérlek telepítsd a Python 2.5-öt, 2.6-ot, vagy 2.7-et "
@@ -2550,8 +2551,9 @@ msgstr ""
 "http://sourceforge.net/projects/pywin32/"
 
 #: fpdb.pyw:89
+#, fuzzy
 msgid ""
-"Unable to load PYGTK modules required for GUI. Please install PyCairo, "
+"Unable to load PyGTK modules required for GUI. Please install PyCairo, "
 "PyGObject, and PyGTK from www.pygtk.org."
 msgstr ""
 "Nem sikerült a GUI által igényelt PyGTK modulok betöltése. Kérlek telepítsd "
@@ -2678,9 +2680,10 @@ msgid ""
 msgstr "Jelenleg nem lehetséges olyat választani, hogy \"üres\" vagy hasonló."
 
 #: fpdb.pyw:439
+#, fuzzy
 msgid ""
-"To configure things like colouring you will still have to manually edit your "
-"HUD_config.xml."
+"To configure things like colouring you will still have to use the "
+"Preferences dialogue or manually edit your HUD_config.xml."
 msgstr ""
 "Bizonyos dolgok (pl. színezés) beállításához egyelőre még kézzel kell "
 "szerkesztened a HUD_config.xml fájlt."
@@ -2698,8 +2701,9 @@ msgstr ""
 "már vannak táblák az adatbázisban ("
 
 #: fpdb.pyw:548
+#, fuzzy
 msgid ""
-" they will be deleted.\n"
+" they will be deleted and you will have to re-import your histories.\n"
 "This may take a while."
 msgstr ""
 "), akkor azok törölve lesznek.\n"
@@ -3136,8 +3140,8 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
-"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
+"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
 #: fpdb.pyw:1078
 msgid "Help"

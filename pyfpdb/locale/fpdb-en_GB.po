@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-26 18:52+CEST\n"
+"POT-Creation-Date: 2010-08-29 14:22+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -893,13 +893,13 @@ msgstr ""
 msgid "Log Viewer"
 msgstr ""
 
-#: GuiGraphViewer.py:39
+#: GuiGraphViewer.py:56
 msgid ""
 "Failed to load libs for graphing, graphing will not function. Please\n"
 "                 install numpy and matplotlib if you want to use graphs."
 msgstr ""
 
-#: GuiGraphViewer.py:41
+#: GuiGraphViewer.py:58
 msgid ""
 "This is of no consequence for other parts of the program, e.g. import \n"
 "         and HUD are NOT affected by this problem."
@@ -2394,7 +2394,7 @@ msgstr ""
 #: fpdb.pyw:55
 msgid ""
 "\n"
-"python 2.5 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
+"python 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n"
 msgstr ""
 
 #: fpdb.pyw:56 fpdb.pyw:68 fpdb.pyw:90
@@ -2406,7 +2406,7 @@ msgid "We appear to be running in Windows, but the Windows Python Extensions are
 msgstr ""
 
 #: fpdb.pyw:89
-msgid "Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
+msgid "Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org."
 msgstr ""
 
 #: fpdb.pyw:247
@@ -2506,7 +2506,7 @@ msgid "It is not currently possible to select \"empty\" or anything else to that
 msgstr ""
 
 #: fpdb.pyw:439
-msgid "To configure things like colouring you will still have to manually edit your HUD_config.xml."
+msgid "To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."
 msgstr ""
 
 #: fpdb.pyw:546
@@ -2519,7 +2519,7 @@ msgstr ""
 
 #: fpdb.pyw:548
 msgid ""
-" they will be deleted.\n"
+" they will be deleted and you will have to re-import your histories.\n"
 "This may take a while."
 msgstr ""
 
