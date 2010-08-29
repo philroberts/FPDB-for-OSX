@@ -7,25 +7,25 @@ EAPI="2"
 inherit eutils
 inherit games
 if [[ ${PV} = 9999* ]]; then
-    inherit git
+	inherit git
 fi
 
 NEED_PYTHON=2.6
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
+IUSE="graph mysql postgres sqlite"
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://git.assembla.com/fpdb.git"
 	KEYWORDS=""
-	IUSE="graph mysql postgres sqlite linguas_hu linguas_it"
+	IUSE="${IUSE} linguas_hu linguas_it"
 elif [[ ${PV} = 0.20.90* ]]; then
 	SRC_URI="mirror://sourceforge/${PN}/Snapshots/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
-	IUSE="graph mysql postgres sqlite linguas_hu linguas_it"
-else; then
+	IUSE="${IUSE} linguas_hu linguas_it"
+else
 	SRC_URI="mirror://sourceforge/${PN}/${PV}/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
-	IUSE="graph mysql postgres sqlite"
 fi
 
 LICENSE="AGPL-3"
@@ -57,7 +57,7 @@ src_install() {
 	doins -r gfx
 	doins -r pyfpdb
 
-	if [[ ${PV} >= 0.20.901 ]]; then
+	if [[ ${PV} > 0.20.900 ]]; then
 		if use linguas_hu; then
 			dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/hu/LC_MESSAGES/${PN}.mo /usr/share/locale/hu/LC_MESSAGES/${PN}.mo
 		fi
