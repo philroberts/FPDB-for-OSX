@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-08-26 18:52+CEST\n"
-"PO-Revision-Date: 2010-08-26 01:40+0200\n"
+"PO-Revision-Date: 2010-08-28 12:32+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -156,7 +156,7 @@ msgstr "A %s konfigurációs fájl nem található. Alapértelmezések használa
 
 #: Configuration.py:690
 msgid "Reading configuration file %s"
-msgstr "%s konfigurációs fájl használata"
+msgstr "%s konfigurációs fájl olvasása"
 
 #: Configuration.py:691
 msgid ""
@@ -164,11 +164,11 @@ msgid ""
 "Reading configuration file %s\n"
 msgstr ""
 "\n"
-"%s konfigurációs fájl használata\n"
+"%s konfigurációs fájl olvasása\n"
 
 #: Configuration.py:696
 msgid "Error parsing %s.  See error log file."
-msgstr "Hiba a(z) %s olvasása közben. Nézz bele a naplófájlba."
+msgstr "Hiba a(z) %s értelmezése közben. Nézz bele a hibanaplóba."
 
 #: Database.py:74
 msgid "Not using sqlalchemy connection pool."
@@ -232,11 +232,11 @@ msgstr "ERROR: a(z) %s lekérdezés eredményének nem a player_id az első oszl
 
 #: Database.py:907
 msgid "getLastInsertId(): problem fetching insert_id? ret=%d"
-msgstr "getLastInsertId(): probléma insert_id lekérdezése közben? ret=%d"
+msgstr "getLastInsertId(): probléma az insert_id lekérdezése közben? ret=%d"
 
 #: Database.py:919
 msgid "getLastInsertId(%s): problem fetching lastval? row=%d"
-msgstr "getLastInsertId(%s): probléma lastval lekérdezése közben? sor=%d"
+msgstr "getLastInsertId(%s): probléma a lastval lekérdezése közben? sor=%d"
 
 #: Database.py:926
 msgid "getLastInsertId(): unknown backend: %d"
@@ -398,7 +398,7 @@ msgstr "Hiba analyze közben:"
 
 #: Database.py:1563
 msgid "Analyze took %.1f seconds"
-msgstr "Analyze %1.f másodpercig tartott"
+msgstr "Analyze %.1f másodpercig tartott"
 
 #: Database.py:1573 Database.py:1579
 msgid "Error during vacuum:"
@@ -854,8 +854,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
-"%s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
+"s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:106 GuiLogView.py:96
 msgid "Refresh"
@@ -1242,7 +1242,7 @@ msgstr "A naplófájl "
 
 #: HUD_main.pyw:90
 msgid "HUD_main starting: using db name = %s"
-msgstr "HUD_main indítás: "
+msgstr "HUD_main indítás: %s adatbázis használata"
 
 #: HUD_main.pyw:95
 msgid "Note: error output is being diverted to:\n"
@@ -1306,15 +1306,15 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:321
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
-msgstr "HUD_main indítása\n"
+msgstr "HUD_main indítás\n"
 
 #: HUD_run_me.py:51 TournamentTracker.py:317
 msgid "Using db name = %s\n"
@@ -1772,7 +1772,7 @@ msgstr "utcTime:"
 
 #: HandHistoryConverter.py:685
 msgid "Unable to create output directory %s for HHC!"
-msgstr "A %s kimeneti könyvtár nem hozható létre a feldolgozó számára'"
+msgstr "A %s kimeneti könyvtár nem hozható létre a feldolgozó számára!"
 
 #: HandHistoryConverter.py:686
 msgid "*** ERROR: UNABLE TO CREATE OUTPUT DIRECTORY"
@@ -3136,8 +3136,8 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
-"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
+"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
 #: fpdb.pyw:1078
 msgid "Help"
@@ -3265,7 +3265,7 @@ msgid ""
 "Error No.%s please send the hand causing this to fpdb-main@lists.sourceforge."
 "net so we can fix the problem."
 msgstr ""
-"%s számú hiba. Kérlek küldd el az ezt okozo leosztást az fpdb-main@lists."
+"%s számú hiba. Kérlek küldd el az ezt okozó leosztást az fpdb-main@lists."
 "sourceforge.net címre, hogy ki tudjuk javítani a hibát."
 
 #: fpdb_import.py:520
