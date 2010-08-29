@@ -293,7 +293,7 @@ or None if we fail to get the info """
         for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS')
             cards = cards.split(', ')
-            logging.debug("readShowdownActions %s %s" %(cards, shows.group('PNAME')))
+            logging.debug(_("readShowdownActions %s %s" %(cards, shows.group('PNAME'))))
             hand.addShownCards(cards, shows.group('PNAME'))
 
 
