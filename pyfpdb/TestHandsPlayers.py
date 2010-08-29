@@ -12,7 +12,8 @@ import fpdb_import
 
 
 class FpdbError:
-    def __init__(self):
+    def __init__(self, sitename):
+        self.site = sitename
         self.errorcount = 0
         self.histogram = {}
 
@@ -28,6 +29,7 @@ class FpdbError:
         self.errorcount += 1
 
     def print_histogram(self):
+        print "%s:" % self.site
         for f in self.histogram:
             idx = f.find('regression')
             print "(%3d) : %s" %(self.histogram[f], f[idx:])
@@ -103,14 +105,25 @@ def main(argv=None):
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
 
-    errors = FpdbError()
+    PokerStarsErrors = FpdbError('PokerStars')
+    FTPErrors        = FpdbError('Full Tilt Poker')
+    PartyPokerErrors = FpdbError('Party Poker')
+    BetfairErrors    = FpdbError('Betfair')
     
-    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, errors)
+    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors)
+    walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors)
+    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors)
+    walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors)
+
+    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount
 
     print "---------------------"
-    print "Total Errors: %d" % errors.errorcount
+    print "Total Errors: %d" % totalerrors
     print "---------------------"
-    errors.print_histogram()
+    PokerStarsErrors.print_histogram()
+    FTPErrors.print_histogram()
+    PartyPokerErrors.print_histogram()
+    BetfairErrors.print_histogram()
 
 if __name__ == '__main__':
     sys.exit(main())
