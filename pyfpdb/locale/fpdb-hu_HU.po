@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2010-08-29 22:08+CEST\n"
+"POT-Creation-Date: 2010-08-30 01:30+CEST\n"
 "PO-Revision-Date: 2010-08-30 01:20+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
@@ -949,8 +949,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
-"s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
+"%s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:117
 msgid "_Add"
@@ -972,11 +972,11 @@ msgstr "Név"
 msgid "Description"
 msgstr "Leírás"
 
-#: GuiDatabase.py:128 GuiDatabase.py:459 GuiImapFetcher.py:119
+#: GuiDatabase.py:128 GuiDatabase.py:458 GuiImapFetcher.py:119
 msgid "Username"
 msgstr "Felhasználónév"
 
-#: GuiDatabase.py:129 GuiDatabase.py:466 GuiImapFetcher.py:119
+#: GuiDatabase.py:129 GuiDatabase.py:465 GuiImapFetcher.py:119
 msgid "Password"
 msgstr "Jelszó"
 
@@ -1057,62 +1057,103 @@ msgid "Please check that the PostgreSQL service has been started"
 msgstr "Kérlek ellenőrizd, hogy a PostgreSQL szolgáltatás el van-e indítva"
 
 #: GuiDatabase.py:406
-msgid "db connection to "
-msgstr "kapcsolódás az adatbázishoz "
+msgid "db connection to %s, %s, %s, %s, %s failed: %s"
+msgstr ""
 
-#: GuiDatabase.py:434
+#: GuiDatabase.py:414
+#, fuzzy
+msgid "AddDB starting"
+msgstr "readBlinds indítása"
+
+#: GuiDatabase.py:423
+#, fuzzy
+msgid "Add New Database"
+msgstr "A_datbázis"
+
+#: GuiDatabase.py:433
 msgid "DB Type"
 msgstr "Adatbázis típus"
 
-#: GuiDatabase.py:444
+#: GuiDatabase.py:443
 msgid "DB Name"
 msgstr "Adatbázis név"
 
-#: GuiDatabase.py:452
+#: GuiDatabase.py:451
 msgid "DB Description"
 msgstr "Adatbázis leírás"
 
-#: GuiDatabase.py:473
+#: GuiDatabase.py:472
 msgid "Host Computer"
 msgstr "Kiszolgáló"
 
-#: GuiDatabase.py:528
+#: GuiDatabase.py:505
+#, fuzzy
+msgid "start creating new db"
+msgstr "Hiba az indexek létrehozása közben: "
+
+#: GuiDatabase.py:524
+msgid "tested new db, result=%s"
+msgstr ""
+
+#: GuiDatabase.py:527
 msgid "Database created"
 msgstr "Adatbázis létrehozva"
 
-#: GuiDatabase.py:531
+#: GuiDatabase.py:530
 msgid "Database creation failed"
 msgstr "Adatbázis létrehozása nem sikerült"
 
-#: GuiDatabase.py:550
+#: GuiDatabase.py:543
+#, fuzzy
+msgid "check_fields: starting"
+msgstr "readBlinds indítása"
+
+#: GuiDatabase.py:549
 msgid "No Database Name given"
 msgstr "Nem lett adatbázis név megadva"
 
-#: GuiDatabase.py:553
+#: GuiDatabase.py:552
 msgid "No Database Description given"
 msgstr "Nem lett adatbázis leírás megadva"
 
-#: GuiDatabase.py:556
+#: GuiDatabase.py:555
 msgid "No Username given"
 msgstr "Nem lett felhasználónév megadva"
 
-#: GuiDatabase.py:559
+#: GuiDatabase.py:558
 msgid "No Password given"
 msgstr "Nem lett jelszó megadva"
 
-#: GuiDatabase.py:562
+#: GuiDatabase.py:561
 msgid "No Host given"
 msgstr "Nem lett kiszolgáló megadva"
 
-#: GuiDatabase.py:589
+#: GuiDatabase.py:575
+#, fuzzy
+msgid "Unknown Database Type selected"
+msgstr "Ismeretlen játéktípus: '%s'"
+
+#: GuiDatabase.py:579
+msgid "check_fields: open dialog"
+msgstr ""
+
+#: GuiDatabase.py:588
 msgid "Do you want to try again?"
 msgstr "Meg akarod próbálni újból?"
 
-#: GuiDatabase.py:702 GuiLogView.py:213
+#: GuiDatabase.py:595
+msgid "check_fields: destroy dialog"
+msgstr ""
+
+#: GuiDatabase.py:599
+msgid "check_fields: returning ok as %s, try_again as %s"
+msgstr ""
+
+#: GuiDatabase.py:701 GuiLogView.py:213
 msgid "Test Log Viewer"
 msgstr "Napló böngésző (teszt)"
 
-#: GuiDatabase.py:707 GuiLogView.py:218
+#: GuiDatabase.py:706 GuiLogView.py:218
 msgid "Log Viewer"
 msgstr "Napló böngésző"
 
@@ -1463,11 +1504,11 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:321
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
-"4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
+"%4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -2079,12 +2120,8 @@ msgid "Error finding actual seat.\n"
 msgstr "Hiba az aktuális szék keresése közben.\n"
 
 #: Hud.py:589
-msgid ""
-"------------------------------------------------------------\n"
-"Creating hud from hand %s\n"
+msgid "Creating hud from hand "
 msgstr ""
-"------------------------------------------------------------\n"
-"HUD készítése ebből a leosztásból: %s\n"
 
 #: Hud.py:638
 msgid ""
@@ -3228,8 +3265,8 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
-"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
+"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
 #: fpdb.pyw:1060
 msgid "Help"
@@ -3411,6 +3448,16 @@ msgstr ""
 "Nem találhatóak a GTK könyvtárak az útvonaladban - telepítsd a GTK-t, vagy "
 "állítsd be kézzel az útvonalat\n"
 
+#~ msgid "db connection to "
+#~ msgstr "kapcsolódás az adatbázishoz "
+
+#~ msgid ""
+#~ "------------------------------------------------------------\n"
+#~ "Creating hud from hand %s\n"
+#~ msgstr ""
+#~ "------------------------------------------------------------\n"
+#~ "HUD készítése ebből a leosztásból: %s\n"
+
 #~ msgid "Fatal Error - Config File Missing"
 #~ msgstr "Végzetes hiba - Hiányzó konfigurációs fájl"
 
@@ -3473,9 +3520,6 @@ msgstr ""
 
 #~ msgid "Table not found."
 #~ msgstr "Az asztal nem található."
-
-#~ msgid "readBlinds starting"
-#~ msgstr "readBlinds indítása"
 
 #~ msgid "re_postSB failed, hand="
 #~ msgstr "re_postSB nem sikerült, leosztás="

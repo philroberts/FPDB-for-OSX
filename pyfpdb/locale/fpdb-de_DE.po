@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
-"POT-Creation-Date: 2010-08-29 22:08+CEST\n"
-"PO-Revision-Date: 2010-08-29 20:45+0200\n"
+"POT-Creation-Date: 2010-08-30 01:19+CEST\n"
+"PO-Revision-Date: 2010-08-30 00:57+0200\n"
 "Last-Translator: Steffen Schaumburg <steffen@schaumburger.info>\n"
 "Language-Team: Fpdb\n"
 "Language: de\n"
@@ -18,21 +18,21 @@ msgstr ""
 #: AbsoluteToFpdb.py:167 BetfairToFpdb.py:114 CarbonToFpdb.py:151
 #: EverleafToFpdb.py:148 FulltiltToFpdb.py:221
 msgid "Didn't match re_HandInfo"
-msgstr ""
+msgstr "Keine Treffer für re_HandInfo"
 
 #: AbsoluteToFpdb.py:224 EverleafToFpdb.py:217 FulltiltToFpdb.py:351
 #: OnGameToFpdb.py:296 PokerStarsToFpdb.py:359 UltimateBetToFpdb.py:183
 #: Win2dayToFpdb.py:197
 msgid "reading antes"
-msgstr ""
+msgstr "Lese Antes"
 
 #: AbsoluteToFpdb.py:236 EverleafToFpdb.py:229
 msgid "No bringin found."
-msgstr ""
+msgstr "Kein Bringin gefunden."
 
 #: AbsoluteToFpdb.py:243 EverleafToFpdb.py:236
 msgid "No small blind"
-msgstr ""
+msgstr "Keine Small Blind"
 
 #: AbsoluteToFpdb.py:270
 msgid "Absolute readStudPlayerCards is only a stub."
@@ -935,11 +935,11 @@ msgstr "Name"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: GuiDatabase.py:128 GuiDatabase.py:459 GuiImapFetcher.py:119
+#: GuiDatabase.py:128 GuiDatabase.py:458 GuiImapFetcher.py:119
 msgid "Username"
 msgstr "Benutzername"
 
-#: GuiDatabase.py:129 GuiDatabase.py:466 GuiImapFetcher.py:119
+#: GuiDatabase.py:129 GuiDatabase.py:465 GuiImapFetcher.py:119
 msgid "Password"
 msgstr "Passwort"
 
@@ -1017,62 +1017,100 @@ msgid "Please check that the PostgreSQL service has been started"
 msgstr "Bitte überprüfen Sie, dass der PostgreSQL-Dienst gestartet ist"
 
 #: GuiDatabase.py:406
-msgid "db connection to "
+msgid "db connection to %s, %s, %s, %s, %s failed: %s"
 msgstr ""
 
-#: GuiDatabase.py:434
+#: GuiDatabase.py:414
+#, fuzzy
+msgid "AddDB starting"
+msgstr "fpdb startet ..."
+
+#: GuiDatabase.py:423
+#, fuzzy
+msgid "Add New Database"
+msgstr "_Datenbank"
+
+#: GuiDatabase.py:433
 msgid "DB Type"
 msgstr ""
 
-#: GuiDatabase.py:444
+#: GuiDatabase.py:443
 msgid "DB Name"
 msgstr ""
 
-#: GuiDatabase.py:452
+#: GuiDatabase.py:451
 msgid "DB Description"
 msgstr ""
 
-#: GuiDatabase.py:473
+#: GuiDatabase.py:472
 msgid "Host Computer"
 msgstr ""
 
-#: GuiDatabase.py:528
+#: GuiDatabase.py:505
+msgid "start creating new db"
+msgstr ""
+
+#: GuiDatabase.py:524
+msgid "tested new db, result=%s"
+msgstr ""
+
+#: GuiDatabase.py:527
 msgid "Database created"
 msgstr "Datenbank erstellt"
 
-#: GuiDatabase.py:531
+#: GuiDatabase.py:530
 msgid "Database creation failed"
 msgstr "Datenbankerstellung fehlgeschlagen"
 
-#: GuiDatabase.py:550
+#: GuiDatabase.py:543
+msgid "check_fields: starting"
+msgstr ""
+
+#: GuiDatabase.py:549
 msgid "No Database Name given"
 msgstr "Kein Datenbankname eingegeben"
 
-#: GuiDatabase.py:553
+#: GuiDatabase.py:552
 msgid "No Database Description given"
 msgstr "Keine Datenbankbeschreibung eingegeben"
 
-#: GuiDatabase.py:556
+#: GuiDatabase.py:555
 msgid "No Username given"
 msgstr "Kein Benutzername eingegeben"
 
-#: GuiDatabase.py:559
+#: GuiDatabase.py:558
 msgid "No Password given"
 msgstr "Kein Passwort eingegeben"
 
-#: GuiDatabase.py:562
+#: GuiDatabase.py:561
 msgid "No Host given"
 msgstr "Kein Host eingegeben"
 
-#: GuiDatabase.py:589
+#: GuiDatabase.py:575
+msgid "Unknown Database Type selected"
+msgstr ""
+
+#: GuiDatabase.py:579
+msgid "check_fields: open dialog"
+msgstr ""
+
+#: GuiDatabase.py:588
 msgid "Do you want to try again?"
 msgstr "Wollen Sie es nochmal versuchen?"
 
-#: GuiDatabase.py:702 GuiLogView.py:213
+#: GuiDatabase.py:595
+msgid "check_fields: destroy dialog"
+msgstr ""
+
+#: GuiDatabase.py:599
+msgid "check_fields: returning ok as %s, try_again as %s"
+msgstr ""
+
+#: GuiDatabase.py:701 GuiLogView.py:213
 msgid "Test Log Viewer"
 msgstr ""
 
-#: GuiDatabase.py:707 GuiLogView.py:218
+#: GuiDatabase.py:706 GuiLogView.py:218
 msgid "Log Viewer"
 msgstr ""
 
@@ -1996,9 +2034,7 @@ msgid "Error finding actual seat.\n"
 msgstr ""
 
 #: Hud.py:589
-msgid ""
-"------------------------------------------------------------\n"
-"Creating hud from hand %s\n"
+msgid "Creating hud from hand "
 msgstr ""
 
 #: Hud.py:638
