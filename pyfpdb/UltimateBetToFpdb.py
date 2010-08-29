@@ -39,7 +39,7 @@ in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
 follow :  whether to tail -f the input"""
         HandHistoryConverter.__init__(self, in_path, out_path, sitename="UltimateBet", follow=follow, index=index)
-        logging.info("Initialising UltimateBetconverter class")
+        logging.info(_("Initialising UltimateBetconverter class"))
         self.filetype = "text"
         self.codepage = "cp1252"
         self.siteId   = 6 # Needs to match id entry in Sites database
@@ -141,7 +141,7 @@ follow :  whether to tail -f the input"""
         if m:
             hand.buttonpos = int(m.group('BUTTON'))
         else:
-            logging.info('readButton: not found')
+            logging.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         logging.debug("readPlayerStacks")
@@ -180,7 +180,7 @@ follow :  whether to tail -f the input"""
             hand.setCommunityCards(street, m.group('CARDS').split(' '))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -290,7 +290,7 @@ follow :  whether to tail -f the input"""
             #elif action.group('ATYPE') == ' stands pat':
             #    hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print _("DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),))
 
 
     def readShowdownActions(self, hand):
@@ -312,9 +312,9 @@ follow :  whether to tail -f the input"""
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/pokerstars/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="regression-test-files/pokerstars/HH20090226 Natalie V - $0.10-$0.20 - HORSE.txt")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",
