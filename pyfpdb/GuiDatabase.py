@@ -300,7 +300,7 @@ class GuiDatabase:
             self.dia.show()
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _('loaddbs error: ')+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: ' \
+            print _('loadDbs error: ')+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: ' \
                       + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
 
     def sortCols(self, col, n):
@@ -368,7 +368,7 @@ class GuiDatabase:
         try:
             # is creating empty db for sqlite ... mod db.py further?
             # add noDbTables flag to db.py?
-            log.debug(_("loaddbs: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
+            log.debug(_("testDB: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
             db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
             if db.connected:
                 log.debug(_("         connected ok"))
@@ -384,14 +384,16 @@ class GuiDatabase:
             status = "failed"
             icon = gtk.STOCK_CANCEL
         except Exceptions.FpdbMySQLNoDatabase:
-            err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started")
+            err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - ") \
+                      + _("Please check that the MySQL service has been started")
             status = "failed"
             icon = gtk.STOCK_CANCEL
         except Exceptions.FpdbPostgresqlAccessDenied:
-            err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
+            err_msg = _("PostgreSQL Server reports: Access denied. Are your permissions set correctly?")
             status = "failed"
         except Exceptions.FpdbPostgresqlNoDatabase:
-            err_msg = _("Postgres client reports: Unable to connect - Please check that the Postgres service has been started")
+            err_msg = _("PostgreSQL client reports: Unable to connect - ") \
+                      + _("Please check that the PostgreSQL service has been started")
             status = "failed"
             icon = gtk.STOCK_CANCEL
         except:
