@@ -18,11 +18,15 @@ IUSE="graph mysql postgres sqlite"
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://git.assembla.com/fpdb.git"
 	KEYWORDS=""
-	IUSE="${IUSE} linguas_hu linguas_it"
+	IUSE="${IUSE} linguas_de linguas_hu"
 elif [[ ${PV} = 0.20.90* ]]; then
 	SRC_URI="mirror://sourceforge/${PN}/Snapshots/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
-	IUSE="${IUSE} linguas_hu linguas_it"
+	if [[ ${PV} > 0.20.906 ]]; then
+		IUSE="${IUSE} linguas_de linguas_hu"
+	elif [[ ${PV} > 0.20.904 ]]; then
+		IUSE="${IUSE} linguas_hu"
+	fi
 else
 	SRC_URI="mirror://sourceforge/${PN}/${PV}/${P}.tar.bz2"
 	KEYWORDS="~amd64 ~x86"
@@ -57,14 +61,17 @@ src_install() {
 	doins -r gfx
 	doins -r pyfpdb
 
-	if [[ ${PV} > 0.20.900 ]]; then
+	if [[ ${PV} > 0.20.904 ]]; then
 		if use linguas_hu; then
-			dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/hu/LC_MESSAGES/${PN}.mo /usr/share/locale/hu/LC_MESSAGES/${PN}.mo
+			msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo
 		fi
+		domo pyfpdb/locale/*.mo
 
-		if use linguas_it; then
-			dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/it/LC_MESSAGES/${PN}.mo /usr/share/locale/it/LC_MESSAGES/${PN}.mo
+	elif [[ ${PV} > 0.20.906 ]]; then
+		if use linguas_de; then
+			msgfmt pyfpdb/locale/fpdb-de_DE.po -o pyfpdb/locale/de.mo
 		fi
+		domo pyfpdb/locale/*.mo	
 	fi
 
 	doins readme.txt
