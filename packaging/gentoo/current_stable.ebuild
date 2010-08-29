@@ -7,7 +7,7 @@ EAPI="2"
 inherit eutils
 inherit games
 
-NEED_PYTHON=2.5
+NEED_PYTHON=2.6
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"

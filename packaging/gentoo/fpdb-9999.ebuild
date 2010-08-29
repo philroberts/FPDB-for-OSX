@@ -8,7 +8,7 @@ inherit eutils
 inherit games
 inherit git
 
-NEED_PYTHON=2.5
+NEED_PYTHON=2.6
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
@@ -17,9 +17,8 @@ EGIT_REPO_URI="git://git.assembla.com/fpdb.git"
 LICENSE="AGPL-3"
 SLOT="0"
 KEYWORDS=""
-#note: this should work on other architectures too, please send me your experiences
 
-IUSE="graph mysql postgres sqlite linguas_hu linguas_it"
+IUSE="graph mysql postgres sqlite linguas_de linguas_hu"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -44,13 +43,15 @@ src_install() {
 	doins -r gfx
 	doins -r pyfpdb
 
+	if use linguas_de; then
+		msgfmt pyfpdb/locale/fpdb-de_DE.po -o pyfpdb/locale/de.mo 
+	fi
+	
 	if use linguas_hu; then
-		dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/hu/LC_MESSAGES/${PN}.mo /usr/share/locale/hu/LC_MESSAGES/${PN}.mo
+		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo 
 	fi
-
-	if use linguas_it; then
-		dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/it/LC_MESSAGES/${PN}.mo /usr/share/locale/it/LC_MESSAGES/${PN}.mo
-	fi
+	
+	domo pyfpdb/locale/*.mo 
 
 	doins readme.txt
 
