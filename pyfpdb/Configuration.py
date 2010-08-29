@@ -132,8 +132,8 @@ def get_config(file_name, fallback = True):
                 print msg
                 logging.info(msg)
         except:
-            print _("Error copying .example file, cannot fall back. Exiting.\n")
-            sys.stderr.write(_("Error copying .example file, cannot fall back. Exiting.\n"))
+            print _("Error copying .example config file, cannot fall back. Exiting.\n")
+            sys.stderr.write(_("Error copying .example config file, cannot fall back. Exiting.\n"))
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
     elif fallback:
