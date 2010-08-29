@@ -44,14 +44,14 @@ src_install() {
 	doins -r pyfpdb
 
 	if use linguas_de; then
-		msgfmt pyfpdb/locale/fpdb-de_DE.po -o pyfpdb/locale/de.mo 
+		msgfmt pyfpdb/locale/fpdb-de_DE.po -o pyfpdb/locale/de.mo
 	fi
-	
+
 	if use linguas_hu; then
-		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo 
+		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo
 	fi
-	
-	domo pyfpdb/locale/*.mo 
+
+	domo pyfpdb/locale/*.mo
 
 	doins readme.txt
 
