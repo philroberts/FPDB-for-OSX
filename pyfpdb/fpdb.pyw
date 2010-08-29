@@ -52,7 +52,7 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' no
         else:
             os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
-        print _("\npython 2.5 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
+        print _("\npython 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
         raw_input(_("Press ENTER to continue."))
         exit()
 else:
@@ -86,7 +86,7 @@ try:
     import gtk
     import pango
 except:
-    print _("Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
+    print _("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
     raw_input(_("Press ENTER to continue."))
     exit()
 
@@ -436,7 +436,7 @@ class fpdb:
         diaHudTable.vbox.add(label)
         label.show()
         
-        label=gtk.Label(_("To configure things like colouring you will still have to manually edit your HUD_config.xml."))
+        label=gtk.Label(_("To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
         label.show()
         
@@ -545,7 +545,7 @@ class fpdb:
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
             diastring = _("Please confirm that you want to (re-)create the tables. If there already are tables in the database ") \
-                        +self.db.database+" on "+self.db.host+_(" they will be deleted.\nThis may take a while.")
+                        +self.db.database+" on "+self.db.host+_(" they will be deleted and you will have to re-import your histories.\nThis may take a while.")
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             dia_confirm.set_deletable(False)
