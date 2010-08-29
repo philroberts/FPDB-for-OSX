@@ -19,6 +19,10 @@
 import Card
 from decimal import Decimal
 
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
+
 DEBUG = False
 
 if DEBUG:

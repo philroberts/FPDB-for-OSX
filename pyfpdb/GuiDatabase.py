@@ -19,6 +19,7 @@ import os
 import sys
 import traceback
 import Queue
+import re
 
 import pygtk
 pygtk.require('2.0')
@@ -32,6 +33,7 @@ log = logging.getLogger("maintdbs")
 
 
 import Exceptions
+import Configuration
 import Database
 import SQL
 
@@ -79,7 +81,16 @@ class GuiDatabase:
         try:
             #self.dia.set_modal(True)
             self.vbox = self.dia.vbox
+            self.action_area = self.dia.action_area
             #gtk.Widget.set_size_request(self.vbox, 700, 400);
+
+            h = gtk.HBox(False, spacing=3)
+            h.show()
+            self.vbox.pack_start(h, padding=3)
+
+            vbtn = gtk.VBox(True, spacing=3)
+            vbtn.show()
+            h.pack_start(vbtn, expand=False, fill=False, padding=2)
 
             # list of databases in self.config.supported_databases:
             self.liststore = gtk.ListStore(str, str, str, str, str
@@ -101,12 +112,15 @@ class GuiDatabase:
             self.scrolledwindow = gtk.ScrolledWindow()
             self.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
             self.scrolledwindow.add(self.listview)
-            self.vbox.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
+            h.pack_start(self.scrolledwindow, expand=True, fill=True, padding=0)
 
-            refreshbutton = gtk.Button(_("Refresh"))
-            refreshbutton.connect("clicked", self.refresh, None)
-            self.vbox.pack_start(refreshbutton, False, False, 3)
-            refreshbutton.show()
+            add_button = SideButton(_("_Add"), gtk.STOCK_ADD)
+            add_button.connect("clicked", self.addDB, None)
+            vbtn.pack_start(add_button, False, False, 3)
+
+            refresh_button = SideButton(_("_Refresh"), gtk.STOCK_REFRESH)
+            refresh_button.connect("clicked", self.refresh, None)
+            vbtn.pack_start(refresh_button, False, False, 3)
 
             col = self.addTextColumn(_("Type"), 0, False)
             col = self.addTextColumn(_("Name"), 1, False)
@@ -114,7 +128,7 @@ class GuiDatabase:
             col = self.addTextColumn(_("Username"), 3, True)
             col = self.addTextColumn(_("Password"), 4, True)
             col = self.addTextColumn(_("Host"), 5, True)
-            col = self.addTextObjColumn(_("Default"), 6, 6)
+            col = self.addTextObjColumn(_("Open"), 6, 6)
             col = self.addTextObjColumn(_("Status"), 7, 8)
 
             #self.listview.get_selection().set_mode(gtk.SELECTION_SINGLE)
@@ -122,6 +136,7 @@ class GuiDatabase:
             self.listview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
             self.listview.connect('button_press_event', self.selectTest)
 
+            self.dia.show_all()
             self.loadDbs()
 
             #self.dia.connect('response', self.dialog_response_cb)
@@ -248,9 +263,9 @@ class GuiDatabase:
 
         self.liststore.clear()
         #self.listcols = []
-        dia = self.info_box2(None, _('Testing database connections ... '), "", False, False)
+        dia = InfoBox( parent=self.dia, str1=_('Testing database connections ... ') )
         while gtk.events_pending():
-            gtk.mainiteration() 
+            gtk.main_iteration() 
 
         try:
             # want to fill: dbms, name, comment, user, passwd, host, default, status, icon
@@ -268,57 +283,14 @@ class GuiDatabase:
                 default = (name == self.config.db_selected)
                 default_icon = None
                 if default:  default_icon = gtk.STOCK_APPLY
-                status = ""
-                icon = None
-                err_msg = ""
                 
-                sql = SQL.Sql(db_server=dbms)
-                db = Database.Database(self.config, sql = sql, autoconnect = False)
-                # try to connect to db, set status and err_msg if it fails
-                try:
-                    # is creating empty db for sqlite ... mod db.py further?
-                    # add noDbTables flag to db.py?
-                    log.debug(_("loaddbs: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
-                    db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
-                    if db.connected:
-                        log.debug(_("         connected ok"))
-                        status = 'ok'
-                        icon = gtk.STOCK_APPLY
-                        if db.wrongDbVersion:
-                            status = 'old'
-                            icon = gtk.STOCK_INFO
-                    else:
-                        log.debug(_("         not connected but no exception"))
-                except Exceptions.FpdbMySQLAccessDenied:
-                    err_msg = _("MySQL Server reports: Access denied. Are your permissions set correctly?")
-                    status = "failed"
-                    icon = gtk.STOCK_CANCEL
-                except Exceptions.FpdbMySQLNoDatabase:
-                    err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started")
-                    status = "failed"
-                    icon = gtk.STOCK_CANCEL
-                except Exceptions.FpdbPostgresqlAccessDenied:
-                    err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
-                    status = "failed"
-                except Exceptions.FpdbPostgresqlNoDatabase:
-                    err_msg = _("Postgres client reports: Unable to connect - Please check that the Postgres service has been started")
-                    status = "failed"
-                    icon = gtk.STOCK_CANCEL
-                except:
-                    err = traceback.extract_tb(sys.exc_info()[2])[-1]
-                    log.info( 'db connection to '+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
-                              + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1]) )#TODO Gettextify
-                    status = "failed"
-                    icon = gtk.STOCK_CANCEL
-                if err_msg:
-                    log.info( 'db connection to '+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
-                              + err_msg )#TODO Gettextify
+                status, err_msg, icon = GuiDatabase.testDB(self.config, dbms, dbms_num, name, user, passwd, host)
 
                 b = gtk.Button(name)
                 b.show()
                 iter = self.liststore.append( (dbms, name, comment, user, passwd, host, "", default_icon, status, icon) )
 
-            self.info_box2(dia[0], _("finished."), "", False, True)
+            dia.add_msg( _("finished."), False, True )
             self.listview.show()
             self.scrolledwindow.show()
             self.vbox.show()
@@ -356,64 +328,368 @@ class GuiDatabase:
     def refresh(self, widget, data):
         self.loadDbs()
 
-    def info_box(self, dia, str1, str2, run, destroy):
-        if dia is None:
-            #if run:  
-            btns = gtk.BUTTONS_NONE
-            btns = gtk.BUTTONS_OK
-            dia = gtk.MessageDialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
-                                   , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
-            # try to remove buttons!
-            # (main message is in inverse video if no buttons, so try removing them after 
-            # creating dialog)
-            # NO! message just goes back to inverse video :-(    use info_box2 instead
-            for c in dia.vbox.get_children():
-                if isinstance(c, gtk.HButtonBox):
-                    for d in c.get_children():
-                        log.info('child: '+str(d)+' is a '+str(d.__class__))
-                        if isinstance(d, gtk.Button):
-                            log.info(_('removing button %s'% str(d)))
-                            c.remove(d)
-            if str2:
-                dia.format_secondary_text(str2)
-        else:
-            dia.set_markup(str1)
-            if str2:
-                dia.format_secondary_text(str2)
-        dia.show()
-        response = None
-        if run:      response = dia.run()
-        if destroy:  dia.destroy()
-        return (dia, response)
+    def addDB(self, widget, data):
+        adb = AddDB(self.config, self.dia)
+        (status, err_msg, icon, dbms, dbms_num, name, comment, user, passwd, host) = adb.run()
+        adb.destroy()
 
-    def info_box2(self, dia, str1, str2, run, destroy):
-        if dia is None:
-            # create dialog and add icon and label
-            btns = (gtk.BUTTONS_OK)
-            btns = None
-            # messagedialog puts text in inverse colors if no buttons are displayed??
-            #dia = gtk.MessageDialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
-            #                       , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
-            dia = gtk.Dialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
-                            , title="" ) # , buttons=btns
-            vbox = dia.vbox
+        # save in liststore
+        if status == 'ok':
+            iter = self.liststore.append( (dbms, name, comment, user, passwd, host, "", None, status, icon) )
+
+            # keep config save code in line with edited_cb()? call common routine?
+
+            valid = True
+            # Validate new value (only for dbms so far, but dbms now not updateable so no validation at all!)
+            #if col == self.COL_DBMS:
+            #    if new_text not in Configuration.DATABASE_TYPES:
+            #        valid = False
+
+            if valid:
+                self.config.add_db_parameters( db_server = dbms
+                                             , db_name = name
+                                             , db_desc = comment
+                                             , db_ip   = host
+                                             , db_user = user
+                                             , db_pass = passwd )
+                self.config.save()
+                self.changes = False
+
+
+    @staticmethod
+    def testDB(config, dbms, dbms_num, name, user, passwd, host):
+        status = ""
+        icon = None
+        err_msg = ""
+
+        sql = SQL.Sql(db_server=dbms)
+        db = Database.Database(config, sql = sql, autoconnect = False)
+        # try to connect to db, set status and err_msg if it fails
+        try:
+            # is creating empty db for sqlite ... mod db.py further?
+            # add noDbTables flag to db.py?
+            log.debug(_("loaddbs: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
+            db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
+            if db.connected:
+                log.debug(_("         connected ok"))
+                status = 'ok'
+                icon = gtk.STOCK_APPLY
+                if db.wrongDbVersion:
+                    status = 'old'
+                    icon = gtk.STOCK_INFO
+            else:
+                log.debug(_("         not connected but no exception"))
+        except Exceptions.FpdbMySQLAccessDenied:
+            err_msg = _("MySQL Server reports: Access denied. Are your permissions set correctly?")
+            status = "failed"
+            icon = gtk.STOCK_CANCEL
+        except Exceptions.FpdbMySQLNoDatabase:
+            err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started")
+            status = "failed"
+            icon = gtk.STOCK_CANCEL
+        except Exceptions.FpdbPostgresqlAccessDenied:
+            err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
+            status = "failed"
+        except Exceptions.FpdbPostgresqlNoDatabase:
+            err_msg = _("Postgres client reports: Unable to connect - Please check that the Postgres service has been started")
+            status = "failed"
+            icon = gtk.STOCK_CANCEL
+        except:
+            # add more specific exceptions here if found (e.g. for sqlite?)
+            err = traceback.extract_tb(sys.exc_info()[2])[-1]
+            err_msg = err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
+            status = "failed"
+            icon = gtk.STOCK_CANCEL
+        if err_msg:
+            log.info( _('db connection to ') + str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
+                      + err_msg )
+
+        return( status, err_msg, icon )
+
+
+class AddDB(gtk.Dialog):
+
+    def __init__(self, config, parent):
+        log.debug("AddDB starting")
+        self.dbnames = { 'Sqlite'     : Configuration.DATABASE_TYPE_SQLITE
+                       , 'MySQL'      : Configuration.DATABASE_TYPE_MYSQL
+                       , 'PostgreSQL' : Configuration.DATABASE_TYPE_POSTGRESQL
+                       }
+        self.config = config
+        # create dialog and add icon and label
+        super(AddDB,self).__init__( parent=parent
+                                  , flags=gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT
+                                  , title="Add New Database"
+                                  , buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT
+                                              ,gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
+                                  ) # , buttons=btns
+        self.set_default_size(450, 280)
+        #self.connect('response', self.response_cb)
+
+        t = gtk.Table(5, 3, True)
+        self.vbox.pack_start(t, expand=False, fill=False, padding=3)
+
+        l = gtk.Label( _("DB Type") )
+        l.set_alignment(1.0, 0.5)
+        t.attach(l, 0, 1, 0, 1, xpadding=3)
+        self.cb_dbms = gtk.combo_box_new_text()
+        for s in ('Sqlite',):  # keys(self.dbnames):
+            self.cb_dbms.append_text(s)
+        self.cb_dbms.set_active(0)
+        t.attach(self.cb_dbms, 1, 3, 0, 1, xpadding=3)
+        self.cb_dbms.connect("changed", self.db_type_changed, None)
+
+        l = gtk.Label( _("DB Name") )
+        l.set_alignment(1.0, 0.5)
+        t.attach(l, 0, 1, 1, 2, xpadding=3)
+        self.e_db_name = gtk.Entry()
+        self.e_db_name.set_width_chars(15)
+        t.attach(self.e_db_name, 1, 3, 1, 2, xpadding=3)
+        self.e_db_name.connect("focus-out-event", self.db_name_changed, None)
+
+        l = gtk.Label( _("DB Description") )
+        l.set_alignment(1.0, 0.5)
+        t.attach(l, 0, 1, 2, 3, xpadding=3)
+        self.e_db_desc = gtk.Entry()
+        self.e_db_desc.set_width_chars(15)
+        t.attach(self.e_db_desc, 1, 3, 2, 3, xpadding=3)
+
+        self.l_username = gtk.Label( _("Username") )
+        self.l_username.set_alignment(1.0, 0.5)
+        t.attach(self.l_username, 0, 1, 3, 4, xpadding=3)
+        self.e_username = gtk.Entry()
+        self.e_username.set_width_chars(15)
+        t.attach(self.e_username, 1, 3, 3, 4, xpadding=3)
+
+        self.l_password = gtk.Label( _("Password") )
+        self.l_password.set_alignment(1.0, 0.5)
+        t.attach(self.l_password, 0, 1, 4, 5, xpadding=3)
+        self.e_password = gtk.Entry()
+        self.e_password.set_width_chars(15)
+        t.attach(self.e_password, 1, 3, 4, 5, xpadding=3)
+
+        self.l_host = gtk.Label( _("Host Computer") )
+        self.l_host.set_alignment(1.0, 0.5)
+        t.attach(self.l_host, 0, 1, 5, 6, xpadding=3)
+        self.e_host = gtk.Entry()
+        self.e_host.set_width_chars(15)
+        self.e_host.set_text("localhost")
+        t.attach(self.e_host, 1, 3, 5, 6, xpadding=3)
+
+        parent.show_all()
+        self.show_all()
+
+        # hide username/password fields as not used by sqlite
+        self.l_username.hide()
+        self.e_username.hide()
+        self.l_password.hide()
+        self.e_password.hide()
+
+    def run(self):
+        response = super(AddDB,self).run()
+        log.debug("adddb.run: response is "+str(response)+" accept is "+str(int(gtk.RESPONSE_ACCEPT)))
+
+        ok,retry = False,True
+        while response == gtk.RESPONSE_ACCEPT:
+            ok,retry = self.check_fields()
+            if retry:
+                response = super(AddDB,self).run()
+            else:
+                response = gtk.RESPONSE_REJECT
+
+        (status, err_msg, icon, dbms, dbms_num
+        ,name, db_desc, user, passwd, host) = ("error", "error", None, None, None
+                                              ,None, None, None, None, None)
+        if ok:
+            log.debug("start creating new db")
+            # add a new db
+            master_password = None
+            dbms     = self.dbnames[ self.cb_dbms.get_active_text() ]
+            dbms_num = self.config.get_backend(dbms)
+            name     = self.e_db_name.get_text()
+            db_desc  = self.e_db_desc.get_text()
+            user     = self.e_username.get_text()
+            passwd   = self.e_password.get_text()
+            host     = self.e_host.get_text()
             
-            h = gtk.HBox(False, 2)
-            i = gtk.Image()
-            i.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_DIALOG)
-            l = gtk.Label(str1)
-            h.pack_start(i, padding=5)
-            h.pack_start(l, padding=5)
-            vbox.pack_start(h)
+            # TODO:
+            # if self.cb_dbms.get_active_text() == 'Postgres':
+            #     <ask for postgres master password>
+            
+            # create_db()  in Database.py or here? ... TODO
+
+            # test db after creating?
+            status, err_msg, icon = GuiDatabase.testDB(self.config, dbms, dbms_num, name, user, passwd, host)
+            log.debug('tested new db, result='+str((status,err_msg)))
+            if status == 'ok':
+                #dia = InfoBox( parent=self, str1=_('Database created') )
+                str1 = _('Database created')
+            else:
+                #dia = InfoBox( parent=self, str1=_('Database creation failed') )
+                str1 = _('Database creation failed')
+            #dia.add_msg("", True, True)
+            btns = (gtk.BUTTONS_OK)
+            dia = gtk.MessageDialog( parent=self, flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                                   , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
+            dia.run()
+
+        return( (status, err_msg, icon, dbms, dbms_num, name, db_desc, user, passwd, host) )
+
+    def check_fields(self):
+        """check fields and return true/false according to whether user wants to try again
+           return False if fields are ok
+        """
+        log.debug("check_fields: starting")
+        try_again = False
+        ok = True
+
+        # checks for all db's
+        if self.e_db_name.get_text() == "":
+            msg = _("No Database Name given")
+            ok = False
+        elif self.e_db_desc.get_text() is None or self.e_db_desc.get_text() == "":
+            msg = _("No Database Description given")
+            ok = False
+        elif self.cb_dbms.get_active_text() != 'Sqlite' and self.e_username.get_text() == "":
+            msg = _("No Username given")
+            ok = False
+        elif self.cb_dbms.get_active_text() != 'Sqlite' and self.e_password.get_text() == "":
+            msg = _("No Password given")
+            ok = False
+        elif self.e_host.get_text() == "":
+            msg = _("No Host given")
+            ok = False
+
+        if ok:
+            if self.cb_dbms.get_active_text() == 'Sqlite':
+                # checks for sqlite
+                pass
+            elif self.cb_dbms.get_active_text() == 'MySQL':
+                # checks for mysql
+                pass
+            elif self.cb_dbms.get_active_text() == 'Postgres':
+                # checks for postgres
+                pass
+            else:
+                msg = "Unknown Database Type selected"
+                ok = False
+
+        if not ok:
+            log.debug("check_fields: open dialog")
+            dia = gtk.MessageDialog( parent=self
+                                   , flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                                   , type=gtk.MESSAGE_ERROR
+                                   , message_format=msg
+                                   , buttons = gtk.BUTTONS_YES_NO
+                                   )
+            #l = gtk.Label(msg)
+            #dia.vbox.add(l)
+            l = gtk.Label( _("Do you want to try again?") )
+            dia.vbox.add(l)
+            dia.show_all()
+            ret = dia.run()
+            log.debug("check_fields: ret is "+str(ret)+" cancel is "+str(int(gtk.RESPONSE_CANCEL)))
+            if ret == gtk.RESPONSE_YES:
+                try_again = True
+            log.debug("check_fields: destroy dialog")
+            dia.hide()
+            dia.destroy()
+
+        log.debug("check_fields: returning ok as "+str(ok)+", try_again as "+str(try_again))
+        return(ok,try_again)
+
+    def db_type_changed(self, widget, data):
+        if self.cb_dbms.get_active_text() == 'Sqlite':
+            self.l_username.hide()
+            self.e_username.hide()
+            self.e_username.set_text("")
+            self.l_password.hide()
+            self.e_password.hide()
+            self.e_password.set_text("")
         else:
-            # add extra label
-            vbox = dia.vbox
-            vbox.pack_start( gtk.Label(str1) )
-        dia.show_all()
+            self.l_username.show()
+            self.e_username.show()
+            self.l_password.show()
+            self.e_password.show()
+        return(response)
+
+    def db_name_changed(self, widget, event, data):
+        log.debug('db_name_changed: text='+widget.get_text())
+        if not re.match('\....$', widget.get_text()):
+            widget.set_text(widget.get_text()+'.db3')
+            widget.show()
+
+    #def response_cb(self, dialog, data):
+    #    dialog.destroy()
+    #    return(data)
+
+
+class InfoBox(gtk.Dialog):
+
+    def __init__(self, parent, str1):
+        # create dialog and add icon and label
+        btns = (gtk.BUTTONS_OK)
+        btns = None
+        # messagedialog puts text in inverse colors if no buttons are displayed??
+        #dia = gtk.MessageDialog( parent=self.main_window, flags=gtk.DIALOG_DESTROY_WITH_PARENT
+        #                       , type=gtk.MESSAGE_INFO, buttons=(btns), message_format=str1 )
+        # so just use Dialog instead
+        super(InfoBox,self).__init__( parent=parent
+                                    , flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                                    , title="" ) # , buttons=btns
+        
+        h = gtk.HBox(False, 2)
+        i = gtk.Image()
+        i.set_from_stock(gtk.STOCK_DIALOG_INFO, gtk.ICON_SIZE_DIALOG)
+        l = gtk.Label(str1)
+        h.pack_start(i, padding=5)
+        h.pack_start(l, padding=5)
+        self.vbox.pack_start(h)
+        parent.show_all()
+        self.show_all()
+
+    def add_msg(self, str1, run, destroy):
+        # add extra label
+        self.vbox.pack_start( gtk.Label(str1) )
+        self.show_all()
         response = None
-        if run:      response = dia.run()
-        if destroy:  dia.destroy()
-        return (dia, response)
+        if run:      response = self.run()
+        if destroy:  self.destroy()
+        return (response)
+
+
+class SideButton(gtk.Button):
+    """Create a button with the label below the icon"""
+
+    # to change label on buttons:
+    # ( see http://faq.pygtk.org/index.py?req=show&file=faq09.005.htp )
+    # gtk.stock_add([(gtk.STOCK_ADD, _("Add"), 0, 0, "")])
+
+    # alternatively:
+    # button = gtk.Button(stock=gtk.STOCK_CANCEL)
+    # button.show()
+    # alignment = button.get_children()[0]
+    # hbox = alignment.get_children()[0]
+    # image, label = hbox.get_children()
+    # label.set_text('Hide')
+
+    def __init__(self, label=None, stock=None, use_underline=True):
+        gtk.stock_add([(stock, label, 0, 0, "")])
+
+        super(SideButton, self).__init__(label=label, stock=stock, use_underline=True)
+        alignment = self.get_children()[0]
+        hbox = alignment.get_children()[0]
+        image, label = hbox.get_children()
+        #label.set_text('Hide')
+        hbox.remove(image)
+        hbox.remove(label)
+        v = gtk.VBox(False, spacing=3)
+        v.pack_start(image, 3)
+        v.pack_start(label, 3)
+        alignment.remove(hbox)
+        alignment.add(v)
+        self.show_all()
+
 
 
 if __name__=="__main__":

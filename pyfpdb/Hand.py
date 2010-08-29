@@ -62,6 +62,7 @@ class Hand(object):
 
 
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
+        #log.debug( _("Hand.init(): handText is ") + str(handText) )
         self.config = config
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
@@ -314,7 +315,7 @@ If a player has None chips he won't be added."""
             log.debug("markStreets:\n"+ str(self.streets))
         else:
             tmp = self.handText[0:100]
-            log.error(_("markstreets didn't match - Assuming hand cancelled"))
+            log.error(_("markstreets didn't match - Assuming hand %s was cancelled") % self.handid)
             self.cancelled = True
             raise FpdbParseError(_("FpdbParseError: markStreets appeared to fail: First 100 chars: '%s'") % tmp)
 
