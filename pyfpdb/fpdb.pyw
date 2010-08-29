@@ -756,24 +756,6 @@ class fpdb:
     def dia_save_profile(self, widget, data=None):
         self.warning_box(_("Unimplemented: Save Profile (try saving a HUD layout, that should do it)"))
 
-    def diaSetupWizard(self, path):
-        diaSetupWizard = gtk.Dialog(title=_("Fatal Error - Config File Missing"), parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
-
-        label = gtk.Label(_("Please copy the config file from the docs folder to:"))
-        diaSetupWizard.vbox.add(label)
-        label.show()
-
-        label = gtk.Label(path)
-        diaSetupWizard.vbox.add(label)
-        label.show()
-
-        label = gtk.Label(_("and edit it according to the install documentation at http://fpdb.sourceforge.net"))
-        diaSetupWizard.vbox.add(label)
-        label.show()
-
-        response = diaSetupWizard.run()
-        sys.exit(1)
-
     def get_menu(self, window):
         """returns the menu for this program"""
         fpdbmenu = """
