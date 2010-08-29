@@ -19,6 +19,13 @@
 ########################################################################
 
 import sys
+import exceptions
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("parser")
+
+
 import Configuration
 from HandHistoryConverter import *
 from decimal import Decimal
@@ -65,7 +72,6 @@ class OnGame(HandHistoryConverter):
              #             '5 Card Draw' : ('draw','fivedraw')
                }
 
-        #self.rexx.setGameInfoRegex('.*Blinds \$?(?P<SB>[.0-9]+)/\$?(?P<BB>[.0-9]+)')
     # Static regexes
     # ***** End of hand R5-75443872-57 *****
     re_SplitHands = re.compile(u'\*\*\*\*\*\sEnd\sof\shand\s[-A-Z\d]+.*\n(?=\*)')
@@ -73,6 +79,18 @@ class OnGame(HandHistoryConverter):
     # ***** History for hand R5-75443872-57 *****
     # Start hand: Wed Aug 18 19:29:10 GMT+0100 2010
     # Table: someplace [75443872] (LIMIT TEXAS_HOLDEM 0.50/1, Real money)
+#***** History for hand R5-78042004-262 *****
+#Start hand: Fri Aug 27 21:40:46 GMT+0100 2010
+#Table: Bamako [78042004] (LIMIT TEXAS_HOLDEM $0.25/$0.50, Real money)
+#User: sagi34
+#{ u'BB': None
+#, u'DATETIME': u'Fri Aug 27 22:38:26 GMT+0100 2010\\n'
+#, u'GAME': None
+#, u'HID': u'R5-78042004-346'
+#, u'TABLE': u'Bamako'
+#, u'LIMIT': None
+#, u'SB': None
+#}
     re_HandInfo = re.compile(u"""
             \*\*\*\*\*\sHistory\sfor\shand\s(?P<HID>[-A-Z\d]+).*
             Start\shand:\s(?P<DATETIME>.*)
@@ -80,8 +98,8 @@ class OnGame(HandHistoryConverter):
             (
             (?P<LIMIT>NO_LIMIT|Limit|LIMIT|Pot\sLimit)\s
             (?P<GAME>TEXAS_HOLDEM|RAZZ)\s
-            (?P<SB>[.0-9]+)/
-            (?P<BB>[.0-9]+)
+            (%(LS)s)?(?P<SB>[.0-9]+)/
+            (%(LS)s)?(?P<BB>[.0-9]+)
             )?
             """ % substitutions, re.MULTILINE|re.DOTALL|re.VERBOSE)
 
@@ -102,7 +120,9 @@ class OnGame(HandHistoryConverter):
     #    self.rexx.button_re = re.compile('#SUMMARY\nDealer: (?P<BUTTONPNAME>.*)\n')
         
     #Seat 1: .Lucchess ($4.17 in chips) 
-    re_PlayerInfo = re.compile(u'Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \((?P<CASH>[.0-9]+)\)')
+    #Seat 1: phantomaas ($27.11)
+    #Seat 5: mleo17 ($9.37)
+    re_PlayerInfo = re.compile(u'Seat (?P<SEAT>[0-9]+):\s(?P<PNAME>.*)\s\((%(LS)s)?(?P<CASH>[.0-9]+)\)' % substitutions)
 
     def compilePlayerRegexs(self, hand):
         players = set([player[1] for player in hand.players])
@@ -117,23 +137,28 @@ class OnGame(HandHistoryConverter):
             #helander2222 posts blind ($0.25), lopllopl posts blind ($0.50).
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
-            self.re_PostSB    = re.compile('(?P<PNAME>.*) posts small blind \(\$?(?P<SB>[.0-9]+)\)')
-            self.re_PostBB    = re.compile('\), (?P<PNAME>.*) posts big blind \(\$?(?P<BB>[.0-9]+)\)')
-            self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante %(CUR)s(?P<ANTE>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for %(CUR)s(?P<BRINGIN>[.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \(\$? (?P<SBBB>[.0-9]+)\)')
+            self.re_PostSB    = re.compile('(?P<PNAME>.*) posts small blind \((%(CUR)s)?(?P<SB>[\.0-9]+)\)' % subst, re.MULTILINE)
+            self.re_PostBB    = re.compile('\), (?P<PNAME>.*) posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % subst, re.MULTILINE)
+            self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % subst, re.MULTILINE)
+            self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % subst, re.MULTILINE)
+            self.re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
             self.re_HeroCards = re.compile('Dealing\sto\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
             #lopllopl checks, Eurolll checks, .Lucchess checks.
-            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (?P<BET>\d*\.?\d*))?( and is all-in)?')
+            #chumley. calls $0.25
+            self.re_Action = re.compile('(, )?(?P<PNAME>.*?)(?P<ATYPE> bets| checks| raises| calls| folds)( (%(CUR)s)?(?P<BET>[\d\.]+))?( and is all-in)?' % subst)
             #self.re_Board = re.compile(r"\[board cards (?P<CARDS>.+) \]")
 
             #Uchilka shows [ KC,JD ]
             self.re_ShowdownAction = re.compile('(?P<PNAME>.*) shows \[ (?P<CARDS>.+) \]')
 
-            # TODO: read SUMMARY correctly for collected pot stuff.
-            # Main pot: 6.75 won by player3 (6.45)
-            self.re_CollectPot = re.compile('Main pot: (?P<POT>\d*\.?\d*) won by %(PLYR)s' % subst)
+            #Main pot: $3.57 won by mleo17 ($3.40)
+            #Side pot 1: $3.26 won by maac_5 ($3.10)
+            #Main pot: $2.87 won by maac_5 ($1.37), sagi34 ($1.36)
+            self.re_Pot = re.compile('(Main|Side)\spot(\s\d+)?:\s.*won\sby\s(?P<POT>.*$)', re.MULTILINE)
+            self.re_CollectPot = re.compile('\s*(?P<PNAME>.*)\s\((%(CUR)s)?(?P<POT>[\.\d]+)\)' % subst)
+            #Seat 5: mleo17 ($3.40), net: +$2.57, [Jd, Qd] (TWO_PAIR QUEEN, JACK)
+            self.re_ShownCards = re.compile("^Seat (?P<SEAT>[0-9]+): (?P<PNAME>.*) \(.*\), net:.* \[(?P<CARDS>.*)\].*" % subst, re.MULTILINE)
             self.re_sitsOut    = re.compile('(?P<PNAME>.*) sits out')
 
     def readSupportedGames(self):
@@ -160,7 +185,13 @@ class OnGame(HandHistoryConverter):
         info['currency'] = 'USD'
 
         if 'LIMIT' in mg:
-            info['limitType'] = self.limits[mg['LIMIT']]
+            if mg['LIMIT'] in self.limits:
+                info['limitType'] = self.limits[mg['LIMIT']]
+            else:
+                tmp = handText[0:100]
+                log.error(_("determineGameType: limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("limit not found in self.limits(%s). hand: '%s'") % (str(mg),tmp))
         if 'GAME' in mg:
             (info['base'], info['category']) = self.games[mg['GAME']]
         if 'SB' in mg:
@@ -168,6 +199,7 @@ class OnGame(HandHistoryConverter):
         if 'BB' in mg:
             info['bb'] = mg['BB']
 
+        #log.debug("determinegametype: returning "+str(info))
         return info
 
     def readHandInfo(self, hand):
@@ -177,7 +209,7 @@ class OnGame(HandHistoryConverter):
         if m:
             info.update(m.groupdict())
 
-        log.debug("readHandInfo: %s" % info)
+        #log.debug("readHandInfo: %s" % info)
         for key in info:
             if key == 'DATETIME':
                 #'Wed Aug 18 19:45:30 GMT+0100 2010
@@ -203,6 +235,7 @@ class OnGame(HandHistoryConverter):
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
+        #log.debug("readplayerstacks: re is '%s'" % self.re_PlayerInfo)
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
@@ -247,15 +280,13 @@ class OnGame(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readBlinds(self, hand):
-        log.debug( _("readBlinds starting") )
+        #log.debug( _("readBlinds starting, hand=") + "\n["+hand.handText+"]" )
         try:
             m = self.re_PostSB.search(hand.handText)
-            if m is None:
-                log.debug( _("re_postSB failed, hand=") + hand.handText )
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
-        except: # no small blind
-            log.debug( _("readBlinds in noSB exception")+str(sys.exc_info()) )
-            hand.addBlind(None, None, None)
+        except exceptions.AttributeError: # no small blind
+            log.debug( _("readBlinds in noSB exception - no SB created")+str(sys.exc_info()) )
+            #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
         for a in self.re_PostBoth.finditer(hand.handText):
@@ -289,7 +320,7 @@ class OnGame(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
-            #print "DEBUG: acts: %s" %acts
+            #log.debug("readaction: acts: %s" %acts)
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseBy( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
@@ -314,18 +345,22 @@ class OnGame(HandHistoryConverter):
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
-        for m in self.re_CollectPot.finditer(hand.handText):
-            hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
+        for m in self.re_Pot.finditer(hand.handText):
+            for splitpot in m.group('POT').split(','):
+                for m in self.re_CollectPot.finditer(splitpot):
+                    hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):
-        return
-        #for m in self.rexx.collect_pot_re.finditer(hand.string):
-            #if m.group('CARDS') is not None:
-                #cards = m.group('CARDS')
-                #cards = set(cards.split(','))
-                #hand.addShownCards(cards=None, player=m.group('PNAME'), holeandboard=cards)
+        for m in self.re_ShownCards.finditer(hand.handText):
+            cards = m.group('CARDS')
+            cards = cards.split(', ') # needs to be a list, not a set--stud needs the order
 
- 
+            (shown, mucked) = (False, False)
+            if m.group('CARDS') is not None:
+                shown = True
+                hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
+
+
 
 
 if __name__ == "__main__":

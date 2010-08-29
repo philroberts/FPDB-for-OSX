@@ -82,6 +82,11 @@ def get_exec_path():
 
 def get_config(file_name, fallback = True):
     """Looks in cwd and in self.default_config_path for a config file."""
+
+    # look for example file even if not used here, path is returned to caller
+    config_found,example_found,example_copy = False,False,False
+    config_path, example_path = None,None
+
     exec_dir = get_exec_path()
     if file_name == 'logging.conf' and not hasattr(sys, "frozen"):
         config_path = os.path.join(exec_dir, 'pyfpdb', file_name)
@@ -89,17 +94,13 @@ def get_config(file_name, fallback = True):
         config_path = os.path.join(exec_dir, file_name)
 #    print "config_path=", config_path
     if os.path.exists(config_path):    # there is a file in the cwd
-        return (config_path,False)     # so we use it
+        config_found = True            # so we use it
     else: # no file in the cwd, look where it should be in the first place
         default_dir = get_default_config_path()
         config_path = os.path.join(default_dir, file_name)
 #        print "config path 2=", config_path
         if os.path.exists(config_path):
-            return (config_path,False)
-
-#    No file found
-    if not fallback:
-        return (False,False)
+            config_found = True
 
 # Example configuration for debian package
     if os.name == 'posix':
@@ -108,38 +109,43 @@ def get_config(file_name, fallback = True):
         # the config directory for us so there's no need to check it
         # again
         example_path = '/usr/share/python-fpdb/' + file_name + '.example'
-        try:
-            shutil.copyfile(example_path, config_path)
-            msg = _("Config file has been created at %s.\n") % config_path
-            logging.info(msg)
-            return (config_path,False)
-        except IOError:
-            pass
+        if not config_found and fallback:
+            try:
+                shutil.copyfile(example_path, config_path)
+                example_copy = True
+                msg = _("Config file has been created at %s.\n") % config_path
+                logging.info(msg)
+            except IOError:
+                pass
 
 #    OK, fall back to the .example file, should be in the start dir
-    if os.path.exists(file_name + ".example"):
+    elif os.path.exists(file_name + ".example"):
         try:
             print ""
+            example_path = file_name + ".example"
             check_dir(default_dir)
-            shutil.copyfile(file_name + ".example", config_path)
-            msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
-                  + _("Config file has been created at %s.\n") % config_path
-            print msg
-            logging.info(msg)
-            file_name = config_path
+            if not config_found and fallback:
+                shutil.copyfile(example_path, config_path)
+                example_copy = True
+                msg = _("No %s found\n  in %s\n  or %s\n") % (file_name, exec_dir, default_dir) \
+                      + _("Config file has been created at %s.\n") % config_path
+                print msg
+                logging.info(msg)
         except:
             print _("Error copying .example file, cannot fall back. Exiting.\n")
             sys.stderr.write(_("Error copying .example file, cannot fall back. Exiting.\n"))
             sys.stderr.write( str(sys.exc_info()) )
             sys.exit()
-    else:
+    elif fallback:
         print _("No %s found, cannot fall back. Exiting.\n") % file_name
         sys.stderr.write(_("No %s found, cannot fall back. Exiting.\n") % file_name)
         sys.exit()
-    return (file_name,True)
+
+    #print "get_config: returning "+str( (config_path,example_copy,example_path) )
+    return (config_path,example_copy,example_path)
 
 def get_logger(file_name, config = "config", fallback = False, log_dir=None, log_file=None):
-    (conf_file,copied) = get_config(file_name, fallback = fallback)
+    (conf_file,copied,example_file) = get_config(file_name, fallback = fallback)
 
     if log_dir is None:
         log_dir = os.path.join(get_exec_path(), u'log')
@@ -674,7 +680,7 @@ class Config:
                 sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
-        if file is None: (file,self.example_copy) = get_config("HUD_config.xml", True)
+        if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
 
         self.file = file
         self.dir_self = get_exec_path()
@@ -685,27 +691,6 @@ class Config:
         self.log_file = os.path.join(self.dir_log, u'fpdb-log.txt')
         log = get_logger("logging.conf", "config", log_dir=self.dir_log)
 
-#    Parse even if there was no real config file found and we are using the example
-#    If using the example, we'll edit it later
-        log.info(_("Reading configuration file %s") % file)
-        print _("\nReading configuration file %s\n") % file
-        try:
-            doc = xml.dom.minidom.parse(file)
-            self.file_error = None
-        except:
-            log.error(_("Error parsing %s.  See error log file.") % (file))
-            traceback.print_exc(file=sys.stderr)
-            self.file_error = sys.exc_info()[1]
-            # we could add a parameter to decide whether to return or read a line and exit?
-            return
-            #print "press enter to continue"
-            #sys.stdin.readline()
-            #sys.exit()
-#ExpatError: not well-formed (invalid token): line 511, column 4
-#sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
-# column 4',), <traceback object at 0x024503A0>)
-
-        self.doc = doc
         self.supported_sites = {}
         self.supported_games = {}
         self.supported_databases = {}        # databaseName --> Database instance
@@ -716,6 +701,32 @@ class Config:
         self.general = General()
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
+
+        added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
+        while added > 0 and n < 2:
+            n = n + 1
+            log.info(_("Reading configuration file %s") % file)
+            print _("\nReading configuration file %s\n") % file
+            try:
+                doc = xml.dom.minidom.parse(file)
+                self.doc = doc
+                self.file_error = None
+            except:
+                log.error(_("Error parsing %s.  See error log file.") % (file))
+                traceback.print_exc(file=sys.stderr)
+                self.file_error = sys.exc_info()[1]
+                # we could add a parameter to decide whether to return or read a line and exit?
+                return
+                #print "press enter to continue"
+                #sys.stdin.readline()
+                #sys.exit()
+#ExpatError: not well-formed (invalid token): line 511, column 4
+#sys.exc_info = (<class 'xml.parsers.expat.ExpatError'>, ExpatError('not well-formed (invalid token): line 511,
+# column 4',), <traceback object at 0x024503A0>)
+
+            if not self.example_copy and example_file is not None:
+                # reads example file and adds missing elements into current config
+                added = self.add_missing_elements(doc, example_file)
 
         if doc.getElementsByTagName("general") == []:
             self.general.get_defaults()
@@ -749,6 +760,7 @@ class Config:
                 raise ValueError("Database names must be unique")
             if self.db_selected is None or db.db_selected:
                 self.db_selected = db.db_name
+                db_node.setAttribute("default", "True")
             self.supported_databases[db.db_name] = db
         #TODO: if the user may passes '' (empty string) as database name via command line, his choice is ignored
         #           ..when we parse the xml we allow for ''. there has to be a decission if to allow '' or not
@@ -791,7 +803,7 @@ class Config:
                 self.set_db_parameters(db_name = 'fpdb', db_ip = df_parms['db-host'],
                                      db_user = df_parms['db-user'],
                                      db_pass = df_parms['db-password'])
-                self.save(file=os.path.join(self.default_config_path, "HUD_config.xml"))
+                self.save(file=os.path.join(self.dir_config, "HUD_config.xml"))
         
         if doc.getElementsByTagName("raw_hands") == []:
             self.raw_hands = RawHands()
@@ -805,6 +817,40 @@ class Config:
         
         print ""
     #end def __init__
+
+    def add_missing_elements(self, doc, example_file):
+        """ Look through example config file and add any elements that are not in the config
+            May need to add some 'enabled' attributes to turn things off - can't just delete a
+            config section now because this will add it back in"""
+
+        nodes_added = 0
+
+        try:
+            example_doc = xml.dom.minidom.parse(example_file)
+        except:
+            log.error(_("Error parsing example file %s. See error log file.") % (example_file))
+            return nodes_added
+
+        for cnode in doc.getElementsByTagName("FreePokerToolsConfig"):
+            for example_cnode in example_doc.childNodes:
+                if example_cnode.localName == "FreePokerToolsConfig":
+                    for e in example_cnode.childNodes:
+                        #print "nodetype", e.nodeType, "name", e.localName, "found", len(doc.getElementsByTagName(e.localName))
+                        if e.nodeType == e.ELEMENT_NODE and doc.getElementsByTagName(e.localName) == []:
+                            new = doc.importNode(e, True)  # True means do deep copy
+                            t_node = self.doc.createTextNode("    ")
+                            cnode.appendChild(t_node)
+                            cnode.appendChild(new)
+                            t_node = self.doc.createTextNode("\r\n\r\n")
+                            cnode.appendChild(t_node)
+                            print "... adding missing config section: " + e.localName
+                            nodes_added = nodes_added + 1
+
+        if nodes_added > 0:
+            print "Added %d missing config sections\n" % nodes_added
+            self.save()
+
+        return nodes_added
 
     def set_hhArchiveBase(self, path):
         self.imp.node.setAttribute("hhArchiveBase", path)
@@ -1039,7 +1085,11 @@ class Config:
             if db_user   is not None: db_node.setAttribute("db_user", db_user)
             if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
             if db_server is not None: db_node.setAttribute("db_server", db_server)
-            if defaultb:              db_node.setAttribute("default", default)
+            if defaultb or self.db_selected == db_name:
+                db_node.setAttribute("default", "True")
+                for dbn in self.doc.getElementsByTagName("database"):
+                    if dbn.getAttribute('db_name') != db_name and dbn.hasAttribute("default"):
+                        dbn.removeAttribute("default")
             elif db_node.hasAttribute("default"): 
                 db_node.removeAttribute("default")
         if self.supported_databases.has_key(db_name):
@@ -1049,6 +1099,64 @@ class Config:
             if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
             if db_server is not None: self.supported_databases[db_name].dp_server = db_server
             self.supported_databases[db_name].db_selected = defaultb
+        if defaultb:
+            self.db_selected = db_name
+        return
+
+    def add_db_parameters(self, db_name = 'fpdb', db_ip = None, db_user = None,
+                          db_pass = None, db_desc = None, db_server = None,
+                          default = "False"):
+        default = default.lower()
+        defaultb = string_to_bool(default, False)
+        if db_name in self.supported_databases:
+            raise ValueError("Database names must be unique")
+
+        db_node = self.get_db_node(db_name)
+        if db_node is None:
+            for db_node in self.doc.getElementsByTagName("supported_databases"):
+                # should only be one supported_databases element, use last one if there are several
+                suppdb_node = db_node
+            t_node = self.doc.createTextNode("    ")
+            suppdb_node.appendChild(t_node)
+            db_node = self.doc.createElement("database")
+            suppdb_node.appendChild(db_node)
+            t_node = self.doc.createTextNode("\r\n    ")
+            suppdb_node.appendChild(t_node)
+            db_node.setAttribute("db_name", db_name)
+            if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
+            if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   is not None: db_node.setAttribute("db_user", db_user)
+            if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
+            if db_server is not None: db_node.setAttribute("db_server", db_server)
+            if defaultb:
+                db_node.setAttribute("default", "True")
+                for dbn in self.doc.getElementsByTagName("database"):
+                    if dbn.getAttribute('db_name') != db_name and dbn.hasAttribute("default"):
+                        dbn.removeAttribute("default")
+            elif db_node.hasAttribute("default"): 
+                db_node.removeAttribute("default")
+        else:
+            if db_desc   is not None: db_node.setAttribute("db_desc", db_desc)
+            if db_ip     is not None: db_node.setAttribute("db_ip", db_ip)
+            if db_user   is not None: db_node.setAttribute("db_user", db_user)
+            if db_pass   is not None: db_node.setAttribute("db_pass", db_pass)
+            if db_server is not None: db_node.setAttribute("db_server", db_server)
+            if defaultb or self.db_selected == db_name:
+                                      db_node.setAttribute("default", "True")
+            elif db_node.hasAttribute("default"): 
+                                      db_node.removeAttribute("default")
+
+        if self.supported_databases.has_key(db_name):
+            if db_desc   is not None: self.supported_databases[db_name].dp_desc   = db_desc
+            if db_ip     is not None: self.supported_databases[db_name].dp_ip     = db_ip
+            if db_user   is not None: self.supported_databases[db_name].dp_user   = db_user
+            if db_pass   is not None: self.supported_databases[db_name].dp_pass   = db_pass
+            if db_server is not None: self.supported_databases[db_name].dp_server = db_server
+            self.supported_databases[db_name].db_selected = defaultb
+        else:
+            db = Database(node=db_node)
+            self.supported_databases[db.db_name] = db
+
         if defaultb:
             self.db_selected = db_name
         return
