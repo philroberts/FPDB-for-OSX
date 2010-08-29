@@ -22,6 +22,18 @@ import sys
 import logging
 from HandHistoryConverter import *
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 # Class for converting Everleaf HH format.
 
 class Everleaf(HandHistoryConverter):
@@ -133,7 +145,7 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
-            logging.info("Didn't match re_HandInfo")
+            logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
             return None
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
@@ -202,7 +214,7 @@ or None if we fail to get the info """
         hand.setCommunityCards(street=street, cards=cards)
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -214,14 +226,14 @@ or None if we fail to get the info """
             logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning("No bringin found.")
+            logging.warning(_("No bringin found."))
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
         if m is not None:
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
         else:
-            logging.debug("No small blind")
+            logging.debug(_("No small blind"))
             hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
@@ -249,7 +261,7 @@ or None if we fail to get the info """
 
     def readStudPlayerCards(self, hand, street):
         # lol. see Plymouth.txt
-        logging.warning("Everleaf readStudPlayerCards is only a stub.")
+        logging.warning(_("Everleaf readStudPlayerCards is only a stub."))
         #~ if street in ('THIRD', 'FOURTH',  'FIFTH',  'SIXTH'):
             #~ hand.addPlayerCards(player = player.group('PNAME'), street = street,  closed = [],  open = [])
 
@@ -272,7 +284,7 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == ' complete to':
                 hand.addComplete( street, action.group('PNAME'), action.group('BET'))
             else:
-                logging.debug("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),))
+                logging.debug(_("Unimplemented readAction: %s %s" %(action.group('PNAME'),action.group('ATYPE'),)))
 
 
     def readShowdownActions(self, hand):
@@ -310,9 +322,9 @@ or None if we fail to get the info """
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",
