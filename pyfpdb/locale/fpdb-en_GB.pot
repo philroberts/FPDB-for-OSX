@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2010-08-29 20:45+CEST\n"
+"POT-Creation-Date: 2010-08-29 22:08+CEST\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,6 +14,47 @@ msgstr ""
 "Content-Transfer-Encoding: ENCODING\n"
 "Generated-By: pygettext.py 1.5\n"
 
+
+#: AbsoluteToFpdb.py:167 BetfairToFpdb.py:114 CarbonToFpdb.py:151
+#: EverleafToFpdb.py:148 FulltiltToFpdb.py:221
+msgid "Didn't match re_HandInfo"
+msgstr ""
+
+#: AbsoluteToFpdb.py:224 EverleafToFpdb.py:217 FulltiltToFpdb.py:351
+#: OnGameToFpdb.py:296 PokerStarsToFpdb.py:359 UltimateBetToFpdb.py:183
+#: Win2dayToFpdb.py:197
+msgid "reading antes"
+msgstr ""
+
+#: AbsoluteToFpdb.py:236 EverleafToFpdb.py:229
+msgid "No bringin found."
+msgstr ""
+
+#: AbsoluteToFpdb.py:243 EverleafToFpdb.py:236
+msgid "No small blind"
+msgstr ""
+
+#: AbsoluteToFpdb.py:270
+msgid "Absolute readStudPlayerCards is only a stub."
+msgstr ""
+
+#: AbsoluteToFpdb.py:337 BetfairToFpdb.py:229 CarbonToFpdb.py:288
+#: EverleafToFpdb.py:325 FulltiltToFpdb.py:715 PartyPokerToFpdb.py:525
+#: PokerStarsToFpdb.py:468 UltimateBetToFpdb.py:315 Win2dayToFpdb.py:362
+msgid "parse input hand history"
+msgstr ""
+
+#: AbsoluteToFpdb.py:338 BetfairToFpdb.py:230 CarbonToFpdb.py:289
+#: EverleafToFpdb.py:326 FulltiltToFpdb.py:716 PartyPokerToFpdb.py:526
+#: PokerStarsToFpdb.py:469 UltimateBetToFpdb.py:316 Win2dayToFpdb.py:363
+msgid "output translation to"
+msgstr ""
+
+#: AbsoluteToFpdb.py:339 BetfairToFpdb.py:231 CarbonToFpdb.py:290
+#: EverleafToFpdb.py:327 FulltiltToFpdb.py:717 PartyPokerToFpdb.py:527
+#: PokerStarsToFpdb.py:470 UltimateBetToFpdb.py:317 Win2dayToFpdb.py:364
+msgid "follow (tail -f) the input"
+msgstr ""
 
 #: Anonymise.py:55
 msgid "Could not find file %s"
@@ -27,8 +68,8 @@ msgstr ""
 msgid "GameInfo regex did not match"
 msgstr ""
 
-#: BetfairToFpdb.py:114
-msgid "Didn't match re_HandInfo"
+#: BetfairToFpdb.py:130
+msgid "readPlayerStacks: Less than 2 players found in a hand"
 msgstr ""
 
 #: BetfairToFpdb.py:170
@@ -37,18 +78,6 @@ msgstr ""
 
 #: BetfairToFpdb.py:206 OnGameToFpdb.py:339 PokerStarsToFpdb.py:441
 msgid "DEBUG: unimplemented readAction: '%s' '%s'"
-msgstr ""
-
-#: BetfairToFpdb.py:229 PartyPokerToFpdb.py:525 PokerStarsToFpdb.py:468
-msgid "parse input hand history"
-msgstr ""
-
-#: BetfairToFpdb.py:230 PartyPokerToFpdb.py:526 PokerStarsToFpdb.py:469
-msgid "output translation to"
-msgstr ""
-
-#: BetfairToFpdb.py:231 PartyPokerToFpdb.py:527 PokerStarsToFpdb.py:470
-msgid "follow (tail -f) the input"
 msgstr ""
 
 #: Card.py:167
@@ -457,6 +486,10 @@ msgstr ""
 msgid "press enter to continue"
 msgstr ""
 
+#: EverleafToFpdb.py:264
+msgid "Everleaf readStudPlayerCards is only a stub."
+msgstr ""
+
 #: Filters.py:62
 msgid "All"
 msgstr ""
@@ -599,6 +632,50 @@ msgstr ""
 
 #: Filters.py:946 fpdb.pyw:729
 msgid "Done"
+msgstr ""
+
+#: FulltiltToFpdb.py:361
+msgid "Player bringing in: %s for %s"
+msgstr ""
+
+#: FulltiltToFpdb.py:364
+msgid "No bringin found, handid =%s"
+msgstr ""
+
+#: FulltiltToFpdb.py:421
+msgid "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'"
+msgstr ""
+
+#: FulltiltToFpdb.py:497
+msgid "determineTourneyType : Parsing NOK"
+msgstr ""
+
+#: FulltiltToFpdb.py:555
+msgid "Unable to get a valid Tournament ID -- File rejected"
+msgstr ""
+
+#: FulltiltToFpdb.py:586
+msgid "Conflict between buyins read in topline (%s) and in BuyIn field (%s)"
+msgstr ""
+
+#: FulltiltToFpdb.py:593
+msgid "Conflict between fees read in topline (%s) and in BuyIn field (%s)"
+msgstr ""
+
+#: FulltiltToFpdb.py:597
+msgid "Unable to affect a buyin to this tournament : assume it's a freeroll"
+msgstr ""
+
+#: FulltiltToFpdb.py:698
+msgid "FullTilt: Player finishing stats unreadable : %s"
+msgstr ""
+
+#: FulltiltToFpdb.py:707
+msgid "FullTilt: %s not found in tourney.ranks ..."
+msgstr ""
+
+#: FulltiltToFpdb.py:709
+msgid "FullTilt: Bad parsing : finish position incoherent : %s / %s"
 msgstr ""
 
 #: GuiAutoImport.py:85
@@ -1929,15 +2006,12 @@ msgid "limit not found in self.limits(%s). hand: '%s'"
 msgstr ""
 
 #: OnGameToFpdb.py:268 PartyPokerToFpdb.py:351 PokerStarsToFpdb.py:321
+#: UltimateBetToFpdb.py:144 Win2dayToFpdb.py:156
 msgid "readButton: not found"
 msgstr ""
 
 #: OnGameToFpdb.py:288
 msgid "readBlinds in noSB exception - no SB created"
-msgstr ""
-
-#: OnGameToFpdb.py:296 PokerStarsToFpdb.py:359
-msgid "reading antes"
 msgstr ""
 
 #: Options.py:40
@@ -2426,6 +2500,10 @@ msgstr ""
 
 #: TourneySummary.py:280
 msgid "incrementPlayerWinnings: name : '%s' - Add Winnings (%s)"
+msgstr ""
+
+#: UltimateBetToFpdb.py:42
+msgid "Initialising UltimateBetconverter class"
 msgstr ""
 
 #: WinTables.py:82
