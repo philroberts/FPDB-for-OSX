@@ -876,8 +876,7 @@ class fpdb:
         if self.config.example_copy:
             self.info_box(_("Config file")
                          , _("has been created at:\n%s.\n") % self.config.file
-                           + _("Edit your screen_name and hand history path in the supported_sites ")
-                           + _("section of the Preferences window (Main menu) before trying to import hands."))
+                           + _("Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep=="/"):
@@ -906,10 +905,10 @@ class fpdb:
             err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - ") \
                       + _("Please check that the MySQL service has been started")
         except Exceptions.FpdbPostgresqlAccessDenied:
-            err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
+            err_msg = _("PostgreSQL Server reports: Access denied. Are your permissions set correctly?")
         except Exceptions.FpdbPostgresqlNoDatabase:
-            err_msg = _("Postgres client reports: Unable to connect - ") \
-                      + _("Please check that the Postgres service has been started")
+            err_msg = _("PostgreSQL client reports: Unable to connect - ") \
+                      + _("Please check that the PostgreSQL service has been started")
         if err_msg is not None:
             self.db = None
             self.warning_box(err_msg)
@@ -966,10 +965,10 @@ class fpdb:
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source) # will return false if lock is already held
         if ret:
-            print _("\nGlobal lock taken by"), source
+            print (_("\nGlobal lock taken by %s") % source)
             self.lockTakenBy=source
         else:
-            print _("\nFailed to get global lock, it is currently held by"), source
+            print (_("\nFailed to get global lock, it is currently held by %s") % source)
         return ret
         # need to release it later:
         # self.lock.release()
@@ -1134,8 +1133,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print _("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in:\n") \
-                  + self.config.dir_log + _("\nAny major error will be reported there _only_.\n")
+            print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
+                  + _("\nAny major error will be reported there _only_.\n")
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
@@ -1239,7 +1238,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             hhdir       = hhbase
             if not os.path.isdir(hhdir):
                 diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-                diastring = _("WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
+                diastring = _("WARNING: Unable to find output hand history directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
                 diapath.format_secondary_text(diastring)
                 response = diapath.run()
                 diapath.destroy()
