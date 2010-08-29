@@ -4,11 +4,7 @@
 
 EAPI="2"
 
-inherit eutils
-inherit games
-inherit git
-
-NEED_PYTHON=2.6
+inherit eutils games git
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
@@ -64,7 +60,7 @@ src_install() {
 	newicon gfx/fpdb-icon.png ${PN}.png
 	make_desktop_entry ${PN}
 
-	chmod +x "${D}/${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
 	prepgamesdirs
 }
 
