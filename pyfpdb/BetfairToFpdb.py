@@ -127,7 +127,7 @@ class Betfair(HandHistoryConverter):
 
         #Shouldn't really dip into the Hand object, but i've no idea how to tell the length of iter m
         if len(hand.players) < 2:
-            logging.info("readPlayerStacks: Less than 2 players found in a hand")
+            logging.info(_("readPlayerStacks: Less than 2 players found in a hand"))
 
     def markStreets(self, hand):
         m =  re.search(r"\*\* Dealing down cards \*\*(?P<PREFLOP>.+(?=\*\* Dealing Flop \*\*)|.+)"
