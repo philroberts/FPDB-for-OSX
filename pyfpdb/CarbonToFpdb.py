@@ -148,7 +148,7 @@ or None if we fail to get the info """
     def readHandInfo(self, hand):
         m = self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info("Didn't match re_HandInfo")
+            logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
             return None
         logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
@@ -254,8 +254,8 @@ or None if we fail to get the info """
             elif action.group('ATYPE') == 'ALL_IN':
                 hand.addAllIn(street, player, action.group('BET'))
             else:
-                logging.debug("Unimplemented readAction: %s %s"
-                              % (action.group('PSEAT'),action.group('ATYPE'),))
+                logging.debug(_("Unimplemented readAction: %s %s"
+                              % (action.group('PSEAT'),action.group('ATYPE'),)))
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
@@ -285,9 +285,9 @@ or None if we fail to get the info """
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet", action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose", action="store_const", const=logging.INFO, dest="verbosity")
     parser.add_option("--vv", action="store_const", const=logging.DEBUG, dest="verbosity")
