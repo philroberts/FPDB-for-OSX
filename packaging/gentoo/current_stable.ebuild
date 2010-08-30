@@ -1,12 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# created by Steffen Schaumburg, steffen@schaumburger.info and Erki Ferenc, erkiferenc@gmail.com
+# $Header: $
+
 EAPI="2"
 
-inherit eutils
-inherit games
-
-NEED_PYTHON=2.5
+inherit eutils games
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
@@ -48,7 +46,7 @@ src_install() {
 	newicon gfx/fpdb-icon.png ${PN}.png
 	make_desktop_entry ${PN}
 
-	chmod +x "${D}/${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
 	prepgamesdirs
 }
 

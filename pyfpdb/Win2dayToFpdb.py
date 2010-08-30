@@ -153,7 +153,7 @@ class Win2day(HandHistoryConverter):
                     hand.buttonpos = player[0]
                     break
         else:
-            logging.info('readButton: not found')
+            logging.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         logging.debug("readPlayerStacks")
@@ -194,7 +194,7 @@ class Win2day(HandHistoryConverter):
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -332,7 +332,7 @@ class Win2day(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print _("DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),))
 
 
     def readShowdownActions(self, hand):
@@ -359,9 +359,9 @@ class Win2day(HandHistoryConverter):
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",

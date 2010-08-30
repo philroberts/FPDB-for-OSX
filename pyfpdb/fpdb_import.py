@@ -224,7 +224,7 @@ class Importer:
                 #print "                    adding file ", file
                 self.addImportFile(os.path.join(dir, file), site, filter)
         else:
-            log.warning(_("Attempted to add non-directory: '%s' as an import directory") % str(dir))
+            log.warning(_("Attempted to add non-directory '%s' as an import directory") % str(dir))
 
     def runImport(self):
         """"Run full import on self.filelist. This is called from GuiBulkImport.py"""
@@ -310,7 +310,7 @@ class Importer:
             toterrors += errors
 
         for i in xrange( self.settings['threads'] ):
-            print _("sending finish msg qlen ="), q.qsize()
+            print _("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
         return (totstored, totdups, totpartial, toterrors)
@@ -436,9 +436,9 @@ class Importer:
 
         # Load filter, process file, pass returned filename to import_fpdb_file
         if self.settings['threads'] > 0 and self.writeq is not None:
-            log.info(_("Converting ") + file + " (" + str(q.qsize()) + ")")
+            log.info((_("Converting %s") % file) + " (" + str(q.qsize()) + ")")
         else:
-            log.info(_("Converting ") + file)
+            log.info(_("Converting %s") % file)
         hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
         hhbase    = os.path.expanduser(hhbase)
         hhdir     = os.path.join(hhbase,site)

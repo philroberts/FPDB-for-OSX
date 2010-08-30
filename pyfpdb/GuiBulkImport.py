@@ -136,7 +136,7 @@ class GuiBulkImport():
             #self.settings['global_lock'].release()
                 self.settings['global_lock'].release()
         else:
-            print _("bulk-import aborted - global lock not available")
+            print _("bulk import aborted - global lock not available")
 
     def get_vbox(self):
         """returns the vbox of this thread"""
