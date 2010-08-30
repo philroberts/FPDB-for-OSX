@@ -29,6 +29,7 @@ import gtk
 
 #    Other Library modules
 import Xlib.display
+from Xlib import Xatom
 
 #    FreePokerTools modules
 from TableWindow import Table_Window
@@ -37,6 +38,7 @@ from TableWindow import Table_Window
 disp = Xlib.display.Display()
 root = disp.screen().root
 name_atom = disp.get_atom("WM_NAME", 1)
+icon_atom = disp.get_atom("WM_ICON_NAME", 1)
 
 class Table(Table_Window):
 
@@ -46,7 +48,12 @@ class Table(Table_Window):
         for outside in root.query_tree().children:
             for inside in outside.query_tree().children:
                 if done_looping: break
-                if inside.get_wm_name() and re.search(search_string, inside.get_wm_name()):
+#                if inside.get_wm_name() and re.search(search_string, inside.get_wm_name()):
+                if inside.get_wm_name() and re.search(search_string, inside.get_wm_icon_name()):
+                    print "inside = ", inside
+                    print "\n".join(dir(inside))
+                    for atom in inside.list_properties(): print atom, disp.get_atom_name(atom), inside.get_full_property(atom, Xatom.STRING).value
+                    if hasattr(inside, "window"): print "window = ", str(inside.window)
                     if self.check_bad_words(inside.get_wm_name()): continue
                     self.window = inside
                     self.parent = outside
