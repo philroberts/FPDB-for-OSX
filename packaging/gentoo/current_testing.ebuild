@@ -4,10 +4,7 @@
 
 EAPI="2"
 
-inherit eutils
-inherit games
-
-NEED_PYTHON=2.5
+inherit eutils games
 
 DESCRIPTION="A free/open source tracker/HUD for use with online poker"
 HOMEPAGE="http://fpdb.wiki.sourceforge.net/"
@@ -18,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 #note: this should work on other architectures too, please send me your experiences
 
-IUSE="graph mysql postgres sqlite linguas_hu linguas_it"
+IUSE="graph mysql postgres sqlite linguas_hu"
 RDEPEND="
 	mysql? ( virtual/mysql
 		dev-python/mysql-python )
@@ -36,29 +33,27 @@ DEPEND="${RDEPEND}"
 
 src_install() {
 	insinto "${GAMES_DATADIR}"/${PN}
-	doins -r gfx
-	doins -r pyfpdb
+	doins -r gfx || die "failed to install gfx directory"
+	doins -r pyfpdb || die "failed to install pyfpdb directory"
 
 	if use linguas_hu; then
-		dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/hu/LC_MESSAGES/${PN}.mo /usr/share/locale/hu/LC_MESSAGES/${PN}.mo
+		msgfmt pyfpdb/locale/fpdb-hu_HU.po -o pyfpdb/locale/hu.mo || die "failed to create hungarian mo file"
 	fi
 
-	if use linguas_it; then
-		dosym "${GAMES_DATADIR}"/${PN}/pyfpdb/locale/it/LC_MESSAGES/${PN}.mo /usr/share/locale/it/LC_MESSAGES/${PN}.mo
-	fi
+	domo pyfpdb/locale/*.mo || die "failed to install mo files"
 
-	doins readme.txt
+	doins readme.txt || die "failed to install readme.txt file"
 
 	exeinto "${GAMES_DATADIR}"/${PN}
-	doexe run_fpdb.py
+	doexe run_fpdb.py || die "failed to install executable run_fpdb.py"
 
 	dodir "${GAMES_BINDIR}"
-	dosym "${GAMES_DATADIR}"/${PN}/run_fpdb.py "${GAMES_BINDIR}"/${PN}
+	dosym "${GAMES_DATADIR}"/${PN}/run_fpdb.py "${GAMES_BINDIR}"/${PN}  || die "failed to create symlink for starting fpdb"
 
-	newicon gfx/fpdb-icon.png ${PN}.png
-	make_desktop_entry ${PN}
+	newicon gfx/fpdb-icon.png ${PN}.png || die "failed to install fpdb icon"
+	make_desktop_entry ${PN}  || die "failed to create desktop entry"
 
-	chmod +x "${D}/${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
+	fperms +x "${GAMES_DATADIR}"/${PN}/pyfpdb/*.pyw
 	prepgamesdirs
 }
 
