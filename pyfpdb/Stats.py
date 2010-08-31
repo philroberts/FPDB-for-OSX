@@ -228,15 +228,17 @@ def wmsd(stat_dict, player):
                 _('% won money at showdown')
                 )
 
+# Money is stored as pennies, so there is an implicit 100-multiplier
+# already in place
 def profit100(stat_dict, player):
     """    Profit won per 100 hands."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['net'])/float(stat_dict[player]['n'])
         return (stat,
-                '%.0f'          % (100.0*stat),
-                'p=%.0f'        % (100.0*stat),
-                'p/100=%.0f'    % (100.0*stat),
+                '%.2f'          % (stat),
+                'p=%.2f'        % (stat),
+                'p/100=%.2f'    % (stat),
                 '%d/%d' % (stat_dict[player]['net'], stat_dict[player]['n']),
                 _('profit/100hands')
                 )
