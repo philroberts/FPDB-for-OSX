@@ -502,7 +502,10 @@ class PartyPoker(HandHistoryConverter):
         if type=="tour":
             TableName = table_name.split(" ")
             print 'party', 'getTableTitleRe', "%s.+Table\s#%s" % (TableName[0], table_number)
-            return "%s.+Table\s#%s" % (TableName[0], table_number)
+            if len(TableName[1]) > 6:
+                return "#%s" % (table_number)
+            else:
+                return "%s.+Table\s#%s" % (TableName[0], table_number)
         else:
             print 'party', 'getTableTitleRe', table_number
             return table_name
