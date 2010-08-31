@@ -72,7 +72,9 @@ class HandHistoryConverter():
 
     re_tzOffset = re.compile('^\w+[+-]\d{4}$')
 
-    def __init__(self, config, in_path = '-', out_path = '-', follow=False, index=0, autostart=True, starsArchive=False, ftpArchive=False):
+    # maybe archive params should be one archive param, then call method in specific converter.   if archive:  convert_archive()
+    def __init__( self, config, in_path = '-', out_path = '-', follow=False, index=0
+                , autostart=True, starsArchive=False, ftpArchive=False, sitename="PokerStars" ):
         """\
 in_path   (default '-' = sys.stdin)
 out_path  (default '-' = sys.stdout)
@@ -80,8 +82,10 @@ follow :  whether to tail -f the input"""
 
         self.config = config
         self.import_parameters = self.config.get_import_parameters()
+        self.sitename = sitename
         #log = Configuration.get_logger("logging.conf", "parser", log_dir=self.config.dir_log)
-        log.info("HandHistory init - %s subclass, in_path '%s'; out_path '%s'" % (self.sitename, in_path, out_path) )
+        log.info("HandHistory init - %s site, %s subclass, in_path '%s'; out_path '%s'" 
+                 % (self.sitename, self.__class__, in_path, out_path) ) # should use self.filter, not self.sitename
 
         self.index     = index
         self.starsArchive = starsArchive
@@ -114,7 +118,7 @@ follow :  whether to tail -f the input"""
 
     def __str__(self):
         return """
-HandHistoryConverter: '%(sitename)s'
+HandHistoryConverter: '%(sitename)s'  
     filetype    '%(filetype)s'
     in_path     '%(in_path)s'
     out_path    '%(out_path)s'
@@ -252,6 +256,9 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
         self.readFile()
         self.obs = self.obs.strip()
         self.obs = self.obs.replace('\r\n', '\n')
+        # maybe archive params should be one archive param, then call method in specific converter?
+        # if self.archive:
+        #     self.obs = self.convert_archive(self.obs)
         if self.starsArchive == True:
             log.debug(_("Converting starsArchive format to readable"))
             m = re.compile('^Hand #\d+', re.MULTILINE)

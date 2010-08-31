@@ -384,7 +384,7 @@ class Importer:
                 #rulog.writelines("path exists ")
                 if file in self.updatedsize: # we should be able to assume that if we're in size, we're in time as well
                     if stat_info.st_size > self.updatedsize[file] or stat_info.st_mtime > self.updatedtime[file]:
-#                        print "file",counter," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
+#                        print "file",file," updated", os.path.basename(file), stat_info.st_size, self.updatedsize[file], stat_info.st_mtime, self.updatedtime[file]
                         try:
                             if not os.path.isdir(file):
                                 self.caller.addText("\n"+os.path.basename(file))
@@ -457,7 +457,8 @@ class Importer:
                 idx = self.pos_in_file[file]
             else:
                 self.pos_in_file[file] = 0
-            hhc = obj(self.config, in_path = file, out_path = out_path, index = idx, starsArchive = self.settings['starsArchive'])
+            hhc = obj( self.config, in_path = file, out_path = out_path, index = idx
+                     , starsArchive = self.settings['starsArchive'], sitename = site )
             if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
