@@ -1766,7 +1766,7 @@ class Database:
         c = self.get_cursor()
         c.executemany(q, inserts)
 
-    def storeHandsPlayers(self, hid, pids, adata, printdata = False):
+    def storeHandsActions(self, hid, pids, adata, printdata = False):
         #print "DEBUG: %s %s %s" %(hid, pids, adata)
         if printdata:
             import pprint
