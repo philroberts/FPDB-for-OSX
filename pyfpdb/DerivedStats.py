@@ -92,6 +92,8 @@ class DerivedStats():
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
+        if DEBUG:
+            self.assembleHandsActions(self.hand)
 
         if DEBUG:
             print "Hands:"
@@ -207,6 +209,8 @@ class DerivedStats():
         # 3betSB, 3betBB
         # Squeeze, Ratchet?
 
+    def assembleHandsActions(self, hand):
+        pass
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers
