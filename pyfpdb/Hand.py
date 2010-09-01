@@ -274,6 +274,7 @@ db: a connected Database object"""
             db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(), printdata = printtest)
             # TODO HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
+            #db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(), printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache

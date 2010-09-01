@@ -119,7 +119,7 @@ class GuiAutoImport (threading.Thread):
         hbox.pack_start(lbl1, expand=True, fill=False)
 
         self.doAutoImportBool = False
-        self.startButton = gtk.ToggleButton(_("  Start _Autoimport  "))
+        self.startButton = gtk.ToggleButton(_("  Start _Auto Import  "))
         self.startButton.connect("clicked", self.startClicked, "start clicked")
         hbox.pack_start(self.startButton, expand=False, fill=False)
 
@@ -138,7 +138,7 @@ class GuiAutoImport (threading.Thread):
         scrolledwindow.add(self.textview)
 
         self.mainVBox.show_all()
-        self.addText(_("AutoImport Ready."))
+        self.addText(_("Auto Import Ready."))
 
     def addText(self, text):
         end_iter = self.textbuffer.get_end_iter()
@@ -151,7 +151,7 @@ class GuiAutoImport (threading.Thread):
         """runs when user clicks one of the browse buttons in the auto import tab"""
         current_path=data[1].get_text()
 
-        dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to auto import"),
+        dia_chooser = gtk.FileChooserDialog(title=_("Please choose the path that you want to Auto Import"),
                 action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
                 buttons=(gtk.STOCK_CANCEL,gtk.RESPONSE_CANCEL,gtk.STOCK_OPEN,gtk.RESPONSE_OK))
         #dia_chooser.set_current_folder(pathname)
@@ -185,9 +185,9 @@ class GuiAutoImport (threading.Thread):
 
     def reset_startbutton(self):
         if self.pipe_to_hud is not None:
-            self.startButton.set_label(_(u'  Stop _Autoimport  '))
+            self.startButton.set_label(_(u'  Stop _Auto Import  '))
         else:
-            self.startButton.set_label(_(u'  Start _Autoimport  '))
+            self.startButton.set_label(_(u'  Start _Auto Import  '))
 
         return False
 
@@ -212,7 +212,7 @@ class GuiAutoImport (threading.Thread):
             if self.settings['global_lock'].acquire(False):   # returns false immediately if lock not acquired
                 self.addText(_("\nGlobal lock taken ... Auto Import Started.\n"))
                 self.doAutoImportBool = True
-                widget.set_label(_(u'  _Stop Autoimport  '))
+                widget.set_label(_(u'  _Stop Auto Import  '))
                 if self.pipe_to_hud is None:
                     if Configuration.FROZEN:
                         path = Configuration.EXEC_PATH
@@ -252,19 +252,19 @@ class GuiAutoImport (threading.Thread):
                     self.importtimer = gobject.timeout_add(interval * 1000, self.do_import)
 
             else:
-                self.addText(_("\nauto-import aborted - global lock not available"))
+                self.addText(_("\nAuto Import aborted - global lock not available"))
         else: # toggled off
             gobject.source_remove(self.importtimer)
             self.settings['global_lock'].release()
             self.doAutoImportBool = False # do_import will return this and stop the gobject callback timer
-            self.addText(_("\nStopping autoimport - global lock released."))
+            self.addText(_("\nStopping Auto Import - global lock released."))
             if self.pipe_to_hud.poll() is not None:
-                self.addText(_("\n * Stop Autoimport: HUD already terminated"))
+                self.addText(_("\n * Stop Auto Import: HUD already terminated"))
             else:
                 #print >>self.pipe_to_hud.stdin, "\n"
                 self.pipe_to_hud.communicate('\n') # waits for process to terminate
             self.pipe_to_hud = None
-            self.startButton.set_label(_(u'  Start _Autoimport  '))
+            self.startButton.set_label(_(u'  Start _Auto Import  '))
 
     #end def GuiAutoImport.startClicked
 

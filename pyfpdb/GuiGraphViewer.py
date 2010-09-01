@@ -26,22 +26,6 @@ from time import *
 from datetime import datetime
 #import pokereval
 
-try:
-    import matplotlib
-    matplotlib.use('GTKCairo')
-    from matplotlib.figure import Figure
-    from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
-    from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
-    from matplotlib.font_manager import FontProperties
-    from numpy import arange, cumsum
-    from pylab import *
-except ImportError, inst:
-    print _("""Failed to load libs for graphing, graphing will not function. Please
-                 install numpy and matplotlib if you want to use graphs.""")
-    print _("""This is of no consequence for other parts of the program, e.g. import 
-         and HUD are NOT affected by this problem.""")
-    print "ImportError: %s" % inst.args
-
 import locale
 lang=locale.getdefaultlocale()[0][0:2]
 if lang=="en":
@@ -58,6 +42,22 @@ import fpdb_import
 import Database
 import Filters
 import Charset
+
+try:
+    import matplotlib
+    matplotlib.use('GTKCairo')
+    from matplotlib.figure import Figure
+    from matplotlib.backends.backend_gtk import FigureCanvasGTK as FigureCanvas
+    from matplotlib.backends.backend_gtkagg import NavigationToolbar2GTKAgg as NavigationToolbar
+    from matplotlib.font_manager import FontProperties
+    from numpy import arange, cumsum
+    from pylab import *
+except ImportError, inst:
+    print _("""Failed to load libs for graphing, graphing will not function. Please
+                 install numpy and matplotlib if you want to use graphs.""")
+    print _("""This is of no consequence for other parts of the program, e.g. import 
+         and HUD are NOT affected by this problem.""")
+    print "ImportError: %s" % inst.args
 
 class GuiGraphViewer (threading.Thread):
 

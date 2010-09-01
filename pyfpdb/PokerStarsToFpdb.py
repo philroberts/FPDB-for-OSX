@@ -224,14 +224,15 @@ class PokerStars(HandHistoryConverter):
 
     def readHandInfo(self, hand):
         info = {}
-        m = self.re_HandInfo.search(hand.handText,re.DOTALL)
-        if m:
-            info.update(m.groupdict())
-        else:
-            pass  # throw an exception here, eh?
-        m = self.re_GameInfo.search(hand.handText)
-        if m:
-            info.update(m.groupdict())
+        m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
+        m2 = self.re_GameInfo.search(hand.handText)
+        if m is None or m2 is None:
+            logging.info("Didn't match re_HandInfo")
+            logging.info(hand.handText)
+            raise FpdbParseError("No match in readHandInfo.")
+
+        info.update(m.groupdict())
+        info.update(m2.groupdict())
 
         log.debug("readHandInfo: %s" % info)
         for key in info:
