@@ -97,10 +97,12 @@ class DerivedStats():
             self.assembleHandsActions(self.hand)
 
         if DEBUG:
-            print "Hands:"
-            pp.pprint(self.hands)
-            print "HandsPlayers:"
-            pp.pprint(self.handsplayers)
+            #print "Hands:"
+            #pp.pprint(self.hands)
+            #print "HandsPlayers:"
+            #pp.pprint(self.handsplayers)
+            print "HandsActions:"
+            pp.pprint(self.handsactions)
 
     def getHands(self):
         return self.hands
@@ -214,6 +216,8 @@ class DerivedStats():
         # Squeeze, Ratchet?
 
     def assembleHandsActions(self, hand):
+        print "DEBUG: hand.actions"
+        pp.pprint(hand.actions)
         pass
 
     def setPositions(self, hand):

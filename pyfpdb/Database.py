@@ -1782,7 +1782,15 @@ class Database:
         #                     adata[p]['sitout'],
         #                     adata[p]['card1'],
 
-        #q = self.sql.query['store_hands_actions']
+        #handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+        #street SMALLINT NOT NULL,
+        #actionNo SMALLINT NOT NULL,
+        #action CHAR(5) NOT NULL,
+        #allIn BOOLEAN NOT NULL,
+        #amount INT NOT NULL,
+
+
+        q = self.sql.query['store_hands_actions']
         #q = q.replace('%s', self.sql.query['placeholder'])
 
         #print "DEBUG: inserts: %s" %inserts
