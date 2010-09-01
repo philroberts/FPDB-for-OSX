@@ -302,6 +302,7 @@ class Database:
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
             if self.is_connected():
+                self.get_sites()
                 self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
@@ -466,6 +467,15 @@ class Database:
             self.cursor.execute(self.sql.query['set tx level'])
             self.check_version(database=database, create=create)
 
+    def get_sites(self):
+            self.cursor.execute("SELECT name,id FROM Sites")
+            sites = self.cursor.fetchall()
+            self.config.set_site_ids(sites)
+
+    def add_site(self, site, site_code):
+        self.cursor.execute("INSERT INTO Sites "
+                            "SELECT max(id)+1, '%s', '%s' "
+                            "FROM Sites " % (site, site_code) )
 
     def check_version(self, database, create):
         self.wrongDbVersion = False
