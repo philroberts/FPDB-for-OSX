@@ -34,8 +34,9 @@ class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
 
-        self.hands = {}
+        self.hands        = {}
         self.handsplayers = {}
+        self.handsactions = {}
 
     def getStats(self, hand):
         
@@ -106,6 +107,9 @@ class DerivedStats():
 
     def getHandsPlayers(self):
         return self.handsplayers
+
+    def getHandsActions(self):
+        return self.handsactions
 
     def assembleHands(self, hand):
         self.hands['tableName']  = hand.tablename
