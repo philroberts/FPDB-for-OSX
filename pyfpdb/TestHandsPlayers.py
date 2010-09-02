@@ -62,7 +62,8 @@ def compare(leaf, importer, errors, site):
         # test if there is a .hp version of the file
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
-        if os.path.isfile(filename + '.hp'):
+
+        if os.path.isfile(filename + '.hp') and errs < 1:
             # Compare them
             hashfilename = filename + '.hp'
 
@@ -90,6 +91,8 @@ def compare(leaf, importer, errors, site):
                         else:
                             # Stats don't match - Doh!
                             errors.error_report(filename, hand, stat, ghash, testhash, p)
+        if errs > 0:
+            errors.error_report(filename, False, "Parse", False, False, False)
 
         importer.clearFileList()
 
