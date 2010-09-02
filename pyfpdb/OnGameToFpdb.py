@@ -45,7 +45,7 @@ else:
 # OnGame HH Format
 
 class OnGame(HandHistoryConverter):
-    sitename = "OnGame"
+    filter = "OnGame"
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 5 # Needs to match id entry in Sites database

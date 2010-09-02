@@ -4221,6 +4221,19 @@ class Sql:
                     %s, %s, %s, %s, %s,
                     %s, %s, %s, %s, %s
                 )"""
+
+        self.query['store_hands_actions'] = """INSERT INTO HandsActions (
+                        handsPlayerId,
+                        street,
+                        actionNo,
+                        action,
+                        allIn,
+                        amount
+               )
+               VALUES (
+                    %s, %s, %s, %s, %s,
+                    %s
+                )"""
         
         ################################
         # Counts for DB stats window

@@ -680,6 +680,7 @@ class Config:
                 sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
+        self.example_copy,example_file = True,None
         if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
 
         self.file = file
@@ -697,10 +698,11 @@ class Config:
         self.aux_windows = {}
         self.hhcs = {}
         self.popup_windows = {}
-        self.db_selected = None    # database the user would like to use
+        self.db_selected = None              # database the user would like to use
         self.general = General()
         self.emails = {}
         self.gui_cash_stats = GUICashStats()
+        self.site_ids = {}                   # site ID list from the database
 
         added,n = 1,0  # use n to prevent infinite loop if add_missing_elements() fails somehow
         while added > 0 and n < 2:
@@ -1390,6 +1392,12 @@ class Config:
             if font_size      is not None: site_node.setAttribute("font_size", font_size)
         return
 
+    def set_site_ids(self, sites):
+        self.site_ids = dict(sites)
+
+    def get_site_id(self, site):
+        return( self.site_ids[site] )
+        
     def get_aux_windows(self):
         """Gets the list of mucked window formats in the configuration."""
         return self.aux_windows.keys()

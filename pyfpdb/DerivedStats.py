@@ -34,8 +34,9 @@ class DerivedStats():
     def __init__(self, hand):
         self.hand = hand
 
-        self.hands = {}
+        self.hands        = {}
         self.handsplayers = {}
+        self.handsactions = {}
 
     def getStats(self, hand):
         
@@ -92,18 +93,25 @@ class DerivedStats():
         self.assembleHands(self.hand)
         self.assembleHandsPlayers(self.hand)
 
+        if DEBUG:
+            self.assembleHandsActions(self.hand)
 
         if DEBUG:
-            print "Hands:"
-            pp.pprint(self.hands)
-            print "HandsPlayers:"
-            pp.pprint(self.handsplayers)
+            #print "Hands:"
+            #pp.pprint(self.hands)
+            #print "HandsPlayers:"
+            #pp.pprint(self.handsplayers)
+            print "HandsActions:"
+            pp.pprint(self.handsactions)
 
     def getHands(self):
         return self.hands
 
     def getHandsPlayers(self):
         return self.handsplayers
+
+    def getHandsActions(self):
+        return self.handsactions
 
     def assembleHands(self, hand):
         self.hands['tableName']  = hand.tablename
@@ -207,6 +215,10 @@ class DerivedStats():
         # 3betSB, 3betBB
         # Squeeze, Ratchet?
 
+    def assembleHandsActions(self, hand):
+        print "DEBUG: hand.actions"
+        pp.pprint(hand.actions)
+        pass
 
     def setPositions(self, hand):
         """Sets the position for each player in HandsPlayers
