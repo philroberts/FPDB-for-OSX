@@ -573,6 +573,7 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
+        <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="Partouche" converter="PartoucheToFpdb"/>
     </hhcs>
 
