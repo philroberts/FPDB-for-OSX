@@ -153,6 +153,11 @@ class GuiGraphViewer (threading.Thread):
             siteids = self.filters.getSiteIds()
             limits  = self.filters.getLimits()
             games   = self.filters.getGames()
+            graphs  = {
+                        "profit"      : True,
+                        "sawShowdown" : True,
+                        "nonShowdown" : True
+                      }
             
             for i in ('show', 'none'):
                 if i in limits:
@@ -230,17 +235,14 @@ class GuiGraphViewer (threading.Thread):
                 #print "No hands returned by graph query"
             else:
                 self.ax.set_title(_("Profit graph for ring games"))
-                #text = "Profit: $%.2f\nTotal Hands: %d" %(green[-1], len(green))
-                #self.ax.annotate(text,
-                #                 xy=(10, -10),
-                #                 xycoords='axes points',
-                #                 horizontalalignment='left', verticalalignment='top',
-                #                 fontsize=10)
 
                 #Draw plot
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                if graphs['profit'] == True:
+                    self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
+                if graphs['sawShowdown'] == True:
+                    self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
+                if graphs['nonShowdown'] == True:
+                    self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
