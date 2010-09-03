@@ -133,6 +133,7 @@ def main(argv=None):
     BetfairErrors     = FpdbError('Betfair')
     OnGameErrors      = FpdbError('OnGame')
     AbsoluteErrors    = FpdbError('Absolute Poker')
+    EverleafErrors    = FpdbError('Everleaf Poker')
     
     walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -143,8 +144,9 @@ def main(argv=None):
     walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
     walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
     walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
+    walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
 
-    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount
+    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount + OnGameErrors.errorcount + AbsoluteErrors.errorcount + EverleafErrors.errorcount
 
     print "---------------------"
     print "Total Errors: %d" % totalerrors
@@ -155,6 +157,7 @@ def main(argv=None):
     BetfairErrors.print_histogram()
     OnGameErrors.print_histogram()
     AbsoluteErrors.print_histogram()
+    EverleafErrors.print_histogram()
 
 if __name__ == '__main__':
     sys.exit(main())
