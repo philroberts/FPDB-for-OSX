@@ -125,15 +125,9 @@ class Pkr(HandHistoryConverter):
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
 
-                ["ring", "stud", "fl"],
-
-                ["ring", "draw", "fl"],
-
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
-                ["tour", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -148,6 +142,8 @@ class Pkr(HandHistoryConverter):
         mg = m.groupdict()
         #print "DEBUG: %s" % mg
 
+        info['type'] = 'ring'
+
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -158,11 +154,6 @@ class Pkr(HandHistoryConverter):
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
-
-        if 'TOURNO' in mg and mg['TOURNO'] is None:
-            info['type'] = 'ring'
-        else:
-            info['type'] = 'tour'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
             try:
@@ -240,8 +231,16 @@ class Pkr(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
+        players = {} # Player Stacks are printed in the same format
+                     # At the beginning and end of the hand history
+                     # The hash is to cache the player names, and ignore
+                     # The second round
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            if players.has_key(a.group('PNAME')):
+                pass # Ignore
+            else:
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+                players[a.group('PNAME')] = True
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
