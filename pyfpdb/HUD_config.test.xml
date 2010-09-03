@@ -575,6 +575,7 @@ Left-Drag to Move"
         <hhc site="Betfair" converter="BetfairToFpdb"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="Partouche" converter="PartoucheToFpdb"/>
+        <hhc site="Carbon" converter="CarbonToFpdb"/>
     </hhcs>
 
     <supported_databases>

@@ -85,12 +85,15 @@ def compare(leaf, importer, errors, site):
 
                     for stat in pstat:
                         #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
-                        if pstat[stat] == teststat[stat]:
-                            # The stats match - continue
-                            pass
-                        else:
-                            # Stats don't match - Doh!
-                            errors.error_report(filename, hand, stat, ghash, testhash, p)
+                        try:
+                            if pstat[stat] == teststat[stat]:
+                                # The stats match - continue
+                                pass
+                            else:
+                                # Stats don't match - Doh!
+                                errors.error_report(filename, hand, stat, ghash, testhash, p)
+                        except KeyError, e:
+                            errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
         if errs > 0:
             errors.error_report(filename, False, "Parse", False, False, False)
 
@@ -134,6 +137,7 @@ def main(argv=None):
     OnGameErrors      = FpdbError('OnGame')
     AbsoluteErrors    = FpdbError('Absolute Poker')
     EverleafErrors    = FpdbError('Everleaf Poker')
+    CarbonErrors      = FpdbError('Carbon')
     
     walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -145,8 +149,9 @@ def main(argv=None):
     walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
     walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
     walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+    walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
 
-    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount + OnGameErrors.errorcount + AbsoluteErrors.errorcount + EverleafErrors.errorcount
+    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount + OnGameErrors.errorcount + AbsoluteErrors.errorcount + EverleafErrors.errorcount + CarbonErrors.errorcount
 
     print "---------------------"
     print "Total Errors: %d" % totalerrors
@@ -158,6 +163,7 @@ def main(argv=None):
     OnGameErrors.print_histogram()
     AbsoluteErrors.print_histogram()
     EverleafErrors.print_histogram()
+    CarbonErrors.print_histogram()
 
 if __name__ == '__main__':
     sys.exit(main())
