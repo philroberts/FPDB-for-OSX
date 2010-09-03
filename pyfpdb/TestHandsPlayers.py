@@ -127,11 +127,12 @@ def main(argv=None):
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
 
-    PokerStarsErrors = FpdbError('PokerStars')
-    FTPErrors        = FpdbError('Full Tilt Poker')
-    PartyPokerErrors = FpdbError('Party Poker')
-    BetfairErrors    = FpdbError('Betfair')
-    OnGameErrors    = FpdbError('Betfair')
+    PokerStarsErrors  = FpdbError('PokerStars')
+    FTPErrors         = FpdbError('Full Tilt Poker')
+    PartyPokerErrors  = FpdbError('Party Poker')
+    BetfairErrors     = FpdbError('Betfair')
+    OnGameErrors      = FpdbError('OnGame')
+    AbsoluteErrors    = FpdbError('Absolute Poker')
     
     walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -141,6 +142,7 @@ def main(argv=None):
     walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
     walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
     walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+    walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
 
     totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount
 
@@ -151,6 +153,8 @@ def main(argv=None):
     FTPErrors.print_histogram()
     PartyPokerErrors.print_histogram()
     BetfairErrors.print_histogram()
+    OnGameErrors.print_histogram()
+    AbsoluteErrors.print_histogram()
 
 if __name__ == '__main__':
     sys.exit(main())
