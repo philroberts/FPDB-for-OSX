@@ -549,7 +549,6 @@ class ProgressBar:
     def progress_update(self, fraction, sum):
 
         progresspercent = float(fraction) / (float(sum) + 1.0)
-        x = sometext.center(100)
         
         self.pbar.set_fraction(progresspercent)
         self.pbar.set_text(str(fraction) + " / " + str(sum))
