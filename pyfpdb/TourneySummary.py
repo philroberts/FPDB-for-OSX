@@ -74,8 +74,8 @@ class TourneySummary(object):
         self.endTime            = None
         self.tourNo             = None
         self.currency           = None
-        self.buyin              = None
-        self.fee                = None
+        self.buyin              = 0
+        self.fee                = 0
         self.hero               = None
         self.maxseats           = 0
         self.entries            = 0
@@ -126,6 +126,9 @@ class TourneySummary(object):
         
         if builtFrom=="IMAP":
             self.parseSummary()
+            self.insertOrUpdate()
+        elif builtFrom == "file":
+            self.parseSummaryFile()
             self.insertOrUpdate()
     #end def __init__
 
