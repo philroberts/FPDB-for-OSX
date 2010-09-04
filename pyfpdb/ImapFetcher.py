@@ -26,6 +26,7 @@ import re
 
 import Configuration
 import Database
+from Exceptions import FpdbParseError
 import SQL
 import Options
 import PokerStarsSummary
@@ -72,26 +73,34 @@ def run(config, db):
         response, searchData = server.search(None, "SUBJECT", "PokerStars Tournament History Request")
         for messageNumber in searchData[0].split(" "):
             response, headerData = server.fetch(messageNumber, "(BODY[HEADER.FIELDS (SUBJECT)])")
-            #print "response to fetch subject:",response
             if response!="OK":
                 raise error #TODO: show error message
             neededMessages.append(("PS", messageNumber))
-        
+
+        print "ImapFetcher: Found %s messages to fetch" %(len(neededMessages))
+
         if (len(neededMessages)==0):
             raise error #TODO: show error message
-        for messageData in neededMessages:
+
+        errors = 0
+        for i, messageData in enumerate(neededMessages, start=1):
+            print "Retrieving message %s" % i
             response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
             bodyData=bodyData[0][1]
             if response!="OK":
                 raise error #TODO: show error message
             if messageData[0]=="PS":
                 summaryTexts=(splitPokerStarsSummaries(bodyData))
-                for summaryText in summaryTexts:
-                    result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
-                    #print "finished importing a PS summary with result:",result
-                    #TODO: count results and output to shell like hand importer does
-            
-        print _("completed running Imap import, closing server connection")
+                print "Found %s summaries in email" %(len(summaryTexts))
+                for j, summaryText in enumerate(summaryTexts, start=1):
+                    try:
+                        result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+                    except FpdbParseError, e:
+                        errors += 1
+                    print "Finished importing %s/%s PS summaries" %(j, len(summaryTexts))
+
+        print _("Completed running Imap import, closing server connection")
+        print _("Errors: %s" % errors)
     #finally:
      #   try:
         server.close()
@@ -120,9 +129,6 @@ def runFake(db, config, infile):
     for summary in summaryList[1:]:
         result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
         print "DEBUG: Processed: %s: tournNo: %s" % (result.tourneyId, result.tourNo)
-
-def splitPokerStarsSummaries(emailText):
-    splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
 
 
 def main(argv=None):
