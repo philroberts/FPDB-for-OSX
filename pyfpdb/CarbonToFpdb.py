@@ -53,6 +53,19 @@ import logging
 from HandHistoryConverter import *
 from decimal import Decimal
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
+
 class Carbon(HandHistoryConverter):
 
     sitename = "Carbon"
@@ -119,7 +132,15 @@ or None if we fail to get the info """
             # a hand history file; hence it is not supplied with the second
             # and subsequent hands. In these cases we use the value previously
             # stored.
-            return self.info
+            try:
+                self.info
+                return self.info
+            except AttributeError:
+                tmp = handText[0:100]
+                log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+                log.error(_("determineGameType: Raising FpdbParseError"))
+                raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
+
         self.info = {}
         mg = m.groupdict()
 

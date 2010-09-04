@@ -1,0 +1,53 @@
+<description type="Holdem" stakes="No Limit ($0.25/$0.50)"/>
+<game id="15245216-1000" starttime="20081013150000" numholecards="2" gametype="2" realmoney="true" data="20081013|Niagara Falls (15245216)|15245216|15245216-1000|false">
+	<players dealer="8">
+		<player seat="3" nickname="Player1" balance="$34.13" dealtin="true" />
+		<player seat="2" nickname="Player2" balance="$49.25" dealtin="true" />
+		<player seat="1" nickname="Player3" balance="$55.64" dealtin="true" />
+		<player seat="0" nickname="Player4" balance="$19.72" dealtin="true" />
+		<player seat="7" nickname="Player5" balance="$25.16" dealtin="true" />
+		<player seat="6" nickname="Player6" balance="$56.44" dealtin="false" />
+		<player seat="5" nickname="Player7" balance="$43.52" dealtin="true" />
+		<player seat="4" nickname="Player8" balance="$28.67" dealtin="true" />
+		<player seat="8" nickname="Player9" balance="$9.25" dealtin="true" />
+	</players>
+	<round id="BLINDS" sequence="1">
+		<event sequence="1" type="SMALL_BLIND" player="0" amount="0.25"/>
+		<event sequence="2" type="BIG_BLIND" player="1" amount="0.50"/>
+	</round>
+	<round id="PREFLOP" sequence="2">
+		<event sequence="3" type="FOLD" player="2"/>
+		<event sequence="4" type="FOLD" player="3"/>
+		<event sequence="5" type="RAISE" player="4" amount="1.00"/>
+		<event sequence="6" type="FOLD" player="5"/>
+		<event sequence="7" type="CALL" player="7" amount="1.00"/>
+		<event sequence="8" type="FOLD" player="8"/>
+		<event sequence="9" type="FOLD" player="0"/>
+		<event sequence="10" type="RAISE" player="1" amount="5.00"/>
+		<event sequence="11" type="CALL" player="4" amount="4.50"/>
+		<event sequence="12" type="FOLD" player="7"/>
+		<cards type="HOLE" cards="Ah,8s" player="2" hand="Ace High"/>
+	</round>
+	<round id="POSTFLOP" sequence="3">
+		<event sequence="13" type="BET" player="1" amount="7.00"/>
+		<event sequence="14" type="CALL" player="4" amount="7.00"/>
+		<cards type="COMMUNITY" cards="5h,3c,Kd" hand="Ace High"/>
+	</round>
+	<round id="POSTTURN" sequence="4">
+		<event sequence="15" type="BET" player="1" amount="18.00"/>
+		<event sequence="16" type="ALL_IN" player="4" amount="16.17"/>
+		<event sequence="17" type="SHOW" player="1"/>
+		<event sequence="18" type="SHOW" player="4"/>
+		<cards type="COMMUNITY" cards="5h,3c,Kd,3d" hand="Pair of Threes"/>
+		<cards type="SHOWN" cards="Ad,3s" player="1"/>
+		<cards type="SHOWN" cards="Qd,Qs" player="4"/>
+	</round>
+	<round id="POSTRIVER" sequence="5">
+		<cards type="COMMUNITY" cards="5h,3c,Kd,3d,Ks" hand="Two Pair Kings and Threes"/>
+	</round>
+	<round id="END_OF_GAME" sequence="6">
+		<winner amount="55.67" uncalled="false" potnumber="1" player="1" hand="Full House - Threes over Kings" pottype="n"/>
+		<winner amount="1.83" uncalled="true" potnumber="2" player="1" hand="Full House - Threes over Kings" pottype="n"/>
+	</round>
+</game>
+

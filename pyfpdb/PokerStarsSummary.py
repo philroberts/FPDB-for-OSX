@@ -25,6 +25,20 @@ from HandHistoryConverter import *
 import PokerStarsToFpdb
 from TourneySummary import *
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
+
+
 class PokerStarsSummary(TourneySummary):
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }
     games = {                          # base, category

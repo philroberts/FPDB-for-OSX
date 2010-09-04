@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-#Copyright 2008-2010 Steffen Schaumburg
+#Copyright 2008-2010 Carl Gherardi
 #This program is free software: you can redistribute it and/or modify
 #it under the terms of the GNU Affero General Public License as published by
 #the Free Software Foundation, version 3 of the License.
@@ -59,7 +59,7 @@ except ImportError, inst:
          and HUD are NOT affected by this problem.""")
     print "ImportError: %s" % inst.args
 
-class GuiGraphViewer (threading.Thread):
+class GuiTourneyGraphViewer (threading.Thread):
 
     def __init__(self, querylist, config, parent, debug=True):
         """Constructor for GraphViewer"""
@@ -73,12 +73,12 @@ class GuiGraphViewer (threading.Thread):
 
         filters_display = { "Heroes"    : True,
                             "Sites"     : True,
-                            "Games"     : True,
-                            "Limits"    : True,
-                            "LimitSep"  : True,
-                            "LimitType" : True,
+                            "Games"     : False,
+                            "Limits"    : False,
+                            "LimitSep"  : False,
+                            "LimitType" : False,
                             "Type"      : False,
-                            "UseType"   : 'ring',
+                            "UseType"   : 'tour',
                             "Seats"     : False,
                             "SeatSep"   : False,
                             "Dates"     : True,
@@ -151,17 +151,7 @@ class GuiGraphViewer (threading.Thread):
             sites   = self.filters.getSites()
             heroes  = self.filters.getHeroes()
             siteids = self.filters.getSiteIds()
-            limits  = self.filters.getLimits()
-            games   = self.filters.getGames()
-            graphs  = {
-                        "profit"      : True,
-                        "sawShowdown" : True,
-                        "nonShowdown" : True
-                      }
             
-            for i in ('show', 'none'):
-                if i in limits:
-                    limits.remove(i)
             # Which sites are selected?
             for site in sites:
                 if sites[site] == True:
@@ -182,22 +172,17 @@ class GuiGraphViewer (threading.Thread):
                 self.db.rollback()
                 return
 
-            if not limits:
-                print _("No limits found")
-                self.db.rollback()
-                return
-
             #Set graph properties
             self.ax = self.fig.add_subplot(111)
 
             #Get graph data from DB
             starttime = time()
-            (green, blue, red) = self.getRingProfitGraph(playerids, sitenos, limits, games)
+            green = self.getData(playerids, sitenos)
             print _("Graph generated in: %s") %(time() - starttime)
 
 
             #Set axis labels and grid overlay properites
-            self.ax.set_xlabel(_("Hands"), fontsize = 12)
+            self.ax.set_xlabel(_("Tournaments"), fontsize = 12)
             self.ax.set_ylabel("$", fontsize = 12)
             self.ax.grid(color='g', linestyle=':', linewidth=0.2)
             if green == None or green == []:
@@ -224,9 +209,9 @@ class GuiGraphViewer (threading.Thread):
                             0.,   500.,  1000.,   900.,   800.,   700.,   600.,   500.,
                             400.,   300.,   200.,   100.,     0.,   500.,  1000.,  1000.])
 
-                self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Tournaments: %d\nProfit: $%.2f') %(len(green), green[-1]))
+                #self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
+                #self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
                 self.graphBox.add(self.canvas)
                 self.canvas.show()
                 self.canvas.draw()
@@ -234,15 +219,12 @@ class GuiGraphViewer (threading.Thread):
                 #TODO: Do something useful like alert user
                 #print "No hands returned by graph query"
             else:
-                self.ax.set_title(_("Profit graph for ring games"))
+                self.ax.set_title(_("Tournament Results"))
 
                 #Draw plot
-                if graphs['profit'] == True:
-                    self.ax.plot(green, color='green', label=_('Hands: %d\nProfit: $%.2f') %(len(green), green[-1]))
-                if graphs['sawShowdown'] == True:
-                    self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
-                if graphs['nonShowdown'] == True:
-                    self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
+                self.ax.plot(green, color='green', label=_('Tournaments: %d\nProfit: $%.2f') %(len(green), green[-1]))
+                #self.ax.plot(blue, color='blue', label=_('Showdown: $%.2f') %(blue[-1]))
+                #self.ax.plot(red, color='red', label=_('Non-showdown: $%.2f') %(red[-1]))
                 if sys.version[0:3] == '2.5':
                     self.ax.legend(loc='upper left', shadow=True, prop=FontProperties(size='smaller'))
                 else:
@@ -258,9 +240,9 @@ class GuiGraphViewer (threading.Thread):
 
     #end of def showClicked
 
-    def getRingProfitGraph(self, names, sites, limits, games):
-        tmp = self.sql.query['getRingProfitAllHandsPlayerIdSite']
-#        print "DEBUG: getRingProfitGraph"
+    def getData(self, names, sites):
+        tmp = self.sql.query['tourneyResults']
+        print "DEBUG: getData"
         start_date, end_date = self.filters.getDates()
 
         #Buggered if I can find a way to do this 'nicely' take a list of integers and longs
@@ -268,84 +250,31 @@ class GuiGraphViewer (threading.Thread):
         # [5L] into (5) not (5,) and [5L, 2829L] into (5, 2829)
         nametest = str(tuple(names))
         sitetest = str(tuple(sites))
-        #nametest = nametest.replace("L", "")
-
-        q = []
-        for m in self.filters.display.items():
-            if m[0] == 'Games' and m[1]:
-                for n in games:
-                    if games[n]:
-                        q.append(n)
-                if len(q) > 0:
-                    gametest = str(tuple(q))
-                    gametest = gametest.replace("L", "")
-                    gametest = gametest.replace(",)",")")
-                    gametest = gametest.replace("u'","'")
-                    gametest = "and gt.category in %s" % gametest
-                else:
-                    gametest = "and gt.category IS NULL"
-        tmp = tmp.replace("<game_test>", gametest)
-        
-        lims = [int(x) for x in limits if x.isdigit()]
-        potlims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'pl']
-        nolims = [int(x[0:-2]) for x in limits if len(x) > 2 and x[-2:] == 'nl']
-        limittest = "and ( (gt.limitType = 'fl' and gt.bigBlind in "
-                 # and ( (limit and bb in()) or (nolimit and bb in ()) )
-        if lims:
-            blindtest = str(tuple(lims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'pl' and gt.bigBlind in "
-        if potlims:
-            blindtest = str(tuple(potlims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) '
-        else:
-            limittest = limittest + '(-1) ) '
-        limittest = limittest + " or (gt.limitType = 'nl' and gt.bigBlind in "
-        if nolims:
-            blindtest = str(tuple(nolims))
-            blindtest = blindtest.replace("L", "")
-            blindtest = blindtest.replace(",)",")")
-            limittest = limittest + blindtest + ' ) )'
-        else:
-            limittest = limittest + '(-1) ) )'
-
-        if type == 'ring':
-            limittest = limittest + " and gt.type = 'ring' "
-        elif type == 'tour':
-            limittest = limittest + " and gt.type = 'tour' "
 
         #Must be a nicer way to deal with tuples of size 1 ie. (2,) - which makes sql barf
         tmp = tmp.replace("<player_test>", nametest)
         tmp = tmp.replace("<site_test>", sitetest)
         tmp = tmp.replace("<startdate_test>", start_date)
         tmp = tmp.replace("<enddate_test>", end_date)
-        tmp = tmp.replace("<limit_test>", limittest)
         tmp = tmp.replace(",)", ")")
 
-        #print "DEBUG: sql query:"
-        #print tmp
+        print "DEBUG: sql query:"
+        print tmp
         self.db.cursor.execute(tmp)
         #returns (HandId,Winnings,Costs,Profit)
         winnings = self.db.cursor.fetchall()
         self.db.rollback()
 
         if len(winnings) == 0:
-            return (None, None, None)
+            return None
 
-        green = map(lambda x:float(x[1]), winnings)
-        blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
-        red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
+        green = map(lambda x:float(x[0]), winnings)
+        #blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
+        #red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
         greenline = cumsum(green)
-        blueline  = cumsum(blue)
-        redline   = cumsum(red)
-        return (greenline/100, blueline/100, redline/100)
-        #end of def getRingProfitGraph
+        #blueline  = cumsum(blue)
+        #redline   = cumsum(red)
+        return (greenline/100)
 
     def exportGraph (self, widget, data):
         if self.fig is None:

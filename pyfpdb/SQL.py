@@ -3027,6 +3027,9 @@ class Sql:
         #elif db_server == 'sqlite':
         #    self.query['playerStatsByPosition'] = """ """
 
+        ####################################
+        # Cash Game Graph query
+        ####################################
         self.query['getRingProfitAllHandsPlayerIdSite'] = """
             SELECT hp.handId, hp.totalProfit, hp.sawShowdown
             FROM HandsPlayers hp
@@ -3043,6 +3046,28 @@ class Sql:
             GROUP BY h.startTime, hp.handId, hp.sawShowdown, hp.totalProfit
             ORDER BY h.startTime"""
 
+        ####################################
+        # Tourney Results query
+        ####################################
+        self.query['tourneyResults'] = """
+            SELECT (tp.winnings - tt.buyIn - tt.fee) as profit, tp.koCount, tp.rebuyCount, tp.addOnCount, tt.buyIn, tt.fee
+            FROM TourneysPlayers tp
+            INNER JOIN Players pl      ON  (pl.id = tp.playerId)
+            INNER JOIN Tourneys t         ON  (t.id  = tp.tourneyId)
+            INNER JOIN TourneyTypes tt    ON  (tt.id = t.tourneyTypeId)
+            WHERE pl.id in <player_test>
+            AND   pl.siteId in <site_test>
+            AND   t.startTime > '<startdate_test>'
+            AND   t.startTime < '<enddate_test>'
+            GROUP BY t.startTime, tp.tourneyId, tp.winningsCurrency,
+                     tp.winnings, tp.koCount,
+                     tp.rebuyCount, tp.addOnCount,
+                     tt.buyIn, tt.fee
+            ORDER BY t.startTime"""
+
+            #AND   gt.type = 'ring'
+            #<limit_test>
+            #<game_test>
 
         ####################################
         # Session stats query
