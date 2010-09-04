@@ -129,7 +129,7 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
     db.recreate_tables()
-    importer = fpdb_import.Importer(False, settings, config)
+    importer = fpdb_import.Importer(False, settings, config, None)
     importer.setDropIndexes("don't drop")
     importer.setFailOnError(True)
     importer.setThreads(-1)
