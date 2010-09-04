@@ -35,6 +35,7 @@ class FpdbError:
         self.site = sitename
         self.errorcount = 0
         self.histogram = {}
+        self.statcount = {}
 
     def error_report(self, filename, hand, stat, ghash, testhash, player):
         print "Regression Test Error:"
@@ -45,6 +46,11 @@ class FpdbError:
             self.histogram[filename] += 1
         else:
             self.histogram[filename] = 1
+
+        if stat in self.statcount:
+            self.statcount[stat] += 1
+        else:
+            self.statcount[stat] = 1
         self.errorcount += 1
 
     def print_histogram(self):
@@ -139,6 +145,12 @@ def main(argv=None):
     EverleafErrors    = FpdbError('Everleaf Poker')
     CarbonErrors      = FpdbError('Carbon')
     PKRErrors         = FpdbError('PKR')
+
+    ErrorsList = [
+                    PokerStarsErrors, FTPErrors, PartyPokerErrors,
+                    BetfairErrors, OnGameErrors, AbsoluteErrors,
+                    EverleafErrors, CarbonErrors, PKRErrors
+                ]
     
     walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
@@ -153,20 +165,38 @@ def main(argv=None):
     walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
     walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
 
-    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount + OnGameErrors.errorcount + AbsoluteErrors.errorcount + EverleafErrors.errorcount + CarbonErrors.errorcount + PKRErrors.errorcount
+    totalerrors = 0
+
+    for i, site in enumerate(ErrorsList):
+        totalerrors += ErrorsList[i].errorcount
 
     print "---------------------"
     print "Total Errors: %d" % totalerrors
     print "---------------------"
-    PokerStarsErrors.print_histogram()
-    FTPErrors.print_histogram()
-    PartyPokerErrors.print_histogram()
-    BetfairErrors.print_histogram()
-    OnGameErrors.print_histogram()
-    AbsoluteErrors.print_histogram()
-    EverleafErrors.print_histogram()
-    CarbonErrors.print_histogram()
-    PKRErrors.print_histogram()
+    for i, site in enumerate(ErrorsList):
+        ErrorsList[i].print_histogram()
+
+    # Merge the dicts of stats from the various error objects
+    statdict = {}
+    for i, site in enumerate(ErrorsList):
+        tmp = ErrorsList[i].statcount
+        for stat in tmp:
+            if stat in statdict:
+                statdict[stat] += tmp[stat]
+            else:
+                statdict[stat] = tmp[stat]
+
+    print "\n"
+    print "---------------------"
+    print "Errors by stat:"
+    print "---------------------"
+    #for stat in statdict:
+    #    print "(%3d) : %s" %(statdict[stat], stat)
+
+    sortedstats = sorted([(value,key) for (key,value) in statdict.items()])
+    for num, stat in sortedstats:
+        print "(%3d) : %s" %(num, stat)
+
 
 if __name__ == '__main__':
     sys.exit(main())
