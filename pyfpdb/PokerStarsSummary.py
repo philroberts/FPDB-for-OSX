@@ -53,6 +53,8 @@ class PokerStarsSummary(TourneySummary):
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
                           '5 Card Draw' : ('draw','fivedraw')
                }
+
+    re_SplitGames = re.compile("^PokerStars")
     
     re_TourNo = re.compile("\#[0-9]+,")
     re_Entries = re.compile("[0-9]+")
@@ -167,4 +169,7 @@ class PokerStarsSummary(TourneySummary):
             
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)#TODO: currency, ko/addon/rebuy count -> need examples!
     #end def parseSummary
+    def parseSummaryFile(self):
+        lines=self.summaryText.splitlines()
+        print lines
 #end class PokerStarsSummary
