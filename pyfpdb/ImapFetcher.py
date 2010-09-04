@@ -119,6 +119,7 @@ def runFake(db, config, infile):
 
     for summary in summaryList[1:]:
         result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
+        print "DEBUG: Processed: %s: tournNo: %s" % (result.tourneyId, result.tourNo)
 
 def splitPokerStarsSummaries(emailText):
     splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
@@ -136,7 +137,7 @@ def main(argv=None):
         sys.exit(0)
 
     # These options should really come from the OptionsParser
-    config = Configuration.Config(file = "HUD_config.test.xml")
+    config = Configuration.Config()
     db = Database.Database(config)
     sql = SQL.Sql(db_server = 'sqlite')
     settings = {}

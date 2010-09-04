@@ -65,12 +65,15 @@ class PokerStarsSummary(TourneySummary):
                         \#(?P<TOURNO>[0-9]+),\s
                         (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\s
                         (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
-                        Buy-In:\s\$(?P<BUYIN>[.0-9]+)\/\$(?P<FEE>[.0-9]+)\s
+                        (?P<DESC>[ a-zA-Z]+\s)?
+                        (Buy-In:\s\$(?P<BUYIN>[.0-9]+)(\/\$(?P<FEE>[.0-9]+))?\s)?
                         (?P<ENTRIES>[0-9]+)\splayers\s
-                        Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)\s
+                        (\$?(?P<ADDED>[.\d]+)\sadded\sto\sthe\sprize\spool\sby\sPokerStars\.com\s)?
+                        (Total\sPrize\sPool:\s\$?(?P<PRIZEPOOL>[.0-9]+)\s)?
+                        (Target\sTournament\s.*)?
                         Tournament\sstarted\s-\s
                         (?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\-\s]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s?\(?(?P<TZ>[A-Z]+)\)\s
-                                """ % substitutions ,re.VERBOSE|re.MULTILINE)
+                               """ % substitutions ,re.VERBOSE|re.MULTILINE|re.DOTALL)
 
     re_Currency = re.compile(u"""(?P<CURRENCY>[%(LS)s]|FPP)""" % substitutions)
 
@@ -190,22 +193,23 @@ class PokerStarsSummary(TourneySummary):
     #end def parseSummary
 
     def parseSummaryFile(self):
-        print self.summaryText
         m = self.re_TourneyInfo.search(self.summaryText)
-        if m:
-            print "DEBUG: m.groupdict(): %s" % m.groupdict()
-        else:
-            tmp = self.summaryText[0:100]
+        if m == None:
+            tmp = self.summaryText[0:200]
             log.error(_("parseSummaryFile: Unable to recognise Tourney Info: '%s'") % tmp)
             log.error(_("parseSummaryFile: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to recognise Tourney Info: '%s'") % tmp)
+
+        #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
         if 'TOURNO'    in mg: self.tourNo = mg['TOURNO']
         if 'LIMIT'     in mg: self.gametype['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME'      in mg: self.gametype['category']  = self.games[mg['GAME']][1]
-        if 'BUYIN'     in mg: self.buyin                 = int(100*Decimal(mg['BUYIN']))
-        if 'FEE'       in mg: self.fee                   = int(100*Decimal(mg['FEE']))
+        if mg['BUYIN'] != None:
+            self.buyin = int(100*Decimal(mg['BUYIN']))
+        if mg['FEE'] != None:
+            self.fee   = int(100*Decimal(mg['FEE']))
         if 'PRIZEPOOL' in mg: self.prizepool             = mg['PRIZEPOOL']
         if 'ENTRIES'   in mg: self.entries               = mg['ENTRIES']
 
@@ -217,12 +221,11 @@ class PokerStarsSummary(TourneySummary):
 
 
         m = self.re_Currency.search(self.summaryText)
-        if m:
-            print "DEBUG: m.groupdict(): %s" % m.groupdict()
-        else:
+        if m == None:
             log.error(_("parseSummaryFile: Unable to locate currency"))
             log.error(_("parseSummaryFile: Raising FpdbParseError"))
             raise FpdbParseError(_("Unable to locate currency"))
+        #print "DEBUG: m.groupdict(): %s" % m.groupdict()
 
         mg = m.groupdict()
         if mg['CURRENCY'] == "$":     self.currency = "USD"
@@ -232,7 +235,7 @@ class PokerStarsSummary(TourneySummary):
         m = self.re_Player.finditer(self.summaryText)
         for a in m:
             mg = a.groupdict()
-            print "DEBUG: a.groupdict(): %s" % mg
+            #print "DEBUG: a.groupdict(): %s" % mg
             name = mg['NAME']
             rank = mg['RANK']
             winnings = 0
@@ -240,15 +243,16 @@ class PokerStarsSummary(TourneySummary):
             if 'WINNINGS' in mg and mg['WINNINGS'] != None:
                 winnings = int(100*Decimal(mg['WINNINGS']))
 
-            if 'STILLPLAYING' in mg:
+            if 'STILLPLAYING' in mg and mg['STILLPLAYING'] != None:
                 #print "stillplaying"
                 rank=None
                 winnings=None
 
             #TODO: currency, ko/addon/rebuy count -> need examples!
+            #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)
+            #print "DEBUG: self.buyin: %s self.fee %s" %(self.buyin, self.fee)
             self.addPlayer(rank, name, winnings, self.currency, None, None, None)
 
-        print self
-        sys.exit(0)
+        #print self
 
 #end class PokerStarsSummary
