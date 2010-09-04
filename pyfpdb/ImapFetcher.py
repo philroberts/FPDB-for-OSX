@@ -111,7 +111,7 @@ def readFile(filename):
 def runFake(db, config, infile):
     summaryText = readFile(infile)
     # This regex should be part of PokerStarsSummary
-    re_SplitGames = re.compile("PokerStars Tournament #")
+    re_SplitGames = re.compile("PokerStars Tournament ")
     summaryList = re.split(re_SplitGames, summaryText)
 
     if len(summaryList) <= 1:
