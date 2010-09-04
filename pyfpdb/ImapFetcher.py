@@ -20,7 +20,16 @@
 #see http://tools.ietf.org/html/rfc2060#section-6.4.4 for IMAP4 search criteria
 
 from imaplib import IMAP4, IMAP4_SSL
+import sys
+import codecs
+import re
+
+import Configuration
+import Database
+import SQL
+import Options
 import PokerStarsSummary
+
 
 import locale
 lang=locale.getdefaultlocale()[0][0:2]
@@ -89,4 +98,55 @@ def run(config, db):
        # finally:
         #    pass
         server.logout()
-        
+
+def readFile(filename):
+    kodec = "utf8"
+    in_fh = codecs.open(filename, 'r', kodec)
+    whole_file = in_fh.read()
+    in_fh.close()
+    return whole_file
+
+
+
+def runFake(db, config, infile):
+    summaryText = readFile(infile)
+    # This regex should be part of PokerStarsSummary
+    re_SplitGames = re.compile("PokerStars Tournament #")
+    summaryList = re.split(re_SplitGames, summaryText)
+
+    if len(summaryList) <= 1:
+        print "DEBUG: re_SplitGames isn't matching"
+
+    for summary in summaryList[1:]:
+        result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
+
+def splitPokerStarsSummaries(emailText):
+    splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
+
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv[1:]
+
+    (options, argv) = Options.fpdb_options()
+
+    if options.usage == True:
+        #Print usage examples and exit
+        print _("USAGE:")
+        sys.exit(0)
+
+    # These options should really come from the OptionsParser
+    config = Configuration.Config(file = "HUD_config.test.xml")
+    db = Database.Database(config)
+    sql = SQL.Sql(db_server = 'sqlite')
+    settings = {}
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+    db.recreate_tables()
+
+    runFake(db, config, options.infile)
+
+if __name__ == '__main__':
+    sys.exit(main())
+
