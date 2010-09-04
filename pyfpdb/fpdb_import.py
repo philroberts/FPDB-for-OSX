@@ -70,12 +70,13 @@ else:
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 class Importer:
-    def __init__(self, caller, settings, config, sql = None):
+    def __init__(self, caller, settings, config, parent, sql = None):
         """Constructor"""
         self.settings   = settings
         self.caller     = caller
         self.config     = config
         self.sql        = sql
+        self.parent     = parent
 
         #log = Configuration.get_logger("logging.conf", "importer", log_dir=self.config.dir_log)
         self.filelist   = {}
@@ -301,7 +302,16 @@ class Importer:
         totpartial = 0
         toterrors = 0
         tottime = 0
+        progresscount = 0
+        progressgoal = len(self.filelist)
+
+        ProgressDialog = ProgressBar(self.parent)
+        
         for file in self.filelist:
+            
+            progresscount += 1
+            ProgressDialog.progress_update(progresscount,progressgoal)
+            
             (stored, duplicates, partial, errors, ttime) = self.import_file_dict(db, file
                                                ,self.filelist[file][0], self.filelist[file][1], q)
             totstored += stored
@@ -313,6 +323,8 @@ class Importer:
             print _("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
+        del ProgressDialog
+        
         return (totstored, totdups, totpartial, toterrors)
     # end def importFiles
 
@@ -527,6 +539,45 @@ class Importer:
             logfile.write(str(s) + "\n")
         logfile.write("\n")
         logfile.close()
+        
+        
+class ProgressBar:
+
+    def __del__(self):
+        self.progress.destroy()
+
+    def progress_update(self, fraction, sum):
+
+        progresspercent = float(fraction) / (float(sum) + 1.0)
+        x = sometext.center(100)
+        
+        self.pbar.set_fraction(progresspercent)
+        self.pbar.set_text(str(fraction) + " / " + str(sum))
+
+    def __init__(self, parent):
+
+        self.progress = gtk.Window(gtk.WINDOW_TOPLEVEL)
+
+        self.progress.set_resizable(False)
+        self.progress.set_modal(True)
+        self.progress.set_transient_for(parent)
+        self.progress.set_decorated(False)
+
+        vbox = gtk.VBox(False, 5)
+        vbox.set_border_width(10)
+        self.progress.add(vbox)
+        vbox.show()
+  
+        align = gtk.Alignment(0.5, 0.5, 0, 0)
+        vbox.pack_start(align, True, True, 2)
+        align.show()
+
+        self.pbar = gtk.ProgressBar()
+        align.add(self.pbar)
+        self.pbar.show()
+
+        self.progress.show()
+
 
 if __name__ == "__main__":
     print _("CLI for fpdb_import is now available as CliFpdb.py")
