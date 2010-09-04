@@ -268,7 +268,7 @@ class GuiTourneyGraphViewer (threading.Thread):
         if len(winnings) == 0:
             return None
 
-        green = map(lambda x:float(x[0]), winnings)
+        green = map(lambda x:float(x[1]), winnings)
         #blue  = map(lambda x: float(x[1]) if x[2] == True  else 0.0, winnings)
         #red   = map(lambda x: float(x[1]) if x[2] == False else 0.0, winnings)
         greenline = cumsum(green)

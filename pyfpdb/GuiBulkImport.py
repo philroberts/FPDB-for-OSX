@@ -142,10 +142,12 @@ class GuiBulkImport():
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, settings, config, sql = None):
+    def __init__(self, settings, config, parent, sql = None):
         self.settings = settings
         self.config = config
-        self.importer = fpdb_import.Importer(self, self.settings, config, sql)
+        self.parent = parent
+
+        self.importer = fpdb_import.Importer(self, self.settings, config,parent, sql)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
@@ -385,7 +387,7 @@ def main(argv=None):
         print _('-q is deprecated. Just use "-f filename" instead')
         # This is because -q on its own causes an error, so -f is necessary and sufficient for cmd line use
     if not options.filename:
-        i = GuiBulkImport(settings, config)
+        i = GuiBulkImport(settings, config, None)
         main_window = gtk.Window()
         main_window.connect('destroy', destroy)
         main_window.add(i.vbox)
@@ -393,7 +395,7 @@ def main(argv=None):
         gtk.main()
     else:
         #Do something useful
-        importer = fpdb_import.Importer(False,settings, config)
+        importer = fpdb_import.Importer(False,settings, config, self.parent)
         # importer.setDropIndexes("auto")
         importer.setDropIndexes(_("don't drop"))
         importer.setFailOnError(options.failOnError)

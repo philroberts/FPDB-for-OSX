@@ -20,7 +20,17 @@
 #see http://tools.ietf.org/html/rfc2060#section-6.4.4 for IMAP4 search criteria
 
 from imaplib import IMAP4, IMAP4_SSL
+import sys
+import codecs
+import re
+
+import Configuration
+import Database
+from Exceptions import FpdbParseError
+import SQL
+import Options
 import PokerStarsSummary
+
 
 import locale
 lang=locale.getdefaultlocale()[0][0:2]
@@ -63,30 +73,87 @@ def run(config, db):
         response, searchData = server.search(None, "SUBJECT", "PokerStars Tournament History Request")
         for messageNumber in searchData[0].split(" "):
             response, headerData = server.fetch(messageNumber, "(BODY[HEADER.FIELDS (SUBJECT)])")
-            #print "response to fetch subject:",response
             if response!="OK":
                 raise error #TODO: show error message
             neededMessages.append(("PS", messageNumber))
-        
+
+        print "ImapFetcher: Found %s messages to fetch" %(len(neededMessages))
+
         if (len(neededMessages)==0):
             raise error #TODO: show error message
-        for messageData in neededMessages:
+
+        errors = 0
+        for i, messageData in enumerate(neededMessages, start=1):
+            print "Retrieving message %s" % i
             response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
             bodyData=bodyData[0][1]
             if response!="OK":
                 raise error #TODO: show error message
             if messageData[0]=="PS":
                 summaryTexts=(splitPokerStarsSummaries(bodyData))
-                for summaryText in summaryTexts:
-                    result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
-                    #print "finished importing a PS summary with result:",result
-                    #TODO: count results and output to shell like hand importer does
-            
-        print _("completed running Imap import, closing server connection")
+                print "Found %s summaries in email" %(len(summaryTexts))
+                for j, summaryText in enumerate(summaryTexts, start=1):
+                    try:
+                        result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+                    except FpdbParseError, e:
+                        errors += 1
+                    print "Finished importing %s/%s PS summaries" %(j, len(summaryTexts))
+
+        print _("Completed running Imap import, closing server connection")
+        print _("Errors: %s" % errors)
     #finally:
      #   try:
         server.close()
        # finally:
         #    pass
         server.logout()
-        
+
+def readFile(filename):
+    kodec = "utf8"
+    in_fh = codecs.open(filename, 'r', kodec)
+    whole_file = in_fh.read()
+    in_fh.close()
+    return whole_file
+
+
+
+def runFake(db, config, infile):
+    summaryText = readFile(infile)
+    # This regex should be part of PokerStarsSummary
+    re_SplitGames = re.compile("PokerStars Tournament ")
+    summaryList = re.split(re_SplitGames, summaryText)
+
+    if len(summaryList) <= 1:
+        print "DEBUG: re_SplitGames isn't matching"
+
+    for summary in summaryList[1:]:
+        result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
+        print "DEBUG: Processed: %s: tournNo: %s" % (result.tourneyId, result.tourNo)
+
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv[1:]
+
+    (options, argv) = Options.fpdb_options()
+
+    if options.usage == True:
+        #Print usage examples and exit
+        print _("USAGE:")
+        sys.exit(0)
+
+    # These options should really come from the OptionsParser
+    config = Configuration.Config()
+    db = Database.Database(config)
+    sql = SQL.Sql(db_server = 'sqlite')
+    settings = {}
+    settings.update(config.get_db_parameters())
+    settings.update(config.get_import_parameters())
+    settings.update(config.get_default_paths())
+    db.recreate_tables()
+
+    runFake(db, config, options.infile)
+
+if __name__ == '__main__':
+    sys.exit(main())
+
