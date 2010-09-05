@@ -142,12 +142,12 @@ class GuiBulkImport():
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, settings, config, parent, sql = None):
+    def __init__(self, settings, config, sql = None, parent = None):
         self.settings = settings
         self.config = config
         self.parent = parent
 
-        self.importer = fpdb_import.Importer(self, self.settings, config,parent, sql)
+        self.importer = fpdb_import.Importer(self, self.settings, config, sql, parent)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
