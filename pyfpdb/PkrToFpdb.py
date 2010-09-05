@@ -115,7 +115,7 @@ class Pkr(HandHistoryConverter):
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?
                         """ %  subst, re.MULTILINE|re.VERBOSE)
-            self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
+            self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows \[(?P<CARDS>.*)\]" % subst, re.MULTILINE)
             self.re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
@@ -354,9 +354,10 @@ class Pkr(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-# TODO: pick up mucks also??
-        for shows in self.re_ShowdownAction.finditer(hand.handText):            
+        # TODO: pick up mucks also??
+        for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS').split(' ')
+            #print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
