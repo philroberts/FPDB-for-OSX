@@ -395,7 +395,7 @@ def main(argv=None):
         gtk.main()
     else:
         #Do something useful
-        importer = fpdb_import.Importer(False,settings, config, self.parent)
+        importer = fpdb_import.Importer(False,settings, config, None)
         # importer.setDropIndexes("auto")
         importer.setDropIndexes(_("don't drop"))
         importer.setFailOnError(options.failOnError)
