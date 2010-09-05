@@ -220,7 +220,7 @@
                     'position': 0,
                     'raiseFirstInChance': False,
                     'raisedFirstIn': False,
-                    'rake': 0,
+                    'rake': 40,
                     'sawShowdown': True,
                     'seatNo': 3,
                     'sitout': False,
