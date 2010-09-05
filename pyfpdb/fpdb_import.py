@@ -70,7 +70,7 @@ else:
     psycopg2.extensions.register_type(psycopg2.extensions.UNICODE)
 
 class Importer:
-    def __init__(self, caller, settings, config, parent, sql = None):
+    def __init__(self, caller, settings, config, sql = None, parent = None):
         """Constructor"""
         self.settings   = settings
         self.caller     = caller
@@ -302,15 +302,13 @@ class Importer:
         totpartial = 0
         toterrors = 0
         tottime = 0
-        progresscount = 0
-        progressgoal = len(self.filelist)
-
-        ProgressDialog = ProgressBar(self.parent)
+        
+        #prepare progress popup window
+        ProgressDialog = ProgressBar(len(self.filelist), self.parent)
         
         for file in self.filelist:
             
-            progresscount += 1
-            ProgressDialog.progress_update(progresscount,progressgoal)
+            ProgressDialog.progress_update()
             
             (stored, duplicates, partial, errors, ttime) = self.import_file_dict(db, file
                                                ,self.filelist[file][0], self.filelist[file][1], q)
@@ -319,11 +317,12 @@ class Importer:
             totpartial += partial
             toterrors += errors
 
+        del ProgressDialog
+        
         for i in xrange( self.settings['threads'] ):
             print _("sending finish message queue length ="), q.qsize()
             db.send_finish_msg(q)
 
-        del ProgressDialog
         
         return (totstored, totdups, totpartial, toterrors)
     # end def importFiles
@@ -543,25 +542,63 @@ class Importer:
         
 class ProgressBar:
 
+    """
+    Popup window to show progress
+    
+    Init method sets up total number of expected iterations
+    If no parent is passed to init, command line
+    mode assumed, and does not create a progress bar
+    """
+    
     def __del__(self):
-        self.progress.destroy()
-
-    def progress_update(self, fraction, sum):
-
-        progresspercent = float(fraction) / (float(sum) + 1.0)
         
-        self.pbar.set_fraction(progresspercent)
-        self.pbar.set_text(str(fraction) + " / " + str(sum))
+        if self.parent:
+            self.progress.destroy()
 
-    def __init__(self, parent):
 
+    def progress_update(self):
+
+        if not self.parent:
+            #nothing to do
+            return
+            
+        self.fraction += 1
+        #update sum if fraction exceeds expected total number of iterations
+        if self.fraction > self.sum: 
+            sum = self.fraction
+        
+        #progress bar total set to 1 plus the number of items,to prevent it
+        #reaching 100% prior to processing fully completing
+
+        progress_percent = float(self.fraction) / (float(self.sum) + 1.0)
+        progress_text = (self.title + " " 
+                            + str(self.fraction) + " / " + str(self.sum))
+
+        self.pbar.set_fraction(progress_percent)
+        self.pbar.set_text(progress_text)
+
+
+    def __init__(self, sum, parent):
+
+        self.parent = parent
+        if not self.parent:
+            #no parent is passed, assume this is being run from the 
+            #command line, so return immediately
+            return
+        
+        self.fraction = 0
+        self.sum = sum
+        self.title = _("Importing")
+            
         self.progress = gtk.Window(gtk.WINDOW_TOPLEVEL)
 
         self.progress.set_resizable(False)
         self.progress.set_modal(True)
-        self.progress.set_transient_for(parent)
-        self.progress.set_decorated(False)
-
+        self.progress.set_transient_for(self.parent)
+        self.progress.set_decorated(True)
+        self.progress.set_deletable(False)
+        self.progress.set_title(self.title)
+        
         vbox = gtk.VBox(False, 5)
         vbox.set_border_width(10)
         self.progress.add(vbox)

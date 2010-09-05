@@ -249,8 +249,16 @@ class PokerStarsSummary(TourneySummary):
                 winnings=None
 
             if 'TICKET' and mg['TICKET'] != None:
-                print "DEBUG: TODO! fix Step ticket values"
-                print "\tWinning = Level %s" % mg['LEVEL']
+                #print "Tournament Ticket Level %s" % mg['LEVEL']
+                step_values = {
+                                '1' :    '750', # Step 1 -    $7.50 USD
+                                '2' :   '2750', # Step 2 -   $27.00 USD
+                                '3' :   '8200', # Step 3 -   $82.00 USD
+                                '4' :  '21500', # Step 4 -  $215.00 USD
+                                '5' :  '70000', # Step 5 -  $700.00 USD
+                                '6' : '210000', # Step 6 - $2100.00 USD
+                              }
+                winnings = step_values[mg['LEVEL']]
 
             #TODO: currency, ko/addon/rebuy count -> need examples!
             #print "DEBUG: addPlayer(%s, %s, %s, %s, None, None, None)" %(rank, name, winnings, self.currency)

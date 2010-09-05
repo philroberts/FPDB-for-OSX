@@ -692,6 +692,7 @@
                     'raisedFirstIn': False,
                     'rake': 0,
                     'sawShowdown': False,
+                    'seatNo': 8,
                     'sitout': False,
                     'startCards': 0,
                     'startCash': 925,

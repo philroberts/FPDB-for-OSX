@@ -142,12 +142,12 @@ class GuiBulkImport():
         """returns the vbox of this thread"""
         return self.vbox
 
-    def __init__(self, settings, config, parent, sql = None):
+    def __init__(self, settings, config, sql = None, parent = None):
         self.settings = settings
         self.config = config
         self.parent = parent
 
-        self.importer = fpdb_import.Importer(self, self.settings, config,parent, sql)
+        self.importer = fpdb_import.Importer(self, self.settings, config, sql, parent)
 
         self.vbox = gtk.VBox(False, 0)
         self.vbox.show()
@@ -395,7 +395,7 @@ def main(argv=None):
         gtk.main()
     else:
         #Do something useful
-        importer = fpdb_import.Importer(False,settings, config, self.parent)
+        importer = fpdb_import.Importer(False,settings, config, None)
         # importer.setDropIndexes("auto")
         importer.setDropIndexes(_("don't drop"))
         importer.setFailOnError(options.failOnError)
