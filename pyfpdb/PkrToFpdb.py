@@ -239,6 +239,7 @@ class Pkr(HandHistoryConverter):
             if players.has_key(a.group('PNAME')):
                 pass # Ignore
             else:
+                #print "DEBUG: addPlayer(%s, %s, %s)" % (a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
                 hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
                 players[a.group('PNAME')] = True
 
@@ -335,9 +336,16 @@ class Pkr(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            #print "DEBUG: readAction: acts: %s" % acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
+                # Amount in hand history is not cumulative
+                # ie. Player3 calls 0.08
+                #     Player5 raises to 0.16
+                #     Player3 calls 0.16 (Doh! he's only calling 0.08
+                # TODO: Going to have to write an addCallStoopid()
+                #print "DEBUG: addCall( %s, %s, None)" %(street,action.group('PNAME'))
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
