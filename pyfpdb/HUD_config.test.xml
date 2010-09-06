@@ -577,6 +577,7 @@ Left-Drag to Move"
         <hhc site="Partouche" converter="PartoucheToFpdb"/>
         <hhc site="Carbon" converter="CarbonToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
+        <hhc site="iPoker" converter="iPokerToFpdb"/>
     </hhcs>
 
     <supported_databases>

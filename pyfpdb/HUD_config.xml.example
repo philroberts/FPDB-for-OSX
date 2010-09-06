@@ -702,6 +702,7 @@ Left-Drag to Move"
         <hhc site="Carbon" converter="CarbonToFpdb"/>
         <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="PKR" converter="PkrToFpdb"/>
+        <hhc site="iPoker" converter="iPokerToFpdb"/>
     </hhcs>
 
     <raw_hands save="none" compression="none"/>
