@@ -199,6 +199,10 @@ class PartyPoker(HandHistoryConverter):
         m = self._getGameType(handText)
         m_20BBmin = self.re_20BBmin.search(handText)
         if m is None:
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
             return None
 
         mg = m.groupdict()
