@@ -501,11 +501,22 @@ or None if we fail to get the info """
         else:
             return table_name
 
-
+    @staticmethod
+    def getTableNoRe(tournament):
+        "Returns string to search window title for tournament table no."
+# Full Tilt:  $30 + $3 Tournament (181398949), Table 1 - 600/1200 Ante 100 - Limit Razz
+# PokerStars: WCOOP 2nd Chance 02: $1,050 NLHE - Tournament 307521826 Table 1 - Blinds $30/$60
+        return "%s.+Table (\d+)" % (tournament, )
 
 def getTableTitleRe(config, sitename, *args, **kwargs):
     "Returns string to search in windows titles for current site"
     return getSiteHhc(config, sitename).getTableTitleRe(*args, **kwargs)
+
+def getTableNoRe(config, sitename, *args, **kwargs):
+    "Returns string to search window titles for tournament table no."
+    return getSiteHhc(config, sitename).getTableNoRe(*args, **kwargs)
+
+
 
 def getSiteHhc(config, sitename):
     "Returns HHC class for current site"
