@@ -216,11 +216,14 @@ class OnGame(HandHistoryConverter):
                 #hand.startTime = time.strptime(m.group('DATETIME'), "%a %b %d %H:%M:%S GMT%z %Y")
                 # Stupid library doesn't seem to support %z (http://docs.python.org/library/time.html?highlight=strptime#time.strptime)
                 # So we need to re-interpret te string to be useful
-                m1 = self.re_DateTime.finditer(info[key])
-                for a in m1:
+                a = self.re_DateTime.search(info[key])
+                if a:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
                     tzoffset = a.group('OFFSET')
-                    # TODO: Manually adjust time against OFFSET
+                else:
+                    datetimestr = "2010/01/01 01:01:01"
+                    log.error(_("readHandInfo: DATETIME not matched: '%s'" % info[key]))
+                # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
             if key == 'HID':
