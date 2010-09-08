@@ -111,7 +111,7 @@ class OnGame(HandHistoryConverter):
     re_DateTime = re.compile("""
             [a-zA-Z]{3}\s
             (?P<M>[a-zA-Z]{3})\s
-            (?P<D>[0-9]{2})\s
+            (?P<D>[0-9]+)\s
             (?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s
             (?P<OFFSET>\w+[-+]\d+)\s
             (?P<Y>[0-9]{4})
