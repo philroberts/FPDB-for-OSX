@@ -229,6 +229,9 @@ class OnGame(HandHistoryConverter):
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
             if key == 'HID':
                 hand.handid = info[key]
+                # Need to remove non-alphanumerics for MySQL
+                hand.handid = hand.handid.replace('R','')
+                hand.handid = hand.handid.replace('-','')
             if key == 'TABLE':
                 hand.tablename = info[key]
 
