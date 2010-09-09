@@ -3050,7 +3050,7 @@ class Sql:
         # Tourney Results query
         ####################################
         self.query['tourneyResults'] = """
-            SELECT tp.tourneyId, (tp.winnings - tt.buyIn - tt.fee) as profit, tp.koCount, tp.rebuyCount, tp.addOnCount, tt.buyIn, tt.fee, t.siteTourneyNo
+            SELECT tp.tourneyId, (coalesce(tp.winnings,0) - coalesce(tt.buyIn,0) - coalesce(tt.fee,0)) as profit, tp.koCount, tp.rebuyCount, tp.addOnCount, tt.buyIn, tt.fee, t.siteTourneyNo
             FROM TourneysPlayers tp
             INNER JOIN Players pl      ON  (pl.id = tp.playerId)
             INNER JOIN Tourneys t         ON  (t.id  = tp.tourneyId)
