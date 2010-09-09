@@ -147,11 +147,12 @@ or None if we fail to get the info """
 
         limits = { 'No Limit':'nl', 'Limit':'fl' }
         games = {              # base, category
-                    'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem') }
+                    '7 Card Stud L' : ('stud','studhilo'),
+                }
 
         if 'LIMIT' in mg:
             self.info['limitType'] = limits[mg['LIMIT']]
+        self.info['limitType'] = 'fl'
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = games[mg['GAME']]
         if 'SB' in mg:
