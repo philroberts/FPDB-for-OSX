@@ -115,8 +115,8 @@ class Pkr(HandHistoryConverter):
                         ^%(PLYR)s(?P<ATYPE>\sbets|\schecks|\sraises|\scalls|\sfolds)(\sto)?
                         (\s(%(CUR)s)?(?P<BET>[.\d]+))?
                         """ %  subst, re.MULTILINE|re.VERBOSE)
-            self.re_ShowdownAction   = re.compile(r"^%s: shows \[(?P<CARDS>.*)\]" %  player_re, re.MULTILINE)
-            self.re_CollectPot       = re.compile(r"Seat (?P<SEAT>[0-9]+): %(PLYR)s (\(button\) |\(small blind\) |\(big blind\) |\(button\) \(small blind\) )?(collected|showed \[.*\] and won) \(%(CUR)s(?P<POT>[.\d]+)\)(, mucked| with.*|)" %  subst, re.MULTILINE)
+            self.re_ShowdownAction   = re.compile(r"^%(PLYR)s shows \[(?P<CARDS>.*)\]" % subst, re.MULTILINE)
+            self.re_CollectPot       = re.compile(r"^%(PLYR)s wins %(CUR)s(?P<POT>[.\d]+)" %  subst, re.MULTILINE)
             self.re_sitsOut          = re.compile("^%s sits out" %  player_re, re.MULTILINE)
             self.re_ShownCards       = re.compile("^Seat (?P<SEAT>[0-9]+): %s (\(.*\) )?(?P<SHOWED>showed|mucked) \[(?P<CARDS>.*)\].*" %  player_re, re.MULTILINE)
 
@@ -125,15 +125,9 @@ class Pkr(HandHistoryConverter):
                 ["ring", "hold", "pl"],
                 ["ring", "hold", "fl"],
 
-                ["ring", "stud", "fl"],
-
-                ["ring", "draw", "fl"],
-
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
                 ["tour", "hold", "fl"],
-
-                ["tour", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -148,6 +142,8 @@ class Pkr(HandHistoryConverter):
         mg = m.groupdict()
         #print "DEBUG: %s" % mg
 
+        info['type'] = 'ring'
+
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -158,11 +154,6 @@ class Pkr(HandHistoryConverter):
             info['bb'] = mg['BB']
         if 'CURRENCY' in mg:
             info['currency'] = self.currencies[mg['CURRENCY']]
-
-        if 'TOURNO' in mg and mg['TOURNO'] is None:
-            info['type'] = 'ring'
-        else:
-            info['type'] = 'tour'
 
         if info['limitType'] == 'fl' and info['bb'] is not None and info['type'] == 'ring' and info['base'] != 'stud':
             try:
@@ -240,8 +231,17 @@ class Pkr(HandHistoryConverter):
     def readPlayerStacks(self, hand):
         log.debug("readPlayerStacks")
         m = self.re_PlayerInfo.finditer(hand.handText)
+        players = {} # Player Stacks are printed in the same format
+                     # At the beginning and end of the hand history
+                     # The hash is to cache the player names, and ignore
+                     # The second round
         for a in m:
-            hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+            if players.has_key(a.group('PNAME')):
+                pass # Ignore
+            else:
+                #print "DEBUG: addPlayer(%s, %s, %s)" % (a.group('SEAT'), a.group('PNAME'), a.group('CASH'))
+                hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'), a.group('CASH'))
+                players[a.group('PNAME')] = True
 
     def markStreets(self, hand):
         # PREFLOP = ** Dealing down cards **
@@ -336,9 +336,16 @@ class Pkr(HandHistoryConverter):
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             acts = action.groupdict()
+            #print "DEBUG: readAction: acts: %s" % acts
             if action.group('ATYPE') == ' raises':
                 hand.addRaiseTo( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' calls':
+                # Amount in hand history is not cumulative
+                # ie. Player3 calls 0.08
+                #     Player5 raises to 0.16
+                #     Player3 calls 0.16 (Doh! he's only calling 0.08
+                # TODO: Going to have to write an addCallStoopid()
+                #print "DEBUG: addCall( %s, %s, None)" %(street,action.group('PNAME'))
                 hand.addCall( street, action.group('PNAME'), action.group('BET') )
             elif action.group('ATYPE') == ' bets':
                 hand.addBet( street, action.group('PNAME'), action.group('BET') )
@@ -355,13 +362,15 @@ class Pkr(HandHistoryConverter):
 
 
     def readShowdownActions(self, hand):
-# TODO: pick up mucks also??
-        for shows in self.re_ShowdownAction.finditer(hand.handText):            
+        # TODO: pick up mucks also??
+        for shows in self.re_ShowdownAction.finditer(hand.handText):
             cards = shows.group('CARDS').split(' ')
+            #print "DEBUG: addShownCards(%s, %s)" %(cards, shows.group('PNAME'))
             hand.addShownCards(cards, shows.group('PNAME'))
 
     def readCollectPot(self,hand):
         for m in self.re_CollectPot.finditer(hand.handText):
+            #print "DEBUG: addCollectPot(%s, %s)" %(m.group('PNAME'), m.group('POT'))
             hand.addCollectPot(player=m.group('PNAME'),pot=m.group('POT'))
 
     def readShownCards(self,hand):

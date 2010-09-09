@@ -26,6 +26,12 @@ import gobject
 import os
 import sys
 import time
+
+import logging
+# logging has been set up in fpdb.py or HUD_main.py, use their settings:
+log = logging.getLogger("importer")
+
+
 import fpdb_import
 from optparse import OptionParser
 import Configuration
@@ -296,6 +302,7 @@ class GuiAutoImport (threading.Thread):
 
     def addSites(self, vbox1, vbox2):
         the_sites = self.config.get_supported_sites()
+        #log.debug("addSites: the_sites="+str(the_sites))
         for site in the_sites:
             pathHBox1 = gtk.HBox(False, 0)
             vbox1.pack_start(pathHBox1, False, True, 0)
@@ -306,6 +313,7 @@ class GuiAutoImport (threading.Thread):
             paths = self.config.get_default_paths(site)
             self.createSiteLine(pathHBox1, pathHBox2, site, False, paths['hud-defaultPath'], params['converter'], params['enabled'])
             self.input_settings[site] = [paths['hud-defaultPath']] + [params['converter']]
+        #log.debug("addSites: input_settings="+str(self.input_settings))
 
 if __name__== "__main__":
     def destroy(*args):             # call back for terminating the main eventloop

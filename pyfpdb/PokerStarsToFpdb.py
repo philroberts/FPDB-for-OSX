@@ -83,6 +83,7 @@ class PokerStars(HandHistoryConverter):
                     '7 Card Stud Hi/Lo' : ('stud','studhilo'),
                                'Badugi' : ('draw','badugi'),
               'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
+              'Single Draw 2-7 Lowball' : ('draw','27_1draw'),
                           '5 Card Draw' : ('draw','fivedraw')
                }
     currencies = { u'€':'EUR', '$':'USD', '':'T$' }
@@ -96,7 +97,7 @@ class PokerStars(HandHistoryConverter):
           (?P<BUYIN>(?P<BIAMT>[%(LS)s\d\.]+)?\+?(?P<BIRAKE>[%(LS)s\d\.]+)?\+?(?P<BOUNTY>[%(LS)s\d\.]+)?\s?(?P<TOUR_ISO>%(LEGAL_ISO)s)?|Freeroll)\s+)?
           # close paren of tournament info
           (?P<MIXED>HORSE|8\-Game|HOSE|Mixed PLH/PLO)?\s?\(?
-          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
+          (?P<GAME>Hold\'em|Razz|RAZZ|7\sCard\sStud|7\sCard\sStud\sHi/Lo|Omaha|Omaha\sHi/Lo|Badugi|Triple\sDraw\s2\-7\sLowball|Single\sDraw\s2\-7\sLowball|5\sCard\sDraw)\s
           (?P<LIMIT>No\sLimit|Limit|LIMIT|Pot\sLimit)\)?,?\s
           (-\s)?
           (Match.*)?                  #TODO: waiting for reply from user as to what this means
@@ -169,6 +170,7 @@ class PokerStars(HandHistoryConverter):
                 ["ring", "stud", "fl"],
 
                 ["ring", "draw", "fl"],
+                ["ring", "draw", "nl"],
 
                 ["tour", "hold", "nl"],
                 ["tour", "hold", "pl"],
@@ -178,10 +180,6 @@ class PokerStars(HandHistoryConverter):
                ]
 
     def determineGameType(self, handText):
-#    inspect the handText and return the gametype dict
-#    gametype dict is:
-#    {'limitType': xxx, 'base': xxx, 'category': xxx}
-        
         info = {}
         m = self.re_GameInfo.search(handText)
         if not m:
@@ -191,10 +189,6 @@ class PokerStars(HandHistoryConverter):
             raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
-#    I don't think this is doing what we think. mg will always have all 
-#    the expected keys, but the ones that didn't match in the regex will
-#    have a value of None. It is OK if it throws an exception when it 
-#    runs across an unknown game or limit or whatever.
         if 'LIMIT' in mg:
             info['limitType'] = self.limits[mg['LIMIT']]
         if 'GAME' in mg:
@@ -227,8 +221,7 @@ class PokerStars(HandHistoryConverter):
         m  = self.re_HandInfo.search(hand.handText,re.DOTALL)
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
-            logging.info("Didn't match re_HandInfo")
-            logging.info(hand.handText)
+            log.error("Didn't match re_HandInfo")
             raise FpdbParseError("No match in readHandInfo.")
 
         info.update(m.groupdict())
@@ -461,6 +454,7 @@ class PokerStars(HandHistoryConverter):
                 if m.group('SHOWED') == "showed": shown = True
                 elif m.group('SHOWED') == "mucked": mucked = True
 
+                #print "DEBUG: hand.addShownCards(%s, %s, %s, %s)" %(cards, m.group('PNAME'), shown, mucked)
                 hand.addShownCards(cards=cards, player=m.group('PNAME'), shown=shown, mucked=mucked)
 
 if __name__ == "__main__":

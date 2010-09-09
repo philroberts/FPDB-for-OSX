@@ -122,6 +122,7 @@ import GuiTourneyViewer
 import GuiPositionalStats
 import GuiAutoImport
 import GuiGraphViewer
+import GuiTourneyGraphViewer
 import GuiSessionViewer
 import SQL
 import Database
@@ -778,6 +779,7 @@ class fpdb:
                   <menuitem action="autoimp"/>
                   <menuitem action="hudConfigurator"/>
                   <menuitem action="graphs"/>
+                  <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
                   <menuitem action="tourneyviewer"/>
@@ -817,6 +819,7 @@ class fpdb:
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
+                                 ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
@@ -996,7 +999,7 @@ class fpdb:
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
-        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
+        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, _("Bulk Import"))
@@ -1065,6 +1068,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         self.threads.append(new_gv_thread)
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, _("Graphs"))
+
+    def tabTourneyGraphViewer(self, widget, data=None):
+        """opens a graph viewer tab"""
+        new_gv_thread = GuiTourneyGraphViewer.GuiTourneyGraphViewer(self.sql, self.config, self.window)
+        self.threads.append(new_gv_thread)
+        gv_tab = new_gv_thread.get_vbox()
+        self.add_and_display_tab(gv_tab, _("Tourney Graphs"))
 
     def __init__(self):
         # no more than 1 process can this lock at a time:

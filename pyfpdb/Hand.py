@@ -1224,7 +1224,8 @@ class StudHand(Hand):
             self.addHoleCards('FOURTH',  player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
             self.addHoleCards('FIFTH',   player, open=[cards[4]], closed=cards[2:4], shown=shown, mucked=mucked)
             self.addHoleCards('SIXTH',   player, open=[cards[5]], closed=cards[2:5], shown=shown, mucked=mucked)
-            self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
+            if len(cards) > 6:
+                self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
 
 
     def addPlayerCards(self, player,  street,  open=[],  closed=[]):
@@ -1514,11 +1515,15 @@ class Pot(object):
         commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
 
         self.pots = []
-        while len(commitsall) > 0:
-            commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
-            v1 = commitslive[0][0]
-            self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
-            commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
+        try:
+            while len(commitsall) > 0:
+                commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
+                v1 = commitslive[0][0]
+                self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
+                commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
+        except IndexError, e:
+            log.error(_("Pot.end(): Major failure while calculating pot: '%s'" % e))
+            raise FpdbParseError(_("Pot.end(): Major failure while calculating pot: '%s'" % e))
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:

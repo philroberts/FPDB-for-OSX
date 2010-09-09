@@ -1,0 +1,61 @@
+Table #15200183 - Hapuna Beach 2
+Starting Hand #746382000
+Start time of hand: 30 Mar 2009 21:00:00
+Last Hand #746380000
+Game Type: HOLD'EM
+Limit Type: NO LIMIT
+Table Type: RING
+Money Type: REAL MONEY
+Blinds are now $0.02/$0.04
+Button is at seat 5
+Seat 1: Player1 - $0.23
+Seat 2: Player2 - $5.28
+Seat 3: Player3 - $1.80
+Seat 4: allout96 - $3.99
+Seat 5: Player4 - $1.47
+Seat 6: Player5 - $4
+Moving Button to seat 1
+Player2 posts small blind ($0.02)
+Player3 posts big blind ($0.04)
+Player5 posts $0.04
+Shuffling Deck
+Dealing Cards
+Dealing [Ad 8h] to Player5
+allout96 folds
+Player4 calls $0.04
+Player5 checks
+Player1 folds
+Player2 calls $0.04
+Player3 checks
+Dealing Flop [9s Ac 5s]
+Player2 bets $0.08
+Player3 calls $0.08
+Player4 calls $0.08
+Player5 raises to $0.16
+Player2 calls $0.16
+Player3 calls $0.16
+Player4 calls $0.16
+Dealing Turn [4s]
+Player2 checks
+Player3 bets $0.04
+Player4 calls $0.04
+Player5 raises to $0.72
+Player2 folds
+Player3 raises to $1.40
+Player4 calls $1.27 (all-in)
+Player5 folds
+Returning $0.13 to Player3 uncalled
+Player3 shows [2h 3d]
+Player4 shows [4d 9c]
+Dealing River [2c]
+Taking Rake of $0.40 from pot 1
+Player3 has Straight, 5 high
+Player3 wins $3.66 with: Straight, 5 high
+Seat 1: Player1 - $0.23
+Seat 2: Player2 - $5.08
+Seat 3: Player3 - $3.99
+Seat 4: allout96 - $3.99
+Seat 5: Player4 - $0
+Seat 6: Player5 - $3.08
+End Of Hand #746382682
+

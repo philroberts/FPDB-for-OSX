@@ -680,6 +680,7 @@ class Config:
                 sys.stderr.write(_("Configuration file %s not found.  Using defaults.") % (file))
                 file = None
 
+        self.example_copy,example_file = True,None
         if file is None: (file,self.example_copy,example_file) = get_config("HUD_config.xml", True)
 
         self.file = file

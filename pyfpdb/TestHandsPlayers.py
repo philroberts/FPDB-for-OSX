@@ -35,6 +35,7 @@ class FpdbError:
         self.site = sitename
         self.errorcount = 0
         self.histogram = {}
+        self.statcount = {}
 
     def error_report(self, filename, hand, stat, ghash, testhash, player):
         print "Regression Test Error:"
@@ -45,6 +46,11 @@ class FpdbError:
             self.histogram[filename] += 1
         else:
             self.histogram[filename] = 1
+
+        if stat in self.statcount:
+            self.statcount[stat] += 1
+        else:
+            self.statcount[stat] = 1
         self.errorcount += 1
 
     def print_histogram(self):
@@ -62,7 +68,8 @@ def compare(leaf, importer, errors, site):
         # test if there is a .hp version of the file
         importer.addBulkImportImportFileOrDir(filename, site=site)
         (stored, dups, partial, errs, ttime) = importer.runImport()
-        if os.path.isfile(filename + '.hp'):
+
+        if os.path.isfile(filename + '.hp') and errs < 1:
             # Compare them
             hashfilename = filename + '.hp'
 
@@ -84,12 +91,17 @@ def compare(leaf, importer, errors, site):
 
                     for stat in pstat:
                         #print "pstat[%s][%s]: %s == %s" % (p, stat, pstat[stat], teststat[stat])
-                        if pstat[stat] == teststat[stat]:
-                            # The stats match - continue
-                            pass
-                        else:
-                            # Stats don't match - Doh!
-                            errors.error_report(filename, hand, stat, ghash, testhash, p)
+                        try:
+                            if pstat[stat] == teststat[stat]:
+                                # The stats match - continue
+                                pass
+                            else:
+                                # Stats don't match - Doh!
+                                errors.error_report(filename, hand, stat, ghash, testhash, p)
+                        except KeyError, e:
+                            errors.error_report(filename, False, "KeyError: '%s'" % stat, False, False, p)
+        if errs > 0:
+            errors.error_report(filename, False, "Parse", False, False, False)
 
         importer.clearFileList()
 
@@ -117,32 +129,77 @@ def main(argv=None):
     settings.update(config.get_import_parameters())
     settings.update(config.get_default_paths())
     db.recreate_tables()
-    importer = fpdb_import.Importer(False, settings, config)
+    importer = fpdb_import.Importer(False, settings, config, None)
     importer.setDropIndexes("don't drop")
     importer.setFailOnError(True)
     importer.setThreads(-1)
     importer.setCallHud(False)
     importer.setFakeCacheHHC(True)
 
-    PokerStarsErrors = FpdbError('PokerStars')
-    FTPErrors        = FpdbError('Full Tilt Poker')
-    PartyPokerErrors = FpdbError('Party Poker')
-    BetfairErrors    = FpdbError('Betfair')
+    PokerStarsErrors  = FpdbError('PokerStars')
+    FTPErrors         = FpdbError('Full Tilt Poker')
+    PartyPokerErrors  = FpdbError('Party Poker')
+    BetfairErrors     = FpdbError('Betfair')
+    OnGameErrors      = FpdbError('OnGame')
+    AbsoluteErrors    = FpdbError('Absolute Poker')
+    EverleafErrors    = FpdbError('Everleaf Poker')
+    CarbonErrors      = FpdbError('Carbon')
+    PKRErrors         = FpdbError('PKR')
+    iPokerErrors         = FpdbError('iPoker')
+
+    ErrorsList = [
+                    PokerStarsErrors, FTPErrors, PartyPokerErrors,
+                    BetfairErrors, OnGameErrors, AbsoluteErrors,
+                    EverleafErrors, CarbonErrors, PKRErrors,
+                    iPokerErrors
+                ]
     
     walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+    walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
     walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    #walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+    walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+    walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
     walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
+    walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+    walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
+    walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+    walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
+    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
+    walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
 
-    totalerrors = PokerStarsErrors.errorcount + FTPErrors.errorcount + PartyPokerErrors.errorcount + BetfairErrors.errorcount
+    totalerrors = 0
+
+    for i, site in enumerate(ErrorsList):
+        totalerrors += ErrorsList[i].errorcount
 
     print "---------------------"
     print "Total Errors: %d" % totalerrors
     print "---------------------"
-    PokerStarsErrors.print_histogram()
-    FTPErrors.print_histogram()
-    PartyPokerErrors.print_histogram()
-    BetfairErrors.print_histogram()
+    for i, site in enumerate(ErrorsList):
+        ErrorsList[i].print_histogram()
+
+    # Merge the dicts of stats from the various error objects
+    statdict = {}
+    for i, site in enumerate(ErrorsList):
+        tmp = ErrorsList[i].statcount
+        for stat in tmp:
+            if stat in statdict:
+                statdict[stat] += tmp[stat]
+            else:
+                statdict[stat] = tmp[stat]
+
+    print "\n"
+    print "---------------------"
+    print "Errors by stat:"
+    print "---------------------"
+    #for stat in statdict:
+    #    print "(%3d) : %s" %(statdict[stat], stat)
+
+    sortedstats = sorted([(value,key) for (key,value) in statdict.items()])
+    for num, stat in sortedstats:
+        print "(%3d) : %s" %(num, stat)
+
 
 if __name__ == '__main__':
     sys.exit(main())
