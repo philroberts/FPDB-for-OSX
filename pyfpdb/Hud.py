@@ -43,8 +43,8 @@ if os.name == 'nt':
     import win32api
 
 import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
+lang = locale.getdefaultlocale()[0][0:2]
+if lang == "en":
     def _(string): return string
 else:
     import gettext
@@ -78,7 +78,8 @@ class Hud:
 #    cannot touch the gui
         if parent is None: # running from cli ..
             self.parent = self
-        self.parent        = parent
+        else:
+            self.parent    = parent
         self.table         = table
         self.config        = config
         self.poker_game    = poker_game
@@ -95,6 +96,7 @@ class Hud:
         self.popup_windows = {}
         self.aux_windows   = []
 
+        # configure default font and colors from the configuration
         (font, font_size) = config.get_default_font(self.table.site)
         self.colors        = config.get_default_colors(self.table.site)
         self.hud_ui     = config.get_hud_ui_parameters()
@@ -107,6 +109,7 @@ class Hud:
         # do we need to add some sort of condition here for dealing with a request for a font that doesn't exist?
 
         game_params = config.get_game_parameters(self.poker_game)
+        # if there are AUX windows configured, set them up (Ray knows how this works, if anyone needs info)
         if not game_params['aux'] == [""]:
             for aux in game_params['aux']:
                 aux_params = config.get_aux_parameters(aux)
@@ -118,14 +121,16 @@ class Hud:
         self.creation_attrs = None
 
     def create_mw(self):
-
 #	Set up a main window for this this instance of the HUD
         win = gtk.Window()
+        win.set_skip_taskbar_hint(True) # invisible to taskbar
         win.set_gravity(gtk.gdk.GRAVITY_STATIC)
-        win.set_title("%s FPDBHUD" % (self.table.name))
-        win.set_skip_taskbar_hint(True)
-        win.set_decorated(False)
-        win.set_opacity(self.colors["hudopacity"])
+        win.set_title("%s FPDBHUD" % (self.table.name)) # give it a title that we can easily filter out in the window list when Table search code is looking
+        win.set_decorated(False) # kill titlebars
+        win.set_opacity(self.colors["hudopacity"]) # set it to configured hud opacity
+        win.set_focus(None)
+        win.set_focus_on_map(False)
+        win.set_accept_focus(False)
 
         eventbox = gtk.EventBox()
         label = gtk.Label(self.hud_ui['label'])
@@ -133,6 +138,7 @@ class Hud:
         win.add(eventbox)
         eventbox.add(label)
 
+        # set it to the desired color of the HUD for this site
         label.modify_bg(gtk.STATE_NORMAL, self.backgroundcolor)
         label.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
 
@@ -140,9 +146,11 @@ class Hud:
         eventbox.modify_fg(gtk.STATE_NORMAL, self.foregroundcolor)
 
         self.main_window = win
+        # move it to the table window's X/Y position (0,0 on the table window usually)
         self.main_window.move(self.table.x, self.table.y)
 
 #    A popup menu for the main window
+#    This menu code has become extremely long - is there a better way to do this?
         menu = gtk.Menu()
 
         killitem = gtk.MenuItem(_('Kill This HUD'))
@@ -457,6 +465,13 @@ class Hud:
         log.debug("setting self.hud_params[%s] = %s" % (param, style))
 
     def update_table_position(self):
+        # get table's X/Y position on the desktop, and relocate all of our child windows to accomodate
+        # In Windows, we can verify the existence of a Window, with win32gui.IsWindow().  In Linux, there doesn't seem to be a
+        # way to verify the existence of a Window, without trying to access it, which if it doesn't exist anymore, results in a
+        # big giant X trap and crash.
+        # People tell me this is a bad idea, because theoretically, IsWindow() could return true now, but not be true when we actually
+        # use it, but accessing a dead window doesn't result in a complete windowing system shutdown in Windows, whereas it does
+        # in X. - Eric
         if os.name == 'nt':
             if not win32gui.IsWindow(self.table.number):
                 self.parent.kill_hud(self, self.table.name)
@@ -465,8 +480,8 @@ class Hud:
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
-            (x, y) = self.table.gdkhandle.get_origin()
-            if self.table.x != x or self.table.y != y:
+            (x, y) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
+            if self.table.x != x or self.table.y != y: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
                 self.table.x = x
                 self.table.y = y
                 self.main_window.move(x + self.site_params['xshift'], y + self.site_params['yshift'])
@@ -487,10 +502,10 @@ class Hud:
         return True
 
     def on_button_press(self, widget, event):
-        if event.button == 1:
+        if event.button == 1: # if primary button, start movement
             self.main_window.begin_move_drag(event.button, int(event.x_root), int(event.y_root), event.time)
             return True
-        if event.button == 3:
+        if event.button == 3: # if secondary button, popup our main popup window
             widget.popup(None, None, None, event.button, event.time)
             return True
         return False
@@ -543,7 +558,7 @@ class Hud:
         self.config.save()
 
     def adj_seats(self, hand, config):
-
+    # determine how to adjust seating arrangements, if a "preferred seat" is set in the hud layout configuration
 #        Need range here, not xrange -> need the actual list
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
@@ -621,7 +636,7 @@ class Hud:
                       [config.supported_games[self.poker_game].stats[stat].col] = \
                       config.supported_games[self.poker_game].stats[stat].stat_name
 
-        if os.name == "nt":
+        if os.name == "nt": # we call update_table_position() regularly in Windows to see if we're moving around.  See comments on that function for why this isn't done in X.
             gobject.timeout_add(500, self.update_table_position)
 
     def update(self, hand, config):
@@ -656,8 +671,8 @@ class Hud:
                     if this_stat.hudcolor != "":
                         window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.hudcolor))
                     else:
-                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))
-					
+                        window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(self.colors['hudfgcolor']))	
+                    
                     if this_stat.stat_loth != "":
                         if number[0] < (float(this_stat.stat_loth)/100):
                             window.label[r][c].modify_fg(gtk.STATE_NORMAL, gtk.gdk.color_parse(this_stat.stat_locolor))
@@ -668,9 +683,12 @@ class Hud:
 
                     window.label[r][c].set_text(statstring)
                     if statstring != "xxx": # is there a way to tell if this particular stat window is visible already, or no?
-                        window.window.show_all()
+                        unhidewindow = True
                     tip = "%s\n%s\n%s, %s" % (statd['screen_name'], number[5], number[3], number[4])
                     Stats.do_tip(window.e_box[r][c], tip)
+            if unhidewindow: #and not window.window.visible: # there is no "visible" attribute in gtk.Window, although the docs seem to indicate there should be
+                window.window.show_all()
+            unhidewindow = False
 
     def topify_window(self, window):
         window.set_focus_on_map(False)
@@ -686,7 +704,7 @@ class Stat_Window:
 #    This handles all callbacks from button presses on the event boxes in
 #    the stat windows.  There is a bit of an ugly kludge to separate single-
 #    and double-clicks.
-        self.window.show_all()
+        self.window.show() #_all()
 
         if event.button == 3:   # right button event
             newpopup = Popup_window(self.window, self)
@@ -745,11 +763,13 @@ class Stat_Window:
 
         self.window = gtk.Window()
         self.window.set_decorated(0)
+        self.window.set_property("skip-taskbar-hint", True)
         self.window.set_gravity(gtk.gdk.GRAVITY_STATIC)
 
         self.window.set_title("%s" % seat)
-        self.window.set_property("skip-taskbar-hint", True)
+        self.window.set_focus(None) # set gtk default focus widget for this window to None
         self.window.set_focus_on_map(False)
+        self.window.set_accept_focus(False)
 
         grid = gtk.Table(rows = game.rows, columns = game.cols, homogeneous = False)
         self.grid = grid
