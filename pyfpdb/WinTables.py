@@ -1,9 +1,7 @@
 #!/usr/bin/env python
-"""WinTables.py
-
-Routines for detecting and handling poker client windows for MS Windows.
+"""Routines for detecting and handling poker client windows for MS Windows.
 """
-#    Copyright 2008 - 2009, Ray E. Barker
+#    Copyright 2008 - 2010, Ray E. Barker
 
 #    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -49,24 +47,19 @@ tb_height = 29
 
 class Table(Table_Window):
 
-    def find_table_parameters(self, search_string):
+    def find_table_parameters(self):
         """Finds poker client window with the given table name."""
         titles = {}
         win32gui.EnumWindows(win_enum_handler, titles)
         for hwnd in titles:
             if titles[hwnd] == "": continue
-            # print "searching ", search_string, " in ", titles[hwnd]
-            if re.search(search_string, titles[hwnd]):
-                if 'History for table:' in titles[hwnd]: continue # Everleaf Network HH viewer window
-                if 'HUD:' in titles[hwnd]: continue # FPDB HUD window
-                if 'Chat:' in titles[hwnd]: continue # Some sites (FTP? PS? Others?) have seperable or seperately constructed chat windows
-                if 'FPDBHUD' in titles[hwnd]: continue # can't attach to ourselves!
-                self.window = hwnd
+            if re.search(self.search_string, titles[hwnd]):
+                if self.check_bad_words(titles[hwnd]): continue
                 break
 
         try:
             if self.window == None:
-                log.error( "Window %s not found. Skipping." % search_string )
+                log.error( "Window %s not found. Skipping." % self.search_string )
                 return None
         except AttributeError:
             log.error( "self.window doesn't exist? why?" )
@@ -79,8 +72,6 @@ class Table(Table_Window):
         self.width  = width - x
         self.height = height - y
         log.debug("x = %s y = %s width = %s height = %s" % (self.x, self.y, self.width, self.height))
-        #self.height = int(height) - b_width - tb_height
-        #self.width  = int(width) - 2*b_width
 
         self.exe    = self.get_nt_exe(hwnd)
         self.title  = titles[hwnd]
