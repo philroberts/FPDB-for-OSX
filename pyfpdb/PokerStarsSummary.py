@@ -93,7 +93,7 @@ class PokerStarsSummary(TourneySummary):
     def parseSummary(self):
         lines=self.summaryText.splitlines()
         
-        self.tourNo = self.re_TourNo.findall(lines[0])[0][1:-1] #ignore game and limit type as thats not recorded
+        self.tourNo = self.re_TourNo.findall(lines[0])[0] #ignore game and limit type as thats not recorded
         
         result=self.re_GameInfo.search(lines[0])
         result=result.groupdict()
