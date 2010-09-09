@@ -289,6 +289,7 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
             base = gametype['base']
             limit = gametype['limitType']
             l = [type] + [base] + [limit]
+
         if l in self.readSupportedGames():
             if gametype['base'] == 'hold':
                 log.debug("hand = Hand.HoldemOmahaHand(self, self.sitename, gametype, handtext)")
@@ -299,14 +300,14 @@ which it expects to find at self.re_TailSplitHands -- see for e.g. Everleaf.py.
                 hand = Hand.DrawHand(self.config, self, self.sitename, gametype, handText)
         else:
             log.info(_("Unsupported game type: %s" % gametype))
+            raise FpdbParseError(_("Unsupported game type: %s" % gametype))
 
         if hand:
             #hand.writeHand(self.out_fh)
             return hand
         else:
-            log.info(_("Unsupported game type: %s" % gametype))
+            log.error(_("Unsupported game type: %s" % gametype))
             # TODO: pity we don't know the HID at this stage. Log the entire hand?
-            # From the log we can deduce that it is the hand after the one before :)
 
 
     # These functions are parse actions that may be overridden by the inheriting class
