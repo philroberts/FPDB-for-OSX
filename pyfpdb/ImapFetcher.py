@@ -77,7 +77,7 @@ def run(config, db):
                 raise error #TODO: show error message
             neededMessages.append(("PS", messageNumber))
 
-        print "ImapFetcher: Found %s messages to fetch" %(len(neededMessages))
+        print _("ImapFetcher: Found %s messages to fetch") %(len(neededMessages))
 
         if (len(neededMessages)==0):
             raise error #TODO: show error message
@@ -97,7 +97,7 @@ def run(config, db):
                         result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
                     except FpdbParseError, e:
                         errors += 1
-                    print "Finished importing %s/%s PS summaries" %(j, len(summaryTexts))
+                    print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
 
         print _("Completed running Imap import, closing server connection")
         print _("Errors: %s" % errors)
@@ -124,11 +124,11 @@ def runFake(db, config, infile):
     summaryList = re.split(re_SplitGames, summaryText)
 
     if len(summaryList) <= 1:
-        print "DEBUG: re_SplitGames isn't matching"
+        print _("DEBUG: re_SplitGames isn't matching")
 
     for summary in summaryList[1:]:
         result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
-        print "DEBUG: Processed: %s: tournNo: %s" % (result.tourneyId, result.tourNo)
+        print _("DEBUG: Processed: %s: tournNo: %s") % (result.tourneyId, result.tourNo)
 
 
 def main(argv=None):
