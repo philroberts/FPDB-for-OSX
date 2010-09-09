@@ -84,7 +84,7 @@ class Fulltilt(HandHistoryConverter):
                                          (\s\((?P<TURBO>Turbo)\))?)|(?P<UNREADABLE_INFO>.+))
                                     ''' % substitutions, re.VERBOSE)
     re_Button       = re.compile('^The button is in seat #(?P<BUTTON>\d+)', re.MULTILINE)
-    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s](?P<CASH>[,.0-9]+)\)$' % substitutions, re.MULTILINE)
+    re_PlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s](?P<CASH>[,.0-9]+)\)(, is sitting out)?$' % substitutions, re.MULTILINE)
     re_TourneysPlayerInfo   = re.compile('Seat (?P<SEAT>[0-9]+): (?P<PNAME>.{2,15}) \([%(LS)s]?(?P<CASH>[,.0-9]+)\)(, is sitting out)?$' % substitutions, re.MULTILINE)
     re_Board        = re.compile(r"\[(?P<CARDS>.+)\]")
 
