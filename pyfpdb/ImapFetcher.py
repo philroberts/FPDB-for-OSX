@@ -30,6 +30,7 @@ from Exceptions import FpdbParseError
 import SQL
 import Options
 import PokerStarsSummary
+import FullTiltPokerSummary
 
 
 import locale
@@ -44,12 +45,23 @@ else:
     except IOError:
         def _(string): return string
 
-def splitPokerStarsSummaries(emailText):
-    splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
-    for i in range(len(splitSummaries)):
-        splitSummaries[i]="PokerStars Tournament #"+splitSummaries[i]
+def splitPokerStarsSummaries(summaryText):
+    re_SplitTourneys = PokerStarsSummary.PokerStarsSummary.re_SplitTourneys
+    splitSummaries = re.split(re_SplitTourneys, summaryText)
+
+    if len(splitSummaries) <= 1:
+        print _("DEBUG: re_SplitTourneyss isn't matching")
+
     return splitSummaries
-#end def emailText
+
+def splitFullTiltSummaries(summaryText):
+    re_SplitTourneys = FullTiltPokerSummary.FullTiltPokerSummary.re_SplitTourneys
+    splitSummaries = re.split(re_SplitTourneys, summaryText)
+
+    if len(splitSummaries) <= 1:
+        print _("DEBUG: re_SplitTourneyss isn't matching")
+
+    return splitSummaries
 
 def run(config, db):
         #print "start of IS.run"
@@ -107,27 +119,50 @@ def run(config, db):
 
         print _("Errors: %s" % errors)
 
-def readFile(filename):
-    kodec = "utf8"
-    in_fh = codecs.open(filename, 'r', kodec)
-    whole_file = in_fh.read()
-    in_fh.close()
+def readFile(filename, options):
+    codepage = ["utf8"]
+    whole_file = None
+    if options.hhc == "PokerStars":
+        codepage = PokerStarsSummary.PokerStarsSummary.codepage
+    elif options.hhc == "Full Tilt Poker":
+        codepage = FullTiltPokerSummary.FullTiltPokerSummary.codepage
+
+    for kodec in codepage:
+        #print "trying", kodec
+        try:
+            in_fh = codecs.open(filename, 'r', kodec)
+            whole_file = in_fh.read()
+            in_fh.close()
+            break
+        except:
+           pass
+
     return whole_file
 
+def runFake(db, config, options):
+    summaryText = readFile(options.infile, options)
+    importSummaries(db, config,[summaryText], options=options)
 
-
-def runFake(db, config, infile):
-    summaryText = readFile(infile)
-    importSummaries(db, config,[summaryText])
-
-def importSummaries(db, config, summaries):
+def importSummaries(db, config, summaries, options = None):
+    # TODO: At this point we should have:
+    # - list of strings to process
+    # - The sitename OR specialised TourneySummary object
+    # Using options is pretty ugly
     errors = 0
     for summaryText in summaries:
-        summaryTexts=(splitPokerStarsSummaries(summaryText))
+        # And we should def be using a 'Split' from the site object
+        if options.hhc == "PokerStars":
+            summaryTexts=(splitPokerStarsSummaries(summaryText))
+        elif options.hhc == "Full Tilt Poker":
+            summaryTexts=(splitFullTiltSummaries(summaryText))
+
         print "Found %s summaries in email" %(len(summaryTexts))
         for j, summaryText in enumerate(summaryTexts, start=1):
             try:
-                result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+                if options.hhc == "PokerStars":
+                    PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+                elif options.hhc == "Full Tilt Poker":
+                    FullTiltPokerSummary.FullTiltPokerSummary(db=db, config=config, siteName=u"Fulltilt", summaryText=summaryText, builtFrom = "IMAP")
             except FpdbParseError, e:
                 errors += 1
             print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
@@ -146,6 +181,10 @@ def main(argv=None):
         print _("USAGE:")
         sys.exit(0)
 
+    if options.hhc == "PokerStarsToFpdb":
+        print _("Need to define a converter")
+        exit(0)
+
     # These options should really come from the OptionsParser
     config = Configuration.Config()
     db = Database.Database(config)
@@ -156,7 +195,7 @@ def main(argv=None):
     settings.update(config.get_default_paths())
     db.recreate_tables()
 
-    runFake(db, config, options.infile)
+    runFake(db, config, options)
 
 if __name__ == '__main__':
     sys.exit(main())

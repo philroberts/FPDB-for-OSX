@@ -57,7 +57,7 @@ class PokerStarsSummary(TourneySummary):
                             'LS' : "\$|\xe2\x82\xac|"        # legal currency symbols - Euro(cp1252, utf-8)
                     }
 
-    re_SplitGames = re.compile("^PokerStars")
+    re_SplitTourneys = re.compile("PokerStars Tournament ")
     
     re_TourNo = re.compile("\#(?P<TOURNO>[0-9]+),")
 
@@ -80,6 +80,8 @@ class PokerStarsSummary(TourneySummary):
     re_Player = re.compile(u"""(?P<RANK>[0-9]+):\s(?P<NAME>.*)\s\(.*\),(\s)?(\$(?P<WINNINGS>[0-9]+\.[0-9]+))?(?P<STILLPLAYING>still\splaying)?((?P<TICKET>Tournament\sTicket)\s\(WSOP\sStep\s(?P<LEVEL>\d)\))?(\s+)?""")
 
     re_DateTime = re.compile("\[(?P<Y>[0-9]{4})\/(?P<M>[0-9]{2})\/(?P<D>[0-9]{2})[\- ]+(?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)")
+
+    codepage = ["utf-8"]
 
     def parseSummary(self):
         m = self.re_TourneyInfo.search(self.summaryText)
