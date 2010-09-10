@@ -82,7 +82,7 @@ def run(config, db):
         if (len(neededMessages)==0):
             raise error #TODO: show error message
 
-        errors = 0
+        email_bodies = []
         for i, messageData in enumerate(neededMessages, start=1):
             print "Retrieving message %s" % i
             response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
@@ -90,23 +90,22 @@ def run(config, db):
             if response!="OK":
                 raise error #TODO: show error message
             if messageData[0]=="PS":
-                summaryTexts=(splitPokerStarsSummaries(bodyData))
-                print "Found %s summaries in email" %(len(summaryTexts))
-                for j, summaryText in enumerate(summaryTexts, start=1):
-                    try:
-                        result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
-                    except FpdbParseError, e:
-                        errors += 1
-                    print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
-
-        print _("Completed running Imap import, closing server connection")
-        print _("Errors: %s" % errors)
+                email_bodies.append(bodyData)
     #finally:
      #   try:
         server.close()
        # finally:
         #    pass
         server.logout()
+        print _("Completed retrieving IMAP messages, closing server connection")
+
+        errors = 0
+        if len(email_bodies) > 0:
+            errors = importSummaries(db, config, email_bodies)
+        else:
+            print _("No Tournament summaries found.")
+
+        print _("Errors: %s" % errors)
 
 def readFile(filename):
     kodec = "utf8"
@@ -119,16 +118,21 @@ def readFile(filename):
 
 def runFake(db, config, infile):
     summaryText = readFile(infile)
-    # This regex should be part of PokerStarsSummary
-    re_SplitGames = re.compile("PokerStars Tournament ")
-    summaryList = re.split(re_SplitGames, summaryText)
+    importSummaries(db, config,[summaryText])
 
-    if len(summaryList) <= 1:
-        print _("DEBUG: re_SplitGames isn't matching")
+def importSummaries(db, config, summaries):
+    errors = 0
+    for summaryText in summaries:
+        summaryTexts=(splitPokerStarsSummaries(summaryText))
+        print "Found %s summaries in email" %(len(summaryTexts))
+        for j, summaryText in enumerate(summaryTexts, start=1):
+            try:
+                result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+            except FpdbParseError, e:
+                errors += 1
+            print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
 
-    for summary in summaryList[1:]:
-        result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
-        print _("DEBUG: Processed: %s: tournNo: %s") % (result.tourneyId, result.tourNo)
+    return errors
 
 
 def main(argv=None):
