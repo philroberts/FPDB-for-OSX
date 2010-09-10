@@ -113,7 +113,7 @@ def run(config, db):
 
         errors = 0
         if len(email_bodies) > 0:
-            errors = importSummaries(db, config, email_bodies)
+            errors = importSummaries(db, config, email_bodies, options = None)
         else:
             print _("No Tournament summaries found.")
 
@@ -151,7 +151,7 @@ def importSummaries(db, config, summaries, options = None):
     errors = 0
     for summaryText in summaries:
         # And we should def be using a 'Split' from the site object
-        if options.hhc == "PokerStars":
+        if options == None or options.hhc == "PokerStars":
             summaryTexts=(splitPokerStarsSummaries(summaryText))
         elif options.hhc == "Full Tilt Poker":
             summaryTexts=(splitFullTiltSummaries(summaryText))
@@ -159,7 +159,7 @@ def importSummaries(db, config, summaries, options = None):
         print "Found %s summaries in email" %(len(summaryTexts))
         for j, summaryText in enumerate(summaryTexts, start=1):
             try:
-                if options.hhc == "PokerStars":
+                if options == None or options.hhc == "PokerStars":
                     PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
                 elif options.hhc == "Full Tilt Poker":
                     FullTiltPokerSummary.FullTiltPokerSummary(db=db, config=config, siteName=u"Fulltilt", summaryText=summaryText, builtFrom = "IMAP")
