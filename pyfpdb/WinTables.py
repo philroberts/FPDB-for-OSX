@@ -55,6 +55,7 @@ class Table(Table_Window):
             if titles[hwnd] == "": continue
             if re.search(self.search_string, titles[hwnd]):
                 if self.check_bad_words(titles[hwnd]): continue
+                self.window = hwnd
                 break
 
         try:
