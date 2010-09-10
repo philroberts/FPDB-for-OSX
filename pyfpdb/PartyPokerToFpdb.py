@@ -362,6 +362,39 @@ class PartyPoker(HandHistoryConverter):
             hand.addPlayer(int(a.group('SEAT')), a.group('PNAME'),
                            clearMoneyString(a.group('CASH')))
 
+        # detecting new active players without a seat
+        # and new active players with zero stack
+
+        if hand.gametype['type'] == 'ring':
+            re_JoiningPlayers = re.compile(r"(?P<PLAYERNAME>.*) has joined the table")
+            re_BBPostingPlayers = re.compile(r"(?P<PLAYERNAME>.*) posts big blind")
+            seatedPlayers = list([(f[1]) for f in hand.players])
+
+            def findFirstEmptySeat(startSeat):
+                while startSeat in occupiedSeats:
+                    if startSeat >= hand.maxseats:
+                        startSeat = 0
+                    startSeat += 1
+                return startSeat
+
+            match_JoiningPlayers = re_JoiningPlayers.findall(hand.handText)
+            match_BBPostingPlayers = re_BBPostingPlayers.findall(hand.handText)
+            ringLimit = self.re_GameInfoRing.search(hand.handText).groupdict()['RINGLIMIT']
+            unseatedActivePlayers = list(set(match_BBPostingPlayers) - set(seatedPlayers))
+
+            for player in seatedPlayers:
+                if hand.stacks[player] == 0 and player in match_BBPostingPlayers:
+                    hand.stacks[player] = Decimal(ringLimit)
+
+            if unseatedActivePlayers:
+                for player in unseatedActivePlayers:
+                    previousBBPoster = match_BBPostingPlayers[match_BBPostingPlayers.index(player)-1]
+                    previousBBPosterSeat = dict([(f[1], f[0]) for f in hand.players])[previousBBPoster]
+                    occupiedSeats = list([(f[0]) for f in hand.players])
+                    occupiedSeats.sort()
+                    newPlayerSeat = findFirstEmptySeat(previousBBPosterSeat)
+                    hand.addPlayer(newPlayerSeat,player,clearMoneyString(ringLimit))
+
     def markStreets(self, hand):
         m =  re.search(
             r"\*{2} Dealing down cards \*{2}"
