@@ -237,7 +237,7 @@ class OnGame(HandHistoryConverter):
 
         # TODO: These
         hand.buttonpos = 1
-        hand.maxseats = 10
+        hand.maxseats = None    # Set to None - Hand.py will guessMaxSeats()
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
