@@ -66,7 +66,7 @@ class iPoker(HandHistoryConverter):
     siteID   = 13
 
     # Static regexes
-    re_SplitHands = re.compile(r'</game>\n+(?=<game)')
+    re_SplitHands = re.compile(r'</game>')
     re_TailSplitHands = re.compile(r'(</game>)')
     re_GameInfo = re.compile(r'<gametype>(?P<GAME>[a-zA-Z0-9 ]+) \$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)</gametype>', re.MULTILINE)
     re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
