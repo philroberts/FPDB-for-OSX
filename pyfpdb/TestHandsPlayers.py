@@ -153,20 +153,43 @@ def main(argv=None):
                     EverleafErrors, CarbonErrors, PKRErrors,
                     iPokerErrors
                 ]
-    
-    walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
-    walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
-    walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
-    walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
-    walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
-    walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
-    walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
-    walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
-    walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
-    walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
-    walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
+
+    sites = {
+                'PokerStars' : True,
+                'Full Tilt Poker' : True,
+                'PartyPoker' : True,
+                'Betfair' : True,
+                'OnGame' : True,
+                'Absolute' : True,
+                'Everleaf' : True,
+                'Carbon' : True,
+                'PKR' : True,
+                'iPoker' : True,
+            }
+
+    if sites['PokerStars'] == True:
+        walk_testfiles("regression-test-files/cash/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+        walk_testfiles("regression-test-files/tour/Stars/", compare, importer, PokerStarsErrors, "PokerStars")
+    if sites['Full Tilt Poker'] == True:
+        walk_testfiles("regression-test-files/cash/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+        walk_testfiles("regression-test-files/tour/FTP/", compare, importer, FTPErrors, "Full Tilt Poker")
+    if sites['PartyPoker'] == True:
+        walk_testfiles("regression-test-files/cash/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+        walk_testfiles("regression-test-files/tour/PartyPoker/", compare, importer, PartyPokerErrors, "PartyPoker")
+    if sites['Betfair'] == True:
+        walk_testfiles("regression-test-files/cash/Betfair/", compare, importer, BetfairErrors, "Betfair")
+    if sites['OnGame'] == True:
+        walk_testfiles("regression-test-files/cash/OnGame/", compare, importer, OnGameErrors, "OnGame")
+    if sites['Absolute'] == True:
+        walk_testfiles("regression-test-files/cash/Absolute/", compare, importer, AbsoluteErrors, "Absolute")
+    if sites['Everleaf'] == True:
+        walk_testfiles("regression-test-files/cash/Everleaf/", compare, importer, EverleafErrors, "Everleaf")
+    if sites['Carbon'] == True:
+        walk_testfiles("regression-test-files/cash/Carbon/", compare, importer, CarbonErrors, "Carbon")
+    if sites['PKR'] == True:
+        walk_testfiles("regression-test-files/cash/PKR/", compare, importer, PKRErrors, "PKR")
+    if sites['iPoker'] == True:
+        walk_testfiles("regression-test-files/cash/iPoker/", compare, importer, iPokerErrors, "iPoker")
 
     totalerrors = 0
 
