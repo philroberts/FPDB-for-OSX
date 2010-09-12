@@ -23,7 +23,6 @@
 #
 # TODO:
 #
-# -- No siteID assigned
 # -- No support for games other than NL hold 'em cash. Hand histories for other
 #    games required
 # -- No support for limit hold 'em yet, though this would be easy to add
