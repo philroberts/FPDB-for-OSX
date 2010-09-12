@@ -19,9 +19,9 @@ Player2 posts big blind [$0.04 USD].
 Player7 posts big blind [$0.04 USD].
 ** Dealing down cards **
 Dealt to Player1 [  Ad 4c ]
-marmitt84 has joined the table.
+Player8 has joined the table.
 Player2 checks
-samvel1976 has joined the table.
+Player9 has joined the table.
 Player7 checks
 Player5 folds
 Player3 calls [$0.02 USD]
