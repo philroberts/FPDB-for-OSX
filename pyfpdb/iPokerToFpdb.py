@@ -71,12 +71,13 @@ class iPoker(HandHistoryConverter):
     sitename = "iPoker"
     filetype = "text"
     codepage = "cp1252"
-    siteID   = 11
+    siteID   = 13
 
     # Static regexes
     re_SplitHands = re.compile(r'</game>\n+(?=<game)')
     re_TailSplitHands = re.compile(r'(</game>)')
-    re_GameInfo = re.compile(r'<description type="(?P<GAME>[a-zA-Z ]+)" stakes="(?P<LIMIT>[a-zA-Z ]+) \(\$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)\)"/>', re.MULTILINE)
+    re_GameInfo = re.compile(r'<gametype>(?P<GAME>[a-zA-Z0-9 ]+) \$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)</gametype>', re.MULTILINE)
+# \$(?P<SB>[.0-9]+)\/\$(?P<BB>[.0-9]+)<\/gametype>', re.MULTILINE)
     re_HandInfo = re.compile(r'<game id="(?P<HID1>[0-9]+)-(?P<HID2>[0-9]+)" starttime="(?P<DATETIME>[0-9]+)" numholecards="2" gametype="2" realmoney="true" data="[0-9]+\|(?P<TABLE>[^\(]+)', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
     re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" nickname="(?P<PNAME>.+)" balance="\$(?P<CASH>[.0-9]+)" dealtin="(?P<DEALTIN>(true|false))" />', re.MULTILINE)
@@ -146,11 +147,12 @@ or None if we fail to get the info """
 
         limits = { 'No Limit':'nl', 'Limit':'fl' }
         games = {              # base, category
-                    'Holdem' : ('hold','holdem'),
-         'Holdem Tournament' : ('hold','holdem') }
+                    '7 Card Stud L' : ('stud','studhilo'),
+                }
 
         if 'LIMIT' in mg:
             self.info['limitType'] = limits[mg['LIMIT']]
+        self.info['limitType'] = 'fl'
         if 'GAME' in mg:
             (self.info['base'], self.info['category']) = games[mg['GAME']]
         if 'SB' in mg:
