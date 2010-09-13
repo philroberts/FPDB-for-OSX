@@ -136,10 +136,10 @@ class OnGame(HandHistoryConverter):
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
             self.re_PostSB    = re.compile('(?P<PNAME>.*) posts small blind \((%(CUR)s)?(?P<SB>[\.0-9]+)\)' % subst, re.MULTILINE)
-            self.re_PostBB    = re.compile('\), (?P<PNAME>.*) posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % subst, re.MULTILINE)
+            self.re_PostBB    = re.compile('(?P<PNAME>.*) posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
+            self.re_PostBoth  = re.compile('(?P<PNAME>.*): posts small \& big blinds \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
             self.re_HeroCards = re.compile('Dealing\sto\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
             #lopllopl checks, Eurolll checks, .Lucchess checks.
@@ -237,7 +237,7 @@ class OnGame(HandHistoryConverter):
 
         # TODO: These
         hand.buttonpos = 1
-        hand.maxseats = 10
+        hand.maxseats = None    # Set to None - Hand.py will guessMaxSeats()
         hand.mixed = None
 
     def readPlayerStacks(self, hand):

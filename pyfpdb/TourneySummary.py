@@ -125,11 +125,11 @@ class TourneySummary(object):
         self.sym = None
         
         if builtFrom=="IMAP":
-            self.parseSummary()
-            self.insertOrUpdate()
-        elif builtFrom == "file":
-            self.parseSummaryFile()
-            self.insertOrUpdate()
+            # Fix line endings?
+            pass
+
+        self.parseSummary()
+        self.insertOrUpdate()
     #end def __init__
 
     def __str__(self):

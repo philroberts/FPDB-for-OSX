@@ -30,6 +30,7 @@ from Exceptions import FpdbParseError
 import SQL
 import Options
 import PokerStarsSummary
+import FullTiltPokerSummary
 
 
 import locale
@@ -44,12 +45,23 @@ else:
     except IOError:
         def _(string): return string
 
-def splitPokerStarsSummaries(emailText):
-    splitSummaries=emailText.split("\nPokerStars Tournament #")[1:]
-    for i in range(len(splitSummaries)):
-        splitSummaries[i]="PokerStars Tournament #"+splitSummaries[i]
+def splitPokerStarsSummaries(summaryText):
+    re_SplitTourneys = PokerStarsSummary.PokerStarsSummary.re_SplitTourneys
+    splitSummaries = re.split(re_SplitTourneys, summaryText)
+
+    if len(splitSummaries) <= 1:
+        print _("DEBUG: re_SplitTourneyss isn't matching")
+
     return splitSummaries
-#end def emailText
+
+def splitFullTiltSummaries(summaryText):
+    re_SplitTourneys = FullTiltPokerSummary.FullTiltPokerSummary.re_SplitTourneys
+    splitSummaries = re.split(re_SplitTourneys, summaryText)
+
+    if len(splitSummaries) <= 1:
+        print _("DEBUG: re_SplitTourneyss isn't matching")
+
+    return splitSummaries
 
 def run(config, db):
         #print "start of IS.run"
@@ -82,7 +94,7 @@ def run(config, db):
         if (len(neededMessages)==0):
             raise error #TODO: show error message
 
-        errors = 0
+        email_bodies = []
         for i, messageData in enumerate(neededMessages, start=1):
             print "Retrieving message %s" % i
             response, bodyData = server.fetch(messageData[1], "(UID BODY[TEXT])")
@@ -90,45 +102,72 @@ def run(config, db):
             if response!="OK":
                 raise error #TODO: show error message
             if messageData[0]=="PS":
-                summaryTexts=(splitPokerStarsSummaries(bodyData))
-                print "Found %s summaries in email" %(len(summaryTexts))
-                for j, summaryText in enumerate(summaryTexts, start=1):
-                    try:
-                        result=PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
-                    except FpdbParseError, e:
-                        errors += 1
-                    print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
-
-        print _("Completed running Imap import, closing server connection")
-        print _("Errors: %s" % errors)
+                email_bodies.append(bodyData)
     #finally:
      #   try:
         server.close()
        # finally:
         #    pass
         server.logout()
+        print _("Completed retrieving IMAP messages, closing server connection")
 
-def readFile(filename):
-    kodec = "utf8"
-    in_fh = codecs.open(filename, 'r', kodec)
-    whole_file = in_fh.read()
-    in_fh.close()
+        errors = 0
+        if len(email_bodies) > 0:
+            errors = importSummaries(db, config, email_bodies, options = None)
+        else:
+            print _("No Tournament summaries found.")
+
+        print _("Errors: %s" % errors)
+
+def readFile(filename, options):
+    codepage = ["utf8"]
+    whole_file = None
+    if options.hhc == "PokerStars":
+        codepage = PokerStarsSummary.PokerStarsSummary.codepage
+    elif options.hhc == "Full Tilt Poker":
+        codepage = FullTiltPokerSummary.FullTiltPokerSummary.codepage
+
+    for kodec in codepage:
+        #print "trying", kodec
+        try:
+            in_fh = codecs.open(filename, 'r', kodec)
+            whole_file = in_fh.read()
+            in_fh.close()
+            break
+        except:
+           pass
+
     return whole_file
 
+def runFake(db, config, options):
+    summaryText = readFile(options.infile, options)
+    importSummaries(db, config,[summaryText], options=options)
 
+def importSummaries(db, config, summaries, options = None):
+    # TODO: At this point we should have:
+    # - list of strings to process
+    # - The sitename OR specialised TourneySummary object
+    # Using options is pretty ugly
+    errors = 0
+    for summaryText in summaries:
+        # And we should def be using a 'Split' from the site object
+        if options == None or options.hhc == "PokerStars":
+            summaryTexts=(splitPokerStarsSummaries(summaryText))
+        elif options.hhc == "Full Tilt Poker":
+            summaryTexts=(splitFullTiltSummaries(summaryText))
 
-def runFake(db, config, infile):
-    summaryText = readFile(infile)
-    # This regex should be part of PokerStarsSummary
-    re_SplitGames = re.compile("PokerStars Tournament ")
-    summaryList = re.split(re_SplitGames, summaryText)
+        print "Found %s summaries in email" %(len(summaryTexts))
+        for j, summaryText in enumerate(summaryTexts, start=1):
+            try:
+                if options == None or options.hhc == "PokerStars":
+                    PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summaryText, builtFrom = "IMAP")
+                elif options.hhc == "Full Tilt Poker":
+                    FullTiltPokerSummary.FullTiltPokerSummary(db=db, config=config, siteName=u"Fulltilt", summaryText=summaryText, builtFrom = "IMAP")
+            except FpdbParseError, e:
+                errors += 1
+            print _("Finished importing %s/%s PS summaries") %(j, len(summaryTexts))
 
-    if len(summaryList) <= 1:
-        print _("DEBUG: re_SplitGames isn't matching")
-
-    for summary in summaryList[1:]:
-        result = PokerStarsSummary.PokerStarsSummary(db=db, config=config, siteName=u"PokerStars", summaryText=summary, builtFrom = "file")
-        print _("DEBUG: Processed: %s: tournNo: %s") % (result.tourneyId, result.tourNo)
+    return errors
 
 
 def main(argv=None):
@@ -142,6 +181,10 @@ def main(argv=None):
         print _("USAGE:")
         sys.exit(0)
 
+    if options.hhc == "PokerStarsToFpdb":
+        print _("Need to define a converter")
+        exit(0)
+
     # These options should really come from the OptionsParser
     config = Configuration.Config()
     db = Database.Database(config)
@@ -152,7 +195,7 @@ def main(argv=None):
     settings.update(config.get_default_paths())
     db.recreate_tables()
 
-    runFake(db, config, options.infile)
+    runFake(db, config, options)
 
 if __name__ == '__main__':
     sys.exit(main())
