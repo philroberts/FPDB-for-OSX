@@ -697,10 +697,7 @@ class HoldemOmahaHand(Hand):
             if self.cancelled:
                 return
             
-            try: hhc.readBlinds(self)
-            except:
-                print _("*** Parse error reading blinds (check compilePlayerRegexs as a likely culprit)"), self
-                return
+            hhc.readBlinds(self)
             
             hhc.readAntes(self)
             hhc.readButton(self)
