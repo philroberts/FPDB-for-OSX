@@ -170,7 +170,7 @@ or None if we fail to get the info """
         if m is None:
             logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
-            raise FpdbParseError("No match in readHandInfo.")
+            raise FpdbParseError(_("No match in readHandInfo."))
         logging.debug("HID %s-%s, Table %s" % (m.group('HID1'),
                       m.group('HID2'), m.group('TABLE')[:-1]))
         hand.handid = m.group('HID1') + m.group('HID2')

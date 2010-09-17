@@ -222,7 +222,7 @@ class PokerStars(HandHistoryConverter):
         m2 = self.re_GameInfo.search(hand.handText)
         if m is None or m2 is None:
             log.error("Didn't match re_HandInfo")
-            raise FpdbParseError("No match in readHandInfo.")
+            raise FpdbParseError(_("No match in readHandInfo."))
 
         info.update(m.groupdict())
         info.update(m2.groupdict())
