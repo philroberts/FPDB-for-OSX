@@ -23,7 +23,6 @@
 #    Standard Library modules
 import re
 import os
-import subprocess
 
 #    pyGTK modules
 import gtk
@@ -50,25 +49,14 @@ class Table(Table_Window):
                 if self.check_bad_words(title): continue
                 self.number = int( mo.group(1), 0)
                 self.title = title
-                self.exe    = ""     # not used?
                 self.hud    = None   # specified later
                 break
-        
+
         if self.number is None:
             return None
         
         self.window = self.get_window_from_xid(self.number)
         self.parent = self.window.query_tree().parent
-
-        geo = self.get_geometry()
-        if geo is None:  return None
-        self.width  = geo['width']
-        self.height = geo['height']
-        self.x      = geo['x']
-        self.y      = geo['y']
-
-        self.game = self.get_game()
-        self.gdk_handle = gtk.gdk.window_foreign_new(self.number)
 
     def get_window_from_xid(self, id):
         for outside in root.query_tree().children:
@@ -92,13 +80,13 @@ class Table(Table_Window):
             return None
 
     def get_window_title(self):
-        proc = subprocess.Popen("xwininfo -wm -id %d" % self.number, shell = True, stdout = subprocess.PIPE)
-        s = proc.stdout.read()
+        s = os.popen("xwininfo -wm -id %d" % self.number).read()
         mo = re.search('"(.+)"', s)
         try:
             return mo.group(1)
         except AttributeError:
             return None
+        
 
     def topify(self, hud):
         hud.main_window.gdkhandle = gtk.gdk.window_foreign_new(hud.main_window.window.xid)

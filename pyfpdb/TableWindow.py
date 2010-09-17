@@ -135,6 +135,15 @@ class Table_Window(object):
         self.search_string = getTableTitleRe(self.config, self.site, self.type, **table_kwargs)
         self.find_table_parameters()
 
+        geo = self.get_geometry()
+        if geo is None:  return None
+        self.width  = geo['width']
+        self.height = geo['height']
+        self.x      = geo['x']
+        self.y      = geo['y']
+
+        self.game = self.get_game()
+
     def __str__(self):
 #    __str__ method for testing
         likely_attrs = ("number", "title", "site", "width", "height", "x", "y",
@@ -152,9 +161,10 @@ class Table_Window(object):
 #    by the "check" methods. Most of the get methods are in the 
 #    subclass because they are specific to X, Windows, etc.
     def get_game(self):
-        title = self.get_window_title()
-        if title is None:
-            return False
+#        title = self.get_window_title()
+#        if title is None:
+#            return False
+        title = self.title
 
 #    check for nl and pl games first, to avoid bad matches
         for game, names in nlpl_game_names.iteritems():
@@ -184,13 +194,13 @@ class Table_Window(object):
     def check_table(self, hud):
         result = self.check_size()
         if result != False:
-            hud.main_window.emit(result, hud)
+            hud.parent.main_window.emit(result, hud)
             if result == "client_destroyed":
                 return True
 
         result = self.check_loc()
         if result != False:
-            hud.main_window.emit(result, hud)
+            hud.parent.main_window.emit(result, hud)
             if result == "client_destroyed":
                 return True
         return True
