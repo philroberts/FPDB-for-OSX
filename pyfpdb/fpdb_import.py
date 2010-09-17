@@ -473,7 +473,8 @@ class Importer:
             else:
                 self.pos_in_file[file] = 0
             hhc = obj( self.config, in_path = file, out_path = out_path, index = idx
-                     , starsArchive = self.settings['starsArchive'], sitename = site )
+                     , starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'],
+                       sitename = site )
             if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()
