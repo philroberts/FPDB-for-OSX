@@ -103,6 +103,7 @@ class Importer:
         self.settings.setdefault("dropIndexes", "don't drop")
         self.settings.setdefault("dropHudCache", "don't drop")
         self.settings.setdefault("starsArchive", False)
+        self.settings.setdefault("ftpArchive", False)
         self.settings.setdefault("testData", False)
         self.settings.setdefault("cacheHHC", False)
 
@@ -148,6 +149,9 @@ class Importer:
 
     def setStarsArchive(self, value):
         self.settings['starsArchive'] = value
+
+    def setFTPArchive(self, value):
+        self.settings['ftpArchive'] = value
 
     def setPrintTestData(self, value):
         self.settings['testData'] = value

@@ -1,0 +1,270 @@
+***** History for hand R5-82086688-607 *****
+Start hand: Mon Sep 13 22:31:30 GMT+0100 2010
+Table: Milwaukee [82086688] (LIMIT SEVEN_CARD_STUD $0.10/$0.20, ante: $0.02, Real money)
+User: tchazx
+Players in round: 5
+Seat 1: the bAAr ($6.53)
+Seat 2: tchazx ($2)
+Seat 6: kueto ($6.30)
+Seat 8: E6y Ko3y ($2.70)
+Seat 10: telozver123 ($6.49)
+the bAAr posts ante $0.02
+kueto posts ante $0.02
+E6y Ko3y posts ante $0.02
+telozver123 posts ante $0.02
+tchazx posts ante $0.02
+---
+Dealing pocket cards
+Dealing to the bAAr: [-, -, Kh]
+Dealing to tchazx: [Jh, 9d, Ac]
+Dealing to kueto: [-, -, 4h]
+Dealing to E6y Ko3y: [-, -, Ad]
+Dealing to telozver123: [-, -, 6h]
+kueto small bring in $0.05
+E6y Ko3y calls $0.05
+telozver123 calls $0.05
+the bAAr calls $0.05
+tchazx calls $0.05
+---
+Dealing 4th street
+Dealing to the bAAr: [3h]
+Dealing to tchazx: [7h]
+Dealing to kueto: [3d]
+Dealing to E6y Ko3y: [Qs]
+Dealing to telozver123: [Ts]
+E6y Ko3y bets $0.10
+telozver123 calls $0.10
+the bAAr calls $0.10
+tchazx calls $0.10
+kueto folds
+---
+Dealing 5th street
+Dealing to the bAAr: [9s]
+Dealing to tchazx: [Js]
+Dealing to E6y Ko3y: [6c]
+Dealing to telozver123: [Kd]
+E6y Ko3y checks
+telozver123 checks
+the bAAr bets $0.20
+tchazx calls $0.20
+E6y Ko3y calls $0.20
+telozver123 folds
+---
+Dealing 6th street
+Dealing to the bAAr: [8s]
+Dealing to tchazx: [5c]
+Dealing to E6y Ko3y: [5d]
+E6y Ko3y checks
+the bAAr bets $0.20
+tchazx calls $0.20
+E6y Ko3y calls $0.20
+---
+Dealing river
+Dealing to tchazx: [9h]
+E6y Ko3y checks
+the bAAr checks
+tchazx bets $0.20
+E6y Ko3y folds
+the bAAr calls $0.20
+---
+Summary:
+Main pot: $2.35 won by tchazx ($2.24)
+Rake taken: $0.11
+Seat 1: the bAAr ($5.76), net: -$0.77
+Seat 2: tchazx ($3.47), net: +$1.47, [Jh, 9d, Ac, 7h, Js, 5c, 9h] (TWO_PAIR JACK, NINE)
+Seat 6: kueto ($6.23), net: -$0.07
+Seat 8: E6y Ko3y ($2.13), net: -$0.57
+Seat 10: telozver123 ($6.32), net: -$0.17
+***** End of hand R5-82086688-607 *****
+***** History for hand R5-82086688-608 *****
+Start hand: Mon Sep 13 22:32:47 GMT+0100 2010
+Table: Milwaukee [82086688] (LIMIT SEVEN_CARD_STUD $0.10/$0.20, ante: $0.02, Real money)
+User: tchazx
+Players in round: 5
+Seat 1: the bAAr ($5.76)
+Seat 2: tchazx ($3.47)
+Seat 6: kueto ($6.23)
+Seat 8: E6y Ko3y ($2.13)
+Seat 10: telozver123 ($6.32)
+the bAAr posts ante $0.02
+tchazx posts ante $0.02
+kueto posts ante $0.02
+E6y Ko3y posts ante $0.02
+telozver123 posts ante $0.02
+---
+Dealing pocket cards
+Dealing to the bAAr: [-, -, 4s]
+Dealing to tchazx: [8h, Ks, Qd]
+Dealing to kueto: [-, -, 5h]
+Dealing to E6y Ko3y: [-, -, 2h]
+Dealing to telozver123: [-, -, 3c]
+E6y Ko3y small bring in $0.05
+telozver123 folds
+the bAAr calls $0.05
+tchazx calls $0.05
+kueto folds
+---
+Dealing 4th street
+Dealing to the bAAr: [Ad]
+Dealing to tchazx: [8d]
+Dealing to E6y Ko3y: [Qh]
+the bAAr bets $0.10
+tchazx calls $0.10
+E6y Ko3y folds
+---
+Dealing 5th street
+Dealing to the bAAr: [4c]
+Dealing to tchazx: [Ah]
+the bAAr bets $0.20
+tchazx calls $0.20
+---
+Dealing 6th street
+Dealing to the bAAr: [3d]
+Dealing to tchazx: [Jh]
+the bAAr checks
+tchazx checks
+---
+Dealing river
+Dealing to tchazx: [Kh]
+the bAAr bets $0.20
+tchazx calls $0.20
+---
+Summary:
+Main pot: $1.25 won by tchazx ($1.19)
+Rake taken: $0.06
+Seat 1: the bAAr ($5.19), net: -$0.57, [6s, 9s, 4s, Ad, 4c, 3d, 3h] (TWO_PAIR FOUR, THREE)
+Seat 2: tchazx ($4.09), net: +$0.62, [8h, Ks, Qd, 8d, Ah, Jh, Kh] (TWO_PAIR KING, EIGHT)
+Seat 6: kueto ($6.21), net: -$0.02
+Seat 8: E6y Ko3y ($2.06), net: -$0.07
+Seat 10: telozver123 ($6.30), net: -$0.02
+***** End of hand R5-82086688-608 *****
+***** History for hand R5-82086688-609 *****
+Start hand: Mon Sep 13 22:33:42 GMT+0100 2010
+Table: Milwaukee [82086688] (LIMIT SEVEN_CARD_STUD $0.10/$0.20, ante: $0.02, Real money)
+User: tchazx
+Players in round: 5
+Seat 1: the bAAr ($5.19)
+Seat 2: tchazx ($4.09)
+Seat 6: kueto ($6.21)
+Seat 8: E6y Ko3y ($2.06)
+Seat 10: telozver123 ($6.30)
+the bAAr posts ante $0.02
+tchazx posts ante $0.02
+kueto posts ante $0.02
+E6y Ko3y posts ante $0.02
+telozver123 posts ante $0.02
+---
+Dealing pocket cards
+Dealing to the bAAr: [-, -, 5c]
+Dealing to tchazx: [Ad, As, Kh]
+Dealing to kueto: [-, -, Qs]
+Dealing to E6y Ko3y: [-, -, 8s]
+Dealing to telozver123: [-, -, Tc]
+the bAAr small bring in $0.05
+tchazx bets $0.10
+kueto calls $0.10
+E6y Ko3y folds
+telozver123 folds
+the bAAr folds
+---
+Dealing 4th street
+Dealing to tchazx: [Ks]
+Dealing to kueto: [Qd]
+tchazx bets $0.10
+kueto calls $0.10
+---
+Dealing 5th street
+Dealing to tchazx: [8c]
+Dealing to kueto: [7s]
+tchazx bets $0.20
+kueto calls $0.20
+---
+Dealing 6th street
+Dealing to tchazx: [7d]
+Dealing to kueto: [5s]
+tchazx bets $0.20
+kueto calls $0.20
+---
+Dealing river
+Dealing to tchazx: [7h]
+tchazx bets $0.20
+kueto calls $0.20
+---
+Summary:
+Main pot: $1.75 won by kueto ($1.67)
+Rake taken: $0.08
+Seat 1: the bAAr ($5.12), net: -$0.07
+Seat 2: tchazx ($3.27), net: -$0.82, [Ad, As, Kh, Ks, 8c, 7d, 7h] (TWO_PAIR ACE, KING)
+Seat 6: kueto ($7.06), net: +$0.85, [Qc, 6c, Qs, Qd, 7s, 5s, 3c] (THREE_OF_A_KIND QUEEN)
+Seat 8: E6y Ko3y ($2.04), net: -$0.02
+Seat 10: telozver123 ($6.28), net: -$0.02
+***** End of hand R5-82086688-609 *****
+***** History for hand R5-82086688-610 *****
+Start hand: Mon Sep 13 22:34:25 GMT+0100 2010
+Table: Milwaukee [82086688] (LIMIT SEVEN_CARD_STUD $0.10/$0.20, ante: $0.02, Real money)
+User: tchazx
+Players in round: 5
+Seat 1: the bAAr ($5.12)
+Seat 2: tchazx ($3.27)
+Seat 6: kueto ($7.06)
+Seat 8: E6y Ko3y ($2.04)
+Seat 10: telozver123 ($6.28)
+the bAAr posts ante $0.02
+tchazx posts ante $0.02
+kueto posts ante $0.02
+E6y Ko3y posts ante $0.02
+telozver123 posts ante $0.02
+---
+Dealing pocket cards
+Dealing to the bAAr: [-, -, Ts]
+Dealing to tchazx: [9s, 6s, 7s]
+Dealing to kueto: [-, -, Qs]
+Dealing to E6y Ko3y: [-, -, 3s]
+Dealing to telozver123: [-, -, 9d]
+E6y Ko3y small bring in $0.05
+telozver123 folds
+the bAAr calls $0.05
+tchazx calls $0.05
+kueto calls $0.05
+---
+Dealing 4th street
+Dealing to the bAAr: [Qd]
+Dealing to tchazx: [Ah]
+Dealing to kueto: [7h]
+Dealing to E6y Ko3y: [Th]
+tchazx checks
+kueto checks
+E6y Ko3y checks
+the bAAr bets $0.10
+tchazx calls $0.10
+kueto folds
+E6y Ko3y folds
+---
+Dealing 5th street
+Dealing to the bAAr: [Jh]
+Dealing to tchazx: [5c]
+tchazx checks
+the bAAr bets $0.20
+tchazx calls $0.20
+---
+Dealing 6th street
+Dealing to the bAAr: [7d]
+Dealing to tchazx: [7c]
+tchazx checks
+the bAAr bets $0.20
+tchazx calls $0.20
+---
+Dealing river
+Dealing to tchazx: [5h]
+tchazx checks
+the bAAr checks
+---
+Summary:
+Main pot: $1.30 won by the bAAr ($1.24)
+Rake taken: $0.06
+Seat 1: the bAAr ($5.79), net: +$0.67, [Tc, 9h, Ts, Qd, Jh, 7d, 9c] (TWO_PAIR TEN, NINE)
+Seat 2: tchazx ($2.70), net: -$0.57, [9s, 6s, 7s, Ah, 5c, 7c, 5h] (TWO_PAIR SEVEN, FIVE)
+Seat 6: kueto ($6.99), net: -$0.07
+Seat 8: E6y Ko3y ($1.97), net: -$0.07
+Seat 10: telozver123 ($6.26), net: -$0.02
+***** End of hand R5-82086688-610 *****
