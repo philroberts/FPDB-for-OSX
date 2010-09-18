@@ -223,7 +223,7 @@ class Fulltilt(HandHistoryConverter):
         if m is None:
             logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
-            raise FpdbParseError("No match in readHandInfo.")
+            raise FpdbParseError(_("No match in readHandInfo."))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
