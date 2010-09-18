@@ -22,6 +22,18 @@ import sys
 import datetime
 from HandHistoryConverter import *
 
+import locale
+lang=locale.getdefaultlocale()[0][0:2]
+if lang=="en":
+    def _(string): return string
+else:
+    import gettext
+    try:
+        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
+        trans.install()
+    except IOError:
+        def _(string): return string
+
 # Win2day HH Format
 
 class Win2day(HandHistoryConverter):
