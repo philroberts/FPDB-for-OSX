@@ -71,17 +71,16 @@ class iPoker(HandHistoryConverter):
     re_GameInfo = re.compile(r'<gametype>(?P<GAME>[a-zA-Z0-9 ]+) \$(?P<SB>[.0-9]+)/\$(?P<BB>[.0-9]+)</gametype>', re.MULTILINE)
     re_HandInfo = re.compile(r'gamecode="(?P<HID>[0-9]+)">\s+<general>\s+<startdate>(?P<DATETIME>[-: 0-9]+)</startdate>', re.MULTILINE)
     re_Button = re.compile(r'<players dealer="(?P<BUTTON>[0-9]+)">')
-    re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="\$(?P<CASH>[.0-9]+)" dealer="(?P<DEALTIN>(0|1))"', re.MULTILINE)
+    re_PlayerInfo = re.compile(r'<player seat="(?P<SEAT>[0-9]+)" name="(?P<PNAME>[^"]+)" chips="\$(?P<CASH>[.0-9]+)" dealer="(?P<DEALTIN>(0|1))" (?P<WIN>win="\$[^"]+") (bet="\$(?P<BET>[^"]+))?', re.MULTILINE)
     re_Board = re.compile(r'<cards type="COMMUNITY" cards="(?P<CARDS>[^"]+)"', re.MULTILINE)
     re_EndOfHand = re.compile(r'<round id="END_OF_GAME"', re.MULTILINE)
 
     re_PostSB = re.compile(r'<event sequence="[0-9]+" type="(SMALL_BLIND|RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SB>[.0-9]+)"/>', re.MULTILINE)
     re_PostBB = re.compile(r'<event sequence="[0-9]+" type="(BIG_BLIND|INITIAL_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<BB>[.0-9]+)"/>', re.MULTILINE)
     re_PostBoth = re.compile(r'<event sequence="[0-9]+" type="(RETURN_BLIND)" player="(?P<PSEAT>[0-9])" amount="(?P<SBBB>[.0-9]+)"/>', re.MULTILINE)
-    #re_Antes = ???
-    #re_BringIn = ???
     re_HeroCards = re.compile(r'<cards type="HOLE" cards="(?P<CARDS>.+)" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
-    re_Action = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>0|3|4|16)" sum="\$(?P<BET>[.0-9]+)"', re.MULTILINE)
+    re_Action = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>\d+)" sum="\$(?P<BET>[.0-9]+)"', re.MULTILINE)
+    re_Ante   = re.compile(r'<action no="[0-9]+" player="(?P<PNAME>[^"]+)" type="(?P<ATYPE>15)" sum="\$(?P<BET>[.0-9]+)" cards="', re.MULTILINE)
     re_ShowdownAction = re.compile(r'<cards type="SHOWN" cards="(?P<CARDS>..,..)" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
     re_CollectPot = re.compile(r'<winner amount="(?P<POT>[.0-9]+)" uncalled="(true|false)" potnumber="[0-9]+" player="(?P<PSEAT>[0-9])"', re.MULTILINE)
     re_SitsOut = re.compile(r'<event sequence="[0-9]+" type="SIT_OUT" player="(?P<PSEAT>[0-9])"/>', re.MULTILINE)
@@ -135,7 +134,7 @@ or None if we fail to get the info """
 
         self.info = {}
         mg = m.groupdict()
-        print "DEBUG: m.groupdict(): %s" % mg
+        #print "DEBUG: m.groupdict(): %s" % mg
 
         limits = { 'No Limit':'nl', 'Limit':'fl' }
         games = {              # base, category
@@ -167,17 +166,18 @@ or None if we fail to get the info """
             logging.info(hand.handText)
             raise FpdbParseError(_("Didn't match re_HandInfo"))
         mg = m.groupdict()
-        print "DEBUG: m.groupdict(): %s" % mg
+        #print "DEBUG: m.groupdict(): %s" % mg
         hand.handid = m.group('HID')
         #hand.tablename = m.group('TABLE')[:-1]
         hand.maxseats = None
         hand.startTime = datetime.datetime.strptime(m.group('DATETIME'), '%Y-%m-%d %H:%M:%S')
 
     def readPlayerStacks(self, hand):
+        print "DEBUG: readPlayerStacks"
         m = self.re_PlayerInfo.finditer(hand.handText)
         for a in m:
             ag = a.groupdict()
-            print "DEBUG: ag: %s" %ag
+            #print "DEBUG: re_PlayerInfo: %s" %ag
             seatno = int(a.group('SEAT'))
             # It may be necessary to adjust 'hand.maxseats', which is an
             # educated guess, starting with 2 (indicating a heads-up table) and
@@ -213,10 +213,13 @@ or None if we fail to get the info """
             hand.setCommunityCards(street, [m.group('CARDS').split(',')[-1]])
 
     def readAntes(self, hand):
-        pass # ???
+        m = self.re_Ante.finditer(hand.handText)
+        for a in m:
+            #print "DEBUG: addAnte(%s, %s)" %(a.group('PNAME'),  a.group('BET'))
+            hand.addAnte(a.group('PNAME'), a.group('BET'))
 
     def readBringIn(self, hand):
-        pass # ???
+        pass
 
     def readBlinds(self, hand):
         m = self.re_PostSB.search(hand.handText)
@@ -241,21 +244,28 @@ or None if we fail to get the info """
         m = self.re_Action.finditer(hand.streets[street])
         for action in m:
             ag = action.groupdict()
-            print "DEBUG: action.groupdict: %s" % ag
+            #print "DEBUG: action.groupdict: %s" % ag
             logging.debug("%s %s" % (action.group('ATYPE'),
                                      action.groupdict()))
-            if action.group('ATYPE') == 'RAISE':
+            if action.group('ATYPE') == 'RAISE': # Still no example for raise (i think?)
                 hand.addCallandRaise(street, player, action.group('BET'))
             elif action.group('ATYPE') == '3': # Believe this is 'call'
+                #print "DEBUG: addCall(%s, %s, %s)" %(street, action.group('PNAME'), action.group('BET'))
                 hand.addCall(street, action.group('PNAME'), action.group('BET'))
-            elif action.group('ATYPE') == 'BET':
-                hand.addBet(street, player, action.group('BET'))
+            elif action.group('ATYPE') == '5':
+                #print "DEBUG: addBet(%s, %s, %s)" %(street, action.group('PNAME'), action.group('BET'))
+                hand.addBet(street, action.group('PNAME'), action.group('BET'))
             elif action.group('ATYPE') == '0': # Belive this is 'fold'
+                #print "DEBUG: addFold(%s, %s)" %(street, action.group('PNAME'))
                 hand.addFold(street, action.group('PNAME'))
-            elif action.group('ATYPE') == 'CHECK':
-                hand.addCheck(street, player)
-            elif action.group('ATYPE') == 'ALL_IN':
-                hand.addAllIn(street, player, action.group('BET'))
+            elif action.group('ATYPE') == '4':
+                #print "DEBUG: addCheck(%s, %s)" %(street, action.group('PNAME'))
+                hand.addCheck(street, action.group('PNAME'))
+            #elif action.group('ATYPE') == 'ALL_IN':
+            #    hand.addAllIn(street, player, action.group('BET'))
+            elif action.group('ATYPE') == '16': #BringIn
+                #print "DEBUG: addBringIn(%s, %s)" %(action.group('PNAME'),  action.group('BET'))
+                hand.addBringIn(action.group('PNAME'), action.group('BET'))
             else:
                 logging.error(_("Unimplemented readAction: %s" % (ag)))
 

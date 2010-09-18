@@ -61,7 +61,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
                                  ''' % substitutions, re.VERBOSE)
-    re_SplitHands   = re.compile(r"\n\n+")
+    re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
@@ -186,7 +186,10 @@ class Fulltilt(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            return None
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
