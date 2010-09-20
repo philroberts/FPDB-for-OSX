@@ -112,7 +112,8 @@ class Win2day(HandHistoryConverter):
         limits = { 'NL':'nl', 'PL':'pl'}
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
-              #      'Omaha' : ('hold','omahahi'),
+                  "GAME_OMA" : ('hold','omahahi'),
+
               #'Omaha Hi/Lo' : ('hold','omahahilo'),
               #       'Razz' : ('stud','razz'), 
               #'7 Card Stud' : ('stud','studhi'),
