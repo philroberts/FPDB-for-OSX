@@ -16,7 +16,7 @@
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
 import L10n
-_ = L10n.get_translator()
+_ = L10n.get_translation()
 
 #    Standard Library modules
 import os

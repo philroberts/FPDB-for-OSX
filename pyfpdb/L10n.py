@@ -20,18 +20,18 @@ def pass_through(to_translate): return to_translate
 
 lang=locale.getdefaultlocale()[0][0:2]
 if lang=="en":
-    translator=pass_through
+    translation=pass_through
 else:
     import gettext
     try:
         trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
         trans.install()
-        translator=_
+        translation=_
     except IOError:
-        translator=pass_through
+        translation=pass_through
     
 #def translate(to_translate):
 #        return _(to_translate)
         
-def get_translator():
-    return translator
+def get_translation():
+    return translation
