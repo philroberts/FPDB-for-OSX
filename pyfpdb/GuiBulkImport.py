@@ -35,7 +35,7 @@ import Exceptions
 
 import locale
 (lang, charset) = locale.getdefaultlocale()
-if lang == None or lang == "en":
+if lang == None or lang[:2] == "en":
     def _(string): return string
 else:
     import gettext

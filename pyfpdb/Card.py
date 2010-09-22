@@ -164,9 +164,9 @@ def encodeCard(cardString):
     return encodeCardList[cardString]
 
 def encodeRazzStartHand(cards):
-"""No idea how this is actually going to work, figured i'd record the top 10
-   starting hands anyway
-"""
+    """No idea how this is actually going to work, figured i'd record the top 10
+       starting hands anyway
+    """
     pass
 #A, 2, 3
 #A, 2, 4
