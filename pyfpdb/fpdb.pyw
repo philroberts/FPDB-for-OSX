@@ -23,18 +23,6 @@ import sys
 import re
 import Queue
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
-
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
 if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' not in sys.argv:
