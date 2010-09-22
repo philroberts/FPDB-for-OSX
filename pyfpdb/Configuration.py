@@ -484,7 +484,7 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
@@ -1263,7 +1263,7 @@ class Config:
         except:  imp['hhBulkPath']    = ""
 
         try:    imp['saveActions']     = self.imp.saveActions
-        except:  imp['saveActions']     = True
+        except:  imp['saveActions']     = False
 
         try:    imp['saveStarsHH'] = self.imp.saveStarsHH
         except:  imp['saveStarsHH'] = False
