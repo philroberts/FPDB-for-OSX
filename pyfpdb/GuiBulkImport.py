@@ -34,8 +34,8 @@ import Configuration
 import Exceptions
 
 import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
+(lang, charset) = locale.getdefaultlocale()
+if lang = None or lang == "en":
     def _(string): return string
 else:
     import gettext
