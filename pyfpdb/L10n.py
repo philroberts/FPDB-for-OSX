@@ -18,8 +18,8 @@
 import locale
 def pass_through(to_translate): return to_translate
 
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
+(lang, charset) = locale.getdefaultlocale()
+if lang==None or lang[:2]=="en":
     translation=pass_through
 else:
     import gettext
