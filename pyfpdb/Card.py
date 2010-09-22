@@ -163,6 +163,22 @@ def encodeCard(cardString):
     if cardString not in encodeCardList: return 0
     return encodeCardList[cardString]
 
+def encodeRazzStartHand(cards):
+"""No idea how this is actually going to work, figured i'd record the top 10
+   starting hands anyway
+"""
+    pass
+#A, 2, 3
+#A, 2, 4
+#A, 2, 5
+#A, 3, 4
+#2, 3, 4
+#A, 3, 5
+#A, 4, 5
+#2, 3, 5
+#2, 4, 5
+#A, 2, 6
+
 if __name__ == '__main__':
     print _("fpdb card encoding(same as pokersource)")
     for i in xrange(1, 14):
