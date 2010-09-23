@@ -18,17 +18,8 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
+import L10n
+_ = L10n.get_translation()
 
 import logging
 from HandHistoryConverter import *
@@ -61,7 +52,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
                                  ''' % substitutions, re.VERBOSE)
-    re_SplitHands   = re.compile(r"\n\n+")
+    re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
@@ -186,7 +177,10 @@ class Fulltilt(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            return None
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
@@ -220,7 +214,7 @@ class Fulltilt(HandHistoryConverter):
         if m is None:
             logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
-            raise FpdbParseError("No match in readHandInfo.")
+            raise FpdbParseError(_("No match in readHandInfo."))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 

@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 
 import os  # todo: remove this once import_dir is in fpdb_import
@@ -34,18 +37,6 @@ log = logging.getLogger("importer")
 
 import pygtk
 import gtk
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    fpdb/FreePokerTools modules
 import Database
@@ -473,7 +464,8 @@ class Importer:
             else:
                 self.pos_in_file[file] = 0
             hhc = obj( self.config, in_path = file, out_path = out_path, index = idx
-                     , starsArchive = self.settings['starsArchive'], sitename = site )
+                     , starsArchive = self.settings['starsArchive'], ftpArchive = self.settings['ftpArchive'],
+                       sitename = site )
             if hhc.getStatus():
                 handlist = hhc.getProcessedHands()
                 self.pos_in_file[file] = hhc.getLastCharacterRead()

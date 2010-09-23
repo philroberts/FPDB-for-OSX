@@ -56,7 +56,7 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'EUR': u'$', 'GBP': '$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
 
 

@@ -18,21 +18,12 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import logging
 from HandHistoryConverter import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # Betfair HH format
 
@@ -115,7 +106,7 @@ class Betfair(HandHistoryConverter):
         m = self.re_HandInfo.search(hand.handText)
         if(m == None):
             log.error(_("Didn't match re_HandInfo"))
-            raise FpdbParseError("No match in readHandInfo.")
+            raise FpdbParseError(_("No match in readHandInfo."))
         print "DEBUG: got this far!"
         logging.debug("HID %s, Table %s" % (m.group('HID'),  m.group('TABLE')))
         hand.handid = m.group('HID')

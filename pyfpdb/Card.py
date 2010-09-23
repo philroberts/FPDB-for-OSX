@@ -15,17 +15,8 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
+import L10n
+_ = L10n.get_translation()
 
 # From fpdb_simple
 card_map = { "0": 0, "2": 2, "3" : 3, "4" : 4, "5" : 5, "6" : 6, "7" : 7, "8" : 8,
@@ -162,6 +153,22 @@ def encodeCard(cardString):
     global encodeCardList
     if cardString not in encodeCardList: return 0
     return encodeCardList[cardString]
+
+def encodeRazzStartHand(cards):
+    """No idea how this is actually going to work, figured i'd record the top 10
+       starting hands anyway
+    """
+    pass
+#A, 2, 3
+#A, 2, 4
+#A, 2, 5
+#A, 3, 4
+#2, 3, 4
+#A, 3, 5
+#A, 4, 5
+#2, 3, 5
+#2, 4, 5
+#A, 2, 6
 
 if __name__ == '__main__':
     print _("fpdb card encoding(same as pokersource)")

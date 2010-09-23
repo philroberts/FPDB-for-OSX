@@ -45,21 +45,21 @@ else:
     except IOError:
         def _(string): return string
 
-def splitPokerStarsSummaries(summaryText):
+def splitPokerStarsSummaries(summaryText): #TODO: this needs to go to PSS.py
     re_SplitTourneys = PokerStarsSummary.PokerStarsSummary.re_SplitTourneys
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print _("DEBUG: re_SplitTourneyss isn't matching")
+        print _("DEBUG: re_SplitTourneys isn't matching")
 
     return splitSummaries
 
-def splitFullTiltSummaries(summaryText):
+def splitFullTiltSummaries(summaryText):#TODO: this needs to go to FTPS.py
     re_SplitTourneys = FullTiltPokerSummary.FullTiltPokerSummary.re_SplitTourneys
     splitSummaries = re.split(re_SplitTourneys, summaryText)
 
     if len(splitSummaries) <= 1:
-        print _("DEBUG: re_SplitTourneyss isn't matching")
+        print _("DEBUG: re_SplitTourneys isn't matching")
 
     return splitSummaries
 
