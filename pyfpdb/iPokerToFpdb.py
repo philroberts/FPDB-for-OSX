@@ -19,6 +19,9 @@
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 # This code is based on CarbonToFpdb.py by Matthew Boss
 #
 # TODO:
@@ -44,18 +47,6 @@ import sys
 import logging
 from HandHistoryConverter import *
 from decimal import Decimal
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 
 class iPoker(HandHistoryConverter):
