@@ -90,7 +90,7 @@ def twoStartCardString(card):
         if x == y:  ret = s[x] + s[y]
         elif x > y: ret = s[x] + s[y] + 's'
         else:       ret = s[y] + s[x] + 'o'
-#    print "twoStartCardString(", card ,") = " + ret
+    print "twoStartCardString(", card ,") = " + ret
     return ret
 
 def fourStartCards(value1, suit1, value2, suit2, value3, suit3, value4, suit4):
@@ -159,7 +159,7 @@ def encodeCard(cardString):
     return encodeCardList[cardString]
 
 def decodeRazzStartHand(idx):
-    pass
+    return "xxx"
 #    (32)A (3A)2 (2A)3 (42)A (4A)2 (2A)4 (43)A (4A)3 (3A)4 (43)2
 #    (42)3 (32)4 (52)A (5A)2 (2A)5 (53)A (5A)3 (3A)5 (53)2 (52)3
 #    (32)5 (54)A (5A)4 (4A)5 (54)2 (52)4 (42)5 (54)3 (53)4 (43)5
