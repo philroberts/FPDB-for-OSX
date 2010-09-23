@@ -23,11 +23,13 @@ Handles HUD configuration files.
 
 ########################################################################
 
-import L10n
-_ = L10n.get_translation()
 
 #    Standard Library modules
 from __future__ import with_statement
+
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import inspect
