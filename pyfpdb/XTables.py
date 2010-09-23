@@ -20,6 +20,9 @@
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import re
 import os

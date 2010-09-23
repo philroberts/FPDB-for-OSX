@@ -22,6 +22,9 @@ Main program module to test/demo the Tables subclasses.
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import sys
 import os
@@ -32,18 +35,6 @@ import gobject
 
 #    fpdb/free poker tools modules
 import Configuration
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    get the correct module for the current os
 if os.name == 'posix':

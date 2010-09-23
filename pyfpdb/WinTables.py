@@ -20,6 +20,9 @@
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import re
 
@@ -37,18 +40,6 @@ import win32process
 import win32api
 import win32con
 import win32security
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    FreePokerTools modules
 from TableWindow import Table_Window
