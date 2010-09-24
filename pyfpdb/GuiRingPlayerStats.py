@@ -94,34 +94,6 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
         # columns to display, keys match column name returned by sql, values in tuple are:
         #     is column displayed(summary then position), column heading, xalignment, formatting, celltype
         self.columns = self.conf.get_gui_cash_stat_params()
-#        self.columns = [ ["game",       True,  True,  "Game",     0.0, "%s",    "str"]
-#                       , ["hand",       False, False, "Hand",     0.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
-#                       , ["plposition", False, False, "Posn",     1.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
-#                       , ["pname",      False, False, "Name",     0.0, "%s",    "str"]   # initial setting ignored for this line (set in code)
-#                       , ["n",          True,  True,  "Hds",      1.0, "%1.0f", "str"]
-#                       , ["avgseats",   False, False, "Seats",    1.0, "%3.1f", "str"]
-#                       , ["vpip",       True,  True,  "VPIP",     1.0, "%3.1f", "str"]
-#                       , ["pfr",        True,  True,  "PFR",      1.0, "%3.1f", "str"]
-#                       , ["pf3",        True,  True,  "PF3",      1.0, "%3.1f", "str"]
-#                       , ["aggfac",     True,  True,  "AggFac",   1.0, "%2.2f", "str"]
-#                       , ["aggfrq",     True,  True,  "AggFreq",  1.0, "%3.1f", "str"]
-#                       , ["conbet",     True,  True,  "ContBet",  1.0, "%3.1f", "str"]
-#                       , ["rfi",        True,  True,  "RFI",      1.0, "%3.1f", "str"]
-#                       , ["steals",     True,  True,  "Steals",   1.0, "%3.1f", "str"]
-#                       , ["saw_f",      True,  True,  "Saw_F",    1.0, "%3.1f", "str"]
-#                       , ["sawsd",      True,  True,  "SawSD",    1.0, "%3.1f", "str"]
-#                       , ["wtsdwsf",    True,  True,  "WtSDwsF",  1.0, "%3.1f", "str"]
-#                       , ["wmsd",       True,  True,  "W$SD",     1.0, "%3.1f", "str"]
-#                       , ["flafq",      True,  True,  "FlAFq",    1.0, "%3.1f", "str"]
-#                       , ["tuafq",      True,  True,  "TuAFq",    1.0, "%3.1f", "str"]
-#                       , ["rvafq",      True,  True,  "RvAFq",    1.0, "%3.1f", "str"]
-#                       , ["pofafq",     False, False, "PoFAFq",   1.0, "%3.1f", "str"]
-#                       , ["net",        True,  True,  "Net($)",   1.0, "%6.2f", "cash"]
-#                       , ["bbper100",   True,  True,  "bb/100",   1.0, "%4.2f", "str"]
-#                       , ["rake",       True,  True,  "Rake($)",  1.0, "%6.2f", "cash"]
-#                       , ["bb100xr",    True,  True,  "bbxr/100", 1.0, "%4.2f", "str"]
-#                       , ["variance",   True,  True,  "Variance", 1.0, "%5.2f", "str"]
-#                       ]
 
         # Detail filters:  This holds the data used in the popup window, extra values are
         # added at the end of these lists during processing
@@ -392,6 +364,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
 
         tmp = self.sql.query[query]
         tmp = self.refineQuery(tmp, flags, playerids, sitenos, limits, type, seats, groups, dates, games)
+        #print "DEBUG: query: %s" % tmp
         self.cursor.execute(tmp)
         result = self.cursor.fetchall()
         colnames = [desc[0].lower() for desc in self.cursor.description]
@@ -467,7 +440,7 @@ class GuiRingPlayerStats (GuiPlayerStats.GuiPlayerStats):
                 else:
                     if column[colalias] == 'game':
                         if holecards:
-                            value = Card.twoStartCardString( result[sqlrow][hgametypeid_idx] )
+                            value = Card.decodeStartHandValue(result[sqlrow][colnames.index('category')], result[sqlrow][hgametypeid_idx] )
                         else:
                             minbb = result[sqlrow][colnames.index('minbigblind')]
                             maxbb = result[sqlrow][colnames.index('maxbigblind')]
