@@ -5,7 +5,7 @@
 
 import re
 
-re_space = re.compile("([\(\)AKQJT0-9]+) ")
+re_space = re.compile("([\(\)AKQJT0-9]+)\s+", re.MULTILINE)
 
 razzlist = """(32)A (3A)2 (2A)3 (42)A (4A)2 (2A)4 (43)A (4A)3 (3A)4 (43)2
  (42)3 (32)4 (52)A (5A)2 (2A)5 (53)A (5A)3 (3A)5 (53)2 (52)3
@@ -125,7 +125,8 @@ razzlist = """(32)A (3A)2 (2A)3 (42)A (4A)2 (2A)4 (43)A (4A)3 (3A)4 (43)2
  (K8)8 (KK)8 (88)K (K8)K (K9)9 (KK)9 (99)K (K9)K (KT)T (KK)T
  (TT)K (KT)K (KJ)J (KK)J (JJ)K (KJ)K (KQ)Q (KK)Q (QQ)K (KQ)K
  (AA)A (22)2 (33)3 (44)4 (55)5 (66)6 (77)7 (88)8 (99)9 (TT)T
- (JJ)J (QQ)Q (KK)K"""
+ (JJ)J (QQ)Q (KK)K
+"""
 
 count = 1
 string = ""
