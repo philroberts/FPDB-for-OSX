@@ -1941,7 +1941,7 @@ class Database:
             hilo = "h"
             if game['category'] in ['studhilo', 'omahahilo']:
                 hilo = "s"
-            elif game['category'] in ['razz','27_3draw','badugi']:
+            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
                 hilo = "l"
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),
