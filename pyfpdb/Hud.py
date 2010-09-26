@@ -472,11 +472,21 @@ class Hud:
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
+            updateFlag = False
+            actual_seat = self.get_actual_seat(self.config.supported_sites[self.table.site].screen_name)
+            if self.table.hud != actual_seat:
+                self.table.hud = actual_seat
+                updateFlag = True
+                # dont know what the intention of table.hud was, so misusing the variable here
+                # to auto detect table change during tourney's
             (x, y) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
             if self.table.x != x or self.table.y != y: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
+
                 self.table.x = x
                 self.table.y = y
                 self.main_window.move(x + self.site_params['xshift'], y + self.site_params['yshift'])
+                updateFlag = True
+            if updateFlag:
                 adj = self.adj_seats(self.hand, self.config)
                 loc = self.config.get_locations(self.table.site, self.max)
                 # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
