@@ -18,6 +18,9 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import exceptions
 
@@ -30,22 +33,10 @@ import Configuration
 from HandHistoryConverter import *
 from decimal import Decimal
 
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
-
 # OnGame HH Format
 
 class OnGame(HandHistoryConverter):
-    sitename = "OnGame"
+    filter = "OnGame"
     filetype = "text"
     codepage = ("utf8", "cp1252")
     siteId   = 5 # Needs to match id entry in Sites database
@@ -66,7 +57,7 @@ class OnGame(HandHistoryConverter):
              #                    'Razz' : ('stud','razz'),
              #                    'RAZZ' : ('stud','razz'),
              #             '7 Card Stud' : ('stud','studhi'),
-             #       '7 Card Stud Hi/Lo' : ('stud','studhilo'),
+                 'SEVEN_CARD_STUD_HI_LO' : ('stud','studhilo'),
              #                  'Badugi' : ('draw','badugi'),
              # 'Triple Draw 2-7 Lowball' : ('draw','27_3draw'),
              #             '5 Card Draw' : ('draw','fivedraw')
@@ -111,13 +102,11 @@ class OnGame(HandHistoryConverter):
     re_DateTime = re.compile("""
             [a-zA-Z]{3}\s
             (?P<M>[a-zA-Z]{3})\s
-            (?P<D>[0-9]{2})\s
+            (?P<D>[0-9]+)\s
             (?P<H>[0-9]+):(?P<MIN>[0-9]+):(?P<S>[0-9]+)\s
             (?P<OFFSET>\w+[-+]\d+)\s
             (?P<Y>[0-9]{4})
             """, re.MULTILINE|re.VERBOSE)
-        
-    #    self.rexx.button_re = re.compile('#SUMMARY\nDealer: (?P<BUTTONPNAME>.*)\n')
         
     #Seat 1: .Lucchess ($4.17 in chips) 
     #Seat 1: phantomaas ($27.11)
@@ -138,10 +127,11 @@ class OnGame(HandHistoryConverter):
             player_re = "(?P<PNAME>" + "|".join(map(re.escape, players)) + ")"
             subst = {'PLYR': player_re, 'CUR': self.sym[hand.gametype['currency']]}
             self.re_PostSB    = re.compile('(?P<PNAME>.*) posts small blind \((%(CUR)s)?(?P<SB>[\.0-9]+)\)' % subst, re.MULTILINE)
-            self.re_PostBB    = re.compile('\), (?P<PNAME>.*) posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % subst, re.MULTILINE)
+            self.re_PostBB    = re.compile('(?P<PNAME>.*) posts big blind \((%(CUR)s)?(?P<BB>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_Antes     = re.compile(r"^%(PLYR)s: posts the ante (%(CUR)s)?(?P<ANTE>[\.0-9]+)" % subst, re.MULTILINE)
             self.re_BringIn   = re.compile(r"^%(PLYR)s: brings[- ]in( low|) for (%(CUR)s)?(?P<BRINGIN>[\.0-9]+)" % subst, re.MULTILINE)
-            self.re_PostBoth  = re.compile('.*\n(?P<PNAME>.*): posts small \& big blinds \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
+            self.re_PostBoth  = re.compile('(?P<PNAME>.*): posts small \& big blind \( (%(CUR)s)?(?P<SBBB>[\.0-9]+)\)' % subst)
+            self.re_PostDead  = re.compile('(?P<PNAME>.*) posts dead blind \((%(CUR)s)?(?P<DEAD>[\.0-9]+)\)' % subst, re.MULTILINE)
             self.re_HeroCards = re.compile('Dealing\sto\s%(PLYR)s:\s\[(?P<CARDS>.*)\]' % subst)
 
             #lopllopl checks, Eurolll checks, .Lucchess checks.
@@ -165,6 +155,7 @@ class OnGame(HandHistoryConverter):
         return [
                 ["ring", "hold", "fl"],
                 ["ring", "hold", "nl"],
+                ["ring", "stud", "fl"],
                ]
 
     def determineGameType(self, handText):
@@ -217,21 +208,28 @@ class OnGame(HandHistoryConverter):
                 #hand.startTime = time.strptime(m.group('DATETIME'), "%a %b %d %H:%M:%S GMT%z %Y")
                 # Stupid library doesn't seem to support %z (http://docs.python.org/library/time.html?highlight=strptime#time.strptime)
                 # So we need to re-interpret te string to be useful
-                m1 = self.re_DateTime.finditer(info[key])
-                for a in m1:
+                a = self.re_DateTime.search(info[key])
+                if a:
                     datetimestr = "%s/%s/%s %s:%s:%s" % (a.group('Y'),a.group('M'), a.group('D'), a.group('H'),a.group('MIN'),a.group('S'))
                     tzoffset = a.group('OFFSET')
-                    # TODO: Manually adjust time against OFFSET
+                else:
+                    datetimestr = "2010/Jan/01 01:01:01"
+                    log.error(_("readHandInfo: DATETIME not matched: '%s'" % info[key]))
+                    print "DEBUG: readHandInfo: DATETIME not matched: '%s'" % info[key]
+                # TODO: Manually adjust time against OFFSET
                 hand.startTime = datetime.datetime.strptime(datetimestr, "%Y/%b/%d %H:%M:%S") # also timezone at end, e.g. " ET"
                 hand.startTime = HandHistoryConverter.changeTimezone(hand.startTime, tzoffset, "UTC")
             if key == 'HID':
                 hand.handid = info[key]
+                # Need to remove non-alphanumerics for MySQL
+                hand.handid = hand.handid.replace('R','')
+                hand.handid = hand.handid.replace('-','')
             if key == 'TABLE':
                 hand.tablename = info[key]
 
         # TODO: These
         hand.buttonpos = 1
-        hand.maxseats = 10
+        hand.maxseats = None    # Set to None - Hand.py will guessMaxSeats()
         hand.mixed = None
 
     def readPlayerStacks(self, hand):
@@ -280,7 +278,6 @@ class OnGame(HandHistoryConverter):
             hand.setCommunityCards(street, m.group('CARDS').split(', '))
 
     def readBlinds(self, hand):
-        #log.debug( _("readBlinds starting, hand=") + "\n["+hand.handText+"]" )
         try:
             m = self.re_PostSB.search(hand.handText)
             hand.addBlind(m.group('PNAME'), 'small blind', m.group('SB'))
@@ -289,6 +286,9 @@ class OnGame(HandHistoryConverter):
             #hand.addBlind(None, None, None)
         for a in self.re_PostBB.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'big blind', a.group('BB'))
+        for a in self.re_PostDead.finditer(hand.handText):
+            #print "DEBUG: Found dead blind: addBlind(%s, 'secondsb', %s)" %(a.group('PNAME'), a.group('DEAD'))
+            hand.addBlind(a.group('PNAME'), 'secondsb', a.group('DEAD'))
         for a in self.re_PostBoth.finditer(hand.handText):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 

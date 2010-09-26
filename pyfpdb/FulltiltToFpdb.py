@@ -18,6 +18,9 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import logging
 from HandHistoryConverter import *
 #import TourneySummary
@@ -49,7 +52,7 @@ class Fulltilt(HandHistoryConverter):
                                     (?P<LIMIT>(No\sLimit|Pot\sLimit|Limit))?\s
                                     (?P<GAME>(Hold\'em|Omaha\sHi|Omaha\sH/L|7\sCard\sStud|Stud\sH/L|Razz|Stud\sHi))
                                  ''' % substitutions, re.VERBOSE)
-    re_SplitHands   = re.compile(r"\n\n+")
+    re_SplitHands   = re.compile(r"\n\n\n+")
     re_TailSplitHands   = re.compile(r"(\n\n+)")
     re_HandInfo     = re.compile(r'''.*\#(?P<HID>[0-9]+):\s
                                     (?:(?P<TOURNAMENT>.+)\s\((?P<TOURNO>\d+)\),\s)?
@@ -174,7 +177,10 @@ class Fulltilt(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            return None
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
         mg = m.groupdict()
 
         # translations from captured groups to our info strings
@@ -206,9 +212,9 @@ class Fulltilt(HandHistoryConverter):
     def readHandInfo(self, hand):
         m =  self.re_HandInfo.search(hand.handText)
         if m is None:
-            logging.info("Didn't match re_HandInfo")
+            logging.info(_("Didn't match re_HandInfo"))
             logging.info(hand.handText)
-            raise FpdbParseError("No match in readHandInfo.")
+            raise FpdbParseError(_("No match in readHandInfo."))
         hand.handid = m.group('HID')
         hand.tablename = m.group('TABLE')
 
@@ -336,7 +342,7 @@ class Fulltilt(HandHistoryConverter):
             hand.addBlind(a.group('PNAME'), 'small & big blinds', a.group('SBBB'))
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -346,10 +352,10 @@ class Fulltilt(HandHistoryConverter):
     def readBringIn(self, hand):
         m = self.re_BringIn.search(hand.handText,re.DOTALL)
         if m:
-            logging.debug("Player bringing in: %s for %s" %(m.group('PNAME'),  m.group('BRINGIN')))
+            logging.debug(_("Player bringing in: %s for %s") %(m.group('PNAME'),  m.group('BRINGIN')))
             hand.addBringIn(m.group('PNAME'),  m.group('BRINGIN'))
         else:
-            logging.warning("No bringin found, handid =%s" % hand.handid)
+            logging.warning(_("No bringin found, handid =%s") % hand.handid)
 
     def readButton(self, hand):
         hand.buttonpos = int(self.re_Button.search(hand.handText).group('BUTTON'))
@@ -406,7 +412,7 @@ class Fulltilt(HandHistoryConverter):
             elif action.group('ATYPE') == ' checks':
                 hand.addCheck( street, action.group('PNAME'))
             else:
-                print "FullTilt: DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print _("FullTilt: DEBUG: unimplemented readAction: '%s' '%s'") %(action.group('PNAME'),action.group('ATYPE'),)
 
 
     def readShowdownActions(self, hand):
@@ -482,7 +488,7 @@ class Fulltilt(HandHistoryConverter):
         
         m = self.re_TourneyInfo.search(tourneyText)
         if not m: 
-            log.info( "determineTourneyType : Parsing NOK" )
+            log.info(_("determineTourneyType : Parsing NOK"))
             return False
         mg = m.groupdict()
         #print mg
@@ -540,7 +546,7 @@ class Fulltilt(HandHistoryConverter):
         if mg['TOURNO'] is not None:
             tourney.tourNo = mg['TOURNO']
         else:
-            log.info( "Unable to get a valid Tournament ID -- File rejected" )
+            log.info(_("Unable to get a valid Tournament ID -- File rejected"))
             return False
         if tourney.isMatrix:
             if mg['MATCHNO'] is not None:
@@ -571,18 +577,18 @@ class Fulltilt(HandHistoryConverter):
                         tourney.buyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
                     else :
                         if 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN'])) != tourney.buyin:
-                            log.error( "Conflict between buyins read in topline (%s) and in BuyIn field (%s)" % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
+                            log.error(_("Conflict between buyins read in topline (%s) and in BuyIn field (%s)") % (tourney.buyin, 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))) )
                             tourney.subTourneyBuyin = 100*Decimal(re.sub(u',', u'', "%s" % mg['BUYIN']))
                 if mg['FEE'] is not None:
                     if tourney.fee is None:
                         tourney.fee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
                     else :
                         if 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE'])) != tourney.fee:
-                            log.error( "Conflict between fees read in topline (%s) and in BuyIn field (%s)" % (tourney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
+                            log.error(_("Conflict between fees read in topline (%s) and in BuyIn field (%s)") % (tourney.fee, 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))) )
                             tourney.subTourneyFee = 100*Decimal(re.sub(u',', u'', "%s" % mg['FEE']))
 
         if tourney.buyin is None:
-            log.info( "Unable to affect a buyin to this tournament : assume it's a freeroll" )
+            log.info(_("Unable to affect a buyin to this tournament : assume it's a freeroll"))
             tourney.buyin = 0
             tourney.fee = 0
         else:
@@ -683,7 +689,7 @@ class Fulltilt(HandHistoryConverter):
 
                 tourney.addPlayer(rank, a.group('PNAME'), winnings, "USD", 0, 0, 0) #TODO: make it store actual winnings currency
             else:
-                print "FullTilt: Player finishing stats unreadable : %s" % a
+                print (_("FullTilt: Player finishing stats unreadable : %s") % a)
 
         # Find Hero
         n = self.re_TourneyHeroFinishingP.search(playersText)
@@ -692,17 +698,17 @@ class Fulltilt(HandHistoryConverter):
             tourney.hero = heroName
             # Is this really useful ?
             if heroName not in tourney.ranks:
-                print "FullTilt:", heroName, "not found in tourney.ranks ..."
+                print (_("FullTilt: %s not found in tourney.ranks ...") % heroName)
             elif (tourney.ranks[heroName] != Decimal(n.group('HERO_FINISHING_POS'))):            
-                print "FullTilt: Bad parsing : finish position incoherent : %s / %s" % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS'))
+                print (_("FullTilt: Bad parsing : finish position incoherent : %s / %s") % (tourney.ranks[heroName], n.group('HERO_FINISHING_POS')))
 
         return True
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="regression-test-files/fulltilt/razz/FT20090223 Danville - $0.50-$1 Ante $0.10 - Limit Razz.txt")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",

@@ -18,6 +18,9 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 import datetime
 from HandHistoryConverter import *
@@ -88,8 +91,10 @@ class Win2day(HandHistoryConverter):
         
         m = self.re_GameInfo.search(handText)
         if not m:
-            print "determineGameType:", handText
-            return None
+            tmp = handText[0:100]
+            log.error(_("determineGameType: Unable to recognise gametype from: '%s'") % tmp)
+            log.error(_("determineGameType: Raising FpdbParseError"))
+            raise FpdbParseError(_("Unable to recognise gametype from: '%s'") % tmp)
 
         mg = m.groupdict()
         
@@ -98,7 +103,8 @@ class Win2day(HandHistoryConverter):
         limits = { 'NL':'nl', 'PL':'pl'}
         games = {              # base, category
                   "GAME_THM" : ('hold','holdem'), 
-              #      'Omaha' : ('hold','omahahi'),
+                  "GAME_OMA" : ('hold','omahahi'),
+
               #'Omaha Hi/Lo' : ('hold','omahahilo'),
               #       'Razz' : ('stud','razz'), 
               #'7 Card Stud' : ('stud','studhi'),
@@ -153,7 +159,7 @@ class Win2day(HandHistoryConverter):
                     hand.buttonpos = player[0]
                     break
         else:
-            logging.info('readButton: not found')
+            logging.info(_('readButton: not found'))
 
     def readPlayerStacks(self, hand):
         logging.debug("readPlayerStacks")
@@ -182,19 +188,19 @@ class Win2day(HandHistoryConverter):
         if street in ('FLOP','TURN','RIVER'):   # a list of streets which get dealt community cards (i.e. all but PREFLOP)
             #print "DEBUG readCommunityCards:", street, hand.streets.group(street)
 
-            boardCards = set([])
+            boardCards = []
             if street == 'FLOP':
                 m = self.re_Card.findall(hand.streets[street])
                 for card in m:
-                    boardCards.add(self.convertWin2dayCards(card))
+                    boardCards.append(self.convertWin2dayCards(card))
             else:
                 m = self.re_BoardLast.search(hand.streets[street])
-                boardCards.add(self.convertWin2dayCards(m.group('CARD')))
-            
+                boardCards.append(self.convertWin2dayCards(m.group('CARD')))
+
             hand.setCommunityCards(street, boardCards)
 
     def readAntes(self, hand):
-        logging.debug("reading antes")
+        logging.debug(_("reading antes"))
         m = self.re_Antes.finditer(hand.handText)
         for player in m:
             #~ logging.debug("hand.addAnte(%s,%s)" %(player.group('PNAME'), player.group('ANTE')))
@@ -225,7 +231,7 @@ class Win2day(HandHistoryConverter):
         for found in m:
             hand.hero = found.group('PNAME')
             for card in self.re_Card.finditer(found.group('CARDS')):
-                print self.convertWin2dayCards(card.group('CARD'))
+                #print self.convertWin2dayCards(card.group('CARD'))
                 newcards.append(self.convertWin2dayCards(card.group('CARD')))
             
                     #hand.addHoleCards(holeCards, m.group('PNAME'))
@@ -267,13 +273,13 @@ class Win2day(HandHistoryConverter):
                 newcards = player.group('NEWCARDS')
                 oldcards = player.group('OLDCARDS')
                 if newcards == None:
-                    newcards = set()
+                    newcards = []
                 else:
-                    newcards = set(newcards.split(' '))
+                    newcards = newcards.split(' ')
                 if oldcards == None:
-                    oldcards = set()
+                    oldcards = []
                 else:
-                    oldcards = set(oldcards.split(' '))
+                    oldcards = oldcards.split(' ')
                 hand.addDrawHoleCards(newcards, oldcards, player.group('PNAME'), street)
 
 
@@ -332,15 +338,15 @@ class Win2day(HandHistoryConverter):
             elif action.group('ATYPE') == 'ACTION_STAND':
                 hand.addStandsPat( street, action.group('PNAME'))
             else:
-                print "DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),)
+                print _("DEBUG: unimplemented readAction: '%s' '%s'" %(action.group('PNAME'),action.group('ATYPE'),))
 
 
     def readShowdownActions(self, hand):
         for shows in self.re_ShowdownAction.finditer(hand.handText):
-            showdownCards = set([])
+            showdownCards = []
             for card in self.re_Card.finditer(shows.group('CARDS')):
                 #print "DEBUG:", card, card.group('CARD'), self.convertWin2dayCards(card.group('CARD'))
-                showdownCards.add(self.convertWin2dayCards(card.group('CARD')))
+                showdownCards.append(self.convertWin2dayCards(card.group('CARD')))
             
             hand.addShownCards(showdownCards, shows.group('PNAME'))
 
@@ -354,14 +360,14 @@ class Win2day(HandHistoryConverter):
         for m in self.re_ShownCards.finditer(hand.handText):
             if m.group('CARDS') is not None:
                 cards = m.group('CARDS')
-                cards = set(cards.split(' '))
+                cards = cards.split(' ')
                 hand.addShownCards(cards=cards, player=m.group('PNAME'))
 
 if __name__ == "__main__":
     parser = OptionParser()
-    parser.add_option("-i", "--input", dest="ipath", help="parse input hand history", default="-")
-    parser.add_option("-o", "--output", dest="opath", help="output translation to", default="-")
-    parser.add_option("-f", "--follow", dest="follow", help="follow (tail -f) the input", action="store_true", default=False)
+    parser.add_option("-i", "--input", dest="ipath", help=_("parse input hand history"), default="-")
+    parser.add_option("-o", "--output", dest="opath", help=_("output translation to"), default="-")
+    parser.add_option("-f", "--follow", dest="follow", help=_("follow (tail -f) the input"), action="store_true", default=False)
     parser.add_option("-q", "--quiet",
                   action="store_const", const=logging.CRITICAL, dest="verbosity", default=logging.INFO)
     parser.add_option("-v", "--verbose",

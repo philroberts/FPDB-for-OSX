@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import traceback
@@ -31,23 +34,10 @@ import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("maintdbs")
 
-
 import Exceptions
 import Configuration
 import Database
 import SQL
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 class GuiDatabase:
 
@@ -300,7 +290,7 @@ class GuiDatabase:
             self.dia.show()
         except:
             err = traceback.extract_tb(sys.exc_info()[2])[-1]
-            print _('loaddbs error: ')+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: ' \
+            print _('loadDbs error: ')+str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: ' \
                       + err[2] + "(" + str(err[1]) + "): " + str(sys.exc_info()[1])
 
     def sortCols(self, col, n):
@@ -368,7 +358,7 @@ class GuiDatabase:
         try:
             # is creating empty db for sqlite ... mod db.py further?
             # add noDbTables flag to db.py?
-            log.debug(_("loaddbs: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
+            log.debug(_("testDB: trying to connect to: %s/%s, %s, %s/%s") % (str(dbms_num),dbms,name,user,passwd))
             db.connect(backend=dbms_num, host=host, database=name, user=user, password=passwd, create=False)
             if db.connected:
                 log.debug(_("         connected ok"))
@@ -384,14 +374,16 @@ class GuiDatabase:
             status = "failed"
             icon = gtk.STOCK_CANCEL
         except Exceptions.FpdbMySQLNoDatabase:
-            err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - Please check that the MySQL service has been started")
+            err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - ") \
+                      + _("Please check that the MySQL service has been started")
             status = "failed"
             icon = gtk.STOCK_CANCEL
         except Exceptions.FpdbPostgresqlAccessDenied:
-            err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
+            err_msg = _("PostgreSQL Server reports: Access denied. Are your permissions set correctly?")
             status = "failed"
         except Exceptions.FpdbPostgresqlNoDatabase:
-            err_msg = _("Postgres client reports: Unable to connect - Please check that the Postgres service has been started")
+            err_msg = _("PostgreSQL client reports: Unable to connect - ") \
+                      + _("Please check that the PostgreSQL service has been started")
             status = "failed"
             icon = gtk.STOCK_CANCEL
         except:
@@ -401,8 +393,7 @@ class GuiDatabase:
             status = "failed"
             icon = gtk.STOCK_CANCEL
         if err_msg:
-            log.info( _('db connection to ') + str(dbms_num)+','+host+','+name+','+user+','+passwd+' failed: '
-                      + err_msg )
+            log.info( _('db connection to %s, %s, %s, %s, %s failed: %s') % (str(dbms_num), host, name, user, passwd, err_msg))
 
         return( status, err_msg, icon )
 
@@ -410,7 +401,7 @@ class GuiDatabase:
 class AddDB(gtk.Dialog):
 
     def __init__(self, config, parent):
-        log.debug("AddDB starting")
+        log.debug(_("AddDB starting"))
         self.dbnames = { 'Sqlite'     : Configuration.DATABASE_TYPE_SQLITE
                        , 'MySQL'      : Configuration.DATABASE_TYPE_MYSQL
                        , 'PostgreSQL' : Configuration.DATABASE_TYPE_POSTGRESQL
@@ -419,7 +410,7 @@ class AddDB(gtk.Dialog):
         # create dialog and add icon and label
         super(AddDB,self).__init__( parent=parent
                                   , flags=gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT
-                                  , title="Add New Database"
+                                  , title=_("Add New Database")
                                   , buttons = (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT
                                               ,gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT)
                                   ) # , buttons=btns
@@ -487,7 +478,7 @@ class AddDB(gtk.Dialog):
 
     def run(self):
         response = super(AddDB,self).run()
-        log.debug("adddb.run: response is "+str(response)+" accept is "+str(int(gtk.RESPONSE_ACCEPT)))
+        log.debug(_("addDB.run: response is %s accept is %s" % (str(response), str(int(gtk.RESPONSE_ACCEPT)))))
 
         ok,retry = False,True
         while response == gtk.RESPONSE_ACCEPT:
@@ -501,7 +492,7 @@ class AddDB(gtk.Dialog):
         ,name, db_desc, user, passwd, host) = ("error", "error", None, None, None
                                               ,None, None, None, None, None)
         if ok:
-            log.debug("start creating new db")
+            log.debug(_("start creating new db"))
             # add a new db
             master_password = None
             dbms     = self.dbnames[ self.cb_dbms.get_active_text() ]
@@ -520,7 +511,7 @@ class AddDB(gtk.Dialog):
 
             # test db after creating?
             status, err_msg, icon = GuiDatabase.testDB(self.config, dbms, dbms_num, name, user, passwd, host)
-            log.debug('tested new db, result='+str((status,err_msg)))
+            log.debug(_('tested new db, result=%s') % str((status,err_msg)))
             if status == 'ok':
                 #dia = InfoBox( parent=self, str1=_('Database created') )
                 str1 = _('Database created')
@@ -539,7 +530,7 @@ class AddDB(gtk.Dialog):
         """check fields and return true/false according to whether user wants to try again
            return False if fields are ok
         """
-        log.debug("check_fields: starting")
+        log.debug(_("check_fields: starting"))
         try_again = False
         ok = True
 
@@ -571,11 +562,11 @@ class AddDB(gtk.Dialog):
                 # checks for postgres
                 pass
             else:
-                msg = "Unknown Database Type selected"
+                msg = _("Unknown Database Type selected")
                 ok = False
 
         if not ok:
-            log.debug("check_fields: open dialog")
+            log.debug(_("check_fields: open dialog"))
             dia = gtk.MessageDialog( parent=self
                                    , flags=gtk.DIALOG_DESTROY_WITH_PARENT
                                    , type=gtk.MESSAGE_ERROR
@@ -588,14 +579,14 @@ class AddDB(gtk.Dialog):
             dia.vbox.add(l)
             dia.show_all()
             ret = dia.run()
-            log.debug("check_fields: ret is "+str(ret)+" cancel is "+str(int(gtk.RESPONSE_CANCEL)))
+            log.debug(_("check_fields: ret is %s cancel is %s" % (str(ret), str(int(gtk.RESPONSE_CANCEL)))))
             if ret == gtk.RESPONSE_YES:
                 try_again = True
-            log.debug("check_fields: destroy dialog")
+            log.debug(_("check_fields: destroy dialog"))
             dia.hide()
             dia.destroy()
 
-        log.debug("check_fields: returning ok as "+str(ok)+", try_again as "+str(try_again))
+        log.debug(_("check_fields: returning ok as %s, try_again as %s") % (str(ok), str(try_again)))
         return(ok,try_again)
 
     def db_type_changed(self, widget, data):

@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import threading
 import pygtk
 pygtk.require('2.0')
@@ -29,18 +32,6 @@ import gobject
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("filter")
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import Configuration
 import Database
@@ -63,7 +54,7 @@ class Filters(threading.Thread):
                           ,'seatsbetween':_('Between:'), 'seatsand':_('And:'), 'seatsshow':_('Show Number of _Players')
                           ,'playerstitle':_('Hero:'), 'sitestitle':_('Sites:'), 'gamestitle':_('Games:')
                           ,'limitstitle':_('Limits:'), 'seatstitle':_('Number of Players:')
-                          ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats:')
+                          ,'groupstitle':_('Grouping:'), 'posnshow':_('Show Position Stats')
                           ,'datestitle':_('Date:')
                           ,'groupsall':_('All Players')
                           ,'limitsFL':'FL', 'limitsNL':'NL', 'limitsPL':'PL', 'ring':_('Ring'), 'tour':_('Tourney')
@@ -891,7 +882,7 @@ class Filters(threading.Thread):
         hbox = gtk.HBox()
         vbox1.pack_start(hbox, False, True, 0)
 
-        lbl_start = gtk.Label('From:')
+        lbl_start = gtk.Label(_('From:'))
 
         btn_start = gtk.Button()
         btn_start.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
@@ -905,7 +896,7 @@ class Filters(threading.Thread):
         hbox = gtk.HBox()
         vbox1.pack_start(hbox, False, True, 0)
 
-        lbl_end = gtk.Label('  To:')
+        lbl_end = gtk.Label(_('To:'))
         btn_end = gtk.Button()
         btn_end.set_image(gtk.image_new_from_stock(gtk.STOCK_INDEX, gtk.ICON_SIZE_BUTTON))
         btn_end.connect('clicked', self.__calendar_dialog, self.end_date)

@@ -2,7 +2,7 @@
 
 <FreePokerToolsConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="FreePokerToolsConfig.xsd">
 
-    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="True"></import>
+    <import callFpdbHud = "True" interval = "10"  fastStoreHudCache="False" hhArchiveBase="~/.fpdb/HandHistories/" saveActions="False"></import>
 
 <!-- These values determine what stats are displayed in the HUD
 
@@ -573,7 +573,11 @@ Left-Drag to Move"
         <hhc site="Absolute" converter="AbsoluteToFpdb"/>
         <hhc site="PartyPoker" converter="PartyPokerToFpdb"/>
         <hhc site="Betfair" converter="BetfairToFpdb"/>
+        <hhc site="OnGame" converter="OnGameToFpdb"/>
         <hhc site="Partouche" converter="PartoucheToFpdb"/>
+        <hhc site="Carbon" converter="CarbonToFpdb"/>
+        <hhc site="PKR" converter="PkrToFpdb"/>
+        <hhc site="iPoker" converter="iPokerToFpdb"/>
     </hhcs>
 
     <supported_databases>

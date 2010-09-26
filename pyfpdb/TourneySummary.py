@@ -17,6 +17,9 @@
 
 """parses and stores summary sections from e.g. eMail or summary files"""
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: check to keep only the needed modules
 
 import re
@@ -30,18 +33,6 @@ import operator
 import time,datetime
 from copy import deepcopy
 from Exceptions import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import pprint
 import DerivedStats
@@ -74,8 +65,8 @@ class TourneySummary(object):
         self.endTime            = None
         self.tourNo             = None
         self.currency           = None
-        self.buyin              = None
-        self.fee                = None
+        self.buyin              = 0
+        self.fee                = 0
         self.hero               = None
         self.maxseats           = 0
         self.entries            = 0
@@ -125,8 +116,11 @@ class TourneySummary(object):
         self.sym = None
         
         if builtFrom=="IMAP":
-            self.parseSummary()
-            self.insertOrUpdate()
+            # Fix line endings?
+            pass
+
+        self.parseSummary()
+        self.insertOrUpdate()
     #end def __init__
 
     def __str__(self):

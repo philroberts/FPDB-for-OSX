@@ -1,0 +1,47 @@
+Full Tilt Poker Game #21536266313: Table Hagan - $3/$6 Ante $0.50 - Limit Stud Hi - 12:06:20 ET - 2010/06/11
+Seat 1: bllodshot ($52.50)
+Seat 2: kwuiyhw ($48.50)
+Seat 3: chasrigg ($284)
+Seat 4: goulartarm ($80)
+Seat 5: ExecDec ($223.50)
+Seat 7: thebear666 ($87.50)
+Seat 8: FILL A RACK ($138)
+kwuiyhw antes $0.50
+chasrigg antes $0.50
+bllodshot antes $0.50
+ExecDec antes $0.50
+FILL A RACK antes $0.50
+thebear666 antes $0.50
+goulartarm antes $0.50
+*** 3RD STREET ***
+Dealt to bllodshot [9c]
+Dealt to kwuiyhw [Kc]
+Dealt to chasrigg [2s]
+Dealt to goulartarm [2c]
+Dealt to ExecDec [5h 3c] [Td]
+Dealt to thebear666 [3h]
+Dealt to FILL A RACK [6c]
+goulartarm is low with [2c]
+goulartarm brings in for $1
+ExecDec folds
+thebear666 folds
+FILL A RACK folds
+bllodshot folds
+kwuiyhw completes it to $3
+chasrigg folds
+goulartarm folds
+Uncalled bet of $2 returned to kwuiyhw
+kwuiyhw mucks
+kwuiyhw wins the pot ($5.50)
+*** SUMMARY ***
+Total pot $5.50 | Rake $0
+Seat 1: bllodshot folded on 3rd St.
+Seat 2: kwuiyhw collected ($5.50), mucked
+Seat 3: chasrigg folded on 3rd St.
+Seat 4: goulartarm folded on 3rd St.
+Seat 5: ExecDec folded on 3rd St.
+Seat 7: thebear666 folded on 3rd St.
+Seat 8: FILL A RACK folded on 3rd St.
+
+
+

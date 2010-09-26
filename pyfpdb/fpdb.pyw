@@ -15,22 +15,13 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import re
 import Queue
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # if path is set to use an old version of python look for a new one:
 # (does this work in linux?)
@@ -52,7 +43,7 @@ if os.name == 'nt' and sys.version[0:3] not in ('2.5', '2.6', '2.7') and '-r' no
         else:
             os.execvpe('python', ('python', 'fpdb.pyw', '-r'), os.environ) # first arg is ignored (name of program being run)
     else:
-        print _("\npython 2.5 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
+        print _("\npython 2.5-2.7 not found, please install python 2.5, 2.6 or 2.7 for fpdb\n")
         raw_input(_("Press ENTER to continue."))
         exit()
 else:
@@ -86,7 +77,7 @@ try:
     import gtk
     import pango
 except:
-    print _("Unable to load PYGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
+    print _("Unable to load PyGTK modules required for GUI. Please install PyCairo, PyGObject, and PyGTK from www.pygtk.org.")
     raw_input(_("Press ENTER to continue."))
     exit()
 
@@ -122,6 +113,7 @@ import GuiTourneyViewer
 import GuiPositionalStats
 import GuiAutoImport
 import GuiGraphViewer
+import GuiTourneyGraphViewer
 import GuiSessionViewer
 import SQL
 import Database
@@ -129,7 +121,7 @@ import Configuration
 import Exceptions
 import Stats
 
-VERSION = "0.20.906"
+VERSION = "0.20.906 plus git"
 
 
 class fpdb:
@@ -436,7 +428,7 @@ class fpdb:
         diaHudTable.vbox.add(label)
         label.show()
         
-        label=gtk.Label(_("To configure things like colouring you will still have to manually edit your HUD_config.xml."))
+        label=gtk.Label(_("To configure things like colouring you will still have to use the Preferences dialogue or manually edit your HUD_config.xml."))
         diaHudTable.vbox.add(label)
         label.show()
         
@@ -544,8 +536,9 @@ class fpdb:
             #lock_released = False
             dia_confirm = gtk.MessageDialog(parent=self.window, flags=gtk.DIALOG_DESTROY_WITH_PARENT, type=gtk.MESSAGE_WARNING,
                     buttons=(gtk.BUTTONS_YES_NO), message_format=_("Confirm deleting and recreating tables"))
-            diastring = _("Please confirm that you want to (re-)create the tables. If there already are tables in the database ") \
-                        +self.db.database+" on "+self.db.host+_(" they will be deleted.\nThis may take a while.")
+            diastring = _("Please confirm that you want to (re-)create the tables.") \
+                        + (_(" If there already are tables in the database %s on %s they will be deleted and you will have to re-import your histories.\n") % (self.db.database, self.db.host)) \
+                        + _("This may take a while.")
             dia_confirm.format_secondary_text(diastring)#todo: make above string with bold for db, host and deleted
             # disable windowclose, do not want the the underlying processing interrupted mid-process
             dia_confirm.set_deletable(False)
@@ -755,24 +748,6 @@ class fpdb:
     def dia_save_profile(self, widget, data=None):
         self.warning_box(_("Unimplemented: Save Profile (try saving a HUD layout, that should do it)"))
 
-    def diaSetupWizard(self, path):
-        diaSetupWizard = gtk.Dialog(title=_("Fatal Error - Config File Missing"), parent=None, flags=0, buttons=(gtk.STOCK_QUIT,gtk.RESPONSE_OK))
-
-        label = gtk.Label(_("Please copy the config file from the docs folder to:"))
-        diaSetupWizard.vbox.add(label)
-        label.show()
-
-        label = gtk.Label(path)
-        diaSetupWizard.vbox.add(label)
-        label.show()
-
-        label = gtk.Label(_("and edit it according to the install documentation at http://fpdb.sourceforge.net"))
-        diaSetupWizard.vbox.add(label)
-        label.show()
-
-        response = diaSetupWizard.run()
-        sys.exit(1)
-
     def get_menu(self, window):
         """returns the menu for this program"""
         fpdbmenu = """
@@ -795,6 +770,7 @@ class fpdb:
                   <menuitem action="autoimp"/>
                   <menuitem action="hudConfigurator"/>
                   <menuitem action="graphs"/>
+                  <menuitem action="tourneygraphs"/>
                   <menuitem action="ringplayerstats"/>
                   <menuitem action="tourneyplayerstats"/>
                   <menuitem action="tourneyviewer"/>
@@ -834,6 +810,7 @@ class fpdb:
                                  ('autoimp', None, _('_Auto Import and HUD'), _('<control>A'), 'Auto Import and HUD', self.tab_auto_import),
                                  ('hudConfigurator', None, _('_HUD Configurator'), _('<control>H'), 'HUD Configurator', self.diaHudConfigurator),
                                  ('graphs', None, _('_Graphs'), _('<control>G'), 'Graphs', self.tabGraphViewer),
+                                 ('tourneygraphs', None, _('Tourney Graphs'), None, 'TourneyGraphs', self.tabTourneyGraphViewer),
                                  ('ringplayerstats', None, _('Ring _Player Stats (tabulated view, not on pgsql)'), _('<control>P'), 'Ring Player Stats (tabulated view)', self.tab_ring_player_stats),
                                  ('tourneyplayerstats', None, _('_Tourney Player Stats (tabulated view, not on pgsql)'), _('<control>T'), 'Tourney Player Stats (tabulated view, mysql only)', self.tab_tourney_player_stats),
                                  ('tourneyviewer', None, _('Tourney _Viewer'), None, 'Tourney Viewer)', self.tab_tourney_viewer_stats),
@@ -876,8 +853,7 @@ class fpdb:
         if self.config.example_copy:
             self.info_box(_("Config file")
                          , _("has been created at:\n%s.\n") % self.config.file
-                           + _("Edit your screen_name and hand history path in the supported_sites ")
-                           + _("section of the Preferences window (Main menu) before trying to import hands."))
+                           + _("Edit your screen_name and hand history path in the supported_sites section of the Preferences window (Main menu) before trying to import hands."))
         self.settings = {}
         self.settings['global_lock'] = self.lock
         if (os.sep=="/"):
@@ -906,10 +882,10 @@ class fpdb:
             err_msg = _("MySQL client reports: 2002 or 2003 error. Unable to connect - ") \
                       + _("Please check that the MySQL service has been started")
         except Exceptions.FpdbPostgresqlAccessDenied:
-            err_msg = _("Postgres Server reports: Access denied. Are your permissions set correctly?")
+            err_msg = _("PostgreSQL Server reports: Access denied. Are your permissions set correctly?")
         except Exceptions.FpdbPostgresqlNoDatabase:
-            err_msg = _("Postgres client reports: Unable to connect - ") \
-                      + _("Please check that the Postgres service has been started")
+            err_msg = _("PostgreSQL client reports: Unable to connect - ") \
+                      + _("Please check that the PostgreSQL service has been started")
         if err_msg is not None:
             self.db = None
             self.warning_box(err_msg)
@@ -966,10 +942,10 @@ class fpdb:
     def obtain_global_lock(self, source):
         ret = self.lock.acquire(source=source) # will return false if lock is already held
         if ret:
-            print _("\nGlobal lock taken by"), source
+            print (_("\nGlobal lock taken by %s") % source)
             self.lockTakenBy=source
         else:
-            print _("\nFailed to get global lock, it is currently held by"), source
+            print (_("\nFailed to get global lock, it is currently held by %s") % source)
         return ret
         # need to release it later:
         # self.lock.release()
@@ -1014,7 +990,7 @@ class fpdb:
 
     def tab_bulk_import(self, widget, data=None):
         """opens a tab for bulk importing"""
-        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql)
+        new_import_thread = GuiBulkImport.GuiBulkImport(self.settings, self.config, self.sql, self.window)
         self.threads.append(new_import_thread)
         bulk_tab=new_import_thread.get_vbox()
         self.add_and_display_tab(bulk_tab, _("Bulk Import"))
@@ -1084,6 +1060,13 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         gv_tab = new_gv_thread.get_vbox()
         self.add_and_display_tab(gv_tab, _("Graphs"))
 
+    def tabTourneyGraphViewer(self, widget, data=None):
+        """opens a graph viewer tab"""
+        new_gv_thread = GuiTourneyGraphViewer.GuiTourneyGraphViewer(self.sql, self.config, self.window)
+        self.threads.append(new_gv_thread)
+        gv_tab = new_gv_thread.get_vbox()
+        self.add_and_display_tab(gv_tab, _("Tourney Graphs"))
+
     def __init__(self):
         # no more than 1 process can this lock at a time:
         self.lock = interlocks.InterProcessLock(name="fpdb_global_lock")
@@ -1134,8 +1117,8 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
 
         if not options.errorsToConsole:
             fileName = os.path.join(self.config.dir_log, 'fpdb-errors.txt')
-            print _("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in:\n") \
-                  + self.config.dir_log + _("\nAny major error will be reported there _only_.\n")
+            print (_("\nNote: error output is being diverted to fpdb-errors.txt and HUD-errors.txt in: %s") % self.config.dir_log) \
+                  + _("\nAny major error will be reported there _only_.\n")
             errorFile = open(fileName, 'w', 0)
             sys.stderr = errorFile
 
@@ -1232,6 +1215,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
         return response
 
     def validate_config(self):
+        # can this be removed now?
         if self.config.get_import_parameters().get('saveStarsHH'):
             hhbase    = self.config.get_import_parameters().get("hhArchiveBase")
             hhbase    = os.path.expanduser(hhbase)
@@ -1239,7 +1223,7 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
             hhdir       = hhbase
             if not os.path.isdir(hhdir):
                 diapath = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Setup hh dir")
-                diastring = _("WARNING: Unable to find output hh directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
+                diastring = _("WARNING: Unable to find output hand history directory %s\n\n Press YES to create this directory, or NO to select a new one.") % hhdir
                 diapath.format_secondary_text(diastring)
                 response = diapath.run()
                 diapath.destroy()
@@ -1250,6 +1234,50 @@ You can find the full license texts in agpl-3.0.txt, gpl-2.0.txt, gpl-3.0.txt an
                         self.warning_box(_("WARNING: Unable to create hand output directory. Importing is not likely to work until this is fixed."))
                 elif response == gtk.RESPONSE_NO:
                     self.select_hhArchiveBase()
+
+        # check if sites in config file are in DB
+        for site in self.config.get_supported_sites(True):    # get site names from config file
+            try:
+                self.config.get_site_id(site)                     # and check against list from db
+            except KeyError as exc:
+                log.warning("site %s missing from db" % site)
+                dia = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_WARNING, buttons=(gtk.BUTTONS_YES_NO), message_format="Unknown Site")
+                diastring = _("WARNING: Unable to find site  '%s'\n\nPress YES to add this site to the database.") % site
+                dia.format_secondary_text(diastring)
+                response = dia.run()
+                dia.destroy()
+                if response == gtk.RESPONSE_YES:
+                    self.add_site(site)
+
+    def add_site(self, site):
+        dia = gtk.Dialog( title="Add Site", parent=self.window
+                        , flags=gtk.DIALOG_DESTROY_WITH_PARENT
+                        , buttons=(gtk.STOCK_SAVE, gtk.RESPONSE_ACCEPT
+                                  ,gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT)
+                        )
+
+        h = gtk.HBox()
+        dia.vbox.pack_start(h, padding=5)  # sets horizontal padding
+        label = gtk.Label( _("\nEnter short code for %s\n(up to 3 characters):\n") % site )
+        h.pack_start(label, padding=20)     # sets horizontal padding
+        #label.set_alignment(1.0, 0.5)
+        
+        h = gtk.HBox()
+        dia.vbox.add(h)
+        e_code = gtk.Entry(max=3)
+        e_code.set_width_chars(5)
+        h.pack_start(e_code, True, False, padding=5)
+
+        label = gtk.Label( "" )
+        dia.vbox.add(label) # create space below entry, maybe padding arg above makes this redundant?
+
+        dia.show_all()
+        response = dia.run()
+        site_code = e_code.get_text()
+        if response == gtk.RESPONSE_ACCEPT and site_code is not None and site_code != "":
+            self.db.add_site(site, site_code)
+            self.db.commit()
+        dia.destroy()
 
     def main(self):
         gtk.main()

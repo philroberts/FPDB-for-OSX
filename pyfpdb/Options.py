@@ -15,21 +15,12 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 import sys
 from optparse import OptionParser
 #   http://docs.python.org/library/optparse.html
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 def fpdb_options():
 
@@ -60,6 +51,9 @@ def fpdb_options():
                       default = 'EMPTY')
     parser.add_option("-v", "--version", action = "store_true", 
                       help = _("Print version information and exit."))
+    parser.add_option("-u", "--usage", action="store_true", dest="usage", default=False,
+                    help=_("Print some useful one liners"))
+
 
     (options, argv) = parser.parse_args()
     return (options, argv)

@@ -20,6 +20,9 @@ Create and manage the database objects.
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+import L10n
+_ = L10n.get_translation()
+
 ########################################################################
 
 # TODO:  - rebuild indexes / vacuum option
@@ -45,18 +48,6 @@ import math
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("db")
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    FreePokerTools modules
 import SQL
@@ -302,6 +293,7 @@ class Database:
             self.saveActions = False if self.import_options['saveActions'] == False else True
 
             if self.is_connected():
+                self.get_sites()
                 self.connection.rollback()  # make sure any locks taken so far are released
     #end def __init__
 
@@ -466,6 +458,15 @@ class Database:
             self.cursor.execute(self.sql.query['set tx level'])
             self.check_version(database=database, create=create)
 
+    def get_sites(self):
+            self.cursor.execute("SELECT name,id FROM Sites")
+            sites = self.cursor.fetchall()
+            self.config.set_site_ids(sites)
+
+    def add_site(self, site, site_code):
+        self.cursor.execute("INSERT INTO Sites "
+                            "SELECT max(id)+1, '%s', '%s' "
+                            "FROM Sites " % (site, site_code) )
 
     def check_version(self, database, create):
         self.wrongDbVersion = False
@@ -1433,6 +1434,8 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Partouche', 'PA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('iPoker', 'IP')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Winamax', 'WM')")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1756,6 +1759,38 @@ class Database:
         c = self.get_cursor()
         c.executemany(q, inserts)
 
+    def storeHandsActions(self, hid, pids, adata, printdata = False):
+        #print "DEBUG: %s %s %s" %(hid, pids, adata)
+        if printdata:
+            import pprint
+            pp = pprint.PrettyPrinter(indent=4)
+            pp.pprint(adata)
+
+        #inserts = []
+        #for p in pdata:
+        #    inserts.append( (hid,
+        #                     pids[p],
+        #                     adata[p]['startCash'],
+        #                     adata[p]['seatNo'],
+        #                     adata[p]['sitout'],
+        #                     adata[p]['card1'],
+
+        #handsPlayerId BIGINT UNSIGNED NOT NULL, FOREIGN KEY (handsPlayerId) REFERENCES HandsPlayers(id),
+        #street SMALLINT NOT NULL,
+        #actionNo SMALLINT NOT NULL,
+        #action CHAR(5) NOT NULL,
+        #allIn BOOLEAN NOT NULL,
+        #amount INT NOT NULL,
+
+
+        q = self.sql.query['store_hands_actions']
+        #q = q.replace('%s', self.sql.query['placeholder'])
+
+        #print "DEBUG: inserts: %s" %inserts
+        #print "DEBUG: q: %s" % q
+        #c = self.get_cursor()
+        #c.executemany(q, inserts)
+
     def storeHudCache(self, gid, pids, starttime, pdata):
         """Update cached statistics. If update fails because no record exists, do an insert."""
 
@@ -1906,7 +1941,7 @@ class Database:
             hilo = "h"
             if game['category'] in ['studhilo', 'omahahilo']:
                 hilo = "s"
-            elif game['category'] in ['razz','27_3draw','badugi']:
+            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
                 hilo = "l"
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),

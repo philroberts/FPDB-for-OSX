@@ -47,6 +47,9 @@
 #           other stuff.
 #        6  For each stat you make add a line to the __main__ function to test it.
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import sys
 
@@ -54,18 +57,6 @@ import sys
 import pygtk
 import gtk
 import re
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    FreePokerTools modules
 import Configuration
@@ -83,14 +74,29 @@ re_Places = re.compile("_[0-9]$")
 import codecs
 encoder = codecs.lookup(Configuration.LOCALE_ENCODING)
 
+
+# Since tuples are immutable, we have to create a new one when
+# overriding any decimal placements. Copy old ones and recreate the
+# second value in tuple to specified format-
+def __stat_override(decimals, stat_vals):
+    s = '%.*f' % (decimals, 100.0*stat_vals[0])
+    res = (stat_vals[0], s, stat_vals[2],
+            stat_vals[3], stat_vals[4], stat_vals[5])
+    return res
+
+
 def do_tip(widget, tip):
     _tip = Charset.to_utf8(tip)
     widget.set_tooltip_text(_tip)
 
 
 def do_stat(stat_dict, player = 24, stat = 'vpip'):
+    statname = stat
     match = re_Places.search(stat)
-    result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': stat, 'player': player})
+    if match:   # override if necessary
+        statname = stat[0:-2]
+
+    result = eval("%(stat)s(stat_dict, %(player)d)" % {'stat': statname, 'player': player})
 
     # If decimal places have been defined, override result[1]
     # NOTE: decimal place override ALWAYS assumes the raw result is a
@@ -99,9 +105,8 @@ def do_stat(stat_dict, player = 24, stat = 'vpip'):
     # to three decimal places anyhow, so they are unlikely override
     # candidates.
     if match:
-        base = stat[0:-2]
         places = int(stat[-1:])
-        result[1] = '%.*f' % (places, 100.0*result[0])
+        result = __stat_override(places, result)
     return result
 
 #    OK, for reference the tuple returned by the stat is:
@@ -214,15 +219,17 @@ def wmsd(stat_dict, player):
                 _('% won money at showdown')
                 )
 
+# Money is stored as pennies, so there is an implicit 100-multiplier
+# already in place
 def profit100(stat_dict, player):
     """    Profit won per 100 hands."""
     stat = 0.0
     try:
         stat = float(stat_dict[player]['net'])/float(stat_dict[player]['n'])
         return (stat,
-                '%.0f'          % (100.0*stat),
-                'p=%.0f'        % (100.0*stat),
-                'p/100=%.0f'    % (100.0*stat),
+                '%.2f'          % (stat),
+                'p=%.2f'        % (stat),
+                'p/100=%.2f'    % (stat),
                 '%d/%d' % (stat_dict[player]['net'], stat_dict[player]['n']),
                 _('profit/100hands')
                 )

@@ -15,6 +15,9 @@
 #along with this program. If not, see <http://www.gnu.org/licenses/>.
 #In the "official" distribution you can find the license in agpl-3.0.txt.
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: get writehand() encoding correct
 
 import re
@@ -27,18 +30,6 @@ import operator
 import time,datetime
 from copy import deepcopy
 import pprint
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
@@ -56,9 +47,8 @@ class Hand(object):
 #    Class Variables
     UPS = {'a':'A', 't':'T', 'j':'J', 'q':'Q', 'k':'K', 'S':'s', 'C':'c', 'H':'h', 'D':'d'}
     LCS = {'H':'h', 'D':'d', 'C':'c', 'S':'s'}
-    SYMBOL = {'USD': '$', 'EUR': u'$', 'T$': '', 'play': ''}
+    SYMBOL = {'USD': '$', 'EUR': u'$', 'GBP': '$', 'T$': '', 'play': ''}
     MS = {'horse' : 'HORSE', '8game' : '8-Game', 'hose'  : 'HOSE', 'ha': 'HA'}
-    SITEIDS = {'Fulltilt':1, 'PokerStars':2, 'Everleaf':3, 'Win2day':4, 'OnGame':5, 'UltimateBet':6, 'Betfair':7, 'Absolute':8, 'PartyPoker':9, 'Partouche':10, 'Carbon':11, 'PKR':12 }
 
 
     def __init__(self, config, sitename, gametype, handText, builtFrom = "HHC"):
@@ -66,7 +56,7 @@ class Hand(object):
         self.config = config
         #log = Configuration.get_logger("logging.conf", "db", log_dir=self.config.dir_log)
         self.sitename = sitename
-        self.siteId = self.SITEIDS[sitename]
+        self.siteId = self.config.get_site_id(sitename)
         self.stats = DerivedStats.DerivedStats(self)
         self.gametype = gametype
         self.startTime = 0
@@ -275,6 +265,7 @@ db: a connected Database object"""
             db.storeHandsPlayers(self.dbid_hands, self.dbid_pids, self.stats.getHandsPlayers(), printdata = printtest)
             # TODO HandsActions - all actions for all players for all streets - self.actions
             # HudCache data can be generated from HandsActions (HandsPlayers?)
+            #db.storeHandsActions(self.dbid_hands, self.dbid_pids, self.stats.getHandsActions(), printdata = printtest)
         else:
             log.info(_("Hand.insert(): hid #: %s is a duplicate") % hh['siteHandNo'])
             self.is_duplicate = True  # i.e. don't update hudcache
@@ -697,10 +688,7 @@ class HoldemOmahaHand(Hand):
             if self.cancelled:
                 return
             
-            try: hhc.readBlinds(self)
-            except:
-                print _("*** Parse error reading blinds (check compilePlayerRegexs as a likely culprit)"), self
-                return
+            hhc.readBlinds(self)
             
             hhc.readAntes(self)
             hhc.readButton(self)
@@ -1224,7 +1212,8 @@ class StudHand(Hand):
             self.addHoleCards('FOURTH',  player, open=[cards[3]], closed=[cards[2]],  shown=shown, mucked=mucked)
             self.addHoleCards('FIFTH',   player, open=[cards[4]], closed=cards[2:4], shown=shown, mucked=mucked)
             self.addHoleCards('SIXTH',   player, open=[cards[5]], closed=cards[2:5], shown=shown, mucked=mucked)
-            self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
+            if len(cards) > 6:
+                self.addHoleCards('SEVENTH', player, open=[],         closed=[cards[6]], shown=shown, mucked=mucked)
 
 
     def addPlayerCards(self, player,  street,  open=[],  closed=[]):
@@ -1514,11 +1503,15 @@ class Pot(object):
         commitsall = sorted([(v,k) for (k,v) in self.committed.items() if v >0])
 
         self.pots = []
-        while len(commitsall) > 0:
-            commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
-            v1 = commitslive[0][0]
-            self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
-            commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
+        try:
+            while len(commitsall) > 0:
+                commitslive = [(v,k) for (v,k) in commitsall if k in self.contenders]
+                v1 = commitslive[0][0]
+                self.pots += [sum([min(v,v1) for (v,k) in commitsall])]
+                commitsall = [((v-v1),k) for (v,k) in commitsall if v-v1 >0]
+        except IndexError, e:
+            log.error(_("Pot.end(): Major failure while calculating pot: '%s'" % e))
+            raise FpdbParseError(_("Pot.end(): Major failure while calculating pot: '%s'" % e))
 
         # TODO: I think rake gets taken out of the pots.
         # so it goes:
