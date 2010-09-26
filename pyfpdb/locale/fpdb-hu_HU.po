@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.20.905 plus git\n"
 "POT-Creation-Date: 2010-09-22 20:10+CEST\n"
-"PO-Revision-Date: 2010-08-30 01:33+0200\n"
+"PO-Revision-Date: 2010-09-23 11:36+0200\n"
 "Last-Translator: Ferenc Erki <erkiferenc@gmail.com>\n"
 "Language-Team: Hungarian <erkiferenc@gmail.com>\n"
 "Language: hu\n"
@@ -93,9 +93,8 @@ msgstr "Az eredmény ide került kiírásra"
 
 #: BetfairToFpdb.py:118 CarbonToFpdb.py:173 FulltiltToFpdb.py:226
 #: PokerStarsToFpdb.py:226
-#, fuzzy
 msgid "No match in readHandInfo."
-msgstr "re_HandInfo nem illeszkedik"
+msgstr "readHandInfo nem illeszkedik."
 
 #: BetfairToFpdb.py:133
 msgid "readPlayerStacks: Less than 2 players found in a hand"
@@ -690,29 +689,25 @@ msgid "Done"
 msgstr "Kész"
 
 #: FullTiltPokerSummary.py:91 PokerStarsSummary.py:90
-#, fuzzy
 msgid "parseSummary: Unable to recognise Tourney Info: '%s'"
-msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
+msgstr "parseSummary: Nem sikerült felismerni a verseny információt: '%s'"
 
 #: FullTiltPokerSummary.py:92 FullTiltPokerSummary.py:118
 #: PokerStarsSummary.py:91 PokerStarsSummary.py:117
-#, fuzzy
 msgid "parseSummary: Raising FpdbParseError"
-msgstr "determineGameType: FpdbParseError"
+msgstr "parseSummary: FpdbParseError"
 
 #: FullTiltPokerSummary.py:93 PokerStarsSummary.py:92
-#, fuzzy
 msgid "Unable to recognise Tourney Info: '%s'"
-msgstr "Nem sikerült felismerni a játéktípust innen: '%s'"
+msgstr "Nem sikerült felismerni a verseny információt: '%s'"
 
 #: FullTiltPokerSummary.py:117 PokerStarsSummary.py:116
 msgid "parseSummary: Unable to locate currency"
-msgstr ""
+msgstr "parseSummary: Nem található a pénznem"
 
 #: FullTiltPokerSummary.py:119 PokerStarsSummary.py:118
-#, fuzzy
 msgid "Unable to locate currency"
-msgstr "nem sikerült a pénznem meghatározása"
+msgstr "Nem található a pénznem"
 
 #: FulltiltToFpdb.py:364
 msgid "Player bringing in: %s for %s"
@@ -963,11 +958,10 @@ msgstr ""
 "ügyfélszolgálattól jön"
 
 #: GuiBulkImport.py:354
-#, fuzzy
 msgid ""
 "Do the required conversion for FTP Archive format (ie. as provided by support"
 msgstr ""
-"A kiválasztott konverzió elvégzése Stars Archívum formátumra (ahogy az "
+"A kiválasztott konverzió elvégzése FTP Archívum formátumra (ahogy az "
 "ügyfélszolgálattól jön"
 
 #: GuiBulkImport.py:356
@@ -1010,8 +1004,8 @@ msgid ""
 "GuiBulkImport done: Stored: %d \tDuplicates: %d \tPartial: %d \tErrors: %d "
 "in %s seconds - %.0f/sec"
 msgstr ""
-"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d "
-"%s másodperc alatt - %.0f/mp"
+"GuiBulkImport kész: Tárolt: %d \tDuplikáció: %d \tRészleges: %d \tHibák: %d %"
+"s másodperc alatt - %.0f/mp"
 
 #: GuiDatabase.py:117
 msgid "_Add"
@@ -1230,13 +1224,12 @@ msgstr ""
 "nem érinti ez a probléma."
 
 #: GuiGraphViewer.py:91 GuiTourneyGraphViewer.py:91
-#, fuzzy
 msgid "Refresh _Graph"
-msgstr "Frissítés"
+msgstr "F_rissítés"
 
 #: GuiGraphViewer.py:93 GuiTourneyGraphViewer.py:93
 msgid "_Export to File"
-msgstr ""
+msgstr "_Exportálás fájlba"
 
 #: GuiGraphViewer.py:141 GuiGraphViewer.py:257 GuiSessionViewer.py:354
 #: GuiTourneyGraphViewer.py:141 GuiTourneyGraphViewer.py:239
@@ -1455,23 +1448,20 @@ msgid "Sessions"
 msgstr "Sessionök"
 
 #: GuiTourneyGraphViewer.py:185
-#, fuzzy
 msgid "Tournaments"
-msgstr "Verseny beírása"
+msgstr "Verseny3k"
 
 #: GuiTourneyGraphViewer.py:212 GuiTourneyGraphViewer.py:225
-#, fuzzy
 msgid ""
 "Tournaments: %d\n"
 "Profit: $%.2f"
 msgstr ""
-"Leosztások: %d\n"
+"Versenyek: %d\n"
 "Profit: $%.2f"
 
 #: GuiTourneyGraphViewer.py:222
-#, fuzzy
 msgid "Tournament Results"
-msgstr "FPDB Versenybeírás"
+msgstr "Versenyeredmények"
 
 #: GuiTourneyPlayerStats.py:84
 msgid "_Refresh Stats"
@@ -1591,11 +1581,11 @@ msgstr "\"%s\" nevű asztal már nem létezik\n"
 
 #: HUD_main.pyw:321
 msgid ""
-"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f)"
+"HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f)"
 msgstr ""
-"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,"
-"%4.3f,%4.3f,%4.3f)"
+"HUD_main.read_stdin: leosztás beolvasva %4.3f mp alatt (%4.3f,%4.3f,%4.3f,%"
+"4.3f,%4.3f,%4.3f)"
 
 #: HUD_run_me.py:45
 msgid "HUD_main starting\n"
@@ -2217,7 +2207,7 @@ msgstr "(ja, a kulcs %s volt a statd pedig %s)"
 
 #: ImapFetcher.py:53 ImapFetcher.py:62
 msgid "DEBUG: re_SplitTourneys isn't matching"
-msgstr ""
+msgstr "DEBUG: re_SplitTourneys nem egyezik"
 
 #: ImapFetcher.py:76
 msgid "response to logging in:"
@@ -2225,24 +2215,23 @@ msgstr "válasz a bejelentkezésre:"
 
 #: ImapFetcher.py:92
 msgid "ImapFetcher: Found %s messages to fetch"
-msgstr ""
+msgstr "ImapFetcher: %s üzenetet találtam"
 
 #: ImapFetcher.py:112
-#, fuzzy
 msgid "Completed retrieving IMAP messages, closing server connection"
-msgstr "IMAP import befejezve, kapcsolat lezárása"
+msgstr "IMAP üzenetek letöltése befejezve, kapcsolat lezárása"
 
 #: ImapFetcher.py:118
 msgid "No Tournament summaries found."
-msgstr ""
+msgstr "Nem található verseny összefoglaló."
 
 #: ImapFetcher.py:168
 msgid "Finished importing %s/%s PS summaries"
-msgstr ""
+msgstr "%s/%s PS összefoglaló importálása kész"
 
 #: ImapFetcher.py:185
 msgid "Need to define a converter"
-msgstr ""
+msgstr "Meg kell adni egy konvertert"
 
 #: Mucked.py:327
 msgid "No Name"
@@ -3085,9 +3074,8 @@ msgid "_Graphs"
 msgstr "_Grafikonok"
 
 #: fpdb.pyw:822 fpdb.pyw:1077
-#, fuzzy
 msgid "Tourney Graphs"
-msgstr "Verseny típusa"
+msgstr "Verseny grafikonok"
 
 #: fpdb.pyw:823
 msgid "<control>P"
@@ -3349,8 +3337,8 @@ msgstr ""
 "GPL2 vagy újabb licensszel.\n"
 "A Windows telepítő csomag tartalmaz MIT licensz hatálya alá eső részeket "
 "is.\n"
-"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, "
-"gpl-2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
+"A licenszek szövegét megtalálod az fpdb főkönyvtárában az agpl-3.0.txt, gpl-"
+"2.0.txt, gpl-3.0.txt és mit.txt fájlokban."
 
 #: fpdb.pyw:1063
 msgid "Help"
@@ -3398,16 +3386,14 @@ msgstr ""
 "importálás valószínűleg nem fog működni."
 
 #: fpdb.pyw:1254
-#, fuzzy
 msgid ""
 "WARNING: Unable to find site  '%s'\n"
 "\n"
 "Press YES to add this site to the database."
 msgstr ""
-"FIGYELEM: Nem található a leosztásarchívum könyvtára (%s)\n"
+"FIGYELEM: Nem található a '%s' terem\n"
 "\n"
-" Kattints az IGEN gombra a könyvtár létrehozásához, vagy a NEM gombra egy "
-"másik könyvtár választásához."
+"Kattints az IGEN gombra a terem hozzáadásához."
 
 #: fpdb.pyw:1270
 msgid ""
@@ -3415,6 +3401,9 @@ msgid ""
 "Enter short code for %s\n"
 "(up to 3 characters):\n"
 msgstr ""
+"\n"
+"Add meg a rövid kódot a(z) %s számára\n"
+"(maximum 3 karakter):\n"
 
 #: fpdb_import.py:60
 msgid "Import database module: MySQLdb not found"
@@ -3517,9 +3506,8 @@ msgid "Hand logged to hand-errors.txt"
 msgstr "A leosztás naplózva a hand-errors.txt fájlba"
 
 #: fpdb_import.py:596
-#, fuzzy
 msgid "Importing"
-msgstr "Importálás..."
+msgstr "Importálás"
 
 #: fpdb_import.py:624
 msgid "CLI for fpdb_import is now available as CliFpdb.py"
