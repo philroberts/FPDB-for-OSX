@@ -109,6 +109,11 @@ class HUD_main(object):
 
     #    a main window
             self.main_window = gtk.Window()
+            self.main_window.connect("client_moved", self.client_moved)
+            self.main_window.connect("client_resized", self.client_resized)
+            self.main_window.connect("client_destroyed", self.client_destroyed)
+            self.main_window.connect("game_changed", self.game_changed)
+            self.main_window.connect("table_changed", self.table_changed)
             self.main_window.connect("destroy", self.destroy)
             self.vb = gtk.VBox()
             self.label = gtk.Label(_('Closing this window will exit from the HUD.'))
@@ -116,11 +121,27 @@ class HUD_main(object):
             self.main_window.add(self.vb)
             self.main_window.set_title(_("HUD Main Window"))
             self.main_window.show_all()
+            gobject.timeout_add(100, self.check_tables)
         except:
             log.error( "*** Exception in HUD_main.init() *** " )
             for e in traceback.format_tb(sys.exc_info()[2]):
                 log.error(e)
 
+    def client_moved(self, widget, hud):
+        print hud, hud.table.name, "moved", hud.table.x, hud.table.y
+
+    def client_resized(self, widget, hud):
+        print "Client resized"
+
+    def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
+        self.kill_hud(None, hud.table.name)
+
+    def game_changed(self, widget, hud):
+        print "Game Changed."
+
+    def table_changed(self, widget, hud):
+        print "Table Changed."
+        self.kill_hud(None, hud.table.name)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
         log.info(_("Terminating normally."))
@@ -134,6 +155,11 @@ class HUD_main(object):
             self.vb.remove(self.hud_dict[table].tablehudlabel)
             del(self.hud_dict[table])
         self.main_window.resize(1,1)
+
+    def check_tables(self):
+        for hud in self.hud_dict.keys():
+            self.hud_dict[hud].table.check_table(self.hud_dict[hud])
+        return True
 
     def create_HUD(self, new_hand_id, table, table_name, max, poker_game, type, stat_dict, cards):
         """type is "ring" or "tour" used to set hud_params"""
@@ -269,6 +295,7 @@ class HUD_main(object):
                 stat_dict = self.db_connection.get_stats_from_hand(new_hand_id, type, self.hud_dict[temp_key].hud_params
                                                                   ,self.hero_ids[site_id], num_seats)
                 t3 = time.time()
+
                 try:
                     self.hud_dict[temp_key].stat_dict = stat_dict
                 except KeyError:    # HUD instance has been killed off, key is stale
@@ -299,10 +326,7 @@ class HUD_main(object):
                     cards['common'] = comm_cards['common']
 
                 table_kwargs = dict(table_name = table_name, tournament = tour_number, table_number = tab_number)
-                search_string = getTableTitleRe(self.config, site_name, type, **table_kwargs)
-                # print "getTableTitleRe ", self.config, site_name, type, "=", search_string
-                tablewindow = Tables.Table(search_string, **table_kwargs)
-
+                tablewindow = Tables.Table(self.config, site_name, **table_kwargs)
                 if tablewindow is None:
 #        If no client window is found on the screen, complain and continue
                     if type == "tour":
@@ -321,7 +345,8 @@ class HUD_main(object):
             log.info(_("HUD_main.read_stdin: hand read in %4.3f seconds (%4.3f,%4.3f,%4.3f,%4.3f,%4.3f,%4.3f)")
                      % (t6-t0,t1-t0,t2-t0,t3-t0,t4-t0,t5-t0,t6-t0))
             self.db_connection.connection.rollback()
-
+            if type == "tour":
+                tablewindow.check_table_no()
 if __name__== "__main__":
 
 #    start the HUD_main object

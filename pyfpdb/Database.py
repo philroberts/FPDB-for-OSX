@@ -20,6 +20,9 @@ Create and manage the database objects.
 #    along with this program; if not, write to the Free Software
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
+import L10n
+_ = L10n.get_translation()
+
 ########################################################################
 
 # TODO:  - rebuild indexes / vacuum option
@@ -45,18 +48,6 @@ import math
 import logging
 # logging has been set up in fpdb.py or HUD_main.py, use their settings:
 log = logging.getLogger("db")
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    FreePokerTools modules
 import SQL
@@ -1444,6 +1435,7 @@ class Database:
         c.execute("INSERT INTO Sites (name,code) VALUES ('Carbon', 'CA')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('PKR', 'PK')")
         c.execute("INSERT INTO Sites (name,code) VALUES ('iPoker', 'IP')")
+        c.execute("INSERT INTO Sites (name,code) VALUES ('Winamax', 'WM')")
     #end def fillDefaultData
 
     def rebuild_indexes(self, start=None):
@@ -1949,7 +1941,7 @@ class Database:
             hilo = "h"
             if game['category'] in ['studhilo', 'omahahilo']:
                 hilo = "s"
-            elif game['category'] in ['razz','27_3draw','badugi']:
+            elif game['category'] in ['razz','27_3draw','badugi', '27_1draw']:
                 hilo = "l"
             tmp  = self.insertGameTypes( (siteid, game['currency'], game['type'], game['base'], game['category'], game['limitType'], hilo,
                                     int(Decimal(game['sb'])*100), int(Decimal(game['bb'])*100),

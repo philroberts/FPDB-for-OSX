@@ -17,6 +17,9 @@
 
 """pokerstars-specific summary parsing code"""
 
+import L10n
+_ = L10n.get_translation()
+
 from decimal import Decimal
 import datetime
 
@@ -24,18 +27,6 @@ from Exceptions import FpdbParseError
 from HandHistoryConverter import *
 import PokerStarsToFpdb
 from TourneySummary import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 class FullTiltPokerSummary(TourneySummary):
     limits = { 'No Limit':'nl', 'Pot Limit':'pl', 'Limit':'fl', 'LIMIT':'fl' }

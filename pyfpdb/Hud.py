@@ -22,6 +22,10 @@ Create and manage the hud overlays.
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 ########################################################################
+
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import os
 import sys
@@ -41,18 +45,6 @@ if os.name == 'nt':
     import win32gui
     import win32con
     import win32api
-
-import locale
-lang = locale.getdefaultlocale()[0][0:2]
-if lang == "en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    FreePokerTools modules
 import Configuration

@@ -23,8 +23,13 @@ Handles HUD configuration files.
 
 ########################################################################
 
+
 #    Standard Library modules
 from __future__ import with_statement
+
+import L10n
+_ = L10n.get_translation()
+
 import os
 import sys
 import inspect
@@ -35,18 +40,6 @@ import locale
 import re
 import xml.dom.minidom
 from xml.dom.minidom import Node
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import logging, logging.config
 import ConfigParser
@@ -484,7 +477,7 @@ class Import:
         self.callFpdbHud   = node.getAttribute("callFpdbHud")
         self.hhArchiveBase = node.getAttribute("hhArchiveBase")
         self.hhBulkPath = node.getAttribute("hhBulkPath")
-        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=True)
+        self.saveActions = string_to_bool(node.getAttribute("saveActions"), default=False)
         self.fastStoreHudCache = string_to_bool(node.getAttribute("fastStoreHudCache"), default=False)
         self.saveStarsHH = string_to_bool(node.getAttribute("saveStarsHH"), default=False)
 
@@ -1263,7 +1256,7 @@ class Config:
         except:  imp['hhBulkPath']    = ""
 
         try:    imp['saveActions']     = self.imp.saveActions
-        except:  imp['saveActions']     = True
+        except:  imp['saveActions']     = False
 
         try:    imp['saveStarsHH'] = self.imp.saveStarsHH
         except:  imp['saveStarsHH'] = False

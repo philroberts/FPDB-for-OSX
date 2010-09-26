@@ -17,6 +17,9 @@
 
 """parses and stores summary sections from e.g. eMail or summary files"""
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: check to keep only the needed modules
 
 import re
@@ -30,18 +33,6 @@ import operator
 import time,datetime
 from copy import deepcopy
 from Exceptions import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 import pprint
 import DerivedStats

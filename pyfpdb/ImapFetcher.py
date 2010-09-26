@@ -19,6 +19,9 @@
 #see http://docs.python.org/library/imaplib.html for the python interface
 #see http://tools.ietf.org/html/rfc2060#section-6.4.4 for IMAP4 search criteria
 
+import L10n
+_ = L10n.get_translation()
+
 from imaplib import IMAP4, IMAP4_SSL
 import sys
 import codecs
@@ -32,18 +35,6 @@ import Options
 import PokerStarsSummary
 import FullTiltPokerSummary
 
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 def splitPokerStarsSummaries(summaryText): #TODO: this needs to go to PSS.py
     re_SplitTourneys = PokerStarsSummary.PokerStarsSummary.re_SplitTourneys

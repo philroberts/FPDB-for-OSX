@@ -22,31 +22,19 @@ Main program module to test/demo the Tables subclasses.
 
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import sys
 import os
-import re
 
 #    pyGTK modules
-import pygtk
 import gtk
 import gobject
 
 #    fpdb/free poker tools modules
 import Configuration
-from HandHistoryConverter import getTableTitleRe
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    get the correct module for the current os
 if os.name == 'posix':
@@ -73,24 +61,31 @@ if __name__=="__main__":
             self.main_window.move(table.x + dx, table.y + dy)
             self.main_window.show_all()
             table.topify(self)
+            
+#    These are the currently defined signals. Do this in the HUD.
             self.main_window.connect("client_moved", self.client_moved)
             self.main_window.connect("client_resized", self.client_resized)
             self.main_window.connect("client_destroyed", self.client_destroyed)
+            self.main_window.connect("game_changed", self.game_changed)
+            self.main_window.connect("table_changed", self.table_changed)
 
+#    And these of the handlers that go with those signals.
+#    These would live inside the HUD code.
         def client_moved(self, widget, hud):
             self.main_window.move(self.table.x + self.dx, self.table.y + self.dy)
 
         def client_resized(self, *args):
-            print "client resized"
+            print "Client resized"
 
         def client_destroyed(self, *args): # call back for terminating the main eventloop
+            print "Client destroyed."
             gtk.main_quit()
 
-    def check_on_table(table, hud):
-        result = table.check_geometry()
-        if result != False:
-            hud.main_window.emit(result, hud)
-        return True
+        def game_changed(self, *args):
+            print "Game Changed."
+
+        def table_changed(self, *args):
+            print "Table Changed."
 
     print _("enter table name to find: "),
     table_name = sys.stdin.readline()
@@ -107,16 +102,12 @@ if __name__=="__main__":
         type = "cash"
         table_kwargs = dict(table_name = table_name)
 
-    search_string = getTableTitleRe(config, "Full Tilt Poker", type, **table_kwargs)
-    table = Tables.Table(search_string, **table_kwargs)
-    table.gdk_handle = gtk.gdk.window_foreign_new(table.number)
-
-    print "table =", table
-#    print "game =", table.get_game()
+    table = Tables.Table(config, "Full Tilt Poker", **table_kwargs)
+    print table
 
     fake = fake_hud(table)
-    print "fake =", fake
-#    gobject.timeout_add(100, check_on_table, table, fake)
-    print _("calling main")
+    gobject.timeout_add(1000, table.check_game, fake)
+    gobject.timeout_add(100, table.check_table, fake)
+    print "calling main"
     gtk.main()
 

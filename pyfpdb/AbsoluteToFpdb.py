@@ -18,22 +18,13 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ########################################################################
 
+import L10n
+_ = L10n.get_translation()
+
 # TODO: I have no idea if AP has multi-currency options, i just copied the regex out of Everleaf converter for the currency symbols.. weeeeee - Eric
 import sys
 import logging
 from HandHistoryConverter import *
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 # Class for converting Absolute HH format.
 

@@ -47,6 +47,9 @@
 #           other stuff.
 #        6  For each stat you make add a line to the __main__ function to test it.
 
+import L10n
+_ = L10n.get_translation()
+
 #    Standard Library modules
 import sys
 
@@ -54,18 +57,6 @@ import sys
 import pygtk
 import gtk
 import re
-
-import locale
-lang=locale.getdefaultlocale()[0][0:2]
-if lang=="en":
-    def _(string): return string
-else:
-    import gettext
-    try:
-        trans = gettext.translation("fpdb", localedir="locale", languages=[lang])
-        trans.install()
-    except IOError:
-        def _(string): return string
 
 #    FreePokerTools modules
 import Configuration
