@@ -40,6 +40,10 @@ from optparse import OptionParser
 import Configuration
 import string
 
+if os.name == "nt":
+    import win32console
+
+
 class GuiAutoImport (threading.Thread):
     def __init__(self, settings, config, sql, parent):
         self.importtimer = 0
@@ -211,8 +215,10 @@ class GuiAutoImport (threading.Thread):
                         bs = 0
                     elif os.name == 'nt':
                         path = sys.path[0].replace('\\','\\\\')
-                        command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
-                        #command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        if win32console.GetConsoleWindow() == 0:
+                            command = 'pythonw "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
+                        else:
+                            command = 'python "'+path+'\\HUD_main.pyw" ' + self.settings['cl_options']
                         # uncomment above line if you want hud_main stdout to work ... and make sure you are running fpdb.py using python.exe not pythonw.exe
                         bs = 0
                     else:
@@ -222,7 +228,7 @@ class GuiAutoImport (threading.Thread):
 
                     try:
                         print _("opening pipe to HUD")
-                        if Configuration.FROZEN:
+                        if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                                 stdin=subprocess.PIPE,
                                                                 stdout=subprocess.PIPE,  # only needed for py2exe
