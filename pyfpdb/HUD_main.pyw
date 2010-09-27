@@ -131,16 +131,16 @@ class HUD_main(object):
         print hud, hud.table.name, "moved", hud.table.x, hud.table.y
 
     def client_resized(self, widget, hud):
-        print "Client resized"
+        print _("Client resized")
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
         self.kill_hud(None, hud.table.name)
 
     def game_changed(self, widget, hud):
-        print "Game Changed."
+        print _("Game changed.")
 
     def table_changed(self, widget, hud):
-        print "Table Changed."
+        print _("Table changed.")
         self.kill_hud(None, hud.table.name)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
