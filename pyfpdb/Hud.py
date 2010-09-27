@@ -53,6 +53,7 @@ import Mucked
 import Database
 #import HUD_main
 
+
 def importName(module_name, name):
     """Import a named object 'name' from module 'module_name'."""
 #    Recipe 16.3 in the Python Cookbook, 2nd ed.  Thanks!!!!
@@ -63,12 +64,12 @@ def importName(module_name, name):
         return None
     return(getattr(module, name))
 
-class Hud:
 
+class Hud:
     def __init__(self, parent, table, max, poker_game, config, db_connection):
 #    __init__ is (now) intended to be called from the stdin thread, so it
 #    cannot touch the gui
-        if parent is None: # running from cli ..
+        if parent is None:  # running from cli ..
             self.parent = self
         else:
             self.parent    = parent
@@ -82,7 +83,6 @@ class Hud:
         self.site          = table.site
         self.mw_created    = False
         self.hud_params    = parent.hud_params
-
 
         self.stat_windows  = {}
         self.popup_windows = {}
@@ -115,11 +115,11 @@ class Hud:
     def create_mw(self):
 #	Set up a main window for this this instance of the HUD
         win = gtk.Window()
-        win.set_skip_taskbar_hint(True) # invisible to taskbar
+        win.set_skip_taskbar_hint(True)  # invisible to taskbar
         win.set_gravity(gtk.gdk.GRAVITY_STATIC)
         win.set_title("%s FPDBHUD" % (self.table.name)) # give it a title that we can easily filter out in the window list when Table search code is looking
-        win.set_decorated(False) # kill titlebars
-        win.set_opacity(self.colors["hudopacity"]) # set it to configured hud opacity
+        win.set_decorated(False)    # kill titlebars
+        win.set_opacity(self.colors["hudopacity"])  # set it to configured hud opacity
         win.set_focus(None)
         win.set_focus_on_map(False)
         win.set_accept_focus(False)
@@ -165,9 +165,9 @@ class Hud:
         # set agg_bb_mult to 1 to stop aggregation
         item = gtk.CheckMenuItem(_('For This Blind Level Only'))
         self.aggMenu.append(item)
-        item.connect("activate", self.set_aggregation, ('P',1))
+        item.connect("activate", self.set_aggregation, ('P', 1))
         setattr(self, 'h_aggBBmultItem1', item)
-        
+
         item = gtk.MenuItem(_('For Multiple Blind Levels:'))
         self.aggMenu.append(item)
         
@@ -362,7 +362,7 @@ class Hud:
             item.ms = i
             maxSeatsMenu.append(item)
             item.connect("activate", self.change_max_seats)
-            setattr(self, 'maxSeatsMenuItem%d' % (i-1), item)
+            setattr(self, 'maxSeatsMenuItem%d' % (i - 1), item)
 
         eventbox.connect_object("button-press-event", self.on_button_press, menu)
 
@@ -544,7 +544,7 @@ class Hud:
             loc = self.stat_windows[sw].window.get_position()
             new_loc = (loc[0] - self.table.x, loc[1] - self.table.y)
             new_layout[self.stat_windows[sw].adj - 1] = new_loc
-        self.config.edit_layout(self.table.site, self.max, locations = new_layout)
+        self.config.edit_layout(self.table.site, self.max, locations=new_layout)
 #    ask each aux to save its layout back to the config object
         [aux.save_layout() for aux in self.aux_windows]
 #    save the config object back to the file
@@ -557,7 +557,7 @@ class Hud:
         adj = range(0, self.max + 1) # default seat adjustments = no adjustment
 #    does the user have a fav_seat?
         if self.max not in config.supported_sites[self.table.site].layout:
-            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site) )
+            sys.stderr.write(_("No layout found for %d-max games for site %s\n") % (self.max, self.table.site))
             return adj
         if self.table.site != None and int(config.supported_sites[self.table.site].layout[self.max].fav_seat) > 0:
             try:
