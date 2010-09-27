@@ -141,6 +141,8 @@ class Table_Window(object):
         self.height = geo['height']
         self.x      = geo['x']
         self.y      = geo['y']
+        self.oldx   = self.x # attn ray: remove these two lines and update Hud.py::update_table_position()
+        self.oldy   = self.y
 
         self.game = self.get_game()
 
@@ -238,6 +240,7 @@ class Table_Window(object):
             return "client_destroyed"
 
         if self.x != new_geo['x'] or self.y != new_geo['y']: # window moved
+            print self.x, self.y, new_geo['x'], new_geo['y']
             self.x      = new_geo['x']
             self.y      = new_geo['y']
             return "client_moved"

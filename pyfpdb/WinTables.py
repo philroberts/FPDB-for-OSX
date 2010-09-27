@@ -80,6 +80,7 @@ class Table(Table_Window):
 
         try:
             (x, y, width, height) = win32gui.GetWindowRect(self.number)
+            #print "x=",x,"y=",y,"width=",width,"height=",height
             width = width - x
             height = height - y
             return {'x'      : int(x) + b_width,

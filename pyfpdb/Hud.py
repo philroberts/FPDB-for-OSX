@@ -472,17 +472,19 @@ class Hud:
                 return False
         # anyone know how to do this in unix, or better yet, trap the X11 error that is triggered when executing the get_origin() for a closed window?
         if self.table.gdkhandle is not None:
-            (x, y) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
-            if self.table.x != x or self.table.y != y: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
-                self.table.x = x
-                self.table.y = y
-                self.main_window.move(x + self.site_params['xshift'], y + self.site_params['yshift'])
+            (oldx, oldy) = self.table.gdkhandle.get_origin() # In Windows, this call returns (0,0) if it's an invalid window.  In X, the X server is immediately killed.
+            #(x, y, width, height) = self.table.get_geometry()
+            #print "self.table.get_geometry=",x,y,width,height
+            if self.table.oldx != oldx or self.table.oldy != oldy: # If the current position does not equal the stored position, save the new position, and then move all the sub windows.
+                self.table.oldx = oldx
+                self.table.oldy = oldy
+                self.main_window.move(oldx + self.site_params['xshift'], oldy + self.site_params['yshift'])
                 adj = self.adj_seats(self.hand, self.config)
                 loc = self.config.get_locations(self.table.site, self.max)
                 # TODO: is stat_windows getting converted somewhere from a list to a dict, for no good reason?
                 for i, w in enumerate(self.stat_windows.itervalues()):
-                    (x, y) = loc[adj[i+1]]
-                    w.relocate(x, y)
+                    (oldx, oldy) = loc[adj[i+1]]
+                    w.relocate(oldx, oldy)
 
                 # While we're at it, fix the positions of mucked cards too
                 for aux in self.aux_windows:
