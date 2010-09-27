@@ -128,19 +128,22 @@ class HUD_main(object):
                 log.error(e)
 
     def client_moved(self, widget, hud):
+        print "hud_main: client moved"
         print hud, hud.table.name, "moved", hud.table.x, hud.table.y
 
     def client_resized(self, widget, hud):
-        print _("Client resized")
+        print _("hud_main: Client resized")
+        print hud, hud.table.name, hud.table.x, hud.table.y
 
     def client_destroyed(self, widget, hud): # call back for terminating the main eventloop
+        print _("hud_main: Client destroyed")
         self.kill_hud(None, hud.table.name)
 
     def game_changed(self, widget, hud):
-        print _("Game changed.")
+        print _("hud_main: Game changed.")
 
     def table_changed(self, widget, hud):
-        print _("Table changed.")
+        print _("hud_main: Table changed.")
         self.kill_hud(None, hud.table.name)
 
     def destroy(self, *args):             # call back for terminating the main eventloop
