@@ -251,7 +251,8 @@ class Table_Window(object):
         result = self.get_table_no()
         if result != False and result != self.table:
             self.table = result
-            hud.main_window.emit("table_changed", hud)
+            if hud is not None:
+                hud.main_window.emit("table_changed", hud)
         return True
         
     def check_bad_words(self, title):
