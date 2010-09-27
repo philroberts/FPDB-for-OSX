@@ -231,8 +231,8 @@ class GuiAutoImport (threading.Thread):
                         if Configuration.FROZEN or (os.name == "nt" and win32console.GetConsoleWindow()) == 0:
                             self.pipe_to_hud = subprocess.Popen(command, bufsize=bs,
                                                                 stdin=subprocess.PIPE,
-                                                                stdout=subprocess.PIPE,  # only needed for py2exe
-                                                                stderr=subprocess.PIPE,  # only needed for py2exe
+                                                                stdout=subprocess.PIPE,  # needed for pythonw / py2exe
+                                                                stderr=subprocess.PIPE,  # needed for pythonw / py2exe
                                                                 universal_newlines=True
                                                                )
                         else:
