@@ -351,7 +351,8 @@ class HUD_main(object):
                      % (t6 - t0,t1 - t0,t2 - t0,t3 - t0,t4 - t0,t5 - t0,t6 - t0))
             self.db_connection.connection.rollback()
             if type == "tour":
-                tablewindow.check_table_no()
+                tablewindow.check_table_no(None)
+            # Ray!! tablewindow::check_table_no expects a HUD as an argument!
 if __name__== "__main__":
 
 #    start the HUD_main object
